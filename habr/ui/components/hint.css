@@ -1,0 +1,251 @@
+/* =========================================================================
+   HABR · HINT (три вида)
+   =========================================================================
+   Storybook-only (не в 101 production-файле — монтируются по взаимодействию,
+   см. evidence/source-map.md). Requires: ui/components/popover.css для
+   BaseHint (использует .base-popover внутри).
+
+   BaseHint       — контекстная подсказка с сегментной рамкой-«хайлайтом»
+                    и стрелкой-указателем на 12 позиций (top/bottom/left/
+                    right × start/center/end).
+   InformerHint   — крупный информер с пульсирующей точкой-триггером,
+                    заголовком и текстом; ширина через inline CSS var.
+   RestrictionHint — простейший вид: только текст в рамке popover, без
+                    декора. Употребляется, когда действие недоступно
+                    (ограничение доступа/тарифа), отсюда имя.
+   ========================================================================= */
+
+/* --- BaseHint ------------------------------------------------------------ */
+
+.activator-wrapper { display: contents; }
+
+.base-hint {
+  color: var(--text-main);
+  box-sizing: border-box;
+  border-radius: 8px;
+  max-width: 220px;
+  padding: 8px 12px;
+  font-size: .8125rem;
+  font-weight: 400;
+  line-height: 1rem;
+}
+.base-hint .base-popover { z-index: 80; }
+.base-hint .inner { z-index: 2; padding-right: 16px; position: relative; }
+.base-hint p { margin: 0; }
+.base-hint a { color: var(--accent-primary); text-decoration: none; }
+.base-hint a:hover { color: var(--accent-primary); text-decoration: underline; }
+.base-hint *, .base-hint :before, .base-hint :after { box-sizing: border-box; }
+
+/* двойная рамка: внутренняя заливка фоном + внешняя — акцентным цветом на 20% */
+.base-hint:before, .base-hint:after {
+  content: "";
+  z-index: 1;
+  border-radius: inherit;
+  position: absolute;
+}
+.base-hint:before {
+  background-color: var(--background-primary);
+  border: 1px solid var(--complexity-medium);
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  top: 1px; left: 1px;
+}
+.base-hint:after {
+  background-color: hsl(from var(--complexity-medium) h s l / 20%);
+  width: 100%; height: 100%;
+  top: 0; left: 0;
+}
+
+/* Стрелка-указатель, 4 стороны × 2 позиции (start/end) + центр по умолчанию.
+
+   ВСЕ 23 селектора заскоуплены под .base-hint. В production они выглядят
+   как `.arrow[data-v-f977e8aa]` — Vue изолирует их компонентом, а мы этот
+   атрибут при извлечении снимаем, и голый `.arrow` начинает действовать на
+   всю страницу приложения-потребителя. Тот же дефект уже ловился у `.body`
+   и `.head` в dropdown.css; здесь он найден сплошным аудитом, а не по
+   симптому. Поведение не изменено: в реальной разметке стрелка всегда
+   лежит внутри .base-hint. */
+.base-hint .arrow {
+  z-index: 4;
+  pointer-events: none;
+  width: 16px;
+  height: 8px;
+  position: absolute;
+  overflow: hidden;
+}
+.base-hint .arrow:before, .base-hint .arrow:after {
+  content: "";
+  transform-origin: 0;
+  width: 20px;
+  height: 20px;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 2px;
+  transform: rotate(45deg);
+}
+.base-hint .arrow:before { background-color: var(--background-primary); }
+.base-hint .arrow:after {
+  background-color: hsl(from var(--complexity-medium) h s l / 20%);
+  border: 1px solid var(--complexity-medium);
+}
+.base-hint .arrow-top    { bottom: -8px; left: 50%; transform: translate(-50%); }
+.base-hint .arrow-top:after, .base-hint .arrow-top:before { top: -23px; left: 1px; }
+.base-hint .arrow-bottom { top: -6px; left: 50%; transform: translate(-50%); }
+.base-hint .arrow-left   { top: 50%; left: auto; right: -12px; transform: translateY(-50%) rotate(-90deg); }
+.base-hint .arrow-left:after, .base-hint .arrow-left:before { top: -23px; left: 1px; }
+.base-hint .arrow-right  { top: 50%; left: -12px; transform: translateY(-50%) rotate(90deg); }
+.base-hint .arrow-right:after, .base-hint .arrow-right:before { top: -23px; left: 1px; }
+.base-hint .arrow-top.arrow-start, .base-hint .arrow-bottom.arrow-start { left: 12px; transform: translate(0); }
+.base-hint .arrow-top.arrow-end, .base-hint .arrow-bottom.arrow-end { left: auto; right: 12px; transform: translate(0); }
+.base-hint .arrow-left.arrow-start { top: 12px; transform: rotate(-90deg); }
+.base-hint .arrow-left.arrow-end { top: auto; bottom: 12px; transform: rotate(-90deg); }
+.base-hint .arrow-right.arrow-start { top: 12px; transform: rotate(90deg); }
+.base-hint .arrow-right.arrow-end { top: auto; bottom: 12px; transform: rotate(90deg); }
+
+.base-hint .close {
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: hsl(from var(--complexity-medium) h s l / 60%);
+  z-index: 2;
+  line-height: 0;
+  position: absolute;
+  top: 4px; right: 4px;
+}
+.base-hint .close:not(:focus-visible) { outline: none; }
+.base-hint .link-wrapper { margin-top: 4px; }
+
+/* --- InformerHint ---------------------------------------------------------
+   Ширина — inline CSS var (v-bind), задаётся потребителем компонента.
+   GAP: реальное значение по умолчанию не подтверждено (в отличие от
+   сайдбара --sidebar-width, для которого есть 7 живых замеров) — Storybook
+   рендерит InformerHint только внутри истории с собственным prop, не даёт
+   значения "по умолчанию продукта". Не подставлять число на глаз: при
+   использовании компонента ширину нужно задавать явно через
+   style="--informer-hint-width: …". */
+
+.hint-trigger-button {
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  border: 6px solid var(--label-dodger-blue);
+  border-radius: 100%;
+  width: 16px;
+  height: 16px;
+  position: absolute;
+}
+.hint-trigger-button:not(:focus-visible) { outline: none; }
+.hint-trigger-button:after {
+  content: "";
+  border: 4px solid var(--label-dodger-blue);
+  pointer-events: none;
+  border-radius: 9999px;
+  width: 16px;
+  height: 16px;
+  animation: 1s ease-out infinite hot-point-pulsate;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+@keyframes hot-point-pulsate {
+  0%  { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; width: 32px; height: 32px; }
+}
+
+.informer-hint {
+  /* ДОБАВЛЕНО: литерал --label-dodger-blue вынесен в переменную, чтобы
+     типы ниже могли его переопределить. Значение по умолчанию оставлено
+     тем же, что в исходнике, — без модификатора типа рендер не изменился. */
+  --informer-accent: var(--label-dodger-blue);
+  width: var(--informer-hint-width);
+  border: 1px solid hsl(from var(--informer-accent) h s l / 60%);
+  color: var(--text-main);
+  box-sizing: border-box;
+  background-color: var(--background-primary);
+  border-radius: 4px;
+  padding: 14px 44px 14px 16px;
+  /* ДОБАВЛЕНО, не в исходном informer-hint-Bf4XvRzJ.css: без position
+     дети .informer-hint:before (position:absolute;inset:0) и
+     .close-informer-hint (position:absolute;top:12px;right:12px)
+     позиционируются от viewport, а не от карточки — оба существующих
+     правила бессмысленны без позиционированного родителя. Реальный
+     компонент, вероятно, задаёт его в другом, не захваченном style-блоке. */
+  position: relative;
+}
+.informer-hint h3 { margin: 0 0 4px; font-size: .9375rem; font-weight: 700; line-height: 1.25rem; }
+.informer-hint p { margin: 0; font-size: .9375rem; font-weight: 400; line-height: 1.25rem; }
+.informer-hint:before {
+  content: "";
+  background-color: hsl(from var(--informer-accent) h s l / 12%);
+  width: 100%; height: 100%;
+  position: absolute;
+  top: 0; left: 0;
+}
+.close-informer-hint {
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  padding: 0;
+  color: var(--icon-primary);
+  position: absolute;
+  top: 12px; right: 12px;
+}
+.close-informer-hint:not(:focus-visible) { outline: none; }
+.close-informer-hint > svg { display: block; }
+
+/* --- RestrictionHint ------------------------------------------------------ */
+
+.restriction-hint {
+  color: var(--text-secondary);
+  max-width: 289px;
+  padding: 12px 16px;
+  font-size: .875rem;
+  line-height: 1.25rem;
+}
+.restriction-hint a { color: var(--accent-primary); text-decoration: none; }
+
+/* =========================================================================
+   FIGMA-RECONSTRUCTED — типы информера и «малый» размер
+   =========================================================================
+   Источник: habr-lib → informer (1292:45154). В production захвачен только
+   один вид (синий, без иконки и даты) — четырёх типов и раскладки
+   «иконка + заголовок + дата + крестик» в извлечённом CSS нет.
+
+   get_variable_defs дал цвета типов дословно; сопоставлены с боевыми
+   токенами: info #548eaa = --accent-primary, success #7aa600 =
+   --accent-positive, warning #f77d05 = --label-sorbus, danger #d04e4e =
+   --accent-danger.
+
+   РАСХОЖДЕНИЕ, не усреднено: Figma красит info в --accent-primary, а
+   production-информер (без модификатора выше) — в --label-dodger-blue.
+   Это два разных синих. База оставлена как в production. */
+
+.informer-hint_type-info { --informer-accent: var(--accent-primary); }
+.informer-hint_type-success { --informer-accent: var(--accent-positive); }
+.informer-hint_type-warning { --informer-accent: var(--label-sorbus); }
+.informer-hint_type-danger { --informer-accent: var(--accent-danger); }
+
+.informer-hint__row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  position: relative;
+  z-index: 1;
+}
+.informer-hint__icon { color: var(--informer-accent); flex: none; }
+.informer-hint__content { flex: 1; min-width: 0; }
+.informer-hint__date {
+  color: var(--text-secondary);
+  flex: none;
+  font-size: .9375rem;
+  line-height: 1.25rem;
+}
+
+/* small=yes — без подложки, рамки и внутренних отступов, одна строка */
+.informer-hint_small { background: transparent; border: 0; padding: 0; }
+.informer-hint_small:before { content: none; }
+.informer-hint_small .close-informer-hint { position: static; }

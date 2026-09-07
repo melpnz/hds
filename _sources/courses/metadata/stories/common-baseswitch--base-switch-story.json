@@ -1,0 +1,276 @@
+{
+ "id": "common-baseswitch--base-switch-story",
+ "name": "Base Switch Story",
+ "title": "common/BaseSwitch",
+ "componentId": "common-baseswitch",
+ "tags": [
+  "dev",
+  "test",
+  "autodocs"
+ ],
+ "initialArgs": {
+  "modelValue": false,
+  "name": "switch",
+  "appearance": "default"
+ },
+ "argTypes": {
+  "modelValue": {
+   "control": {
+    "type": "boolean"
+   },
+   "name": "modelValue",
+   "type": {
+    "name": "union",
+    "value": [
+     {
+      "name": "boolean"
+     },
+     {
+      "name": "other",
+      "value": "null"
+     },
+     {
+      "name": "string"
+     }
+    ],
+    "required": true
+   },
+   "table": {
+    "type": {
+     "summary": "boolean | null | string"
+    },
+    "category": "props"
+   }
+  },
+  "name": {
+   "control": {
+    "type": "text"
+   },
+   "name": "name",
+   "type": {
+    "name": "string",
+    "required": true
+   },
+   "table": {
+    "type": {
+     "summary": "string"
+    },
+    "category": "props"
+   }
+  },
+  "appearance": {
+   "control": {
+    "type": "radio"
+   },
+   "name": "appearance",
+   "type": {
+    "name": "union",
+    "value": [
+     {
+      "name": "other",
+      "value": "\"default\""
+     },
+     {
+      "name": "other",
+      "value": "\"edu\""
+     }
+    ],
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "\"default\" | \"edu\""
+    },
+    "defaultValue": {
+     "summary": "'default'"
+    },
+    "category": "props"
+   },
+   "options": [
+    "default",
+    "edu"
+   ]
+  },
+  "trueValue": {
+   "control": {
+    "type": "object"
+   },
+   "name": "trueValue",
+   "type": {
+    "name": "union",
+    "value": [
+     {
+      "name": "boolean"
+     },
+     {
+      "name": "other",
+      "value": "null"
+     },
+     {
+      "name": "string"
+     }
+    ],
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "boolean | null | string"
+    },
+    "defaultValue": {
+     "summary": "true"
+    },
+    "category": "props"
+   }
+  },
+  "falseValue": {
+   "control": {
+    "type": "object"
+   },
+   "name": "falseValue",
+   "type": {
+    "name": "union",
+    "value": [
+     {
+      "name": "boolean"
+     },
+     {
+      "name": "other",
+      "value": "null"
+     }
+    ],
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "boolean | null"
+    },
+    "defaultValue": {
+     "summary": "false"
+    },
+    "category": "props"
+   }
+  },
+  "update:modelValue": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "update:modelValue",
+   "type": {
+    "name": "other",
+    "value": "union",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "union"
+    },
+    "category": "events"
+   }
+  },
+  "before": {
+   "control": {
+    "type": "object"
+   },
+   "name": "before",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "slots"
+   }
+  },
+  "default": {
+   "control": {
+    "type": "object"
+   },
+   "name": "default",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "slots"
+   }
+  }
+ },
+ "parameters": {
+  "renderer": "vue3",
+  "docs": {
+   "story": {
+    "inline": true
+   },
+   "extractArgTypes": "[function T]",
+   "extractComponentDescription": "[function extractComponentDescription]",
+   "renderer": "[function renderer]",
+   "stories": {
+    "filter": "[function filter]"
+   },
+   "source": {
+    "originalSource": "{\n  args: {\n    modelValue: false,\n    name: 'switch',\n    appearance: 'default'\n  },\n  render: args => ({\n    components: {\n      BaseSwitch\n    },\n    setup() {\n      return {\n        args\n      };\n    },\n    template: `\n      <div class=\"p-8 flex flex-col gap-3\">\n        <BaseSwitch v-bind=\"args\">\n          Лейбл до\n        </BaseSwitch>\n\n        <BaseSwitch v-bind=\"args\">\n          <template #before>Лейбл после</template>\n        </BaseSwitch>\n      </div>\n    `\n  }),\n  argTypes: {\n    modelValue: {\n      control: 'boolean'\n    },\n    appearance: {\n      options: ['default', 'edu'],\n      control: {\n        type: 'radio'\n      }\n    }\n  }\n}"
+   }
+  },
+  "backgrounds": {
+   "grid": {
+    "cellSize": 20,
+    "opacity": 0.5,
+    "cellAmount": 5
+   },
+   "disable": false,
+   "values": [
+    {
+     "name": "light",
+     "value": "#F8F8F8"
+    },
+    {
+     "name": "dark",
+     "value": "#333"
+    }
+   ]
+  },
+  "throwPlayFunctionExceptions": false,
+  "actions": {
+   "argTypesRegex": "^on[A-Z].*"
+  },
+  "controls": {
+   "matchers": {
+    "color": {},
+    "date": {}
+   }
+  },
+  "fileName": "./src/components/form/base-switch.stories.ts",
+  "__isArgsStory": true
+ },
+ "usesMount": false,
+ "__entry": {
+  "id": "common-baseswitch--base-switch-story",
+  "title": "common/BaseSwitch",
+  "name": "Base Switch Story",
+  "importPath": "./src/components/form/base-switch.stories.ts",
+  "componentPath": "./src/components/form/base-switch.vue",
+  "tags": [
+   "dev",
+   "test",
+   "autodocs"
+  ]
+ },
+ "__url": "https://develop.career.habratest.net/courses-web/storybook-static/iframe.html?viewMode=story&id=common-baseswitch--base-switch-story",
+ "__htmlLen": 1770,
+ "__rootTag": "<div id=\"storybook-root\" data-v-app=\"\"><div><div class=\"p-8 flex flex-col gap-3\"",
+ "__error": null,
+ "__sheets": [
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/cookies.c-urmcFr.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/preview.CoGQq0WZ.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/index.CSGoIsqw.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/preview.CXq2SRHN.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/svg-icon.6YnsMLG3.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/base-loader.DeUmaBb8.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/body-scroll.Dl5qe-0F.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/base-checkbox.DMChQAQG.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/base-modal.-kem_cn2.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/dropdown-modal.jxTiphvT.css"
+ ]
+}

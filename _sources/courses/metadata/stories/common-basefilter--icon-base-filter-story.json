@@ -1,0 +1,167 @@
+{
+ "id": "common-basefilter--icon-base-filter-story",
+ "name": "Фильтр с иконкой",
+ "title": "common/BaseFilter",
+ "componentId": "common-basefilter",
+ "tags": [
+  "dev",
+  "test",
+  "autodocs"
+ ],
+ "initialArgs": {
+  "active": false,
+  "filled": false,
+  "appearance": "default"
+ },
+ "argTypes": {
+  "active": {
+   "control": {
+    "type": "boolean"
+   },
+   "name": "active",
+   "type": {
+    "name": "boolean",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "boolean"
+    },
+    "category": "props"
+   }
+  },
+  "filled": {
+   "control": {
+    "type": "boolean"
+   },
+   "name": "filled",
+   "type": {
+    "name": "boolean",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "boolean"
+    },
+    "category": "props"
+   }
+  },
+  "appearance": {
+   "control": {
+    "type": "radio"
+   },
+   "name": "appearance",
+   "type": {
+    "name": "union",
+    "value": [
+     {
+      "name": "other",
+      "value": "\"default\""
+     },
+     {
+      "name": "other",
+      "value": "\"edu\""
+     }
+    ],
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "\"default\" | \"edu\""
+    },
+    "category": "props"
+   },
+   "options": [
+    "default",
+    "edu"
+   ]
+  },
+  "default": {
+   "control": {
+    "type": "object"
+   },
+   "name": "default",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "slots"
+   }
+  }
+ },
+ "parameters": {
+  "renderer": "vue3",
+  "docs": {
+   "story": {
+    "inline": true
+   },
+   "extractArgTypes": "[function T]",
+   "extractComponentDescription": "[function extractComponentDescription]",
+   "renderer": "[function renderer]",
+   "stories": {
+    "filter": "[function filter]"
+   },
+   "source": {
+    "originalSource": "{\n  name: 'Фильтр с иконкой',\n  args: {\n    active: false,\n    filled: false,\n    appearance: 'default'\n  },\n  render: args => ({\n    components: {\n      BaseFilter,\n      SpriteIcon\n    },\n    setup() {\n      return {\n        args\n      };\n    },\n    template: `\n      <div class=\"p-8 w-max\">\n        <BaseFilter\n          v-bind=\"args\"\n        >\n          <SpriteIcon\n            aria-hidden=\"true\"\n            size=\"20\"\n            class=\"-ml-1 mr-1 h-6 w-6\"\n            :class=\"{\n              'text-ui-blue-500': args.active && !args.filled,\n              'text-ui-black-850': args.active || args.filled,\n            }\"\n            icon=\"sort\"\n          />\n          <span> Сортировка </span>\n        </BaseFilter>\n      </div>\n    `\n  }),\n  argTypes: {\n    active: {\n      control: 'boolean'\n    },\n    filled: {\n      control: 'boolean'\n    },\n    appearance: {\n      options: ['default', 'edu'],\n      control: {\n        type: 'radio'\n      }\n    }\n  }\n}"
+   }
+  },
+  "backgrounds": {
+   "grid": {
+    "cellSize": 20,
+    "opacity": 0.5,
+    "cellAmount": 5
+   },
+   "disable": false,
+   "values": [
+    {
+     "name": "light",
+     "value": "#F8F8F8"
+    },
+    {
+     "name": "dark",
+     "value": "#333"
+    }
+   ]
+  },
+  "throwPlayFunctionExceptions": false,
+  "actions": {
+   "argTypesRegex": "^on[A-Z].*"
+  },
+  "controls": {
+   "matchers": {
+    "color": {},
+    "date": {}
+   }
+  },
+  "fileName": "./src/components/common/base-filter.stories.ts",
+  "__isArgsStory": true
+ },
+ "usesMount": false,
+ "__entry": {
+  "id": "common-basefilter--icon-base-filter-story",
+  "title": "common/BaseFilter",
+  "name": "Фильтр с иконкой",
+  "importPath": "./src/components/common/base-filter.stories.ts",
+  "componentPath": "./src/components/common/base-filter.vue",
+  "tags": [
+   "dev",
+   "test",
+   "autodocs"
+  ]
+ },
+ "__url": "https://develop.career.habratest.net/courses-web/storybook-static/iframe.html?viewMode=story&id=common-basefilter--icon-base-filter-story",
+ "__htmlLen": 535,
+ "__rootTag": "<div id=\"storybook-root\" data-v-app=\"\"><div><div class=\"p-8 w-max\"><div class=\"r",
+ "__error": null,
+ "__sheets": [
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/cookies.c-urmcFr.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/preview.CoGQq0WZ.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/index.CSGoIsqw.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/preview.CXq2SRHN.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/svg-icon.6YnsMLG3.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/base-loader.DeUmaBb8.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/body-scroll.Dl5qe-0F.css"
+ ]
+}

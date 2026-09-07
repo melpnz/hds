@@ -1,0 +1,67 @@
+/* =========================================================================
+   CAREER · FOUNDATIONS
+   =========================================================================
+   Слой, на котором держатся и утилиты, и компоненты Career.
+   Извлечён из сборки career-web, значения не изменены.
+
+   Порядок подключения:
+     tokens.css → foundations.css → utilities.css → components/*.css
+     → components.css → layout.css
+
+   Всё вместе подключается одной строкой: ui/career.css
+   ========================================================================= */
+
+/* Базовое правило документа Career. Отсюда — и box-sizing: border-box,
+   на который рассчитана геометрия всех компонентов, и шрифт, и кегль 16/24. */
+body,html{box-sizing:border-box;color:var(--color-text-main);font-family:Inter,sans-serif;font-size:16px;line-height:24px;margin:0;padding:0}
+
+/* Career полагается на глобальный border-box, объявленный в базовом CSS
+   приложения. В сборке Storybook он есть только на body,html, поэтому
+   распространяем его на потомков — иначе min-height кнопок и padding
+   карточек складываются и геометрия расходится с продуктом.
+   ПЕРВОЕ из трёх правил, добавленных нами; остальные два — ниже. */
+*,*::before,*::after{box-sizing:inherit}
+
+/* ВТОРОЕ добавленное правило. Сброс рамки — часть того же базового CSS
+   приложения, которого нет в бандле
+   Storybook. Без него браузер рисует кнопкам и полям собственную рамку
+   "2px outset", и она видна у всех вариантов, которые не объявляют
+   border-style явно: appearance-main-border, appearance-passive, base-chip,
+   icon-button и любая кнопка с appearance-none.
+   Проверено по снимкам настоящего Storybook (evidence/source/archive/storybook/):
+   там у этих компонентов чёрной обводки нет.
+
+   Текст — штатный preflight Tailwind. Career написан в расчёте на него:
+   каждое правило, которому нужна рамка, задаёт border-width само
+   (.notification, .checkbox-button, .base-section), а состояния меняют
+   только border-color. */
+*,*::before,*::after{border-width:0;border-style:solid;border-color:currentColor}
+
+/* ТРЕТЬЕ добавленное правило. Браузер не наследует шрифт в элементах формы:
+   без этого кнопки и поля Career отрисовались бы системным Arial вместо Inter.
+   В сборке Storybook preflight Tailwind отключён, поэтому правило приходит
+   из базового CSS приложения, которого в бандле нет. Текст правила — штатный
+   preflight Tailwind, ничего своего. */
+button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}
+
+/* Значения по умолчанию --tw-*. Без них утилиты shadow-*, ring-*,
+   translate-*, scale-* и gradient-* раскрываются в пустоту. */
+*,::backdrop,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:#3b82f680;--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }
+
+/* -------------------------------------------------------------------------
+   Типографическая шкала Career
+   Расширение темы Tailwind в career-web. Используется прямо в разметке
+   компонентов, поэтому входит в фундамент, а не в утилиты.
+   ------------------------------------------------------------------------- */
+.text-body-l{font-size:16px;line-height:24px}
+.text-body-m{font-size:14px;line-height:20px}
+.text-body-s{font-size:12px;line-height:16px}
+.text-body-xs{font-size:11px;line-height:16px}
+.text-display-l{font-size:24px;line-height:28px}
+.text-display-m{font-size:20px;line-height:24px}
+.text-display-s{font-size:18px;line-height:24px}
+.text-display-xl{font-size:28px;line-height:32px}
+.text-title{font-size:16px;line-height:24px}
+
+/* Ссылки Career. */
+a{color:var(--color-font-link);text-decoration:none}

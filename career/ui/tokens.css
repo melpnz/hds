@@ -1,0 +1,179 @@
+/* =========================================================================
+   CAREER TOKENS
+   =========================================================================
+   Полный набор CSS-переменных Career, извлечённый из сборки career-web
+   (три блока :root в index.CK-Too2S.css). Ничего не переименовано,
+   не добавлено и не пересчитано — значения ровно те, что в продукте.
+
+   Всего переменных: 120
+     USED       79 — реально нужны компонентам этого пакета
+     AVAILABLE  41 — существуют в Career, здесь пока не используются
+
+   Пометка [AVAILABLE] стоит в комментарии у переменной. Переменные без
+   пометки используются в ui/*.css или в разметке пакета.
+
+   Career строит альфа-производные через color-mix — это приём самого
+   Career, не наша нормализация.
+
+   Источник: _sources/career/source/css/index.CK-Too2S.css
+   Провенанс и классификация: evidence/tokens.md
+   ========================================================================= */
+
+/* Шрифт подключается отдельно: ui/fonts.css — тот же переменный Inter,
+   что в продукте, но берётся из Google Fonts. Файлов шрифта в пакете нет. */
+
+:root {
+
+  /* --- Ахроматика ---------------------------------------------------- */
+  --color-ui-white: #fff;
+  --color-ui-white-10: color-mix(in srgb,var(--color-ui-white) 10%,transparent);  /* [AVAILABLE] */
+  --color-ui-white-24: color-mix(in srgb,var(--color-ui-white) 24%,transparent);  /* [AVAILABLE] */
+  --color-ui-white-60: color-mix(in srgb,var(--color-ui-white) 60%,transparent);
+  --color-ui-white-70: color-mix(in srgb,var(--color-ui-white) 70%,transparent);  /* [AVAILABLE] */
+  --color-ui-white-80: color-mix(in srgb,var(--color-ui-white) 80%,transparent);  /* [AVAILABLE] */
+  --color-ui-black: #000;
+  --color-ui-black-20: color-mix(in srgb,var(--color-ui-black) 20%,transparent);
+
+  /* --- Серая шкала --------------------------------------------------- */
+  --color-ui-gray: #ccc;
+  --color-ui-gray-bg: #ededed;
+  --color-ui-gray-bg-60: color-mix(in srgb,var(--color-ui-gray-bg) 60%,transparent);
+  --color-ui-checkbox: #666;
+  --color-ui-gray-light: #f7f7f7;
+  --color-ui-gray-dark: #303b44;
+  --color-header-gray-bg: #f3f3f3;
+  --color-ui-asphalt: #1f2225;  /* [AVAILABLE] */
+  --color-ui-gray-1: #1b272c;
+  --color-ui-gray-2: #55798b;
+  --color-ui-gray-2-60: color-mix(in srgb,var(--color-ui-gray-2) 60%,transparent);
+  --color-ui-gray-3: #7996a5;
+  --color-ui-gray-3-10: color-mix(in srgb,var(--color-ui-gray-3) 10%,transparent);
+  --color-ui-gray-3-20: color-mix(in srgb,var(--color-ui-gray-3) 20%,transparent);
+  --color-ui-gray-4: #a6bdc9;
+  --color-ui-gray-4-20: color-mix(in srgb,var(--color-ui-gray-4) 20%,transparent);
+  --color-ui-gray-4-30: color-mix(in srgb,var(--color-ui-gray-4) 30%,transparent);
+  --color-ui-gray-5: #d4dee2;
+  --color-ui-gray-6: #eaf2f5;
+  --color-ui-gray-7: #f8fbfc;
+  --color-ui-gray-overlay: rgba(213,222,226,.8);
+  --color-ui-gray-shadow: rgba(24,46,57,.1);
+  --color-ui-chevron: #5a7887;  /* [AVAILABLE] */
+
+  /* --- Фирменный фиолетовый ------------------------------------------ */
+  --color-ui-primary: #8164f7;
+  --color-ui-primary-light: #9787fd;
+  --color-ui-primary-10: color-mix(in srgb,var(--color-ui-primary) 10%,transparent);
+  --color-ui-primary-20: color-mix(in srgb,var(--color-ui-primary) 20%,transparent);
+  --color-ui-primary-60: color-mix(in srgb,var(--color-ui-primary) 60%,transparent);
+  --color-ui-primary-accent: #5014f5;
+
+  /* --- Статусные цвета ----------------------------------------------- */
+  --color-ui-blue: #1ba1ee;
+  --color-ui-blue-accent: #0464d2;
+  --color-ui-blue-30: color-mix(in srgb,var(--color-ui-blue) 30%,transparent);  /* [AVAILABLE] */
+  --color-ui-blue-60: color-mix(in srgb,var(--color-ui-blue) 60%,transparent);
+  --color-ui-blue-10: color-mix(in srgb,var(--color-ui-blue) 10%,transparent);
+  --color-ui-blue-overlay: #ebefff;
+  --color-ui-blue-08: color-mix(in srgb,var(--color-ui-blue) 8%,transparent);  /* [AVAILABLE] */
+  --color-ui-red: #f8651b;
+  --color-ui-red-10: color-mix(in srgb,var(--color-ui-red) 10%,transparent);
+  --color-ui-red-overlay: color-mix(in srgb,var(--color-ui-red) 12%,transparent);
+  --color-ui-red-20: color-mix(in srgb,var(--color-ui-red) 20%,transparent);  /* [AVAILABLE] */
+  --color-ui-red-60: color-mix(in srgb,var(--color-ui-red) 60%,transparent);
+  --color-ui-red-light: #fc9069;
+  --color-ui-red-second: var( --color-ui-red-light );
+  --color-ui-green-10: color-mix(in srgb,var(--color-ui-green) 10%,transparent);
+  --color-ui-green-60: color-mix(in srgb,var(--color-ui-green) 60%,transparent);
+  --color-ui-green-20: color-mix(in srgb,var(--color-ui-green) 20%,transparent);
+  --color-ui-green-12: color-mix(in srgb,var(--color-ui-green) 12%,transparent);
+  --color-ui-green-overlay: #ecf8ef;
+  --color-ui-green-light: #70d781;  /* [AVAILABLE] */
+  --color-ui-orange: #fdad0d;
+  --color-ui-orange-10: color-mix(in srgb,var(--color-ui-orange) 10%,transparent);
+  --color-ui-orange-12: color-mix(in srgb,var(--color-ui-orange) 12%,transparent);
+  --color-ui-orange-20: color-mix(in srgb,var(--color-ui-orange) 20%,transparent);  /* [AVAILABLE] */
+  --color-ui-green: #3dc24a;
+  --color-ui-green-accent: #00ad3a;
+  --color-ui-green-dark: #0c8326;
+  --color-ui-yellow-light: #fdf0bb;  /* [AVAILABLE] */
+  --color-ui-orange-accent: #fd8f0d;
+  --color-ui-orange-dirty: var(--color-ui-orange-accent);
+  --color-ui-orange-dirty-12: color-mix(in srgb,var(--color-ui-orange-dirty) 12%,transparent);
+  --color-ui-blue-light: #80d5fa;  /* [AVAILABLE] */
+  --color-ui-turquoise: #0db3d3;
+  --color-ui-turquoise-10: color-mix(in srgb,var(--color-ui-turquoise) 10%,transparent);
+
+  /* --- Дополнительные оттенки ---------------------------------------- */
+  --color-ui-purple: #b574e7;
+  --color-ui-pink: #da6cc4;
+  --color-ui-purple-20: color-mix(in srgb,var(--color-ui-purple) 20%,transparent);
+  --color-ui-purple-70: color-mix(in srgb,var(--color-ui-purple) 70%,transparent);  /* [AVAILABLE] */
+  --color-ui-purple-light-dirty: #d4dee2;  /* [AVAILABLE] */
+  --color-ui-purple-light: #fff;  /* [AVAILABLE] */
+  --color-pale-canary: #ff9;  /* [AVAILABLE] */
+
+  /* --- Семантические алиасы текста и иконок -------------------------- */
+  --color-icon-gray: var(--color-ui-gray-2);
+  --color-icon-gray-overlay: color-mix(in srgb,var(--color-ui-gray-2) 30%,transparent);
+  --color-icon-gray-60: color-mix(in srgb,var(--color-ui-gray-2) 60%,transparent);  /* [AVAILABLE] */
+  --color-font-link: var(--color-ui-blue-accent);
+  --color-font-black: var(--color-ui-gray-1);
+  --color-font-black-outline: rgba(70,70,70,.6);  /* [AVAILABLE] */
+  --color-font-gray: var(--color-ui-gray-2);
+  --color-font-gray-12: hsla(0,0%,60%,.12);  /* [AVAILABLE] */
+  --color-font-gray-60: hsla(0,0%,60%,.6);  /* [AVAILABLE] */
+  --color-text-main: var(--color-font-black);
+  --color-links-main: var(--color-font-link);  /* [AVAILABLE] */
+
+  /* --- Графики и иллюстрации ----------------------------------------- */
+  --color-illustration-green: #7fe1ca;  /* [AVAILABLE] */
+  --color-illustration-orange: #fccb83;  /* [AVAILABLE] */
+  --color-illustration-gray: #c4ccd4;  /* [AVAILABLE] */
+  --color-illustration-red: #ffa299;  /* [AVAILABLE] */
+  --color-graph-violet: #8164f7;
+  --color-graph-violet-60: rgba(151,135,253,.6);  /* [AVAILABLE] */
+  --color-graph-violet-70: rgba(151,135,253,.7);
+  --color-graph-violet-overlay: #8164f7;  /* [AVAILABLE] */
+  --color-graph-violet-light: #e5b2ff;  /* [AVAILABLE] */
+  --color-graph-cyan: #83d3fc;
+  --color-graph-cyan-12: color-mix(in srgb,var(--color-graph-cyan) 12%,transparent);  /* [AVAILABLE] */
+  --color-illustrations-purple-light: #d9ccff;  /* [AVAILABLE] */
+
+  /* --- Компонентные цвета -------------------------------------------- */
+  --color-shadow-overlay-60: hsla(207,9%,81%,.6);
+  --color-chip-press: #b8d5ff;  /* [AVAILABLE] */
+  --color-chip-inactive: #ebf3ff;  /* [AVAILABLE] */
+  --color-chip-hover: var(--color-ui-gray-4);  /* [AVAILABLE] */
+  --color-chip-expert-icon: #6161c2;  /* [AVAILABLE] */
+  --color-rank-bronze: #d1a584;
+  --color-base-shadow-60: hsla(207,9%,81%,.6);  /* [AVAILABLE] */
+  --color-gray-background: var(--color-ui-gray-bg);  /* [AVAILABLE] */
+
+  /* --- Градиенты ----------------------------------------------------- */
+  --color-ai-gradient: radial-gradient(110.74% 217.18% at -3.37% -17.02%,#64c178 0%,#74caba 10%,#83d3fc 20%,#8dabfc 50%,#9783fc 80%);
+  --color-booster-banner-bg: linear-gradient(91deg,var(--color-illustrations-purple-light) 1.26%,var(--color-graph-violet-light) 164.66%);  /* [AVAILABLE] */
+  --color-booster-badge: radial-gradient(196.13% 100% at 0% 0%,var(--color-graph-violet-light) 20%,var(--color-graph-violet) 80%);  /* [AVAILABLE] */
+  --color-booster-gradient: radial-gradient(circle at 0% 0%,var(--color-ui-orange) 10%,var(--color-ui-pink) 40%,var(--color-ui-primary-light) 80%);
+
+  /* --- Рамки и тени -------------------------------------------------- */
+  --shadow-border-color: var(--color-ui-gray-5);
+  --shadow-border-color-hover: var(--color-ui-gray-4);
+  --shadow-border-color-focus: var(--color-ui-gray-4);
+  --shadow-border-color-disabled: var(--color-ui-gray-shadow);
+  --shadow-dropdown: 0 1px 20px 0 rgba(0,0,0,.2);
+
+  /* --- Размеры оболочки ---------------------------------------------- */
+  --header-height: 144px;  /* [AVAILABLE] */
+  --fit-screen-height: calc(100dvh - var(--header-height) - 24px);  /* [AVAILABLE] */
+
+  /* --- Не из :root: наше единственное добавление -------------------- */
+  /* Career задаёт шрифт в body,html{font-family:Inter,sans-serif}.
+     Переменная нужна, потому что документационная оболочка и спесимены
+     живут в одном документе и шрифт нельзя объявить один раз глобально. */
+  --font-base: Inter, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+/* Career переопределяет высоту шапки на телефоне. Правило из сборки 1:1. */
+@media (max-width: 767px) {
+  :root { --header-height: 144px; }
+}

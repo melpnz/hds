@@ -1,0 +1,98 @@
+
+## BaseHint
+Базовая hint-подсказка над BasePopover с activator slot, собственным визуальным оформлением, закрытием по кнопке и опциональным slot link. В базовом сценарии компонент сам открывается по клику на activator, а controlled-режим вынесен в отдельную историю.
+BasePopover
+link
+Name
+Description
+Default
+Control
+Hide slots itemsslots
+Hide slots items
+activatorLabel
+Текст activator slot.string
+-
+Почему это важно?
+activator
+other
+-
+Set object
+default
+other
+-
+Set object
+link
+other
+-
+Set object
+Hide props itemsprops
+Hide props items
+disableTeleport
+Оставляет popover в локальном дереве вместо Teleport.boolean
+-
+FalseTrue
+hintText
+HTML-строка для default-содержимого, если slot не передан.string
+''
+Подсказка помогает быстро объяснить контекст прямо рядом с интерактивным элементом.
+observeShift
+Включает отслеживание layout shift в floating-ui.boolean
+-
+FalseTrue
+offset
+Отступы floating-ui по осям.{ mainAxis: number; crossAxis: number }
+{ mainAxis: 8, crossAxis: 0 }
+offset :{mainAxis : 8crossAxis : 0}
+mainAxis : 8
+crossAxis : 0
+placement
+Позиция hint относительно activator.top-starttop-endbottom-startbottom-end
+'bottom-start'
+placementChoose option...top-starttop-endbottom-startbottom-end
+preventClickOutside
+Не закрывает подсказку по клику вне popover.boolean
+false
+FalseTrue
+showArrow
+Показывает декоративную стрелку подсказки.boolean
+true
+FalseTrue
+Hide story itemsstory
+Hide story items
+linkHref
+Ссылка для story-only демонстрации slot link.string
+link
+-
+https://habr.com/ru/docs/help
+linkLabel
+Текст для story-only демонстрации slot link.string
+link
+-
+Открыть справку
+Hide events itemsevents
+Hide events items
+update:visible
+Эмитится только в controlled-режиме, когда компонент просит внешнее состояние изменить видимость подсказки.other
+-
+-
+interaction
+Эмитится при закрытии подсказки: по кнопке, клику вне или по Escape.other
+-
+-
+
+## Stories
+
+## Default
+Базовый сценарий без visible: подсказка открывается самим компонентом по клику на activator и закрывается по кнопке, клику вне или по Escape.
+visible
+
+## With Link
+Показывает опциональный slot link, который рендерится под основным текстом подсказки.
+link
+
+## Without Arrow
+Упрощённый вариант без декоративной стрелки.
+
+## Controlled
+Если передать visible, видимость живёт во внешнем состоянии. В этой истории activator по-прежнему интерактивен, но уже переключает hint через story-level state.
+visible

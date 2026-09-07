@@ -1,0 +1,904 @@
+/* =========================================================================
+   CAREER UI KIT — normative interaction states
+   =========================================================================
+   This layer fills gaps in the extracted production CSS without changing it.
+   Legacy modifiers remain supported; new code should prefer native attributes
+   and ARIA state where the control semantics allow it.
+   ========================================================================= */
+
+/* Shared busy/disabled behavior for Button-based controls. */
+.base-button[aria-busy="true"] {
+  cursor: wait;
+  pointer-events: none;
+}
+
+.base-button[aria-disabled="true"] {
+  cursor: default;
+  pointer-events: none;
+}
+
+.base-button:is([aria-disabled="true"], .is-link-disabled):is(.appearance-main, .appearance-danger, .appearance-success, .appearance-branded) {
+  background-color: var(--color-ui-gray-5);
+  border-color: var(--color-ui-gray-5);
+  color: var(--color-ui-white);
+  opacity: 1;
+}
+
+.base-button:is([aria-disabled="true"], .is-link-disabled):is(.appearance-main-border, .appearance-danger-border, .appearance-success-border, .appearance-branded-outline, .appearance-branded-secondary-outline, .appearance-passive) {
+  background-color: transparent;
+  border-color: var(--color-ui-gray-shadow);
+  color: var(--color-ui-gray-4);
+}
+
+.base-button:is([aria-disabled="true"], .is-link-disabled):is(.appearance-none, .appearance-ghost, .appearance-avatar, .appearance-menu) {
+  color: var(--color-ui-gray-4);
+  opacity: .6;
+}
+
+/* Pressed is intentionally stronger than the existing hover treatment. */
+.base-button:is(.appearance-main, .appearance-danger, .appearance-success, .appearance-branded):active:not(:disabled):not([aria-disabled="true"]):not(.is-loading):not([aria-busy="true"]),
+.base-button:is(.appearance-main, .appearance-danger, .appearance-success, .appearance-branded).is-pressed:not(:disabled):not([aria-disabled="true"]):not(.is-loading):not([aria-busy="true"]) {
+  opacity: .65;
+}
+
+.base-button.appearance-main-border:active:not(:disabled):not([aria-disabled="true"]),
+.base-button.appearance-main-border.is-pressed:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--color-ui-primary-20);
+}
+
+.base-button.appearance-danger-border:active:not(:disabled):not([aria-disabled="true"]),
+.base-button.appearance-danger-border.is-pressed:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--color-ui-red-20);
+}
+
+.base-button.appearance-success-border:active:not(:disabled):not([aria-disabled="true"]),
+.base-button.appearance-success-border.is-pressed:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--color-ui-green-20);
+}
+
+.base-button:is(.appearance-passive, .appearance-menu):active:not(:disabled):not([aria-disabled="true"]),
+.base-button:is(.appearance-passive, .appearance-menu).is-pressed:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--color-ui-gray-3-20);
+}
+
+.base-button:is(.appearance-branded-outline, .appearance-branded-secondary-outline):active:not(:disabled):not([aria-disabled="true"]),
+.base-button:is(.appearance-branded-outline, .appearance-branded-secondary-outline).is-pressed:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--color-branded-profile-primary);
+  border-color: var(--color-branded-profile-primary);
+  color: var(--color-ui-white);
+  opacity: .8;
+}
+
+/* Icon-like controls: native/ARIA state aliases plus pressed overlays. */
+.icon-button[aria-pressed="true"] {
+  color: var(--color-ui-primary);
+}
+
+.icon-button[aria-pressed="true"]::before {
+  background-color: var(--color-ui-primary);
+  opacity: .2;
+}
+
+.pagination-button[aria-current="page"],
+.pagination-button[aria-current="page"] .pagination-button__content {
+  color: var(--color-ui-primary-accent);
+}
+
+.pagination-button[aria-current="page"]::before {
+  background-color: var(--color-ui-primary);
+  opacity: .2;
+}
+
+.avatar-button:is(.is-selected, [aria-pressed="true"])::after {
+  background-color: var(--color-ui-primary);
+  opacity: .2;
+}
+
+:is(.icon-button, .avatar-button, .pagination-button):active:not(:disabled):not([aria-disabled="true"])::before,
+:is(.icon-button, .avatar-button, .pagination-button).is-pressed:not(:disabled):not([aria-disabled="true"])::before {
+  opacity: .2;
+}
+
+.avatar-button:active:not(:disabled):not([aria-disabled="true"])::after,
+.avatar-button.is-pressed:not(:disabled):not([aria-disabled="true"])::after {
+  opacity: .2;
+}
+
+.ghost-button:active:not(:disabled):not([aria-disabled="true"])::before,
+.ghost-button.is-pressed:not(:disabled):not([aria-disabled="true"])::before {
+  opacity: .2;
+}
+
+/* FilterButton uses aria-pressed as the canonical selected contract. */
+.filter-button.is-chip[aria-pressed="true"] {
+  background-color: var(--color-ui-primary-20) !important;
+  border-color: transparent !important;
+  color: var(--color-ui-primary-accent) !important;
+}
+
+/* ButtonRange keeps its runtime modifier as a compatibility alias. */
+.button-range__button[aria-pressed="true"] {
+  background-color: var(--color-ui-primary);
+  color: var(--color-ui-white);
+}
+
+.button-range__button:active:not(:disabled):not([aria-disabled="true"]),
+.button-range__button.is-pressed:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--color-ui-gray-3-20);
+}
+
+.button-range__button:is(.button-range__button--active, [aria-pressed="true"]):active:not(:disabled):not([aria-disabled="true"]),
+.button-range__button:is(.button-range__button--active, [aria-pressed="true"]).is-pressed:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--color-ui-primary-accent);
+}
+
+.button-range__button:disabled,
+.button-range__button[aria-disabled="true"] {
+  color: var(--color-ui-gray-4);
+  cursor: default;
+  opacity: .6;
+  pointer-events: none;
+}
+
+/* Utility-only Storybook components receive stable UI-kit roots. */
+.link-styled-button {
+  appearance: none;
+  background: transparent;
+  border: 0;
+  color: var(--color-ui-blue-accent);
+  cursor: pointer;
+  padding: 0;
+}
+
+.link-styled-button:hover {
+  text-decoration: underline;
+}
+
+.link-styled-button:focus-visible {
+  border-radius: .125rem;
+  outline: 2px solid var(--color-ui-primary-60);
+  outline-offset: 2px;
+}
+
+.link-styled-button:active:not(:disabled),
+.link-styled-button.is-pressed:not(:disabled) {
+  opacity: .65;
+}
+
+.link-styled-button:disabled,
+.link-styled-button[aria-disabled="true"] {
+  color: var(--color-ui-gray-4);
+  cursor: default;
+  pointer-events: none;
+  text-decoration: none;
+}
+
+.rounded-arrow-button:focus-visible {
+  outline: 2px solid var(--color-ui-primary-60);
+  outline-offset: 2px;
+}
+
+.rounded-arrow-button:active:not([aria-disabled="true"]),
+.rounded-arrow-button.is-pressed:not([aria-disabled="true"]) {
+  background-color: var(--color-branded-profile-primary);
+  border-color: var(--color-branded-profile-primary);
+  color: var(--color-ui-white);
+  opacity: .8;
+}
+
+.rounded-arrow-button[aria-disabled="true"] {
+  border-color: var(--color-ui-gray-5);
+  color: var(--color-ui-gray-4);
+  cursor: default;
+  opacity: .6;
+  pointer-events: none;
+}
+
+.salary-head-button__companies-link:focus-visible {
+  border-radius: .125rem;
+  outline: 2px solid var(--color-ui-primary-60);
+  outline-offset: 2px;
+}
+
+.salary-head-button__companies-link:active {
+  opacity: .65;
+}
+
+/* Selection controls ---------------------------------------------------- */
+
+/* Native indeterminate is a DOM property; .is-minus is a legacy visual alias. */
+.checkbox-input:indeterminate + .checkbox-button {
+  background-color: var(--color-ui-primary);
+  background-image: none;
+  border-color: var(--color-ui-primary);
+  position: relative;
+}
+
+.checkbox-input:indeterminate + .checkbox-button::after {
+  background-color: var(--color-ui-white);
+  border-radius: 9999px;
+  content: "";
+  height: 2px;
+  left: 5px;
+  position: absolute;
+  right: 5px;
+  top: 9px;
+}
+
+.checkbox.is-loading,
+.checkbox[aria-busy="true"] {
+  cursor: wait;
+  pointer-events: none;
+}
+
+.checkbox:is(.is-loading, [aria-busy="true"]) .checkbox-label {
+  cursor: wait;
+}
+
+.checkbox:is(.is-loading, [aria-busy="true"]) .checkbox-button {
+  animation: career-control-spin .8s linear infinite;
+  background-color: transparent;
+  background-image: none;
+  border-color: var(--color-ui-gray-5);
+  border-radius: 9999px;
+  border-top-color: var(--color-ui-primary);
+}
+
+/* New Switch markup may derive visuals directly from the native input. */
+.switch:has(.switch-input:checked) .switch-track {
+  background-color: var(--color-ui-primary);
+  border-color: transparent;
+}
+
+.switch:has(.switch-input:checked) .switch-thumb {
+  transform: translate(16px);
+}
+
+.switch:has(.switch-input:checked) .switch-dot {
+  background-color: var(--color-ui-white);
+}
+
+.switch:has(.switch-input:disabled) {
+  cursor: default;
+}
+
+.switch:has(.switch-input:disabled) .switch-label {
+  color: var(--color-font-gray);
+}
+
+.switch:has(.switch-input:disabled) .switch-track {
+  background-color: var(--color-ui-white);
+  border-color: var(--color-ui-gray-6);
+}
+
+.switch:has(.switch-input:disabled) .switch-dot {
+  background-color: var(--color-ui-gray-4);
+}
+
+.switch:has(.switch-input:disabled:checked) .switch-track {
+  background-color: var(--color-ui-gray-5);
+  border-color: transparent;
+}
+
+.switch:has(.switch-input:disabled:checked) .switch-dot {
+  background-color: var(--color-ui-white);
+}
+
+/* Production uses focus-within; suppress its ring for pointer-only focus. */
+.switch-field:has(.switch-input:focus:not(:focus-visible)) .switch-control {
+  box-shadow: none;
+}
+
+.switch.is-loading,
+.switch[aria-busy="true"] {
+  cursor: wait;
+  pointer-events: none;
+}
+
+.switch:is(.is-loading, [aria-busy="true"]) .switch-spinner {
+  /* Центрирование из сборки живёт внутри transform: .switch-spinner ставится
+     на top:50% и подтягивается обратно через Tailwind --tw-translate-y:-50%.
+     Кейфрейм задаёт свой transform и это подтягивание затирает — спиннер вместо
+     вращения уезжает вниз на половину своей высоты. Поэтому центрирование
+     переносится в отдельное свойство translate, а transform остаётся анимации.
+     Переменная обнуляется, чтобы сдвиг не сложился дважды: под
+     prefers-reduced-motion анимации нет и transform из сборки снова действует. */
+  --tw-translate-y: 0;
+  translate: 0 -50%;
+  animation: career-control-spin .8s linear infinite;
+}
+
+/* StarRating receives a stable root instead of exposing generic .wrapper. */
+.star-rating .star-input:focus-visible + .star-icon {
+  border-radius: .25rem;
+  outline: 2px solid var(--color-ui-primary-60);
+  outline-offset: 2px;
+}
+
+.star-rating:is(.is-disabled, .is-readonly) .star-label {
+  cursor: default;
+}
+
+.star-rating:is(.is-disabled, .is-readonly):hover .star-icon {
+  color: var(--color-ui-white);
+  stroke: var(--color-ui-gray-2);
+}
+
+.star-rating:is(.is-disabled, .is-readonly):hover .star-icon--filled-empty {
+  color: var(--color-ui-gray-5);
+  stroke: var(--color-ui-gray-5);
+}
+
+.star-rating:is(.is-disabled, .is-readonly) .star-label-checked .star-icon,
+.star-rating:is(.is-disabled, .is-readonly):hover .star-label-checked .star-icon {
+  color: var(--color-ui-orange);
+  stroke: var(--color-ui-orange);
+}
+
+.star-rating.is-disabled {
+  opacity: .6;
+}
+
+@keyframes career-control-spin {
+  to { transform: rotate(1turn); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .checkbox:is(.is-loading, [aria-busy="true"]) .checkbox-button {
+    animation: none;
+  }
+
+  .switch:is(.is-loading, [aria-busy="true"]) .switch-spinner {
+    animation: none;
+  }
+}
+
+/* Remaining base-scope display components ----------------------------- */
+
+.status-chip {
+  align-items: center;
+  border-radius: 8px;
+  color: var(--color-ui-gray-1);
+  display: inline-flex;
+  font-size: 14px;
+  line-height: 20px;
+  min-height: 32px;
+  padding: 4px 14px;
+  /* Базовая линия inline-flex берётся от первого flex-элемента. Когда чип
+     начинается с иконки, ею становится SVG, чья базовая линия — нижний край,
+     и чип уезжает вверх относительно соседей с текстом. vertical-align снимает
+     зависимость от внутренней базовой линии. Тот же приём в сборке у .checkbox. */
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.status-chip--neutral { background-color: var(--color-ui-gray-3-10); }
+.status-chip--pending { background-color: var(--color-ui-orange-10); }
+.status-chip--success { background-color: var(--color-ui-green-10); }
+.status-chip--error { background-color: var(--color-ui-red-10); }
+
+.status-chip__icon {
+  flex: none;
+  margin-left: -8px;
+  margin-right: 2px;
+}
+
+.unread-counter {
+  align-items: center;
+  background-color: var(--color-ui-primary);
+  border: 2px solid var(--color-ui-white);
+  border-radius: 22px;
+  color: var(--color-ui-white);
+  display: inline-flex;
+  font-size: 11px;
+  font-weight: 600;
+  height: 20px;
+  justify-content: center;
+  line-height: 16px;
+  min-width: 20px;
+  padding: 0 5px;
+}
+
+.company-rating-steps__link[aria-current="step"] {
+  background-color: var(--color-ui-primary-20);
+}
+
+.company-rating-steps__link[aria-disabled="true"] {
+  color: var(--color-ui-gray-4);
+  cursor: default;
+  pointer-events: none;
+}
+
+/* Form fields ----------------------------------------------------------- */
+
+.base-input-label__error {
+  color: var(--color-ui-red);
+  display: block;
+  font-size: 14px;
+  line-height: 20px;
+  margin-top: 4px;
+}
+
+.text-input:has(.text-input__input:hover:not(:disabled):not([readonly])) {
+  --shadow-border-color: var(--color-ui-gray-4);
+}
+
+.text-input:has(.text-input__input:focus-visible) {
+  --shadow-border-color: var(--color-ui-gray-2);
+  outline: 2px solid var(--color-ui-gray-2-60);
+  outline-offset: 2px;
+}
+
+.text-input:is(.text-input--invalid, :has(.text-input__input[aria-invalid="true"])) {
+  --shadow-border-color: var(--color-ui-red);
+}
+
+.text-input:has(.text-input__input[aria-invalid="true"]:focus-visible) {
+  outline-color: var(--color-ui-red-60);
+}
+
+.text-input:has(.text-input__input[readonly]) {
+  background-color: var(--color-ui-gray-7);
+}
+
+.text-input:has(.text-input__input[readonly]) .text-input__input {
+  color: var(--color-ui-gray-2);
+}
+
+.text-input:has(.text-input__input:disabled) {
+  --shadow-border-color: var(--color-ui-gray-6);
+}
+
+.base-textarea__textarea:focus-visible {
+  border-color: var(--color-ui-gray-2);
+  outline: 2px solid var(--color-ui-gray-2-60);
+  outline-offset: 2px;
+}
+
+.base-textarea__textarea:is([aria-invalid="true"], .base-textarea__textarea--invalid) {
+  border-color: var(--color-ui-red);
+}
+
+.base-textarea__textarea[aria-invalid="true"]:focus-visible {
+  outline-color: var(--color-ui-red-60);
+}
+
+.base-textarea__textarea[readonly] {
+  background-color: var(--color-ui-gray-7);
+  color: var(--color-ui-gray-2);
+}
+
+.base-textarea__textarea:disabled {
+  border-color: var(--color-ui-gray-6);
+  color: var(--color-ui-gray-4);
+}
+
+.base-select__input:focus-visible {
+  border-color: var(--color-ui-gray-2);
+  outline: 2px solid var(--color-ui-gray-2-60);
+  outline-offset: 2px;
+}
+
+.base-select__input[aria-invalid="true"] {
+  border-color: var(--color-ui-red);
+}
+
+.base-select__input[aria-invalid="true"]:focus-visible {
+  outline-color: var(--color-ui-red-60);
+}
+
+.custom-select {
+  max-width: 100%;
+  position: relative;
+  width: 100%;
+}
+
+.base-custom-select-button:focus-visible {
+  border-color: var(--color-ui-gray-2);
+  outline: 2px solid var(--color-ui-gray-2-60);
+  outline-offset: 2px;
+}
+
+.base-custom-select-button[aria-expanded="true"] {
+  border-color: var(--color-ui-gray-2);
+}
+
+.base-custom-select-button[aria-invalid="true"] {
+  border-color: var(--color-ui-red);
+}
+
+.base-custom-select-button[aria-invalid="true"]:focus-visible {
+  outline-color: var(--color-ui-red-60);
+}
+
+.custom-select__listbox {
+  background-color: var(--color-ui-white);
+  border-radius: 16px;
+  box-shadow: 0 1px 4px 1px var(--color-ui-gray-shadow), 0 4px 8px 2px var(--color-ui-gray-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  left: 0;
+  margin-top: 4px;
+  max-height: 280px;
+  overflow: auto;
+  padding: 4px;
+  position: absolute;
+  right: 0;
+  z-index: 20;
+}
+
+.custom-select__option {
+  background: var(--color-ui-white);
+  border-radius: 12px;
+  color: var(--color-ui-gray-1);
+  cursor: pointer;
+  min-height: 40px;
+  padding: 8px 12px;
+}
+
+.custom-select__option:is(:hover, [data-active="true"]) {
+  background-color: var(--color-ui-gray-3-10);
+}
+
+.custom-select__option[aria-selected="true"] {
+  color: var(--color-ui-primary-accent);
+  font-weight: 600;
+}
+
+.custom-select__option[aria-disabled="true"] {
+  color: var(--color-ui-gray-4);
+  cursor: default;
+}
+
+.multi-select {
+  max-width: 100%;
+  position: relative;
+  width: 100%;
+}
+
+/* The tagged input is only an editable area. Its wrapper owns the border,
+   invalid color and focus ring, so it never creates a second inset border. */
+.multi-select .text-input--with-tags,
+.multi-select .text-input--with-tags:focus-within {
+  box-shadow: none;
+  outline: none;
+}
+
+.multi-select .suggestions-picker__wrapper--with-tags:has(.text-input__input:focus-visible) {
+  border-color: var(--color-ui-gray-2);
+  outline: 2px solid var(--color-ui-gray-2-60);
+  outline-offset: 2px;
+}
+
+.multi-select:is(.is-invalid, :has(.text-input__input[aria-invalid="true"])) .suggestions-picker__wrapper--with-tags {
+  border-color: var(--color-ui-red);
+}
+
+.multi-select:has(.text-input__input[aria-invalid="true"]:focus-visible) .suggestions-picker__wrapper--with-tags {
+  outline-color: var(--color-ui-red-60);
+}
+
+.multi-select:is(.is-disabled, :has(.text-input__input:disabled)) {
+  color: var(--color-ui-gray-4);
+  pointer-events: none;
+}
+
+.multi-select:is(.is-loading, [aria-busy="true"]) {
+  cursor: wait;
+}
+
+.multi-select__status {
+  color: var(--color-ui-gray-2);
+  padding: 20px 16px;
+  text-align: center;
+}
+
+.text-length--invalid,
+.text-length--exceeded {
+  color: var(--color-ui-red);
+  font-weight: 600;
+}
+
+/* Collections and navigation ------------------------------------------- */
+
+/* Row is an action only when its root is an actual button or link. */
+.base-row:is(button, a) {
+  appearance: none;
+  background-color: transparent;
+  border: 0;
+  display: block;
+  font: inherit;
+  text-align: left;
+  text-decoration: none;
+  width: 100%;
+}
+
+.base-row:active:not(:disabled):not([aria-disabled="true"]),
+.base-row.is-pressed:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--color-ui-gray-3-20);
+}
+
+.base-row:is(.selected, [aria-selected="true"], [aria-current="true"]) {
+  background-color: var(--color-ui-primary-20);
+}
+
+.base-row:is(.disabled, :disabled, [aria-disabled="true"]) {
+  cursor: default;
+  opacity: .4;
+  pointer-events: none;
+}
+
+/* A Chip may be static, an action, or a toggle. aria-pressed is toggle-only. */
+.base-chip[aria-pressed="true"] {
+  background-color: var(--color-ui-primary-20);
+  color: var(--color-ui-primary-accent);
+}
+
+/* Выбранный чип держит свой фон под курсором.
+   Ховер из сборки задан как `.base-chip:not(.base-chip--disabled).base-chip--default:hover`,
+   то есть (0,4,0), и перебивал правило выше со специфичностью (0,2,0): чип
+   становился серым, а текст оставался фиолетовым. Селекторы ниже повторяют
+   форму извлечённого правила, чтобы сравняться с ним по специфичности и выиграть
+   порядком — state-contract подключается после components/.
+
+   Цвет не меняется ни на ховере, ни на фокусе: так же ведёт себя выбранный
+   чип-фильтр в самом Career —
+   `.filter-button.is-chip.is-chip-active:hover{background-color:var(--color-ui-primary-20)}`
+   (ui/components/buttons.css). Отклик на нажатие даёт общее правило
+   `.base-chip--interactive:active` ниже. */
+.base-chip:not(.base-chip--disabled)[aria-pressed="true"]:hover,
+.base-chip:not(.base-chip--disabled)[aria-pressed="true"]:focus-visible,
+.base-chip:not(.base-chip--disabled)[aria-pressed="true"]:active {
+  background-color: var(--color-ui-primary-20);
+}
+
+.base-chip--interactive:active:not(:disabled):not([aria-disabled="true"]),
+.base-chip--interactive.is-pressed:not(:disabled):not([aria-disabled="true"]) {
+  filter: saturate(1.15);
+  opacity: .75;
+}
+
+.base-chip:is(:disabled, [aria-disabled="true"], .base-chip--disabled) {
+  pointer-events: none;
+}
+
+.closable-chip__close:hover:not(:disabled) {
+  background-color: var(--color-ui-gray-3-10);
+  color: var(--color-ui-gray-1);
+}
+
+.closable-chip__close:focus-visible {
+  outline: 2px solid var(--color-ui-primary-60);
+  outline-offset: 2px;
+}
+
+.closable-chip__close:disabled {
+  color: var(--color-ui-gray-4);
+  cursor: default;
+  opacity: .6;
+}
+
+.skill-chip[aria-pressed="true"] {
+  background-color: var(--color-ui-primary-20);
+  color: var(--color-ui-primary-accent);
+}
+
+.segmented-tabs {
+  align-items: center;
+  background-color: var(--color-ui-gray-3-10);
+  border-radius: 9999px;
+  display: inline-flex;
+  gap: 0;
+  padding: 4px;
+}
+
+.segmented-tabs__item {
+  background: transparent;
+  border: 0;
+  border-radius: 9999px;
+  color: var(--color-ui-gray-1);
+  cursor: pointer;
+  font: inherit;
+  min-height: 32px;
+  padding: 4px 12px;
+  text-decoration: none;
+}
+
+.segmented-tabs__item:hover:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--color-ui-gray-3-10);
+}
+
+.segmented-tabs__item:focus-visible {
+  outline: 2px solid var(--color-ui-primary-60);
+  outline-offset: 2px;
+}
+
+.segmented-tabs__item:active:not(:disabled):not([aria-disabled="true"]),
+.segmented-tabs__item.is-pressed:not(:disabled):not([aria-disabled="true"]) {
+  background-color: var(--color-ui-gray-3-20);
+}
+
+.segmented-tabs__item[aria-current="page"],
+.segmented-tabs__item[aria-selected="true"] {
+  background-color: var(--color-ui-primary);
+  color: var(--color-ui-white);
+}
+
+.segmented-tabs__item:is(:disabled, [aria-disabled="true"]) {
+  color: var(--color-ui-gray-4);
+  cursor: default;
+  pointer-events: none;
+}
+
+.base-dropdown__content[hidden],
+.base-dropdown__content[aria-hidden="true"] {
+  display: none;
+  visibility: hidden;
+}
+
+.base-dropdown__content:is(.base-dropdown__content--open, [aria-hidden="false"]) {
+  visibility: visible;
+}
+
+.context-menu__trigger:focus-visible,
+.context-menu__item:focus-visible {
+  outline: 2px solid var(--color-ui-primary-60);
+  outline-offset: 2px;
+}
+
+.context-menu__item {
+  background: transparent;
+  border: 0;
+  color: var(--color-ui-gray-1);
+  cursor: pointer;
+  display: block;
+  padding: 10px 16px;
+  text-align: left;
+  width: 100%;
+}
+
+.context-menu__item:is(:hover, :focus-visible) {
+  background-color: var(--color-ui-blue);
+  color: var(--color-ui-white);
+}
+
+.context-menu__item:is(:disabled, [aria-disabled="true"]) {
+  background: transparent;
+  color: var(--color-ui-gray-4);
+  cursor: default;
+}
+
+/* Feedback and overlays ------------------------------------------------ */
+
+/* Canonical semantic aliases; legacy Storybook names stay supported. */
+.notification--success {
+  background-color: var(--color-ui-green-10);
+  border-color: var(--color-ui-green);
+  --notification-accent-color: var(--color-ui-green);
+}
+
+.notification--warning {
+  background-color: var(--color-ui-orange-10);
+  border-color: var(--color-ui-orange);
+  --notification-accent-color: var(--color-ui-orange);
+}
+
+.notification--error {
+  background-color: var(--color-ui-red-10);
+  border-color: var(--color-ui-red);
+  --notification-accent-color: var(--color-ui-red);
+}
+
+.notification__close:hover {
+  opacity: .7;
+}
+
+.notification__close:focus-visible,
+.toast-close:focus-visible,
+.base-modal__close:focus-visible {
+  border-radius: 9999px;
+  outline: 2px solid currentColor;
+  outline-offset: 2px;
+}
+
+.toast {
+  border-radius: 12px;
+  box-shadow: 0 4px 16px var(--color-ui-gray-shadow);
+  color: var(--color-ui-white);
+  max-width: min(420px, calc(100vw - 32px));
+  padding: 12px 16px;
+}
+
+.toast--info { background-color: var(--color-ui-blue); }
+.toast--success { background-color: var(--color-ui-green-accent); }
+.toast--warning { background-color: var(--color-ui-orange); }
+.toast--error { background-color: var(--color-ui-red); }
+
+.base-modal[hidden],
+.modal-overlay[hidden],
+.dropdown-modal-popper[aria-hidden="true"] {
+  display: none;
+}
+
+.base-modal:is(.is-loading, [aria-busy="true"]) .base-modal__content {
+  cursor: wait;
+  opacity: .65;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .toastify,
+  .modal-overlay-enter-active,
+  .modal-overlay-leave-active {
+    transition-duration: .01ms;
+  }
+}
+
+/* Non-interactive primitives ------------------------------------------ */
+
+/* The surrounding region owns aria-busy; visual loaders stay decorative. */
+.base-loader {
+  flex: none;
+}
+
+.skeleton-pulse[aria-hidden="true"] {
+  user-select: none;
+}
+
+.collapsed-content[data-state="collapsed"] .collapsed-content__body {
+  opacity: 0;
+  overflow: hidden;
+}
+
+.collapsed-content[data-state="expanded"] .collapsed-content__body {
+  opacity: 1;
+  overflow: visible;
+}
+
+.collapsed-content__toggle:focus-visible,
+.pretty-scroll__viewport:focus-visible {
+  border-radius: 4px;
+  outline: 2px solid var(--color-ui-primary-60);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .base-loader,
+  .skeleton-pulse::before {
+    animation-duration: 2s;
+  }
+
+  .collapsed-content--animated,
+  .collapsed-content__body,
+  .transition-fade-enter-active,
+  .transition-fade-leave-active {
+    transition-duration: .01ms;
+  }
+}
+
+/* =========================================================================
+   МОДАЛЬНОСТЬ ФОКУСА У ТЕКСТОВЫХ ПОЛЕЙ
+   =========================================================================
+   Кольца фокуса выше объявлены на `:focus-visible`, и для кнопок, вкладок,
+   чипов и переключателей этого достаточно: браузер сам не показывает их
+   при щелчке мышью.
+
+   С текстовыми полями иначе. `:focus-visible` у input и textarea срабатывает
+   всегда, включая фокус указателем: поле принимает клавиатурный ввод
+   независимо от того, как в него попали, и браузер считает такой фокус
+   видимым. Отличить Tab от клика одним CSS невозможно.
+
+   Поэтому режим фокуса отмечает `ui/focus-modality.js` атрибутом
+   data-focus-modality на <html>, а правила ниже гасят по нему внешнее кольцо.
+   Изменение границы (`--shadow-border-color`) при этом остаётся: оно и есть
+   поведение самого Career, кольцо — надстройка пакета.
+
+   Скрипт необязателен. Без него атрибута нет, правила не срабатывают и кольцо
+   показывается как раньше — при клике тоже. Так выбрано намеренно: отсутствие
+   скрипта не должно оставлять клавиатуру без видимого фокуса.
+   ========================================================================= */
+:root[data-focus-modality="pointer"] .text-input:has(.text-input__input:focus-visible) { outline: none; }
+:root[data-focus-modality="pointer"] .base-textarea__textarea:focus-visible { outline: none; }
+:root[data-focus-modality="pointer"] .base-select__input:focus-visible { outline: none; }
+:root[data-focus-modality="pointer"] .multi-select .suggestions-picker__wrapper--with-tags:has(.text-input__input:focus-visible) { outline: none; }

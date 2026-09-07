@@ -1,0 +1,57 @@
+/* =========================================================================
+   HABR · TEXTAREA — FIGMA-RECONSTRUCTED
+   =========================================================================
+   Источник: НЕТ production/Storybook CSS ни в одном из 111 извлечённых
+   файлов — не найдено ни одного <textarea> использования в 16 просканиро-
+   ванных страницах (админ-only контекст, вероятно редактор статьи).
+
+   Реконструировано из Figma habr-lib → textfileds → Textarea (781:1868):
+   идентичная 10-состояний матрица (status × filled), идентичная структура
+   Title/Counter/Hint, что и у Input. Реальных отдельных цветов Figma не
+   взято (устаревшие generic-плейсхолдеры библиотеки, см. input.css) —
+   вместо них те же боевые токены и геометрия (border-radius:4px,
+   border-color:var(--icon-secondary)), что и у `.tm-input-text-decorated`,
+   потому что это тот же дизайн-язык, подтверждённый на реальном Input.
+
+   Класс НЕ существует в продакшене — использовать с пометкой
+   FIGMA-RECONSTRUCTED, не выдавать за подтверждённый производственный код.
+   ========================================================================= */
+
+.tm-textarea-reconstructed {
+  appearance: none;
+  background-color: var(--background-primary);
+  border: 1px solid var(--icon-secondary);
+  box-sizing: border-box;
+  color: var(--text-main);
+  border-radius: 4px;
+  outline: 0;
+  width: 100%;
+  min-height: 96px;
+  margin: 0;
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: .875rem;
+  line-height: 1.5;
+  resize: vertical;
+  transition: border-color .2s linear;
+  display: block;
+}
+.tm-textarea-reconstructed::placeholder { color: var(--text-secondary); }
+.tm-textarea-reconstructed:focus { border-color: var(--accent-primary); }
+/* Figma elements/txtfield/bg_disable = #f7f7f7 = --background-secondary.
+   Раньше здесь стоял --header-text, скопированный из Input. У Input это
+   реальное production-значение (и известный дефект: --header-text белый
+   в ОБЕИХ темах, поэтому в тёмной теме заблокированное поле светится).
+   Но Textarea в production не существует вовсе — тащить в реконструкцию
+   чужой дефект незачем, канон здесь Figma. */
+.tm-textarea-reconstructed:disabled {
+  background-color: var(--background-secondary);
+  border-color: var(--icon-secondary);
+  color: var(--other-disabled-elements);
+  cursor: not-allowed;
+  resize: none;
+}
+.tm-textarea-reconstructed_invalid,
+.tm-textarea-reconstructed_invalid:focus {
+  border-color: #e47979;
+}

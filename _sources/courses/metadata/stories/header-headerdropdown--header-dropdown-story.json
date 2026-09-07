@@ -1,0 +1,186 @@
+{
+ "id": "header-headerdropdown--header-dropdown-story",
+ "name": "Header Dropdown Story",
+ "title": "header/HeaderDropdown",
+ "componentId": "header-headerdropdown",
+ "tags": [
+  "dev",
+  "test",
+  "autodocs"
+ ],
+ "initialArgs": {
+  "sectionKey": "services",
+  "width": 220
+ },
+ "argTypes": {
+  "sectionKey": {
+   "control": {
+    "type": "radio"
+   },
+   "name": "section",
+   "type": {
+    "name": "string"
+   },
+   "options": [
+    "services",
+    "courses"
+   ]
+  },
+  "width": {
+   "control": {
+    "type": "number",
+    "min": 160,
+    "max": 400,
+    "step": 10
+   },
+   "name": "width",
+   "type": {
+    "name": "number",
+    "required": true
+   },
+   "table": {
+    "type": {
+     "summary": "number"
+    },
+    "category": "props"
+   }
+  },
+  "section": {
+   "control": {
+    "type": "object"
+   },
+   "name": "section",
+   "type": {
+    "name": "other",
+    "value": "HeaderSection",
+    "required": true
+   },
+   "table": {
+    "type": {
+     "summary": "HeaderSection"
+    },
+    "category": "props"
+   }
+  },
+  "name": {
+   "control": {
+    "type": "object"
+   },
+   "name": "name",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "slots"
+   }
+  },
+  "title": {
+   "control": {
+    "type": "object"
+   },
+   "name": "title",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "slots"
+   }
+  },
+  "toggle": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "toggle",
+   "type": {
+    "name": "other",
+    "value": ""
+   },
+   "table": {
+    "category": "expose"
+   }
+  }
+ },
+ "parameters": {
+  "renderer": "vue3",
+  "docs": {
+   "story": {
+    "inline": true
+   },
+   "extractArgTypes": "[function T]",
+   "extractComponentDescription": "[function extractComponentDescription]",
+   "renderer": "[function renderer]",
+   "stories": {
+    "filter": "[function filter]"
+   },
+   "source": {
+    "originalSource": "{\n  args: {\n    sectionKey: 'services',\n    width: 220\n  },\n  render: args => ({\n    components: {\n      HeaderDropdown,\n      HeaderLogo\n    },\n    setup() {\n      return {\n        args,\n        sectionsMap\n      };\n    },\n    template: `\n      <div class=\"p-20 h-[500px] bg-main-gradient-first\">\n        <HeaderDropdown\n          :section=\"sectionsMap[args.sectionKey]\"\n          :width=\"args.width\"\n        >\n          <template #name>\n            <HeaderLogo v-if=\"args.sectionKey === 'services'\" />\n            <span v-if=\"args.sectionKey === 'services'\" class=\"ml-2 h-6 border-l border-l-ui-white-transparent-50\"></span>\n\n            <span v-if=\"args.sectionKey === 'courses'\" class=\"mr-0.5 text-small text-ui-white\">\n              {{ sectionsMap.courses.title }}\n            </span>\n          </template>\n\n          <template #title v-if=\"args.sectionKey === 'services'\">\n            <div class=\"text-small font-bold text-ui-black-850\">\n              {{ sectionsMap.services.title }}\n            </div>\n          </template>\n        </HeaderDropdown>\n      </div>\n    `\n  }),\n  argTypes: {\n    sectionKey: {\n      options: ['services', 'courses'],\n      control: {\n        type: 'radio'\n      },\n      name: 'section'\n    },\n    width: {\n      control: {\n        type: 'number',\n        min: 160,\n        max: 400,\n        step: 10\n      }\n    }\n  }\n}"
+   }
+  },
+  "backgrounds": {
+   "grid": {
+    "cellSize": 20,
+    "opacity": 0.5,
+    "cellAmount": 5
+   },
+   "disable": false,
+   "values": [
+    {
+     "name": "light",
+     "value": "#F8F8F8"
+    },
+    {
+     "name": "dark",
+     "value": "#333"
+    }
+   ]
+  },
+  "throwPlayFunctionExceptions": false,
+  "actions": {
+   "argTypesRegex": "^on[A-Z].*"
+  },
+  "controls": {
+   "matchers": {
+    "color": {},
+    "date": {}
+   }
+  },
+  "fileName": "./src/components/header/components/header-dropdown.stories.ts",
+  "__isArgsStory": true
+ },
+ "usesMount": false,
+ "__entry": {
+  "id": "header-headerdropdown--header-dropdown-story",
+  "title": "header/HeaderDropdown",
+  "name": "Header Dropdown Story",
+  "importPath": "./src/components/header/components/header-dropdown.stories.ts",
+  "componentPath": "./src/components/header/components/header-dropdown.vue",
+  "tags": [
+   "dev",
+   "test",
+   "autodocs"
+  ]
+ },
+ "__url": "https://develop.career.habratest.net/courses-web/storybook-static/iframe.html?viewMode=story&id=header-headerdropdown--header-dropdown-story",
+ "__htmlLen": 1171,
+ "__rootTag": "<div id=\"storybook-root\" data-v-app=\"\"><div><div class=\"p-20 h-[500px] bg-main-g",
+ "__error": null,
+ "__sheets": [
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/cookies.c-urmcFr.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/preview.CoGQq0WZ.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/index.CSGoIsqw.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/preview.CXq2SRHN.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/svg-icon.6YnsMLG3.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/base-loader.DeUmaBb8.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/body-scroll.Dl5qe-0F.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/base-checkbox.DMChQAQG.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/base-modal.-kem_cn2.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/dropdown-modal.jxTiphvT.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/handlers.BbckQXBZ.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/multi-select.D2efcXM8.css"
+ ]
+}

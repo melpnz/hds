@@ -1,0 +1,454 @@
+/* =========================================================================
+   CAREER LAYOUT
+   =========================================================================
+   Каркас страниц Career: оболочка, контейнер, сетки колонок, вертикальный
+   ритм. Значения измерены на 16 страницах продукта в двух реализациях
+   (Rails и Nuxt) на четырёх вьюпортах.
+
+   Требует ../ui/tokens.css.
+   Evidence: research/system-audit.md §19–§20, правила SH-*, L-*, R-*.
+
+   ── ОДНО ОТЛИЧИЕ ОТ ПРОДУКТА ────────────────────────────────────────────
+   Адаптив здесь написан на @container, а не на @media. Значения те же
+   (1023 и 479), но реагируют на ширину рамки, а не окна — иначе паттерн
+   нельзя показать на нескольких вьюпортах одновременно. В продукте это
+   @media (max-width: 1023px) и @media (max-width: 479px).
+
+   Единицы совпадают: медиазапросы сравниваются с шириной ОКНА, включая
+   полосу прокрутки, и ширина рамки здесь означает ровно то же самое.
+   Поэтому пресет 768 показывает мобильную оболочку — как и окно 768 в продукте.
+   ========================================================================= */
+
+
+/* ---------- оболочка ---------------------------------------------------- */
+
+.career-shell {
+  container-type: inline-size;
+  background: var(--color-ui-white);       /* SH-4: фон продукта белый */
+  font-family: var(--font-base);
+  color: var(--color-ui-gray-1);
+}
+
+/* SH-1 + SH-2: шапка 112 = 48 + 64, position static */
+.tm-panel {
+  height: 48px;
+  background: var(--color-ui-gray-dark);   /* SH-3: единственная тёмная плоскость */
+  color: var(--color-ui-white);
+  display: flex;
+  align-items: center;
+}
+.tm-panel__inner { display: flex; align-items: center; gap: 8px; }
+/* Бренд крупнее интерфейсного кегля: замерено по снимку шапки production. */
+.tm-panel__logo {
+  font: 400 20px/24px var(--font-base);
+  color: var(--color-ui-white);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.tm-panel__logo b { font-weight: 700; }
+/* Вертикальная черта между брендом и переключателем продуктов Хабра. */
+.tm-panel__divider {
+  width: 1px;
+  height: 20px;
+  background: var(--color-ui-white);
+  opacity: .3;
+  margin: 0 4px;
+  flex: none;
+}
+.tm-panel__chevron { display: inline-flex; color: var(--color-ui-white); flex: none; }
+.tm-panel__promo {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 12px;
+  font: 400 14px/20px var(--font-base);
+  color: var(--color-ui-white);
+  white-space: nowrap;
+}
+.tm-panel__emoji { font-size: 18px; line-height: 1; }
+
+.app-header {
+  height: 64px;
+  background: var(--color-ui-white);
+  display: flex;
+  align-items: center;
+}
+.app-header__inner { display: flex; align-items: center; gap: 24px; width: 100%; }
+.app-header__nav { display: flex; align-items: center; gap: 20px; flex: 1 1 auto; min-width: 0; overflow-x: auto; }
+.app-header__link {
+  font: 600 14px/20px var(--font-base);
+  color: var(--color-ui-gray-2);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.app-header__link.is-active { color: var(--color-ui-gray-1); }
+/* На десктопе бренд живёт в тёмной панели, а не в белой строке:
+   в белой строке production только меню и «Войти». */
+.app-header__burger { display: none; }
+.app-header__logo { display: none; }
+
+/* SH-5: контейнер 1100 / padding 0 12 — самый устойчивый параметр Career */
+.page-width {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 12px;
+}
+
+.page-body { padding: 24px 0 48px; }
+
+
+/* ---------- сетки колонок ----------------------------------------------- */
+
+/* L-1: 752 + 24 + 300 = 1076. L-2: сайдбар фиксирован, сжимается главная */
+.page-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 24px;
+  align-items: start;
+}
+
+/* P-1: профиль — единственное семейство с сайдбаром слева */
+.page-layout--sidebar-left { grid-template-columns: 300px minmax(0, 1fr); }
+
+/* служебные экраны и шапка дашборда — во всю ширину */
+.page-layout--full { grid-template-columns: minmax(0, 1fr); }
+
+.page-layout__main { min-width: 0; }
+.page-layout__sidebar { min-width: 0; }
+
+/* L-6: сайдбар фильтров залипает */
+.page-layout__sidebar--sticky { position: sticky; top: 12px; }
+
+/* DB-2: рабочая область дашборда — асимметричная пара 264 + 12 + 800 */
+.dashboard-split {
+  display: grid;
+  grid-template-columns: 264px minmax(0, 1fr);
+  gap: 12px;
+  align-items: start;
+}
+
+/* C-5: плотная сетка карточек 334 × 3, шаг 12 */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+
+/* ---------- вертикальный ритм -------------------------------------------- */
+
+/* L-4: шаг между карточками списка — 12 на всех вьюпортах */
+.section-group { display: grid; gap: 12px; }
+.section-group--gap-24 { gap: 24px; }   /* F-1: шаг между группами полей */
+.section-group--gap-4 { gap: 4px; }
+
+
+/* =========================================================================
+   R-1 … R-8 — перестроение
+   ========================================================================= */
+
+/* третий ярус навигации и кнопка фильтров существуют только ниже 1024 */
+.app-subnav { display: none; }
+.app-subnav__link {
+  font: 600 14px/20px var(--font-base);
+  color: var(--color-ui-gray-2);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.app-subnav__link.is-active { color: var(--color-ui-gray-1); }
+.filters-trigger { display: none; }
+
+/* -------------------------------------------------------------------------
+   Граница перестроения оболочки — 1023.
+   ИСТОЧНИК: замеры production. Ключ к чтению замеров: медиазапросы Chrome
+   сравниваются с шириной ОКНА, а не документа — полоса прокрутки в счёт
+   входит. Поэтому съёмка «1024» соответствует медиашрине 1024, а «768» — 768.
+
+     окно 1024 (документ 1009): шапка 112, две колонки
+     окно  768 (документ  753): шапка 144, одна колонка
+
+   Правило "max-width: 1023" объясняет обе точки; "max-width: 767" — нет:
+   при нём окно 768 было бы десктопным, а оно мобильное.
+
+   Отдельно: переменная "--header-height" переключается на 767, но она
+   принадлежит НОВОЙ реализации; замеренные здесь страницы — устаревающие,
+   и у них своя граница. Две шкалы сосуществуют, это не противоречие.
+   ------------------------------------------------------------------------- */
+@container (max-width: 1023px) {
+
+  /* R-1: шапка 112 → 144. Три яруса по 48: панель, тёмная строка, подменю.
+     Бренд переезжает из тёмной панели в строку с бургером. */
+  .app-header {
+    height: 48px;
+    background: var(--color-ui-gray-dark);
+    color: var(--color-ui-white);
+  }
+  .app-header__inner { gap: 12px; }
+  .app-header__burger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    flex: none;
+    color: var(--color-ui-white);
+  }
+  .app-header__logo {
+    display: inline-block;
+    font: 400 20px/24px var(--font-base);
+    color: var(--color-ui-white);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .app-header__logo b { font-weight: 700; }
+  .app-header__nav { display: none; }
+  .app-header__action { margin-left: auto; }
+
+  /* В панели остаётся только слоган, по центру: бренда там больше нет */
+  .tm-panel__inner { justify-content: center; }
+  .tm-panel__logo,
+  .tm-panel__divider,
+  .tm-panel__chevron { display: none; }
+  .tm-panel__promo { margin-left: 0; }
+
+  /* Подвал складывается в колонку */
+  .app-footer__inner { gap: 24px; }
+
+  .app-subnav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    height: 48px;
+    overflow-x: auto;              /* R-8: навигация прокручивается, не переносится */
+    background: var(--color-ui-white);
+  }
+
+  /* R-3 / R-5: колонки складываются в одну */
+  .page-layout,
+  .page-layout--sidebar-left { grid-template-columns: minmax(0, 1fr); }
+
+  /* R-3: сайдбар не складывается вниз — он ИСЧЕЗАЕТ.
+     ИСТОЧНИК: дамп production. При ширине документа 375 и 753 все блоки
+     фильтров имеют размер 0×0, то есть выведены из потока, а кнопка
+     «Фильтры» (309×40) стоит в карточке-шапке. На 1440 наоборот:
+     кнопка display:none, сайдбар фильтров 250×816.
+     Прежняя запись «фильтры уезжают вниз» этим опровергнута. */
+  .page-layout__sidebar--sticky { position: static; }
+  .page-layout__sidebar--drop,
+  .page-layout__sidebar--filters { display: none; }
+
+  /* R-5: в профиле идентификация встаёт наверх */
+  .page-layout--sidebar-left .page-layout__sidebar { order: -1; }
+
+  /* R-4: кнопка «Фильтры» появляется над списком */
+  .filters-trigger { display: inline-flex; }
+
+  /* R-6: трёхколоночный грид схлопывается СРАЗУ в одну колонку, минуя две */
+  .card-grid { grid-template-columns: minmax(0, 1fr); }
+
+  /* R: типографика НЕ масштабируется, а поиск занимает всю ширину */
+  .page-header-card__controls > *:first-child { flex-basis: 100%; }
+}
+
+/* R-2: контейнер сохраняет padding 12 на ВСЕХ ширинах.
+   Замер production: и на 1425, и на 753, и на 375 — 0 12px.
+   Значение 8 существует, но принадлежит новой реализации (/resumes, /salaries),
+   а эти паттерны воспроизводят устаревающую. Поэтому здесь его нет. */
+
+/* DB-2 на узком телефоне: пара разъезжается.
+   ИСТОЧНИК: замер `/salaries` production — при ширине документа 753 пара
+   ещё двухколоночная (264 + 453), при 379 колонок уже нет. Поэтому граница
+   здесь не 767, а ступень `small-phone` собственной шкалы Career. */
+@container (max-width: 479px) {
+  .dashboard-split { grid-template-columns: minmax(0, 1fr); }
+}
+
+
+/* =========================================================================
+   Блоки страницы
+   ========================================================================= */
+
+/* L-3: заголовок страницы лежит ВНУТРИ карточки, вместе с поиском и сортировкой */
+.page-header-card { display: grid; gap: 16px; }
+.page-header-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.page-header-card__title { margin: 0; font: 600 28px/32px var(--font-base); color: var(--color-ui-gray-1); }
+.page-header-card__controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.page-header-card__controls > *:first-child { flex: 1 1 320px; min-width: 0; }
+.page-header-card__count { font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-3); }
+
+/* D-2: шапка сущности */
+.entity-header { display: grid; gap: 12px; }
+.entity-header__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.entity-header__title { margin: 0; font: 600 28px/32px var(--font-base); color: var(--color-ui-gray-1); }
+.entity-header__date { flex: none; font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-3); }
+/* Зарплата в шапке сущности живёт по тому же правилу, что и в карточке листинга:
+   зелёная, когда указана; оранжевая, когда нет. Оранжевый замерен на снимке
+   detail-vacancy-1440.png — rgb(253,143,13), и там же под ним идёт серая строка
+   «Похожие специалисты получают…», которая появляется только в этом случае. */
+.entity-header__salary { font: 700 17px/22px var(--font-base); color: var(--color-ui-green); }
+.entity-header__salary--unknown { color: var(--color-ui-orange-accent); }
+.entity-header__hint {
+  font: 400 16px/24px var(--font-base);
+  color: var(--color-ui-gray-2);
+  border-bottom: 1px dashed var(--color-ui-gray-4);
+  align-self: start;
+  justify-self: start;
+}
+
+/* D-3: группа атрибутов = микро-метка 12/16 gray-3 + строка чипов */
+.meta-group { display: grid; gap: 4px; }
+.meta-group__label { font: 400 12px/16px var(--font-base); color: var(--color-ui-gray-3); }
+.meta-group__row { display: flex; flex-wrap: wrap; gap: 4px; }
+
+/* P-2: идентификационная карточка профиля */
+.identity { display: grid; justify-items: center; gap: 12px; text-align: center; }
+.identity__name { margin: 0; font: 600 28px/32px var(--font-base); color: var(--color-ui-gray-1); }
+.identity__role { font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-2); }
+.identity__expect { font: 600 14px/20px var(--font-base); color: var(--color-ui-green-accent); }
+
+/* C-6: заголовок карточки сайдбара мельче, чем в главной колонке */
+.sidebar-card__title { margin: 0 0 12px; font: 600 16px/24px var(--font-base); color: var(--color-ui-gray-1); }
+
+/* L-7: промо-блок — единственное место продукта с градиентом */
+.promo-card {
+  border-radius: 24px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: linear-gradient(102deg, #efe7ff 0%, #e6d9ff 48%, #f3e4fb 100%);
+  color: var(--color-ui-gray-1);
+  font: 600 14px/20px var(--font-base);
+}
+.promo-card__art {
+  width: 56px; height: 56px; flex: none; border-radius: 12px;
+  background: linear-gradient(135deg, var(--color-ui-primary-light), var(--color-ui-pink));
+  opacity: .55;
+}
+
+/* C-4: продвигаемая сущность — рамка 2px фирменного цвета при том же радиусе */
+.card-promoted {
+  border-radius: 24px;
+  border: 2px solid var(--promo-color, var(--color-ui-orange-accent));
+  padding: 22px;                 /* 24 − 2, чтобы контент не сдвигался */
+  background: var(--promo-bg, transparent);
+}
+
+/* DB-3: крупное числовое значение */
+.metric { display: grid; gap: 4px; }
+.metric__value { font: 600 42px/48px var(--font-base); color: var(--color-ui-gray-1); }
+.metric__parts { display: flex; align-items: baseline; gap: 8px; font: 400 16px/24px var(--font-base); }
+.metric__parts small { font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-2); }
+.metric__bar { height: 24px; border-radius: 9999px; background: var(--color-ui-gray-6); overflow: hidden; }
+.metric__bar span {
+  display: block; height: 100%;
+  background: linear-gradient(90deg, var(--color-ui-primary-light), var(--color-ui-primary));
+}
+.metric__scale { display: flex; justify-content: space-between; font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-3); }
+
+/* DB-2: строка-разрез в узкой колонке дашборда */
+.facet-row {
+  width: 100%;
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  height: 40px; padding: 8px 12px; border-radius: 12px;
+  border: 1px solid var(--shadow-border-color);
+  background: var(--color-ui-white);
+  font: 400 16px/24px var(--font-base); color: var(--color-ui-gray-1);
+  cursor: pointer;
+}
+.facet-row + .facet-row { margin-top: 4px; }
+.facet-row.is-active {
+  background: var(--color-ui-primary-10);
+  border-color: var(--color-ui-primary);
+}
+.facet-row__value { color: var(--color-ui-gray-2); }
+
+/* ST-2: пустое состояние в списке */
+.no-content { text-align: center; padding: 24px 0; }
+.no-content__title { margin: 0 0 4px; font: 600 18px/24px var(--font-base); color: var(--color-ui-gray-1); }
+.no-content__description { margin: 0; font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-3); }
+
+/* ST-3: служебный экран отменяет сетку */
+.service-screen { padding: 64px 0; }
+.service-screen__title { margin: 0 0 8px; font: 600 28px/32px var(--font-base); color: var(--color-ui-gray-1); }
+.service-screen__text { margin: 0 0 24px; font: 400 16px/24px var(--font-base); color: var(--color-ui-gray-2); }
+
+/* -------------------------------------------------------------------------
+   SH-6: подвал сайта
+   Пять колонок: четыре списка ссылок и блок соцсетей.
+   ИСТОЧНИК: снимок production `evidence/curated/states/state-404-1440.png` —
+   единственная захваченная страница, которая целиком помещается в экран
+   вместе с подвалом. Состав разделов и ссылок взят с него дословно.
+   ВНИМАНИЕ: геометрия подвала не замерена — в дампах production его нет.
+   Колонки шириной по содержимому и распределены space-between, потому что
+   на снимке промежутки между ними неодинаковые (180 · 242 · 190 · 239).
+   ------------------------------------------------------------------------- */
+.app-footer {
+  background: var(--color-ui-white);
+  padding: 40px 0 48px;
+  font: 400 14px/20px var(--font-base);
+  color: var(--color-ui-gray-2);
+}
+.app-footer__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+.app-footer__col { min-width: 0; }
+.app-footer__title {
+  margin: 0 0 12px;
+  font: 600 14px/20px var(--font-base);
+  color: var(--color-ui-gray-1);
+}
+.app-footer__list { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.app-footer__list a {
+  color: var(--color-ui-gray-2);
+  text-decoration: none;
+  font: 400 14px/20px var(--font-base);
+}
+.app-footer__list a:hover { color: var(--color-ui-gray-1); }
+.app-footer__social { display: flex; align-items: center; gap: 8px; }
+.app-footer__social a {
+  width: 24px;
+  height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-ui-gray-3);
+}
+.app-footer__social a:hover { color: var(--color-ui-gray-2); }
+/* Иконки соцсетей — цветные плитки спрайта social-v3.1.svg. Пять из шести
+   несут собственную заливку. Шестая, instagram, нарисована белым по прозрачному:
+   её фирменный градиент задаётся классом .icon-instagram (см. components.css). */
+.app-footer__social a[aria-label="instagram"] { overflow: hidden; }
+
+/* Подвал на узком экране складывается в одну колонку.
+   ИСТОЧНИК: не замерен — снимка подвала на узком экране в корпусе нет.
+   Одна колонка выбрана как поведение по умолчанию для списка ссылок;
+   если появится снимок, правило нужно уточнить. */
+@container (max-width: 1023px) {
+  .app-footer__inner { flex-direction: column; }
+}
+
+/* -------------------------------------------------------------------------
+   Промо-баннер листинга
+   На широком экране он первый блок сайдбара, на узком — стоит в главной
+   колонке сразу после карточки-шапки, перед списком.
+   ИСТОЧНИК: дамп production, 375 — button.booster-promo-action x8 y498 359×88,
+   то есть между шапкой (заканчивается ~y470) и первой карточкой.
+   Один узел так переставить нельзя, поэтому в разметке их два и каждый
+   показывается на своей ширине — в продукте сделано так же.
+   ------------------------------------------------------------------------- */
+.promo-card--mobile { display: none; }
+@container (max-width: 1023px) {
+  .promo-card--mobile { display: flex; }
+}

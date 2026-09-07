@@ -1,0 +1,99 @@
+/* =========================================================================
+   CAREER · ОБРАТНАЯ СВЯЗЬ: УВЕДОМЛЕНИЯ, ЗАГРУЗКА, ПУСТЫЕ СОСТОЯНИЯ
+   =========================================================================
+   Реальный CSS Career, извлечённый из сборки career-web.
+   Изменение ровно одно: снят Vue-скоуп [data-v-xxxxxxxx].
+   Значения, порядок правил и медиазапросы не тронуты.
+
+   Требует ui/tokens.css. Часть правил опирается на утилиты
+   Tailwind из ui/utilities.css — см. разметку в components/*.md.
+   ========================================================================= */
+
+/* ------------------------------------------------------------------------
+   base-notification
+   источник: _sources/career/source/css/base-notification.CE_kTqxE.css (1955 B)
+   ------------------------------------------------------------------------ */
+.notification{border-radius:.75rem;border-style:solid;border-width:1px;padding:.75rem 1rem}
+.notification__wrapper{align-items:flex-start;-moz-column-gap:.25rem;column-gap:.25rem;display:flex}
+.notification--info{background-color:var(--color-ui-blue-10);border-color:var(--color-ui-blue);--notification-accent-color:var(--color-ui-blue)}
+.notification--alert{background-color:var(--color-ui-red-10);border-color:var(--color-ui-red);--notification-accent-color:var(--color-ui-red)}
+.notification--attention{background-color:var(--color-ui-orange-10);border-color:var(--color-ui-orange);--notification-accent-color:var(--color-ui-orange)}
+.notification--news{background-color:var(--color-ui-green-10);border-color:var(--color-ui-green);--notification-accent-color:var(--color-ui-green)}
+.notification--padding-small{padding:.5rem .75rem}
+.notification--padding-medium{padding:10px 1rem}
+.notification--borderless{border-width:0}
+.notification__content{display:flex;flex:1 1 0%;flex-direction:column;justify-content:center;min-height:24px;min-width:0;padding-left:.25rem;padding-right:.25rem;row-gap:.25rem}
+.notification__title{color:var(--color-font-black);font-size:16px;font-weight:600;line-height:24px}
+.notification__description{color:var(--color-font-black);font-size:14px;line-height:20px}
+.notification__links{align-items:center;display:flex;font-size:0;gap:.5rem;padding-bottom:.25rem;padding-top:.25rem}
+.notification__description a{color:var(--notification-accent-color)}
+.notification__icon{color:var(--notification-accent-color);flex-shrink:0}
+.notification__close{background-color:transparent;border-width:0;color:var(--notification-accent-color);cursor:pointer;line-height:0;padding:0}
+
+/* ------------------------------------------------------------------------
+   notify
+   источник: _sources/career/source/css/notify.c-urmcFr.css (1141 B)
+   ------------------------------------------------------------------------ */
+/*!
+ * Toastify js 1.12.0
+ * https://github.com/apvarun/toastify-js
+ * @license MIT licensed
+ *
+ * Copyright (C) 2018 Varun A P
+ */.toastify{background:linear-gradient(135deg,#73a5ff,#5477f5);border-radius:2px;box-shadow:0 3px 6px -1px #0000001f,0 10px 36px -4px #4d60e84d;color:#fff;cursor:pointer;display:inline-block;max-width:calc(50% - 20px);opacity:0;padding:12px 20px;position:fixed;text-decoration:none;transition:all .4s cubic-bezier(.215,.61,.355,1);z-index:2147483647}
+.toastify.on{opacity:1}
+.toast-close{background:transparent;border:0;color:#fff;cursor:pointer;font-family:inherit;font-size:1em;opacity:.4;padding:0 5px}
+.toastify-right{right:15px}
+.toastify-left{left:15px}
+.toastify-top{top:-150px}
+.toastify-bottom{bottom:-150px}
+.toastify-rounded{border-radius:25px}
+.toastify-avatar{border-radius:2px;height:1.5em;margin:-7px 5px;width:1.5em}
+.toastify-center{left:0;margin-left:auto;margin-right:auto;max-width:fit-content;max-width:-moz-fit-content;right:0}
+@media only screen and (max-width:360px){.toastify-left,.toastify-right{left:0;margin-left:auto;margin-right:auto;max-width:-moz-fit-content;max-width:fit-content;right:0}
+}
+
+/* ------------------------------------------------------------------------
+   base-loader
+   источник: _sources/career/source/css/base-loader.EAwq4SH7.css (113 B)
+   ------------------------------------------------------------------------ */
+@keyframes rotate{to{transform:rotate(1turn)}
+}
+.base-loader{animation:rotate 1s infinite;transform-origin:50% 50%}
+
+/* ------------------------------------------------------------------------
+   skeleton-pulse
+   источник: _sources/career/source/css/skeleton-pulse.BxpXV_y4.css (366 B)
+   ------------------------------------------------------------------------ */
+.skeleton-pulse{position:relative}
+.skeleton-pulse:before{animation:pulse 1s linear infinite;background-image:linear-gradient(90deg,#fff0,#ffffff80,#fff0);background-repeat:repeat-y;background-size:35% 100%;bottom:0;content:"";left:0;position:absolute;right:0;top:0}
+@keyframes pulse{0%{background-position:left -50% top 0}
+60%,to{background-position:right -50% top 0}
+}
+
+/* ------------------------------------------------------------------------
+   skeleton-shape
+   источник: _sources/career/source/css/skeleton-shape.DYp_hyI_.css (84 B)
+   ------------------------------------------------------------------------ */
+.skeleton-shape{background:var(--color-ui-gray-bg);border-radius:3px;max-width:100%}
+
+/* ------------------------------------------------------------------------
+   empty-placeholder
+   источник: _sources/career/source/css/empty-placeholder.DqxQlRTk.css (828 B)
+   ------------------------------------------------------------------------ */
+.empty-placeholder{background:var(--color-ui-white);border:1px solid rgba(24,46,57,.1);border-radius:24px;margin:0 auto;max-width:480px;padding:48px 24px 40px;text-align:center}
+.empty-placeholder--noBorder{border:none}
+.empty-placeholder--fullWidth{max-width:100%;width:100%}
+.empty-placeholder--fullHeight{align-items:center;display:flex;flex-direction:column;height:100%;justify-content:center;max-height:100%}
+.empty-placeholder--embed{border-radius:0;height:auto;padding:24px}
+.empty-placeholder__image{display:block;margin:0 auto 24px}
+.empty-placeholder__title{font-size:18px;font-weight:600;line-height:23px;margin-bottom:8px}
+.empty-placeholder__description{color:var(--color-font-gray);font-size:14px;line-height:20px}
+.empty-placeholder__actions{align-items:center;display:flex;gap:8px;justify-content:center;margin-top:16px}
+
+/* ------------------------------------------------------------------------
+   transition-fade
+   источник: _sources/career/source/css/transition-fade.SArHY7ux.css (167 B)
+   ------------------------------------------------------------------------ */
+.transition-fade-enter-active,.transition-fade-leave-active{transition:.2s;transition-property:opacity}
+.transition-fade-enter-from,.transition-fade-leave-to{opacity:0}

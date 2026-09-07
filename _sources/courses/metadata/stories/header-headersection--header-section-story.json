@@ -1,0 +1,125 @@
+{
+ "id": "header-headersection--header-section-story",
+ "name": "Header Section Story",
+ "title": "header/HeaderSection",
+ "componentId": "header-headersection",
+ "tags": [
+  "dev",
+  "test",
+  "autodocs"
+ ],
+ "initialArgs": {
+  "sectionKey": "services"
+ },
+ "argTypes": {
+  "sectionKey": {
+   "control": {
+    "type": "radio"
+   },
+   "name": "section",
+   "type": {
+    "name": "string"
+   },
+   "options": [
+    "services",
+    "courses"
+   ]
+  },
+  "section": {
+   "control": {
+    "type": "object"
+   },
+   "name": "section",
+   "type": {
+    "name": "other",
+    "value": "HeaderSection",
+    "required": true
+   },
+   "table": {
+    "type": {
+     "summary": "HeaderSection"
+    },
+    "category": "props"
+   }
+  }
+ },
+ "parameters": {
+  "renderer": "vue3",
+  "docs": {
+   "story": {
+    "inline": true
+   },
+   "extractArgTypes": "[function T]",
+   "extractComponentDescription": "[function extractComponentDescription]",
+   "renderer": "[function renderer]",
+   "stories": {
+    "filter": "[function filter]"
+   },
+   "source": {
+    "originalSource": "{\n  args: {\n    sectionKey: 'services'\n  },\n  render: args => ({\n    components: {\n      HeaderSection\n    },\n    setup() {\n      return {\n        args,\n        sectionsMap\n      };\n    },\n    template: `\n      <div class=\"p-8 bg-ui-white max-w-sm\">\n        <HeaderSection :section=\"sectionsMap[args.sectionKey]\" />\n      </div>\n    `\n  }),\n  argTypes: {\n    sectionKey: {\n      options: ['services', 'courses'],\n      control: {\n        type: 'radio'\n      },\n      name: 'section'\n    }\n  }\n}"
+   }
+  },
+  "backgrounds": {
+   "grid": {
+    "cellSize": 20,
+    "opacity": 0.5,
+    "cellAmount": 5
+   },
+   "disable": false,
+   "values": [
+    {
+     "name": "light",
+     "value": "#F8F8F8"
+    },
+    {
+     "name": "dark",
+     "value": "#333"
+    }
+   ]
+  },
+  "throwPlayFunctionExceptions": false,
+  "actions": {
+   "argTypesRegex": "^on[A-Z].*"
+  },
+  "controls": {
+   "matchers": {
+    "color": {},
+    "date": {}
+   }
+  },
+  "fileName": "./src/components/header/components/header-section.stories.ts",
+  "__isArgsStory": true
+ },
+ "usesMount": false,
+ "__entry": {
+  "id": "header-headersection--header-section-story",
+  "title": "header/HeaderSection",
+  "name": "Header Section Story",
+  "importPath": "./src/components/header/components/header-section.stories.ts",
+  "componentPath": "./src/components/header/components/header-section.vue",
+  "tags": [
+   "dev",
+   "test",
+   "autodocs"
+  ]
+ },
+ "__url": "https://develop.career.habratest.net/courses-web/storybook-static/iframe.html?viewMode=story&id=header-headersection--header-section-story",
+ "__htmlLen": 256,
+ "__rootTag": "<div id=\"storybook-root\" data-v-app=\"\"><div><div class=\"p-8 bg-ui-white max-w-sm",
+ "__error": null,
+ "__sheets": [
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/cookies.c-urmcFr.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/preview.CoGQq0WZ.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/index.CSGoIsqw.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/preview.CXq2SRHN.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/svg-icon.6YnsMLG3.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/base-loader.DeUmaBb8.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/body-scroll.Dl5qe-0F.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/base-checkbox.DMChQAQG.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/base-modal.-kem_cn2.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/dropdown-modal.jxTiphvT.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/handlers.BbckQXBZ.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/multi-select.D2efcXM8.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/header-section.BE1HGVun.css"
+ ]
+}

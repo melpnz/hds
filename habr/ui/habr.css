@@ -1,0 +1,43 @@
+/* =========================================================================
+   HABR · UI — единая точка входа
+   =========================================================================
+   Порядок импорта НЕ имеет значения для каскада (подтверждено на production:
+   button-Ccclp6vQ.css грузится раньше button-base-BdvEVC2k.css, и это ничего
+   не ломает — см. evidence/runtime-contract.md). Порядок ниже — для чтения
+   человеком, не для правильности рендера.
+
+   Темы подключаются ОТДЕЛЬНО, не через этот файл — см. ui/themes.css
+   и evidence/runtime-contract.md, раздел «Темы».
+   ========================================================================= */
+
+@import url('normalize.css');
+@import url('foundations.css');
+@import url('fonts.css');
+@import url('layout.css');
+
+@import url('components/icon.css');
+@import url('components/avatar.css');
+@import url('components/button.css');
+@import url('components/icon-button.css');
+@import url('components/popover.css');
+@import url('components/dropdown.css');
+@import url('components/dialog.css');
+@import url('components/hint.css');
+@import url('components/tabs.css');
+@import url('components/pagination.css');
+@import url('components/block.css');
+@import url('components/title.css');
+@import url('components/notice.css');
+@import url('components/checkbox.css');
+@import url('components/radio.css');
+@import url('components/input.css');
+@import url('components/textarea.css');
+@import url('components/chip.css');
+@import url('components/calendar.css');
+@import url('components/primitives.css');
+@import url('components/article-card.css');
+@import url('components/badges.css');
+@import url('components/section-name.css');
+@import url('components/button-follow.css');
+@import url('components/votes.css');
+@import url('patterns.css');

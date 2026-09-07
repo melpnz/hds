@@ -1,0 +1,67 @@
+/* =========================================================================
+   CAREER · НАВИГАЦИЯ, МЕНЮ, ВЫПАДАЮЩИЕ СПИСКИ
+   =========================================================================
+   Реальный CSS Career, извлечённый из сборки career-web.
+   Изменение ровно одно: снят Vue-скоуп [data-v-xxxxxxxx].
+   Значения, порядок правил и медиазапросы не тронуты.
+
+   Требует ui/tokens.css. Часть правил опирается на утилиты
+   Tailwind из ui/utilities.css — см. разметку в components/*.md.
+   ========================================================================= */
+
+/* ------------------------------------------------------------------------
+   base-dropdown
+   источник: _sources/career/source/css/base-dropdown.BC2oEVa3.css (843 B)
+   ------------------------------------------------------------------------ */
+.base-dropdown{position:relative}
+.base-dropdown__toggle{min-height:32px}
+.base-dropdown__toggle>*{cursor:pointer}
+.base-dropdown__content{background:var(--color-ui-white);border-radius:16px;box-shadow:0 1px 4px 1px var(--color-ui-gray-shadow,rgba(24,46,57,.1)),0 4px 8px 2px var(--color-ui-gray-shadow,rgba(24,46,57,.1));position:absolute;transform:translateZ(0);visibility:hidden;z-index:1000}
+.base-dropdown__content--open{visibility:visible}
+.base-dropdown__content--alignment-right{right:0}
+.base-dropdown__content--alignment-top-left{bottom:28px;right:12px}
+.base-dropdown__content--alignment-left{left:-8px}
+.base-dropdown__content--fullWidth{width:100%}
+.base-dropdown__content--select{background:inherit;border-radius:inherit;box-shadow:inherit;position:relative}
+.base-dropdown__content--select:not(.base-dropdown__content--open){display:none}
+
+/* ------------------------------------------------------------------------
+   context-menu-item
+   источник: _sources/career/source/css/context-menu-item.CmDC43wu.css (585 B)
+   ------------------------------------------------------------------------ */
+.context-menu__content{background-color:var(--color-ui-white);border-radius:.25rem;--tw-shadow:0 1px 20px var(--color-ui-black-20);--tw-shadow-colored:0 1px 20px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow)}
+.context-menu__content--select{border-radius:16px;box-shadow:0 1px 2px 0 var(--color-shadow-overlay-60),0 2px 6px 2px var(--color-shadow-overlay-60)}
+.context-menu--select .base-dropdown__content{background:transparent;border-radius:0;box-shadow:none}
+
+/* ------------------------------------------------------------------------
+   isomorphic-context-menu
+   источник: _sources/career/source/css/isomorphic-context-menu.BQBScPaR.css (679 B)
+   ------------------------------------------------------------------------ */
+.context-menu-popper.v-popper--theme-dropdown .v-popper__inner{background:transparent;border:0;border-radius:16px;box-shadow:0 2px 6px 2px #434b601f,0 1px 2px #434b603d;color:inherit}
+.context-menu-popper.v-popper--theme-dropdown .v-popper__arrow-container{display:none}
+.modal-overlay-enter-from .modal-overlay-slide-up,.modal-overlay-leave-to .modal-overlay-slide-up{opacity:0;transform:translateY(100%)}
+.modal-overlay-enter-to .modal-overlay-slide-up,.modal-overlay-leave-from .modal-overlay-slide-up{opacity:1;transform:translateY(0)}
+.modal-overlay-enter-active .modal-overlay-slide-up,.modal-overlay-leave-active .modal-overlay-slide-up{transition:opacity .25s,transform .25s}
+
+/* ------------------------------------------------------------------------
+   steps-sidebar
+   источник: _sources/career/source/css/steps-sidebar.D5GZRyol.css (1687 B)
+   ------------------------------------------------------------------------ */
+.company-rating-steps__link{transition:background-color .15s ease,color .15s ease}
+.company-rating-steps__link:before{background-color:var(--color-ui-gray-3);z-index:0}
+.company-rating-steps__link:after,.company-rating-steps__link:before{border-radius:.75rem;content:"";top:0;right:0;bottom:0;left:0;opacity:0;pointer-events:none;position:absolute;transition-duration:.2s;transition-property:opacity;transition-timing-function:cubic-bezier(.4,0,.2,1)}
+.company-rating-steps__link:after{border-color:var(--color-ui-gray-2);border-width:2px;z-index:2}
+.company-rating-steps__link:hover{color:var(--color-ui-gray-1);text-decoration-line:none}
+.company-rating-steps__link:focus-visible:before,.company-rating-steps__link:hover:before{opacity:.1}
+.company-rating-steps__link:focus-visible:after{opacity:.6}
+.company-rating-steps__link--active:after{border-color:var(--color-ui-primary-60)}
+.company-rating-steps__link--active:focus-visible:before,.company-rating-steps__link--active:hover:before{opacity:0}
+.company-rating-steps__link--active:focus-visible:after{border-color:var(--color-ui-primary-60);opacity:1}
+.company-rating-steps__link--disabled:after,.company-rating-steps__link--disabled:before,.company-rating-steps__link--disabled:focus-visible:before,.company-rating-steps__link--disabled:hover:before{opacity:0}
+.company-rating-steps__link--disabled:hover{color:var(--color-ui-gray-4)}
+
+/* ------------------------------------------------------------------------
+   conversations-sidebar
+   источник: _sources/career/source/css/conversations-sidebar.CoAb__v6.css (59 B)
+   ------------------------------------------------------------------------ */
+ .simplebar-content{padding:8px!important}

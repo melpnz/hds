@@ -1,0 +1,261 @@
+{
+ "id": "pagination-paginationbutton--variants",
+ "name": "Variants",
+ "title": "Pagination/PaginationButton",
+ "componentId": "pagination-paginationbutton",
+ "tags": [
+  "dev",
+  "test",
+  "autodocs"
+ ],
+ "initialArgs": {
+  "direction": "prev",
+  "id": "pagination-prev-page",
+  "label": "Предыдущая",
+  "rel": null,
+  "route": {
+   "name": "INDEX",
+   "params": {
+    "pageNum": 2
+   }
+  }
+ },
+ "argTypes": {
+  "direction": {
+   "name": "direction",
+   "type": {
+    "name": "string",
+    "required": true
+   },
+   "description": "Направление навигации.",
+   "table": {
+    "type": {
+     "summary": "prev | next"
+    },
+    "category": "props"
+   },
+   "options": [
+    "prev",
+    "next"
+   ],
+   "control": {
+    "type": "select",
+    "disable": false
+   }
+  },
+  "id": {
+   "name": "id",
+   "type": {
+    "name": "string",
+    "required": true
+   },
+   "description": "ID корневого элемента.",
+   "table": {
+    "type": {
+     "summary": "string"
+    },
+    "category": "props"
+   },
+   "control": {
+    "type": "text",
+    "disable": false
+   }
+  },
+  "label": {
+   "name": "label",
+   "type": {
+    "name": "string"
+   },
+   "description": "Содержимое default slot.",
+   "table": {
+    "category": "slots",
+    "type": {
+     "summary": "string"
+    }
+   },
+   "control": {
+    "type": "text",
+    "disable": false
+   }
+  },
+  "rel": {
+   "name": "rel",
+   "type": {
+    "name": "string",
+    "value": {},
+    "required": false
+   },
+   "description": "Значение атрибута rel для активной ссылки.",
+   "table": {
+    "type": {
+     "summary": "string | null"
+    },
+    "category": "props"
+   },
+   "control": {
+    "type": "text",
+    "disable": false
+   }
+  },
+  "route": {
+   "name": "route",
+   "type": {
+    "name": "object",
+    "value": {
+     "name": {
+      "name": "string"
+     },
+     "params": {
+      "name": "object",
+      "value": {
+       "pageNum": {
+        "name": "number"
+       }
+      }
+     }
+    },
+    "required": false
+   },
+   "description": "Vue Router route object. Если null, кнопка рендерится как недоступная.",
+   "table": {
+    "type": {
+     "summary": "object | null"
+    },
+    "defaultValue": {
+     "summary": "() => null"
+    },
+    "category": "props"
+   },
+   "control": {
+    "type": "object",
+    "disable": false
+   }
+  },
+  "click": {
+   "name": "click",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "events"
+   },
+   "control": {
+    "disable": true
+   }
+  },
+  "default": {
+   "name": "default",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "slots"
+   }
+  }
+ },
+ "parameters": {
+  "backgrounds": {
+   "grid": {
+    "cellSize": 20,
+    "opacity": 0.5,
+    "cellAmount": 5
+   },
+   "disable": false
+  },
+  "throwPlayFunctionExceptions": false,
+  "renderer": "vue3",
+  "docs": {
+   "story": {
+    "inline": true
+   },
+   "extractArgTypes": "[function fU]",
+   "extractComponentDescription": "[function Oe]",
+   "renderer": "[function renderer]",
+   "stories": {
+    "filter": "[function filter]"
+   },
+   "source": {
+    "originalSource": "{\n  render: () => ({\n    components: {\n      StoryVariantGrid,\n      StoryVariantSection,\n      PaginationButton\n    },\n    setup() {\n      return {\n        directions,\n        routeFixture\n      };\n    },\n    template: `\n      <StoryVariantGrid>\n        <StoryVariantSection title=\"active\">\n          <PaginationButton\n            v-for=\"direction in directions\"\n            :id=\"'pagination-' + direction + '-page'\"\n            :key=\"direction\"\n            :direction=\"direction\"\n            :route=\"routeFixture\"\n          >\n            {{ direction === 'prev' ? 'Предыдущая' : 'Следующая' }}\n          </PaginationButton>\n        </StoryVariantSection>\n\n        <StoryVariantSection title=\"disabled\">\n          <PaginationButton\n            v-for=\"direction in directions\"\n            :id=\"'pagination-' + direction + '-page'\"\n            :key=\"direction\"\n            :direction=\"direction\"\n            :route=\"null\"\n          >\n            {{ direction === 'prev' ? 'Предыдущая' : 'Следующая' }}\n          </PaginationButton>\n        </StoryVariantSection>\n      </StoryVariantGrid>\n    `\n  })\n}"
+   }
+  },
+  "a11y": {
+   "test": "todo"
+  },
+  "viewport": {
+   "options": {
+    "mobile": {
+     "name": "Mobile < 768px",
+     "styles": {
+      "width": "767px",
+      "height": "768px"
+     },
+     "type": "mobile"
+    },
+    "tablet": {
+     "name": "Tablet 768-1023px",
+     "styles": {
+      "width": "1023px",
+      "height": "768px"
+     },
+     "type": "tablet"
+    },
+    "desktop": {
+     "name": "Desktop >= 1024px",
+     "styles": {
+      "width": "1024px",
+      "height": "768px"
+     },
+     "type": "desktop"
+    }
+   }
+  },
+  "controls": {
+   "matchers": {
+    "color": {},
+    "date": {}
+   }
+  },
+  "fileName": "./src/components/pagination-button/pagination-button.stories.ts",
+  "__isArgsStory": false
+ },
+ "usesMount": false,
+ "__entry": {
+  "id": "pagination-paginationbutton--variants",
+  "title": "Pagination/PaginationButton",
+  "name": "Variants",
+  "importPath": "./src/components/pagination-button/pagination-button.stories.ts",
+  "componentPath": "./src/components/pagination-button/pagination-button.vue",
+  "tags": [
+   "dev",
+   "test",
+   "manifest",
+   "autodocs"
+  ]
+ },
+ "__url": "https://mr-7288-f.habr.habratest.net/storybook/iframe.html?viewMode=story&id=pagination-paginationbutton--variants",
+ "__htmlLen": 1000,
+ "__rootTag": "<div id=\"storybook-root\" data-v-app=\"\"><div class=\"story-variant-grid\"><section ",
+ "__error": null,
+ "__sheets": [
+  "https://mr-7288-f.habr.habratest.net/css/theme/dark-v2.css",
+  "https://mr-7288-f.habr.habratest.net/css/theme/light-v2.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/block-hX4sg17k.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/StoryVariantSection-BSy86dUg.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/button-base-BdvEVC2k.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/button-Ccclp6vQ.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/svg-img-r1n9vzM8.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/BaseDialog-CrJ9tGzP.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/dropdown-B6xIm0Cp.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/HintStoryTrigger-BJ5BafP9.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/base-popover-DIfjoqU2.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/base-hint-DHY34kLY.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/informer-hint-Bf4XvRzJ.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/restriction-hint-CHvNMITd.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/vote-hint-popup-D6BJBETV.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/pagination-button-DjQECuh-.css"
+ ]
+}

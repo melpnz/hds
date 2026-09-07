@@ -1,0 +1,87 @@
+
+## Dialog
+Стандартное диалоговое окно с обложкой перед заголовком, заголовком, телом и футером с кнопкой закрытия. Дефолтная кнопка действия появляется только при переданном actionButtonLabel. Меняет представление по устройству: на mobile-only открывается как шторка снизу экрана, на tablet/desktop показывается центрированным блоком поверх оверлея.
+Name
+Description
+Default
+Control
+Hide props itemsprops
+Hide props items
+drawerInitialHeight
+Начальная высота BottomDrawer.number
+-
+title*
+Текст заголовка диалога.string
+-
+Заголовок
+coverImage
+Настройки изображения для верхней обложки диалога.{ url: string; height?: number } | null
+-
+Set object
+modalWidth
+Ширина ModalWindow на tablet и desktop.numberstring
+-
+Set string
+actionButtonLabel
+Текст дефолтной кнопки действия. Если не передан, дефолтная кнопка действия не отрисовывается.string
+-
+Set string
+closeButtonLabel
+Текст дефолтной кнопки закрытия.string
+-
+Set string
+disabled
+Блокирует дефолтную кнопку действия. Кнопка закрытия остаётся доступной.boolean
+false
+Set boolean
+loading
+Показывает загрузку на дефолтной кнопке действия и блокирует закрытие диалога кнопкой, оверлеем и клавишей Escape.boolean
+false
+Set boolean
+Hide events itemsevents
+Hide events items
+action
+other
+-
+-
+close
+Эмитится при нажатии на кнопку закрытия или при закрытии оверлея.other
+-
+-
+Hide slots itemsslots
+Hide slots items
+cover-image
+other
+-
+Set object
+body
+other
+-
+Set object
+
+## Stories
+
+## Minimal
+Без actionButtonLabel диалог отрисовывает только дефолтную кнопку закрытия.
+
+## With Cover Image
+
+## With Default Action
+Дефолтная кнопка действия отрисовывается только при переданном actionButtonLabel и эмитит событие action.
+
+## With Custom Action
+
+## Disabled Action
+disabled блокирует только дефолтную кнопку действия. Диалог по-прежнему можно закрыть кнопкой «Закрыть», оверлеем или клавишей Escape.
+disabled
+
+## Loading
+loading показывает индикатор на дефолтной кнопке действия и не даёт закрыть диалог: кнопка «Закрыть» отключена, а оверлей и клавиша Escape не закрывают модальное окно.
+loading
+
+## With Custom Close Button
+
+## With Custom Close Button Slot
+
+## Scrollable Body
+Разделители у тела диалога появляются только при вертикальном скролле в ModalWindow.

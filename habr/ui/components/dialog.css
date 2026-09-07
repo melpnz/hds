@@ -1,0 +1,275 @@
+/* =========================================================================
+   HABR · DIALOG
+   =========================================================================
+   Storybook-only (не в 101 production-файле, см. evidence/source-map.md).
+   Storybook: Dialog, 10 story.
+
+   Устройство — самый богатый композиционный факт из всей выборки:
+   на ≥768 (см. .base-dialog-drawer ниже и tablet-медиазапрос) диалог —
+   ЦЕНТРИРОВАННОЕ ОКНО (.modal-window); ключевого мобильного медиазапроса
+   на переключение в шторку в самом файле нет — переключение между двумя
+   разметками, судя по всему, делает JS (какой брейкпоинт — GAP, не
+   подтверждено CSS). Показание в CSS: у .sheet есть тень именно
+   в 768–1023, что говорит о планшетном промежуточном виде.
+
+   Части: подложка (.tm-overlay) → на телефоне общая обёртка — нижняя
+   шторка (.bottom-drawer-inner, sheet едет снизу, можно перетаскивать за
+   .drag-area) → на десктопе — .modal-window по центру → внутри общий
+   для обеих раскладок контент (.dialog-header/-title/-body/-footer)
+   + кастомный скроллбар (.scrollbar-*).
+   ========================================================================= */
+
+/* --- кастомный скроллбар внутри диалога -------------------------------- */
+
+.scrollbar { width: 100%; height: 100%; }
+.scrollbar-wrap {
+  scrollbar-width: none;
+  height: 100%;
+  overflow: hidden auto;
+}
+.scrollbar-wrap::-webkit-scrollbar { opacity: 0; }
+.scrollbar-track-container {
+  width: 12px;
+  position: absolute;
+  top: 0; bottom: 0; right: 0;
+}
+.scrollbar-track {
+  z-index: 1;
+  background-color: var(--other-disabled-elements);
+  opacity: .6;
+  user-select: none;
+  border-radius: 4px;
+  width: 4px;
+  transition: width 50ms ease-out;
+  position: absolute;
+  top: 4px; bottom: 4px; right: 4px;
+}
+.scrollbar-thumb {
+  cursor: pointer;
+  border-radius: inherit;
+  background-color: var(--text-main);
+  user-select: none;
+  width: 4px;
+  height: 0;
+  transition: background-color 50ms, width 50ms ease-out, border-radius 50ms ease-out;
+  position: absolute;
+}
+.scrollbar-track-container:hover .scrollbar-track,
+.scrollbar-track-container:hover .scrollbar-thumb,
+.scrollbar-track.dragging,
+.scrollbar-thumb.dragging {
+  border-radius: 8px;
+  width: 8px;
+}
+
+/* --- мобильная раскладка: нижняя шторка --------------------------------- */
+
+.bottom-drawer-inner {
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  display: flex;
+  position: fixed;
+  inset: 0;
+}
+.bottom-drawer-inner * { box-sizing: border-box; }
+.bottom-drawer-inner[aria-hidden="false"] { visibility: visible; }
+.bottom-drawer-inner[aria-hidden="true"] { pointer-events: none; }
+.bottom-drawer-inner .overlay { z-index: -1; position: absolute; inset: 0; }
+
+.bottom-drawer-inner .header {
+  padding: var(--bottom-drawer-header-padding, 16px 20px);
+  background-color: var(--background-primary);
+  color: var(--text-main);
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  flex-shrink: 0;
+  align-items: center;
+  font-weight: 700;
+  display: flex;
+  overflow: hidden;
+}
+.bottom-drawer-inner .header.with-divider {
+  border-bottom: 1px solid hsl(from var(--icon-primary) h s l / 40%);
+}
+
+.bottom-drawer-inner .sheet {
+  box-sizing: border-box;
+  pointer-events: all;
+  border-radius: 16px 16px 0 0;
+  flex-direction: column;
+  width: 100%;
+  display: flex;
+  position: relative;
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .bottom-drawer-inner .sheet {
+    box-shadow: 0 2px 12px 0 hsl(from var(--other-overlay-shadows) h s l / 20%);
+  }
+}
+.bottom-drawer-inner .sheet.is-fullscreen { border-radius: 0; }
+.bottom-drawer-inner .sheet:not(.is-dragging) { transition: all .5s ease-in-out; }
+
+.bottom-drawer-inner .drag-area { cursor: grab; touch-action: unset; width: 100%; margin: auto; padding: 8px 16px; }
+.bottom-drawer-inner .drag-handle {
+  background: var(--background-primary);
+  border-radius: 8px;
+  width: 64px;
+  height: 4px;
+  margin: 0 auto;
+}
+
+.bottom-drawer-inner .main {
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
+  background: var(--background-primary);
+  border-radius: var(--bottom-drawer-main-radius, 0);
+  flex-direction: column;
+  flex-grow: 1;
+  display: flex;
+  overflow: hidden;
+  touch-action: auto !important;
+}
+/* Оформленный скроллбар шторки. Четыре правила были потеряны при
+   извлечении — псевдоэлементы ::-webkit-scrollbar* не попали в перенос,
+   и в шторке рисовался системный скроллбар вместо тонкого полупрозрачного.
+   Скопировано дословно из BaseDialog-CrJ9tGzP.css. Обратить внимание на
+   приём: thumb по умолчанию с альфой 0% (невидим, но место занимает),
+   а при наведении на .main проявляется — прокрутка не дёргает раскладку. */
+.bottom-drawer-inner .main::-webkit-scrollbar { width: 8px; height: 8px; }
+.bottom-drawer-inner .main::-webkit-scrollbar-corner { display: none; }
+.bottom-drawer-inner .main::-webkit-scrollbar-thumb {
+  background-color: hsl(from var(--other-overlay-shadows) h s l / 0%);
+}
+.bottom-drawer-inner .main:hover::-webkit-scrollbar-thumb {
+  background-color: hsl(from var(--other-overlay-shadows, #4d4d4d) h s l / 20%);
+  border-radius: 8px;
+}
+
+.bottom-drawer-inner .main-inner {
+  padding: var(--bottom-drawer-main-inner-padding, 0 20px 20px);
+}
+.bottom-drawer-inner .footer {
+  padding: var(--bottom-drawer-footer-padding, 16px 20px);
+  background: var(--background-primary);
+  flex-shrink: 0;
+}
+.bottom-drawer-inner .footer:empty { display: none; }
+.bottom-drawer-inner .footer.with-divider {
+  border-top: 1px solid hsl(from var(--icon-primary) h s l / 40%);
+}
+.bottom-drawer-inner .close-button {
+  color: var(--icon-primary);
+  background-color: transparent;
+  border: none;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  margin-left: auto;
+  padding: 0;
+  display: flex;
+  position: relative;
+}
+/* увеличенная область клика поверх маленькой видимой иконки — 40×40 */
+.bottom-drawer-inner .close-button:after {
+  content: "";
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Классы Vue-перехода. В production изолированы data-v; заскоуплены под оба
+   корня диалога — окно и шторку, потому что обложка живёт в обеих раскладках. */
+.modal-window .wysiwyg-fade-enter-active, .modal-window .wysiwyg-fade-leave-active,
+.bottom-drawer-inner .wysiwyg-fade-enter-active, .bottom-drawer-inner .wysiwyg-fade-leave-active { transition: opacity .5s ease-in-out; }
+.modal-window .wysiwyg-fade-enter-from, .modal-window .wysiwyg-fade-leave-to,
+.bottom-drawer-inner .wysiwyg-fade-enter-from, .bottom-drawer-inner .wysiwyg-fade-leave-to { opacity: 0; }
+
+/* Вариант шторки без внутренних отступов — Dialog управляет ими сам через
+   dialog-title/-body/-footer (их padding, см. ниже). */
+.base-dialog-drawer {
+  --bottom-drawer-header-padding: 0;
+  --bottom-drawer-main-inner-padding: 0;
+  --bottom-drawer-footer-padding: 0;
+}
+
+/* --- подложка (общая для обеих раскладок) ------------------------------- */
+
+.tm-overlay, .tm-overlay__background { position: fixed; inset: 0; }
+.tm-overlay { z-index: 1002; }
+.tm-overlay__background {
+  z-index: 1;
+  background: hsl(from var(--other-overlay-shadows) h s l / 20%);
+  transition: transform .3s, opacity .3s;
+  transform: scaleY(2) translateY(-25%);
+}
+.tm-overlay__inner {
+  overscroll-behavior-y: contain;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  position: relative;
+  overflow-y: auto;
+}
+
+/* --- десктопная раскладка: центрированное окно --------------------------- */
+
+.modal-window-wrapper { margin: auto; position: relative; }
+.modal-window {
+  background-color: var(--background-primary);
+  max-height: 600px;
+  /* Ширину задаёт ПОТРЕБИТЕЛЬ, инлайновой CSS-переменной — фолбэка нет,
+     ровно как в проде: `width: var(--v52269707)` без второго аргумента.
+     Имя переменной у нас читаемое: production-имя генерирует Vue, оно
+     меняется от сборки к сборке и переносу не подлежит.
+     Раньше здесь стоял фолбэк 320px — это ширина аргумента конкретной
+     story (`rendered/dialog--minimal.html`), а не продуктовый дефолт;
+     живого Dialog в production не найдено, он монтируется по клику.
+     Фолбэк убран: он давал поведение, которого в проде нет. В витрине
+     ширина проставлена в разметке — так же, как это делает потребитель. */
+  width: var(--modal-window-width);
+  max-width: var(--modal-window-width);
+  box-sizing: border-box;
+  border-radius: 8px;
+  flex-direction: column;
+  display: flex;
+}
+.modal-window .header.scrolled { border-bottom: 1px solid hsl(from var(--icon-primary) h s l / 40%); }
+.modal-window .body { min-height: 0; overflow: auto; }
+.modal-window .footer.scrolled { border-top: 1px solid hsl(from var(--icon-primary) h s l / 40%); }
+
+/* --- содержимое диалога: общее для шторки и окна ------------------------- */
+
+.modal-window .cover-image,
+.bottom-drawer-inner .cover-image {
+  background-position: 50%;
+  background-size: cover;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  min-width: 100%;
+  height: 140px;
+}
+.dialog-header { flex-direction: column; width: 100%; min-width: 0; display: flex; }
+.dialog-title {
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  padding: 18px 20px 16px;
+  font-size: .9375rem;
+  font-weight: 700;
+  line-height: 1.25rem;
+}
+.dialog-title.no-body { padding: 18px 20px 0; }
+.dialog-body {
+  color: var(--text-main);
+  font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  padding: 0 20px;
+  font-size: .875rem;
+  font-weight: 500;
+}
+.dialog-body p { margin-top: 12px; }
+.dialog-body p:first-child { margin-top: 0; }
+.dialog-footer { gap: 8px; margin-top: 20px; padding: 0 20px 20px; display: flex; }

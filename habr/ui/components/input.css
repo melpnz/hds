@@ -1,0 +1,80 @@
+/* =========================================================================
+   HABR · INPUT (text field)
+   =========================================================================
+   источник: input-text-decorated-CFeKi8Lh.css (5/16, реально отрисован на
+   /search/ и в навигационном поиске) — SOURCE-CONFIRMED, не Figma-реконструкция.
+   Обнаружен на этапе Figma Library Extraction pass: класс упоминался в
+   evidence/conflicts.md (CFL-1) и evidence/source-map.md, но никогда не был
+   перенесён в ui/ — реальный, давно найденный пробел.
+
+   Figma habr-lib → textfileds → Input подтверждает геометрию дословно:
+   elements/txtfield/radius=4 (совпадает с border-radius:4px в CSS — CFL-1
+   закрыт как MATCH, не расхождение) и структуру Title/Counter над полем,
+   Hint под полем. Цвета Figma-переменных (elements/txtfield/*, hex вида
+   #333333/#bbcdd6) — СТАРЫЕ generic-плейсхолдеры библиотеки, не совпадают
+   с реальными токенами Habr — здесь НЕ использованы, вместо них — реальные
+   продуктовые переменные.
+   ========================================================================= */
+
+.tm-input-text-decorated { position: relative; }
+
+/* Ровно три объявления — столько же, сколько в production. Проверено не
+   чтением файла, а `CSS.getMatchedStylesForNode` на живой странице
+   /search/: у `.tm-input-text-decorated__label` там только line-height,
+   position и top. Раньше мы добавляли сюда ещё `color: var(--text-secondary)`
+   и `font-size: .875rem` — оба выдуманы «как логично»; в проде подпись
+   наследует 16px и цвет родителя. Удалено. */
+.tm-input-text-decorated__label {
+  line-height: 2.5rem;
+  position: absolute;
+  top: 0;
+}
+.tm-input-text-decorated__label_after { right: 0; }
+.tm-input-text-decorated__label_before { left: 0; }
+
+.tm-input-text-decorated__input {
+  appearance: none;
+  background-color: var(--background-primary);
+  border: 1px solid var(--icon-secondary);
+  box-sizing: border-box;
+  color: var(--text-main);
+  border-radius: 4px;
+  outline: 0;
+  width: 100%;
+  min-height: 40px;
+  margin: 0;
+  padding: 0 14px;
+  font-size: .875rem;
+  line-height: 1.5;
+  transition: border-color .2s linear, box-shadow .2s linear;
+  display: block;
+}
+.tm-input-text-decorated__input::placeholder { color: var(--text-secondary); }
+.tm-input-text-decorated__input:focus {
+  border-color: var(--accent-primary);
+  box-shadow: none;
+}
+.tm-input-text-decorated__input:disabled {
+  background-color: var(--header-text);
+  border-color: var(--icon-secondary);
+  color: var(--other-disabled-elements);
+  cursor: not-allowed;
+}
+.tm-input-text-decorated_has-label-after .tm-input-text-decorated__input { padding-right: 40px; }
+.tm-input-text-decorated_has-label-before .tm-input-text-decorated__input { padding-left: 44px; }
+.tm-input-text-decorated__input_invalid,
+.tm-input-text-decorated__input_invalid:focus {
+  box-shadow: none;
+  border-color: #e47979;
+}
+
+/* Хинт/ошибка под полем: НЕТ собственного класса в `.tm-input-text-decorated`
+   BEM-семье — ни одного не найдено в 111 извлечённых файлах. Реальный
+   пример есть только как `.error` в search-7QaR2PSY.css — page-scoped
+   класс (Vue data-v, страница /search/), слишком общее имя, чтобы включать
+   его в общий ui/-слой (риск коллизии с чужим `.error`). Значения (цвет
+   --header-megapost-mona-lisa, 12px/18px, margin-top:9px) задокументированы
+   в components/forms/input.md и показаны в showcase инлайн-стилем —
+   не превращены в новый глобальный класс. См. также CFL-5 (расхождение
+   с Figma: elements/txtfield/hint_error=#d04e4e ≈ --accent-danger, не
+   --header-megapost-mona-lisa — не усреднено). */

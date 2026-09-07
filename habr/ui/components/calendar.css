@@ -1,0 +1,180 @@
+/* =========================================================================
+   HABR · CALENDAR — FIGMA-RECONSTRUCTED
+   =========================================================================
+   Источник: НЕТ production CSS — планировщик даты публикации существует
+   только в редакторе статьи (admin/authorized), недоступном гостевому
+   краулу, как и m.habr-admin-company (см. RULES.md §9). Нет ни одного
+   <input type="date">/calendar-класса в 111 извлечённых файлах.
+
+   Собрано по Figma habr-lib → calendar (848:10432):
+     date         805:8145   панель выбора даты
+     time         805:8341   колонка выбора времени
+     date + time  805:7929   обе вместе, под двумя полями ввода
+     cell-date-time 791:7309, cell-arrow 793:7503 — ячейки
+
+   Геометрия — из get_design_context:
+     elements/calendar/radius        4    bg            --background-primary
+     elements/calendar/padding_form 20    padding        4  (зазор блоков)
+     elements/calendar/padding_out  12    border  #929ca566 (разделитель)
+     elements/calendar/arrow/icon   #929ca5   iconsize/x1  24
+     ячейка даты 28×28, ячейка времени 45×28, сетка 7×28 = 196
+     font interface/text 13         13/16 w400
+
+   Цвета ячейки сверены по hex с боевыми токенами:
+     txt            #333333  --text-main
+     txt_hover      #548eaa  --accent-primary   (только текст, без заливки)
+     bg_pressed     #548eaa  --accent-primary   txt_pressed #ffffff
+     txt_anothermonth #909090 --text-secondary
+     bg_disable     #f7f7f7  --background-secondary
+     shadow         #00000033 = --other-overlay-shadows с альфой 20%
+
+   Недели в шапке нет: в Figma сетка начинается сразу с чисел.
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   Ячейка даты и времени
+   ------------------------------------------------------------------------- */
+.tm-calendar-cell {
+  cursor: pointer;
+  box-sizing: border-box;
+  flex: none;
+  color: var(--text-main);
+  border-radius: 4px;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  font-size: .8125rem;
+  line-height: 1rem;
+  display: flex;
+}
+.tm-calendar-cell:hover { color: var(--accent-primary); }
+.tm-calendar-cell_selected,
+.tm-calendar-cell_selected:hover {
+  background: var(--accent-primary);
+  color: var(--background-primary);
+}
+.tm-calendar-cell_another-month { color: var(--text-secondary); }
+
+/* Отключённый диапазон — сплошная плашка: скругляются только самая первая
+   и самая последняя ячейка непрерывного ряда, в порядке разметки, а не
+   по краям каждой строки. Так же устроено в Figma (props first/middle/last). */
+.tm-calendar-cell_disabled {
+  cursor: default;
+  background: var(--background-secondary);
+  color: var(--text-secondary);
+}
+.tm-calendar-cell_disabled:hover { color: var(--text-secondary); }
+.tm-calendar-cell_disabled + .tm-calendar-cell_disabled {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+.tm-calendar-cell_disabled:has(+ .tm-calendar-cell_disabled) {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+/* ячейка времени шире (45), в остальном та же */
+.tm-calendar-cell_time { width: 45px; }
+
+.tm-calendar-arrow {
+  cursor: pointer;
+  color: var(--icon-primary);
+  background: none;
+  border: 0;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  display: flex;
+}
+.tm-calendar-arrow svg { fill: currentColor; width: 24px; height: 24px; }
+.tm-calendar-arrow:hover { color: var(--accent-primary); }
+.tm-calendar-arrow_disabled,
+.tm-calendar-arrow_disabled:hover { cursor: default; color: var(--other-disabled-elements); }
+/* arrow-back (спрайт) сам по себе указывает влево — как и в Pagination
+   (см. pagination.css .tm-pagination__arrow_next), flip нужен только
+   для "вперёд", не для "назад" */
+.tm-calendar-arrow_next { transform: scaleX(-1); }
+
+/* -------------------------------------------------------------------------
+   Панель
+   ------------------------------------------------------------------------- */
+.tm-calendar {
+  box-sizing: border-box;
+  background: var(--background-primary);
+  border-radius: 4px;
+  box-shadow: 0 2px 12px hsl(from var(--other-overlay-shadows) h s l / 20%);
+  flex-direction: column;
+  gap: 4px;
+  padding: 20px;
+  display: inline-flex;
+}
+.tm-calendar *, .tm-calendar *:before, .tm-calendar *:after { box-sizing: border-box; }
+
+/* два поля сверху — это Input, а не часть календаря; зазор padding_out = 8 */
+.tm-calendar__fields { gap: 8px; display: flex; }
+.tm-calendar__fields .tm-input-text-decorated { flex: 1; }
+.tm-calendar__fields .tm-input-text-decorated_time { flex: none; width: 76px; }
+.tm-calendar__fields .tm-input-text-decorated__input { text-align: center; }
+
+/* месяц и стрелки */
+.tm-calendar__header { align-items: center; display: flex; }
+.tm-calendar__title {
+  color: var(--text-main);
+  text-align: center;
+  flex: 1;
+  min-width: 0;
+  font-size: .8125rem;
+  line-height: 1rem;
+}
+
+/* календарь и время рядом, между ними — вертикальный разделитель */
+.tm-calendar__panes { gap: 12px; display: flex; }
+.tm-calendar__panes .tm-calendar__time {
+  border-left: 1px solid hsl(from var(--icon-primary) h s l / 40%);
+  padding-left: 12px;
+}
+
+/* сетка дат: 7 колонок по 28, без зазоров — отключённые дни должны
+   сливаться в одну плашку */
+.tm-calendar__grid {
+  grid-template-columns: repeat(7, 28px);
+  width: 196px;
+  display: grid;
+}
+
+/* колонка времени: та же высота, что и сетка (6 рядов по 28 + шапка) */
+.tm-calendar__time {
+  flex-direction: column;
+  max-height: 196px;
+  display: flex;
+  overflow-y: auto;
+}
+/* elements/scroll: бокс 12, padding 4 → видимая полоса 4px, radius 200 */
+.tm-calendar__time::-webkit-scrollbar { width: 12px; }
+.tm-calendar__time::-webkit-scrollbar-track {
+  background: hsl(from var(--other-disabled-elements) h s l / 60%);
+  background-clip: content-box;
+  border: 4px solid #0000;
+  border-radius: 200px;
+}
+.tm-calendar__time::-webkit-scrollbar-thumb {
+  background: var(--text-main);
+  background-clip: content-box;
+  border: 4px solid #0000;
+  border-radius: 200px;
+}
+
+/* «Сегодня» — ссылка под сеткой */
+.tm-calendar__today {
+  color: var(--accent-primary);
+  text-align: center;
+  cursor: pointer;
+  padding-top: 4px;
+  font-size: .8125rem;
+  line-height: 1rem;
+  text-decoration: none;
+  display: block;
+}

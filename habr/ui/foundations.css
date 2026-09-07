@@ -1,0 +1,84 @@
+/* =========================================================================
+   HABR · FOUNDATIONS
+   =========================================================================
+   Habr-специфичные добавления ПОВЕРХ ui/normalize.css (подключать оба,
+   normalize первым по смыслу — хотя порядок физически не влияет на
+   каскад, см. evidence/runtime-contract.md). Извлечено из index-C5LRQg16.css
+   тем же полным проходом по "голым" селекторам, что и normalize.css —
+   это все правила, которые остаются, если вычесть сам normalize.
+   ========================================================================= */
+
+body {
+  overscroll-behavior-y: contain;
+}
+
+body {
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+  overflow-y: scroll;
+}
+
+html, body {
+  background-color: var(--background-gray);
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+/* Интерфейсная хромка (кнопки, шапка, пагинация, навигация) наследует этот
+   стек. Fira Sans — шрифт КОНТЕНТА, подключается точечно компонентами
+   в ui/components/*.css, а не здесь. См. runtime-contract.md, раздел «Шрифты». */
+
+a {
+  margin: 0;
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+}
+
+/* Единственное глобальное правило ссылки: цвет меняется на акцентный
+   при наведении. Не переопределяется точечно компонентами (проверено —
+   ни один найденный компонент не задаёт свой a:hover). */
+a:hover {
+  color: var(--accent-primary);
+}
+
+/* Кавычки-«ёлочки» для русского текста против английских кавычек —
+   продуктовая типографическая деталь, не часть normalize. Действует
+   через CSS-функцию quotes() и требует использования <q> или content:
+   open-quote/close-quote — большинство текста Habr набрано без <q>,
+   поэтому это правило затрагивает уже, чем может показаться по имени. */
+:lang(en) { quotes: "\201C" "\201D"; }
+:lang(ru) { quotes: "\00AB" "\00BB"; }
+
+/* Видимый фокус при клавиатурной навигации — на элементах с атрибутом
+   data-navigatable, не глобально на :focus-visible. Это единственное
+   найденное глобальное accessibility-правило в источнике: если новый
+   интерактивный элемент должен получать стандартный контур фокуса Habr,
+   ему нужен именно этот атрибут, а не просто клавиатурная фокусируемость. */
+[data-navigatable]:focus {
+  outline: 1px solid var(--accent-primary);
+}
+
+/* Единственный найденный глобальный простой селектор * во всём 111-файловом
+   срезе — косметический переход, не влияющий на геометрию. */
+* {
+  transition: opacity .2s ease-in-out, color .2s ease-in-out,
+    -webkit-text-decoration .2s ease-in-out, text-decoration .2s ease-in-out,
+    background-color .2s ease-in-out;
+}
+
+/* Глобальная анимация из шелл-бандла, используется .btn_loading
+   в ui/components/button.css. index.css содержит ещё ~40 именованных
+   keyframes (bounce/fade/slide-серии для transition-компонентов) — перенесены
+   не все, только те, на которые ссылается уже извлечённый компонент. GAP:
+   остальные — при извлечении компонентов, которые их используют. */
+@keyframes loader {
+  0%  { width: 0; }
+  70% { opacity: 1; width: 100%; }
+  90% { opacity: 0; width: 100%; }
+  100% { opacity: 0; width: 0; }
+}
+
+/* НЕ перенесено намеренно: [data-roxot-placement-id]{max-width:100%} —
+   селектор рекламной инфраструктуры (Roxot ad network), не часть
+   продуктового UI. */

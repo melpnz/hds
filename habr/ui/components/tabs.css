@@ -1,0 +1,228 @@
+/* =========================================================================
+   HABR · TABS
+   =========================================================================
+   источник: tabs-NcEC6QlL.css (14/16 страниц)
+   Figma: habr-lib → tabs → tab (Small/Medium/Large × inactive/hover/focus/
+          select/disable/loading, + «more» overflow), tab-panel (3 размера)
+   ========================================================================= */
+
+.tabs {
+  background-color: var(--background-primary);
+  box-shadow: 0 -1px 0 0 hsl(from var(--icon-primary) h s l / 40%) inset;
+  white-space: nowrap;
+  align-items: center;
+  display: flex;
+  position: relative;
+  overflow-x: hidden;
+}
+.tabs.borderless { box-shadow: none; }
+
+/* градиент-«тень» по краям, сигнализирует, что список можно прокрутить */
+.tabs:before, .tabs:after {
+  content: "";
+  pointer-events: none;
+  width: 16px;
+  position: absolute;
+  top: 1px;
+  bottom: 1px;
+}
+.tabs:after {
+  background: linear-gradient(to left, var(--background-primary) 30%, transparent 100%);
+  right: 0;
+}
+.tabs:before {
+  background: linear-gradient(to right, var(--background-primary) 30%, transparent 100%);
+  left: 0;
+}
+
+.tabs-scroll-area {
+  display: flex;
+  overflow-x: auto;
+}
+.tabs-scroll-area:before, .tabs-scroll-area:after {
+  content: "";
+  flex: none;
+  width: 16px;
+}
+.tabs-padding-area {
+  padding-left: 16px;
+  padding-right: 2px;
+}
+
+.tab-item {
+  box-sizing: border-box;
+  color: var(--text-inactive);
+  text-transform: uppercase;
+  margin-right: 24px;
+  display: inline-block;
+  position: relative;
+}
+.tab-item:last-child { margin-right: 0; }
+
+.tab-link {
+  color: inherit;
+  letter-spacing: .05rem;
+  height: 44px;
+  text-transform: inherit;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  align-items: center;
+  margin: 2px 0;
+  padding: 0;
+  font-family: Fira Sans, sans-serif;
+  font-size: .875rem;
+  font-weight: 500;
+  line-height: 1rem;
+  text-decoration: none;
+  display: flex;
+}
+.tab-link.slim { height: 38px; }
+.tab-link.active {
+  color: var(--accent-primary);
+  position: relative;
+}
+.tab-link.active:after {
+  background-color: var(--accent-primary);
+  content: "";
+  width: 100%;
+  height: 2px;
+  display: block;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+}
+.tab-link.disabled {
+  pointer-events: none;
+  opacity: .4;
+  cursor: default;
+}
+.tab-link:hover { color: var(--accent-primary); }
+
+.tab-counter { color: var(--accent-primary); margin-left: 4px; }
+.tab-counter-new { color: var(--accent-positive); margin-left: 4px; }
+
+.tabs-dropdown { position: relative; bottom: 1px; }
+
+@media (min-width: 1024px) {
+  .tabs { overflow-x: visible; }
+  .tabs:before, .tabs:after,
+  .tabs-scroll-area:before, .tabs-scroll-area:after { width: 20px; }
+  .tabs-padding-area { padding-left: 20px; }
+  .tab-item:first-child { padding-left: 0; }
+}
+
+/* =========================================================================
+   FIGMA-RECONSTRUCTED — размеры Small и Medium
+   =========================================================================
+   Источник: habr-lib → tabs → tab (901:10896), матрица 3 размера × 6 состояний.
+
+   ВАЖНО, что это снимает давний GAP: production `.tab-link` — это НЕ
+   «единственный безымянный размер», а именно **Large** из Figma. Совпало
+   дословно по четырём независимым признакам:
+     • шрифт   — headers/Tab = Fira Sans Medium 14, как в .tab-link;
+     • uppercase — elements/tab/large + .tab-item{text-transform:uppercase};
+     • счётчик  — large/counter #548eaa = .tab-counter (--accent-primary);
+     • счётчик новых — large/counter_new_publication #7aa600 =
+       .tab-counter-new (--accent-positive).
+   Small и Medium в production не найдены — только они и реконструированы.
+
+   Цвета состояний общие для всех размеров и тоже сошлись с боевыми токенами:
+   inactive #909090 = --text-secondary, hover/select #548eaa =
+   --accent-primary, disable #c0c0c0 = --other-disabled-elements. */
+
+/* Small — компактный текстовый таб: системный шрифт, жирный, без uppercase */
+.tab-link.size-small {
+  height: auto;
+  margin: 0;          /* базовый .tab-link ставит 2px сверху/снизу — это высота
+                         Large (44); у Small в Figma символ ровно 22 = 2+18+2 */
+  padding: 2px 0;
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: .875rem;
+  font-weight: 700;
+  line-height: 1.125rem;
+  letter-spacing: normal;
+}
+/* выбранное состояние Small — ПУНКТИРНАЯ рамка снизу 1px, а не сплошная
+   полоса 2px, как у Large (Figma 901:10895: border-b border-dashed).
+   Пунктир рисуется на том же :after, что и полоса Large, а не через
+   border-bottom: border добавил бы 1px к высоте и таб дёргался бы при
+   переключении (символ в Figma одной высоты 22 во всех состояниях). */
+.tab-link.size-small.active { color: var(--accent-primary); }
+.tab-link.size-small.active:after {
+  background-color: transparent;
+  border-bottom: 1px dashed var(--accent-primary);
+  height: 0;
+  bottom: 0;
+}
+.tab-item.size-small { text-transform: none; margin-right: 16px; }
+
+/* Medium — таб-«таблетка»: системный шрифт обычного начертания, радиус 4 */
+.tab-link.size-medium {
+  height: auto;
+  margin: 0;          /* то же: без сброса символ выходит 46 вместо 42 */
+  padding: 12px 16px;
+  border-radius: 4px;
+  color: var(--text-secondary);
+  font-family: inherit;
+  font-size: .875rem;
+  font-weight: 400;
+  line-height: 1.125rem;
+  letter-spacing: normal;
+}
+/* gap_tabs = 0: внутри панели табы стыкуются вплотную, это сегмент-контрол,
+   а не список с отбивками (Figma 902:10981) */
+.tab-item.size-medium { text-transform: none; margin-right: 0; }
+/* выбранное состояние Medium — рамка, а не подчёркивание */
+/* Figma 901:10905 даёт border-2 (2px) при неизменной высоте символа 42 —
+   поэтому inset-тень, а не border: тень не сдвигает раскладку между
+   состояниями и даёт тот же результат. */
+.tab-link.size-medium.active {
+  color: var(--accent-primary);
+  box-shadow: inset 0 0 0 2px var(--accent-primary);
+}
+.tab-link.size-medium.active:after { content: none; }
+
+/* Панель Medium — общая обводка вокруг всей группы.
+   Figma tab-panel type=Medium (902:10981): border 1px solid
+   elements/tab/border = rgba(146,156,165,.4), radius = elements/tab/medium/radius
+   = 4, padding 0, gap 0.
+
+   Прежде здесь стоял GAP «серая подложка без токена» — он был поставлен по
+   обзорному скриншоту, где рамка на 40% альфы читалась как заливка. В самом
+   символе это не фон, а обводка, и цвет у неё выведенный: rgb(146,156,165) —
+   это #929ca5, то есть ровно --icon-primary, взятый с альфой 40%. Тот же приём
+   уже используется в production — см. нижнюю линию `.tabs` в начале файла,
+   там буквально то же выражение. Ничего выдумывать не пришлось, GAP снят. */
+.tabs.size-medium {
+  display: inline-flex;
+  max-width: 100%;                        /* не распирает контейнер: если табов
+                                             больше, чем влезает, прокручивается
+                                             штатная .tabs-scroll-area внутри */
+  /* обводка внутренней тенью, а не border: в Figma фрейм tab-panel и сам таб
+     одной высоты 42 — значит обводка не добавляет габарит, а лежит поверх.
+     border дал бы 44. Тот же приём, что у выбранного таба ниже. */
+  box-shadow: inset 0 0 0 1px hsl(from var(--icon-primary) h s l / 40%);
+  border-radius: 4px;
+  overflow: hidden;                       /* скругляет крайние табы по панели */
+}
+/* внутри панели не нужны ни краевые градиенты, ни отступы прокрутки:
+   ширина панели равна сумме табов, прокручивать нечего */
+.tabs.size-medium:before,
+.tabs.size-medium:after,
+.tabs.size-medium .tabs-scroll-area:before,
+.tabs.size-medium .tabs-scroll-area:after { content: none; }
+/* flex, а не inline-block: у inline-block переносы строк в разметке дают
+   пробел ~4px между табами, а в Figma gap_tabs = 0 */
+.tabs.size-medium .tabs-padding-area { padding: 0; display: flex; }
+
+/* =========================================================================
+   FIGMA TARGET — не production
+   =========================================================================
+   Figma показывает у таба ещё два состояния, которых в tabs-NcEC6QlL.css нет:
+   focus (кольцо, elements/button/radius_focus = 6) и loading (спиннер вместо
+   содержимого). Ниже только focus — как дизайн-намерение, не как текущее
+   поведение продукта. Loading не реконструирован: спиннер требует разметки,
+   которой в production не наблюдалось. */
+.tab-link:focus-visible { outline: 2px solid var(--accent-primary); outline-offset: 2px; border-radius: 6px; }

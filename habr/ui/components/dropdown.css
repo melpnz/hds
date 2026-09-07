@@ -1,0 +1,175 @@
+/* =========================================================================
+   HABR · DROPDOWN
+   =========================================================================
+   Storybook-only (не в 101 production-файле, см. evidence/source-map.md).
+   Storybook: Dropdowns/Dropdown, 8 story.
+
+   Устройство простое: .dropdown (relative-контейнер) → .head (триггер,
+   курсор pointer) → .body (абсолютно позиционированная панель). Все размеры
+   панели — CSS-переменные с фолбэками прямо в var(), это те же значения,
+   что видны в шапке ui/utilities-подобного контракта: 12px отступ сверху,
+   300px минимальная ширина, 12px нижний отступ.
+   ========================================================================= */
+
+/* ВНИМАНИЕ: .head и .body ниже заскоуплены под .dropdown. В исходнике они
+   голые — в production их разводит Vue-скоуп (data-v-…), который мы при
+   извлечении снимаем. Без скоупа голый .body перехватывал .body диалога
+   (.modal-window > .body) и ломал раскладку. Поведение не изменено:
+   в реальной разметке оба класса всегда лежат внутри .dropdown. */
+.dropdown { position: relative; }
+.is-open { z-index: var(--tm-dropdown-active-z-index, 993); }
+.dropdown .head { cursor: pointer; }
+
+.dropdown .body {
+  background: var(--background-primary);
+  box-shadow: 0 0 12px hsl(from var(--other-overlay-shadows) h s l / 16%);
+  color: var(--text-main);
+  margin-top: var(--tm-dropdown-body-margin-top, 12px);
+  padding-bottom: var(--tm-dropdown-body-padding-bottom, 12px);
+  white-space: normal;
+  min-width: var(--tm-dropdown-body-min-width, 300px);
+  border-radius: 4px;
+  display: inline-flex;
+  position: absolute;
+  overflow: hidden;
+}
+.dropdown .body.inline { min-width: auto; padding-bottom: 0; }
+.dropdown .body.no-padding { padding-bottom: 0; }
+.dropdown .body.align-right { right: 0; }
+.dropdown .body.align-left { left: 0; }
+.dropdown .body.align-center { left: 0; transform: translate(-50%); }
+
+/* =========================================================================
+   FIGMA-RECONSTRUCTED — содержимое панели (пункты меню)
+   =========================================================================
+   `.body` выше — реальный production-контейнер (Storybook). Всё ниже —
+   реконструкция по Figma habr-lib → dropdown → Row (770:6182), потому что
+   ни одного класса пункта меню не найдено ни в dropdown-B6xIm0Cp.css, ни
+   где-либо ещё в 111 файлах (см. components/overlays/dropdown.md GAP).
+
+   Row — ОДИН компонент с четырьмя свойствами: status (inactive / hover /
+   pressed / not-found / loading), type (dropdown / menu), separator, title.
+   Два типа различаются полями и способом показать выбор:
+   - type=dropdown (.dropdown-row): поля 16, иконка + текст + описание +
+     счётчик, выбор — заливка (bg_hover=#eff6fa, bg_pressed=#548eaa с
+     белым текстом, desc_txt_pressed=#c0c0c0)
+   - type=menu (.menu-row): поля 20, только текст, выбор — окрашивание
+     текста и левая полоса 2px (txt_pressed=#548eaa), без заливки
+
+   Значения из get_variable_defs (770:6182):
+     padding_top / padding_bottom     8      gap            8
+     list/padding_left / _right      16      gap_vertical   4
+     menu/padding_left / _right      20      list/padding_txt 2
+     padding_top_title               16      menu/border_thickness 2
+     row/txt  #333333  --text-main   list/desc_txt #909090 --text-secondary
+     list/icon #929ca5 --icon-primary  separator #929ca566 = он же с 40%
+     font interface/text 14 — 14/18 и у строки, и у описания, и у счётчика
+
+   Использованы реальные Habr-токены (--accent-primary и т.д.), НЕ
+   Figma-хекс-значения библиотеки (устаревшая generic-палитра, см. input.css).
+   ========================================================================= */
+
+.dropdown-row {
+  cursor: pointer;
+  color: var(--text-main);
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: .875rem;
+  line-height: 1.125rem;
+  display: flex;
+}
+/* Figma elements/dropdown/row/list/icon = #929ca5 = --icon-primary.
+   Раньше стоял --icon-secondary (#bcced7) — неверное сопоставление hex. */
+.dropdown-row__icon { color: var(--icon-primary); flex: none; width: 24px; height: 24px; }
+/* list/padding_txt = 2 сверху и снизу, gap_vertical = 4 между строкой и описанием */
+.dropdown-row__text {
+  flex-direction: column;
+  flex: 1;
+  gap: 4px;
+  min-width: 0;
+  padding: 2px 0;
+  display: flex;
+}
+.dropdown-row__desc { color: var(--text-secondary); }
+.dropdown-row__counter { flex: none; padding: 2px 0; }
+.dropdown-row:hover { background: var(--background-blue); }
+.dropdown-row_selected {
+  background: var(--accent-primary);
+  color: var(--background-primary);
+}
+/* Под выбранной строкой белеет всё, кроме описания: у него свой токен
+   list/desc_txt_pressed = #c0c0c0 = --other-disabled-elements. Счётчик и
+   иконка — белые, иначе строка распадается на два разных выделения. */
+.dropdown-row_selected .dropdown-row__icon { color: inherit; }
+.dropdown-row_selected .dropdown-row__desc { color: var(--other-disabled-elements); }
+.dropdown-row_title {
+  cursor: default;
+  color: var(--text-secondary);
+  font-size: .875rem;
+  font-weight: 700;
+  line-height: 1.125rem;
+  padding: 16px 16px 8px;
+}
+.dropdown-row_separator { border-top: 1px solid hsl(from var(--icon-primary) h s l / 40%); margin: 8px 0; }
+.dropdown-row_not-found,
+.dropdown-row_loading {
+  cursor: default;
+  color: var(--text-secondary);
+  justify-content: center;
+  padding: 8px 16px;
+  display: flex;
+}
+/* Figma показывает в loading спиннер; вращение — наше, картинкой его не
+   выразить. Сам глиф — refresh из production-спрайта. */
+.dropdown-row_loading svg { fill: currentColor; width: 24px; height: 24px; animation: 1s linear infinite tm-dropdown-spin; }
+@keyframes tm-dropdown-spin { to { transform: rotate(-360deg); } }
+
+.dropdown .menu-row {
+  cursor: pointer;
+  color: var(--text-main);
+  border-left: 2px solid #0000;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 8px 20px;
+  font-size: .875rem;
+  line-height: 1.125rem;
+  text-decoration: none;
+  display: flex;
+}
+.dropdown .menu-row:hover { color: var(--accent-primary); }
+.dropdown .menu-row_selected {
+  color: var(--accent-primary);
+  border-left-color: var(--accent-primary);
+}
+
+/* =========================================================================
+   Мобильный вариант — нижняя шторка
+   =========================================================================
+   Figma dropdown-menu, mobile=yes (770:10093): на телефоне панель не
+   всплывает у триггера, а выезжает снизу на всю ширину. Отличий от
+   десктопной ровно три: скругление только сверху, вертикальные поля
+   padding_list_mobile = 12 вместо 4, и ручка 64×4 над шторкой.
+   Оверлей — elements/dropdown/overlay, чёрный с альфой 20%.
+   ========================================================================= */
+.dropdown-sheet {
+  box-sizing: border-box;
+  background: var(--background-primary);
+  color: var(--text-main);
+  border-radius: 4px 4px 0 0;
+  width: 100%;
+  padding: 12px 0;
+  position: relative;
+}
+.dropdown-sheet:before {
+  content: "";
+  background: var(--background-primary);
+  border-radius: 4px;
+  width: 64px;
+  height: 4px;
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  transform: translate(-50%);
+}
+.dropdown-sheet-overlay { background: hsl(from var(--other-overlay-shadows) h s l / 20%); }

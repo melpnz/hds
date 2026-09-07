@@ -1,0 +1,160 @@
+/* =========================================================================
+   HABR · CHIP / ARTICLE LABELS
+   =========================================================================
+   В файле три компонента с разным статусом:
+     .tm-chip           FIGMA-RECONSTRUCTED — чип хаба и тега
+     .publication-label PRODUCTION          — плашка формата, отгружаемая
+     .article-label     FIGMA-TARGET        — плашка формата, новый дизайн
+
+   У чипа production-CSS нет: ни одного класса с "chip" в имени ни в одном
+   из 111 извлечённых файлов. Реальный usage — выбор хабов и тегов при
+   публикации, он живёт в редакторе статьи, недоступном гостевому краулу
+   (RULES.md §9).
+
+   Собрано по Figma habr-lib → article-labels / v3:
+     hub     4591:5141   чип хаба (аватар + имя)
+     tag     4591:5242   чип тега
+     formats 4573:8084   плашка формата публикации
+
+   Геометрия — из get_design_context, не на глаз:
+     elements/chips/radius            8
+     elements/chips/padding_top       4     padding_bottom        4
+     elements/chips/padding_left     12     padding_right        12
+     elements/chips/padding_left_icon 4     padding_right_icon    4
+     elements/chips/padding_txt_ver   2     iconsize/x1          24
+     font interface/text 14                 14/18 w400
+
+     elements/article_labels/new/radius       8
+     elements/article_labels/new/padding_top  6   padding_bottom  6
+     elements/article_labels/new/padding_left 12  padding_right  12
+     elements/article_labels/new/padding_right_with_icon 4
+     font interface/text 12 (bold) CAPS       12/14 w700 uppercase
+
+   Цвета сверены по hex с боевыми токенами, не вбиты хексами:
+     #548eaa --accent-primary   #909090 --text-secondary
+     #7aa600 --accent-positive  #d04e4e --accent-danger
+     #929ca5 --icon-primary     #f77d05 --label-sorbus
+     #2385e7 --label-dodger-blue #1da53d --label-apple
+     #c23d96 --label-mulberry
+
+   Заливка чипа — тот же цвет с альфой 12%, рамка пустого — он же с 40%.
+   Один цвет на три роли (текст / фон / рамка) — это устройство компонента,
+   а не совпадение: в Figma это один слой fill с opacity 12%.
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   Чип: тег и хаб
+   ------------------------------------------------------------------------- */
+.tm-chip {
+  --tm-chip-color: var(--text-secondary);
+  box-sizing: border-box;
+  cursor: default;
+  color: var(--tm-chip-color);
+  background: hsl(from var(--tm-chip-color) h s l / 12%);
+  border: 0;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  height: 30px;
+  padding: 4px 12px;
+  font-family: inherit;
+  font-size: .875rem;
+  line-height: 1.125rem;
+  display: inline-flex;
+}
+/* внутренний отступ текстового блока (padding_txt_ver): 4 + 2 + 18 + 2 + 4 = 30 */
+.tm-chip__text { padding: 2px 0; }
+.tm-chip__body { align-items: center; gap: 8px; display: flex; }
+.tm-chip__icon { fill: currentColor; flex: none; width: 24px; height: 24px; }
+/* Заполнение плитки на время, пока картинки хаба нет, — .avatar-default
+   в avatar.css; здесь только геометрия. */
+.tm-chip__avatar { object-fit: cover; border-radius: 6px; flex: none; width: 24px; height: 24px; }
+
+/* Поля зависят от того, что стоит по краям — в Figma это отдельные
+   значения токенов, здесь выведены из состава чипа. */
+.tm-chip:has(> .tm-chip__icon:first-child) { padding-left: 4px; }
+.tm-chip:has(> .tm-chip__icon:last-child) { padding-right: 4px; }
+.tm-chip:has(.tm-chip__avatar) { padding-left: 3px; }
+
+/* Пустой — рамка 40% вместо заливки. Объявлен до цветовых модификаторов,
+   чтобы .tm-chip_error перекрывал его цвет, а не наоборот. */
+.tm-chip_empty {
+  --tm-chip-color: var(--icon-primary);
+  cursor: pointer;
+  background: none;
+  box-shadow: inset 0 0 0 1px hsl(from var(--tm-chip-color) h s l / 40%);
+}
+
+.tm-chip_tag { --tm-chip-color: var(--text-secondary); }
+.tm-chip_hub { --tm-chip-color: var(--accent-primary); }
+.tm-chip_subscribed { --tm-chip-color: var(--accent-positive); }
+.tm-chip_error { --tm-chip-color: var(--accent-danger); }
+
+/* крестик и плюс — кнопки; в разметке продукта это <button>, не <svg> */
+button.tm-chip__icon {
+  cursor: pointer;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  display: block;
+}
+
+/* -------------------------------------------------------------------------
+   Плашки публикации — одна геометрия на все
+   -------------------------------------------------------------------------
+   Дизайн из article-labels / v3: залитая пилюля, цвет — 12% того же
+   цвета, что и текст.
+
+     .article-label      формат публикации, цвет кодирует формат
+     .publication-label  статус публикации (Из песочницы, Recovery Mode),
+                         свой постоянный цвет --label-deluge
+
+   ВНИМАНИЕ, это НЕ то, что отгружено. Production сегодня рисует
+   .publication-label иначе — контурной плашкой без заливки и без
+   uppercase, кегль наследуется от карточки:
+
+     color: var(--label-deluge);
+     border: 1px solid hsl(from var(--label-deluge) h s l / 40%);
+     border-radius: 4px; margin: 8px 8px 0 0; padding: 0 8px;
+
+   Замерено на habr.com/ru/articles/ и /ru/feed/ через
+   CSS.getMatchedStylesForNode; файл publication-label-D1N8NdVO.css,
+   8/16 страниц, в проде заскоуплен data-v-db35b1ec. Переход на общий
+   вид v3 — решение владельца пакета, а не замер. Старое оформление
+   сохранено выше дословно, чтобы факт не потерялся.
+
+   Намеренно не переносятся два варианта Figma: со стрелкой и списком
+   форматов (4573:8118, editor=yes dropdown=yes) — это интерфейс
+   редактора, и текст без плашки (editor=no).
+   ------------------------------------------------------------------------- */
+.article-label,
+.publication-label {
+  --article-label-color: var(--icon-primary);
+  box-sizing: border-box;
+  cursor: default;
+  color: var(--article-label-color);
+  background: hsl(from var(--article-label-color) h s l / 12%);
+  border: 0;
+  border-radius: 8px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  height: 30px;
+  padding: 6px 12px;
+  font-family: inherit;
+  font-size: .75rem;
+  font-weight: 700;
+  line-height: .875rem;
+  text-transform: uppercase;
+  display: inline-flex;
+}
+.publication-label { --article-label-color: var(--label-deluge); }
+/* Цвет задаётся форматом. Соответствие формат → цвет — в
+   components/content/chip.md; на один цвет приходится несколько форматов. */
+.article-label_none { --article-label-color: var(--icon-primary); }
+.article-label_orange { --article-label-color: var(--label-sorbus); }
+.article-label_blue { --article-label-color: var(--label-dodger-blue); }
+.article-label_green { --article-label-color: var(--label-apple); }
+.article-label_magenta { --article-label-color: var(--label-mulberry); }

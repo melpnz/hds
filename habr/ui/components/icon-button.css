@@ -1,0 +1,51 @@
+/* =========================================================================
+   HABR · ICON BUTTON — FIGMA-RECONSTRUCTED
+   =========================================================================
+   Источник: НЕТ отдельного переиспользуемого класса в 111 извлечённых
+   файлах. Ближайшая реальная production-параллель — `.close-informer-hint`
+   (ui/components/hint.css) — тоже кнопка-иконка без фона/рамки, но это
+   ИМЕННО ЗАКРЫТИЕ конкретного информера, не общий переиспользуемый класс.
+   Имя `.tm-icon-button` условное (не найдено), взято по аналогии с
+   остальной tm-* системой — как и `.tm-chip`.
+
+   Figma habr-lib → button → icon-button (848:10440), get_variable_defs
+   подтвердил реальные Habr-токены: icon=#929ca5 = --icon-primary ТОЧНО
+   (раньше здесь было ошибочно записано ≈--icon-secondary: это #bcced7,
+   другой цвет — голубовато-серый вместо нейтрального; ошибка найдена
+   сверкой hex Figma с разрешёнными значениями токенов),
+   border=#929ca566 = тот же --icon-primary с альфой 40%,
+   icon_border_hover/focus=#548eaa≈--accent-primary,
+   icon_border_disable/loading=#c0c0c0≈--other-disabled-elements —
+   не сырые хексы, а подтверждённое соответствие уже принятым токенам.
+   ========================================================================= */
+
+.tm-icon-button {
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+  color: var(--icon-primary);
+  width: 32px;
+  height: 32px;
+  padding: 4px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.tm-icon-button:hover,
+.tm-icon-button:focus-visible { color: var(--accent-primary); }
+.tm-icon-button:disabled {
+  cursor: not-allowed;
+  color: var(--other-disabled-elements);
+}
+
+/* border=yes — Figma variant с видимой рамкой вокруг иконки */
+.tm-icon-button_bordered { box-shadow: inset 0 0 0 1px hsl(from var(--icon-primary) h s l / 40%); }
+.tm-icon-button_bordered:hover,
+.tm-icon-button_bordered:focus-visible { box-shadow: inset 0 0 0 1px var(--accent-primary); }
+.tm-icon-button_bordered:disabled { box-shadow: inset 0 0 0 1px var(--other-disabled-elements); }
+
+/* near-textfield=yes — крупнее (40×40), padding_near_field=8: Figma
+   показывает этот вариант РЯДОМ с текстовым полем (см. Field), не
+   проверено, действительно ли это используется внутри Input в production */
+.tm-icon-button_near-field { width: 40px; height: 40px; padding: 8px; }

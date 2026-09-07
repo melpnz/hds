@@ -1,0 +1,71 @@
+
+## ConversationCard
+Name
+Description
+Default
+Control
+Hide props itemsprops
+Hide props items
+conversationOrFriend*
+ConversationBriefConversationFriend
+-
+RAWconversationOrFriend : {fullName : "Иван Петров"avatarUrl : "https://assets.habr.com/habr-web/img/avatars/003.png"login : "ivan-petrov"lastMessage : {...} 10 keysunreadMessagesCount : 0hasBeenRead : truehasComplaint : falsebanned : undefinedsubject : nullsubtitle : "Добрый день! Готов рассмотреть ваше предложение."}
+fullName : "Иван Петров"
+avatarUrl : "https://assets.habr.com/habr-web/img/avatars/003.png"
+login : "ivan-petrov"
+unreadMessagesCount : 0
+hasBeenRead : true
+hasComplaint : false
+banned : undefined
+subject : null
+subtitle : "Добрый день! Готов рассмотреть ваше предложение."
+narrowView
+boolean
+-
+FalseTrue
+Hide events itemsevents
+Hide events items
+changeSubject
+{ subject: ConversationSubject; login: string }
+-
+-
+deleteConversation
+other
+-
+-
+updateConversation
+ConversationBrief
+-
+-
+markUnread
+string
+-
+-
+markRead
+string
+-
+-
+selectFriend
+string
+-
+-
+
+## Stories
+
+## With Read Messages
+Диалог с прочитанными сообщениями — стандартный вид карточки
+
+## With Unread Messages
+Диалог с непрочитанными сообщениями — счётчик непрочитанных
+
+## With Subject
+Диалог с темой — тема диалога отображается под именем
+
+## With Company
+Диалог с компанией — логотип компании в карточке
+
+## Friend
+Друг (без диалога) — пользователь из списка друзей, диалог ещё не начат
+
+## Narrow View
+Компактный вид — узкое боковое меню, без кнопки контекстного меню

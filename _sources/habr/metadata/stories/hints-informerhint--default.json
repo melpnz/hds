@@ -1,0 +1,277 @@
+{
+ "id": "hints-informerhint--default",
+ "name": "Default",
+ "title": "Hints/InformerHint",
+ "componentId": "hints-informerhint",
+ "tags": [
+  "dev",
+  "test",
+  "autodocs"
+ ],
+ "initialArgs": {
+  "buttonStyle": {
+   "bottom": "-4px",
+   "right": "-7px"
+  },
+  "hintWidth": "340px",
+  "offset": {
+   "mainAxis": 0,
+   "crossAxis": 0
+  },
+  "visible": true,
+  "close": "[function r]",
+  "update:visible": "[function r]"
+ },
+ "argTypes": {
+  "buttonStyle": {
+   "control": {
+    "type": "object",
+    "disable": false
+   },
+   "name": "buttonStyle",
+   "type": {
+    "name": "object",
+    "value": {
+     "bottom": {
+      "name": "string"
+     },
+     "right": {
+      "name": "string"
+     }
+    },
+    "required": false
+   },
+   "description": "Позиционирование горячей точки относительно контейнера.",
+   "table": {
+    "type": {
+     "summary": "{ bottom: string; right: string }"
+    },
+    "defaultValue": {
+     "summary": "{\n  bottom: '-4px',\n  right: '-7px'\n}"
+    },
+    "category": "props"
+   }
+  },
+  "hintWidth": {
+   "control": {
+    "type": "text",
+    "disable": false
+   },
+   "name": "hintWidth",
+   "type": {
+    "name": "string",
+    "required": false
+   },
+   "description": "Ширина контейнера подсказки.",
+   "table": {
+    "type": {
+     "summary": "string"
+    },
+    "defaultValue": {
+     "summary": "'340px'"
+    },
+    "category": "props"
+   }
+  },
+  "offset": {
+   "control": {
+    "type": "object",
+    "disable": false
+   },
+   "name": "offset",
+   "type": {
+    "name": "object",
+    "value": {
+     "mainAxis": {
+      "name": "number"
+     },
+     "crossAxis": {
+      "name": "number"
+     }
+    },
+    "required": false
+   },
+   "description": "Отступы BasePopover.",
+   "table": {
+    "type": {
+     "summary": "{ mainAxis: number; crossAxis: number }"
+    },
+    "defaultValue": {
+     "summary": "{\n  mainAxis: 0,\n  crossAxis: 0\n}"
+    },
+    "category": "props"
+   }
+  },
+  "visible": {
+   "control": {
+    "type": "boolean",
+    "disable": false
+   },
+   "name": "visible",
+   "type": {
+    "name": "boolean",
+    "required": false
+   },
+   "description": "Начальное состояние видимости hint в story preview.",
+   "table": {
+    "type": {
+     "summary": "boolean"
+    },
+    "defaultValue": {
+     "summary": "false"
+    },
+    "category": "props"
+   }
+  },
+  "close": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "close",
+   "description": "Эмитится при закрытии hint.",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "events"
+   },
+   "action": "close"
+  },
+  "update:visible": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "update:visible",
+   "description": "Эмитится при открытии и закрытии hint.",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "events"
+   },
+   "action": "update:visible"
+  },
+  "default": {
+   "control": {
+    "type": "object"
+   },
+   "name": "default",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "slots"
+   }
+  }
+ },
+ "parameters": {
+  "backgrounds": {
+   "grid": {
+    "cellSize": 20,
+    "opacity": 0.5,
+    "cellAmount": 5
+   },
+   "disable": false
+  },
+  "throwPlayFunctionExceptions": false,
+  "renderer": "vue3",
+  "docs": {
+   "story": {
+    "inline": false,
+    "iframeHeight": 360
+   },
+   "extractArgTypes": "[function fU]",
+   "extractComponentDescription": "[function Oe]",
+   "renderer": "[function renderer]",
+   "stories": {
+    "filter": "[function filter]"
+   },
+   "description": {
+    "component": "InformerHint рисует заметную горячую точку и popover с объяснением изменений интерфейса. Для Storybook видимость подключена через `v-model:visible`, чтобы hint можно было открыть и закрыть прямо в canvas."
+   },
+   "source": {
+    "originalSource": "{}"
+   }
+  },
+  "a11y": {
+   "test": "todo"
+  },
+  "viewport": {
+   "options": {
+    "mobile": {
+     "name": "Mobile < 768px",
+     "styles": {
+      "width": "767px",
+      "height": "768px"
+     },
+     "type": "mobile"
+    },
+    "tablet": {
+     "name": "Tablet 768-1023px",
+     "styles": {
+      "width": "1023px",
+      "height": "768px"
+     },
+     "type": "tablet"
+    },
+    "desktop": {
+     "name": "Desktop >= 1024px",
+     "styles": {
+      "width": "1024px",
+      "height": "768px"
+     },
+     "type": "desktop"
+    }
+   }
+  },
+  "controls": {
+   "matchers": {
+    "color": {},
+    "date": {}
+   }
+  },
+  "fileName": "./src/components/hints/informer-hint.stories.ts",
+  "__isArgsStory": true
+ },
+ "usesMount": false,
+ "__entry": {
+  "id": "hints-informerhint--default",
+  "title": "Hints/InformerHint",
+  "name": "Default",
+  "importPath": "./src/components/hints/informer-hint.stories.ts",
+  "componentPath": "./src/components/hints/informer-hint.vue",
+  "tags": [
+   "dev",
+   "test",
+   "manifest",
+   "autodocs"
+  ]
+ },
+ "__url": "https://mr-7288-f.habr.habratest.net/storybook/iframe.html?viewMode=story&id=hints-informerhint--default",
+ "__htmlLen": 1419,
+ "__rootTag": "<div id=\"storybook-root\" data-v-app=\"\"><div style=\"position: relative; min-heigh",
+ "__error": null,
+ "__sheets": [
+  "https://mr-7288-f.habr.habratest.net/css/theme/dark-v2.css",
+  "https://mr-7288-f.habr.habratest.net/css/theme/light-v2.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/block-hX4sg17k.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/StoryVariantSection-BSy86dUg.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/button-base-BdvEVC2k.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/button-Ccclp6vQ.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/svg-img-r1n9vzM8.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/BaseDialog-CrJ9tGzP.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/dropdown-B6xIm0Cp.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/HintStoryTrigger-BJ5BafP9.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/base-popover-DIfjoqU2.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/base-hint-DHY34kLY.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/informer-hint-Bf4XvRzJ.css"
+ ]
+}

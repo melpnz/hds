@@ -1,0 +1,261 @@
+{
+ "id": "common-basefiltermodalnew--default",
+ "name": "Новая модалка фильтров",
+ "title": "common/BaseFilterModalNew",
+ "componentId": "common-basefiltermodalnew",
+ "tags": [
+  "dev",
+  "test",
+  "autodocs"
+ ],
+ "initialArgs": {
+  "title": "Поиск курсов",
+  "buttonTitle": "Показать 128 курсов",
+  "hasCloseButton": true,
+  "isLoading": false,
+  "disabled": false
+ },
+ "argTypes": {
+  "title": {
+   "control": {
+    "type": "text"
+   },
+   "name": "title",
+   "type": {
+    "name": "string",
+    "required": true
+   },
+   "table": {
+    "type": {
+     "summary": "string"
+    },
+    "category": "props"
+   }
+  },
+  "buttonTitle": {
+   "control": {
+    "type": "text"
+   },
+   "name": "buttonTitle",
+   "type": {
+    "name": "string",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "string"
+    },
+    "category": "props"
+   }
+  },
+  "hasCloseButton": {
+   "control": {
+    "type": "boolean"
+   },
+   "name": "hasCloseButton",
+   "type": {
+    "name": "boolean",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "boolean"
+    },
+    "category": "props"
+   }
+  },
+  "isLoading": {
+   "control": {
+    "type": "boolean"
+   },
+   "name": "isLoading",
+   "type": {
+    "name": "boolean",
+    "required": true
+   },
+   "table": {
+    "type": {
+     "summary": "boolean"
+    },
+    "category": "props"
+   }
+  },
+  "disabled": {
+   "control": {
+    "type": "boolean"
+   },
+   "name": "disabled",
+   "type": {
+    "name": "boolean",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "boolean"
+    },
+    "category": "props"
+   }
+  },
+  "resetFilter": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "resetFilter",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "events"
+   }
+  },
+  "applyFilter": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "applyFilter",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "events"
+   }
+  },
+  "close": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "close",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "events"
+   }
+  },
+  "open": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "open",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "events"
+   }
+  },
+  "default": {
+   "control": {
+    "type": "object"
+   },
+   "name": "default",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "slots"
+   }
+  },
+  "toggle": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "toggle",
+   "type": {
+    "name": "other",
+    "value": ""
+   },
+   "table": {
+    "category": "expose"
+   }
+  }
+ },
+ "parameters": {
+  "renderer": "vue3",
+  "docs": {
+   "story": {
+    "inline": true
+   },
+   "extractArgTypes": "[function T]",
+   "extractComponentDescription": "[function extractComponentDescription]",
+   "renderer": "[function renderer]",
+   "stories": {
+    "filter": "[function filter]"
+   },
+   "source": {
+    "originalSource": "{\n  name: 'Новая модалка фильтров',\n  args: {\n    title: 'Поиск курсов',\n    buttonTitle: 'Показать 128 курсов',\n    hasCloseButton: true,\n    isLoading: false,\n    disabled: false\n  },\n  render: args => ({\n    components: {\n      BaseButton,\n      BaseFilter,\n      BaseFilterModalNew,\n      BaseFilterWithImage\n    },\n    setup() {\n      const isOpen = ref(false);\n      const categories = ['Python', 'Аналитика', 'Дизайн', 'Маркетинг', 'Frontend', 'Backend', 'DevOps', 'Product'];\n      const cards = [{\n        title: 'Популярное',\n        image: {\n          src: '/courses-web/images/filters/star.png',\n          alt: 'Звезда'\n        }\n      }, {\n        title: 'Скидки',\n        image: {\n          src: '/courses-web/images/filters/money.png',\n          alt: 'Деньги'\n        }\n      }, {\n        title: 'С отзывами',\n        image: {\n          src: '/courses-web/images/filters/comment.png',\n          alt: 'Комментарии'\n        }\n      }];\n      return {\n        args,\n        cards,\n        categories,\n        isOpen\n      };\n    },\n    template: `\n      <div class=\"min-h-[920px] bg-ui-black-50 p-8\">\n        <BaseButton size=\"m\" @click=\"isOpen = true\">Открыть новую модалку</BaseButton>\n\n        <BaseFilterModalNew\n          v-if=\"isOpen\"\n          v-bind=\"args\"\n          @close=\"isOpen = false\"\n          @apply-filter=\"isOpen = false\"\n          @reset-filter=\"args.buttonTitle = 'Показать все курсы'\"\n        >\n          <div class=\"my-1 grid gap-8 py-1\">\n            <section class=\"grid gap-4\">\n              <div class=\"text-body font-semibold\">Рекомендуем</div>\n              <div class=\"flex gap-3 overflow-x-auto pb-1\">\n                <BaseFilterWithImage\n                  v-for=\"card in cards\"\n                  :key=\"card.title\"\n                  :title=\"card.title\"\n                  :image=\"card.image\"\n                  :active=\"card.title === 'Популярное'\"\n                />\n              </div>\n            </section>\n\n            <section class=\"grid gap-4\">\n              <div class=\"text-body font-semibold\">Направление</div>\n              <div class=\"flex flex-wrap gap-2\">\n                <BaseFilter\n                  v-for=\"category in categories\"\n                  :key=\"category\"\n                  appearance=\"edu\"\n                  :active=\"category === 'Python'\"\n                >\n                  {{ category }}\n                </BaseFilter>\n              </div>\n            </section>\n\n            <section class=\"grid gap-3\">\n              <div class=\"text-body font-semibold\">Дополнительный контент</div>\n              <div\n                v-for=\"index in 8\"\n                :key=\"index\"\n                class=\"rounded-2xl border border-solid border-ui-black-100 p-4 text-small text-ui-black-500\"\n              >\n                Блок {{ index }} нужен, чтобы проверить скролл и появление разделителей в шапке и футере.\n              </div>\n            </section>\n          </div>\n        </BaseFilterModalNew>\n\n        <div id=\"modal-target\"></div>\n      </div>\n    `\n  }),\n  argTypes: {\n    title: {\n      control: 'text'\n    },\n    buttonTitle: {\n      control: 'text'\n    },\n    hasCloseButton: {\n      control: 'boolean'\n    },\n    isLoading: {\n      control: 'boolean'\n    },\n    disabled: {\n      control: 'boolean'\n    }\n  }\n}"
+   }
+  },
+  "backgrounds": {
+   "grid": {
+    "cellSize": 20,
+    "opacity": 0.5,
+    "cellAmount": 5
+   },
+   "disable": false,
+   "values": [
+    {
+     "name": "light",
+     "value": "#F8F8F8"
+    },
+    {
+     "name": "dark",
+     "value": "#333"
+    }
+   ]
+  },
+  "throwPlayFunctionExceptions": false,
+  "actions": {
+   "argTypesRegex": "^on[A-Z].*"
+  },
+  "controls": {
+   "matchers": {
+    "color": {},
+    "date": {}
+   }
+  },
+  "fileName": "./src/components/common/base-filter-modal-new.stories.ts",
+  "__isArgsStory": true
+ },
+ "usesMount": false,
+ "__entry": {
+  "id": "common-basefiltermodalnew--default",
+  "title": "common/BaseFilterModalNew",
+  "name": "Новая модалка фильтров",
+  "importPath": "./src/components/common/base-filter-modal-new.stories.ts",
+  "componentPath": "./src/components/common/base-filter-modal-new.vue",
+  "tags": [
+   "dev",
+   "test",
+   "autodocs"
+  ]
+ },
+ "__url": "https://develop.career.habratest.net/courses-web/storybook-static/iframe.html?viewMode=story&id=common-basefiltermodalnew--default",
+ "__htmlLen": 589,
+ "__rootTag": "<div id=\"storybook-root\" data-v-app=\"\"><div><div class=\"min-h-[920px] bg-ui-blac",
+ "__error": null,
+ "__sheets": [
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/cookies.c-urmcFr.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/preview.CoGQq0WZ.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/index.CSGoIsqw.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/preview.CXq2SRHN.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/svg-icon.6YnsMLG3.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/base-loader.DeUmaBb8.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/body-scroll.Dl5qe-0F.css"
+ ]
+}

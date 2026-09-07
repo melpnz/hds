@@ -1,0 +1,270 @@
+/* =========================================================================
+   HABR · LAYOUT
+   =========================================================================
+   Оболочка страницы: контейнер, две колонки, липкая шапка. Извлечено из
+   index-C5LRQg16.css — общего файла для всех 15 просканированных страниц.
+
+   В отличие от Career, здесь НЕТ @container-развёртки колонок — адаптив
+   построен на @media. Единственный найденный @container — фича-детект
+   в другом файле, к раскладке отношения не имеет (evidence/runtime-contract.md).
+   Поэтому .habr-page ниже не требует container-type — просто класс.
+   ========================================================================= */
+
+/* --- контейнер: 320 → 768 (16) → 1096 (24) --------------------------- */
+
+.tm-page-width {
+  min-width: 320px;
+  margin: 0 auto;
+  position: relative;
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .tm-page-width { max-width: 768px; padding: 0 16px; }
+}
+@media (min-width: 1024px) {
+  .tm-page-width { max-width: 1096px; padding: 0 24px; }
+}
+.tm-page-width_no-padding { padding: 0; }
+.tm-page-width_full-width { max-width: 100%; }
+
+/* --- шапка: липкая на всех вьюпортах, 56 → 48 -------------------------- */
+
+.tm-header {
+  background-color: var(--header-background);
+  color: var(--header-text);
+  z-index: 1001;
+  height: 56px;
+  transition: top .3s;
+  position: sticky;
+  top: 0;
+}
+@media (max-width: 767px) {
+  .tm-header { height: 48px; }
+}
+.tm-header__container {
+  align-items: center;
+  gap: 16px;
+  height: 32px;
+  margin: 0 auto;
+  padding: 12px 0;
+  display: flex;
+}
+@media (max-width: 767px) {
+  .tm-header__container { padding: 8px 16px; }
+}
+
+/* --- внутренности шапки -------------------------------------------------
+   Снято с живого habr.com через CSSOM (обход document.styleSheets, чтобы
+   получить и медиазапросы — в computed style их не видно). До этого в
+   пакете были только .tm-header и .tm-header__container, а всё содержимое
+   шапки в витрине рисовалось инлайновыми стилями: показывали не продукт.
+
+   Общие имена (.line, .link, .icon, .adv) заскоуплены под свои компоненты
+   по RULES.md §15 — в production их изолирует data-v. */
+
+/* Ключевое правило адаптива: на мобильном высота шапки перестаёт быть
+   фиксированной, если внутри есть рекламный слот. Именно поэтому
+   измеренная полная высота на 320/480 — 80px, а не 48: 48 у ряда навигации
+   плюс 32 у слота. Само по себе `.tm-header{height:48px}` тут не работает. */
+@media (max-width: 767px) {
+  .tm-header_with-feature { height: auto; }
+}
+
+.tm-header__button {
+  box-shadow: none;
+  box-sizing: border-box;
+  cursor: pointer;
+  background: 0 0;
+  border: 0;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  line-height: 0;
+  display: flex;
+}
+.tm-header__burger { top: -2px; }
+
+.tm-header__logo-wrap { line-height: 0; position: relative; }
+.tm-header__logo { color: var(--background-primary); height: 22px; display: block; }
+.tm-header__logo:hover { opacity: 1; }
+.tm-header__logo_hl-ru { width: 62px; }
+.tm-header__logo_hl-en { width: 57px; }
+@media (min-width: 1024px) {
+  .tm-header__logo:not(.tm-header__logo_twentieth-anniversary) { height: 24px; }
+}
+@media (max-width: 767px) {
+  .tm-header__logo-wrap { max-width: 52px; }
+  .tm-header__logo:not(.tm-header__logo_twentieth-anniversary) { width: 52px; }
+  .tm-header__logo_hl-ru { width: 52px; }
+}
+
+/* Разделитель и «Все потоки» — единственные элементы, которые адаптив
+   именно ПРЯЧЕТ, а не ужимает. */
+.tm-header__divider { background: var(--icon-primary); min-width: 1px; min-height: 16px; }
+.tm-header__all-flows {
+  min-height: 12px;
+  color: var(--header-text);
+  padding: 8px 0;
+  font-size: .875rem;
+  line-height: 1.125rem;
+  text-decoration: none;
+}
+.tm-header__all-flows:hover { color: var(--header-megapost-anakiwa); text-decoration: none; }
+@media (max-width: 767px) {
+  .tm-header__divider { display: none; }
+  .tm-header__all-flows { display: none; }
+}
+
+.tm-header__icon { color: var(--header-text); width: 100%; height: 100%; }
+.tm-header__feature { margin: 0 auto; }
+.tm-header__user-menu { margin-left: auto; }
+
+/* --- бургер: три полоски -------------------------------------------------
+   `.line` — общее слово, в production изолировано data-v-806e3326.
+   Заскоуплено под .burger-button. */
+.tm-header .burger-button { cursor: pointer; width: 24px; height: 24px; display: block; position: relative; }
+.tm-header .burger-button .line {
+  background-color: var(--header-text);
+  width: 18px;
+  height: 2px;
+  transition: transform .4s cubic-bezier(.68, -.6, .32, 1.6);
+  position: absolute;
+}
+.tm-header .burger-button .line.top    { transform-origin: 0 0;     top: 6px;  left: 3px; }
+.tm-header .burger-button .line.middle { transform-origin: 0 100%;  top: 12px; left: 3px; }
+.tm-header .burger-button .line.bottom { transform-origin: 0 0;     top: 18px; left: 3px; }
+/* «крестик» только на десктопе: на мобильном меню открывается шторкой,
+   а не подменяет бургер — медиазапрос в production именно такой */
+@media (min-width: 768px) {
+  .tm-header .burger-button.opened .top    { transform: translate(3px) rotate(45deg) scaleX(.53); }
+  .tm-header .burger-button.opened .middle { transform: translate(3px, 6px) rotate(-45deg); }
+  .tm-header .burger-button.opened .bottom { transform: translate(9px, -6px) rotate(45deg) scaleX(.53); }
+}
+
+/* --- правое меню --------------------------------------------------------- */
+
+.tm-header-user-menu { align-items: center; gap: 16px; display: flex; }
+@media (max-width: 767px) { .tm-header-user-menu { gap: 12px; } }
+.tm-header-user-menu__icon { color: var(--header-text); vertical-align: top; }
+.tm-header-user-menu__icon:hover { color: var(--header-megapost-anakiwa); }
+.tm-header-user-menu__search,
+.tm-header-user-menu__write,
+.tm-header-user-menu__login { cursor: pointer; }
+.tm-header-user-menu__avatar { max-height: 32px; }
+@media (max-width: 767px) { .tm-header-user-menu__avatar { max-height: 24px; } }
+
+/* Кнопка «Войти» — не .btn, а собственный класс, но с ровно тем же набором
+   объявлений, что у .btn_solid.btn_small (см. button.css). В production это
+   продублировано, а не переиспользовано — переносим как есть. */
+.tm-header-user-menu__login {
+  box-sizing: border-box;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-color: var(--accent-primary);
+  background-color: var(--accent-primary);
+  color: var(--background-primary);
+  border-radius: 3px;
+  align-self: self-start;
+  height: 2rem;
+  padding: 8px 14px;
+  font-size: .8125rem;
+  text-decoration: none;
+  transition: all .3s;
+}
+.tm-header-user-menu__login:is(:hover, :focus, :active) {
+  outline: none;
+  text-decoration: none;
+  border-color: var(--accent-primary-hover);
+  background-color: var(--accent-primary-hover);
+  color: var(--background-primary);
+}
+.tm-header-user-menu__login:disabled {
+  background-color: var(--other-disabled-elements);
+  border-color: var(--other-disabled-elements);
+}
+
+/* --- рекламный слот ------------------------------------------------------
+   НЕ часть продуктовой структуры — ad-инвентарь. Перенесён потому, что
+   именно он определяет реальную высоту шапки на мобильном (см. выше). */
+.tm-header .header-feature {
+  box-sizing: border-box;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  height: 36px;
+  display: flex;
+}
+@media (max-width: 767px) {
+  .tm-header .header-feature {
+    border-bottom: 1px solid hsl(from var(--icon-primary) h s l / 40%);
+    flex: 0 0 auto;
+    width: 100%;
+    height: 32px;
+    padding: 4px 16px;
+  }
+}
+.tm-header .header-feature .link {
+  height: 100%;
+  color: var(--header-text);
+  letter-spacing: .01875rem;
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  font-size: .875rem;
+  line-height: 1.125rem;
+  text-decoration: none;
+  display: flex;
+}
+.tm-header .header-feature .link:hover { color: var(--header-megapost-anakiwa); }
+.tm-header .header-feature .icon { margin-right: 8px; position: relative; top: -1px; }
+.tm-header .header-feature .adv {
+  color: var(--icon-primary);
+  letter-spacing: 0;
+  text-transform: uppercase;
+  cursor: pointer;
+  font-size: .625rem;
+  line-height: .75rem;
+  position: relative;
+  top: 2px;
+}
+
+/* --- две колонки: главная + сайдбар 300, сайдбар НЕ липкий ------------- */
+
+/* Ширина сайдбара в production — скомпилированный Vue v-bind() (инлайновая
+   переменная с хэшированным именем), не статическое значение в CSS.
+   Подтверждено на 7 типах страниц: везде одно и то же значение.
+   Здесь — обычная переменная с человекочитаемым именем. */
+:root {
+  --sidebar-width: 300px;
+}
+
+.tm-page__wrapper {
+  display: flex;
+  position: relative;
+}
+.tm-page__main {
+  position: relative;
+}
+.tm-page__main_has-sidebar {
+  max-width: calc(100% - (var(--sidebar-width) + 16px));
+  flex: 1;
+  margin-right: 16px;
+}
+.tm-page__sidebar {
+  width: var(--sidebar-width);
+  flex: none;
+  position: relative; /* НЕ sticky — отличие от Career, где фильтры залипают */
+  display: flex;
+}
+
+/* --- отступ страницы сверху/снизу -------------------------------------- */
+
+.tm-page {
+  padding-bottom: 60px;
+}
+@media (min-width: 1024px) {
+  .tm-page { padding: 12px 0 60px; }
+}

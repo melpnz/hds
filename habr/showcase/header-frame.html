@@ -1,0 +1,133 @@
+<!doctype html>
+<meta charset="utf-8">
+<!-- Без этого meta мобильная эмуляция берёт layout viewport 980px, и ни один
+     медиазапрос шапки не срабатывает: страница на 320 рендерится как десктоп.
+     Ловушка уже ловилась в этом пакете один раз — на самой витрине. -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Header · adaptive frame</title>
+<!--
+  Отдельная страница ровно с одной шапкой. Встраивается в components.html
+  через <iframe> заданной ширины — только так медиазапросы .tm-header
+  срабатывают ПО-НАСТОЯЩЕМУ: у iframe собственный viewport, и 320px внутри
+  него это настоящие 320px, а не имитация через transform/зум.
+
+  Разметка снята с живого habr.com (структура и порядок узлов), инлайновых
+  стилей нет: всё оформление приходит из ui/habr.css.
+  Параметр ?feature=1 добавляет рекламный слот — он и объясняет, почему
+  на мобильном полная высота 80px, а не 48.
+-->
+<link rel="stylesheet" href="../ui/themes/light-v2.css">
+<link rel="stylesheet" href="../ui/habr.css">
+<style>
+  html, body { margin: 0; background: var(--background-gray); }
+  /* тело кадра — чтобы было видно, что шапка липкая и что под ней контент */
+  .frame-body { height: 96px; }
+  .frame-note {
+    font: 11px/1.4 ui-monospace, Consolas, monospace;
+    color: #6b6b74; padding: 10px 16px;
+  }
+</style>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <!-- Символы скопированы дословно из ассетов пакета: логотип — из
+       ui/assets/icons/logo/habr-logo-ru.svg (в production это отдельный файл,
+       в megazord.svg логотипа нет), иконки — из ui/assets/icons/single/.
+       Инлайн нужен потому, что по file:// браузер блокирует внешние
+       <use xlink:href="файл.svg#id">. -->
+  <symbol id="habr-logo" viewBox="0 0 54 22"><path d="m14.8499 17.0001-5.10399-7.72199 5.05999-7.766h-3.718l-3.38799 5.28-3.344-5.28h-3.849996l5.059996 7.7-5.103996 7.78799h3.761996l3.388-5.302 3.40999 5.302z"/><path d="m21.3494 5.36211c-2.97 0-4.664 1.67989-4.972 3.63789h2.992c.176-.594.748-1.15189 1.848-1.15189 1.078 0 1.87.55 1.87 1.606v.528h-2.486c-2.904 0-4.664 1.34199-4.664 3.67399 0 2.288 1.76 3.608 3.96 3.608 1.474 0 2.662-.572 3.366-1.496v1.232h2.97v-7.43599c0-2.772-1.958-4.202-4.884-4.202zm-.572 9.41599c-.99 0-1.628-.484-1.628-1.276 0-.814.704-1.298 1.694-1.298h2.244v.506c0 1.32-1.078 2.068-2.31 2.068z"/><path d="m35.1339 5.82411c-1.584 0-2.882.572-3.718 1.738.22-2.134 1.078-3.19 3.234-3.52l4.3501-.638v-2.794003l-4.6581.770003c-4.488.748-5.874 3.74-5.874 8.73399 0 4.488 2.178 7.15 6.028 7.15 3.454 0 5.588-2.64 5.588-5.808 0-3.40999-1.98-5.63199-4.95-5.63199zm-.792 8.75599c-1.672 0-2.596-1.342-2.596-3.146 0-1.73799.968-2.99199 2.618-2.99199 1.606 0 2.508 1.298 2.508 3.01399 0 1.716-.88 3.124-2.53 3.124z"/><path d="m48.6512 5.36211c-1.672 0-2.75.726-3.322 1.584v-1.32h-3.08v15.37389h3.212v-5.0999c.572.792 1.65 1.364 3.102 1.364 2.794 0 5.016-2.2 5.016-5.94 0-3.80599-2.222-5.96199-4.928-5.96199zm-.77 9.12999c-1.496 0-2.486-1.21-2.486-3.124v-.088c0-1.91399.99-3.14599 2.486-3.14599s2.464 1.254 2.464 3.18999c0 1.936-.968 3.168-2.464 3.168z"/></symbol>
+  <symbol id="search" viewBox="0 0 24 24"><path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="pencil" viewBox="0 0 24 24"><path d="M13.8789 3.7073c1.1715-1.1716 3.0706-1.1716 4.2421 0l2.1719 2.1709c1.1716 1.1716 1.1716 3.0716 0 4.2432L10.1601 20.2542a3 3 0 0 1-1.628.8379l-5.368.8945a1.0003 1.0003 0 0 1-1.1505-1.1514l.8946-5.3672a3 3 0 0 1 .8378-1.6279zM5.1601 15.2542a1 1 0 0 0-.2793.542l-.665 3.9873 3.9873-.6641a1 1 0 0 0 .543-.2793l7.8398-7.8398-3.586-3.586zM16.707 5.1214c-.3905-.3906-1.0236-.3906-1.4141 0l-.8789.8789 3.5859 3.5859.879-.879c.3904-.3903.3902-1.0234 0-1.414z"/></symbol>
+  <symbol id="page-settings" viewBox="0 0 24 24"><path d="M19 17c0-1.1046-.8954-2-2-2s-2 .8954-2 2 .8954 2 2 2 2-.8954 2-2M7 3c1.8638 0 3.43 1.2748 3.874 3H19c.5523 0 1 .4477 1 1s-.4477 1-1 1h-8.126C10.43 9.7252 8.8638 11 7 11c-2.2091 0-4-1.7909-4-4s1.7909-4 4-4m14 14c0 2.2091-1.7909 4-4 4-1.8638 0-3.43-1.2748-3.874-3H5c-.5523 0-1-.4477-1-1s.4477-1 1-1h8.126c.444-1.7252 2.0102-3 3.874-3 2.2091 0 4 1.7909 4 4M5 7c0 1.1046.8954 2 2 2s2-.8954 2-2-.8954-2-2-2-2 .8954-2 2"/></symbol>
+</svg>
+
+<header class="tm-header tm-header_with-feature">
+  <!-- Рекламный слот. Его МЕСТО В DOM зависит от ширины, и это делает не CSS,
+       а сам продукт: на ≤767 он лежит здесь, соседом .tm-page-width, отдельной
+       полосой над рядом навигации; на ≥768 переезжает ВНУТРЬ
+       .tm-header__container. Проверено обходом живого DOM на 375 и 1440.
+       Скрипт внизу повторяет этот перенос — двух копий узла в разметке нет. -->
+  <div class="header-feature tm-header__feature" data-feature>
+    <a class="link" href="#"><span class="icon"></span>Реклама на Хабре</a>
+    <span class="adv">Реклама</span>
+  </div>
+  <div class="tm-page-width">
+    <div class="tm-header__container">
+      <button aria-expanded="false" aria-label="Меню" class="burger-button tm-header__button tm-header__burger" type="button">
+        <span class="line top"></span>
+        <span class="line middle"></span>
+        <span class="line bottom"></span>
+      </button>
+      <span class="tm-header__logo-wrap">
+        <a class="tm-header__logo tm-header__logo_hl-ru" href="#">
+          <svg class="tm-svg-img tm-header__icon" height="16" width="16"><title>Хабр</title>
+            <use xlink:href="#habr-logo"></use></svg>
+        </a>
+      </span>
+      <span class="tm-header__divider"></span>
+      <a class="tm-header__all-flows" href="#">Все потоки</a>
+
+      <div class="tm-header-user-menu tm-header__user-menu">
+        <a class="tm-header-user-menu__item tm-header-user-menu__search" href="#" aria-label="Поиск">
+          <svg class="tm-svg-img tm-header-user-menu__icon" height="24" width="24"><title>Поиск</title>
+            <use xlink:href="#search"></use></svg>
+        </a>
+        <div class="tm-header-user-menu__item tm-header-user-menu__write">
+          <a href="#" aria-label="Написать">
+            <svg class="tm-svg-img tm-header-user-menu__icon" height="24" width="24"><title>Написать</title>
+              <use xlink:href="#pencil"></use></svg>
+          </a>
+        </div>
+        <div class="tm-header-user-menu__item">
+          <svg class="tm-svg-img tm-header-user-menu__icon" height="24" width="24"><title>Настройки</title>
+            <use xlink:href="#page-settings"></use></svg>
+        </div>
+        <a class="tm-header-user-menu__item tm-header-user-menu__login" href="#">Войти</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="frame-body">
+  <p class="frame-note" data-report>—</p>
+</div>
+
+<script>
+  // рекламный слот выключается параметром ?feature=0
+  var params = new URLSearchParams(location.search);
+  if (params.get('feature') === '0') {
+    document.querySelector('[data-feature]').remove();
+    document.querySelector('.tm-header').classList.remove('tm-header_with-feature');
+  }
+  // Перенос слота между двумя позициями DOM — ровно то, что делает продукт.
+  function placeFeature() {
+    var f = document.querySelector('[data-feature]');
+    if (!f) return;
+    var header = document.querySelector('.tm-header');
+    var container = document.querySelector('.tm-header__container');
+    var desktop = matchMedia('(min-width: 768px)').matches;
+    if (desktop) {
+      var menu = container.querySelector('.tm-header-user-menu');
+      if (f.parentNode !== container) container.insertBefore(f, menu);
+    } else {
+      if (f.parentNode !== header) header.insertBefore(f, header.firstElementChild);
+    }
+  }
+
+  // подпись под шапкой: настоящие замеры этого кадра, а не переписанные цифры
+  function report() {
+    var h = document.querySelector('.tm-header');
+    var c = document.querySelector('.tm-header__container');
+    var d = document.querySelector('.tm-header__divider');
+    var f = document.querySelector('.tm-header__all-flows');
+    var vis = function (el) { return el && getComputedStyle(el).display !== 'none'; };
+    document.querySelector('[data-report]').textContent =
+      'viewport ' + document.documentElement.clientWidth + ' · ' +
+      '.tm-header ' + Math.round(h.getBoundingClientRect().height) + 'px · ' +
+      'container ' + Math.round(c.getBoundingClientRect().height) + 'px · ' +
+      'padding ' + getComputedStyle(c).padding + ' · ' +
+      'divider ' + (vis(d) ? 'есть' : 'скрыт') + ' · ' +
+      '«Все потоки» ' + (vis(f) ? 'есть' : 'скрыт');
+  }
+  placeFeature();
+  report();
+  addEventListener('resize', function () { placeFeature(); report(); });
+</script>

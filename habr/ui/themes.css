@@ -1,0 +1,26 @@
+/* =========================================================================
+   HABR · THEMES
+   =========================================================================
+   Источник: production release 2.346.1, побайтово совпадает со snapshot
+   Storybook (_sources/habr/source/css/light-v2.css, dark-v2.css) — проверено
+   diff'ом. Значения не пересчитаны, порядок объявлений не менялся.
+
+   ПОДКЛЮЧЕНИЕ — media-запросом, НЕ классом и НЕ [data-theme]:
+
+     <link rel="stylesheet" href="ui/themes/light-v2.css"
+           media="(prefers-color-scheme: light)">
+     <link rel="stylesheet" href="ui/themes/dark-v2.css"
+           media="(prefers-color-scheme: dark)">
+
+   Обе темы объявляют один и тот же набор из 43 переменных на голом :root.
+   Принудительный показ одной темы независимо от системной настройки —
+   через media="all" у нужного <link> и отключение второго.
+
+   Все токены СЕМАНТИЧЕСКИЕ: --text-main, --accent-primary, --comments-author,
+   --complexity-low, --label-scarlet. Компонентного CSS без role-имени
+   в системе нет — hex/hsl напрямую в разметке не подставлять.
+   Полный runtime-контракт — evidence/runtime-contract.md.
+   ========================================================================= */
+
+@import url('themes/light-v2.css') (prefers-color-scheme: light);
+@import url('themes/dark-v2.css') (prefers-color-scheme: dark);

@@ -1,0 +1,477 @@
+{
+ "id": "forms-basecustomselect--base-story-images",
+ "name": "Опции могут иметь поле image",
+ "title": "forms/BaseCustomSelect",
+ "componentId": "forms-basecustomselect",
+ "tags": [
+  "dev",
+  "test",
+  "autodocs"
+ ],
+ "initialArgs": {
+  "options": [
+   {
+    "title": "Опция 1",
+    "value": "option1",
+    "subtitle": "Subtitle 1",
+    "image": {
+     "alt": "Alt 1",
+     "src": "https://habrastorage.org/getpro/moikrug/uploads/company/100/007/328/7/logo/medium_bf1f932474521041a7dbe9cfbcc65796.png"
+    }
+   },
+   {
+    "title": "Опция 2",
+    "value": "option2",
+    "image": {
+     "alt": "Alt 2",
+     "src": "https://habrastorage.org/getpro/moikrug/uploads/company/100/004/768/4/logo/medium_e182dee8b9cea6a89fa4bff81d9876ed.png"
+    }
+   }
+  ],
+  "placeholder": "Выберите опцию",
+  "disabled": false
+ },
+ "argTypes": {
+  "options": {
+   "control": {
+    "type": "object"
+   },
+   "name": "options",
+   "type": {
+    "name": "union",
+    "value": [
+     {
+      "name": "other",
+      "value": "Array"
+     },
+     {
+      "name": "other",
+      "value": "Array"
+     }
+    ],
+    "required": true
+   },
+   "table": {
+    "type": {
+     "summary": "Array | Array"
+    },
+    "category": "props",
+    "disable": true
+   }
+  },
+  "placeholder": {
+   "control": {
+    "type": "text"
+   },
+   "name": "placeholder",
+   "type": {
+    "name": "string",
+    "required": false
+   },
+   "description": "Текст плейсхолдера, используемый если опция еще не была выбрана",
+   "table": {
+    "type": {
+     "summary": "string"
+    },
+    "category": "props"
+   }
+  },
+  "disabled": {
+   "control": {
+    "type": "boolean"
+   },
+   "name": "disabled",
+   "type": {
+    "name": "boolean",
+    "required": false
+   },
+   "description": "Выключен ли контрол",
+   "table": {
+    "type": {
+     "summary": "boolean"
+    },
+    "category": "props"
+   }
+  },
+  "modelValue": {
+   "control": {
+    "type": "object"
+   },
+   "name": "modelValue",
+   "type": {
+    "name": "union",
+    "value": [
+     {
+      "name": "string"
+     },
+     {
+      "name": "number"
+     },
+     {
+      "name": "other",
+      "value": "null"
+     }
+    ],
+    "required": true
+   },
+   "table": {
+    "type": {
+     "summary": "string | number | null"
+    },
+    "category": "props",
+    "disable": true
+   }
+  },
+  "placement": {
+   "control": {
+    "type": "object"
+   },
+   "name": "placement",
+   "type": {
+    "name": "union",
+    "value": [
+     {
+      "name": "other",
+      "value": "\"bottom-start\""
+     },
+     {
+      "name": "other",
+      "value": "\"bottom\""
+     }
+    ],
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "\"bottom-start\" | \"bottom\""
+    },
+    "category": "props"
+   }
+  },
+  "isFixedWidth": {
+   "control": {
+    "type": "boolean"
+   },
+   "name": "isFixedWidth",
+   "type": {
+    "name": "boolean",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "boolean"
+    },
+    "category": "props"
+   }
+  },
+  "isLoading": {
+   "control": {
+    "type": "boolean"
+   },
+   "name": "isLoading",
+   "type": {
+    "name": "boolean",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "boolean"
+    },
+    "category": "props"
+   }
+  },
+  "listboxWidth": {
+   "control": {
+    "type": "text"
+   },
+   "name": "listboxWidth",
+   "type": {
+    "name": "string",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "string"
+    },
+    "category": "props"
+   }
+  },
+  "isDropdownList": {
+   "control": {
+    "type": "boolean"
+   },
+   "name": "isDropdownList",
+   "type": {
+    "name": "boolean",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "boolean"
+    },
+    "category": "props"
+   }
+  },
+  "isFullHeightList": {
+   "control": {
+    "type": "boolean"
+   },
+   "name": "isFullHeightList",
+   "type": {
+    "name": "boolean",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "boolean"
+    },
+    "category": "props"
+   }
+  },
+  "popperClass": {
+   "control": {
+    "type": "text"
+   },
+   "name": "popperClass",
+   "type": {
+    "name": "string",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "string"
+    },
+    "category": "props"
+   }
+  },
+  "update:modelValue": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "update:modelValue",
+   "type": {
+    "name": "other",
+    "value": "union",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "union"
+    },
+    "category": "events"
+   }
+  },
+  "close": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "close",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "events"
+   }
+  },
+  "openDropdown": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "openDropdown",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "events"
+   }
+  },
+  "hideDropdown": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "hideDropdown",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "events"
+   }
+  },
+  "content": {
+   "control": {
+    "type": "object"
+   },
+   "name": "content",
+   "type": {
+    "name": "other",
+    "value": "{ shown: unknown }",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "{ shown: unknown }"
+    },
+    "category": "slots"
+   }
+  },
+  "option": {
+   "control": {
+    "type": "object"
+   },
+   "name": "option",
+   "type": {
+    "name": "other",
+    "value": "{ option: unknown }",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "{ option: unknown }"
+    },
+    "category": "slots"
+   }
+  },
+  "after-options": {
+   "control": {
+    "type": "object"
+   },
+   "name": "after-options",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "slots"
+   }
+  },
+  "hide": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "hide",
+   "type": {
+    "name": "other",
+    "value": ""
+   },
+   "table": {
+    "category": "expose"
+   }
+  },
+  "show": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "show",
+   "type": {
+    "name": "other",
+    "value": ""
+   },
+   "table": {
+    "category": "expose"
+   }
+  },
+  "dropdownRef": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "dropdownRef",
+   "type": {
+    "name": "other",
+    "value": ""
+   },
+   "table": {
+    "category": "expose"
+   }
+  }
+ },
+ "parameters": {
+  "renderer": "vue3",
+  "docs": {
+   "story": {
+    "inline": true
+   },
+   "extractArgTypes": "[function T]",
+   "extractComponentDescription": "[function extractComponentDescription]",
+   "renderer": "[function renderer]",
+   "stories": {
+    "filter": "[function filter]"
+   },
+   "source": {
+    "originalSource": "{\n  name: 'Опции могут иметь поле image',\n  // @ts-expect-error  неважно для story\n  args: {\n    options: [{\n      title: 'Опция 1',\n      value: 'option1',\n      subtitle: 'Subtitle 1',\n      image: {\n        alt: 'Alt 1',\n        src: 'https://habrastorage.org/getpro/moikrug/uploads/company/100/007/328/7/logo/medium_bf1f932474521041a7dbe9cfbcc65796.png'\n      }\n    }, {\n      title: 'Опция 2',\n      value: 'option2',\n      image: {\n        alt: 'Alt 2',\n        src: 'https://habrastorage.org/getpro/moikrug/uploads/company/100/004/768/4/logo/medium_e182dee8b9cea6a89fa4bff81d9876ed.png'\n      }\n    }],\n    placeholder: 'Выберите опцию',\n    disabled: false\n  },\n  // @ts-expect-error  неважно для story\n  render: args => ({\n    components: {\n      BaseCustomSelect,\n      BaseCustomSelectOption\n    },\n    setup() {\n      const model = ref(null);\n      return {\n        args,\n        model\n      };\n    },\n    template: `\n  <BaseCustomSelect v-bind=\"args\" v-model=\"model\">\n    <template #option=\"{ option }\">\n      <BaseCustomSelectOption :option />\n    </template>\n  </BaseCustomSelect>\n`\n  }),\n  argTypes: {\n    placeholder: {\n      control: 'text',\n      description: 'Текст плейсхолдера, используемый если опция еще не была выбрана'\n    },\n    disabled: {\n      control: 'boolean',\n      description: 'Выключен ли контрол'\n    },\n    options: {\n      table: {\n        disable: true\n      }\n    },\n    modelValue: {\n      table: {\n        disable: true\n      }\n    }\n  }\n}"
+   }
+  },
+  "backgrounds": {
+   "grid": {
+    "cellSize": 20,
+    "opacity": 0.5,
+    "cellAmount": 5
+   },
+   "disable": false,
+   "values": [
+    {
+     "name": "light",
+     "value": "#F8F8F8"
+    },
+    {
+     "name": "dark",
+     "value": "#333"
+    }
+   ]
+  },
+  "throwPlayFunctionExceptions": false,
+  "actions": {
+   "argTypesRegex": "^on[A-Z].*"
+  },
+  "controls": {
+   "matchers": {
+    "color": {},
+    "date": {}
+   }
+  },
+  "fileName": "./src/components/form/base-custom-select/base-custom-select.stories.ts",
+  "__isArgsStory": true
+ },
+ "usesMount": false,
+ "__entry": {
+  "id": "forms-basecustomselect--base-story-images",
+  "title": "forms/BaseCustomSelect",
+  "name": "Опции могут иметь поле image",
+  "importPath": "./src/components/form/base-custom-select/base-custom-select.stories.ts",
+  "componentPath": "./src/components/form/base-custom-select/base-custom-select.vue",
+  "tags": [
+   "dev",
+   "test",
+   "autodocs"
+  ]
+ },
+ "__url": "https://develop.career.habratest.net/courses-web/storybook-static/iframe.html?viewMode=story&id=forms-basecustomselect--base-story-images",
+ "__htmlLen": 889,
+ "__rootTag": "<div id=\"storybook-root\" data-v-app=\"\"><div><div class=\"v-popper v-popper--theme",
+ "__error": null,
+ "__sheets": [
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/cookies.c-urmcFr.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/preview.CoGQq0WZ.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/index.CSGoIsqw.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/preview.CXq2SRHN.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/svg-icon.6YnsMLG3.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/base-loader.DeUmaBb8.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/body-scroll.Dl5qe-0F.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/base-checkbox.DMChQAQG.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/base-modal.-kem_cn2.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/dropdown-modal.jxTiphvT.css"
+ ]
+}

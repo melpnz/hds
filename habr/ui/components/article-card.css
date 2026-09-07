@@ -1,0 +1,390 @@
+/* =========================================================================
+   HABR · ARTICLE CARD
+   =========================================================================
+   Флагманский переиспользуемый модуль: карточка статьи в ленте — центральный
+   строительный блок §2/§3/§6 Pattern Library (feed/listing, directory,
+   profile/entity). Собран из НЕСКОЛЬКИХ CSS-файлов, реально используемых
+   вместе в одной карточке (rendered/page-feed.html):
+
+     article-snippet-B1AKowH-.css   .article-snippet, .article-snippet .meta, .article-snippet .lead, .article-snippet .readmore
+     article-datetime-published-mCvYLFVV.css
+     icon-counter-BmPpUBhH.css
+     bookmarks-button-CJSOFWtd.css
+     user-info-DEXNWEJ2.css
+     votes-meter-BFDy0ADQ.css
+     publication-type-label-gEJ3nUjm.css
+
+   ИСКЛЮЧЕНО намеренно: .controls/.confirm/.cancel/.moderation-comment-*
+   из article-snippet-B1AKowH-.css — это элементы управления МОДЕРАЦИЕЙ
+   для автора/редактора (подтвердить/отклонить черновик), page-bound
+   к авторизованному контексту автора, не часть публичной карточки.
+   Не переносить их сюда без отдельного разбора этого сценария.
+   ========================================================================= */
+
+/* --- publication-type-label: ярлык типа (Новость/Пост/Голос) ------------ */
+
+.publication-type-label {
+  background-color: var(--background-primary);
+  box-sizing: border-box;
+  margin-bottom: 16px;
+}
+.publication-type-label_type-voice { margin-bottom: 8px; }
+.publication-type-label__label {
+  text-transform: uppercase;
+  font-size: .75rem;
+  font-weight: 700;
+  line-height: 1.25rem;
+  text-decoration: none;
+  color: var(--label-dodger-blue); /* дефолт: статья */
+}
+.publication-type-label__label_type-news { color: var(--label-apple); }
+.publication-type-label__label_type-post { color: var(--label-scarlet); }
+.publication-type-label__label_type-voice { color: var(--text-secondary); }
+
+/* --- user-info: автор — аватар + имя + дата -----------------------------
+   Требует ui/components/article-card.css целиком (datetime здесь же) */
+
+.tm-user-info { display: flex; }
+.tm-user-info:link { text-decoration: none; }
+.tm-user-info__user { align-items: center; display: flex; }
+.tm-user-info__userpic {
+  vertical-align: middle;
+  border-radius: 3px;
+  flex-shrink: 0;
+  max-width: 100%;
+  margin: 0 8px 0 0;
+  display: inline-block;
+  overflow: hidden;
+}
+.tm-user-info__username {
+  color: var(--text-main);
+  text-overflow: ellipsis;
+  vertical-align: middle;
+  white-space: nowrap;
+  flex: 1;
+  font-size: .8125rem;
+  font-weight: 700;
+  line-height: .9375rem;
+  text-decoration: none;
+  display: inline-block;
+  overflow: hidden;
+}
+.tm-user-info__realauthor {
+  color: var(--text-secondary);
+  font-size: .8125rem;
+  font-weight: 700;
+  line-height: .9375rem;
+  text-decoration: none;
+}
+.tm-user-info__user_appearance-post {
+  column-gap: 4px;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 2px 4px;
+  display: flex;
+}
+@media (max-width: 767px) {
+  .tm-user-info__user_appearance-post { max-width: calc(100% - 36px); }
+}
+.tm-user-info__user_appearance-post .tm-user-info__username {
+  white-space: nowrap;
+  flex: 0 0 min-content;
+}
+
+.tm-article-datetime-published {
+  color: var(--text-secondary);
+  vertical-align: middle;
+  margin: 0;
+  font-size: .8125rem;
+  font-weight: 500;
+  line-height: .9375rem;
+  text-decoration: none;
+  display: inline-block;
+}
+.tm-article-datetime-published_link:hover {
+  color: var(--text-secondary);
+  text-decoration: underline;
+}
+@media (min-width: 960px) {
+  .tm-article-datetime-published_megapost { color: var(--background-primary); }
+}
+
+/* --- иконка-счётчик: охват, время чтения --------------------------------- */
+
+.tm-icon-counter { align-items: center; height: 1em; display: flex; }
+.tm-icon-counter__icon { color: var(--icon-secondary); width: 24px; height: 24px; }
+.tm-icon-counter__icon + .tm-icon-counter__value { margin-left: 2px; }
+.tm-icon-counter__value {
+  color: var(--icon-primary);
+  font-size: .8125rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.tm-article-complexity {
+  align-items: center;
+  gap: 2px;
+  font-size: .8125rem;
+  font-weight: 700;
+  line-height: 1.5rem;
+  display: flex;
+}
+.tm-article-complexity_complexity-high { color: var(--complexity-high); }
+.tm-article-complexity_complexity-medium { color: var(--complexity-medium); }
+.tm-article-complexity_complexity-low { color: var(--complexity-low); }
+.tm-article-complexity__icon { opacity: .7; max-width: 24px; }
+
+.tm-article-reading-time {
+  color: var(--icon-primary);
+  align-items: center;
+  gap: 2px;
+  font-size: .8125rem;
+  font-weight: 700;
+  line-height: 1.5rem;
+  display: flex;
+}
+.tm-article-reading-time__icon { color: var(--icon-secondary); max-width: 24px; }
+
+/* --- список хабов публикации, со скроллом на мобильном ------------------- */
+
+.tm-publication-hubs__container { position: relative; }
+.tm-publication-hubs__container:after {
+  content: "";
+  background: linear-gradient(270deg, var(--background-primary), var(--background-primary), transparent);
+  pointer-events: none;
+  width: 24px;
+  position: absolute;
+  top: 0; bottom: 0; right: 0;
+}
+@media (max-width: 767px) {
+  .tm-publication-hubs__container { margin-right: -16px; }
+}
+.tm-publication-hubs {
+  color: var(--text-inactive);
+  flex-wrap: wrap;
+  align-items: center;
+  margin-top: 8px;
+  display: flex;
+}
+@media (max-width: 767px) {
+  .tm-publication-hubs { flex-wrap: nowrap; padding-right: 16px; overflow-x: auto; }
+}
+.tm-publication-hub__link {
+  color: var(--text-inactive);
+  font-size: .8125rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+  text-decoration: none;
+  display: inline-flex;
+}
+.tm-publication-hub__link:hover { color: var(--accent-primary); }
+.tm-publication-hub__link_subscribed { color: var(--accent-positive); }
+.tm-article-snippet__profiled-hub { cursor: help; } /* «*» у профильного хаба */
+.tm-publication-hub__link-container { white-space: normal; }
+@media (max-width: 767px) {
+  .tm-publication-hub__link-container { white-space: nowrap; }
+}
+.tm-publication-hub__link-container:after { content: ", "; }
+.tm-publication-hub__link-container:last-child:after { content: ""; }
+
+/* --- карточка целиком ----------------------------------------------------- */
+
+.article-snippet { margin-bottom: 16px; }
+.article-snippet.no-border { border: none; }
+.article-snippet .meta { flex-wrap: wrap; align-items: center; margin: 0 0 8px; display: flex; }
+.article-snippet .meta-container { flex-wrap: nowrap; align-items: center; display: flex; }
+.article-snippet .author { margin: 0 5px 0 0; }
+.article-snippet .author .tm-user-info__user { gap: 4px; }
+@media (max-width: 767px) {
+  .article-snippet .author .tm-user-info__user { flex-direction: column; align-items: flex-start; gap: 2px; }
+}
+.article-snippet .stats { align-items: center; gap: 16px; display: flex; }
+
+/* ИСПРАВЛЕНИЕ после Visual Foundations pass: этого правила не было в первой
+   версии файла — выпало при отборе "публичных" частей article-snippet
+   и обнаружилось только сравнением с живым computed style. На детальной
+   странице статьи (`/articles/:id/`) заголовок — НЕ базовые 24px из
+   .tm-title_h1 (title.css), а 32px/40px: подтверждено дважды — правилом
+   ниже (взято из article-snippet-B1AKowH-.css) и getComputedStyle на живом
+   habr.com (font: "Fira Sans" 32px/40px, weight 500 — наследуется от
+   .tm-title{font-weight:500}). Модификатор .full-article отмечает именно
+   этот, детальный режим карточки — в отличие от карточки-тизера в ленте. */
+.article-snippet.full-article .tm-title_h1 { font-size: 2rem; line-height: 2.5rem; }
+
+.article-snippet .lead { box-sizing: border-box; padding-top: 16px; margin-bottom: 24px; animation: .3s ease-out fadein; }
+.article-snippet .lead img { color: var(--background-gray); font-size: .75rem; font-style: italic; }
+.article-snippet .lead img[data-blurred] { clip-path: inset(0); filter: blur(8px); }
+.article-snippet .cover.object-fit-cover {
+  object-fit: cover;
+  width: 100%;
+  max-width: 780px;
+  margin-bottom: 20px;
+  padding-bottom: 56.4103%;
+  position: relative;
+}
+.article-snippet .cover.object-fit-cover img { object-fit: cover; width: 100%; height: 100%; position: absolute; }
+.article-snippet .lead-image { background-color: #fff; max-width: 100%; margin-bottom: 20px; }
+
+.article-snippet .readmore {
+  border: 1px solid var(--accent-primary);
+  color: var(--accent-primary);
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 3px;
+  align-items: center;
+  height: auto;
+  min-height: 36px;
+  margin-top: 18px;
+  padding: 0 13px;
+  font-size: .8125rem;
+  line-height: 1.6875rem;
+  text-decoration: none;
+  display: inline-flex;
+}
+.article-snippet .readmore:hover {
+  background-color: var(--accent-primary-hover);
+  color: var(--background-primary);
+  border: 1px solid transparent;
+}
+
+/* --- голосование, закладка, шаринг, комментарии — в footer карточки -----
+   footer лежит СНАРУЖИ .article-snippet, как сосед внутри .tm-articles-list__item
+   (см. components/content/article-card.md, раздел «Анатомия»).
+
+   ДОБАВЛЕНО после Visual Foundations pass: .tm-data-icons — реальный класс
+   ряда-обёртки (голос/закладка/шаринг/комментарии), встречается в настоящей
+   разметке (`class="tm-data-icons tm-data-icons_space-big"`), но раньше
+   в showcase имитировался инлайновым style — правило нашлось в
+   data-icons-UIQKMN1V.css, отдельно от article-snippet. Модификатор
+   `_space-big` (нужный gap) в извлечённом CSS не найден — GAP, base-версия
+   ниже подставляет gap:32px по умолчанию, HTML использовал 16 на глаз. */
+.tm-data-icons {
+  border-top: 1px solid transparent;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 32px;
+  width: 100%;
+  display: flex;
+}
+.tm-data-icons__item {
+  align-items: center;
+  height: 100%;
+  display: flex;
+  position: relative;
+}
+
+/* .tm-article-comments-counter-link — счётчик комментариев со ссылкой,
+   тот же footer-ряд. ДОБАВЛЕНО, источник — отдельный файл
+   article-comments-counter-link-BbnQY3y7.css, 8/16 страниц. */
+.article-comments-counter-link-wrapper { display: flex; }
+.article-comments-counter-link {
+  align-items: center;
+  text-decoration: none;
+  display: flex;
+  position: relative;
+}
+.article-comments-counter-link:hover,
+.article-comments-counter-link:hover .icon,
+.article-comments-counter-link:hover .value { color: var(--accent-primary-hover); }
+.article-comments-counter-link .icon { color: var(--icon-secondary); width: 24px; height: 24px; }
+.article-comments-counter-link .icon + .value { margin-left: 2px; }
+.article-comments-counter-link .icon--contrasted { color: var(--accent-primary); }
+.article-comments-counter-link .value {
+  color: var(--icon-primary);
+  font-size: .8125rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.article-comments-counter-link .value--contrasted {
+  font-size: .875rem;
+  font-weight: 500;
+  color: var(--accent-primary);
+}
+/* непрочитанные комментарии — зелёный акцент рядом со значением */
+.article-comments-counter-link .unread-counter {
+  color: var(--accent-positive);
+  margin-left: 4px;
+  font-size: .8125rem;
+  font-weight: 700;
+  line-height: 1;
+}
+/* на ≤767 у "круглого" варианта число прячется, вместо него — зелёная точка */
+@media (max-width: 767px) {
+  .article-snippet .round-on-mobile span { display: none; }
+  .article-snippet .round-on-mobile:after {
+    content: "";
+    background: var(--accent-positive);
+    border-radius: 3px;
+    width: 6px;
+    height: 6px;
+    position: absolute;
+    top: calc(50% - 10px);
+    right: -4px;
+  }
+}
+
+.tm-votes-meter { align-items: center; display: flex; }
+.tm-votes-meter__icon, .tm-votes-meter__icon_busted { color: var(--icon-secondary); }
+.tm-votes-meter__icon_negative { transform: scaleY(-1); }
+.tm-votes-meter__value {
+  color: var(--icon-primary);
+  text-align: center;
+  font-size: .8125rem;
+  line-height: 1;
+}
+.tm-votes-meter__icon_negative, .tm-votes-meter__value_negative { color: var(--accent-danger); }
+.tm-votes-meter__icon_positive, .tm-votes-meter__value_positive { color: var(--accent-positive); }
+.tm-votes-meter__value_appearance-article { margin-left: 5px; font-weight: 700; }
+.tm-votes-meter__value_appearance-comment { margin-left: 3px; font-weight: 700; }
+.tm-votes-meter__value_appearance-karma { margin-left: 2px; font-size: 1.0625rem; }
+.tm-votes-meter__value_rating { margin-left: 6px; }
+
+/* `.bookmarks-button` НЕ заскоуплен под карточку — и это осознанно.
+   В production он изолирован собственным data-v (`[data-v-41bd4ade]`,
+   файл bookmarks-button-CJSOFWtd.css), то есть это самостоятельный
+   компонент, а не часть article-snippet: та же кнопка стоит и в панели
+   действий на странице статьи. Загнать его под `.article-snippet` значило
+   бы сломать все остальные места использования. Класс остаётся корнем
+   своего компонента — как `.checkbox` и `.stats-container`. */
+.bookmarks-button {
+  position: relative;
+  cursor: pointer;
+  box-shadow: none;
+  box-sizing: border-box;
+  background: transparent;
+  border: 0;
+  justify-content: center;
+  height: 16px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+/* увеличенная область клика 40×40 поверх маленькой видимой иконки — тот же
+   приём, что у Dialog .close-button:after */
+.bookmarks-button:after {
+  content: "";
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+.bookmarks-button:hover .counter, .bookmarks-button:hover .icon { color: var(--accent-primary-hover); }
+.bookmarks-button .icon { color: var(--icon-secondary); }
+.bookmarks-button .icon.highlighted { color: var(--accent-primary); }
+.bookmarks-button .counter {
+  color: var(--icon-primary);
+  font-size: .8125rem;
+  font-weight: 700;
+  line-height: 1;
+}
+.bookmarks-button .counter.highlighted { color: var(--accent-primary); }
+
+/* @keyframes fadein — глобальный, из index.css (шелл-бандл), не собственность
+   карточки. Определён здесь, т.к. .lead — единственный извлечённый
+   компонент, который на него ссылается; сверено с оригиналом дословно. */
+@keyframes fadein {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}

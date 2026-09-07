@@ -1,0 +1,284 @@
+{
+ "id": "conversations-files-conversationfilesselectormodal--default",
+ "name": "Выбор файлов",
+ "title": "Conversations/Files/ConversationFilesSelectorModal",
+ "componentId": "conversations-files-conversationfilesselectormodal",
+ "tags": [
+  "dev",
+  "test"
+ ],
+ "initialArgs": {
+  "filesDraft": [
+   {
+    "id": "screenshot.png-0",
+    "file": {
+     "_constructor-name_": "File",
+     "name": "screenshot.png",
+     "lastModified": 1788343677813,
+     "lastModifiedDate": {},
+     "webkitRelativePath": "",
+     "size": 1,
+     "type": "image/png",
+     "arrayBuffer": "[function arrayBuffer]",
+     "slice": "[function slice]",
+     "stream": "[function stream]",
+     "text": "[function text]",
+     "bytes": "[function bytes]",
+     "textStream": "[function textStream]"
+    }
+   },
+   {
+    "id": "report.pdf-1",
+    "file": {
+     "_constructor-name_": "File",
+     "name": "report.pdf",
+     "lastModified": 1788343677813,
+     "lastModifiedDate": {},
+     "webkitRelativePath": "",
+     "size": 1,
+     "type": "application/pdf",
+     "arrayBuffer": "[function arrayBuffer]",
+     "slice": "[function slice]",
+     "stream": "[function stream]",
+     "text": "[function text]",
+     "bytes": "[function bytes]",
+     "textStream": "[function textStream]"
+    }
+   },
+   {
+    "id": "document.docx-2",
+    "file": {
+     "_constructor-name_": "File",
+     "name": "document.docx",
+     "lastModified": 1788343677813,
+     "lastModifiedDate": {},
+     "webkitRelativePath": "",
+     "size": 1,
+     "type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+     "arrayBuffer": "[function arrayBuffer]",
+     "slice": "[function slice]",
+     "stream": "[function stream]",
+     "text": "[function text]",
+     "bytes": "[function bytes]",
+     "textStream": "[function textStream]"
+    }
+   },
+   {
+    "id": "data.xlsx-3",
+    "file": {
+     "_constructor-name_": "File",
+     "name": "data.xlsx",
+     "lastModified": 1788343677814,
+     "lastModifiedDate": {},
+     "webkitRelativePath": "",
+     "size": 1,
+     "type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+     "arrayBuffer": "[function arrayBuffer]",
+     "slice": "[function slice]",
+     "stream": "[function stream]",
+     "text": "[function text]",
+     "bytes": "[function bytes]",
+     "textStream": "[function textStream]"
+    }
+   },
+   {
+    "id": "archive.zip-4",
+    "file": {
+     "_constructor-name_": "File",
+     "name": "archive.zip",
+     "lastModified": 1788343677814,
+     "lastModifiedDate": {},
+     "webkitRelativePath": "",
+     "size": 1,
+     "type": "application/zip",
+     "arrayBuffer": "[function arrayBuffer]",
+     "slice": "[function slice]",
+     "stream": "[function stream]",
+     "text": "[function text]",
+     "bytes": "[function bytes]",
+     "textStream": "[function textStream]"
+    }
+   }
+  ]
+ },
+ "argTypes": {
+  "filesDraft": {
+   "name": "filesDraft",
+   "type": {
+    "name": "other",
+    "value": "Array([object Object])",
+    "required": true
+   },
+   "table": {
+    "type": {
+     "summary": "ConversationAttachedFile[]"
+    },
+    "category": "props"
+   }
+  },
+  "selectedFilesInitially": {
+   "name": "selectedFilesInitially",
+   "type": {
+    "name": "other",
+    "value": "Array([object Object])",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "ConversationAttachedFile[]"
+    },
+    "defaultValue": {
+     "summary": "() => []"
+    },
+    "category": "props"
+   }
+  },
+  "close": {
+   "name": "close",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "events"
+   },
+   "control": {
+    "disable": true
+   }
+  },
+  "select": {
+   "name": "select",
+   "type": {
+    "name": "other",
+    "value": "Array",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "Array"
+    },
+    "category": "events"
+   },
+   "control": {
+    "disable": true
+   }
+  },
+  "open": {
+   "name": "open",
+   "type": {
+    "name": "other",
+    "value": ""
+   },
+   "table": {
+    "category": "expose"
+   },
+   "control": {
+    "disable": true
+   }
+  }
+ },
+ "parameters": {
+  "renderer": "vue3",
+  "docs": {
+   "story": {
+    "inline": true
+   },
+   "extractArgTypes": "[function V]",
+   "extractComponentDescription": "[function extractComponentDescription]",
+   "renderer": "[function renderer]",
+   "stories": {
+    "filter": "[function filter]"
+   },
+   "source": {
+    "originalSource": "{\n  name: 'Выбор файлов',\n  args: {\n    filesDraft\n  },\n  render: () => ({\n    components: {\n      ConversationFilesSelectorModal\n    },\n    setup() {\n      const modalRef = ref<InstanceType<typeof ConversationFilesSelectorModal> | null>(null);\n      onMounted(() => modalRef.value?.open());\n      return {\n        modalRef,\n        filesDraft\n      };\n    },\n    template: '<ConversationFilesSelectorModal ref=\"modalRef\" :files-draft=\"filesDraft\" />'\n  })\n} satisfies Story"
+   }
+  },
+  "backgrounds": {
+   "grid": {
+    "cellSize": 20,
+    "opacity": 0.5,
+    "cellAmount": 5
+   },
+   "disable": false,
+   "values": [
+    {
+     "name": "light",
+     "value": "#F8F8F8"
+    },
+    {
+     "name": "dark",
+     "value": "#333"
+    }
+   ]
+  },
+  "throwPlayFunctionExceptions": false,
+  "actions": {
+   "argTypesRegex": "^on[A-Z].*"
+  },
+  "controls": {
+   "matchers": {
+    "color": {},
+    "date": {}
+   }
+  },
+  "fileName": "./src/components/conversations/files/conversation-files-selector-modal.stories.ts",
+  "__isArgsStory": false
+ },
+ "usesMount": false,
+ "__entry": {
+  "id": "conversations-files-conversationfilesselectormodal--default",
+  "title": "Conversations/Files/ConversationFilesSelectorModal",
+  "name": "Выбор файлов",
+  "importPath": "./src/components/conversations/files/conversation-files-selector-modal.stories.ts",
+  "componentPath": "./src/components/conversations/files/conversation-files-selector-modal.vue",
+  "tags": [
+   "dev",
+   "test"
+  ]
+ },
+ "__url": "https://develop.career.habratest.net/career-web/storybook-static/iframe.html?viewMode=story&id=conversations-files-conversationfilesselectormodal--default",
+ "__htmlLen": 11195,
+ "__rootTag": "<div id=\"storybook-root\" data-v-app=\"\"><div><div id=\"context-menu-target\"></div>",
+ "__error": null,
+ "__sheets": [
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/notify.c-urmcFr.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/preview.C4TNY2_K.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/index.CK-Too2S.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/preview.C010mW5y.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/svg-icon.6YnsMLG3.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/base-loader.EAwq4SH7.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/base-button.CeGTylXy.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/modal-overlay.PY_2I58Y.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/base-modal.oVZoWAId.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/base-input-label.DBJHpoMs.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/text-length.BYEsUl_2.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/base-textarea.KtQYfYXQ.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/text-input.Ce2pXewP.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/transition-fade.SArHY7ux.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/base-row.CqWUbReK.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/isomorphic-context-menu.BQBScPaR.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/pretty-scroll.BV5cmBb9.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/skeleton-pulse.BxpXV_y4.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/skeleton-shape.DYp_hyI_.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/empty-placeholder.DqxQlRTk.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/conversation-file-uploading-animation.GbKwYZ01.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/conversation-attached-file-presenter.BsSr5gCR.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/conversation-attached-files.D2nBdDr0.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/base-checkbox.CnvDWD_6.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/conversation-files-selector-modal.ByQrJjCY.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/user-avatar.DrK4pZy9.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/star-rating.DZxxzVTk.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/base-radio-button.CF0Au9-e.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/base-chip.CrucBJhZ.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/vacancy-card-with-company-and-date.DxTF7PVz.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/base-notification.CE_kTqxE.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/base-select.B54ohWI7.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/skills-test-result-modal.DAiNswP8.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/specs-test-result-modal.Di35WbqB.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/messages-group.BwLCoXtb.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/conversation-messages.NO83sfzR.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/conversation-card.CL0grK2F.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/conversations-sidebar.CoAb__v6.css"
+ ]
+}

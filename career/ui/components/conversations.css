@@ -1,0 +1,61 @@
+/* =========================================================================
+   CAREER · ОТКЛИКИ И ПЕРЕПИСКА
+   =========================================================================
+   Реальный CSS Career, извлечённый из сборки career-web.
+   Изменение ровно одно: снят Vue-скоуп [data-v-xxxxxxxx].
+   Значения, порядок правил и медиазапросы не тронуты.
+
+   Требует ui/tokens.css. Часть правил опирается на утилиты
+   Tailwind из ui/utilities.css — см. разметку в components/*.md.
+   ========================================================================= */
+
+/* ------------------------------------------------------------------------
+   conversation-card
+   источник: _sources/career/source/css/conversation-card.CL0grK2F.css (243 B)
+   ------------------------------------------------------------------------ */
+.conversation-card:not(:has(.conversation-card-link.active)):hover{background-color:var(--color-ui-gray-3-10)}
+.conversation-card:has(.conversation-card-link.active){background-color:var(--color-ui-primary-20)}
+
+/* ------------------------------------------------------------------------
+   conversation-messages
+   источник: _sources/career/source/css/conversation-messages.NO83sfzR.css (65 B)
+   ------------------------------------------------------------------------ */
+.conversation-messages .simplebar-content{padding:24px!important}
+
+/* ------------------------------------------------------------------------
+   messages-group
+   источник: _sources/career/source/css/messages-group.BwLCoXtb.css (113 B)
+   ------------------------------------------------------------------------ */
+.message-body>p{margin:8px 0}
+.message-body>p:first-child{margin-top:0}
+.message-body>p:last-child{margin-bottom:0}
+
+/* ------------------------------------------------------------------------
+   conversation-attached-file-presenter
+   источник: _sources/career/source/css/conversation-attached-file-presenter.BsSr5gCR.css (164 B)
+   ------------------------------------------------------------------------ */
+.v-enter-active,.v-leave-active{transition:opacity .3s ease}
+.v-enter-from,.v-leave-to{opacity:0}
+
+/* ------------------------------------------------------------------------
+   conversation-attached-files
+   источник: _sources/career/source/css/conversation-attached-files.D2nBdDr0.css (101 B)
+   ------------------------------------------------------------------------ */
+ .conversation-attached-files-scroll .simplebar-content{padding:0 8px 8px!important}
+
+/* ------------------------------------------------------------------------
+   conversation-file-uploading-animation
+   источник: _sources/career/source/css/conversation-file-uploading-animation.GbKwYZ01.css (606 B)
+   ------------------------------------------------------------------------ */
+.uploading-animation:after{background-color:var(--color-ui-white-60);border-radius:.25rem;content:"";top:0;right:0;bottom:0;left:0;-webkit-mask:radial-gradient(circle 20px at 50% 50%,transparent 95%,#000 0);mask:radial-gradient(circle 20px at 50% 50%,transparent 95%,#000 0);position:absolute}
+.uploading-animation-finish:after{animation:burst-0cdf3753 .5s linear .3s forwards}
+.uploading-animation-just-present:after{animation:none;opacity:0;transform:scale(2.4)}
+@keyframes burst-0cdf3753{0%{opacity:1;transform:scale(1)}
+to{opacity:0;transform:scale(2.4)}
+}
+
+/* ------------------------------------------------------------------------
+   conversation-files-selector-modal
+   источник: _sources/career/source/css/conversation-files-selector-modal.ByQrJjCY.css (203 B)
+   ------------------------------------------------------------------------ */
+ .conversation-files-selector-modal__file-presenter--disabled, .conversation-files-selector-modal__file-presenter--disabled .text-ui-gray-2{color:var(--color-ui-gray-4)}

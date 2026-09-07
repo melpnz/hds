@@ -1,0 +1,180 @@
+/* =========================================================================
+   PAGE REFERENCE — оболочка документации
+   =========================================================================
+   НЕ часть Career. Все переменные с префиксом --doc-*.
+   Career-слой лежит в ../ui/{tokens,components,layout}.css.
+   ========================================================================= */
+
+:root {
+  --doc-font: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --doc-mono: ui-monospace, "SFMono-Regular", "Cascadia Mono", Consolas, monospace;
+
+  --doc-bg: #f2f3f5;
+  --doc-canvas: #fff;
+  --doc-ink: #1d2023;
+  --doc-ink-2: #5b6268;
+  --doc-ink-3: #8b9298;
+  --doc-line: #e2e5e8;
+  --doc-line-strong: #cfd4d8;
+  --doc-focus: #3b6ea8;
+
+  --doc-radius: 10px;
+  --doc-nav-w: 240px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--doc-bg);
+  color: var(--doc-ink);
+  font: 400 14px/1.5 var(--doc-font);
+  -webkit-font-smoothing: antialiased;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: var(--doc-nav-w) minmax(0, 1fr);
+  max-width: 1720px;
+  margin: 0 auto;
+  align-items: start;
+}
+
+/* ---------- навигация ---------- */
+.nav {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 24px 16px 40px 24px;
+  border-right: 1px solid var(--doc-line);
+}
+.nav__brand { margin: 0 0 4px; font-size: 12.5px; font-weight: 700; letter-spacing: .02em; text-transform: uppercase; color: var(--doc-ink-3); }
+.nav__title { margin: 0 0 18px; font-size: 15px; font-weight: 600; line-height: 1.35; }
+.nav__list { list-style: none; margin: 0; padding: 0; }
+.nav__link {
+  display: block; padding: 6px 8px; border-radius: 6px;
+  color: var(--doc-ink-2); font-size: 13px; text-decoration: none;
+}
+.nav__link:hover { background: #e7e9ec; color: var(--doc-ink); }
+.nav__link.is-active { background: #e0e3e7; color: var(--doc-ink); font-weight: 600; }
+.nav__foot { margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--doc-line); font-size: 12px; line-height: 1.55; color: var(--doc-ink-3); }
+.nav__foot a { color: var(--doc-ink-2); }
+
+/* ---------- контент ---------- */
+.main { padding: 32px 32px 120px; min-width: 0; }
+
+.page-head { max-width: 860px; margin-bottom: 32px; }
+.page-head h1 { margin: 0 0 10px; font-size: 26px; line-height: 1.25; letter-spacing: -.01em; }
+.page-head p { margin: 0 0 10px; color: var(--doc-ink-2); max-width: 74ch; }
+
+.callout {
+  border: 1px solid var(--doc-line-strong);
+  border-left: 3px solid var(--doc-ink-3);
+  border-radius: 0 var(--doc-radius) var(--doc-radius) 0;
+  background: var(--doc-canvas);
+  padding: 14px 18px;
+  margin: 18px 0;
+  max-width: 92ch;
+}
+.callout h3 { margin: 0 0 6px; font-size: 12.5px; text-transform: uppercase; letter-spacing: .04em; color: var(--doc-ink-3); }
+.callout p { margin: 0 0 6px; color: var(--doc-ink-2); }
+.callout p:last-child { margin-bottom: 0; }
+.callout ul { margin: 6px 0 0; padding-left: 18px; color: var(--doc-ink-2); }
+.callout li { margin-bottom: 3px; }
+.callout--warn { border-left-color: #b5731f; }
+.callout code, .note code, .nav__foot code { font: 400 12px/1 var(--doc-mono); background: #eef0f2; padding: 1px 4px; border-radius: 3px; }
+
+/* ---------- паттерн ---------- */
+.pattern { margin-bottom: 44px; scroll-margin-top: 16px; }
+
+.pattern__head {
+  display: flex; align-items: baseline; gap: 12px; flex-wrap: wrap;
+  padding-bottom: 8px; margin-bottom: 12px;
+  border-bottom: 1px solid var(--doc-line-strong);
+}
+.pattern__num { font: 600 12px/1 var(--doc-mono); color: var(--doc-ink-3); }
+.pattern__head h2 { margin: 0; font-size: 19px; letter-spacing: -.01em; }
+.pattern__head p { flex-basis: 100%; margin: 0; font-size: 13px; color: var(--doc-ink-2); max-width: 88ch; }
+
+.rules { display: flex; flex-wrap: wrap; gap: 5px; margin: 0 0 12px; padding: 0; list-style: none; }
+.rules li {
+  font: 600 10.5px/1.5 var(--doc-mono);
+  padding: 2px 7px; border-radius: 4px;
+  border: 1px solid var(--doc-line-strong);
+  background: #f6f7f8; color: var(--doc-ink-2);
+  cursor: help;
+}
+
+/* панель управления вьюпортом */
+.vp-bar {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  padding: 8px 10px;
+  border: 1px solid var(--doc-line);
+  border-bottom: 0;
+  border-radius: var(--doc-radius) var(--doc-radius) 0 0;
+  background: #fafbfc;
+}
+.vp-bar__label { font-size: 12px; color: var(--doc-ink-3); margin-right: 4px; }
+.vp-btn {
+  height: 26px; padding: 0 10px;
+  font: 500 12px/1 var(--doc-font);
+  color: var(--doc-ink); background: var(--doc-canvas);
+  border: 1px solid var(--doc-line-strong); border-radius: 6px; cursor: pointer;
+}
+.vp-btn:hover { background: #eef0f2; }
+.vp-btn[aria-pressed="true"] { background: #e0e3e7; border-color: #b9bfc5; font-weight: 600; }
+.vp-btn:focus-visible { outline: 2px solid var(--doc-focus); outline-offset: 1px; }
+.vp-bar__meta { margin-left: auto; font: 400 11.5px/1 var(--doc-mono); color: var(--doc-ink-3); }
+
+/* рамка с масштабированием */
+.viewport {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--doc-line);
+  border-radius: 0 0 var(--doc-radius) var(--doc-radius);
+  background: var(--color-ui-white);
+}
+.viewport__inner {
+  width: var(--vw, 1440px);
+  /* узкая рамка центрируется, широкая — масштабируется от левого края */
+  transform: translateX(var(--tx, 0px)) scale(var(--s, 1));
+  transform-origin: top left;
+}
+
+.note {
+  margin: 0;
+  padding: 11px 14px;
+  border: 1px solid var(--doc-line);
+  border-top: 0;
+  background: #fafbfc;
+  font-size: 12.5px; line-height: 1.6; color: var(--doc-ink-2);
+}
+.note:last-child { border-radius: 0 0 var(--doc-radius) var(--doc-radius); }
+.note strong { color: var(--doc-ink); font-weight: 600; }
+.viewport + .note { border-radius: 0; margin-top: -1px; }
+.viewport { border-radius: 0; }
+.vp-bar { border-radius: var(--doc-radius) var(--doc-radius) 0 0; }
+
+.tablewrap { overflow-x: auto; }
+table.doc { width: 100%; border-collapse: collapse; font-size: 12.5px; min-width: 480px; }
+table.doc th, table.doc td { text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--doc-line); vertical-align: top; }
+table.doc th { font-weight: 600; color: var(--doc-ink-2); background: #fafbfc; white-space: nowrap; }
+table.doc code { font: 400 11.5px/1.4 var(--doc-mono); }
+
+/* ---------- адаптив самой документации ---------- */
+@media (max-width: 1080px) {
+  .layout { grid-template-columns: minmax(0, 1fr); }
+  .nav { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--doc-line); padding: 18px 20px; }
+  .nav__list { display: flex; flex-wrap: wrap; gap: 4px; }
+  .nav__foot { display: none; }
+  .main { padding: 20px 20px 90px; }
+}
+@media (max-width: 640px) {
+  .main { padding: 16px 12px 70px; }
+  .page-head h1 { font-size: 21px; }
+  .vp-bar__meta { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}

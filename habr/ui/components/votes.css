@@ -1,0 +1,131 @@
+/* источник: votes-meter-BFDy0ADQ.css (7/16) + votes-lever-XAPVRp2k.css (5/16)
+   — добавлено на этапе Visual Foundations pass по прямому запросу
+   (голосование/карма — визуально знаковый для Habr паттерн).
+   vote-hint-popup-D6BJBETV.css из Storybook — дубликат votes-lever, не
+   отдельный компонент (см. evidence/source-map.md). */
+
+/* --- VotesMeter: только отображение (карма в шапке юзера, счётчик статьи) --- */
+.tm-votes-meter {
+  align-items: center;
+  display: flex;
+}
+.tm-votes-meter__icon,
+.tm-votes-meter__icon_busted {
+  color: var(--icon-secondary);
+}
+.tm-votes-meter__icon_negative {
+  transform: scaleY(-1);
+}
+.tm-votes-score {
+  color: var(--icon-primary);
+  font-weight: 700;
+}
+.tm-votes-meter__value {
+  color: var(--icon-primary);
+  text-align: center;
+  font-size: 0.8125rem;
+  line-height: 1;
+}
+.tm-votes-meter__icon_negative,
+.tm-votes-meter__value_negative {
+  color: var(--accent-danger);
+}
+.tm-votes-meter__icon_positive,
+.tm-votes-meter__value_positive {
+  color: var(--accent-positive);
+}
+.tm-votes-meter__value_appearance-article { margin-left: 5px; font-weight: 700; }
+.tm-votes-meter__value_appearance-comment { margin-left: 3px; font-weight: 700; }
+.tm-votes-meter__value_appearance-karma { margin-left: 2px; font-size: 1.0625rem; }
+.tm-votes-meter__value_rating { margin-left: 6px; }
+
+/* --- VotesLever: интерактивный рычаг +/- (голосование за статью/комментарий) --- */
+.tm-votes-lever {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+.tm-votes-lever__button {
+  box-shadow: none;
+  box-sizing: border-box;
+  color: var(--icon-secondary);
+  background: transparent;
+  border: 0;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  position: relative;
+}
+/* увеличенная кликабельная зона 40×40 при видимой иконке меньшего размера */
+.tm-votes-lever__button:after {
+  content: "";
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.tm-votes-lever__button:disabled:after { cursor: default; }
+.tm-votes-lever__button:hover { color: var(--accent-primary-hover); }
+.tm-votes-lever__score {
+  flex-shrink: 0;
+  justify-content: center;
+  align-items: center;
+  min-width: 2ch;
+  font-size: 0.8125rem;
+  display: flex;
+}
+.tm-votes-lever__score_appearance-article { margin: 0 5px; font-weight: 700; }
+.tm-votes-lever__score_appearance-comment {
+  justify-content: center;
+  align-items: center;
+  margin: 0 3px;
+  font-weight: 700;
+  display: flex;
+  overflow: hidden;
+}
+.tm-votes-lever__score_appearance-karma { margin: 0 2px; font-size: 1.125rem; }
+.tm-votes-lever__score-counter {
+  color: var(--icon-primary);
+  font-weight: 700;
+  line-height: 1.375rem;
+}
+.tm-votes-lever__icon { position: relative; }
+.tm-votes-lever__icon_arrow-down { transform: scaleY(-1); }
+.tm-votes-lever__icon_downvote,
+.tm-votes-lever__score-counter_negative { color: var(--accent-danger); }
+.tm-votes-lever__icon_upvote,
+.tm-votes-lever__score-counter_positive { color: var(--accent-positive); }
+.tm-votes-lever__score-fallback { cursor: pointer; margin: 4px 5px 0; }
+.tm-votes-lever__score_no-margin { margin: 0; }
+
+/* --- VoteHintPopup: попап причины минуса при голосовании против --- */
+@keyframes hint-popup-fadein { 0% { opacity: 0; } to { opacity: 1; } }
+.vote-hint-popup {
+  box-sizing: border-box;
+  width: 288px;
+  color: var(--text-secondary);
+  padding: 12px 16px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  animation: 0.25s ease-in-out hint-popup-fadein;
+}
+.vote-hint-popup a { color: var(--accent-primary); text-decoration: none; }
+.tm-minus-reason { margin-top: 4px; }
+@media (max-width: 767px) {
+  .tm-minus-reason { min-width: auto; }
+}
+.tm-minus-reason .tm-radio__option + .tm-radio__option { margin-top: 16px; }
+.tm-minus-reason .tm-radio__label,
+.tm-minus-reason .tm-checkbox__label { width: 100%; }
+.tm-minus-reason .tm-checkbox__container { margin-bottom: 4px; }
+.tm-minus-reason__description {
+  color: var(--text-secondary);
+  max-width: 338px;
+  margin-bottom: 24px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}

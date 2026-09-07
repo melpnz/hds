@@ -1,0 +1,57 @@
+/* =========================================================================
+   HABR · RADIO — FIGMA-RECONSTRUCTED (реальное имя класса, реконструирован стиль)
+   =========================================================================
+   `.tm-radio` — РЕАЛЬНОЕ имя класса: используется в разметке votes.css
+   (`.tm-minus-reason .tm-radio__option`/`.tm-radio__label`, см.
+   components/actions/votes.md GAP), но собственное объявление стиля
+   `.tm-radio` не найдено ни в одном из 111 извлечённых файлов — его чанк
+   не попал в харвест. Имя класса — не выдумано, оформление ниже — да.
+
+   Реконструировано из Figma habr-lib → checkbox/radiobutton →
+   control/Radiobutton (849:10441). get_variable_defs подтвердил: Radio
+   использует ТЕ ЖЕ переменные, что Checkbox (elements/checkbox/checked/bg
+   = #548eaa = --accent-primary, hover = #39728e = --accent-primary-hover) —
+   поэтому геометрия/токены здесь один в один с checkbox.css, только форма
+   круглая и индикатор — точка, а не галочка. Состояния Figma: Checked ×
+   Status=Inactive/Hover/Disable — БЕЗ Focus/Error (в отличие от Input/Button).
+   ========================================================================= */
+
+.tm-radio__option { cursor: pointer; margin: 0; padding: 0; }
+.tm-radio__option.is-disabled { cursor: default; }
+
+.tm-radio__indicator {
+  box-sizing: border-box;
+  border: 1px solid var(--icon-secondary);
+  background-color: var(--background-primary);
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  position: relative;
+}
+.tm-radio__input:hover + .tm-radio__indicator { border-color: var(--accent-primary); }
+.tm-radio__input:checked + .tm-radio__indicator {
+  background-color: var(--background-primary);
+  border-color: var(--accent-primary);
+}
+.tm-radio__input:checked:hover + .tm-radio__indicator { border-color: var(--accent-primary-hover); }
+.tm-radio__input:checked + .tm-radio__indicator:after { opacity: 1; }
+.tm-radio__input:disabled + .tm-radio__indicator {
+  background-color: var(--other-disabled-elements);
+  border-color: var(--other-disabled-elements);
+}
+.tm-radio__input:checked:disabled + .tm-radio__indicator:after { background-color: var(--background-primary); }
+
+/* точка-заливка вместо галочки checkbox */
+.tm-radio__indicator:after {
+  content: "";
+  opacity: 0;
+  background-color: var(--accent-primary);
+  border-radius: 50%;
+  width: 8px;
+  height: 8px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

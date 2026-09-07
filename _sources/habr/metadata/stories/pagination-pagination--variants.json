@@ -1,0 +1,304 @@
+{
+ "id": "pagination-pagination--variants",
+ "name": "Variants",
+ "title": "Pagination/Pagination",
+ "componentId": "pagination-pagination",
+ "tags": [
+  "dev",
+  "test",
+  "autodocs"
+ ],
+ "initialArgs": {
+  "currentPage": 7,
+  "local": false,
+  "localParamName": "page",
+  "pagePadding": 2,
+  "pagePaddingMobile": 1,
+  "routeName": "INDEX",
+  "skipNavigation": false,
+  "totalPages": 15
+ },
+ "argTypes": {
+  "currentPage": {
+   "control": {
+    "type": "number",
+    "min": 1,
+    "step": 1,
+    "disable": false
+   },
+   "name": "currentPage",
+   "type": {
+    "name": "number",
+    "required": false
+   },
+   "description": "Текущая страница. Если не передана, компонент читает pageNum из текущего роута.",
+   "table": {
+    "type": {
+     "summary": "number | null"
+    },
+    "category": "props"
+   }
+  },
+  "local": {
+   "control": {
+    "type": "boolean",
+    "disable": false
+   },
+   "name": "local",
+   "type": {
+    "name": "boolean",
+    "required": false
+   },
+   "description": "Использует query-параметр вместо params.pageNum.",
+   "table": {
+    "type": {
+     "summary": "boolean"
+    },
+    "category": "props"
+   }
+  },
+  "localParamName": {
+   "control": {
+    "type": "text",
+    "disable": false
+   },
+   "name": "localParamName",
+   "type": {
+    "name": "string",
+    "required": false
+   },
+   "description": "Имя query-параметра для локальной пагинации.",
+   "table": {
+    "type": {
+     "summary": "string"
+    },
+    "defaultValue": {
+     "summary": "'page'"
+    },
+    "category": "props"
+   }
+  },
+  "pagePadding": {
+   "control": {
+    "type": "number",
+    "min": 0,
+    "step": 1,
+    "disable": false
+   },
+   "name": "pagePadding",
+   "type": {
+    "name": "number",
+    "required": false
+   },
+   "description": "Количество соседних страниц на desktop.",
+   "table": {
+    "type": {
+     "summary": "number"
+    },
+    "defaultValue": {
+     "summary": "2"
+    },
+    "category": "props"
+   }
+  },
+  "pagePaddingMobile": {
+   "control": {
+    "type": "number",
+    "min": 0,
+    "step": 1,
+    "disable": false
+   },
+   "name": "pagePaddingMobile",
+   "type": {
+    "name": "number",
+    "required": false
+   },
+   "description": "Количество соседних страниц на mobile.",
+   "table": {
+    "type": {
+     "summary": "number"
+    },
+    "defaultValue": {
+     "summary": "1"
+    },
+    "category": "props"
+   }
+  },
+  "routeName": {
+   "control": {
+    "type": "text",
+    "disable": false
+   },
+   "name": "routeName",
+   "type": {
+    "name": "string",
+    "required": false
+   },
+   "description": "Имя route для глобальной пагинации с params.pageNum.",
+   "table": {
+    "type": {
+     "summary": "string | null"
+    },
+    "category": "props"
+   }
+  },
+  "skipNavigation": {
+   "control": {
+    "type": "boolean",
+    "disable": false
+   },
+   "name": "skipNavigation",
+   "type": {
+    "name": "boolean",
+    "required": false
+   },
+   "description": "Эмитит update:currentPage без перехода по route.",
+   "table": {
+    "type": {
+     "summary": "boolean"
+    },
+    "category": "props"
+   }
+  },
+  "totalPages": {
+   "control": {
+    "type": "number",
+    "min": 0,
+    "step": 1,
+    "disable": false
+   },
+   "name": "totalPages",
+   "type": {
+    "name": "number",
+    "required": true
+   },
+   "description": "Общее количество страниц. При значении меньше 2 пагинация скрыта.",
+   "table": {
+    "type": {
+     "summary": "number"
+    },
+    "category": "props"
+   }
+  },
+  "update:currentPage": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "update:currentPage",
+   "type": {
+    "name": "other",
+    "value": "undefined",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "undefined"
+    },
+    "category": "events"
+   }
+  }
+ },
+ "parameters": {
+  "backgrounds": {
+   "grid": {
+    "cellSize": 20,
+    "opacity": 0.5,
+    "cellAmount": 5
+   },
+   "disable": false
+  },
+  "throwPlayFunctionExceptions": false,
+  "renderer": "vue3",
+  "docs": {
+   "story": {
+    "inline": true
+   },
+   "extractArgTypes": "[function fU]",
+   "extractComponentDescription": "[function Oe]",
+   "renderer": "[function renderer]",
+   "stories": {
+    "filter": "[function filter]"
+   },
+   "source": {
+    "originalSource": "{\n  render: (args: PaginationStoryArgs) => ({\n    components: {\n      StoryVariantGrid,\n      StoryVariantSection,\n      Pagination\n    },\n    setup() {\n      const globalStates = [{\n        currentPage: 1,\n        title: 'first page',\n        totalPages: 8\n      }, {\n        currentPage: 7,\n        title: 'middle with ellipses',\n        totalPages: 15\n      }, {\n        currentPage: 8,\n        title: 'last page',\n        totalPages: 8\n      }];\n      const localStates = [{\n        currentPage: 2,\n        title: 'query page',\n        totalPages: 5\n      }, {\n        currentPage: 4,\n        title: 'custom query p',\n        totalPages: 9,\n        localParamName: 'p'\n      }];\n      return {\n        args,\n        globalStates,\n        localStates\n      };\n    },\n    template: `\n      <StoryVariantGrid>\n        <StoryVariantSection v-for=\"state in globalStates\" :key=\"state.title\" :title=\"state.title\">\n          <div style=\"width: 760px; max-width: 100%;\">\n            <Pagination\n              :current-page=\"state.currentPage\"\n              :page-padding=\"args.pagePadding\"\n              :page-padding-mobile=\"args.pagePaddingMobile\"\n              :route-name=\"args.routeName\"\n              :total-pages=\"state.totalPages\"\n            />\n          </div>\n        </StoryVariantSection>\n\n        <StoryVariantSection v-for=\"state in localStates\" :key=\"state.title\" :title=\"state.title\">\n          <div style=\"width: 760px; max-width: 100%;\">\n            <Pagination\n              :current-page=\"state.currentPage\"\n              local\n              :local-param-name=\"state.localParamName || args.localParamName\"\n              :page-padding=\"args.pagePadding\"\n              :page-padding-mobile=\"args.pagePaddingMobile\"\n              route-name=\"INDEX\"\n              :total-pages=\"state.totalPages\"\n            />\n          </div>\n        </StoryVariantSection>\n      </StoryVariantGrid>\n    `\n  })\n}"
+   }
+  },
+  "a11y": {
+   "test": "todo"
+  },
+  "viewport": {
+   "options": {
+    "mobile": {
+     "name": "Mobile < 768px",
+     "styles": {
+      "width": "767px",
+      "height": "768px"
+     },
+     "type": "mobile"
+    },
+    "tablet": {
+     "name": "Tablet 768-1023px",
+     "styles": {
+      "width": "1023px",
+      "height": "768px"
+     },
+     "type": "tablet"
+    },
+    "desktop": {
+     "name": "Desktop >= 1024px",
+     "styles": {
+      "width": "1024px",
+      "height": "768px"
+     },
+     "type": "desktop"
+    }
+   }
+  },
+  "controls": {
+   "matchers": {
+    "color": {},
+    "date": {}
+   }
+  },
+  "fileName": "./src/components/pagination/pagination.stories.ts",
+  "__isArgsStory": true
+ },
+ "usesMount": false,
+ "__entry": {
+  "id": "pagination-pagination--variants",
+  "title": "Pagination/Pagination",
+  "name": "Variants",
+  "importPath": "./src/components/pagination/pagination.stories.ts",
+  "componentPath": "./src/components/pagination/pagination.vue",
+  "tags": [
+   "dev",
+   "test",
+   "manifest",
+   "autodocs"
+  ]
+ },
+ "__url": "https://mr-7288-f.habr.habratest.net/storybook/iframe.html?viewMode=story&id=pagination-pagination--variants",
+ "__htmlLen": 8197,
+ "__rootTag": "<div id=\"storybook-root\" data-v-app=\"\"><div class=\"story-variant-grid\"><section ",
+ "__error": null,
+ "__sheets": [
+  "https://mr-7288-f.habr.habratest.net/css/theme/dark-v2.css",
+  "https://mr-7288-f.habr.habratest.net/css/theme/light-v2.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/block-hX4sg17k.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/StoryVariantSection-BSy86dUg.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/button-base-BdvEVC2k.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/button-Ccclp6vQ.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/svg-img-r1n9vzM8.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/BaseDialog-CrJ9tGzP.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/dropdown-B6xIm0Cp.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/HintStoryTrigger-BJ5BafP9.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/base-popover-DIfjoqU2.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/base-hint-DHY34kLY.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/informer-hint-Bf4XvRzJ.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/restriction-hint-CHvNMITd.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/vote-hint-popup-D6BJBETV.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/pagination-button-DjQECuh-.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/pagination-I5St5IpN.css"
+ ]
+}

@@ -1,0 +1,481 @@
+{
+ "id": "form-multiselect--with-images-story",
+ "name": "Опции MultiSelect могут содержать изображения",
+ "title": "Form/MultiSelect",
+ "componentId": "form-multiselect",
+ "tags": [
+  "dev",
+  "test",
+  "autodocs"
+ ],
+ "initialArgs": {},
+ "argTypes": {
+  "modelValue": {
+   "control": {
+    "type": "object"
+   },
+   "name": "modelValue",
+   "type": {
+    "name": "other",
+    "value": "Array([object Object])",
+    "required": true
+   },
+   "table": {
+    "type": {
+     "summary": "MultiSelectOptionValue[]"
+    },
+    "category": "props"
+   }
+  },
+  "defaultLabel": {
+   "control": {
+    "type": "text"
+   },
+   "name": "defaultLabel",
+   "type": {
+    "name": "string",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "string"
+    },
+    "defaultValue": {
+     "summary": "''"
+    },
+    "category": "props"
+   }
+  },
+  "searchPlaceholder": {
+   "control": {
+    "type": "text"
+   },
+   "name": "searchPlaceholder",
+   "type": {
+    "name": "string",
+    "required": true
+   },
+   "table": {
+    "type": {
+     "summary": "string"
+    },
+    "category": "props"
+   }
+  },
+  "action": {
+   "control": {
+    "type": "object"
+   },
+   "name": "action",
+   "type": {
+    "name": "other",
+    "value": "MultiSelectSearchAction",
+    "required": true
+   },
+   "table": {
+    "type": {
+     "summary": "MultiSelectSearchAction"
+    },
+    "category": "props"
+   }
+  },
+  "noResultsMessage": {
+   "control": {
+    "type": "text"
+   },
+   "name": "noResultsMessage",
+   "type": {
+    "name": "string",
+    "required": true
+   },
+   "table": {
+    "type": {
+     "summary": "string"
+    },
+    "category": "props"
+   }
+  },
+  "withBaseFilter": {
+   "control": {
+    "type": "boolean"
+   },
+   "name": "withBaseFilter",
+   "type": {
+    "name": "boolean",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "boolean"
+    },
+    "defaultValue": {
+     "summary": "false"
+    },
+    "category": "props"
+   }
+  },
+  "label": {
+   "control": {
+    "type": "text"
+   },
+   "name": "label",
+   "type": {
+    "name": "string",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "string"
+    },
+    "category": "props"
+   }
+  },
+  "termMinLength": {
+   "control": {
+    "type": "number"
+   },
+   "name": "termMinLength",
+   "type": {
+    "name": "number",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "number"
+    },
+    "defaultValue": {
+     "summary": "0"
+    },
+    "category": "props"
+   }
+  },
+  "cacheKey": {
+   "control": {
+    "type": "text"
+   },
+   "name": "cacheKey",
+   "type": {
+    "name": "string",
+    "required": true
+   },
+   "table": {
+    "type": {
+     "summary": "string"
+    },
+    "category": "props"
+   }
+  },
+  "preCachedOptions": {
+   "control": {
+    "type": "object"
+   },
+   "name": "preCachedOptions",
+   "type": {
+    "name": "other",
+    "value": "Array([object Object])",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "MultiselectOption[]"
+    },
+    "category": "props"
+   }
+  },
+  "textInputId": {
+   "control": {
+    "type": "text"
+   },
+   "name": "textInputId",
+   "type": {
+    "name": "string",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "string"
+    },
+    "category": "props"
+   }
+  },
+  "showInsertMessage": {
+   "control": {
+    "type": "boolean"
+   },
+   "name": "showInsertMessage",
+   "type": {
+    "name": "boolean",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "boolean"
+    },
+    "defaultValue": {
+     "summary": "true"
+    },
+    "category": "props"
+   }
+  },
+  "hasAppliedOptions": {
+   "control": {
+    "type": "boolean"
+   },
+   "name": "hasAppliedOptions",
+   "type": {
+    "name": "boolean",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "boolean"
+    },
+    "defaultValue": {
+     "summary": "false"
+    },
+    "category": "props"
+   }
+  },
+  "placement": {
+   "control": {
+    "type": "object"
+   },
+   "name": "placement",
+   "type": {
+    "name": "union",
+    "value": [
+     {
+      "name": "other",
+      "value": "\"bottom-start\""
+     },
+     {
+      "name": "other",
+      "value": "\"bottom\""
+     }
+    ],
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "\"bottom-start\" | \"bottom\""
+    },
+    "defaultValue": {
+     "summary": "'bottom'"
+    },
+    "category": "props"
+   }
+  },
+  "selectionControl": {
+   "control": {
+    "type": "object"
+   },
+   "name": "selectionControl",
+   "type": {
+    "name": "union",
+    "value": [
+     {
+      "name": "other",
+      "value": "\"checkbox\""
+     },
+     {
+      "name": "other",
+      "value": "\"none\""
+     }
+    ],
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "\"checkbox\" | \"none\""
+    },
+    "defaultValue": {
+     "summary": "'checkbox'"
+    },
+    "category": "props"
+   }
+  },
+  "disabled": {
+   "control": {
+    "type": "boolean"
+   },
+   "name": "disabled",
+   "type": {
+    "name": "boolean",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "boolean"
+    },
+    "defaultValue": {
+     "summary": "false"
+    },
+    "category": "props"
+   }
+  },
+  "update:modelValue": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "update:modelValue",
+   "type": {
+    "name": "other",
+    "value": "Array",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "Array"
+    },
+    "category": "events"
+   }
+  },
+  "insertToSearch": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "insertToSearch",
+   "type": {
+    "name": "other",
+    "value": "string",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "string"
+    },
+    "category": "events"
+   }
+  },
+  "content": {
+   "control": {
+    "type": "object"
+   },
+   "name": "content",
+   "type": {
+    "name": "other",
+    "value": "{ shown: unknown }",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "{ shown: unknown }"
+    },
+    "category": "slots"
+   }
+  },
+  "footer-button": {
+   "control": {
+    "type": "object"
+   },
+   "name": "footer-button",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "slots"
+   }
+  },
+  "close": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "close",
+   "type": {
+    "name": "other",
+    "value": ""
+   },
+   "table": {
+    "category": "expose"
+   }
+  }
+ },
+ "parameters": {
+  "renderer": "vue3",
+  "docs": {
+   "story": {
+    "inline": true
+   },
+   "extractArgTypes": "[function V]",
+   "extractComponentDescription": "[function extractComponentDescription]",
+   "renderer": "[function renderer]",
+   "stories": {
+    "filter": "[function filter]"
+   },
+   "source": {
+    "originalSource": "{\n  name: 'Опции MultiSelect могут содержать изображения',\n  render: args => ({\n    components: {\n      MultiSelect\n    },\n    setup() {\n      const model = ref<number[]>([]);\n      const action = makeMockAction(COMPANIES_OPTIONS);\n      return {\n        args,\n        model,\n        action\n      };\n    },\n    template: `\n\n    <MultiSelect\n      v-model=\"model\"\n      default-label=\"Все компании\"\n      search-placeholder=\"Поиск по компаниям\"\n      :action=\"action\"\n      no-results-message=\"Такая компания не найдена\"\n      cache-key=\"filter-companies\"\n      :term-min-length=\"3\"\n    />\n`\n  }),\n  argTypes: {}\n}"
+   }
+  },
+  "backgrounds": {
+   "grid": {
+    "cellSize": 20,
+    "opacity": 0.5,
+    "cellAmount": 5
+   },
+   "disable": false,
+   "values": [
+    {
+     "name": "light",
+     "value": "#F8F8F8"
+    },
+    {
+     "name": "dark",
+     "value": "#333"
+    }
+   ]
+  },
+  "throwPlayFunctionExceptions": false,
+  "actions": {
+   "argTypesRegex": "^on[A-Z].*"
+  },
+  "controls": {
+   "matchers": {
+    "color": {},
+    "date": {}
+   }
+  },
+  "fileName": "./src/components/form/multi-select/multi-select.stories.ts",
+  "__isArgsStory": true
+ },
+ "usesMount": false,
+ "__entry": {
+  "id": "form-multiselect--with-images-story",
+  "title": "Form/MultiSelect",
+  "name": "Опции MultiSelect могут содержать изображения",
+  "importPath": "./src/components/form/multi-select/multi-select.stories.ts",
+  "componentPath": "./src/components/form/multi-select/multi-select.vue",
+  "tags": [
+   "dev",
+   "test",
+   "autodocs"
+  ]
+ },
+ "__url": "https://develop.career.habratest.net/career-web/storybook-static/iframe.html?viewMode=story&id=form-multiselect--with-images-story",
+ "__htmlLen": 1062,
+ "__rootTag": "<div id=\"storybook-root\" data-v-app=\"\"><div><div data-v-b1950a5f=\"\" class=\"wrapp",
+ "__error": null,
+ "__sheets": [
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/notify.c-urmcFr.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/preview.C4TNY2_K.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/index.CK-Too2S.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/preview.C010mW5y.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/button-range.DY2cAE4W.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/svg-icon.6YnsMLG3.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/base-loader.EAwq4SH7.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/base-button.CeGTylXy.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/filter-button.DwwH7gm-.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/base-dropdown.BC2oEVa3.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/base-checkbox.CnvDWD_6.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/modal-overlay.PY_2I58Y.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/base-modal.oVZoWAId.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/dropdown-modal.BNlXIunT.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/pretty-scroll.BV5cmBb9.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/text-input.Ce2pXewP.css",
+  "https://develop.career.habratest.net/career-web/storybook-static/career-web/multi-select.B3g8ER4T.css"
+ ]
+}

@@ -1,0 +1,52 @@
+/* источник: button-follow-Bar2fZBL.css (6/16 страниц) — добавлено на этапе
+   Visual Foundations pass. Модификатор поверх базовой .btn (см. button.css):
+   в разметке .tm-button-follow всегда идёт вместе с .btn .btn_transparent
+   .btn_small — сам по себе класса кнопки не задаёт, только ширину/анимацию
+   переключения в состояние "подписан". */
+.tm-button-follow {
+  width: 112px;
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+.tm-button-follow .button-content {
+  box-sizing: border-box;
+  text-align: center;
+  will-change: width;
+  border: 1px solid transparent;
+  width: 100%;
+  height: 2rem;
+  padding: 6px 0;
+  font-size: 0.75rem;
+  line-height: 1rem;
+  transition: width 0.2s;
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.tm-button-follow .button-content.subscribed {
+  background-color: var(--accent-positive);
+  color: var(--background-primary);
+  border-top-right-radius: 3px;
+  border-bottom-right-radius: 3px;
+  width: calc(100% - 26px);
+}
+.tm-button-follow .button-content.subscribed:hover {
+  background: var(--accent-positive-hover);
+}
+.tm-button-follow .close {
+  background-color: var(--background-primary);
+  box-sizing: border-box;
+  width: 26px;
+  height: 100%;
+  color: var(--icon-primary);
+  user-select: none;
+  padding: 0 9px;
+  font-size: 0.9375rem;
+  line-height: 1.8125rem;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+}

@@ -1,0 +1,269 @@
+{
+ "id": "common-basefiltermodal--default",
+ "name": "Базовая модалка фильтров",
+ "title": "common/BaseFilterModal",
+ "componentId": "common-basefiltermodal",
+ "tags": [
+  "dev",
+  "test",
+  "autodocs"
+ ],
+ "initialArgs": {
+  "title": "Фильтры",
+  "activeCount": 3,
+  "hasCloseButton": true,
+  "disabled": false
+ },
+ "argTypes": {
+  "title": {
+   "control": {
+    "type": "text"
+   },
+   "name": "title",
+   "type": {
+    "name": "string",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "string"
+    },
+    "defaultValue": {
+     "summary": "'Фильтры'"
+    },
+    "category": "props"
+   }
+  },
+  "activeCount": {
+   "control": {
+    "type": "number"
+   },
+   "name": "activeCount",
+   "type": {
+    "name": "number",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "number"
+    },
+    "defaultValue": {
+     "summary": "0"
+    },
+    "category": "props"
+   }
+  },
+  "hasCloseButton": {
+   "control": {
+    "type": "boolean"
+   },
+   "name": "hasCloseButton",
+   "type": {
+    "name": "boolean",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "boolean"
+    },
+    "category": "props"
+   }
+  },
+  "disabled": {
+   "control": {
+    "type": "boolean"
+   },
+   "name": "disabled",
+   "type": {
+    "name": "boolean",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "boolean"
+    },
+    "category": "props"
+   }
+  },
+  "hasButtons": {
+   "control": {
+    "type": "boolean"
+   },
+   "name": "hasButtons",
+   "type": {
+    "name": "boolean",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "boolean"
+    },
+    "defaultValue": {
+     "summary": "true"
+    },
+    "category": "props"
+   }
+  },
+  "resetFilter": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "resetFilter",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "events"
+   }
+  },
+  "applyFilter": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "applyFilter",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "events"
+   }
+  },
+  "close": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "close",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "events"
+   }
+  },
+  "open": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "open",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "events"
+   }
+  },
+  "default": {
+   "control": {
+    "type": "object"
+   },
+   "name": "default",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "slots"
+   }
+  },
+  "toggle": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "toggle",
+   "type": {
+    "name": "other",
+    "value": ""
+   },
+   "table": {
+    "category": "expose"
+   }
+  }
+ },
+ "parameters": {
+  "renderer": "vue3",
+  "docs": {
+   "story": {
+    "inline": true
+   },
+   "extractArgTypes": "[function T]",
+   "extractComponentDescription": "[function extractComponentDescription]",
+   "renderer": "[function renderer]",
+   "stories": {
+    "filter": "[function filter]"
+   },
+   "source": {
+    "originalSource": "{\n  name: 'Базовая модалка фильтров',\n  args: {\n    title: 'Фильтры',\n    activeCount: 3,\n    hasCloseButton: true,\n    disabled: false\n  },\n  render: args => ({\n    components: {\n      BaseButton,\n      BaseFilter,\n      BaseFilterModal\n    },\n    setup() {\n      const isOpen = ref(false);\n      const filters = ['Все', 'Онлайн', 'С сертификатом', 'Со скидкой'];\n      return {\n        args,\n        isOpen,\n        filters\n      };\n    },\n    template: `\n      <div class=\"min-h-[720px] bg-ui-black-50 p-8\">\n        <BaseButton size=\"m\" @click=\"isOpen = true\">Открыть фильтры</BaseButton>\n\n        <BaseFilterModal\n          v-if=\"isOpen\"\n          v-bind=\"args\"\n          @close=\"isOpen = false\"\n          @apply-filter=\"isOpen = false\"\n          @reset-filter=\"args.activeCount = 0\"\n        >\n          <div class=\"grid gap-6 p-3\">\n            <div class=\"text-body font-semibold\">Формат обучения</div>\n            <div class=\"flex flex-wrap gap-2\">\n              <BaseFilter\n                v-for=\"filter in filters\"\n                :key=\"filter\"\n                :active=\"filter === 'Онлайн'\"\n              >\n                {{ filter }}\n              </BaseFilter>\n            </div>\n            <div class=\"text-body font-semibold\">Описание</div>\n            <div class=\"text-small text-ui-black-500\">\n              Пример контента внутри базовой модалки фильтров для Storybook.\n            </div>\n          </div>\n        </BaseFilterModal>\n\n        <div id=\"modal-target\"></div>\n      </div>\n    `\n  }),\n  argTypes: {\n    title: {\n      control: 'text'\n    },\n    activeCount: {\n      control: 'number'\n    },\n    hasCloseButton: {\n      control: 'boolean'\n    },\n    disabled: {\n      control: 'boolean'\n    }\n  }\n}"
+   }
+  },
+  "backgrounds": {
+   "grid": {
+    "cellSize": 20,
+    "opacity": 0.5,
+    "cellAmount": 5
+   },
+   "disable": false,
+   "values": [
+    {
+     "name": "light",
+     "value": "#F8F8F8"
+    },
+    {
+     "name": "dark",
+     "value": "#333"
+    }
+   ]
+  },
+  "throwPlayFunctionExceptions": false,
+  "actions": {
+   "argTypesRegex": "^on[A-Z].*"
+  },
+  "controls": {
+   "matchers": {
+    "color": {},
+    "date": {}
+   }
+  },
+  "fileName": "./src/components/common/base-filter-modal.stories.ts",
+  "__isArgsStory": true
+ },
+ "usesMount": false,
+ "__entry": {
+  "id": "common-basefiltermodal--default",
+  "title": "common/BaseFilterModal",
+  "name": "Базовая модалка фильтров",
+  "importPath": "./src/components/common/base-filter-modal.stories.ts",
+  "componentPath": "./src/components/common/base-filter-modal.vue",
+  "tags": [
+   "dev",
+   "test",
+   "autodocs"
+  ]
+ },
+ "__url": "https://develop.career.habratest.net/courses-web/storybook-static/iframe.html?viewMode=story&id=common-basefiltermodal--default",
+ "__htmlLen": 583,
+ "__rootTag": "<div id=\"storybook-root\" data-v-app=\"\"><div><div class=\"min-h-[720px] bg-ui-blac",
+ "__error": null,
+ "__sheets": [
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/cookies.c-urmcFr.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/preview.CoGQq0WZ.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/index.CSGoIsqw.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/preview.CXq2SRHN.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/svg-icon.6YnsMLG3.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/base-loader.DeUmaBb8.css",
+  "https://develop.career.habratest.net/courses-web/storybook-static/courses-web/body-scroll.Dl5qe-0F.css"
+ ]
+}

@@ -1,0 +1,643 @@
+/* =========================================================================
+   CAREER · КОМПОНЕНТЫ ВНЕ СБОРКИ career-web
+   =========================================================================
+   Раньше этот файл содержал реконструкции компонентов Career, собранные
+   по замерам и Figma. Теперь подавляющее большинство из них извлечено
+   из настоящей сборки и лежит в ui/components/*.css — реконструкции
+   оттуда удалены, чтобы в пакете не было двух определений одного класса.
+
+   Здесь остались только те решения, которых в сборке career-web нет:
+     · компоненты старой реализации Career (Rails), живущие в production;
+     · размерные шкалы, которых в CSS нет, потому что они задаются
+       инлайновыми переменными (аватар);
+     · модули, известные по Figma и замерам, но не попавшие в Storybook.
+
+   Каждое такое решение помечено источником. Если у класса есть
+   одноимённый аналог в components/*.css — здесь он не переопределяется.
+
+   Подключается ПОСЛЕ ui/components/*.css.
+   Evidence: research/system-audit.md §6.3, research/03-habr-career.md §10.
+   ========================================================================= */
+
+/* Базовый контейнер спесимена: задаёт шрифт и цвет там, где нет body Career. */
+.c { font-family: var(--font-base); color: var(--color-ui-gray-1); }
+
+/* -------------------------------------------------------------------------
+   Аватар — размерная шкала
+   ИСТОЧНИК: замеры production. В career-web размер аватара задаётся
+   инлайновыми переменными --avatar-size / --avatar-radius, поэтому шкалы
+   в CSS сборки нет. Классы ниже — удобная запись тех же значений;
+   реальная разметка Career пишет их инлайном (см. components/data/avatar.md).
+   ------------------------------------------------------------------------- */
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex: none;
+  background: var(--color-ui-gray-6);
+  color: var(--color-ui-gray-2);
+  font: 600 14px/1 var(--font-base);
+  object-fit: cover;
+}
+.avatar--user { border-radius: 50%; }
+.avatar--entity { border-radius: 8px; background: var(--color-ui-white); box-shadow: inset 0 0 0 1px var(--color-ui-gray-shadow); }
+.avatar--20 { width: 20px; height: 20px; font-size: 9px; }
+.avatar--24 { width: 24px; height: 24px; font-size: 10px; }
+.avatar--32 { width: 32px; height: 32px; font-size: 12px; }
+.avatar--36 { width: 36px; height: 36px; font-size: 13px; }
+.avatar--40 { width: 40px; height: 40px; }
+.avatar--48 { width: 48px; height: 48px; font-size: 16px; }
+.avatar--56 { width: 56px; height: 56px; font-size: 18px; }
+.avatar--72 { width: 72px; height: 72px; font-size: 22px; }
+.avatar--96 { width: 96px; height: 96px; font-size: 28px; }
+.avatar--140 { width: 140px; height: 140px; font-size: 40px; }
+
+/* -------------------------------------------------------------------------
+   Бейдж-счётчик
+   ИСТОЧНИК: Figma elements/badge + замеры production.
+   В career-web отдельного компонента нет: счётчик каждый раз собирается
+   утилитами (см. кнопку с `__after` и вкладки со счётчиками). Класс ниже —
+   запись той же геометрии одним именем.
+   ------------------------------------------------------------------------- */
+.base-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: var(--color-ui-primary);
+  color: var(--color-ui-white);
+  font: 600 11px/16px var(--font-base);
+}
+.base-badge--dot { width: 12px; height: 12px; min-width: 12px; padding: 0; }
+.base-badge--ring { box-shadow: 0 0 0 2px var(--color-ui-white); }
+
+/* -------------------------------------------------------------------------
+   Поле поиска
+   ИСТОЧНИК: production. В career-web есть только .search-input__icon;
+   обвязка собирается утилитами.
+   ------------------------------------------------------------------------- */
+.search-input { position: relative; }
+.search-input .text-input__input { padding-right: 40px; }
+.search-input > svg {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  color: var(--color-ui-gray-3);
+  pointer-events: none;
+}
+
+/* -------------------------------------------------------------------------
+   Флажок и переключатель старой реализации (Rails)
+   ИСТОЧНИК: production. Живут на страницах, ещё не переписанных на Nuxt.
+   Новая реализация использует другие имена: .checkbox-label / .checkbox-button
+   (см. components/forms/checkbox.md). Оба набора действующие.
+   ------------------------------------------------------------------------- */
+.checkbox__wrapper {
+  display: inline-flex;
+  align-items: flex-start;
+  gap: 8px;
+  position: relative;
+  cursor: pointer;
+  font: 400 14px/20px var(--font-base);
+  color: var(--color-ui-gray-1);
+}
+.checkbox__wrapper input { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+.checkbox__icon-wrapper { flex: none; display: inline-flex; align-items: center; height: 20px; }
+.checkbox__box {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px var(--color-ui-gray-4);
+  background: var(--color-ui-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: transparent;
+}
+.checkbox__box svg { width: 14px; height: 14px; }
+.checkbox__wrapper input:checked + .checkbox__icon-wrapper .checkbox__box {
+  background: var(--color-ui-primary);
+  box-shadow: inset 0 0 0 1px var(--color-ui-primary);
+  color: var(--color-ui-white);
+}
+.checkbox__wrapper input:disabled + .checkbox__icon-wrapper .checkbox__box {
+  box-shadow: inset 0 0 0 1px var(--color-ui-gray-5);
+  background: var(--color-ui-gray-7);
+}
+.checkbox__wrapper input:disabled ~ .checkbox__text { color: var(--color-ui-gray-4); }
+.checkbox__box--radio { border-radius: 50%; }
+.checkbox__wrapper input:checked + .checkbox__icon-wrapper .checkbox__box--radio::after {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-ui-white);
+}
+
+/* -------------------------------------------------------------------------
+   Вкладки с подчёркиванием
+   ИСТОЧНИК: production. Это не BaseSegmentedTabs: подчёркнутые вкладки
+   переключают раздел, «таблетка» — представление внутри раздела.
+   ------------------------------------------------------------------------- */
+.tabs--underline {
+  display: flex;
+  align-items: stretch;
+  gap: 16px;
+  border-bottom: 1px solid var(--color-ui-gray-shadow);
+}
+.tabs--underline .tabs__tab {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 2px;
+  font: 600 14px/20px var(--font-base);
+  color: var(--color-ui-gray-2);
+  text-decoration: none;
+  background: none;
+  border: 0;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.tabs--underline .tabs__tab.is-active { color: var(--color-ui-gray-1); }
+.tabs--underline .tabs__tab[aria-current="page"] { color: var(--color-ui-gray-1); }
+.tabs--underline .tabs__tab:not(.is-active):not([aria-current="page"]):not(:disabled):not([aria-disabled="true"]):hover {
+  color: var(--color-ui-gray-1);
+}
+.tabs--underline .tabs__tab:focus-visible {
+  outline: 2px solid var(--color-ui-primary-60);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+.tabs--underline .tabs__tab:not(:disabled):not([aria-disabled="true"]):active {
+  color: var(--color-ui-primary);
+}
+.tabs--underline .tabs__tab:disabled,
+.tabs--underline .tabs__tab[aria-disabled="true"] {
+  color: var(--color-ui-gray-4);
+  cursor: default;
+  pointer-events: none;
+}
+.tabs--underline .tabs__tab.is-active::after,
+.tabs--underline .tabs__tab[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--color-ui-primary);
+}
+
+/* -------------------------------------------------------------------------
+   Карточка вакансии в листинге
+   ИСТОЧНИК: замеры production, 12 страниц.
+   Не путать с VacancyCardWithCompanyAndDate из career-web: тот — выделенный
+   вариант с цветной подложкой (см. components/cards/vacancy-card.md).
+   ------------------------------------------------------------------------- */
+.vacancy-card {
+  padding: 24px;
+  border-radius: 24px;
+  background: var(--color-ui-white);
+  border: 1px solid var(--color-ui-gray-shadow);
+  font-family: var(--font-base);
+}
+/* Дата стоит НА СТРОКЕ КОМПАНИИ, прижатая вправо, а не отдельным рядом.
+   ИСТОЧНИК: снимок production listing-vacancies-1440.png. Тёмные пиксели
+   строки компании занимают полосу y 351–363, дата — ту же полосу, x 826–901,
+   то есть правый край содержимого карточки. */
+.vacancy-card__date {
+  font: 400 14px/20px var(--font-base);
+  color: var(--color-ui-gray-3);
+  margin-left: auto;
+  padding-left: 16px;
+  flex: none;
+  white-space: nowrap;
+}
+.vacancy-card__main { display: flex; gap: 0; }
+
+/* Зарплата: зелёная, когда указана; оранжевая, когда нет.
+   ИСТОЧНИК: пиксели того же снимка — rgb(61,194,74) и rgb(253,143,13).
+   Кегль 17/22 700 замерен в дампе production (h4.predicted-salary__title). */
+.vacancy-card__salary { font: 700 17px/22px var(--font-base); color: var(--color-ui-green); }
+.vacancy-card__salary--unknown { color: var(--color-ui-orange-accent); }
+.vacancy-card__icon-link {
+  flex: none;
+  width: 48px;
+  height: 48px;
+  margin-right: 15px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--color-ui-white);
+  box-shadow: inset 0 0 0 1px var(--color-ui-gray-shadow);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.vacancy-card__info { min-width: 0; flex: 1 1 auto; }
+/* Название компании — тёмное, того же цвета что заголовок, но начертанием 400.
+   ИСТОЧНИК: пиксели снимка production — самый тёмный тон в полосе строки
+   компании rgb(27,39,44). Светлее выглядит из-за веса, а не из-за цвета. */
+.vacancy-card__company {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 400 14px/20px var(--font-base);
+  color: var(--color-ui-gray-1);
+  margin-bottom: 4px;
+}
+/* Длинное название компании обрезается, а не ломает строку: рейтинг и дата
+   должны оставаться на своих местах. */
+.vacancy-card__company-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.vacancy-card__company .rating { color: var(--color-ui-green); font-weight: 600; display: inline-flex; align-items: center; gap: 2px; flex: none; }
+.vacancy-card__company .rating svg { width: 16px; height: 16px; }
+.vacancy-card__title {
+  font: 600 20px/24px var(--font-base);
+  color: var(--color-ui-gray-1);
+  text-decoration: none;
+  display: inline-block;
+}
+.vacancy-card__title:hover { color: var(--color-ui-primary); }
+.vacancy-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  margin-top: 4px;
+  font: 400 14px/20px var(--font-base);
+  color: var(--color-ui-gray-2);
+}
+.vacancy-meta__sep { color: var(--color-ui-gray-4); }
+/* Чипы идут ДВУМЯ рядами: справочные атрибуты и свободные навыки.
+   ИСТОЧНИК: полосы тёмных пикселей 433–465 и 481–509 на снимке production —
+   это два ряда по 32, а не перенос одного. */
+.vacancy-card__skills { display: flex; flex-wrap: wrap; gap: 4px; padding-right: 24px; margin-top: 8px; }
+.vacancy-card__skills + .vacancy-card__skills { margin-top: 4px; }
+/* Действия прижаты к правому краю карточки.
+   ИСТОЧНИК: дамп production — кнопка «Откликнуться» 123×32 при x=727,
+   правый край содержимого карточки 903. */
+.vacancy-card__footer { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-top: 12px; min-height: 40px; }
+.vacancy-card__company-name { color: inherit; text-decoration: none; }
+.vacancy-card__company-name:hover { color: var(--color-ui-primary); }
+.vacancy-card__save[aria-pressed="true"] { color: var(--color-ui-primary); }
+
+/* -------------------------------------------------------------------------
+   Карточка рейтинга компаний
+   ИСТОЧНИК: замеры production, страница рейтинга.
+   ------------------------------------------------------------------------- */
+.rating-card {
+  display: flex;
+  gap: 16px;
+  padding: 24px;
+  border-radius: 24px;
+  background: var(--color-ui-white);
+  border: 1px solid var(--color-ui-gray-shadow);
+  font-family: var(--font-base);
+}
+.rating-card__pos { font: 600 28px/32px var(--font-base); color: var(--color-ui-gray-3); flex: none; min-width: 44px; }
+.rating-card__title { margin: 0 0 4px; font: 600 20px/24px var(--font-base); color: var(--color-ui-gray-1); }
+.rating-card__score { display: inline-flex; align-items: center; gap: 4px; font: 600 14px/20px var(--font-base); color: var(--color-ui-green); }
+.rating-card__score svg { width: 20px; height: 20px; }
+.rating-card__desc { margin: 8px 0 0; font: 400 15px/24px var(--font-base); color: var(--color-ui-gray-1); }
+
+/* -------------------------------------------------------------------------
+   Плиточная карточка
+   ИСТОЧНИК: замеры production, блоки «похожие вакансии» и «компании».
+   ------------------------------------------------------------------------- */
+.grid-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 334px)); gap: 12px; }
+.grid-card {
+  padding: 16px;
+  border-radius: 16px;
+  background: var(--color-ui-white);
+  border: 1px solid var(--color-ui-gray-shadow);
+  font-family: var(--font-base);
+}
+.grid-card__date { font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-3); margin-bottom: 8px; }
+.grid-card__company { display: flex; align-items: center; gap: 4px; font: 400 16px/20px var(--font-base); margin-bottom: 4px; }
+.grid-card__title { font: 600 16px/24px var(--font-base); color: var(--color-ui-gray-1); }
+
+/* -------------------------------------------------------------------------
+   Пустое состояние старой реализации
+   ИСТОЧНИК: замеры production. Новая реализация использует
+   .empty-placeholder (см. components/feedback/empty-placeholder.md).
+   ------------------------------------------------------------------------- */
+.no-content { text-align: center; font-family: var(--font-base); padding: 8px 0; }
+.no-content__art { margin: 0 auto 16px; display: block; max-width: 240px; }
+.no-content__title { max-width: 560px; margin: 0 auto 8px; font: 600 20px/24px var(--font-base); color: var(--color-ui-gray-1); }
+.no-content__desc { max-width: 560px; margin: 0 auto 16px; font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-2); }
+
+/* -------------------------------------------------------------------------
+   Онбординговая подсказка
+   ИСТОЧНИК: Figma, модуль onboarding. В career-web компонента нет.
+   ------------------------------------------------------------------------- */
+.onboarding-tooltip {
+  max-width: 320px;
+  padding: 16px;
+  border-radius: 16px;
+  background: var(--color-ui-gray-1);
+  color: var(--color-ui-white);
+  font-family: var(--font-base);
+  display: grid;
+  gap: 8px;
+  box-shadow: var(--shadow-dropdown);
+}
+.onboarding-tooltip__title { font: 600 16px/20px var(--font-base); }
+.onboarding-tooltip__text { font: 400 14px/20px var(--font-base); }
+.onboarding-tooltip__actions { display: flex; align-items: center; gap: 12px; margin: 4px 0 0; }
+
+/* -------------------------------------------------------------------------
+   Числовой акцент
+   ИСТОЧНИК: замеры production, блоки статистики.
+   ------------------------------------------------------------------------- */
+.number-accent { font: 700 17px/22px var(--font-base); color: var(--color-ui-orange-accent); }
+
+/* -------------------------------------------------------------------------
+   Совместимость имён
+   `.basic-section` — имя карточки в старой реализации, `.base-section` —
+   в новой. Геометрия одинакова, поэтому старое имя просто наследует новое.
+   ------------------------------------------------------------------------- */
+.basic-section {
+  padding: 24px;
+  border-radius: 24px;
+  background: var(--color-ui-white);
+  border: 1px solid var(--color-ui-gray-shadow);
+}
+
+/* -------------------------------------------------------------------------
+   Тело карточки
+   ИСТОЧНИК: соглашение showcase/pages.html. В career-web такого класса нет:
+   содержимое карточки там верстается обычными узлами с утилитами.
+   Класс оставлен, потому что showcase/pages.html опирается на него как
+   на именованный отступ под заголовком.
+   ------------------------------------------------------------------------- */
+.base-section__body { margin-top: 12px; font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-1); }
+
+/* -------------------------------------------------------------------------
+   Карточка вакансии на узком экране
+   ИСТОЧНИК: снимок production listing-vacancies-375.png плюс собственный CSS
+   career-web, который делает ровно это же своими утилитами:
+
+     дата     absolute right-0 top-0  →  tablet:static tablet:mb-3 tablet:ml-0
+     логотип  float-left              →  tablet:float-right tablet:ml-3
+     текст    ml-[64px]               →  tablet:ml-0
+
+   То есть дата уходит из строки компании наверх отдельной строкой,
+   а логотип переезжает вправо и обтекается текстом. Порядок сверху вниз:
+   дата · компания и рейтинг · заголовок.
+
+   Граница здесь 1023 — единственная у устаревающей реализации. У карточки
+   career-web она совпадает: её утилиты используют префикс `tablet:`,
+   то есть тот же `max-width: 1023px`.
+   ------------------------------------------------------------------------- */
+@container (max-width: 1023px) {
+  .vacancy-card__company { flex-wrap: wrap; }
+  .vacancy-card__date {
+    order: -1;
+    width: 100%;
+    margin-left: 0;
+    padding-left: 0;
+    margin-bottom: 8px;
+  }
+  /* логотип обтекается текстом справа, а не стоит колонкой слева */
+  .vacancy-card__main { display: block; }
+  .vacancy-card__icon-link { float: right; margin: 0 0 8px 12px; }
+  .vacancy-card__footer { padding-left: 0; }
+}
+
+/* -------------------------------------------------------------------------
+   Фон иконки Instagram
+   ИСТОЧНИК: фирменный градиент Instagram, значение задано вручную.
+   В спрайте Career иконка нарисована белым по прозрачному — заливку продукт
+   задаёт отдельно, и в сохранённом CSS её нет. Это единственное место
+   в пакете, где значение не извлечено из источника, поэтому оно вынесено
+   в отдельный класс и помечено.
+
+   ОБЛАСТЬ ДЕЙСТВИЯ: значок подвала из набора single/social-v3.1. В файле пака
+   (ui/assets/icons/pack/instagram.svg) тот же градиент встроен двумя
+   radialGradient, и класс ему больше не нужен.
+   ------------------------------------------------------------------------- */
+.icon-instagram {
+  /* у этой иконки подложки в файле нет — форму задаём здесь, тем же
+     скруглением 8px, что и у остальных значков пака */
+  border-radius: 8px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle 19.26px at 6.59570325% 96.961876%, #ffd600 0, #ff6930 34.4%, rgba(254, 59, 54, .88) 58.4%, rgba(254, 59, 54, .63) 67%, rgba(237, 0, 192, .7) 80%, rgba(112, 23, 255, 0) 108%),
+    radial-gradient(circle at 119.1811981201% 143.7845001221%, #ff1b90 24.4%, #f80261 43.7%, #ed00c0 68.8%, #c500e9 77.7%, #7017ff 89.3%);
+}
+
+/* Логотип компании внутри карточки вакансии: обёртка задаёт рамку и радиус,
+   изображение заполняет её целиком. */
+.vacancy-card__logo { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* -------------------------------------------------------------------------
+   R3-A · Menu / MenuItem
+   ИСТОЧНИК: нормализация ContextMenu и BaseDropdown; Figma — evidence only.
+   ------------------------------------------------------------------------- */
+.menu {
+  background: var(--color-ui-white);
+  border-radius: 16px;
+  box-shadow: 0 1px 4px 1px var(--color-ui-gray-shadow), 0 4px 8px 2px var(--color-ui-gray-shadow);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  list-style: none;
+  margin: 0;
+  min-width: 190px;
+  padding: 4px;
+}
+.menu[hidden] { display: none; }
+.menu__separator { border: 0; border-top: 1px solid var(--color-ui-gray-bg); margin: 4px 8px; }
+.menu-item {
+  align-items: center;
+  appearance: none;
+  background: transparent;
+  border: 0;
+  border-radius: 12px;
+  color: var(--color-ui-gray-1);
+  cursor: pointer;
+  display: flex;
+  font: 400 14px/20px var(--font-base);
+  gap: 8px;
+  min-height: 40px;
+  padding: 8px 12px;
+  text-align: left;
+  text-decoration: none;
+  width: 100%;
+}
+.menu-item:is(:hover, [data-active="true"]) { background-color: var(--color-ui-gray-3-10); }
+.menu-item:focus-visible { outline: 2px solid var(--color-ui-primary-60); outline-offset: -2px; }
+.menu-item:active:not(:disabled):not([aria-disabled="true"]),.menu-item.is-pressed { background-color: var(--color-ui-gray-3-20); }
+.menu-item:is([aria-checked="true"], [aria-current="true"], [aria-selected="true"]) { color: var(--color-ui-primary-accent); font-weight: 600; }
+.menu-item:is(:disabled, [aria-disabled="true"]) { color: var(--color-ui-gray-4); cursor: default; pointer-events: none; }
+.menu-item__icon { flex: none; }
+.menu-item__label { flex: 1 1 auto; min-width: 0; }
+.menu-item__meta { color: var(--color-ui-gray-2); margin-left: auto; }
+
+/* -------------------------------------------------------------------------
+   R3-A · Popover
+   ------------------------------------------------------------------------- */
+.popover { position: relative; }
+.popover__surface {
+  background-color: var(--color-ui-white);
+  border-radius: 16px;
+  box-shadow: 0 1px 4px 1px var(--color-ui-gray-shadow), 0 4px 8px 2px var(--color-ui-gray-shadow);
+  max-width: min(360px, calc(100vw - 32px));
+  padding: 12px;
+  position: absolute;
+  z-index: 1000;
+}
+/* Menu несёт собственную поверхность — фон, радиус 16 и ту же тень. Значит
+   позиционирующий слой под ним рисовать поверхность не должен: иначе
+   в открытом меню видно две вложенные плашки. Career решает это так же —
+   `.context-menu--select` обнуляет фон и тень у `.base-dropdown__content`
+   (ui/components/navigation.css). Popover при этом остаётся позиционером,
+   как и записано в спецификации Menu. */
+.popover__surface:has(> .menu) { background-color: transparent; box-shadow: none; padding: 0; }
+.popover__surface[hidden],.popover__surface[data-state="closed"] { display: none; }
+.popover__surface[data-state="open"] { display: block; }
+.popover__surface[data-placement^="bottom"] { top: calc(100% + 8px); }
+.popover__surface[data-placement^="top"] { bottom: calc(100% + 8px); }
+.popover__surface[data-placement$="start"] { left: 0; }
+.popover__surface[data-placement$="end"] { right: 0; }
+
+/* -------------------------------------------------------------------------
+   R3-A · Tooltip
+   ------------------------------------------------------------------------- */
+.tooltip {
+  background-color: var(--color-ui-gray-1);
+  border-radius: 8px;
+  color: var(--color-ui-white);
+  font: 400 12px/16px var(--font-base);
+  /* Тултип абсолютный, и его containing block — обёртка .popover шириной
+     с триггер. Без width подгонка под содержимое упирается в эту ширину,
+     текст встаёт колонкой по самому длинному слову, а max-width не достигается
+     никогда. max-content даёт естественную ширину, которую max-width и режет. */
+  width: max-content;
+  max-width: min(280px, calc(100vw - 24px));
+  padding: 6px 8px;
+  pointer-events: none;
+  position: absolute;
+  z-index: 1100;
+}
+.tooltip[hidden],.tooltip[data-state="closed"] { display: none; }
+.tooltip[data-state="open"] { display: block; }
+
+@media (prefers-reduced-motion: reduce) {
+  .popover__surface,.tooltip { transition: none; }
+}
+
+/* -------------------------------------------------------------------------
+   R3-A · Calendar / DatePicker / TimePicker
+   ------------------------------------------------------------------------- */
+.calendar { background:var(--color-ui-white);border-radius:16px;color:var(--color-ui-gray-1);padding:12px;width:296px }
+.calendar__header { align-items:center;display:flex;justify-content:space-between;margin-bottom:8px }
+.calendar__title { font:600 16px/24px var(--font-base);margin:0 }
+.calendar__grid { display:grid;gap:2px;grid-template-columns:repeat(7,36px) }
+.calendar__grid > [role="row"] { display: contents; }
+.calendar__grid [role="gridcell"] { min-width: 0; }
+.calendar__day[data-selected="true"] { background:var(--color-ui-primary);color:var(--color-ui-white) }
+.calendar__weekday { color:var(--color-ui-gray-2);font:400 12px/16px var(--font-base);padding:6px 0;text-align:center }
+.calendar__day { align-items:center;appearance:none;background:transparent;border:0;border-radius:9999px;color:inherit;cursor:pointer;display:flex;font:400 14px/20px var(--font-base);height:36px;justify-content:center;padding:0;width:36px }
+.calendar__day:hover:not(:disabled) { background:var(--color-ui-gray-3-10) }
+.calendar__day:focus-visible { outline:2px solid var(--color-ui-primary-60);outline-offset:1px }
+.calendar__day[aria-current="date"] { box-shadow:inset 0 0 0 1px var(--color-ui-primary);color:var(--color-ui-primary-accent) }
+.calendar__day[aria-selected="true"] { background:var(--color-ui-primary);color:var(--color-ui-white) }
+.calendar__day[data-in-range="true"] { background:var(--color-ui-primary-20);border-radius:0 }
+.calendar__day[data-outside-month="true"] { color:var(--color-ui-gray-4) }
+.calendar__day:disabled { color:var(--color-ui-gray-5);cursor:default;text-decoration:line-through }
+.date-picker,.time-picker { position:relative;width:100% }
+.date-picker__popover,.time-picker__popover { margin-top:8px }
+.time-picker__list { max-height:240px;overflow:auto }
+
+/* -------------------------------------------------------------------------
+   R3-A · FileUpload / Dropzone
+   ------------------------------------------------------------------------- */
+.file-upload { display:grid;gap:8px }
+.file-upload__input { height:1px;overflow:hidden;position:absolute;width:1px;clip:rect(0 0 0 0);clip-path:inset(50%) }
+.file-upload__item { align-items:center;background:var(--color-ui-gray-7);border:1px solid var(--color-ui-gray-shadow);border-radius:12px;display:flex;gap:8px;min-height:44px;padding:8px 12px }
+.file-upload__name { flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap }
+.file-upload__status { color:var(--color-ui-gray-2);font-size:12px }
+.file-upload__item[aria-busy="true"] { cursor:wait }
+.file-upload__item[data-state="error"] { border-color:var(--color-ui-red);color:var(--color-ui-red) }
+.file-upload__item[data-state="success"] { border-color:var(--color-ui-green);color:var(--color-ui-green-accent) }
+.file-upload[data-disabled="true"] { opacity:.6;pointer-events:none }
+.dropzone { align-items:center;background:var(--color-ui-gray-7);border:2px dashed var(--color-ui-gray-5);border-radius:16px;color:var(--color-ui-gray-2);cursor:pointer;display:flex;flex-direction:column;gap:8px;justify-content:center;min-height:144px;padding:24px;text-align:center }
+.dropzone:hover:not([aria-disabled="true"]),.dropzone[data-drag-active="true"] { background:var(--color-ui-primary-10);border-color:var(--color-ui-primary);color:var(--color-ui-primary-accent) }
+.dropzone:focus-visible { outline:2px solid var(--color-ui-primary-60);outline-offset:2px }
+.dropzone:has(input:focus-visible) { outline:2px solid var(--color-ui-primary-60);outline-offset:2px }
+.dropzone[aria-disabled="true"] { cursor:default;opacity:.6 }
+.dropzone[aria-invalid="true"] { background:var(--color-ui-red-10);border-color:var(--color-ui-red);color:var(--color-ui-red) }
+
+/* -------------------------------------------------------------------------
+   R3-A · Accordion
+   ------------------------------------------------------------------------- */
+.accordion { border-bottom:1px solid var(--color-ui-gray-shadow);border-top:1px solid var(--color-ui-gray-shadow) }
+.accordion__item + .accordion__item { border-top:1px solid var(--color-ui-gray-shadow) }
+.accordion__trigger { align-items:center;appearance:none;background:transparent;border:0;color:var(--color-ui-gray-1);cursor:pointer;display:flex;font:600 16px/24px var(--font-base);justify-content:space-between;padding:16px 0;text-align:left;width:100% }
+.accordion__trigger:hover:not(:disabled) { color:var(--color-ui-primary-accent) }
+.accordion__trigger:focus-visible { border-radius:4px;outline:2px solid var(--color-ui-primary-60);outline-offset:2px }
+.accordion__trigger:disabled { color:var(--color-ui-gray-4);cursor:default }
+.accordion__icon { flex:none;transition:transform .2s ease }
+.accordion__trigger[aria-expanded="true"] .accordion__icon { transform:rotate(180deg) }
+.accordion__panel { padding:0 0 16px }
+.accordion__panel[hidden] { display:none }
+
+@media (prefers-reduced-motion: reduce) { .accordion__icon { transition:none } }
+
+/* -------------------------------------------------------------------------
+   SalaryBar · заглушка вместо скрытой цены
+   ИСТОЧНИК: разметка и правило .salary-bar__hidden-value извлечены из сборки
+   (ui/components/cards.css). Само изображение сборка не задаёт: там стоит
+   background-image: var(--mask-image-url), а значение переменной приходит из
+   приложения и в снятом CSS его нет — см. components/data/salary-bar.md.
+   Файл заглушки в пакете есть: ui/assets/illustrations/mask.svg.
+
+   РЕШЕНИЕ: изображение подключается не фоном, а CSS-маской с заливкой
+   currentColor. Причина: mask.svg нарисован одним цветом (#8164F7), а заглушка
+   стоит рядом с подписями трёх разных цветов — серой у краёв шкалы
+   (--color-font-gray) и фиолетовой у границ разреза и у медианы
+   (--color-graph-violet). Сборка выкручивает цвет фильтром
+   grayscale + brightness поверх фиолетового; маска даёт тот же результат
+   точнее и без фильтра, поэтому фильтр здесь снимается.
+
+   color:transparent из сборки прятал не только текст-заполнитель «XXX», но и
+   currentColor, поэтому цвет возвращается наследованием, а сам текст гасится
+   text-fill-color: он не влияет на currentColor и сохраняет ширину коробки,
+   заданную глифами.
+   ------------------------------------------------------------------------- */
+.salary-bar--hide-values {
+  /* ui/assets/illustrations/mask.svg, встроенный как data-URI. Chrome не даёт
+     CSS-маске подтянуть внешний файл со страницы, открытой как file://, —
+     а витрину пакета открывают именно так. Файл закодирован дословно:
+     маска читает альфу, поэтому собственный цвет заливки в ней роли
+     не играет, а видимый цвет приходит из currentColor. */
+  --salary-hidden-value-mask: url("data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20width=%22128%22%20height=%2252%22%20fill=%22none%22%20id=%22mask%22%3E%3Cg%20fill=%22%238164F7%22%20clip-path=%22url(%23a)%22%3E%3Cpath%20d=%22M2%200H0v2h2V0ZM8%200H6v2h2V0ZM14%200h-2v2h2V0ZM20%200h-2v2h2V0ZM26%200h-2v2h2V0ZM32%200h-2v2h2V0ZM38%200h-2v2h2V0ZM44%200h-2v2h2V0ZM50%200h-2v2h2V0ZM56%200h-2v2h2V0ZM62%200h-2v2h2V0ZM68%200h-2v2h2V0ZM74%200h-2v2h2V0ZM80%200h-2v2h2V0ZM86%200h-2v2h2V0ZM92%200h-2v2h2V0ZM98%200h-2v2h2V0ZM104%200h-2v2h2V0ZM110%200h-2v2h2V0ZM116%200h-2v2h2V0ZM122%200h-2v2h2V0ZM128%200h-2v2h2V0ZM5%205H3v2h2V5ZM11%205H9v2h2V5ZM17%205h-2v2h2V5ZM23%205h-2v2h2V5ZM29%205h-2v2h2V5ZM35%205h-2v2h2V5ZM41%205h-2v2h2V5ZM47%205h-2v2h2V5ZM53%205h-2v2h2V5ZM59%205h-2v2h2V5ZM65%205h-2v2h2V5ZM71%205h-2v2h2V5ZM77%205h-2v2h2V5ZM83%205h-2v2h2V5ZM89%205h-2v2h2V5ZM95%205h-2v2h2V5ZM101%205h-2v2h2V5ZM107%205h-2v2h2V5ZM113%205h-2v2h2V5ZM119%205h-2v2h2V5ZM125%205h-2v2h2V5ZM2%2010H0v2h2v-2ZM8%2010H6v2h2v-2ZM14%2010h-2v2h2v-2ZM20%2010h-2v2h2v-2ZM26%2010h-2v2h2v-2ZM32%2010h-2v2h2v-2ZM38%2010h-2v2h2v-2ZM44%2010h-2v2h2v-2ZM50%2010h-2v2h2v-2ZM56%2010h-2v2h2v-2ZM62%2010h-2v2h2v-2ZM68%2010h-2v2h2v-2ZM74%2010h-2v2h2v-2ZM80%2010h-2v2h2v-2ZM86%2010h-2v2h2v-2ZM92%2010h-2v2h2v-2ZM98%2010h-2v2h2v-2ZM104%2010h-2v2h2v-2ZM110%2010h-2v2h2v-2ZM116%2010h-2v2h2v-2ZM122%2010h-2v2h2v-2ZM128%2010h-2v2h2v-2ZM5%2015H3v2h2v-2ZM11%2015H9v2h2v-2ZM17%2015h-2v2h2v-2ZM23%2015h-2v2h2v-2ZM29%2015h-2v2h2v-2ZM35%2015h-2v2h2v-2ZM41%2015h-2v2h2v-2ZM47%2015h-2v2h2v-2ZM53%2015h-2v2h2v-2ZM59%2015h-2v2h2v-2ZM65%2015h-2v2h2v-2ZM71%2015h-2v2h2v-2ZM77%2015h-2v2h2v-2ZM83%2015h-2v2h2v-2ZM89%2015h-2v2h2v-2ZM95%2015h-2v2h2v-2ZM101%2015h-2v2h2v-2ZM107%2015h-2v2h2v-2ZM113%2015h-2v2h2v-2ZM119%2015h-2v2h2v-2ZM125%2015h-2v2h2v-2ZM2%2020H0v2h2v-2ZM8%2020H6v2h2v-2ZM14%2020h-2v2h2v-2ZM20%2020h-2v2h2v-2ZM26%2020h-2v2h2v-2ZM32%2020h-2v2h2v-2ZM38%2020h-2v2h2v-2ZM44%2020h-2v2h2v-2ZM50%2020h-2v2h2v-2ZM56%2020h-2v2h2v-2ZM62%2020h-2v2h2v-2ZM68%2020h-2v2h2v-2ZM74%2020h-2v2h2v-2ZM80%2020h-2v2h2v-2ZM86%2020h-2v2h2v-2ZM92%2020h-2v2h2v-2ZM98%2020h-2v2h2v-2ZM104%2020h-2v2h2v-2ZM110%2020h-2v2h2v-2ZM116%2020h-2v2h2v-2ZM122%2020h-2v2h2v-2ZM128%2020h-2v2h2v-2ZM5%2025H3v2h2v-2ZM11%2025H9v2h2v-2ZM17%2025h-2v2h2v-2ZM23%2025h-2v2h2v-2ZM29%2025h-2v2h2v-2ZM35%2025h-2v2h2v-2ZM41%2025h-2v2h2v-2ZM47%2025h-2v2h2v-2ZM53%2025h-2v2h2v-2ZM59%2025h-2v2h2v-2ZM65%2025h-2v2h2v-2ZM71%2025h-2v2h2v-2ZM77%2025h-2v2h2v-2ZM83%2025h-2v2h2v-2ZM89%2025h-2v2h2v-2ZM95%2025h-2v2h2v-2ZM101%2025h-2v2h2v-2ZM107%2025h-2v2h2v-2ZM113%2025h-2v2h2v-2ZM119%2025h-2v2h2v-2ZM125%2025h-2v2h2v-2ZM2%2030H0v2h2v-2ZM8%2030H6v2h2v-2ZM14%2030h-2v2h2v-2ZM20%2030h-2v2h2v-2ZM26%2030h-2v2h2v-2ZM32%2030h-2v2h2v-2ZM38%2030h-2v2h2v-2ZM44%2030h-2v2h2v-2ZM50%2030h-2v2h2v-2ZM56%2030h-2v2h2v-2ZM62%2030h-2v2h2v-2ZM68%2030h-2v2h2v-2ZM74%2030h-2v2h2v-2ZM80%2030h-2v2h2v-2ZM86%2030h-2v2h2v-2ZM92%2030h-2v2h2v-2ZM98%2030h-2v2h2v-2ZM104%2030h-2v2h2v-2ZM110%2030h-2v2h2v-2ZM116%2030h-2v2h2v-2ZM122%2030h-2v2h2v-2ZM128%2030h-2v2h2v-2ZM5%2035H3v2h2v-2ZM11%2035H9v2h2v-2ZM17%2035h-2v2h2v-2ZM23%2035h-2v2h2v-2ZM29%2035h-2v2h2v-2ZM35%2035h-2v2h2v-2ZM41%2035h-2v2h2v-2ZM47%2035h-2v2h2v-2ZM53%2035h-2v2h2v-2ZM59%2035h-2v2h2v-2ZM65%2035h-2v2h2v-2ZM71%2035h-2v2h2v-2ZM77%2035h-2v2h2v-2ZM83%2035h-2v2h2v-2ZM89%2035h-2v2h2v-2ZM95%2035h-2v2h2v-2ZM101%2035h-2v2h2v-2ZM107%2035h-2v2h2v-2ZM113%2035h-2v2h2v-2ZM119%2035h-2v2h2v-2ZM125%2035h-2v2h2v-2ZM2%2040H0v2h2v-2ZM8%2040H6v2h2v-2ZM14%2040h-2v2h2v-2ZM20%2040h-2v2h2v-2ZM26%2040h-2v2h2v-2ZM32%2040h-2v2h2v-2ZM38%2040h-2v2h2v-2ZM44%2040h-2v2h2v-2ZM50%2040h-2v2h2v-2ZM56%2040h-2v2h2v-2ZM62%2040h-2v2h2v-2ZM68%2040h-2v2h2v-2ZM74%2040h-2v2h2v-2ZM80%2040h-2v2h2v-2ZM86%2040h-2v2h2v-2ZM92%2040h-2v2h2v-2ZM98%2040h-2v2h2v-2ZM104%2040h-2v2h2v-2ZM110%2040h-2v2h2v-2ZM116%2040h-2v2h2v-2ZM122%2040h-2v2h2v-2ZM128%2040h-2v2h2v-2ZM5%2045H3v2h2v-2ZM11%2045H9v2h2v-2ZM17%2045h-2v2h2v-2ZM23%2045h-2v2h2v-2ZM29%2045h-2v2h2v-2ZM35%2045h-2v2h2v-2ZM41%2045h-2v2h2v-2ZM47%2045h-2v2h2v-2ZM53%2045h-2v2h2v-2ZM59%2045h-2v2h2v-2ZM65%2045h-2v2h2v-2ZM71%2045h-2v2h2v-2ZM77%2045h-2v2h2v-2ZM83%2045h-2v2h2v-2ZM89%2045h-2v2h2v-2ZM95%2045h-2v2h2v-2ZM101%2045h-2v2h2v-2ZM107%2045h-2v2h2v-2ZM113%2045h-2v2h2v-2ZM119%2045h-2v2h2v-2ZM125%2045h-2v2h2v-2ZM2%2050H0v2h2v-2ZM8%2050H6v2h2v-2ZM14%2050h-2v2h2v-2ZM20%2050h-2v2h2v-2ZM26%2050h-2v2h2v-2ZM32%2050h-2v2h2v-2ZM38%2050h-2v2h2v-2ZM44%2050h-2v2h2v-2ZM50%2050h-2v2h2v-2ZM56%2050h-2v2h2v-2ZM62%2050h-2v2h2v-2ZM68%2050h-2v2h2v-2ZM74%2050h-2v2h2v-2ZM80%2050h-2v2h2v-2ZM86%2050h-2v2h2v-2ZM92%2050h-2v2h2v-2ZM98%2050h-2v2h2v-2ZM104%2050h-2v2h2v-2ZM110%2050h-2v2h2v-2ZM116%2050h-2v2h2v-2ZM122%2050h-2v2h2v-2ZM128%2050h-2v2h2v-2Z%22/%3E%3C/g%3E%3Cdefs%3E%3CclipPath%20id=%22a%22%3E%3Cpath%20fill=%22%23fff%22%20d=%22M0%200h128v52H0z%22/%3E%3C/clipPath%3E%3C/defs%3E%3C/svg%3E");
+}
+.salary-bar--hide-values .salary-bar__hidden-value {
+  color: inherit;
+  -webkit-text-fill-color: transparent;
+          text-fill-color: transparent;
+  background-image: none;
+  background-color: currentColor;
+  -webkit-mask-image: var(--salary-hidden-value-mask);
+          mask-image: var(--salary-hidden-value-mask);
+  /* Своего размера, без масштабирования: коробка подписи просто вырезает
+     окно из точечного полотна 128x52. mask-size: cover ужимал бы полотно
+     под коробку ~30x24, и точки становились меньше пикселя. */
+  -webkit-mask-size: auto;
+          mask-size: auto;
+  -webkit-mask-position: 0 0;
+          mask-position: 0 0;
+  -webkit-mask-repeat: no-repeat;
+          mask-repeat: no-repeat;
+}
+.salary-bar--hide-values .salary-bar__min .salary-bar__hidden-value,
+.salary-bar--hide-values .salary-bar__max .salary-bar__hidden-value { filter: none }

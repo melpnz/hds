@@ -1,0 +1,314 @@
+{
+ "id": "hints-restrictionhint--bottom-placement",
+ "name": "Bottom Placement",
+ "title": "Hints/RestrictionHint",
+ "componentId": "hints-restrictionhint",
+ "tags": [
+  "dev",
+  "test",
+  "autodocs"
+ ],
+ "initialArgs": {
+  "anchorLabel": "Подписаться на хаб",
+  "anchorNote": "Нижнее размещение удобно, когда над кнопкой мало свободного пространства.",
+  "eventLabel": "hint_reg_subscript_hub_go",
+  "hasRegistrationLink": true,
+  "messageKey": "SUBSCRIPTION_HUB_HINT",
+  "offset": {
+   "mainAxis": 0,
+   "crossAxis": 8
+  },
+  "placement": "bottom-start",
+  "close": "[function r]"
+ },
+ "argTypes": {
+  "anchorLabel": {
+   "control": {
+    "type": "text",
+    "disable": false
+   },
+   "name": "anchorLabel",
+   "type": {
+    "name": "string"
+   },
+   "description": "Подпись кнопки, выступающей target-элементом в story.",
+   "table": {
+    "category": "story",
+    "type": {
+     "summary": "string"
+    }
+   }
+  },
+  "anchorNote": {
+   "control": {
+    "type": "text",
+    "disable": false
+   },
+   "name": "anchorNote",
+   "type": {
+    "name": "string"
+   },
+   "description": "Контекст рядом с target-кнопкой в story.",
+   "table": {
+    "category": "story",
+    "type": {
+     "summary": "string"
+    }
+   }
+  },
+  "eventLabel": {
+   "control": {
+    "type": "text",
+    "disable": false
+   },
+   "name": "eventLabel",
+   "type": {
+    "name": "string",
+    "required": true
+   },
+   "description": "Имя gtag-события для клика по registration link.",
+   "table": {
+    "type": {
+     "summary": "string"
+    },
+    "category": "props"
+   }
+  },
+  "hasRegistrationLink": {
+   "control": {
+    "type": "boolean",
+    "disable": false
+   },
+   "name": "hasRegistrationLink",
+   "type": {
+    "name": "boolean",
+    "required": false
+   },
+   "description": "Показывает ссылку регистрации перед сообщением.",
+   "table": {
+    "type": {
+     "summary": "boolean"
+    },
+    "defaultValue": {
+     "summary": "true"
+    },
+    "category": "props"
+   }
+  },
+  "messageKey": {
+   "control": {
+    "type": "select",
+    "disable": false
+   },
+   "name": "messageKey",
+   "type": {
+    "name": "string",
+    "required": true
+   },
+   "description": "Ключ локализованного текста ограничения.",
+   "table": {
+    "type": {
+     "summary": "PROFILE_U_FOLLOW_HINT | PACK_LOGIN_TO_BOOKMARK | PUBLICATION_FAVORITE_HINT | SUBSCRIPTION_HUB_HINT"
+    },
+    "category": "props"
+   },
+   "options": [
+    "PROFILE_U_FOLLOW_HINT",
+    "PACK_LOGIN_TO_BOOKMARK",
+    "PUBLICATION_FAVORITE_HINT",
+    "SUBSCRIPTION_HUB_HINT"
+   ]
+  },
+  "offset": {
+   "control": {
+    "type": "object",
+    "disable": false
+   },
+   "name": "offset",
+   "type": {
+    "name": "object",
+    "value": {
+     "mainAxis": {
+      "name": "number"
+     },
+     "crossAxis": {
+      "name": "number"
+     }
+    },
+    "required": false
+   },
+   "description": "Смещение popover.",
+   "table": {
+    "type": {
+     "summary": "{ mainAxis: number; crossAxis: number }"
+    },
+    "defaultValue": {
+     "summary": "{\n  mainAxis: 0,\n  crossAxis: -34\n}"
+    },
+    "category": "props"
+   }
+  },
+  "placement": {
+   "control": {
+    "type": "select",
+    "disable": false
+   },
+   "name": "placement",
+   "type": {
+    "name": "string",
+    "required": false
+   },
+   "description": "Позиция popover относительно target.",
+   "table": {
+    "type": {
+     "summary": "top-start | bottom-start"
+    },
+    "defaultValue": {
+     "summary": "'top-start'"
+    },
+    "category": "props"
+   },
+   "options": [
+    "top-start",
+    "bottom-start"
+   ]
+  },
+  "target": {
+   "control": {
+    "type": "object"
+   },
+   "name": "target",
+   "type": {
+    "name": "other",
+    "value": "null",
+    "required": true
+   },
+   "table": {
+    "type": {
+     "summary": "null"
+    },
+    "category": "props"
+   }
+  },
+  "close": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "close",
+   "description": "Эмитится при клике вне popover или по Escape.",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "events"
+   },
+   "action": "close"
+  }
+ },
+ "parameters": {
+  "backgrounds": {
+   "grid": {
+    "cellSize": 20,
+    "opacity": 0.5,
+    "cellAmount": 5
+   },
+   "disable": false
+  },
+  "throwPlayFunctionExceptions": false,
+  "renderer": "vue3",
+  "docs": {
+   "story": {
+    "inline": false,
+    "iframeHeight": 320
+   },
+   "extractArgTypes": "[function fU]",
+   "extractComponentDescription": "[function Oe]",
+   "renderer": "[function renderer]",
+   "stories": {
+    "filter": "[function filter]"
+   },
+   "description": {
+    "component": "RestrictionHint показывает popover для действий, которые требуют регистрации или авторизации. В story подсказка открывается по клику на действие и получает реальный `target`, как в продуктовых сценариях."
+   },
+   "source": {
+    "originalSource": "{\n  args: {\n    anchorLabel: 'Подписаться на хаб',\n    anchorNote: 'Нижнее размещение удобно, когда над кнопкой мало свободного пространства.',\n    eventLabel: 'hint_reg_subscript_hub_go',\n    messageKey: 'SUBSCRIPTION_HUB_HINT',\n    offset: {\n      mainAxis: 0,\n      crossAxis: 8\n    },\n    placement: 'bottom-start'\n  }\n}"
+   }
+  },
+  "a11y": {
+   "test": "todo"
+  },
+  "viewport": {
+   "options": {
+    "mobile": {
+     "name": "Mobile < 768px",
+     "styles": {
+      "width": "767px",
+      "height": "768px"
+     },
+     "type": "mobile"
+    },
+    "tablet": {
+     "name": "Tablet 768-1023px",
+     "styles": {
+      "width": "1023px",
+      "height": "768px"
+     },
+     "type": "tablet"
+    },
+    "desktop": {
+     "name": "Desktop >= 1024px",
+     "styles": {
+      "width": "1024px",
+      "height": "768px"
+     },
+     "type": "desktop"
+    }
+   }
+  },
+  "controls": {
+   "matchers": {
+    "color": {},
+    "date": {}
+   }
+  },
+  "fileName": "./src/components/hints/restriction-hint.stories.ts",
+  "__isArgsStory": true
+ },
+ "usesMount": false,
+ "__entry": {
+  "id": "hints-restrictionhint--bottom-placement",
+  "title": "Hints/RestrictionHint",
+  "name": "Bottom Placement",
+  "importPath": "./src/components/hints/restriction-hint.stories.ts",
+  "componentPath": "./src/components/hints/restriction-hint.vue",
+  "tags": [
+   "dev",
+   "test",
+   "manifest",
+   "autodocs"
+  ]
+ },
+ "__url": "https://mr-7288-f.habr.habratest.net/storybook/iframe.html?viewMode=story&id=hints-restrictionhint--bottom-placement",
+ "__htmlLen": 655,
+ "__rootTag": "<div id=\"storybook-root\" data-v-app=\"\"><div style=\"position: relative; min-heigh",
+ "__error": null,
+ "__sheets": [
+  "https://mr-7288-f.habr.habratest.net/css/theme/dark-v2.css",
+  "https://mr-7288-f.habr.habratest.net/css/theme/light-v2.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/block-hX4sg17k.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/StoryVariantSection-BSy86dUg.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/button-base-BdvEVC2k.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/button-Ccclp6vQ.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/svg-img-r1n9vzM8.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/BaseDialog-CrJ9tGzP.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/dropdown-B6xIm0Cp.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/HintStoryTrigger-BJ5BafP9.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/base-popover-DIfjoqU2.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/base-hint-DHY34kLY.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/informer-hint-Bf4XvRzJ.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/restriction-hint-CHvNMITd.css"
+ ]
+}

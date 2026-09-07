@@ -1,0 +1,343 @@
+{
+ "id": "popovers-basepopover--variants",
+ "name": "Variants",
+ "title": "Popovers/BasePopover",
+ "componentId": "popovers-basepopover",
+ "tags": [
+  "dev",
+  "test",
+  "autodocs"
+ ],
+ "initialArgs": {
+  "contentText": "BasePopover позиционирует slot-контент относительно anchor-элемента.",
+  "observeShift": false,
+  "offset": {
+   "mainAxis": 8,
+   "crossAxis": 0
+  },
+  "placement": "bottom-start",
+  "triggerLabel": "Показать popover"
+ },
+ "argTypes": {
+  "contentText": {
+   "control": {
+    "type": "text",
+    "disable": false
+   },
+   "name": "contentText",
+   "type": {
+    "name": "string"
+   },
+   "description": "Базовый текст slot-контента в preview.",
+   "table": {
+    "category": "slots",
+    "type": {
+     "summary": "string"
+    }
+   }
+  },
+  "observeShift": {
+   "control": {
+    "type": "boolean",
+    "disable": false
+   },
+   "name": "observeShift",
+   "type": {
+    "name": "boolean",
+    "required": false
+   },
+   "description": "Передаёт `layoutShift` в `autoUpdate`, чтобы отслеживать смещение anchor-элемента.",
+   "table": {
+    "type": {
+     "summary": "boolean"
+    },
+    "category": "props"
+   }
+  },
+  "offset": {
+   "control": {
+    "type": "object",
+    "disable": false
+   },
+   "name": "offset",
+   "type": {
+    "name": "other",
+    "value": "PopoverOffset",
+    "required": false
+   },
+   "description": "Смещение относительно anchor-элемента.",
+   "table": {
+    "type": {
+     "summary": "{ mainAxis?: number; crossAxis?: number; alignmentAxis?: number | null }"
+    },
+    "category": "props"
+   }
+  },
+  "placement": {
+   "control": {
+    "type": "select",
+    "disable": false
+   },
+   "name": "placement",
+   "type": {
+    "name": "other",
+    "value": "Placement",
+    "required": false
+   },
+   "description": "Положение popover относительно anchor-элемента.",
+   "table": {
+    "type": {
+     "summary": "top-start | top | top-end | right-start | right | right-end | bottom-start | bottom | bottom-end | left-start | left | left-end"
+    },
+    "category": "props"
+   },
+   "options": [
+    "top-start",
+    "top",
+    "top-end",
+    "right-start",
+    "right",
+    "right-end",
+    "bottom-start",
+    "bottom",
+    "bottom-end",
+    "left-start",
+    "left",
+    "left-end"
+   ]
+  },
+  "triggerLabel": {
+   "control": {
+    "type": "text",
+    "disable": false
+   },
+   "name": "triggerLabel",
+   "type": {
+    "name": "string"
+   },
+   "description": "Текст кнопки-якоря в story.",
+   "table": {
+    "category": "story",
+    "type": {
+     "summary": "string"
+    }
+   }
+  },
+  "root": {
+   "control": {
+    "type": "object"
+   },
+   "name": "root",
+   "type": {
+    "name": "union",
+    "value": [
+     {
+      "name": "other",
+      "value": "HTMLElement"
+     },
+     {
+      "name": "other",
+      "value": "SVGElement"
+     }
+    ],
+    "required": true
+   },
+   "table": {
+    "type": {
+     "summary": "HTMLElement | SVGElement"
+    },
+    "category": "props"
+   }
+  },
+  "variant": {
+   "control": {
+    "type": "select",
+    "disable": false
+   },
+   "name": "variant",
+   "description": "Опциональное встроенное оформление контейнера. Для полностью сырого режима story `Default` показывает компонент без `variant`.",
+   "type": {
+    "name": "union",
+    "value": [
+     {
+      "name": "other",
+      "value": "BasePopoverVariant"
+     },
+     {
+      "name": "other",
+      "value": "null"
+     }
+    ],
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "common | dropdown | hub | tooltip | undefined"
+    },
+    "category": "props"
+   },
+   "options": [
+    "common",
+    "dropdown",
+    "hub",
+    "tooltip"
+   ]
+  },
+  "additionalMiddlewares": {
+   "control": {
+    "type": "object"
+   },
+   "name": "additionalMiddlewares",
+   "type": {
+    "name": "other",
+    "value": "Array([object Object])",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "Middleware[]"
+    },
+    "category": "props"
+   }
+  },
+  "close": {
+   "control": {
+    "type": "object",
+    "disable": true
+   },
+   "name": "close",
+   "type": {
+    "name": "other",
+    "value": "",
+    "required": false
+   },
+   "table": {
+    "category": "events"
+   }
+  },
+  "default": {
+   "control": {
+    "type": "object"
+   },
+   "name": "default",
+   "type": {
+    "name": "other",
+    "value": "{ arrowStyle: unknown; middlewareData: unknown; placement: unknown }",
+    "required": false
+   },
+   "table": {
+    "type": {
+     "summary": "{ arrowStyle: unknown; middlewareData: unknown; placement: unknown }"
+    },
+    "category": "slots"
+   }
+  }
+ },
+ "parameters": {
+  "backgrounds": {
+   "grid": {
+    "cellSize": 20,
+    "opacity": 0.5,
+    "cellAmount": 5
+   },
+   "disable": false
+  },
+  "throwPlayFunctionExceptions": false,
+  "renderer": "vue3",
+  "docs": {
+   "story": {
+    "inline": false,
+    "iframeHeight": 420
+   },
+   "extractArgTypes": "[function fU]",
+   "extractComponentDescription": "[function Oe]",
+   "renderer": "[function renderer]",
+   "stories": {
+    "filter": "[function filter]"
+   },
+   "description": {
+    "component": "Низкоуровневый popover-компонент на `@floating-ui/vue`. Принимает DOM-элемент якоря через `root`, отдаёт slot props с `placement`, `middlewareData` и `arrowStyle`, а закрывается по клику вне контента и по Escape. Без `variant` компонент не добавляет собственного визуального оформления."
+   },
+   "source": {
+    "originalSource": "{\n  render: (args: BasePopoverStoryArgs) => ({\n    components: {\n      PopoverPreview,\n      StoryVariantGrid,\n      StoryVariantSection\n    },\n    setup() {\n      return {\n        args,\n        variantEntries\n      };\n    },\n    template: `\n      <StoryVariantGrid>\n        <StoryVariantSection title=\"variant\">\n          <PopoverPreview\n            v-for=\"item in variantEntries\"\n            :key=\"item.label\"\n            compact\n            :observe-shift=\"args.observeShift\"\n            :offset=\"args.offset\"\n            :placement=\"item.variant === 'tooltip' ? 'top' : args.placement\"\n            :trigger-label=\"item.label\"\n            :variant=\"item.variant\"\n          >\n            <template v-if=\"item.variant === 'tooltip'\">\n              {{ item.contentText }}\n            </template>\n\n            <template v-else>\n              <div>{{ item.contentText }}</div>\n            </template>\n          </PopoverPreview>\n        </StoryVariantSection>\n      </StoryVariantGrid>\n    `\n  }),\n  args: {\n    placement: 'bottom-start'\n  }\n}"
+   }
+  },
+  "a11y": {
+   "test": "todo"
+  },
+  "viewport": {
+   "options": {
+    "mobile": {
+     "name": "Mobile < 768px",
+     "styles": {
+      "width": "767px",
+      "height": "768px"
+     },
+     "type": "mobile"
+    },
+    "tablet": {
+     "name": "Tablet 768-1023px",
+     "styles": {
+      "width": "1023px",
+      "height": "768px"
+     },
+     "type": "tablet"
+    },
+    "desktop": {
+     "name": "Desktop >= 1024px",
+     "styles": {
+      "width": "1024px",
+      "height": "768px"
+     },
+     "type": "desktop"
+    }
+   }
+  },
+  "controls": {
+   "matchers": {
+    "color": {},
+    "date": {}
+   }
+  },
+  "fileName": "./src/components/popover/base-popover.stories.ts",
+  "__isArgsStory": true
+ },
+ "usesMount": false,
+ "__entry": {
+  "id": "popovers-basepopover--variants",
+  "title": "Popovers/BasePopover",
+  "name": "Variants",
+  "importPath": "./src/components/popover/base-popover.stories.ts",
+  "componentPath": "./src/components/popover/base-popover.vue",
+  "tags": [
+   "dev",
+   "test",
+   "manifest",
+   "autodocs"
+  ]
+ },
+ "__url": "https://mr-7288-f.habr.habratest.net/storybook/iframe.html?viewMode=story&id=popovers-basepopover--variants",
+ "__htmlLen": 2340,
+ "__rootTag": "<div id=\"storybook-root\" data-v-app=\"\"><div class=\"story-variant-grid\"><section ",
+ "__error": null,
+ "__sheets": [
+  "https://mr-7288-f.habr.habratest.net/css/theme/dark-v2.css",
+  "https://mr-7288-f.habr.habratest.net/css/theme/light-v2.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/block-hX4sg17k.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/StoryVariantSection-BSy86dUg.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/button-base-BdvEVC2k.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/button-Ccclp6vQ.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/svg-img-r1n9vzM8.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/BaseDialog-CrJ9tGzP.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/dropdown-B6xIm0Cp.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/HintStoryTrigger-BJ5BafP9.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/base-popover-DIfjoqU2.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/base-hint-DHY34kLY.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/informer-hint-Bf4XvRzJ.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/restriction-hint-CHvNMITd.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/vote-hint-popup-D6BJBETV.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/pagination-button-DjQECuh-.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/pagination-I5St5IpN.css",
+  "https://mr-7288-f.habr.habratest.net/storybook/assets/base-popover-BP5L-gh1.css"
+ ]
+}

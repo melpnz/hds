@@ -1,0 +1,232 @@
+/* =========================================================================
+   HABR · BUTTON
+   =========================================================================
+   источник: button-base-BdvEVC2k.css (.btn, 15/16 страниц)
+             button-Ccclp6vQ.css     (.tm-button цветовые модификаторы, 15/16)
+   Storybook: Buttons/ButtonBase, Buttons/Button (16 story суммарно)
+   Figma:     habr-lib → button (Primary-fill/-line, Success-fill/-line,
+              Danger, Minor, icon-button — РОЛЕВЫЕ имена; см. CFL-2)
+
+   Два словаря имён для одного и того же класса — оба реальны:
+     production/CSS называет цвет  (christi, fuzzy-wuzzy-brown, desert-storm)
+     Figma library называет роль   (Success, Danger, Minor)
+   Спецификация компонента сопоставляет их явно. Здесь — только код.
+   ========================================================================= */
+
+/* --- база: форма, размер, transition ----------------------------------- */
+
+.btn {
+  box-sizing: border-box;
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 3px;
+  align-self: self-start;
+  font-size: .8125rem;
+  line-height: 1.15;
+  text-decoration: none;
+  transition: all .3s;
+  display: inline-block;
+}
+.btn:hover, .btn:focus, .btn:active {
+  outline: none;
+  text-decoration: none;
+  transition: all .3s;
+}
+
+/* --- форма: solid / transparent / text --------------------------------- */
+
+.btn_solid {
+  border-color: var(--accent-primary);
+  background-color: var(--accent-primary);
+  color: var(--background-primary);
+}
+.btn_solid:hover, .btn_solid:focus, .btn_solid:active {
+  border-color: var(--accent-primary-hover);
+  background-color: var(--accent-primary-hover);
+  color: var(--background-primary);
+}
+.btn_solid.btn_disabled {
+  background-color: var(--other-disabled-elements);
+  border-color: var(--other-disabled-elements);
+}
+
+.btn_transparent {
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+  background-color: transparent;
+}
+.btn_transparent:hover, .btn_transparent:focus {
+  border-color: var(--accent-primary);
+  background-color: var(--accent-primary);
+  color: var(--background-primary);
+}
+.btn_transparent:active {
+  border-color: var(--accent-primary-hover);
+  background-color: var(--accent-primary-hover);
+  color: var(--background-primary);
+}
+
+.btn_text {
+  background-color: transparent;
+  border-color: transparent;
+}
+.btn_text:hover, .btn_text:focus, .btn_text:active {
+  color: inherit;
+  background-color: transparent;
+}
+
+/* --- размер: 32 / 36 / 40 ------------------------------------------------ */
+
+.btn_small  { height: 2rem;    padding: 8px 14px; }
+.btn_middle { height: 2.25rem; padding: 10px 14px; }
+.btn_large  { height: 2.5rem;  padding: 12px 16px; }
+
+/* --- состояние: loading -------------------------------------------------- */
+
+.btn_loading {
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+.btn_loading:before {
+  content: "";
+  opacity: 1;
+  transform-origin: 100% 0;
+  z-index: 0;
+  background-color: rgba(0, 0, 0, .1);
+  width: 0;
+  height: 100%;
+  animation: 2s ease-in-out infinite loader;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* --- состояние: disabled (общий для .btn_solid и .btn_transparent) ------ */
+
+.btn.btn_disabled:is(:hover, :focus, :active),
+.btn.btn_disabled {
+  background-color: var(--other-disabled-elements);
+  border-color: var(--other-disabled-elements);
+  cursor: not-allowed;
+}
+.btn_transparent.btn_disabled,
+.btn_transparent.btn_disabled:is(:hover, :focus, :active) {
+  color: var(--text-secondary);
+  background-color: transparent;
+}
+
+/* --- цветовые модификаторы .tm-button (роль → цвет, см. шапку файла) ---- */
+
+.tm-button { cursor: pointer; }
+
+/* Danger — .btn_transparent + fuzzy-wuzzy-brown */
+.btn_transparent.tm-button_color-fuzzy-wuzzy-brown {
+  color: var(--accent-danger);
+  border-color: var(--accent-danger);
+}
+.btn_transparent.tm-button_color-fuzzy-wuzzy-brown:is(:active, :focus, :hover) {
+  color: var(--background-primary);
+  background-color: var(--accent-danger);
+}
+
+/* Success-fill — .tm-button_color-christi без формы */
+.tm-button_color-christi {
+  color: var(--background-primary);
+  background-color: var(--accent-positive);
+  border-color: var(--accent-positive);
+}
+.tm-button_color-christi:is(:active, :focus, :hover) {
+  background-color: var(--accent-positive-hover);
+  border-color: var(--accent-positive-hover);
+}
+/* Success-line — .btn_transparent + christi */
+.btn_transparent.tm-button_color-christi {
+  color: var(--accent-positive);
+  border-color: var(--accent-positive);
+  background-color: transparent;
+}
+.btn_transparent.tm-button_color-christi:is(:active, :focus, :hover) {
+  color: var(--background-primary);
+  background-color: var(--accent-positive);
+}
+
+/* Minor — .btn_transparent + desert-storm, нейтральный серый */
+.btn_transparent.tm-button_color-desert-storm {
+  color: var(--text-main);
+  border-color: var(--other-disabled-elements);
+  background-color: var(--background-secondary);
+}
+.btn_transparent.tm-button_color-desert-storm:is(:active, :focus, :hover) {
+  color: var(--text-main);
+  background-color: var(--background-gray);
+}
+
+/* .btn_text + horizon — кнопка-ссылка без рамки, акцентный цвет текста */
+.btn_text.tm-button_color-horizon {
+  color: var(--accent-primary);
+  background-color: transparent;
+}
+.btn_text.tm-button_color-horizon:is(:active, :focus, :hover) {
+  color: var(--accent-primary-hover);
+  background-color: transparent;
+}
+
+/* =========================================================================
+   TM-BUTTON-LINK — соседний, но ОТДЕЛЬНЫЙ класс
+   =========================================================================
+   источник: my-feed-8t8yK4rG.css, 1/16 страниц («Моя лента»)
+   Не алиас .btn: своя геометрия (min-height 32, gap 4, только один размер),
+   в извлечённом срезе встречается только с цветом christi (успех/зелёный).
+   GAP: другие цвета для этого класса не подтверждены. GAP-2 (был): ни один
+   из найденных модификаторов не задавал color на заливке — рендер-проверка
+   показывала дефолтный синий цвет ссылки на зелёном фоне. ИСПРАВЛЕНО по
+   прямому указанию пользователя при визуальном ревью showcase (не
+   переверено повторно на живом habr.com) — добавлен `color:
+   var(--background-primary)` на заливке, по аналогии с тем, как ВЕЗДЕ
+   остальные `.btn_solid`-подобные классы в этом файле парой задают
+   background-color + color (см. `.btn_solid` выше). Это ПОДДЕРЖИВАЕТ
+   исходную гипотезу «реальный визуальный дефект продукта», а не отменяет
+   её — используется как разумное исправление в showcase, не как
+   подтверждённое production-значение.
+   ========================================================================= */
+
+.tm-button-link {
+  box-sizing: border-box;
+  border: 1px solid;
+  border-radius: 3px;
+  align-items: center;
+  gap: 4px;
+  min-height: 32px;
+  padding: 4px 8px;
+  font-size: .8125rem;
+  line-height: 1rem;
+  text-decoration: none;
+  display: inline-flex;
+}
+.tm-button-link_color-christi {
+  border-color: var(--accent-positive);
+  background-color: var(--accent-positive);
+  color: var(--background-primary);
+  cursor: pointer;
+}
+.tm-button-link_color-christi:is(:hover, :focus) {
+  border-color: var(--accent-positive-hover);
+  background-color: var(--accent-positive-hover);
+  color: var(--background-primary);
+}
+.tm-button-link_styleType-transparent {
+  border-color: var(--accent-positive);
+  color: var(--accent-positive);
+  cursor: pointer;
+  background-color: transparent;
+}
+.tm-button-link_styleType-transparent:is(:hover, :focus) {
+  border-color: var(--accent-positive-hover);
+  color: var(--accent-positive-hover);
+  background-color: transparent;
+}
+
+/* @keyframes loader, на который ссылается .btn_loading, объявлен один раз
+   в ui/foundations.css — это глобальная анимация из шелл-бандла (index.css),
+   не собственность кнопки. Без foundations.css .btn_loading не анимируется. */

@@ -1,0 +1,54 @@
+/* =========================================================================
+   HABR · PATTERN-LEVEL CSS
+   =========================================================================
+   Page-bound CSS, перенесённый НЕ как переиспользуемый компонент (нет
+   отдельной спецификации в components/), а потому что без него канонический
+   page pattern из evidence/pattern-taxonomy.md невозможно воспроизвести
+   code-first. Явно разрешено методикой этапа Pattern Library.
+
+   Сюда попадает identity-карточка сущности (§6 Profile/Entity) — взят
+   ОДИН представитель (tm-hub-card), не все три найденных варианта
+   (hub/user/company имеют разные наборы полей, см. pattern-taxonomy.md).
+   Использовать как образец принципа «идентичность — в главной колонке,
+   не в сайдбаре», а не как гарантированно точный код для company/user.
+   ========================================================================= */
+
+.tm-hub-card {
+  background-color: var(--background-primary);
+  margin-bottom: 8px;
+  padding: 16px 16px 0;
+}
+.tm-hub-card__header { justify-content: space-between; align-items: center; margin-bottom: 6px; display: flex; }
+.tm-hub-card__data { align-items: center; display: flex; }
+.tm-hub-card__avatar { border-radius: 3px; flex: none; width: 48px; height: 48px; margin-right: 16px; overflow: hidden; }
+.tm-hub-card__name {
+  color: var(--text-main);
+  margin: 0;
+  font-size: 1.24375rem;
+  font-weight: 700;
+  line-height: 1.75rem;
+  text-decoration: none;
+}
+.tm-hub-card__short-info { color: var(--text-secondary); margin: 2px 0 0; font-size: .8125rem; line-height: 1.125rem; }
+.tm-hub-card__description { color: var(--text-main); margin: 4px 0 0; font-size: .875rem; line-height: 1.25rem; }
+.tm-hub-card__profiled { cursor: help; }
+.tm-hub-card__follow_after-description { margin-top: 12px; }
+@media (min-width: 1024px) {
+  .tm-hub-card { margin-bottom: 0; padding: 16px 20px 8px; }
+}
+
+/* --- строка статистики (рейтинг/подписчики) — в identity-карточках ---
+   .stats-container оставлен корнем: это его настоящее имя, а вложенные
+   .stat/.stat-link заскоуплены под него. В production всё изолировано
+   data-v, у нас — нет; глубже сузить, не выдумывая имён, нельзя. */
+
+.tm-hub-card .stats-container, .tm-user-card .stats-container { align-items: center; gap: 16px; margin-top: 12px; display: flex; }
+.stats-container .stat { color: var(--text-secondary); flex-direction: row; align-items: baseline; gap: 4px; display: flex; }
+.stats-container .stat-link { text-decoration: none; position: relative; }
+.stats-container .stat-link:hover:after {
+  content: "";
+  background: currentColor;
+  height: 1px;
+  position: absolute;
+  bottom: -1px; left: 0; right: 0;
+}
