@@ -93,7 +93,7 @@
         <li><a class="nav__link" href="#n-pagination">Постраничная навигация</a></li>
         <li><a class="nav__link" href="#n-pagination-mid">Середина и конец списка</a></li>
         <li><a class="nav__link" href="#n-segmented">Переключатель-таблетка</a></li>
-        <li><a class="nav__link" href="#n-tabs">Вкладки с подчёркиванием</a></li>
+        
         <li><a class="nav__link" href="#n-menu">Контекстное меню</a></li>
         <li><a class="nav__link" href="#n-steps">Шаги в боковой колонке</a></li>
       </ul>
@@ -187,7 +187,14 @@
       </ul>
     </li>
     <li><a class="nav__link nav__link--top" href="#s-gaps">Чего не хватает</a></li>
-  </ul>
+        <li><a class="nav__link nav__link--top" href="../docs/development/quick-start.md">Быстрый старт</a></li>
+        <li><a class="nav__link nav__link--top" href="../docs/development/installation.md">Подключение</a></li>
+        <li><a class="nav__link nav__link--top" href="../docs/guide/design.md">Дизайн-основа</a></li>
+        <li><a class="nav__link nav__link--top" href="../docs/guide/composition.md">Композиция</a></li>
+        <li><a class="nav__link nav__link--top" href="../docs/guide/decisions.md">Решения</a></li>
+        <li><a class="nav__link nav__link--top" href="../ROADMAP.md">Роадмап и планы</a></li>
+        <li><a class="nav__link nav__link--top" href="../CHANGELOG.md">Changelog</a></li>
+      </ul>
 
   <div class="nav__foot">
     <p>Спецификации компонентов — <code>career/components/</code></p>
@@ -326,7 +333,7 @@
   <div class="subsection" id="f-bp">
     <div class="specimen" data-name="брейкпоинты четыре полосы, границы 480 · 768 · 1024 значения взяты не из имён префиксов, а из медиазапросов сборки. оболочка перестраивается один раз — на границе планшета и десктопа, то есть на 1024. 1100 брейкпоинтом не является; остальные ступени используются точечно, внутри отдельных компонентов.">
       <div class="specimen__head"><h4>Брейкпоинты</h4><code>четыре полосы, границы 480 · 768 · 1024</code></div>
-      <p class="note">Значения взяты не из имён префиксов, а из медиазапросов сборки. Оболочка перестраивается один раз — на границе планшета и десктопа, то есть на 1024; остальные ступени используются точечно, внутри отдельных компонентов. <b>1100 брейкпоинтом не является</b> — это потолок контейнера, медиазапроса на него нет. Контрольные ширины для проверки макетов — <code>RULES.md</code> §11.</p>
+      <p class="note">Значения взяты не из имён префиксов, а из медиазапросов сборки. Оболочка перестраивается один раз — на границе планшета и десктопа, то есть на 1024; остальные ступени используются точечно, внутри отдельных компонентов. <b>1100 брейкпоинтом не является</b> — это потолок контейнера, медиазапроса на него нет. Контрольные ширины для проверки макетов — <code>docs/guide/composition.md</code> §11.</p>
       <div class="stage">
 <div class="tablewrap"><table class="spec-table"><thead><tr><th>Полоса</th><th>Медиазапрос</th><th>Префикс утилит</th></tr></thead><tbody><tr><td>узкий телефон</td><td><code>(max-width: 479px)</code></td><td><code>small-phone:</code></td></tr><tr><td>телефон</td><td><code>(min-width: 480px) and (max-width: 767px)</code></td><td><code>phablet-only:</code></td></tr><tr><td>планшет</td><td><code>(min-width: 768px) and (max-width: 1023px)</code></td><td><code>tablet-only:</code></td></tr><tr><td>десктоп</td><td><code>(min-width: 1024px)</code></td><td><code>desktop: · desktop-only:</code></td></tr></tbody></table></div>
       </div>
@@ -1555,16 +1562,6 @@
     </div>
   </div>
 
-  <div class="subsection" id="n-tabs">
-    <div class="specimen" data-name="вкладки с подчёркиванием вне сборки · production подчёркнутые вкладки переключают раздел, «таблетка» — представление внутри раздела. разные роли.">
-      <div class="specimen__head"><h4>Вкладки с подчёркиванием</h4><code>вне сборки · production</code></div>
-      <p class="note">Подчёркнутые вкладки переключают раздел, «таблетка» — представление внутри раздела. Разные роли.</p>
-      <div class="stage">
-<nav class="tabs--underline" aria-label="Разделы"><a class="tabs__tab is-active" href="#" aria-current="page">Вакансии</a><a class="tabs__tab" href="#">Компании</a><a class="tabs__tab" href="#">Зарплаты</a><a class="tabs__tab" href="#">Эксперты</a><a class="tabs__tab" aria-disabled="true">Архив</a></nav>
-      </div>
-    </div>
-  </div>
-
   <div class="subsection" id="n-menu">
     <div class="specimen" data-name="контекстное меню context-menu__content · base-dropdown">
       <div class="specimen__head"><h4>Контекстное меню</h4><code>context-menu__content · base-dropdown</code></div>
@@ -1601,7 +1598,7 @@
     </button>
   </div>
 </div>
-      </div>
+      <p class="note">Верхнее троеточие раскрывается: у снятой разметки есть и триггер, и меню, поведение к ним подключено как reference — в продукте им управляет <code>BaseDropdown</code>. Нижнее не раскрывается и не может: это вариант на <code>v-popper</code>, его всплывающий слой живёт в портале и в снимок Storybook не попал. Нормативный интерактивный пример — <a href="#n-menu-contract">Dropdown и ContextMenu</a>.</p></div>
     </div>
   </div>
 

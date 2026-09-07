@@ -12,7 +12,7 @@
 | Задача | Статус | Результат |
 |---|---|---|
 | R0-01 Component manifest | готово для base scope | 63 записи, все реализованы и имеют статус complete |
-| R0-02 State contract | готово | Нормативный словарь и матрицы в [`components/STATES.md`](components/STATES.md) |
+| R0-02 State contract | готово | Нормативный словарь и матрицы в [`components/STATES.md`](../components/STATES.md) |
 | R0-03 State evidence | готово для current scope | Validator проверяет state evidence; исправлены ложноотрицательные спецификации |
 | R0-04 Шаблон и тесты | готово для current scope | Структура, spec paths, CSS roots, anchors, browser interactions и assets проверяются автоматически |
 | R2-A Actions | готово | 11 action-компонентов получили полный state contract, ARIA aliases и живые примеры |
@@ -33,7 +33,7 @@
 Текущий baseline: strict-validator проходит без предупреждений; browser suite
 проверяет интерактивные контракты, локальные assets и отсутствие горизонтального
 overflow на 375, 768, 1024 и 1440 px. Снимки находятся в
-[`evidence/verification/`](evidence/verification/). Все 63 компонента base scope
+[`evidence/verification/`](../evidence/verification/). Все 63 компонента base scope
 и R3-A и девять каркасных модулей R4 имеют статус `complete`; записей `partial`
 и `planned` нет. Первый entity-модуль R5 — `VacancyCard` — также имеет статус
 `complete`; всего в manifest 73 записи.
@@ -349,7 +349,7 @@ default / hover / focus-visible / pressed / selected / disabled
 
 Статус: **готово, 4 сентября 2026**. Извлечённый production CSS оставлен без
 изменений. Недостающие нормативные состояния находятся в
-[`ui/state-contract.css`](ui/state-contract.css); legacy modifiers поддерживаются
+[`ui/state-contract.css`](../ui/state-contract.css); legacy modifiers поддерживаются
 как aliases, а новый API использует нативные атрибуты и ARIA semantics.
 
 | Компонент | Основная работа |

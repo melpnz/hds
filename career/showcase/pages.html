@@ -34,7 +34,7 @@
     <p><a href="../showcase/components.html">Reference UI</a> — из чего строить.<br>
        Эта страница — как из этого строить.<br>
        <a href="../README.md">README</a> — карта пакета.</p>
-    <p>Evidence: <code>../RULES.md</code>,
+    <p>Evidence: <code>../docs/guide/composition.md</code>,
        <code>../evidence/curated/</code>.</p>
   </div>
 </nav>
@@ -71,7 +71,7 @@
           оболочку; отдельного планшетного вида у устаревающей реализации нет.
           Ниже 1023 раскладка не меняется вплоть до 320 — только линейное сжатие.</li>
       <li>Метки вида <code>L-3</code>, <code>R-5</code> — идентификаторы правил композиции из
-          <code>../RULES.md</code>. У каждого правила там указано,
+          <code>../docs/guide/composition.md</code>. У каждого правила там указано,
           на скольких страницах оно наблюдалось.</li>
       <li>Контент — нейтральный, но реалистичной длины. Реальные компании и вакансии
           не воспроизводятся: нас интересует раскладка, а не данные.</li>
@@ -658,14 +658,20 @@
   <div class="pattern__head">
     <span class="pattern__num">06</span>
     <h2>Рейтинг</h2>
-    <p>Гибрид: каркас листинга при содержимом дашборда. Ранжированный список с табами
-       фильтрации над ним.</p>
+    <p>Гибрид: каркас листинга при содержимом дашборда. Ранжированный список
+       с переключателем фильтрации над ним.</p>
+        <p class="note"><b>ДОПУЩЕНИЕ.</b> Переключатель года собран на
+       <code>SegmentedTabs</code>. Снятый ранее <code>dash-ratings.json</code>
+       показывает на этом месте вкладки с подчёркиванием, но в живом продукте
+       их уже нет — снимок устарел, а чем переключатель свёрстан сейчас,
+       не переснято. Правило <code>R-8</code> про горизонтальную прокрутку
+       сохранено: оно про поведение, а не про начертание.</p>
   </div>
   <ul class="rules">
     <li title="Сетка листинга">L-1</li>
     <li title="Заголовок внутри карточки">L-3</li>
     <li title="Шаг 12">L-4</li>
-    <li title="Табы имеют встроенный overflow-x auto">R-8</li>
+    <li title="Переключатель имеет встроенный overflow-x auto">R-8</li>
   </ul>
 
   <div class="vp-bar" data-for="vp-rating"><span class="vp-bar__label">Ширина</span><button class="vp-btn" data-w="320" title="узкий телефон" aria-pressed="false">320</button><button class="vp-btn" data-w="480" title="телефон" aria-pressed="false">480</button><button class="vp-btn" data-w="768" title="планшет" aria-pressed="false">768</button><button class="vp-btn" data-w="1024" title="десктоп" aria-pressed="false">1024</button><button class="vp-btn" data-w="1100" title="потолок контейнера" aria-pressed="true">1100</button><span class="vp-bar__meta"></span></div>
@@ -679,12 +685,7 @@
                 <div class="page-header-card__top">
                   <h1 class="page-header-card__title">Рейтинг компаний</h1>
                 </div>
-                <div class="tabs--underline" style="overflow-x:auto">
-                  <button class="tabs__tab is-active">2025</button>
-                  <button class="tabs__tab">2024</button>
-                  <button class="tabs__tab">2023</button>
-                  <button class="tabs__tab">2022</button>
-                </div>
+                <nav class="segmented-tabs" aria-label="Год рейтинга" style="overflow-x:auto"><a class="segmented-tabs__item" href="#" data-href="/companies/ratings?y=2025" aria-current="page">2025</a><a class="segmented-tabs__item" href="#" data-href="/companies/ratings?y=2024">2024</a><a class="segmented-tabs__item" href="#" data-href="/companies/ratings?y=2023">2023</a><a class="segmented-tabs__item" href="#" data-href="/companies/ratings?y=2022">2022</a></nav>
                 <div class="page-header-card__count">Более 5000 сотрудников · 48 компаний</div>
               </div>
             </div>
@@ -903,7 +904,7 @@
     <span class="pattern__num">—</span>
     <h2>Свод правил, использованных на этой странице</h2>
     <p>Полные формулировки с указанием покрытия — в
-       <code>../RULES.md</code>.</p>
+       <code>../docs/guide/composition.md</code>.</p>
   </div>
   <div class="tablewrap"><table class="doc">
     <thead><tr><th>ID</th><th>Правило</th><th>Наблюдений</th></tr></thead>

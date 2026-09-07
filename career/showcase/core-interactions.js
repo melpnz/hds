@@ -92,6 +92,34 @@
   }
 
   const menu = document.getElementById('vacancy-actions');
+  /* Legacy-снимок ContextMenu: разметка из Storybook несёт и триггер, и меню,
+     но поведения в снимке нет — в продукте им управляет BaseDropdown. Здесь
+     только reference-обвязка, чтобы стенд не выглядел сломанным: класс
+     --open и aria-expanded. Нормативный интерактивный пример — #n-menu-contract. */
+  all('#n-menu .base-dropdown').forEach(root => {
+    const trigger = root.querySelector('.base-dropdown__toggle button');
+    const content = root.querySelector('.base-dropdown__content');
+    if (!trigger || !content) return;
+    const OPEN = 'base-dropdown__content--open';
+    const set = open => {
+      content.classList.toggle(OPEN, open);
+      trigger.setAttribute('aria-expanded', String(open));
+    };
+    trigger.setAttribute('aria-haspopup', 'menu');
+    set(false);
+    trigger.addEventListener('click', () => set(!content.classList.contains(OPEN)));
+    const escape = event => {
+      if (event.key === 'Escape' && content.classList.contains(OPEN)) {
+        event.preventDefault(); set(false); trigger.focus();
+      }
+    };
+    trigger.addEventListener('keydown', escape);
+    content.addEventListener('keydown', escape);
+    document.addEventListener('pointerdown', event => {
+      if (!root.contains(event.target)) set(false);
+    });
+  });
+
   optionList(menu, document.querySelector('[aria-controls="vacancy-actions"]'), menu.closest('.popover__surface'), item => {
     if (item.getAttribute('role') === 'menuitemcheckbox') item.setAttribute('aria-checked', String(item.getAttribute('aria-checked') !== 'true'));
   });

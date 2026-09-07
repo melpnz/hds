@@ -142,61 +142,6 @@
 }
 
 /* -------------------------------------------------------------------------
-   Вкладки с подчёркиванием
-   ИСТОЧНИК: production. Это не BaseSegmentedTabs: подчёркнутые вкладки
-   переключают раздел, «таблетка» — представление внутри раздела.
-   ------------------------------------------------------------------------- */
-.tabs--underline {
-  display: flex;
-  align-items: stretch;
-  gap: 16px;
-  border-bottom: 1px solid var(--color-ui-gray-shadow);
-}
-.tabs--underline .tabs__tab {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
-  height: 40px;
-  padding: 0 2px;
-  font: 600 14px/20px var(--font-base);
-  color: var(--color-ui-gray-2);
-  text-decoration: none;
-  background: none;
-  border: 0;
-  cursor: pointer;
-  white-space: nowrap;
-}
-.tabs--underline .tabs__tab.is-active { color: var(--color-ui-gray-1); }
-.tabs--underline .tabs__tab[aria-current="page"] { color: var(--color-ui-gray-1); }
-.tabs--underline .tabs__tab:not(.is-active):not([aria-current="page"]):not(:disabled):not([aria-disabled="true"]):hover {
-  color: var(--color-ui-gray-1);
-}
-.tabs--underline .tabs__tab:focus-visible {
-  outline: 2px solid var(--color-ui-primary-60);
-  outline-offset: 2px;
-  border-radius: 4px;
-}
-.tabs--underline .tabs__tab:not(:disabled):not([aria-disabled="true"]):active {
-  color: var(--color-ui-primary);
-}
-.tabs--underline .tabs__tab:disabled,
-.tabs--underline .tabs__tab[aria-disabled="true"] {
-  color: var(--color-ui-gray-4);
-  cursor: default;
-  pointer-events: none;
-}
-.tabs--underline .tabs__tab.is-active::after,
-.tabs--underline .tabs__tab[aria-current="page"]::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  height: 2px;
-  background: var(--color-ui-primary);
-}
-
-/* -------------------------------------------------------------------------
    Карточка вакансии в листинге
    ИСТОЧНИК: замеры production, 12 страниц.
    Не путать с VacancyCardWithCompanyAndDate из career-web: тот — выделенный

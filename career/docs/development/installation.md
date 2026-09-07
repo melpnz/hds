@@ -1,9 +1,9 @@
-# CSS Career
+# Подключение
 
 Всё, что нужно, чтобы вёрстка выглядела как Хабр Карьера. Подключается одной строкой:
 
 ```html
-<link rel="stylesheet" href="../ui/career.css">
+<link rel="stylesheet" href="../../ui/career.css">
 ```
 
 Всё, кроме шрифта, лежит внутри папки: к `assets.habr.com` и к Storybook слой
@@ -172,7 +172,7 @@ Career верстает BEM-классами и утилитами одновр�
 
 Поэтому в `utilities.css` — ровно те правила, чьи классы физически встречаются
 в разметке Career, плюс полная именованная шкала теней. Разбор — в
-[`../evidence/coverage.md`](../evidence/coverage.md).
+[`../evidence/coverage.md`](../../evidence/coverage.md).
 
 Брейкпоинты Career вынесены в шапку файла: шкала max-width-first,
 `tablet:hidden` означает «скрыт при ширине ≤ 1023px».
@@ -202,7 +202,7 @@ Career верстает BEM-классами и утилитами одновр�
 спрайтах, 141 из них вынесен отдельным файлом в `icons/single/`; 41 иллюстрация,
 53 изображения. Шрифта здесь нет — он подключается
 из Google Fonts, см. `fonts.css`.
-Опись — [`assets/README.md`](assets/README.md).
+Опись — [`assets/README.md`](../../ui/assets/README.md).
 
 ---
 

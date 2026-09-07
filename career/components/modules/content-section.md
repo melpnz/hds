@@ -48,5 +48,5 @@ SectionHeader самостоятельно перестраивает actions н
 ## Источники
 
 - [`data/section.md`](../data/section.md) и production page composition.
-- [`COMPONENT-ROADMAP.md`](../../COMPONENT-ROADMAP.md) §9.
+- [`research/component-roadmap.md`](../../research/component-roadmap.md) §9.
 

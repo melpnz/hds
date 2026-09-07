@@ -46,10 +46,10 @@ rating?, accreditation?, saved?
 
 ## Источники
 
-- Локальная [спецификация VacancyCard](components/cards/vacancy-card.md),
-  [страница-композиция](showcase/pages.html) и
-  [`list-vacancies` production evidence](evidence/source/production/list-vacancies.json).
-- Локальная [спецификация ResumeCard](components/cards/resume-card.md) и
-  [`list-resumes` production evidence](evidence/source/production/list-resumes.json).
+- Локальная [спецификация VacancyCard](../components/cards/vacancy-card.md),
+  [страница-композиция](../showcase/pages.html) и
+  [`list-vacancies` production evidence](../evidence/source/production/list-vacancies.json).
+- Локальная [спецификация ResumeCard](../components/cards/resume-card.md) и
+  [`list-resumes` production evidence](../evidence/source/production/list-resumes.json).
 - Публичные страницы: <https://career.habr.com/vacancies>,
   <https://career.habr.com/resumes>, <https://career.habr.com/companies>.

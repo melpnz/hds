@@ -43,5 +43,5 @@ listing, detail и profile. Уровень заголовка задаёт ко�
 ## Источники
 
 - Production listing/detail/profile в [`showcase/pages.html`](../../showcase/pages.html).
-- Типографика и ритм: [`RULES.md`](../../RULES.md).
+- Типографика и ритм: [`composition.md`](../../docs/guide/composition.md).
 

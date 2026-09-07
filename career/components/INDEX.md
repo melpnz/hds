@@ -14,7 +14,7 @@
 | Задача | Куда идти |
 |---|---|
 | Увидеть компонент вживую | [`../showcase/components.html`](../showcase/components.html) |
-| Понять правила композиции | [`../RULES.md`](../RULES.md) |
+| Понять правила композиции | [`../docs/guide/composition.md`](../docs/guide/composition.md) |
 | Понять устройство конкретного компонента | реестр ниже → файл спецификации |
 | Найти каноническое имя и статус покрытия | [`manifest.json`](manifest.json) |
 | Проверить обязательные состояния | [`STATES.md`](STATES.md) |
@@ -192,7 +192,6 @@
 | **MenuItem** | команда меню | — | 0 | 0 | normative API | `menu-item` | да, UI kit pattern | [navigation/menu-item.md](navigation/menu-item.md) |
 | **Pagination** | постраничная навигация | `Common/Navigation/BasePagination` | 3 | 3 | 5 / 1 | `base-pagination-button` | да | [navigation/pagination.md](navigation/pagination.md) |
 | **SegmentedTabs** | переключатель представления | `Common/Navigation/BaseSegmentedTabs` | 4 | 4 | 1 / 0 | _утилиты_ | да | [navigation/segmented-tabs.md](navigation/segmented-tabs.md) |
-| **Tabs** | навигация по разделам с подчёркиванием | — | 0 | 0 | 0 / 0 | `tabs--underline` | да | [navigation/tabs.md](navigation/tabs.md) |
 
 ## Обратная связь
 

@@ -55,4 +55,4 @@ header.page-header
 
 - [`evidence/README.md`](../../evidence/README.md): `responsive-header-1440/375`.
 - [`ui/layout.css`](../../ui/layout.css): SH-1…SH-5 и R-1/R-8.
-- [`RULES.md`](../../RULES.md): реальные границы responsive.
+- [`composition.md`](../../docs/guide/composition.md): реальные границы responsive.

@@ -117,7 +117,7 @@ API-именами.
 
 ### Navigation and collections
 
-| State | Tabs | Pagination | MenuItem | Interactive Row/Chip |
+| State | SegmentedTabs | Pagination | MenuItem | Interactive Row/Chip |
 |---|---:|---:|---:|---:|
 | default | R | R | R | R |
 | hover | R | R | R | R |

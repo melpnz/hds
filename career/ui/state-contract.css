@@ -339,7 +339,14 @@
   opacity: .6;
 }
 
+/* Оба конца заданы одной и той же функцией намеренно. С одним только `to`
+   начальным значением становится собственный transform элемента, а у
+   .switch-spinner это составной transform из Tailwind (translate + rotate +
+   skew + scale). Списки функций не совпадают, браузер переходит на
+   интерполяцию матриц, а rotate(1turn) как матрица равна rotate(0) —
+   и вращение не происходит вовсе. */
 @keyframes career-control-spin {
+  from { transform: rotate(0turn); }
   to { transform: rotate(1turn); }
 }
 
