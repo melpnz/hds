@@ -5,6 +5,12 @@
 каждая строка ниже проверена `getComputedStyle`/`getBoundingClientRect`
 на живом `habr.com`, не только вычитана из исходника.
 
+Это снимок одного прохода. **Постоянная сверка автоматизирована** —
+`check/parity.js` сравнивает выигравшие правила production с нашими
+объявлениями при каждом запуске `python check/run.py`. Таблица ниже
+осталась потому, что колонка «Cause» объясняет, *почему* расхождение
+возникло, — этого автоматика не даёт.
+
 | Component/pattern | Local (наш CSS) | Production (computed) | Match/Difference | Cause | Action |
 |---|---|---|---|---|---|
 | **Button** — `.btn.btn_solid` | `background:var(--accent-primary)` | `rgb(84,142,171)` = `--accent-primary` | **MATCH** | — | — |

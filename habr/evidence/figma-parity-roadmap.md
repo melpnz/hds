@@ -5,40 +5,10 @@
 Production: живой habr.com (CDP) + локальный Storybook-корпус
 (`_sources/habr/`: 19 CSS-файлов сборки, 73 отрисованных story).
 
-Цель прохода была не «посмотреть ещё раз внимательнее», а найти
-**системные причины**, из-за которых точечные проверки продолжали
-пропускать баги. Причины нашлись, они описаны ниже отдельным разделом —
-и они объясняют большинство находок.
-
----
-
-## 0. Как проверялось
-
-Три инструмента, все воспроизводимые, ни один не полагается на глаз.
-
-**1. Стенд паритета «одна разметка — два CSS».**
-Каждая из 73 story-разметок Storybook отрисована дважды: под настоящим
-production-CSS из `_sources/habr/source/css/` и под нашим `ui/habr.css`.
-Затем поэлементно сравнены **62 вычисленных свойства** плюс `::before`/
-`::after` и габариты. Обе стороны получают одинаковую глобальную базу
-(normalize + два правила на `body`), отдельно сверенную с живым habr.com —
-иначе prod-сторона рендерилась Times New Roman и весь дифф тонул в шуме
-от разной ширины текста.
-
-Результат: **43 story из 73 совпали полностью**, 30 дали расхождения,
-из которых после разбора настоящими оказались 6 (остальное — обвязка
-Storybook, разный порядок загрузки чанков и отсутствие шрифта на
-prod-стенде).
-
-**2. Правило-к-правилу.** Тот же production-CSS разобран на селекторы и
-объявления и сравнён с нашими файлами напрямую — это ловит потерянные
-правила, которых не видно в рендере конкретной story.
-
-**3. Живой habr.com.** `getComputedStyle` + `CSS.getMatchedStylesForNode`
-на реальных страницах — для компонентов, чей CSS в локальный корпус не
-попал (таб, инпут, карточка статьи, чипы хабов, votes, rss, follow).
-`getMatchedStylesForNode` оказался решающим дважды: он показывает, какое
-правило реально победило в каскаде, а не какое написано в файле.
+Ценность этого документа — не в списке находок (они давно в коде), а в
+**системных причинах** из §1: они объясняют целые классы багов и
+продолжают работать как правила. Постоянная сверка с продом теперь
+автоматическая — `check/parity.js`.
 
 ---
 
@@ -181,357 +151,36 @@ SectionName, UserInfo (**EXACT**), ArticleCard (**FIXED**, FP-03).
 
 ---
 
-## 3. Реестр расхождений
+## 3. Что было исправлено
 
-### FP-01 · `.arrow*` действует на всю страницу
+Полные разборы каждого расхождения удалены: результат живёт в коде и
+в спецификациях компонентов, а урок — в системных причинах выше.
+Здесь остаётся след, чтобы по номеру можно было понять, о чём речь.
 
-| | |
-|---|---|
-| **Component** | BaseHint |
-| **Variant/state** | все 12 положений стрелки |
-| **Figma** | стрелка — часть компонента |
-| **Local** | `.arrow`, `.arrow-top/-bottom/-left/-right` — **голые селекторы**, 23 правила |
-| **Production** | `.arrow[data-v-f977e8aa]` — изолировано компонентом |
-| **Difference** | наши правила бьют по любому элементу с классом `arrow` в приложении-потребителе |
-| **Root cause** | SYS-1 |
-| **Canonical** | production |
-| **Fix** | заскоупить под `.base-hint` |
-| **Priority** | **P1** |
-| **Confidence** | HIGH |
-
-### FP-02 · `.input` / `.indicator` действуют на всю страницу
-
-| | |
-|---|---|
-| **Component** | Checkbox |
-| **Figma** | — |
-| **Local** | `.input` ×7, `.indicator` ×3 — голые |
-| **Production** | scoped; при этом класс `input` в production **занят** полем ввода (`.tm-input-text-decorated.input`, замерено на habr.com) |
-| **Difference** | коллизия не гипотетическая: `.indicator{width:18px;height:18px}` навязывается любому `.indicator` |
-| **Root cause** | SYS-1 |
-| **Canonical** | production |
-| **Fix** | заскоупить под `.checkbox` |
-| **Priority** | **P1** |
-| **Confidence** | HIGH |
-
-### FP-03 · ArticleCard: 23 голых селектора с очень общими именами
-
-| | |
-|---|---|
-| **Component** | ArticleCard |
-| **Local** | `.author`, `.lead`, `.meta`, `.stats`, `.cover`, `.readmore`, `.bookmarks-button`, `.meta-container`, `.lead-image`, `.round-on-mobile` |
-| **Production** | `.author[data-v-a0c576a8]`, `.bookmarks-button[data-v-41bd4ade]` — проверено `getMatchedStylesForNode` на живой странице |
-| **Difference** | самый переиспользуемый модуль пакета несёт самые общие имена без изоляции |
-| **Root cause** | SYS-1 |
-| **Canonical** | production |
-| **Fix** | заскоупить под `.article-snippet` |
-| **Priority** | **P1** |
-| **Confidence** | HIGH |
-
-### FP-04 · Градиент-маска пагинации сделана через `transparent`
-
-| | |
-|---|---|
-| **Component** | Pagination |
-| **Variant/state** | маски по краям прокручиваемого списка |
-| **Figma** | — |
-| **Local** | `linear-gradient(to right, var(--background-primary), transparent)` |
-| **Production** | `linear-gradient(to right, var(--background-primary), hsl(from var(--background-primary) h s l / 0%))` |
-| **Difference** | `transparent` = **прозрачный чёрный**; при интерполяции с белым даёт серую муть в середине градиента. Production специально уводит альфу у того же цвета |
-| **Root cause** | упрощение при извлечении — классическая ловушка CSS |
-| **Canonical** | production |
-| **Fix** | вернуть production-значение дословно |
-| **Priority** | **P1** |
-| **Confidence** | HIGH |
-
-### FP-05 · Потеряно сглаживание шрифта в пагинации
-
-| | |
-|---|---|
-| **Local** | нет |
-| **Production** | `.tm-pagination__page` и `.tm-pagination__navigation-link` — `-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale` |
-| **Difference** | текст рендерится жирнее нашего |
-| **Root cause** | вендорные префиксы отброшены при извлечении |
-| **Canonical** | production |
-| **Fix** | вернуть |
-| **Priority** | **P2** |
-| **Confidence** | HIGH |
-
-### FP-06 · Диалог: потеряно оформление скроллбара шторки
-
-| | |
-|---|---|
-| **Component** | Dialog (мобильная шторка) |
-| **Local** | нет |
-| **Production** | 4 правила `.bottom-drawer-inner .main::-webkit-scrollbar`, `::-webkit-scrollbar-thumb`, `:hover::-webkit-scrollbar-thumb`, `::-webkit-scrollbar-corner` |
-| **Difference** | в шторке — системный скроллбар вместо оформленного |
-| **Root cause** | псевдоэлементы `::-webkit-scrollbar*` пропущены при извлечении |
-| **Canonical** | production |
-| **Fix** | вернуть дословно |
-| **Priority** | **P1** |
-| **Confidence** | HIGH |
-
-### FP-07 · ~~BaseHint: кнопка закрытия без стилей~~ — ЛОЖНОЕ СРАБАТЫВАНИЕ
-
-Автоматический дифф правило-к-правилу отметил `.close`,
-`.close:not(:focus-visible)` и `.link-wrapper` как «есть в проде, нет у нас».
-При проверке перед правкой оказалось, что все три **у нас есть** — просто
-уже заскоуплены под `.base-hint`, а дифф сравнивает селекторы строкой и
-поэтому считает `.base-hint .close` и `.close` разными.
-
-Записано намеренно, а не удалено: это показывает границу применимости
-инструмента. Дифф селекторов не умеет отличать «правило потеряно» от
-«правило сужено» — каждое его срабатывание нужно проверять глазами
-до правки, иначе легко «починить» то, что уже сделано верно.
-
-**Статус: не баг. Ничего не менялось.**
-
-### FP-08 · `.modal-window`: выдуманное значение ширины по умолчанию
-
-| | |
-|---|---|
-| **Local** | `width: var(--modal-window-width, 320px)` |
-| **Production** | `width: var(--v52269707)` — **без фолбэка** |
-| **Difference** | 320px не подтверждён ничем; переименование Vue-переменной оправдано (её имя меняется от сборки), выдуманный дефолт — нет |
-| **Root cause** | «удобный» дефолт добавлен для витрины |
-| **Canonical** | production |
-| **Fix** | убрать фолбэк, ширину задавать в разметке; в спецификации описать явно |
-| **Priority** | **P1** |
-| **Confidence** | HIGH |
-
-### FP-09 · InformerHint: имя переменной и `position`
-
-| | |
-|---|---|
-| **Local** | `width: var(--informer-hint-width)`, добавлен `position: relative` |
-| **Production** | `width: var(--v350f87b0)`, `position` не задан (static) |
-| **Difference** | имя переменной — сознательное переименование (Vue-хеш непереносим). `position:relative` меняет систему координат для `:before` |
-| **Root cause** | `:before` в production позиционируется относительно `.base-popover`; мы показываем информер без попапа |
-| **Canonical** | production по значению, наше по устойчивости |
-| **Fix** | оставить `relative`, но записать расхождение и причину; имя переменной задокументировать рядом с production-именем |
-| **Priority** | **P2** |
-| **Confidence** | HIGH |
-
-### FP-10 · Input: два выдуманных объявления на подписи
-
-| | |
-|---|---|
-| **Component** | Input |
-| **Local** | `.tm-input-text-decorated__label { color: var(--text-secondary); font-size: .875rem }` |
-| **Production** | `.tm-input-text-decorated__label { line-height: 2.5rem; position: absolute; top: 0 }` — **и всё** (проверено `getMatchedStylesForNode`) |
-| **Difference** | цвет и кегль подписи придуманы; в проде подпись наследует 16px и цвет родителя |
-| **Root cause** | достройка «как логично» при извлечении |
-| **Canonical** | production |
-| **Fix** | удалить два объявления |
-| **Priority** | **P1** |
-| **Confidence** | HIGH |
-
-### FP-11 · icon-button: неверный токен иконки и рамки
-
-| | |
-|---|---|
-| **Figma** | `elements/button/icon/icon` = `#929ca5`, `elements/button/icon/border` = `#929ca566` (тот же цвет, альфа 40%) |
-| **Local** | `color: var(--icon-secondary)` (`#bcced7`), рамка — сплошной `--icon-secondary` |
-| **Production** | компонента нет |
-| **Difference** | голубовато-серый вместо нейтрального; рамка непрозрачная вместо 40% |
-| **Root cause** | SYS-2 |
-| **Canonical** | Figma (компонент реконструирован, production-версии не существует) |
-| **Fix** | `--icon-primary`; рамка — `hsl(from var(--icon-primary) h s l / 40%)` |
-| **Priority** | **P1** |
-| **Confidence** | HIGH |
-
-### FP-12 · dropdown-row: неверный токен иконки
-
-| | |
-|---|---|
-| **Figma** | `elements/dropdown/row/list/icon` = `#929ca5` |
-| **Local** | `--icon-secondary` |
-| **Root cause** | SYS-2 |
-| **Canonical** | Figma |
-| **Fix** | `--icon-primary` |
-| **Priority** | **P1** |
-| **Confidence** | HIGH |
-
-### FP-13 · dropdown-row выбранный: описание должно быть серым
-
-| | |
-|---|---|
-| **Figma** | `row/list/desc_txt_pressed` = `#c0c0c0` |
-| **Local** | белый (`--background-primary`) |
-| **Difference** | в Figma описание под выбранной строкой приглушено, у нас сливается с основным текстом |
-| **Canonical** | Figma |
-| **Fix** | `--other-disabled-elements` |
-| **Priority** | **P2** |
-| **Confidence** | HIGH |
-
-### FP-14 · Кнопка: Figma на шаг чище production
-
-| | |
-|---|---|
-| **Figma** | padding 8/16, radius 4, интерлиньяж 16, Minor — 12/14 и padding 12 |
-| **Local / Production** | padding 8/14, radius 3, интерлиньяж 14.95, Minor без своих кегля и отступов |
-| **Root cause** | SYS-4 |
-| **Canonical** | production |
-| **Fix** | не менять, зафиксировать |
-| **Priority** | **P3** |
-| **Confidence** | HIGH |
-
-### FP-15 · Кнопка: состояния focus и loading
-
-| | |
-|---|---|
-| **Figma** | focus — кольцо (`radius_focus` 6); loading — спиннер вместо текста |
-| **Production** | `outline:none` на `:hover/:focus/:active`; loading — бегущая полупрозрачная полоса (`.btn_loading:before`), не спиннер |
-| **Difference** | два принципиально разных решения одного состояния |
-| **Canonical** | production, Figma — TARGET |
-| **Fix** | не трогать; описать как FIGMA TARGET |
-| **Priority** | **P2** |
-| **Confidence** | HIGH |
-
-### FP-16 · Checkbox disabled: разное решение
-
-| | |
-|---|---|
-| **Figma** | disabled — фон `#f0f0f0`, рамка/галочка `#c0c0c0` |
-| **Local** | фон и рамка `--other-disabled-elements` (`#bfbfbf`), галочка белая |
-| **Production** | `checkbox-CJ1LCFDi.css` в локальный корпус не попал, живого чекбокса на гостевых страницах не нашлось |
-| **Canonical** | **не определён** |
-| **Fix** | не менять |
-| **Priority** | **P2** |
-| **Confidence** | **UNCERTAIN** — обе стороны не сверены с продом |
-
-### FP-17 · Textarea: белый фон в disabled в тёмной теме
-
-| | |
-|---|---|
-| **Figma** | `elements/txtfield/bg_disable` = `#f7f7f7` = `--background-secondary` |
-| **Local** | `background-color: var(--header-text)` — скопировано из Input |
-| **Production** | компонента нет вовсе |
-| **Difference** | `--header-text` белый в **обеих** темах: в тёмной теме заблокированное поле светится белым |
-| **Root cause** | реконструкция унаследовала известный дефект production-инпута туда, где production-кода нет |
-| **Canonical** | Figma (компонент целиком реконструирован) |
-| **Fix** | `--background-secondary`; у Input оставить production-значение и оставить помету о дефекте |
-| **Priority** | **P1** |
-| **Confidence** | HIGH |
-
-### FP-18 · Chip «+ Тег»: неверный токен рамки
-
-| | |
-|---|---|
-| **Figma** | `empty/icon_txt_border` = `#929ca5` |
-| **Local** | `--icon-secondary` |
-| **Root cause** | SYS-2 |
-| **Canonical** | Figma |
-| **Fix** | `--icon-primary` |
-| **Priority** | **P2** |
-| **Confidence** | HIGH |
-
-### FP-19 · Аватар: 3 / 4 / круг
-
-| | |
-|---|---|
-| **Figma** | `elements/avatar/radius` = **4** |
-| **Local (компонент)** | `border-radius: 3px` |
-| **Local (витрина)** | круглый — по прямому указанию владельца |
-| **Production** | `.tm-user-info__userpic { border-radius: 3px }` — замерено на habr.com |
-| **Difference** | три позиции сразу |
-| **Canonical** | production для компонента; круг — оформительское решение витрины для дефолтных иллюстраций |
-| **Fix** | компонент не менять; развести в документации показ дефолтных аватарок и радиус фото |
-| **Priority** | **P2** |
-| **Confidence** | HIGH по обоим замерам |
-
-### FP-20 · ButtonFollow — не самостоятельный компонент
-
-| | |
-|---|---|
-| **Production** | `.btn.btn_transparent.btn_small.tm-button_color-christi.tm-button-follow` — модификатор поверх обычной кнопки (замерено на `/hubs/programming/`) |
-| **Local** | `.tm-button-follow` описан именно как модификатор ✓, но в витрине показывался отдельной секцией как самостоятельная сущность |
-| **Difference** | документационная, не кодовая |
-| **Canonical** | production |
-| **Fix** | в витрине показать полный набор классов |
-| **Priority** | **P2** |
-| **Confidence** | HIGH |
-
-### FP-21 · `.tm-svg-icon` / `.tm-svg-icon__wrapper` не извлечены
-
-| | |
-|---|---|
-| **Production** | правила есть в `BaseDialog-CrJ9tGzP.css` |
-| **Local** | нет; в `assets/README.md` класс описан как GAP «нигде не встречается» |
-| **Difference** | утверждение о GAP было неполным: правила существуют, просто мы их не перенесли |
-| **Canonical** | production |
-| **Fix** | перенести и уточнить формулировку GAP |
-| **Priority** | **P2** |
-| **Confidence** | HIGH |
-
----
-
-## 4. Что чинится, что нет
-
-**Исправлено в этом проходе (P1):**
-FP-01, FP-02, FP-03, FP-04, FP-06, FP-07, FP-08, FP-10, FP-11, FP-12, FP-17.
-
-**Исправлено попутно (P2):** FP-05, FP-13, FP-18, FP-21.
-
-**Сознательно не трогаем:**
-FP-14, FP-15 — канон production, Figma зафиксирована как TARGET.
-FP-16 — канон не определён, менять вслепую нельзя.
-FP-19 — три позиции разведены по назначению, а не усреднены.
-
-**Отложено запретом владельца** (§15 задания): select, datepicker,
-timepicker, полная taxonomy article-labels/event, user-hubs, new chips
-list, control-list, сборки calendar date/time.
-
-
----
-
-## 5. Результат прохода
-
-### Что изменилось в коде
-
-| Файл | Правка |
-|---|---|
-| `hint.css` | 23 селектора `.arrow*` заскоуплены под `.base-hint` |
-| `checkbox.css` | 10 селекторов `.input`/`.indicator` заскоуплены под `.checkbox` |
-| `article-card.css` | 24 селектора (`.meta`, `.author`, `.lead`, `.stats`, `.cover`, `.readmore`…) заскоуплены под `.article-snippet` |
-| `dropdown.css` | `.menu-row*` под `.dropdown`; иконка строки → `--icon-primary`; описание выбранной строки → `--other-disabled-elements` |
-| `dialog.css` | возвращены 4 правила скроллбара шторки; `.wysiwyg-fade-*` и `.cover-image` заскоуплены под оба корня; убран выдуманный фолбэк ширины |
-| `pagination.css` | градиент через альфу вместо `transparent`; возвращено сглаживание шрифта |
-| `input.css` | удалены два выдуманных объявления на `__label` |
-| `icon-button.css` | иконка → `--icon-primary`; рамка → тот же цвет с альфой 40% |
-| `chip.css` | рамка `_add` → `--icon-primary` |
-| `textarea.css` | фон disabled → `--background-secondary` |
-| `icon.css` | перенесены `.tm-svg-icon` / `.tm-svg-icon__wrapper` |
-| `patterns.css`, `primitives.css` | `.stat`/`.stat-link` под `.stats-container`; `.inline-separator` оставлен голым с обоснованием |
-
-### Проверка после правок
-
-* **Стенд паритета** прогнан заново. Пагинация: было 8 расходящихся узлов
-  на story, стало 6 — и все шесть это намеренный `fill: currentColor`,
-  сверенный с живым продом (см. SYS-3). Диалог показал ожидаемое
-  следствие снятия фолбэка: story передаёт ширину под production-именем
-  переменной, наше CSS его не знает. Это описано в FP-09 как осознанный
-  размен, а не регрессия.
-* **Осиротевшие элементы.** После сужения селекторов витрина проверена
-  автоматически: у каждого элемента с заскоупленным классом должен быть
-  требуемый предок. Нашлось два случая — `.bookmarks-button` (оказался
-  самостоятельным компонентом, скоуп откачен) и menu-строки dropdown вне
-  `.dropdown` (исправлена композиция витрины).
-* **Копи-тест.** Разметка вынута из витрины и отрисована с подключённым
-  только документированным рантаймом (тема + `ui/habr.css`), без единой
-  строки CSS витрины. Чекбокс 18×18 с рамкой `#bcced7`, отмеченный —
-  акцентный; страница пагинации 32×32, стрелка 32×32, сглаживание
-  `antialiased`; иконка строки dropdown `#929ca5`; icon-button `#929ca5`
-  и рамка с альфой 40%; панель Medium-табов 219.7×42 с зазорами 0.
-  0 ошибок консоли.
-* **Голые селекторы:** было 109 в 9 файлах, стало 13 в 3 — и все 13 это
-  корни собственных компонентов (`.bookmarks-button`, `.stats-container`,
-  `.inline-separator`), сузить которые нельзя, не выдумав новых имён.
-  Каждый помечен комментарием.
-* Витрина: 0 битых ассетов, 0 висячих `<use>`, 0 ошибок консоли,
-  без горизонтального переполнения на 320/480/768/1100/1440.
-
-### Чего проход НЕ закрыл
+| # | Компонент | Что было не так | Причина | Как решено |
+|---|---|---|---|---|
+| FP-01 | BaseHint | `.arrow*` действует на всю страницу | SYS-1 | заскоупить под `.base-hint` |
+| FP-02 | Checkbox | `.input` / `.indicator` действуют на всю страницу | SYS-1 | заскоупить под `.checkbox` |
+| FP-03 | ArticleCard | ArticleCard: 23 голых селектора с очень общими именами | SYS-1 | заскоупить под `.article-snippet` |
+| FP-04 | Pagination | Градиент-маска пагинации сделана через `transparent` | упрощение при извлечении — классическая ловушка CSS | вернуть production-значение дословно |
+| FP-05 | — | Потеряно сглаживание шрифта в пагинации | вендорные префиксы отброшены при извлечении | вернуть |
+| FP-06 | Dialog (мобильная шторка) | Диалог: потеряно оформление скроллбара шторки | псевдоэлементы `::-webkit-scrollbar*` пропущены при извлечении | вернуть дословно |
+| FP-07 | — | ~~BaseHint: кнопка закрытия без стилей~~ — ЛОЖНОЕ СРАБАТЫВАНИЕ | — | — |
+| FP-08 | — | `.modal-window`: выдуманное значение ширины по умолчанию | «удобный» дефолт добавлен для витрины | убрать фолбэк, ширину задавать в разметке; в спецификации описать явно |
+| FP-09 | — | InformerHint: имя переменной и `position` | `:before` в production позиционируется относительно `.base-popover`; мы показываем информер без попапа | оставить `relative`, но записать расхождение и причину; имя переменной задокументировать рядом с production-именем |
+| FP-10 | Input | Input: два выдуманных объявления на подписи | достройка «как логично» при извлечении | удалить два объявления |
+| FP-11 | — | icon-button: неверный токен иконки и рамки | SYS-2 | `--icon-primary`; рамка — `hsl(from var(--icon-primary) h s l / 40%)` |
+| FP-12 | — | dropdown-row: неверный токен иконки | SYS-2 | `--icon-primary` |
+| FP-13 | — | dropdown-row выбранный: описание должно быть серым | — | `--other-disabled-elements` |
+| FP-14 | — | Кнопка: Figma на шаг чище production | SYS-4 | не менять, зафиксировать |
+| FP-15 | — | Кнопка: состояния focus и loading | — | не трогать; описать как FIGMA TARGET |
+| FP-16 | — | Checkbox disabled: разное решение | — | не менять |
+| FP-17 | — | Textarea: белый фон в disabled в тёмной теме | реконструкция унаследовала известный дефект production-инпута туда, где production-кода нет | `--background-secondary`; у Input оставить production-значение и оставить помету о дефекте |
+| FP-18 | — | Chip «+ Тег»: неверный токен рамки | SYS-2 | `--icon-primary` |
+| FP-19 | — | Аватар: 3 / 4 / круг | — | компонент не менять; развести в документации показ дефолтных аватарок и радиус фото |
+| FP-20 | — | ButtonFollow — не самостоятельный компонент | — | в витрине показать полный набор классов |
+| FP-21 | — | `.tm-svg-icon` / `.tm-svg-icon__wrapper` не извлечены | — | перенести и уточнить формулировку GAP |
+## 4. Чего проход не закрыл
 
 * **FP-16 (checkbox disabled)** — канон не определён: `checkbox-CJ1LCFDi.css`
   в локальный корпус не попал, живого чекбокса на гостевых страницах

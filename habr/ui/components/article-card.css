@@ -339,6 +339,32 @@
 .tm-votes-meter__value_appearance-karma { margin-left: 2px; font-size: 1.0625rem; }
 .tm-votes-meter__value_rating { margin-left: 6px; }
 
+/* --- .tm-articles-list__item — обёртка карточки в ленте ------------------
+   Раньше её геометрию подменял inline-style в витрине. Правило снято с
+   живой /ru/articles/ через CSS.getMatchedStylesForNode; брейкпоинты
+   совпадают с общими (768 и 1024), скругления у класса НЕТ — карточка
+   белая, радиус 0. */
+.tm-articles-list__item {
+  box-sizing: border-box;
+  background-color: var(--background-primary);
+  margin-bottom: 8px;
+  padding: 16px;
+}
+@media (min-width: 1024px) {
+  .tm-articles-list__item { margin-bottom: 12px; padding: 16px 20px; }
+}
+/* База — center; на телефоне ряд переносится и выравнивается по верху.
+   Структура повторяет production: базовое правило плюс max-width-медиа,
+   а не наоборот (проверено check/parity.js). */
+.tm-articles-list__item-footer { align-items: center; display: flex; }
+@media (max-width: 767px) {
+  .tm-articles-list__item-footer { align-items: flex-start; }
+}
+
+/* Разметочные классы без объявлений — так и в production, это не пробел
+   извлечения: .tm-article-reading-time__label, .tm-user-info__user_appearance-default.
+   Оставлены в разметке ради совпадения с продом, стилей не несут. */
+
 /* `.bookmarks-button` НЕ заскоуплен под карточку — и это осознанно.
    В production он изолирован собственным data-v (`[data-v-41bd4ade]`,
    файл bookmarks-button-CJSOFWtd.css), то есть это самостоятельный

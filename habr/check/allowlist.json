@@ -1,0 +1,55 @@
+{
+  "_": "Известные исключения для check/. Всё, чего здесь нет, проверка считает ошибкой.",
+  "markup_only_classes": {
+    "_": "Классы, у которых НЕТ объявлений и в production — это проверено замером через CSS.getMatchedStylesForNode на живых страницах. Они остаются в разметке витрины ради совпадения с продом, но стилей не несут.",
+    "tm-article-reading-time__label": "правила нет и в production (/ru/articles/)",
+    "tm-header-user-menu__item": "правила нет и в production (/ru/articles/)",
+    "tm-pagination__arrow_prev": "правила нет и в production (/ru/articles/)",
+    "tm-user-info__user_appearance-default": "правила нет и в production (/ru/articles/)",
+    "tm-votes-lever_appearance-article": "правила нет и в production (страница статьи)",
+    "votes-switcher": "правила нет и в production (страница статьи)",
+    "error": "page-scoped класс из /search/, показан инлайном намеренно — см. components/forms/field.md",
+    "frame-body": "локальный стиль внутри showcase/header-frame.html",
+    "frame-note": "локальный стиль внутри showcase/header-frame.html"
+  },
+  "intentional_divergence": {
+    "_": "Места, где пакет СОЗНАТЕЛЬНО расходится с production. Проверка их показывает, но не роняет запуск. Пустая причина недопустима.",
+    ".publication-label": "решение по дизайну: приведено к общему виду article-labels v3 (залитая пилюля 30px/r8/12-14 w700 uppercase) вместо контурной плашки прода. Production-объявление сохранено дословно в ui/components/chip.css и components/forms/chip.md"
+  },
+  "undemonstrated_ok": {
+    "_": "Классы, которым демонстрация не нужна: служебные, анимационные, состояния скроллбара.",
+    "prefixes": [
+      "wysiwyg-fade-",
+      "scrollbar-"
+    ],
+    "exact": [
+      "dragging",
+      "opened",
+      "is-fullscreen",
+      "object-fit-cover",
+      "round-on-mobile"
+    ]
+  },
+  "external_artifacts": {
+    "_": "Имена файлов production/Storybook: цитируются как источник, в пакете их нет и быть не должно.",
+    "patterns": [
+      "-[A-Za-z0-9_-]{8}\\.css$",
+      "^page-.*\\.html$",
+      "^megazord-v\\d+\\.svg$",
+      "^rendered/"
+    ]
+  },
+  "parity_selectors": {
+    "_": "Классы для точечной сверки с живым habr.com: селектор -> страница, на которой он есть.",
+    ".tm-icon-counter__value": "https://habr.com/ru/articles/",
+    ".tm-user-info__username": "https://habr.com/ru/articles/",
+    ".tm-article-datetime-published": "https://habr.com/ru/articles/",
+    ".bookmarks-button": "https://habr.com/ru/articles/",
+    ".tm-articles-list__item": "https://habr.com/ru/articles/",
+    ".tm-articles-list__item-footer": "https://habr.com/ru/articles/",
+    ".publication-label": "https://habr.com/ru/articles/",
+    ".tm-block__title": "https://habr.com/ru/events/",
+    ".tm-section-name__text": "https://habr.com/ru/events/",
+    ".tm-votes-lever__button": "https://habr.com/ru/companies/selectel/articles/1076986/"
+  }
+}

@@ -220,6 +220,7 @@
   <a href="#avatar">Avatar</a>
 
   <div class="doc-nav-cat">—</div>
+  <a href="#new-classes">Новое</a>
   <a href="#gaps">Coverage checkpoint</a>
 </nav>
 
@@ -232,8 +233,11 @@
       и тему <code>light-v2.css</code>. Foundations ниже — из отдельного Visual
       Foundations pass: каждое число измерено на живом <code>habr.com</code>
       (<code>getBoundingClientRect</code> / <code>getComputedStyle</code>), не
-      только вычитано из CSS-деклараций. 18 компонентов — из production CSS
-      (release 2.346.1) и Storybook-снимка; реестр — <code>components/INDEX.md</code>.
+      только вычитано из CSS-деклараций. Компоненты — из production CSS
+      (срез release 2.346.1) и Storybook-снимка; реестр —
+      <code>components/INDEX.md</code>. Числа в пакете считает
+      <code>check/counts.py</code>, сверку с живым habr.com —
+      <code>check/parity.js</code>.
     </p>
   </div>
 
@@ -2313,9 +2317,9 @@
     <h2>ArticleCard</h2>
     <p class="doc-meta">.article-snippet + .tm-articles-list__item-footer · article-card.css · 9/16 страниц — флагманский модуль</p>
     <div class="doc-specimen" style="max-width:620px">
-      <div class="tm-articles-list__item" style="background:var(--background-primary);padding:16px;border-radius:8px">
+      <div class="tm-articles-list__item">
         <div class="article-snippet" style="margin-bottom:0">
-          <div class="publication-type-label publication-type-label_type-post">
+          <div class="publication-type-label">
             <span class="publication-type-label__label publication-type-label__label_type-post">Пост</span>
           </div>
           <div class="meta-container"><div class="meta">
@@ -2349,7 +2353,7 @@
             </span>
           </div></div>
         </div>
-        <div class="tm-articles-list__item-footer" style="margin-top:12px">
+        <div class="tm-articles-list__item-footer">
           <div class="tm-data-icons">
             <div class="tm-votes-meter tm-data-icons__item">
               <svg class="tm-svg-img tm-votes-meter__icon" height="24" width="24">
@@ -2604,6 +2608,41 @@
       <b>60 · 48 · 40 · 36 · 32 · 24 · 20</b>. Размер задаётся инлайн
       (атрибуты <code>&lt;img&gt;</code> или style) — CSS-модификатора
       размера у Habr нет.</p>
+  </section>
+
+  <!-- ================================================================= -->
+  <section class="doc-section" id="new-classes">
+    <h2>Новое — есть в коде, нет в примерах</h2>
+    <p class="doc-meta">111 класс(ов) · сгенерировано check/gen_new_section.py</p>
+    <p class="doc-note">Эти классы перенесены из production и лежат в
+      <code>ui/</code>, но ни один специмен выше их не показывает —
+      значит, для того, кто собирает экран по витрине, их как бы нет.
+      Список собирается из самого CSS, а не пишется руками:
+      <code>check/coverage.py</code> сверяет его при каждой проверке и
+      падает, если он разошёлся с кодом. Класс уходит отсюда сам, как
+      только появляется в разметке любого примера.</p>
+
+    <div class="doc-specimen" style="padding:0;overflow-x:auto">
+      <table class="doc-table">
+        <tr><th>Компонент</th><th>Файл</th><th>Классы без примера</th></tr>
+        <tr><td>ArticleCard</td><td><code>ui/components/article-card.css</code></td><td><code>.cover</code> <code>.full-article</code> <code>.highlighted</code> <code>.icon--contrasted</code> <code>.lead</code> <code>.lead-image</code> <code>.no-border</code> <code>.publication-type-label__label_type-voice</code> <code>.publication-type-label_type-voice</code> <code>.readmore</code> <code>.tm-article-complexity</code> <code>.tm-article-complexity__icon</code> <code>.tm-article-complexity_complexity-high</code> <code>.tm-article-complexity_complexity-low</code> <code>.tm-article-complexity_complexity-medium</code> <code>.tm-article-datetime-published_megapost</code> <code>.tm-publication-hub__link_subscribed</code> <code>.tm-user-info__user_appearance-post</code> <code>.tm-votes-meter__icon_busted</code> <code>.tm-votes-meter__icon_negative</code> <code>.tm-votes-meter__icon_positive</code> <code>.tm-votes-meter__value_appearance-comment</code> <code>.tm-votes-meter__value_appearance-karma</code> <code>.tm-votes-meter__value_negative</code> <code>.tm-votes-meter__value_positive</code> <code>.unread-counter</code> <code>.value--contrasted</code></td></tr>
+        <tr><td>Block</td><td><code>ui/components/block.css</code></td><td><code>.tm-block__body_variant-condensed-slim</code> <code>.tm-block__body_variant-equal</code> <code>.tm-block__body_variant-island</code> <code>.tm-block__body_variant-no-padding</code> <code>.tm-block__body_variant-stucked</code> <code>.tm-block__body_variant-stucked-reversed</code> <code>.tm-block__footer</code> <code>.tm-block__header_variant-borderless-large</code> <code>.tm-block_spacing-around</code> <code>.tm-block_spacing-bottom</code> <code>.tm-block_spacing-none</code> <code>.tm-block_spacing-top</code></td></tr>
+        <tr><td>Button</td><td><code>ui/components/button.css</code></td><td><code>.tm-button</code></td></tr>
+        <tr><td>Calendar</td><td><code>ui/components/calendar.css</code></td><td><code>.tm-calendar-arrow_disabled</code></td></tr>
+        <tr><td>Checkbox</td><td><code>ui/components/checkbox.css</code></td><td><code>.is-disabled</code></td></tr>
+        <tr><td>Dialog</td><td><code>ui/components/dialog.css</code></td><td><code>.close-button</code> <code>.is-dragging</code> <code>.modal-window-wrapper</code> <code>.no-body</code> <code>.tm-overlay</code> <code>.tm-overlay__background</code> <code>.tm-overlay__inner</code></td></tr>
+        <tr><td>Dropdown</td><td><code>ui/components/dropdown.css</code></td><td><code>.align-center</code> <code>.align-right</code> <code>.inline</code> <code>.no-padding</code></td></tr>
+        <tr><td>Informer / Hint</td><td><code>ui/components/hint.css</code></td><td><code>.activator-wrapper</code> <code>.arrow</code> <code>.arrow-bottom</code> <code>.arrow-end</code> <code>.arrow-left</code> <code>.arrow-right</code> <code>.arrow-start</code> <code>.arrow-top</code> <code>.base-hint</code> <code>.hint-trigger-button</code> <code>.informer-hint_small</code> <code>.inner</code> <code>.link-wrapper</code> <code>.restriction-hint</code></td></tr>
+        <tr><td>Notice</td><td><code>ui/components/notice.css</code></td><td><code>.tm-notice__icon</code> <code>.tm-notice__title</code></td></tr>
+        <tr><td>SectionName</td><td><code>ui/components/section-name.css</code></td><td><code>.tm-section-name__link</code></td></tr>
+        <tr><td>Tabs</td><td><code>ui/components/tabs.css</code></td><td><code>.borderless</code> <code>.slim</code> <code>.tabs-dropdown</code></td></tr>
+        <tr><td>Textarea</td><td><code>ui/components/textarea.css</code></td><td><code>.tm-textarea-reconstructed_invalid</code></td></tr>
+        <tr><td>Votes</td><td><code>ui/components/votes.css</code></td><td><code>.tm-checkbox__container</code> <code>.tm-checkbox__label</code> <code>.tm-minus-reason</code> <code>.tm-minus-reason__description</code> <code>.tm-radio__label</code> <code>.tm-votes-lever__icon_downvote</code> <code>.tm-votes-lever__icon_upvote</code> <code>.tm-votes-lever__score-counter_negative</code> <code>.tm-votes-lever__score-fallback</code> <code>.tm-votes-lever__score_appearance-comment</code> <code>.tm-votes-lever__score_appearance-karma</code> <code>.tm-votes-score</code> <code>.vote-hint-popup</code></td></tr>
+        <tr><td>Мелкие примитивы</td><td><code>ui/components/primitives.css</code></td><td><code>.inline-separator--color-inherit</code> <code>.tm-description-list</code> <code>.tm-description-list__body</code> <code>.tm-description-list__body_variant-columns</code> <code>.tm-description-list__body_variant-columns-nowrap</code> <code>.tm-description-list__body_variant-inline</code> <code>.tm-description-list__title</code> <code>.tm-description-list__title_variant-columns</code> <code>.tm-description-list__title_variant-columns-nowrap</code> <code>.tm-description-list__title_variant-inline</code> <code>.tm-description-list_larger-font</code> <code>.tm-description-list_variant-base</code> <code>.tm-description-list_variant-columns</code> <code>.tm-description-list_variant-columns-nowrap</code></td></tr>
+        <tr><td>Оболочка страницы</td><td><code>ui/layout.css</code></td><td><code>.tm-header-user-menu__avatar</code> <code>.tm-header__logo_hl-en</code> <code>.tm-header__logo_twentieth-anniversary</code> <code>.tm-page</code> <code>.tm-page-width_full-width</code> <code>.tm-page-width_no-padding</code></td></tr>
+        <tr><td>Паттерны страниц</td><td><code>ui/patterns.css</code></td><td><code>.stat-link</code> <code>.tm-hub-card__follow_after-description</code> <code>.tm-hub-card__profiled</code> <code>.tm-user-card</code></td></tr>
+      </table>
+    </div>
   </section>
 
   <!-- ================================================================= -->

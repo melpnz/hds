@@ -1,6 +1,7 @@
 # Habr UI Kit — сравнение с Figma и production, роадмап
 
-Дата среза: 2026-09-04. Release production: `2.346.1`.
+Дата среза: 2026-09-07. Release production на момент среза: `2.346.1`;
+сверка с текущим `2.346.2` проходит (`check/parity.js`).
 Figma: `habr-lib` (`XQ7dxSVvUt9mcx9ZZPqcxt`).
 
 ## Как сверялось
