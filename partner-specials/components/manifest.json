@@ -1,0 +1,25 @@
+{
+  "schemaVersion": 1,
+  "package": "partner-specials",
+  "version": null,
+  "components": [
+    {
+      "id": "button",
+      "canonicalName": "Button",
+      "storybookNames": [],
+      "legacyAliases": ["State=focus", "State=disable"],
+      "category": "actions",
+      "kind": "primitive",
+      "specPath": "components/actions/button.md",
+      "cssRoots": [".ps-button"],
+      "showcaseAnchor": "c-button",
+      "figmaEvidence": ["evidence/source/figma/button.xml", "evidence/source/figma/button-details.json", "evidence/source/figma/button-opacity.json", "evidence/source/figma/button-overview.png", "evidence/source/figma/button-loading-context.txt"],
+      "status": "partial",
+      "requiredStates": ["default", "hover", "focus-visible", "disabled", "loading"],
+      "coveredScope": "P0 text-only: main/secondary × big/medium/small; runtime is new implementation",
+      "uncovered": ["Icon-only buttons", "Leading/trailing icon slots", "Counter slots", "Social buttons", "Production runtime comparison", "Approved client theme"],
+      "runtimeSource": "new implementation",
+      "variants": {"type": ["main", "secondary"], "size": ["big", "medium", "small"]}
+    }
+  ]
+}

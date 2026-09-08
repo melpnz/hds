@@ -1,0 +1,12 @@
+/* NEW IMPLEMENTATION: native HTML semantics, keyboard focus, overflow and busy handling.
+   Figma has no runtime. Loading keeps the normal height, including secondary big (source: 60px). */
+.ps-button { appearance: none; cursor: pointer; max-width: 100%; min-width: 0; flex-shrink: 0; vertical-align: middle; text-align: center; text-decoration: none; font-optical-sizing: none; }
+.ps-button__label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.ps-button:focus-visible { outline: var(--ps-stroke) solid var(--ps-button-fill); outline-offset: var(--ps-focus-offset); }
+.ps-button:disabled, .ps-button[aria-disabled='true'] { cursor: not-allowed; }
+.ps-button[aria-busy='true'] { cursor: progress; }
+.ps-button[aria-busy='true'] .ps-button__label { opacity: 0; }
+.ps-button[aria-busy='true']::after { content: ''; position: absolute; width: var(--ps-button-spinner); height: var(--ps-button-spinner); background: url('./assets/spinner.svg') center / contain no-repeat; animation: ps-spin var(--ps-spinner-duration) linear infinite; }
+@keyframes ps-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { .ps-button[aria-busy='true']::after { animation: none; } }
+@media (forced-colors: active) { .ps-button { border: var(--ps-stroke) solid ButtonText; } .ps-button:focus-visible { outline-color: Highlight; } .ps-button:disabled { color: GrayText; } }

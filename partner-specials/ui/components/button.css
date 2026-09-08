@@ -1,0 +1,39 @@
+/* Figma text geometry. Runtime and fallback behavior: ../state-contract.css. */
+.ps-button {
+  --ps-button-height: var(--ps-height-medium);
+  --ps-button-py: var(--ps-py-medium);
+  --ps-button-px: var(--ps-px-medium);
+  --ps-button-font: var(--ps-font-medium);
+  --ps-button-line: var(--ps-line-medium);
+  --ps-button-gap: var(--ps-gap-medium);
+  --ps-button-radius: var(--ps-radius-medium);
+  --ps-button-spinner: var(--ps-spinner-medium);
+  --ps-button-fill: var(--ps-main);
+  --ps-button-hover: var(--ps-hover);
+  --ps-button-stroke: var(--ps-stroke);
+  box-sizing: border-box;
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--ps-button-gap);
+  height: var(--ps-button-height);
+  padding: var(--ps-button-py) var(--ps-button-px);
+  border: 0;
+  border-radius: var(--ps-button-radius);
+  background: var(--ps-button-fill);
+  color: var(--ps-on-button);
+  font-family: var(--ps-font);
+  font-size: var(--ps-button-font);
+  font-weight: var(--ps-weight);
+  line-height: var(--ps-button-line);
+  letter-spacing: var(--ps-letter-spacing);
+}
+.ps-button--big { --ps-button-height: var(--ps-height-big); --ps-button-py: var(--ps-py-big); --ps-button-px: var(--ps-px-big); --ps-button-font: var(--ps-font-big); --ps-button-line: var(--ps-line-big); --ps-button-gap: var(--ps-gap-big); --ps-button-radius: var(--ps-radius-big); --ps-button-spinner: var(--ps-spinner-big); }
+.ps-button--small { --ps-button-height: var(--ps-height-small); --ps-button-py: var(--ps-py-small); --ps-button-px: var(--ps-px-small); --ps-button-font: var(--ps-font-small); --ps-button-line: var(--ps-line-small); --ps-button-gap: var(--ps-gap-small); --ps-button-radius: var(--ps-radius-small); --ps-button-spinner: var(--ps-spinner-small); }
+.ps-button--secondary { --ps-button-fill: var(--ps-secondary); }
+.ps-button--big { --ps-button-hover: var(--ps-hover-big); --ps-button-stroke: var(--ps-stroke-big); }
+.ps-button:hover:not(:disabled):not([aria-disabled='true']) { background: var(--ps-button-hover); }
+.ps-button:focus-visible { background: var(--ps-focus); box-shadow: inset 0 0 0 var(--ps-button-stroke) var(--ps-button-fill); }
+.ps-button:disabled:not([aria-busy='true']), .ps-button[aria-disabled='true']:not([aria-busy='true']) { background: var(--ps-disabled); }
+.ps-button:disabled:not([aria-busy='true']) .ps-button__label, .ps-button[aria-disabled='true']:not([aria-busy='true']) .ps-button__label { opacity: var(--ps-disabled-label-opacity); }
