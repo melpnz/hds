@@ -2,17 +2,438 @@
    COURSES · FOUNDATIONS
    =========================================================================
    База документа и типографическая шкала — слой, на котором держатся все
-   компоненты пакета.
+   компоненты пакета. Всё, что ниже, снято с живой сборки Курсов
+   8 сентября 2026. Из сорока двух правил слоя 40 стоят здесь побайтово так,
+   как их печатает продукт; два переписаны, и оба названы на месте — сводная
+   строка трекинга в разделе 4 вместо трёх продуктовых записей. Больше
+   отступлений в самих правилах нет: значения, порядок свойств и минификация
+   продуктовые. Обёртки — наши: продукт печатает утилиты одним потоком, и
+   деление на разделы, комментарии и блок @media раздела 5 существуют только
+   здесь. Названо по review-2.md, note 10, чтобы обещание «минификация
+   продуктовые» не читалось шире, чем оно есть: оно про правила, не про то,
+   что их окружает.
+   (Сорок два, а не сорок: правкой major 3 по review-1.md в слой добавлены
+   .leading-none и .leading-5 — оба дословно из сборки.)
+   Счёт правил слоя ведётся без normalize (раздел 2, 33 правила чужой
+   лицензии) и без блока --tw-* (раздел 1).
+   Сам корпус, по которому это проверяется, лежит в
+   evidence/source/production/css/ (10 инлайновых + 12 внешних .css).
 
-   Что сюда войдёт: правило документа (box-sizing, шрифт, базовый кегль),
-   подключение Inter и шкала
-   text-h1 · h1-mobile · h2 · h3 · h4 · default · small · micro · caps.
+   Порядок подключения:
+     fonts.css → tokens.css → foundations.css → layout.css → components/*.css
+   Всё вместе — одной строкой: ui/courses.css
 
-   Порядок подключения: tokens.css → foundations.css → layout.css →
-   components/*.css. Всё вместе — одной строкой: ui/courses.css.
+   ГЛАВНОЕ, ЧТО НУЖНО ЗНАТЬ ПРО ЭТОТ СЛОЙ.
+   Восемь типографических переменных :root продукта — --font-size-h2/h3/h4,
+   --line-height-h2/h3/h4, --line-height-card-title, --font-weight-title —
+   МЁРТВЫЕ: ни одной ссылки var(--…) на них нет ни в инлайновом CSS десяти
+   страниц, ни в двенадцати внешних .css сборки courses-web (R0-02,
+   docs/guide/tokens.md, «Мёртвые переменные»). Шкалу задают утилиты
+   Tailwind литералами, и в трёх местах утилита расходится с переменной.
+   Поэтому здесь литералы, а не var(--…): инвариант METHOD §6.4 допускает
+   литерал ровно тогда, когда в проде литерал, — и это тот случай.
 
-   Источник: computed.json десяти снятых страниц
-             Storybook common-typography--typography
+   Что снято и откуда:
+     нормализация     normalize.css v8.0.1 в инлайновом <style>, 10/10 страниц
+     база документа   body,html + a + *,:after,:before, 10/10 страниц,
+                      побайтово одинаковы на всех десяти
+     шкала            девять утилит .text-*, 10/10 страниц; значения
+                      совпадают на всех страницах и во всех 12 внешних .css
+     фокус            десять утилит; элементного правила фокуса у продукта
+                      нет ни одного; замер живого фокуса — ниже
+     сверка с Figma   ЗНАЧЕНИЯ: get_variable_defs семи узлов макета
+                      02_Education-NEW отдал 10 текстовых стилей, все
+                      значения совпали с продом.
+                      АТРИБУЦИЯ — ОТДЕЛЬНЫЙ ШАГ. get_variable_defs не
+                      говорит, из какой библиотеки пришло имя, а одноимённые
+                      стили у Хабра обычны: Header/H1 есть в career-lib и
+                      new-career-lib, но НЕ в education-lib. Атрибуцию даёт
+                      только search_design_system с includeLibraryKeys.
+                      По нему education-lib содержит 12 текстовых стилей
+                      (Header/H1-hero · H1-page · H2 · H3 · H4 · text ·
+                      text (bold) · text small · text small (bold) ·
+                      text micro · text micro (bold) · caps), из десяти
+                      прочитанных имён в ней есть девять. Десятое —
+                      Header/H1 mobile — не находится ни в одной библиотеке.
+                      ИТОГ: 9 из 12 стилей education-lib подтверждены
+                      значениями; не подтверждены H1-hero, H1-page, caps.
+                      Само число 12 получено перечислением через три запроса
+                      поиска, а не измерением библиотеки, — поиск ищет
+                      по имени и исчерпанность не доказывает (GAP-3).
+                      Разбор и правило применения приёма —
+                      docs/guide/typography.md, «Сверка с Figma».
+     сверка со
+     Storybook        story common-typography--typography — образец шкалы
+                      на 12 строк; значения index.CSGoIsqw.css совпадают
+                      с продом до символа. Двенадцать строк образца и
+                      двенадцать стилей education-lib — РАЗНЫЕ множества
+                      (у образца одна строка H1, у библиотеки две и нет
+                      H1 mobile), совпало только число
 
-   Заполняется на шаге R0-03.
+   Разбор с покрытиями, сверкой с Figma и ограничениями —
+   docs/guide/typography.md. Протокол шага — .pipeline/R0-03/capture.md.
+
+   Чего в этом файле нет намеренно: контейнера, сетки и брейкпоинт-утилит
+   раскладки — это R0-04, ui/layout.css.
    ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   1. Значения по умолчанию --tw-*
+   -------------------------------------------------------------------------
+   Первое правило, которое печатает сборка Курсов на каждой из десяти
+   страниц. Это не токены продукта и не палитра: внутренние переменные
+   Tailwind, из которых раскрываются утилиты shadow-*, ring-*, translate-*,
+   scale-*, gradient-* и filter-*. В ui/tokens.css им не место — там
+   переменные, объявленные продуктом, — но без них утилиты, скопированные
+   в компоненты на R2–R5, раскроются в пустоту.
+   Источник: инлайновый <style> career.habr.com, самое начало, 10/10.
+   ------------------------------------------------------------------------- */
+*,::backdrop,:after,:before{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:#3b82f680;--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }
+
+/* -------------------------------------------------------------------------
+   2. Сброс — normalize.css v8.0.1
+   -------------------------------------------------------------------------
+   Курсы сбрасывают браузер именно normalize, а НЕ preflight Tailwind.
+   Различие видно в разметке и стоит того, чтобы его знать: normalize сам
+   объявляет h1{font-size:2em;margin:.67em 0} — строка стоит в приведённом
+   ниже тексте, — то есть браузерные значения он не отменяет, а закрепляет.
+   Поэтому продукт гасит отступ вручную: класс m-0 стоит на ВСЕХ ВОСЬМИ <h1>
+   десяти снятых страниц — 8/8. Preflight, который обнулил бы отступы всем
+   заголовкам, в сборке отсутствует: сгруппированного правила вида h1,h2,h3…
+   в корпусе нет ни одного. Одиночное элементное правило для h1 есть, и это
+   ровно normalize — по одному на каждый из десяти инлайновых файлов, все
+   с одним текстом. (Формулировка уточнена по review-2.md, note 8 и note 9.)
+   (Восемь, а не семь: <h1> нет на /courses и на странице автора, а на
+   /education_centers/35-… он есть, но набран не шкалой заголовка —
+   см. раздел 5. Первая редакция считала семь и по ошибке приравнивала
+   число <h1> к числу заголовков с .text-h1.)
+
+   Текст правил приведён без изменений вместе с исходным комментарием
+   лицензии. Строку html{line-height:1.15} тут же перекрывает база
+   документа ниже (1.3).
+   Источник: инлайновый <style> career.habr.com, 10/10 страниц.
+   ------------------------------------------------------------------------- */
+/*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+html{line-height:1.15;-webkit-text-size-adjust:100%}body{margin:0}main{display:block}h1{font-size:2em;margin:.67em 0}hr{box-sizing:content-box;height:0;overflow:visible}pre{font-family:monospace,monospace;font-size:1em}a{background-color:transparent}abbr[title]{border-bottom:none;text-decoration:underline;-webkit-text-decoration:underline dotted;text-decoration:underline dotted}b,strong{font-weight:bolder}code,kbd,samp{font-family:monospace,monospace;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}img{border-style:none}button,input,optgroup,select,textarea{font-family:inherit;font-size:100%;line-height:1.15;margin:0}button,input{overflow:visible}button,select{text-transform:none}[type=button],[type=reset],[type=submit],button{-webkit-appearance:button}[type=button]::-moz-focus-inner,[type=reset]::-moz-focus-inner,[type=submit]::-moz-focus-inner,button::-moz-focus-inner{border-style:none;padding:0}[type=button]:-moz-focusring,[type=reset]:-moz-focusring,[type=submit]:-moz-focusring,button:-moz-focusring{outline:1px dotted ButtonText}fieldset{padding:.35em .75em .625em}legend{box-sizing:border-box;color:inherit;display:table;max-width:100%;padding:0;white-space:normal}progress{vertical-align:baseline}textarea{overflow:auto}[type=checkbox],[type=radio]{box-sizing:border-box;padding:0}[type=number]::-webkit-inner-spin-button,[type=number]::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}[type=search]::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}details{display:block}summary{display:list-item}[hidden],template{display:none}
+
+/* -------------------------------------------------------------------------
+   3. База документа
+   -------------------------------------------------------------------------
+   Четыре правила, которыми Курсы задают документ. Побайтово одинаковы
+   на всех десяти снятых страницах.
+
+   body,html   16px и line-height:1.3 — то есть 20.8px. Это подтверждает
+               computed: у <body> на всех снятых ширинах ровно
+               line-height: 20.8px. Ни один шаг шкалы не равен 16/20.8:
+               .text-default — 16/22. Базовый кегль наследуется, но в
+               разметке продукта поверх почти всегда стоит утилита.
+               box-sizing: border-box объявлен здесь и раздаётся потомкам
+               через inherit ниже — на этом стоит вся геометрия пакета.
+   height:100% — вместе с оболочкой .app-container (R0-04) даёт прижатый
+               футер. Селектор продукта — #__nuxt,body,html; фреймворковый
+               #__nuxt в пакет не переносится (METHOD §9), остальное как есть.
+   a           ссылка синяя без подчёркивания, подчёркивание — на hover.
+               Это база документа, а не компонент Link: разбор того, где
+               ссылка чёрная, а где синяя, — шаг R3-03.
+   *,:after,:before
+               наследование box-sizing и font-family плюс обнуление рамки
+               и подсветки тапа. Именно отсюда Inter попадает в кнопки и
+               поля, которым браузер шрифт не наследует.
+
+   Источник: инлайновый <style> career.habr.com, 10/10 страниц.
+   ------------------------------------------------------------------------- */
+body,html{background-color:var(--color-white-background);box-sizing:border-box;color:var(--color-text-main);font-family:Inter,sans-serif;font-size:16px;line-height:1.3;margin:0;padding:0}
+body,html{height:100%}
+a{color:var(--color-links-main);text-decoration:none}
+a:hover{text-decoration:underline}
+*,:after,:before{border:0 solid var(--color-ui-white);box-sizing:inherit;font-family:inherit;-webkit-tap-highlight-color:transparent}
+
+/* -------------------------------------------------------------------------
+   4. Типографическая шкала
+   -------------------------------------------------------------------------
+   Девять ступеней. Ни одна не задаёт ни начертание, ни цвет: вес ставится
+   отдельной утилитой (.font-normal 400 · .font-semibold 600 · .font-bold 700),
+   цвет — .text-ui-*.
+
+   ШКАЛА ЗАКРЫВАЕТ КЕГЛЬ, НО НЕ ВЕСЬ НАБОР ТЕКСТОВЫХ УТИЛИТ. Кроме ступеней
+   продукт применяет интерлиньяж поверх ступени (.leading-none, 40 · 10/10 —
+   он в этом файле, ниже) и десять утилит переноса, обрезки и выравнивания:
+   .whitespace-nowrap 471 · 10/10, .truncate 196 · 6/10, .break-words
+   158 · 9/10, .line-clamp-2 150 · 8/10, .line-clamp-3 48 · 3/10,
+   .line-clamp-1 21 · 3/10, .text-center 29 · 7/10, .text-right 20 · 3/10,
+   .text-left 12 · 10/10, .small-phone\:text-center 8 · 4/10. Список полный,
+   он же в docs/guide/typography.md, «Ограничения», GAP-9.
+   В этот слой они не идут — их место ui/utilities.css, шаг R0-04.
+
+   ПРИЗНАК ГРАНИЦЫ СЛОЯ — ПО ОБЪЯВЛЕННОМУ СВОЙСТВУ, СПИСОК ЗАКРЫТ.
+   Текстовые разделы слоя (4 и 5, 25 правил из 42) объявляют шесть свойств
+   и никаких других: font-size, line-height, letter-spacing, font-weight,
+   text-transform, text-decoration-line. Все шесть меняют отрисовку самих
+   знаков. Десять утилит выше не объявляют ни одного из шести — только
+   white-space, overflow, text-overflow, overflow-wrap, display
+   с -webkit-line-clamp и text-align, то есть размещение и обрезку строки
+   в коробке.
+   Правило для R0-04: утилита, объявляющая хотя бы одно из шести, остаётся
+   здесь; не объявляющая ни одного — уходит в ui/utilities.css. Проверяется
+   чтением правила в корпусе, а не суждением о назначении класса.
+   Разделы 6 (фокус) и 7 (скрытие от глаз) лежат в слое по другому
+   основанию — это база документа, а не набор текста, — и под признак
+   не подводятся.
+   (Прежняя формулировка «утилита, меняющая кегль или интерлиньяж, —
+   типографика» содержимое слоя не описывала: кегль или интерлиньяж задают
+   16 правил из 42. Снята по review-2.md, находка 2.)
+
+   Ступень          кегль/интерлиньяж   ls     в разметке 10 страниц
+     .text-h1          44 / 48         -0.5      7 вхождений, 7/10 страниц
+     .text-h1-mobile   30 / 34         -0.5      2 вхождения, 2/10
+     .text-h2          24 / 28         -0.5     32 вхождения, 10/10
+     .text-h3          20 / 24         -0.5      1 вхождение,  1/10
+     .text-h4          18 / 22         -0.5    258 вхождений,  9/10
+     .text-default     16 / 22           0     20 вхождений,   7/10
+     .text-small       14 / 20           0   1237 вхождений,  10/10
+     .text-micro       12 / 16           0    505 вхождений,  10/10
+     .text-caps        10 / 14           0      0 вхождений — [NO MARKUP]
+
+   Отрицательный трекинг −0.5px стоит ровно на пяти заголовочных ступенях
+   и ни на одной текстовой. Продукт печатает его двумя группами
+   (.text-h1,.text-h1-mobile и .text-h2,.text-h3) плюс внутри правила
+   .text-h4; здесь для читаемости он собран в одну строку — множество
+   селекторов и значение те же.
+
+   .text-caps объявлена в сборке, и ни один элемент десяти снятых страниц
+   её не несёт: пометка [NO MARKUP] в том же смысле, что в ui/tokens.css.
+   Ступенью прошлой шкалы она при этом не является — образец типографики
+   продукта (story common-typography--typography в снимке _sources/courses/)
+   показывает её наравне с остальными восемью, в тройке
+   «text-caps uppercase font-semibold» и с подписью Caps. То есть 10/14 —
+   это капс полужирным, а не мелкий текст; заглавных букв сама ступень
+   не делает, регистр меняет .uppercase (16 вхождений на 1/10 страниц).
+   Caps — подпись строки образца; сам стиль в education-lib называется
+   caps строчными (search_design_system, ключ c0fec0e4…). Тройка стоит
+   на одной строке одного образца, в разметке десяти страниц её нет:
+   по METHOD §8 это наблюдение, а не правило продукта.
+
+   Класса .text-card-title в сборке нет вовсе, хотя переменная
+   --line-height-card-title: 32px в :root объявлена. Это мёртвая ветка,
+   а не пропущенная ступень.
+
+   Источник: девять правил в инлайновом <style> career.habr.com; значения
+   совпадают на 10/10 страниц и в 12 внешних .css сборки. Покрытия —
+   подсчёт по evidence/source/production/pages/<id>/dom.html, 10 файлов.
+   ------------------------------------------------------------------------- */
+.text-h1{font-size:44px;line-height:48px}
+.text-h1-mobile{font-size:30px;line-height:34px}
+.text-h2{font-size:24px;line-height:28px}
+.text-h3{font-size:20px;line-height:24px}
+.text-h4{font-size:18px;line-height:22px}
+.text-h1,.text-h1-mobile,.text-h2,.text-h3,.text-h4{letter-spacing:-.5px}
+
+.text-default{font-size:16px;line-height:22px}
+.text-small{font-size:14px;line-height:20px}
+.text-micro{font-size:12px;line-height:16px}
+.text-caps{font-size:10px;line-height:14px}
+
+/* Интерлиньяж поверх ступени. Внесено правкой major 3 по review-1.md:
+   .leading-none перебивает интерлиньяж любой ступени и делает это часто —
+   40 вхождений на 10/10 страниц, — поэтому «девять ступеней задают
+   интерлиньяж» без него неверно. Правило продукта, приведено дословно.
+   Пример из разметки, пункт меню:
+     "my-0 flex w-full items-center gap-3 whitespace-nowrap rounded-lg
+      py-2 pl-4 pr-6 leading-none no-underline hover:bg-ui-black-50
+      hover:no-underline"
+   То есть .text-small leading-none — это 14/14, а не 14/20. Утилита
+   не задаёт кегль и ступенью не является: она снимает у ступени
+   интерлиньяж там, где строка одна и высоту держит контейнер.
+   .leading-5 (1.25rem = 20px, дубль интерлиньяжа .text-small) в сборке
+   объявлена и в разметке не стоит — [NO MARKUP]. Других .leading-*
+   в корпусе нет. */
+.leading-none{line-height:1}
+.leading-5{line-height:1.25rem}
+
+/* Начертания. Переменный Inter, ось 100…900; продукт пользуется тремя. */
+.font-normal{font-weight:400}
+.font-semibold{font-weight:600}
+.font-bold{font-weight:700}
+
+/* Заглавные — отдельно от .text-caps, вопреки имени последней. */
+.uppercase{text-transform:uppercase}
+
+/* Подчёркивание ссылок. Базовое правило a:hover подчёркивает всё; продукт
+   отменяет это точечно (.hover:no-underline — 368 вхождений, 10/10) и
+   возвращает там, где ссылка не выглядит ссылкой (.hover:underline — 160,
+   10/10). .no-underline — 40 вхождений, 10/10; .underline — 0.
+   .line-through — 4 вхождения на 1/10 страниц: по METHOD §8 это
+   наблюдение, а не правило продукта; в слой взята как объявленное
+   правило сборки, а не как приём. */
+.no-underline{text-decoration-line:none}
+.line-through{text-decoration-line:line-through}
+.hover\:underline:hover{text-decoration-line:underline}
+.hover\:no-underline:hover{text-decoration-line:none}
+
+/* Плейсхолдер набирается .text-small — 29 вхождений на 6/10 страниц. */
+.placeholder\:text-small::-moz-placeholder{font-size:14px;line-height:20px}
+.placeholder\:text-small::placeholder{font-size:14px;line-height:20px}
+
+/* -------------------------------------------------------------------------
+   5. Мобильная ступень шкалы
+   -------------------------------------------------------------------------
+   Единственное место, где шкала зависит от ширины. Граница — 767/768,
+   а не каноническая 744: правила объявлены внутри @media (max-width:767px),
+   и живой замер это подтверждает.
+
+   Замер /education_centers, msedge, шесть ширин, 8 сентября 2026:
+     744 → 30/34   766 → 30/34   767 → 30/34   768 → 44/48   769 → 44/48
+     1024 → 44/48
+   То есть каноническая ширина пакета 744 лежит внутри мобильного
+   диапазона реализации и отдаёт мобильный заголовок. Канон пакета —
+   320 / 744 / 1024 (BRIEF §9), реализация — 480 / 768 / 1024; шкала
+   переключается по границе реализации, и приводить одно к другому нельзя.
+
+   .phone\:text-h1-mobile — 7 вхождений на 7/10 страниц, всегда в паре
+   с .text-h1 на одном узле. .phone\:text-h2 объявлен, но в разметке
+   десяти страниц отсутствует — [NO MARKUP].
+
+   Пара стоит на семи <h1> ИЗ ВОСЬМИ, а не на всех. Восьмой —
+   /education_centers/35-yandeks-praktikum:
+     <h1 class="absolute bottom-20 left-0 m-0 translate-y-full
+                text-small font-normal text-ui-black-500">
+   то есть <h1> без .text-h1 и без мобильной пары, набранный 14/20
+   начертанием 400. Пара не «разъезжается» — её там просто нет; но
+   утверждать «пара стоит на всех <h1> и никогда не разъезжается»
+   после этого узла нельзя. Правка minor 4 по review-1.md.
+
+   ГРАНИЦЫ ВСЕХ ШЕСТИ БРЕЙКПОИНТ-ПРЕФИКСОВ ПРОДУКТА. Сняты брейс-сканом
+   вложенности @media по 22 файлам корпуса (10 инлайновых + 12 внешних);
+   каждый префикс встретился ровно в одном условии, все шесть — на 10/10
+   файлов, ни одного случая, когда префикс объявлен в двух разных запросах:
+     small-phone:         @media (max-width:479px)                          460 правил
+     phone:               @media (max-width:767px)                         2170 правил
+     phablet-and-tablet:  @media (min-width:480px) and (max-width:1023px)    20 правил
+     tablet-only:         @media (min-width:768px) and (max-width:1023px)    80 правил
+     tablet:              @media (max-width:1023px)                         300 правил
+     desktop:             @media (min-width:1024px)                          20 правил
+   Верхней границы у desktop: нет: это min-width-префикс, диапазон открыт
+   вправо. В разметке десяти страниц: phone: 927 · 10/10, tablet: 95 · 10/10,
+   tablet-only: 36 · 10/10, small-phone: 20 · 4/10, desktop: 10 · 10/10
+   (единственный токен — desktop:hidden, всегда на одном и том же <ul>),
+   phablet-and-tablet: 0 · 0/10 — объявлен в сборке, в разметке не стоит.
+   Шкала пользуется только phone:; остальные пять префиксов — раскладка
+   и видимость, они идут в ui/layout.css на R0-04. Здесь они названы,
+   потому что первая редакция этого слоя утверждала, что desktop: в корпусе
+   не встречается вовсе, — утверждение было ложным
+   (.pipeline/R0-03/review-1.md, находка 1). Прежняя редакция этого блока
+   называла четыре префикса из шести; счёт доведён до полного при перепроверке
+   по review-2.md, находка 1. Пакет в нескольких местах ещё утверждает, что
+   запросы для tablet: и desktop: не прочитаны, — эти места перечислены
+   строками долга в .pipeline/R0-03/capture.md §10 и правятся приёмкой.
+
+   Источник: @media (max-width:767px) в инлайновом <style>, 10/10 страниц;
+             живой замер шести ширин (см. .pipeline/R0-03/capture.md §4);
+             границы префиксов — evidence/source/production/css/, 22 файла.
+
+   Обёртка @media ниже — своя: в сборке эти три правила лежат внутри общего
+   блока (max-width:767px) вперемешку с двумя тысячами других, отдельного
+   блока под них у продукта нет. Побайтово продуктовые — сами три правила;
+   условие записано в продуктовой форме, без пробела. Названо по review-2.md,
+   note 10, чтобы обещание шапки «минификация продуктовые» не читалось шире,
+   чем оно есть.
+   ------------------------------------------------------------------------- */
+@media (max-width:767px) {
+  .phone\:text-h1-mobile{font-size:30px;line-height:34px}
+  .phone\:text-h2{font-size:24px;line-height:28px}
+  .phone\:text-h1-mobile,.phone\:text-h2{letter-spacing:-.5px}
+}
+
+/* -------------------------------------------------------------------------
+   6. Фокус
+   -------------------------------------------------------------------------
+   Единого правила фокуса у Курсов НЕТ. Во всём корпусе — инлайновый
+   <style> десяти страниц плюс двенадцать внешних .css сборки — одиннадцать
+   селекторов с :focus, :focus-visible или :focus-within, и ни один не
+   элементный: десять утилит, которые компонент подключает себе сам,
+   и одно правило компонента BaseCheckbox
+   (.base-checkbox__input:focus+.base-checkbox__button — шаг R3-10, сюда
+   не идёт). Единственное элементное правило про фокус в этом файле —
+   :-moz-focusring из normalize в разделе 2, и оно не продукта.
+
+   Поэтому здесь утилиты, а не глобальный ринг. Глобальное правило
+   означало бы, что мы перекрашиваем фокус 1034 узлам, у которых
+   в продукте он выглядит иначе.
+
+   Как это работает на кнопке. Три утилиты всегда стоят вместе:
+     focus:outline-none                  гасит фокус любого происхождения
+     focus-visible:outline               возвращает style: solid
+     focus-visible:outline-ui-black-400  и цвет
+   Порядок в сборке именно такой (смещения 30273 → 30343 → 30401
+   в инлайновом <style> /courses), поэтому лонгханды :focus-visible
+   перекрывают шорткат, а ширина 2px и отступ 2px достаются от него.
+
+   Замер живого фокуса, /courses, msedge, 1440, клавиатурная модальность,
+   8 сентября 2026 (скопировано из выдачи, см. .pipeline/R0-03/capture.md §5):
+     кнопка с тройкой утилит  outline: rgb(166,167,169) solid 2px; offset 2px
+     ссылка-кнопка с тройкой  то же
+     поле поиска (у самого
+       поля focus:outline-none)  outline: rgba(0,0,0,0) solid 2px; offset 2px
+     ссылка без утилит        outline: rgb(16,16,16) auto 1px; offset 1px
+   rgb(166,167,169) — это #a6a7a9, то есть var(--color-ui-black-400).
+   Третья строка не означает «фокуса нет»: собственный контур поле гасит,
+   но реагирует его обёртка — <span> с focus-within:border-ui-black-850
+   и focus-within:bg-ui-white меняет рамку с #e9e9ea на #2c2e34.
+   Четвёртая строка — не продукт, а рисунок браузера: для таких узлов
+   продукт не объявляет ничего.
+
+   Покрытие по десяти снятым dom.html (1440), фокусируемых узлов 1264
+   (<a href> · button · input · select · textarea · summary):
+     191  свой ринг продукта                       9/10 страниц
+      29  контур погашен, реагирует focus-within    6/10
+      10  контур погашен, замены нет               10/10
+    1034  ничего не объявлено, рисует браузер      10/10
+
+   Десять — это один и тот же узел на каждой из десяти страниц: кнопка
+   раскрытия панели сервисов в шапке,
+   «font-inherit inline-flex h-6 … text-ui-white outline-none». Клавиатурный
+   фокус на ней невидим. Записано ограничением в docs/guide/typography.md,
+   а не залатано.
+
+   Нормативного глобального фокуса мы не дописываем. Основание — решение
+   пользователя BRIEF §9 п. 4 (доступность фиксируется как есть) и то, что
+   видимый фокус в продукте есть у 1254 узлов из 1264; у 1034 он просто
+   браузерный. Файла ui/state-contract.css этот шаг не заводит.
+
+   [NO MARKUP] в этом наборе: .outline-2 и .outline-offset-1 (0 вхождений;
+   приведены, потому что ширину и отступ ринга в продукте задаёт шорткат
+   outline-none, и без них набор читается неполным),
+   .peer-focus-visible:outline и .focus:bg-ui-black-50 (0 вхождений).
+   Тройка .peer-focus:ring-2 / ring-[#738efa] / ring-offset-1 в сборке тоже
+   есть и тоже [NO MARKUP]; она тянет за собой машинерию --tw-ring-* и
+   принадлежит чекбоксу — берётся на R3-10, не здесь.
+
+   Источник: десять правил в инлайновом <style> career.habr.com, 10/10;
+             живой замер — .pipeline/R0-03/capture.md §5.
+   ------------------------------------------------------------------------- */
+.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}
+.focus-visible\:outline:focus-visible{outline-style:solid}
+.focus-visible\:outline-ui-black-400:focus-visible{outline-color:var(--color-ui-black-400)}
+.peer:focus-visible~.peer-focus-visible\:outline{outline-style:solid}
+.outline-none{outline:2px solid transparent;outline-offset:2px}
+.outline-2{outline-width:2px}
+.outline-offset-1{outline-offset:1px}
+.focus\:bg-ui-black-50:focus{background-color:var(--color-ui-black-50)}
+.focus-within\:border-ui-black-850:focus-within{border-color:var(--color-ui-black-850)}
+.focus-within\:bg-ui-white:focus-within{background-color:var(--color-ui-white)}
+
+/* -------------------------------------------------------------------------
+   7. Скрытие от глаз
+   -------------------------------------------------------------------------
+   Обе утилиты объявлены в сборке и обе [NO MARKUP]: ни .sr-only, ни
+   .visually-hidden не стоят ни на одном узле десяти снятых страниц —
+   0 вхождений. То есть текста, доступного только скринридеру, в снятой
+   публичной части продукта нет. Утилиты оставлены как факт сборки;
+   вывод про доступность — в docs/guide/typography.md, «Ограничения».
+
+   Различаются они не стилем, а происхождением: .sr-only — штатная утилита
+   Tailwind, .visually-hidden — своя, и она НЕ эквивалентна: нулевая
+   высота с overflow:hidden ведёт себя иначе, чем clip-rect.
+   ------------------------------------------------------------------------- */
+.sr-only{height:1px;margin:-1px;overflow:hidden;padding:0;position:absolute;width:1px;clip:rect(0,0,0,0);border-width:0;white-space:nowrap}
+.visually-hidden{height:0;opacity:0;overflow:hidden;position:absolute;width:0}

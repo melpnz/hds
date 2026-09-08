@@ -8,9 +8,12 @@ Storybook.
 > ширинах, собран реестр из 55 элементов, составлен роадмап на 76 шагов.
 > Заведён каркас: точка подключения `ui/courses.css` и слои под ней, скрипты
 > проверок.
-> **Вёрстка не начата** — файлы `ui/` заведены пустыми, с заголовками;
-> `components/`, `showcase/`, `machine/` пусты. Пользоваться пакетом как
-> источником разметки ещё нельзя.
+> **Вёрстка компонентов не начата** — спецификаций 0. Заполнены
+> `ui/tokens.css` (R0-02), `ui/fonts.css` и `ui/foundations.css` (R0-03);
+> `ui/layout.css` и `ui/components/*.css` — пустые каркасы, R0-04 и R2–R5.
+> `components/` держит реестр `manifest.json` и шаблон спецификации (R0-05).
+> `showcase/`, `machine/` не приняты. Пользоваться пакетом как источником
+> разметки компонентов ещё нельзя.
 
 Что предстоит — [`ROADMAP.md`](ROADMAP.md). Зачем и в каких границах —
 [`BRIEF.md`](BRIEF.md).
@@ -84,24 +87,36 @@ courses/
   playwright.config.mjs     браузерные проверки витрины (порт 4179)
 
   ui/                       слой Курсов — файлы заведены, содержимое на R0–R5
-    courses.css             точка подключения — готова, 13 @import
+    courses.css             точка подключения — готова, 14 @import
+    fonts.css               14 @font-face переменного Inter, файлы локальные;
+                            разбор — docs/guide/typography.md
     tokens.css              51 переменная :root продукта; разбор —
                             docs/guide/tokens.md
-    foundations.css         пусто; типографическая шкала — R0-03
+    foundations.css         normalize v8.0.1, база документа, шкала из
+                            9 ступеней, интерлиньяж поверх ступени
+                            (.leading-none), фокус; разбор —
+                            docs/guide/typography.md. Утилит переноса,
+                            обрезки и выравнивания здесь НЕТ — GAP-9
+                            статьи, их место в ui/utilities.css (R0-04)
     layout.css              пусто; контейнер, сетка, брейкпоинты — R0-04
     components/*.css        10 файлов по категориям, пока только заголовки
-    assets/                 иконки и шрифты; наполняется R0-03 и R2-01
+    assets/fonts/           14 woff2 Inter, 711 КБ
+    assets/icons/           пусто; спрайт и одиночные иконки — R2-01
 
-  components/               пусто; реестр и шаблон спецификации — R0-05,
-                            словарь состояний — R1-01, спецификации — R2–R5
+  components/               manifest.json (55 записей), INDEX.md, шаблон
+                            спецификации — R0-05. Словарь состояний — R1-01,
+                            спецификации — R2–R5
   showcase/                 пусто; components.html — R0-06, pages.html — R6
   pages/                    пусто; по файлу на ключевую страницу — R6
   docs/guide/               tokens.md — разбор переменных продукта;
-                            composition, decisions, coverage — R7
+                            typography.md — шкала, база документа, шрифт,
+                            фокус; composition, decisions, coverage — R7
   docs/development/         заметки по работе с пакетом
   machine/                  пусто; машиночитаемая проекция — R8
   tests/                    пусто; первый спек витрины — R0-06
   evidence/                 снимки продакшена, Figma, Storybook, покрытие
+    source/production/css/    корпус CSS: 10 инлайновых + 12 внешних .css,
+                            по которым проверяются все счётчики шага R0-03
     source/production/pages/  10 страниц; dom · computed · tokens · meta · png
                             на 320 · 375 · 479 · 480 · 744 · 768; для 1440 —
                             PNG и снимок без суффикса, для 1024 — только PNG

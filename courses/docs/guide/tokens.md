@@ -30,7 +30,7 @@
 Не берите отсюда размеры, отступы и радиусы: их в слое нет и не будет.
 В Курсах они живут литералами в утилитах Tailwind, а не переменными.
 Отступы и контейнер — `ui/layout.css` (шаг R0-04), кегли и интерлиньяж —
-`ui/foundations.css` (шаг R0-03).
+`ui/foundations.css`, разбор — [`typography.md`](typography.md).
 
 Не берите `--header-height` как константу оболочки: значение подставляет
 скрипт, и на `/courses` при узком экране оно другое — см. GAP-4.
@@ -253,7 +253,11 @@ rating 52   reviews 52   schools-for-children 52
 
 Переменные оставлены в слое, потому что они объявлены в `:root` продукта
 и снимаются с него. Пометка говорит, что опираться на них нельзя.
-Разбор шкалы — шаг R0-03.
+
+Список утилит здесь неполный: он снят с `/courses` на R0-02. Ступеней
+девять — добавляются `.text-h1-mobile` 30/34 и `.text-caps` 10/14, — и семь
+из девяти сверены с текстовыми стилями Figma. Разбор шкалы, базы документа,
+шрифта и фокуса — [`typography.md`](typography.md), шаг R0-03.
 
 ---
 
@@ -271,26 +275,40 @@ rating 52   reviews 52   schools-for-children 52
 разбор компонента. Чего конкретно не хватает: DOM выбранного чипа
 с `computed` фона и цвета текста.
 
-**GAP-2. `--font-size-h3` против `.text-h3`.** Токен объявляет 21 px,
-утилита `.text-h3` печатает 20 px. Токен мёртвый, поэтому на экране 20 px;
-но токен продолжает существовать в `:root` со старым значением.
+**GAP-2. ~~`--font-size-h3` против `.text-h3`.~~ Закрыт шагом R0-03.**
+Норма продукта — **20/24**, то есть живая утилита; токены `--font-size-h3: 21px`
+и `--line-height-h3: 27px` — след прошлой шкалы, оставшийся в `:root`.
 
-Расхождение доказано одним CSS сборки; Figma в нём не участвует. Значения
-текстового стиля `Header/H3` снять не удалось: страницы компонентов
-`education-lib` через MCP недоступны (GAP-6). `search_design_system`
-подтверждает, что стиль существует — библиотека `education-lib`,
-`styleType: TEXT`, `styleKey a9931b3dad221f7ca09c08d0f7f379b8f3ab51e4`, —
-но размеров не отдаёт, и одноимённых `Header/H3` в других библиотеках Хабра
-несколько. Чего не хватает, чтобы закрыть: (1) подтверждения, что 21 px —
-след прошлой шкалы, а не второй живой ветки; это проверяет R0-03
-по `computed.json` десяти страниц; (2) кегля и интерлиньяжа `Header/H3`
-из Figma — до них расхождение остаётся двусторонним, внутри прода.
+Решает это Figma, значения которой на R0-02 снять не удавалось. Способ нашёлся
+обходной: страницы компонентов `education-lib` по-прежнему недоступны (GAP-6),
+но текстовый стиль отдаётся `get_variable_defs` того **узла макета**, который
+его применяет. По узлу `14613:211399` (`FilterModal`) файла
+`oNyNRRob2y0ZSgPHOdH65X`: `Header/H3` = Font(family `font/font-family/Headers`
+Inter, size `font/size/display-m` **20**, lineHeight `font/line-height/display-m`
+**24**, letterSpacing `font/letter-spacing/Headers` −0.5, weight
+`font/weight/Semibold` 600). Совпадение с `.text-h3{font-size:20px;
+letter-spacing:-.5px;line-height:24px}` полное; 21/27 не совпадает ни с чем.
 
-**GAP-3. `--line-height-h2` 27 против computed 28.** Тот же механизм:
-токен мёртв, `.text-h2` печатает `line-height:28px`, и computed даёт 28.
-Расхождение из `BRIEF.md` §5 закрыто наполовину — механизм назван,
-но какое из двух значений считать нормой продукта, решает R0-03.
-То же у `--line-height-h3`: токен 27, утилита 24.
+Прод подтверждает то же самое ещё двумя независимыми местами:
+`.base-modal__title{font-size:20px;font-weight:600;line-height:24px}`
+и `.style-ugc h3{font-size:20px}`. Разбор — [`typography.md`](typography.md),
+«Сверка с Figma».
+
+Про второе подтверждение нужна оговорка, иначе оно прочтётся шире, чем есть.
+В корпусе у `.style-ugc h3` **два** правила, и второе перебивает первое
+на 14 px: `[data-v-f2a1ab8e] .style-ugc h3{font-size:14px!important}`
+(`external/similar-courses.DqXT-MW0.css`). Оно ограничено scope-атрибутом
+Vue, то есть действует не везде, — поэтому 20 px как норма шкалы остаётся
+подтверждённым, а `Prose` (`.style-ugc`) одним размером `h3` не описывается.
+Разбор обоих правил — [`typography.md`](typography.md), GAP-7; сам компонент
+разбирает шаг R2-12.
+
+**GAP-3. ~~`--line-height-h2` 27 против computed 28.~~ Закрыт шагом R0-03.**
+Норма продукта — **28**. Тем же способом: `Header/H2` в `education-lib` —
+size `font/size/display-l` 24, lineHeight `font/line-height/display-l` **28**
+(узлы `10983:72700`, `12093:116282`, `13246:159568`). Мёртвый токен
+`--line-height-h2: 27px` не совпадает ни с утилитой, ни с макетом. То же
+у `--line-height-h3`: токен 27, утилита и Figma — 24.
 
 **GAP-4. `--header-height` — не константа.** В CSS продукта объявлено
 `112px` и `144px` в `@media (max-width:767px)`; те же два числа стоят
@@ -338,6 +356,14 @@ rating 52   reviews 52   schools-for-children 52
 страницы компонентов `education-lib` через MCP недоступны — есть
 `componentKey`, но нет node id.
 
+Сузилось на R0-03. Напрямую библиотека по-прежнему не открывается, но
+её переменные и текстовые стили отдаёт `get_variable_defs` тех узлов
+**макета** `02_Education-NEW`, которые их применяют, — с именами и
+значениями. Так закрыты GAP-2 и GAP-3. Покрытие у способа случайное:
+видно ровно то, что применено на прочитанных узлах, — поэтому GAP-6
+остаётся открытым. Чего не хватает: node id страниц `education-lib`
+либо перебора узлов макета до полного покрытия имён.
+
 **GAP-7. Тёмной темы нет.** Второго набора значений `:root` в продукте
 не существует — ни блока `@media (prefers-color-scheme: dark)`,
 ни `[data-theme]`.
@@ -364,7 +390,8 @@ rating 52   reviews 52   schools-for-children 52
 | Высота `<header>` | `evidence/source/production/pages/<id>/computed{,-320,…}.json`, узел `body > div[0] > div[0] > div[0] > header[0]` |
 | Использование в разметке | `evidence/source/production/pages/<id>/dom*.html`, 70 файлов |
 | Палитра Figma | `education-lib` `KG36iTkwvKDmrw8XQhk7d6`, страница «colors» [`33:15585`](https://www.figma.com/design/KG36iTkwvKDmrw8XQhk7d6/education-lib?node-id=33-15585), узел `4127:6558` |
-| Существование стиля `Header/H3` | `search_design_system` по `KG36iTkwvKDmrw8XQhk7d6`: библиотека `education-lib`, `styleType: TEXT`, `styleKey a9931b3dad221f7ca09c08d0f7f379b8f3ab51e4`. **Значений стиля этим не получить** — см. GAP-2 и GAP-6 |
+| Существование стиля `Header/H3` | `search_design_system` по `KG36iTkwvKDmrw8XQhk7d6`: библиотека `education-lib`, `styleType: TEXT`, `styleKey a9931b3dad221f7ca09c08d0f7f379b8f3ab51e4`. **Значений стиля этим не получить** — см. GAP-6 |
+| Значения текстовых стилей `education-lib` | `get_variable_defs` узлов макета `oNyNRRob2y0ZSgPHOdH65X` (`02_Education-NEW`), которые эти стили применяют: `14613:211399` (`Header/H3`), `10983:72700`, `12093:116282` и `13246:159568` (`Header/H2` — три узла, все три отдают `display-l` 24 / 28), `9785:45731` (`Header/H4`). Способ найден на R0-03 и закрывает GAP-2 и GAP-3. **Он даёт значения, но не атрибуцию**: из какой библиотеки пришло имя, `get_variable_defs` не говорит, и применять его нужно в паре с `search_design_system` по `libraryKey` — разбор и правило в [`typography.md`](typography.md), «Сверка с Figma» |
 | Граница мобильной раскладки 767/768 | `evidence/source/production/media-queries-cold.json`, `byWidth` 744 · 767 · 768 (холодная загрузка `/courses`); `.phone\:flex-wrap` в `@media (max-width: 767px)` инлайнового `<style>` |
 | Сборка Storybook | `_sources/courses/source/css/index.CSGoIsqw.css` (read-only) |
 | Протокол шага | `.pipeline/R0-02/capture.md` |
