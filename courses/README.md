@@ -54,8 +54,11 @@ Storybook.
 Логин нигде не потребовался.
 
 Покрыты оболочка, пять семейств страниц (листинг, таблица, сущность,
-промо-раздел, профиль), карточки сущностей, примитивы и адаптив на шести
-ширинах: 320 · 375 · 744 · 768 · 1024 · 1440.
+промо-раздел, профиль), карточки сущностей, примитивы и адаптив на восьми
+ширинах: 320 · 375 · 479 · 480 · 744 · 768 · 1024 · 1440. Полный набор файлов
+(dom · computed · tokens · meta · png) — на шести из восьми: 320 · 375 · 479 ·
+480 · 744 · 768; для 1440 есть PNG и общий снимок без суффикса, для 1024 —
+только PNG (`docs/guide/tokens.md`, GAP-8).
 
 Не покрыты: страница отдельного курса (её в продукте нет), формы ввода, пустая
 выдача, ошибки, загрузка, открытые оверлеи, личный кабинет, тёмная тема,
@@ -82,7 +85,8 @@ courses/
 
   ui/                       слой Курсов — файлы заведены, содержимое на R0–R5
     courses.css             точка подключения — готова, 13 @import
-    tokens.css              пусто; переменные :root снимает R0-02
+    tokens.css              51 переменная :root продукта; разбор —
+                            docs/guide/tokens.md
     foundations.css         пусто; типографическая шкала — R0-03
     layout.css              пусто; контейнер, сетка, брейкпоинты — R0-04
     components/*.css        10 файлов по категориям, пока только заголовки
@@ -92,13 +96,15 @@ courses/
                             словарь состояний — R1-01, спецификации — R2–R5
   showcase/                 пусто; components.html — R0-06, pages.html — R6
   pages/                    пусто; по файлу на ключевую страницу — R6
-  docs/guide/               пусто; composition, decisions, coverage — R7
+  docs/guide/               tokens.md — разбор переменных продукта;
+                            composition, decisions, coverage — R7
   docs/development/         заметки по работе с пакетом
   machine/                  пусто; машиночитаемая проекция — R8
   tests/                    пусто; первый спек витрины — R0-06
   evidence/                 снимки продакшена, Figma, Storybook, покрытие
-    source/production/pages/  10 страниц на 320 · 375 · 744 · 768 · 1024 · 1440:
-                            dom, computed, tokens, png
+    source/production/pages/  10 страниц; dom · computed · tokens · meta · png
+                            на 320 · 375 · 479 · 480 · 744 · 768; для 1440 —
+                            PNG и снимок без суффикса, для 1024 — только PNG
     source/production/media-queries.json  media-запросы сборки и их активность
   tools/                    capture.mjs, serve.mjs, validate-components.mjs,
                             validate-classes.mjs, validate-counts.mjs

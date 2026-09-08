@@ -1,15 +1,24 @@
 // Съёмка фактов с живой страницы Курсов. Ничего не интерпретирует — только снимает.
 //
 //   node tools/capture.mjs --url https://career.habr.com/courses --selector ".course-card" \
-//     --out evidence/source/production/course-card [--widths 320,375,744,768,1024,1440]
+//     --out evidence/source/production/course-card
+//     [--widths 320,375,479,480,744,768,1024,1440]
 //     [--state hover] [--channel msedge] [--wait 1500] [--shot-timeout 10000]
 //     [--full-page]
 //
-// Ширины по умолчанию — полный набор пакета: 320 · 375 · 744 · 768 · 1024 · 1440.
-// Первая, третья и пятая — канонические брейкпоинты пакета (схема Figma
-// 320 / 744 / 1024, ROADMAP «Решения пользователя» п. 2); 375, 768 и 1440
-// показывают поведение реализации, которая построена на 480 / 768 / 1024.
-// Снимать меньше — значит остаться без одной из двух схем.
+// Ширины по умолчанию — полный набор пакета:
+// 320 · 375 · 479 · 480 · 744 · 768 · 1024 · 1440.
+// 320, 744 и 1024 — канонические брейкпоинты пакета (схема Figma,
+// ROADMAP «Решения пользователя» п. 2); 375, 768 и 1440 показывают поведение
+// реализации, построенной на 480 / 768 / 1024. Пара 479/480 стоит здесь
+// с 8 сентября 2026: R0-00 установил, что 480 — несущая граница прода, на ней
+// подменяется реализация выпадающего списка фильтра (base-modal ниже,
+// v-popper--theme-dropdown выше), а ниже 480 модалка становится нижним листом.
+// Без пары по обе стороны границы эта подмена на снимке не видна: одиночная
+// ширина показывает результат, но не переключение. Разбор — .pipeline/
+// capture-log.md, раздел «Главное: ниже 1024 границ две — 480 и 768»;
+// строка долга X-37 в ROADMAP.
+// Снимать меньше — значит остаться без одной из двух схем либо без границы 480.
 //
 // ВНИМАНИЕ. Скилл `guide-build` §2 предписывает шагам R2–R5 запуск с
 // `--widths 375,768,1024,1440`. Этот набор для Курсов неверен: из трёх
@@ -66,7 +75,7 @@ const number = (name, raw) => {
 const url = arg('url');
 const selector = arg('selector', 'body');
 const out = arg('out');
-const DEFAULT_WIDTHS = '320,375,744,768,1024,1440';
+const DEFAULT_WIDTHS = '320,375,479,480,744,768,1024,1440';
 const widths = [...new Set(
   arg('widths', DEFAULT_WIDTHS).split(',').map((raw) => {
     const width = number('widths', raw.trim());
@@ -175,9 +184,18 @@ if (!snapshot) {
   process.exit(1);
 }
 
-fs.writeFileSync(path.join(out, 'dom.html'), snapshot.html, 'utf8');
-fs.writeFileSync(path.join(out, 'computed.json'), JSON.stringify(snapshot.computed, null, 2), 'utf8');
-fs.writeFileSync(path.join(out, 'tokens.json'), JSON.stringify({ custom: snapshot.tokens, fonts: snapshot.fonts }, null, 2), 'utf8');
+// Все текстовые артефакты пишутся с LF. Разметка страницы может приехать
+// с CRLF (перевод строки внутри текстового узла сохраняется в outerHTML как
+// есть), и тогда файл на диске и файл в индексе git расходятся: корневой
+// .gitattributes нормализует evidence правилом `* text=auto eol=lf`, тогда как
+// _sources/** от этого защищён правилом `-text`. Снимок, который меняется при
+// индексации, перестаёт быть байт-в-байт протоколом — строка долга X-38.
+const lf = (text) => text.replace(/\r\n/g, '\n');
+const writeText = (name, text) => fs.writeFileSync(path.join(out, name), lf(text), 'utf8');
+
+writeText('dom.html', snapshot.html);
+writeText('computed.json', JSON.stringify(snapshot.computed, null, 2));
+writeText('tokens.json', JSON.stringify({ custom: snapshot.tokens, fonts: snapshot.fonts }, null, 2));
 
 // Снятые ширины считаются по факту: попытка съёмки, затем проверка файла на
 // диске. В meta.json уезжает этот список, а не запрошенный.
@@ -209,7 +227,7 @@ for (const width of widths) {
   }
 }
 
-fs.writeFileSync(path.join(out, 'meta.json'), JSON.stringify({
+writeText('meta.json', JSON.stringify({
   url,
   selector,
   state: state ?? 'default',
@@ -225,7 +243,7 @@ fs.writeFileSync(path.join(out, 'meta.json'), JSON.stringify({
   computedAtWidth: widths.at(-1),
   title: snapshot.title,
   capturedAt: new Date().toISOString(),
-}, null, 2), 'utf8');
+}, null, 2));
 
 await browser.close();
 console.log(`Снято: ${out} (узлов ${snapshot.computed.length}, токенов ${Object.keys(snapshot.tokens).length}, ширин ${captured.length} из ${widths.length}: ${captured.join(' · ') || '—'})`);
