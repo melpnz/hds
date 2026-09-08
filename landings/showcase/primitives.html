@@ -110,11 +110,13 @@
       <span><span class="doc-legend-key doc-legend-snap"></span>снято — значение и его node id</span>
       <span><span class="doc-legend-key doc-legend-norm"></span>норматив — спроектировано, с причиной</span>
     </div>
-    <p class="doc-note"><span class="doc-note-strong">Состояний на этой странице нет ни одного.</span>
+    <p class="doc-note"><span class="doc-note-strong">Ни одно состояние на этой странице не снято.</span>
     Ни hover, ни focus-visible, ни disabled, ни invalid не встретились в 18 макетах
-    (BRIEF §5 п. 8). Показывать их здесь было бы подделкой: отличить нарисованное состояние
-    от снятого читатель не смог бы. Состояния дописывает
-    <span class="doc-src">ui/state-contract.css</span>, шаг R0-08.</p>
+    (BRIEF §5 п. 8). Наведите курсор на кнопку и пройдите страницу клавишей Tab: состояния
+    работают, но все они дописаны нормативом и живут отдельным файлом
+    <span class="doc-src">ui/state-contract.css</span> — именно затем, чтобы нарисованное
+    состояние нельзя было принять за снятое. Матрица обязательных по видам —
+    <span class="doc-src">components/STATES.md</span>.</p>
     <p class="doc-note"><span class="doc-note-strong">CSS примитивов подключён отдельной строкой.</span>
     <span class="doc-src">ui/blocks/primitives.css</span> ещё не внесён в
     <span class="doc-src">ui/blocks/index.css</span>, поэтому одного
@@ -230,10 +232,19 @@
       <input class="form-field-input form-field-r16" type="text" placeholder="радиус 16, фон #222222" aria-label="Пример поля с радиусом 16">
       <input class="form-field-input form-field-r0" type="text" placeholder="радиус 0, обводка 2px" aria-label="Пример поля без скругления">
       <input class="form-field-input form-field-outline" type="text" placeholder="высота 68, обводка 3px" aria-label="Пример поля с обводкой">
+      <textarea class="form-field-input form-field-textarea" placeholder="многострочное поле — норматив целиком" aria-label="Пример многострочного поля"></textarea>
       <p class="form-field-hint">Нажимая кнопку, вы соглашаетесь с политикой обработки данных</p>
       <label class="form-field-row">
         <input class="form-field-box" type="checkbox">
         <span>Согласен получать письма</span>
+      </label>
+      <label class="form-field-row">
+        <input class="form-field-box" type="checkbox" checked>
+        <span>Отмеченное состояние — норматив: в источнике не снято</span>
+      </label>
+      <label class="form-field-row">
+        <input class="form-field-box form-field-box-round" type="radio" name="doc-radio-demo" checked>
+        <span>Радиокнопка, радиус 10 — круг</span>
       </label>
     </div>
 
@@ -248,7 +259,10 @@
           <tr><td>Поле: радиус 50 при высоте 60 — пилюля, заливка <span class="doc-src">#ffffff</span></td><td>50 / h60</td><td class="doc-node">18085:3953</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
           <tr><td>Поле дизайн-системы Хабра: без радиуса, <span class="doc-src">border-2</span></td><td>h40</td><td class="doc-node">I1324:8108;1311:6801</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
           <tr><td>Чекбокс дизайн-системы Хабра</td><td>радиус 6</td><td class="doc-node">20775:861</td><td><span class="doc-badge doc-badge-snap">снято, импорт</span></td></tr>
-          <tr><td>Чекбокс и радиокнопка 20 × 20, граница <span class="doc-src">1px solid #acb8bf</span></td><td>радиус 10, 18 вхождений</td><td class="doc-node">I1324:8114;1311:6957</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Чекбокс и радиокнопка 20 × 20, граница <span class="doc-src">1px solid #acb8bf</span> на белом и <span class="doc-src">2px solid #5a6c7c</span> на тёмном</td><td>радиус 10, 18 вхождений</td><td class="doc-node">I1324:8114;1311:6957;1311:6948</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Чекбокс: <span class="doc-src">appearance: none</span></td><td>—</td><td class="doc-node">—</td><td><span class="doc-badge doc-badge-norm">норматив</span><span class="doc-badge-why">свойства appearance в Figma нет; без него снятая граница не применяется вовсе</span></td></tr>
+          <tr><td>Чекбокс: вид отмеченного состояния</td><td>заливка <span class="doc-src">--product-cta</span>, знак <span class="doc-src">--product-on-acid</span></td><td class="doc-node">—</td><td><span class="doc-badge doc-badge-norm">норматив</span><span class="doc-badge-why">отмеченного экземпляра в источнике нет ни одного</span></td></tr>
+          <tr><td>Многострочное поле</td><td>высота 156, поля 16, радиус 16</td><td class="doc-node">—</td><td><span class="doc-badge doc-badge-norm">норматив</span><span class="doc-badge-why">textarea нет ни у одного из 18 узлов; радиус — ступень канона Р-7</span></td></tr>
           <tr><td>Плейсхолдер <span class="doc-src">#999999</span>, uppercase, трекинг +0.5</td><td>ALS Hauss Medium 18/1.0</td><td class="doc-node">10943:2465</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
           <tr><td>Плейсхолдер <span class="doc-src">#999999</span>, uppercase, трекинг +0.5</td><td>ALS Hauss Medium 16/1.0</td><td class="doc-node">9519:2170</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
           <tr><td>Плейсхолдер <span class="doc-src">rgba(91,85,72,0.6)</span>, uppercase</td><td>ALS Hauss Bold 16/1.0</td><td class="doc-node">7885:21626</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
@@ -297,6 +311,7 @@
           <tr><td>Паддинги верх / бока / низ</td><td>27.721 / 41.581 / 33.265</td><td class="doc-node">5149:6510</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
           <tr><td>Высота</td><td>121.972</td><td class="doc-node">5149:6510</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
           <tr><td>Надпись: Inter SemiBold, цвет <span class="doc-src">#F0F5F5</span>, трекинг +1.386 px</td><td>кегль 44 / 1.2</td><td class="doc-node">5149:6511</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Цвет надписи в светлой теме, <span class="doc-src">--core-chip-text</span></td><td><span class="doc-src">#302E38</span>, 13.28 : 1 на подложке чипа</td><td class="doc-node">—</td><td><span class="doc-badge doc-badge-norm">норматив</span><span class="doc-badge-why">светлого экземпляра чипа нет ни на одной из 4 досок; снятый #F0F5F5 даёт там 1.09 : 1</span></td></tr>
           <tr><td>Второй кегль надписи</td><td>49.897 / 1.4</td><td class="doc-node">5164:8043</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
           <tr><td>Та же спецификация, доска «Цифровой поток»</td><td>совпадает до знака</td><td class="doc-node">5164:8042, 5164:8044, 5164:8046</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
         </tbody>
@@ -307,7 +322,9 @@
     <span class="doc-node">18085:3948</span> он есть (<span class="doc-src">blur(30px)</span>),
     у чипа в дампе его нет, и дописывать его значило бы перенести значение с другого узла.
     Покрытие по бренд-доскам — 2 из 4: на досках Карьеры чипа нет вовсе. Экземпляра чипа
-    в лендинге среди девяти доснятых узлов нет ни одного.
+    в лендинге среди девяти доснятых узлов нет ни одного. Светлого чипа в источнике нет
+    тоже: все четыре экземпляра сняты на тёмных досках, и цвет надписи в светлой теме
+    спроектирован.
     Статья: <span class="doc-src">blocks/glass-chip.md</span>.</p>
   </section>
 
@@ -504,10 +521,11 @@
   <section class="doc-section">
     <h2 class="doc-h2">Чего на этой странице нет</h2>
     <ul class="doc-limits">
-      <li class="doc-limit"><span class="doc-limit-k">Состояний.</span> Ни одного из четырёх
-      (hover, focus-visible, disabled, invalid) ни у одного из шести примитивов. В 18 макетах
-      их нет; Figma поведения не отдаёт. Дописывает
-      <span class="doc-src">ui/state-contract.css</span>, шаг R0-08.</li>
+      <li class="doc-limit"><span class="doc-limit-k">Снятых состояний.</span> Ни одного из
+      четырёх (hover, focus-visible, disabled, invalid) ни у одного из шести примитивов.
+      В 18 макетах их нет; Figma поведения не отдаёт. Всё, что на странице работает, —
+      норматив из <span class="doc-src">ui/state-contract.css</span>, и подтвердить его
+      источником нечем.</li>
       <li class="doc-limit"><span class="doc-limit-k">Внутренних отступов.</span> Padding измерен
       ровно дважды на весь участок: у чипа (27.721 / 41.581 / 33.265) и у карточки номинации
       <span class="doc-node">1324:8083</span> (20). Отступы кнопки, поля и остальных карточек —

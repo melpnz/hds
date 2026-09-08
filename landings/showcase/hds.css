@@ -9,7 +9,7 @@
                     это оболочка демонстрации, а не вид компонента;
      элементы,      .ml-tag, .ml-avatar, .ml-price-card, .ml-glyph,
      которых        .ml-faq-grid, .ml-map, .ml-demo-result, .ml-brand-art,
-     в пакете нет   .ml-article-*, .ml-textarea, .ml-chips — список ведётся
+     в пакете нет   .ml-article-*, .ml-chips — список ведётся
                     в отчёте этапа;
      подгонка       .ml-stage>… — секции пакета несут отступ страницы
      сцены          (--core-gutter, 218 px при холсте 1600). Сцена стенда
@@ -43,10 +43,9 @@
 .ml-center .hero-actions{justify-content:center}
 .ml-stage .program-item .card{margin-top:24px}
 .ml-footer-row+.ml-footer-row{margin-top:40px}
-/* Многострочного поля в пакете нет: .form-field-input снят как однострочный,
-   высота 60 px. Высоту, внутренние поля и радиус текстовой области задаёт
-   стенд — по ступеням лестницы Р-7, без претензии на снимок. */
-.ml-textarea{height:156px;padding-top:16px;padding-bottom:16px;border-radius:var(--core-radius-step-16);line-height:var(--core-body-lh);resize:vertical}
+/* Многострочное поле уехало в пакет: .form-field-textarea, ui/blocks/primitives.css,
+   маркер @normative. Прежний .ml-textarea был здесь ровно потому, что в пакете
+   варианта не было; теперь он есть, и стенду добавлять к нему нечего. */
 .ml-chips{align-items:center}
 .ml-chips .glass-chip{flex:none}
 .ml-quote-author{font-size:var(--core-body);line-height:var(--core-body-lh);color:var(--core-text-secondary)}
