@@ -22,7 +22,7 @@ description: Принять или не принять шаг роадмапа �
 | 2 | Браузерные проверки | `npm test` в пакете, если тесты заведены |
 | 3 | Ревью закрыто | в последнем `review-N.md` нет открытых blocker и major; на каждую находку есть строка в `fix-N.md` |
 | 4 | Реестр сходится | запись в `manifest.json` есть; `specPath`, `cssRoots`, `showcaseAnchor` существуют; строка в `INDEX.md` есть |
-| 5 | Evidence на месте | `evidence/source/production/<id>/` со скриншотами и `computed.json`; для Figma — node key в `figmaEvidence` |
+| 5 | Evidence на месте | `evidence/source/production/<id>/` со скриншотами канонических ширин и `computed.json`; для Figma — node key в `figmaEvidence`. Пересъёмка с прода не нужна |
 | 6 | Копируемость | разметка из спецификации на пустой странице с одним `ui/<product>.css` отрисовывается правильно |
 | 7 | Соответствие exit criteria | условия волны из `ROADMAP.md` выполнены дословно |
 | 8 | Честность статуса | `complete` только при покрытых обязательных состояниях; иначе `partial` с перечислением |

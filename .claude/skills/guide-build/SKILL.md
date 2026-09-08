@@ -6,8 +6,8 @@ description: Снять элемент с продакшена и Figma и св�
 # Шаг 2 — снять и сверстать
 
 Сначала прочитай [`.claude/guide/METHOD.md`](../../guide/METHOD.md) и
-[`.claude/guide/spec-template.md`](../../guide/spec-template.md). Образец готового
-результата — `career/components/` и `career/ui/`; править внутри `career/` нельзя.
+[`.claude/guide/spec-template.md`](../../guide/spec-template.md). Каркас пакета
+и зачем он такой — METHOD.md §2. Чужой готовый пакет не открывай.
 
 Работаешь **над одним элементом** — тем, что назван в шаге роадмапа. Соседние
 проблемы не чинишь: записываешь в конец `ROADMAP.md` как новую строку `planned`.
@@ -20,26 +20,43 @@ description: Снять элемент с продакшена и Figma и св�
 
 ## 2. Сними факты с продакшена
 
+Сначала посмотри, нет ли уже снимков в
+`evidence/source/production/<id>/` (именованные PNG канонических ширин +
+`computed.json`). Если есть — **не ходи на прод заново**, бери файлы с диска.
+METHOD.md §3.
+
+Не хватает — снимай **кропом узла**, имя из inventory (`canonicalName`, иначе
+story Storybook, иначе имя компонента в Figma):
+
 ```bash
 node <product>/tools/capture.mjs --url <url> --selector "<selector>" \
-  --out <product>/evidence/source/production/<id> --widths 375,768,1024,1440
-node <product>/tools/capture.mjs --url <url> --selector "<selector>" --state hover \
-  --out <product>/evidence/source/production/<id>-hover
+  --name "<CanonicalName>" --out <product>/evidence/source/production/<id> \
+  --widths 320,768,1024,1400
+node <product>/tools/capture.mjs --url <url> --selector "<selector>" \
+  --name "<CanonicalName>" --state hover \
+  --out <product>/evidence/source/production/<id> --widths 320,768,1024,1400
 ```
+
+Получится `CourseCard.1400.png`, `CourseCard.hover.320.png` — кроп элемента.
+Снимки экрана (`pages/<id>/`) не подменяй и не снимай заново: они уже есть
+с инвентаризации и понадобятся на шагах 6–7. `--full-page` на элементе не ставь.
 
 Сними каждое состояние, которое достижимо: hover, focus-visible (клавиатурой),
 disabled, open, loading — отдельным запуском или интерактивно через браузер.
 Что снять не удалось — это будущий GAP, а не повод дорисовать.
 
-Из `computed.json` возьми геометрию и типографику, из `tokens.json` — переменные
-`:root`. Найди в сборке продукта CSS-правила компонента (сетевые ответы `.css`,
+Из `computed.json` возьми геометрию и типографику **срезом по селектору
+элемента**, не читая файл целиком. Из `tokens.json` — переменные `:root`.
+Найди в сборке продукта CSS-правила компонента (сетевые ответы `.css`,
 поиск по корневому классу) — правила нужны текстом, а не пересказом.
 
 ## 3. Сверься с Figma
 
-`mcp__figma__get_metadata` — состав и структура узла; `get_variable_defs` — имена
-переменных; `get_screenshot` — эталон внешнего вида; `get_code_connect_map` — если
-у продукта есть привязка к коду. Ничего не редактируй.
+Если в `evidence/source/figma/` уже лежат снимок узла и выписка metadata —
+не зови MCP за новыми скриншотами. Иначе: `get_metadata` по **конкретному
+node**, не по корню файла; `get_variable_defs` — имена переменных;
+`get_screenshot` — эталон; `get_code_connect_map` — если у продукта есть
+привязка к коду. Ничего не редактируй.
 
 Figma даёт внешний вид, состав, варианты и responsive-намерение. Семантику, API и
 имя берёшь из прода и HTML (METHOD.md §3). Расхождение прода и Figma не сглаживай —
@@ -63,7 +80,7 @@ Figma даёт внешний вид, состав, варианты и responsi
 ## 5. Спецификация
 
 По шаблону, разделы в фиксированном порядке. Каждый факт — с источником; раздел,
-которому нечем подтвердиться, не пишется. Пиши на языке пакета (у `career/` — русский).
+которому нечем подтвердиться, не пишется. Пиши на языке продукта.
 
 Файл: `<product>/components/<category>/<id>.md`.
 
@@ -87,8 +104,9 @@ Figma даёт внешний вид, состав, варианты и responsi
 node <product>/tools/validate-components.mjs --strict
 ```
 
-Плюс глазами: открой витрину на 375 и 1440, сравни со скриншотами прода и Figma.
-Очевидные расхождения чини сам — ревью не место для того, что видно сразу.
+Плюс глазами: открой витрину на 320 и 1400, сравни с уже лежащими скриншотами
+прода и Figma. Очевидные расхождения чини сам — ревью не место для того,
+что видно сразу.
 
 ## 9. Отчёт
 
@@ -105,4 +123,6 @@ node <product>/tools/validate-components.mjs --strict
 - Не переносить в пакет фреймворк-атрибуты (`data-v-*`, скоупы, хеши).
 - Не расширять шаг на соседние компоненты.
 - Не ставить `complete`, когда состояния не покрыты.
-- Не трогать `career/` и `_sources/`.
+- Не открывать `career/` и `_sources/` как образец и не править их.
+- Не переснимать прод и Figma, если evidence уже на диске.
+- Не снимать ширины вне канона 320 · 768 · 1024 · 1400.

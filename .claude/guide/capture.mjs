@@ -2,15 +2,22 @@
 // и дальше живёт в пакете. Ничего не интерпретирует — только снимает.
 //
 //   node tools/capture.mjs --url https://... --selector ".vacancy-card" \
-//     --out evidence/source/production/vacancy-card [--widths 375,768,1024,1440]
-//     [--state hover] [--channel msedge] [--wait 1500] [--full-page]
+//     --out evidence/source/production/course-card \
+//     [--name CourseCard] [--widths 320,768,1024,1400] \
+//     [--state hover] [--channel msedge] [--wait 1500] [--full-page] [--force]
+//
+// Компонент и блок — кроп узла с именем: CourseCard.1400.png, CourseCard.hover.320.png.
+// Страница семейства — --full-page, имя страницы: CoursesListing.1400.png.
+// Если в --out уже есть computed.json и PNG запрошенных ширин — выход 0 без браузера.
+// Пересъёмка только с --force (аудит кладёт срез в новую папку).
 //
 // На выходе в --out:
 //   dom.html         разметка узла, снятая с очищенными фреймворк-атрибутами
 //   computed.json    computed styles по каждому узлу поддерева
 //   tokens.json      кастомные свойства :root и подключённые шрифты
-//   <width>.png      скриншот узла на каждой ширине
-//   meta.json        URL, дата, селектор, состояние
+//   <Name>.<width>.png           кроп (или страница) на каждой ширине
+//   <Name>.<state>.<width>.png   то же для --state, не default
+//   meta.json        URL, имя, откуда имя, селектор, состояние, файлы
 
 import fs from 'node:fs';
 import path from 'node:path';
@@ -26,14 +33,49 @@ const flag = (name) => argv.includes(`--${name}`);
 const url = arg('url');
 const selector = arg('selector', 'body');
 const out = arg('out');
-const widths = String(arg('widths', '1440')).split(',').map(Number);
-const state = arg('state');
+const widths = String(arg('widths', '320,768,1024,1400')).split(',').map(Number);
+const state = arg('state') || 'default';
 const channel = arg('channel');
 const wait = Number(arg('wait', 1200));
+const pad = Number(arg('pad', 8));
+const nameArg = arg('name');
 
 if (!url || !out) {
   console.error('Нужны --url и --out. См. шапку файла.');
   process.exit(2);
+}
+
+const fileStem = (raw) => String(raw ?? '')
+  .trim()
+  .replace(/[/|]+/g, '-')
+  .replace(/\s+/g, '-')
+  .replace(/[^\p{L}\p{N}._-]+/gu, '-')
+  .replace(/-+/g, '-')
+  .replace(/^-|-$/g, '') || 'element';
+
+const shotFile = (stem, width, shotState) => {
+  const st = shotState && shotState !== 'default' ? `.${fileStem(shotState)}` : '';
+  return `${stem}${st}.${width}.png`;
+};
+
+const hasShot = (files, width, stem, shotState) => {
+  if (shotState && shotState !== 'default') {
+    if (stem) return files.includes(shotFile(stem, width, shotState));
+    return files.some((name) => name.endsWith(`.${fileStem(shotState)}.${width}.png`));
+  }
+  if (stem) return files.includes(shotFile(stem, width, 'default')) || files.includes(`${width}.png`);
+  return files.includes(`${width}.png`)
+    || files.some((name) => new RegExp(`^[^./\\\\]+\\.${width}\\.png$`).test(name));
+};
+
+const stemGuess = fileStem(nameArg || path.basename(out));
+if (fs.existsSync(out) && !flag('force')) {
+  const files = fs.readdirSync(out);
+  const pngReady = widths.every((width) => hasShot(files, width, stemGuess, state));
+  if (files.includes('computed.json') && pngReady) {
+    console.log(`Уже снято: ${out} (${state}, ${widths.join('·')}). Пропуск. Пересъёмка — --force.`);
+    process.exit(0);
+  }
 }
 
 const PROPS = [
@@ -72,6 +114,8 @@ const snapshot = await page.evaluate(({ selector, PROPS, cleanAttrsSource }) => 
   const root = document.querySelector(selector);
   if (!root) return null;
 
+  const utilities = /^(flex|grid|block|inline|hidden|relative|absolute|sticky|container|sr-only|truncate)|^(w|h|p|m|px|py|pt|pb|pl|pr|gap|text|bg|border|rounded|shadow|font|leading|tracking|opacity|z|top|left|right|bottom|inset|min|max|col|row|items|justify|content|self|place|overflow|object|cursor|pointer|select|whitespace|align)-/;
+
   const computed = [];
   const walk = (node, pathParts) => {
     if (node.nodeType !== 1) return;
@@ -109,12 +153,20 @@ const snapshot = await page.evaluate(({ selector, PROPS, cleanAttrsSource }) => 
     }
   }
 
+  const storyNode = root.closest('[data-story-id]') || document.querySelector('[data-story-id]');
+  const storyId = storyNode?.getAttribute('data-story-id') || null;
+  const storyTitle = document.title.replace(/\s*[-–—]\s*Storybook\s*$/i, '').trim();
+  const dataComponent = root.getAttribute('data-component') || root.getAttribute('data-name');
+  const bem = [...root.classList].find((cls) => !utilities.test(cls)) || null;
+  const aria = root.getAttribute('aria-label');
+
   return {
     html: clone.outerHTML,
     computed,
     tokens: custom,
     fonts: [...new Set([...document.fonts].map((font) => `${font.family} ${font.weight} ${font.style}`))],
     title: document.title,
+    inferred: { storyId, storyTitle, dataComponent, bem, aria, tag: root.tagName.toLowerCase() },
   };
 }, { selector, PROPS, cleanAttrsSource: cleanAttrs.source });
 
@@ -124,20 +176,77 @@ if (!snapshot) {
   process.exit(1);
 }
 
+const pickName = () => {
+  if (nameArg) return { name: nameArg, source: 'flag' };
+  const inf = snapshot.inferred;
+  if (inf.dataComponent) return { name: inf.dataComponent, source: 'production' };
+  if (inf.storyId) {
+    const parts = inf.storyId.split('--').filter(Boolean);
+    return { name: parts.slice(-2).join('-'), source: 'storybook' };
+  }
+  if (inf.storyTitle && !/^https?:/i.test(inf.storyTitle)) {
+    return { name: inf.storyTitle, source: 'storybook' };
+  }
+  if (inf.bem) return { name: inf.bem, source: 'production' };
+  if (inf.aria) return { name: inf.aria, source: 'production' };
+  return { name: path.basename(out), source: 'id' };
+};
+
+const picked = pickName();
+const stem = fileStem(picked.name);
+
+const screenshotCrop = async (file) => {
+  if (flag('full-page')) {
+    await page.screenshot({ path: file, fullPage: true });
+    return;
+  }
+  await target.scrollIntoViewIfNeeded();
+  const box = await target.boundingBox();
+  const vp = page.viewportSize();
+  if (box && vp && box.width + pad * 2 <= vp.width && box.height + pad * 2 <= vp.height) {
+    const x = Math.max(0, box.x - pad);
+    const y = Math.max(0, box.y - pad);
+    await page.screenshot({
+      path: file,
+      clip: {
+        x,
+        y,
+        width: Math.min(vp.width - x, box.width + pad * 2),
+        height: Math.min(vp.height - y, box.height + pad * 2),
+      },
+    });
+    return;
+  }
+  await target.screenshot({ path: file });
+};
+
 fs.writeFileSync(path.join(out, 'dom.html'), snapshot.html, 'utf8');
 fs.writeFileSync(path.join(out, 'computed.json'), JSON.stringify(snapshot.computed, null, 2), 'utf8');
 fs.writeFileSync(path.join(out, 'tokens.json'), JSON.stringify({ custom: snapshot.tokens, fonts: snapshot.fonts }, null, 2), 'utf8');
 
+const files = [];
 for (const width of widths) {
   await page.setViewportSize({ width, height: 1000 });
   await page.waitForTimeout(300);
-  const shot = flag('full-page') ? page : page.locator(selector).first();
-  await shot.screenshot({ path: path.join(out, `${width}.png`), ...(flag('full-page') ? { fullPage: true } : {}) }).catch(() => {});
+  const file = shotFile(stem, width, state);
+  await screenshotCrop(path.join(out, file)).catch(() => {});
+  files.push(file);
 }
 
 fs.writeFileSync(path.join(out, 'meta.json'), JSON.stringify({
-  url, selector, state: state ?? 'default', widths, title: snapshot.title, capturedAt: new Date().toISOString(),
+  url,
+  selector,
+  name: picked.name,
+  nameSource: picked.source,
+  fileStem: stem,
+  state,
+  widths,
+  crop: !flag('full-page'),
+  pad: flag('full-page') ? 0 : pad,
+  files,
+  title: snapshot.title,
+  capturedAt: new Date().toISOString(),
 }, null, 2), 'utf8');
 
 await browser.close();
-console.log(`Снято: ${out} (узлов ${snapshot.computed.length}, токенов ${Object.keys(snapshot.tokens).length})`);
+console.log(`Снято: ${out} · ${stem} (${picked.source}) · ${files.join(', ')} · узлов ${snapshot.computed.length}`);

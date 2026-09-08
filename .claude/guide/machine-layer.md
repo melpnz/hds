@@ -105,7 +105,7 @@
   "scope": "listing",
   "statement": "Шаг между карточками списка — 12, независимо от типа сущности и вьюпорта",
   "predicate": { "type": "spacing", "selector": ".card + .card", "property": "margin-top", "equals": "12px" },
-  "evidence": { "pages": 6, "viewports": [375, 768, 1024, 1440], "coverage": "6/6 листингов" },
+  "evidence": { "pages": 6, "viewports": [320, 768, 1024, 1400], "coverage": "6/6 листингов" },
   "confidence": "HIGH",
   "appliesTo": ["patterns/listing"],
   "humanDoc": "docs/guide/composition.md#l-4"
@@ -138,7 +138,7 @@ Decision Guides лежат там же, с `"kind": "decision-guide"` и пол�
     { "maxWidth": 768, "change": "сайдбар уходит, фильтры открываются модально" }
   ],
   "rules": ["SH-1", "L-1", "L-4", "C-1"],
-  "example": { "page": "pages/vacancies.md", "url": "https://…/vacancies", "screenshot": "evidence/curated/listing/1440.png" }
+  "example": { "page": "pages/vacancies.md", "url": "https://…/vacancies", "screenshot": "evidence/curated/listing/1400.png" }
 }
 ```
 
