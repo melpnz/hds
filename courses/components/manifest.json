@@ -1,0 +1,2602 @@
+{
+  "schemaVersion": 1,
+  "scope": "courses-component-library",
+  "product": "Хабр Курсы",
+  "productKind": "interface",
+  "generatedAt": "2026-09-08",
+  "generatedBy": ".pipeline/R0-05/build-manifest.mjs",
+  "generatedFrom": ".pipeline/inventory.json",
+  "maintenance": "Собран один раз на R0-05 из инвентаризации; дальше ведётся руками — свою запись правит шаг, который верстает элемент.",
+  "countingRule": "occurrences — сколько узлов находит селектор productionEvidence в снятом DOM десяти страниц; seenOn — страницы, где он находит хотя бы один. Меряется по dom.html, снятому на 1440 (самая широкая из --widths инструмента capture); рядом лежат dom-375.html и dom-768.html, и по ним числа перемеряются на устойчивость. Это измерение, а не заметка инвентаризации: снимается node tools/measure-selectors.mjs в components/selector-census.json и сверяется с реестром гейтом node tools/validate-components.mjs. Измерение и сверка — разные прогоны намеренно: инструмент, который сверяет и тут же подгоняет числа под найденное, делает собственную проверку истинной. Там, где селектор заведомо шире или уже документируемого элемента, это сказано в productionEvidence[].note, а не спрятано в разнице чисел. Там же объясняется улов, распавшийся на две формы содержимого при одной коробке (chip: метка и счётчик «+N»), и число, зависящее от ширины снимка. Множества узлов разных записей вкладываться могут, и запрет «один селектор на две записи» этого не ловит — он сравнивает строки селекторов. Измеренные наложения на dom.html два, оба ожидаемые: social-icon ⊂ link (60 из 60 — значки соцсетей это <a>) и button ∩ link = 19 (кнопки, отрисованные как <a>). Запись, чьи узлы вкладываются в чужие, обязана называть это в productionEvidence[].note; для link это сказано прямо — его число верхняя граница, а не число мест применения Link.",
+  "sourcePolicy": "Семантика HTML и поведение в продакшене > публичный API Storybook > CSS и токены реализации > визуальное наблюдение Figma > имена слоёв Figma (METHOD §3)",
+  "coverage": "Публичная часть Курсов, снятая гостем на 10 страницах (BRIEF §4). Канон брейкпоинтов пакета — 320 / 744 / 1024 (Figma); прод устроен иначе, расхождение фиксируется, а не приводится к канону (BRIEF §9). Границы прода и имена префиксов — в breakpoints.",
+  "breakpoints": {
+    "figma": "320 / 744 / 1024 — канон пакета, снят с макета 02_Education-NEW",
+    "production": "Границы 480 / 768 / 1024 и шесть префиксов сборки. 480 делит мобильный диапазон надвое, а не отделяет мобильное от планшетного: мобильная раскладка держится до 767.",
+    "prefixes": {
+      "small-phone:": "(max-width: 479px) — извлечено из CSS сборки; 20 вхождений на 4/10 страницах",
+      "phone:": "(max-width: 767px) — вывод по утилитам разметки и переключению оболочки между 767 и 768, не извлечение; 927 вхождений на 10/10",
+      "phablet-and-tablet:": "(min-width: 480px) and (max-width: 1023px) — извлечено из CSS сборки; в снятой разметке десяти страниц не встречается ни разу",
+      "tablet-only:": "(min-width: 768px) and (max-width: 1023px) — вывод по утилитам разметки, не извлечение; 36 вхождений на 10/10",
+      "tablet:": "запрос сборки не прочитан; 95 вхождений на 10/10",
+      "desktop:": "запрос сборки не прочитан; 10 вхождений на 10/10, все — desktop:hidden"
+    },
+    "gap": "Содержимое пяти из девяти медиазапросов сборки не читалось (R0-00 §3.1), поэтому запросы для tablet: и desktop: остаются неизвестными. Догадка по имени префикса сюда не пишется.",
+    "evidence": ".pipeline/R0-00/capture.md §3.1, §3.4, §3.6; evidence/source/production/media-queries-cold.json"
+  },
+  "accessibilityPolicy": "Доступность фиксируется как есть (BRIEF §9 п. 4). В снятой разметке десяти страниц только aria-hidden (31) и aria-current (4); ни одного role, form, label, select. ARIA не дописывается — отсутствие идёт в «Ограничения» спецификации.",
+  "sources": {
+    "production": {
+      "host": "career.habr.com",
+      "access": "guest",
+      "pagesCaptured": 10,
+      "evidence": "evidence/source/production/pages/<page-id>/{dom.html,computed.json,tokens.json,375|768|1024|1440.png}"
+    },
+    "figma": {
+      "library": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "fileName": "education-lib",
+        "url": "https://www.figma.com/design/KG36iTkwvKDmrw8XQhk7d6/education-lib?node-id=33-15585",
+        "readable": "partial",
+        "note": "через MCP отдаётся только страница 33:15585 «colors»; страницы компонентов не читаются get_metadata, доступны только componentKey"
+      },
+      "layout": {
+        "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+        "fileName": "02_Education-NEW",
+        "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=0-1",
+        "readable": "yes",
+        "breakpoints": [
+          320,
+          744,
+          1024
+        ],
+        "note": "макет описывает схему URL /courses/schools|reviews|promocodes|experts|professions, которой в проде нет — это следующая итерация продукта, а не снимок текущего"
+      }
+    },
+    "storybook": {
+      "path": "d:/work/guides/_sources/courses",
+      "readOnly": true,
+      "components": 18,
+      "stories": 27,
+      "broken": [
+        "common-basebutton--primary-button",
+        "common-basebutton--icon-button",
+        "icons-catalogicon--default",
+        "icons-catalogicon--all-variants"
+      ]
+    }
+  },
+  "conventions": {
+    "id": "kebab-case от канонического имени",
+    "canonicalName": "PascalCase, по смыслу в интерфейсе (METHOD §5)",
+    "specPath": "<category>/<id>.md — от папки components/",
+    "showcaseAnchor": "c-<id> — id секции в showcase/components.html",
+    "cssFile": "ui/components/<category>.css — имя файла равно значению category",
+    "markupUtilities": "Продукт собран утилитами Tailwind, и «Разметка» их сохраняет: заменять утилиты потомками crs- значило бы переписать продукт, а не описать его. Копируемость (METHOD §6.1) обеспечивается тем, что ui/courses.css несёт правила ровно тех утилит, которые встречаются в разметке спецификаций, — файл ui/utilities.css, выписанный из сборки. Пока его нет, node tools/validate-classes.mjs на фрагменте показывает недостающие утилиты списком: это состояние ui/, а не форма разметки. Заносить их в базовую линию известных пробелов нельзя — для своей разметки она не читается по замыслу (tools/validate-classes.mjs), и инвариант §6.1 иначе перестаёт проверяться. Файл заводит R0-04, окончательно закрывает R2-01. Порядок обязателен: ui/utilities.css заводится на R0-04, спецификации начинаются с R2. До R0-06 копируемость (METHOD §6.1) гейтом не проверяется вовсе — безаргументный validate-classes читает витрину, а её заводит R0-06, — поэтому нарушенный порядок даёт первые спецификации с красной проверкой и без средства её закрыть.",
+    "cssRoot": "Собственный класс продукта, если он есть (style-ugc, rubrication-header, svg-icon). Если элемент собран утилитами Tailwind и своего класса не имеет, пакет вводит корневой класс crs-<id> и помечает его в спецификации как новую реализацию имени (METHOD §4): в продукте такого класса нет. Решение принято на R0-05, подтверждается или отменяется на R2-01 — менять его нужно здесь, а не в 55 спецификациях. Проверяемая форма: значение cssRoots обязано либо равняться crs-<id>, либо стоять в class=\"…\" снятого DOM, и в обоих случаях быть селектором в ui/ — не подстрокой в нём."
+  },
+  "allowedCategories": {
+    "actions": "ui/components/actions.css",
+    "collections": "ui/components/collections.css",
+    "data-display": "ui/components/data-display.css",
+    "entities": "ui/components/entities.css",
+    "feedback": "ui/components/feedback.css",
+    "forms": "ui/components/forms.css",
+    "frame-modules": "ui/components/frame-modules.css",
+    "layout": "ui/components/layout.css",
+    "navigation": "ui/components/navigation.css",
+    "overlays": "ui/components/overlays.css"
+  },
+  "allowedKinds": [
+    "primitive",
+    "component",
+    "module",
+    "adapter"
+  ],
+  "allowedStatuses": [
+    "complete",
+    "partial",
+    "planned",
+    "legacy-only",
+    "figma-only"
+  ],
+  "statusDefinitions": {
+    "planned": "спецификации нет; specPath, showcaseAnchor — null, cssRoots пуст",
+    "partial": "спецификация есть, обязательные состояния покрыты не все — непокрытые названы",
+    "complete": "спецификация есть, обязательные состояния покрыты",
+    "figma-only": "спецификация есть; в продакшене элемент не найден, описан по макету",
+    "legacy-only": "устаревшая реализация; отдельной спецификации не получает, specPath — null"
+  },
+  "statusRule": "status — состояние записи в конвейере, sourceScope — где элемент найден. Статусов пять, ровно как в METHOD §5: пакет общий контракт конвейера не расширяет. Пока спецификации нет, статус planned у всех записей, включая те, чей sourceScope не production: обратное означало бы, что пакет уже описал элемент. При написании спецификации запись со sourceScope figma-only получает терминальный статус figma-only; записи со sourceScope production и storybook-only идут в complete или partial — покрытие обязательных состояний не зависит от того, снято оно с прода или со Storybook, а откуда оно снято, говорит sourceScope.",
+  "allowedSourceScopes": {
+    "production": "найден в снятой разметке продакшена",
+    "storybook-only": "в снятой разметке продакшена не найден; описывается по Storybook",
+    "figma-only": "в снятой разметке продакшена не найден; описывается по макету Figma"
+  },
+  "allowedStates": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "selected",
+    "current",
+    "checked",
+    "indeterminate",
+    "expanded",
+    "collapsed",
+    "open",
+    "closed",
+    "disabled",
+    "readOnly",
+    "loading",
+    "invalid",
+    "error",
+    "success",
+    "empty",
+    "dragActive"
+  ],
+  "forbiddenStateNames": [
+    "active",
+    "focus",
+    "select",
+    "inactive"
+  ],
+  "knownComponentKeyCollisions": {
+    "9668fb89eb4a58bc781b568ec83d9ce0e492e70e": "инвентаризация записала один ключ и FilterChip, и Tab: либо это один component set, либо ошибка переноса. Разводится на R3-04 и R3-13"
+  },
+  "knownStepInversions": [
+    "site-header (R4-01) → header-dropdown (R4-02)",
+    "page-hero (R4-05) → search-form (R4-06)"
+  ],
+  "stepInversionRule": "dependsOn говорит, на чём элемент стоит, а не в каком порядке его верстают. Зависимость с более поздним шагом — не ошибка реестра, но и не норма: она объявляется здесь поимённо и печатается в блоке «Отложено». Необъявленная инверсия — ошибка.",
+  "requiredStatesMatrix": {
+    "status": "pending",
+    "step": "R1-01",
+    "note": "Матрица обязательных состояний по видам заводится в components/STATES.md на шаге R1-01. До неё requiredStates пуст у всех записей — это не «состояний нет», а «матрицы ещё нет»."
+  },
+  "components": [
+    {
+      "id": "sprite-icon",
+      "canonicalName": "SpriteIcon",
+      "storybookNames": [
+        "SpriteIcon"
+      ],
+      "legacyAliases": [],
+      "category": "data-display",
+      "kind": "primitive",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "sourceName": "icon/*",
+          "layerName": "icon/*",
+          "nodeId": null,
+          "componentKey": "74adfe6b",
+          "url": null,
+          "note": "icon/* в education-lib, ~40 компонентов"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R2",
+      "step": "R2-01",
+      "dependsOn": [],
+      "occurrences": 611,
+      "seenOn": [
+        "author",
+        "authors",
+        "courses-listing",
+        "editors",
+        "education-center",
+        "education-centers-listing",
+        "promocodes",
+        "rating",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses",
+          "selector": "svg.svg-icon",
+          "note": "прежний селектор use[xlink:href*='sprite.svg'] браузером не разбирается (SyntaxError) и после экранирования не находит ничего"
+        }
+      ],
+      "storybookEvidence": [
+        {
+          "story": "icons-spriteicon--all-variants",
+          "file": "_sources/courses/rendered/icons-spriteicon--all-variants.html",
+          "renders": true,
+          "note": null
+        }
+      ],
+      "notes": "в проде спрайт sprite.svg?v=1.29.0, в Storybook v1.28.0. Используется 14 символов: star-rounded, star-rounded-small, comment, arrow-large, arrow-small, percents, more, star-empty, accreditation, building, search, cross-large, catalog + отдельный external-profile.svg"
+    },
+    {
+      "id": "social-icon",
+      "canonicalName": "SocialIcon",
+      "storybookNames": [
+        "SocialIcon"
+      ],
+      "legacyAliases": [],
+      "category": "data-display",
+      "kind": "primitive",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R2",
+      "step": "R2-02",
+      "dependsOn": [],
+      "occurrences": 60,
+      "seenOn": [
+        "author",
+        "authors",
+        "courses-listing",
+        "editors",
+        "education-center",
+        "education-centers-listing",
+        "promocodes",
+        "rating",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses",
+          "selector": "footer a.block.rounded-full",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [
+        {
+          "story": "icons-socialicon--all-variants",
+          "file": null,
+          "renders": true,
+          "note": null
+        }
+      ],
+      "notes": "6 значков: vk, twitter, telegram, telegram-bot, facebook, instagram; instagram — градиентная заливка класса .instagram-gradient. Строка figmaEvidence «Logo brand/* в education-lib, токены logo/*» убрана: она не адресовала ни узла, ни ключа, и вдобавок называла не тот файл — семейство Logo brand/* лежит в библиотеках «Логотипы брендов» и «UI kit», а не в education-lib (поиск по библиотекам, 2026-09-08). Сопоставить значки конкретным компонентам — на R2-02"
+    },
+    {
+      "id": "project-icon",
+      "canonicalName": "ProjectIcon",
+      "storybookNames": [
+        "ProjectIcon"
+      ],
+      "legacyAliases": [],
+      "category": "data-display",
+      "kind": "primitive",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R2",
+      "step": "R2-03",
+      "dependsOn": [],
+      "occurrences": 80,
+      "seenOn": [
+        "author",
+        "authors",
+        "courses-listing",
+        "editors",
+        "education-center",
+        "education-centers-listing",
+        "promocodes",
+        "rating",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses",
+          "selector": "span.align-center.inline-flex.h-6.w-6.rounded-md",
+          "note": "оба места, где значок стоит: футер (4 на страницу) и выпадающая панель шапки (4 на страницу). Прежний селектор был ограничен footer и считал половину — 40 вместо 80"
+        }
+      ],
+      "storybookEvidence": [
+        {
+          "story": "icons-projecticon--all-variants",
+          "file": null,
+          "renders": true,
+          "note": null
+        }
+      ],
+      "notes": "4 варианта: habr #629fbc, qna #434b60, career #6274bc, courses #346ef4. Переменной --color-courses в CSS нет — цвет берётся из --color-ui-blue-500"
+    },
+    {
+      "id": "avatar",
+      "canonicalName": "Avatar",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "data-display",
+      "kind": "primitive",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "sourceName": "avatar/user",
+          "layerName": "avatar/user",
+          "nodeId": null,
+          "componentKey": "02b81a653484ef71026c5fbf331dc40aaaa1a220",
+          "url": null,
+          "note": "avatar/user, 305 инстансов"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R2",
+      "step": "R2-04",
+      "dependsOn": [],
+      "occurrences": 54,
+      "seenOn": [
+        "author",
+        "authors",
+        "courses-listing",
+        "editors",
+        "education-center",
+        "reviews"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses/authors",
+          "selector": "img.rounded-full[class*='--avatar-size']",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "аватар человека КРУГЛЫЙ (rounded-full) — опровергает §11 исследования, где утверждается, что в Курсах все аватары квадратные. Размер задаётся локальной --avatar-size (68 в карточке эксперта, 100 в шапке профиля). Поверх — бейдж организации 28×28 rounded-[8px] или 40×40 rounded-[14px] с белой рамкой 2px"
+    },
+    {
+      "id": "entity-logo",
+      "canonicalName": "EntityLogo",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "data-display",
+      "kind": "primitive",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "sourceName": "avatar/school",
+          "layerName": "avatar/school",
+          "nodeId": null,
+          "componentKey": "84414d2f",
+          "url": null,
+          "note": "avatar/school, 167 инстансов"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R2",
+      "step": "R2-05",
+      "dependsOn": [],
+      "occurrences": 48,
+      "seenOn": [
+        "education-centers-listing",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/education_centers",
+          "selector": "img.rounded-xl.border-2.border-ui-white",
+          "note": "селектор покрывает вариант с белой рамкой 2px (карточка школы); логотип в профиле автора (h-12 w-12 rounded-xl, без рамки) им не считается"
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "логотип организации — скруглённый квадрат rounded-xl (12), не 8, как утверждает §10.9 исследования. В карточке школы вынесен на -20px над телом карточки с белой рамкой 2px; в профиле автора — h-12 w-12 rounded-xl"
+    },
+    {
+      "id": "chip",
+      "canonicalName": "Chip",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "data-display",
+      "kind": "primitive",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "sourceName": "tag/text/*",
+          "layerName": "tag/text/*",
+          "nodeId": null,
+          "componentKey": "e636266b29599856efba14bfea791e254746381f",
+          "url": null,
+          "note": "tag/text/*: fill #f1f1f1, text #2c2e34, padding 4/4, border_radius 200"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R2",
+      "step": "R2-06",
+      "dependsOn": [],
+      "occurrences": 239,
+      "seenOn": [
+        "courses-listing",
+        "education-center",
+        "education-centers-listing",
+        "promocodes",
+        "rating",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses",
+          "selector": "div.bg-ui-black-50.flex.items-center.px-2.py-1.rounded-full",
+          "note": "селектор находит обе роли одного ряда: 143 метки («1С разработка», «Git») и 96 счётчиков переполнения («+9», «+26»), 143/143 и 96/96 без исключений. Различает их один утилитный класс: у меток есть max-w-[calc(100%-48px)], у счётчиков нет. Это не «вариант для длинных значений», а резерв 48px под счётчик, стоящий в конце того же ряда: рядов 96, счётчик — последний ребёнок ряда в 96 случаях из 96, вне ряда меток не встречается ни разу (0 из 96), рядов без счётчика на dom.html нет. Коробка у обеих ролей одна и та же: bg-ui-black-50 flex gap-0.5 items-center px-2 py-1 rounded-full. Самостоятельный счётчик «+N» в реестре есть отдельной записью counter-pill (28 узлов, другая коробка: border-ui-white, h-[24px], text-micro, text-ui-black-500); множества узлов chip и counter-pill не пересекаются."
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "нейтральный pill: bg #f1f1f1, px 8, py 4, radius 9999. Две роли в одном ряду — метка и счётчик переполнения «+N»; отличает их только max-w-[calc(100%-48px)] на метках, резерв под счётчик (см. productionEvidence[].note). Единственная запись реестра, чьё число зависит от ширины снимка: 239 на dom.html (1440), 249 на dom-768, 330 на dom-375 — остальные 43 дают одно и то же на всех трёх. Причина измерена: рядов всегда 96, а сколько меток показать до счётчика, решает раскладка — меток 143 / 155 / 238 на 1440 / 768 / 375, счётчиков 96 / 94 / 92, рядов, уместившихся целиком и оставшихся без счётчика, — 0 / 2 / 4. Число реестра снято на dom.html, то есть на 1440. GAP: одна это форма дизайн-системы или две, по макету не установлено — запись ссылается на tag/text/* по componentKey без nodeId, узел библиотеки не открывается. Решается на R2-06."
+    },
+    {
+      "id": "badge",
+      "canonicalName": "Badge",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "data-display",
+      "kind": "primitive",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "sourceName": "tag/color/*",
+          "layerName": "tag/color/*",
+          "nodeId": null,
+          "componentKey": "e962a95df10bed3c0d9eb0c85b578f1e46d17339",
+          "url": null,
+          "note": "tag/color/*: fill #ff7e47, text #fff, padding 2/2"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R2",
+      "step": "R2-07",
+      "dependsOn": [],
+      "occurrences": 87,
+      "seenOn": [
+        "courses-listing",
+        "education-center",
+        "education-centers-listing",
+        "promocodes",
+        "rating",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses",
+          "selector": "div.bg-ui-orange-500.rounded-full.text-micro.text-ui-white",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "акцентный бейдж скидки: bg #ff7e47, px 6, py 2, text-micro 12/16 semibold. Подтверждает правило «оранжевый живёт только в бейдже»: 87 вхождений и ни одной крупной оранжевой плоскости"
+    },
+    {
+      "id": "rating-badge",
+      "canonicalName": "RatingBadge",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "data-display",
+      "kind": "primitive",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R2",
+      "step": "R2-08",
+      "dependsOn": [
+        "sprite-icon"
+      ],
+      "occurrences": 62,
+      "seenOn": [
+        "courses-listing",
+        "education-center",
+        "education-centers-listing",
+        "promocodes",
+        "rating",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses",
+          "selector": "div.bg-ui-white.rounded-3xl.flex.py-1.pl-1\\.5.pr-2",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "звезда star-rounded (yellow-500) + оценка + счётчик отзывов. На обложке карточки лежит белой плашкой поверх изображения"
+    },
+    {
+      "id": "meta-pill",
+      "canonicalName": "MetaPill",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "data-display",
+      "kind": "primitive",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R2",
+      "step": "R2-09",
+      "dependsOn": [],
+      "occurrences": 96,
+      "seenOn": [
+        "courses-listing",
+        "education-center",
+        "education-centers-listing",
+        "promocodes",
+        "rating",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses",
+          "selector": "div.bg-ui-white.rounded-3xl.px-2.py-1.text-micro",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "белая плашка уровня и длительности на обложке карточки курса. От Chip отличается фоном и радиусом (rounded-3xl вместо rounded-full)"
+    },
+    {
+      "id": "counter-pill",
+      "canonicalName": "CounterPill",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "data-display",
+      "kind": "primitive",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R2",
+      "step": "R2-10",
+      "dependsOn": [],
+      "occurrences": 28,
+      "seenOn": [
+        "education-centers-listing",
+        "reviews"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/education_centers",
+          "selector": "div.bg-ui-black-50.rounded-full.text-micro.text-ui-black-500",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "хвост стопки аватаров: «+18070». Высота 24, белая рамка 1px, px 8"
+    },
+    {
+      "id": "avatar-stack",
+      "canonicalName": "AvatarStack",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "collections",
+      "kind": "component",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R2",
+      "step": "R2-11",
+      "dependsOn": [
+        "avatar",
+        "counter-pill"
+      ],
+      "occurrences": 28,
+      "seenOn": [
+        "education-centers-listing",
+        "reviews"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/education_centers",
+          "selector": "div.flex.-space-x-1\\.5",
+          "note": "считаются стопки, а не аватары внутри них"
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "три аватара 24×24 rounded-full с белой рамкой 1px, перекрытие -6px, замыкает CounterPill"
+    },
+    {
+      "id": "prose",
+      "canonicalName": "Prose",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "data-display",
+      "kind": "component",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R2",
+      "step": "R2-12",
+      "dependsOn": [],
+      "occurrences": 46,
+      "seenOn": [
+        "author",
+        "authors",
+        "courses-listing",
+        "editors"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses/authors/23-stepan-voevodin",
+          "selector": ".style-ugc",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "единственный семантический класс продукта: блок редакционного текста, p и ul. Модификатор !text-small для сжатого регистра"
+    },
+    {
+      "id": "button",
+      "canonicalName": "Button",
+      "storybookNames": [
+        "BaseButton"
+      ],
+      "legacyAliases": [
+        "BaseButton"
+      ],
+      "category": "actions",
+      "kind": "component",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "sourceName": "button/M/main",
+          "layerName": "button/M/main",
+          "nodeId": null,
+          "componentKey": "ce9e337badd3ae0d854bcbf55754e7c67da966c0",
+          "url": null,
+          "note": "button/M/main; в библиотеке разложен на 15 component set по осям размер×тон"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R3",
+      "step": "R3-01",
+      "dependsOn": [
+        "sprite-icon"
+      ],
+      "occurrences": 191,
+      "seenOn": [
+        "authors",
+        "courses-listing",
+        "editors",
+        "education-center",
+        "education-centers-listing",
+        "promocodes",
+        "rating",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses",
+          "selector": "button.inline-flex.rounded-xl.font-semibold, a.inline-flex.rounded-xl.font-semibold",
+          "note": "обе формы рендера; прежний селектор считал только <button>"
+        }
+      ],
+      "storybookEvidence": [
+        {
+          "story": "common-basebutton--primary-button",
+          "file": null,
+          "renders": false,
+          "note": "[nuxt] instance unavailable — разметки нет"
+        }
+      ],
+      "notes": "снятая матрица: M h40 px16 py8 text-small (166 вхождений), L h48 px16 py8 text-default (17), XL h56 px24 py12 text-default (5). Тона: main bg #2c2e34 white, secondary bg #f1f1f1 #2c2e34. Радиус 12, border того же цвета, что и фон. Рендерится и как button, и как a. Figma даёт elements/button/L padding 20/12 и XL 24/16 — расходится с продом (16/8 и 24/12): сверить на шаге",
+      "sourceConflicts": [
+        {
+          "ref": "BRIEF §5, конфликт 4",
+          "summary": "padding размеров L и XL: прод 16/8 и 24/12; Figma elements/button/ 20/12 и 24/16"
+        }
+      ]
+    },
+    {
+      "id": "icon-button",
+      "canonicalName": "IconButton",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "actions",
+      "kind": "component",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R3",
+      "step": "R3-02",
+      "dependsOn": [
+        "sprite-icon"
+      ],
+      "occurrences": 32,
+      "seenOn": [
+        "courses-listing",
+        "education-center",
+        "education-centers-listing",
+        "promocodes",
+        "rating",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/education_centers",
+          "selector": "button.swiper-button-shadow.h-9.w-9.rounded-full",
+          "note": "селектор покрывает только вариант «стрелка карусели»; синяя 36×36 и закрытие рекламы 24×24 этим селектором не считаются"
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "три варианта: стрелка карусели 36×36 bg #fff border #e9e9ea; синяя 36×36 bg-ui-blue-50 border-ui-blue-300; закрытие рекламы 24×24 bg #fff opacity .7. Наблюдение по макету, снятое инвентаризацией без адреса узла: elements/button/icon — fill #fff, border #e9e9ea, icon #a6a7a9, padding 6, border_radius 200. Строка figmaEvidence убрана (ни nodeId, ни componentKey — не evidence по METHOD §3); узел ищется на R2-05"
+    },
+    {
+      "id": "link",
+      "canonicalName": "Link",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "navigation",
+      "kind": "primitive",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R3",
+      "step": "R3-03",
+      "dependsOn": [],
+      "occurrences": 867,
+      "seenOn": [
+        "author",
+        "authors",
+        "courses-listing",
+        "editors",
+        "education-center",
+        "education-centers-listing",
+        "promocodes",
+        "rating",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses",
+          "selector": "a",
+          "note": "селектор нарочно широкий: считает каждый <a> страницы, включая навигацию и ссылки внутри карточек. Число — верхняя граница, а не количество мест, где применён Link"
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "в проде ссылка чаще НЕ синяя: text-ui-black-850 + hover:underline (футер, каталоги ссылок, карточки). Синий #346ef4 в снятой разметке не доминирует. Разобрать, где какой регистр, — иначе правило «ссылки синие» будет ложным. Наблюдение по макету без адреса узла: стиль color style/font/link #346ef4; в education-lib встречается второй color/font/link #1463d9. Строка figmaEvidence убрана — стиль это не узел и не componentKey (METHOD §3); разбирается на R2-04"
+    },
+    {
+      "id": "filter-chip",
+      "canonicalName": "FilterChip",
+      "storybookNames": [
+        "BaseFilter"
+      ],
+      "legacyAliases": [
+        "BaseFilter"
+      ],
+      "category": "forms",
+      "kind": "component",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "sourceName": "tab / tab-panel",
+          "layerName": "tab / tab-panel",
+          "nodeId": null,
+          "componentKey": "9668fb89eb4a58bc781b568ec83d9ce0e492e70e",
+          "url": null,
+          "note": "tab / tab-panel; elements/tab/filter/*: fill_select #eff5ff, border_select #94bdfc, text_icon_select #346ef4"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R3",
+      "step": "R3-04",
+      "dependsOn": [
+        "sprite-icon"
+      ],
+      "occurrences": 107,
+      "seenOn": [
+        "education-center",
+        "education-centers-listing",
+        "promocodes",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/education_centers/shkoly-dlya-detej",
+          "selector": "button.h-9.rounded-full.border.border-ui-black-100.bg-ui-white.px-3.py-2.text-small",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [
+        {
+          "story": "common-basefilter--base-filter-story",
+          "file": null,
+          "renders": true,
+          "note": null
+        }
+      ],
+      "notes": "прод: default bg #fff border #e9e9ea, selected bg #2c2e34 text #fff, h36 px12 py8 radius 9999. Figma и токены --color-chip-inactive #ebf3ff / --color-chip-press #b8d5ff описывают СИНЕЕ выбранное состояние, которого в снятом проде нет. Конфликт источников → завести GAP",
+      "sourceConflicts": [
+        {
+          "ref": "BRIEF §5, конфликт 1",
+          "summary": "выбранное состояние: прод bg #2c2e34 + белый текст; Figma и токены --color-chip-inactive #ebf3ff / --color-chip-press #b8d5ff описывают синее. Решать по METHOD §3, расхождение — в «Ограничения»"
+        }
+      ],
+      "buildNotes": "componentKey 9668fb89… указан инвентаризацией и у FilterChip, и у Tab — см. запись tab."
+    },
+    {
+      "id": "segmented-control",
+      "canonicalName": "SegmentedControl",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "navigation",
+      "kind": "component",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "sourceName": "button group / onheader",
+          "layerName": "button group / onheader",
+          "nodeId": null,
+          "componentKey": "a3b5486b83ed47b1bf169023fb4cfcdf42ec847d",
+          "url": null,
+          "note": "button group / onheader: fill #0000001f, text #fff, radius 12"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R3",
+      "step": "R3-05",
+      "dependsOn": [],
+      "occurrences": 4,
+      "seenOn": [
+        "education-centers-listing",
+        "rating",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/education_centers",
+          "selector": "div.bg-ui-black-transparent-120.rounded-xl.w-max",
+          "note": "контейнер переключателя; прежний селектор считал сегменты-ссылки внутри него"
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "переключатель «Взрослым / Детям» на цветном hero: контейнер bg rgba(0,0,0,.12) radius 12, активный сегмент bg #2c2e34, px 16, py 10. На узких растягивается на всю ширину"
+    },
+    {
+      "id": "tab",
+      "canonicalName": "Tab",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "navigation",
+      "kind": "component",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "sourceName": "tab + tab-panel/2-lvl",
+          "layerName": "tab + tab-panel/2-lvl",
+          "nodeId": null,
+          "componentKey": "9668fb89eb4a58bc781b568ec83d9ce0e492e70e",
+          "url": null,
+          "note": "594 инстанса в макете; tab + tab-panel/2-lvl"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "figma-only",
+      "wave": "R3",
+      "step": "R3-13",
+      "dependsOn": [],
+      "occurrences": 0,
+      "seenOn": [],
+      "productionEvidence": [],
+      "storybookEvidence": [],
+      "notes": "figma-only: в снятой публичной части табов нет — на странице центра роль вкладок играет ряд FilterChip. Помечать figma-only, не выдавать за паттерн продакшена",
+      "buildNotes": "componentKey 9668fb89… указан инвентаризацией и у FilterChip, и у Tab. Один ключ на два элемента — либо это один component set, либо ошибка переноса; развести на R3-04 и R3-13."
+    },
+    {
+      "id": "select",
+      "canonicalName": "Select",
+      "storybookNames": [
+        "BaseCustomSelect"
+      ],
+      "legacyAliases": [
+        "BaseCustomSelect"
+      ],
+      "category": "forms",
+      "kind": "component",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "sourceName": "dropdown/select",
+          "layerName": "dropdown/select",
+          "nodeId": null,
+          "componentKey": "8c0e7325b3403282694429fb3e2c196ddf62c9b6",
+          "url": null,
+          "note": "dropdown/select + dropdown/list + dropdown/context-menu"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R3",
+      "step": "R3-06",
+      "dependsOn": [
+        "sprite-icon"
+      ],
+      "occurrences": 28,
+      "seenOn": [
+        "education-centers-listing",
+        "promocodes",
+        "rating",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/education_centers",
+          "selector": ".gap-\\[1px\\] > div.w-full",
+          "note": "в hero-форме поля приходят заглушками и гидрируются на клиенте; панель фильтров приходит в разметке дважды — мобильным и планшетным поддеревом (R0-00 §3.6), поэтому каждый контрол считается два раза"
+        }
+      ],
+      "storybookEvidence": [
+        {
+          "story": "forms-basecustomselect--base-story",
+          "file": null,
+          "renders": true,
+          "note": "снято только закрытое состояние: button[role=combobox][aria-expanded=false], min-h 40, radius 12, border #e9e9ea"
+        }
+      ],
+      "notes": "открытый список не снят нигде: ни в проде, ни в Storybook. Разметку списка брать из Figma и помечать figma-only"
+    },
+    {
+      "id": "multi-select",
+      "canonicalName": "MultiSelect",
+      "storybookNames": [
+        "MultiSelect"
+      ],
+      "legacyAliases": [],
+      "category": "forms",
+      "kind": "component",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "storybook-only",
+      "wave": "R3",
+      "step": "R3-07",
+      "dependsOn": [
+        "sprite-icon",
+        "select"
+      ],
+      "occurrences": 0,
+      "seenOn": [],
+      "productionEvidence": [],
+      "storybookEvidence": [
+        {
+          "story": "forms-multiselect--base-story",
+          "file": null,
+          "renders": true,
+          "note": "поле с поиском, input min-h 38, иконка #search справа; список закрыт"
+        }
+      ],
+      "notes": "storybook-only"
+    },
+    {
+      "id": "search-input",
+      "canonicalName": "SearchInput",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "forms",
+      "kind": "component",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "sourceName": "15074:258344",
+          "layerName": null,
+          "nodeId": "15074:258344",
+          "componentKey": null,
+          "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=15074-258344",
+          "note": "механика поиска и саджест"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R3",
+      "step": "R3-08",
+      "dependsOn": [
+        "sprite-icon"
+      ],
+      "occurrences": 1,
+      "seenOn": [
+        "courses-listing"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses",
+          "selector": ".courses-filter-search-top-panel-placeholder",
+          "note": "селектор адресует заглушку: aria-hidden=\"true\", два блока h-10 rounded-xl (bg #2c2e34 и bg #fff). Отрисованное поле лежит рядом, внутри того же #courses-filter-search-top-panel, и селектором не покрыто (R3-08)"
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "селектор адресует заглушку до гидрации, но отрисованное поле есть в той же снятой разметке соседним узлом: div.w-full > div.v-popper.v-popper--theme-dropdown > … > div.wrapper.wrapper--with-search с input[placeholder=\"Искать на Хабр Курсах\"] и иконкой #search. Досъёмка не нужна — на R3-08 селектор переписывается на отрисованное поле"
+    },
+    {
+      "id": "text-input",
+      "canonicalName": "TextInput",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "forms",
+      "kind": "component",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "sourceName": "elements/input/*",
+          "layerName": "elements/input/*",
+          "nodeId": null,
+          "componentKey": "18357b7464b5e158dfb71e014fa9d259e3a929cb",
+          "url": null,
+          "note": "elements/input/*: fill #fff, border #e9e9ea, radius 12, padding 12/8, placeholder #909194, icon #a6a7a9"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "figma-only",
+      "wave": "R3",
+      "step": "R3-09",
+      "dependsOn": [],
+      "occurrences": 0,
+      "seenOn": [],
+      "productionEvidence": [],
+      "storybookEvidence": [],
+      "notes": "figma-only: в публичной части продукта форм ввода нет — в снятой разметке десяти страниц ни одного label, form, select, textarea"
+    },
+    {
+      "id": "checkbox",
+      "canonicalName": "Checkbox",
+      "storybookNames": [
+        "BaseCheckbox"
+      ],
+      "legacyAliases": [
+        "BaseCheckbox"
+      ],
+      "category": "forms",
+      "kind": "component",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "sourceName": "elements/control",
+          "layerName": "elements/control",
+          "nodeId": null,
+          "componentKey": "b4c4a5af7abfec77ad18216f103e1dbd9cd5476b",
+          "url": null,
+          "note": "elements/control/border_radius 6, unchecked/fill #dededf"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "storybook-only",
+      "wave": "R3",
+      "step": "R3-10",
+      "dependsOn": [],
+      "occurrences": 0,
+      "seenOn": [],
+      "productionEvidence": [],
+      "storybookEvidence": [
+        {
+          "story": "common-basecheckbox--base-checkbox-story",
+          "file": null,
+          "renders": true,
+          "note": "единственный BEM-компонент: .base-checkbox__wrapper/__icon-wrapper/__input/__button/__content"
+        }
+      ],
+      "notes": "storybook и figma; в проде не встречается"
+    },
+    {
+      "id": "switch",
+      "canonicalName": "Switch",
+      "storybookNames": [
+        "BaseSwitch"
+      ],
+      "legacyAliases": [
+        "BaseSwitch"
+      ],
+      "category": "forms",
+      "kind": "component",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "storybook-only",
+      "wave": "R3",
+      "step": "R3-11",
+      "dependsOn": [],
+      "occurrences": 0,
+      "seenOn": [],
+      "productionEvidence": [],
+      "storybookEvidence": [
+        {
+          "story": "common-baseswitch--base-switch-story",
+          "file": null,
+          "renders": true,
+          "note": "трек 38×22 внутри бокса 40×24, appearance default|edu"
+        }
+      ],
+      "notes": "storybook-only"
+    },
+    {
+      "id": "tile-filter",
+      "canonicalName": "TileFilter",
+      "storybookNames": [
+        "BaseFilterWithImage"
+      ],
+      "legacyAliases": [
+        "BaseFilterWithImage"
+      ],
+      "category": "forms",
+      "kind": "component",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "sourceName": "10540:60335",
+          "layerName": null,
+          "nodeId": "10540:60335",
+          "componentKey": null,
+          "url": null,
+          "note": "Иконка цели фильтра, 8 вариантов"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "storybook-only",
+      "wave": "R3",
+      "step": "R3-12",
+      "dependsOn": [],
+      "occurrences": 0,
+      "seenOn": [],
+      "productionEvidence": [],
+      "storybookEvidence": [
+        {
+          "story": "common-basefilterwithimage--default",
+          "file": null,
+          "renders": true,
+          "note": "button 122 шириной, плитка rounded-2xl p-5, img 80×80, подпись text-micro"
+        }
+      ],
+      "notes": "иллюстрированная плитка направления. В снятых страницах прода её нет: «Популярные направления» на /courses оказались текстовым LinkGrid — это опровергает §10.4 исследования"
+    },
+    {
+      "id": "pagination",
+      "canonicalName": "Pagination",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "navigation",
+      "kind": "component",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "sourceName": "pagination",
+          "layerName": "pagination",
+          "nodeId": null,
+          "componentKey": "bcc6d796a333c21c6349582d2c0bc382fa9c34bb",
+          "url": null,
+          "note": "pagination + pagination/page; elements/pagination/border #e9e9ea"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "figma-only",
+      "wave": "R3",
+      "step": "R3-14",
+      "dependsOn": [
+        "icon-button"
+      ],
+      "occurrences": 0,
+      "seenOn": [],
+      "productionEvidence": [],
+      "storybookEvidence": [],
+      "notes": "figma-only. В проде листания нет: вместо него кнопка «Показать еще 20». §9.6 исследования описывает пагинацию как факт продакшена — не подтверждено"
+    },
+    {
+      "id": "breadcrumbs",
+      "canonicalName": "Breadcrumbs",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "navigation",
+      "kind": "component",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "sourceName": "Хлебные крошки",
+          "layerName": "Хлебные крошки",
+          "nodeId": "9902:39188",
+          "componentKey": null,
+          "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=9902-39188",
+          "note": "компонент «Хлебные крошки» 236×20: четыре текста (39, 41, 42, 42 шириной) и три экземпляра icon/arrow-down 20×20 между ними. Снято get_metadata 2026-09-08"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "figma-only",
+      "wave": "R3",
+      "step": "R3-15",
+      "dependsOn": [],
+      "occurrences": 0,
+      "seenOn": [],
+      "productionEvidence": [],
+      "storybookEvidence": [],
+      "notes": "В снятой разметке десяти страниц крошек как списка ссылок нет. Проверено: селектор h1.absolute.bottom-20.text-small.text-ui-black-500 на /education_centers/35-yandeks-praktikum находит один узел, и это <h1> «Онлайн-школа Яндекс Практикум» — заголовок страницы, стилизованный как подпись 14/20 #909194 и вынесенный абсолютом над карточкой EntityHeader. Элемент описывается по макету (node 9902:39188); на R3-15 берётся оттуда."
+    },
+    {
+      "id": "site-header",
+      "canonicalName": "SiteHeader",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "frame-modules",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "sourceName": "header/courses",
+          "layerName": "header/courses",
+          "nodeId": "15065:242662",
+          "componentKey": null,
+          "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=15065-242662",
+          "note": "header/courses, 9 вариантов device×type×fixed"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R4",
+      "step": "R4-01",
+      "dependsOn": [
+        "header-dropdown",
+        "search-input",
+        "sprite-icon"
+      ],
+      "occurrences": 10,
+      "seenOn": [
+        "author",
+        "authors",
+        "courses-listing",
+        "editors",
+        "education-center",
+        "education-centers-listing",
+        "promocodes",
+        "rating",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses",
+          "selector": "header",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "высота 64 на 10/10, фон linear-gradient(180deg,#346ef4,#346ef4). Sticky только на /courses (1/10) — исследование объявляет sticky инвариантом, снимок это опровергает. Токен --header-height в проде 64, в сборке Storybook 112 (мобильный 144): расхождение сборок",
+      "sourceConflicts": [
+        {
+          "ref": "BRIEF §5, конфликт 2",
+          "summary": "--header-height: прод 64, сборка Storybook 112 (мобильный 144) — расхождение сборок"
+        }
+      ]
+    },
+    {
+      "id": "header-dropdown",
+      "canonicalName": "HeaderDropdown",
+      "storybookNames": [
+        "HeaderDropdown",
+        "HeaderSection"
+      ],
+      "legacyAliases": [
+        "HeaderSection"
+      ],
+      "category": "overlays",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "sourceName": "15065:244076",
+          "layerName": null,
+          "nodeId": "15065:244076",
+          "componentKey": null,
+          "url": null,
+          "note": null
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R4",
+      "step": "R4-02",
+      "dependsOn": [
+        "project-icon"
+      ],
+      "occurrences": 10,
+      "seenOn": [
+        "author",
+        "authors",
+        "courses-listing",
+        "editors",
+        "education-center",
+        "education-centers-listing",
+        "promocodes",
+        "rating",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses",
+          "selector": "header div.absolute.-right-10.rounded-xl.shadow-context-menu-dropdown",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [
+        {
+          "story": "header-headerdropdown--header-dropdown-story",
+          "file": null,
+          "renders": true,
+          "note": null
+        },
+        {
+          "story": "header-headersection--header-section-story",
+          "file": "_sources/courses/rendered/header-headersection--header-section-story.html",
+          "renders": true,
+          "note": "секция панели, снята пустой. Добавлено на R0-05 из _sources/courses/inventory.json — инвентаризация эту story не записала"
+        }
+      ],
+      "notes": "«Все сервисы Хабра»: в SSR панель приходит с классом hidden и пустыми секциями, в Storybook — тоже пустая. Открытое состояние не снято ни там, ни там. Класс shadow-context-menu-dropdown есть, одноимённой переменной нет — только --shadow-dropdown",
+      "buildNotes": "Storybook-компонент HeaderSection отнесён сюда как секция панели: снятая разметка — строка .border-b.py-2 внутри той же группы header/, панель и секция перечислены в BRIEF §2 одним списком закрытых оверлеев. Сопоставление сделано на R0-05 и подтверждается или отменяется на R4-02."
+    },
+    {
+      "id": "rubrication-bar",
+      "canonicalName": "RubricationBar",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "navigation",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R4",
+      "step": "R4-03",
+      "dependsOn": [
+        "link"
+      ],
+      "occurrences": 1,
+      "seenOn": [
+        "courses-listing"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses",
+          "selector": ".rubrication-header",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "полоса 40px с градиентом #346ef4 → #6bacfd, ряд ссылок text-micro белым, gap 16, padding 8/0/16, overflow-x auto. Есть только на /courses (1/10) — не сквозной элемент оболочки, как утверждает §9.2 исследования. Текст text-micro 12/16, а не 14/20"
+    },
+    {
+      "id": "site-footer",
+      "canonicalName": "SiteFooter",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "frame-modules",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "sourceName": "10049:51115",
+          "layerName": null,
+          "nodeId": "10049:51115",
+          "componentKey": null,
+          "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=10049-51115",
+          "note": null
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R4",
+      "step": "R4-04",
+      "dependsOn": [
+        "project-icon",
+        "social-icon",
+        "link"
+      ],
+      "occurrences": 10,
+      "seenOn": [
+        "author",
+        "authors",
+        "courses-listing",
+        "editors",
+        "education-center",
+        "education-centers-listing",
+        "promocodes",
+        "rating",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses",
+          "selector": "footer",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "bg #f1f1f1, padding 32/0/40 (phone 24/0), grid-cols-4 gap 16 → tablet-only 3 → phone 1. Ссылки text-small #2c2e34 hover:underline — §9.8 исследования утверждает 14/20 #909194, это неверно"
+    },
+    {
+      "id": "page-hero",
+      "canonicalName": "PageHero",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "frame-modules",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R4",
+      "step": "R4-05",
+      "dependsOn": [
+        "segmented-control",
+        "search-form",
+        "button"
+      ],
+      "occurrences": 9,
+      "seenOn": [
+        "authors",
+        "courses-listing",
+        "editors",
+        "education-centers-listing",
+        "promocodes",
+        "rating",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/education_centers",
+          "selector": "div.w-full.bg-main-gradient-second",
+          "note": "селектор шире элемента на два узла, и оба на /courses: 9 = 7 настоящих PageHero (по одному на страницу) + обёртка с тем же классом bg-main-gradient-second, внутри которой лежит RubricationBar, + вторая такая же обёртка, пустая (внутри только заглушки Vue, ни hero, ни бара). Прежняя оговорка называла из этих двух только первый."
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "тот же градиент, что у RubricationBar, но как крупный блок 288–388px: H1 44/48 semibold ls −0.5 белым, max-w 652, по центру, pt 64 (phone 40, text-h1-mobile). Три состава: SegmentedControl + SearchForm (4 страницы), только SearchForm (1), лид + два CTA (2). На /courses и страницах сущностей hero отсутствует"
+    },
+    {
+      "id": "search-form",
+      "canonicalName": "SearchForm",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "forms",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R4",
+      "step": "R4-06",
+      "dependsOn": [
+        "select",
+        "button"
+      ],
+      "occurrences": 5,
+      "seenOn": [
+        "education-centers-listing",
+        "promocodes",
+        "rating",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/education_centers",
+          "selector": "div.grid.grid-cols-\\[1fr_max-content\\].gap-2.rounded-md",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "grid [1fr max-content] gap 8; внутри 2–3 поля через grid-cols-2|3 gap-[1px] (стык в 1px даёт слитную группу) и кнопка XL. На phone — одна колонка, дублирующая раскладка через hidden/phone:grid"
+    },
+    {
+      "id": "section",
+      "canonicalName": "Section",
+      "storybookNames": [
+        "BaseSection"
+      ],
+      "legacyAliases": [
+        "BaseSection"
+      ],
+      "category": "layout",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R4",
+      "step": "R4-07",
+      "dependsOn": [],
+      "occurrences": 15,
+      "seenOn": [
+        "courses-listing",
+        "education-center",
+        "education-centers-listing",
+        "promocodes",
+        "rating",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses",
+          "selector": "section.flex.flex-col.gap-4",
+          "note": "селектор уже элемента: <section> в снятой разметке 35 на 9 страницах, с раскладкой flex flex-col gap-4 — 15 на 7 страницах. Остальные 20 идут без этих утилит, и одной формой Section они не описываются: разбирается на R4-07. Прежний селектор считал заголовки h2 внутри секции"
+        }
+      ],
+      "storybookEvidence": [
+        {
+          "story": "common-basesection--base-section-story",
+          "file": null,
+          "renders": true,
+          "note": null
+        }
+      ],
+      "notes": "section + h2 24/28 semibold ls −0.5 + слот; внутренний gap 16 у всех 15 узлов, попавших в счёт, — по построению селектора (gap-4 стоит в нём самом), а не наблюдение по всем секциям. Между секциями 48 на 6/10 страниц и 40 на страницах экспертов, редакции и профиля — межсекционный интервал не сквозной"
+    },
+    {
+      "id": "card-grid",
+      "canonicalName": "CardGrid",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "layout",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R4",
+      "step": "R4-08",
+      "dependsOn": [],
+      "occurrences": 8,
+      "seenOn": [
+        "authors",
+        "courses-listing",
+        "editors",
+        "education-centers-listing",
+        "promocodes",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses",
+          "selector": "div.grid.grid-cols-4.gap-3",
+          "note": "селектор уже элемента: считает только сетку карточек 4 колонки × gap 12. Сетка ссылок grid-cols-3 gap-x-4 gap-y-2 (5 узлов на 3 страницах) — это отдельная запись link-grid, а не непосчитанный вид CardGrid"
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "4 колонки по 260 с gap 12 → tablet-only 3 → phone 1. Три варианта хвоста в снятой разметке: phone:grid-cols-[minmax(0,1fr)] tablet-only:grid-cols-3 (4 узла), phone:grid-cols-1 tablet-only:grid-cols-2 (2), phone:grid-cols-1 tablet-only:grid-cols-3 (2)"
+    },
+    {
+      "id": "carousel",
+      "canonicalName": "Carousel",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "collections",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R4",
+      "step": "R4-09",
+      "dependsOn": [
+        "icon-button"
+      ],
+      "occurrences": 16,
+      "seenOn": [
+        "courses-listing",
+        "education-center",
+        "education-centers-listing",
+        "promocodes",
+        "rating",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/education/promocodes",
+          "selector": ".swiper.swiper-initialized.swiper-horizontal",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "Swiper: слайды 568×232 с scale(.87) и opacity .65 у неактивных, стрелки IconButton 36×36 вынесены на -16px за край. Токен --swiper-theme-color #007aff объявлен, но к палитре продукта отношения не имеет"
+    },
+    {
+      "id": "link-grid",
+      "canonicalName": "LinkGrid",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "collections",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R4",
+      "step": "R4-10",
+      "dependsOn": [
+        "link"
+      ],
+      "occurrences": 5,
+      "seenOn": [
+        "courses-listing",
+        "education-centers-listing",
+        "promocodes"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/education/promocodes",
+          "selector": "div.overflow-hidden.max-h-\\[94px\\] > div.grid.grid-cols-3.gap-x-4.gap-y-2",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "три колонки ссылок со счётчиком, свёрнутые до max-h 94 с раскрытием по кнопке. Это и есть «Популярные направления» — плиток с иллюстрациями в проде нет"
+    },
+    {
+      "id": "filter-bar",
+      "canonicalName": "FilterBar",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "navigation",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "sourceName": "9187:92170",
+          "layerName": null,
+          "nodeId": "9187:92170",
+          "componentKey": null,
+          "url": null,
+          "note": "секция «быстрые фильтры», около 28 фреймов"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R4",
+      "step": "R4-11",
+      "dependsOn": [
+        "filter-chip"
+      ],
+      "occurrences": 5,
+      "seenOn": [
+        "education-center",
+        "education-centers-listing",
+        "promocodes",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/education_centers/shkoly-dlya-detej",
+          "selector": "div.flex.gap-1.overflow-x-auto.whitespace-nowrap",
+          "note": "полоса целиком; прежний селектор div > button.h-9… считал отдельные чипы (139) и совпадал с filter-chip"
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "ряд FilterChip с одним выбранным («Все»). На phone получает горизонтальный скролл"
+    },
+    {
+      "id": "filter-modal",
+      "canonicalName": "FilterModal",
+      "storybookNames": [
+        "BaseFilterModalNew",
+        "BaseFilterModal"
+      ],
+      "legacyAliases": [
+        "BaseFilterModalNew",
+        "BaseFilterModal"
+      ],
+      "category": "overlays",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "sourceName": "14613:211399",
+          "layerName": null,
+          "nodeId": "14613:211399",
+          "componentKey": null,
+          "url": null,
+          "note": "modal-filter 568 desktop / 320 mobile"
+        },
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "sourceName": "modal-filter",
+          "layerName": "modal-filter",
+          "nodeId": null,
+          "componentKey": "6dc70fb1987356373a806b850b9c9303ce0ecd77",
+          "url": null,
+          "note": "modal-filter 568 desktop / 320 mobile"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "storybook-only",
+      "wave": "R4",
+      "step": "R4-12",
+      "dependsOn": [
+        "button",
+        "checkbox",
+        "select"
+      ],
+      "occurrences": 0,
+      "seenOn": [],
+      "productionEvidence": [],
+      "storybookEvidence": [
+        {
+          "story": "common-basefiltermodal--default",
+          "file": null,
+          "renders": true,
+          "note": "снято только закрытое состояние: кнопка-триггер и пустой #modal-target"
+        },
+        {
+          "story": "common-basefiltermodalnew--default",
+          "file": null,
+          "renders": true,
+          "note": null
+        }
+      ],
+      "notes": "две реализации в Storybook: BaseFilterModalNew актуальна, BaseFilterModal уходит в legacyAliases и отдельной спецификации не получает (BRIEF §9 п. 5 — разложено по строкам в implementations). Открытая разметка есть только в Figma: обе story сняты закрытыми",
+      "implementations": [
+        {
+          "storybookName": "BaseFilterModalNew",
+          "status": "current",
+          "story": "common-basefiltermodalnew--default",
+          "decision": "BRIEF §9 п. 5 — актуальная реализация, её и описывает спецификация"
+        },
+        {
+          "storybookName": "BaseFilterModal",
+          "status": "legacy-only",
+          "story": "common-basefiltermodal--default",
+          "specPath": null,
+          "decision": "BRIEF §9 п. 5 — уходит в legacyAliases, отдельной спецификации не получает"
+        }
+      ]
+    },
+    {
+      "id": "catalog-menu",
+      "canonicalName": "CatalogMenu",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "overlays",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "sourceName": "14644:221758",
+          "layerName": null,
+          "nodeId": "14644:221758",
+          "componentKey": null,
+          "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=14644-221758",
+          "note": null
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "figma-only",
+      "wave": "R4",
+      "step": "R4-13",
+      "dependsOn": [
+        "link",
+        "sprite-icon"
+      ],
+      "occurrences": 0,
+      "seenOn": [],
+      "productionEvidence": [],
+      "storybookEvidence": [],
+      "notes": "figma-only: выпадающий каталог направлений из шапки, отдельные версии для взрослых и детей"
+    },
+    {
+      "id": "ad-slot",
+      "canonicalName": "AdSlot",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "layout",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R5",
+      "step": "R5-14",
+      "dependsOn": [
+        "carousel",
+        "ad-card"
+      ],
+      "occurrences": 5,
+      "seenOn": [
+        "courses-listing",
+        "education-centers-listing",
+        "promocodes",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses",
+          "selector": ".banner-swiper, .adfox-banner",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "рекламный контур продукта: карусель баннеров и adfox-слот занимают верх каждой витрины. Описывать как область страницы и границу продукта, а не как оформление"
+    },
+    {
+      "id": "empty-state",
+      "canonicalName": "EmptyState",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "feedback",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "sourceName": "Empty block",
+          "layerName": "Empty block",
+          "nodeId": "12093:116282",
+          "componentKey": null,
+          "url": null,
+          "note": "Empty block 1024×112"
+        },
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "sourceName": "12135:122610",
+          "layerName": null,
+          "nodeId": "12135:122610",
+          "componentKey": null,
+          "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=12135-122610",
+          "note": "нулевая выдача, 1024/744/320"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "figma-only",
+      "wave": "R4",
+      "step": "R4-14",
+      "dependsOn": [
+        "button"
+      ],
+      "occurrences": 0,
+      "seenOn": [],
+      "productionEvidence": [],
+      "storybookEvidence": [],
+      "notes": "figma-only: в снятой публичной части пустых выдач нет. §10.11 исследования описывает пустое состояние как факт продакшена — не подтверждено. Иллюстрация: в education-lib есть семейство no_content/* — поиск по библиотеке отдаёт 20 компонентов с именами до no_content/25. Какой из них стоит в нулевой выдаче 12135:122610, не установлено, поэтому ключ не выбран: строка figmaEvidence, называвшая «no_content/*» без nodeId и componentKey, не адресовала ничего и убрана (review-3, major 2)"
+    },
+    {
+      "id": "course-card",
+      "canonicalName": "CourseCard",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "entities",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "sourceName": "9785:45731",
+          "layerName": null,
+          "nodeId": "9785:45731",
+          "componentKey": null,
+          "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=9785-45731",
+          "note": "793 инстанса, 284×420, вариант «Рассрочка»"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R5",
+      "step": "R5-01",
+      "dependsOn": [
+        "rating-badge",
+        "meta-pill",
+        "badge",
+        "chip",
+        "button",
+        "entity-logo"
+      ],
+      "occurrences": 96,
+      "seenOn": [
+        "courses-listing",
+        "education-center",
+        "education-centers-listing",
+        "promocodes",
+        "rating",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses",
+          "selector": "div.relative.box-border.flex.h-full.min-w-0.flex-col.overflow-hidden.rounded-3xl.border.border-ui-black-100",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "центральный элемент продукта. Снятая анатомия: обложка img 148 + затемнение rgba(0,0,0,.12) → тело -mt-20 rounded-t-3xl bg #fff p24 → RatingBadge и MetaPill абсолютом на -34px → метастрока → title line-clamp-2 → чипы text-micro → цена → Button M mt-16 → сквозная ссылка-оверлей. Ширина 260 в 4-колоночной сетке. box-shadow: none — §10.1 исследования допускает тень, в проде её нет"
+    },
+    {
+      "id": "school-card",
+      "canonicalName": "SchoolCard",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "entities",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R5",
+      "step": "R5-02",
+      "dependsOn": [
+        "entity-logo",
+        "rating-badge",
+        "avatar-stack",
+        "counter-pill",
+        "button"
+      ],
+      "occurrences": 48,
+      "seenOn": [
+        "education-centers-listing",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/education_centers",
+          "selector": "div.relative.box-border.h-full.cursor-pointer.overflow-hidden.rounded-3xl.border.border-solid.border-ui-black-100",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "обложка 112 → тело p24 pt32 → логотип 48 rounded-xl абсолютом на -20px с белой рамкой 2px → рейтинг и число отзывов → title text-h4 line-clamp-3 → AvatarStack выпускников → Button M mt-auto → сквозная ссылка. Опровергает §10.2 исследования: это не grid [48px 1fr], а вертикальная карточка с обложкой"
+    },
+    {
+      "id": "promo-card",
+      "canonicalName": "PromoCard",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "entities",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "sourceName": "10991:111811",
+          "layerName": null,
+          "nodeId": "10991:111811",
+          "componentKey": null,
+          "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=10991-111811",
+          "note": "4 варианта: промокод|акция × завершён"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R5",
+      "step": "R5-03",
+      "dependsOn": [
+        "entity-logo",
+        "button"
+      ],
+      "occurrences": 20,
+      "seenOn": [
+        "promocodes"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/education/promocodes",
+          "selector": "div.cursor-pointer.relative.flex.h-full.flex-col.overflow-hidden.rounded-3xl.border.border-ui-black-100.p-6",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "лого и название → плашка кода bg-ui-blue-50 text-ui-blue-500 rounded-xl px20 py16 text-h4 semibold по центру → условие text-small → Button M «Открыть код». Единственное место, где синяя подложка работает как крупная плоскость"
+    },
+    {
+      "id": "review-card",
+      "canonicalName": "ReviewCard",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "entities",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "sourceName": "11065:78841",
+          "layerName": null,
+          "nodeId": "11065:78841",
+          "componentKey": null,
+          "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=11065-78841",
+          "note": null
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R5",
+      "step": "R5-04",
+      "dependsOn": [
+        "avatar",
+        "rating-badge",
+        "prose"
+      ],
+      "occurrences": 20,
+      "seenOn": [
+        "courses-listing",
+        "education-center",
+        "reviews"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/education_centers/otzyvy",
+          "selector": "div.relative.box-border.h-full.whitespace-break-spaces.rounded-3xl.border.border-solid.border-ui-black-100",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "p24, шапка grid [50px 1fr 164px] (на phone [50px 1fr]) gap 12/16: аватар, автор и дата, оценка; тело с отступом pl 62 (на phone 0)"
+    },
+    {
+      "id": "article-card",
+      "canonicalName": "ArticleCard",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "entities",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "sourceName": "Статья",
+          "layerName": "Статья",
+          "nodeId": "10947:108334",
+          "componentKey": null,
+          "url": null,
+          "note": "Статья 272×268"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R5",
+      "step": "R5-05",
+      "dependsOn": [
+        "chip"
+      ],
+      "occurrences": 32,
+      "seenOn": [
+        "education-center",
+        "education-centers-listing",
+        "promocodes",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/education/promocodes",
+          "selector": ".swiper-slide > div.relative.box-border.h-full.overflow-hidden.rounded-3xl.border.border-ui-black-100:not(.flex):not(.cursor-pointer)",
+          "note": "клонов слайдов в снятом DOM нет (.swiper-slide-duplicate не встречается) — все найденные узлы настоящие. Два :not() обязательны: набор классов карточки статьи — подмножество набора CourseCard (+flex min-w-0 flex-col) и SchoolCard (+cursor-pointer), положительного отличительного класса у статьи нет. Прежний селектор без них собирал 80 узлов на 6 страницах, из которых 40 были CourseCard и 8 SchoolCard"
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "карточка блога «Журнал»: тип и дата («Статья • 28 августа») и заголовок. Встречается только внутри Carousel"
+    },
+    {
+      "id": "person-card",
+      "canonicalName": "PersonCard",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "entities",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "sourceName": "карточка эксперта",
+          "layerName": "карточка эксперта",
+          "nodeId": "13221:152104",
+          "componentKey": null,
+          "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=13221-152104",
+          "note": "карточка эксперта 235×365"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R5",
+      "step": "R5-06",
+      "dependsOn": [
+        "avatar",
+        "social-icon",
+        "prose"
+      ],
+      "occurrences": 30,
+      "seenOn": [
+        "authors",
+        "editors"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses/authors",
+          "selector": "div.relative.box-border.flex.max-h-\\[365px\\].flex-col.gap-4.overflow-hidden.rounded-3xl.border.border-ui-black-100.p-6",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "max-h 365 с обрезкой биографии и градиентной вуалью снизу (linear-gradient к #fff, h 56); аватар 68 круглый с бейджем компании 28 rounded-[8px]; имя text-h4, роль text-small #909194, ряд соцссылок 24×24"
+    },
+    {
+      "id": "step-card",
+      "canonicalName": "StepCard",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "entities",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R5",
+      "step": "R5-07",
+      "dependsOn": [],
+      "occurrences": 8,
+      "seenOn": [
+        "authors",
+        "editors"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses/authors",
+          "selector": "div.flex.flex-col.gap-1.rounded-3xl.border.border-solid.border-ui-black-100.p-6",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "простейшая карточка шага процесса: заголовок semibold и text-small. Встречается рядом из четырёх"
+    },
+    {
+      "id": "ad-card",
+      "canonicalName": "AdCard",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "entities",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R5",
+      "step": "R5-13",
+      "dependsOn": [
+        "icon-button"
+      ],
+      "occurrences": 52,
+      "seenOn": [
+        "courses-listing",
+        "education-centers-listing",
+        "promocodes",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/education_centers",
+          "selector": "div.relative.block.h-full.w-full.cursor-pointer.overflow-hidden.rounded-3xl",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "рекламный слайд: две картинки (desktop и mobile) + метка «РЕКЛАМА» rounded-[60px] text-[8px] opacity .7 + кнопка закрытия 24×24 + раскрываемая плашка с ИНН и erid. Измерено: раскрываемую плашку несут 20 узлов из 52, остальные 32 — только пара <img> без подписи; сигнатура у всех 52 одна, это один элемент в двух составах, а не два элемента. Формально не часть дизайн-системы, но занимает верх каждой витрины"
+    },
+    {
+      "id": "rating-table",
+      "canonicalName": "RatingTable",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "collections",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "sourceName": "Строка (рейтинг)",
+          "layerName": "Строка (рейтинг)",
+          "nodeId": "9987:36309",
+          "componentKey": null,
+          "url": null,
+          "note": "Строка (рейтинг), 6 вариантов hover × device"
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R5",
+      "step": "R5-08",
+      "dependsOn": [
+        "entity-logo",
+        "link"
+      ],
+      "occurrences": 2,
+      "seenOn": [
+        "courses-listing",
+        "rating"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/education_centers/rating",
+          "selector": "div.overflow-hidden.rounded-3xl.border.border-ui-black-100.pb-1",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "не table, а grid: обёртка rounded-3xl border, шапка bg #f1f1f1 text-small semibold, строки a.grid grid-cols-[1fr_120px_120px_120px] gap12 py16, hover bg #f1f1f1. min-w 496 внутри overflow-x-auto; на phone колонки [minmax(232px,1fr) 112px 68px 68px], обёртка теряет радиус и уходит в -mx-6"
+    },
+    {
+      "id": "numbered-course-item",
+      "canonicalName": "NumberedCourseItem",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "entities",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R5",
+      "step": "R5-09",
+      "dependsOn": [
+        "prose",
+        "link"
+      ],
+      "occurrences": 9,
+      "seenOn": [
+        "courses-listing"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses",
+          "selector": "div.pt-6.border-b.border-solid.border-b-ui-black-100.pb-6",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "элемент SEO-списка «ТОП онлайн-курсов»: h3 > a.text-h4 semibold с номером внутри текста, Prose !text-small, сетка характеристик grid-cols-3 gap-x-3 gap-y-0.5, разделитель border-bottom"
+    },
+    {
+      "id": "entity-header",
+      "canonicalName": "EntityHeader",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "entities",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "sourceName": "10983:72700",
+          "layerName": null,
+          "nodeId": "10983:72700",
+          "componentKey": null,
+          "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=10983-72700",
+          "note": null
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R5",
+      "step": "R5-10",
+      "dependsOn": [
+        "entity-logo",
+        "rating-badge",
+        "button",
+        "prose"
+      ],
+      "occurrences": 1,
+      "seenOn": [
+        "education-center"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/education_centers/35-yandeks-praktikum",
+          "selector": "div.grid.overflow-hidden.rounded-3xl.border.border-ui-black-100",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "шапка страницы школы: обложка, логотип, название, рейтинг и выпускники, описание. На phone раскрывается на всю ширину: -mx-6, без радиуса и рамки"
+    },
+    {
+      "id": "person-header",
+      "canonicalName": "PersonHeader",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "entities",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "sourceName": "13246:159568",
+          "layerName": null,
+          "nodeId": "13246:159568",
+          "componentKey": null,
+          "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=13246-159568",
+          "note": null
+        }
+      ],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R5",
+      "step": "R5-11",
+      "dependsOn": [
+        "avatar",
+        "social-icon"
+      ],
+      "occurrences": 1,
+      "seenOn": [
+        "author"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses/authors/23-stepan-voevodin",
+          "selector": "div.flex.gap-5.rounded-3xl.border.border-solid.border-ui-black-100.p-6",
+          "note": null
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "шапка профиля человека: аватар 100 круглый с бейджем компании 40 rounded-[14px], имя text-h1-mobile semibold, роль #909194, ряд соцссылок. На phone рамка и padding снимаются"
+    },
+    {
+      "id": "info-table",
+      "canonicalName": "InfoTable",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "data-display",
+      "kind": "module",
+      "specPath": null,
+      "cssRoots": [],
+      "showcaseAnchor": null,
+      "figmaEvidence": [],
+      "status": "planned",
+      "requiredStates": [],
+      "sourceScope": "production",
+      "wave": "R5",
+      "step": "R5-12",
+      "dependsOn": [],
+      "occurrences": 1,
+      "seenOn": [
+        "education-center"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/education_centers/35-yandeks-praktikum",
+          "selector": "div.grid.grid-cols-2.gap-x-4.gap-y-3.text-small",
+          "note": "сетка пар «лейбл → значение»; прежний section:last-of-type адресовал последнюю секцию любой страницы (13 узлов на 9 страницах)"
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "«Общая информация»: пары «лейбл → значение» (лицензия, телефоны, офис). Наблюдение на одной странице"
+    }
+  ]
+}

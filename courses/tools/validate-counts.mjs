@@ -31,16 +31,30 @@ const count = (text, re) => (text.match(re) || []).length;
 const json = file => JSON.parse(read(file));
 
 const roadmap = read('ROADMAP.md');
-const inventory = json('.pipeline/inventory.json');
+// .pipeline/inventory.json заводит R0-02. Без него скрипт падал стеком ENOENT
+// вместо сообщения (review-3, note 18) — а правила, не зависящие от
+// инвентаризации, проверить при этом можно.
+const inventoryFile = '.pipeline/inventory.json';
+const inventory = fs.existsSync(inventoryFile) ? json(inventoryFile) : null;
 const manifestFile = 'components/manifest.json';
+const manifest = fs.existsSync(manifestFile) ? json(manifestFile) : null;
+
+// Разбивка реестра по sourceScope: 44 / 5 / 6 написано в components/INDEX.md
+// дважды — прозой и таблицей — и не сверялось ни с чем, хотя выводится
+// из манифеста одной строкой и ровно того же рода, что 21 число, которое
+// этот скрипт уже проверяет (review-3, minor 10). Дыра «INDEX.md против
+// manifest.json» этим не закрывается целиком: имя, шаг, категория и вид
+// в таблицах INDEX.md по-прежнему ведутся руками и требуют разбора таблиц.
+const scopeCount = scope =>
+  manifest ? manifest.components.filter(c => c.sourceScope === scope).length : null;
 
 const actual = {
   // Шаг роадмапа — строка таблицы, начинающаяся с идентификатора вида R0-01.
   roadmapSteps: count(roadmap, /^\| R\d-\d{2} \|/gm),
   roadmapR0: count(roadmap, /^\| R0-\d{2} \|/gm),
-  elements: inventory.elements.length,
-  pages: inventory.pages.length,
-  unreachable: inventory.unreachable.length,
+  elements: inventory ? inventory.elements.length : null,
+  pages: inventory ? inventory.pages.length : null,
+  unreachable: inventory ? inventory.unreachable.length : null,
   // Категории METHOD §5 в том составе, в каком их использует реестр Курсов:
   // один файл CSS на категорию.
   cssCategories: walk('ui/components').filter(f => f.endsWith('.css')).length,
@@ -56,8 +70,11 @@ const actual = {
   // комментария (мёртвое `--header-height: 112px`, расхождения шкалы),
   // и без этого они попадали бы в счёт наравне с живыми.
   tokens: count(read('ui/tokens.css').replace(/\/\*[\s\S]*?\*\//g, ''), /^\s*--[\w-]+:/gm),
-  manifest: fs.existsSync(manifestFile) ? json(manifestFile).components.length : null,
+  manifest: manifest ? manifest.components.length : null,
   specs: walk('components').filter(f => f.endsWith('.md') && path.dirname(f) !== 'components').length,
+  scopeProduction: scopeCount('production'),
+  scopeStorybookOnly: scopeCount('storybook-only'),
+  scopeFigmaOnly: scopeCount('figma-only'),
 };
 
 // Что где заявлено. Регулярное выражение обязано иметь одну группу — число.
@@ -90,6 +107,14 @@ const claims = [
   ['README.md', /tokens\.css\s+(\d+) переменная :root/, 'tokens'],
   ['docs/guide/tokens.md', /\| \*\*Переменных\*\* \| (\d+) \|/, 'tokens'],
   ['components/INDEX.md', /\*\*(\d+)\*\* спецификаци/, 'specs'],
+  ['components/INDEX.md', /Записей — (\d+)\./, 'manifest'],
+  // 44 / 5 / 6 — прозой и таблицей, оба места.
+  ['components/INDEX.md', /(\d+) элемента сняты с продакшена, \d+ есть только в Storybook, \d+ —\s*\nтолько в макете/, 'scopeProduction'],
+  ['components/INDEX.md', /\d+ элемента сняты с продакшена, (\d+) есть только в Storybook, \d+ —\s*\nтолько в макете/, 'scopeStorybookOnly'],
+  ['components/INDEX.md', /\d+ элемента сняты с продакшена, \d+ есть только в Storybook, (\d+) —\s*\nтолько в макете/, 'scopeFigmaOnly'],
+  ['components/INDEX.md', /\| `production` \| (\d+) \|/, 'scopeProduction'],
+  ['components/INDEX.md', /\| `storybook-only` \| (\d+) \|/, 'scopeStorybookOnly'],
+  ['components/INDEX.md', /\| `figma-only` \| (\d+) \|/, 'scopeFigmaOnly'],
 ];
 
 const problems = [];
