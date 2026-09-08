@@ -57,4 +57,366 @@
    маркером, а не делается молча (инвариант И-7, находка B-16).
    ========================================================================= */
 
-/* Объявлений пока нет: значения выводит R0-02. */
+/* =========================================================================
+   СЛОЙ 1 — ЯДРО. Каркас, ритм, шкала, форма.
+   Значения без цвета: они одинаковы в обеих темах, и темой не помечены.
+   ========================================================================= */
+
+:root {
+  /* @snapshot 02_Landings 10929:505 — сетка 1600: поле 218, контейнер 1164 */
+  --core-canvas: 1600px;
+  --core-gutter: 218px;
+  --core-container: 1164px;
+
+  /* @snapshot 02_Landings 18085:3890 — сетка 1440: поле 208, контейнер 1024 */
+  --core-canvas-narrow: 1440px;
+  --core-gutter-narrow: 208px;
+  --core-container-narrow: 1024px;
+
+  /* @snapshot 02_Landings 18085:3890 — 7 стыков секций из 7 нулевые */
+  --core-section-gap: 0;
+
+  /* @snapshot 02_Landings 10929:505 — верхнее поле секции 100, 6 секций из 11 */
+  --core-section-pad-s: 100px;
+  /* @snapshot 02_Landings 9519:2095 — верхнее поле секции 120, 6 секций из 13 */
+  --core-section-pad-m: 120px;
+  /* @snapshot 02_Landings 18085:3890 — верхнее поле секции 156, 5 секций из 8 */
+  --core-section-pad-l: 156px;
+  /* @snapshot 02_Landings 18085:3890 — поле шапки, hero и контактов 32 */
+  --core-section-pad-tight: 32px;
+  /* @snapshot 02_Landings 18085:3890 — gap 96 между блоками внутри секции */
+  --core-block-gap: 96px;
+
+  /* @snapshot 02_Landings 6509:20474 — интерфейс на прямых углах, 3 узла из 9 */
+  --core-radius-none: 0;
+  /* @snapshot 02_Landings 9519:2095 — поле и кнопка формы */
+  --core-radius-s: 8px;
+  /* @snapshot 02_Landings 20775:861 — чекбокс из дизайн-системы Хабра */
+  --core-radius-control: 6px;
+  /* @snapshot 02_Landings 18085:3890 — карточки benefits-list, ступени 20 и 24 */
+  --core-radius-m: 20px;
+  --core-radius-m-alt: 24px;
+  /* @snapshot 02_Landings 18085:3890 — кнопки и иконки */
+  --core-radius-l: 40px;
+  /* @snapshot 02_Landings 19319:7049 — карточки и кнопка */
+  --core-radius-xl: 50px;
+  /* @normative пилюля: измерены 90, 101 и 110.883, единой ступени в источнике нет */
+  --core-radius-pill: 999px;
+
+  /* @snapshot 02_Landings 20097:8644 — Inter на текстовых слоях макета */
+  --core-font-text: "Inter", "Helvetica Neue", Arial, sans-serif;
+  /* @snapshot 02_Landings 20216:92 — словесный знак «Хабр» набран ALS Hauss */
+  --core-font-wordmark: "ALS Hauss", "Inter", sans-serif;
+
+  /* @snapshot 04_Brand 5149:6443 — неоновая обводка 8-9 px, linecap round */
+  --core-neon-width: 8px;
+  --core-neon-cap: round;
+
+  /* @snapshot 02_Landings 18085:3948 — стеклянная карточка hero-form-card */
+  --core-glass-blur: 30px;
+  --core-glass-radius: 20px;
+  --core-glass-pad: 40px;
+  /* @snapshot 04_Brand 5149:6510 — стеклянный чип бренда */
+  --core-chip-radius: 110.883px;
+  --core-chip-height: 121.972px;
+  --core-chip-pad: 27.721px 41.581px 33.265px;
+
+  /* @normative шкала спроектирована: модульной шкалы в источнике нет, кегли дисплея 40 … 630 в ряд не строятся */
+  --core-display-xl: 144px;
+  --core-display-xl-lh: 0.9;
+  --core-display-xl-ls: -0.05em;
+  --core-display-l: 96px;
+  --core-display-l-lh: 0.95;
+  --core-display-l-ls: -0.04em;
+  --core-display-m: 72px;
+  --core-display-m-lh: 0.95;
+  --core-display-m-ls: -0.03em;
+  --core-h1: 56px;
+  --core-h1-lh: 1;
+  --core-h1-ls: -0.02em;
+  --core-h2: 40px;
+  --core-h2-lh: 1.05;
+  --core-h2-ls: -0.02em;
+  --core-h3: 32px;
+  --core-h3-lh: 1.1;
+  --core-h3-ls: -0.01em;
+  --core-h4: 24px;
+  --core-h4-lh: 1.2;
+  --core-h4-ls: -0.01em;
+  --core-lead: 22px;
+  --core-lead-lh: 1.2;
+  --core-body-l: 20px;
+  --core-body-l-lh: 1.4;
+  --core-body: 16px;
+  --core-body-lh: 1.5;
+  --core-small: 14px;
+  --core-small-lh: 1.4;
+  --core-small-ls: 0.01em;
+  --core-caption: 12px;
+  --core-caption-lh: 1.3;
+  --core-caption-ls: 0.02em;
+
+  /* @normative веса шкалы: вес дисплея следует концепции (13/13), сама лестница весов спроектирована */
+  --core-weight-display: 600;
+  --core-weight-heading: 600;
+  --core-weight-sub: 500;
+  --core-weight-body: 400;
+}
+
+/* Мобильная шкала. Мобильных артбордов у 18 узлов пакета не установлено,
+   поэтому она спроектирована целиком, а не снята. */
+@media (max-width: 640px) {
+  :root {
+    /* @normative мобильная шкала: мобильных артбордов у 18 узлов пакета нет, снять было не с чего */
+    --core-display-xl: 48px;
+    --core-display-xl-lh: 0.95;
+    --core-display-xl-ls: -0.03em;
+    --core-display-l: 40px;
+    --core-display-l-lh: 1;
+    --core-display-l-ls: -0.02em;
+    --core-display-m: 36px;
+    --core-display-m-lh: 1;
+    --core-display-m-ls: -0.02em;
+    --core-h1: 32px;
+    --core-h1-lh: 1.1;
+    --core-h1-ls: -0.01em;
+    --core-h2: 28px;
+    --core-h2-lh: 1.15;
+    --core-h2-ls: -0.01em;
+    --core-h3: 24px;
+    --core-h3-lh: 1.2;
+    --core-h3-ls: 0;
+    --core-h4: 20px;
+    --core-h4-lh: 1.25;
+    --core-h4-ls: 0;
+    --core-lead: 18px;
+    --core-lead-lh: 1.35;
+    --core-body-l: 17px;
+    --core-body-l-lh: 1.45;
+    --core-section-pad-s: 56px;
+    --core-section-pad-m: 64px;
+    --core-section-pad-l: 72px;
+    --core-gutter: 20px;
+    --core-gutter-narrow: 20px;
+  }
+}
+
+/* =========================================================================
+   ЯДРО, ТЁМНАЯ ТЕМА — база. Снята с узлов: тёмных 9 из 18.
+   ========================================================================= */
+
+:root {
+  /* @normative тема базы названа явно: без color-scheme принадлежность значений выводилась бы исключением */
+  color-scheme: dark;
+
+  /* @snapshot 02_Landings 18085:3890 — bg-black на артборде и двух секциях */
+  --core-bg-page: #000000;
+  /* @snapshot 02_Landings 1324:7793 — заливка артборда */
+  --core-bg-surface: #212930;
+  /* @snapshot 02_Landings 6509:20474 — поля формы */
+  --core-bg-field: #4b5558;
+  /* @snapshot 02_Landings 18085:3948 — стекло hero-form-card */
+  --core-glass-bg: rgba(255, 255, 255, 0.1);
+  --core-glass-glow: inset 0 0 4px rgba(255, 255, 255, 0.3);
+
+  /* @snapshot 02_Landings 20216:120 — подтонированный текст, а не чистый белый */
+  --core-text-primary: #f2f0eb;
+  /* @snapshot 02_Landings 17473:869 — вторичный уровень отдельным hex, а не альфой */
+  --core-text-secondary: #8f8f8f;
+  /* @snapshot 04_Brand 5151:7009 — приглушённый уровень альфой */
+  --core-text-muted: rgba(219, 233, 240, 0.6);
+
+  /* @snapshot 02_Landings 14871:1319 — жёсткая смещённая тень, 5 плиток и кнопка */
+  --core-shadow-hard: 7px 7px 0 rgba(6, 19, 19, 0.2);
+  /* @snapshot 02_Landings 18085:3890 — внутренняя подсветка, 6 карточек */
+  --core-glow-inset: inset 4px 4px 14.4px 10px rgba(89, 89, 248, 0.25);
+  /* @snapshot 02_Landings 20216:120 — подсветка фона hero пятью размытыми овалами */
+  --core-glow-hero: inset 0 0 57.7px 43px #d04509, inset 0 0 100.7px 52px #a05024;
+}
+
+/* =========================================================================
+   ЯДРО, СВЕТЛАЯ ТЕМА — целиком спроектирована.
+   Контракт имён с тёмной совпадает один в один.
+   ========================================================================= */
+
+[data-theme="light"] {
+  /* @normative светлая тема целиком: 0 пар «один макет в двух темах» среди 22 узлов, решение Р-2 */
+  color-scheme: light;
+  --core-bg-page: #fdfdfc;
+  --core-bg-surface: #f3f5f7;
+  --core-bg-field: #ffffff;
+  --core-glass-bg: rgba(255, 255, 255, 0.72);
+  --core-glass-glow: inset 0 0 4px rgba(48, 46, 56, 0.12);
+  --core-text-primary: #302e38;
+  --core-text-secondary: #67717d;
+  --core-text-muted: rgba(48, 46, 56, 0.6);
+  --core-shadow-hard: 7px 7px 0 rgba(48, 46, 56, 0.15);
+  --core-glow-inset: inset 4px 4px 14.4px 10px rgba(89, 89, 248, 0.12);
+  --core-glow-hero: inset 0 0 57.7px 43px rgba(208, 69, 9, 0.35), inset 0 0 100.7px 52px rgba(160, 80, 36, 0.25);
+}
+
+/* =========================================================================
+   СЛОЙ 2 — ПРОДУКТ. Палитра поверх ядра.
+   Индивидуальность продукта держится на цветовом семействе и производном
+   от него кислотном акценте — 23/23. Всё остальное различие принадлежит
+   концепции, а не продукту.
+   ========================================================================= */
+
+[data-product="habr"] {
+  /* @snapshot 04_Brand 5149:6555 — база Хабра */
+  --product-base: #070405;
+  /* @snapshot 04_Brand 5149:6559 — тёмный текст и глубокий синий Хабра */
+  --product-base-deep: #030e71;
+  /* @snapshot 04_Brand 5151:7007 — акцент-текст */
+  --product-accent: #06d0ef;
+  /* @snapshot 04_Brand 5149:6443 — кислотный акцент и цвет неоновой обводки */
+  --product-acid: #5df20d;
+  /* @snapshot 02_Landings 20216:120 — акцентная заливка кнопки, радиус 90 */
+  --product-cta: #fa722b;
+  /* @normative текст на кислотной заливке: цвет надписи на кнопках не снят ни в одном узле */
+  --product-on-acid: #070405;
+}
+
+[data-product="career"] {
+  /* @snapshot 04_Brand 5145:5921 — база Карьеры */
+  --product-base: #5a00b4;
+  /* @snapshot 04_Brand 5145:5932 — тёмная база Карьеры */
+  --product-base-deep: #35006a;
+  /* @snapshot 02_Landings 16418:3180 — акцент в лендинге Карьеры */
+  --product-accent: #b06dfe;
+  /* @snapshot 04_Brand 5141:5033 — Карьера единственная без кислотного акцента, 23/23 */
+  --product-acid: none;
+  /* @snapshot 02_Landings 15818:15335 — CTA-градиент, радиус 60 */
+  --product-cta: linear-gradient(100.4deg, #d400ff 0.12%, #7a3df5 60%, #006aff 100%);
+  /* @normative текст на акцентной заливке: цвет надписи на кнопках не снят ни в одном узле */
+  --product-on-acid: #ffffff;
+}
+
+[data-product="courses"] {
+  /* @snapshot 04_Brand 5164:8025 — верх фонового градиента Курсов */
+  --product-base: #003580;
+  /* @snapshot 04_Brand 5164:8025 — низ фонового градиента Курсов */
+  --product-base-deep: #00e0ce;
+  /* @snapshot 02_Landings 20572:37377 — синий акцент лендинга Курсов */
+  --product-accent: #3670f4;
+  /* @snapshot 04_Brand 5164:8036 — кислотный акцент и неон Курсов */
+  --product-acid: #44f91f;
+  /* @snapshot 02_Landings 20775:850 — акцентная заливка кнопки, радиус 50 */
+  --product-cta: #3670f4;
+  /* @normative текст на кислотной заливке: цвет надписи на кнопках не снят ни в одном узле */
+  --product-on-acid: #003580;
+}
+
+/* Продуктовые градиенты. Прошлый запрет «градиентов нет» опровергнут
+   с CSS в шести узлах; градиент — несущий приём, а не исключение. */
+
+[data-product="habr"],
+[data-product="career"],
+[data-product="courses"] {
+  /* @normative общее имя градиента: у трёх продуктов он снят, но роль в раскладке лендинга не измерена */
+  --product-gradient: none;
+}
+
+[data-product="habr"] {
+  /* @snapshot 02_Landings 20775:851 — градиент по тексту через bg-clip */
+  --product-gradient: radial-gradient(circle, #19217e 0%, #3470f4 60%, #939cff 100%);
+}
+
+[data-product="career"] {
+  /* @snapshot 04_Brand 5141:5094 — фоновый градиент Карьеры */
+  --product-gradient: linear-gradient(180deg, #7963e9 10%, #b654b6 90%);
+  /* @snapshot 04_Brand 5144:5606 — градиентная лента карьерного пути */
+  --product-ribbon: linear-gradient(90deg, #8b24e3 23.96%, #d1b5fc 53.07%, #fd7d3b 68.75%, #ffc67a 96.15%);
+}
+
+[data-product="courses"] {
+  /* @snapshot 04_Brand 5164:8025 — двухслойный фон Курсов */
+  --product-gradient: linear-gradient(180deg, #003580 0%, #005999 20%, #0099cc 56%);
+  --product-gradient-veil: linear-gradient(180deg, rgba(0, 153, 204, 0) 40%, #00e0ce 84.045%);
+}
+
+/* Продукт в светлой теме. Ни один продуктовый макет не существует в светлой
+   версии, поэтому все значения ниже спроектированы. */
+
+[data-theme="light"][data-product="habr"] {
+  /* @normative светлая тема продукта: пар «один макет в двух темах» нет, решение Р-2 */
+  --product-base: #f2f6f8;
+  --product-base-deep: #030e71;
+  --product-accent: #0b7f96;
+  --product-acid: #3fbf08;
+  --product-cta: #e05a17;
+  --product-on-acid: #070405;
+}
+
+[data-theme="light"][data-product="career"] {
+  /* @normative светлая тема продукта: пар «один макет в двух темах» нет, решение Р-2 */
+  --product-base: #f6f1fb;
+  --product-base-deep: #35006a;
+  --product-accent: #7a3df5;
+  --product-acid: none;
+  --product-cta: linear-gradient(100.4deg, #b800dd 0.12%, #6a2fe0 60%, #0057d6 100%);
+  --product-on-acid: #ffffff;
+}
+
+[data-theme="light"][data-product="courses"] {
+  /* @normative светлая тема продукта: пар «один макет в двух темах» нет, решение Р-2 */
+  --product-base: #eef4fb;
+  --product-base-deep: #003580;
+  --product-accent: #2456c9;
+  --product-acid: #2fbf0f;
+  --product-cta: #2456c9;
+  --product-on-acid: #003580;
+}
+
+/* =========================================================================
+   СЛОЙ 3 — КОНЦЕПЦИЯ. Приём, характер, вес.
+   Цвета концепция берёт из слоя продукта и своих не заводит: цветом
+   различаются продукты, а концепции — приёмом. Поэтому темой этот слой
+   не помечен и в обеих темах одинаков.
+   ========================================================================= */
+
+[data-concept="neon-boom"] {
+  /* @snapshot 04_Brand 5149:6528 — дисплей SemiBold, 4 заголовка из 4 */
+  --concept-display-weight: 600;
+  /* @snapshot 04_Brand 5149:6556 — растровая среда под размытием 53.35 px */
+  --concept-env-blur: 53.35px;
+  /* @snapshot 04_Brand 5149:6443 — комиксная вспышка с неоновым контуром */
+  --concept-outline-width: var(--core-neon-width);
+  --concept-outline-color: var(--product-acid);
+  /* @normative ступень оси игривости: опоры измерены, четырёхступенчатая шкала спроектирована */
+  --concept-play-step: 4;
+}
+
+[data-concept="career-motion"] {
+  /* @snapshot 04_Brand 5141:5052 — дисплей Medium, 3 заголовка из 3 */
+  --concept-display-weight: 500;
+  /* @snapshot 04_Brand 5141:5033 — белая линия-форма, stroke-width 244 */
+  --concept-line-width: 244px;
+  --concept-outline-color: currentColor;
+  /* @normative ступень оси игривости: опоры измерены, четырёхступенчатая шкала спроектирована */
+  --concept-play-step: 1;
+}
+
+[data-concept="career-path"] {
+  /* @snapshot 04_Brand 5149:6415 — дисплей Medium, 3 заголовка из 3 */
+  --concept-display-weight: 500;
+  /* @snapshot 04_Brand 5144:5606 — лента stroke-width 85, linecap round */
+  --concept-line-width: 85px;
+  --concept-line-cap: round;
+  /* @normative ступень оси игривости: опоры измерены, четырёхступенчатая шкала спроектирована */
+  --concept-play-step: 1;
+}
+
+[data-concept="digital-flow"] {
+  /* @snapshot 04_Brand 5164:8041 — дисплей SemiBold, 3 заголовка из 3 */
+  --concept-display-weight: 600;
+  /* @snapshot 04_Brand 5164:8180 — глитч-сетка 108 на 108, 10 колонок на холсте 1080 */
+  --concept-grid-cell: 108px;
+  /* @snapshot 04_Brand 5164:8069 — вторая глитч-сетка 98.18, 11 колонок */
+  --concept-grid-cell-alt: 98.18px;
+  /* @snapshot 04_Brand 5164:8036 — неон 5.151 px с радиальным свечением */
+  --concept-outline-width: 5.151px;
+  --concept-outline-color: var(--product-acid);
+  /* @normative ступень оси игривости: опоры измерены, четырёхступенчатая шкала спроектирована */
+  --concept-play-step: 3;
+}
