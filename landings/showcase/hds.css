@@ -32,7 +32,13 @@
 /* Сцена уже 640: раскладка пакета для двух колонок держится до 640 px ширины
    ОКНА, а не сцены. Внутри стенда сцена всегда уже окна — поэтому колонки
    складываются раньше. */
-@media(max-width:1100px){.ml-stage .hero-split .hero-in,.ml-stage .program-item{grid-template-columns:minmax(0,1fr)}.ml-stage .footer-corp-in{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:1100px){.ml-stage .hero-split .hero-in,.ml-stage .program-item{grid-template-columns:minmax(0,1fr)}}
+/* Ряд колонок подвала: сцена стенда уже окна, поэтому четыре колонки
+   складываются в две раньше, чем это сделал бы пакет. Нижняя граница
+   диапазона обязательна: без неё этот селектор (0,2,0) перебивал бы
+   правило пакета (0,1,0) и на 390 тоже, оставляя две колонки там,
+   где пакет складывает в одну. */
+@media(min-width:641px) and (max-width:1100px){.ml-stage .footer-corp-cols{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .ml-center .hero-lead{margin-inline:auto}
 .ml-center .hero-actions{justify-content:center}
 .ml-stage .program-item .card{margin-top:24px}

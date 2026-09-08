@@ -49,7 +49,8 @@
 
 ```
 .footer-corp
-└── .footer-corp-in            четыре колонки — норматив, см. «Ограничения»
+└── .footer-corp-in            контейнер ряда: ширина и центрирование
+    └── .footer-corp-cols     четыре колонки — норматив, см. «Ограничения»
     └── .footer-corp-col
         ├── h3.footer-corp-h   шкала H1…H5
         └── p.footer-corp-item услуга, телефон, адрес офиса, ссылка на соцсеть
@@ -98,7 +99,7 @@
 
 ```html
 <footer class="footer-corp">
-  <div class="footer-corp-in">
+  <div class="footer-corp-in footer-corp-cols">
     <div class="footer-corp-col">
       <h3 class="footer-corp-h">Услуги</h3>
       <p class="footer-corp-item">Реклама на Хабре</p>
@@ -150,5 +151,5 @@
   B2B-футер», совпадение имени фрейма и шкалы.
 - `.audits/landings-2026-09-08-figma-landings.md` §2.2 — палитра и набор
   узлов-хозяев `20216:120` и `19319:7049`.
-- `GUIDE.md` §10 — «готовый переиспользуемый модуль».
+- `GUIDE.md` §11 — «готовый переиспользуемый модуль».
 - `ROADMAP.md`, строка R2-01.

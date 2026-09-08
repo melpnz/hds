@@ -375,8 +375,13 @@
   padding-block: var(--core-section-pad-m);
 }
 
-/* @normative четыре колонки по составу Frame 956449994 (услуги · телефон · офис · соцсети); ширины колонок не снимались */
-.footer-corp-in {
+/* @normative четыре колонки по составу Frame 956449994 (услуги · телефон · офис · соцсети); ширины колонок не снимались.
+   Сетка вынесена из .footer-corp-in отдельным классом. Прежде .footer-corp-in
+   делала две работы сразу — держала ширину контейнера И раскладывала четыре
+   колонки, — и любой другой ряд подвала, положенный в тот же контейнер,
+   садился в одну колонку из четырёх шириной в четверть. Контейнер общий
+   для всех рядов, сетка — только у ряда колонок */
+.footer-corp-cols {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 40px;
@@ -604,7 +609,7 @@
 @media (max-width: 640px) {
   /* @normative мобильная раскладка: мобильных артбордов у 18 узлов пакета нет, снять было не с чего */
   .hero-split .hero-in,
-  .footer-corp-in,
+  .footer-corp-cols,
   .form-section-rows-2,
   .program-item {
     grid-template-columns: minmax(0, 1fr);
