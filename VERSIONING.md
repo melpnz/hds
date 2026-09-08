@@ -9,7 +9,6 @@
 | [`habr/`](habr/) | Design System Knowledge — Хабр | v1.0 | `habr-v1.0` |
 | [`courses/`](courses/) | Хабр Курсы — разработка приостановлена | Релиз не объявлен | `courses-vX.Y` после релиза |
 | [`landings/`](landings/) | Новый пакет лендингов — активная разработка | Релиз не объявлен | `landings-vX.Y` после релиза |
-| [`_sources/`](_sources/) | Snapshot трёх Storybook, снят 2 сентября 2026 | — | — |
 | [`design/`](design/) | Макеты режима DESIGN | — | — |
 | `0X-*.md` | Исследования и кросс-продуктовые находки | — | — |
 
