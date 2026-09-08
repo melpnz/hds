@@ -1,0 +1,716 @@
+{
+  "schemaVersion": 1,
+  "product": "landings",
+  "unit": "block",
+  "note": "Реестр блоков и примитивов пакета «Лендинги Хабра». Запись заводится только на элемент, у которого статья уже лежит на диске: specPath проверяется существованием файла (tools/validate-blocks.mjs), и запись на ненаписанную статью реестр не примет. Поэтому здесь 12 записей из 24 ожидаемых инвентаризацией — остальные появятся вместе со статьями своих шагов. Что ожидается и почему отсутствует — blocks/INDEX.md.",
+  "kindMapping": "METHOD §5 держит закрытый словарь primitive · component · module · adapter, значения «блок» в нём нет. Блок лендинга отображён в module: по METHOD §1 блок — секция страницы, собираемая композицией примитивов, то есть ровно то, чем module является в словаре интерфейсных пакетов. Словарь не расширяется; расхождение имён названо здесь и в blocks/INDEX.md.",
+  "showcaseAnchorNote": "showcaseAnchor у всех записей null. Валидатор ищет якоря в showcase/blocks.html, а живые примеры элементов лежат в showcase/primitives.html и showcase/core.html — витрина была перестроена вне роадмапа (строка W-02). Фактический адрес каждого примера — в поле showcaseHref; оно не проверяется скриптом и остаётся ссылкой для человека до тех пор, пока расхождение не закрыто (строка X-13).",
+  "allowedStatuses": [
+    "complete",
+    "partial",
+    "planned",
+    "legacy-only",
+    "figma-only"
+  ],
+  "allowedKinds": [
+    "primitive",
+    "component",
+    "module",
+    "adapter"
+  ],
+  "allowedCategories": [
+    "actions",
+    "forms",
+    "navigation",
+    "collections",
+    "data-display",
+    "feedback",
+    "overlays",
+    "layout",
+    "frame-modules",
+    "entities"
+  ],
+  "allowedStates": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "selected",
+    "current",
+    "checked",
+    "indeterminate",
+    "expanded",
+    "collapsed",
+    "open",
+    "closed",
+    "disabled",
+    "readOnly",
+    "loading",
+    "invalid",
+    "error",
+    "success",
+    "empty",
+    "dragActive"
+  ],
+  "entries": [
+    {
+      "id": "product-lockup",
+      "canonicalName": "ProductLockup",
+      "legacyAliases": [
+        "lockup",
+        "Logo brand"
+      ],
+      "category": "layout",
+      "kind": "primitive",
+      "specPath": "blocks/product-lockup.md",
+      "cssRoots": [
+        "product-lockup"
+      ],
+      "showcaseAnchor": null,
+      "showcaseHref": "showcase/primitives.html#product-lockup",
+      "figmaEvidence": [
+        {
+          "node": "5141:5053",
+          "fileKey": "SBlLIaJv2VvN29V94HdBMT"
+        },
+        {
+          "node": "5141:5088",
+          "fileKey": "SBlLIaJv2VvN29V94HdBMT"
+        },
+        {
+          "node": "20216:120",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        }
+      ],
+      "status": "complete",
+      "statusReason": "Обязательное состояние по матрице components/STATES.md — только default: лок-ап интерактивным не бывает. Статья, класс .product-lockup и живой пример на месте.",
+      "requiredStates": [
+        "default"
+      ],
+      "wave": "R1",
+      "step": "R1-01",
+      "dependsOn": []
+    },
+    {
+      "id": "button",
+      "canonicalName": "Button",
+      "legacyAliases": [
+        "button / XL / main"
+      ],
+      "category": "actions",
+      "kind": "primitive",
+      "specPath": "blocks/button.md",
+      "cssRoots": [
+        "button"
+      ],
+      "showcaseAnchor": null,
+      "showcaseHref": "showcase/primitives.html#button",
+      "figmaEvidence": [
+        {
+          "node": "20216:120",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "15818:15335",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "19319:7049",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "20572:37377",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "12008:425",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "9588:1223",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        }
+      ],
+      "status": "complete",
+      "statusReason": "Все пять обязательных состояний вида «Действие» (components/STATES.md) реализованы в ui/state-contract.css: .button:hover, .button:active (pressed), .button[aria-disabled], общее правило :focus-visible. Значения нормативные — состояний в 18 макетах не встретилось, и файл контракта помечен нормативом целиком.",
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled"
+      ],
+      "wave": "R1",
+      "step": "R1-02",
+      "dependsOn": []
+    },
+    {
+      "id": "glass-chip",
+      "canonicalName": "GlassChip",
+      "legacyAliases": [],
+      "category": "data-display",
+      "kind": "primitive",
+      "specPath": "blocks/glass-chip.md",
+      "cssRoots": [
+        "glass-chip"
+      ],
+      "showcaseAnchor": null,
+      "showcaseHref": "showcase/primitives.html#glass-chip",
+      "figmaEvidence": [
+        {
+          "node": "5149:6510",
+          "fileKey": "SBlLIaJv2VvN29V94HdBMT"
+        },
+        {
+          "node": "5164:8042",
+          "fileKey": "SBlLIaJv2VvN29V94HdBMT"
+        }
+      ],
+      "status": "complete",
+      "statusReason": "Вид «Статичная метка»: обязателен только default, чип не кликается ни в одном из четырёх экземпляров. Спецификация снята целиком, 4 узла из 4.",
+      "requiredStates": [
+        "default"
+      ],
+      "wave": "R1",
+      "step": "R1-03",
+      "dependsOn": []
+    },
+    {
+      "id": "form-field",
+      "canonicalName": "FormField",
+      "legacyAliases": [],
+      "category": "forms",
+      "kind": "primitive",
+      "specPath": "blocks/form-field.md",
+      "cssRoots": [
+        "form-field"
+      ],
+      "showcaseAnchor": null,
+      "showcaseHref": "showcase/primitives.html#form-field",
+      "figmaEvidence": [
+        {
+          "node": "20216:120",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "15673:318",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "19319:7049",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "17473:826",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "20775:861",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        }
+      ],
+      "status": "complete",
+      "statusReason": "Запись покрывает и текстовое поле, и переключатель; обязательное по матрице реализовано для обоих. Текстовое поле — hover, disabled, invalid; переключатель — hover, checked, indeterminate, disabled; фокус обоим даёт общее правило :focus-visible. Значения нормативные: ни одного состояния ошибки в 18 макетах нет.",
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible",
+        "disabled",
+        "invalid",
+        "checked",
+        "indeterminate"
+      ],
+      "wave": "R1",
+      "step": "R1-04",
+      "dependsOn": [
+        "button"
+      ]
+    },
+    {
+      "id": "card",
+      "canonicalName": "Card",
+      "legacyAliases": [],
+      "category": "collections",
+      "kind": "primitive",
+      "specPath": "blocks/card.md",
+      "cssRoots": [
+        "card"
+      ],
+      "showcaseAnchor": null,
+      "showcaseHref": "showcase/primitives.html#card",
+      "figmaEvidence": [
+        {
+          "node": "20216:120",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "20572:37377",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "19319:7049",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "12008:425",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "15673:318",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        }
+      ],
+      "status": "complete",
+      "statusReason": "Вид «Плоскость»: обязателен только default. Hover и selected нужны, лишь если карточка кликается, а признака ссылки у карточек в 18 макетах нет ни разу.",
+      "requiredStates": [
+        "default"
+      ],
+      "wave": "R1",
+      "step": "R1-05",
+      "dependsOn": []
+    },
+    {
+      "id": "marquee",
+      "canonicalName": "Marquee",
+      "legacyAliases": [],
+      "category": "layout",
+      "kind": "primitive",
+      "specPath": "blocks/marquee.md",
+      "cssRoots": [
+        "marquee"
+      ],
+      "showcaseAnchor": null,
+      "showcaseHref": "showcase/primitives.html#marquee",
+      "figmaEvidence": [
+        {
+          "node": "16418:3180",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "7869:20760",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "1284:3362",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "14871:1319",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        }
+      ],
+      "status": "complete",
+      "statusReason": "Вид «Знак и лента»: обязателен только default. Полоса свёрстана вместе с движением и остановкой по prefers-reduced-motion; само движение в источнике не снято и помечено нормативом.",
+      "requiredStates": [
+        "default"
+      ],
+      "coverage": "4/18",
+      "coverageBase": 18,
+      "nodes": [
+        "7869:20760",
+        "14871:1319",
+        "1284:3362",
+        "16418:3180"
+      ],
+      "keyExample": "16418:3180",
+      "measuredBy": [
+        "css",
+        "metadata",
+        "render"
+      ],
+      "rule": true,
+      "coverageNote": "4/18, а не 5/18. Разбор состава секций (evidence/section-map.md §6) добавил 7869:20760 и убрал 20216:120: 4 − 1 + 1 = 4. Пятым узлом 7869 не становится — «числа 5/18 по снятому не выходит». 5/18 появится, только если владелец подтвердит движение полосы 20114:27783 на живой странице.",
+      "wave": "R1",
+      "step": "R1-06",
+      "dependsOn": []
+    },
+    {
+      "id": "footer-corporate",
+      "canonicalName": "FooterCorporate",
+      "legacyAliases": [
+        "footer-corporate-b2b",
+        "Frame 956449994"
+      ],
+      "category": "frame-modules",
+      "kind": "module",
+      "specPath": "blocks/footer-corporate.md",
+      "cssRoots": [
+        "footer-corp"
+      ],
+      "showcaseAnchor": null,
+      "showcaseHref": "showcase/core.html#footer-corporate",
+      "figmaEvidence": [
+        {
+          "node": "20216:120",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "19319:7049",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        }
+      ],
+      "status": "complete",
+      "statusReason": "Услуги, телефон, офис и соцсети размечены абзацами, ссылок и контролов в блоке нет — обязательное состояние одно. Слабость покрытия (2/18, наблюдение) записана отдельно: статусом она не выражается.",
+      "requiredStates": [
+        "default"
+      ],
+      "observedCoverage": "2/18",
+      "observedCoverageBase": 18,
+      "observedNodes": [
+        "20216:120",
+        "19319:7049"
+      ],
+      "observedKeyExample": "20216:120",
+      "observedMeasuredBy": [
+        "metadata"
+      ],
+      "observedRule": false,
+      "coverageNote": "Покрытие 2 — наблюдение, а не правило: так его помечают ROADMAP («блоки с покрытием 1–2 узла в правила не идут»), статья и .pipeline/inventory.json (rule: false). Но это один и тот же модуль, вставленный в два лендинга: оба экземпляра называются Frame 956449994 и набраны шкалой H1…H5.",
+      "coverageFieldsNote": "Покрытие вынесено из проверяемых полей (coverage/coverageBase/nodes/keyExample/measuredBy/rule) в поля с префиксом observed — намеренно, и это единственная такая запись реестра. tools/validate-blocks.mjs требует rule === (числитель ≥ 2) по букве METHOD §8, где порогом правила названо одно вхождение; пакет держит порог строже — 1–2 узла правила не дают. На 2/18 два порога расходятся, и проверяемое поле rule пришлось бы заполнить значением, противоположным тому, что написано в трёх местах пакета. Реестр не утверждает ни того, ни другого, пока владелец не выбрал порог: строка X-15. Как только порог назван, поля возвращаются под проверку без потери данных — значения лежат рядом.",
+      "wave": "R2",
+      "step": "R2-01",
+      "dependsOn": [
+        "product-lockup"
+      ]
+    },
+    {
+      "id": "footer-social",
+      "canonicalName": "FooterSocial",
+      "legacyAliases": [
+        "footer-copyright"
+      ],
+      "category": "frame-modules",
+      "kind": "module",
+      "specPath": "blocks/footer-social.md",
+      "cssRoots": [
+        "footer-social"
+      ],
+      "showcaseAnchor": null,
+      "showcaseHref": "showcase/core.html#footer-social",
+      "figmaEvidence": [
+        {
+          "node": "17473:826",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "20216:120",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "10929:505",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        }
+      ],
+      "status": "partial",
+      "statusReason": "Плитки соцсетей размечены ссылками (a.footer-social-tile). Фокус им даёт общее правило :focus-visible из ui/state-contract.css, а :hover не объявлен нигде — по матрице components/STATES.md ссылка-кнопка обязана его нести.",
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible"
+      ],
+      "coverage": "15/18",
+      "coverageBase": 18,
+      "nodes": [
+        "20216:120",
+        "20572:37377",
+        "10929:505",
+        "9519:2095",
+        "12395:7441",
+        "16418:3180",
+        "15673:318",
+        "7869:20760",
+        "9588:1223",
+        "17473:826",
+        "6509:20474",
+        "14871:1319",
+        "12276:374",
+        "1284:3362",
+        "19319:7049"
+      ],
+      "keyExample": "17473:826",
+      "measuredBy": [
+        "render"
+      ],
+      "rule": true,
+      "coverageNote": "Запись поглотила отдельный блок инвентаризации footer-copyright (тоже 15/18, тот же список узлов): в вёрстке копирайт живёт классом .footer-social-copyright внутри этого же футера, отдельного модуля нет. Поэтому legacyAliases несёт footer-copyright, а ожидаемый размер реестра падает с 24 до 23.",
+      "wave": "R2",
+      "step": "R2-03",
+      "dependsOn": [
+        "marquee",
+        "product-lockup"
+      ],
+      "missingStates": [
+        "hover"
+      ]
+    },
+    {
+      "id": "hero",
+      "canonicalName": "Hero",
+      "legacyAliases": [],
+      "category": "layout",
+      "kind": "module",
+      "specPath": "blocks/hero.md",
+      "cssRoots": [
+        "hero"
+      ],
+      "showcaseAnchor": null,
+      "showcaseHref": "showcase/core.html#hero",
+      "figmaEvidence": [
+        {
+          "node": "20216:120",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "20572:37377",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "18085:3890",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        }
+      ],
+      "status": "complete",
+      "statusReason": "Секция собрана композицией четырёх примитивов и своих состояний не несёт: кнопка и поле внутри отвечают за свои сами.",
+      "requiredStates": [
+        "default"
+      ],
+      "coverage": "18/18",
+      "coverageBase": 18,
+      "nodes": [
+        "20216:120",
+        "20572:37377",
+        "10929:505",
+        "9519:2095",
+        "12395:7441",
+        "16418:3180",
+        "15673:318",
+        "18085:3890",
+        "7869:20760",
+        "9588:1223",
+        "17473:826",
+        "6509:20474",
+        "14871:1319",
+        "12276:374",
+        "1284:3362",
+        "1324:7793",
+        "19319:7049",
+        "12008:425"
+      ],
+      "keyExample": "20216:120",
+      "measuredBy": [
+        "render",
+        "css"
+      ],
+      "rule": true,
+      "wave": "R2",
+      "step": "R2-04",
+      "dependsOn": [
+        "button",
+        "form-field",
+        "glass-chip",
+        "card"
+      ]
+    },
+    {
+      "id": "site-header",
+      "canonicalName": "SiteHeader",
+      "legacyAliases": [],
+      "category": "frame-modules",
+      "kind": "module",
+      "specPath": "blocks/site-header.md",
+      "cssRoots": [
+        "site-header"
+      ],
+      "showcaseAnchor": null,
+      "showcaseHref": "showcase/core.html#site-header",
+      "figmaEvidence": [
+        {
+          "node": "20216:120",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "12395:7441",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "20572:37377",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        }
+      ],
+      "status": "partial",
+      "statusReason": "Ссылки шапки несут :hover и :focus-visible. Но вариант со свёрнутым меню (3/18) размечен настоящим контролом — button.site-header-toggle с aria-expanded=\"false\", — а правила на раскрытое меню нет ни в ui/blocks/core.css, ни в ui/state-contract.css: раскрытого вида у меню не существует.",
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible",
+        "expanded"
+      ],
+      "coverage": "17/18",
+      "coverageBase": 18,
+      "nodes": [
+        "20216:120",
+        "20572:37377",
+        "10929:505",
+        "9519:2095",
+        "12395:7441",
+        "16418:3180",
+        "15673:318",
+        "18085:3890",
+        "7869:20760",
+        "9588:1223",
+        "17473:826",
+        "6509:20474",
+        "14871:1319",
+        "12276:374",
+        "1324:7793",
+        "19319:7049",
+        "12008:425"
+      ],
+      "keyExample": "20216:120",
+      "measuredBy": [
+        "render"
+      ],
+      "rule": true,
+      "coverageNote": "Нет у 1284:3362 — там вместо шапки бегущая строка. Три варианта: меню-ссылки 10/18, свёрнутое меню 3/18, CTA-кнопка 2/18. Отдельными записями варианты не заводятся — И-4 и METHOD §5: вариант живёт модификатором класса, а не второй записью реестра.",
+      "wave": "R2",
+      "step": "R2-05",
+      "dependsOn": [
+        "product-lockup",
+        "button"
+      ],
+      "missingStates": [
+        "expanded"
+      ]
+    },
+    {
+      "id": "form-section",
+      "canonicalName": "FormSection",
+      "legacyAliases": [
+        "form"
+      ],
+      "category": "forms",
+      "kind": "module",
+      "specPath": "blocks/form-section.md",
+      "cssRoots": [
+        "form-section"
+      ],
+      "showcaseAnchor": null,
+      "showcaseHref": "showcase/core.html#form-section",
+      "figmaEvidence": [
+        {
+          "node": "20216:120",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "15673:318",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "19319:7049",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "17473:826",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        }
+      ],
+      "status": "complete",
+      "statusReason": "Секция своих состояний не несёт: поле, кнопка и чекбокс внутри отвечают за свои по ui/state-contract.css. Состояний уровня секции (отправка идёт, отправлено) нет ни в матрице components/STATES.md, ни в источнике.",
+      "requiredStates": [
+        "default"
+      ],
+      "coverage": "14/18",
+      "coverageBase": 18,
+      "nodes": [
+        "20216:120",
+        "20572:37377",
+        "16418:3180",
+        "15673:318",
+        "18085:3890",
+        "9588:1223",
+        "17473:826",
+        "6509:20474",
+        "1324:7793",
+        "19319:7049",
+        "12395:7441",
+        "10929:505",
+        "9519:2095",
+        "7869:20760"
+      ],
+      "keyExample": "15673:318",
+      "measuredBy": [
+        "metadata",
+        "render"
+      ],
+      "rule": true,
+      "coverageNote": "14/18, а не 11/18: разбор состава секций добавил 12395, 10929, 9519, 7869 (фрейм «рег» с полем «Электропочта» и кнопкой внутри hero) и убрал 1284:3362 (окно subscribe без единого поля ввода). 11 − 1 + 4 = 14. Шапка статьи blocks/form-section.md всё ещё несёт 11/18 — расхождение внутри статьи, строка X-14.",
+      "wave": "R2",
+      "step": "R2-06",
+      "dependsOn": [
+        "form-field",
+        "button",
+        "card"
+      ]
+    },
+    {
+      "id": "program",
+      "canonicalName": "Program",
+      "legacyAliases": [
+        "program-schedule"
+      ],
+      "category": "collections",
+      "kind": "module",
+      "specPath": "blocks/program.md",
+      "cssRoots": [
+        "program"
+      ],
+      "showcaseAnchor": null,
+      "showcaseHref": "showcase/core.html#program",
+      "figmaEvidence": [
+        {
+          "node": "20572:37377",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "20216:120",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        },
+        {
+          "node": "17473:826",
+          "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
+        }
+      ],
+      "status": "complete",
+      "statusReason": "Список дней и пунктов размечен статикой без контролов: раскрывающихся дней в снятом материале нет ни у одного из десяти узлов.",
+      "requiredStates": [
+        "default"
+      ],
+      "coverage": "10/18",
+      "coverageBase": 18,
+      "nodes": [
+        "20216:120",
+        "20572:37377",
+        "10929:505",
+        "9519:2095",
+        "12395:7441",
+        "16418:3180",
+        "18085:3890",
+        "7869:20760",
+        "17473:826",
+        "6509:20474"
+      ],
+      "keyExample": "20572:37377",
+      "measuredBy": [
+        "metadata",
+        "render"
+      ],
+      "rule": true,
+      "wave": "R2",
+      "step": "R2-07",
+      "dependsOn": [
+        "card"
+      ]
+    }
+  ],
+  "statesNote": "requiredStates взяты из матрицы components/STATES.md (шаг R0-08), а не назначены реестром. Матрица и ui/state-contract.css появились в пакете 8 сентября 2026, пока реестр заводился: до них пять записей стояли partial по полному отсутствию состояний, после — partial осталось две, и каждая названа конкретным непокрытым состоянием."
+}

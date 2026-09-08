@@ -7,8 +7,16 @@ node_modules/
 /_sources/
 /design/
 /temp/
-# Журналы и разовые скрипты сборки; inventory.json остаётся в Git
-/*/.pipeline/R*/
+# Тяжёлое из журналов конвейера: сырые дампы, разовые скрипты, снимки.
+# Сами отчёты -- capture.md, review-N.md, fix-N.md, accept.md -- версионируются:
+# METHOD §2 требует, чтобы по .pipeline/ было видно, откуда взялось каждое
+# утверждение. Прежнее правило /*/.pipeline/R*/ исключало папку шага целиком
+# и вместе с дампами прятало все отчёты, включая приёмки.
+/*/.pipeline/R*/raw-*
+/*/.pipeline/R*/*.mjs
+/*/.pipeline/R*/*.png
+/*/.pipeline/*/raw-*.xml
+/*/.pipeline/*/*.png
 /*/.pipeline/capture-log.md
 
 # Артефакты прогонов Playwright
