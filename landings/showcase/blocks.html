@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="ru" data-theme="dark" data-product="habr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Витрина пакета Landings</title>
+<link rel="stylesheet" href="../ui/landings.css">
+<link rel="stylesheet" href="showcase.css">
+</head>
+<body class="doc-page">
+
+<header class="doc-head">
+  <div class="doc-head-in">
+    <div>
+      <h1 class="doc-title">Витрина пакета Landings</h1>
+      <p class="doc-status">v0.1, собрано обратной разработкой 18 макетов и 4 бренд-досок.
+      Значения на этой странице читаются из <span class="doc-src">ui/tokens.css</span> вживую,
+      а не скопированы в разметку: переключатели ниже меняют токены, а не картинку.</p>
+    </div>
+    <div class="doc-switches">
+      <div class="doc-switch">
+        <span class="doc-switch-label" id="doc-theme-label">Тема</span>
+        <div class="doc-switch-row" role="group" aria-labelledby="doc-theme-label" id="doc-theme-switch"></div>
+      </div>
+      <div class="doc-switch">
+        <span class="doc-switch-label" id="doc-product-label">Продукт</span>
+        <div class="doc-switch-row" role="group" aria-labelledby="doc-product-label" id="doc-product-switch"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="doc-main">
+
+  <section class="doc-section doc-section-first">
+    <h2 class="doc-h2">1. Токены цвета</h2>
+    <p class="doc-lead">Три слоя решения Р-1: ядро · продукт · концепция. Имя переменной называет слой
+    первым сегментом. Набор имён в светлой и тёмной темах совпадает один в один — расхождение имён
+    было бы ошибкой пакета, а не вариантом оформления (решение Р-2).</p>
+    <div class="doc-legend">
+      <span><span class="doc-legend-key doc-legend-snap"></span>снято — с указанием файла Figma и node id</span>
+      <span><span class="doc-legend-key doc-legend-norm"></span>норматив — спроектировано, с причиной</span>
+    </div>
+    <p class="doc-note"><span class="doc-note-strong">Переключите тему на светлую.</span>
+    Все метки происхождения в цветовых плитках станут нормативом: пар «один макет в двух темах»
+    среди 22 просмотренных узлов ноль, и снять светлую тему было не с чего (BRIEF §5 п. 5).
+    Это видно глазом, а не только в коде.</p>
+
+    <h3 class="doc-h3">Слой 1 — ядро</h3>
+    <div class="doc-grid" id="doc-core-colors"></div>
+
+    <h3 class="doc-h3">Слой 2 — продукт</h3>
+    <p class="doc-lead">Индивидуальность продукта держится на цветовом семействе и производном от него
+    кислотном акценте — 23/23. Всё остальное различие принадлежит концепции.</p>
+    <div class="doc-grid" id="doc-product-colors"></div>
+
+    <h3 class="doc-h3">Слой 3 — концепция</h3>
+    <p class="doc-lead">Своих цветов концепция не заводит: контур и акцент она берёт из слоя продукта.
+    Различаются концепции приёмом и весом, а не палитрой. Какая из четырёх рабочая — открытый вопрос
+    Q-1; до ответа они равноправны.</p>
+    <div class="doc-grid" id="doc-concepts"></div>
+  </section>
+
+  <section class="doc-section">
+    <h2 class="doc-h2">2. Типографика</h2>
+    <p class="doc-lead">Обе шкалы отрисованы живым текстом. Модульной шкалы, общей на все узлы,
+    в источнике нет: кегли дисплея 40 … 630 в ряд не строятся, отношение дисплея к подзаголовку
+    в бренде гуляет — 2.25, 1.93, 1.41. Поэтому обе шкалы — норматив; опора у них измеренная:
+    интерлиньяж дисплея 0.75 … 1.12, трекинг дисплея отрицательный во всех измеренных случаях,
+    интерлиньяж основного текста 1.18 … 1.4.</p>
+
+    <h3 class="doc-h3">Десктоп, 1240 … 1600 — норматив, значения из токенов</h3>
+    <div class="doc-type-list" id="doc-type-desktop"></div>
+
+    <h3 class="doc-h3">Мобильный — норматив целиком, опор нет</h3>
+    <p class="doc-note">Мобильных артбордов у 18 узлов пакета не установлено, поэтому шкала ниже
+    спроектирована от десктопной, а не снята. Значения проставлены явно: в токенах они живут внутри
+    <span class="doc-src">@media (max-width: 640px)</span> и на широком экране в те же переменные
+    не приезжают. Сузьте окно до 640 px — десктопная шкала выше станет этой.</p>
+    <div class="doc-type-list" id="doc-type-mobile"></div>
+  </section>
+
+  <section class="doc-section">
+    <h2 class="doc-h2">3. Ось игривости</h2>
+    <p class="doc-lead">Четыре ступени, решение Р-3. Ось строится на трёх наблюдаемых переменных:
+    вес дисплея (13/13 бренд-досок), наличие кислотного акцента (23/23) и леттеринг против набора
+    (7/18). Сама четырёхступенчатая шкала спроектирована — в источнике её нет. Ступень выбирается
+    один раз на проект и не смешивается: леттеринг на ступени 1 и Medium на ступени 4 не встречаются
+    ни в одном узле.</p>
+    <div class="doc-axis" id="doc-axis"></div>
+    <p class="doc-note"><span class="doc-note-strong">Переключите продукт на Карьеру.</span>
+    Кислотный акцент исчезнет на ступенях 3 и 4: у Карьеры его нет ни на одном из 11 её баннеров.
+    Это правило Ц-3 с покрытием 23/23, а не пропуск в токенах.</p>
+  </section>
+
+  <section class="doc-section">
+    <h2 class="doc-h2">4. Форма</h2>
+    <h3 class="doc-h3">Радиусы — снято, 9 узлов сплошь или по секциям</h3>
+    <p class="doc-lead">Диапазон интерфейсных явных значений — 8 … 81.708. Ступеней на узел 1 … 5,
+    медиана 2. Корпусное «2–4 ступени на проект, дисциплина строго выдержана» опровергнуто со всех
+    трёх сторон: снизу — три узла из девяти дают меньше двух ступеней, сверху — 18085:3890 даёт пять,
+    по строгости — 20 и 24 стоят на соседних карточках одного списка. Лестница ниже — решение:
+    она покрывает измеренное и не притворяется снятой.</p>
+    <div class="doc-shape" id="doc-radii"></div>
+
+    <h3 class="doc-h3">Тени — снято</h3>
+    <p class="doc-note"><span class="doc-note-strong">Размытых drop-теней вида
+    <span class="doc-src">0 Npx Npx rgba(…)</span> в интерфейсных поверхностях нет.</span>
+    В бренд-материале drop-теней 0 из 23: объём делается глянцем и контровым светом (правило Г-1).
+    Мягкая тень встретилась один раз — <span class="doc-src">drop-shadow(24px 60px 17.5px rgba(0,0,0,0.05))</span>
+    на иллюстративном виджете 9519:2095, а не на поверхности. Всё, что подаёт объём, — ниже.</p>
+    <div class="doc-fx" id="doc-shadows"></div>
+  </section>
+
+  <section class="doc-section">
+    <h2 class="doc-h2">5. Реестр блоков</h2>
+    <p class="doc-note"><span class="doc-note-strong">Блоки ещё не свёрстаны — здесь перечень
+    с покрытием.</span> Вёрстка блоков это волны R1–R3, и они не запускались. Заглушек, изображающих
+    блоки, на этой странице нет намеренно: пустой раздел честнее правдоподобной подделки.</p>
+    <p class="doc-lead">19 типов. Покрытие — доля из 18 узлов. Типы с покрытием 1–2 помечены
+    наблюдением: одна-две страницы правила не дают (METHOD §8).</p>
+    <div class="doc-scroll">
+      <table class="doc-table">
+        <thead>
+          <tr><th>Тип блока</th><th>Покрытие</th><th>Что это и когда нужен</th></tr>
+        </thead>
+        <tbody id="doc-blocks"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="doc-section">
+    <h2 class="doc-h2">6. Правила</h2>
+    <p class="doc-lead">Правило без числа или бинарного признака в гайд не попадает: если утверждение
+    нельзя нарушить, оно ничего не сообщает.</p>
+    <div class="doc-legend">
+      <span><span class="doc-legend-key doc-legend-snap"></span>правило с покрытием — выведено из измеренного</span>
+      <span><span class="doc-legend-key doc-legend-norm"></span>решение владельца — выбор, а не вывод</span>
+    </div>
+    <h3 class="doc-h3">Правила с покрытием</h3>
+    <div class="doc-rules" id="doc-rules"></div>
+    <h3 class="doc-h3">Решения владельца</h3>
+    <div class="doc-rules" id="doc-decisions"></div>
+  </section>
+
+  <section class="doc-section">
+    <h2 class="doc-h2">7. Границы покрытия</h2>
+    <p class="doc-lead">Прямым текстом, без смягчения, — §13 гайда. Это то, чего пакет не знает.</p>
+    <ol class="doc-limits" id="doc-limits"></ol>
+  </section>
+
+</main>
+
+<footer class="doc-foot">
+  Оболочка стенда — классы <span class="doc-foot-code">doc-*</span> и переменные
+  <span class="doc-foot-code">--doc-*</span> в <span class="doc-foot-code">showcase/showcase.css</span>;
+  в <span class="doc-foot-code">ui/</span> из неё не попадает ничего (METHOD §6.2).
+  Продуктовый слой подключён одной строкой — <span class="doc-foot-code">../ui/landings.css</span>
+  (METHOD §6.1). Запуск: <span class="doc-foot-code">node tools/serve.mjs</span>,
+  далее <span class="doc-foot-code">http://127.0.0.1:4180/showcase/blocks.html</span>.
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var root = document.documentElement;
+  var esc = function (s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  };
+
+  /* --- происхождение: маркеры перенесены из ui/tokens.css как есть -------- */
+
+  var LIGHT_CORE = { t: 'n', why: 'светлая тема целиком: 0 пар «один макет в двух темах» среди 22 узлов, решение Р-2' };
+  var LIGHT_PRODUCT = { t: 'n', why: 'светлая тема продукта: пар «один макет в двух темах» нет, решение Р-2' };
+  var ON_ACID = { t: 'n', why: 'цвет надписи на кнопках не снят ни в одном узле' };
+
+  function snap(file, node, why) { return { t: 's', file: file, node: node, why: why }; }
+
+  // Атрибут class собирается целиком, а не склейкой внутри кавычек: иначе
+  // node tools/validate-classes.mjs читает как имя класса кусок выражения.
+  function badge(o) {
+    var attr = o.t === 's' ? 'class="doc-badge doc-badge-snap"' : 'class="doc-badge doc-badge-norm"';
+    var head = o.t === 's' ? 'снято · ' + o.file + ' ' + o.node : 'норматив';
+    return '<span ' + attr + '>' + esc(head) + '</span>' +
+           '<span class="doc-badge-why">' + esc(o.why) + '</span>';
+  }
+
+  /* --- 1. токены цвета ---------------------------------------------------- */
+
+  var CORE = [
+    { v: '--core-bg-page', role: 'фон страницы', kind: 'bg',
+      dark: snap('02_Landings', '18085:3890', 'bg-black на артборде и двух секциях') },
+    { v: '--core-bg-surface', role: 'вторая плоскость', kind: 'bg',
+      dark: snap('02_Landings', '1324:7793', 'заливка артборда') },
+    { v: '--core-bg-field', role: 'поле формы', kind: 'bg',
+      dark: snap('02_Landings', '6509:20474', 'поля формы') },
+    { v: '--core-text-primary', role: 'текст основной', kind: 'text',
+      dark: snap('02_Landings', '20216:120', 'подтонированный текст, а не чистый белый') },
+    { v: '--core-text-secondary', role: 'текст вторичный', kind: 'text',
+      dark: snap('02_Landings', '17473:869', 'вторичный уровень отдельным hex, а не альфой') },
+    { v: '--core-text-muted', role: 'текст приглушённый', kind: 'text',
+      dark: snap('04_Brand', '5151:7009', 'приглушённый уровень альфой') },
+    { v: '--core-glass-bg', role: 'стекло, заливка', kind: 'glass',
+      dark: snap('02_Landings', '18085:3948', 'стекло hero-form-card') },
+    { v: '--core-glass-glow', role: 'стекло, подсветка', kind: 'shadow',
+      dark: snap('02_Landings', '18085:3948', 'стекло hero-form-card') },
+    { v: '--core-shadow-hard', role: 'жёсткая смещённая тень', kind: 'shadow',
+      dark: snap('02_Landings', '14871:1319', 'жёсткая смещённая тень, 5 плиток и кнопка') },
+    { v: '--core-glow-inset', role: 'внутренняя подсветка', kind: 'shadow',
+      dark: snap('02_Landings', '18085:3890', 'внутренняя подсветка, 6 карточек') },
+    { v: '--core-glow-hero', role: 'подсветка фона hero', kind: 'shadow',
+      dark: snap('02_Landings', '20216:120', 'подсветка фона hero пятью размытыми овалами') }
+  ];
+
+  var PRODUCT_ORIGIN = {
+    habr: {
+      '--product-base': snap('04_Brand', '5149:6555', 'база Хабра'),
+      '--product-base-deep': snap('04_Brand', '5149:6559', 'тёмный текст и глубокий синий Хабра'),
+      '--product-accent': snap('04_Brand', '5151:7007', 'акцент-текст'),
+      '--product-acid': snap('04_Brand', '5149:6443', 'кислотный акцент и цвет неоновой обводки'),
+      '--product-cta': snap('02_Landings', '20216:120', 'акцентная заливка кнопки, радиус 90'),
+      '--product-gradient': snap('02_Landings', '20775:851', 'градиент по тексту через bg-clip')
+    },
+    career: {
+      '--product-base': snap('04_Brand', '5145:5921', 'база Карьеры'),
+      '--product-base-deep': snap('04_Brand', '5145:5932', 'тёмная база Карьеры'),
+      '--product-accent': snap('02_Landings', '16418:3180', 'акцент в лендинге Карьеры'),
+      '--product-acid': snap('04_Brand', '5141:5033', 'Карьера единственная без кислотного акцента, 23/23'),
+      '--product-cta': snap('02_Landings', '15818:15335', 'CTA-градиент, радиус 60'),
+      '--product-gradient': snap('04_Brand', '5141:5094', 'фоновый градиент Карьеры'),
+      '--product-ribbon': snap('04_Brand', '5144:5606', 'градиентная лента карьерного пути')
+    },
+    courses: {
+      '--product-base': snap('04_Brand', '5164:8025', 'верх фонового градиента Курсов'),
+      '--product-base-deep': snap('04_Brand', '5164:8025', 'низ фонового градиента Курсов'),
+      '--product-accent': snap('02_Landings', '20572:37377', 'синий акцент лендинга Курсов'),
+      '--product-acid': snap('04_Brand', '5164:8036', 'кислотный акцент и неон Курсов'),
+      '--product-cta': snap('02_Landings', '20775:850', 'акцентная заливка кнопки, радиус 50'),
+      '--product-gradient': snap('04_Brand', '5164:8025', 'двухслойный фон Курсов'),
+      '--product-gradient-veil': snap('04_Brand', '5164:8025', 'двухслойный фон Курсов')
+    }
+  };
+
+  var PRODUCT_VARS = [
+    { v: '--product-base', role: 'база продукта', kind: 'bg', lightNorm: true },
+    { v: '--product-base-deep', role: 'тёмная база', kind: 'bg', lightNorm: true },
+    { v: '--product-accent', role: 'акцент', kind: 'bg', lightNorm: true },
+    { v: '--product-acid', role: 'кислотный акцент', kind: 'bg', lightNorm: true },
+    { v: '--product-cta', role: 'заливка CTA', kind: 'bg', lightNorm: true },
+    { v: '--product-on-acid', role: 'текст на акцентной заливке', kind: 'bg', lightNorm: true, always: ON_ACID },
+    { v: '--product-gradient', role: 'продуктовый градиент', kind: 'bg', lightNorm: false },
+    { v: '--product-ribbon', role: 'лента карьерного пути', kind: 'bg', lightNorm: false, only: 'career' },
+    { v: '--product-gradient-veil', role: 'верхний слой фона', kind: 'bg', lightNorm: false, only: 'courses' }
+  ];
+
+  var CONCEPTS = [
+    { key: 'neon-boom', name: '«Неоновый БУМ»', node: '5149:6446', product: 'Хабр', rows: [
+      { v: '--concept-display-weight', o: snap('04_Brand', '5149:6528', 'дисплей SemiBold, 4 заголовка из 4') },
+      { v: '--concept-env-blur', o: snap('04_Brand', '5149:6556', 'растровая среда под размытием 53.35 px') },
+      { v: '--concept-outline-width', o: snap('04_Brand', '5149:6443', 'комиксная вспышка с неоновым контуром') },
+      { v: '--concept-outline-color', o: snap('04_Brand', '5149:6443', 'цвет контура берётся из слоя продукта') },
+      { v: '--concept-play-step', o: { t: 'n', why: 'ступень оси игривости: опоры измерены, шкала спроектирована' } }
+    ] },
+    { key: 'career-motion', name: '«Карьера как движение и стратегия»', node: '5142:5235', product: 'Карьера', rows: [
+      { v: '--concept-display-weight', o: snap('04_Brand', '5141:5052', 'дисплей Medium, 3 заголовка из 3') },
+      { v: '--concept-line-width', o: snap('04_Brand', '5141:5033', 'белая линия-форма, stroke-width 244') },
+      { v: '--concept-outline-color', o: snap('04_Brand', '5141:5033', 'контур цветом текста') },
+      { v: '--concept-play-step', o: { t: 'n', why: 'ступень оси игривости: опоры измерены, шкала спроектирована' } }
+    ] },
+    { key: 'career-path', name: '«Карьерный путь»', node: '5145:5919', product: 'Карьера', rows: [
+      { v: '--concept-display-weight', o: snap('04_Brand', '5149:6415', 'дисплей Medium, 3 заголовка из 3') },
+      { v: '--concept-line-width', o: snap('04_Brand', '5144:5606', 'лента stroke-width 85, linecap round') },
+      { v: '--concept-line-cap', o: snap('04_Brand', '5144:5606', 'лента stroke-width 85, linecap round') },
+      { v: '--concept-play-step', o: { t: 'n', why: 'ступень оси игривости: опоры измерены, шкала спроектирована' } }
+    ] },
+    { key: 'digital-flow', name: '«Собираем обучение в единый цифровой поток»', node: '5164:7923', product: 'Курсы', rows: [
+      { v: '--concept-display-weight', o: snap('04_Brand', '5164:8041', 'дисплей SemiBold, 3 заголовка из 3') },
+      { v: '--concept-grid-cell', o: snap('04_Brand', '5164:8180', 'глитч-сетка 108 на 108, 10 колонок на холсте 1080') },
+      { v: '--concept-grid-cell-alt', o: snap('04_Brand', '5164:8069', 'вторая глитч-сетка 98.18, 11 колонок') },
+      { v: '--concept-outline-width', o: snap('04_Brand', '5164:8036', 'неон 5.151 px с радиальным свечением') },
+      { v: '--concept-outline-color', o: snap('04_Brand', '5164:8036', 'цвет контура берётся из слоя продукта') },
+      { v: '--concept-play-step', o: { t: 'n', why: 'ступень оси игривости: опоры измерены, шкала спроектирована' } }
+    ] }
+  ];
+
+  function tileHtml(item, originHtml) {
+    var swatchAttr = 'class="doc-swatch"';
+    var inner = '';
+    if (item.kind === 'text') {
+      swatchAttr = 'class="doc-swatch doc-swatch-text"';
+      inner = 'Аа';
+    }
+    if (item.kind === 'shadow' || item.kind === 'glass') {
+      swatchAttr = 'class="doc-swatch doc-swatch-fx"';
+      inner = '<span class="doc-swatch-chip"></span>';
+    }
+    return '<div class="doc-tile" data-tile="' + esc(item.v) + '" data-kind="' + esc(item.kind) + '">' +
+      '<div ' + swatchAttr + '>' + inner + '</div>' +
+      '<div class="doc-tile-body">' +
+        '<div class="doc-tile-name">' + esc(item.v) + '</div>' +
+        '<div class="doc-tile-role">' + esc(item.role) + '</div>' +
+        '<div class="doc-tile-val">…</div>' +
+        '<div class="doc-tile-foot">' + originHtml + '</div>' +
+      '</div>' +
+    '</div>';
+  }
+
+  function paintTile(tile) {
+    var name = tile.getAttribute('data-tile');
+    var kind = tile.getAttribute('data-kind');
+    var value = getComputedStyle(tile).getPropertyValue(name).trim();
+    var swatch = tile.querySelector('.doc-swatch');
+    var chip = tile.querySelector('.doc-swatch-chip');
+    var out = tile.querySelector('.doc-tile-val');
+
+    swatch.style.background = '';
+    swatch.style.color = '';
+    swatch.style.boxShadow = '';
+    if (chip) { chip.style.background = ''; chip.style.boxShadow = ''; }
+
+    // Подпись внутри образца переписывается только у цветовых плиток:
+    // у теневых и стеклянной внутри лежит чип, и его затирать нельзя.
+    var label = function (text) { if (kind === 'bg') swatch.textContent = text; };
+
+    if (!value) {
+      out.textContent = 'у этого продукта не задан';
+      swatch.classList.add('doc-swatch-empty');
+      label('не задан');
+      return;
+    }
+    out.textContent = value;
+
+    if (value === 'none') {
+      swatch.classList.add('doc-swatch-empty');
+      label('нет — 23/23');
+      return;
+    }
+    swatch.classList.remove('doc-swatch-empty');
+    label('');
+    if (kind === 'text') {
+      swatch.style.color = value;
+    } else if (kind === 'shadow') {
+      if (chip) { chip.style.background = 'var(--core-bg-page)'; chip.style.boxShadow = value; }
+    } else if (kind === 'glass') {
+      if (chip) { chip.style.background = value; chip.style.boxShadow = 'var(--core-glass-glow)'; }
+    } else {
+      swatch.style.background = value;
+    }
+  }
+
+  function renderCore() {
+    document.getElementById('doc-core-colors').innerHTML = CORE.map(function (item) {
+      return tileHtml(item, '<span data-origin="core:' + esc(item.v) + '"></span>');
+    }).join('');
+  }
+
+  function renderProduct() {
+    document.getElementById('doc-product-colors').innerHTML = PRODUCT_VARS.map(function (item) {
+      return tileHtml(item, '<span data-origin="product:' + esc(item.v) + '"></span>');
+    }).join('');
+  }
+
+  function renderConcepts() {
+    document.getElementById('doc-concepts').innerHTML = CONCEPTS.map(function (c) {
+      var rows = c.rows.map(function (r) {
+        return '<dt class="doc-axis-dt">' + esc(r.v.replace('--concept-', '')) + '</dt>' +
+               '<dd class="doc-axis-dd"><span class="doc-tile-val" data-cvar="' + esc(r.v) + '">…</span>' +
+               badge(r.o) + '</dd>';
+      }).join('');
+      return '<div class="doc-axis-card" data-concept="' + esc(c.key) + '">' +
+        '<div class="doc-axis-step">' + esc(c.node) + ' · продукт ' + esc(c.product) + '</div>' +
+        '<p class="doc-axis-name">' + esc(c.name) + '</p>' +
+        '<dl class="doc-axis-dl">' + rows + '</dl>' +
+      '</div>';
+    }).join('');
+  }
+
+  function paintOrigins() {
+    var light = root.getAttribute('data-theme') === 'light';
+    var product = root.getAttribute('data-product');
+    var nodes = document.querySelectorAll('[data-origin]');
+    for (var i = 0; i < nodes.length; i++) {
+      var key = nodes[i].getAttribute('data-origin').split(':');
+      var layer = key.shift();
+      var name = key.join(':');
+      var o = null;
+      if (layer === 'core') {
+        var item = CORE.filter(function (c) { return c.v === name; })[0];
+        o = light ? LIGHT_CORE : item.dark;
+      } else {
+        var spec = PRODUCT_VARS.filter(function (c) { return c.v === name; })[0];
+        if (spec.always) o = spec.always;
+        else if (light && spec.lightNorm) o = LIGHT_PRODUCT;
+        else o = (PRODUCT_ORIGIN[product] || {})[name] || null;
+      }
+      nodes[i].innerHTML = o ? badge(o) : '';
+    }
+  }
+
+  function paintConceptValues() {
+    var nodes = document.querySelectorAll('[data-cvar]');
+    for (var i = 0; i < nodes.length; i++) {
+      var v = getComputedStyle(nodes[i]).getPropertyValue(nodes[i].getAttribute('data-cvar')).trim();
+      nodes[i].textContent = v || '—';
+    }
+  }
+
+  /* --- 2. типографика ------------------------------------------------------ */
+
+  var SAMPLE_BIG = 'Собираем лендинг';
+  var SAMPLE_TEXT = 'Соседние секции стыкуются встык: конец одной равен началу следующей.';
+
+  var SCALE = [
+    { role: 'display-xl', d: [144, '0.90', 600, '−0.05em'], m: [48, '0.95', 600, '−0.03em'] },
+    { role: 'display-l', d: [96, '0.95', 600, '−0.04em'], m: [40, '1.00', 600, '−0.02em'] },
+    { role: 'display-m', d: [72, '0.95', 600, '−0.03em'], m: [36, '1.00', 600, '−0.02em'] },
+    { role: 'h1', d: [56, '1.00', 600, '−0.02em'], m: [32, '1.10', 600, '−0.01em'] },
+    { role: 'h2', d: [40, '1.05', 600, '−0.02em'], m: [28, '1.15', 600, '−0.01em'] },
+    { role: 'h3', d: [32, '1.10', 500, '−0.01em'], m: [24, '1.20', 500, '0'] },
+    { role: 'h4', d: [24, '1.20', 500, '−0.01em'], m: [20, '1.25', 500, '0'] },
+    { role: 'lead', d: [22, '1.20', 500, '0'], m: [18, '1.35', 500, '0'] },
+    { role: 'body-l', d: [20, '1.40', 400, '0'], m: [17, '1.45', 400, '0'] },
+    { role: 'body', d: [16, '1.50', 400, '0'], m: [16, '1.50', 400, '0'] },
+    { role: 'small', d: [14, '1.40', 400, '+0.01em'], m: [14, '1.40', 400, '+0.01em'] },
+    { role: 'caption', d: [12, '1.30', 500, '+0.02em'], m: [12, '1.30', 500, '+0.02em'] }
+  ];
+
+  function meta(role, spec) {
+    return '<div class="doc-type-meta">' +
+      '<span class="doc-type-meta-role">' + esc(role) + '</span>' +
+      '<span>' + spec[0] + ' px</span>' +
+      '<span>lh ' + esc(spec[1]) + '</span>' +
+      '<span>w ' + spec[2] + '</span>' +
+      '<span>ls ' + esc(spec[3]) + '</span>' +
+    '</div>';
+  }
+
+  function typeRows(mobile) {
+    return SCALE.map(function (row) {
+      var spec = mobile ? row.m : row.d;
+      var big = spec[0] >= 24;
+      var style;
+      if (mobile) {
+        style = 'font-size:' + spec[0] + 'px;line-height:' + spec[1] + ';font-weight:' + spec[2] +
+                ';letter-spacing:' + spec[3].replace('−', '-') + ';';
+      } else {
+        var base = '--core-' + row.role;
+        style = 'font-size:var(' + base + ');line-height:var(' + base + '-lh, ' + spec[1] + ');' +
+                'font-weight:' + spec[2] + ';letter-spacing:var(' + base + '-ls, ' +
+                spec[3].replace('−', '-') + ');';
+      }
+      return '<div class="doc-type-row">' +
+        '<div class="doc-type-sample" style="' + style + '">' +
+          esc(big ? SAMPLE_BIG : SAMPLE_TEXT) +
+        '</div>' + meta(row.role, spec) +
+      '</div>';
+    }).join('');
+  }
+
+  /* --- 3. ось игривости ----------------------------------------------------- */
+
+  var AXIS = [
+    { step: 1, name: 'Спокойная', weight: 500, weightName: 'Medium (500)', acid: false,
+      carrier: 'набор Inter', size: 40,
+      when: 'продуктовый лендинг, HR-бренд, B2B-предложение', ex: '15673:318, 12008:425' },
+    { step: 2, name: 'Сдержанная', weight: 600, weightName: 'SemiBold (600)', acid: false,
+      carrier: 'набор Inter', size: 44,
+      when: 'конференция с деловой аудиторией, франшиза с постоянной аудиторией', ex: '19319:7049, 20572:37377' },
+    { step: 3, name: 'Громкая', weight: 700, weightName: 'SemiBold — Bold (600–700)', acid: true,
+      carrier: 'набор, дисплей от 96 px', size: 48,
+      when: 'событие, фестиваль, набор на поток', ex: '20216:120, 16418:3180' },
+    { step: 4, name: 'Максимальная', weight: 900, weightName: 'Bold — Black (700–900)', acid: true,
+      carrier: 'леттеринг в векторе', size: 52,
+      when: 'конкурс, юбилей, игровой спецпроект', ex: '12276:374, 14871:1319, 1284:3362' }
+  ];
+
+  function renderAxis() {
+    document.getElementById('doc-axis').innerHTML = AXIS.map(function (a) {
+      return '<div class="doc-axis-card" data-axis="' + a.step + '">' +
+        '<div class="doc-axis-step">ступень ' + a.step + '</div>' +
+        '<p class="doc-axis-name">' + esc(a.name) + '</p>' +
+        '<div class="doc-axis-sample" style="font-size:' + a.size + 'px;font-weight:' + a.weight + ';">' +
+          esc(SAMPLE_BIG) +
+        '</div>' +
+        '<dl class="doc-axis-dl">' +
+          '<dt class="doc-axis-dt">вес дисплея</dt><dd class="doc-axis-dd">' + esc(a.weightName) + '</dd>' +
+          '<dt class="doc-axis-dt">кислотный</dt><dd class="doc-axis-dd" data-acid="' + (a.acid ? '1' : '0') + '">…</dd>' +
+          '<dt class="doc-axis-dt">заголовок</dt><dd class="doc-axis-dd">' + esc(a.carrier) + '</dd>' +
+          '<dt class="doc-axis-dt">когда брать</dt><dd class="doc-axis-dd">' + esc(a.when) + '</dd>' +
+          '<dt class="doc-axis-dt">пример</dt><dd class="doc-axis-dd doc-src">' + esc(a.ex) + '</dd>' +
+        '</dl>' +
+      '</div>';
+    }).join('');
+  }
+
+  function paintAxis() {
+    var acid = getComputedStyle(root).getPropertyValue('--product-acid').trim();
+    var has = acid && acid !== 'none';
+    var nodes = document.querySelectorAll('[data-acid]');
+    for (var i = 0; i < nodes.length; i++) {
+      if (nodes[i].getAttribute('data-acid') === '0') {
+        nodes[i].innerHTML = 'нет';
+        continue;
+      }
+      if (has) {
+        nodes[i].innerHTML = '<span class="doc-axis-acid" style="background:' + acid + '"></span>' +
+          '<span class="doc-src">' + esc(acid) + '</span>';
+      } else {
+        nodes[i].innerHTML = '<span class="doc-src">нет у Карьеры — Ц-3, 23/23</span>';
+      }
+    }
+    var samples = document.querySelectorAll('[data-axis] .doc-axis-sample');
+    for (var j = 0; j < samples.length; j++) {
+      var card = samples[j].parentNode;
+      var step = Number(card.getAttribute('data-axis'));
+      samples[j].style.color = (step >= 3 && has) ? acid : '';
+    }
+  }
+
+  /* --- 4. форма -------------------------------------------------------------- */
+
+  var RADII = [
+    { v: '--core-radius-none', o: snap('02_Landings', '6509:20474', 'интерфейс на прямых углах, 3 узла из 9') },
+    { v: '--core-radius-control', o: snap('02_Landings', '20775:861', 'чекбокс из дизайн-системы Хабра') },
+    { v: '--core-radius-s', o: snap('02_Landings', '9519:2095', 'поле и кнопка формы') },
+    { v: '--core-radius-m', o: snap('02_Landings', '18085:3890', 'карточки benefits-list, ступень 20') },
+    { v: '--core-radius-m-alt', o: snap('02_Landings', '18085:3890', 'карточки benefits-list, ступень 24') },
+    { v: '--core-radius-l', o: snap('02_Landings', '18085:3890', 'кнопки и иконки') },
+    { v: '--core-radius-xl', o: snap('02_Landings', '19319:7049', 'карточки и кнопка') },
+    { v: '--core-radius-pill', o: { t: 'n', why: 'пилюля: измерены 90, 101 и 110.883, единой ступени в источнике нет' } }
+  ];
+
+  var RADII_EXTRA = [
+    { label: '81.708px', why: 'плитки партнёров 187 × 92.041', o: snap('02_Landings', '18085:3890', 'верхняя граница измеренного диапазона; в лестницу токенов не заведена') },
+    { label: '110.883px', why: 'стеклянный чип бренда, --core-chip-radius', o: snap('04_Brand', '5149:6510', 'стеклянный чип бренда') }
+  ];
+
+  function renderRadii() {
+    var live = RADII.map(function (r) {
+      return '<div class="doc-shape-cell">' +
+        '<div class="doc-shape-box" style="border-radius:var(' + r.v + ')"></div>' +
+        '<div class="doc-shape-cap"><span class="doc-shape-cap-k" data-cvar="' + esc(r.v) + '">…</span>' +
+        esc(r.v.replace('--core-radius-', 'radius ')) + '</div>' +
+        badge(r.o) +
+      '</div>';
+    }).join('');
+    var extra = RADII_EXTRA.map(function (r) {
+      return '<div class="doc-shape-cell">' +
+        '<div class="doc-shape-box" style="border-radius:' + r.label + '"></div>' +
+        '<div class="doc-shape-cap"><span class="doc-shape-cap-k">' + esc(r.label) + '</span>' +
+        esc(r.why) + '</div>' + badge(r.o) +
+      '</div>';
+    }).join('');
+    document.getElementById('doc-radii').innerHTML = live + extra;
+  }
+
+  var SHADOWS = [
+    { v: '--core-shadow-hard', cap: 'Жёсткая смещённая тень — 14871:1319, 5 плиток соцсетей и кнопка, несущий приём узла', mode: 'shadow' },
+    { v: '--core-glow-inset', cap: 'Внутренняя подсветка — 18085:3890, шесть карточек', mode: 'shadow' },
+    { v: '--core-glow-hero', cap: 'Внутренняя подсветка hero — 20216:120, пять размытых овалов фона', mode: 'shadow' },
+    { v: '--core-glass-glow', cap: 'Стекло — 18085:3948 и чип бренда 5149:6510: приём совпал в двух независимых источниках', mode: 'glass' }
+  ];
+
+  function renderShadows() {
+    document.getElementById('doc-shadows').innerHTML = SHADOWS.map(function (s) {
+      var boxAttr = s.mode === 'glass' ? 'class="doc-fx-box doc-fx-glass"' : 'class="doc-fx-box"';
+      var style = s.mode === 'glass' ? '' : 'box-shadow:var(' + s.v + ')';
+      return '<div class="doc-fx-cell">' +
+        '<div ' + boxAttr + ' style="' + style + '"></div>' +
+        '<div class="doc-fx-cap">' + esc(s.cap) + '</div>' +
+        '<div class="doc-fx-val"><span data-cvar="' + esc(s.v) + '">…</span></div>' +
+      '</div>';
+    }).join('');
+  }
+
+  /* --- 5. реестр блоков ------------------------------------------------------ */
+
+  var BLOCKS = [
+    [18, 'Hero (первый экран)', 'Дисплейный заголовок (набор или леттеринг), подзаголовок, одна CTA-кнопка, даты или условия, графика с вылетом за край. Единственный блок без исключений. Нужен всегда.'],
+    [17, 'Шапка с логотипом', 'Логотип или кобрендинговый лок-ап слева, навигация справа, иногда CTA. Не встретилась только у 1284:3362 — там вместо шапки бегущая строка.'],
+    [15, 'Футер с соцсетями', 'Плитки соцсетей, копирайт, почта проекта вида <проект>@habr.team.'],
+    [15, 'Копирайт «Сделано в Хабре»', 'У 1284:3362 вместо него CC-лицензия трека.'],
+    [11, 'Форма', '2 … 5 полей, чекбокс согласия, кнопка отправки. Радиус поля 8, 16 или 0 с бордером 2 px; чекбокс 20775:861 несёт радиус 6 из дизайн-системы Хабра.'],
+    [10, 'Программа / расписание', 'Список дней или этапов: дата, заголовок, описание, иногда спикер.'],
+    [9, 'Партнёры / компании', 'Сетка логотипов; у 18085:3890 девять плиток 187 × 92.041 с радиусом 81.708.'],
+    [8, 'Спикеры / люди', 'Прямоугольные карточки-фото с именем и должностью. Аватаров-кругов на лендингах нет.'],
+    [7, 'Нумерованные преимущества', 'Карточки 01–05 «что будет» или «что получите».'],
+    [7, 'Футер «Присоединяйтесь к сообществу»', 'Готовый переиспользуемый модуль: копия совпадает дословно у четырёх узлов.'],
+    [5, 'Статистика / крупные числа', 'Число кеглем от 120 плюс подпись.'],
+    [5, 'Интерактивная механика', 'UGC-доска, кликер и отсчёт, квиз, вайб-квиз. Механика всегда одна на страницу.'],
+    [4, 'Бегущая строка', 'Полоса с повтором; у 16418:3180 overflow-clip и ширина 1500 при контейнере 1600.'],
+    [3, 'Сетка номинаций / категорий', 'Плитки номинаций конкурса: 14 у 1324, 20 у 17473, с кураторами у 6509.'],
+    [2, 'Корпоративный B2B-футер', 'Готовый переиспользуемый модуль: один и тот же фрейм Frame 956449994 у 20216 и 19319.'],
+    [2, 'FAQ / аккордеон', '8 вопросов у 20216; FAQ_section из 7 × FAQ Item с Toggle Button у 20572.'],
+    [2, 'Таймлайн / история', '19 карточек 2006 → 2024 (12276), 2018 → 2024 (17473).'],
+    [2, 'Галерея артефактов', '19 артефактов у 14871, карточки контента у 12276.'],
+    [1, 'Отзывы', 'Подтверждение одно — только 12395:7441.']
+  ];
+
+  function renderBlocks() {
+    document.getElementById('doc-blocks').innerHTML = BLOCKS.map(function (b) {
+      var pct = Math.round((b[0] / 18) * 100);
+      var tag = b[0] <= 2 ? ' <span class="doc-tag">наблюдение, не правило</span>' : '';
+      return '<tr>' +
+        '<td>' + esc(b[1]) + tag + '</td>' +
+        '<td class="doc-cov">' + b[0] + '/18' +
+          '<span class="doc-bar"><span class="doc-bar-fill" style="width:' + pct + '%"></span></span>' +
+        '</td>' +
+        '<td>' + esc(b[2]) + '</td>' +
+      '</tr>';
+    }).join('');
+  }
+
+  /* --- 6. правила ------------------------------------------------------------- */
+
+  var RULES = [
+    ['К-1', 'Зазор между соседними секциями — 0', '83/85 стыков, 7 узлов'],
+    ['К-2', 'Вертикальный ритм задаёт внутреннее поле секции 100 … 156 px, чаще всего 120', '7/7 узлов со стопкой'],
+    ['К-3', 'Ширина артборда — одна из пяти: 1600 · 1440 · 1400 · 1280 · 1240', '18/18'],
+    ['К-4', 'На ширине 1600 карьерной линии поле 218 px, контейнер 1164 px', '3/3 узла линии'],
+    ['Т-1', 'Интерлиньяж дисплея не превышает кегля', '12/12 бренд-досок; в лендингах не сквозное — 6/8, контрпримеры 1.2, 1.15, 1.12, 1.1'],
+    ['Т-2', 'Трекинг дисплея отрицательный', '8/8 измеренных аудитом; в бренде 11/12, исключение 5151:7007'],
+    ['Т-3', 'Трекинг инвертируется на мелком кегле: чем мельче, тем положительнее', '4/4 в бренде, подтверждено на лендингах'],
+    ['Т-4', 'Интерлиньяж основного текста 1.18 … 1.4', '6 измеренных узлов'],
+    ['Т-5', 'Дисплейный заголовок имеет право быть леттерингом в векторе', '7/18'],
+    ['Т-6', 'Вес дисплея следует концепции, а не продукту', '13/13 бренд-досок'],
+    ['Ц-1', 'Текст подтонирован под палитру проекта, а не чисто белый или чёрный', '6/9 измеренных'],
+    ['Ц-2', 'Вторичный уровень текста задан отдельным непрозрачным hex, а не альфой', '4 значения в лендингах; в бренде наоборот, 2/2 альфой'],
+    ['Ц-3', 'Кислотный акцент — у Хабра и Курсов; у Карьеры кислотного нет', '23/23'],
+    ['Ц-4', 'Три и более цветовых роли на секцию — норма', '16418, 20572, 10929'],
+    ['Ц-5', 'Градиенты разрешены и являются несущим приёмом', '6 узлов + бренд 4/4'],
+    ['Ф-1', 'Отсутствие скругления — полноценный вариант, а не исключение', '3/9, все три — проекты Хабра'],
+    ['Г-1', 'Объём подаётся глянцем и контровым светом, а не тенью', '23/23'],
+    ['Г-2', 'Фотография всегда обрезана фигурой, никогда прямоугольником навылет', '23/23'],
+    ['Г-3', 'Графика выходит за край кадра', '23/23']
+  ];
+
+  var DECISIONS = [
+    ['Р-1', 'Структура — три слоя: ядро · продукт · концепция, а не ветки по продуктам и не матрица', 'решение владельца, BRIEF §7'],
+    ['Р-2', 'Темы — обе в первой версии; имена токенов в светлой и тёмной совпадают один в один, светлая целиком норматив', 'основание: 0 пар «один макет в двух темах» из 22 узлов'],
+    ['Р-3', 'Ось игривости — только наблюдаемое: вес дисплея, кислотный акцент, леттеринг. Unbounded в пакет не входит', 'опоры 13/13 и 23/23 и 7/18; сама четырёхступенчатая шкала — норматив'],
+    ['Р-4', 'Цвета продуктов — из нового материала; корпусные #548eab, #8164f7, #ff7e47 переклассифицированы в цвета продуктового UI', 'основание: #548eab не встретился ни в одном из 18 макетов'],
+    ['§5', 'Типографическая шкала спроектирована: модульной шкалы в источнике нет, кегли 40 … 630 в ряд не строятся', 'опора — измеренные диапазоны интерлиньяжа и трекинга'],
+    ['§5', 'Inter как основа набора', 'при том, что гарнитур в 18 узлах восемь; ALS Hauss описан исключением, а не спрятан'],
+    ['§8', 'Лестница радиусов 0 · 8 · 16 · 24 · 40 · 50 · пилюля', 'покрывает измеренное; в источнике ступени не выдержаны'],
+    ['§6', 'Цвет текста на акцентной заливке: на кислотном — тёмный из базы продукта, на насыщенном акценте — подтонированный светлый', 'решение до досъёмки: цвет надписи на кнопках не снят ни в одном узле']
+  ];
+
+  function renderRules() {
+    document.getElementById('doc-rules').innerHTML = RULES.map(function (r) {
+      return '<div class="doc-rule">' +
+        '<div class="doc-rule-id">' + esc(r[0]) + '</div>' +
+        '<div class="doc-rule-text">' + esc(r[1]) + '</div>' +
+        '<div class="doc-rule-cov">' + esc(r[2]) + '</div>' +
+      '</div>';
+    }).join('');
+    document.getElementById('doc-decisions').innerHTML = DECISIONS.map(function (r) {
+      return '<div class="doc-rule doc-rule-owner">' +
+        '<div class="doc-rule-id">' + esc(r[0]) + '</div>' +
+        '<div class="doc-rule-text">' + esc(r[1]) + '</div>' +
+        '<div class="doc-rule-cov">' + esc(r[2]) + '</div>' +
+      '</div>';
+    }).join('');
+  }
+
+  /* --- 7. границы покрытия ---------------------------------------------------- */
+
+  var LIMITS = [
+    ['CSS-дамп сохранён у 2 узлов из 9 доснятых.', 'get_design_context на артборд выше ~6000 px вырождается в метаданные. Сплошь сняты только 18085:3890 и 1324:7793.'],
+    ['Частично снятые узлы дают нижнюю оценку, а не инвентаризацию.', 'Число радиусных ступеней, кеглей и цветов у семи узлов может только вырасти.'],
+    ['Гарнитуры и кегли измерены не везде.', 'Аудит измерил 9 узлов из 18; досъёмка добавила остальные девять, но по секциям.'],
+    ['14871:1319 просмотрен на 83 %.', 'Рендерер обрезал изображение на 12 000 px при высоте фрейма 14 462 px. Нижние ≈2460 px не видел никто.'],
+    ['Мобильные артборды у 18 узлов не установлены.', 'Мобильные фреймы в файле есть, но у другого проекта.'],
+    ['Пар «одна страница в двух темах» нет ни одной.', 'Ни в 18 лендингах, ни в 23 баннерах. Светлая тема пакета целиком спроектирована.'],
+    ['В новом брендовом стиле веб-форматов ноль.', 'Все 23 узла — пост 1080 × 1350. Перенос стиля на лендинг — проектная работа, а не снятие.'],
+    ['Переменных Figma в лендингах нет.', 'get_variable_defs отдаёт только logo/*; на четырёх бренд-досках — пустой ответ. Токен-слой выведен из сырых литералов.'],
+    ['По Курсам 1 баннер против 11 у Карьеры и 10 у Хабра.', 'Всё, что сказано о Курсах, — наблюдение, а не правило уровня продукта.'],
+    ['Состояния не инвентаризованы.', 'Hover, focus-visible, disabled в макетах не встретились, но целенаправленно их не искали.'],
+    ['Библиотеки 3D и персонажей нет.', 'См. §9 гайда.'],
+    ['Tone of voice в источниках отсутствует.', 'Ни строки о тексте, юморе или регистре на четырёх бренд-досках.'],
+    ['Production не переснимался.', 'Гайд описывает снятое из Figma; совпадение с живыми страницами не проверялось.']
+  ];
+
+  function renderLimits() {
+    document.getElementById('doc-limits').innerHTML = LIMITS.map(function (l) {
+      return '<li class="doc-limit"><span class="doc-limit-k">' + esc(l[0]) + '</span> ' + esc(l[1]) + '</li>';
+    }).join('');
+  }
+
+  /* --- переключатели ----------------------------------------------------------- */
+
+  var THEMES = [['dark', 'тёмная'], ['light', 'светлая']];
+  var PRODUCTS = [['habr', 'Хабр'], ['career', 'Карьера'], ['courses', 'Курсы']];
+
+  function renderSwitch(host, items, attr) {
+    host.innerHTML = items.map(function (it) {
+      return '<button type="button" class="doc-btn" data-set="' + attr + '" data-value="' + it[0] + '">' +
+        esc(it[1]) + '</button>';
+    }).join('');
+  }
+
+  function paintSwitches() {
+    var buttons = document.querySelectorAll('[data-set]');
+    for (var i = 0; i < buttons.length; i++) {
+      var on = root.getAttribute(buttons[i].getAttribute('data-set')) === buttons[i].getAttribute('data-value');
+      buttons[i].classList.toggle('doc-btn-on', on);
+      buttons[i].setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
+  }
+
+  function refresh() {
+    paintSwitches();
+    paintOrigins();
+    var tiles = document.querySelectorAll('[data-tile]');
+    for (var i = 0; i < tiles.length; i++) paintTile(tiles[i]);
+    paintConceptValues();
+    paintAxis();
+  }
+
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest ? e.target.closest('[data-set]') : null;
+    if (!btn) return;
+    root.setAttribute(btn.getAttribute('data-set'), btn.getAttribute('data-value'));
+    refresh();
+  });
+
+  renderSwitch(document.getElementById('doc-theme-switch'), THEMES, 'data-theme');
+  renderSwitch(document.getElementById('doc-product-switch'), PRODUCTS, 'data-product');
+  renderCore();
+  renderProduct();
+  renderConcepts();
+  document.getElementById('doc-type-desktop').innerHTML = typeRows(false);
+  document.getElementById('doc-type-mobile').innerHTML = typeRows(true);
+  renderAxis();
+  renderRadii();
+  renderShadows();
+  renderBlocks();
+  renderRules();
+  renderLimits();
+  refresh();
+})();
+</script>
+
+</body>
+</html>

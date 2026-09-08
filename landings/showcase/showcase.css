@@ -1,0 +1,269 @@
+/* =========================================================================
+   SHOWCASE — оболочка стенда пакета Landings
+   =========================================================================
+   Инвариант METHOD §6.2: всё, что здесь объявлено, — оболочка витрины
+   и в продуктовый слой не протекает. Классы только doc-*, переменные
+   только --doc-*. Единственный селектор без класса — :root, и в нём стоят
+   одни переменные оболочки. Сторож: node tools/validate-classes.mjs.
+
+   Оболочка не заводит собственных цветов: --doc-* тянут значения из токенов
+   пакета (var(--core-*), var(--product-*)). Поэтому переключатель темы
+   перекрашивает и стенд, и образцы одним и тем же контрактом имён — это
+   и есть предмет показа, а не оформление.
+   ========================================================================= */
+
+:root {
+  --doc-bg: var(--core-bg-page);
+  --doc-surface: var(--core-bg-surface);
+  --doc-ink: var(--core-text-primary);
+  --doc-ink-dim: var(--core-text-secondary);
+  --doc-line: color-mix(in srgb, var(--core-text-secondary) 45%, transparent);
+  --doc-line-soft: color-mix(in srgb, var(--core-text-secondary) 20%, transparent);
+  --doc-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --doc-sans: var(--core-font-text);
+  --doc-container: var(--core-container);
+  --doc-radius: 14px;
+  --doc-gap: 20px;
+  --doc-snap: #4cb6eb;
+  --doc-norm: #ffb454;
+}
+
+.doc-page,
+.doc-page *,
+.doc-page *::before,
+.doc-page *::after { box-sizing: border-box; }
+
+.doc-page {
+  margin: 0;
+  padding: 0;
+  background: var(--doc-bg);
+  color: var(--doc-ink);
+  font-family: var(--doc-sans);
+  font-size: 15px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.doc-page :focus-visible { outline: 2px solid var(--product-accent); outline-offset: 2px; }
+
+/* --- шапка стенда ------------------------------------------------------- */
+
+.doc-head {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--doc-surface);
+  border-bottom: 1px solid var(--doc-line);
+}
+
+.doc-head-in {
+  max-width: var(--doc-container);
+  margin: 0 auto;
+  padding: 16px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px 28px;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+
+.doc-title {
+  margin: 0 0 4px;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.doc-status { margin: 0; font-size: 13px; color: var(--doc-ink-dim); max-width: 54ch; }
+
+.doc-switches { display: flex; flex-wrap: wrap; gap: 14px 22px; }
+.doc-switch { display: flex; flex-direction: column; gap: 6px; }
+.doc-switch-label { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--doc-ink-dim); }
+.doc-switch-row { display: flex; gap: 6px; }
+
+.doc-btn {
+  font: inherit;
+  font-size: 13px;
+  padding: 6px 13px;
+  border: 1px solid var(--doc-line);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--doc-ink);
+  cursor: pointer;
+}
+.doc-btn:hover { border-color: var(--doc-ink-dim); }
+.doc-btn-on { background: var(--doc-ink); color: var(--doc-bg); border-color: var(--doc-ink); }
+
+/* --- каркас страницы ---------------------------------------------------- */
+
+.doc-main { max-width: var(--doc-container); margin: 0 auto; padding: 0 20px 64px; }
+
+.doc-section { padding: 46px 0 8px; border-top: 1px solid var(--doc-line-soft); }
+.doc-section-first { border-top: 0; }
+
+.doc-h2 { margin: 0 0 6px; font-size: 26px; font-weight: 600; letter-spacing: -0.02em; }
+.doc-h3 { margin: 28px 0 12px; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--doc-ink-dim); }
+.doc-lead { margin: 0 0 18px; max-width: 82ch; color: var(--doc-ink-dim); }
+.doc-note {
+  margin: 16px 0;
+  padding: 12px 14px;
+  border-left: 3px solid var(--doc-norm);
+  background: var(--doc-surface);
+  border-radius: 0 var(--doc-radius) var(--doc-radius) 0;
+  font-size: 13.5px;
+  max-width: 88ch;
+}
+.doc-note-strong { font-weight: 600; }
+.doc-src { font-family: var(--doc-mono); font-size: 12px; color: var(--doc-ink-dim); }
+
+/* --- метки происхождения ------------------------------------------------ */
+
+.doc-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 6px;
+  font-family: var(--doc-mono);
+  font-size: 10.5px;
+  line-height: 1.35;
+  padding: 3px 7px;
+  border-radius: 6px;
+  border: 1px solid currentColor;
+}
+.doc-badge-snap { color: var(--doc-snap); }
+.doc-badge-norm { color: var(--doc-norm); }
+.doc-badge-why { color: var(--doc-ink-dim); display: block; font-size: 11px; margin-top: 5px; font-family: var(--doc-mono); line-height: 1.4; }
+
+/* --- плитки токенов ------------------------------------------------------ */
+
+.doc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(238px, 1fr));
+  gap: var(--doc-gap);
+}
+
+.doc-tile {
+  border: 1px solid var(--doc-line-soft);
+  border-radius: var(--doc-radius);
+  overflow: hidden;
+  background: var(--doc-surface);
+  display: flex;
+  flex-direction: column;
+}
+
+.doc-swatch {
+  height: 78px;
+  border-bottom: 1px solid var(--doc-line-soft);
+}
+.doc-swatch-fx { display: grid; place-items: center; }
+.doc-swatch-chip { width: 62px; height: 42px; border-radius: 8px; }
+.doc-swatch-text { display: grid; place-items: center; font-size: 22px; font-weight: 600; }
+.doc-swatch-empty { display: grid; place-items: center; font-family: var(--doc-mono); font-size: 11px; color: var(--doc-ink-dim); }
+
+.doc-tile-body { padding: 10px 12px 12px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+.doc-tile-name { font-family: var(--doc-mono); font-size: 12px; word-break: break-all; }
+.doc-tile-role { font-size: 12px; color: var(--doc-ink-dim); }
+.doc-tile-val { font-family: var(--doc-mono); font-size: 11px; color: var(--doc-ink-dim); word-break: break-all; }
+.doc-tile-foot { margin-top: auto; padding-top: 4px; }
+
+/* --- типографика --------------------------------------------------------- */
+
+.doc-type-list { display: flex; flex-direction: column; }
+.doc-type-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 290px;
+  gap: 8px 16px;
+  align-items: baseline;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--doc-line-soft);
+}
+.doc-type-sample { min-width: 0; overflow-x: auto; white-space: nowrap; }
+.doc-type-meta { font-family: var(--doc-mono); font-size: 11px; color: var(--doc-ink-dim); display: flex; flex-wrap: wrap; gap: 3px 12px; }
+.doc-type-meta-role { color: var(--doc-ink); }
+
+@media (max-width: 760px) {
+  .doc-type-row { grid-template-columns: 1fr; }
+}
+
+/* --- ось игривости -------------------------------------------------------- */
+
+.doc-axis { display: grid; grid-template-columns: repeat(auto-fit, minmax(248px, 1fr)); gap: var(--doc-gap); }
+.doc-axis-card {
+  border: 1px solid var(--doc-line-soft);
+  border-radius: var(--doc-radius);
+  padding: 16px;
+  background: var(--doc-surface);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.doc-axis-step { font-family: var(--doc-mono); font-size: 11px; color: var(--doc-ink-dim); }
+.doc-axis-name { font-size: 16px; font-weight: 600; margin: 0; }
+.doc-axis-sample { margin: 2px 0 6px; line-height: 1; letter-spacing: -0.02em; overflow-x: auto; }
+.doc-axis-acid { display: inline-block; width: 12px; height: 12px; border-radius: 3px; vertical-align: -1px; margin-right: 7px; }
+.doc-axis-dl { margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 10px; font-size: 12.5px; }
+.doc-axis-dt { color: var(--doc-ink-dim); }
+.doc-axis-dd { margin: 0; }
+
+/* --- форма ---------------------------------------------------------------- */
+
+.doc-shape { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: var(--doc-gap); }
+.doc-shape-cell { display: flex; flex-direction: column; gap: 8px; align-items: stretch; }
+.doc-shape-box {
+  height: 84px;
+  border: 2px solid var(--product-accent);
+  background: var(--doc-surface);
+}
+.doc-shape-cap { font-family: var(--doc-mono); font-size: 11px; color: var(--doc-ink-dim); }
+.doc-shape-cap-k { color: var(--doc-ink); display: block; }
+
+.doc-fx { display: grid; grid-template-columns: repeat(auto-fill, minmax(232px, 1fr)); gap: 26px; }
+.doc-fx-cell { display: flex; flex-direction: column; gap: 10px; }
+.doc-fx-box { height: 96px; border-radius: var(--core-radius-m); background: var(--doc-surface); }
+.doc-fx-glass { border-radius: var(--core-glass-radius); background: var(--core-glass-bg); backdrop-filter: blur(var(--core-glass-blur)); box-shadow: var(--core-glass-glow); }
+.doc-fx-cap { font-size: 12.5px; }
+.doc-fx-val { font-family: var(--doc-mono); font-size: 11px; color: var(--doc-ink-dim); word-break: break-all; }
+
+/* --- таблицы --------------------------------------------------------------- */
+
+.doc-scroll { overflow-x: auto; }
+.doc-table { width: 100%; border-collapse: collapse; font-size: 13.5px; min-width: 580px; }
+.doc-table th,
+.doc-table td { text-align: left; padding: 9px 14px 9px 0; border-bottom: 1px solid var(--doc-line-soft); vertical-align: top; }
+.doc-table th { font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--doc-ink-dim); font-weight: 500; }
+.doc-cov { font-family: var(--doc-mono); white-space: nowrap; width: 96px; }
+.doc-bar { display: block; height: 4px; margin-top: 6px; background: var(--doc-line-soft); border-radius: 2px; overflow: hidden; }
+.doc-bar-fill { display: block; height: 100%; background: var(--product-accent); }
+.doc-tag { display: inline-block; font-size: 11px; padding: 2px 7px; border-radius: 5px; border: 1px solid var(--doc-norm); color: var(--doc-norm); white-space: nowrap; }
+
+/* --- правила ---------------------------------------------------------------- */
+
+.doc-rules { display: flex; flex-direction: column; gap: 3px; }
+.doc-rule {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr) 250px;
+  gap: 4px 16px;
+  padding: 11px 0 11px 12px;
+  border-bottom: 1px solid var(--doc-line-soft);
+  border-left: 3px solid var(--doc-snap);
+}
+.doc-rule-owner { border-left-color: var(--doc-norm); background: var(--doc-surface); border-radius: 0 var(--doc-radius) var(--doc-radius) 0; padding-right: 12px; }
+.doc-rule-id { font-family: var(--doc-mono); font-size: 12.5px; font-weight: 600; }
+.doc-rule-text { font-size: 13.5px; }
+.doc-rule-cov { font-size: 11.5px; color: var(--doc-ink-dim); font-family: var(--doc-mono); }
+.doc-legend { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 0 0 16px; font-size: 12.5px; color: var(--doc-ink-dim); }
+.doc-legend-key { display: inline-block; width: 22px; height: 3px; vertical-align: middle; margin-right: 7px; }
+.doc-legend-snap { background: var(--doc-snap); }
+.doc-legend-norm { background: var(--doc-norm); }
+
+@media (max-width: 760px) {
+  .doc-rule { grid-template-columns: 1fr; }
+}
+
+/* --- границы покрытия --------------------------------------------------------- */
+
+.doc-limits { margin: 0; padding-left: 22px; display: flex; flex-direction: column; gap: 9px; max-width: 90ch; }
+.doc-limit { font-size: 13.5px; }
+.doc-limit-k { font-weight: 600; }
+
+.doc-foot { max-width: var(--doc-container); margin: 0 auto; padding: 22px 20px 48px; border-top: 1px solid var(--doc-line-soft); font-size: 12.5px; color: var(--doc-ink-dim); }
+.doc-foot-code { font-family: var(--doc-mono); }
