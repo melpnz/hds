@@ -55,8 +55,16 @@ const shortPath = (file) => {
 
 const args = process.argv.slice(2);
 const own = args.length > 0;
-const showcaseFiles = ['showcase/blocks.html', 'showcase/primitives.html', 'showcase/core.html'];
+// METHOD §6.2 требует, чтобы оболочка витрины жила под собственным префиксом
+// и не протекала в ui/. Префикс не обязан быть один: страницы-таблицы пакета
+// написаны под doc-, перенесённый из design/landing-lab конструктор лендингов —
+// под ml-. Оба проверяются одинаково и в обе стороны: селектор витрины обязан
+// нести один из них, а ui/ не должен нести ни одного.
+const SHELL_PREFIXES = ['doc-', 'ml-'];
+
+const showcaseFiles = ['showcase/index.html', 'showcase/blocks.html', 'showcase/primitives.html', 'showcase/core.html'];
 const showcaseSteps = {
+  'showcase/index.html': 'перенос конструктора лендингов',
   'showcase/blocks.html': 'R0-06',
   'showcase/primitives.html': 'R1',
   'showcase/core.html': 'R2',
@@ -173,13 +181,34 @@ const SELECTOR_EXEMPT_FROM_PREFIX = new Set([':root']);
 // в целом. Набор имён по файлу пропускал два случая: селектор вовсе без
 // класса (body, `button, input, a`) и класс, объявленный не в showcase/*.css,
 // а в инлайновом <style> витрины.
+// Две витрины устроены по-разному, и правило §6.2 применяется к ним по-разному.
+//
+// Страницы-таблицы (blocks / primitives / core) — документационная оболочка
+// ВОКРУГ продуктовой разметки: они подключают ui/blocks/*.css и показывают
+// настоящие примитивы. Голый селектор вроде `button` там задел бы продуктовую
+// кнопку в демонстрации, и разницу между «так выглядит компонент» и «так его
+// подкрасила витрина» стало бы не видно. Поэтому каждый селектор обязан нести
+// класс оболочки.
+//
+// Конструктор лендингов (index / lab.css / hds.css) продуктовый CSS пакета
+// НЕ подключает — он самостоятельная страница и приносит собственный сброс.
+// Задевать в нём нечего: продуктовой разметки внутри нет. Требовать от его
+// сброса префикс значило бы переписать перенесённую витрину, а её внешний вид
+// сохраняется по условию задачи.
+//
+// Послабление касается ТОЛЬКО голых селекторов внутри этих файлов. Проверка
+// в обратную сторону — что ни doc-, ни ml- не протекли в ui/ — действует
+// для всех файлов без исключения, и именно она стережёт инвариант.
+const SELF_CONTAINED_SHOWCASE = new Set(['showcase/lab.css', 'showcase/hds.css', 'showcase/index.html']);
+
 function selectorLeaks(css, label) {
+  if (SELF_CONTAINED_SHOWCASE.has(label)) return [];
   const found = [];
   forEachRule(withoutComments(css), (preamble) => {
     for (const selector of splitSelectorList(preamble)) {
       if (SELECTOR_EXEMPT_FROM_PREFIX.has(selector)) continue;
-      const hasDocClass = [...classNames(selector)].some((name) => name.startsWith('doc-'));
-      if (!hasDocClass) found.push(`${label}: селектор без класса витрины doc- — ${selector}`);
+      const hasShellClass = [...classNames(selector)].some((name) => SHELL_PREFIXES.some((p) => name.startsWith(p)));
+      if (!hasShellClass) found.push(`${label}: селектор без класса оболочки витрины (${SHELL_PREFIXES.join(' / ')}) — ${selector}`);
     }
   });
   return found;
@@ -237,7 +266,7 @@ for (const file of uiCssFiles) {
   const css = withoutComments(fs.readFileSync(file, 'utf8'));
   const name = shortPath(file);
   for (const cls of classNames(css.replace(/\{[^{}]*\}/g, ' '))) {
-    if (cls.startsWith('doc-')) leaks.push(`${name}: класс оболочки витрины в продуктовом слое — .${cls}`);
+    if (SHELL_PREFIXES.some((p) => cls.startsWith(p))) leaks.push(`${name}: класс оболочки витрины в продуктовом слое — .${cls}`);
   }
   for (const match of css.matchAll(/--doc-[\w-]*/g)) {
     leaks.push(`${name}: переменная оболочки витрины в продуктовом слое — ${match[0]}`);

@@ -11,7 +11,7 @@
 /* Оболочка этой страницы. METHOD §6.2: каждый селектор несёт класс doc-*,
    в ui/ ничего отсюда не протекает. Общие классы стенда берутся
    из showcase.css; здесь только то, чего там нет, — площадка под живой
-   образец и заглушки лок-апа. */
+   образец и подложка под лок-ап. */
 
 .doc-stage {
   border: 1px solid var(--doc-line-soft);
@@ -42,8 +42,8 @@
 }
 
 .doc-stage-scale {
-  transform: scale(0.5);
-  transform-origin: left center;
+  /* Масштаб учитывается в раскладке, а не только при отрисовке. */
+  zoom: 0.5;
 }
 
 .doc-node {
@@ -60,11 +60,17 @@
   align-items: flex-start;
 }
 
-.doc-ph {
-  background: repeating-linear-gradient(135deg,
-    var(--doc-line-soft) 0 6px, transparent 6px 12px);
-  border: 1px dashed var(--doc-line);
-  border-radius: 6px;
+/* Штриховка .doc-ph убрана вместе с заглушками лок-апа: знаки приходят
+   настоящими файлами из общего хранилища. Правило без разметки — мусор,
+   и через полгода его примут за используемое. */
+
+/* Подложка под лок-ап. Словесные знаки в хранилище чёрные, светлой версии
+   в поставке нет (assets/logos/README.md). На тёмной витрине чёрное слово
+   не видно вовсе, поэтому образец стоит на белом. Это стенд, а не правило
+   бренда: правила о фоне под лок-апом пакет не утверждает — см. GUIDE §7. */
+.doc-stage-plate {
+  background: #fff;
+  border-color: var(--doc-line);
 }
 
 .doc-anchor { scroll-margin-top: 20px; }
@@ -121,17 +127,41 @@
   <section class="doc-section doc-anchor" id="button">
     <h2 class="doc-h2">1. Button · Кнопка</h2>
     <p class="doc-lead">Форма и заливка сняты у пятнадцати экземпляров в двенадцати узлах.
-    Радиус — модификатор с адресом, а не одна «правильная» ступень: измеренные значения
-    лежат от 0 до 90 и в лестницу не строятся.</p>
+    Измеренные радиусы лежат от 0 до 90 и в лестницу не строятся, поэтому поверх них
+    лежит канон пакета — решение владельца Р-7: <b>0 · 6 · 16 · пилюля</b>.
+    Ниже показаны обе строки: сперва канон, затем измеренный разброс с node id.</p>
 
+    <p class="doc-note"><span class="doc-note-strong">Заливка — цвет продукта, надпись белая.</span>
+    После решения Р-5 <span class="doc-src">--product-cta</span> не берётся из отдельного
+    лендинга: <span class="doc-src">#4DA3CB</span> у Хабра, <span class="doc-src">#7963E9</span>
+    у Карьеры, <span class="doc-src">#3670F4</span> у Курсов. У Хабра и Курсов значение
+    назначено владельцем и помечено нормативом, у Карьеры снято с
+    <span class="doc-node">04_Brand 5141:5094</span>. Оранжевый
+    <span class="doc-src">#fa722b</span> был заливкой отдельного проекта
+    (<span class="doc-node">20216:120</span>), а не продукта. Надпись белая по решению Р-6;
+    контраст белого по <span class="doc-src">#4DA3CB</span> — 2.83 : 1 против 7.21 : 1
+    у тёмного, по кислотному <span class="doc-src">#5DF20D</span> — 1.48 : 1 против 13.78 : 1.
+    Числа и их цена — GUIDE §6 и blocks/button.md.</p>
+
+    <p class="doc-note"><span class="doc-note-strong">Каноническая лестница Р-7.</span>
+    Четыре ступени, других в пакете нет. Токены
+    <span class="doc-src">--core-radius-step-0 / -6 / -16 / -pill</span>.</p>
+    <div class="doc-stage">
+      <button type="button" class="button button-r0 button-caps">Канон 0</button>
+      <button type="button" class="button button-import button-caps">Канон 6 — импорт</button>
+      <button type="button" class="button button-r16 button-caps">Канон 16</button>
+      <button type="button" class="button button-pill button-caps">Канон — пилюля</button>
+    </div>
+
+    <p class="doc-note"><span class="doc-note-strong">Измеренный разброс — исторический.</span>
+    Ступени сняты и из пакета не удалены, но канону не принадлежат: 90
+    (<span class="doc-node">20216:120</span>), 60 (<span class="doc-node">15818:15335</span>),
+    50 (<span class="doc-node">19319:7049</span>). При высотах кнопок 40 … 70 все три
+    браузер режет до полного скругления — канон сводит их к пилюле.</p>
     <div class="doc-stage">
       <button type="button" class="button button-r90 button-caps">Радиус 90</button>
       <button type="button" class="button button-r60 button-caps">Радиус 60</button>
       <button type="button" class="button button-r50 button-caps">Радиус 50</button>
-      <button type="button" class="button button-r16 button-caps">Радиус 16</button>
-      <button type="button" class="button button-r0 button-caps">Радиус 0</button>
-      <button type="button" class="button button-pill button-caps">Пилюля</button>
-      <button type="button" class="button button-import button-caps">Радиус 6 — импорт</button>
     </div>
     <div class="doc-stage">
       <button type="button" class="button button-hard">Перейти в чат-бот</button>
@@ -141,7 +171,12 @@
     <p class="doc-note"><span class="doc-note-strong">Радиус 6 стоит отдельно.</span>
     Он приходит из дизайн-системы Хабра вместе с компонентом, переменной
     <span class="doc-src">--elements/control/border_radius</span> — это импорт, а не собственное
-    значение пакета. В CSS он помечен ровно так.</p>
+    значение пакета. В канон он входит именно на правах импорта, и в CSS помечен ровно так.</p>
+
+    <p class="doc-note"><span class="doc-note-strong">Радиус поля не больше радиуса кнопки.</span>
+    Правило Ф-3, решение владельца Р-8: одинаковыми быть могут, больше — нет.
+    В источнике не измерялось и там не выдерживается (<span class="doc-node">7885:21625</span>
+    даёт поле 40 при кнопке 0). Сторожит <span class="doc-src">node tools/validate-radius.mjs</span>.</p>
 
     <div class="doc-scroll">
       <table class="doc-table">
@@ -284,23 +319,40 @@
     знака. Поэтому лок-ап параметризован одной переменной, а не тремя правилами:
     <span class="doc-note-strong">переключите продукт и посмотрите, что меняется.</span></p>
 
-    <div class="doc-stage">
-      <span class="product-lockup doc-stage-scale">
-        <span class="product-lockup-mark doc-ph"></span>
-        <span class="product-lockup-word doc-ph"></span>
+    <div class="doc-stage doc-stage-plate">
+      <span class="product-lockup doc-stage-scale" role="img" aria-label="Лок-ап продукта, обычный размер">
+        <span class="product-lockup-mark"></span>
+        <span class="product-lockup-word"></span>
       </span>
     </div>
-    <div class="doc-stage">
-      <span class="product-lockup product-lockup-l doc-stage-scale">
-        <span class="product-lockup-mark doc-ph"></span>
-        <span class="product-lockup-word doc-ph"></span>
+    <p class="doc-note"><span class="doc-note-strong">Обычный размер.</span> Знак —
+    <span class="doc-src">/assets/logos/&lt;продукт&gt;/icon-detailed.svg</span>, слово —
+    <span class="doc-src">/assets/logos/&lt;продукт&gt;/wordmark-ru.svg</span>.
+    У Хабра это 245.592 × 71.893, у Курсов 431.592 × 71.893, у Карьеры 491.113 × 71.893.
+    Образец показан в половину величины по той же причине, что и чип.</p>
+
+    <div class="doc-stage doc-stage-plate">
+      <span class="product-lockup product-lockup-l doc-stage-scale" role="img" aria-label="Лок-ап продукта, крупный размер">
+        <span class="product-lockup-mark"></span>
+        <span class="product-lockup-word"></span>
       </span>
     </div>
-    <p class="doc-note"><span class="doc-note-strong">Штриховка вместо знака — не оформление,
-    а пробел.</span> Файлов знака и словесного знака в <span class="doc-src">ui/assets/</span> нет,
-    цвета лок-апа не снято ни одного. Показана снятая геометрия: пропорции, зазор и высота —
-    настоящие, содержимое отсутствует. Оба образца в половину величины по той же причине,
-    что и чип.</p>
+    <p class="doc-note"><span class="doc-note-strong">Крупный размер — ×1.2452.</span>
+    Те же два файла, коробка больше: знак 89.519, зазор 32, слово ×1.2452 от базовой ширины.
+    Отдельных файлов под крупный размер в хранилище нет и не нужно — SVG масштабируется.</p>
+
+    <p class="doc-note"><span class="doc-note-strong">Знаки настоящие, цвет — нет.</span>
+    Файлы приходят из общего хранилища <span class="doc-src">assets/logos/</span>, одного
+    на все пакеты; копий в <span class="doc-src">ui/assets/</span> пакет не держит, сервер
+    отдаёт хранилище через единственную точку монтирования
+    <span class="doc-src">/assets/logos/</span>. Цвет знака в Figma не снят ни разу: то, что
+    вы видите, — цвета, лежащие в самих файлах хранилища (иконка Хабра
+    <span class="doc-src">#629fbc</span>, Карьеры <span class="doc-src">#6274bc</span>,
+    Курсов <span class="doc-src">#346ef4</span>; словесный знак чёрный). Это факт хранилища,
+    а не снятое с макета значение, и перекраске он не подлежит.
+    Коробка снята с Figma, пропорции внутри коробки держит сам файл
+    (<span class="doc-src">background-size: contain</span>) — расхождение между тем и другим
+    разобрано в <span class="doc-src">GUIDE.md</span> §7.</p>
 
     <div class="doc-scroll">
       <table class="doc-table">
@@ -398,12 +450,16 @@
     <div class="doc-stage doc-stage-plain">
       <div class="marquee marquee-60">
         <div class="marquee-track">
-          <span class="marquee-item">Хабр Карьера</span>
-          <span class="marquee-item">Хабр Курсы</span>
-          <span class="marquee-item">Хабр Q&amp;A</span>
-          <span class="marquee-item" aria-hidden="true">Хабр Карьера</span>
-          <span class="marquee-item" aria-hidden="true">Хабр Курсы</span>
-          <span class="marquee-item" aria-hidden="true">Хабр Q&amp;A</span>
+          <div class="marquee-group">
+            <span class="marquee-item">Хабр Карьера</span>
+            <span class="marquee-item">Хабр Курсы</span>
+            <span class="marquee-item">Хабр Q&amp;A</span>
+          </div>
+          <div class="marquee-group" aria-hidden="true">
+            <span class="marquee-item">Хабр Карьера</span>
+            <span class="marquee-item">Хабр Курсы</span>
+            <span class="marquee-item">Хабр Q&amp;A</span>
+          </div>
         </div>
       </div>
     </div>
@@ -459,9 +515,11 @@
       <li class="doc-limit"><span class="doc-limit-k">Responsive.</span> Мобильных артбордов
       у 18 узлов пакета не установлено. Ни у одного примитива правил перестроения нет,
       и придумывать их здесь не из чего.</li>
-      <li class="doc-limit"><span class="doc-limit-k">Ассетов лок-апа.</span>
-      <span class="doc-src">ui/assets/</span> пуст: знак и словесный знак показаны штриховкой,
-      цвет лок-апа не снят вовсе.</li>
+      <li class="doc-limit"><span class="doc-limit-k">Цвета лок-апа.</span> Сами знаки теперь
+      настоящие — из общего хранилища <span class="doc-src">assets/logos/</span>. Но цвета
+      лок-апа в Figma не снято ни одного: что видно на образце — цвет, лежащий в файле
+      хранилища, а не измеренное значение. Светлой версии словесного знака в поставке нет
+      вовсе, поэтому образец стоит на белой подложке, а не на тёмном фоне витрины.</li>
       <li class="doc-limit"><span class="doc-limit-k">Иконок.</span> Ни спрайта, ни отдельных
       файлов. Стрелка в круглой кнопке набрана символом, а не иконкой из пакета.</li>
     </ul>

@@ -17,8 +17,17 @@ const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 
 // Витрина — то, ради чего сервер поднимают, поэтому корень ведёт на неё.
 // У лендингов витрина одна и называется blocks.html: единица пакета — блок.
-const ENTRY = '/showcase/blocks.html';
-const ENTRY_STEP = 'R0-06';
+const ENTRY = '/showcase/index.html';
+const ENTRY_STEP = 'перенос конструктора лендингов из design/landing-lab';
+
+// Единственная точка монтирования за пределами пакета: общее хранилище
+// логотипов guides/assets/logos. METHOD §6.3 требует локальности ассетов
+// («иконки и шрифты лежат в ui/assets/, в разметке пути локальные»), но
+// владелец распорядился тянуть знаки семи продуктов из одного места, чтобы
+// не плодить копии в каждом пакете. Отступление ограничено ровно этим
+// префиксом: всё остальное за корнем пакета по-прежнему 403/404.
+const SHARED_MOUNT = '/assets/logos/';
+const sharedRoot = path.resolve(root, '..', 'assets', 'logos');
 
 const types = {
   '.html': 'text/html',
@@ -58,8 +67,18 @@ http.createServer((req, res) => {
     return;
   }
 
-  const file = path.resolve(root, '.' + pathname);
-  if (!file.startsWith(root + path.sep)) { res.writeHead(403).end(); return; }
+  // Две области, каждая со своей проверкой выхода наружу. Общая проверка
+  // «внутри root» осталась ровно такой, какой была: точка монтирования не
+  // ослабляет её, а стоит рядом отдельной веткой со своим собственным
+  // корнем. Разрешён один префикс, а не «любой путь на уровень выше».
+  let file;
+  if (pathname.startsWith(SHARED_MOUNT)) {
+    file = path.resolve(sharedRoot, '.' + pathname.slice(SHARED_MOUNT.length - 1));
+    if (!file.startsWith(sharedRoot + path.sep)) { res.writeHead(403).end(); return; }
+  } else {
+    file = path.resolve(root, '.' + pathname);
+    if (!file.startsWith(root + path.sep)) { res.writeHead(403).end(); return; }
+  }
 
   fs.readFile(file, (error, data) => {
     if (error) { res.writeHead(404).end(); return; }
@@ -75,4 +94,5 @@ http.createServer((req, res) => {
 }).listen(PORT, '127.0.0.1', () => {
   console.log(`http://127.0.0.1:${PORT} — корень ${root}`);
   console.log(`витрина: http://127.0.0.1:${PORT}${ENTRY}` + (fs.existsSync(path.join(root, ENTRY.slice(1))) ? '' : ` — ещё нет, заводит ${ENTRY_STEP}`));
+  console.log(`${SHARED_MOUNT} → ${sharedRoot}` + (fs.existsSync(sharedRoot) ? '' : ' — хранилища нет, знаки отдаваться не будут'));
 });

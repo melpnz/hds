@@ -51,7 +51,7 @@
 
     <h3 class="doc-h3">Слой 2 — продукт</h3>
     <p class="doc-lead">Индивидуальность продукта держится на цветовом семействе и производном от него
-    кислотном акценте — 23/23. Всё остальное различие принадлежит концепции.</p>
+    кислотном акценте в исследованных концепциях — 23/23. Зелёный неон Хабра относится к «Неоновому БУМу», а не к заголовкам по умолчанию. Всё остальное различие принадлежит концепции.</p>
     <div class="doc-grid" id="doc-product-colors"></div>
 
     <h3 class="doc-h3">Слой 3 — концепция</h3>
@@ -63,30 +63,16 @@
 
   <section class="doc-section">
     <h2 class="doc-h2">2. Типографика</h2>
-    <p class="doc-lead">Обе шкалы отрисованы живым текстом. Модульной шкалы, общей на все узлы,
-    в источнике нет: кегли дисплея 40 … 630 в ряд не строятся, отношение дисплея к подзаголовку
-    в бренде гуляет — 2.25, 1.93, 1.41. Поэтому обе шкалы — норматив; опора у них измеренная:
-    интерлиньяж дисплея 0.75 … 1.12, трекинг дисплея отрицательный во всех измеренных случаях,
-    интерлиньяж основного текста 1.18 … 1.4.</p>
-
-    <h3 class="doc-h3">Десктоп, 1240 … 1600 — норматив, значения из токенов</h3>
+    <p class="doc-lead">Единая шкала из восьми ролей — норматив. Три старших заголовка плавно адаптируются к ширине окна; отдельной мобильной таблицы нет. Примеры и значения читаются из CSS-токенов.</p>
     <div class="doc-type-list" id="doc-type-desktop"></div>
-
-    <h3 class="doc-h3">Мобильный — норматив целиком, опор нет</h3>
-    <p class="doc-note">Мобильных артбордов у 18 узлов пакета не установлено, поэтому шкала ниже
-    спроектирована от десктопной, а не снята. Значения проставлены явно: в токенах они живут внутри
-    <span class="doc-src">@media (max-width: 640px)</span> и на широком экране в те же переменные
-    не приезжают. Сузьте окно до 640 px — десктопная шкала выше станет этой.</p>
-    <div class="doc-type-list" id="doc-type-mobile"></div>
   </section>
 
   <section class="doc-section">
     <h2 class="doc-h2">3. Ось игривости</h2>
     <p class="doc-lead">Четыре ступени, решение Р-3. Ось строится на трёх наблюдаемых переменных:
-    вес дисплея (13/13 бренд-досок), наличие кислотного акцента (23/23) и леттеринг против набора
+    вес дисплея и гарнитура: Inter на ступенях 1–2, Unbounded на ступенях 3–4. Исторические опоры — вес (13/13), акценты (23/23), леттеринг
     (7/18). Сама четырёхступенчатая шкала спроектирована — в источнике её нет. Ступень выбирается
-    один раз на проект и не смешивается: леттеринг на ступени 1 и Medium на ступени 4 не встречаются
-    ни в одном узле.</p>
+    один раз на проект и не смешивается: размеры берутся из единой шкалы. Выбор Unbounded — решение владельца, а не сквозное правило источников.</p>
     <div class="doc-axis" id="doc-axis"></div>
     <p class="doc-note"><span class="doc-note-strong">Переключите продукт на Карьеру.</span>
     Кислотный акцент исчезнет на ступенях 3 и 4: у Карьеры его нет ни на одном из 11 её баннеров.
@@ -95,13 +81,15 @@
 
   <section class="doc-section">
     <h2 class="doc-h2">4. Форма</h2>
-    <h3 class="doc-h3">Радиусы — снято, 9 узлов сплошь или по секциям</h3>
-    <p class="doc-lead">Диапазон интерфейсных явных значений — 8 … 81.708. Ступеней на узел 1 … 5,
-    медиана 2. Корпусное «2–4 ступени на проект, дисциплина строго выдержана» опровергнуто со всех
-    трёх сторон: снизу — три узла из девяти дают меньше двух ступеней, сверху — 18085:3890 даёт пять,
-    по строгости — 20 и 24 стоят на соседних карточках одного списка. Лестница ниже — решение:
-    она покрывает измеренное и не притворяется снятой.</p>
+    <h3 class="doc-h3">Радиусы — единый набор</h3>
+    <p class="doc-lead">Для новых страниц: прямые углы, скругление 16 px или пилюля.
+    Радиус 6 px используется только в готовых компонентах дизайн-системы Хабра.
+    Это норматив Р-7: дополнительные промежуточные размеры не вводим.</p>
     <div class="doc-shape" id="doc-radii"></div>
+    <p class="doc-note">У одинаковых компонентов — одинаковая форма. Радиус поля ввода
+    не больше радиуса кнопки рядом с ним. Пилюля — полное скругление, а не фиксированные 40 или 50 px.
+    Исходные значения отдельных макетов сохранены в <a href="../GUIDE.md#9-форма-и-геометрия">разделе «Форма» гайда</a>
+    как справочные данные, а не варианты для новых страниц.</p>
 
     <h3 class="doc-h3">Тени — снято</h3>
     <p class="doc-note"><span class="doc-note-strong">Размытых drop-теней вида
@@ -218,7 +206,7 @@
       '--product-base': snap('04_Brand', '5149:6555', 'база Хабра'),
       '--product-base-deep': snap('04_Brand', '5149:6559', 'тёмный текст и глубокий синий Хабра'),
       '--product-accent': snap('04_Brand', '5151:7007', 'акцент-текст'),
-      '--product-acid': snap('04_Brand', '5149:6443', 'кислотный акцент и цвет неоновой обводки'),
+      '--product-acid': snap('04_Brand', '5149:6443', 'декор «Неонового БУМа», включается только при выборе концепции; не цвет заголовка'),
       '--product-cta': snap('02_Landings', '20216:120', 'акцентная заливка кнопки, радиус 90'),
       '--product-gradient': snap('02_Landings', '20775:851', 'градиент по тексту через bg-clip')
     },
@@ -411,50 +399,17 @@
   var SAMPLE_BIG = 'Собираем лендинг';
   var SAMPLE_TEXT = 'Соседние секции стыкуются встык: конец одной равен началу следующей.';
 
-  var SCALE = [
-    { role: 'display-xl', d: [144, '0.90', 600, '−0.05em'], m: [48, '0.95', 600, '−0.03em'] },
-    { role: 'display-l', d: [96, '0.95', 600, '−0.04em'], m: [40, '1.00', 600, '−0.02em'] },
-    { role: 'display-m', d: [72, '0.95', 600, '−0.03em'], m: [36, '1.00', 600, '−0.02em'] },
-    { role: 'h1', d: [56, '1.00', 600, '−0.02em'], m: [32, '1.10', 600, '−0.01em'] },
-    { role: 'h2', d: [40, '1.05', 600, '−0.02em'], m: [28, '1.15', 600, '−0.01em'] },
-    { role: 'h3', d: [32, '1.10', 500, '−0.01em'], m: [24, '1.20', 500, '0'] },
-    { role: 'h4', d: [24, '1.20', 500, '−0.01em'], m: [20, '1.25', 500, '0'] },
-    { role: 'lead', d: [22, '1.20', 500, '0'], m: [18, '1.35', 500, '0'] },
-    { role: 'body-l', d: [20, '1.40', 400, '0'], m: [17, '1.45', 400, '0'] },
-    { role: 'body', d: [16, '1.50', 400, '0'], m: [16, '1.50', 400, '0'] },
-    { role: 'small', d: [14, '1.40', 400, '+0.01em'], m: [14, '1.40', 400, '+0.01em'] },
-    { role: 'caption', d: [12, '1.30', 500, '+0.02em'], m: [12, '1.30', 500, '+0.02em'] }
-  ];
-
-  function meta(role, spec) {
-    return '<div class="doc-type-meta">' +
-      '<span class="doc-type-meta-role">' + esc(role) + '</span>' +
-      '<span>' + spec[0] + ' px</span>' +
-      '<span>lh ' + esc(spec[1]) + '</span>' +
-      '<span>w ' + spec[2] + '</span>' +
-      '<span>ls ' + esc(spec[3]) + '</span>' +
-    '</div>';
-  }
-
-  function typeRows(mobile) {
-    return SCALE.map(function (row) {
-      var spec = mobile ? row.m : row.d;
-      var big = spec[0] >= 24;
-      var style;
-      if (mobile) {
-        style = 'font-size:' + spec[0] + 'px;line-height:' + spec[1] + ';font-weight:' + spec[2] +
-                ';letter-spacing:' + spec[3].replace('−', '-') + ';';
-      } else {
-        var base = '--core-' + row.role;
-        style = 'font-size:var(' + base + ');line-height:var(' + base + '-lh, ' + spec[1] + ');' +
-                'font-weight:' + spec[2] + ';letter-spacing:var(' + base + '-ls, ' +
-                spec[3].replace('−', '-') + ');';
-      }
-      return '<div class="doc-type-row">' +
-        '<div class="doc-type-sample" style="' + style + '">' +
-          esc(big ? SAMPLE_BIG : SAMPLE_TEXT) +
-        '</div>' + meta(row.role, spec) +
-      '</div>';
+  var SCALE = ['display', 'h1', 'h2', 'h3', 'lead', 'body', 'small', 'caption'];
+  function typeRows() {
+    var cs = getComputedStyle(document.documentElement);
+    var paragraph = 'Хороший лендинг помогает человеку понять предложение и решить, подходит ли оно ему. Расскажите, для кого создан продукт, какую задачу он решает и что произойдёт после нажатия на кнопку. Разбивайте длинный рассказ на короткие абзацы: так легче находить нужное и читать с телефона.';
+    return SCALE.map(function(role, i) {
+      var base = '--core-' + role;
+      var heading = i < 4;
+      var weight = role === 'display' ? 'var(--core-weight-display)' : (heading ? '600' : '400');
+      var text = heading ? SAMPLE_BIG : ((role === 'lead' || role === 'body') ? paragraph : SAMPLE_TEXT);
+      var family = heading ? 'var(--core-font-heading)' : 'var(--core-font-text)';
+      return '<div class="doc-type-row"><div class="doc-type-sample" style="font-size:var(' + base + ');line-height:var(' + base + '-lh);letter-spacing:var(' + base + '-ls);font-family:' + family + ';font-weight:' + weight + ';max-width:65ch;overflow-wrap:anywhere;">' + esc(text) + '</div><div class="doc-type-meta">' + role + ' · ' + esc(cs.getPropertyValue(base).trim()) + ' · lh ' + esc(cs.getPropertyValue(base + '-lh').trim()) + ' · ' + (heading ? (role === 'display' ? 'вес по ступени' : '600') : 'Inter Regular 400') + '</div></div>';
     }).join('');
   }
 
@@ -468,19 +423,19 @@
       carrier: 'набор Inter', size: 44,
       when: 'конференция с деловой аудиторией, франшиза с постоянной аудиторией', ex: '19319:7049, 20572:37377' },
     { step: 3, name: 'Громкая', weight: 700, weightName: 'SemiBold — Bold (600–700)', acid: true,
-      carrier: 'набор, дисплей от 96 px', size: 48,
+      carrier: 'набор Unbounded', size: 48,
       when: 'событие, фестиваль, набор на поток', ex: '20216:120, 16418:3180' },
     { step: 4, name: 'Максимальная', weight: 900, weightName: 'Bold — Black (700–900)', acid: true,
-      carrier: 'леттеринг в векторе', size: 52,
+      carrier: 'набор Unbounded', size: 52,
       when: 'конкурс, юбилей, игровой спецпроект', ex: '12276:374, 14871:1319, 1284:3362' }
   ];
 
   function renderAxis() {
     document.getElementById('doc-axis').innerHTML = AXIS.map(function (a) {
-      return '<div class="doc-axis-card" data-axis="' + a.step + '">' +
+      return '<div class="doc-axis-card" data-axis="' + a.step + '" data-play="' + a.step + '">' +
         '<div class="doc-axis-step">ступень ' + a.step + '</div>' +
         '<p class="doc-axis-name">' + esc(a.name) + '</p>' +
-        '<div class="doc-axis-sample" style="font-size:' + a.size + 'px;font-weight:' + a.weight + ';">' +
+        '<div class="doc-axis-sample" style="font-size:var(--core-h2);font-family:var(--core-font-heading);font-weight:var(--core-weight-display);overflow-wrap:anywhere;">' +
           esc(SAMPLE_BIG) +
         '</div>' +
         '<dl class="doc-axis-dl">' +
@@ -507,52 +462,34 @@
         nodes[i].innerHTML = '<span class="doc-axis-acid" style="background:' + acid + '"></span>' +
           '<span class="doc-src">' + esc(acid) + '</span>';
       } else {
-        nodes[i].innerHTML = '<span class="doc-src">нет у Карьеры — Ц-3, 23/23</span>';
+        nodes[i].innerHTML = '<span class="doc-src">не включён выбранной концепцией</span>';
       }
     }
     var samples = document.querySelectorAll('[data-axis] .doc-axis-sample');
     for (var j = 0; j < samples.length; j++) {
       var card = samples[j].parentNode;
       var step = Number(card.getAttribute('data-axis'));
-      samples[j].style.color = (step >= 3 && has) ? acid : '';
+      samples[j].style.color = 'var(--core-text-primary)';
     }
   }
 
   /* --- 4. форма -------------------------------------------------------------- */
 
   var RADII = [
-    { v: '--core-radius-none', o: snap('02_Landings', '6509:20474', 'интерфейс на прямых углах, 3 узла из 9') },
-    { v: '--core-radius-control', o: snap('02_Landings', '20775:861', 'чекбокс из дизайн-системы Хабра') },
-    { v: '--core-radius-s', o: snap('02_Landings', '9519:2095', 'поле и кнопка формы') },
-    { v: '--core-radius-m', o: snap('02_Landings', '18085:3890', 'карточки benefits-list, ступень 20') },
-    { v: '--core-radius-m-alt', o: snap('02_Landings', '18085:3890', 'карточки benefits-list, ступень 24') },
-    { v: '--core-radius-l', o: snap('02_Landings', '18085:3890', 'кнопки и иконки') },
-    { v: '--core-radius-xl', o: snap('02_Landings', '19319:7049', 'карточки и кнопка') },
-    { v: '--core-radius-pill', o: { t: 'n', why: 'пилюля: измерены 90, 101 и 110.883, единой ступени в источнике нет' } }
-  ];
-
-  var RADII_EXTRA = [
-    { label: '81.708px', why: 'плитки партнёров 187 × 92.041', o: snap('02_Landings', '18085:3890', 'верхняя граница измеренного диапазона; в лестницу токенов не заведена') },
-    { label: '110.883px', why: 'стеклянный чип бренда, --core-chip-radius', o: snap('04_Brand', '5149:6510', 'стеклянный чип бренда') }
+    { v: '--core-radius-step-0', name: 'Прямые углы', use: 'Строгие блоки, карточки и контролы без скругления.' },
+    { v: '--core-radius-step-6', name: 'Импорт · 6 px', use: 'Только готовые компоненты дизайн-системы Хабра. Не отдельный стиль лендинга.' },
+    { v: '--core-radius-step-16', name: 'Скруглённая', use: 'Базовый вариант для карточек и панелей; доступен для кнопок и полей.' },
+    { v: '--core-radius-step-pill', name: 'Пилюля', use: 'Кнопки, поля и короткие метки с полным скруглением.' }
   ];
 
   function renderRadii() {
-    var live = RADII.map(function (r) {
+    document.getElementById('doc-radii').innerHTML = RADII.map(function(r) {
       return '<div class="doc-shape-cell">' +
         '<div class="doc-shape-box" style="border-radius:var(' + r.v + ')"></div>' +
-        '<div class="doc-shape-cap"><span class="doc-shape-cap-k" data-cvar="' + esc(r.v) + '">…</span>' +
-        esc(r.v.replace('--core-radius-', 'radius ')) + '</div>' +
-        badge(r.o) +
-      '</div>';
+        '<div class="doc-shape-cap"><span class="doc-shape-cap-k">' + esc(r.name) + '</span>' +
+        '<span data-cvar="' + r.v + '">…</span> · ' + esc(r.v) + '</div>' +
+        '<p class="doc-shape-cap">' + esc(r.use) + '</p></div>';
     }).join('');
-    var extra = RADII_EXTRA.map(function (r) {
-      return '<div class="doc-shape-cell">' +
-        '<div class="doc-shape-box" style="border-radius:' + r.label + '"></div>' +
-        '<div class="doc-shape-cap"><span class="doc-shape-cap-k">' + esc(r.label) + '</span>' +
-        esc(r.why) + '</div>' + badge(r.o) +
-      '</div>';
-    }).join('');
-    document.getElementById('doc-radii').innerHTML = live + extra;
   }
 
   var SHADOWS = [
@@ -631,6 +568,8 @@
     ['Ц-4', 'Три и более цветовых роли на секцию — норма', '16418, 20572, 10929'],
     ['Ц-5', 'Градиенты разрешены и являются несущим приёмом', '6 узлов + бренд 4/4'],
     ['Ф-1', 'Отсутствие скругления — полноценный вариант, а не исключение', '3/9, все три — проекты Хабра'],
+    ['Ф-2', 'Каноническая лестница радиусов: 0 · 6 · 16 · пилюля', 'РЕШЕНИЕ Р-7 поверх измеренных 0 … 81.708, ступеней на узел 1…5'],
+    ['Ф-3', 'Радиус поля ввода не больше радиуса кнопки; равными быть могут', 'РЕШЕНИЕ Р-8, в источнике не измерялось; сторожит tools/validate-radius.mjs'],
     ['Г-1', 'Объём подаётся глянцем и контровым светом, а не тенью', '23/23'],
     ['Г-2', 'Фотография всегда обрезана фигурой, никогда прямоугольником навылет', '23/23'],
     ['Г-3', 'Графика выходит за край кадра', '23/23']
@@ -639,7 +578,7 @@
   var DECISIONS = [
     ['Р-1', 'Структура — три слоя: ядро · продукт · концепция, а не ветки по продуктам и не матрица', 'решение владельца, BRIEF §7'],
     ['Р-2', 'Темы — обе в первой версии; имена токенов в светлой и тёмной совпадают один в один, светлая целиком норматив', 'основание: 0 пар «один макет в двух темах» из 22 узлов'],
-    ['Р-3', 'Ось игривости — только наблюдаемое: вес дисплея, кислотный акцент, леттеринг. Unbounded в пакет не входит', 'опоры 13/13 и 23/23 и 7/18; сама четырёхступенчатая шкала — норматив'],
+    ['Р-3', 'Ось игривости — только наблюдаемое: вес дисплея, кислотный акцент, леттеринг. Inter на ступенях 1–2; Unbounded на ступенях 3–4 (решение владельца)', 'опоры 13/13 и 23/23 и 7/18; сама четырёхступенчатая шкала — норматив'],
     ['Р-4', 'Цвета продуктов — из нового материала; корпусные #548eab, #8164f7, #ff7e47 переклассифицированы в цвета продуктового UI', 'основание: #548eab не встретился ни в одном из 18 макетов'],
     ['§5', 'Типографическая шкала спроектирована: модульной шкалы в источнике нет, кегли 40 … 630 в ряд не строятся', 'опора — измеренные диапазоны интерлиньяжа и трекинга'],
     ['§5', 'Inter как основа набора', 'при том, что гарнитур в 18 узлах восемь; ALS Hauss описан исключением, а не спрятан'],
@@ -731,7 +670,7 @@
   renderProduct();
   renderConcepts();
   document.getElementById('doc-type-desktop').innerHTML = typeRows(false);
-  document.getElementById('doc-type-mobile').innerHTML = typeRows(true);
+
   renderAxis();
   renderRadii();
   renderShadows();
