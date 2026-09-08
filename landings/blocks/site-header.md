@@ -180,4 +180,4 @@
 - `evidence/source/figma/1284-3362.md` — узел без шапки.
 - `.audits/landings-2026-09-08-figma-landings.md` §5 — разложение вариантов,
   контактный лист `sheet-headers.png`.
-- `GUIDE.md` §10 — пять форм знака.
+- `GUIDE.md` §11 — пять форм знака.

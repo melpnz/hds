@@ -24,6 +24,12 @@
   --doc-container: var(--core-container);
   --doc-radius: 14px;
   --doc-gap: 20px;
+  /* Подложка служебной плашки. Раньше её не было вовсе: .doc-backlink
+     писала var(--doc-bg-note, rgba(127,127,127,0.12)) и жила на умолчании —
+     ссылка на несуществующий токен, которую нашла node tools/validate-tokens.mjs.
+     Заведена по контракту файла: оболочка не заводит своих цветов, а тянет
+     их из токенов пакета, поэтому плашка следует теме вместе с ними. */
+  --doc-bg-note: color-mix(in srgb, var(--core-text-secondary) 12%, transparent);
   --doc-snap: #4cb6eb;
   --doc-norm: #ffb454;
 }
@@ -69,7 +75,9 @@
 
 .doc-title {
   margin: 0 0 4px;
+  font-family: var(--doc-sans);
   font-size: 22px;
+  line-height: 1.55;
   font-weight: 600;
   letter-spacing: -0.01em;
 }
@@ -101,8 +109,14 @@
 .doc-section { padding: 46px 0 8px; border-top: 1px solid var(--doc-line-soft); }
 .doc-section-first { border-top: 0; }
 
-.doc-h2 { margin: 0 0 6px; font-size: 26px; font-weight: 600; letter-spacing: -0.02em; }
-.doc-h3 { margin: 28px 0 12px; font-size: 13px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--doc-ink-dim); }
+/* Заголовки оболочки объявляют гарнитуру и интерлиньяж сами. Раньше они
+   их наследовали, и после наполнения ui/foundations.css (шаг R0-03) роли
+   h1…h6 пакета начали доставать до оболочки: интерлиньяж стенда 1.55
+   подменялся ролью заголовка, а на ступенях игривости 3–4 оболочка ушла бы
+   в Unbounded вместе с продуктом. Оболочка витрины не должна зависеть
+   от того, что пакет чего-то не задаёт, — METHOD §6.2. */
+.doc-h2 { margin: 0 0 6px; font-family: var(--doc-sans); font-size: 26px; line-height: 1.55; font-weight: 600; letter-spacing: -0.02em; }
+.doc-h3 { margin: 28px 0 12px; font-family: var(--doc-sans); font-size: 13px; line-height: 1.55; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--doc-ink-dim); }
 .doc-lead { margin: 0 0 18px; max-width: 82ch; color: var(--doc-ink-dim); }
 .doc-note {
   margin: 16px 0;
@@ -281,6 +295,6 @@
   padding: 10px 16px;
   font-size: 12px;
   line-height: 1.4;
-  background: var(--doc-bg-note, rgba(127, 127, 127, 0.12));
+  background: var(--doc-bg-note);
   border-bottom: 1px solid rgba(127, 127, 127, 0.28);
 }
