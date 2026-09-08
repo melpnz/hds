@@ -335,4 +335,7 @@ if (problems.length) {
 }
 
 console.log(`Проверено утверждений: ${rows.length} в ${new Set(rows.map(([file]) => file)).size} файлах. Все сходятся.`);
-console.log(Object.entries(actual).map(([key, [value]]) => `  ${key}: ${value ?? '—'}`).join('\n'));
+// Перечень измерений — под --explain, вместе с таблицей «что где написано».
+// Зелёный прогон в чеклисте приёмки — одна строка: сорок строк значений
+// на каждой из четырёх проверок приучают пролистывать вывод не читая.
+if (explain) console.log(Object.entries(actual).map(([key, [value]]) => `  ${key}: ${value ?? '—'}`).join('\n'));

@@ -327,10 +327,15 @@ for (const { file, raw, markers, decls, declaredByBlock } of scanned) {
       }
     }
 
+    // Нарушитель называется по имени. Две светлые переменные в одном блоке
+    // стоят на одной строке файла, и без имени свойства обе давали одно
+    // и то же сообщение дважды: читателю оставалось гадать, какая из них
+    // сломала И-2.
+    //
     // Само color-scheme не значение темы, а её объявление: сообщать
     // о нём отдельной строкой — повторять то же самое дважды на строке.
     if (theme === 'light' && marker.kind === 'snapshot' && decl.property !== 'color-scheme') {
-      errors.push(`${where} — ${lightArea.title} под маркером ${marker.text} (строка ${marker.line}): ${themeWhy}. Это норматив: ${lightArea.why}. Инвариант И-2`);
+      errors.push(`${where} «${decl.property}» — ${lightArea.title} под маркером ${marker.text} (строка ${marker.line}): ${themeWhy}. Это норматив: ${lightArea.why}. Инвариант И-2`);
       continue;
     }
 
@@ -338,7 +343,7 @@ for (const { file, raw, markers, decls, declaredByBlock } of scanned) {
     for (const area of AREAS) {
       if (!area.triggerCss.test(haystack)) continue;
       if (marker.kind === 'snapshot') {
-        errors.push(`${where} — ${area.title} под маркером ${marker.text} (строка ${marker.line}). Это норматив: ${area.why}. Инвариант И-2`);
+        errors.push(`${where} «${decl.property}» — ${area.title} под маркером ${marker.text} (строка ${marker.line}). Это норматив: ${area.why}. Инвариант И-2`);
       }
     }
   }
