@@ -149,9 +149,10 @@
   ],
   "stepInversionRule": "dependsOn говорит, на чём элемент стоит, а не в каком порядке его верстают. Зависимость с более поздним шагом — не ошибка реестра, но и не норма: она объявляется здесь поимённо и печатается в блоке «Отложено». Необъявленная инверсия — ошибка.",
   "requiredStatesMatrix": {
-    "status": "pending",
+    "status": "done",
     "step": "R1-01",
-    "note": "Матрица обязательных состояний по видам заводится в components/STATES.md на шаге R1-01. До неё requiredStates пуст у всех записей — это не «состояний нет», а «матрицы ещё нет»."
+    "ref": "components/STATES.md",
+    "note": "Матрица обязательных состояний по видам и разметка 55 записей — components/STATES.md. requiredStates ниже — механическое применение правила из STATES.md §«Как определяется требуемость», не отдельное решение по каждой записи."
   },
   "components": [
     {
@@ -179,7 +180,9 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default"
+      ],
       "sourceScope": "production",
       "wave": "R2",
       "step": "R2-01",
@@ -228,7 +231,11 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible"
+      ],
       "sourceScope": "production",
       "wave": "R2",
       "step": "R2-02",
@@ -277,7 +284,9 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default"
+      ],
       "sourceScope": "production",
       "wave": "R2",
       "step": "R2-03",
@@ -335,7 +344,10 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "empty"
+      ],
       "sourceScope": "production",
       "wave": "R2",
       "step": "R2-04",
@@ -382,7 +394,10 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "empty"
+      ],
       "sourceScope": "production",
       "wave": "R2",
       "step": "R2-05",
@@ -426,7 +441,9 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default"
+      ],
       "sourceScope": "production",
       "wave": "R2",
       "step": "R2-06",
@@ -474,7 +491,9 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default"
+      ],
       "sourceScope": "production",
       "wave": "R2",
       "step": "R2-07",
@@ -511,7 +530,9 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default"
+      ],
       "sourceScope": "production",
       "wave": "R2",
       "step": "R2-08",
@@ -550,7 +571,9 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default"
+      ],
       "sourceScope": "production",
       "wave": "R2",
       "step": "R2-09",
@@ -587,7 +610,9 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default"
+      ],
       "sourceScope": "production",
       "wave": "R2",
       "step": "R2-10",
@@ -619,7 +644,9 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default"
+      ],
       "sourceScope": "production",
       "wave": "R2",
       "step": "R2-11",
@@ -654,7 +681,9 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default"
+      ],
       "sourceScope": "production",
       "wave": "R2",
       "step": "R2-12",
@@ -703,7 +732,13 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled"
+      ],
       "sourceScope": "production",
       "wave": "R3",
       "step": "R3-01",
@@ -757,7 +792,13 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled"
+      ],
       "sourceScope": "production",
       "wave": "R3",
       "step": "R3-02",
@@ -796,7 +837,11 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible"
+      ],
       "sourceScope": "production",
       "wave": "R3",
       "step": "R3-03",
@@ -851,7 +896,13 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "selected"
+      ],
       "sourceScope": "production",
       "wave": "R3",
       "step": "R3-04",
@@ -913,7 +964,12 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible",
+        "current"
+      ],
       "sourceScope": "production",
       "wave": "R3",
       "step": "R3-05",
@@ -958,7 +1014,13 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible",
+        "selected",
+        "disabled"
+      ],
       "sourceScope": "figma-only",
       "wave": "R3",
       "step": "R3-13",
@@ -997,7 +1059,15 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible",
+        "open",
+        "closed",
+        "disabled",
+        "invalid"
+      ],
       "sourceScope": "production",
       "wave": "R3",
       "step": "R3-06",
@@ -1043,7 +1113,16 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible",
+        "checked",
+        "open",
+        "closed",
+        "disabled",
+        "invalid"
+      ],
       "sourceScope": "storybook-only",
       "wave": "R3",
       "step": "R3-07",
@@ -1087,7 +1166,12 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible",
+        "disabled"
+      ],
       "sourceScope": "production",
       "wave": "R3",
       "step": "R3-08",
@@ -1131,7 +1215,14 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible",
+        "disabled",
+        "readOnly",
+        "invalid"
+      ],
       "sourceScope": "figma-only",
       "wave": "R3",
       "step": "R3-09",
@@ -1169,7 +1260,14 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible",
+        "checked",
+        "indeterminate",
+        "disabled"
+      ],
       "sourceScope": "storybook-only",
       "wave": "R3",
       "step": "R3-10",
@@ -1203,7 +1301,13 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible",
+        "checked",
+        "disabled"
+      ],
       "sourceScope": "storybook-only",
       "wave": "R3",
       "step": "R3-11",
@@ -1248,7 +1352,14 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "selected",
+        "disabled"
+      ],
       "sourceScope": "storybook-only",
       "wave": "R3",
       "step": "R3-12",
@@ -1289,7 +1400,13 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible",
+        "current",
+        "disabled"
+      ],
       "sourceScope": "figma-only",
       "wave": "R3",
       "step": "R3-14",
@@ -1325,7 +1442,12 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible",
+        "current"
+      ],
       "sourceScope": "figma-only",
       "wave": "R3",
       "step": "R3-15",
@@ -1359,7 +1481,9 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default"
+      ],
       "sourceScope": "production",
       "wave": "R4",
       "step": "R4-01",
@@ -1425,7 +1549,13 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible",
+        "open",
+        "closed"
+      ],
       "sourceScope": "production",
       "wave": "R4",
       "step": "R4-02",
@@ -1481,7 +1611,9 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default"
+      ],
       "sourceScope": "production",
       "wave": "R4",
       "step": "R4-03",
@@ -1525,7 +1657,9 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default"
+      ],
       "sourceScope": "production",
       "wave": "R4",
       "step": "R4-04",
@@ -1569,7 +1703,9 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default"
+      ],
       "sourceScope": "production",
       "wave": "R4",
       "step": "R4-05",
@@ -1611,7 +1747,9 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default"
+      ],
       "sourceScope": "production",
       "wave": "R4",
       "step": "R4-06",
@@ -1653,7 +1791,9 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default"
+      ],
       "sourceScope": "production",
       "wave": "R4",
       "step": "R4-07",
@@ -1697,7 +1837,10 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "empty"
+      ],
       "sourceScope": "production",
       "wave": "R4",
       "step": "R4-08",
@@ -1733,7 +1876,10 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "current"
+      ],
       "sourceScope": "production",
       "wave": "R4",
       "step": "R4-09",
@@ -1772,7 +1918,11 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "expanded",
+        "collapsed"
+      ],
       "sourceScope": "production",
       "wave": "R4",
       "step": "R4-10",
@@ -1818,7 +1968,9 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default"
+      ],
       "sourceScope": "production",
       "wave": "R4",
       "step": "R4-11",
@@ -1882,7 +2034,11 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "open",
+        "closed"
+      ],
       "sourceScope": "storybook-only",
       "wave": "R4",
       "step": "R4-12",
@@ -1948,7 +2104,11 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "open",
+        "closed"
+      ],
       "sourceScope": "figma-only",
       "wave": "R4",
       "step": "R4-13",
@@ -1974,7 +2134,9 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default"
+      ],
       "sourceScope": "production",
       "wave": "R5",
       "step": "R5-14",
@@ -2032,7 +2194,9 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default"
+      ],
       "sourceScope": "figma-only",
       "wave": "R4",
       "step": "R4-14",
@@ -2068,7 +2232,11 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible"
+      ],
       "sourceScope": "production",
       "wave": "R5",
       "step": "R5-01",
@@ -2112,7 +2280,11 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible"
+      ],
       "sourceScope": "production",
       "wave": "R5",
       "step": "R5-02",
@@ -2162,7 +2334,10 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover"
+      ],
       "sourceScope": "production",
       "wave": "R5",
       "step": "R5-03",
@@ -2207,7 +2382,10 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover"
+      ],
       "sourceScope": "production",
       "wave": "R5",
       "step": "R5-04",
@@ -2255,7 +2433,11 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible"
+      ],
       "sourceScope": "production",
       "wave": "R5",
       "step": "R5-05",
@@ -2302,7 +2484,11 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible"
+      ],
       "sourceScope": "production",
       "wave": "R5",
       "step": "R5-06",
@@ -2338,7 +2524,9 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default"
+      ],
       "sourceScope": "production",
       "wave": "R5",
       "step": "R5-07",
@@ -2370,7 +2558,10 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover"
+      ],
       "sourceScope": "production",
       "wave": "R5",
       "step": "R5-13",
@@ -2417,7 +2608,11 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible"
+      ],
       "sourceScope": "production",
       "wave": "R5",
       "step": "R5-08",
@@ -2452,7 +2647,9 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default"
+      ],
       "sourceScope": "production",
       "wave": "R5",
       "step": "R5-09",
@@ -2497,7 +2694,9 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default"
+      ],
       "sourceScope": "production",
       "wave": "R5",
       "step": "R5-10",
@@ -2544,7 +2743,9 @@
         }
       ],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default"
+      ],
       "sourceScope": "production",
       "wave": "R5",
       "step": "R5-11",
@@ -2578,7 +2779,9 @@
       "showcaseAnchor": null,
       "figmaEvidence": [],
       "status": "planned",
-      "requiredStates": [],
+      "requiredStates": [
+        "default"
+      ],
       "sourceScope": "production",
       "wave": "R5",
       "step": "R5-12",
