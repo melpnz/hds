@@ -14,6 +14,30 @@
 .showcase-output { min-height: 24px; }
 .showcase-section code { overflow-wrap: anywhere; }
 .showcase-links { display: flex; flex-wrap: wrap; gap: 16px; }
+.showcase-token-workbench { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; margin-top: 28px; }
+.showcase-token-editor { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-content: start; gap: 16px; }
+.showcase-token-field { display: flex; flex-direction: column; gap: 6px; font-size: 14px; min-width: 0; }
+.showcase-token-field code { font-size: 11px; color: #52617a; }
+.showcase-token-field input, .showcase-token-field select { box-sizing: border-box; width: 100%; min-height: 40px; border: 1px solid #a5b1c3; border-radius: 6px; padding: 6px; font: inherit; background: white; color: #172338; }
+.showcase-token-field input[type='color'] { cursor: pointer; padding: 3px; }
+.showcase-token-result { min-width: 0; }
+.showcase-token-result h3 { margin-top: 0; }
+.showcase-token-preview { display: grid; gap: 24px; padding: 24px 16px; background: #f4f6f9; border-radius: 12px; }
+.showcase-token-example { display: grid; gap: 10px; min-width: 0; }
+.showcase-tool-button { font: inherit; color: #172338; background: #edf1f7; border: 1px solid #a5b1c3; border-radius: 6px; min-height: 40px; padding: 8px 12px; cursor: pointer; }
+.showcase-token-editor > button { grid-column: 1 / -1; }
+.showcase-token-export { margin: 32px 0; padding-top: 8px; border-top: 1px solid #dce2eb; }
+.showcase-token-export textarea { display: block; box-sizing: border-box; width: 100%; max-width: 100%; resize: vertical; border: 1px solid #a5b1c3; border-radius: 8px; background: #f4f6f9; color: #172338; font: 13px/1.6 monospace; padding: 14px; margin-top: 8px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.showcase-token-group { border-top: 1px solid #dce2eb; padding: 16px 0; }
+.showcase-token-group summary { cursor: pointer; font-weight: bold; }
+.showcase-token-list { margin: 0; }
+.showcase-token-list > div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 12px; border-top: 1px solid #edf1f7; padding: 12px 0; }
+.showcase-token-list dt { font-size: 14px; }
+.showcase-token-list dt code { display: block; color: #52617a; font-size: 12px; }
+.showcase-token-list dd { margin: 0; display: flex; gap: 8px; align-items: center; min-width: 0; }
+.showcase-token-swatch { flex: 0 0 24px; height: 24px; border: 1px solid #a5b1c3; border-radius: 5px; }
+@media (max-width: 900px) { .showcase-token-workbench { grid-template-columns: 1fr; } }
+@media (max-width: 420px) { .showcase-token-editor { grid-template-columns: 1fr; } .showcase-token-list > div { grid-template-columns: 1fr; gap: 6px; } }
 .showcase-preview-hover { background: var(--ps-button-hover); }
 .showcase-preview-focus-visible { background: var(--ps-focus); box-shadow: inset 0 0 0 var(--ps-button-stroke) var(--ps-button-fill); outline: var(--ps-stroke) solid var(--ps-button-fill); outline-offset: var(--ps-focus-offset); }
 @media (max-width: 767px) { .showcase-matrix { grid-template-columns: 1fr; } .showcase-section { padding: 20px 16px; } .showcase-shell { padding: 24px 12px 40px; } }

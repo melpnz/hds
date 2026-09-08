@@ -1,3 +1,4 @@
+import './tokens.js';
 const theme = document.querySelector('#theme');
 theme.addEventListener('change', () => { document.querySelector('#c-button').dataset.psTheme = theme.value; });
 const action = document.querySelector('#action');
