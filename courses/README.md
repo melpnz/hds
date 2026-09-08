@@ -9,8 +9,9 @@ Storybook.
 > Заведён каркас: точка подключения `ui/courses.css` и слои под ней, скрипты
 > проверок.
 > **Вёрстка компонентов не начата** — спецификаций 0. Заполнены
-> `ui/tokens.css` (R0-02), `ui/fonts.css` и `ui/foundations.css` (R0-03);
-> `ui/layout.css` и `ui/components/*.css` — пустые каркасы, R0-04 и R2–R5.
+> `ui/tokens.css` (R0-02), `ui/fonts.css` и `ui/foundations.css` (R0-03),
+> `ui/layout.css` и новый `ui/utilities.css` (R0-04); `ui/components/*.css` —
+> пустые каркасы, R2–R5.
 > `components/` держит реестр `manifest.json` и шаблон спецификации (R0-05).
 > `showcase/`, `machine/` не приняты. Пользоваться пакетом как источником
 > разметки компонентов ещё нельзя.
@@ -87,7 +88,7 @@ courses/
   playwright.config.mjs     браузерные проверки витрины (порт 4179)
 
   ui/                       слой Курсов — файлы заведены, содержимое на R0–R5
-    courses.css             точка подключения — готова, 14 @import
+    courses.css             точка подключения — готова, 15 @import
     fonts.css               14 @font-face переменного Inter, файлы локальные;
                             разбор — docs/guide/typography.md
     tokens.css              51 переменная :root продукта; разбор —
@@ -97,8 +98,13 @@ courses/
                             (.leading-none), фокус; разбор —
                             docs/guide/typography.md. Утилит переноса,
                             обрезки и выравнивания здесь НЕТ — GAP-9
-                            статьи, их место в ui/utilities.css (R0-04)
-    layout.css              пусто; контейнер, сетка, брейкпоинты — R0-04
+                            статьи, их место в ui/utilities.css
+    layout.css              оболочка (app-container/app-content), контейнер
+                            1124 + 24, сетка секций gap-12, брейкпоинты —
+                            R0-04; разбор — docs/guide/layout.md
+    utilities.css           новый (R0-04): десять утилит переноса, обрезки
+                            и выравнивания текста, GAP-9 typography.md;
+                            разбор — docs/guide/layout.md
     components/*.css        10 файлов по категориям, пока только заголовки
     assets/fonts/           14 woff2 Inter, 711 КБ
     assets/icons/           пусто; спрайт и одиночные иконки — R2-01
@@ -110,7 +116,9 @@ courses/
   pages/                    пусто; по файлу на ключевую страницу — R6
   docs/guide/               tokens.md — разбор переменных продукта;
                             typography.md — шкала, база документа, шрифт,
-                            фокус; composition, decisions, coverage — R7
+                            фокус; layout.md — оболочка, контейнер, сетка
+                            секций, брейкпоинты; composition, decisions,
+                            coverage — R7
   docs/development/         заметки по работе с пакетом
   machine/                  пусто; машиночитаемая проекция — R8
   tests/                    пусто; первый спек витрины — R0-06
