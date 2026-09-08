@@ -1,0 +1,86 @@
+type QuizOptionProps = {
+  className?: string;
+  breakpoint?: "Desktop" | "Mobile tablet";
+  correctness?: "None" | "Correct" | "Incorrect";
+  selected?: boolean;
+  state?: "Default" | "Hover" | "Pressed" | "Focused" | "Disabled";
+  text?: string;
+};
+
+export default function QuizOption({ className, breakpoint = "Desktop", correctness = "None", selected = false, state = "Default", text = "Answer option text goes here" }: QuizOptionProps) {
+  const isDesktopAndDefaultAndCorrectAndNotSelected = breakpoint === "Desktop" && state === "Default" && correctness === "Correct" && !selected;
+  const isDesktopAndDefaultAndCorrectAndSelected = breakpoint === "Desktop" && state === "Default" && correctness === "Correct" && selected;
+  const isDesktopAndDefaultAndIncorrectAndNotSelected = breakpoint === "Desktop" && state === "Default" && correctness === "Incorrect" && !selected;
+  const isDesktopAndDefaultAndIncorrectAndSelected = breakpoint === "Desktop" && state === "Default" && correctness === "Incorrect" && selected;
+  const isDesktopAndDefaultAndNoneAndSelected = breakpoint === "Desktop" && state === "Default" && correctness === "None" && selected;
+  const isDesktopAndDisabledAndNoneAndNotSelected = breakpoint === "Desktop" && state === "Disabled" && correctness === "None" && !selected;
+  const isDesktopAndFocusedAndNoneAndNotSelected = breakpoint === "Desktop" && state === "Focused" && correctness === "None" && !selected;
+  const isDesktopAndPressedAndNoneAndNotSelected = breakpoint === "Desktop" && state === "Pressed" && correctness === "None" && !selected;
+  const isMobileTabletAndDefaultAndCorrectAndNotSelected = breakpoint === "Mobile tablet" && state === "Default" && correctness === "Correct" && !selected;
+  const isMobileTabletAndDefaultAndCorrectAndSelected = breakpoint === "Mobile tablet" && state === "Default" && correctness === "Correct" && selected;
+  const isMobileTabletAndDefaultAndIncorrectAndNotSelected = breakpoint === "Mobile tablet" && state === "Default" && correctness === "Incorrect" && !selected;
+  const isMobileTabletAndDefaultAndIncorrectAndSelected = breakpoint === "Mobile tablet" && state === "Default" && correctness === "Incorrect" && selected;
+  const isMobileTabletAndDefaultAndNoneAndNotSelected = breakpoint === "Mobile tablet" && state === "Default" && correctness === "None" && !selected;
+  const isMobileTabletAndDefaultAndNoneAndSelected = breakpoint === "Mobile tablet" && state === "Default" && correctness === "None" && selected;
+  const isMobileTabletAndDisabledAndNoneAndNotSelected = breakpoint === "Mobile tablet" && state === "Disabled" && correctness === "None" && !selected;
+  const isMobileTabletAndFocusedAndNoneAndNotSelected = breakpoint === "Mobile tablet" && state === "Focused" && correctness === "None" && !selected;
+  const isMobileTabletAndPressedAndNoneAndNotSelected = breakpoint === "Mobile tablet" && state === "Pressed" && correctness === "None" && !selected;
+  return (
+    <div className={className || `border-solid content-stretch flex items-center relative ${isMobileTabletAndDefaultAndIncorrectAndSelected ? String.raw`bg-[var(--semantic-status\/error\/background,#fef2f2)] border-3 border-[var(--semantic-status\/error\/text,#dc2626)] px-[var(--spacing\/16,16px)] py-[var(--spacing\/12,12px)] rounded-[var(--radius\/l,16px)] w-[407px]` : isDesktopAndDefaultAndIncorrectAndSelected ? String.raw`bg-[var(--semantic-status\/error\/background,#fef2f2)] border-3 border-[var(--semantic-status\/error\/text,#dc2626)] h-[68px] px-[var(--spacing\/24,24px)] py-[var(--spacing\/20,20px)] rounded-[var(--radius\/lg,20px)] w-[480px]` : isMobileTabletAndDefaultAndIncorrectAndNotSelected ? String.raw`bg-[var(--semantic-status\/error\/background,#fef2f2)] border-2 border-[var(--semantic-status\/error\/border,#fca5a5)] px-[var(--spacing\/16,16px)] py-[var(--spacing\/12,12px)] rounded-[var(--radius\/l,16px)] w-[407px]` : isDesktopAndDefaultAndIncorrectAndNotSelected ? String.raw`bg-[var(--semantic-status\/error\/background,#fef2f2)] border-2 border-[var(--semantic-status\/error\/border,#fca5a5)] h-[68px] px-[var(--spacing\/24,24px)] py-[var(--spacing\/20,20px)] rounded-[var(--radius\/lg,20px)] w-[480px]` : isMobileTabletAndDefaultAndCorrectAndSelected ? String.raw`bg-[var(--semantic-status\/success\/background,#ecfdf5)] border-3 border-[var(--semantic-status\/success\/text,#047857)] px-[var(--spacing\/16,16px)] py-[var(--spacing\/12,12px)] rounded-[var(--radius\/l,16px)] w-[407px]` : isDesktopAndDefaultAndCorrectAndSelected ? String.raw`bg-[var(--semantic-status\/success\/background,#ecfdf5)] border-3 border-[var(--semantic-status\/success\/text,#047857)] h-[68px] px-[var(--spacing\/24,24px)] py-[var(--spacing\/20,20px)] rounded-[var(--radius\/lg,20px)] w-[480px]` : isMobileTabletAndDefaultAndCorrectAndNotSelected ? String.raw`bg-[var(--semantic-status\/success\/background,#ecfdf5)] border-2 border-[var(--semantic-status\/success\/border,#a7f3d0)] px-[var(--spacing\/16,16px)] py-[var(--spacing\/12,12px)] rounded-[var(--radius\/l,16px)] w-[407px]` : isDesktopAndDefaultAndCorrectAndNotSelected ? String.raw`bg-[var(--semantic-status\/success\/background,#ecfdf5)] border-2 border-[var(--semantic-status\/success\/border,#a7f3d0)] h-[68px] px-[var(--spacing\/24,24px)] py-[var(--spacing\/20,20px)] rounded-[var(--radius\/lg,20px)] w-[480px]` : isMobileTabletAndDefaultAndNoneAndSelected ? String.raw`border-2 border-[var(--brand-🎨\/primary,#2563eb)] px-[var(--spacing\/16,16px)] py-[var(--spacing\/12,12px)] rounded-[var(--radius\/l,16px)] w-[407px]` : isDesktopAndDefaultAndNoneAndSelected ? String.raw`border-2 border-[var(--brand-🎨\/primary,#2563eb)] h-[68px] px-[var(--spacing\/24,24px)] py-[var(--spacing\/20,20px)] rounded-[var(--radius\/lg,20px)] w-[480px]` : isMobileTabletAndFocusedAndNoneAndNotSelected ? String.raw`bg-[var(--background\/primary,white)] border-2 border-[var(--border\/focus,#2563eb)] px-[var(--spacing\/16,16px)] py-[var(--spacing\/12,12px)] rounded-[var(--radius\/l,16px)] w-[407px]` : isDesktopAndFocusedAndNoneAndNotSelected ? String.raw`bg-[var(--background\/primary,white)] border-2 border-[var(--border\/focus,#2563eb)] h-[68px] px-[var(--spacing\/24,24px)] py-[var(--spacing\/20,20px)] rounded-[var(--radius\/lg,20px)] w-[480px]` : isMobileTabletAndPressedAndNoneAndNotSelected ? String.raw`border-2 border-[var(--border\/strong,#111827)] px-[var(--spacing\/16,16px)] py-[var(--spacing\/12,12px)] rounded-[var(--radius\/l,16px)] w-[407px]` : isDesktopAndPressedAndNoneAndNotSelected ? String.raw`border-2 border-[var(--border\/strong,#111827)] h-[68px] px-[var(--spacing\/24,24px)] py-[var(--spacing\/20,20px)] rounded-[var(--radius\/lg,20px)] w-[480px]` : breakpoint === "Mobile tablet" && correctness === "None" && !selected && ["Hover", "Disabled"].includes(state) ? String.raw`border-2 border-[var(--border\/secondary,#9ca3af)] px-[var(--spacing\/16,16px)] py-[var(--spacing\/12,12px)] rounded-[var(--radius\/l,16px)] w-[407px]` : breakpoint === "Desktop" && correctness === "None" && !selected && ["Hover", "Disabled"].includes(state) ? String.raw`border-2 border-[var(--border\/secondary,#9ca3af)] h-[68px] px-[var(--spacing\/24,24px)] py-[var(--spacing\/20,20px)] rounded-[var(--radius\/lg,20px)] w-[480px]` : isMobileTabletAndDefaultAndNoneAndNotSelected ? String.raw`bg-[var(--background\/primary,white)] border-2 border-[var(--border\/primary,#e5e7eb)] px-[var(--spacing\/16,16px)] py-[var(--spacing\/12,12px)] rounded-[var(--radius\/l,16px)] w-[407px]` : String.raw`bg-[var(--background\/primary,white)] border-2 border-[var(--border\/primary,#e5e7eb)] h-[68px] px-[var(--spacing\/24,24px)] py-[var(--spacing\/20,20px)] rounded-[var(--radius\/lg,20px)] w-[480px]`}`} id={isMobileTabletAndDefaultAndIncorrectAndSelected ? "node-2140_226" : isDesktopAndDefaultAndIncorrectAndSelected ? "node-2142_20" : isMobileTabletAndDefaultAndIncorrectAndNotSelected ? "node-2140_224" : isDesktopAndDefaultAndIncorrectAndNotSelected ? "node-2142_18" : isMobileTabletAndDefaultAndCorrectAndSelected ? "node-2140_222" : isDesktopAndDefaultAndCorrectAndSelected ? "node-2142_16" : isMobileTabletAndDefaultAndCorrectAndNotSelected ? "node-2140_220" : isDesktopAndDefaultAndCorrectAndNotSelected ? "node-2142_14" : isMobileTabletAndDefaultAndNoneAndSelected ? "node-2140_218" : isDesktopAndDefaultAndNoneAndSelected ? "node-2142_12" : isMobileTabletAndDisabledAndNoneAndNotSelected ? "node-2140_216" : isDesktopAndDisabledAndNoneAndNotSelected ? "node-2142_10" : isMobileTabletAndFocusedAndNoneAndNotSelected ? "node-2140_214" : isDesktopAndFocusedAndNoneAndNotSelected ? "node-2142_8" : isMobileTabletAndPressedAndNoneAndNotSelected ? "node-2140_212" : isDesktopAndPressedAndNoneAndNotSelected ? "node-2142_6" : breakpoint === "Mobile tablet" && state === "Hover" && correctness === "None" && !selected ? "node-2140_210" : breakpoint === "Desktop" && state === "Hover" && correctness === "None" && !selected ? "node-2142_4" : isMobileTabletAndDefaultAndNoneAndNotSelected ? "node-2140_208" : "node-2142_2"} style={state === "Default" && correctness === "None" && selected ? { backgroundImage: "linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%), linear-gradient(90deg, rgba(37, 99, 235, 0.12) 0%, rgba(37, 99, 235, 0.12) 100%)" } : state === "Disabled" && correctness === "None" && !selected ? { backgroundImage: "linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%), linear-gradient(90deg, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.04) 100%)" } : state === "Pressed" && correctness === "None" && !selected ? { backgroundImage: "linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%), linear-gradient(90deg, rgba(0, 0, 0, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%)" } : state === "Hover" && correctness === "None" && !selected ? { backgroundImage: "linear-gradient(90deg, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 100%), linear-gradient(90deg, rgba(0, 0, 0, 0.05) 0%, rgba(0, 0, 0, 0.05) 100%)" } : undefined}>
+      {breakpoint === "Desktop" && correctness === "None" && (state === "Default" || (state === "Hover" && !selected) || (state === "Pressed" && !selected) || (state === "Focused" && !selected)) && (
+        <p className="[word-break:break-word] flex-[1_0_0] font-[family-name:var(--sds-typography-title-hero-font-family,'Inter:Regular')] font-[var(--sds-typography-title-hero-font-weight,400)] leading-[var(--p2\/desktop\/line-height,24px)] min-w-px not-italic relative text-[color:var(--text\/primary,#111827)] text-[length:var(--sds-typography-title-hero-size,18px)]" data-node-id="2142:3">
+          {text}
+        </p>
+      )}
+      {breakpoint === "Mobile tablet" && correctness === "None" && (state === "Default" || (state === "Hover" && !selected) || (state === "Pressed" && !selected) || (state === "Focused" && !selected)) && (
+        <p className="[word-break:break-word] flex-[1_0_0] font-[family-name:var(--sds-typography-title-hero-font-family,'Inter:Regular')] font-[var(--sds-typography-title-hero-font-weight,400)] leading-[var(--p2\/mobile\/line-height,22px)] min-w-px not-italic relative text-[color:var(--text\/primary,#111827)] text-[length:var(--sds-typography-title-hero-size,16px)]" data-node-id="2140:209">
+          {text}
+        </p>
+      )}
+      {breakpoint === "Desktop" && state === "Default" && correctness === "Correct" && (
+        <p className="[word-break:break-word] flex-[1_0_0] font-[family-name:var(--sds-typography-title-hero-font-family,'Inter:Regular')] font-[var(--sds-typography-title-hero-font-weight,400)] leading-[var(--p2\/desktop\/line-height,24px)] min-w-px not-italic relative text-[color:var(--semantic-status\/success\/text,#047857)] text-[length:var(--sds-typography-title-hero-size,18px)]" data-node-id="2142:15">
+          {text}
+        </p>
+      )}
+      {breakpoint === "Mobile tablet" && state === "Default" && correctness === "Correct" && (
+        <p className="[word-break:break-word] flex-[1_0_0] font-[family-name:var(--sds-typography-title-hero-font-family,'Inter:Regular')] font-[var(--sds-typography-title-hero-font-weight,400)] leading-[var(--p2\/mobile\/line-height,22px)] min-w-px not-italic relative text-[color:var(--semantic-status\/success\/text,#047857)] text-[length:var(--sds-typography-title-hero-size,16px)]" data-node-id="2140:221">
+          {text}
+        </p>
+      )}
+      {breakpoint === "Desktop" && state === "Default" && correctness === "Incorrect" && (
+        <p className="[word-break:break-word] flex-[1_0_0] font-[family-name:var(--sds-typography-title-hero-font-family,'Inter:Regular')] font-[var(--sds-typography-title-hero-font-weight,400)] leading-[var(--p2\/desktop\/line-height,24px)] min-w-px not-italic relative text-[color:var(--semantic-status\/error\/text,#dc2626)] text-[length:var(--sds-typography-title-hero-size,18px)]" data-node-id="2142:19">
+          {text}
+        </p>
+      )}
+      {breakpoint === "Mobile tablet" && state === "Default" && correctness === "Incorrect" && (
+        <p className="[word-break:break-word] flex-[1_0_0] font-[family-name:var(--sds-typography-title-hero-font-family,'Inter:Regular')] font-[var(--sds-typography-title-hero-font-weight,400)] leading-[var(--p2\/mobile\/line-height,22px)] min-w-px not-italic relative text-[color:var(--semantic-status\/error\/text,#dc2626)] text-[length:var(--sds-typography-title-hero-size,16px)]" data-node-id="2140:225">
+          {text}
+        </p>
+      )}
+      {isDesktopAndDisabledAndNoneAndNotSelected && (
+        <p className="[word-break:break-word] flex-[1_0_0] font-[family-name:var(--sds-typography-title-hero-font-family,'Inter:Regular')] font-[var(--sds-typography-title-hero-font-weight,400)] leading-[var(--p2\/desktop\/line-height,24px)] min-w-px not-italic relative text-[color:var(--text\/disabled,#9ca3af)] text-[length:var(--sds-typography-title-hero-size,18px)]" data-node-id="2142:11">
+          {text}
+        </p>
+      )}
+      {isMobileTabletAndDisabledAndNoneAndNotSelected && (
+        <p className="[word-break:break-word] flex-[1_0_0] font-[family-name:var(--sds-typography-title-hero-font-family,'Inter:Regular')] font-[var(--sds-typography-title-hero-font-weight,400)] leading-[var(--p2\/mobile\/line-height,22px)] min-w-px not-italic relative text-[color:var(--text\/disabled,#9ca3af)] text-[length:var(--sds-typography-title-hero-size,16px)]" data-node-id="2140:217">
+          {text}
+        </p>
+      )}
+    </div>
+  );
+}
+
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+
+These styles are contained in the design: p2/desktop: Font(family: "var(--sds-typography-title-hero-font-family)", style: Regular, size: var(--sds-typography-title-hero-size), weight: var(--sds-typography-title-hero-font-weight), lineHeight: p2/desktop/Line height, letterSpacing: 0), p2/tablet mobile: Font(family: "var(--sds-typography-title-hero-font-family)", style: Regular, size: var(--sds-typography-title-hero-size), weight: var(--sds-typography-title-hero-font-weight), lineHeight: p2/mobile/Line height, letterSpacing: 0).
+
+Images and SVGs will be stored as constants, e.g. const image = 'https://www.figma.com/api/mcp/asset/550e8400-e29b-41d4-a716-446655440000.png'. These constants will be used in the code as the source for the image, ex: <img src={image} />. Image assets are stored on a remote server for 7 days and can be fetched using the provided URLs until they expire.

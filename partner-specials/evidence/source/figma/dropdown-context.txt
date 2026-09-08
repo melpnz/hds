@@ -1,0 +1,105 @@
+const imgIcons = "https://www.figma.com/api/mcp/asset/8c84b8a4-595c-471d-8cca-1d569d2d3c19.svg";
+const imgIcons1 = "https://www.figma.com/api/mcp/asset/28aa7798-bd61-4c25-a78a-e97d5c6e934f.svg";
+
+type ButtonProps = {
+  className?: string;
+  counterLeft?: boolean;
+  counterRight?: boolean;
+  format?: "with text";
+  iconLeft?: boolean;
+  iconRight?: boolean;
+  size?: "medium";
+  state?: "default";
+  type?: "main";
+};
+
+function Button({ className, counterLeft = false, counterRight = false, format = "with text", iconLeft = false, iconRight = false, size = "medium", state = "default", type = "main" }: ButtonProps) {
+  return (
+    <div className={className || "bg-[var(--brand-🎨\\/primary,#2563eb)] content-stretch flex gap-[var(--10,10px)] h-[var(--size\\/md,48px)] items-center justify-center px-[var(--20,20px)] py-[var(--14,14px)] relative rounded-[var(--md,12px)]"} data-node-id="2026:341">
+      {iconLeft && (
+        <div className="relative shrink-0 size-[20px]" data-node-id="2113:766" data-name="Icons">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgIcons} />
+        </div>
+      )}
+      {counterLeft && (
+        <div className="bg-[var(--background\/inverse,#16181d)] content-stretch flex gap-[var(--2,2px)] items-center justify-center px-[var(--2,2px)] py-[var(--4,4px)] relative rounded-[var(--full,9999px)] shrink-0 size-[24px]" data-node-id="2137:631" data-name="Counter">
+          <div className="[word-break:break-word] flex flex-col font-[family-name:var(--sds-typography-title-hero-font-family,'Inter:Bold')] font-[var(--sds-typography-title-hero-font-weight,700)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/quaternary,white)] text-[length:var(--sds-typography-title-hero-size,12px)] text-center w-[20px]" data-node-id="I2137:631;2137:510">
+            <p className="leading-[var(--fixed\/12\/line-height,16px)]">00</p>
+          </div>
+        </div>
+      )}
+      <div className="[word-break:break-word] flex flex-col font-[family-name:var(--sds-typography-title-hero-font-family,'Inter:Bold')] font-[var(--sds-typography-title-hero-font-weight,700)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/quaternary,white)] text-[length:var(--sds-typography-title-hero-size,16px)] whitespace-nowrap" data-node-id="2026:342">
+        <p className="leading-[var(--fixed\/16\/line-height,20px)]">Button</p>
+      </div>
+      {iconRight && (
+        <div className="relative shrink-0 size-[20px]" data-node-id="2113:762" data-name="Icons">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgIcons1} />
+        </div>
+      )}
+      {counterRight && (
+        <div className="bg-[var(--background\/inverse,#16181d)] content-stretch flex gap-[var(--2,2px)] items-center justify-center px-[var(--2,2px)] py-[var(--4,4px)] relative rounded-[var(--full,9999px)] shrink-0 size-[24px]" data-node-id="2137:656" data-name="Counter">
+          <div className="[word-break:break-word] flex flex-col font-[family-name:var(--sds-typography-title-hero-font-family,'Inter:Bold')] font-[var(--sds-typography-title-hero-font-weight,700)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/quaternary,white)] text-[length:var(--sds-typography-title-hero-size,12px)] text-center w-[20px]" data-node-id="I2137:656;2137:510">
+            <p className="leading-[var(--fixed\/12\/line-height,16px)]">00</p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+type DropdownItemProps = {
+  className?: string;
+  propValue?: string;
+  state?: "default";
+};
+
+function DropdownItem({ className, propValue = "Пункт", state = "default" }: DropdownItemProps) {
+  return (
+    <div className={className || "content-stretch flex gap-[var(--8,8px)] items-center justify-center p-[var(--8,8px)] relative rounded-[var(--sds-size-radius-200,8px)] w-[327px]"} data-node-id="2217:255">
+      <div className="[word-break:break-word] flex flex-col font-[family-name:var(--sds-typography-title-hero-font-family,'Inter:Bold')] font-[var(--sds-typography-title-hero-font-weight,700)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--sds-color-text-default-default,#1e1e1e)] text-[length:var(--sds-typography-title-hero-size,20px)] whitespace-nowrap" data-node-id="2217:256">
+        <p className="leading-[var(--t2\/desktop\/line-height,24px)]">{propValue}</p>
+      </div>
+    </div>
+  );
+}
+
+type DropdownProps = {
+  className?: string;
+  breakpoint?: "desktop" | "tablet + mobile";
+  children?: React.ReactNode | null;
+};
+
+export default function Dropdown({ className, breakpoint = "desktop", children = null }: DropdownProps) {
+  const isTabletMobile = breakpoint === "tablet + mobile";
+  return (
+    <div className={className || `${String.raw`bg-[var(--background\/tertiary,#f3f4f6)] content-stretch flex flex-col items-center p-[var(--spacing\/24,24px)] relative rounded-[20px] w-[252px] `}${isTabletMobile ? String.raw`gap-[var(--spacing\/24,24px)]` : String.raw`gap-[var(--spacing\/32,32px)]`}`} id={isTabletMobile ? "node-2217_181" : "node-2217_172"}>
+      <div className="content-stretch flex flex-col items-start relative shrink-0 w-full" id={isTabletMobile ? "node-2219_150" : "node-2219_115"} data-name="Items">
+        <div className="content-stretch flex flex-col gap-[var(--spacing\/8,8px)] items-start relative shrink-0 w-full" data-node-id="2217:271" data-name="Items">
+          {children || (
+            <>
+              <DropdownItem className="content-stretch flex gap-[var(--8,8px)] items-center justify-center p-[var(--8,8px)] relative rounded-[var(--sds-size-radius-200,8px)] shrink-0 w-full" />
+              <DropdownItem className="content-stretch flex gap-[var(--8,8px)] items-center justify-center p-[var(--8,8px)] relative rounded-[var(--sds-size-radius-200,8px)] shrink-0 w-full" />
+              <DropdownItem className="content-stretch flex gap-[var(--8,8px)] items-center justify-center p-[var(--8,8px)] relative rounded-[var(--sds-size-radius-200,8px)] shrink-0 w-full" />
+              <DropdownItem className="content-stretch flex gap-[var(--8,8px)] items-center justify-center p-[var(--8,8px)] relative rounded-[var(--sds-size-radius-200,8px)] shrink-0 w-full" />
+            </>
+          )}
+        </div>
+      </div>
+      {isTabletMobile && <Button className="bg-[var(--brand-🎨\/primary,#2563eb)] content-stretch flex gap-[var(--10,10px)] h-[48px] items-center justify-center px-[var(--20,20px)] py-[var(--14,14px)] relative rounded-[var(--md,12px)] shrink-0 w-full" />}
+    </div>
+  );
+}
+
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+
+These styles are contained in the design: t2/desktop: Font(family: "var(--sds-typography-title-hero-font-family)", style: Bold, size: var(--sds-typography-title-hero-size), weight: var(--sds-typography-title-hero-font-weight), lineHeight: t2/desktop/Line height, letterSpacing: 0), f/16(b): Font(family: "var(--sds-typography-title-hero-font-family)", style: Bold, size: var(--sds-typography-title-hero-size), weight: var(--sds-typography-title-hero-font-weight), lineHeight: fixed/16/Line height, letterSpacing: 0).
+
+Images and SVGs will be stored as constants, e.g. const image = 'https://www.figma.com/api/mcp/asset/550e8400-e29b-41d4-a716-446655440000.png'. These constants will be used in the code as the source for the image, ex: <img src={image} />. Image assets are stored on a remote server for 7 days and can be fetched using the provided URLs until they expire.

@@ -1,0 +1,29 @@
+type ProgressBarProps = {
+  className?: string;
+  state?: "in progress" | "full" | "default";
+};
+
+export default function ProgressBar({ className, state = "default" }: ProgressBarProps) {
+  const isDefault = state === "default";
+  const isFull = state === "full";
+  return (
+    <div className={className || "h-[48px] overflow-clip relative rounded-[43.823px] w-[353px]"} id={isDefault ? "node-2202_1690" : isFull ? "node-2202_1687" : "node-2202_1684"}>
+      <div aria-hidden className="absolute bg-[rgba(255,255,255,0.2)] inset-0 pointer-events-none rounded-[43.823px]" />
+      {["in progress", "full"].includes(state) && <div className={`absolute bg-gradient-to-r from-[#03acef] rounded-bl-[50px] rounded-tl-[50px] to-[#03acef] ${isFull ? "inset-0" : "inset-[0_225px_0_0]"}`} id={isFull ? "node-2202_1688" : "node-2202_1685"} data-name="Color" />}
+      <div className="absolute bg-[rgba(255,255,255,0.02)] inset-0 rounded-[43.823px]" id={isDefault ? "node-2202_1691" : isFull ? "node-2202_1689" : "node-2202_1686"} data-name="Progress bar" />
+      <div className="absolute inset-0 pointer-events-none rounded-[inherit] shadow-[inset_0px_8.217px_17.529px_0px_rgba(255,255,255,0.5)]" />
+    </div>
+  );
+}
+
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+
+Images and SVGs will be stored as constants, e.g. const image = 'https://www.figma.com/api/mcp/asset/550e8400-e29b-41d4-a716-446655440000.png'. These constants will be used in the code as the source for the image, ex: <img src={image} />. Image assets are stored on a remote server for 7 days and can be fetched using the provided URLs until they expire.

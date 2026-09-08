@@ -1,0 +1,68 @@
+const imgLogoBrandDzen = "https://www.figma.com/api/mcp/asset/a32515c6-397c-4b0c-a304-0e3edcd4a26e.svg";
+const imgLogo = "https://www.figma.com/api/mcp/asset/6b1f6e0e-18df-472c-9c70-0546d8af169e.svg";
+
+type ButtonSocialMediaProps = {
+  className?: string;
+  size?: "medium";
+  state?: "default";
+};
+
+function ButtonSocialMedia({ className, size = "medium", state = "default" }: ButtonSocialMediaProps) {
+  return (
+    <div className={className || "bg-[var(--brand-🎨\\/primary,#2563eb)] content-stretch flex items-center justify-center p-[10px] relative rounded-[var(--radius\\/full,9999px)] size-[44px]"} data-node-id="2213:585">
+      <div className="relative shrink-0 size-[32px]" data-node-id="2214:186" data-name="Logo brand/dzen">
+        <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLogoBrandDzen} />
+      </div>
+    </div>
+  );
+}
+
+type HeaderProps = {
+  className?: string;
+  breakpoint?: "desktop";
+  children?: React.ReactNode | null;
+};
+
+function Header({ className, breakpoint = "desktop", children = null }: HeaderProps) {
+  return (
+    <div className={className || "bg-[var(--background\\/inverse,#16181d)] content-stretch flex h-[115px] items-center justify-center px-[var(--margins,56px)] py-[32px] relative w-[var(--device-width,1440px)]"} data-node-id="2221:606">
+      <div className="content-stretch flex flex-[1_0_0] items-start justify-between min-w-px relative" data-node-id="2205:579">
+        <div className="h-[51px] relative shrink-0 w-[215px]" data-node-id="2220:536" data-name="Logo">
+          <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLogo} />
+        </div>
+        <div className="[word-break:break-word] content-stretch flex flex-col font-[family-name:var(--sds-typography-title-hero-font-family,'Inter:Regular')] font-[var(--sds-typography-title-hero-font-weight,400)] gap-[var(--spacing\/8,8px)] items-center not-italic relative self-stretch shrink-0 text-center w-[438px]" data-node-id="2205:593">
+          <p className="leading-[var(--fixed\/18\/line-height,22px)] relative shrink-0 text-[color:var(--text\/quaternary,white)] text-[length:var(--sds-typography-title-hero-size,18px)] w-full" data-node-id="2205:580">
+            Правила акции
+          </p>
+          <p className="leading-[var(--fixed\/14\/line-height,20px)] relative shrink-0 text-[color:var(--text\/disabled,#9ca3af)] text-[length:var(--sds-typography-title-hero-size,14px)] w-full" data-node-id="2205:581">
+            Реклама. ИНН 9704222111. ERID 2VSb5yDH4Fj
+          </p>
+        </div>
+        <div className="content-stretch flex flex-col gap-[var(--spacing\/16,16px)] items-end justify-center overflow-clip relative self-stretch shrink-0 w-[215px]" data-node-id="2219:792" data-name="Buttons">
+          <div className="content-stretch flex gap-[8px] items-center relative shrink-0" data-node-id="2219:775" data-name="Buttons">
+            {children || (
+              <>
+                <ButtonSocialMedia className="bg-[var(--brand-🎨\/primary,#2563eb)] content-stretch flex items-center justify-center p-[10px] relative rounded-[var(--radius\/full,9999px)] shrink-0 size-[44px]" />
+                <ButtonSocialMedia className="bg-[var(--brand-🎨\/primary,#2563eb)] content-stretch flex items-center justify-center p-[10px] relative rounded-[var(--radius\/full,9999px)] shrink-0 size-[44px]" />
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+
+These styles are contained in the design: f/18(r): Font(family: "var(--sds-typography-title-hero-font-family)", style: Regular, size: var(--sds-typography-title-hero-size), weight: var(--sds-typography-title-hero-font-weight), lineHeight: fixed/18/Line height, letterSpacing: 0), f/14(r): Font(family: "var(--sds-typography-title-hero-font-family)", style: Regular, size: var(--sds-typography-title-hero-size), weight: var(--sds-typography-title-hero-font-weight), lineHeight: fixed/14/Line height, letterSpacing: 0).
+
+Images and SVGs will be stored as constants, e.g. const image = 'https://www.figma.com/api/mcp/asset/550e8400-e29b-41d4-a716-446655440000.png'. These constants will be used in the code as the source for the image, ex: <img src={image} />. Image assets are stored on a remote server for 7 days and can be fetched using the provided URLs until they expire.

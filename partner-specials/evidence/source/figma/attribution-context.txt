@@ -1,0 +1,50 @@
+const imgTypes = "https://www.figma.com/api/mcp/asset/55cf058d-0014-466e-8ada-603a76e8a0c7.svg";
+const imgLayer1 = "https://www.figma.com/api/mcp/asset/df63f12b-0938-4522-a41c-0457bcafe7c7.svg";
+const imgFrame61 = "https://www.figma.com/api/mcp/asset/54b414bc-6050-4ec7-a857-38b55b0ff054.svg";
+const imgGroup = "https://www.figma.com/api/mcp/asset/b2f96e7a-d076-41a3-b99e-4d02869561e9.svg";
+const imgGroup1 = "https://www.figma.com/api/mcp/asset/c5314ae0-80b1-4cb1-a3d4-0e78f8ef3c11.svg";
+
+type LogoProps = {
+  className?: string;
+  types?: "x" | "|";
+};
+
+export default function Logo({ className, types = "|" }: LogoProps) {
+  const isX = types === "x";
+  return (
+    <div className={className || `relative w-[210px] ${isX ? "content-stretch flex gap-[11px] items-end" : "h-[51px]"}`} id={isX ? "node-2148_816" : "node-2148_817"}>
+      {types === "|" && <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgTypes} />}
+      {isX && (
+        <>
+          <div className="h-[39px] overflow-clip relative shrink-0 w-[124px]" data-node-id="2148:800" data-name="Layer_1">
+            <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgLayer1} />
+          </div>
+          <div className="h-[21px] relative shrink-0 w-[9px]" data-node-id="2148:815">
+            <div className="absolute inset-[0_-33.33%_0_0]">
+              <img alt="" className="block max-w-none size-full" src={imgFrame61} />
+            </div>
+          </div>
+          <div className="h-[39px] overflow-clip relative shrink-0 w-[55px]" data-node-id="2148:804" data-name="logo--white 1">
+            <div className="absolute contents inset-[44.82%_-0.06%_0.82%_0.68%]" data-node-id="2148:805" data-name="Clip path group">
+              <div className="absolute inset-[44.82%_-0.06%_1.65%_0.68%] mask-alpha mask-intersect mask-no-clip mask-no-repeat mask-size-[54.659px_21.198px]" data-node-id="2148:808" style={{ maskImage: `url("${imgGroup}")` }} data-name="Group">
+                <img alt="" className="absolute block inset-0 max-w-none size-full" src={imgGroup1} />
+              </div>
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  );
+}
+
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+
+Images and SVGs will be stored as constants, e.g. const image = 'https://www.figma.com/api/mcp/asset/550e8400-e29b-41d4-a716-446655440000.png'. These constants will be used in the code as the source for the image, ex: <img src={image} />. Image assets are stored on a remote server for 7 days and can be fetched using the provided URLs until they expire.

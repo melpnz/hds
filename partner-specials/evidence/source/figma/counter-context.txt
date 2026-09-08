@@ -1,0 +1,112 @@
+type CounterProps = {
+  className?: string;
+  size?: "big" | "medium" | "small";
+  state?: "default" | "disable";
+  text1?: string;
+  text2?: string;
+  type?: "progress bedge" | "counter";
+};
+
+export default function Counter({ className, size = "big", state = "default", text1 = "00", text2 = "00", type = "progress bedge" }: CounterProps) {
+  const isBigAndProgressBedge = size === "big" && type === "progress bedge";
+  const isDefaultAndBigAndCounter = state === "default" && size === "big" && type === "counter";
+  const isDefaultAndMediumAndCounter = state === "default" && size === "medium" && type === "counter";
+  const isDefaultAndMediumAndProgressBedge = state === "default" && size === "medium" && type === "progress bedge";
+  const isDefaultAndSmallAndCounter = state === "default" && size === "small" && type === "counter";
+  const isDefaultAndSmallAndProgressBedge = state === "default" && size === "small" && type === "progress bedge";
+  const isDisableAndBigAndCounter = state === "disable" && size === "big" && type === "counter";
+  const isDisableAndBigAndProgressBedge = state === "disable" && size === "big" && type === "progress bedge";
+  const isDisableAndMediumAndCounter = state === "disable" && size === "medium" && type === "counter";
+  const isDisableAndMediumAndProgressBedge = state === "disable" && size === "medium" && type === "progress bedge";
+  const isDisableAndSmallAndCounter = state === "disable" && size === "small" && type === "counter";
+  const isDisableAndSmallAndProgressBedge = state === "disable" && size === "small" && type === "progress bedge";
+  const isMediumAndProgressBedge = size === "medium" && type === "progress bedge";
+  const isSmallAndProgressBedge = size === "small" && type === "progress bedge";
+  return (
+    <div className={className || `content-stretch flex items-center justify-center relative rounded-[var(--full,9999px)] ${isDisableAndSmallAndCounter ? String.raw`bg-[var(--neutral\/500,#6b7280)] gap-[var(--2,2px)] p-[var(--2,2px)]` : isDefaultAndSmallAndCounter ? String.raw`bg-[var(--background\/inverse,#16181d)] gap-[var(--2,2px)] p-[var(--2,2px)] size-[var(--size\/xs,16px)]` : isDisableAndSmallAndProgressBedge ? String.raw`[word-break:break-word] bg-[var(--neutral\/500,#6b7280)] font-[family-name:var(--sds-typography-title-hero-font-family,"Inter:Bold")] font-[var(--sds-typography-title-hero-font-weight,700)] gap-[var(--0,0px)] leading-[var(--fixed\/8\/line-height,12px)] not-italic px-[var(--4,4px)] py-[var(--2,2px)] text-[color:var(--text\/disabled,#9ca3af)] text-[length:var(--sds-typography-title-hero-size,8px)]` : isDefaultAndSmallAndProgressBedge ? String.raw`[word-break:break-word] bg-[var(--background\/inverse,#16181d)] font-[family-name:var(--sds-typography-title-hero-font-family,"Inter:Bold")] font-[var(--sds-typography-title-hero-font-weight,700)] gap-[var(--0,0px)] leading-[var(--fixed\/8\/line-height,12px)] not-italic px-[var(--4,4px)] py-[var(--2,2px)] text-[color:var(--text\/quaternary,white)] text-[length:var(--sds-typography-title-hero-size,8px)]` : isDisableAndMediumAndCounter ? String.raw`bg-[var(--neutral\/500,#6b7280)] gap-[var(--2,2px)] px-[var(--2,2px)] py-[var(--4,4px)] w-[var(--size\/s,24px)]` : isDefaultAndMediumAndCounter ? String.raw`bg-[var(--background\/inverse,#16181d)] gap-[var(--2,2px)] px-[var(--2,2px)] py-[var(--4,4px)] size-[var(--size\/s,24px)]` : isDisableAndMediumAndProgressBedge ? String.raw`[word-break:break-word] bg-[var(--neutral\/500,#6b7280)] font-[family-name:var(--sds-typography-title-hero-font-family,"Inter:Bold")] font-[var(--sds-typography-title-hero-font-weight,700)] gap-[var(--2,2px)] leading-[var(--fixed\/12\/line-height,16px)] not-italic px-[var(--10,10px)] py-[var(--4,4px)] text-[color:var(--text\/disabled,#9ca3af)] text-[length:var(--sds-typography-title-hero-size,12px)]` : isDefaultAndMediumAndProgressBedge ? String.raw`[word-break:break-word] bg-[var(--background\/inverse,#16181d)] font-[family-name:var(--sds-typography-title-hero-font-family,"Inter:Bold")] font-[var(--sds-typography-title-hero-font-weight,700)] gap-[var(--2,2px)] leading-[var(--fixed\/12\/line-height,16px)] not-italic px-[var(--10,10px)] py-[var(--4,4px)] text-[color:var(--text\/quaternary,white)] text-[length:var(--sds-typography-title-hero-size,12px)]` : isDisableAndBigAndCounter ? String.raw`bg-[var(--neutral\/500,#6b7280)] gap-[var(--2,2px)] px-[var(--6,6px)] py-[var(--8,8px)] size-[var(--size\/xm,36px)]` : isDefaultAndBigAndCounter ? String.raw`bg-[var(--background\/inverse,#16181d)] gap-[var(--2,2px)] px-[var(--6,6px)] py-[var(--8,8px)] size-[var(--size\/xm,36px)]` : isDisableAndBigAndProgressBedge ? String.raw`[word-break:break-word] bg-[var(--neutral\/500,#6b7280)] font-[family-name:var(--sds-typography-title-hero-font-family,"Inter:Bold")] font-[var(--sds-typography-title-hero-font-weight,700)] gap-[var(--2,2px)] h-[var(--size\/xm,36px)] leading-[var(--fixed\/16\/line-height,20px)] not-italic px-[var(--spacing\/12,12px)] py-[var(--8,8px)] text-[color:var(--text\/disabled,#9ca3af)] text-[length:var(--sds-typography-title-hero-size,16px)] w-[81px]` : String.raw`[word-break:break-word] bg-[var(--background\/inverse,#16181d)] font-[family-name:var(--sds-typography-title-hero-font-family,"Inter:Bold")] font-[var(--sds-typography-title-hero-font-weight,700)] gap-[var(--2,2px)] h-[var(--size\/xm,36px)] leading-[var(--fixed\/16\/line-height,20px)] not-italic px-[var(--spacing\/12,12px)] py-[var(--8,8px)] text-[color:var(--text\/quaternary,white)] text-[length:var(--sds-typography-title-hero-size,16px)] w-[81px]`}`} id={isDisableAndSmallAndCounter ? "node-2137_775" : isDefaultAndSmallAndCounter ? "node-2137_501" : isDisableAndSmallAndProgressBedge ? "node-2137_771" : isDefaultAndSmallAndProgressBedge ? "node-2136_226" : isDisableAndMediumAndCounter ? "node-2137_769" : isDefaultAndMediumAndCounter ? "node-2137_509" : isDisableAndMediumAndProgressBedge ? "node-2137_765" : isDefaultAndMediumAndProgressBedge ? "node-2128_66" : isDisableAndBigAndCounter ? "node-2137_763" : isDefaultAndBigAndCounter ? "node-2136_470" : isDisableAndBigAndProgressBedge ? "node-2137_759" : "node-2128_62"}>
+      {isBigAndProgressBedge && (
+        <>
+          <p className="relative shrink-0 text-center w-[24px]" data-node-id="2128:63">
+            {text1}
+          </p>
+          <p className="relative shrink-0 whitespace-nowrap" id={isDisableAndBigAndProgressBedge ? "node-2137_761" : "node-2128_64"}>
+            /
+          </p>
+          <p className="relative shrink-0 text-center w-[24px]" data-node-id="2128:65">
+            {text2}
+          </p>
+        </>
+      )}
+      {isMediumAndProgressBedge && (
+        <>
+          <p className="relative shrink-0 text-center w-[18px]" data-node-id="2128:67">
+            {text1}
+          </p>
+          <p className="relative shrink-0 w-[6px]" id={isDisableAndMediumAndProgressBedge ? "node-2137_767" : "node-2128_68"}>
+            /
+          </p>
+          <p className="relative shrink-0 text-center w-[18px]" data-node-id="2128:69">
+            {text2}
+          </p>
+        </>
+      )}
+      {isSmallAndProgressBedge && (
+        <>
+          <p className="relative shrink-0 text-center w-[12px]" data-node-id="2136:227">
+            {text1}
+          </p>
+          <p className="relative shrink-0 whitespace-nowrap" id={isDisableAndSmallAndProgressBedge ? "node-2137_773" : "node-2136_228"}>
+            /
+          </p>
+          <p className="relative shrink-0 text-center w-[12px]" data-node-id="2136:229">
+            {text2}
+          </p>
+        </>
+      )}
+      {isDefaultAndBigAndCounter && (
+        <p className="[word-break:break-word] font-[family-name:var(--sds-typography-title-hero-font-family,'Inter:Bold')] font-[var(--sds-typography-title-hero-font-weight,700)] leading-[var(--fixed\/16\/line-height,20px)] not-italic relative shrink-0 text-[color:var(--text\/quaternary,white)] text-[length:var(--sds-typography-title-hero-size,16px)] text-center w-[24px]" data-node-id="2136:471">
+          {text1}
+        </p>
+      )}
+      {isDisableAndBigAndCounter && (
+        <p className="[word-break:break-word] font-[family-name:var(--sds-typography-title-hero-font-family,'Inter:Bold')] font-[var(--sds-typography-title-hero-font-weight,700)] leading-[var(--fixed\/16\/line-height,20px)] not-italic relative shrink-0 text-[color:var(--text\/disabled,#9ca3af)] text-[length:var(--sds-typography-title-hero-size,16px)] text-center w-[24px]" data-node-id="2137:764">
+          {text1}
+        </p>
+      )}
+      {isDefaultAndMediumAndCounter && (
+        <div className="[word-break:break-word] flex flex-col font-[family-name:var(--sds-typography-title-hero-font-family,'Inter:Bold')] font-[var(--sds-typography-title-hero-font-weight,700)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/quaternary,white)] text-[length:var(--sds-typography-title-hero-size,12px)] text-center w-[20px]" data-node-id="2137:510">
+          <p className="leading-[var(--fixed\/12\/line-height,16px)]">{text1}</p>
+        </div>
+      )}
+      {isDisableAndMediumAndCounter && (
+        <p className="[word-break:break-word] font-[family-name:var(--sds-typography-title-hero-font-family,'Inter:Bold')] font-[var(--sds-typography-title-hero-font-weight,700)] leading-[var(--fixed\/12\/line-height,16px)] not-italic relative shrink-0 text-[color:var(--text\/disabled,#9ca3af)] text-[length:var(--sds-typography-title-hero-size,12px)] text-center w-[18px]" data-node-id="2137:770">
+          {text1}
+        </p>
+      )}
+      {isDefaultAndSmallAndCounter && (
+        <p className="[word-break:break-word] font-[family-name:var(--sds-typography-title-hero-font-family,'Inter:Bold')] font-[var(--sds-typography-title-hero-font-weight,700)] leading-[var(--fixed\/8\/line-height,12px)] not-italic relative shrink-0 text-[color:var(--text\/quaternary,white)] text-[length:var(--sds-typography-title-hero-size,8px)] text-center w-[12px]" data-node-id="2137:502">
+          {text1}
+        </p>
+      )}
+      {isDisableAndSmallAndCounter && (
+        <p className="[word-break:break-word] font-[family-name:var(--sds-typography-title-hero-font-family,'Inter:Bold')] font-[var(--sds-typography-title-hero-font-weight,700)] leading-[var(--fixed\/8\/line-height,12px)] not-italic relative shrink-0 text-[color:var(--text\/disabled,#9ca3af)] text-[length:var(--sds-typography-title-hero-size,8px)] text-center w-[12px]" data-node-id="2137:776">
+          {text1}
+        </p>
+      )}
+    </div>
+  );
+}
+
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+
+These styles are contained in the design: f/16(b): Font(family: "var(--sds-typography-title-hero-font-family)", style: Bold, size: var(--sds-typography-title-hero-size), weight: var(--sds-typography-title-hero-font-weight), lineHeight: fixed/16/Line height, letterSpacing: 0), f/12(b): Font(family: "var(--sds-typography-title-hero-font-family)", style: Bold, size: var(--sds-typography-title-hero-size), weight: var(--sds-typography-title-hero-font-weight), lineHeight: fixed/12/Line height, letterSpacing: 0), f/8(b): Font(family: "var(--sds-typography-title-hero-font-family)", style: Bold, size: var(--sds-typography-title-hero-size), weight: var(--sds-typography-title-hero-font-weight), lineHeight: fixed/8/Line height, letterSpacing: 0).
+
+Images and SVGs will be stored as constants, e.g. const image = 'https://www.figma.com/api/mcp/asset/550e8400-e29b-41d4-a716-446655440000.png'. These constants will be used in the code as the source for the image, ex: <img src={image} />. Image assets are stored on a remote server for 7 days and can be fetched using the provided URLs until they expire.

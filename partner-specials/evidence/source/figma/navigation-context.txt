@@ -1,0 +1,38 @@
+type NavigationPillProps = {
+  className?: string;
+  propValue?: string;
+  state?: "default" | "hover" | "picked";
+};
+
+export default function NavigationPill({ className, propValue = "Пункт", state = "default" }: NavigationPillProps) {
+  const isHover = state === "hover";
+  const isPicked = state === "picked";
+  return (
+    <div className={className || `content-stretch flex gap-[var(--8,8px)] items-center justify-center p-[var(--8,8px)] relative rounded-[var(--sds-size-radius-200,8px)] w-[327px] ${isPicked ? String.raw`bg-[var(--background\/tertiary,#f3f4f6)]` : ""}`} id={isPicked ? "node-2147_737" : isHover ? "node-2147_719" : "node-2147_717"}>
+      {["default", "picked"].includes(state) && (
+        <div className="[word-break:break-word] flex flex-col font-[family-name:var(--sds-typography-title-hero-font-family,'Inter:Bold')] font-[var(--sds-typography-title-hero-font-weight,700)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--sds-color-text-default-default,#1e1e1e)] text-[length:var(--sds-typography-title-hero-size,20px)] whitespace-nowrap" data-node-id="2147:716">
+          <p className="leading-[var(--t2\/desktop\/line-height,24px)]">{propValue}</p>
+        </div>
+      )}
+      {isHover && (
+        <div className="[word-break:break-word] flex flex-col font-[family-name:var(--sds-typography-title-hero-font-family,'Inter:Bold')] font-[var(--sds-typography-title-hero-font-weight,700)] justify-center leading-[0] not-italic relative shrink-0 text-[color:var(--text\/tertiary,#6b7280)] text-[length:var(--sds-typography-title-hero-size,20px)] whitespace-nowrap" data-node-id="2147:720">
+          <p className="leading-[var(--t2\/desktop\/line-height,24px)]">{propValue}</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
+SUPER CRITICAL: The generated React+Tailwind code MUST be converted to match the target project's technology stack and styling system.
+1. Analyze the target codebase to identify: technology stack, styling approach, component patterns, and design tokens
+2. Convert React syntax to the target framework/library
+3. Transform all Tailwind classes to the target styling system while preserving exact visual design
+4. Follow the project's existing patterns and conventions
+DO NOT install any Tailwind as a dependency unless the user instructs you to do so.
+
+
+Node ids have been added to the code as data attributes, e.g. `data-node-id="1:2"`.
+
+These styles are contained in the design: t2/desktop: Font(family: "var(--sds-typography-title-hero-font-family)", style: Bold, size: var(--sds-typography-title-hero-size), weight: var(--sds-typography-title-hero-font-weight), lineHeight: t2/desktop/Line height, letterSpacing: 0).
+
+Images and SVGs will be stored as constants, e.g. const image = 'https://www.figma.com/api/mcp/asset/550e8400-e29b-41d4-a716-446655440000.png'. These constants will be used in the code as the source for the image, ex: <img src={image} />. Image assets are stored on a remote server for 7 days and can be fetched using the provided URLs until they expire.
