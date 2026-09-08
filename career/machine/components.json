@@ -1,0 +1,2279 @@
+[
+  {
+    "id": "vacancy-card",
+    "name": "VacancyCard",
+    "category": "entities",
+    "kind": "module",
+    "spec": "components\\cards\\vacancy-card.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "vacancy-card"
+    ],
+    "anchor": "showcase/components.html#c-vacancy-prod",
+    "markup": {
+      "html": "<article class=\"vacancy-card\" aria-labelledby=\"vacancy-title\">\n  <div class=\"vacancy-card__main\">\n    <a class=\"vacancy-card__icon-link\" href=\"/companies/example\" aria-label=\"Компания Example\">\n      <img class=\"vacancy-card__logo\" src=\"../../ui/assets/illustrations/avatar-default-company.svg\" alt=\"\">\n    </a>\n    <div class=\"vacancy-card__info\">\n      <div class=\"vacancy-card__company\">\n        <a class=\"vacancy-card__company-name\" href=\"/companies/example\">Example</a>\n        <time class=\"vacancy-card__date\" datetime=\"2026-09-07\">Сегодня</time>\n      </div>\n      <a class=\"vacancy-card__title\" id=\"vacancy-title\" href=\"/vacancies/1\">Frontend developer</a>\n      <p class=\"vacancy-meta\"><span class=\"vacancy-card__salary\">от 250 000 ₽</span></p>\n      <div class=\"vacancy-card__skills\" aria-label=\"Условия\"><a class=\"base-chip\" href=\"#\">Senior</a></div>\n      <div class=\"vacancy-card__skills\" aria-label=\"Навыки\"><a class=\"base-chip\" href=\"#\">TypeScript</a></div>\n    </div>\n  </div>\n  <footer class=\"vacancy-card__footer\">\n    <button type=\"button\">Откликнуться</button>\n    <button type=\"button\" aria-pressed=\"false\" aria-label=\"Добавить в избранное\">…</button>\n  </footer>\n</article>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "VacancyCardWithCompanyAndDate"
+    ],
+    "code": {
+      "component": "VacancyCardWithCompanyAndDate",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "button",
+    "name": "Button",
+    "category": "actions",
+    "kind": "component",
+    "spec": "components\\actions\\button.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "disabled",
+      "loading"
+    ],
+    "cssRoots": [
+      "base-button"
+    ],
+    "anchor": "showcase/components.html#a-states",
+    "markup": {
+      "html": "<button href type=\"button\" target=\"_self\" class=\"base-button inline-flex appearance-main-border size-l has-before has-after is-sizeable\">\n  <span class=\"base-button__inner\">\n    <span class=\"base-button__before\">\n      <svg class=\"svg-icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n        <use xlink:href=\"../../ui/assets/icons/sprite.svg#filter\"/>\n      </svg>\n    </span>\n    <span class=\"base-button__content\">Фильтры</span>\n    <span class=\"base-button__after\">\n      <span class=\"inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-ui-primary px-1 text-body-xs font-semibold leading-4 text-ui-white\">0</span>\n    </span>\n  </span>\n</button>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "631:1710",
+        "sourceName": "button / M / main"
+      }
+    ],
+    "storybookNames": [
+      "BaseButton"
+    ],
+    "code": {
+      "component": "BaseButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "ai-button",
+    "name": "AIButton",
+    "category": "actions",
+    "kind": "component",
+    "spec": "components\\actions\\ai-button.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "disabled",
+      "loading"
+    ],
+    "cssRoots": [
+      "ai-button",
+      "base-button"
+    ],
+    "anchor": "showcase/components.html#a-special",
+    "markup": {
+      "html": "<button class=\"ai-button base-button inline-flex appearance-main size-m has-before is-sizeable ai-button\" type=\"button\" target=\"_self\">\n  <span class=\"base-button__inner\">\n    <span class=\"base-button__before\">\n      <svg class=\"svg-icon\" width=\"24\" height=\"24\" aria-hidden=\"true\" style=\"width: 24px; height: 24px;\">\n        <use xlink:href=\"../../ui/assets/icons/sprite.svg#booster\"/>\n      </svg>\n    </span>\n    <span class=\"base-button__content\">AI кнопка</span>\n  </span>\n</button>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "2067:314",
+        "sourceName": "button / M / ai"
+      }
+    ],
+    "storybookNames": [
+      "AIButton"
+    ],
+    "code": {
+      "component": "AIButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "avatar-button",
+    "name": "AvatarButton",
+    "category": "actions",
+    "kind": "component",
+    "spec": "components\\actions\\avatar-button.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "selected",
+      "disabled",
+      "loading"
+    ],
+    "cssRoots": [
+      "avatar-button"
+    ],
+    "anchor": "showcase/components.html#a-round",
+    "markup": {
+      "html": "<button class=\"avatar-button base-button inline-flex appearance-avatar size-l avatar-button\" type=\"button\" target=\"_self\">\n  <span class=\"base-button__content base-button__content--appearance-avatar\">\n    <img src=\"../../ui/assets/illustrations/avatar-default-user.svg\" alt=\"Аватар пользователя\" class=\"size-full object-cover\">\n  </span>\n</button>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "3989:22984",
+        "sourceName": "button / L / avatar"
+      }
+    ],
+    "storybookNames": [
+      "BaseAvatarButton"
+    ],
+    "code": {
+      "component": "BaseAvatarButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "button-range",
+    "name": "ButtonRange",
+    "category": "actions",
+    "kind": "component",
+    "spec": "components\\actions\\button-range.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "selected",
+      "disabled"
+    ],
+    "cssRoots": [
+      "button-range"
+    ],
+    "anchor": "showcase/components.html#a-range",
+    "markup": null,
+    "evidence": [],
+    "storybookNames": [
+      "ButtonRange"
+    ],
+    "code": {
+      "component": "ButtonRange",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "filter-button",
+    "name": "FilterButton",
+    "category": "actions",
+    "kind": "component",
+    "spec": "components\\actions\\filter-button.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "selected",
+      "disabled",
+      "loading"
+    ],
+    "cssRoots": [
+      "filter-button",
+      "base-button"
+    ],
+    "anchor": "showcase/components.html#a-filter",
+    "markup": {
+      "html": "<button class=\"filter-button is-panel base-button inline-flex appearance-passive size-l has-before has-after is-sizeable filter-button is-panel\" type=\"button\" target=\"_self\">\n  <span class=\"base-button__inner\">\n    <span class=\"base-button__before\">\n      <svg class=\"svg-icon filter-button__icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n        <use xlink:href=\"../../ui/assets/icons/sprite.svg#filter\"/>\n      </svg>\n    </span>\n    <span class=\"base-button__content\">Фильтры</span>\n    <span class=\"base-button__after\">\n      <span class=\"filter-button__badge filter-button__badge--count\">0</span>\n    </span>\n  </span>\n</button>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "661:687",
+        "sourceName": "button / L / filter"
+      }
+    ],
+    "storybookNames": [
+      "FilterButton"
+    ],
+    "code": {
+      "component": "FilterButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "ghost-button",
+    "name": "GhostButton",
+    "category": "actions",
+    "kind": "component",
+    "spec": "components\\actions\\ghost-button.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "disabled",
+      "loading"
+    ],
+    "cssRoots": [
+      "ghost-button",
+      "base-button"
+    ],
+    "anchor": "showcase/components.html#a-special",
+    "markup": {
+      "html": "<button class=\"ghost-button base-button inline-flex appearance-none size-m is-sizeable ghost-button\" type=\"button\" target=\"_self\">\n  <span class=\"base-button__inner\">\n    <span class=\"base-button__content\">Button</span>\n  </span>\n</button>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "644:1916",
+        "sourceName": "button / M / ghost"
+      }
+    ],
+    "storybookNames": [
+      "GhostButton"
+    ],
+    "code": {
+      "component": "GhostButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "icon-button",
+    "name": "IconButton",
+    "category": "actions",
+    "kind": "component",
+    "spec": "components\\actions\\icon-button.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "selected",
+      "disabled",
+      "loading"
+    ],
+    "cssRoots": [
+      "icon-button"
+    ],
+    "anchor": "showcase/components.html#a-round",
+    "markup": {
+      "html": "<button class=\"icon-button base-button inline-flex appearance-none size-l icon-button\" type=\"button\" target=\"_self\">\n  <span class=\"base-button__content\">\n    <svg class=\"svg-icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n      <use xlink:href=\"../../ui/assets/icons/sprite.svg#bell\"/>\n    </svg>\n  </span>\n</button>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "3925:4469",
+        "sourceName": "button / L / icon"
+      }
+    ],
+    "storybookNames": [
+      "BaseIconButton"
+    ],
+    "code": {
+      "component": "BaseIconButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "link-styled-button",
+    "name": "LinkStyledButton",
+    "category": "actions",
+    "kind": "component",
+    "spec": "components\\actions\\link-styled-button.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "disabled"
+    ],
+    "cssRoots": [
+      "link-styled-button"
+    ],
+    "anchor": "showcase/components.html#a-special",
+    "markup": {
+      "html": "<button class=\"link-styled-button inline-block text-body-m\" type=\"button\">Кнопка выглядящая как ссылка</button>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "LinkStyledButton"
+    ],
+    "code": {
+      "component": "LinkStyledButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "pagination-button",
+    "name": "PaginationButton",
+    "category": "actions",
+    "kind": "component",
+    "spec": "components\\actions\\pagination-button.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "current",
+      "disabled"
+    ],
+    "cssRoots": [
+      "pagination-button"
+    ],
+    "anchor": "showcase/components.html#a-round",
+    "markup": {
+      "html": "<button class=\"pagination-button base-button inline-flex appearance-none size-l pagination-button\" type=\"button\" target=\"_self\">\n  <span class=\"base-button__content\">\n    <span class=\"pagination-button__content\">00</span>\n  </span>\n</button>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "3926:4579",
+        "sourceName": "button / L / pagination"
+      }
+    ],
+    "storybookNames": [
+      "BasePaginationButton"
+    ],
+    "code": {
+      "component": "BasePaginationButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "rounded-arrow-button",
+    "name": "RoundedArrowButton",
+    "category": "actions",
+    "kind": "component",
+    "spec": "components\\actions\\rounded-arrow-button.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "disabled"
+    ],
+    "cssRoots": [
+      "rounded-arrow-button"
+    ],
+    "anchor": "showcase/components.html#a-special",
+    "markup": {
+      "html": "<a href=\"https://google.com\" title=\"Example\" aria-label=\"Example\" rel=\"noopener noreferrer\" class=\"rounded-arrow-button flex h-10 w-10 transform items-center justify-center rounded-full border border-ui-gray-5 text-center transition-all border-icon-gray bg-transparent hover:bg-branded-profile-primary hover:border-branded-profile-primary hover:text-ui-white text-ui-checkbox rotate-180\" target=\"_blank\">\n  <svg class=\"svg-icon shrink-0 fill-current transition-all\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n    <use xlink:href=\"../../ui/assets/icons/sprite.svg#arrow-left-rounded\"/>\n  </svg>\n</a>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "RoundedArrowButton"
+    ],
+    "code": {
+      "component": "RoundedArrowButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "salary-head-button",
+    "name": "SalaryHeadButton",
+    "category": "actions",
+    "kind": "component",
+    "spec": "components\\actions\\salary-head-button.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "disabled",
+      "loading"
+    ],
+    "cssRoots": [
+      "salary-head-button",
+      "base-button"
+    ],
+    "anchor": "showcase/components.html#a-special",
+    "markup": {
+      "html": "<div class=\"salary-head-button\">\n  <a href=\"salaries/reports\" rel=\"noopener noreferrer\" class=\"salary-head-button__companies-link\">Для компаний</a>\n  <button class=\"salary-head-button__update-btn base-button inline-flex appearance-main size-l is-sizeable salary-head-button__update-btn\" type=\"button\" target=\"_self\">\n    <span class=\"base-button__inner\">\n      <span class=\"base-button__content\">Обновить мои данные</span>\n    </span>\n  </button>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "SalaryHeadButton"
+    ],
+    "code": {
+      "component": "SalaryHeadButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "avatar",
+    "name": "Avatar",
+    "category": "data-display",
+    "kind": "primitive",
+    "spec": "components\\data\\avatar.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "base-avatar"
+    ],
+    "anchor": "showcase/components.html#d-avatar",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "722:1599",
+        "sourceName": "avatar/user"
+      }
+    ]
+  },
+  {
+    "id": "collapsed-content",
+    "name": "CollapsedContent",
+    "category": "data-display",
+    "kind": "component",
+    "spec": "components\\data\\collapsed-content.md",
+    "status": "complete",
+    "states": [
+      "collapsed",
+      "expanded"
+    ],
+    "cssRoots": [
+      "collapsed-content"
+    ],
+    "anchor": "showcase/components.html#d-collapsed-contract",
+    "markup": null,
+    "evidence": []
+  },
+  {
+    "id": "content",
+    "name": "Content",
+    "category": "data-display",
+    "kind": "component",
+    "spec": "components\\data\\content.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "editor__content"
+    ],
+    "anchor": "showcase/components.html#d-content",
+    "markup": null,
+    "evidence": []
+  },
+  {
+    "id": "inline-separator",
+    "name": "InlineSeparator",
+    "category": "data-display",
+    "kind": "primitive",
+    "spec": "components\\data\\inline-separator.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "inline-separator"
+    ],
+    "anchor": "showcase/components.html#d-pretty-scroll-contract",
+    "markup": null,
+    "evidence": []
+  },
+  {
+    "id": "pretty-scroll",
+    "name": "PrettyScroll",
+    "category": "data-display",
+    "kind": "primitive",
+    "spec": "components\\data\\pretty-scroll.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "pretty-scroll"
+    ],
+    "anchor": "showcase/components.html#d-pretty-scroll-contract",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "scroll"
+      }
+    ]
+  },
+  {
+    "id": "row",
+    "name": "Row",
+    "category": "collections",
+    "kind": "component",
+    "spec": "components\\data\\row.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "selected",
+      "disabled"
+    ],
+    "cssRoots": [
+      "base-row"
+    ],
+    "anchor": "showcase/components.html#d-row",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "row / main"
+      }
+    ],
+    "storybookNames": [
+      "BaseRow"
+    ],
+    "code": {
+      "component": "BaseRow",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "salary-bar",
+    "name": "SalaryBar",
+    "category": "data-display",
+    "kind": "component",
+    "spec": "components\\data\\salary-bar.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "salary-bar"
+    ],
+    "anchor": "showcase/components.html#d-salary",
+    "markup": {
+      "html": "<div class=\"mx-auto w-[804px] max-w-full p-6 py-12\">\n  <div class=\"salary-bar salary-bar--has-user-avatar\">\n    <div class=\"salary-bar__container\">\n      <div class=\"salary-bar__min v-popper--has-tooltip\">12k</div>\n      <div class=\"salary-bar__max v-popper--has-tooltip\">479k</div>\n      <div class=\"salary-bar__circle-container\">\n        <div class=\"salary-bar__circle-item hidden phone:block\"></div>\n        <div class=\"salary-bar__circle-item hidden phone:block\"></div>\n        <div class=\"salary-bar__circle-item hidden phone:block\"></div>\n        <div class=\"salary-bar__circle-item hidden phone:block\"></div>\n        <div class=\"salary-bar__circle-item hidden phone:block\"></div>\n        <div class=\"salary-bar__circle-item hidden phone:block\"></div>\n        <div class=\"salary-bar__circle-item hidden phone:block\"></div>\n        <div class=\"salary-bar__circle-item hidden phone:block\"></div>\n        <div class=\"salary-bar__circle-item hidden phone:block\"></div>\n        <div class=\"salary-bar__circle-item hidden phone:block\"></div>\n        <div class=\"salary-bar__circle-item phone:hidden\"></div>\n        <div class=\"salary-bar__circle-item phone:hidden\"></div>\n        <div class=\"salary-bar__circle-item phone:hidden\"></div>\n        <div class=\"salary-bar__circle-item phone:hidden\"></div>\n        <div class=\"salary-bar__circle-item phone:hidden\"></div>\n        <div class=\"salary-bar__circle-item phone:hidden\"></div>\n        <div class=\"salary-bar__circle-item phone:hidden\"></div>\n        <div class=\"salary-bar__circle-item phone:hidden\"></div>\n        <div class=\"salary-bar__circle-item phone:hidden\"></div>\n        <div class=\"salary-bar__circle-item phone:hidden\"></div>\n        <div class=\"salary-bar__circle-item phone:hidden\"></div>\n        <div class=\"salary-bar__circle-item phone:hidden\"></div>\n        <div class=\"salary-bar__circle-item phone:hidden\"></div>\n        <div class=\"salary-bar__circle-item phone:hidden\"></div>\n        <div class=\"salary-bar__circle-item phone:hidden\"></div>\n        <div class=\"salary-bar__circle-item phone:hidden\"></div>\n        <div class=\"salary-bar__circle-item phone:hidden\"></div>\n        <div class=\"salary-bar__circle-item phone:hidden\"></div>\n        <div class=\"salary-bar__circle-item phone:hidden\"></div>\n        <div class=\"salary-bar__circle-item phone:hidden\"></div>\n        <div class=\"salary-bar__circle-item phone:hidden\"></div>\n        <div class=\"salary-bar__circle-item phone:hidden\"></div>\n        <div class=\"salary-bar__circle-item phone:hidden\"></div>\n      </div>\n      <div class=\"salary-bar__sub-bar\" style=\"left: max(10px, 16.7024%); width: max(40px, 34.2612%);\">\n        <div class=\"salary-bar__sub-bar-values\">\n          <div class=\"salary-bar__sub-bar-min v-popper--has-tooltip\">90k</div>\n          <div class=\"salary-bar__sub-bar-max v-popper--has-tooltip\">250k</div>\n        </div>\n      </div>\n      <div class=\"salary-bar__median-divider\" style=\"left: clamp(10px, 35.9743%, 100% - 10px);\"></div>\n      <div class=\"salary-bar__median-arrow\" style=\"left: clamp(10px, 35.9743%, 100% - 10px);\"></div>\n      <div class=\"salary-bar__median-divider-value v-popper--has-tooltip\" style=\"left: clamp(10px, 35.9743%, 100% - 10px);\">180k</div>\n      <div class=\"salary-bar__user-salary-divider\" style=\"left: clamp(22px, 40.257%, 100% - 22px);\"></div>\n      <div class=\"salary-bar__my-avatar v-popper--has-tooltip\" style=\"left: clamp(22px, 40.257%, 100% - 22px);\">\n        <div class=\"salary-bar__my-avatar-wrapper\">\n          <img class=\"salary-bar__my-avatar-image\" src=\"../../ui/assets/illustrations/avatar-default-user.svg\" alt=\"Аватар пользователя\" style=\"width: 40px; height: auto; transform: translate(0px, calc(-50% + 20px));\">\n        </div>\n      </div>\n      <div class=\"salary-bar__avatar-arrow\" style=\"left: clamp(22px, 40.257%, 100% - 22px);\"></div>\n    </div>\n  </div>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "SalaryBar"
+    ],
+    "code": {
+      "component": "SalaryBar",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "section",
+    "name": "Section",
+    "category": "layout",
+    "kind": "component",
+    "spec": "components\\data\\section.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "base-section"
+    ],
+    "anchor": "showcase/components.html#d-section",
+    "markup": {
+      "html": "<div class=\"bg-ui-gray p-8\">\n  <section class=\"base-section base-section--background-white base-section--padding-medium rounded-3xl\">\n    <h1 class=\"base-section__title base-section__title--size-s base-section__title--padding-medium\">Заголовок секции</h1>\n    Контент секции\n  </section>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "BaseSection"
+    ],
+    "code": {
+      "component": "BaseSection",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "social-icon",
+    "name": "SocialIcon",
+    "category": "data-display",
+    "kind": "primitive",
+    "spec": "components\\data\\social-icon.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "svg-icon"
+    ],
+    "anchor": "showcase/components.html#f-icons-pack",
+    "markup": {
+      "html": "<svg class=\"svg-icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n  <use xlink:href=\"../../ui/assets/icons/social-v3.1.svg#facebook\"/>\n</svg>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "SocialIcon"
+    ],
+    "code": {
+      "component": "SocialIcon",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "sprite-icon",
+    "name": "Icon",
+    "category": "data-display",
+    "kind": "primitive",
+    "spec": "components\\data\\sprite-icon.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "icon-inline",
+      "icon-image"
+    ],
+    "anchor": "showcase/components.html#f-icons-sprite",
+    "markup": {
+      "html": "<svg class=\"svg-icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n  <use xlink:href=\"../../ui/assets/icons/sprite.svg#arrow\"/>\n</svg>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "SpriteIcon"
+    ],
+    "code": {
+      "component": "SpriteIcon",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    },
+    "legacyAliases": [
+      "SpriteIcon"
+    ]
+  },
+  {
+    "id": "booster-gradient-wrapper",
+    "name": "BoosterGradientWrapper",
+    "category": "feedback",
+    "kind": "component",
+    "spec": "components\\feedback\\booster-gradient.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "booster-gradient-wrapper"
+    ],
+    "anchor": "showcase/components.html#d-avatar",
+    "markup": null,
+    "evidence": []
+  },
+  {
+    "id": "empty-placeholder",
+    "name": "EmptyPlaceholder",
+    "category": "feedback",
+    "kind": "component",
+    "spec": "components\\feedback\\empty-placeholder.md",
+    "status": "complete",
+    "states": [
+      "empty"
+    ],
+    "cssRoots": [
+      "empty-placeholder"
+    ],
+    "anchor": "showcase/components.html#fb-empty",
+    "markup": {
+      "html": "<div class=\"hidden\">\n  <img src=\"../../ui/assets/illustrations/no-conversations.svg\" alt=\"Нет диалогов\" width=\"48\" height=\"48\" class=\"ml-4 mt-3\">\n</div>\n<div class=\"h-full pb-[44px]\">\n  <div class=\"empty-placeholder empty-placeholder--fullWidth empty-placeholder--noBorder empty-placeholder--fullHeight\">\n    <img src=\"../../ui/assets/illustrations/no-conversations.svg\" alt width=\"96\" height=\"96\" class=\"empty-placeholder__image\">\n    <div class=\"empty-placeholder__title\">Нет диалогов</div>\n    <div class=\"empty-placeholder__description\">Вы можете найти собеседников в списке специалистов.</div>\n    <div class=\"empty-placeholder__actions\">\n      <a href=\"/resumes\" target=\"_self\" class=\"base-button inline-flex appearance-main size-l is-sizeable\">\n        <span class=\"base-button__inner\">\n          <span class=\"base-button__content\">В раздел специалистов</span>\n        </span>\n      </a>\n    </div>\n  </div>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "ConversationNotSelected",
+      "NoConversationsFound",
+      "NoConversations",
+      "NoMessages"
+    ],
+    "code": {
+      "component": "ConversationNotSelected",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "loader",
+    "name": "Loader",
+    "category": "feedback",
+    "kind": "primitive",
+    "spec": "components\\feedback\\loader.md",
+    "status": "complete",
+    "states": [
+      "loading"
+    ],
+    "cssRoots": [
+      "base-loader"
+    ],
+    "anchor": "showcase/components.html#fb-loading-contract",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "1144:33168",
+        "sourceName": "loader"
+      }
+    ],
+    "storybookNames": [
+      "BaseLoader"
+    ],
+    "code": {
+      "component": "BaseLoader",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "notification",
+    "name": "Notification",
+    "category": "feedback",
+    "kind": "component",
+    "spec": "components\\feedback\\notification.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "error",
+      "success"
+    ],
+    "cssRoots": [
+      "notification"
+    ],
+    "anchor": "showcase/components.html#fb-notification",
+    "markup": {
+      "html": "<div class=\"notification notification--info\">\n  <div class=\"notification__wrapper\">\n    <svg class=\"svg-icon notification__icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n      <use xlink:href=\"../../ui/assets/icons/sprite.svg#info\"/>\n    </svg>\n    <div class=\"notification__content\">\n      <div class=\"notification__title\">Текст</div>\n      <div class=\"notification__description\">Описание с возможностью закрытия</div>\n    </div>\n    <button class=\"notification__close\">\n      <svg class=\"svg-icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n        <use xlink:href=\"../../ui/assets/icons/sprite.svg#cross\"/>\n      </svg>\n    </button>\n  </div>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "informer / on-page"
+      }
+    ],
+    "storybookNames": [
+      "BaseNotification"
+    ],
+    "code": {
+      "component": "BaseNotification",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "skeleton",
+    "name": "Skeleton",
+    "category": "feedback",
+    "kind": "primitive",
+    "spec": "components\\feedback\\skeleton.md",
+    "status": "complete",
+    "states": [
+      "loading"
+    ],
+    "cssRoots": [
+      "skeleton-pulse",
+      "skeleton-shape"
+    ],
+    "anchor": "showcase/components.html#fb-loading-contract",
+    "markup": {
+      "html": "<div class=\"skeleton-pulse phablet-only:w-[320px]\">\n  <div class=\"flex items-center gap-3 px-4 py-3\">\n    <div class=\"skeleton-shape shrink-0\" style=\"width: 48px; height: 48px; border-radius: 50%;\"></div>\n    <div class=\"grow\">\n      <div class=\"mb-3 flex items-end justify-between gap-6\">\n        <div class=\"skeleton-shape max-w-[200px] grow\" style=\"width: auto; height: 16px;\"></div>\n        <div class=\"skeleton-shape\" style=\"width: 48px; height: 12px;\"></div>\n      </div>\n      <div class=\"skeleton-shape\" style=\"width: 100%; height: 12px;\"></div>\n    </div>\n  </div>\n  <div class=\"flex items-center gap-3 px-4 py-3\">\n    <div class=\"skeleton-shape shrink-0\" style=\"width: 48px; height: 48px; border-radius: 50%;\"></div>\n    <div class=\"grow\">\n      <div class=\"mb-3 flex items-end justify-between gap-6\">\n        <div class=\"skeleton-shape max-w-[200px] grow\" style=\"width: auto; height: 16px;\"></div>\n        <div class=\"skeleton-shape\" style=\"width: 48px; height: 12px;\"></div>\n      </div>\n      <div class=\"skeleton-shape\" style=\"width: 100%; height: 12px;\"></div>\n    </div>\n  </div>\n  <div class=\"flex items-center gap-3 px-4 py-3\">\n    <div class=\"skeleton-shape shrink-0\" style=\"width: 48px; height: 48px; border-radius: 50%;\"></div>\n    <div class=\"grow\">\n      <div class=\"mb-3 flex items-end justify-between gap-6\">\n        <div class=\"skeleton-shape max-w-[200px] grow\" style=\"width: auto; height: 16px;\"></div>\n        <div class=\"skeleton-shape\" style=\"width: 48px; height: 12px;\"></div>\n      </div>\n      <div class=\"skeleton-shape\" style=\"width: 100%; height: 12px;\"></div>\n    </div>\n  </div>\n  <div class=\"flex items-center gap-3 px-4 py-3\">\n    <div class=\"skeleton-shape shrink-0\" style=\"width: 48px; height: 48px; border-radius: 50%;\"></div>\n    <div class=\"grow\">\n      <div class=\"mb-3 flex items-end justify-between gap-6\">\n        <div class=\"skeleton-shape max-w-[200px] grow\" style=\"width: auto; height: 16px;\"></div>\n        <div class=\"skeleton-shape\" style=\"width: 48px; height: 12px;\"></div>\n      </div>\n      <div class=\"skeleton-shape\" style=\"width: 100%; height: 12px;\"></div>\n    </div>\n  </div>\n  <div class=\"flex items-center gap-3 px-4 py-3\">\n    <div class=\"skeleton-shape shrink-0\" style=\"width: 48px; height: 48px; border-radius: 50%;\"></div>\n    <div class=\"grow\">\n      <div class=\"mb-3 flex items-end justify-between gap-6\">\n        <div class=\"skeleton-shape max-w-[200px] grow\" style=\"width: auto; height: 16px;\"></div>\n        <div class=\"skeleton-shape\" style=\"width: 48px; height: 12px;\"></div>\n      </div>\n      <div class=\"skeleton-shape\" style=\"width: 100%; height: 12px;\"></div>\n    </div>\n  </div>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "Skeleton"
+    ],
+    "code": {
+      "component": "Skeleton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "toast",
+    "name": "Toast",
+    "category": "feedback",
+    "kind": "component",
+    "spec": "components\\feedback\\toast.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "error",
+      "success"
+    ],
+    "cssRoots": [
+      "toast"
+    ],
+    "anchor": "showcase/components.html#fb-toast-contract",
+    "markup": {
+      "html": "<div class=\"flex min-h-[180px] flex-col gap-3 rounded-xl\">\n  <p class=\"m-0 text-body-m text-font-black-60\">\n    Тост рендерится через\n    <code>notify(...)</code>\n    в правом верхнем углу страницы.\n  </p>\n  <div>\n    <button type=\"button\" target=\"_self\" class=\"base-button inline-flex appearance-main size-l is-sizeable\">\n      <span class=\"base-button__inner\">\n        <span class=\"base-button__content\">Показать тост</span>\n      </span>\n    </button>\n  </div>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "tost"
+      }
+    ],
+    "storybookNames": [
+      "notify"
+    ],
+    "code": {
+      "component": "notify",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "transition-fade",
+    "name": "TransitionFade",
+    "category": "feedback",
+    "kind": "primitive",
+    "spec": "components\\feedback\\transition-fade.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "transition-fade"
+    ],
+    "anchor": "showcase/components.html#fb-motion-contract",
+    "markup": null,
+    "evidence": []
+  },
+  {
+    "id": "checkbox",
+    "name": "Checkbox",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\checkbox.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "checked",
+      "indeterminate",
+      "disabled",
+      "loading"
+    ],
+    "cssRoots": [
+      "checkbox"
+    ],
+    "anchor": "showcase/components.html#fo-choice",
+    "markup": {
+      "html": "<span class=\"checkbox\">\n  <label class=\"checkbox-label\">\n    <span class=\"checkbox-icon\">\n      <input type=\"checkbox\" class=\"checkbox-input visually-hidden\">\n      <span class=\"checkbox-button\"></span>\n    </span>\n    <span class=\"checkbox-text\">Text</span>\n  </label>\n</span>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "687:1279",
+        "sourceName": "controls / checkbox"
+      }
+    ],
+    "storybookNames": [
+      "BaseCheckbox"
+    ],
+    "code": {
+      "component": "BaseCheckbox",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "custom-select",
+    "name": "CustomSelect",
+    "category": "forms",
+    "kind": "adapter",
+    "spec": "components\\forms\\custom-select.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "open",
+      "closed",
+      "selected",
+      "disabled",
+      "invalid"
+    ],
+    "cssRoots": [
+      "custom-select",
+      "base-custom-select-button"
+    ],
+    "anchor": "showcase/components.html#fo-select",
+    "markup": {
+      "html": "<div class=\"custom-select\">\n  <button id=\"specialization-trigger\" type=\"button\"\n          class=\"base-custom-select-button base-custom-select-button--shown\"\n          role=\"combobox\" aria-haspopup=\"listbox\" aria-expanded=\"true\"\n          aria-controls=\"specialization-list\"\n          aria-activedescendant=\"specialization-option-2\">\n    Frontend\n  </button>\n  <div id=\"specialization-list\" class=\"custom-select__listbox\"\n       role=\"listbox\" aria-labelledby=\"specialization-trigger\">\n    <div class=\"custom-select__option\" role=\"option\"\n         aria-selected=\"true\">Frontend</div>\n    <div id=\"specialization-option-2\" class=\"custom-select__option\"\n         role=\"option\" aria-selected=\"false\" data-active=\"true\">Backend</div>\n  </div>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "BaseCustomSelect"
+    ],
+    "code": {
+      "component": "BaseCustomSelect",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "input-label",
+    "name": "InputLabel",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\input-label.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "disabled",
+      "invalid"
+    ],
+    "cssRoots": [
+      "base-input-label"
+    ],
+    "anchor": "showcase/components.html#fo-label-all",
+    "markup": {
+      "html": "<label class=\"base-input-label base-input-label--invalid\" for=\"profile-name\">\n  <span class=\"base-input-label__title base-input-label__title--required\">Имя</span>\n  <span id=\"profile-name-hint\" class=\"base-input-label__subtitle\">Как в документах</span>\n  <span class=\"text-input text-input--invalid\">\n    <input id=\"profile-name\" class=\"text-input__input\" required\n           aria-invalid=\"true\" aria-describedby=\"profile-name-hint profile-name-error\">\n  </span>\n  <span id=\"profile-name-error\" class=\"base-input-label__error\">Заполните поле</span>\n</label>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "BaseInputLabel"
+    ],
+    "code": {
+      "component": "BaseInputLabel",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "multi-select",
+    "name": "MultiSelect",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\multi-select.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "open",
+      "closed",
+      "selected",
+      "disabled",
+      "loading",
+      "invalid",
+      "empty"
+    ],
+    "cssRoots": [
+      "multi-select",
+      "text-input",
+      "suggestions-picker"
+    ],
+    "anchor": "showcase/components.html#fo-multi",
+    "markup": {
+      "html": "<div class=\"multi-select suggestions-picker\">\n  <div class=\"suggestions-picker__wrapper--with-tags\">\n    <span class=\"base-chip base-chip--default\">JavaScript</span>\n    <span class=\"text-input text-input--with-tags\">\n      <input id=\"skills-combobox\" class=\"text-input__input\" role=\"combobox\"\n             aria-label=\"Навыки\" aria-autocomplete=\"list\"\n             aria-expanded=\"true\" aria-controls=\"skills-listbox\"\n             aria-activedescendant=\"skills-option-2\">\n    </span>\n  </div>\n  <div id=\"skills-listbox\" class=\"suggestions-picker__results\"\n       role=\"listbox\" aria-label=\"Варианты навыков\"\n       aria-multiselectable=\"true\">\n    <div class=\"suggestion-item\" role=\"option\"\n         aria-selected=\"true\">JavaScript</div>\n    <div id=\"skills-option-2\" class=\"suggestion-item suggestion-item--active\"\n         role=\"option\" aria-selected=\"false\">React</div>\n  </div>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "MultiSelect"
+    ],
+    "code": {
+      "component": "MultiSelect",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "radio-button",
+    "name": "RadioButton",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\radio-button.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "checked",
+      "disabled"
+    ],
+    "cssRoots": [
+      "radio"
+    ],
+    "anchor": "showcase/components.html#fo-choice",
+    "markup": {
+      "html": "<div class=\"grid gap-2\">\n  <label class=\"radio\">\n    <span class=\"radio-icon\">\n      <input class=\"radio-input visually-hidden\" type=\"radio\" name=\"base-radio-story\" value=\"option-1\">\n      <span class=\"radio-button\"></span>\n    </span>\n    <span class=\"radio-text\">Text</span>\n  </label>\n  <label class=\"radio\">\n    <span class=\"radio-icon\">\n      <input class=\"radio-input visually-hidden\" type=\"radio\" name=\"base-radio-story\" value=\"option-2\">\n      <span class=\"radio-button\"></span>\n    </span>\n    <span class=\"radio-text\">Text 2</span>\n  </label>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "693:1585",
+        "sourceName": "controls / radiobutton"
+      }
+    ],
+    "storybookNames": [
+      "BaseRadioButton"
+    ],
+    "code": {
+      "component": "BaseRadioButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "select",
+    "name": "Select",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\select.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "selected",
+      "disabled",
+      "invalid"
+    ],
+    "cssRoots": [
+      "base-select"
+    ],
+    "anchor": "showcase/components.html#fo-select",
+    "markup": {
+      "html": "<div class=\"base-select\">\n  <select name=\"base-select\" class=\"base-select__input\">\n    <option value=\"day\">За последний день</option>\n    <option selected value=\"week\">За неделю</option>\n    <option value=\"month\">За месяц</option>\n  </select>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "select"
+      }
+    ],
+    "storybookNames": [
+      "BaseSelect"
+    ],
+    "code": {
+      "component": "BaseSelect",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "star-rating",
+    "name": "StarRating",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\star-rating.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "checked",
+      "disabled",
+      "readOnly"
+    ],
+    "cssRoots": [
+      "star-rating",
+      "star-label",
+      "star-icon"
+    ],
+    "anchor": "showcase/components.html#fo-stars",
+    "markup": {
+      "html": "<div class=\"star-rating wrapper grid w-min shrink-0 grid-flow-col\" aria-label=\"Оценка\">\n  <label class=\"star-label cursor-pointer pl-1 pr-1 first:pl-0 last:pr-0\">\n    <input class=\"star-input sr-only\" type=\"radio\" name=\"star-rating-story\" value=\"1\" aria-label=\"1 звезда\">\n    <svg class=\"svg-icon star-icon stroke-[1.3px] opacity-60\" width=\"36\" height=\"36\" style=\"width: 36px; height: 36px;\">\n      <use xlink:href=\"../../ui/assets/icons/sprite.svg#star-small\"/>\n    </svg>\n  </label>\n  <label class=\"star-label cursor-pointer pl-1 pr-1 first:pl-0 last:pr-0\">\n    <input class=\"star-input sr-only\" type=\"radio\" name=\"star-rating-story\" value=\"2\" aria-label=\"2 звезды\">\n    <svg class=\"svg-icon star-icon stroke-[1.3px] opacity-60\" width=\"36\" height=\"36\" style=\"width: 36px; height: 36px;\">\n      <use xlink:href=\"../../ui/assets/icons/sprite.svg#star-small\"/>\n    </svg>\n  </label>\n  <label class=\"star-label cursor-pointer pl-1 pr-1 first:pl-0 last:pr-0\">\n    <input class=\"star-input sr-only\" type=\"radio\" name=\"star-rating-story\" value=\"3\" aria-label=\"3 звезды\">\n    <svg class=\"svg-icon star-icon stroke-[1.3px] opacity-60\" width=\"36\" height=\"36\" style=\"width: 36px; height: 36px;\">\n      <use xlink:href=\"../../ui/assets/icons/sprite.svg#star-small\"/>\n    </svg>\n  </label>\n  <label class=\"star-label cursor-pointer pl-1 pr-1 first:pl-0 last:pr-0\">\n    <input class=\"star-input sr-only\" type=\"radio\" name=\"star-rating-story\" value=\"4\" aria-label=\"4 звезды\">\n    <svg class=\"svg-icon star-icon stroke-[1.3px] opacity-60\" width=\"36\" height=\"36\" style=\"width: 36px; height: 36px;\">\n      <use xlink:href=\"../../ui/assets/icons/sprite.svg#star-small\"/>\n    </svg>\n  </label>\n  <label class=\"star-label cursor-pointer pl-1 pr-1 first:pl-0 last:pr-0\">\n    <input class=\"star-input sr-only\" type=\"radio\" name=\"star-rating-story\" value=\"5\" aria-label=\"5 звёзд\">\n    <svg class=\"svg-icon star-icon stroke-[1.3px] opacity-60\" width=\"36\" height=\"36\" style=\"width: 36px; height: 36px;\">\n      <use xlink:href=\"../../ui/assets/icons/sprite.svg#star-small\"/>\n    </svg>\n  </label>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "voting-stars"
+      }
+    ],
+    "storybookNames": [
+      "StarRating"
+    ],
+    "code": {
+      "component": "StarRating",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "switch",
+    "name": "Switch",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\switch.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "checked",
+      "disabled",
+      "loading"
+    ],
+    "cssRoots": [
+      "switch"
+    ],
+    "anchor": "showcase/components.html#fo-choice",
+    "markup": {
+      "html": "<label class=\"switch\">\n  <span class=\"switch-field\">\n    <input type=\"checkbox\" true-value=\"true\" false-value=\"false\" name=\"base-switch-story\" class=\"switch-input visually-hidden\">\n    <span class=\"switch-control\">\n      <span class=\"switch-track\"></span>\n      <span class=\"switch-thumb\">\n        <span class=\"switch-dot\"></span>\n      </span>\n    </span>\n  </span>\n  <span class=\"switch-label\">Text</span>\n</label>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "693:1718",
+        "sourceName": "controls / switch"
+      }
+    ],
+    "storybookNames": [
+      "BaseSwitch"
+    ],
+    "code": {
+      "component": "BaseSwitch",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "textarea",
+    "name": "Textarea",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\textarea.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "disabled",
+      "readOnly",
+      "invalid"
+    ],
+    "cssRoots": [
+      "base-textarea"
+    ],
+    "anchor": "showcase/components.html#fo-textarea",
+    "markup": {
+      "html": "<div class=\"base-textarea\">\n  <textarea class=\"base-textarea__textarea\" rows=\"3\" placeholder=\"Placeholder\" maxlength=\"100\" style=\"--textarea--maxRows: 5; overflow: hidden; overflow-wrap: break-word; height: 90px;\"></textarea>\n  <div class=\"flex justify-between gap-2\">\n    <div></div>\n    <div class=\"text-length whitespace-nowrap\">0 / 100</div>\n  </div>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "textarea"
+      }
+    ],
+    "storybookNames": [
+      "BaseTextarea"
+    ],
+    "code": {
+      "component": "BaseTextarea",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "text-input",
+    "name": "TextInput",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\text-input.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "disabled",
+      "readOnly",
+      "invalid"
+    ],
+    "cssRoots": [
+      "text-input"
+    ],
+    "anchor": "showcase/components.html#fo-input",
+    "markup": {
+      "html": "<span class=\"text-input text-input\">\n  <input class=\"text-input__input\" data-allow-mismatch placeholder=\"Placeholder\">\n</span>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "input"
+      }
+    ],
+    "storybookNames": [
+      "TextInput"
+    ],
+    "code": {
+      "component": "TextInput",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "text-length",
+    "name": "TextLength",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\text-length.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "invalid"
+    ],
+    "cssRoots": [
+      "text-length"
+    ],
+    "anchor": "showcase/components.html#fo-textarea",
+    "markup": null,
+    "evidence": []
+  },
+  {
+    "id": "chip",
+    "name": "Chip",
+    "category": "collections",
+    "kind": "component",
+    "spec": "components\\labels\\chip.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "selected",
+      "disabled"
+    ],
+    "cssRoots": [
+      "base-chip"
+    ],
+    "anchor": "showcase/components.html#l-chip-contract",
+    "markup": {
+      "html": "<div class=\"flex flex-wrap gap-3\">\n  <button type=\"button\" class=\"base-chip base-chip--default base-chip--clickable base-chip--interactive\">\n    <span class=\"base-chip__content\">\n      <span class=\"px-1\">Default</span>\n    </span>\n  </button>\n  <button type=\"button\" class=\"base-chip base-chip--approved base-chip--clickable base-chip--interactive\">\n    <span class=\"base-chip__content\">\n      <span class=\"px-1\">Approved</span>\n    </span>\n  </button>\n  <button type=\"button\" class=\"base-chip base-chip--ghost base-chip--clickable base-chip--interactive\">\n    <span class=\"base-chip__content\">\n      <span class=\"px-1\">Ghost</span>\n    </span>\n  </button>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "838:700",
+        "sourceName": "chips / 1-line"
+      }
+    ],
+    "storybookNames": [
+      "BaseChip"
+    ],
+    "code": {
+      "component": "BaseChip",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "closable-chip",
+    "name": "ClosableChip",
+    "category": "collections",
+    "kind": "component",
+    "spec": "components\\labels\\closable-chip.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "disabled"
+    ],
+    "cssRoots": [
+      "closable-chip"
+    ],
+    "anchor": "showcase/components.html#l-chip-contract",
+    "markup": {
+      "html": "<span tabindex=\"0\" class=\"base-chip base-chip--default base-chip--clickable base-chip--interactive\">\n  <span class=\"base-chip__content\">\n    Python\n    <button type=\"button\" class=\"closable-chip__close\" aria-label=\"Удалить\">\n      <svg class=\"svg-icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n        <use xlink:href=\"../../ui/assets/icons/sprite.svg#cross\"/>\n      </svg>\n    </button>\n  </span>\n</span>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "ClosableChip"
+    ],
+    "code": {
+      "component": "ClosableChip",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "skill-chip",
+    "name": "SkillChip",
+    "category": "collections",
+    "kind": "component",
+    "spec": "components\\labels\\skill-chip.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "selected",
+      "disabled"
+    ],
+    "cssRoots": [
+      "skill-chip"
+    ],
+    "anchor": "showcase/components.html#l-chip-contract",
+    "markup": {
+      "html": "<div class=\"flex flex-wrap gap-2\">\n  <button type=\"button\" class=\"base-chip base-chip--default base-chip--clickable base-chip--interactive skill-chip\">\n    <span class=\"base-chip__content\">\n      <span class=\"skill-chip__title\">JavaScript</span>\n    </span>\n  </button>\n  <button type=\"button\" class=\"base-chip base-chip--approved base-chip--clickable base-chip--interactive skill-chip\">\n    <span class=\"base-chip__content\">\n      <span class=\"skill-chip__title\">TypeScript</span>\n      <svg class=\"svg-icon skill-chip__icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n        <use xlink:href=\"../../ui/assets/icons/sprite.svg#check-approved\"/>\n      </svg>\n      <span class=\"skill-chip__grade\">expert</span>\n    </span>\n  </button>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "SkillChip"
+    ],
+    "code": {
+      "component": "SkillChip",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "status-chip",
+    "name": "StatusChip",
+    "category": "collections",
+    "kind": "component",
+    "spec": "components\\labels\\status-chip.md",
+    "status": "complete",
+    "states": [
+      "default"
+    ],
+    "cssRoots": [
+      "status-chip"
+    ],
+    "anchor": "showcase/components.html#d-base-scope-tail",
+    "markup": {
+      "html": "<div class=\"relative grid min-h-8 w-min grid-flow-col items-center whitespace-nowrap rounded-lg px-2 py-1 text-body-m text-font-black bg-ui-green-10 pl-[26px]\">\n  <div class=\"absolute left-1 top-1\">\n    <svg class=\"svg-icon text-ui-green\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n      <use xlink:href=\"../../ui/assets/icons/sprite.svg#single-check\"/>\n    </svg>\n  </div>\n  <span class=\"px-[6px]\">Заявка подтверждена</span>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "ConversationsChip"
+    ],
+    "code": {
+      "component": "ConversationsChip",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "unread-counter",
+    "name": "UnreadCounter",
+    "category": "data-display",
+    "kind": "component",
+    "spec": "components\\labels\\unread-counter.md",
+    "status": "complete",
+    "states": [
+      "default"
+    ],
+    "cssRoots": [
+      "unread-counter"
+    ],
+    "anchor": "showcase/components.html#d-base-scope-tail",
+    "markup": {
+      "html": "<span class=\"unread-counter inline-flex h-5 min-w-[20px] items-center justify-center rounded-[22px] border-2 border-ui-white bg-ui-primary px-[5px] text-center text-unread font-semibold leading-unread text-ui-white\">0</span>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "UnreadCounter"
+    ],
+    "code": {
+      "component": "UnreadCounter",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "context-menu",
+    "name": "ContextMenu",
+    "category": "navigation",
+    "kind": "adapter",
+    "spec": "components\\navigation\\context-menu.md",
+    "status": "complete",
+    "states": [
+      "closed",
+      "open",
+      "focus-visible"
+    ],
+    "cssRoots": [
+      "context-menu"
+    ],
+    "anchor": "showcase/components.html#n-menu-contract",
+    "markup": {
+      "html": "<div class=\"flex w-full items-center justify-center\">\n  <div class=\"context-menu w-6\">\n    <div class=\"base-dropdown\">\n      <div class=\"base-dropdown__toggle\">\n        <button type=\"button\" class=\"m-0 flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent p-0 text-current outline-2 outline-offset-2 outline-ui-primary-60 transition-colors focus-visible:outline disabled:cursor-default text-ui-gray-2 hover:bg-ui-gray-3-10 hover:text-ui-gray-1 focus-visible:bg-ui-gray-3-10\">\n          <svg class=\"svg-icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n            <use xlink:href=\"../../ui/assets/icons/sprite.svg#more\"/>\n          </svg>\n        </button>\n      </div>\n      <div class=\"base-dropdown__content base-dropdown__content--alignment-right\" style=\"margin-top: 0px;\">\n        <div class=\"context-menu__content\">\n          <button class=\"w-full cursor-pointer overflow-hidden whitespace-nowrap text-left border-b border-solid border-ui-gray-bg bg-transparent px-4 py-[10px] text-font-black hover:bg-ui-blue hover:text-ui-white active:bg-ui-blue active:text-ui-white focus:outline-3 focus:outline focus:-outline-offset-1 focus:outline-[var(--color-ui-blue)]\" border=\"false\">Item 1</button>\n          <button class=\"w-full cursor-pointer overflow-hidden whitespace-nowrap text-left border-b border-solid border-ui-gray-bg bg-transparent px-4 py-[10px] text-font-black hover:bg-ui-blue hover:text-ui-white active:bg-ui-blue active:text-ui-white focus:outline-3 focus:outline focus:-outline-offset-1 focus:outline-[var(--color-ui-blue)]\" border=\"false\">Item 2</button>\n          <button class=\"w-full cursor-pointer overflow-hidden whitespace-nowrap text-left border-b border-solid border-ui-gray-bg bg-transparent px-4 py-[10px] text-font-black hover:bg-ui-blue hover:text-ui-white active:bg-ui-blue active:text-ui-white focus:outline-3 focus:outline focus:-outline-offset-1 focus:outline-[var(--color-ui-blue)]\" border=\"false\">Item 3</button>\n        </div>\n      </div>\n    </div>\n  </div>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "ContextMenu"
+    ],
+    "code": {
+      "component": "ContextMenu",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "dropdown",
+    "name": "Dropdown",
+    "category": "navigation",
+    "kind": "adapter",
+    "spec": "components\\navigation\\dropdown.md",
+    "status": "complete",
+    "states": [
+      "closed",
+      "open"
+    ],
+    "cssRoots": [
+      "base-dropdown"
+    ],
+    "anchor": "showcase/components.html#n-menu-contract",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "dropdown"
+      }
+    ],
+    "storybookNames": [
+      "BaseDropdown"
+    ],
+    "code": {
+      "component": "BaseDropdown",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "pagination",
+    "name": "Pagination",
+    "category": "navigation",
+    "kind": "component",
+    "spec": "components\\navigation\\pagination.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "current",
+      "disabled"
+    ],
+    "cssRoots": [
+      "pagination-button"
+    ],
+    "anchor": "showcase/components.html#n-pagination",
+    "markup": {
+      "html": "<div class=\"grid text-font-black gap-0.5 pb-2\">\n  <nav class=\"flex items-center justify-between rounded-3xl border border-ui-gray-shadow bg-ui-white p-2\" aria-label=\"Pagination\">\n    <div class=\"flex items-center justify-center\">\n      <button class=\"rotate-90 pagination-button is-status-disable base-button inline-flex appearance-none size-l rotate-90 pagination-button is-status-disable\" aria-label=\"Previous page\" type=\"button\" disabled target=\"_self\">\n        <span class=\"base-button__content\">\n          <span class=\"pagination-button__content\">\n            <svg class=\"svg-icon fill-current text-ui-gray-4\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n              <use xlink:href=\"../../ui/assets/icons/sprite.svg#arrow\"/>\n            </svg>\n          </span>\n        </span>\n      </button>\n    </div>\n    <div class=\"grid auto-cols-min grid-flow-col items-end\">\n      <button aria-current=\"page\" aria-label=\"Page 1\" class=\"pagination-button is-selected base-button inline-flex appearance-none size-l pagination-button is-selected\" type=\"button\" target=\"_self\">\n        <span class=\"base-button__content\">\n          <span class=\"pagination-button__content\">1</span>\n        </span>\n      </button>\n      <button aria-label=\"Page 2\" class=\"pagination-button base-button inline-flex appearance-none size-l pagination-button\" type=\"button\" target=\"_self\">\n        <span class=\"base-button__content\">\n          <span class=\"pagination-button__content\">2</span>\n        </span>\n      </button>\n      <button aria-label=\"Page 3\" class=\"pagination-button base-button inline-flex appearance-none size-l pagination-button\" type=\"button\" target=\"_self\">\n        <span class=\"base-button__content\">\n          <span class=\"pagination-button__content\">3</span>\n        </span>\n      </button>\n      <button aria-label=\"Page 4\" class=\"pagination-button base-button inline-flex appearance-none size-l pagination-button\" type=\"button\" target=\"_self\">\n        <span class=\"base-button__content\">\n          <span class=\"pagination-button__content\">4</span>\n        </span>\n      </button>\n      <button aria-label=\"Page 5\" class=\"pagination-button base-button inline-flex appearance-none size-l pagination-button\" type=\"button\" target=\"_self\">\n        <span class=\"base-button__content\">\n          <span class=\"pagination-button__content\">5</span>\n        </span>\n      </button>\n      <button aria-label=\"Page 6\" class=\"pagination-button base-button inline-flex appearance-none size-l pagination-button\" type=\"button\" target=\"_self\">\n        <span class=\"base-button__content\">\n          <span class=\"pagination-button__content\">6</span>\n        </span>\n      </button>\n      <button aria-label=\"Page 7\" class=\"pagination-button base-button inline-flex appearance-none size-l pagination-button\" type=\"button\" target=\"_self\">\n        <span class=\"base-button__content\">\n          <span class=\"pagination-button__content\">7</span>\n        </span>\n      </button>\n      <button aria-label=\"Page 8\" class=\"pagination-button base-button inline-flex appearance-none size-l pagination-button\" type=\"button\" target=\"_self\">\n        <span class=\"base-button__content\">\n          <span class=\"pagination-button__content\">8</span>\n        </span>\n      </button>\n      <span class=\"flex h-10 min-w-10 items-center justify-center px-2 py-2 text-body-l font-semibold tracking-[0] text-ui-gray-1\" aria-hidden=\"true\">...</span>\n    </div>\n    <div class=\"flex items-center justify-center\">\n      <button rel=\"next\" class=\"-rotate-90 pagination-button base-button inline-flex appearance-none size-l -rotate-90 pagination-button\" aria-label=\"Next page\" type=\"button\" target=\"_self\">\n        <span class=\"base-button__content\">\n          <span class=\"pagination-button__content\">\n            <svg class=\"svg-icon fill-current text-ui-gray-2\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n              <use xlink:href=\"../../ui/assets/icons/sprite.svg#arrow\"/>\n            </svg>\n          </span>\n        </span>\n      </button>\n    </div>\n  </nav>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "pagination"
+      }
+    ],
+    "storybookNames": [
+      "BasePagination"
+    ],
+    "code": {
+      "component": "BasePagination",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "segmented-tabs",
+    "name": "SegmentedTabs",
+    "category": "navigation",
+    "kind": "component",
+    "spec": "components\\navigation\\segmented-tabs.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "current",
+      "disabled"
+    ],
+    "cssRoots": [
+      "segmented-tabs"
+    ],
+    "anchor": "showcase/components.html#n-segmented-contract",
+    "markup": {
+      "html": "<nav class=\"overflow-x-auto\" aria-label=\"Вкладки\">\n  <div class=\"relative inline-flex items-center gap-0 rounded-full p-1\">\n    <div class=\"absolute inset-0 rounded-full bg-ui-gray-3 opacity-10\"></div>\n    <a aria-current=\"page\" href=\"/tab-1\" class=\"relative isolate inline-flex min-h-8 items-center justify-center gap-1 rounded-full px-2 py-1 text-body-m font-semibold no-underline transition-colors hover:no-underline text-ui-white focus-visible:outline-none after:pointer-events-none after:absolute after:-inset-1 after:z-[3] after:rounded-full after:border-2 after:border-ui-primary after:opacity-0 after:transition-opacity after:content-[''] focus-visible:after:opacity-60\">\n      <span class=\"relative z-[2] inline-flex min-h-6 items-center px-1\">Tab</span>\n      <span class=\"absolute inset-0 z-[1] rounded-full bg-ui-primary\"></span>\n    </a>\n    <a href=\"/tab-2\" class=\"relative isolate inline-flex min-h-8 items-center justify-center gap-1 rounded-full px-2 py-1 text-body-m font-semibold no-underline transition-colors hover:no-underline text-ui-gray-1 before:pointer-events-none before:absolute before:inset-0 before:z-[1] before:rounded-full before:bg-ui-gray-3 before:opacity-0 before:transition-opacity before:content-[''] hover:before:opacity-10 focus-visible:before:opacity-10 after:pointer-events-none after:absolute after:-inset-1 after:z-[3] after:rounded-full after:border-2 after:border-ui-primary after:opacity-0 after:transition-opacity after:content-[''] focus-visible:after:opacity-60 focus-visible:outline-none hover:no-underline\">\n      <span class=\"relative z-[2] inline-flex min-h-6 items-center px-1\">Tab</span>\n    </a>\n    <a href=\"/tab-3\" class=\"relative isolate inline-flex min-h-8 items-center justify-center gap-1 rounded-full px-2 py-1 text-body-m font-semibold no-underline transition-colors hover:no-underline text-ui-gray-1 before:pointer-events-none before:absolute before:inset-0 before:z-[1] before:rounded-full before:bg-ui-gray-3 before:opacity-0 before:transition-opacity before:content-[''] hover:before:opacity-10 focus-visible:before:opacity-10 after:pointer-events-none after:absolute after:-inset-1 after:z-[3] after:rounded-full after:border-2 after:border-ui-primary after:opacity-0 after:transition-opacity after:content-[''] focus-visible:after:opacity-60 focus-visible:outline-none hover:no-underline\">\n      <span class=\"relative z-[2] inline-flex min-h-6 items-center px-1\">Tab</span>\n    </a>\n  </div>\n</nav>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "tab / button-segment"
+      }
+    ],
+    "storybookNames": [
+      "BaseSegmentedTabs"
+    ],
+    "code": {
+      "component": "BaseSegmentedTabs",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "steps-sidebar",
+    "name": "StepsSidebar",
+    "category": "navigation",
+    "kind": "component",
+    "spec": "components\\navigation\\steps-sidebar.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "current",
+      "disabled"
+    ],
+    "cssRoots": [
+      "company-rating-steps__link"
+    ],
+    "anchor": "showcase/components.html#n-steps",
+    "markup": {
+      "html": "<nav class=\"overflow-hidden rounded-3xl border border-ui-gray-shadow bg-ui-white p-1\">\n  <ul class=\"m-0 flex list-none flex-col p-1\">\n    <li>\n      <a href=\"#company\" class=\"company-rating-steps__link relative flex min-h-[40px] w-full items-center overflow-hidden rounded-xl px-4 py-2 text-body-l font-regular text-ui-gray-1 no-underline focus-visible:outline-none\">\n        <span class=\"relative z-[1] truncate\">Компания и роль</span>\n      </a>\n    </li>\n    <li>\n      <a href=\"#common\" class=\"company-rating-steps__link relative flex min-h-[40px] w-full items-center overflow-hidden rounded-xl px-4 py-2 text-body-l font-regular text-ui-gray-1 no-underline focus-visible:outline-none company-rating-steps__link--active bg-ui-primary-20\" aria-current=\"step\">\n        <span class=\"relative z-[1] truncate\">Общая оценка</span>\n      </a>\n    </li>\n    <li>\n      <a href=\"#recommendation\" class=\"company-rating-steps__link relative flex min-h-[40px] w-full items-center overflow-hidden rounded-xl px-4 py-2 text-body-l font-regular text-ui-gray-1 no-underline focus-visible:outline-none company-rating-steps__link--disabled cursor-default text-ui-gray-4\" aria-disabled=\"true\" tabindex=\"-1\">\n        <span class=\"relative z-[1] truncate\">Рекомендация работодателя</span>\n      </a>\n    </li>\n    <li>\n      <a href=\"#experience\" class=\"company-rating-steps__link relative flex min-h-[40px] w-full items-center overflow-hidden rounded-xl px-4 py-2 text-body-l font-regular text-ui-gray-1 no-underline focus-visible:outline-none company-rating-steps__link--disabled cursor-default text-ui-gray-4\" aria-disabled=\"true\" tabindex=\"-1\">\n        <span class=\"relative z-[1] truncate\">Опыт и приватность</span>\n      </a>\n    </li>\n  </ul>\n</nav>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": []
+  },
+  {
+    "id": "dropdown-modal",
+    "name": "DropdownModal",
+    "category": "overlays",
+    "kind": "adapter",
+    "spec": "components\\overlays\\dropdown-modal.md",
+    "status": "complete",
+    "states": [
+      "closed",
+      "open"
+    ],
+    "cssRoots": [
+      "dropdown-modal-popper"
+    ],
+    "anchor": "showcase/components.html#ov-dropdown-modal",
+    "markup": null,
+    "evidence": []
+  },
+  {
+    "id": "modal",
+    "name": "Modal",
+    "category": "overlays",
+    "kind": "component",
+    "spec": "components\\overlays\\modal.md",
+    "status": "complete",
+    "states": [
+      "closed",
+      "open",
+      "loading"
+    ],
+    "cssRoots": [
+      "base-modal",
+      "modal-overlay"
+    ],
+    "anchor": "showcase/components.html#ov-modal",
+    "markup": {
+      "html": "<div class=\"min-h-[360px] bg-ui-gray-bg p-6\">\n  <button type=\"button\" target=\"_self\" class=\"base-button inline-flex appearance-main size-l is-sizeable\">\n    <span class=\"base-button__inner\">\n      <span class=\"base-button__content\">Открыть модалку</span>\n    </span>\n  </button>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "1125:4140",
+        "sourceName": "modal"
+      }
+    ],
+    "storybookNames": [
+      "BaseModal"
+    ],
+    "code": {
+      "component": "BaseModal",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  {
+    "id": "badge",
+    "name": "Badge",
+    "category": "data-display",
+    "kind": "component",
+    "spec": "components\\labels\\badge.md",
+    "status": "complete",
+    "states": [
+      "default"
+    ],
+    "cssRoots": [
+      "base-badge"
+    ],
+    "anchor": "showcase/components.html#l-badge",
+    "markup": {
+      "html": "<span class=\"base-badge\">7</span>\n<span class=\"base-badge base-badge--dot\" aria-hidden=\"true\"></span>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "658:361",
+        "sourceName": "badge"
+      }
+    ]
+  },
+  {
+    "id": "menu",
+    "name": "Menu",
+    "category": "navigation",
+    "kind": "component",
+    "spec": "components\\navigation\\menu.md",
+    "status": "complete",
+    "states": [
+      "closed",
+      "open"
+    ],
+    "cssRoots": [
+      "menu"
+    ],
+    "anchor": "showcase/components.html#r3-menu",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "wrapper / menu"
+      }
+    ]
+  },
+  {
+    "id": "menu-item",
+    "name": "MenuItem",
+    "category": "navigation",
+    "kind": "component",
+    "spec": "components\\navigation\\menu-item.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "selected",
+      "disabled"
+    ],
+    "cssRoots": [
+      "menu-item"
+    ],
+    "anchor": "showcase/components.html#r3-menu",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "row / menu"
+      }
+    ]
+  },
+  {
+    "id": "popover",
+    "name": "Popover",
+    "category": "overlays",
+    "kind": "primitive",
+    "spec": "components\\overlays\\popover.md",
+    "status": "complete",
+    "states": [
+      "closed",
+      "open"
+    ],
+    "cssRoots": [
+      "popover",
+      "popover__surface"
+    ],
+    "anchor": "showcase/components.html#r3-popover",
+    "markup": null,
+    "evidence": []
+  },
+  {
+    "id": "tooltip",
+    "name": "Tooltip",
+    "category": "overlays",
+    "kind": "component",
+    "spec": "components\\overlays\\tooltip.md",
+    "status": "complete",
+    "states": [
+      "closed",
+      "open"
+    ],
+    "cssRoots": [
+      "tooltip"
+    ],
+    "anchor": "showcase/components.html#r3-tooltip",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "6786:4080",
+        "sourceName": "Tooltip"
+      }
+    ]
+  },
+  {
+    "id": "calendar",
+    "name": "Calendar",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\calendar.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "selected",
+      "current",
+      "disabled"
+    ],
+    "cssRoots": [
+      "calendar"
+    ],
+    "anchor": "showcase/components.html#r3-calendar",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "767:7307",
+        "sourceName": "calendar / date-elements"
+      }
+    ]
+  },
+  {
+    "id": "date-picker",
+    "name": "DatePicker",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\date-picker.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "open",
+      "closed",
+      "selected",
+      "disabled",
+      "invalid"
+    ],
+    "cssRoots": [
+      "date-picker"
+    ],
+    "anchor": "showcase/components.html#r3-calendar",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "770:8784",
+        "sourceName": "calendar / date-picker"
+      }
+    ]
+  },
+  {
+    "id": "time-picker",
+    "name": "TimePicker",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\time-picker.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "open",
+      "closed",
+      "selected",
+      "disabled",
+      "invalid"
+    ],
+    "cssRoots": [
+      "time-picker"
+    ],
+    "anchor": "showcase/components.html#r3-calendar",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "770:8956",
+        "sourceName": "calendar / time-picker"
+      }
+    ]
+  },
+  {
+    "id": "file-upload",
+    "name": "FileUpload",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\file-upload.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "disabled",
+      "loading",
+      "error",
+      "success"
+    ],
+    "cssRoots": [
+      "file-upload"
+    ],
+    "anchor": "showcase/components.html#r3-upload",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "files"
+      }
+    ]
+  },
+  {
+    "id": "dropzone",
+    "name": "Dropzone",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\dropzone.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "dragActive",
+      "disabled",
+      "invalid"
+    ],
+    "cssRoots": [
+      "dropzone"
+    ],
+    "anchor": "showcase/components.html#r3-upload",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "drag&drop / picture / horizontal"
+      }
+    ]
+  },
+  {
+    "id": "accordion",
+    "name": "Accordion",
+    "category": "data-display",
+    "kind": "component",
+    "spec": "components\\data\\accordion.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "collapsed",
+      "expanded",
+      "disabled"
+    ],
+    "cssRoots": [
+      "accordion"
+    ],
+    "anchor": "showcase/components.html#r3-accordion",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "accordion"
+      }
+    ]
+  },
+  {
+    "id": "page-header",
+    "name": "PageHeader",
+    "category": "frame-modules",
+    "kind": "module",
+    "spec": "components\\modules\\page-header.md",
+    "status": "complete",
+    "states": [
+      "closed",
+      "open"
+    ],
+    "cssRoots": [
+      "page-header",
+      "page-header__menu-toggle"
+    ],
+    "anchor": "showcase/components.html#r4-page-header",
+    "markup": {
+      "html": "<header class=\"page-header\">\n  <div class=\"tm-panel\"><div class=\"page-width tm-panel__inner\"><a class=\"tm-panel__logo\" href=\"#\"><b>Хабр</b> Карьера</a><span class=\"tm-panel__divider\" aria-hidden=\"true\"></span><span class=\"tm-panel__promo\">Работа для IT-специалистов</span></div></div>\n  <div class=\"page-header__bar\"><div class=\"page-width page-header__inner\">\n    <button class=\"page-header__menu-toggle\" type=\"button\" aria-label=\"Открыть меню\" aria-expanded=\"false\" aria-controls=\"r4-mobile-menu\" data-page-header-toggle><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 6h18M3 12h18M3 18h18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></button>\n    <a class=\"page-header__logo\" href=\"#\"><b>Хабр</b> Карьера</a>\n    <nav class=\"page-header__nav\" id=\"r4-mobile-menu\" data-state=\"closed\" aria-label=\"Основная навигация\"><a class=\"page-header__link\" aria-current=\"page\" href=\"#\">Вакансии</a><a class=\"page-header__link\" href=\"#\">Специалисты</a><a class=\"page-header__link\" href=\"#\">Компании</a><a class=\"page-header__link\" href=\"#\">Зарплаты</a></nav>\n    <div class=\"page-header__user\"><button type=\"button\" class=\"base-button inline-flex appearance-main size-m is-sizeable\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Войти</span></span></button></div>\n  </div></div>\n</header>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": []
+  },
+  {
+    "id": "page-footer",
+    "name": "PageFooter",
+    "category": "frame-modules",
+    "kind": "module",
+    "spec": "components\\modules\\page-footer.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "page-footer"
+    ],
+    "anchor": "showcase/components.html#r4-page-footer",
+    "markup": {
+      "html": "<footer class=\"page-footer\"><div class=\"page-width page-footer__inner\">\n  <nav class=\"page-footer__group\" aria-labelledby=\"footer-career\"><h3 class=\"page-footer__title\" id=\"footer-career\">Хабр Карьера</h3><ul class=\"page-footer__links\"><li><a class=\"page-footer__link\" href=\"#\">О сервисе</a></li><li><a class=\"page-footer__link\" href=\"#\">Каталог вакансий</a></li><li><a class=\"page-footer__link\" href=\"#\">Карта сайта</a></li></ul></nav>\n  <nav class=\"page-footer__group\" aria-labelledby=\"footer-help\"><h3 class=\"page-footer__title\" id=\"footer-help\">Помощь</h3><ul class=\"page-footer__links\"><li><a class=\"page-footer__link\" href=\"#\">Для соискателя</a></li><li><a class=\"page-footer__link\" href=\"#\">Для работодателя</a></li><li><a class=\"page-footer__link\" href=\"#\">Поддержка</a></li></ul></nav>\n  <nav class=\"page-footer__group\" aria-labelledby=\"footer-social\"><h3 class=\"page-footer__title\" id=\"footer-social\">Социальные сети</h3><div class=\"page-footer__social\"><a class=\"page-footer__social-link\" href=\"#\" aria-label=\"Хабр Карьера в Telegram\"><img class=\"svg-icon icon-image\" width=\"24\" height=\"24\" aria-hidden=\"true\" src=\"../../ui/assets/icons/single/social-v3.1/telegram.svg\" alt=\"\"></a><a class=\"page-footer__social-link\" href=\"#\" aria-label=\"Хабр Карьера во ВКонтакте\"><img class=\"svg-icon icon-image\" width=\"24\" height=\"24\" aria-hidden=\"true\" src=\"../../ui/assets/icons/single/social-v3.1/vk.svg\" alt=\"\"></a></div></nav>\n</div></footer>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": []
+  },
+  {
+    "id": "section-header",
+    "name": "SectionHeader",
+    "category": "frame-modules",
+    "kind": "module",
+    "spec": "components\\modules\\section-header.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "section-header"
+    ],
+    "anchor": "showcase/components.html#r4-section-header",
+    "markup": {
+      "html": "<header class=\"section-header\"><div class=\"section-header__content\"><p class=\"section-header__eyebrow\">Вакансии компании</p><h3 class=\"section-header__title\">Открытые позиции</h3><p class=\"section-header__description\">12 вакансий для разработчиков и аналитиков</p></div><div class=\"section-header__actions\"><button type=\"button\" class=\"base-button inline-flex appearance-passive size-m is-sizeable\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Подписаться</span></span></button></div></header>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": []
+  },
+  {
+    "id": "content-section",
+    "name": "ContentSection",
+    "category": "frame-modules",
+    "kind": "module",
+    "spec": "components\\modules\\content-section.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "content-section"
+    ],
+    "anchor": "showcase/components.html#r4-content-section",
+    "markup": {
+      "html": "<section class=\"base-section base-section--background-white rounded-3xl content-section\" aria-labelledby=\"about-role-title\"><header class=\"section-header\"><div class=\"section-header__content\"><h3 class=\"section-header__title\" id=\"about-role-title\">О вакансии</h3></div></header><div class=\"content-section__body editor__content\"><p>Команда развивает сервисы для IT-специалистов. В секции используется типографика Content.</p></div><div class=\"content-section__footer\"><button type=\"button\" class=\"base-button inline-flex appearance-main size-m is-sizeable\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Откликнуться</span></span></button></div></section>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": []
+  },
+  {
+    "id": "empty-section",
+    "name": "EmptySection",
+    "category": "frame-modules",
+    "kind": "module",
+    "spec": "components\\modules\\empty-section.md",
+    "status": "complete",
+    "states": [
+      "empty"
+    ],
+    "cssRoots": [
+      "empty-section"
+    ],
+    "anchor": "showcase/components.html#r4-content-section",
+    "markup": {
+      "html": "<section class=\"base-section base-section--background-white rounded-3xl empty-section\" aria-labelledby=\"empty-saved-title\"><div><img class=\"empty-section__illustration\" src=\"../../ui/assets/illustrations/no-content.svg\" alt=\"\"><h3 class=\"empty-section__title\" id=\"empty-saved-title\">Нет сохранённых вакансий</h3><p class=\"empty-section__description\">Добавляйте интересные вакансии в избранное, чтобы вернуться к ним позже.</p><div class=\"empty-section__actions\"><a class=\"base-button inline-flex appearance-main size-m is-sizeable\" href=\"#\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Найти вакансии</span></span></a></div></div></section>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": []
+  },
+  {
+    "id": "sidebar",
+    "name": "Sidebar",
+    "category": "frame-modules",
+    "kind": "module",
+    "spec": "components\\modules\\sidebar.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "sidebar"
+    ],
+    "anchor": "showcase/components.html#r4-sidebar",
+    "markup": {
+      "html": "<aside class=\"sidebar\" aria-label=\"Дополнительная информация\"><section class=\"base-section base-section--background-white rounded-3xl sidebar-section\" aria-labelledby=\"sidebar-company\"><h3 class=\"sidebar-section__title\" id=\"sidebar-company\">О компании</h3><p class=\"sidebar-section__description\">Продуктовая IT-компания</p><div class=\"sidebar-section__body\"><p style=\"margin:0\">Москва · 500–1000 сотрудников</p></div><div class=\"sidebar-section__footer\"><a class=\"link-styled-button\" href=\"#\">Перейти в профиль</a></div></section><section class=\"base-section base-section--background-white rounded-3xl sidebar-section\" aria-labelledby=\"sidebar-subscribe\"><h3 class=\"sidebar-section__title\" id=\"sidebar-subscribe\">Новые вакансии</h3><div class=\"sidebar-section__body\"><button type=\"button\" class=\"base-button inline-flex appearance-passive size-m is-sizeable w-full\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Подписаться</span></span></button></div></section></aside>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": []
+  },
+  {
+    "id": "sidebar-section",
+    "name": "SidebarSection",
+    "category": "frame-modules",
+    "kind": "module",
+    "spec": "components\\modules\\sidebar-section.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "sidebar-section"
+    ],
+    "anchor": "showcase/components.html#r4-sidebar",
+    "markup": {
+      "html": "<section class=\"base-section base-section--background-white rounded-3xl sidebar-section\" aria-labelledby=\"sidebar-company\"><h3 class=\"sidebar-section__title\" id=\"sidebar-company\">О компании</h3><p class=\"sidebar-section__description\">Продуктовая IT-компания</p><div class=\"sidebar-section__body\"><p style=\"margin:0\">Москва · 500–1000 сотрудников</p></div><div class=\"sidebar-section__footer\"><a class=\"link-styled-button\" href=\"#\">Перейти в профиль</a></div></section>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": []
+  },
+  {
+    "id": "filter-panel",
+    "name": "FilterPanel",
+    "category": "frame-modules",
+    "kind": "module",
+    "spec": "components\\modules\\filter-panel.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "loading"
+    ],
+    "cssRoots": [
+      "filter-panel"
+    ],
+    "anchor": "showcase/components.html#r4-filters",
+    "markup": {
+      "html": "<form class=\"filter-panel\" id=\"r4-filter-form-desktop\">\n  <header class=\"filter-panel__header\"><h3 class=\"filter-panel__title\">Фильтры</h3><button class=\"filter-panel__reset\" type=\"reset\">Сбросить</button></header>\n  <div class=\"filter-panel__body\">\n    <fieldset class=\"filter-panel__group\"><legend class=\"filter-panel__legend\">Специализация</legend><label class=\"filter-panel__field\"><span class=\"filter-panel__field-label\">Направление</span><span class=\"text-input\"><input class=\"text-input__input\" name=\"specialization\" autocomplete=\"off\" placeholder=\"Выберите специализацию\"></span></label></fieldset>\n    <fieldset class=\"filter-panel__group\"><legend class=\"filter-panel__legend\">Квалификация</legend><span class=\"base-select\"><select class=\"base-select__input\" name=\"level\"><option value=\"\">Любая</option><option>Junior</option><option>Middle</option><option>Senior</option></select></span></fieldset>\n    <fieldset class=\"filter-panel__group\"><legend class=\"filter-panel__legend\">Зарплата</legend><div class=\"filter-panel__inline\"><label class=\"filter-panel__field\"><span class=\"visually-hidden\">Зарплата от</span><span class=\"text-input\"><input class=\"text-input__input\" inputmode=\"numeric\" name=\"salaryFrom\" placeholder=\"От\"></span></label><label class=\"filter-panel__compact\"><span class=\"visually-hidden\">Валюта</span><span class=\"base-select\"><select class=\"base-select__input\" name=\"currency\"><option>₽</option><option>$</option><option>€</option></select></span></label></div><span class=\"checkbox\"><label class=\"checkbox-label\"><span class=\"checkbox-icon\"><input class=\"checkbox-input visually-hidden\" type=\"checkbox\" name=\"salarySpecified\"><span class=\"checkbox-button\"></span></span><span class=\"checkbox-text\">Только с указанной зарплатой</span></label></span></fieldset>\n    <fieldset class=\"filter-panel__group\"><legend class=\"filter-panel__legend\">Формат работы</legend><span class=\"checkbox\"><label class=\"checkbox-label\"><span class=\"checkbox-icon\"><input class=\"checkbox-input visually-hidden\" type=\"checkbox\" name=\"remote\" checked><span class=\"checkbox-button\"></span></span><span class=\"checkbox-text\">Можно удалённо</span></label></span><span class=\"checkbox\"><label class=\"checkbox-label\"><span class=\"checkbox-icon\"><input class=\"checkbox-input visually-hidden\" type=\"checkbox\" name=\"office\"><span class=\"checkbox-button\"></span></span><span class=\"checkbox-text\">В офисе</span></label></span></fieldset>\n  </div>\n  <div class=\"filter-panel__actions\"><button type=\"submit\" class=\"base-button inline-flex appearance-main size-l is-sizeable\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Показать 1 272</span></span></button></div>\n</form>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": []
+  },
+  {
+    "id": "filter-modal",
+    "name": "FilterModal",
+    "category": "frame-modules",
+    "kind": "module",
+    "spec": "components\\modules\\filter-modal.md",
+    "status": "complete",
+    "states": [
+      "closed",
+      "open",
+      "loading"
+    ],
+    "cssRoots": [
+      "filter-modal"
+    ],
+    "anchor": "showcase/components.html#r4-filters",
+    "markup": {
+      "html": "<div class=\"filter-modal\" id=\"r4-filter-modal\" data-filter-modal data-state=\"closed\" hidden>\n      <div class=\"filter-modal__dialog\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"r4-filter-modal-title\">\n        <header class=\"filter-modal__header\"><h3 class=\"filter-modal__title\" id=\"r4-filter-modal-title\">Фильтры вакансий</h3><button type=\"button\" class=\"icon-button\" aria-label=\"Закрыть фильтры\" data-filter-modal-close><svg class=\"svg-icon icon-inline\" width=\"24\" height=\"24\" aria-hidden=\"true\" data-icon-src=\"../../ui/assets/icons/single/sprite/close.svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M16.2929 6.29287C16.6834 5.90237 17.3166 5.90237 17.7071 6.29287C18.0976 6.68338 18.0976 7.31658 17.7071 7.70708L13.4142 12L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L12 13.4142L7.70708 17.7071C7.31658 18.0976 6.68338 18.0976 6.29287 17.7071C5.90237 17.3166 5.90237 16.6834 6.29287 16.2929L10.5858 12L6.29278 7.70708C5.90248 7.31658 5.90247 6.68337 6.29287 6.29297C6.68348 5.90247 7.31667 5.90247 7.70718 6.29297L12 10.5858L16.2929 6.29287Z\" />\n</svg></button></header>\n        <div class=\"filter-modal__body\">\n          <form class=\"filter-panel\" id=\"r4-filter-form-modal\">\n            <div class=\"filter-panel__body\">\n              <fieldset class=\"filter-panel__group\"><legend class=\"filter-panel__legend\">Специализация</legend><label class=\"filter-panel__field\" for=\"r4-modal-specialization\"><span class=\"filter-panel__field-label\">Направление</span><span class=\"text-input\"><input class=\"text-input__input\" id=\"r4-modal-specialization\" name=\"specialization\" autocomplete=\"off\" placeholder=\"Выберите специализацию\"></span></label></fieldset>\n              <fieldset class=\"filter-panel__group\"><legend class=\"filter-panel__legend\">Квалификация</legend><span class=\"base-select\"><select class=\"base-select__input\" name=\"level\" aria-label=\"Квалификация\"><option value=\"\">Любая</option><option>Junior</option><option>Middle</option><option>Senior</option></select></span></fieldset>\n              <fieldset class=\"filter-panel__group\"><legend class=\"filter-panel__legend\">Формат работы</legend><span class=\"checkbox\"><label class=\"checkbox-label\"><span class=\"checkbox-icon\"><input class=\"checkbox-input visually-hidden\" type=\"checkbox\" name=\"remote\" checked><span class=\"checkbox-button\"></span></span><span class=\"checkbox-text\">Можно удалённо</span></label></span><span class=\"checkbox\"><label class=\"checkbox-label\"><span class=\"checkbox-icon\"><input class=\"checkbox-input visually-hidden\" type=\"checkbox\" name=\"office\"><span class=\"checkbox-button\"></span></span><span class=\"checkbox-text\">В офисе</span></label></span></fieldset>\n            </div>\n          </form>\n        </div>\n        <footer class=\"filter-modal__footer\"><button type=\"reset\" form=\"r4-filter-form-modal\" class=\"base-button inline-flex appearance-passive size-l is-sizeable\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Сбросить</span></span></button><button type=\"submit\" form=\"r4-filter-form-modal\" class=\"base-button inline-flex appearance-main size-l is-sizeable\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Показать 1 272</span></span></button></footer>\n      </div>\n    </div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": []
+  }
+]

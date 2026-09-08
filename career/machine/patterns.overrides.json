@@ -1,0 +1,48 @@
+{
+  "_": [
+    "То, чего сборщик снять не может: геометрия сетки и словесное описание перестроения.",
+    "Ширины замерены в браузере на композициях showcase/pages.html при 1500px вьюпорта.",
+    "Остальные поля patterns.json собираются скриптом из самой витрины."
+  ],
+
+  "listing": {
+    "grid": { "container": 1100, "padding": "0 12px", "main": 752, "gap": 24, "aside": 300, "asideSide": "right" },
+    "responsive": [
+      { "maxWidth": 1023, "change": "сайдбар уходит под главную колонку; оболочка перестраивается на 1023, а не на 767" },
+      { "maxWidth": 767, "change": "фильтры сворачиваются в кнопку и открываются модально" }
+    ]
+  },
+  "listing-empty": {
+    "grid": { "container": 1100, "padding": "0 12px", "main": 752, "gap": 24, "aside": 300, "asideSide": "right" },
+    "responsive": [{ "maxWidth": 1023, "change": "как у listing" }]
+  },
+  "detail": {
+    "grid": { "container": 1100, "padding": "0 12px", "main": 752, "gap": 24, "aside": 300, "asideSide": "right" },
+    "responsive": [{ "maxWidth": 1023, "change": "связанное содержимое сайдбара уходит вниз" }]
+  },
+  "profile": {
+    "grid": { "container": 1100, "padding": "0 12px", "main": 752, "gap": 24, "aside": 300, "asideSide": "left" },
+    "note": "единственное семейство с сайдбаром СЛЕВА: действие прикреплено к личности",
+    "responsive": [{ "maxWidth": 1023, "change": "колонка личности уходит наверх" }]
+  },
+  "rating": {
+    "grid": { "container": 1100, "padding": "0 12px", "main": 752, "gap": 24, "aside": 300, "asideSide": "right" },
+    "note": "каркас листинга при содержимом дашборда",
+    "responsive": [{ "maxWidth": 767, "change": "переключатель фильтрации получает горизонтальную прокрутку" }]
+  },
+  "dashboard": {
+    "grid": null,
+    "note": "собственный каркас 264 + 800 (правило DB-2), не общая сетка 752 + 24 + 300. Наблюдался один раз — правила DB-* помечены как ненадёжные",
+    "responsive": []
+  },
+  "service": {
+    "grid": null,
+    "note": "сетка отменяется: содержимое центрируется в контейнере (правило ST-3)",
+    "responsive": []
+  },
+  "shell": {
+    "grid": { "container": 1100, "padding": "0 12px" },
+    "note": "оболочка продукта: шапка 112 (48 тёмная панель Хабра + 64 навигация Career), контейнер, подвал",
+    "responsive": [{ "maxWidth": 1023, "change": "навигация сворачивается в бургер" }]
+  }
+}

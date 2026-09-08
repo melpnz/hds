@@ -43,6 +43,15 @@ device-specific markup.
 Используйте `<section aria-labelledby>` при наличии heading. Список ссылок или
 фильтров получает собственную семантику (`nav`, `fieldset`) внутри body.
 
+## Разметка
+
+Снято с живого примера витрины — [`showcase/components.html#r4-sidebar`](../../showcase/components.html#r4-sidebar).
+Работает на пустой странице с одним `ui/career.css`.
+
+```html
+<section class="base-section base-section--background-white rounded-3xl sidebar-section" aria-labelledby="sidebar-company"><h3 class="sidebar-section__title" id="sidebar-company">О компании</h3><p class="sidebar-section__description">Продуктовая IT-компания</p><div class="sidebar-section__body"><p style="margin:0">Москва · 500–1000 сотрудников</p></div><div class="sidebar-section__footer"><a class="link-styled-button" href="#">Перейти в профиль</a></div></section>
+```
+
 ## Источники
 
 - [`evidence/README.md`](../../evidence/README.md): `module-sidebar-box-1440`.

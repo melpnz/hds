@@ -45,6 +45,15 @@ SectionHeader самостоятельно перестраивает actions н
 корень должен быть `<div>`. Обновляемый body может получить `aria-live`, только
 если изменение действительно требует объявления.
 
+## Разметка
+
+Снято с живого примера витрины — [`showcase/components.html#r4-content-section`](../../showcase/components.html#r4-content-section).
+Работает на пустой странице с одним `ui/career.css`.
+
+```html
+<section class="base-section base-section--background-white rounded-3xl content-section" aria-labelledby="about-role-title"><header class="section-header"><div class="section-header__content"><h3 class="section-header__title" id="about-role-title">О вакансии</h3></div></header><div class="content-section__body editor__content"><p>Команда развивает сервисы для IT-специалистов. В секции используется типографика Content.</p></div><div class="content-section__footer"><button type="button" class="base-button inline-flex appearance-main size-m is-sizeable"><span class="base-button__inner"><span class="base-button__content">Откликнуться</span></span></button></div></section>
+```
+
 ## Источники
 
 - [`data/section.md`](../data/section.md) и production page composition.

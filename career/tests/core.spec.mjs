@@ -122,6 +122,89 @@ test('PageHeader and PageFooter previews switch at documented widths', async ({ 
   await expect(page.locator('#r4-footer-preview .page-footer__inner')).toHaveCSS('flex-direction', 'row');
 });
 
+test('Overlays fit inside their specimen', async ({ page }) => {
+  test.setTimeout(90_000);
+  // .specimen режет содержимое по overflow:hidden ради скругления, и раскрытый
+  // слой, не поместившийся в стенд, молча обрезается. За одну сессию это
+  // всплывало трижды: tooltip, ContextMenu и listbox CustomSelect.
+  const measure = () => page.evaluate(() => {
+    const out = [];
+    for (const specimen of document.querySelectorAll('.specimen')) {
+      if (getComputedStyle(specimen).overflow === 'visible') continue;
+      const box = specimen.getBoundingClientRect();
+      for (const el of specimen.querySelectorAll('*')) {
+        const style = getComputedStyle(el);
+        if (style.position !== 'absolute') continue;   // fixed — модальный слой, он и должен покрывать экран
+        if (style.display === 'none' || style.visibility === 'hidden') continue;
+        const rect = el.getBoundingClientRect();
+        if (!rect.height) continue;
+        const over = Math.max(rect.bottom - box.bottom, box.top - rect.top, rect.right - box.right, box.left - rect.left);
+        if (over > 2) {
+          const head = specimen.querySelector('h4');
+          out.push(`${head ? head.textContent.trim() : specimen.id}: ${(el.className || el.tagName).toString().split(' ')[0]} на ${Math.round(over)}px`);
+        }
+      }
+    }
+    return out;
+  });
+
+  const clipped = new Set(await measure());
+
+  // Tooltip раскрывается наведением и фокусом, а не кликом, и закрывается,
+  // как только указатель уходит на следующий триггер. Поэтому замер идёт
+  // внутри цикла: на замере в конце проверка один раз уже промолчала.
+  // Этот проход идёт ПЕРВЫМ: раскрытые кликом меню перекрывают триггер тултипа,
+  // и наведение на него молча не срабатывает.
+  const probes = await page.evaluate(() => [...document.querySelectorAll('.specimen [aria-describedby]')]
+    .filter(el => document.getElementById(el.getAttribute('aria-describedby'))?.getAttribute('role') === 'tooltip')
+    .map((el, i) => { el.dataset.overlayProbe = String(i); return i; }));
+  for (const i of probes) {
+    const trigger = page.locator(`[data-overlay-probe="${i}"]`);
+    await trigger.scrollIntoViewIfNeeded().catch(() => {});
+    await trigger.hover({ timeout: 1000 }).catch(() => {});
+    await page.waitForTimeout(80);
+    (await measure()).forEach(x => clipped.add(x));
+  }
+
+
+  const triggers = page.locator('.specimen [aria-expanded="false"], .specimen [aria-haspopup]');
+  for (let i = 0; i < await triggers.count(); i += 1) {
+    const trigger = triggers.nth(i);
+    if (!await trigger.isVisible().catch(() => false)) continue;
+    await trigger.scrollIntoViewIfNeeded().catch(() => {});
+    await trigger.click({ timeout: 2000 }).catch(() => {});
+  }
+  (await measure()).forEach(x => clipped.add(x));
+
+  expect([...clipped]).toEqual([]);
+});
+
+test('Executable rule predicates hold', async ({ page }) => {
+  // Часть правил композиции проверяется машинно: предикаты лежат
+  // в machine/rules.overrides.json и попадают в machine/rules.json при сборке.
+  // Правило без предиката остаётся manual — и это честно, а не пробел теста.
+  const rules = JSON.parse(fs.readFileSync('machine/rules.json', 'utf8'))
+    .filter(rule => rule.predicate?.type === 'computed');
+  expect(rules.length).toBeGreaterThan(0);
+
+  await page.setViewportSize({ width: 1500, height: 1000 });
+  const failures = [];
+  for (const rule of rules) {
+    await page.goto('/' + rule.predicate.page);
+    await page.waitForTimeout(300);
+    const results = await page.evaluate(checks => checks.map(check => {
+      const el = document.querySelector(check.selector);
+      return { ...check, actual: el ? getComputedStyle(el)[check.property] : null };
+    }), rule.predicate.checks);
+    for (const r of results) {
+      if (r.actual !== r.equals) {
+        failures.push(`${rule.id}: ${r.selector} ${r.property} = ${r.actual}, ожидалось ${r.equals}`);
+      }
+    }
+  }
+  expect(failures).toEqual([]);
+});
+
 test('VacancyCard: data variants and presentational saved state', async ({ page }) => {
   const cards = page.locator('#c-vacancy-prod .vacancy-card');
   await expect(cards).toHaveCount(2);

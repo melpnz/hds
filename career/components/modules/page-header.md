@@ -51,6 +51,23 @@ header.page-header
 - Escape закрывает меню и возвращает фокус trigger; после перехода меню закрывается.
 - Порядок Tab совпадает с визуальным; декоративные SVG имеют `aria-hidden="true"`.
 
+## Разметка
+
+Снято с живого примера витрины — [`showcase/components.html#r4-page-header`](../../showcase/components.html#r4-page-header).
+Работает на пустой странице с одним `ui/career.css`.
+
+```html
+<header class="page-header">
+  <div class="tm-panel"><div class="page-width tm-panel__inner"><a class="tm-panel__logo" href="#"><b>Хабр</b> Карьера</a><span class="tm-panel__divider" aria-hidden="true"></span><span class="tm-panel__promo">Работа для IT-специалистов</span></div></div>
+  <div class="page-header__bar"><div class="page-width page-header__inner">
+    <button class="page-header__menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="r4-mobile-menu" data-page-header-toggle><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    <a class="page-header__logo" href="#"><b>Хабр</b> Карьера</a>
+    <nav class="page-header__nav" id="r4-mobile-menu" data-state="closed" aria-label="Основная навигация"><a class="page-header__link" aria-current="page" href="#">Вакансии</a><a class="page-header__link" href="#">Специалисты</a><a class="page-header__link" href="#">Компании</a><a class="page-header__link" href="#">Зарплаты</a></nav>
+    <div class="page-header__user"><button type="button" class="base-button inline-flex appearance-main size-m is-sizeable"><span class="base-button__inner"><span class="base-button__content">Войти</span></span></button></div>
+  </div></div>
+</header>
+```
+
 ## Источники
 
 - [`evidence/README.md`](../../evidence/README.md): `responsive-header-1440/375`.

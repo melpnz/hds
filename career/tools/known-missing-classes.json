@@ -1,0 +1,31 @@
+{
+  "_": [
+    "Классы, встречающиеся в снятой разметке, но не имеющие правила в CSS пакета.",
+    "Проверка tools/validate-classes.mjs выводит их предупреждением, а не ошибкой:",
+    "они уже есть в базовой линии и не должны мешать поймать новые.",
+    "Значения не восстанавливаются наугад — см. ROADMAP.md, пункт про utilities.css."
+  ],
+
+  "base-section__title--padding-medium": "модификатор из снятой разметки BaseSection; в извлечённом CSS есть только --size-*, правило для padding не попало",
+  "text-font-black-60": "утилита Tailwind из снятой разметки; ни правила в utilities.css, ни переменной --color-font-black-60 в tokens.css",
+
+  "bg-blue-600": "утилита Tailwind из снятой разметки; в извлечённый utilities.css не попала, значение не восстанавливаем",
+  "text-white": "то же",
+  "leading-4": "то же",
+  "focus:outline-3": "то же",
+  "phone:opacity-1": "то же; в Tailwind opacity-1 = 0.01, поэтому значение тем более требует проверки на продукте",
+
+  "has-after": "маркер слота BaseButton: CSS обращается к нему только в составных селекторах",
+  "is-panel": "маркер варианта, собственного правила не имеет",
+  "context-menu": "корневой маркер: правила объявлены только у потомков (__content, __trigger, --select)",
+  "v-popper--has-tooltip": "класс библиотеки v-popper из снятой разметки; стилей в пакете нет и не должно быть",
+  "uploading-animation-conic": "внутренний слой анимации загрузки, стилизуется инлайновым conic-gradient",
+  "inner-project-banner": "корневой маркер модуля, оформление задано утилитами",
+  "base-textarea--invalid": "модификатор из снятой разметки; состояние рисуется через aria-invalid",
+  "base-input-label--invalid": "то же",
+  "base-input-label__title--appearance-default": "модификатор по умолчанию, собственного правила не имеет",
+  "base-modal__wrapper--alignment-center": "модификатор выравнивания по умолчанию",
+  "base-modal__box--alignment-center": "то же",
+  "base-modal__header--alignment-center": "то же",
+  "base-modal__title--titleSize-default": "то же"
+}

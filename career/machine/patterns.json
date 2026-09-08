@@ -1,0 +1,226 @@
+[
+  {
+    "id": "shell",
+    "name": "Оболочка",
+    "summary": "Общая для всех продуктовых экранов. Единственная часть Career, которая не меняется ни между семействами страниц, ни между двумя реализациями продукта.",
+    "grid": {
+      "container": 1100,
+      "padding": "0 12px"
+    },
+    "note": "оболочка продукта: шапка 112 (48 тёмная панель Хабра + 64 навигация Career), контейнер, подвал",
+    "areas": null,
+    "responsive": [
+      {
+        "maxWidth": 1023,
+        "change": "навигация сворачивается в бургер"
+      }
+    ],
+    "rules": [
+      "SH-1",
+      "SH-2",
+      "SH-3",
+      "SH-4",
+      "SH-5",
+      "R-1"
+    ],
+    "example": {
+      "showcase": "showcase/pages.html#p-shell"
+    }
+  },
+  {
+    "id": "listing",
+    "name": "Листинг",
+    "summary": "Самое частое семейство: вакансии, компании, эксперты, специалисты. Вертикальный список одинаковых карточек, фильтры в правом сайдбаре.",
+    "grid": {
+      "container": 1100,
+      "padding": "0 12px",
+      "main": 752,
+      "gap": 24,
+      "aside": 300,
+      "asideSide": "right"
+    },
+    "note": null,
+    "areas": null,
+    "responsive": [
+      {
+        "maxWidth": 1023,
+        "change": "сайдбар уходит под главную колонку; оболочка перестраивается на 1023, а не на 767"
+      },
+      {
+        "maxWidth": 767,
+        "change": "фильтры сворачиваются в кнопку и открываются модально"
+      }
+    ],
+    "rules": [
+      "L-1",
+      "L-2",
+      "L-3",
+      "L-4",
+      "L-5",
+      "L-6",
+      "L-7",
+      "C-4",
+      "R-4"
+    ],
+    "example": {
+      "showcase": "showcase/pages.html#p-listing"
+    }
+  },
+  {
+    "id": "listing-empty",
+    "name": "Листинг · пустой результат",
+    "summary": "Показан отдельно, потому что решение неочевидное: страница почти не меняется.",
+    "grid": {
+      "container": 1100,
+      "padding": "0 12px",
+      "main": 752,
+      "gap": 24,
+      "aside": 300,
+      "asideSide": "right"
+    },
+    "note": null,
+    "areas": null,
+    "responsive": [
+      {
+        "maxWidth": 1023,
+        "change": "как у listing"
+      }
+    ],
+    "rules": [
+      "ST-1",
+      "ST-2"
+    ],
+    "example": {
+      "showcase": "showcase/pages.html#p-listing-empty"
+    }
+  },
+  {
+    "id": "detail",
+    "name": "Страница сущности",
+    "summary": "Тот же каркас, что у листинга. Меняется содержимое сайдбара: вместо фильтров — связанные сущности.",
+    "grid": {
+      "container": 1100,
+      "padding": "0 12px",
+      "main": 752,
+      "gap": 24,
+      "aside": 300,
+      "asideSide": "right"
+    },
+    "note": null,
+    "areas": null,
+    "responsive": [
+      {
+        "maxWidth": 1023,
+        "change": "связанное содержимое сайдбара уходит вниз"
+      }
+    ],
+    "rules": [
+      "D-1",
+      "D-2",
+      "D-3",
+      "D-4",
+      "D-5",
+      "CT-2",
+      "R-3"
+    ],
+    "example": {
+      "showcase": "showcase/pages.html#p-detail"
+    }
+  },
+  {
+    "id": "profile",
+    "name": "Профиль",
+    "summary": "Человек или организация. Единственное семейство Career с сайдбаром слева.",
+    "grid": {
+      "container": 1100,
+      "padding": "0 12px",
+      "main": 752,
+      "gap": 24,
+      "aside": 300,
+      "asideSide": "left"
+    },
+    "note": "единственное семейство с сайдбаром СЛЕВА: действие прикреплено к личности",
+    "areas": null,
+    "responsive": [
+      {
+        "maxWidth": 1023,
+        "change": "колонка личности уходит наверх"
+      }
+    ],
+    "rules": [
+      "P-1",
+      "P-2",
+      "P-3",
+      "P-4",
+      "CT-5",
+      "R-5"
+    ],
+    "example": {
+      "showcase": "showcase/pages.html#p-profile"
+    }
+  },
+  {
+    "id": "rating",
+    "name": "Рейтинг",
+    "summary": "Гибрид: каркас листинга при содержимом дашборда. Ранжированный список с переключателем фильтрации над ним.",
+    "grid": {
+      "container": 1100,
+      "padding": "0 12px",
+      "main": 752,
+      "gap": 24,
+      "aside": 300,
+      "asideSide": "right"
+    },
+    "note": "каркас листинга при содержимом дашборда",
+    "areas": null,
+    "responsive": [
+      {
+        "maxWidth": 767,
+        "change": "переключатель фильтрации получает горизонтальную прокрутку"
+      }
+    ],
+    "rules": [
+      "L-1",
+      "L-3",
+      "L-4",
+      "R-8"
+    ],
+    "example": {
+      "showcase": "showcase/pages.html#p-rating"
+    }
+  },
+  {
+    "id": "dashboard",
+    "name": "Дашборд",
+    "summary": "Единственное семейство, где композиция строится вокруг данных, а не вокруг списка сущностей. Собственный каркас.",
+    "grid": null,
+    "note": "собственный каркас 264 + 800 (правило DB-2), не общая сетка 752 + 24 + 300. Наблюдался один раз — правила DB-* помечены как ненадёжные",
+    "areas": null,
+    "responsive": [],
+    "rules": [
+      "DB-1",
+      "DB-2",
+      "DB-3",
+      "C-5",
+      "R-6"
+    ],
+    "example": {
+      "showcase": "showcase/pages.html#p-dashboard"
+    }
+  },
+  {
+    "id": "service",
+    "name": "Служебный экран",
+    "summary": "404 и подобные. Сетка отменяется целиком.",
+    "grid": null,
+    "note": "сетка отменяется: содержимое центрируется в контейнере (правило ST-3)",
+    "areas": null,
+    "responsive": [],
+    "rules": [
+      "ST-3"
+    ],
+    "example": {
+      "showcase": "showcase/pages.html#p-service"
+    }
+  }
+]

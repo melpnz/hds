@@ -40,6 +40,15 @@ listing, detail и profile. Уровень заголовка задаёт ко�
 В каждом экземпляре ровно один heading. Кнопки сохраняют видимые подписи или
 доступные имена; action group не перехватывает keyboard navigation.
 
+## Разметка
+
+Снято с живого примера витрины — [`showcase/components.html#r4-section-header`](../../showcase/components.html#r4-section-header).
+Работает на пустой странице с одним `ui/career.css`.
+
+```html
+<header class="section-header"><div class="section-header__content"><p class="section-header__eyebrow">Вакансии компании</p><h3 class="section-header__title">Открытые позиции</h3><p class="section-header__description">12 вакансий для разработчиков и аналитиков</p></div><div class="section-header__actions"><button type="button" class="base-button inline-flex appearance-passive size-m is-sizeable"><span class="base-button__inner"><span class="base-button__content">Подписаться</span></span></button></div></header>
+```
+
 ## Источники
 
 - Production listing/detail/profile в [`showcase/pages.html`](../../showcase/pages.html).

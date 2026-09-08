@@ -33,7 +33,8 @@
 |---|---|
 | [Подключение](docs/development/installation.md) | одна строка `career.css`, порядок слоёв, обёртка `.career-shell`, три добавленных правила |
 | [Быстрый старт](docs/development/quick-start.md) | собрать экран Career за пять шагов и проверить его |
-| [Проверки](tools/README.md) | `validate-components --strict` · `sync-showcase-icons --check` · `npx playwright test` |
+| [Чеклист готовности](docs/development/checklist.md) | что проверить, прежде чем считать экран сделанным |
+| [Проверки](tools/README.md) | `validate-classes` · `validate-counts` · `validate-components --strict` · `sync-showcase-icons --check` · `npx playwright test` |
 
 ### Гайд
 
@@ -43,6 +44,7 @@
 | [Композиция](docs/guide/composition.md) | 57 правил компоновки, адаптива и состояний с идентификаторами `SH` `L` `D` `P` `DB` `C` `F` `M` `CT` `R` `ST` |
 | [Решения](docs/guide/decisions.md) | 16 Decision Guides в формате OBSERVED / DECISION GUIDE / GAP, наблюдения о текстах, чего правила не задают |
 | [Семейства страниц](docs/guide/page-families.md) | три уровня системы: компонент, модуль, страница |
+| [Состояния фичи](docs/guide/feature-states.md) | loading, пустой результат, ошибка, retry, forbidden — нормативный контракт |
 | [Доступность](docs/guide/accessibility.md) | только то, что есть в извлечённой разметке и CSS |
 | [Границы](docs/guide/coverage.md) | что покрыто, что нет, откуда значения, как разрешались противоречия |
 
@@ -53,6 +55,8 @@
 | [Реестр](components/INDEX.md) | что есть, где лежит, как читать спецификацию |
 | [Словарь состояний](components/STATES.md) | канонические имена и матрица обязательных |
 | [`manifest.json`](components/manifest.json) | машиночитаемый реестр |
+| [`AGENTS.md`](AGENTS.md) | контракт для модели-потребителя: что читать, как собирать, где граница |
+| [`machine/`](machine/index.json) | машинный слой: токены, компоненты, правила в JSON. Собирается `node tools/build-machine.mjs` |
 | [Витрина компонентов](showcase/components.html) | каждый компонент настоящей вёрсткой |
 | [Паттерны страниц](showcase/pages.html) | композиции с переключателями ширины |
 
@@ -106,6 +110,7 @@
 ```
 career/
   README.md                 эта карта
+  AGENTS.md                 контракт для модели-потребителя
   CHANGELOG.md              что изменилось: ## Unreleased и релизы
   ROADMAP.md                волны и статусы, чего нет и что нужно исправить
 
@@ -113,12 +118,14 @@ career/
     development/
       installation.md       подключение, порядок слоёв, требования к странице
       quick-start.md        собрать экран за пять шагов
+      checklist.md          чеклист готовности экрана
     guide/
       design.md             Visual DNA и Foundations
       composition.md        57 правил компоновки, адаптива и состояний
       decisions.md          16 Decision Guides, тексты, чего правила не задают
       page-families.md      компоненты, модули, семейства страниц
       accessibility.md      что есть в извлечённой разметке
+      feature-states.md     состояния уровня экрана: loading, empty, error, retry
       coverage.md           границы, источники, закрытые расхождения
 
   ui/                       слой Career — единственное, что нужно переносить дальше
@@ -141,6 +148,15 @@ career/
     manifest.json           машиночитаемый реестр, 72 записи
     actions/ forms/ labels/ navigation/ data/
     feedback/ overlays/ cards/ banners/ modules/
+
+  machine/                  машинный слой, собирается скриптом — руками не править
+    index.json              точка входа: версия, пути, проверки, граница знаний
+    tokens.json             121 токен в формате DTCG
+    components.json         каталог: usage, состояния, готовая разметка
+    rules.json              57 правил + 16 Decision Guides
+    patterns.json           8 паттернов страниц с сеткой и адаптивом
+    content.json            правила текста: 6 наблюдений, 6 пробелов
+    *.overrides.json        то, чего скрипт снять не может — правится руками
 
   showcase/                 живые витрины
     components.html         инвентарь компонентов

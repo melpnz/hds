@@ -41,6 +41,15 @@ sticky; вариант `hidden` удаляется из layout. Порядок �
 `<aside>` получает `aria-label` или `aria-labelledby`, если это complementary
 content. Для основной навигации используйте `<nav>`, а не generic aside.
 
+## Разметка
+
+Снято с живого примера витрины — [`showcase/components.html#r4-sidebar`](../../showcase/components.html#r4-sidebar).
+Работает на пустой странице с одним `ui/career.css`.
+
+```html
+<aside class="sidebar" aria-label="Дополнительная информация"><section class="base-section base-section--background-white rounded-3xl sidebar-section" aria-labelledby="sidebar-company"><h3 class="sidebar-section__title" id="sidebar-company">О компании</h3><p class="sidebar-section__description">Продуктовая IT-компания</p><div class="sidebar-section__body"><p style="margin:0">Москва · 500–1000 сотрудников</p></div><div class="sidebar-section__footer"><a class="link-styled-button" href="#">Перейти в профиль</a></div></section><section class="base-section base-section--background-white rounded-3xl sidebar-section" aria-labelledby="sidebar-subscribe"><h3 class="sidebar-section__title" id="sidebar-subscribe">Новые вакансии</h3><div class="sidebar-section__body"><button type="button" class="base-button inline-flex appearance-passive size-m is-sizeable w-full"><span class="base-button__inner"><span class="base-button__content">Подписаться</span></span></button></div></section></aside>
+```
+
 ## Источники
 
 - [`evidence/README.md`](../../evidence/README.md): `module-sidebar-box-1440`.

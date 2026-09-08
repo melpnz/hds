@@ -1,0 +1,54 @@
+{
+  "_": [
+    "Исполнимые предикаты для правил, которые можно проверить машинно.",
+    "Значения не выдуманы: сняты замером computed styles на showcase/pages.html при 1500px.",
+    "Правила без записи здесь остаются с predicate.type = manual — и это честно:",
+    "часть правил про смысл композиции, а не про число, и автоматом не проверяется.",
+    "Исполняются тестом «Executable rule predicates hold» в tests/core.spec.mjs."
+  ],
+
+  "SH-4": {
+    "predicate": {
+      "type": "computed",
+      "page": "showcase/pages.html",
+      "checks": [
+        { "selector": "#p-listing .career-shell", "property": "backgroundColor", "equals": "rgb(255, 255, 255)" }
+      ]
+    }
+  },
+
+  "SH-5": {
+    "predicate": {
+      "type": "computed",
+      "page": "showcase/pages.html",
+      "checks": [
+        { "selector": "#p-listing .page-width", "property": "maxWidth", "equals": "1100px" },
+        { "selector": "#p-listing .page-width", "property": "paddingLeft", "equals": "12px" },
+        { "selector": "#p-listing .page-width", "property": "paddingRight", "equals": "12px" }
+      ]
+    }
+  },
+
+  "L-1": {
+    "predicate": {
+      "type": "computed",
+      "page": "showcase/pages.html",
+      "checks": [
+        { "selector": "#p-listing .page-layout__main", "property": "width", "equals": "752px" }
+      ]
+    }
+  },
+
+  "C-1": {
+    "predicate": {
+      "type": "computed",
+      "page": "showcase/pages.html",
+      "checks": [
+        { "selector": "#p-listing .vacancy-card", "property": "paddingTop", "equals": "24px" },
+        { "selector": "#p-listing .vacancy-card", "property": "borderRadius", "equals": "24px" },
+        { "selector": ".base-section", "property": "paddingTop", "equals": "24px" },
+        { "selector": ".base-section", "property": "borderRadius", "equals": "24px" }
+      ]
+    }
+  }
+}
