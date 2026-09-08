@@ -26,6 +26,20 @@
       одного списка стоят на 20 и 24. Поэтому радиус здесь — модификатор
       с адресом, а не одна «правильная» ступень.
 
+      Поверх измеренного лежит каноническая лестница пакета — решение
+      владельца Р-7: 0 · 6 · 16 · пилюля, токены --core-radius-step-*.
+      На неё переведены каркасы .button, .form-field-input и .card
+      и те модификаторы, чьё снятое значение совпало со ступенью канона
+      (.button-r0, .button-r16, .button-import, .button-pill,
+      .form-field-r0, .form-field-r16, .form-field-box, .card-r0).
+      Модификаторы, чьё значение в канон не попадает — 90, 60, 50, 40,
+      20, 24, 30, 36, 54, 15, 8, 81.708, 110.883 — остаются как измерены:
+      подмена факта ближайшей ступенью канона была бы потерей факта.
+
+      Соотношение ступеней сторожит правило Ф-3 (Р-8): радиус поля ввода
+      не может быть больше радиуса кнопки, одинаковыми быть могут.
+      Машинно — node tools/validate-radius.mjs.
+
    Литералы. Там, где ступень измерена, но в ui/tokens.css её нет (15, 16,
    30, 36, 46, 54, 60, 68, 81.708, 90), стоит литерал источника, а не
    ближайший токен: подмена измеренного значения похожим — потеря факта.
@@ -36,7 +50,7 @@
    1. BUTTON
    ========================================================================= */
 
-/* @normative каркас кнопки: padding, высота и кегль надписи не измерены ни в одном из шести узлов реестра — снята только форма и заливка */
+/* @normative каркас кнопки: padding, высота и кегль надписи не измерены ни в одном из шести узлов реестра — снята только форма и заливка. Базовый радиус — ступень «пилюля» канонической лестницы Р-7: снятые 90, 60, 50 и 40 при высотах 40 … 68 браузер обрезает ровно до полного скругления, канон сводит их к одной ступени */
 .button {
   display: inline-flex;
   align-items: center;
@@ -50,7 +64,7 @@
   font-weight: var(--core-weight-sub);
   line-height: 1;
   padding: 18px 32px;
-  border-radius: var(--core-radius-l);
+  border-radius: var(--core-radius-step-pill);
   background: var(--product-cta);
   color: var(--product-on-acid);
 }
@@ -64,17 +78,17 @@
 /* @snapshot 02_Landings 19319:7049 — радиус 50 при заливке #47b8f0; та же ступень у 20572:37377 при заливке #3670f4 */
 .button-r50 { border-radius: var(--core-radius-xl); }
 
-/* @snapshot 02_Landings 12008:425 — радиус 16 при заливке #ff744f; литерал: ступени 16 в токенах нет */
-.button-r16 { border-radius: 16px; }
+/* @snapshot 02_Landings 12008:425 — радиус 16 при заливке #ff744f; совпадает со ступенью 16 канонической лестницы Р-7 */
+.button-r16 { border-radius: var(--core-radius-step-16); }
 
 /* @snapshot 02_Landings 9588:1223 — радиус 0 при заливке #a05cff; тот же 0 у кнопки 6509:20511 и у кнопок окон 1302:12059 */
-.button-r0 { border-radius: var(--core-radius-none); }
+.button-r0 { border-radius: var(--core-radius-step-0); }
 
 /* @snapshot 02_Landings 20775:861 — радиус 6 приходит из дизайн-системы Хабра переменной --elements/control/border_radius: импорт, а не собственное значение пакета */
-.button-import { border-radius: var(--core-radius-control); }
+.button-import { border-radius: var(--core-radius-step-6); }
 
 /* @snapshot 02_Landings 12395:8147 — радиус 40 при высоте 64: браузер обрезает его до 32, то есть ровно пилюля. То же у 1324:8145 (40 при высоте 40) и 18085:3959 (50 при высоте 60) */
-.button-pill { border-radius: var(--core-radius-pill); }
+.button-pill { border-radius: var(--core-radius-step-pill); }
 
 /* @snapshot 02_Landings 10943:4284 — круглая кнопка-стрелка 70 × 70, радиус 46, обводка 2px solid #333333; литералы: значения узла */
 .button-icon {
@@ -123,7 +137,7 @@
   height: 60px;
   padding: 0 24px;
   border: 0;
-  border-radius: var(--core-radius-pill);
+  border-radius: var(--core-radius-step-pill);
   background: var(--core-bg-field);
   color: var(--core-text-primary);
   font-family: var(--core-font-text);
@@ -141,7 +155,7 @@
 
 /* @snapshot 02_Landings 10943:2464 — поле формы: радиус 16, заливка #222222; литералы: значения узла */
 .form-field-r16 {
-  border-radius: 16px;
+  border-radius: var(--core-radius-step-16);
   background: #222222;
 }
 
@@ -153,7 +167,7 @@
 
 /* @snapshot 02_Landings 6509:20509 — поле без скругления: заливка #4b5558 и обводка 2px solid #4b5558 того же цвета */
 .form-field-r0 {
-  border-radius: var(--core-radius-none);
+  border-radius: var(--core-radius-step-0);
   background: #4b5558;
   border: 2px solid #4b5558;
 }
@@ -172,7 +186,7 @@
   width: 20px;
   height: 20px;
   flex: none;
-  border-radius: var(--core-radius-control);
+  border-radius: var(--core-radius-step-6);
   border: 1px solid #acb8bf;
   background: transparent;
 }
@@ -240,6 +254,18 @@
    Знак, зазор и высота у трёх продуктов совпадают; различается только ширина
    словесного знака. Поэтому лок-ап параметризован одной переменной ширины,
    а не тремя отдельными правилами.
+
+   Файлы знаков берутся из общего хранилища guides/assets/logos, а не из
+   ui/assets/ пакета. Это осознанное отступление от METHOD §6.3 (локальность
+   ассетов) по распоряжению владельца: одно хранилище на все пакеты вместо
+   семи копий. Сервер отдаёт его через единственную точку монтирования
+   /assets/logos/ (tools/serve.mjs), пути в CSS абсолютные именно поэтому —
+   относительный путь ../../assets/ означал бы выход за корень пакета,
+   которого сервер не разрешает и не должен.
+
+   Геометрию задаёт коробка (снято с Figma), пропорции внутри коробки —
+   сам файл: background-size: contain не даёт растянуть знак под коробку.
+   Расхождение между снятой шириной и viewBox файла разобрано в GUIDE §7.
    ========================================================================= */
 
 /* @snapshot 04_Brand 5141:5053 — лок-ап: высота знака 71.893, зазор до словесного знака 25.699; значения одинаковы на 21 баннере из 23 */
@@ -257,11 +283,27 @@
   flex: none;
 }
 
+/* @normative знак приходит файлом из общего хранилища assets/logos, а не значением с узла: цвет лок-апа в Figma не снят ни разу, перекрасить его нечем и незачем */
+.product-lockup-mark {
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-image: url("/assets/logos/habr/icon-detailed.svg");
+}
+
 /* @snapshot 04_Brand 5141:5053 — словесный знак: высота равна высоте знака, ширина задаётся продуктом */
 .product-lockup-word {
   height: 71.893px;
   width: var(--lockup-word-width, 143.803px);
   flex: none;
+}
+
+/* @normative словесный знак — тот же файл из общего хранилища; contain вписывает его в снятую коробку, не искажая пропорции viewBox */
+.product-lockup-word {
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: contain;
+  background-image: url("/assets/logos/habr/wordmark-ru.svg");
 }
 
 /* @snapshot 04_Brand 5149:6555 — ширина словесного знака «Хабр» 143.803, итого лок-ап 245.592 × 71.893 */
@@ -272,6 +314,20 @@
 
 /* @snapshot 04_Brand 5164:8036 — ширина словесного знака «Курсы» 321.284, итого лок-ап 431.592 × 71.893 */
 [data-product="courses"] .product-lockup-word { --lockup-word-width: 321.284px; }
+
+/* @normative выбор файла под продукт: имя папки в хранилище совпадает со значением data-product, поэтому правил ровно три и все одинаковые */
+[data-product="habr"] .product-lockup-mark { background-image: url("/assets/logos/habr/icon-detailed.svg"); }
+[data-product="habr"] .product-lockup-word { background-image: url("/assets/logos/habr/wordmark-ru.svg"); }
+[data-product="career"] .product-lockup-mark { background-image: url("/assets/logos/career/icon-detailed.svg"); }
+[data-product="career"] .product-lockup-word { background-image: url("/assets/logos/career/wordmark-ru.svg"); }
+[data-product="courses"] .product-lockup-mark { background-image: url("/assets/logos/courses/icon-detailed.svg"); }
+[data-product="courses"] .product-lockup-word { background-image: url("/assets/logos/courses/wordmark-ru.svg"); }
+
+/* Англоязычных словесных знаков в CSS нет намеренно: в хранилище они есть
+   (habr/wordmark-en.svg и так далее), но ширина лок-апа с ними не измерена
+   ни на одном из 23 баннеров — снятая коробка 143.803 / 321.284 / 393.446
+   относится к русским начертаниям. Правило под английский язык завело бы
+   неизмеренную геометрию под видом снятой. GUIDE §7, «Пробелы». */
 
 /* @snapshot 04_Brand 5141:5088 — крупный размер: знак 89.519, зазор 32, словесный знак 489.906. Отношение 89.519/71.893 = 32/25.699 = 1.2452, то есть равномерное масштабирование, а не отдельная ступень */
 .product-lockup-l {
@@ -306,13 +362,13 @@
    отдают радиус и заливку, но не паддинг.
    ========================================================================= */
 
-/* @normative каркас карточки: внутренний отступ измерен ровно на одной карточке участка (1324:8083, p-20), высота и минимальная ширина не измерены нигде */
+/* @normative каркас карточки: внутренний отступ измерен ровно на одной карточке участка (1324:8083, p-20), высота и минимальная ширина не измерены нигде. Базовый радиус — ступень 16 канонической лестницы Р-7; снятые 20, 24, 30, 36, 54 и 81.708 остаются модификаторами ниже */
 .card {
   display: flex;
   flex-direction: column;
   gap: 12px;
   padding: 20px;
-  border-radius: var(--core-radius-m);
+  border-radius: var(--core-radius-step-16);
   background: var(--core-bg-surface);
   color: var(--core-text-primary);
 }
@@ -336,7 +392,7 @@
 .card-r54 { border-radius: 54px; }
 
 /* @snapshot 02_Landings 1324:8083 — карточка номинации без скругления: border и p-[20px], ни одного rounded-* */
-.card-r0 { border-radius: var(--core-radius-none); }
+.card-r0 { border-radius: var(--core-radius-step-0); }
 
 /* @snapshot 02_Landings 18250:671 — плитка партнёрской сетки 187 × 92.041, радиус 81.708 на девяти плитках; литерал: значение узла */
 .card-tile {
@@ -371,7 +427,7 @@
 
 /* @snapshot 02_Landings 10943:4292 — основной текст карточки 18/1.3, трекинг 0 */
 .card-text {
-  font-size: var(--core-h4);
+  font-size: var(--core-h3);
   line-height: 1.3;
 }
 
@@ -420,15 +476,26 @@
 .marquee-track {
   display: flex;
   align-items: center;
+  width: 100%;
+}
+
+/* @normative две одинаковые группы: каждая заполняет контейнер, завершающий промежуток входит в длину цикла */
+.marquee-group {
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: space-around;
+  box-sizing: border-box;
+  min-width: 100%;
   gap: 70px;
-  width: max-content;
+  padding-right: 70px;
   animation: marquee-roll 30s linear infinite;
 }
 
 /* @normative цикл анимации: шаг 240 снят у 14871:1904 как шаг плиток, но длина цикла в источнике не существует и спроектирована */
 @keyframes marquee-roll {
   from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  to { transform: translateX(-100%); }
 }
 
 /* @snapshot 02_Landings 7880:20726 — надпись ленты: ALS Hauss Medium 30/1.2, трекинг 0, uppercase, цвет #07f */
@@ -442,5 +509,5 @@
 
 /* @normative остановка движения по просьбе системы: prefers-reduced-motion в источниках не встречается — правило дописано, а не снято */
 @media (prefers-reduced-motion: reduce) {
-  .marquee-track { animation: none; }
+  .marquee-group { animation: none; }
 }

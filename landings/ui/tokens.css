@@ -87,6 +87,38 @@
   /* @snapshot 02_Landings 18085:3890 — gap 96 между блоками внутри секции */
   --core-block-gap: 96px;
 
+  /* -----------------------------------------------------------------
+     РЕШЕНИЕ Р-7 — каноническая лестница радиусов пакета: 0 · 6 · 16 ·
+     пилюля. Четыре ступени, других нет.
+
+     Измеренное лестницей не является и ею не подменяется: в источнике
+     радиусы лежат в диапазоне 0 … 81.708, ступеней на узел 1 … 5,
+     медиана 2, а соседние карточки одного списка 18085:3890 стоят на
+     20 и 24. Все снятые ступени остаются ниже под своими @snapshot
+     и в модификаторах primitives.css — канон ложится поверх них,
+     а не вместо них (GUIDE §9).
+
+     Ступень 6 — импорт: она приходит из дизайн-системы Хабра
+     переменной --elements/control/border_radius вместе с компонентом,
+     а не выведена этим пакетом.
+
+     Правило соотношения Ф-3 (Р-8): радиус поля ввода не может быть
+     больше радиуса кнопки; одинаковыми быть могут. Сторожит
+     node tools/validate-radius.mjs.
+     ----------------------------------------------------------------- */
+  /* @normative ступень 0 канонической лестницы, решение владельца Р-7; совпадает со снятым 0 у 6509:20474 */
+  --core-radius-step-0: 0;
+  /* @snapshot 02_Landings 20775:861 — ступень 6: импорт из дизайн-системы Хабра, переменная --elements/control/border_radius */
+  --core-radius-step-6: 6px;
+  /* @normative ступень 16 канонической лестницы, решение владельца Р-7; совпадает со снятыми 16 у 12008:425, 10943:2464 и 10929:505 */
+  --core-radius-step-16: 16px;
+  /* @normative ступень «пилюля» канонической лестницы, решение владельца Р-7: измерены 90, 101 и 110.883, единой ступени в источнике нет — канон сводит их все к полному скруглению */
+  --core-radius-step-pill: 999px;
+
+  /* -----------------------------------------------------------------
+     Снятые ступени. Не удаляются и канону не подчиняются: это факты
+     источника, по которым канон и был выведен.
+     ----------------------------------------------------------------- */
   /* @snapshot 02_Landings 6509:20474 — интерфейс на прямых углах, 3 узла из 9 */
   --core-radius-none: 0;
   /* @snapshot 02_Landings 9519:2095 — поле и кнопка формы */
@@ -121,41 +153,32 @@
   --core-chip-height: 121.972px;
   --core-chip-pad: 27.721px 41.581px 33.265px;
 
-  /* @normative шкала спроектирована: модульной шкалы в источнике нет, кегли дисплея 40 … 630 в ряд не строятся */
-  --core-display-xl: 144px;
-  --core-display-xl-lh: 0.9;
-  --core-display-xl-ls: -0.05em;
-  --core-display-l: 96px;
-  --core-display-l-lh: 0.95;
-  --core-display-l-ls: -0.04em;
-  --core-display-m: 72px;
-  --core-display-m-lh: 0.95;
-  --core-display-m-ls: -0.03em;
-  --core-h1: 56px;
-  --core-h1-lh: 1;
+  /* @normative единая шкала из восьми ролей по решению владельца; три старших заголовка плавно адаптируются, отдельной мобильной шкалы нет */
+  --core-display: clamp(40px, 7.5vw, 96px);
+  --core-display-lh: 1.05;
+  --core-display-ls: -0.02em;
+  --core-h1: clamp(32px, 5vw, 64px);
+  --core-h1-lh: 1.1;
   --core-h1-ls: -0.02em;
-  --core-h2: 40px;
-  --core-h2-lh: 1.05;
+  --core-h2: clamp(28px, 3.125vw, 40px);
+  --core-h2-lh: 1.15;
   --core-h2-ls: -0.02em;
-  --core-h3: 32px;
-  --core-h3-lh: 1.1;
+  --core-h3: 24px;
+  --core-h3-lh: 1.2;
   --core-h3-ls: -0.01em;
-  --core-h4: 24px;
-  --core-h4-lh: 1.2;
-  --core-h4-ls: -0.01em;
-  --core-lead: 22px;
-  --core-lead-lh: 1.2;
-  --core-body-l: 20px;
-  --core-body-l-lh: 1.4;
+  --core-lead: 20px;
+  --core-lead-lh: 1.5;
+  --core-lead-ls: 0;
   --core-body: 16px;
   --core-body-lh: 1.5;
+  --core-body-ls: 0;
   --core-small: 14px;
   --core-small-lh: 1.4;
   --core-small-ls: 0.01em;
   --core-caption: 12px;
   --core-caption-lh: 1.3;
   --core-caption-ls: 0.02em;
-
+  --core-font-heading: "Inter", sans-serif;
   /* @normative веса шкалы: вес дисплея следует концепции (13/13), сама лестница весов спроектирована */
   --core-weight-display: 600;
   --core-weight-heading: 600;
@@ -163,36 +186,10 @@
   --core-weight-body: 400;
 }
 
-/* Мобильная шкала. Мобильных артбордов у 18 узлов пакета не установлено,
-   поэтому она спроектирована целиком, а не снята. */
+/* Мобильная адаптация отступов. Типографика использует единую шкалу выше. */
 @media (max-width: 640px) {
   :root {
-    /* @normative мобильная шкала: мобильных артбордов у 18 узлов пакета нет, снять было не с чего */
-    --core-display-xl: 48px;
-    --core-display-xl-lh: 0.95;
-    --core-display-xl-ls: -0.03em;
-    --core-display-l: 40px;
-    --core-display-l-lh: 1;
-    --core-display-l-ls: -0.02em;
-    --core-display-m: 36px;
-    --core-display-m-lh: 1;
-    --core-display-m-ls: -0.02em;
-    --core-h1: 32px;
-    --core-h1-lh: 1.1;
-    --core-h1-ls: -0.01em;
-    --core-h2: 28px;
-    --core-h2-lh: 1.15;
-    --core-h2-ls: -0.01em;
-    --core-h3: 24px;
-    --core-h3-lh: 1.2;
-    --core-h3-ls: 0;
-    --core-h4: 20px;
-    --core-h4-lh: 1.25;
-    --core-h4-ls: 0;
-    --core-lead: 18px;
-    --core-lead-lh: 1.35;
-    --core-body-l: 17px;
-    --core-body-l-lh: 1.45;
+    /* @normative мобильные отступы спроектированы: мобильных артбордов нет */
     --core-section-pad-s: 56px;
     --core-section-pad-m: 64px;
     --core-section-pad-l: 72px;
@@ -269,12 +266,12 @@
   --product-base-deep: #030e71;
   /* @snapshot 04_Brand 5151:7007 — акцент-текст */
   --product-accent: #06d0ef;
-  /* @snapshot 04_Brand 5149:6443 — кислотный акцент и цвет неоновой обводки */
-  --product-acid: #5df20d;
-  /* @snapshot 02_Landings 20216:120 — акцентная заливка кнопки, радиус 90 */
-  --product-cta: #fa722b;
-  /* @normative текст на кислотной заливке: цвет надписи на кнопках не снят ни в одном узле */
-  --product-on-acid: #070405;
+  /* @normative без выбранной концепции кислотный декор не включён: 5149:6443 подтверждает только «Неоновый БУМ», не все лендинги Хабра */
+  --product-acid: none;
+  /* @normative CTA Хабра назначено владельцем (Р-5); в снятом материале #4DA3CB не встречается вовсе, ближайшие известные — #548eab (акцент продуктового UI Хабра из корпуса) и #06D0EF (04_Brand 5151:7007). Прежнее #fa722b пришло с 02_Landings 20216:120 «Санаторий маркетолога» — цвет проекта, а не продукта */
+  --product-cta: #4da3cb;
+  /* @normative белый на акцентной заливке — решение владельца Р-6: цвет надписи в источнике по-прежнему не снят ни в одном узле, но значение выбрано осознанно. Контраст белого по CTA #4DA3CB — 2.83:1, по кислотному #5DF20D — 1.48:1; тёмный там сильнее (7.21 и 13.78). Числа названы в GUIDE §6 и blocks/button.md */
+  --product-on-acid: #ffffff;
 }
 
 [data-product="career"] {
@@ -282,13 +279,13 @@
   --product-base: #5a00b4;
   /* @snapshot 04_Brand 5145:5932 — тёмная база Карьеры */
   --product-base-deep: #35006a;
-  /* @snapshot 02_Landings 16418:3180 — акцент в лендинге Карьеры */
-  --product-accent: #b06dfe;
+  /* @snapshot 04_Brand 5141:5094 — верхний стоп фонового градиента Карьеры; отдельного акцентного тона семейство не даёт, роль акцента назначена решением Р-5. Прежнее #b06dfe пришло с 02_Landings 16418:3180 — цвет проекта */
+  --product-accent: #7963e9;
   /* @snapshot 04_Brand 5141:5033 — Карьера единственная без кислотного акцента, 23/23 */
   --product-acid: none;
-  /* @snapshot 02_Landings 15818:15335 — CTA-градиент, радиус 60 */
-  --product-cta: linear-gradient(100.4deg, #d400ff 0.12%, #7a3df5 60%, #006aff 100%);
-  /* @normative текст на акцентной заливке: цвет надписи на кнопках не снят ни в одном узле */
+  /* @snapshot 04_Brand 5141:5094 — CTA согласован с акцентом семейства (Р-5); снятый CTA-градиент #d400ff → #7a3df5 → #006aff (02_Landings 15818:15335) — цвет проекта, он остаётся описан в GUIDE §6 и в .button-r60 */
+  --product-cta: #7963e9;
+  /* @normative белый на акцентной заливке — решение владельца Р-6: цвет надписи в источнике не снят. Контраст белого по #7963E9 — 4.40:1, тёмного #35006A — 3.51:1, здесь белый сильнее */
   --product-on-acid: #ffffff;
 }
 
@@ -297,14 +294,14 @@
   --product-base: #003580;
   /* @snapshot 04_Brand 5164:8025 — низ фонового градиента Курсов */
   --product-base-deep: #00e0ce;
-  /* @snapshot 02_Landings 20572:37377 — синий акцент лендинга Курсов */
-  --product-accent: #3670f4;
+  /* @snapshot 04_Brand 5164:8025 — средний стоп фонового градиента Курсов; отдельного акцентного тона семейство не даёт, роль акцента назначена решением Р-5. Прежнее #3670f4 пришло с 02_Landings 20572:37377 — цвет проекта */
+  --product-accent: #0099cc;
   /* @snapshot 04_Brand 5164:8036 — кислотный акцент и неон Курсов */
   --product-acid: #44f91f;
-  /* @snapshot 02_Landings 20775:850 — акцентная заливка кнопки, радиус 50 */
+  /* @normative CTA Курсов назначено владельцем (Р-5); совпадает со снятым 02_Landings 20572:37377 («Прикладной ИИ»), но маркер снимка тут стоять не вправе: источником продуктового токена может быть только 04_Brand, а совпадение с лендингом продуктовым цвет не делает */
   --product-cta: #3670f4;
-  /* @normative текст на кислотной заливке: цвет надписи на кнопках не снят ни в одном узле */
-  --product-on-acid: #003580;
+  /* @normative белый на акцентной заливке — решение владельца Р-6: цвет надписи в источнике не снят. Контраст белого по CTA #3670F4 — 4.39:1 против 2.63:1 у тёмного, здесь белый сильнее; по кислотному #44F91F белый даёт 1.42:1 против 8.14:1 */
+  --product-on-acid: #ffffff;
 }
 
 /* Продуктовые градиенты. Прошлый запрет «градиентов нет» опровергнут
@@ -318,8 +315,8 @@
 }
 
 [data-product="habr"] {
-  /* @snapshot 02_Landings 20775:851 — градиент по тексту через bg-clip */
-  --product-gradient: radial-gradient(circle, #19217e 0%, #3470f4 60%, #939cff 100%);
+  /* @normative градиент Хабра: в 04_Brand он растровый — PNG под Gaussian blur 53.35 / 89.3 px, вектором не снят, брать из семейства нечего. Собран из двух снятых тонов семейства: #030E71 (5149:6559) и #06D0EF (5151:7007). Снятый радиальный #19217E → #3470F4 → #939CFF (02_Landings 20775:851) — градиент проекта, он описан в GUIDE §6 (Ц-5) */
+  --product-gradient: radial-gradient(circle, #030e71 0%, #06d0ef 100%);
 }
 
 [data-product="career"] {
@@ -339,33 +336,33 @@
    версии, поэтому все значения ниже спроектированы. */
 
 [data-theme="light"][data-product="habr"] {
-  /* @normative светлая тема продукта: пар «один макет в двух темах» нет, решение Р-2 */
+  /* @normative светлая тема продукта: пар «один макет в двух темах» нет, решение Р-2; --product-cta по решению Р-5 (у Хабра и Курсов значение назначено владельцем, у Карьеры взято из семейства 04_Brand), --product-on-acid белый по решению владельца (Р-6) */
   --product-base: #f2f6f8;
   --product-base-deep: #030e71;
   --product-accent: #0b7f96;
-  --product-acid: #3fbf08;
-  --product-cta: #e05a17;
-  --product-on-acid: #070405;
+  --product-acid: none;
+  --product-cta: #4da3cb;
+  --product-on-acid: #ffffff;
 }
 
 [data-theme="light"][data-product="career"] {
-  /* @normative светлая тема продукта: пар «один макет в двух темах» нет, решение Р-2 */
+  /* @normative светлая тема продукта: пар «один макет в двух темах» нет, решение Р-2; --product-cta по решению Р-5 (у Хабра и Курсов значение назначено владельцем, у Карьеры взято из семейства 04_Brand), --product-on-acid белый по решению владельца (Р-6) */
   --product-base: #f6f1fb;
   --product-base-deep: #35006a;
   --product-accent: #7a3df5;
   --product-acid: none;
-  --product-cta: linear-gradient(100.4deg, #b800dd 0.12%, #6a2fe0 60%, #0057d6 100%);
+  --product-cta: #7a3df5;
   --product-on-acid: #ffffff;
 }
 
 [data-theme="light"][data-product="courses"] {
-  /* @normative светлая тема продукта: пар «один макет в двух темах» нет, решение Р-2 */
+  /* @normative светлая тема продукта: пар «один макет в двух темах» нет, решение Р-2; --product-cta по решению Р-5 (у Хабра и Курсов значение назначено владельцем, у Карьеры взято из семейства 04_Brand), --product-on-acid белый по решению владельца (Р-6) */
   --product-base: #eef4fb;
   --product-base-deep: #003580;
   --product-accent: #2456c9;
   --product-acid: #2fbf0f;
-  --product-cta: #2456c9;
-  --product-on-acid: #003580;
+  --product-cta: #3670f4;
+  --product-on-acid: #ffffff;
 }
 
 /* =========================================================================
@@ -420,3 +417,21 @@
   /* @normative ступень оси игривости: опоры измерены, четырёхступенчатая шкала спроектирована */
   --concept-play-step: 3;
 }
+
+/* @snapshot 04_Brand 5149:6443 — неоновый декор концепции «Неоновый БУМ», не стандартный цвет заголовка Хабра */
+[data-product="habr"][data-concept="neon-boom"],
+[data-product="habr"] [data-concept="neon-boom"] {
+  --product-acid: #5df20d;
+}
+
+/* @normative светлая адаптация только выбранной неоновой концепции; пары тем в источнике нет */
+[data-theme="light"][data-product="habr"][data-concept="neon-boom"],
+[data-theme="light"][data-product="habr"] [data-concept="neon-boom"] {
+  --product-acid: #3fbf08;
+}
+
+/* @normative ось игривости: решение владельца — Inter на 1–2, Unbounded на 3–4; размер задаёт единая шкала */
+[data-play="1"] { --core-font-heading: "Inter", sans-serif; --core-weight-display: 500; }
+[data-play="2"] { --core-font-heading: "Inter", sans-serif; --core-weight-display: 600; }
+[data-play="3"] { --core-font-heading: "Unbounded", sans-serif; --core-weight-display: 700; }
+[data-play="4"] { --core-font-heading: "Unbounded", sans-serif; --core-weight-display: 900; }
