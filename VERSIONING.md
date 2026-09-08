@@ -8,7 +8,7 @@
 | [`career/`](career/) | Design System Knowledge — Хабр Карьера | v1.2 | `career-v1.2` |
 | [`habr/`](habr/) | Design System Knowledge — Хабр | v1.0 | `habr-v1.0` |
 | [`courses/`](courses/) | Хабр Курсы — разработка приостановлена | Релиз не объявлен | `courses-vX.Y` после релиза |
-| [`landings/`](landings/) | Новый пакет лендингов — активная разработка | Релиз не объявлен | `landings-vX.Y` после релиза |
+| [`landings/`](landings/) | Гайды лендингов — в разработке | v0.1 | `landings-v0.1` |
 | `0X-*.md` | Исследования и кросс-продуктовые находки | — | — |
 
 Сводка готовности направлений — в [корневом README](README.md). Хабр и Карьера
