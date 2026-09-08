@@ -1,0 +1,55 @@
+{
+  "imports": [
+    "@import './typography-tokens.css';",
+    "@import './components/typography.css';"
+  ],
+  "manifest": {
+    "id": "typography",
+    "canonicalName": "Typography",
+    "storybookNames": [],
+    "legacyAliases": [
+      "Typography Item Semantic",
+      "Typography Item Fix",
+      "Typography group H+p",
+      "Typography group H+t",
+      "Typography group t+p"
+    ],
+    "category": "data-display",
+    "kind": "primitive",
+    "specPath": "components/foundations/typography.md",
+    "cssRoots": [
+      ".ps-type",
+      ".ps-type-pair"
+    ],
+    "showcaseAnchor": "c-typography",
+    "showcasePath": "showcase/typography.html",
+    "figmaEvidence": [
+      "evidence/source/figma/typography-details.json",
+      "evidence/source/figma/typography-fixed-lists.json",
+      "evidence/source/figma/typography-groups.json",
+      "evidence/source/figma/typography-context.txt",
+      "evidence/source/figma/typography-overview.png"
+    ],
+    "status": "partial",
+    "requiredStates": [
+      "default"
+    ],
+    "coveredScope": "28 semantic + 10 fixed text variants + 64 paired combinations; new HTML API and auto1024 threshold",
+    "uncovered": [
+      "List Vertical Item and Point icon implementation pending Icon R2-01",
+      "Exact Inter source version",
+      "Production runtime comparison"
+    ],
+    "runtimeSource": "new implementation"
+  },
+  "indexLabel": "Typography — semantic/fixed/pairs, partial; list/point pending Icon",
+  "showcaseLink": "showcase/typography.html#c-typography",
+  "deferred": {
+    "nodes": [
+      "2081:766",
+      "2085:319"
+    ],
+    "dependency": "R2-01 Icon",
+    "reason": "Original Point icon asset not exported; full Typography remains partial until lists and markers implemented and reviewed"
+  }
+}

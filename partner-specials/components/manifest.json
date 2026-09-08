@@ -7,19 +7,92 @@
       "id": "button",
       "canonicalName": "Button",
       "storybookNames": [],
-      "legacyAliases": ["State=focus", "State=disable"],
+      "legacyAliases": [
+        "State=focus",
+        "State=disable"
+      ],
       "category": "actions",
       "kind": "primitive",
       "specPath": "components/actions/button.md",
-      "cssRoots": [".ps-button"],
+      "cssRoots": [
+        ".ps-button"
+      ],
       "showcaseAnchor": "c-button",
-      "figmaEvidence": ["evidence/source/figma/button.xml", "evidence/source/figma/button-details.json", "evidence/source/figma/button-opacity.json", "evidence/source/figma/button-overview.png", "evidence/source/figma/button-loading-context.txt"],
+      "figmaEvidence": [
+        "evidence/source/figma/button.xml",
+        "evidence/source/figma/button-details.json",
+        "evidence/source/figma/button-opacity.json",
+        "evidence/source/figma/button-overview.png",
+        "evidence/source/figma/button-loading-context.txt"
+      ],
       "status": "partial",
-      "requiredStates": ["default", "hover", "focus-visible", "disabled", "loading"],
+      "requiredStates": [
+        "default",
+        "hover",
+        "focus-visible",
+        "disabled",
+        "loading"
+      ],
       "coveredScope": "P0 text-only: main/secondary × big/medium/small; runtime is new implementation",
-      "uncovered": ["Icon-only buttons", "Leading/trailing icon slots", "Counter slots", "Social buttons", "Production runtime comparison", "Approved client theme"],
+      "uncovered": [
+        "Icon-only buttons",
+        "Leading/trailing icon slots",
+        "Counter slots",
+        "Social buttons",
+        "Production runtime comparison",
+        "Approved client theme"
+      ],
       "runtimeSource": "new implementation",
-      "variants": {"type": ["main", "secondary"], "size": ["big", "medium", "small"]}
+      "variants": {
+        "type": [
+          "main",
+          "secondary"
+        ],
+        "size": [
+          "big",
+          "medium",
+          "small"
+        ]
+      }
+    },
+    {
+      "id": "typography",
+      "canonicalName": "Typography",
+      "storybookNames": [],
+      "legacyAliases": [
+        "Typography Item Semantic",
+        "Typography Item Fix",
+        "Typography group H+p",
+        "Typography group H+t",
+        "Typography group t+p"
+      ],
+      "category": "data-display",
+      "kind": "primitive",
+      "specPath": "components/foundations/typography.md",
+      "cssRoots": [
+        ".ps-type",
+        ".ps-type-pair"
+      ],
+      "showcaseAnchor": "c-typography",
+      "showcasePath": "showcase/typography.html",
+      "figmaEvidence": [
+        "evidence/source/figma/typography-details.json",
+        "evidence/source/figma/typography-fixed-lists.json",
+        "evidence/source/figma/typography-groups.json",
+        "evidence/source/figma/typography-context.txt",
+        "evidence/source/figma/typography-overview.png"
+      ],
+      "status": "partial",
+      "requiredStates": [
+        "default"
+      ],
+      "coveredScope": "28 semantic + 10 fixed text variants + 64 paired combinations; new HTML API and auto1024 threshold",
+      "uncovered": [
+        "List Vertical Item and Point icon implementation pending Icon R2-01",
+        "Exact Inter source version",
+        "Production runtime comparison"
+      ],
+      "runtimeSource": "new implementation"
     }
   ]
 }

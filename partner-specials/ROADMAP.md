@@ -1,6 +1,6 @@
 # Роадмап партнёрских спецпроектов
 
-Статус: **R0 и пилот приняты, пакет в разработке**. Новый пакет ещё не имеет выпущенной версии. План основан на задании пользователя и [исследовании v0.2](../08-partner-specials.md); структура 13 содержательных страниц Figma прочитана: 16 смысловых записей, геометрия и runtime за пределами пилота требуют дальнейшего разбора. Приняты ограниченный P0 и 3 из 25 основных шагов — R0. Статус `done` ставит только приёмка.
+Статус: **R0 и текстовая Typography приняты, пакет в разработке**. Новый пакет ещё не имеет выпущенной версии. План основан на задании пользователя и [исследовании v0.2](../08-partner-specials.md); структура 13 содержательных страниц Figma прочитана: 16 семейств, остальные источники и runtime требуют дальнейшего разбора. Приняты P0 и 4 из 26 основных шагов: R0 и R1-01. Статус `done` ставит только приёмка.
 
 ## Текущий прогресс
 
@@ -27,14 +27,14 @@ Exit criteria P0: исходные размеры и состояния связ
 | Волна | done / шагов | Что ограничивает |
 |---|---|---|
 | R0 — каркас и инвентаризация | 3 / 3 | Приняты ТЗ, структурный инвентарь и проверяемый каркас; далее R1 |
-| R1 — основа и тема | 0 / 3 | Детальная геометрия Figma |
-| R2 — базовые элементы | 0 / 11 | Детальный разбор узлов и реализация |
+| R1 — основа и тема | 1 / 3 | Текстовая Typography принята; Layout и контракт темы на приёмке |
+| R2 — базовые элементы | 0 / 12 | Детальный разбор узлов; списки Typography после Icon |
 | R3 — блоки и интерактив | 0 / 5 | Core Gate базовых элементов; проверка блоков |
 | R4 — рецепты | 0 / 1 | Принятые блоки и выбранные примеры |
 | R5 — принципы | 0 / 1 | Сравнимый проверенный корпус |
 | R6 — машинный слой | 0 / 1 | Принятые спецификации и правила |
 
-Всего 25 шагов: 16 элементов Figma (R1: 2, R2: 10, R3: 4) и 9 организационных/составных шагов. Число шагов не означает число готовых элементов. Сейчас приоритет — R0–R2; последующие волны фиксируют будущую работу, не обещание готового игрового движка.
+Всего 26 шагов: 16 семейств Figma, отдельное завершение списков Typography в R2-12 и 9 организационных/составных шагов. Число шагов не означает число готовых элементов. Сейчас приоритет — R0–R2; последующие волны фиксируют будущую работу, не обещание готового игрового движка.
 
 ## R0 — каркас и инвентаризация
 
@@ -50,7 +50,7 @@ Exit criteria: источники имеют честные статусы; Figm
 
 | Шаг | Элемент | Источники | Зависит от | Статус | Результат |
 |---|---|---|---|---|---|
-| R1-01 | Typography | [Figma 2045:229](https://www.figma.com/design/m2O8xRs2aEU8NfUpyNiAks/UI-kit?node-id=2045-229) · `evidence/source/figma/typography.xml` | R0-03 | planned | Спецификация, CSS, витрина и проверка источника |
+| R1-01 | Typography | [Figma 2045:229](https://www.figma.com/design/m2O8xRs2aEU8NfUpyNiAks/UI-kit?node-id=2045-229) · `evidence/source/figma/typography.xml` | R0-03 | done | Приняты 28 semantic, 10 fixed, 64 пары и 78 токенов; List/Point завершаются в R2-12 |
 | R1-02 | Layout | [Figma 2003:51](https://www.figma.com/design/m2O8xRs2aEU8NfUpyNiAks/UI-kit?node-id=2003-51) · `evidence/source/figma/layout.xml` | R0-03 | planned | Спецификация, CSS, витрина и проверка источника |
 | R1-03 | Контракт клиентского оформления | Задание; исследование §2, §11, §19–20 | R1-01, R1-02 | planned | Разделение основы/темы и комплект материалов клиента |
 
@@ -61,16 +61,17 @@ Exit criteria: Все значения имеют Figma evidence; нет заи�
 | Шаг | Элемент | Источники | Зависит от | Статус | Результат |
 |---|---|---|---|---|---|
 | R2-01 | Icon | [Figma 2099:19546](https://www.figma.com/design/m2O8xRs2aEU8NfUpyNiAks/UI-kit?node-id=2099-19546) · `evidence/source/figma/icons.xml` | R1-03 | planned | Спецификация, CSS, витрина и проверка источника |
-| R2-02 | Button | [Figma 2026:322](https://www.figma.com/design/m2O8xRs2aEU8NfUpyNiAks/UI-kit?node-id=2026-322) · `evidence/source/figma/button.xml` | R1-01, R2-01, R1-03 | planned | Спецификация, CSS, витрина и проверка источника |
+| R2-02 | Button | [Figma 2026:322](https://www.figma.com/design/m2O8xRs2aEU8NfUpyNiAks/UI-kit?node-id=2026-322) · `evidence/source/figma/button.xml` | R1-01, R2-01, R2-04, R1-03 | planned | Спецификация, CSS, витрина и проверка источника |
 | R2-03 | SocialButton | [Figma 2213:416](https://www.figma.com/design/m2O8xRs2aEU8NfUpyNiAks/UI-kit?node-id=2213-416) · `evidence/source/figma/button.xml` | R2-02, R2-01, R1-03 | planned | Спецификация, CSS, витрина и проверка источника |
 | R2-04 | Counter | [Figma 2128:61](https://www.figma.com/design/m2O8xRs2aEU8NfUpyNiAks/UI-kit?node-id=2128-61) · `evidence/source/figma/counter.xml` | R1-01, R1-03 | planned | Спецификация, CSS, витрина и проверка источника |
-| R2-05 | Dropdown | [Figma 2217:171](https://www.figma.com/design/m2O8xRs2aEU8NfUpyNiAks/UI-kit?node-id=2217-171) · `evidence/source/figma/dropdown.xml` | R1-01, R2-01, R1-03 | planned | Спецификация, CSS, витрина и проверка источника |
+| R2-05 | Dropdown | [Figma 2217:171](https://www.figma.com/design/m2O8xRs2aEU8NfUpyNiAks/UI-kit?node-id=2217-171) · `evidence/source/figma/dropdown.xml` | R1-01, R2-01, R2-02, R1-03 | planned | Спецификация, CSS, витрина и проверка источника |
 | R2-06 | NavigationPill | [Figma 2147:718](https://www.figma.com/design/m2O8xRs2aEU8NfUpyNiAks/UI-kit?node-id=2147-718) · `evidence/source/figma/header.xml` | R1-01, R1-03 | planned | Спецификация, CSS, витрина и проверка источника |
 | R2-07 | PartnerAttribution | [Figma 2148:818](https://www.figma.com/design/m2O8xRs2aEU8NfUpyNiAks/UI-kit?node-id=2148-818) · `evidence/source/figma/header.xml` | R1-02, R1-03 | planned | Спецификация, CSS, витрина и проверка источника |
 | R2-08 | QuizOption | [Figma 2142:22](https://www.figma.com/design/m2O8xRs2aEU8NfUpyNiAks/UI-kit?node-id=2142-22) · `evidence/source/figma/options.xml` | R1-01, R2-01, R1-03 | planned | Спецификация, CSS, витрина и проверка источника |
-| R2-09 | ProgressBar | [Figma 2202:1683](https://www.figma.com/design/m2O8xRs2aEU8NfUpyNiAks/UI-kit?node-id=2202-1683) · `evidence/source/figma/progress-bar.xml` | R1-01, R1-03 | planned | Спецификация, CSS, витрина и проверка источника |
+| R2-09 | ProgressBar | [Figma 2202:1683](https://www.figma.com/design/m2O8xRs2aEU8NfUpyNiAks/UI-kit?node-id=2202-1683) · `evidence/source/figma/progress-bar.xml` | R1-01, R2-02, R2-04, R1-03 | planned | Спецификация, CSS, витрина и проверка источника |
 | R2-10 | Tooltip | [Figma 2038:409](https://www.figma.com/design/m2O8xRs2aEU8NfUpyNiAks/UI-kit?node-id=2038-409) · `evidence/source/figma/tooltip.xml` | R1-01, R1-03 | planned | Спецификация, CSS, витрина и проверка источника |
-| R2-11 | Core Gate | Сохранённое evidence и результаты R2-01–10 | R2-01–10 | planned | Ревью, браузерные проверки и приёмка |
+| R2-11 | Core Gate | Сохранённое evidence и результаты R2-01–10, R2-12 | R2-01–10, R2-12 | planned | Ревью, браузерные проверки и приёмка |
+| R2-12 | TypographyLists | Figma List 2081:766, Point 2085:319; сохранённые исходные SVG | R2-01, R1-01 | planned | Завершение списков и маркеров Typography после Icon |
 
 Exit criteria: Каждый элемент прошёл независимое ревью и приёмку; копируемость и состояния проверены. Ширины проверки 320/768/1024/1400 не означают брейкпоинты; для макетов Figma 390/1280/1440/1920 допустимы отдельные записанные проверки.
 

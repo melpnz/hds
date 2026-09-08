@@ -6,7 +6,6 @@ const errors = [];
 const read = (path) => readFile(resolve(root, path), 'utf8');
 const exists = async (path) => { try { await access(resolve(root, path)); } catch { errors.push(`Missing file: ${path}`); } };
 const manifest = JSON.parse(await read('components/manifest.json'));
-const showcase = await read('showcase/components.html');
 const cssEntry = await read('ui/partner-specials.css');
 const cssFiles = [...cssEntry.matchAll(/@import\s+['"](.+?)['"]/g)].map(m => `ui/${m[1]}`);
 const css = (await Promise.all(cssFiles.map(read))).join('\n');
@@ -17,6 +16,14 @@ for (const item of manifest.components) {
   if (seen.has(item.id)) errors.push(`Duplicate id: ${item.id}`);
   seen.add(item.id);
   await exists(item.specPath);
+  const showcasePath = item.showcasePath ?? 'showcase/components.html';
+  if (relative(root, resolve(root, showcasePath)).startsWith('..')) {
+    errors.push(`${item.id}: showcase outside package`);
+    continue;
+  }
+  let showcase = '';
+  try { showcase = await read(showcasePath); }
+  catch { errors.push(`${item.id}: missing showcase ${showcasePath}`); }
   for (const path of item.figmaEvidence) await exists(path);
   for (const selector of item.cssRoots) if (!css.includes(selector)) errors.push(`${item.id}: absent CSS root ${selector}`);
   if (!showcase.includes(`id="${item.showcaseAnchor}"`)) errors.push(`${item.id}: missing showcase anchor`);
