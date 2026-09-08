@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="ru" data-theme="dark" data-product="habr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Витрина примитивов пакета Landings</title>
+<link rel="stylesheet" href="../ui/landings.css">
+<link rel="stylesheet" href="../ui/blocks/primitives.css">
+<link rel="stylesheet" href="showcase.css">
+<style>
+/* Оболочка этой страницы. METHOD §6.2: каждый селектор несёт класс doc-*,
+   в ui/ ничего отсюда не протекает. Общие классы стенда берутся
+   из showcase.css; здесь только то, чего там нет, — площадка под живой
+   образец и заглушки лок-апа. */
+
+.doc-stage {
+  border: 1px solid var(--doc-line-soft);
+  border-radius: var(--doc-radius);
+  background: var(--doc-surface);
+  padding: 26px;
+  margin: 0 0 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+  overflow-x: auto;
+}
+
+.doc-stage-col {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 14px;
+}
+
+.doc-stage-plain {
+  display: block;
+  padding: 0;
+  border: 0;
+  background: none;
+  overflow: visible;
+}
+
+.doc-stage-scale {
+  transform: scale(0.5);
+  transform-origin: left center;
+}
+
+.doc-node {
+  font-family: var(--doc-mono);
+  font-size: 11px;
+  color: var(--doc-ink-dim);
+  white-space: nowrap;
+}
+
+.doc-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  align-items: flex-start;
+}
+
+.doc-ph {
+  background: repeating-linear-gradient(135deg,
+    var(--doc-line-soft) 0 6px, transparent 6px 12px);
+  border: 1px dashed var(--doc-line);
+  border-radius: 6px;
+}
+
+.doc-anchor { scroll-margin-top: 20px; }
+</style>
+</head>
+<body class="doc-page">
+
+<header class="doc-head">
+  <div class="doc-head-in">
+    <div>
+      <h1 class="doc-title">Примитивы пакета Landings</h1>
+      <p class="doc-status">Шесть примитивов волны R1 живой вёрсткой. Рядом с каждым — таблица
+      измеренных значений с node id. Значение без node id в этих таблицах не стоит: то, чего
+      в источнике нет, названо пробелом словами, а не подставлено круглым числом.
+      Стиль читается из <span class="doc-src">ui/tokens.css</span> и
+      <span class="doc-src">ui/blocks/primitives.css</span> вживую — переключатели меняют токены,
+      а не картинку.</p>
+    </div>
+    <div class="doc-switches">
+      <div class="doc-switch">
+        <span class="doc-switch-label" id="doc-theme-label">Тема</span>
+        <div class="doc-switch-row" role="group" aria-labelledby="doc-theme-label" id="doc-theme-switch"></div>
+      </div>
+      <div class="doc-switch">
+        <span class="doc-switch-label" id="doc-product-label">Продукт</span>
+        <div class="doc-switch-row" role="group" aria-labelledby="doc-product-label" id="doc-product-switch"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="doc-main">
+
+  <section class="doc-section doc-section-first">
+    <h2 class="doc-h2">Как читать эту страницу</h2>
+    <div class="doc-legend">
+      <span><span class="doc-legend-key doc-legend-snap"></span>снято — значение и его node id</span>
+      <span><span class="doc-legend-key doc-legend-norm"></span>норматив — спроектировано, с причиной</span>
+    </div>
+    <p class="doc-note"><span class="doc-note-strong">Состояний на этой странице нет ни одного.</span>
+    Ни hover, ни focus-visible, ни disabled, ни invalid не встретились в 18 макетах
+    (BRIEF §5 п. 8). Показывать их здесь было бы подделкой: отличить нарисованное состояние
+    от снятого читатель не смог бы. Состояния дописывает
+    <span class="doc-src">ui/state-contract.css</span>, шаг R0-08.</p>
+    <p class="doc-note"><span class="doc-note-strong">CSS примитивов подключён отдельной строкой.</span>
+    <span class="doc-src">ui/blocks/primitives.css</span> ещё не внесён в
+    <span class="doc-src">ui/blocks/index.css</span>, поэтому одного
+    <span class="doc-src">ui/landings.css</span> для разметки примитивов пока не хватает.
+    Это расхождение с инвариантом копируемости METHOD §6.1, и оно закрывается одной строкой
+    <span class="doc-src">@import url("primitives.css");</span> в index.css.</p>
+  </section>
+
+  <!-- ================================================================== -->
+  <section class="doc-section doc-anchor" id="button">
+    <h2 class="doc-h2">1. Button · Кнопка</h2>
+    <p class="doc-lead">Форма и заливка сняты у пятнадцати экземпляров в двенадцати узлах.
+    Радиус — модификатор с адресом, а не одна «правильная» ступень: измеренные значения
+    лежат от 0 до 90 и в лестницу не строятся.</p>
+
+    <div class="doc-stage">
+      <button type="button" class="button button-r90 button-caps">Радиус 90</button>
+      <button type="button" class="button button-r60 button-caps">Радиус 60</button>
+      <button type="button" class="button button-r50 button-caps">Радиус 50</button>
+      <button type="button" class="button button-r16 button-caps">Радиус 16</button>
+      <button type="button" class="button button-r0 button-caps">Радиус 0</button>
+      <button type="button" class="button button-pill button-caps">Пилюля</button>
+      <button type="button" class="button button-import button-caps">Радиус 6 — импорт</button>
+    </div>
+    <div class="doc-stage">
+      <button type="button" class="button button-hard">Перейти в чат-бот</button>
+      <button type="button" class="button button-icon" aria-label="Следующий">&#8594;</button>
+    </div>
+
+    <p class="doc-note"><span class="doc-note-strong">Радиус 6 стоит отдельно.</span>
+    Он приходит из дизайн-системы Хабра вместе с компонентом, переменной
+    <span class="doc-src">--elements/control/border_radius</span> — это импорт, а не собственное
+    значение пакета. В CSS он помечен ровно так.</p>
+
+    <div class="doc-scroll">
+      <table class="doc-table">
+        <thead><tr><th>Что</th><th>Значение</th><th>Node id</th><th>Происхождение</th></tr></thead>
+        <tbody>
+          <tr><td>Радиус 90, заливка <span class="doc-src">#fa722b</span></td><td>90</td><td class="doc-node">20216:120</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Радиус 60, CTA-градиент Карьеры</td><td>60</td><td class="doc-node">15818:15335</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Радиус 50, заливка <span class="doc-src">#47b8f0</span></td><td>50</td><td class="doc-node">19319:7049</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Радиус 50, заливка <span class="doc-src">#3670f4</span></td><td>50</td><td class="doc-node">20572:37377</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Радиус 16, заливка <span class="doc-src">#ff744f</span></td><td>16</td><td class="doc-node">12008:425</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Радиус 16, заливка <span class="doc-src">#8964f7</span></td><td>16</td><td class="doc-node">10943:2466</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Радиус 8, заливка <span class="doc-src">#d2b3ff</span></td><td>8</td><td class="doc-node">9519:2171</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Радиус 0, заливка <span class="doc-src">#a05cff</span></td><td>0</td><td class="doc-node">9588:1223</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Радиус 0, заливка <span class="doc-src">#ce5427</span></td><td>0</td><td class="doc-node">6509:20511</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Радиус 40 при высоте 64 — пилюля</td><td>40 / h64</td><td class="doc-node">12395:8147</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Радиус 40 при высоте 40 — пилюля</td><td>40 / h40</td><td class="doc-node">1324:8145</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Радиус 40 при высоте 68, заливка <span class="doc-src">#a669fc</span></td><td>40 / h68</td><td class="doc-node">7885:21627</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Радиус 50 при высоте 60, заливка <span class="doc-src">#a5feab</span></td><td>50 / h60</td><td class="doc-node">18085:3959</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Радиус 15, обводка <span class="doc-src">5px solid #061313</span>, тень 7/7/0</td><td>15</td><td class="doc-node">14871:1973</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Круглая кнопка-стрелка 70 × 70, обводка <span class="doc-src">2px solid #333333</span></td><td>46</td><td class="doc-node">10943:4284</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Радиус контрола дизайн-системы Хабра</td><td>6</td><td class="doc-node">20775:861</td><td><span class="doc-badge doc-badge-snap">снято, импорт</span></td></tr>
+          <tr><td>Надпись uppercase, трекинг +0.5 px</td><td>ALS Hauss Medium 18/1.0</td><td class="doc-node">10943:2467</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Надпись uppercase, трекинг +0.5 px</td><td>ALS Hauss Medium 16/1.0</td><td class="doc-node">9519:2172</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Надпись uppercase, трекинг +0.5 px</td><td>ALS Hauss Bold 16/1.0</td><td class="doc-node">7885:21628</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Надпись uppercase, трекинг 0</td><td>Inter Bold 14/1.0</td><td class="doc-node">6509:20512</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Внутренний отступ кнопки</td><td>18px 32px</td><td class="doc-node">—</td><td><span class="doc-badge doc-badge-norm">норматив</span><span class="doc-badge-why">padding не измерен ни в одном из шести узлов реестра</span></td></tr>
+          <tr><td>Цвет надписи на CTA</td><td><span class="doc-src">--product-on-acid</span></td><td class="doc-node">—</td><td><span class="doc-badge doc-badge-norm">норматив</span><span class="doc-badge-why">цвет надписи не снят ни в одном узле</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="doc-note"><span class="doc-note-strong">Пробелы.</span> Состояния — 0 из 4.
+    Внутренний отступ — не измерен нигде. Цвет надписи — не снят у шести узлов реестра.
+    Кнопка с иконкой — один экземпляр, это наблюдение, а не правило (METHOD §8).
+    Статья: <span class="doc-src">blocks/button.md</span>.</p>
+  </section>
+
+  <!-- ================================================================== -->
+  <section class="doc-section doc-anchor" id="form-field">
+    <h2 class="doc-h2">2. FormField · Поле формы</h2>
+    <p class="doc-lead">Форма есть у 11 узлов из 18 — по покрытию это четвёртый блок пакета
+    после hero, шапки и футера. Сборок две, и обе повторяются: подписка (одно поле и кнопка
+    в строку) и заявка (4–5 полей столбиком).</p>
+
+    <div class="doc-stage doc-stage-col">
+      <form class="form-field-row">
+        <label class="form-field">
+          <input class="form-field-input form-field-r8" type="email" placeholder="ваша почта" aria-label="Ваша почта">
+        </label>
+        <button type="button" class="button button-r50 button-caps">Подписаться</button>
+      </form>
+      <input class="form-field-input form-field-r16" type="text" placeholder="радиус 16, фон #222222" aria-label="Пример поля с радиусом 16">
+      <input class="form-field-input form-field-r0" type="text" placeholder="радиус 0, обводка 2px" aria-label="Пример поля без скругления">
+      <input class="form-field-input form-field-outline" type="text" placeholder="высота 68, обводка 3px" aria-label="Пример поля с обводкой">
+      <p class="form-field-hint">Нажимая кнопку, вы соглашаетесь с политикой обработки данных</p>
+      <label class="form-field-row">
+        <input class="form-field-box" type="checkbox">
+        <span>Согласен получать письма</span>
+      </label>
+    </div>
+
+    <div class="doc-scroll">
+      <table class="doc-table">
+        <thead><tr><th>Что</th><th>Значение</th><th>Node id</th><th>Происхождение</th></tr></thead>
+        <tbody>
+          <tr><td>Поле: радиус 16, заливка <span class="doc-src">#222222</span></td><td>16</td><td class="doc-node">10943:2464</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Поле: радиус 8, заливка <span class="doc-src">#333333</span></td><td>8</td><td class="doc-node">9519:2169</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Поле: радиус 0, заливка и обводка <span class="doc-src">#4b5558</span></td><td>0, border 2px</td><td class="doc-node">6509:20509</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Поле: радиус 40, высота 68, обводка <span class="doc-src">3px solid #524b3d</span></td><td>40 / h68</td><td class="doc-node">7885:21625</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Поле: радиус 50 при высоте 60 — пилюля, заливка <span class="doc-src">#ffffff</span></td><td>50 / h60</td><td class="doc-node">18085:3953</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Поле дизайн-системы Хабра: без радиуса, <span class="doc-src">border-2</span></td><td>h40</td><td class="doc-node">I1324:8108;1311:6801</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Чекбокс дизайн-системы Хабра</td><td>радиус 6</td><td class="doc-node">20775:861</td><td><span class="doc-badge doc-badge-snap">снято, импорт</span></td></tr>
+          <tr><td>Чекбокс и радиокнопка 20 × 20, граница <span class="doc-src">1px solid #acb8bf</span></td><td>радиус 10, 18 вхождений</td><td class="doc-node">I1324:8114;1311:6957</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Плейсхолдер <span class="doc-src">#999999</span>, uppercase, трекинг +0.5</td><td>ALS Hauss Medium 18/1.0</td><td class="doc-node">10943:2465</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Плейсхолдер <span class="doc-src">#999999</span>, uppercase, трекинг +0.5</td><td>ALS Hauss Medium 16/1.0</td><td class="doc-node">9519:2170</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Плейсхолдер <span class="doc-src">rgba(91,85,72,0.6)</span>, uppercase</td><td>ALS Hauss Bold 16/1.0</td><td class="doc-node">7885:21626</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Плейсхолдер <span class="doc-src">#a0a6a7</span></td><td>Inter Medium 18/1.4</td><td class="doc-node">6509:20510</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Подпись под формой, uppercase, трекинг +0.5, ссылка <span class="doc-src">#8e5eed</span></td><td>12/1.5</td><td class="doc-node">10943:2468</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Подпись под формой, ссылка <span class="doc-src">#6742d7</span></td><td>12/1.5</td><td class="doc-node">9519:2173</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Подпись под формой, ссылка <span class="doc-src">#0077ff</span></td><td>12/1.5</td><td class="doc-node">7885:21629</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Горизонтальный отступ поля</td><td>0 24px</td><td class="doc-node">—</td><td><span class="doc-badge doc-badge-norm">норматив</span><span class="doc-badge-why">не измерен ни в одном из 11 узлов с формой</span></td></tr>
+          <tr><td>Зазор между полем и кнопкой</td><td>12px</td><td class="doc-node">—</td><td><span class="doc-badge doc-badge-norm">норматив</span><span class="doc-badge-why">снято только соседство 18085:3953…3959</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="doc-note"><span class="doc-note-strong">Пробелы.</span> Ни одного состояния ошибки
+    в 18 макетах нет — ни <span class="doc-src">invalid</span>, ни текста ошибки, ни рамки.
+    Подписи над полем нет ни у одного из 11 узлов с формой: имя поля несёт плейсхолдер, и
+    <span class="doc-src">aria-label</span> в разметке дописан, потому что снять его было не с чего.
+    Внешний вид включённого чекбокса не снят. Статья: <span class="doc-src">blocks/form-field.md</span>.</p>
+  </section>
+
+  <!-- ================================================================== -->
+  <section class="doc-section doc-anchor" id="glass-chip">
+    <h2 class="doc-h2">3. GlassChip · Стеклянный чип</h2>
+    <p class="doc-lead">Единственный примитив, спецификация которого снята целиком: заливка,
+    радиус, подсветка, все три паддинга, высота, гарнитура, начертание, трекинг и цвет надписи.
+    Совпадает на двух бренд-досках из четырёх — через две разные концепции и два разных продукта.
+    Достраивать нечего.</p>
+
+    <div class="doc-stage">
+      <span class="glass-chip doc-stage-scale"><span class="glass-chip-text">28 февраля</span></span>
+    </div>
+    <div class="doc-stage">
+      <span class="glass-chip doc-stage-scale"><span class="glass-chip-text glass-chip-text-l">Онлайн</span></span>
+    </div>
+    <p class="doc-note">Оба образца показаны в половину натуральной величины: снятая высота
+    чипа — 121.972 px на холсте 1080 × 1350, и в натуральную величину он занимал бы четверть
+    ширины этой колонки. Масштаб — свойство показа, а не значение примитива: в
+    <span class="doc-src">ui/blocks/primitives.css</span> стоят снятые числа без изменений.</p>
+
+    <div class="doc-scroll">
+      <table class="doc-table">
+        <thead><tr><th>Что</th><th>Значение</th><th>Node id</th><th>Происхождение</th></tr></thead>
+        <tbody>
+          <tr><td>Заливка</td><td><span class="doc-src">rgba(255,255,255,0.1)</span></td><td class="doc-node">5149:6510</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Радиус</td><td>110.883</td><td class="doc-node">5149:6510</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Внутренняя подсветка</td><td><span class="doc-src">0 0 11.088px rgba(255,255,255,0.4)</span></td><td class="doc-node">5149:6510</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Паддинги верх / бока / низ</td><td>27.721 / 41.581 / 33.265</td><td class="doc-node">5149:6510</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Высота</td><td>121.972</td><td class="doc-node">5149:6510</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Надпись: Inter SemiBold, цвет <span class="doc-src">#F0F5F5</span>, трекинг +1.386 px</td><td>кегль 44 / 1.2</td><td class="doc-node">5149:6511</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Второй кегль надписи</td><td>49.897 / 1.4</td><td class="doc-node">5164:8043</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Та же спецификация, доска «Цифровой поток»</td><td>совпадает до знака</td><td class="doc-node">5164:8042, 5164:8044, 5164:8046</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="doc-note"><span class="doc-note-strong">Пробелы.</span>
+    <span class="doc-src">backdrop-filter</span> у чипа не снят — у стеклянной карточки
+    <span class="doc-node">18085:3948</span> он есть (<span class="doc-src">blur(30px)</span>),
+    у чипа в дампе его нет, и дописывать его значило бы перенести значение с другого узла.
+    Покрытие по бренд-доскам — 2 из 4: на досках Карьеры чипа нет вовсе. Экземпляра чипа
+    в лендинге среди девяти доснятых узлов нет ни одного.
+    Статья: <span class="doc-src">blocks/glass-chip.md</span>.</p>
+  </section>
+
+  <!-- ================================================================== -->
+  <section class="doc-section doc-anchor" id="product-lockup">
+    <h2 class="doc-h2">4. ProductLockup · Лок-ап продукта</h2>
+    <p class="doc-lead">Самый повторяемый элемент обоих участков: 22 баннера из 23 и 18 лендингов
+    из 18. Знак, зазор и высота у трёх продуктов идентичны — различается только ширина словесного
+    знака. Поэтому лок-ап параметризован одной переменной, а не тремя правилами:
+    <span class="doc-note-strong">переключите продукт и посмотрите, что меняется.</span></p>
+
+    <div class="doc-stage">
+      <span class="product-lockup doc-stage-scale">
+        <span class="product-lockup-mark doc-ph"></span>
+        <span class="product-lockup-word doc-ph"></span>
+      </span>
+    </div>
+    <div class="doc-stage">
+      <span class="product-lockup product-lockup-l doc-stage-scale">
+        <span class="product-lockup-mark doc-ph"></span>
+        <span class="product-lockup-word doc-ph"></span>
+      </span>
+    </div>
+    <p class="doc-note"><span class="doc-note-strong">Штриховка вместо знака — не оформление,
+    а пробел.</span> Файлов знака и словесного знака в <span class="doc-src">ui/assets/</span> нет,
+    цвета лок-апа не снято ни одного. Показана снятая геометрия: пропорции, зазор и высота —
+    настоящие, содержимое отсутствует. Оба образца в половину величины по той же причине,
+    что и чип.</p>
+
+    <div class="doc-scroll">
+      <table class="doc-table">
+        <thead><tr><th>Что</th><th>Значение</th><th>Node id</th><th>Происхождение</th></tr></thead>
+        <tbody>
+          <tr><td>Знак, все три продукта</td><td>71.893 × 71.893</td><td class="doc-node">5141:5053</td><td><span class="doc-badge doc-badge-snap">снято, 21 баннер из 23</span></td></tr>
+          <tr><td>Зазор до словесного знака</td><td>25.699</td><td class="doc-node">5141:5053</td><td><span class="doc-badge doc-badge-snap">снято, 21 из 23</span></td></tr>
+          <tr><td>Словесный знак «Хабр» — итого 245.592 × 71.893</td><td>143.803</td><td class="doc-node">5149:6555</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Словесный знак «Курсы» — итого 431.592 × 71.893</td><td>321.284</td><td class="doc-node">5164:8036</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Словесный знак «Карьера» — итого 491.113 × 71.893</td><td>393.446</td><td class="doc-node">5145:5921</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Крупный размер: знак / зазор / слово</td><td>89.519 / 32 / 489.906</td><td class="doc-node">5141:5088</td><td><span class="doc-badge doc-badge-snap">снято, 2 экземпляра</span></td></tr>
+          <tr><td>Отношение крупного к базовому</td><td>×1.2452 — 89.519/71.893 = 32/25.699</td><td class="doc-node">5141:5053, 5141:5088</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Поле от края кадра</td><td>54</td><td class="doc-node">04_Brand, 23 баннера</td><td><span class="doc-badge doc-badge-snap">снято, геометрия поста 1080 × 1350</span></td></tr>
+          <tr><td>Гарнитура словесного знака</td><td>ALS Hauss</td><td class="doc-node">20216:92</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Цвет знака и слова</td><td>—</td><td class="doc-node">—</td><td><span class="doc-badge doc-badge-norm">не снят вовсе</span><span class="doc-badge-why">знак приходит ассетом, а не набором значений</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="doc-note"><span class="doc-note-strong">Ошибка именования источника.</span>
+    Слой знака называется «Карьера» на всех четырёх бренд-досках, включая доску 1, которая
+    целиком хабровская. В код это имя не переносится (METHOD §3, инвариант И-6, находка B-14):
+    продукт различается атрибутом <span class="doc-src">data-product</span>, а не именем слоя.
+    Названо здесь затем, чтобы следующий читатель источника не принял подпись слоя
+    за спецификацию. Статья: <span class="doc-src">blocks/product-lockup.md</span>.</p>
+  </section>
+
+  <!-- ================================================================== -->
+  <section class="doc-section doc-anchor" id="card">
+    <h2 class="doc-h2">5. Card · Карточка</h2>
+    <p class="doc-lead">Носитель спикеров (8/18), партнёров (9/18), нумерованных преимуществ
+    (7/18) и статистики (5/18). Радиус карточки в источнике не выдержан, и это измеренный факт,
+    а не небрежность одного макета.</p>
+
+    <div class="doc-stage">
+      <article class="card card-r20"><span class="card-text">Радиус 20</span></article>
+      <article class="card card-r24"><span class="card-text">Радиус 24</span></article>
+      <article class="card card-r30"><span class="card-text">Радиус 30</span></article>
+      <article class="card card-r36"><span class="card-text">Радиус 36</span></article>
+      <article class="card card-r54 card-acid"><span class="card-text">Радиус 54</span></article>
+      <article class="card card-r0"><span class="card-text">Радиус 0</span></article>
+    </div>
+    <div class="doc-stage">
+      <article class="card card-r20 card-glass"><span class="card-text">Стекло</span></article>
+      <article class="card card-r20 card-glow"><span class="card-text">Внутренняя подсветка</span></article>
+      <article class="card card-r20 card-hard card-cyan"><span class="card-text">Жёсткая тень 7/7/0</span></article>
+    </div>
+
+    <p class="doc-note"><span class="doc-note-strong">20 и 24 стоят на соседних карточках
+    одного списка.</span> Узел <span class="doc-node">18085:3890</span> снят целиком: в списке
+    <span class="doc-src">benefits-list_wrapper</span> секции <span class="doc-node">18085:3962</span>
+    карточки 1–3 несут 24, карточки 4–7 — 20. Возражение «радиус растёт с размером» проверено
+    и не работает: 20 стоит и на <span class="doc-src">block_hero</span> 1320 × 650, а 24 —
+    на карточке 1024 × 80 и на иконках 72 × 72. Второй случай, 52 и 54 в
+    <span class="doc-node">7869:20760</span>, слабее: карточки там разнотипные и из разных секций,
+    а внутри одной секции однотипные держат радиус согласованно.</p>
+
+    <div class="doc-scroll">
+      <table class="doc-table">
+        <thead><tr><th>Что</th><th>Значение</th><th>Node id</th><th>Происхождение</th></tr></thead>
+        <tbody>
+          <tr><td>Плитки соцсетей h120, тень <span class="doc-src">7px 7px 0 rgba(6,19,19,0.2)</span></td><td>15</td><td class="doc-node">14871:2804, 2801, 2807, 2810, 2812</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Hero, стеклянная карточка формы, карточки 4–7, контакты</td><td>20</td><td class="doc-node">18085:3931, 3948, 4000, 4007, 4014, 4023</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Карточки преимуществ 1–3, карточки программы 1–4, иконки 72 × 72</td><td>24</td><td class="doc-node">18085:3974, 3982, 3990, 4066, 4251, 4269, 4112</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Все карточки двух снятых секций узла без исключения</td><td>30</td><td class="doc-node">12470:67, 69, 71, 74, 77, 88, 91, 226</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Карточка партнёра, заливка <span class="doc-src">#fafafa</span></td><td>36</td><td class="doc-node">10943:4273</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Карточка формы в hero 396 × 321, заливка <span class="doc-src">#d3ff5c</span></td><td>52</td><td class="doc-node">7885:21620</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Карточки 372 × 340, заливка <span class="doc-src">#d3ff5c</span></td><td>54</td><td class="doc-node">8056:20997, 8056:20974</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Девять плиток партнёрской сетки 187 × 92.041</td><td>81.708</td><td class="doc-node">18250:671, 693, 726, 743, 820, 840, 867, 869, 871</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Карточка номинации: <span class="doc-src">border</span> и <span class="doc-src">p-[20px]</span>, ни одного <span class="doc-src">rounded-*</span></td><td>0</td><td class="doc-node">1324:8083</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Внутренняя подсветка, шесть карточек</td><td><span class="doc-src">inset 4px 4px 14.4px 10px rgba(89,89,248,0.25)</span></td><td class="doc-node">18085:3890</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Стекло: <span class="doc-src">rgba(255,255,255,0.1)</span> + blur 30 + inset 0 0 4px</td><td>радиус 20, паддинг 40</td><td class="doc-node">18085:3948</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Карточка чат-бота, заливка <span class="doc-src">#02b5d9</span></td><td>20</td><td class="doc-node">14871:1966</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Сетка партнёров: 3 колонки по 372, шаг 396</td><td>зазор 24</td><td class="doc-node">10943:4273</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Основной текст карточки</td><td>ALS Hauss Regular 18/1.3</td><td class="doc-node">10943:4292</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Крупное число статистики, трекинг −2 px</td><td>ALS Hauss Medium 128/1.0</td><td class="doc-node">8056:20999</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Внутренний отступ карточки</td><td>20px</td><td class="doc-node">1324:8083 — одна карточка участка</td><td><span class="doc-badge doc-badge-norm">норматив</span><span class="doc-badge-why">одно измерение — совпадение, а не правило</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="doc-note"><span class="doc-note-strong">Пробелы.</span> Карточка спикера как
+    конструкция не разобрана: известно, что их 8 в <span class="doc-node">20216:120</span>
+    и 4 в <span class="doc-node">12008:425</span>, но из чего они собраны — не снято. Заливка
+    не измерена у пяти радиусных групп из девяти. Кликабельность карточки не установлена
+    ни разу — в разметке стоит <span class="doc-src">&lt;article&gt;</span>, а не ссылка,
+    именно поэтому. Статья: <span class="doc-src">blocks/card.md</span>.</p>
+  </section>
+
+  <!-- ================================================================== -->
+  <section class="doc-section doc-anchor" id="marquee">
+    <h2 class="doc-h2">6. Marquee · Бегущая строка</h2>
+    <p class="doc-lead">Механика снята ровно один раз: <span class="doc-node">16559:2404</span>
+    несёт <span class="doc-src">overflow-clip</span> при ширине содержимого 1500 в контейнере 1600.
+    Это и есть весь измеренный контракт ленты.</p>
+
+    <div class="doc-stage doc-stage-plain">
+      <div class="marquee marquee-60">
+        <div class="marquee-track">
+          <span class="marquee-item">Хабр Карьера</span>
+          <span class="marquee-item">Хабр Курсы</span>
+          <span class="marquee-item">Хабр Q&amp;A</span>
+          <span class="marquee-item" aria-hidden="true">Хабр Карьера</span>
+          <span class="marquee-item" aria-hidden="true">Хабр Курсы</span>
+          <span class="marquee-item" aria-hidden="true">Хабр Q&amp;A</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="doc-note"><span class="doc-note-strong">Движение здесь спроектировано, а не снято.</span>
+    Figma отдаёт статический кадр: направление, скорость, длительность цикла и пауза при наведении
+    измерить не из чего. <span class="doc-src">animation: marquee-roll 30s linear infinite</span>
+    стоит в CSS под маркером <span class="doc-src">@normative</span>. Шаг 240 у
+    <span class="doc-node">14871:1904</span> — шаг плиток, а не длина цикла; превращать одно
+    в другое было бы подстановкой. Правило
+    <span class="doc-src">prefers-reduced-motion</span> дописано по той же причине.</p>
+
+    <div class="doc-scroll">
+      <table class="doc-table">
+        <thead><tr><th>Что</th><th>Значение</th><th>Node id</th><th>Происхождение</th></tr></thead>
+        <tbody>
+          <tr><td>Обрезка: содержимое 1500 в контейнере 1600</td><td><span class="doc-src">overflow-clip</span></td><td class="doc-node">16559:2404</td><td><span class="doc-badge doc-badge-snap">снято, единственный CSS</span></td></tr>
+          <tr><td>Верхняя лента вместо шапки, 1400 × 36, заливка <span class="doc-src">#ffffff</span></td><td>36</td><td class="doc-node">1284:3722</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Нижняя лента, 1400 × 36, симметрично верхней</td><td>36</td><td class="doc-node">1302:12307</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Лента отдельной секцией стопки, дважды, одно имя фрейма</td><td>60</td><td class="doc-node">7880:20723, 7880:20732</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Накладная полоса: 7 плиток 170 × 115, шаг 240, ширина 1610 при артборде 1600</td><td>115</td><td class="doc-node">14871:1904, 14871:1540</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Надпись ленты, uppercase, цвет <span class="doc-src">#07f</span></td><td>ALS Hauss Medium 30/1.2</td><td class="doc-node">7880:20726</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
+          <tr><td>Полоса «болей»</td><td>опознана metadata, значения не сняты</td><td class="doc-node">20216:120</td><td><span class="doc-badge doc-badge-snap">снято частично</span></td></tr>
+          <tr><td>Длительность и направление прокрутки</td><td>30s linear infinite</td><td class="doc-node">—</td><td><span class="doc-badge doc-badge-norm">норматив</span><span class="doc-badge-why">движения в источнике нет: Figma отдаёт статический кадр</span></td></tr>
+          <tr><td>Зазор между единицами ленты</td><td>70px</td><td class="doc-node">—</td><td><span class="doc-badge doc-badge-norm">норматив</span><span class="doc-badge-why">не измерен ни в одной ленте</span></td></tr>
+          <tr><td>Остановка по <span class="doc-src">prefers-reduced-motion</span></td><td>animation: none</td><td class="doc-node">—</td><td><span class="doc-badge doc-badge-norm">норматив</span><span class="doc-badge-why">в 18 макетах не встречается, а лента без остановки — барьер доступности</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="doc-note"><span class="doc-note-strong">Расхождение источников, не разрешённое
+    в этом шаге.</span> Аудит §5 даёт покрытие ленты <span class="doc-note-strong">4/18</span>:
+    <span class="doc-node">20216:120</span>, <span class="doc-node">16418:3180</span>,
+    <span class="doc-node">1284:3362</span>, <span class="doc-node">14871:1319</span>. Досъёмка
+    R0-00 нашла в <span class="doc-node">7869:20760</span> две ленты отдельными секциями
+    (<span class="doc-node">7880:20723</span>, <span class="doc-node">7880:20732</span>, обе
+    высотой 60, одно имя фрейма <span class="doc-src">Frame 123456914</span>). Значит покрытие
+    не меньше <span class="doc-note-strong">5/18</span>. Реестр это расхождение не знает —
+    строка для роадмапа. Статья: <span class="doc-src">blocks/marquee.md</span>.</p>
+  </section>
+
+  <!-- ================================================================== -->
+  <section class="doc-section">
+    <h2 class="doc-h2">Чего на этой странице нет</h2>
+    <ul class="doc-limits">
+      <li class="doc-limit"><span class="doc-limit-k">Состояний.</span> Ни одного из четырёх
+      (hover, focus-visible, disabled, invalid) ни у одного из шести примитивов. В 18 макетах
+      их нет; Figma поведения не отдаёт. Дописывает
+      <span class="doc-src">ui/state-contract.css</span>, шаг R0-08.</li>
+      <li class="doc-limit"><span class="doc-limit-k">Внутренних отступов.</span> Padding измерен
+      ровно дважды на весь участок: у чипа (27.721 / 41.581 / 33.265) и у карточки номинации
+      <span class="doc-node">1324:8083</span> (20). Отступы кнопки, поля и остальных карточек —
+      норматив.</li>
+      <li class="doc-limit"><span class="doc-limit-k">Responsive.</span> Мобильных артбордов
+      у 18 узлов пакета не установлено. Ни у одного примитива правил перестроения нет,
+      и придумывать их здесь не из чего.</li>
+      <li class="doc-limit"><span class="doc-limit-k">Ассетов лок-апа.</span>
+      <span class="doc-src">ui/assets/</span> пуст: знак и словесный знак показаны штриховкой,
+      цвет лок-апа не снят вовсе.</li>
+      <li class="doc-limit"><span class="doc-limit-k">Иконок.</span> Ни спрайта, ни отдельных
+      файлов. Стрелка в круглой кнопке набрана символом, а не иконкой из пакета.</li>
+    </ul>
+  </section>
+
+</main>
+
+<footer class="doc-foot">
+  Витрина примитивов, волна R1. Проверки:
+  <span class="doc-foot-code">node tools/validate-classes.mjs</span> и
+  <span class="doc-foot-code">node tools/validate-normative.mjs</span>.
+  Статьи — <span class="doc-foot-code">blocks/button.md</span>,
+  <span class="doc-foot-code">form-field.md</span>,
+  <span class="doc-foot-code">glass-chip.md</span>,
+  <span class="doc-foot-code">product-lockup.md</span>,
+  <span class="doc-foot-code">card.md</span>,
+  <span class="doc-foot-code">marquee.md</span>.
+</footer>
+
+<script>
+(function () {
+  'use strict';
+
+  var root = document.documentElement;
+  var THEMES = [['dark', 'тёмная'], ['light', 'светлая']];
+  var PRODUCTS = [['habr', 'Хабр'], ['career', 'Карьера'], ['courses', 'Курсы']];
+
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
+  // Атрибут class собирается целиком, а не склейкой внутри кавычек: иначе
+  // node tools/validate-classes.mjs читает как имя класса кусок выражения.
+  function renderSwitch(host, items, attr) {
+    host.innerHTML = items.map(function (it) {
+      return '<button type="button" class="doc-btn" data-set="' + attr + '" data-value="' + it[0] + '">' +
+        esc(it[1]) + '</button>';
+    }).join('');
+  }
+
+  function paintSwitches() {
+    var buttons = document.querySelectorAll('[data-set]');
+    for (var i = 0; i < buttons.length; i++) {
+      var on = root.getAttribute(buttons[i].getAttribute('data-set')) === buttons[i].getAttribute('data-value');
+      buttons[i].classList.toggle('doc-btn-on', on);
+      buttons[i].setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
+  }
+
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest ? e.target.closest('[data-set]') : null;
+    if (!btn) return;
+    root.setAttribute(btn.getAttribute('data-set'), btn.getAttribute('data-value'));
+    paintSwitches();
+  });
+
+  renderSwitch(document.getElementById('doc-theme-switch'), THEMES, 'data-theme');
+  renderSwitch(document.getElementById('doc-product-switch'), PRODUCTS, 'data-product');
+  paintSwitches();
+})();
+</script>
+
+</body>
+</html>

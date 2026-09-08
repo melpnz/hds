@@ -1,0 +1,446 @@
+/* =========================================================================
+   PRIMITIVES — кнопка · поле формы · стеклянный чип · лок-ап · карточка ·
+   бегущая строка
+   =========================================================================
+   Шесть примитивов волны R1, собранных по измеренным значениям девяти
+   доснятых узлов 02_Landings и четырёх бренд-досок 04_Brand.
+
+   Как читать маркеры (tools/README.md, «Механика: маркер происхождения»):
+
+     @snapshot <файл> <node id>   значение снято, адрес назван
+     @normative <причина>         значение спроектировано, причина названа
+
+   Правило файла: значение без node id либо стоит под @normative, либо его
+   здесь нет. Padding кнопки, высота карточки, длительность прокрутки ленты
+   в источниках не измерены, и всё это помечено нормативом, а не подставлено
+   круглым числом с видом снятого.
+
+   Два ограничения, общие на все шесть примитивов:
+
+   1. Состояний нет. Ни hover, ни focus-visible, ни disabled, ни invalid
+      не встретились ни в одном из 18 макетов (BRIEF §5 п. 8). Их дописывает
+      ui/state-contract.css, шаг R0-08. Здесь их нет намеренно: нарисованное
+      состояние нельзя было бы отличить от снятого.
+   2. Радиус в источнике не выдержан. Ступеней на узел 1…5, медиана 2,
+      диапазон измеренного 0 … 110.883. Внутри 18085:3890 соседние карточки
+      одного списка стоят на 20 и 24. Поэтому радиус здесь — модификатор
+      с адресом, а не одна «правильная» ступень.
+
+   Литералы. Там, где ступень измерена, но в ui/tokens.css её нет (15, 16,
+   30, 36, 46, 54, 60, 68, 81.708, 90), стоит литерал источника, а не
+   ближайший токен: подмена измеренного значения похожим — потеря факта.
+   Такие места названы словом «литерал» в маркере.
+   ========================================================================= */
+
+/* =========================================================================
+   1. BUTTON
+   ========================================================================= */
+
+/* @normative каркас кнопки: padding, высота и кегль надписи не измерены ни в одном из шести узлов реестра — снята только форма и заливка */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 0;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: var(--core-font-text);
+  font-size: var(--core-body);
+  font-weight: var(--core-weight-sub);
+  line-height: 1;
+  padding: 18px 32px;
+  border-radius: var(--core-radius-l);
+  background: var(--product-cta);
+  color: var(--product-on-acid);
+}
+
+/* @snapshot 02_Landings 20216:120 — радиус 90 при заливке #fa722b; литерал: ступени 90 в токенах нет */
+.button-r90 { border-radius: 90px; }
+
+/* @snapshot 02_Landings 15818:15335 — радиус 60 под CTA-градиентом Карьеры; литерал: ступени 60 в токенах нет */
+.button-r60 { border-radius: 60px; }
+
+/* @snapshot 02_Landings 19319:7049 — радиус 50 при заливке #47b8f0; та же ступень у 20572:37377 при заливке #3670f4 */
+.button-r50 { border-radius: var(--core-radius-xl); }
+
+/* @snapshot 02_Landings 12008:425 — радиус 16 при заливке #ff744f; литерал: ступени 16 в токенах нет */
+.button-r16 { border-radius: 16px; }
+
+/* @snapshot 02_Landings 9588:1223 — радиус 0 при заливке #a05cff; тот же 0 у кнопки 6509:20511 и у кнопок окон 1302:12059 */
+.button-r0 { border-radius: var(--core-radius-none); }
+
+/* @snapshot 02_Landings 20775:861 — радиус 6 приходит из дизайн-системы Хабра переменной --elements/control/border_radius: импорт, а не собственное значение пакета */
+.button-import { border-radius: var(--core-radius-control); }
+
+/* @snapshot 02_Landings 12395:8147 — радиус 40 при высоте 64: браузер обрезает его до 32, то есть ровно пилюля. То же у 1324:8145 (40 при высоте 40) и 18085:3959 (50 при высоте 60) */
+.button-pill { border-radius: var(--core-radius-pill); }
+
+/* @snapshot 02_Landings 10943:4284 — круглая кнопка-стрелка 70 × 70, радиус 46, обводка 2px solid #333333; литералы: значения узла */
+.button-icon {
+  width: 70px;
+  height: 70px;
+  padding: 0;
+  border-radius: 46px;
+  border: 2px solid currentColor;
+  background: transparent;
+  color: inherit;
+}
+
+/* @snapshot 02_Landings 14871:1973 — кнопка «Перейти в чат-бот»: радиус 15, заливка #fe6a00, обводка 5px solid #061313, жёсткая смещённая тень 7/7/0, надпись Bold uppercase #061313 */
+.button-hard {
+  border-radius: 15px;
+  background: #fe6a00;
+  border: 5px solid #061313;
+  color: #061313;
+  box-shadow: var(--core-shadow-hard);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* @snapshot 02_Landings 10943:2467 — надпись кнопки uppercase с трекингом +0.5 px; то же у 9519:2172 и 7885:21628 */
+.button-caps {
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* =========================================================================
+   2. FORM FIELD
+   ========================================================================= */
+
+/* @normative каркас поля: горизонтальный padding и минимальная ширина не измерены ни в одном из 11 узлов с формой — измерены только заливка, обводка, радиус и высота */
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 0;
+}
+
+/* @snapshot 02_Landings 18085:3953 — поле высотой 60 на белой заливке, текст rgba(0,0,0,0.7); радиус 50 при высоте 60 обрезается до пилюли */
+.form-field-input {
+  display: block;
+  width: 100%;
+  height: 60px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: var(--core-radius-pill);
+  background: var(--core-bg-field);
+  color: var(--core-text-primary);
+  font-family: var(--core-font-text);
+  font-size: var(--core-body);
+  line-height: 1;
+}
+
+/* @snapshot 02_Landings 10943:2465 — плейсхолдер #999999, ALS Hauss Medium 18/1.0, трекинг +0.5 px, uppercase; тот же #999999 у 9519:2170 */
+.form-field-input::placeholder {
+  color: #999999;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  opacity: 1;
+}
+
+/* @snapshot 02_Landings 10943:2464 — поле формы: радиус 16, заливка #222222; литералы: значения узла */
+.form-field-r16 {
+  border-radius: 16px;
+  background: #222222;
+}
+
+/* @snapshot 02_Landings 9519:2169 — поле формы: радиус 8, заливка #333333; литерал заливки — значение узла */
+.form-field-r8 {
+  border-radius: var(--core-radius-s);
+  background: #333333;
+}
+
+/* @snapshot 02_Landings 6509:20509 — поле без скругления: заливка #4b5558 и обводка 2px solid #4b5558 того же цвета */
+.form-field-r0 {
+  border-radius: var(--core-radius-none);
+  background: #4b5558;
+  border: 2px solid #4b5558;
+}
+
+/* @snapshot 02_Landings 7885:21625 — поле высотой 68: радиус 40, заливка #fffdf5, обводка 3px solid #524b3d, текст rgba(91,85,72,0.6) */
+.form-field-outline {
+  height: 68px;
+  border-radius: var(--core-radius-l);
+  background: #fffdf5;
+  border: 3px solid #524b3d;
+  color: rgba(91, 85, 72, 0.6);
+}
+
+/* @snapshot 02_Landings 20775:861 — чекбокс дизайн-системы Хабра, радиус из переменной --elements/control/border_radius; размер 20 × 20 и обводка 1px solid #acb8bf сняты у I1324:8114 */
+.form-field-box {
+  width: 20px;
+  height: 20px;
+  flex: none;
+  border-radius: var(--core-radius-control);
+  border: 1px solid #acb8bf;
+  background: transparent;
+}
+
+/* @snapshot 02_Landings 1324:8114 — радиокнопка 20 × 20 с радиусом 10, то есть круг; 18 вхождений в узле */
+.form-field-box-round { border-radius: 10px; }
+
+/* @snapshot 02_Landings 10943:2468 — подпись под формой 12/1.5, трекинг +0.5 px, uppercase, #777777, ссылка #8e5eed; та же роль у 9519:2173, 7885:21629 и 6509:20515 */
+.form-field-hint {
+  font-size: var(--core-caption);
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--core-text-secondary);
+}
+
+/* @normative раскладка «поле и кнопка в строку»: горизонтальный зазор между ними не измерен ни в одном узле, снято только их соседство в 18085:3953…3959 */
+.form-field-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+}
+
+/* =========================================================================
+   3. GLASS CHIP
+   =========================================================================
+   Единственный примитив, спецификация которого снята целиком и совпадает
+   на двух бренд-досках из четырёх: 5149:6510 против 5164:8042/8044/8046.
+   Числа некруглые — они такие в источнике, и округление здесь было бы
+   нормативом, выданным за снимок (инвариант И-7).
+   ========================================================================= */
+
+/* @snapshot 04_Brand 5149:6510 — стеклянный чип: заливка rgba(255,255,255,0.1), радиус 110.883, внутренняя подсветка 0 0 11.088px rgba(255,255,255,0.4), паддинги 27.721 / 41.581 / 33.265, высота 121.972 */
+.glass-chip {
+  display: inline-flex;
+  align-items: center;
+  box-sizing: border-box;
+  height: var(--core-chip-height);
+  padding: var(--core-chip-pad);
+  border-radius: var(--core-chip-radius);
+  background: var(--core-glass-bg);
+  box-shadow: inset 0 0 11.088px rgba(255, 255, 255, 0.4);
+}
+
+/* @snapshot 04_Brand 5149:6511 — надпись чипа: Inter SemiBold, трекинг +1.386 px, цвет #F0F5F5, кегль 44 при интерлиньяже 1.2 */
+.glass-chip-text {
+  font-family: var(--core-font-text);
+  font-weight: 600;
+  font-size: 44px;
+  line-height: 1.2;
+  letter-spacing: 1.386px;
+  color: #f0f5f5;
+}
+
+/* @snapshot 04_Brand 5164:8043 — второй измеренный кегль чипа: 49.897 при интерлиньяже 1.4. Кегль и интерлиньяж — единственное, чем два варианта различаются */
+.glass-chip-text-l {
+  font-size: 49.897px;
+  line-height: 1.4;
+}
+
+/* =========================================================================
+   4. PRODUCT LOCKUP
+   =========================================================================
+   Знак, зазор и высота у трёх продуктов совпадают; различается только ширина
+   словесного знака. Поэтому лок-ап параметризован одной переменной ширины,
+   а не тремя отдельными правилами.
+   ========================================================================= */
+
+/* @snapshot 04_Brand 5141:5053 — лок-ап: высота знака 71.893, зазор до словесного знака 25.699; значения одинаковы на 21 баннере из 23 */
+.product-lockup {
+  display: inline-flex;
+  align-items: center;
+  gap: 25.699px;
+  height: 71.893px;
+}
+
+/* @snapshot 04_Brand 5141:5053 — знак квадратный: 71.893 × 71.893 */
+.product-lockup-mark {
+  width: 71.893px;
+  height: 71.893px;
+  flex: none;
+}
+
+/* @snapshot 04_Brand 5141:5053 — словесный знак: высота равна высоте знака, ширина задаётся продуктом */
+.product-lockup-word {
+  height: 71.893px;
+  width: var(--lockup-word-width, 143.803px);
+  flex: none;
+}
+
+/* @snapshot 04_Brand 5149:6555 — ширина словесного знака «Хабр» 143.803, итого лок-ап 245.592 × 71.893 */
+[data-product="habr"] .product-lockup-word { --lockup-word-width: 143.803px; }
+
+/* @snapshot 04_Brand 5145:5921 — ширина словесного знака «Карьера» 393.446, итого лок-ап 491.113 × 71.893 */
+[data-product="career"] .product-lockup-word { --lockup-word-width: 393.446px; }
+
+/* @snapshot 04_Brand 5164:8036 — ширина словесного знака «Курсы» 321.284, итого лок-ап 431.592 × 71.893 */
+[data-product="courses"] .product-lockup-word { --lockup-word-width: 321.284px; }
+
+/* @snapshot 04_Brand 5141:5088 — крупный размер: знак 89.519, зазор 32, словесный знак 489.906. Отношение 89.519/71.893 = 32/25.699 = 1.2452, то есть равномерное масштабирование, а не отдельная ступень */
+.product-lockup-l {
+  gap: 32px;
+  height: 89.519px;
+}
+
+/* @snapshot 04_Brand 5141:5088 — знак крупного размера 89.519 × 89.519 */
+.product-lockup-l .product-lockup-mark {
+  width: 89.519px;
+  height: 89.519px;
+}
+
+/* @snapshot 04_Brand 5141:5088 — словесный знак крупного размера: высота 89.519, ширина ×1.2452 от базовой */
+.product-lockup-l .product-lockup-word {
+  height: 89.519px;
+  width: calc(var(--lockup-word-width, 143.803px) * 1.2452);
+}
+
+/* @snapshot 02_Landings 20216:92 — словесный знак «Хабр» набран ALS Hauss, а не Inter */
+.product-lockup-word-type {
+  font-family: var(--core-font-wordmark);
+  font-weight: var(--core-weight-heading);
+}
+
+/* =========================================================================
+   5. CARD
+   =========================================================================
+   Карточка — носитель спикеров (8/18), партнёров (9/18), нумерованных
+   преимуществ (7/18) и статистики (5/18). Единственный измеренный
+   внутренний отступ во всём участке — p-20 у 1324:8083; остальные карточки
+   отдают радиус и заливку, но не паддинг.
+   ========================================================================= */
+
+/* @normative каркас карточки: внутренний отступ измерен ровно на одной карточке участка (1324:8083, p-20), высота и минимальная ширина не измерены нигде */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px;
+  border-radius: var(--core-radius-m);
+  background: var(--core-bg-surface);
+  color: var(--core-text-primary);
+}
+
+/* @snapshot 02_Landings 18085:3931 — радиус 20: block_hero, hero-form-card, карточки 4–7 и contact-container; тот же 20 у карточки чат-бота 14871:1966 */
+.card-r20 { border-radius: var(--core-radius-m); }
+
+/* @snapshot 02_Landings 18085:3974 — радиус 24: карточки преимуществ 1–3, карточки программы 1–4 и иконки 72 × 72. Соседние карточки одного списка benefits-list_wrapper стоят на 20 и 24 */
+.card-r24 { border-radius: var(--core-radius-m-alt); }
+
+/* @snapshot 02_Landings 12470:67 — радиус 30 на всех карточках двух снятых секций узла без исключения; литерал: ступени 30 в токенах нет */
+.card-r30 { border-radius: 30px; }
+
+/* @snapshot 02_Landings 10943:4273 — карточка партнёра: радиус 36, заливка #fafafa; литералы: значения узла */
+.card-r36 {
+  border-radius: 36px;
+  background: #fafafa;
+}
+
+/* @snapshot 02_Landings 8056:20997 — радиус 54 на карточке «2 Q&A-сессии» 372 × 340; соседка 8056:20974 той же секции — тоже 54, а карточка формы в hero 7885:21620 при той же заливке несёт 52 */
+.card-r54 { border-radius: 54px; }
+
+/* @snapshot 02_Landings 1324:8083 — карточка номинации без скругления: border и p-[20px], ни одного rounded-* */
+.card-r0 { border-radius: var(--core-radius-none); }
+
+/* @snapshot 02_Landings 18250:671 — плитка партнёрской сетки 187 × 92.041, радиус 81.708 на девяти плитках; литерал: значение узла */
+.card-tile {
+  border-radius: 81.708px;
+  aspect-ratio: 187 / 92.041;
+}
+
+/* @snapshot 02_Landings 18085:3948 — стеклянная карточка hero-form-card: rgba(255,255,255,0.1), backdrop-blur 30, радиус 20, паддинг 40, внутренняя подсветка inset 0 0 4px rgba(255,255,255,0.3) */
+.card-glass {
+  padding: var(--core-glass-pad);
+  border-radius: var(--core-glass-radius);
+  background: var(--core-glass-bg);
+  backdrop-filter: blur(var(--core-glass-blur));
+  box-shadow: var(--core-glass-glow);
+}
+
+/* @snapshot 02_Landings 18085:3890 — внутренняя подсветка inset 4px 4px 14.4px 10px rgba(89,89,248,0.25) на шести карточках узла */
+.card-glow { box-shadow: var(--core-glow-inset); }
+
+/* @snapshot 02_Landings 14871:2804 — плитка соцсети высотой 120: радиус 15 и жёсткая смещённая тень 7px 7px 0 rgba(6,19,19,0.2) на пяти плитках */
+.card-hard {
+  height: 120px;
+  border-radius: 15px;
+  box-shadow: var(--core-shadow-hard);
+}
+
+/* @snapshot 02_Landings 7885:21620 — лаймовая заливка #d3ff5c на двух карточках узла */
+.card-acid { background: #d3ff5c; }
+
+/* @snapshot 02_Landings 14871:1966 — бирюзовая карточка чат-бота #02b5d9, радиус 20 */
+.card-cyan { background: #02b5d9; }
+
+/* @snapshot 02_Landings 10943:4292 — основной текст карточки 18/1.3, трекинг 0 */
+.card-text {
+  font-size: var(--core-h4);
+  line-height: 1.3;
+}
+
+/* @snapshot 02_Landings 8056:20999 — крупное число статистики 128/1.0, трекинг −2 px; заголовок карточки рядом 32/1.0, трекинг −1 px (8056:21000) */
+.card-stat {
+  font-size: 128px;
+  line-height: 1;
+  letter-spacing: -2px;
+}
+
+/* @snapshot 02_Landings 10943:4273 — сетка карточек партнёров: 3 колонки по 372 при шаге 396, то есть зазор 24 */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 372px));
+  gap: 24px;
+}
+
+/* =========================================================================
+   6. MARQUEE
+   =========================================================================
+   Единственное, что снято CSS, — механика обрезки: 16559:2404 несёт
+   overflow-clip при ширине содержимого 1500 в контейнере 1600. Остальное —
+   геометрия полос: высота 36 (1284:3722), 60 (7880:20723), 115 (14871:1904).
+   ========================================================================= */
+
+/* @snapshot 02_Landings 16559:2404 — overflow-clip: содержимое 1500 внутри контейнера 1600, то есть лента обрезается контейнером, а не страницей */
+.marquee {
+  overflow: clip;
+  width: 100%;
+  display: block;
+}
+
+/* @snapshot 02_Landings 1284:3722 — полоса высотой ровно 36 на ширине 1400, заливка #ffffff; вторая такая же полоса 1302:12307 стоит симметрично снизу */
+.marquee-36 {
+  height: 36px;
+  background: #ffffff;
+}
+
+/* @snapshot 02_Landings 7880:20723 — полоса выделена в отдельную секцию высотой ровно 60; второй экземпляр 7880:20732 носит то же имя фрейма, то есть это один модуль */
+.marquee-60 { height: 60px; }
+
+/* @snapshot 02_Landings 14871:1904 — накладная полоса высотой 115: семь плиток 170 × 115 с шагом 240, ширина полосы 1610 при артборде 1600 */
+.marquee-115 { height: 115px; }
+
+/* @normative прокрутка ленты: движения в источнике нет — Figma отдаёт статический кадр, длительность и направление не измеримы. Снята только обрезка */
+.marquee-track {
+  display: flex;
+  align-items: center;
+  gap: 70px;
+  width: max-content;
+  animation: marquee-roll 30s linear infinite;
+}
+
+/* @normative цикл анимации: шаг 240 снят у 14871:1904 как шаг плиток, но длина цикла в источнике не существует и спроектирована */
+@keyframes marquee-roll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* @snapshot 02_Landings 7880:20726 — надпись ленты: ALS Hauss Medium 30/1.2, трекинг 0, uppercase, цвет #07f */
+.marquee-item {
+  flex: none;
+  font-size: 30px;
+  line-height: 1.2;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* @normative остановка движения по просьбе системы: prefers-reduced-motion в источниках не встречается — правило дописано, а не снято */
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}

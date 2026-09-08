@@ -55,8 +55,12 @@ const shortPath = (file) => {
 
 const args = process.argv.slice(2);
 const own = args.length > 0;
-const showcaseFiles = ['showcase/blocks.html'];
-const showcaseSteps = { 'showcase/blocks.html': 'R0-06' };
+const showcaseFiles = ['showcase/blocks.html', 'showcase/primitives.html', 'showcase/core.html'];
+const showcaseSteps = {
+  'showcase/blocks.html': 'R0-06',
+  'showcase/primitives.html': 'R1',
+  'showcase/core.html': 'R2',
+};
 
 const htmlFiles = own ? args : showcaseFiles.filter((file) => fs.existsSync(rel(file))).map(rel);
 

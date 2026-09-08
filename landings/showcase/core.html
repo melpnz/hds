@@ -1,0 +1,639 @@
+<!doctype html>
+<html lang="ru" data-theme="dark" data-product="habr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Блоки ядра — витрина пакета Landings</title>
+<link rel="stylesheet" href="../ui/landings.css">
+<link rel="stylesheet" href="../ui/blocks/core.css">
+<link rel="stylesheet" href="showcase.css">
+</head>
+<body class="doc-page">
+
+<header class="doc-head">
+  <div class="doc-head-in">
+    <div>
+      <h1 class="doc-title">Блоки ядра</h1>
+      <p class="doc-status">Шесть блоков с покрытием от 18/18 до 2/18, свёрстанные из
+      <span class="doc-src">ui/blocks/core.css</span>. Каждый показан живой вёрсткой на всю ширину,
+      под ней — таблица измеренных значений с node id файла
+      <span class="doc-src">02_Landings</span>. Переключатели меняют токены, а не картинку:
+      разметка блока одна на три продукта и обе темы.</p>
+    </div>
+    <div class="doc-switches">
+      <div class="doc-switch">
+        <span class="doc-switch-label" id="doc-theme-label">Тема</span>
+        <div class="doc-switch-row" role="group" aria-labelledby="doc-theme-label" id="doc-theme-switch"></div>
+      </div>
+      <div class="doc-switch">
+        <span class="doc-switch-label" id="doc-product-label">Продукт</span>
+        <div class="doc-switch-row" role="group" aria-labelledby="doc-product-label" id="doc-product-switch"></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="doc-main">
+  <section class="doc-section doc-section-first">
+    <h2 class="doc-h2">Что здесь и как это читать</h2>
+    <p class="doc-lead">Шесть блоков ядра. Покрытие — доля из 18 узлов файла Figma
+    <span class="doc-src">02_Landings</span>. Всё, что стоит в таблицах, снято: у каждого значения
+    есть node id. Всё, чего в таблицах нет, — пробел, и он назван словами в разделе «Чего не хватает»
+    внизу страницы и в разделе «Ограничения» каждой статьи.</p>
+    <p class="doc-note"><span class="doc-note-strong">Зазора между секциями нет.</span>
+    83 стыка из 85 в семи узлах ровно нулевые. Поэтому ни у одного блока ниже нет вертикального
+    <span class="doc-src">margin</span>: секция несёт своё поле сама, и цветные плоскости смыкаются
+    без шва. Ритм задаёт внутреннее поле 100 … 156, медиана 120.</p>
+    <div class="doc-scroll">
+      <table class="doc-table">
+        <thead><tr><th>Блок</th><th>Покрытие</th><th>CSS снят</th><th>Статья</th></tr></thead>
+        <tbody id="doc-core-index"></tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== 1. ШАПКА ===================== -->
+<div class="doc-main">
+  <section class="doc-section" id="site-header">
+    <h2 class="doc-h2">1. Шапка с логотипом — 17/18</h2>
+    <p class="doc-lead">Нет только у <span class="doc-src">1284:3362</span>, где вместо шапки бегущая
+    строка. Три варианта: с меню-ссылками 10/18, со свёрнутым меню 3/18, с CTA-кнопкой 2/18.
+    Высота шапки в источнике не одна: 70, 91 и 160 при почти одной ширине артборда — поэтому
+    <span class="doc-src">min-height</span> в CSS не задан.</p>
+  </section>
+</div>
+
+<div style="border-block:1px solid rgba(127,127,127,0.28);background:var(--core-bg-page);color:var(--core-text-primary);overflow:hidden">
+  <header class="site-header">
+    <div class="site-header-in">
+      <a class="product-lockup" href="#site-header">Хабр Карьера</a>
+      <ul class="site-header-nav">
+        <li><a class="site-header-link" href="#program">Программа</a></li>
+        <li><a class="site-header-link" href="#form-section">Участие</a></li>
+        <li><a class="site-header-link" href="#footer-social">Контакты</a></li>
+      </ul>
+      <a class="button site-header-cta" href="#form-section">Участвовать</a>
+    </div>
+  </header>
+  <header class="site-header">
+    <div class="site-header-in">
+      <a class="product-lockup" href="#site-header">Хабр × НаПоправку</a>
+      <button type="button" class="site-header-toggle" aria-expanded="false">Меню</button>
+    </div>
+  </header>
+</div>
+
+<div class="doc-main">
+  <section class="doc-section">
+    <div class="doc-scroll">
+      <table class="doc-table">
+        <thead><tr><th>Что измерено</th><th>Значение</th><th>Node id</th></tr></thead>
+        <tbody id="doc-t-header"></tbody>
+      </table>
+    </div>
+    <p class="doc-note"><span class="doc-note-strong">Шаг между пунктами меню не снят ни разу.</span>
+    28 px в CSS стоят под маркером <span class="doc-src">@normative</span>. Подчёркивание ссылки при
+    наведении — тоже норматив: ни hover, ни focus-visible, ни disabled в 18 макетах не встретились.</p>
+  </section>
+</div>
+
+<!-- ===================== 2. HERO ===================== -->
+<div class="doc-main">
+  <section class="doc-section" id="hero">
+    <h2 class="doc-h2">2. Hero — 18/18</h2>
+    <p class="doc-lead">Единственный блок без исключений: есть у всех восемнадцати макетов, включая
+    тот, где нет шапки. Самая высокая секция страницы — и при этом с самым маленьким полем:
+    32 у <span class="doc-src">18085:3930</span> против 156 у контентных секций того же узла.</p>
+  </section>
+</div>
+
+<div style="border-block:1px solid rgba(127,127,127,0.28);background:var(--core-bg-page);color:var(--core-text-primary);overflow:hidden">
+  <section class="hero hero-split">
+    <div class="hero-in">
+      <div>
+        <h1 class="hero-display">Неделя аналитиков</h1>
+        <p class="hero-lead">Семь дней докладов, разборов и живых сессий для тех, кто работает
+        с данными.</p>
+        <p class="hero-meta">26 февраля — 3 марта · онлайн · бесплатно</p>
+        <div class="hero-actions"><a class="button" href="#form-section">Участвовать</a></div>
+      </div>
+      <div class="card card-glass">
+        <p class="form-section-label">Заявка</p>
+        <div class="form-section-rows">
+          <input class="form-field-input" type="email" placeholder="Почта" aria-label="Почта">
+        </div>
+        <div class="form-section-actions"><button class="button" type="button">Записаться</button></div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<div class="doc-main">
+  <section class="doc-section">
+    <h3 class="doc-h3">Измеренные дисплейные кегли</h3>
+    <div class="doc-scroll">
+      <table class="doc-table">
+        <thead><tr><th>Кегль</th><th>Гарнитура</th><th>Интерлиньяж</th><th>Трекинг</th><th>Node id</th></tr></thead>
+        <tbody id="doc-t-display"></tbody>
+      </table>
+    </div>
+    <h3 class="doc-h3">Геометрия hero</h3>
+    <div class="doc-scroll">
+      <table class="doc-table">
+        <thead><tr><th>Что измерено</th><th>Значение</th><th>Node id</th></tr></thead>
+        <tbody id="doc-t-hero"></tbody>
+      </table>
+    </div>
+    <p class="doc-note"><span class="doc-note-strong">Кегль дисплея в CSS взят из спроектированной
+    шкалы, а не из узла.</span> Измеренные 630 · 200 · 172 · 160 · 144 · 136 · 120 · 90 · 72 · 64 · 40
+    в один ряд не строятся, и модульной шкалы в источнике нет. Стеклянная карточка справа — снятый
+    рецепт <span class="doc-src">18085:3948</span>, а не украшение витрины.</p>
+  </section>
+</div>
+
+<!-- ===================== 3. ФУТЕР С СОЦСЕТЯМИ ===================== -->
+<div class="doc-main">
+  <section class="doc-section" id="footer-social">
+    <h2 class="doc-h2">3. Футер с соцсетями — 15/18</h2>
+    <p class="doc-lead">Не зафиксирован у <span class="doc-src">18085</span>,
+    <span class="doc-src">1324</span>, <span class="doc-src">12008</span>. Копирайт «Сделано в Хабре» —
+    те же 15/18; у <span class="doc-src">1284</span> вместо него CC-лицензия трека.
+    Плитки окрашены в фирменные цвета сервисов, а не в палитру проекта: это единственные литеральные
+    цвета в CSS блоков.</p>
+  </section>
+</div>
+
+<div style="border-block:1px solid rgba(127,127,127,0.28);background:var(--core-bg-page);color:var(--core-text-primary);overflow:hidden">
+  <footer class="footer-social">
+    <div class="footer-social-in">
+      <h2 class="footer-social-title">Подпишись на нас в социальных сетях</h2>
+      <p class="footer-social-display">там бывают классные мемы</p>
+      <ul class="footer-social-tiles">
+        <li><a class="footer-social-tile footer-social-tile-tg" href="#footer-social">TG</a></li>
+        <li><a class="footer-social-tile footer-social-tile-vk" href="#footer-social">VK</a></li>
+        <li><a class="footer-social-tile footer-social-tile-yt" href="#footer-social">YT</a></li>
+        <li><a class="footer-social-tile footer-social-tile-plain" href="#footer-social">Дзен</a></li>
+        <li><a class="footer-social-tile footer-social-tile-plain" href="#footer-social">X</a></li>
+      </ul>
+      <div class="footer-social-copyright">
+        <p class="footer-social-copyright-text">© 2025. Сделано в Хабре</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<div class="doc-main">
+  <section class="doc-section">
+    <div class="doc-scroll">
+      <table class="doc-table">
+        <thead><tr><th>Что измерено</th><th>Значение</th><th>Node id</th></tr></thead>
+        <tbody id="doc-t-footer"></tbody>
+      </table>
+    </div>
+    <p class="doc-note"><span class="doc-note-strong">Жёсткая тень 7 / 7 / 0 — опорный факт формы
+    всего пакета.</span> Размытых теней вида <span class="doc-src">0 Npx Npx rgba(…)</span>
+    на интерфейсных поверхностях в источниках нет: объём подаётся либо inset-подсветкой, либо вот таким
+    стикерным смещением без размытия.</p>
+  </section>
+</div>
+
+<!-- ===================== 4. КОРПОРАТИВНЫЙ ФУТЕР ===================== -->
+<div class="doc-main">
+  <section class="doc-section" id="footer-corporate">
+    <h2 class="doc-h2">4. Корпоративный B2B-футер — 2/18
+      <span class="doc-tag">наблюдение, не правило</span></h2>
+    <p class="doc-lead">Два узла — и это один и тот же фрейм <span class="doc-src">Frame 956449994</span>:
+    <span class="doc-src">20302:31704</span> внутри <span class="doc-src">20216:120</span> и
+    <span class="doc-src">19319:7243</span> внутри <span class="doc-src">19319:7049</span>. Оба набраны
+    именованной шкалой <span class="doc-src">H1…H5</span>. Состав снят из метаданных: услуги, телефон,
+    офис, соцсети.</p>
+    <p class="doc-note"><span class="doc-note-strong">CSS не снят ни у одного из двух экземпляров.</span>
+    Ниже показана композиция по составу, а не измеренная геометрия: число колонок выведено из четырёх
+    групп состава и помечено <span class="doc-src">@normative</span>. Ни кегля, ни цвета, ни поля,
+    ни радиуса в этих фреймах не измерено.</p>
+  </section>
+</div>
+
+<div style="border-block:1px solid rgba(127,127,127,0.28);background:var(--core-bg-page);color:var(--core-text-primary);overflow:hidden">
+  <footer class="footer-corp">
+    <div class="footer-corp-in">
+      <div class="footer-corp-col">
+        <h3 class="footer-corp-h">Услуги</h3>
+        <p class="footer-corp-item">Реклама на Хабре</p>
+        <p class="footer-corp-item">Спецпроекты</p>
+        <p class="footer-corp-item">Мероприятия</p>
+      </div>
+      <div class="footer-corp-col">
+        <h3 class="footer-corp-h">Телефон</h3>
+        <p class="footer-corp-item">+7 000 000-00-00</p>
+      </div>
+      <div class="footer-corp-col">
+        <h3 class="footer-corp-h">Офис</h3>
+        <p class="footer-corp-item">Москва</p>
+      </div>
+      <div class="footer-corp-col">
+        <h3 class="footer-corp-h">Соцсети</h3>
+        <p class="footer-corp-item">Telegram</p>
+        <p class="footer-corp-item">VK</p>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<div class="doc-main">
+  <section class="doc-section">
+    <div class="doc-scroll">
+      <table class="doc-table">
+        <thead><tr><th>Что известно</th><th>Значение</th><th>Node id</th></tr></thead>
+        <tbody id="doc-t-corp"></tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+<!-- ===================== 5. СЕКЦИЯ ФОРМЫ ===================== -->
+<div class="doc-main">
+  <section class="doc-section" id="form-section">
+    <h2 class="doc-h2">5. Секция формы — 11/18</h2>
+    <p class="doc-lead">Полей от 2 до 5; у <span class="doc-src">20572:37377</span> форм две,
+    у <span class="doc-src">17473</span> и <span class="doc-src">6509</span> — подписка и заявка порознь.
+    Поле и кнопку описывает примитив, а не секция: шесть измерений радиуса дали шесть разных
+    значений — 16, 8, 40, 0, пилюля и отсутствие радиуса вовсе.</p>
+  </section>
+</div>
+
+<div style="border-block:1px solid rgba(127,127,127,0.28);background:var(--core-bg-page);color:var(--core-text-primary);overflow:hidden">
+  <section class="form-section form-section-narrow">
+    <div class="form-section-in">
+      <div class="form-section-head">
+        <span class="form-section-label">Заявка</span>
+        <h2 class="form-section-title">Подать заявку</h2>
+      </div>
+      <form>
+        <div class="form-section-rows form-section-rows-2">
+          <input class="form-field-input" type="text" placeholder="Имя" aria-label="Имя">
+          <input class="form-field-input" type="text" placeholder="Фамилия" aria-label="Фамилия">
+          <input class="form-field-input" type="email" placeholder="Почта" aria-label="Почта">
+          <input class="form-field-input" type="text" placeholder="Компания" aria-label="Компания">
+        </div>
+        <label class="form-section-consent">
+          <input type="checkbox">
+          <span class="form-section-note">Согласен на обработку персональных данных
+          и с <a href="#form-section">условиями участия</a></span>
+        </label>
+        <div class="form-section-actions">
+          <button class="button" type="button">Отправить</button>
+        </div>
+      </form>
+    </div>
+  </section>
+  <section class="form-section form-section-compact">
+    <div class="form-section-in">
+      <form class="form-section-inline">
+        <input class="form-field-input" type="email" placeholder="Почта" aria-label="Почта для подписки">
+        <button class="button" type="button">Подписаться</button>
+      </form>
+      <p class="form-section-note">Нажимая кнопку, вы соглашаетесь
+      с <a href="#form-section">политикой</a></p>
+    </div>
+  </section>
+</div>
+
+<div class="doc-main">
+  <section class="doc-section">
+    <h3 class="doc-h3">Радиус поля и кнопки — шесть измерений, шесть решений</h3>
+    <div class="doc-scroll">
+      <table class="doc-table">
+        <thead><tr><th>Узел формы</th><th>Радиус поля</th><th>Радиус кнопки</th><th>Заливка кнопки</th></tr></thead>
+        <tbody id="doc-t-form-radius"></tbody>
+      </table>
+    </div>
+    <h3 class="doc-h3">Типографика и композиция</h3>
+    <div class="doc-scroll">
+      <table class="doc-table">
+        <thead><tr><th>Что измерено</th><th>Значение</th><th>Node id</th></tr></thead>
+        <tbody id="doc-t-form"></tbody>
+      </table>
+    </div>
+    <p class="doc-note"><span class="doc-note-strong">Состояний ошибки в источниках нет.</span>
+    Ни одно из шести снятых полей не имеет варианта с ошибкой, подсказкой или заблокированным вводом.
+    Форма показана только в покое, и в CSS блока таких правил не дописано.</p>
+  </section>
+</div>
+
+<!-- ===================== 6. ПРОГРАММА ===================== -->
+<div class="doc-main">
+  <section class="doc-section" id="program">
+    <h2 class="doc-h2">6. Программа и расписание — 10/18</h2>
+    <p class="doc-lead">Четыре формы записи об одном: «пять дней в Санатории»
+    (<span class="doc-src">20216</span>), <span class="doc-src">Schedule Day01–05</span>
+    (<span class="doc-src">20572</span>), «даты / этапы» (<span class="doc-src">17473</span>),
+    «важные даты» (<span class="doc-src">6509</span>). Несущий приём карьерной линии — дисплейное
+    число даты живым шрифтом.</p>
+  </section>
+</div>
+
+<div style="border-block:1px solid rgba(127,127,127,0.28);background:var(--core-bg-page);color:var(--core-text-primary);overflow:hidden">
+  <section class="program">
+    <div class="program-in">
+      <header>
+        <span class="program-label">[ программа ]</span>
+        <h2 class="program-title">Пять дней разборов</h2>
+      </header>
+      <ul class="program-list">
+        <li class="program-item">
+          <div>
+            <span class="program-date">26</span>
+            <span class="program-date-cap">/ февраля /</span>
+          </div>
+          <div class="card card-r24">
+            <h3 class="program-item-title">Как читать продуктовые метрики</h3>
+            <p class="program-item-text">Разбор дашборда на реальных данных и разговор о том,
+            какие метрики врут чаще других.</p>
+          </div>
+        </li>
+        <li class="program-item">
+          <div>
+            <span class="program-date">27</span>
+            <span class="program-date-cap">/ февраля /</span>
+          </div>
+          <div class="card card-r24">
+            <h3 class="program-item-title">Аналитик и продакт: кто кому заказчик</h3>
+            <p class="program-item-text">Живая сессия с разбором рабочих конфликтов
+            и того, как из них выходят.</p>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </section>
+</div>
+
+<div class="doc-main">
+  <section class="doc-section">
+    <div class="doc-scroll">
+      <table class="doc-table">
+        <thead><tr><th>Что измерено</th><th>Значение</th><th>Node id</th></tr></thead>
+        <tbody id="doc-t-program"></tbody>
+      </table>
+    </div>
+    <p class="doc-note"><span class="doc-note-strong">Одно и то же число даты набрано по-разному
+    в hero и в программе одного узла:</span> 160 Regular против 120 Medium, трекинг −6 против −2.
+    Крупнее — легче и плотнее. Это оптическая компенсация, а не разнобой.</p>
+  </section>
+</div>
+
+<!-- ===================== ПРОБЕЛЫ ===================== -->
+<div class="doc-main">
+  <section class="doc-section" id="gaps">
+    <h2 class="doc-h2">Чего не хватает</h2>
+    <p class="doc-lead">Перечислено то, чего в таблицах выше нет и что домыслено не будет.
+    Каждая строка называет, какой съёмки не хватает, чтобы её закрыть.</p>
+    <ul id="doc-gaps" class="doc-limits"></ul>
+  </section>
+</div>
+
+<footer class="doc-foot">
+  Собрано обратной разработкой файла Figma <span class="doc-foot-code">02_Landings</span>,
+  fileKey <span class="doc-foot-code">eSJbNN1A788KEHaSBr2AfM1u</span>, страница
+  <span class="doc-foot-code">0:1</span>. Значения — из
+  <span class="doc-foot-code">evidence/source/figma/*.md</span> и
+  <span class="doc-foot-code">.pipeline/R0-00/capture.md</span>. Figma на этом шаге не открывалась.
+  Проверки: <span class="doc-foot-code">node tools/validate-classes.mjs</span>,
+  <span class="doc-foot-code">node tools/validate-normative.mjs</span>.
+</footer>
+
+<script>
+(function () {
+  var root = document.documentElement;
+
+  function esc(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+  function code(s) { return '<span class="doc-src">' + esc(s) + '</span>'; }
+  function rows(host, data) {
+    document.getElementById(host).innerHTML = data.map(function (r) {
+      return '<tr>' + r.map(function (cell, i) {
+        return '<td>' + (i === r.length - 1 ? code(cell) : esc(cell)) + '</td>';
+      }).join('') + '</tr>';
+    }).join('');
+  }
+
+  /* --- оглавление ---------------------------------------------------------- */
+
+  var INDEX = [
+    ['Шапка с логотипом', 17, 'CSS у 1 узла из 17', 'blocks/site-header.md', '#site-header'],
+    ['Hero', 18, 'CSS у 5 узлов из 18', 'blocks/hero.md', '#hero'],
+    ['Футер с соцсетями', 15, 'CSS у 1 узла из 15', 'blocks/footer-social.md', '#footer-social'],
+    ['Корпоративный B2B-футер', 2, 'CSS не снят', 'blocks/footer-corporate.md', '#footer-corporate'],
+    ['Секция формы', 11, 'CSS у 6 узлов из 11', 'blocks/form-section.md', '#form-section'],
+    ['Программа и расписание', 10, 'CSS у 2 узлов из 10', 'blocks/program.md', '#program']
+  ];
+
+  document.getElementById('doc-core-index').innerHTML = INDEX.map(function (b) {
+    var pct = Math.round((b[1] / 18) * 100);
+    var tag = b[1] <= 2 ? ' <span class="doc-tag">наблюдение, не правило</span>' : '';
+    return '<tr>' +
+      '<td><a href="' + b[4] + '">' + esc(b[0]) + '</a>' + tag + '</td>' +
+      '<td class="doc-cov">' + b[1] + '/18' +
+        '<span class="doc-bar"><span class="doc-bar-fill" style="width:' + pct + '%"></span></span></td>' +
+      '<td>' + esc(b[2]) + '</td>' +
+      '<td>' + code(b[3]) + '</td>' +
+    '</tr>';
+  }).join('');
+
+  /* --- 1. шапка ------------------------------------------------------------- */
+
+  rows('doc-t-header', [
+    ['Высота шапки при артборде 1440', '91', '18085:3897'],
+    ['Высота шапки при артборде 1600', '70', '12395:7449'],
+    ['Высота шапки при артборде 1600', '160', '7869:20761'],
+    ['Внутреннее поле шапки', '24px 60px', '18085:3897'],
+    ['Меню: гарнитура и кегль', 'ALS Hauss Medium 15', '10943:2457'],
+    ['Меню: интерлиньяж', '1.5 (22.5)', '10943:2457'],
+    ['Меню: трекинг и регистр', '+0.5 px, uppercase', '10943:2457'],
+    ['Меню: цвет', '#333333', '10943:2457'],
+    ['Стык со следующей секцией', '0', '18085:3897'],
+    ['Горизонтальное поле контентных секций', '218, контейнер 1164', '10929:505']
+  ]);
+
+  /* --- 2. hero -------------------------------------------------------------- */
+
+  document.getElementById('doc-t-display').innerHTML = [
+    ['630', 'Bebas Neue Bold', '1.0', '−12.6', '12276:379'],
+    ['200', 'Bebas Neue Bold', '1.2 (240)', '−4 px, докрутка −0.64 … −0.8', '7882:20906'],
+    ['172', 'Neue Machina Ultrabold', '1.0', '−3.44 (−0.02 em)', '6509:20482'],
+    ['160', 'ALS Hauss Regular', '1.0', '−6 px', '10943:2472'],
+    ['144', 'Unbounded SemiBold', '0.9 (129.6)', '−7.49', '20216:120'],
+    ['136', 'ALS Hauss Medium', '1.0', '−6 px', '9519:2203'],
+    ['120', 'не снята', '0.75 (90)', '−6', '17473:955'],
+    ['90', 'Arial Black', '1.0', '0', '1302:12203'],
+    ['72', 'Inter SemiBold', '1.0', '−3 px', '18085:3946'],
+    ['72', 'Inter Bold', '0.9 (64.8)', '−3', '15818:15330'],
+    ['64', 'Inter SemiBold', '1.0', '−1', '19319:7091'],
+    ['62 — H2, не дисплей', 'Inter Bold', '0.9 (55.8)', '−4', '16559:2402'],
+    ['40', 'не снята', 'не снят', 'не снят', '20775:851']
+  ].map(function (r) {
+    return '<tr><td>' + esc(r[0]) + '</td><td>' + esc(r[1]) + '</td><td>' + esc(r[2]) +
+      '</td><td>' + esc(r[3]) + '</td><td>' + code(r[4]) + '</td></tr>';
+  }).join('');
+
+  rows('doc-t-hero', [
+    ['Высота hero, артборд 1600', '960', '10943:2225'],
+    ['Высота hero, артборд 1600', '920', '9519:2096'],
+    ['Высота hero, артборд 1600', '764', '12395:11001'],
+    ['Высота hero, артборд 1600', '730', '7882:20901'],
+    ['Высота hero, артборд 1440', '714', '18085:3930'],
+    ['Высота hero, артборд 1400', '680', '6509:20475'],
+    ['Внутреннее поле hero', '32px 60px — против 156 у контентных секций', '18085:3930'],
+    ['Фон hero: градиент', 'linear-gradient(180deg, rgb(229,84,0) 0%, rgb(249,128,6) 21%, rgb(224,195,253) 65.975%, rgb(250,249,246) 100%)', '10943:2225'],
+    ['Стекло: заливка и размытие', 'rgba(255,255,255,0.1), blur(30px)', '18085:3948'],
+    ['Стекло: радиус и поле', '20 и 40', '18085:3948'],
+    ['Стекло: подсветка', 'inset 0 0 4px 0 rgba(255,255,255,0.3)', '18085:3948'],
+    ['Подсветка фона hero овалами', 'inset 0 0 57.7px 43px #d04509, inset 0 0 100.7px 52px #a05024', '20216:120']
+  ]);
+
+  /* --- 3. футер с соцсетями -------------------------------------------------- */
+
+  rows('doc-t-footer', [
+    ['Высота футера, артборд 1600', '704', '14871:2795'],
+    ['Верхнее поле футера', '50 — вдвое меньше ритмического 100 того же узла', '14871:2796'],
+    ['Высота футера', '900', '9519:3004'],
+    ['Высота футера', '830', '10948:1263'],
+    ['Высота футера', '824', '12395:8259'],
+    ['Высота футера', '820', '7978:20656'],
+    ['Высота футера', '615', '6509:20938'],
+    ['Дисплей футера', 'Unbounded Variable Black 110 / 1.0 / −3 px, uppercase', '14871:2798'],
+    ['Надзаголовок футера', 'Unbounded Variable Black 56 / 1.15 (64.4) / −1 px', '14871:2797'],
+    ['Рукописный акцент', 'Permanent Marker 130 / 1.0 / −5.2 px, #16d5f3', '14871:2799'],
+    ['Копирайт', 'Inter SemiBold 20 / 1.2, uppercase, #16d5f3', '14871:2815'],
+    ['Верхняя граница копирайта', '4px solid #16d5f3', '14871:2814'],
+    ['Плитка соцсети: высота и радиус', '120 и 15', '14871:2804'],
+    ['Плитка соцсети: тень', 'drop-shadow(7px 7px 0 rgba(6,19,19,0.2))', '14871:2804'],
+    ['Плитка Telegram', '#2aabee', '14871:2804'],
+    ['Плитка VK', '#0077ff', '14871:2801'],
+    ['Плитка YouTube', 'red', '14871:2807'],
+    ['Плитки Дзена и X', '#000000 + 4px solid #404040', '14871:2810'],
+    ['Фон нижней зоны', '#061313, три независимых измерения', '14871:2795']
+  ]);
+
+  /* --- 4. корпоративный футер ------------------------------------------------ */
+
+  rows('doc-t-corp', [
+    ['Экземпляр в «Санатории маркетолога»', 'Frame 956449994', '20302:31704'],
+    ['Экземпляр в лендинге FitStars', 'Frame 956449994 — тот же фрейм', '19319:7243'],
+    ['Шкала заголовков', 'именованная H1…H5, у обоих', '19319:7243'],
+    ['Состав', 'услуги · телефон · офис · соцсети', '20302:31704'],
+    ['Кегли, цвет, поля, радиусы', 'НЕ СНЯТЫ — нужен get_design_context по обоим фреймам', '20302:31704'],
+    ['Число и ширина колонок', 'НЕ СНЯТЫ — четыре по числу групп состава, это норматив', '19319:7243']
+  ]);
+
+  /* --- 5. форма -------------------------------------------------------------- */
+
+  document.getElementById('doc-t-form-radius').innerHTML = [
+    ['10943:2464 / 10943:2466', '16', '16', '#8964f7'],
+    ['9519:2169 / 9519:2171', '8', '8', '#d2b3ff'],
+    ['7885:21625 / 7885:21627', '40 при высоте 68', '40', '#a669fc'],
+    ['6509:20509 / 6509:20511', '0', '0', '#ce5427'],
+    ['18085:3953 / 18085:3959', '50 при высоте 60 → пилюля', '50 → пилюля', '#a5feab'],
+    ['1324:8108 / 1324:8145', 'нет радиуса, 2px solid #5a6c7c', '40 при высоте 40 → пилюля', 'градиент #1BF2C8 → #5162FF → #AADBFF']
+  ].map(function (r) {
+    return '<tr><td>' + code(r[0]) + '</td><td>' + esc(r[1]) + '</td><td>' + esc(r[2]) +
+      '</td><td>' + esc(r[3]) + '</td></tr>';
+  }).join('');
+
+  rows('doc-t-form', [
+    ['Ширина формы', '760 при контейнере 1152, центрирована', '1324:8106'],
+    ['От заголовка до формы', '40', '1324:8080'],
+    ['Секция подписки: высота и поле', '241 и 80', '6509:20505'],
+    ['Секция контактов с формой: поля', 'pt 32, pb 60, px 60', '18095:5885'],
+    ['Карточка формы в hero', '396 × 321, радиус 52', '7885:21620'],
+    ['Заголовок секции формы', 'Inter Bold 28 / 1.286 (36)', '1324:8080'],
+    ['Надзаголовок-метка', 'Inter Bold 14 / 1.0 / +4 px, uppercase, #fbb323', '6509:20513'],
+    ['Плейсхолдер', 'ALS Hauss Medium 18 / 1.0 / +0.5 px, uppercase, #999999', '10943:2465'],
+    ['Плейсхолдер', 'ALS Hauss Medium 16 / 1.0 / +0.5 px, uppercase, #999999', '9519:2170'],
+    ['Текст кнопки', 'ALS Hauss Medium 18 / 1.0 / +0.5 px, uppercase, #ffffff', '10943:2467'],
+    ['Текст кнопки', 'Inter Bold 14 / 1.0, uppercase, #ffffff', '6509:20512'],
+    ['Мелкая подпись под формой', 'ALS Hauss Medium 12 / 1.5 / +0.5 px, uppercase, #777777, ссылка #8e5eed', '10943:2468'],
+    ['Мелкая подпись под формой', 'Inter Medium 14 / 1.6, #a0a6a7, ссылка #f2612c', '6509:20515'],
+    ['Чекбокс согласия', 'радиус 6 из дизайн-системы Хабра', '20775:861'],
+    ['Чекбоксы и радиокнопки', '20 × 20, радиус 10, 18 вхождений', '1324:7793'],
+    ['Число полей', '5 у 20216 и 15673, 4 у 19319 — по метаданным', '20216:120']
+  ]);
+
+  /* --- 6. программа ---------------------------------------------------------- */
+
+  rows('doc-t-program', [
+    ['Секция «программа»', 'y 3280, высота 720, ширина 1600', '10929:1068'],
+    ['Секция «программа»', 'y 5010, высота 820', '9519:2725'],
+    ['Секция «даты»', 'y 1821, высота 1018', '6518:20250'],
+    ['programm-section', 'высота 1488, поле py 156', '18085:4047'],
+    ['programm-section', 'высота 693, поле py 156', '18250:82'],
+    ['Метка секции от верха', '100', '10929:1119'],
+    ['Метка секции от верха', '120', '9519:2776'],
+    ['Число даты в программе', 'ALS Hauss Medium 120 / 1.0 / −2 px, #333333', '10929:1114'],
+    ['Число даты в hero того же узла', 'ALS Hauss Regular 160 / 1.0 / −6 px, #333333', '10943:2472'],
+    ['Подпись даты «/ февраля /»', 'ALS Hauss Bold + Bold Italic 16 / 1.5 / +1 px, uppercase', '10929:1115'],
+    ['Метка секции', 'ALS Hauss Medium 16 / 1.5 / +1 px, uppercase', '10948:678'],
+    ['H2 секции', 'ALS Hauss Medium 64 / 1.0 / −2 px', '10948:680'],
+    ['Заголовок дня', 'Inter Medium 24 / 1.2', '18085:4062'],
+    ['Карточка дня', 'радиус 24', '18085:4066'],
+    ['Основной текст', 'ALS Hauss Regular 18 / 1.3', '10943:4292'],
+    ['gap между блоками внутри секции', '96', '18085:4121']
+  ]);
+
+  /* --- пробелы --------------------------------------------------------------- */
+
+  var GAPS = [
+    ['Корпоративный B2B-футер не снят по CSS вовсе.', 'Оба экземпляра опознаны get_metadata — по имени фрейма и составу. Нужен get_design_context по 20302:31704 и 19319:7243.'],
+    ['CSS шапки снят у одного узла из семнадцати.', 'Измерена только типографика меню 10943:2457. Не снимались 12395:7449, 7869:20761, 18085:3897, 20216:120, 20572:37377.'],
+    ['CSS футера снят у одного узла из пятнадцати.', 'Всё, что сказано о типографике, цвете, радиусе плитки и тени, действует в границах 14871:2795.'],
+    ['CSS программы снят у двух узлов из десяти.', 'Не снимались 9519:2725, 12395, 16418, 7869, 6518:20250, 20216, 20572, 17473.'],
+    ['Шаги и зазоры внутри блоков не снимались нигде.', 'Шаг меню, шаг между полями формы, шаг между днями программы, шаг между плитками соцсетей — все четыре норматив, каждый под своим маркером в CSS.'],
+    ['Состояний нет ни у одного элемента.', 'Ни hover, ни focus-visible, ни disabled, ни ошибки формы в 18 макетах не встретились. Всё, что дописано, — новая реализация.'],
+    ['Мобильных артбордов у 18 узлов пакета не установлено.', 'Мобильные фреймы на странице 0:1 есть, но у другого проекта. Правила в @media (max-width: 640px) спроектированы целиком.'],
+    ['Кегль 122.4 ходит по материалам шага без node id.', 'В таблицу дисплейных кеглей не внесён: значение без адреса источником не является.'],
+    ['Поведение шапки при прокрутке снять не с чего.', 'Figma отдаёт статичный фрейм; ни sticky, ни фиксация в макете не выражаются.'],
+    ['ui/blocks/core.css не внесён в ui/blocks/index.css.', 'Строку @import в index.css в этом шаге пишет другой агент. Витрина подключает core.css отдельной ссылкой.']
+  ];
+
+  document.getElementById('doc-gaps').innerHTML = GAPS.map(function (g) {
+    return '<li class="doc-limit"><span class="doc-limit-k">' + esc(g[0]) + '</span> ' + esc(g[1]) + '</li>';
+  }).join('');
+
+  /* --- переключатели --------------------------------------------------------- */
+
+  var THEMES = [['dark', 'тёмная'], ['light', 'светлая']];
+  var PRODUCTS = [['habr', 'Хабр'], ['career', 'Карьера'], ['courses', 'Курсы']];
+
+  function renderSwitch(host, items, attr) {
+    host.innerHTML = items.map(function (it) {
+      return '<button type="button" class="doc-btn" data-set="' + attr + '" data-value="' + it[0] + '">' +
+        esc(it[1]) + '</button>';
+    }).join('');
+  }
+
+  function paintSwitches() {
+    var buttons = document.querySelectorAll('[data-set]');
+    for (var i = 0; i < buttons.length; i++) {
+      var on = root.getAttribute(buttons[i].getAttribute('data-set')) === buttons[i].getAttribute('data-value');
+      buttons[i].classList.toggle('doc-btn-on', on);
+      buttons[i].setAttribute('aria-pressed', on ? 'true' : 'false');
+    }
+  }
+
+  document.addEventListener('click', function (e) {
+    var btn = e.target.closest ? e.target.closest('[data-set]') : null;
+    if (!btn) return;
+    root.setAttribute(btn.getAttribute('data-set'), btn.getAttribute('data-value'));
+    paintSwitches();
+  });
+
+  renderSwitch(document.getElementById('doc-theme-switch'), THEMES, 'data-theme');
+  renderSwitch(document.getElementById('doc-product-switch'), PRODUCTS, 'data-product');
+  paintSwitches();
+})();
+</script>
+
+</body>
+</html>

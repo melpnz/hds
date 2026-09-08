@@ -1,0 +1,625 @@
+/* =========================================================================
+   CORE BLOCKS — блоки ядра лендинга
+   =========================================================================
+   Шесть блоков с покрытием ≥ 2/18, снятые с файла Figma `02_Landings`:
+
+     .site-header      шапка с логотипом            17/18
+     .hero             первый экран                 18/18
+     .footer-social    футер с соцсетями            15/18
+     .footer-corp      корпоративный B2B-футер       2/18  наблюдение
+     .form-section     секция формы                 11/18
+     .program          программа / расписание       10/18
+
+   Статьи с перечнем узлов и таблицами измеренных значений — blocks/*.md.
+   Живая вёрстка — showcase/core.html.
+
+   ---------------------------------------------------------------------
+   ЧТО ЭТОТ ФАЙЛ ОПИСЫВАЕТ, А ЧТО НЕТ
+   ---------------------------------------------------------------------
+   Здесь только композиция блока: каркас, ритм, поля, порядок частей.
+   Кнопка, поле, чип, лок-ап, карточка и бегущая строка — примитивы,
+   они живут в ui/blocks/primitives.css. Ссылаться на них классом можно,
+   переобъявлять их правила — нет: блок, который сам красит кнопку,
+   перестаёт быть одним блоком на три продукта.
+
+   Заглушек примитивов здесь нет: `.button`, `.form-field-input`,
+   `.product-lockup`, `.card`, `.glass-chip` и `.marquee` уже объявлены
+   в primitives.css, и дублировать их правила запрещено. Стеклянная
+   карточка hero и карточка дня программы собираются из карточки-примитива
+   классами `.card .card-glass` и `.card .card-r24`.
+
+   Цвет блок берёт из слоя токенов, а не из снятого узла: измеренный
+   `#8964f7` кнопки формы `10943:2466` принадлежит проекту «Неделя
+   аналитиков», а не набору блоков (инвариант И-4 — один набор блоков
+   на три продукта). Измеренные литералы проектов лежат в таблицах
+   статей с node id, а не в этом файле.
+
+   ---------------------------------------------------------------------
+   РИТМ — ГЛАВНОЕ ПРАВИЛО КАРКАСА
+   ---------------------------------------------------------------------
+   Зазора между секциями нет: 83 стыка из 85 в семи узлах ровно нулевые.
+   Поэтому ни у одного блока здесь нет `margin` по вертикали — секция
+   несёт своё поле сама, и соседние плоскости смыкаются без шва.
+   Правило К-1, GUIDE §4.
+
+   ---------------------------------------------------------------------
+   ПОДКЛЮЧЕНИЕ
+   ---------------------------------------------------------------------
+   Файл ещё не внесён строкой `@import url("core.css")` в
+   ui/blocks/index.css: index.css в этом шаге правит другой агент.
+   Витрина showcase/core.html подключает его отдельной ссылкой.
+   ========================================================================= */
+
+/* =========================================================================
+   ОБЩЕЕ ДЛЯ ВСЕХ ШЕСТИ БЛОКОВ
+   ========================================================================= */
+
+/* @snapshot 02_Landings 10929:505 — поле 218 от края 1600, контейнер 1164; то же поле у 9519:2095 и 7869:20760 */
+.site-header,
+.hero,
+.footer-social,
+.footer-corp,
+.form-section,
+.program {
+  box-sizing: border-box;
+  width: 100%;
+  padding-inline: var(--core-gutter);
+}
+
+/* @snapshot 02_Landings 18085:3890 — 7 стыков секций из 7 нулевые, зазора между секциями нет */
+.site-header,
+.hero,
+.footer-social,
+.footer-corp,
+.form-section,
+.program {
+  margin-block: var(--core-section-gap);
+}
+
+/* @snapshot 02_Landings 10929:505 — контейнер 1164 при артборде 1600 */
+.site-header-in,
+.hero-in,
+.footer-social-in,
+.footer-corp-in,
+.form-section-in,
+.program-in {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: var(--core-container);
+  margin-inline: auto;
+}
+
+/* @snapshot 02_Landings 18085:3890 — секция сама несёт фон: смена фона происходит ровно на границе секций */
+.site-header,
+.hero,
+.footer-social,
+.footer-corp,
+.form-section,
+.program {
+  background: var(--core-bg-page);
+  color: var(--core-text-primary);
+}
+
+/* =========================================================================
+   1. ШАПКА С ЛОГОТИПОМ — .site-header, 17/18
+   -------------------------------------------------------------------------
+   Нет только у 1284:3362, где вместо шапки бегущая строка.
+   Три варианта: меню-ссылками 10/18 · свёрнутое меню 3/18 ·
+   с CTA-кнопкой 2/18.
+   ========================================================================= */
+
+/* @snapshot 02_Landings 18085:3897 — section_navbar, вертикальное поле 24 (горизонтальное там 60, см. статью) */
+.site-header {
+  padding-block: 24px;
+}
+
+/* @snapshot 02_Landings 18085:3897 — знак слева, навигация справа: единственная снятая раскладка шапки */
+.site-header-in {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+}
+
+/* @normative шаг между пунктами меню не снят ни в одной из 17 шапок: CSS шапок 12395:7449 и 7869:20761 не снимался */
+.site-header-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* @snapshot 02_Landings 10943:2457 — меню шапки: ALS Hauss Medium 15/1.5, трекинг +0.5, uppercase */
+.site-header-link {
+  font-family: var(--core-font-wordmark);
+  font-size: 15px;
+  line-height: 1.5;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: currentColor;
+  text-decoration: none;
+}
+
+/* @normative состояния ссылки: hover, focus-visible и disabled в 18 макетах не встретились (BRIEF §5 п. 8) */
+.site-header-link:hover,
+.site-header-link:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+/* @snapshot 02_Landings 17473:826 — свёрнутое меню: бургер у 18085:3890, надпись «Меню» у 19319:7049, 3 узла из 18 */
+.site-header-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--core-font-wordmark);
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  background: none;
+  border: 0;
+  color: currentColor;
+  cursor: pointer;
+}
+
+/* @snapshot 02_Landings 20216:120 — CTA внутри шапки: 20216:120 и 20572:37377, 2 узла из 18 */
+.site-header-cta {
+  flex: 0 0 auto;
+}
+
+/* =========================================================================
+   2. HERO — .hero, 18/18
+   -------------------------------------------------------------------------
+   Единственный блок без исключений. Поле hero меньше ритмического:
+   32 против 156 у контентных секций того же узла 18085:3890.
+   ========================================================================= */
+
+/* @snapshot 02_Landings 18085:3930 — section_hero: padding 32px, поле меньше ритмического 156 */
+.hero {
+  padding-block: var(--core-section-pad-tight);
+}
+
+/* @snapshot 02_Landings 10943:2225 — hero 1600 × 960: содержимое слева, графика справа */
+.hero-in {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: center;
+  gap: var(--core-block-gap);
+}
+
+/* @snapshot 02_Landings 18085:3942 — hero_container: текст и карточка формы в две колонки */
+.hero-split .hero-in {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 420px);
+}
+
+/* @normative кегль дисплея взят из спроектированной шкалы: измеренные 630 … 40 в один ряд не строятся (GUIDE §5) */
+.hero-display {
+  margin: 0;
+  font-size: var(--core-display-xl);
+  line-height: var(--core-display-xl-lh);
+  letter-spacing: var(--core-display-xl-ls);
+  font-weight: var(--core-weight-display);
+}
+
+/* @snapshot 02_Landings 7882:20906 — дисплей hero uppercase; так же у 14871:2798, 6509:20482, 1302:12203 */
+.hero-display {
+  text-transform: uppercase;
+}
+
+/* @snapshot 02_Landings 20216:120 — подзаголовок hero: Inter Medium 22/26 */
+.hero-lead {
+  margin: 24px 0 0;
+  max-width: 42ch;
+  font-size: var(--core-lead);
+  line-height: var(--core-lead-lh);
+  font-weight: var(--core-weight-sub);
+}
+
+/* @snapshot 02_Landings 10929:1115 — даты и условия участия подписью: ALS Hauss Bold 16/1.5, трекинг +1, uppercase */
+.hero-meta {
+  margin: 24px 0 0;
+  font-size: var(--core-body);
+  line-height: var(--core-body-lh);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* @normative зазор между дисплеем и кнопкой в hero не снят: CSS hero снят у 5 узлов, поля кнопки в них не измерялись */
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  margin-top: 32px;
+}
+
+/* @snapshot 02_Landings 20216:120 — подсветка фона hero пятью размытыми овалами */
+.hero-glow {
+  box-shadow: var(--core-glow-hero);
+}
+
+/* @snapshot 02_Landings 10943:2225 — графика hero выходит за край кадра (правило Г-3, 23/23 бренд-досок) */
+.hero-art {
+  position: relative;
+  overflow: visible;
+  min-height: 0;
+}
+
+/* =========================================================================
+   3. ФУТЕР С СОЦСЕТЯМИ — .footer-social, 15/18
+   -------------------------------------------------------------------------
+   Не зафиксирован у 18085:3890, 1324:7793, 12008:425. Копирайт
+   «Сделано в Хабре» — те же 15/18; у 1284:3362 вместо него CC-лицензия.
+   Единственный футер, снятый по CSS, — 14871:2795.
+   ========================================================================= */
+
+/* @snapshot 02_Landings 14871:2796 — верхнее поле футера 50, вдвое меньше ритмического 100 того же узла */
+.footer-social {
+  padding-block: 50px;
+}
+
+/* @snapshot 02_Landings 14871:2795 — футер 1600 × 704: заголовок, плитки соцсетей, копирайт сверху вниз */
+.footer-social-in {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* @snapshot 02_Landings 14871:2798 — дисплей футера 110/1.0, трекинг −3, uppercase */
+.footer-social-display {
+  margin: 0;
+  font-size: 110px;
+  line-height: 1;
+  letter-spacing: -3px;
+  text-transform: uppercase;
+  font-weight: var(--core-weight-display);
+}
+
+/* @snapshot 02_Landings 14871:2797 — надзаголовок футера 56/1.15 (64.4), трекинг −1, uppercase */
+.footer-social-title {
+  margin: 0;
+  font-size: 56px;
+  line-height: 1.15;
+  letter-spacing: -1px;
+  text-transform: uppercase;
+  font-weight: var(--core-weight-heading);
+}
+
+/* @snapshot 02_Landings 14871:2804 — пять плиток соцсетей в ряд, высота 120 */
+.footer-social-tiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* @snapshot 02_Landings 14871:2804 — плитка соцсети: высота 120, радиус 15, жёсткая тень 7/7/0 без размытия */
+.footer-social-tile {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 120px;
+  height: 120px;
+  border-radius: 15px;
+  box-shadow: var(--core-shadow-hard);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+/* Фирменные цвета сервисов, а не палитра проекта: измерены на пяти
+   плитках 14871:2795 и принадлежат Telegram, VK, YouTube, Дзену и X. */
+
+/* @snapshot 02_Landings 14871:2804 — плитка Telegram */
+.footer-social-tile-tg {
+  background: #2aabee;
+}
+
+/* @snapshot 02_Landings 14871:2801 — плитка VK */
+.footer-social-tile-vk {
+  background: #0077ff;
+}
+
+/* @snapshot 02_Landings 14871:2807 — плитка YouTube, заливка ключевым словом red */
+.footer-social-tile-yt {
+  background: red;
+}
+
+/* @snapshot 02_Landings 14871:2810 — плитки Дзена и X: чёрная заливка с рамкой 4px #404040 */
+.footer-social-tile-plain {
+  background: #000000;
+  border: 4px solid #404040;
+}
+
+/* @snapshot 02_Landings 14871:2814 — копирайт отделён верхней границей 4px */
+.footer-social-copyright {
+  border-top: 4px solid currentColor;
+  padding-top: 24px;
+}
+
+/* @snapshot 02_Landings 14871:2815 — копирайт: Inter SemiBold 20/1.2, uppercase */
+.footer-social-copyright-text {
+  margin: 0;
+  font-size: var(--core-body-l);
+  line-height: 1.2;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* =========================================================================
+   4. КОРПОРАТИВНЫЙ B2B-ФУТЕР — .footer-corp, 2/18
+   -------------------------------------------------------------------------
+   НАБЛЮДЕНИЕ, НЕ ПРАВИЛО. Два узла — 20302:31704 внутри 20216:120
+   и 19319:7243 внутри 19319:7049 — это один и тот же фрейм
+   `Frame 956449994`, а не два похожих. Состав снят из метаданных:
+   услуги, телефон, офис, соцсети. Геометрия колонок не снималась.
+   ========================================================================= */
+
+/* @snapshot 02_Landings 20302:31704 — корпоративный футер идёт по общему ритму секции */
+.footer-corp {
+  padding-block: var(--core-section-pad-m);
+}
+
+/* @normative четыре колонки по составу Frame 956449994 (услуги · телефон · офис · соцсети); ширины колонок не снимались */
+.footer-corp-in {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 40px;
+}
+
+/* @normative вертикальный шаг внутри колонки не снят: у обоих узлов снят только состав, не геометрия */
+.footer-corp-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* @snapshot 02_Landings 19319:7243 — оба экземпляра модуля набраны именованной шкалой H1…H5 */
+.footer-corp-h {
+  margin: 0;
+  font-size: var(--core-h4);
+  line-height: var(--core-h4-lh);
+  letter-spacing: var(--core-h4-ls);
+  font-weight: var(--core-weight-sub);
+}
+
+/* @snapshot 02_Landings 19319:7049 — служебный текст узла: Inter Medium 22/26.4 */
+.footer-corp-item {
+  margin: 0;
+  font-size: var(--core-body);
+  line-height: var(--core-body-lh);
+  color: var(--core-text-secondary);
+}
+
+/* =========================================================================
+   5. СЕКЦИЯ ФОРМЫ — .form-section, 11/18
+   -------------------------------------------------------------------------
+   Описывается секция, а не форма: поле, кнопка и чекбокс — примитивы
+   (ui/blocks/primitives.css). Полей 2 … 5; у 20572:37377 форм две.
+   ========================================================================= */
+
+/* @snapshot 02_Landings 9519:2095 — секция формы идёт по ритму 120; у короткой секции подписки 6509:20505 поле 80 */
+.form-section {
+  padding-block: var(--core-section-pad-m);
+}
+
+/* @snapshot 02_Landings 6509:20505 — короткая секция подписки: высота 241, верхнее поле 80 */
+.form-section-compact {
+  padding-block: 80px;
+}
+
+/* @snapshot 02_Landings 1324:8106 — форма уже контейнера: 760 при контейнере 1152, центрирована */
+.form-section-narrow .form-section-in {
+  max-width: 760px;
+}
+
+/* @snapshot 02_Landings 1324:8080 — от заголовка до формы 40 */
+.form-section-head {
+  margin: 0 0 40px;
+}
+
+/* @snapshot 02_Landings 1324:8080 — заголовок секции формы: Inter Bold 28/36 (1.286) */
+.form-section-title {
+  margin: 0;
+  font-size: var(--core-h3);
+  line-height: var(--core-h3-lh);
+  letter-spacing: var(--core-h3-ls);
+  font-weight: var(--core-weight-heading);
+}
+
+/* @snapshot 02_Landings 6509:20513 — надзаголовок-метка: Inter Bold 14/1.0, трекинг +4, uppercase */
+.form-section-label {
+  display: block;
+  margin: 0 0 12px;
+  font-size: var(--core-small);
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+/* @normative шаг между полями формы не снят: у 11 узлов измерены сами поля, но не расстояния между ними */
+.form-section-rows {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 16px;
+}
+
+/* @snapshot 02_Landings 20216:120 — поля рядами по два: 5 полей у 20216:120 и 15673:318, 4 у 19319:7049 */
+.form-section-rows-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+/* @snapshot 02_Landings 10943:2462 — поле и кнопка подписки стоят одной строкой */
+.form-section-inline {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+}
+
+/* @snapshot 02_Landings 20775:861 — согласие: чекбокс из дизайн-системы Хабра, радиус 6 */
+.form-section-consent {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+/* @snapshot 02_Landings 10943:2468 — мелкая подпись под формой: 12/1.5, трекинг +0.5, uppercase, вторичный цвет */
+.form-section-note {
+  margin: 0;
+  font-size: var(--core-caption);
+  line-height: 1.5;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--core-text-secondary);
+}
+
+/* @snapshot 02_Landings 6509:20515 — ссылка в подписи под формой окрашена акцентом проекта */
+.form-section-note a {
+  color: var(--product-accent);
+}
+
+/* @normative отступ кнопки отправки от последнего поля не снят ни у одного из 11 узлов */
+.form-section-actions {
+  margin-top: 24px;
+}
+
+/* =========================================================================
+   6. ПРОГРАММА / РАСПИСАНИЕ — .program, 10/18
+   -------------------------------------------------------------------------
+   Список дней или этапов: дата, заголовок, описание, иногда спикер.
+   Дисплейное число даты — несущий приём карьерной линии.
+   ========================================================================= */
+
+/* @snapshot 02_Landings 9519:2725 — секция программы по ритму 120; у 18085:4047 то же поле 156 */
+.program {
+  padding-block: var(--core-section-pad-m);
+}
+
+/* @snapshot 02_Landings 18085:4121 — gap 96 между блоками внутри секции */
+.program-in {
+  display: flex;
+  flex-direction: column;
+  gap: var(--core-block-gap);
+}
+
+/* @snapshot 02_Landings 10948:678 — метка секции: 16/1.5, трекинг +1, uppercase */
+.program-label {
+  display: block;
+  margin: 0 0 16px;
+  font-size: var(--core-body);
+  line-height: var(--core-body-lh);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* @snapshot 02_Landings 10948:680 — H2 секции: ALS Hauss Medium 64/1.0, трекинг −2 */
+.program-title {
+  margin: 0;
+  font-size: var(--core-h1);
+  line-height: var(--core-h1-lh);
+  letter-spacing: var(--core-h1-ls);
+  font-weight: var(--core-weight-heading);
+}
+
+/* @normative шаг между днями программы не снят: CSS секций программы снят только у 18085:4047 */
+.program-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+/* @snapshot 02_Landings 10929:1114 — строка дня: дисплейное число даты слева, содержание справа */
+.program-item {
+  display: grid;
+  grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+  gap: 40px;
+  align-items: start;
+}
+
+/* @snapshot 02_Landings 10929:1114 — дисплейное число даты в программе: ALS Hauss Medium 120/1.0, трекинг −2 */
+.program-date {
+  font-family: var(--core-font-wordmark);
+  font-size: 120px;
+  line-height: 1;
+  letter-spacing: -2px;
+  font-weight: 500;
+}
+
+/* @snapshot 02_Landings 10929:1115 — подпись даты «/ февраля /»: Bold + Bold Italic 16/1.5, трекинг +1, uppercase */
+.program-date-cap {
+  display: block;
+  font-size: var(--core-body);
+  line-height: var(--core-body-lh);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+/* @snapshot 02_Landings 18085:4062 — заголовок дня: Inter Medium 24/1.2 */
+.program-item-title {
+  margin: 0 0 8px;
+  font-size: var(--core-h4);
+  line-height: var(--core-h4-lh);
+  font-weight: var(--core-weight-sub);
+}
+
+/* @snapshot 02_Landings 10943:4292 — основной текст карточки: 18/1.3 */
+.program-item-text {
+  margin: 0;
+  font-size: var(--core-body-l);
+  line-height: 1.3;
+  color: var(--core-text-secondary);
+}
+
+
+/* =========================================================================
+   МОБИЛЬНАЯ РАСКЛАДКА — НОРМАТИВ ЦЕЛИКОМ
+   -------------------------------------------------------------------------
+   Мобильных артбордов у 18 узлов пакета не установлено: ни один из них
+   не значится среди мобильных фреймов страницы 0:1. Всё ниже
+   спроектировано, а не снято.
+   ========================================================================= */
+
+@media (max-width: 640px) {
+  /* @normative мобильная раскладка: мобильных артбордов у 18 узлов пакета нет, снять было не с чего */
+  .hero-split .hero-in,
+  .footer-corp-in,
+  .form-section-rows-2,
+  .program-item {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* @normative мобильные кегли дисплея: у 18 узлов мобильных артбордов нет, значения выведены от десктопных */
+  .footer-social-display {
+    font-size: 48px;
+    letter-spacing: -1.5px;
+  }
+
+  .footer-social-title {
+    font-size: 32px;
+  }
+
+  .program-date {
+    font-size: 56px;
+    letter-spacing: -1px;
+  }
+
+  /* @normative мобильные поля секций: спроектированы вместе со шкалой, источника нет */
+  .site-header-in {
+    flex-wrap: wrap;
+  }
+}
+
