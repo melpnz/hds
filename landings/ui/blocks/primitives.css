@@ -136,13 +136,34 @@
   width: 100%;
   height: 60px;
   padding: 0 24px;
-  border: 0;
+  border: 1px solid var(--core-border-field);
   border-radius: var(--core-radius-step-pill);
   background: var(--core-bg-field);
   color: var(--core-text-primary);
   font-family: var(--core-font-text);
   font-size: var(--core-body);
   line-height: 1;
+}
+
+/* @normative толщина границы базового поля. Поле в источнике встречается
+   в двух видах: залитое без границы (10943:2464 радиус 16 заливка #222222;
+   9519:2169 радиус 8 заливка #333333 — оба на тёмном артборде) и прозрачное
+   с границей (I1324:8108;1311:6801 — border-2 при заливке rgba(62,75,86,0)).
+   Реализован был только залитый, и на светлой теме он сливается с секцией:
+   --core-bg-field там #ffffff. Базовому полю дана граница. ЦВЕТ снят
+   (#5a6c7c на тёмном, #acb8bf на белом), ТОЛЩИНА 1px — решение: измеренные
+   2px относятся к прозрачному варианту, где граница несёт всю форму,
+   а здесь она только отделяет заливку от фона. Прозрачный вариант —
+   .form-field-outline ниже, там 2px снятые */
+
+/* @snapshot 02_Landings I1324:8108;1311:6801 — прозрачное поле: граница 2px
+   solid #5a6c7c, заливка rgba(62,75,86,0), высота 40, скругления нет вовсе.
+   Единственный снятый вид поля, где форму держит граница, а не заливка */
+.form-field-outline {
+  height: 40px;
+  border-width: 2px;
+  border-radius: 0;
+  background: transparent;
 }
 
 /* @snapshot 02_Landings 10943:2465 — плейсхолдер #999999, ALS Hauss Medium 18/1.0, трекинг +0.5 px, uppercase; тот же #999999 у 9519:2170 */

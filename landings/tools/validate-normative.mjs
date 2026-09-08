@@ -197,8 +197,12 @@ const readMarkers = (css, file) => {
     const normative = body.match(/^\s*@normative\s+([^\n*]*)/);
     if (snapshot) {
       const [, figmaFile, node] = snapshot;
-      if (!/^\d+:\d+$/.test(node)) {
-        errors.push(`${file}:${lineAt(css, match.index)} — @snapshot ${figmaFile} ${node}: ожидался node id вида 20216:120`);
+      // Figma отдаёт два вида адреса: узел канвы «20216:120» и узел внутри
+      // инстанса компонента «I1324:8108;1311:6801» — путь через слои инстанса.
+      // Второй вид встречается там, где элемент пришёл из библиотеки: поле
+      // формы и чекбокс узла 1324:7793 адресуются только так.
+      if (!/^I?\d+:\d+(;\d+:\d+)*$/.test(node)) {
+        errors.push(`${file}:${lineAt(css, match.index)} — @snapshot ${figmaFile} ${node}: ожидался node id вида 20216:120 или I1324:8108;1311:6801`);
       }
       if (figmaFiles.size && !figmaFiles.has(figmaFile)) {
         errors.push(`${file}:${lineAt(css, match.index)} — @snapshot ссылается на файл «${figmaFile}», которого нет среди источников (${[...figmaFiles].join(', ')})`);
