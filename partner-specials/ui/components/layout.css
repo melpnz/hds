@@ -1,0 +1,47 @@
+/* New browser contract: viewport thresholds are decisions, not extracted media queries.
+   Native Figma layoutGrid is default; drawn is an explicitly selected alternative. */
+.ps-layout {
+  --ps-layout-margin: var(--ps-layout-margin-mobile);
+  --ps-layout-columns: var(--ps-layout-columns-mobile);
+  --ps-layout-gap: var(--ps-layout-gap-mobile);
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  padding-inline: var(--ps-layout-margin);
+}
+.ps-layout__grid {
+  display: grid;
+  grid-template-columns: repeat(var(--ps-layout-columns), minmax(0, 1fr));
+  gap: var(--ps-layout-gap);
+  min-width: 0;
+}
+.ps-layout__grid > * { min-width: 0; overflow-wrap: anywhere; }
+.ps-layout__full { grid-column: 1 / -1; }
+@media (min-width: 768px) {
+  .ps-layout { --ps-layout-margin: var(--ps-layout-margin-tablet); --ps-layout-columns: var(--ps-layout-columns-tablet); --ps-layout-gap: var(--ps-layout-gap-desktop); }
+  .ps-layout[data-ps-layout-source='drawn'] { --ps-layout-margin: var(--ps-layout-margin-drawn-tablet); }
+}
+@media (min-width: 1024px) {
+  .ps-layout, .ps-layout[data-ps-layout-source='drawn'] { --ps-layout-margin: var(--ps-layout-margin-compact); }
+}
+@media (min-width: 1280px) {
+  .ps-layout, .ps-layout[data-ps-layout-source='drawn'] { --ps-layout-margin: var(--ps-layout-margin-desktop); --ps-layout-columns: var(--ps-layout-columns-desktop); }
+}
+@media (min-width: 1440px) {
+  .ps-layout[data-ps-layout-source='drawn'] { --ps-layout-margin: var(--ps-layout-margin-drawn-wide); }
+}
+/* Explicit source profiles override viewport-based adaptation. */
+.ps-layout[data-ps-layout='320'], .ps-layout[data-ps-layout='390'] {
+  --ps-layout-margin: var(--ps-layout-margin-mobile); --ps-layout-columns: var(--ps-layout-columns-mobile); --ps-layout-gap: var(--ps-layout-gap-mobile);
+}
+.ps-layout[data-ps-layout='768'] {
+  --ps-layout-margin: var(--ps-layout-margin-tablet); --ps-layout-columns: var(--ps-layout-columns-tablet); --ps-layout-gap: var(--ps-layout-gap-desktop);
+}
+.ps-layout[data-ps-layout='768'][data-ps-layout-source='drawn'] { --ps-layout-margin: var(--ps-layout-margin-drawn-tablet); }
+.ps-layout[data-ps-layout='1024'] {
+  --ps-layout-margin: var(--ps-layout-margin-compact); --ps-layout-columns: var(--ps-layout-columns-tablet); --ps-layout-gap: var(--ps-layout-gap-desktop);
+}
+.ps-layout[data-ps-layout='1280'], .ps-layout[data-ps-layout='1440'], .ps-layout[data-ps-layout='1920'] {
+  --ps-layout-margin: var(--ps-layout-margin-desktop); --ps-layout-columns: var(--ps-layout-columns-desktop); --ps-layout-gap: var(--ps-layout-gap-desktop);
+}
+.ps-layout[data-ps-layout='1440'][data-ps-layout-source='drawn'], .ps-layout[data-ps-layout='1920'][data-ps-layout-source='drawn'] { --ps-layout-margin: var(--ps-layout-margin-drawn-wide); }

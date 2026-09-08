@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Layout · Partner specials</title><link rel="stylesheet" href="../ui/partner-specials.css"><link rel="stylesheet" href="./layout.css"></head>
+<body><main class="showcase-layout-shell" id="c-layout" data-state="default">
+<a href="./components.html">← Компоненты</a><h1>Сетка спецпроекта</h1>
+<p>Поля, колонки и промежутки задают расположение элементов. Палитра клиента меняется отдельно. Пакет в разработке, без релиза.</p>
+<p>По умолчанию используем числовые настройки сетки Figma. Нарисованный пример расходится с ними: поля 100 вместо 56 px на 1440/1920 и 36 вместо 40 px на 768. Ни один вариант не объявлен подтверждённым намерением автора.</p>
+<div class="showcase-layout-controls"><label>Профиль источника <select id="layout-source"><option value="native">Настройки сетки Figma</option><option value="drawn">Нарисованный пример</option></select></label><label>Оформление примера <select id="layout-theme"><option value="figma">Исходная палитра</option><option value="demo">Демонстрация клиента</option></select></label></div>
+<h2>Адаптация к текущему окну</h2><p>Переключение на 768 / 1024 / 1280 / 1440 px — новая браузерная реализация. Это не снятые CSS-брейкпоинты.</p>
+<div class="showcase-layout-live"><div class="ps-layout" id="layout-live"><div class="ps-layout__grid"></div></div></div>
+<output id="layout-measure"></output>
+<h2>Текущие токены</h2><p>Значения читаются из CSS живого контейнера. Это геометрическая база, её не перекрашивают под клиента.</p><dl id="layout-tokens"></dl>
+<h2>Семь размеров источника</h2><p>Каждая полоса — реальная CSS-сетка выбранного профиля в указанной ширине, уменьшенная для сравнения. Цвет колонок — поясняющий слой витрины, не свойство Layout.</p><div id="layout-profiles"></div>
+<h2>Перенести в проект</h2><p>Подключите <code>ui/partner-specials.css</code>. Layout не добавляет цвет, минимальную высоту страницы или семантические роли.</p>
+<pre><code>&lt;div class="ps-layout"&gt;
+  &lt;div class="ps-layout__grid"&gt;
+    &lt;div class="ps-layout__full"&gt;Содержимое секции&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+<p><a href="../components/foundations/layout.md">Контракт, источники и ограничения</a></p>
+</main><script type="module" src="./layout.js"></script></body></html>

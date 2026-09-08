@@ -1,0 +1,26 @@
+{
+  "imports": ["./layout-tokens.css", "./components/layout.css"],
+  "script": { "test:layout": "node tools/test-layout.mjs" },
+  "manifest": {
+    "id": "layout",
+    "canonicalName": "Layout",
+    "storybookNames": [],
+    "legacyAliases": [],
+    "category": "layout",
+    "kind": "primitive",
+    "specPath": "components/foundations/layout.md",
+    "cssRoots": [".ps-layout", ".ps-layout__grid", ".ps-layout__full"],
+    "showcasePath": "showcase/layout.html",
+    "showcaseAnchor": "c-layout",
+    "figmaEvidence": ["evidence/source/figma/layout.xml", "evidence/source/figma/layout-details.json", "evidence/source/figma/layout-drawn-sample.json", "evidence/source/figma/layout-variables.json", "evidence/source/figma/layout-1440.png", "evidence/source/figma/layout-capture.md"],
+    "status": "partial",
+    "requiredStates": ["default"],
+    "runtimeSource": "new implementation",
+    "coveredScope": "Seven reference artboard profiles; native grid default, explicit drawn alternative; new viewport adaptation and single-CSS container/grid",
+    "uncovered": ["Author resolution of native versus drawn margin conflict", "Production CSS and actual breakpoints", "Production maximum container width", "Content block span recipes"],
+    "variants": { "source": ["native", "drawn"], "referenceWidth": [1920, 1440, 1280, 1024, 768, 390, 320] }
+  },
+  "navigation": "showcase/layout.html#c-layout",
+  "indexLabel": "Layout — контейнер, 12/8/4 колонки; native и drawn профили; новая адаптация",
+  "status": "built-awaiting-independent-review"
+}
