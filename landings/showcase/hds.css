@@ -69,11 +69,31 @@
 .ml-tag{border:0;border-radius:0;padding:0;font-size:var(--core-small);letter-spacing:.025em}.ml-tag::before{border-radius:0}
 .ml-brand-art{min-height:440px;position:relative;display:grid;place-items:center;padding:48px 24px;isolation:isolate}.ml-brand-disc{width:min(82%,360px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:var(--core-glass-bg);box-shadow:var(--core-glass-glow)}.ml-brand-disc img{width:82%;height:82%;object-fit:contain}.ml-art-label{position:absolute;background:var(--core-bg-surface);padding:16px 24px;border-radius:var(--core-radius-step-pill);font-size:var(--core-small);line-height:1.4;max-width:90%}.ml-art-label-top{top:20px;left:0}.ml-art-label-bottom{bottom:12px;right:0}.ml-art-coordinate{position:absolute;right:0;top:72px;font-size:72px;line-height:1;color:var(--product-accent)}
 #header .ml-grid .ml-glyph{display:none}
-#feature .ml-grid .ml-glyph,#feature .card-grid .ml-glyph{background:none;border-radius:0;color:var(--product-cta);justify-content:start}#feature .ml-grid{gap:32px}#feature .ml-grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+#feature .ml-grid .ml-glyph,#feature .card-grid .ml-glyph{background:none;border-radius:0;color:var(--product-cta);justify-content:start}
+/* Центрированный вариант: текст карточки центрируется .ml-center, а глиф
+   оставался прижат влево — из-за justify-content:start выше. Здесь он
+   центруется вместе с текстом и укрупняется до кегля превью материала
+   (.ml-article-art, 56px), чтобы иконка читалась как знак раздела,
+   а не как маркер строки. */
+#feature.ml-center .ml-glyph,.ml-center #feature .ml-glyph,#feature .ml-center .ml-glyph{
+  width:64px;height:64px;font-size:56px;line-height:1;
+  justify-content:center;place-items:center;margin-inline:auto}#feature .ml-grid{gap:32px}#feature .ml-grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
 #content .ml-scroll .card{min-height:280px;justify-content:flex-end}#content .ml-scroll .ml-glyph{display:none}.ml-demo-result{border:0;background:var(--core-bg-surface)}
 #integration .ml-glyph,#logo .ml-glyph{background:none;border-radius:0;width:64px;height:64px}#integration .ml-glyph img,#logo .ml-glyph img{width:56px;height:56px}
 .ml-price-card{border-top:4px solid transparent}.ml-price-card.ml-featured{border-color:var(--product-cta)}.ml-price-card .ml-tag{font-size:var(--core-caption)}
-.ml-avatar{background:var(--core-bg-page);border-radius:0;color:var(--core-text-secondary)}.ml-person{grid-template-columns:80px minmax(0,1fr)}.ml-team-tall .ml-avatar{min-height:180px}#team .ml-grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+.ml-avatar{background:var(--core-bg-page);border-radius:var(--core-radius-step-pill);color:var(--core-text-secondary);overflow:hidden}
+.ml-person{grid-template-columns:80px minmax(0,1fr)}
+/* Вертикальная карточка участника: снимок прямоугольный, поэтому не круг,
+   а верхняя ступень лестницы Р-7 — 16. Круглым он остаётся только
+   в горизонтальной карточке, где это аватар, а не фотография. */
+.ml-team-tall .ml-avatar{min-height:180px;border-radius:var(--core-radius-step-16)}
+#team .ml-grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+#team .ml-team-tall{grid-column:auto}
+#team .ml-grid:has(.ml-team-tall){grid-template-columns:repeat(3,minmax(0,1fr))}
+/* Сдвиг чётных карточек отменяется: при двух столбцах он читался как приём
+   шахматной раскладки, при трёх даёт перекос — вторая карточка ниже первой
+   и третьей без всякой причины. */
+#team .ml-team-tall:nth-child(even){margin-top:0}
 .ml-quote-mark{display:none}.ml-article-art{background:var(--core-bg-surface);border-radius:var(--core-radius-step-16);font-size:80px}
 .ml-faq-grid details{background:transparent;border:0;border-bottom:1px solid var(--ml-line);border-radius:0;padding:24px 0}.ml-faq-grid{column-gap:40px}.ml-faq-grid summary{font-size:var(--core-lead);line-height:1.5}.ml-faq-grid details p{font-size:var(--core-body)}
 .ml-form-status{color:var(--core-text-primary)}
