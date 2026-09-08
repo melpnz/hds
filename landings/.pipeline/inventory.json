@@ -1,0 +1,284 @@
+{
+  "product": "landings",
+  "productTitle": "Лендинги Хабра",
+  "kind": "landing",
+  "collectedAt": "2026-09-08",
+  "method": ".claude/guide/METHOD.md",
+  "audits": [
+    ".audits/landings-2026-09-08-figma-landings.md",
+    ".audits/landings-2026-09-08-figma-brand.md"
+  ],
+  "note": "Реестр сведён из двух аудитов. Figma заново не открывалась. Числа не округляются: coverage «15/18» значит измерено 15 из 18 при coverageBase 18.",
+
+  "layers": {
+    "note": "Трёхслойная модель, решение владельца Р-1. Развёрнуто — BRIEF.md §2.",
+    "core": {
+      "title": "Ядро",
+      "holds": ["каркас страницы", "сетка и поля", "типографическая шкала", "набор блоков", "примитивы", "правила композиции"],
+      "evidence": "Inter 18/18 бренд-досок и 8 из 9 измеренных лендингов; поле кадра 54px 23/23; знак и gap лок-апа 71.893 и 25.699 у трёх продуктов; спецификация стеклянного чипа идентична на досках 1 и 4; drop-теней 0/23 и 0 в снятом CSS лендингов"
+    },
+    "product": {
+      "title": "Слой продукта",
+      "holds": ["цветовое семейство", "кислотный акцент", "ширина словесного знака в лок-апе"],
+      "evidence": "23/23 — единственная ось, по которой в источнике разведены продукты",
+      "palettes": {
+        "habr": { "family": ["#070405", "#030E71", "#06D0EF"], "acid": "#5DF20D", "wordmarkWidth": 143.803 },
+        "career": { "family": ["#5A00B4", "#5A00B8", "#35006A", "#7963E9→#B654B6", "#8B24E3"], "acid": null, "acidNote": "отсутствие кислотного акцента — отличительный признак Карьеры", "wordmarkWidth": 393.446 },
+        "courses": { "family": ["#003580", "#0099CC", "#00E0CE"], "landingAccent": "#3670f4", "acid": "#44F91F", "wordmarkWidth": 321.284 }
+      },
+      "reclassified": {
+        "note": "Корпусные значения не выбрасываются, а переклассифицируются в цвета продуктового UI (решение Р-4, BRIEF §6.4)",
+        "habr": { "value": "#548eab", "status": "product-ui", "reason": "не встретился ни в одном из 18 макетов" },
+        "career": { "value": "#8164f7", "status": "product-ui", "reason": "семейство подтверждается, конкретное значение — нет" },
+        "courses": { "value": "#ff7e47", "status": "product-ui", "reason": "противоречит синему #3670f4 нового лендинга Курсов (20572:37377)" }
+      }
+    },
+    "concept": {
+      "title": "Слой концепции",
+      "holds": ["графический приём", "вес дисплея", "тонировка текста", "тип иллюстрации"],
+      "evidence": "вес дисплея следует концепции, а не продукту — 13/13; решающая проверка 5164:8162 (лок-ап Карьеры внутри концепции Курсов набран SemiBold)",
+      "openQuestion": "Q-1"
+    }
+  },
+
+  "sources": {
+    "figmaLandings": {
+      "name": "02_Landings",
+      "fileKey": "eSJbNN1A788KEHaSBr2AfM1u",
+      "page": "0:1 «Freelance landing»",
+      "nodesRequested": 18,
+      "nodesOpened": 18,
+      "capturedRender": 18,
+      "capturedMetadata": 9,
+      "capturedCss": 9,
+      "variablesFound": 0,
+      "variablesNote": "get_variable_defs на 18085:3890 и 17473:826 отдаёт только logo/telegram, logo/vk, logo/youtube, logo/white, logo/black. Продуктовые переменные приходят только с вставленным компонентом дизайн-системы Хабра",
+      "readOnly": true
+    },
+    "figmaBrand": {
+      "name": "04_Brand",
+      "fileKey": "SBlLIaJv2VvN29V94HdBMT",
+      "nodesRequested": 4,
+      "nodesOpened": 4,
+      "banners": 23,
+      "textNodesMeasured": 18,
+      "svgAssetsParsed": 6,
+      "variablesFound": 0,
+      "variablesNote": "get_variable_defs вернул {} на всех четырёх узлах. Все цвета, кегли и отступы — литералы",
+      "webFormats": 0,
+      "webFormatsNote": "23 из 23 узлов — пост 1080×1350. Перенос на лендинг — проектная работа, а не снятие",
+      "readOnly": true
+    },
+    "corpus": {
+      "files": ["00-research-and-cross-product-findings.md", "05-company-landings.md", "06-product-landings.md", "07-brand-specials.md"],
+      "status": "прошлый гайд, снят по production до доступа к Figma",
+      "readOnly": true,
+      "note": "не правится и не переписывается; сверка — BRIEF.md §6"
+    },
+    "production": {
+      "hosts": ["technotext.habr.com", "habr-museum.webflow.io", "startup-crunch.habr.io", "vibe.habr.com", "karernyy-fest.webflow.io", "vibe-chek-*.webflow.io", "sanatoriy-marketologa.webflow.io", "career-for-employee-2-0.webflow.io", "medicinskaya-konferenciya.webflow.io", "career.habr.com/info/*", "track.habr.com"],
+      "captured": false,
+      "note": "В инвентаризации не переснимался. Оба аудита работали «Figma против текста корпуса». Шесть узлов сходятся с проектами корпуса, но не теми же редакциями. Строка X-07"
+    }
+  },
+
+  "productionLines": {
+    "basis": "Разделение по датам не работает: 17473:826 (2026) визуально неотличим от 6509:20474 (2022), а 16418:3180 (2024) новее по приёмам, чем 14871:1319 (2025). Критерий выведен из производственных признаков, дата — только подтверждающий сигнал",
+    "ageLabels": { "new": 5, "conflicting": 4, "old": 9 },
+    "lines": [
+      { "id": "franchise", "title": "Франшизы", "nodes": ["17473:826", "6509:20474"], "count": 2, "recipe": "R4-02", "holds": "свой язык без изменений с 2022 по 2026: вектор-леттеринг, рисованный растр, плоский тёмный фон, #ff6b00" },
+      { "id": "career-events", "title": "Карьерные события", "nodes": ["10929:505", "9519:2095", "12395:7441", "16418:3180"], "count": 4, "recipe": "R4-03", "holds": "шаблон-близнец у Недель, Y2K-дудлы и леттеринг у Вайб-чека, mesh-градиенты у ФЕСТа; общий футер «Регистрируйтесь на Хабр Карьере»" },
+      { "id": "corporate-conference", "title": "Корпоративные конференции", "nodes": ["20216:120", "18085:3890", "19319:7049", "20572:37377", "15673:318"], "count": 5, "recipe": "R4-04", "holds": "3D-рендеры и ИИ-генерации, градиенты и глоу, инстансы дизайн-системы Хабра, шкала H1…H5 в слоях, корпоративный B2B-футер Frame 956449994" }
+    ],
+    "unassigned": {
+      "nodes": ["7869:20760", "9588:1223", "14871:1319", "12276:374", "1284:3362", "1324:7793", "12008:425"],
+      "count": 7,
+      "note": "аудит их ни к одной линии не отнёс. На R4 проверить, образуют ли они четвёртую линию, иначе — строкой в границы покрытия"
+    }
+  },
+
+  "nodes": [
+    { "id": "20216:120", "project": "Санаторий маркетолога", "frameName": "Frame 2087328134", "product": "habr", "cobrand": "eLama", "width": 1440, "height": 9046, "theme": "dark", "render": "full", "metadata": true, "css": "20097:8612", "ageLabel": "new", "line": "corporate-conference", "keyExample": true, "recipe": "R4-04", "copyright": "© 2026", "notes": "Unbounded SemiBold 144/129.6/−7.49 uppercase; фон hero — пять размытых овалов с inset-подсветкой; ДС Хабра: button / XL / main" },
+    { "id": "20572:37377", "project": "«Прикладной ИИ»", "frameName": "dexstop", "product": "courses", "cobrand": null, "width": 1280, "height": 7744, "theme": "light", "render": "full", "metadata": true, "css": "20775:850", "ageLabel": "new", "line": "corporate-conference", "keyExample": false, "copyright": "© 2024", "notes": "Inter SemiBold H2 40/44/−1; градиент по тексту #19217E→#3470F4→#939CFF через bg-clip-text; именованная шкала Heading_1/2/3, body_l, caption; чекбокс 20775:861 с радиусом 6px из ДС Хабра" },
+    { "id": "10929:505", "project": "Неделя аналитиков (26 фев – 3 мар)", "frameName": null, "product": "career", "cobrand": null, "width": 1600, "height": 8570, "theme": "mixed", "render": "full", "metadata": false, "css": null, "ageLabel": "old", "line": "career-events", "keyExample": false, "copyright": "© 2023", "notes": "GAP: гарнитура и кегли не измерены. Фоновый градиент оранжевый→розовый→фиолетовый во весь первый экран — наблюдение из рендера" },
+    { "id": "9519:2095", "project": "Неделя аналитиков (18–24 сен)", "frameName": null, "product": "career", "cobrand": null, "width": 1600, "height": 9490, "theme": "light", "render": "full", "metadata": false, "css": null, "ageLabel": "old", "line": "career-events", "keyExample": false, "copyright": "© 2023", "notes": "GAP: гарнитура и кегли не измерены. Шаблон-близнец 10929:505" },
+    { "id": "12395:7441", "project": "Вайб-чек (для аналитиков)", "frameName": null, "product": "career", "cobrand": null, "width": 1600, "height": 11838, "theme": "light", "render": "full", "metadata": false, "css": null, "ageLabel": "old", "line": "career-events", "keyExample": false, "copyright": "© 2024", "notes": "GAP: гарнитура и кегли не измерены. Единственный узел с блоком отзывов" },
+    { "id": "16418:3180", "project": "Первый карьерный онлайн-ФЕСТ", "frameName": "Frame 2087325353", "product": "career", "cobrand": null, "width": 1600, "height": 11513, "theme": "dark", "render": "full", "metadata": true, "css": "16559:2400", "ageLabel": "conflicting", "line": "career-events", "keyExample": true, "recipe": "R4-03", "copyright": "© 2024", "notes": "Конфликт: дата говорит «старое», приёмы — «новое». Inter Bold H2 62/55.8/−4; mesh-градиенты и блюр-глоу; бегущая строка 16559:2404 с overflow-clip, ширина 1500 при контейнере 1600" },
+    { "id": "15673:318", "project": "Бренд-профиль на Хабр Карьере", "frameName": "Бренд-профиль на Хабр Карьере", "product": "career", "cobrand": null, "width": 1440, "height": 7878, "theme": "light", "render": "full", "metadata": true, "css": "15818:15327, 15818:15331", "ageLabel": "new", "line": "corporate-conference", "keyExample": false, "copyright": "© 2025", "notes": "Inter Bold 72/64.8/−3; CTA 15818:15335 — градиент linear-gradient(100.4deg,#d400ff 0.12%,#7a3df5 60%,#006aff 100%), радиус 60. Инстансы ДС: unit / main, публикация в ленте / новость, Плашка вакансии" },
+    { "id": "18085:3890", "project": "«Сильный медицинский бренд»", "frameName": null, "product": "habr", "cobrand": "НаПоправку", "width": 1440, "height": 7282, "theme": "dark", "render": "full", "metadata": false, "css": null, "ageLabel": "new", "line": "corporate-conference", "keyExample": false, "copyright": "© 2026", "notes": "GAP: гарнитура и кегли не измерены, метка «новое» поставлена по визуальным признакам со средней уверенностью. get_variable_defs отдаёт только logo/*" },
+    { "id": "7869:20760", "project": "КУРС_ДВИЖУХА / «Как найти первую работу в IT»", "frameName": null, "product": "career", "cobrand": "VK", "width": 1600, "height": 9940, "theme": "light", "render": "full", "metadata": false, "css": null, "ageLabel": "old", "line": null, "keyExample": false, "copyright": "© 2023", "notes": "GAP: гарнитура и кегли не измерены. Надувная 3D-графика без *-Camera экспортов и без инстансов ДС" },
+    { "id": "9588:1223", "project": "Битва Pet-проектов", "frameName": "Лендинг", "product": "career", "cobrand": null, "width": 1240, "height": 860, "theme": "dark", "render": "full", "metadata": false, "css": "весь узел", "ageLabel": "old", "line": null, "keyExample": false, "copyright": "© 2023", "notes": "Единственный узел, целиком набранный ALS Hauss — Inter не используется. Форма без радиусов, бордер 2px #ccc; кнопка «зарегаться» #a05cff радиус 0; вторичный текст #a3a3a3 и #999" },
+    { "id": "17473:826", "project": "Технотекст-8", "frameName": "ТТ-7_2024", "product": "habr", "cobrand": null, "width": 1440, "height": 9182, "theme": "dark", "render": "full", "metadata": true, "css": "17473:867, 17473:951", "ageLabel": "conflicting", "line": "franchise", "keyExample": true, "recipe": "R4-02", "copyright": "© 2025, даты 24/12/25 – 17/04/26", "notes": "Имя фрейма врёт содержимому — строка X-01. Заголовок — vector-леттеринг img_techno_n7; числа 120/90/−6; вторичный текст #8f8f8f; палитра #ff6b00 / #ecedde / #e2e4cd" },
+    { "id": "6509:20474", "project": "Технотекст 2022 (V конкурс)", "frameName": null, "product": "habr", "cobrand": null, "width": 1400, "height": 9788, "theme": "dark", "render": "full", "metadata": false, "css": null, "ageLabel": "old", "line": "franchise", "keyExample": false, "copyright": "© 2022", "notes": "GAP: гарнитура и кегли не измерены. Визуально неотличим от 17473:826 — доказательство, что деление по датам не работает" },
+    { "id": "14871:1319", "project": "Музей Хабра / «Хабру 19 лет»", "frameName": null, "product": "habr", "cobrand": null, "width": 1600, "height": 14462, "theme": "mixed", "render": "partial", "renderCovered": "12000 из 14462 px, 83 %", "metadata": false, "css": null, "ageLabel": "conflicting", "line": null, "keyExample": false, "copyright": "© 2025", "notes": "Нижние ≈2460 px не просмотрены; блоки этой зоны в реестр не попали. Досъёмка — шаг R0-00" },
+    { "id": "12276:374", "project": "«Хабр [совершеннолетний]» — Хабру 18 лет", "frameName": "Хабру 18 лет", "product": "habr", "cobrand": null, "width": 1600, "height": 10624, "theme": "mixed", "render": "full", "metadata": true, "css": "12276:378, 12276:381, 12276:565", "ageLabel": "conflicting", "line": null, "keyExample": false, "copyright": "© 2024", "notes": "Максимальный измеренный кегль во всём участке: Bebas Neue Bold 630/630/−12.6 (узел 12276:379). Словесный знак «Хабр» — ALS Hauss 32px (12276:383). 3D-рендеры Хабрика, ассеты с именами-таймстемпами генерации" },
+    { "id": "1284:3362", "project": "«Земляне двигают Новый год»", "frameName": "1400", "product": "habr", "cobrand": null, "width": 1400, "height": 1542, "theme": "dark", "render": "full", "metadata": true, "css": null, "ageLabel": "old", "line": null, "keyExample": false, "copyright": "CC-лицензия трека вместо копирайта", "notes": "GAP: гарнитура и кегли не измерены. Единственный узел без шапки — вместо неё бегущая строка. Ретро-пиксельный Win95-интерфейс, весь собран из vector/boolean-operation" },
+    { "id": "1324:7793", "project": "CORP BLOG AWARDS", "frameName": null, "product": "habr", "cobrand": null, "width": 1400, "height": 3582, "theme": "dark", "render": "full", "metadata": false, "css": null, "ageLabel": "old", "line": null, "keyExample": false, "copyright": "GAP — дата не найдена", "notes": "GAP: гарнитура и кегли не измерены. Логотип habr строчной латиницей — единственный такой знак в выборке, строка X-02. Градиент #2F6BFF→#3ED8C8 по рендеру" },
+    { "id": "19319:7049", "project": "«Как люди заботятся о здоровье и выбирают клинику в 2026 году»", "frameName": "Медицинское исследование", "product": "habr", "cobrand": "FitStars", "width": 1440, "height": 4145, "theme": "dark", "render": "full", "metadata": true, "css": "19319:7087, 19319:7241", "ageLabel": "new", "line": "corporate-conference", "keyExample": false, "copyright": "© 2025", "notes": "Inter SemiBold 64/64/−1; акцент #47b8f0, текст #e6f0f4. Корпоративный B2B-футер 19319:7243 — тот же модуль Frame 956449994, что в 20216:120" },
+    { "id": "12008:425", "project": "«Подружим бренд с IT-сообществом»", "frameName": "Лендинг", "product": "habr", "cobrand": null, "width": 1600, "height": 6369, "theme": "light", "render": "full", "metadata": true, "css": "12008:506", "ageLabel": "old", "line": null, "keyExample": false, "copyright": "© 2024", "notes": "Inter Medium 70/78.4 (1.12) /−2 — один из двух узлов, нарушающих правило «интерлиньяж ≤ кегля». Кнопка #ff744f радиус 16. Признак D противоречит метке: есть инстансы ДС sys, logo/big/habr_white, native advantage horizontal" }
+  ],
+
+  "brandBoards": [
+    { "id": "5149:6443", "frameName": "Slide 16:9 - 4", "concept": "Неоновый БУМ", "conceptNode": "5149:6446 / 5149:6447", "productByLockup": { "habr": 10 }, "banners": 10, "size": "5846 × 6509", "displayWeight": "SemiBold", "acid": "#5DF20D", "device": "комиксная вспышка с неоновым контуром", "palette": { "base": "#070405", "baseAlt": "#5A00B8", "accentText": "#06D0EF", "darkText": "#030E71", "mutedText": "rgba(219,233,240,0.6)", "backgroundBlur": "растровый PNG-градиент + Gaussian blur 53.35px / 89.3px" }, "notes": "Не 16:9 — растянут под третий ряд баннеров и заметку 5273:20825 (строка X-03). Брендинг Хабра наложен на копирайт Карьеры" },
+    { "id": "5141:5033", "frameName": "Slide 16:9 - 1", "concept": "Карьера как движение и стратегия", "conceptNode": "5142:5235 / 5142:5236", "productByLockup": { "career": 7 }, "banners": 7, "size": "5846.71 × 3288.78", "displayWeight": "Medium", "acid": null, "device": "толстая белая линия-форма, stroke 244", "palette": { "base": "#5A00B8", "gradient": "linear-gradient(180deg, #7963E9 10%, #B654B6 90%)", "darkText": "#1B094D" }, "notes": "Единственная доска, где «Варианты реализации:» набрано SemiBold, а не Bold — строка X-04" },
+    { "id": "5144:5606", "frameName": "Slide 16:9 - 3", "concept": "Карьерный путь", "conceptNode": "5145:5919 / 5145:5920", "productByLockup": { "career": 3 }, "banners": 3, "size": "5846.71 × 3288.78", "displayWeight": "Medium", "acid": null, "device": "градиентная лента, stroke 85, round cap", "palette": { "base": "#5A00B4", "baseDark": "#35006A", "ribbon": "#8B24E3 23.96% → #D1B5FC 53.07% → #FD7D3B 68.75% → #FFC67A 96.15%", "mutedText": "rgba(255,255,255,0.7)" }, "notes": "Концепция строится на фотографии в маске по фигуре — опровергает вывод корпуса «фото почти нет»" },
+    { "id": "5164:7913", "frameName": "Slide 16:9 - 9", "concept": "Собираем обучение в единый цифровой поток", "conceptNode": "5164:7923 / 5164:7924", "productByLockup": { "courses": 1, "career": 1, "none": 1 }, "banners": 3, "size": "5846.71 × 3288.78", "displayWeight": "SemiBold", "acid": "#44F91F", "device": "глитч-сетка модулем 108×108 (10 колонок) и 98.18×98.18 (11 колонок) + 3D", "palette": { "backgroundLayer1": "linear-gradient(180deg, #003580 0%, #005999 20%, #0099CC 56%)", "backgroundLayer2": "linear-gradient(180deg, rgba(0,153,204,0) 40%, #00E0CE 84.045%)", "neon": "#44F91F 5.151px + радиальное свечение rgba(24,224,6,0.9) → rgba(0,64,77,0)", "scrim": "linear-gradient(to top, #151919 20%, rgba(21,25,25,0))", "accentText": "#06D0EF", "text": "#404278" }, "notes": "Подпись владельца «по Курсам» завышает: лок-ап Курсов у одного баннера из трёх. Узел 5164:8162 — баннер с лок-апом Карьеры, набранный SemiBold, доказывает, что вес следует концепции (13/13). Единственный полноценно курсовый баннер — 5164:8169" }
+  ],
+
+  "blocks": [
+    { "id": "hero", "canonicalName": "Hero", "type": "hero", "coverage": "18/18", "coverageBase": 18, "nodes": ["20216:120", "20572:37377", "10929:505", "9519:2095", "12395:7441", "16418:3180", "15673:318", "18085:3890", "7869:20760", "9588:1223", "17473:826", "6509:20474", "14871:1319", "12276:374", "1284:3362", "1324:7793", "19319:7049", "12008:425"], "keyExample": "20216:120", "measuredBy": ["render", "css"], "cssNodes": ["20097:8612", "20775:850"], "rule": true, "wave": "R2", "step": "R2-04", "status": "planned", "notes": "Единственный блок с полным покрытием" },
+    { "id": "site-header", "canonicalName": "SiteHeader", "type": "header", "coverage": "17/18", "coverageBase": 18, "nodes": ["20216:120", "20572:37377", "10929:505", "9519:2095", "12395:7441", "16418:3180", "15673:318", "18085:3890", "7869:20760", "9588:1223", "17473:826", "6509:20474", "14871:1319", "12276:374", "1324:7793", "19319:7049", "12008:425"], "keyExample": "20216:120", "measuredBy": ["render"], "rule": true, "wave": "R2", "step": "R2-05", "status": "planned", "variants": [ { "id": "header-menu-links", "coverage": "10/18", "nodes": ["20216:120", "20572:37377", "10929:505", "9519:2095", "12395:7441", "16418:3180", "7869:20760", "6509:20474", "12276:374", "12008:425"] }, { "id": "header-collapsed-menu", "coverage": "3/18", "nodes": ["17473:826", "18085:3890", "19319:7049"] }, { "id": "header-cta", "coverage": "2/18", "nodes": ["20216:120", "20572:37377"] } ], "notes": "Нет у 1284:3362 — там вместо шапки бегущая строка. Логотип присутствует 18/18, но знак не один: «Хабр» 5, «Хабр Карьера» 7, «Курсы» 1, кобрендинговые локапы 4, habr строчной латиницей 1" },
+    { "id": "footer-social", "canonicalName": "FooterSocial", "type": "footer", "coverage": "15/18", "coverageBase": 18, "nodes": ["20216:120", "20572:37377", "10929:505", "9519:2095", "12395:7441", "16418:3180", "15673:318", "7869:20760", "9588:1223", "17473:826", "6509:20474", "14871:1319", "12276:374", "1284:3362", "19319:7049"], "keyExample": "17473:826", "measuredBy": ["render"], "rule": true, "wave": "R2", "step": "R2-03", "status": "planned", "notes": "Не зафиксирован у 18085:3890, 1324:7793, 12008:425" },
+    { "id": "footer-copyright", "canonicalName": "FooterCopyright", "type": "footer", "coverage": "15/18", "coverageBase": 18, "nodes": ["20216:120", "20572:37377", "10929:505", "9519:2095", "12395:7441", "16418:3180", "15673:318", "7869:20760", "9588:1223", "17473:826", "6509:20474", "14871:1319", "12276:374", "1284:3362", "19319:7049"], "keyExample": "17473:826", "measuredBy": ["render"], "rule": true, "wave": "R2", "step": "R2-03", "status": "planned", "notes": "© «Сделано в Хабре». У 1284:3362 вместо копирайта CC-лицензия трека" },
+    { "id": "form", "canonicalName": "Form", "type": "form", "coverage": "11/18", "coverageBase": 18, "nodes": ["20216:120", "20572:37377", "16418:3180", "15673:318", "18085:3890", "9588:1223", "17473:826", "6509:20474", "1324:7793", "19319:7049", "1284:3362"], "keyExample": "15673:318", "measuredBy": ["metadata", "render"], "metadataNodes": ["20216:120", "15673:318", "19319:7049", "17473:826"], "rule": true, "wave": "R2", "step": "R2-06", "status": "planned", "notes": "20216 — 5 полей, 15673 — 5 полей, 19319 — 4 поля; в 20572:37377 форм две; в 17473 и 6509 — подписка и заявка" },
+    { "id": "program-schedule", "canonicalName": "ProgramSchedule", "type": "program", "coverage": "10/18", "coverageBase": 18, "nodes": ["20216:120", "20572:37377", "10929:505", "9519:2095", "12395:7441", "16418:3180", "18085:3890", "7869:20760", "17473:826", "6509:20474"], "keyExample": "20572:37377", "measuredBy": ["metadata", "render"], "metadataNodes": ["20216:120", "20572:37377", "17473:826"], "rule": true, "wave": "R2", "step": "R2-07", "status": "planned", "notes": "20572 — Schedule Day01–05; 20216 — «пять дней в Санатории»; 17473 — «даты / этапы»; 6509 — «важные даты»" },
+    { "id": "partners", "canonicalName": "Partners", "type": "partners", "coverage": "9/18", "coverageBase": 18, "nodes": ["20216:120", "20572:37377", "10929:505", "9519:2095", "12395:7441", "16418:3180", "18085:3890", "6509:20474", "14871:1319"], "keyExample": "20216:120", "measuredBy": ["metadata", "render"], "metadataNodes": ["20216:120", "20572:37377"], "rule": true, "wave": "R2", "step": "R2-08", "status": "planned", "notes": "20216 — «Организаторы»; 20572 — Jobs_section; 6509 — кураторы номинаций; 14871 — ПСБ, Росатом, Orion Soft, X5 Tech, H3LLO.CLOUD" },
+    { "id": "speakers", "canonicalName": "Speakers", "type": "speakers", "coverage": "8/18", "coverageBase": 18, "nodes": ["20216:120", "10929:505", "9519:2095", "12395:7441", "16418:3180", "18085:3890", "7869:20760", "12008:425"], "keyExample": "20216:120", "measuredBy": ["metadata", "render"], "metadataNodes": ["20216:120", "12008:425"], "rule": true, "wave": "R2", "step": "R2-09", "status": "planned", "notes": "20216 — 8 карточек; 12008 — 4 преподавателя; 16418 — модератор. Портреты даны прямоугольными карточками-фото, аватарных списков в участке нет" },
+    { "id": "numbered-benefits", "canonicalName": "NumberedBenefits", "type": "benefits", "coverage": "7/18", "coverageBase": 18, "nodes": ["20216:120", "20572:37377", "16418:3180", "19319:7049", "12008:425", "15673:318", "18085:3890"], "keyExample": "20572:37377", "measuredBy": ["metadata"], "metadataNodes": ["20216:120", "20572:37377", "19319:7049", "12008:425", "15673:318"], "rule": true, "wave": "R2", "step": "R2-10", "status": "planned", "notes": "20216 и 12008 — нумерация 01–05; 20572 — Feature Card01–04; 19319 — 6 карточек; 15673 — 4 демо-карточки" },
+    { "id": "footer-community", "canonicalName": "FooterCommunity", "type": "footer", "coverage": "7/18", "coverageBase": 18, "nodes": ["20572:37377", "16418:3180", "15673:318", "7869:20760", "10929:505", "9519:2095", "12395:7441"], "keyExample": "20572:37377", "measuredBy": ["render"], "rule": true, "wave": "R2", "step": "R2-02", "status": "planned", "notes": "«Присоединяйтесь к нашему сообществу» — копия совпадает дословно на четырёх узлах; на трёх (10929, 9519, 12395) вариант «Регистрируйтесь на Хабр Карьере». Готовый переиспользуемый модуль" },
+    { "id": "stats", "canonicalName": "Stats", "type": "stats", "coverage": "5/18", "coverageBase": 18, "nodes": ["17473:826", "20572:37377", "15673:318", "19319:7049", "16418:3180"], "keyExample": "20572:37377", "measuredBy": ["metadata", "render"], "metadataNodes": ["17473:826", "20572:37377", "15673:318", "19319:7049"], "rule": true, "wave": "R3", "step": "R3-01", "status": "planned", "notes": "17473 — «7 лет конкурса» кеглем 120; 20572 — Stat Card ×3; 15673 — график просмотров +30 %; 19319 — «1500+ пациентов»" },
+    { "id": "interactive", "canonicalName": "Interactive", "type": "interactive", "coverage": "5/18", "coverageBase": 18, "nodes": ["20216:120", "1284:3362", "12276:374", "14871:1319", "12395:7441"], "keyExample": "20216:120", "measuredBy": ["metadata", "render"], "metadataNodes": ["20216:120", "1284:3362", "12276:374"], "rule": true, "wave": "R3", "step": "R3-02", "status": "planned", "notes": "20216 — UGC-доска жалоб (20112:27456); 1284 — кликер и обратный отсчёт; 12276 и 14871 — квиз; 12395 — вайб-квиз. Корпус называл интерактивную механику FREEDOM — подтверждается" },
+    { "id": "marquee", "canonicalName": "Marquee", "type": "marquee", "coverage": "4/18", "coverageBase": 18, "nodes": ["20216:120", "16418:3180", "1284:3362", "14871:1319"], "keyExample": "16418:3180", "measuredBy": ["css", "metadata", "render"], "cssNodes": ["16559:2404"], "rule": true, "wave": "R1", "step": "R1-06", "status": "planned", "notes": "Разбирается примитивом R1-06, а не отдельным блочным шагом: это механика ленты, а не секция страницы. Решение принято при заведении пакета. 16559:2404 — overflow-clip, ширина 1500 при контейнере 1600; 1284:3362 несёт две полосы; 14871 — полосу в футере" },
+    { "id": "nominations-grid", "canonicalName": "NominationsGrid", "type": "grid", "coverage": "3/18", "coverageBase": 18, "nodes": ["1324:7793", "6509:20474", "17473:826"], "keyExample": "17473:826", "measuredBy": ["render"], "rule": true, "wave": "R3", "step": "R3-03", "status": "planned", "notes": "1324 — 14 номинаций; 6509 — номинации с кураторами; 17473 — 20 номинаций" },
+    { "id": "faq", "canonicalName": "Faq", "type": "faq", "coverage": "2/18", "coverageBase": 18, "nodes": ["20216:120", "20572:37377"], "keyExample": "20572:37377", "measuredBy": ["metadata"], "rule": false, "ruleNote": "покрытие 2 — наблюдение, а не правило (METHOD §8)", "wave": "R3", "step": "R3-04", "status": "planned", "notes": "20216 — 8 вопросов; 20572 — FAQ_section, 7 × FAQ Item с Toggle Button" },
+    { "id": "timeline", "canonicalName": "Timeline", "type": "timeline", "coverage": "2/18", "coverageBase": 18, "nodes": ["12276:374", "17473:826"], "keyExample": "12276:374", "measuredBy": ["metadata"], "rule": false, "ruleNote": "покрытие 2 — наблюдение, а не правило (METHOD §8)", "wave": "R3", "step": "R3-05", "status": "planned", "notes": "12276 — 19 карточек 2006→2024; 17473 — 2018→2024" },
+    { "id": "gallery", "canonicalName": "Gallery", "type": "gallery", "coverage": "2/18", "coverageBase": 18, "nodes": ["14871:1319", "12276:374"], "keyExample": "14871:1319", "measuredBy": ["render"], "rule": false, "ruleNote": "покрытие 2 — наблюдение, а не правило (METHOD §8)", "wave": "R3", "step": "R3-06", "status": "planned", "notes": "14871 — 19 артефактов. Узел просмотрен на 83 %, часть галереи могла остаться в непросмотренной зоне" },
+    { "id": "footer-corporate-b2b", "canonicalName": "FooterCorporateB2B", "type": "footer", "coverage": "2/18", "coverageBase": 18, "nodes": ["20216:120", "19319:7049"], "keyExample": "20216:120", "measuredBy": ["metadata"], "cssNodes": ["20302:31704", "19319:7243"], "rule": false, "ruleNote": "покрытие 2 — наблюдение, а не правило (METHOD §8); но это один и тот же модуль, а не два похожих футера", "wave": "R2", "step": "R2-01", "status": "planned", "notes": "Оба фрейма называются Frame 956449994, оба используют шкалу H1…H5. Услуги, телефон, офис, соцсети. Идёт первым в волне R2 не по покрытию, а по готовности: модуль уже существует в источнике" },
+    { "id": "testimonials", "canonicalName": "Testimonials", "type": "testimonials", "coverage": "1/18", "coverageBase": 18, "nodes": ["12395:7441"], "keyExample": "12395:7441", "measuredBy": ["render"], "rule": false, "ruleNote": "покрытие 1 — наблюдение, шага не получает (METHOD §8)", "wave": null, "step": null, "status": "deferred", "deferredLine": "X-06", "notes": "Пункт «Отзывы» в меню и секция на странице. Завести статью, если досъёмка R0-00 или ответ на Q-2 добавит второй узел" }
+  ],
+
+  "elements": [
+    { "id": "lockup", "canonicalName": "Lockup", "category": "layout", "kind": "primitive", "wave": "R1", "step": "R1-01", "status": "planned", "sources": [ { "type": "figma", "file": "04_Brand", "coverage": "21/23", "note": "знак 71.893, gap 25.699, высота 71.893 одинаковы у трёх продуктов; различается ширина словесного знака: Хабр 143.803, Курсы 321.284, Карьера 393.446" }, { "type": "figma", "file": "04_Brand", "nodes": ["5141:5053", "5141:5088"], "note": "крупный размер — равномерное масштабирование ×1.2452 (89.519/71.893 = 32/25.699), оба раза по центру сверху" }, { "type": "figma", "file": "02_Landings", "coverage": "18/18", "note": "пять вариантов знака" } ], "dependsOn": [], "notes": "Слой знака Хабра называется «Карьера» на 4/4 бренд-досках — имя слоя в пакет не переносится (METHOD §3, инвариант И-6). Находка B-14" },
+    { "id": "button", "canonicalName": "Button", "category": "actions", "kind": "primitive", "wave": "R1", "step": "R1-02", "status": "planned", "sources": [ { "type": "figma", "node": "20216:120", "note": "радиус 90, фон #fa722b" }, { "type": "figma", "node": "15818:15335", "note": "радиус 60, градиент linear-gradient(100.4deg,#d400ff 0.12%,#7a3df5 60%,#006aff 100%)" }, { "type": "figma", "node": "19319:7049", "note": "радиус 50, #47b8f0" }, { "type": "figma", "node": "20572:37377", "note": "радиус 50, #3670f4" }, { "type": "figma", "node": "12008:425", "note": "радиус 16, #ff744f" }, { "type": "figma", "node": "9588:1223", "note": "радиус 0, #a05cff" } ], "dependsOn": [], "notes": "Радиус 6 (20775:861, var(--elements/control/border_radius)) приходит из дизайн-системы Хабра вместе с компонентом — описывается как импорт, а не как собственное значение. Опровергает правило корпуса «промежуточных радиусов 6–8 не бывает»" },
+    { "id": "glass-chip", "canonicalName": "GlassChip", "category": "data-display", "kind": "primitive", "wave": "R1", "step": "R1-03", "status": "planned", "sources": [ { "type": "figma", "file": "04_Brand", "nodes": ["5149:6510", "5164:8042", "5164:8044", "5164:8046"], "note": "fill rgba(255,255,255,0.1); radius 110.883; inset glow 0 0 11.088px rgba(255,255,255,0.4); padding 27.721 / 33.265 / 41.581; height 121.972; Inter SemiBold, tracking +1.386px, #F0F5F5. Различаются только кегль (44 против 49.897) и leading (1.2 против 1.4)" } ], "dependsOn": [], "notes": "Единственный настоящий переиспользуемый примитив бренд-участка и самый готовый к переносу на лендинг. Спецификация полная, доразведка не нужна. Находка B-09" },
+    { "id": "form-field", "canonicalName": "FormField", "category": "forms", "kind": "primitive", "wave": "R1", "step": "R1-04", "status": "planned", "sources": [ { "type": "figma", "node": "20216:120", "note": "5 полей, снято структурой" }, { "type": "figma", "node": "15673:318", "note": "5 полей, снято структурой" }, { "type": "figma", "node": "19319:7049", "note": "4 поля, снято структурой" }, { "type": "figma", "node": "17473:826", "note": "подписка и заявка" }, { "type": "figma", "node": "20775:861", "note": "чекбокс с радиусом var(--elements/control/border_radius, 6px) из ДС Хабра" }, { "type": "figma", "node": "9588:1223", "note": "форма без радиусов, бордер 2px #ccc" } ], "dependsOn": ["button"], "notes": "Состояний (focus-visible, invalid, disabled) в источниках нет — дописываются нормативом в ui/state-contract.css, шаг R0-08" },
+    { "id": "card", "canonicalName": "Card", "category": "collections", "kind": "primitive", "wave": "R1", "step": "R1-05", "status": "planned", "sources": [ { "type": "figma", "node": "20216:120", "note": "8 карточек спикеров" }, { "type": "figma", "node": "20572:37377", "note": "Feature Card01–04, Stat Card ×3" }, { "type": "figma", "node": "19319:7049", "note": "6 карточек преимуществ, градиентная заливка" }, { "type": "figma", "node": "12008:425", "note": "4 преподавателя" }, { "type": "figma", "node": "15673:318", "note": "4 демо-карточки" } ], "dependsOn": [], "notes": "Носитель спикеров, преимуществ, статистики и партнёров. Портреты — прямоугольные карточки-фото; аватарных списков в участке нет, правило корпуса «аватар человека — круг» не проверяется" }
+  ],
+
+  "patterns": [
+    { "id": "franchise-recipe", "title": "Франшиза", "line": "franchise", "keyExample": "17473:826", "controlExample": "6509:20474", "composedOf": ["site-header", "hero", "stats", "program-schedule", "nominations-grid", "timeline", "form", "footer-social", "footer-copyright"], "wave": "R4", "step": "R4-02", "status": "planned", "notes": "Контрольная пара 17473:826 (2026) и 6509:20474 (2022) визуально идентичны — доказательство, что линия держится приёмом, а не годом" },
+    { "id": "career-event-recipe", "title": "Карьерное событие", "line": "career-events", "keyExample": "16418:3180", "neighbours": ["10929:505", "9519:2095", "12395:7441"], "composedOf": ["site-header", "hero", "marquee", "program-schedule", "speakers", "partners", "numbered-benefits", "stats", "form", "footer-community"], "wave": "R4", "step": "R4-03", "status": "planned", "notes": "Общий признак линии — футер «Присоединяйтесь к нашему сообществу» или его вариант «Регистрируйтесь на Хабр Карьере»" },
+    { "id": "corporate-conference-recipe", "title": "Корпоративная конференция", "line": "corporate-conference", "keyExample": "20216:120", "neighbours": ["18085:3890", "19319:7049", "20572:37377", "15673:318"], "composedOf": ["site-header", "hero", "marquee", "numbered-benefits", "program-schedule", "speakers", "partners", "interactive", "faq", "form", "footer-corporate-b2b"], "wave": "R4", "step": "R4-04", "status": "planned", "notes": "Линия опознаётся по корпоративному B2B-футеру Frame 956449994, шкале H1…H5 в слоях и инстансам дизайн-системы Хабра" }
+  ],
+
+  "registryTotals": {
+    "blocks": 19,
+    "primitives": 5,
+    "total": 24,
+    "byWave": { "R1": 6, "R2": 11, "R3": 6, "deferred": 1 },
+    "byWaveNote": "R1 = 5 примитивов + блок marquee, который разбирается примитивом R1-06"
+  },
+
+  "roadmapTotals": {
+    "steps": 46,
+    "byWave": { "R0": 9, "R1": 6, "R2": 10, "R3": 9, "R4": 5, "R5": 7 },
+    "accepted": 0
+  },
+
+  "findings": {
+    "total": 40,
+    "toSteps": 32,
+    "toDeferred": 5,
+    "toQuestions": 3,
+    "landings": {
+      "source": ".audits/landings-2026-09-08-figma-landings.md",
+      "p0": [
+        { "id": "P0-1", "text": "Гарнитура текста не одна: Inter в 8 из 9 измеренных, ALS Hauss целиком в 9588:1223 и в словесном знаке «Хабр»", "address": "R0-03" },
+        { "id": "P0-2", "text": "Снять запрет на градиенты: есть все три вида, два подтверждены CSS", "address": "R0-04" },
+        { "id": "P0-3", "text": "Делить пакет не по датам, а по трём производственным линиям", "address": "R0-05" },
+        { "id": "P0-4", "text": "Границы покрытия: у 9 узлов из 18 гарнитуры и кегли не измерены, 14871:1319 просмотрен на 83 %", "address": "R0-07" }
+      ],
+      "p1": [
+        { "id": "P1-1", "text": "Зависимость от дизайн-системы Хабра: восемь именованных инстансов", "address": "R0-05" },
+        { "id": "P1-2", "text": "Токен-слой строить из сырых стилей: variables в лендингах нет", "address": "R0-02" },
+        { "id": "P1-3", "text": "Пересобрать типографическую шкалу: 40 → 630 px, интерлиньяж 0.75–1.12, трекинг −1 … −12.6", "address": "R0-03" },
+        { "id": "P1-4", "text": "Вторичный текст — отдельный непрозрачный серый, а не альфа", "address": "R0-04" },
+        { "id": "P1-5", "text": "Проверить «два акцента максимум»: в трёх узлах ролей цвета три и больше", "address": "R0-04" },
+        { "id": "P1-6", "text": "Продуктовые цвета: фиолетовое Карьеры держится, синий Курсов противоречит корпусу, #548eab не встретился", "address": "R0-04", "closedBy": "Р-4" },
+        { "id": "P1-7", "text": "Первые блоки волны: два футер-модуля, затем hero, шапка, форма, программа", "address": "R2-01…R2-07" },
+        { "id": "P1-8", "text": "Леттеринг как отдельный тип ассета: в 7 узлах заголовок — вектор", "address": "R3-08" },
+        { "id": "P1-9", "text": "Часть иллюстраций сгенерирована ИИ и 3D-рендерами", "address": "R3-07" }
+      ],
+      "p2": [
+        { "id": "P2-1", "text": "Добрать CSS по 9 неизмеренным узлам", "address": "R0-00" },
+        { "id": "P2-2", "text": "Доснять нижние ≈2460 px 14871:1319", "address": "R0-00" },
+        { "id": "P2-3", "text": "Установить, есть ли на странице 0:1 мобильные артборды соседними узлами", "address": "R0-00" },
+        { "id": "P2-4", "text": "Инвентаризовать радиусы по каждому узлу целиком", "address": "R0-00" },
+        { "id": "P2-5", "text": "Измерить вертикальные отступы между секциями", "address": "R0-00" },
+        { "id": "P2-6", "text": "Фрейм ТТ-7_2024 содержит Технотекст-8 с датами 2025–2026: имя слоя врёт", "address": "X-01" },
+        { "id": "P2-7", "text": "Логотип habr строчной латиницей в 1324:7793 — единственный такой знак", "address": "X-02" },
+        { "id": "P2-8", "text": "Ширина 1600 самая частая (8 из 18). Какая ширина канонична", "address": "Q-4" }
+      ]
+    },
+    "brand": {
+      "source": ".audits/landings-2026-09-08-figma-brand.md",
+      "p0": [
+        { "id": "B-01", "text": "Файл организован «концепция → доска», продукт — переменная внутри. Матрица или ветки?", "address": "R0-02, R0-05", "closedBy": "Р-1" },
+        { "id": "B-02", "text": "Веб-форматов в новом стиле ноль: 23 из 23 — пост 1080×1350", "address": "R0-07, R4-05" },
+        { "id": "B-03", "text": "Переменных Figma нет, токенов нет: слой выводится из литералов и помечается нормативом", "address": "R0-02" },
+        { "id": "B-04", "text": "Светлая/тёмная тема не реализована; 0 пар «один макет в двух темах»", "address": "R3-09" },
+        { "id": "B-05", "text": "Утверждение корпуса об отсутствии градиентных фонов опровергнуто", "address": "R0-04" }
+      ],
+      "p1": [
+        { "id": "B-06", "text": "По Курсам 1 баннер против 11 у Карьеры: правил уровня продукта не вывести", "address": "Q-2, R0-07" },
+        { "id": "B-07", "text": "Вес дисплея следует концепции, а не продукту (13/13)", "address": "R0-03" },
+        { "id": "B-08", "text": "Оси Inter/Unbounded в материале нет вовсе; замена — вес, кислотный акцент, приём", "address": "R0-03", "closedBy": "Р-3" },
+        { "id": "B-09", "text": "Стеклянный чип — единственный переиспользуемый примитив, спецификация полная", "address": "R1-03" },
+        { "id": "B-10", "text": "Правила T-1 (12/12) и T-4 (4/4) готовы к внесению с покрытием", "address": "R5-01" },
+        { "id": "B-11", "text": "Четыре концепции равноправны, правила выбора нет", "address": "Q-1" },
+        { "id": "B-12", "text": "3D-графика — растр без библиотеки, материалов и света", "address": "R3-07" },
+        { "id": "B-13", "text": "Фотография — несущий приём двух концепций, всегда в маске по фигуре", "address": "R3-07" }
+      ],
+      "p2": [
+        { "id": "B-14", "text": "Слой знака Хабра называется «Карьера» на 4/4 досках", "address": "R1-01" },
+        { "id": "B-15", "text": "Фрейм Slide 16:9 - 4 имеет 5846 × 6509 и не является 16:9", "address": "X-03" },
+        { "id": "B-16", "text": "Кегли не круглые: 107.169, 113.332, 49.897, 104 против 100", "address": "R0-03" },
+        { "id": "B-17", "text": "«Варианты реализации:» набрано Bold на досках 1, 3, 4 и SemiBold на доске 2", "address": "X-04" },
+        { "id": "B-18", "text": "Баннер 5164:8025 — единственный без лок-апа Хабра (22/23)", "address": "X-05" },
+        { "id": "B-19", "text": "Компонент «Баннеры в меню 728х90» существует, но 728×90 фреймов в участке нет", "address": "Q-3" }
+      ]
+    }
+  },
+
+  "deferred": [
+    { "id": "X-01", "text": "Имя фрейма врёт содержимому: ТТ-7_2024 (17473:826) содержит Технотекст-8 с датами 24/12/25 – 17/04/26. Проверить остальные восемь известных имён фреймов", "from": "P2-6", "status": "planned" },
+    { "id": "X-02", "text": "Логотип habr строчной латиницей в 1324:7793 — легаси-знак или действующий вариант. Влияет на R1-01", "from": "P2-7", "status": "planned" },
+    { "id": "X-03", "text": "Фрейм Slide 16:9 - 4 (5149:6443) не является 16:9: 5846 × 6509 против 5846.71 × 3288.78 у трёх остальных досок", "from": "B-15", "status": "planned" },
+    { "id": "X-04", "text": "«Варианты реализации:» набрано Bold на досках 1, 3, 4 и SemiBold на доске 2. При переносе взять один вариант и записать какой", "from": "B-17", "status": "planned" },
+    { "id": "X-05", "text": "Баннер 5164:8025 — единственный без лок-апа Хабра (22/23). Черновик или решение? Влияет на статус правила L-2", "from": "B-18", "status": "planned" },
+    { "id": "X-06", "text": "Блок «отзывы» — 1/18 (12395:7441). Шага не получает (METHOD §8). Завести статью, если досъёмка R0-00 или ответ на Q-2 добавит второй узел", "from": "§5 аудита лендингов", "status": "planned" },
+    { "id": "X-07", "text": "Production не переснимался. Решить, входит ли съёмка живых страниц в объём пакета. Без production пункт 2 иерархии источников METHOD §3 в пакете пуст", "from": "§7 п. 8 аудита лендингов", "status": "planned" },
+    { "id": "X-08", "text": "Расхождение внутри аудита лендингов: §7 п. 1 перечисляет восемь неизмеренных узлов, пропуская 1284:3362; арифметика даёт девять. В пакете принят список из девяти. Сверить на R0-00", "from": "сверка чисел при заведении пакета", "status": "planned" },
+    { "id": "X-09", "text": "Второе расхождение внутри аудита лендингов: текст §2.2 говорит «7 тёмных, 8 светлых, 3 с чередованием», а его же таблица по узлам даёт 9 тёмных, 6 светлых, 3 смешанных. В пакете принят подсчёт по таблице. Сверить на R0-00", "from": "сверка чисел при заведении пакета", "status": "planned" }
+  ],
+
+  "openQuestions": [
+    { "id": "Q-1", "question": "Какая из четырёх концепций рабочая?", "from": "B-11", "blocks": ["R0-02 (слой концепции)", "R3-07", "R4-05"], "options": ["одна из четырёх", "все четыре как допустимый диапазон", "ни одна, нужен синтез"] },
+    { "id": "Q-2", "question": "Добирать ли материал по Курсам? 1 баннер против 11 у Карьеры", "from": "B-06", "blocks": ["R0-04 (слой продукта «Курсы»)", "R0-07"], "options": ["добрать из 02_Landings или продакшена", "оставить честную дыру в coverage.md"] },
+    { "id": "Q-3", "question": "Есть ли веб-форматы в 04_Brand за пределами четырёх досок? Компонент «Баннеры в меню 728х90» в файле есть, 728×90 фреймов в участке нет", "from": "B-19", "blocks": ["R4-05"], "options": ["разведать файл целиком", "принять, что веб-форматов нет"] },
+    { "id": "Q-4", "question": "Канонична ли ширина 1600 (8 из 18) как основная для пакета?", "from": "P2-8", "blocks": ["R0-01 (ширины capture.mjs)", "черновой слой правил сетки", "responsive-разделы всех статей"], "widths": { "1600": 8, "1440": 5, "1400": 3, "1280": 1, "1240": 1 } }
+  ],
+
+  "coverageLimits": [
+    { "id": "CL-1", "text": "Гарнитуры и кегли измерены у 9 узлов из 18", "unmeasured": ["10929:505", "9519:2095", "12395:7441", "18085:3890", "7869:20760", "6509:20474", "14871:1319", "1284:3362", "1324:7793"], "closedBy": "R0-00" },
+    { "id": "CL-2", "text": "14871:1319 просмотрен на 83 %: 12 000 из 14 462 px. Нижние ≈2460 px не видел никто", "closedBy": "R0-00" },
+    { "id": "CL-3", "text": "Имена фреймов известны у 9 узлов из 18; для остальных идентификация построена на содержимом рендера", "closedBy": null },
+    { "id": "CL-4", "text": "Мобильных вариантов в заданных узлах нет: все 18 — одиночные десктопные артборды", "closedBy": "R0-00 (частично: проверка соседних узлов)" },
+    { "id": "CL-5", "text": "Пар «одна страница в двух темах» нет ни одной — ни в 18 лендингах, ни в 23 баннерах. Тема — выбор проекта, а не переключатель: 9 тёмных, 6 светлых, 3 с чередованием плоскостей внутри страницы", "closedBy": "R3-09 (нормативом, не снятием)" },
+    { "id": "CL-6", "text": "В новом брендовом стиле веб-форматов ноль: все 23 узла — пост 1080×1350. Перенос на лендинг — проектная работа, а не снятие", "closedBy": "R4-05 (нормативом)" },
+    { "id": "CL-7", "text": "Переменных Figma в лендингах нет: get_variable_defs отдаёт только logo/*. Токен-слой выводится из литералов", "closedBy": "R0-02" },
+    { "id": "CL-8", "text": "Радиусы, вертикальные отступы между секциями и состояния (hover, focus-visible, disabled) не инвентаризованы", "closedBy": "R0-00, R0-08" },
+    { "id": "CL-9", "text": "По Курсам 1 баннер против 11 у Карьеры и 10 у Хабра. Правил уровня продукта «Курсы» из одного узла не вывести (METHOD §8)", "closedBy": "Q-2" },
+    { "id": "CL-10", "text": "Production не переснимался: оба аудита работали «Figma против текста корпуса»", "closedBy": "X-07" },
+    { "id": "CL-11", "text": "Библиотеки 3D и персонажей нет: ни одного именованного 3D-ассета, ни описания материала и света", "closedBy": "R3-07 (фиксацией GAP)" },
+    { "id": "CL-12", "text": "Tone of voice в источниках отсутствует: ни одной строки о тексте, юморе или регистре на четырёх бренд-досках. Пакет о тоне не высказывается", "closedBy": null }
+  ],
+
+  "unreachable": [
+    { "node": "14871:1319, нижние ≈2460 px", "reason": "рендерер Figma обрезал изображение на 12 000 px при высоте фрейма 14 462 px" },
+    { "node": "мобильные артборды на странице 0:1 файла 02_Landings", "reason": "не проверялись: задача была ограничена списком из 18 узлов" },
+    { "node": "веб- и баннерные форматы в 04_Brand вне четырёх досок", "reason": "не разведывались; компонент «Баннеры в меню 728х90» существует, но 728×90 фреймов в участке нет — вопрос Q-3" },
+    { "source": "production-страницы 11 спецпроектов и продуктовых лендингов", "reason": "в инвентаризации не переснимались — строка X-07" },
+    { "state": "hover, focus-visible, pressed, disabled, invalid", "reason": "в 18 макетах не встретились; целенаправленно не искали. Дописываются нормативом на R0-08" }
+  ]
+}

@@ -1,0 +1,338 @@
+/**
+ * Сверяет числа, заявленные в документации, с тем, что реально в пакете.
+ *
+ * Зачем. Счётчики — узлов, блоков, записей реестра, шагов, находок, покрытий —
+ * записаны прозой в четырёх файлах и правятся руками. После любой правки они
+ * расходятся молча: документ продолжает утверждать старое число, и по нему
+ * судят о покрытии. Инвариант И-7 (BRIEF §10) требует обратного: 15/18 значит
+ * измерено 15 из 18, а не «примерно все».
+ *
+ * Запуск:
+ *   node tools/validate-counts.mjs
+ *   node tools/validate-counts.mjs --explain    # что где написано и чем измерено
+ *
+ * Коды возврата: 0 — сошлось; 1 — расхождение или устаревшее правило.
+ *
+ * Устройство. Слева — измерение: значение и то, чем оно получено. Справа —
+ * таблица «файл · регулярка · ключ»: где это число написано словами. Правило,
+ * чей файл ещё не заведён, пропускается с пометкой, а не роняет проверку:
+ * пакет собирается волнами. Правило, чей файл есть, а формулировка не нашлась,
+ * — ошибка: значит, текст переписали, а сторож остался сторожить исчезнувшее.
+ *
+ * Портирован с courses/tools/validate-counts.mjs (read-only образец).
+ * Отличия: источник истины здесь один — .pipeline/inventory.json, потому что
+ * ui/ и blocks/ пустые до R0-02 и R0-05; добавлены покрытия блоков дробью
+ * (И-7) и сверка самой инвентаризации на внутреннюю сходимость.
+ */
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+
+const explain = process.argv.includes('--explain');
+const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const rel = (file) => path.join(root, file);
+const read = (file) => fs.readFileSync(rel(file), 'utf8');
+const exists = (file) => fs.existsSync(rel(file));
+
+const inventoryFile = '.pipeline/inventory.json';
+if (!exists(inventoryFile)) {
+  console.error(`Нет ${inventoryFile} — считать не из чего. Инвентаризацию ведёт guide-spec.`);
+  process.exit(1);
+}
+let inventory;
+try {
+  inventory = JSON.parse(read(inventoryFile));
+} catch (error) {
+  console.error(`${inventoryFile} не разбирается как JSON: ${error.message}`);
+  console.error('Считать не из чего — почините синтаксис инвентаризации и запустите снова.');
+  process.exit(1);
+}
+
+const roadmap = exists('ROADMAP.md') ? read('ROADMAP.md') : '';
+const countMatches = (text, re) => (text.match(re) || []).length;
+
+// Покрытие блока — то же число, что дробь в тексте, и берётся оно из длины
+// списка узлов, а не из строки coverage: иначе сторож сверял бы строку
+// с самой собой. Так дробь ловит и вычеркнутый узел.
+const blockNodes = (id) => {
+  const block = inventory.blocks.find((candidate) => candidate.id === id);
+  return block ? block.nodes.length : null;
+};
+
+// Покрытие узла 14871:1319 — 83 %. Число живёт в шести местах документации
+// и до правки не сторожилось нигде: подмена 83 → 61 проходила зелёной.
+// Процент считается, а не читается: числитель берётся из строки
+// renderCovered, знаменатель — из отдельного поля height того же узла.
+const partialNode = inventory.nodes.find((node) => node.render === 'partial') ?? null;
+const partialPx = partialNode?.renderCovered?.match(/(\d[\d\s ]*)\s*из/);
+const renderCoveredPx = partialPx ? Number(partialPx[1].replace(/[\s ]/g, '')) : null;
+const renderPercent = renderCoveredPx && partialNode?.height
+  ? Math.round((renderCoveredPx / partialNode.height) * 100)
+  : null;
+
+// Пар «один макет в двух темах» — 0. Пара измерима: это проект, у которого
+// среди снятых узлов есть и тёмный, и светлый. На этом нуле стоит решение
+// Р-2 (светлая тема целиком — норматив), и до правки он не сторожился.
+const themesByProject = new Map();
+for (const node of inventory.nodes) {
+  if (!node.project || !node.theme) continue;
+  if (!themesByProject.has(node.project)) themesByProject.set(node.project, new Set());
+  themesByProject.get(node.project).add(node.theme);
+}
+const themePairs = [...themesByProject.values()]
+  .filter((themes) => themes.has('dark') && themes.has('light')).length;
+
+// -------------------------------------------------------------------------
+// Измерения: значение и то, чем оно получено.
+// -------------------------------------------------------------------------
+const actual = {
+  landingNodes: [inventory.nodes.length, 'длина inventory.nodes'],
+  brandBoards: [inventory.brandBoards.length, 'длина inventory.brandBoards'],
+  banners: [inventory.sources.figmaBrand.banners, 'inventory.sources.figmaBrand.banners'],
+  measuredCss: [inventory.sources.figmaLandings.capturedCss, 'inventory.sources.figmaLandings.capturedCss'],
+  blockTypes: [inventory.blocks.length, 'длина inventory.blocks'],
+  primitives: [inventory.elements.length, 'длина inventory.elements'],
+  registryTotal: [inventory.blocks.length + inventory.elements.length, 'blocks + elements'],
+  patterns: [inventory.patterns.length, 'длина inventory.patterns'],
+  productionLines: [inventory.productionLines.lines.length, 'длина inventory.productionLines.lines'],
+  findings: [inventory.findings.total, 'inventory.findings.total'],
+  openQuestions: [inventory.openQuestions.length, 'длина inventory.openQuestions'],
+  coverageLimits: [inventory.coverageLimits.length, 'длина inventory.coverageLimits'],
+  // Шаги считаются по строкам таблиц роадмапа, а не по числу в его же сводке.
+  roadmapSteps: [countMatches(roadmap, /^\| R\d-\d{2} \|/gm), 'строки таблиц ROADMAP.md вида | R0-01 |'],
+  roadmapR0: [countMatches(roadmap, /^\| R0-\d{2} \|/gm), 'строки таблицы R0 в ROADMAP.md'],
+  // Просмотренная доля частично снятого узла и пары тем. Оба числа стоят
+  // в сводке роадмапа и в чеклисте приёмки; до правки не сторожилось ни одно.
+  renderPercent: [renderPercent, `${renderCoveredPx} из ${partialNode?.height} px у ${partialNode?.id}`],
+  renderCoveredPx: [renderCoveredPx, `числитель renderCovered у ${partialNode?.id}`],
+  renderNodeHeight: [partialNode?.height ?? null, `высота узла ${partialNode?.id}`],
+  themePairs: [themePairs, 'проекты, у которых среди nodes есть и тёмный, и светлый узел'],
+};
+
+// Покрытия блоков — дробью, числитель из списка узлов (И-7). Ключ заводится
+// на каждый блок инвентаризации, а не на шесть избранных: сторожились
+// шесть из девятнадцати, и подмена 2/18 → 9/18 у FAQ проходила зелёной,
+// хотя она переключает rule: false в rule: true (METHOD §8).
+for (const block of inventory.blocks) {
+  actual[`cover:${block.id}`] = [blockNodes(block.id), `длина nodes у блока ${block.id}`];
+}
+
+// -------------------------------------------------------------------------
+// Что где заявлено. Регулярка обязана иметь ровно одну группу — число.
+// -------------------------------------------------------------------------
+const claims = [
+  // --- README.md
+  ['README.md', /Пакет собирается обратной разработкой: (\d+) макетов лендингов/, 'landingNodes'],
+  ['README.md', /(\d+) макетов лендингов и \d+ бренд-доски/, 'landingNodes'],
+  ['README.md', /\d+ макетов лендингов и (\d+) бренд-доски/, 'brandBoards'],
+  ['README.md', /собран реестр из (\d+) записей/, 'registryTotal'],
+  ['README.md', /составлен роадмап на (\d+) шагов/, 'roadmapSteps'],
+  ['README.md', /и (\d+) бренд-доски\nс \d+ баннерами/, 'brandBoards'],
+  ['README.md', /и \d+ бренд-доски\nс (\d+) баннерами/, 'banners'],
+  ['README.md', /\| Типов блоков \| \*\*(\d+)\*\*/, 'blockTypes'],
+  ['README.md', /\| Записей в реестре \| \*\*(\d+)\*\*/, 'registryTotal'],
+  ['README.md', /\| Записей в реестре \| \*\*\d+\*\* — (\d+) типов блоков/, 'blockTypes'],
+  ['README.md', /\| Записей в реестре \| \*\*\d+\*\* — \d+ типов блоков \+ (\d+) примитив/, 'primitives'],
+  ['README.md', /\| Бренд-материал \| (\d+) баннера/, 'banners'],
+  ['README.md', /ROADMAP\.md\s+(\d+) шагов по шести волнам/, 'roadmapSteps'],
+  ['README.md', /ROADMAP\.md\s+\d+ шагов по шести волнам, (\d+) находок/, 'findings'],
+  ['README.md', /ROADMAP\.md\s+\d+ шагов по шести волнам, \d+ находок, (\d+) вопроса владельцу/, 'openQuestions'],
+  ['README.md', /inventory\.json\s+реестр: (\d+) узлов/, 'landingNodes'],
+  ['README.md', /inventory\.json\s+реестр: \d+ узлов, (\d+) доски/, 'brandBoards'],
+  ['README.md', /inventory\.json\s+реестр: \d+ узлов, \d+ доски, (\d+) типов блоков/, 'blockTypes'],
+  ['README.md', /inventory\.json\s+реестр: \d+ узлов, \d+ доски, \d+ типов блоков, (\d+) примитивов/, 'primitives'],
+  ['README.md', /inventory\.json\s+реестр: \d+ узлов, \d+ доски, \d+ типов блоков, \d+ примитивов, (\d+) рецепта/, 'patterns'],
+
+  // --- ROADMAP.md, сводка «Где пакет сейчас»
+  ['ROADMAP.md', /\| Макетов лендингов \| \*\*(\d+)\*\*/, 'landingNodes'],
+  ['ROADMAP.md', /\| Снято CSS \| \*\*(\d+) узлов из \d+\*\*/, 'measuredCss'],
+  ['ROADMAP.md', /\| Снято CSS \| \*\*\d+ узлов из (\d+)\*\*/, 'landingNodes'],
+  ['ROADMAP.md', /\| Производственных линий \| \*\*(\d+)\*\*/, 'productionLines'],
+  ['ROADMAP.md', /\| Типов блоков \| \*\*(\d+)\*\*/, 'blockTypes'],
+  ['ROADMAP.md', /\| Записей в реестре \| \*\*(\d+)\*\*/, 'registryTotal'],
+  ['ROADMAP.md', /\| Записей в реестре \| \*\*\d+\*\* — (\d+) типов блоков/, 'blockTypes'],
+  ['ROADMAP.md', /\| Записей в реестре \| \*\*\d+\*\* — \d+ типов блоков \+ (\d+) примитив/, 'primitives'],
+  ['ROADMAP.md', /\| Шагов в роадмапе \| \*\*(\d+)\*\*/, 'roadmapSteps'],
+  ['ROADMAP.md', /\| Шагов в роадмапе \| \*\*\d+\*\* — R0 (\d+)/, 'roadmapR0'],
+  ['ROADMAP.md', /\| Рецептов страниц \| \*\*(\d+)\*\*/, 'patterns'],
+  ['ROADMAP.md', /\| Бренд-материал \| (\d+) концепт-доски/, 'brandBoards'],
+  ['ROADMAP.md', /\| Бренд-материал \| \d+ концепт-доски, \*\*(\d+) баннера\*\*/, 'banners'],
+  ['ROADMAP.md', /\| Находок аудитов \| \*\*(\d+)\*\*/, 'findings'],
+  ['ROADMAP.md', /\| Открытых вопросов \| \*\*(\d+)\*\*/, 'openQuestions'],
+  // Перечень чисел, которые сторожит этот скрипт, — в самом чеклисте приёмки.
+  ['ROADMAP.md', /(\d+) узлов, \d+ измеренных CSS, 83 %, \d+ типов блоков/, 'landingNodes'],
+  ['ROADMAP.md', /\d+ узлов, (\d+) измеренных CSS, 83 %, \d+ типов блоков/, 'measuredCss'],
+  ['ROADMAP.md', /\d+ узлов, \d+ измеренных CSS, 83 %, (\d+) типов блоков/, 'blockTypes'],
+  ['ROADMAP.md', /83 %, \d+ типов блоков, (\d+) записи реестра/, 'registryTotal'],
+  ['ROADMAP.md', /83 %, \d+ типов блоков, \d+ записи реестра, (\d+) шагов/, 'roadmapSteps'],
+  ['ROADMAP.md', /^(\d+) находок, \d+ баннера, 0 веб-форматов/m, 'findings'],
+  ['ROADMAP.md', /^\d+ находок, (\d+) баннера, 0 веб-форматов/m, 'banners'],
+  // Покрытия в строках шагов R2. Дробь стоит отдельной колонкой таблицы.
+  ['ROADMAP.md', /\| R2-03 \|[^|]*\| (\d+)\/18 \|/, 'cover:footer-social'],
+  ['ROADMAP.md', /\| R2-04 \|[^|]*\| \*\*(\d+)\/18\*\* \|/, 'cover:hero'],
+  ['ROADMAP.md', /\| R2-05 \|[^|]*\| (\d+)\/18 \|/, 'cover:site-header'],
+  ['ROADMAP.md', /\| R2-06 \|[^|]*\| (\d+)\/18 \|/, 'cover:form'],
+  ['ROADMAP.md', /\| R2-07 \|[^|]*\| (\d+)\/18 \|/, 'cover:program-schedule'],
+  ['ROADMAP.md', /покрытие от \*\*(\d+)\/18\*\* \(hero\)/, 'cover:hero'],
+  ['ROADMAP.md', /до \*\*(\d+)\/18\*\* \(отзывы\)/, 'cover:testimonials'],
+  // Остальные тринадцать покрытий. Сторожились шесть из девятнадцати,
+  // и незамеченными проходили обе подмены из ревью-1: R2-08 9/18 → 3/18
+  // и R3-04 2/18 → 9/18. Вторая переключает наблюдение в правило.
+  ['ROADMAP.md', /\| R2-01 \|[^|]*\| (\d+)\/18 \|/, 'cover:footer-corporate-b2b'],
+  ['ROADMAP.md', /\| R2-02 \|[^|]*\| (\d+)\/18 \|/, 'cover:footer-community'],
+  ['ROADMAP.md', /\| R2-08 \|[^|]*\| (\d+)\/18 \|/, 'cover:partners'],
+  ['ROADMAP.md', /\| R2-09 \|[^|]*\| (\d+)\/18 \|/, 'cover:speakers'],
+  ['ROADMAP.md', /\| R2-10 \|[^|]*\| (\d+)\/18 \|/, 'cover:numbered-benefits'],
+  ['ROADMAP.md', /\| R3-01 \|[^|]*\| (\d+)\/18 \|/, 'cover:stats'],
+  ['ROADMAP.md', /\| R3-02 \|[^|]*\| (\d+)\/18 \|/, 'cover:interactive'],
+  ['ROADMAP.md', /\| R3-03 \|[^|]*\| (\d+)\/18 \|/, 'cover:nominations-grid'],
+  ['ROADMAP.md', /\| R3-04 \|[^|]*\| (\d+)\/18 \|/, 'cover:faq'],
+  ['ROADMAP.md', /\| R3-05 \|[^|]*\| (\d+)\/18 \|/, 'cover:timeline'],
+  ['ROADMAP.md', /\| R3-06 \|[^|]*\| (\d+)\/18 \|/, 'cover:gallery'],
+  ['ROADMAP.md', /\*\*Бегущая строка\*\* — (\d+)\/18/, 'cover:marquee'],
+  ['ROADMAP.md', /соцсети (\d+)\/18/, 'cover:footer-social'],
+  ['ROADMAP.md', /«Сделано в Хабре» (\d+)\/18/, 'cover:footer-copyright'],
+  // Тот же перечень прозой перед таблицей R3: он и объявляет, какие блоки
+  // остаются наблюдением по METHOD §8.
+  ['ROADMAP.md', /FAQ (\d+)\/18/, 'cover:faq'],
+  ['ROADMAP.md', /таймлайн (\d+)\/18/, 'cover:timeline'],
+  ['ROADMAP.md', /галерея (\d+)\/18/, 'cover:gallery'],
+  ['ROADMAP.md', /корпоративный B2B-футер (\d+)\/18/, 'cover:footer-corporate-b2b'],
+  ['ROADMAP.md', /отзывы (\d+)\/18/, 'cover:testimonials'],
+  // 83 % и пары тем — оба числа названы чеклистом приёмки поимённо.
+  ['ROADMAP.md', /`14871:1319` на \*\*(\d+) %\*\*/, 'renderPercent'],
+  ['ROADMAP.md', /на \*\*83 %\*\* \(([\d  ]+) из [\d  ]+ px\)/, 'renderCoveredPx'],
+  ['ROADMAP.md', /на \*\*83 %\*\* \([\d  ]+ из ([\d  ]+) px\)/, 'renderNodeHeight'],
+  ['ROADMAP.md', /\d+ измеренных CSS, (\d+) %, \d+ типов блоков/, 'renderPercent'],
+  ['ROADMAP.md', /0 веб-форматов, (\d+) пар тем/, 'themePairs'],
+  ['ROADMAP.md', /Пар «один макет в двух темах» — \*\*(\d+)\*\* из 22 узлов/, 'themePairs'],
+  ['ROADMAP.md', /(\d+) пар из 22 узлов/, 'themePairs'],
+  ['ROADMAP.md', /(\d+) % у `14871:1319`/, 'renderPercent'],
+  ['ROADMAP.md', /83 % у `14871:1319`, 0 мобильных артбордов, (\d+) пар тем/, 'themePairs'],
+  ['ROADMAP.md', /`14871:1319` просмотрен на (\d+) %/, 'renderPercent'],
+
+  // --- BRIEF.md
+  ['BRIEF.md', /— (\d+) узлов Figma `02_Landings` против корпуса/, 'landingNodes'],
+  ['BRIEF.md', /— (\d+) бренд-доски `04_Brand`/, 'brandBoards'],
+  ['BRIEF.md', /`04_Brand`, (\d+) баннера нового стиля/, 'banners'],
+  ['BRIEF.md', /\| Hero как обязательный первый экран \| \*\*(\d+)\/18\*\* \|/, 'cover:hero'],
+  ['BRIEF.md', /форма с полем ввода — \*\*(\d+)\/18\*\*/, 'cover:form'],
+  ['BRIEF.md', /Открылись \*\*(\d+) узлов из \d+\*\*/, 'landingNodes'],
+  ['BRIEF.md', /\| `nodes` \| (\d+) узлов лендингов/, 'landingNodes'],
+  ['BRIEF.md', /\| `blocks` \| (\d+) типов блоков/, 'blockTypes'],
+  ['BRIEF.md', /\| `elements` \| (\d+) примитив/, 'primitives'],
+  ['BRIEF.md', /\| `patterns` \| (\d+) рецепта страниц/, 'patterns'],
+  ['BRIEF.md', /\| `findings` \| (\d+) находок/, 'findings'],
+  ['BRIEF.md', /\| `coverageLimits` \| (\d+) границ покрытия/, 'coverageLimits'],
+  ['BRIEF.md', /\*\*(\d+) %\*\* — 12 000 из 14 462 px/, 'renderPercent'],
+  ['BRIEF.md', /`14871:1319` просмотрен на (\d+) %/, 'renderPercent'],
+
+  // --- CHANGELOG.md
+  ['CHANGELOG.md', /— (\d+) записи: \d+ типов блоков/, 'registryTotal'],
+  ['CHANGELOG.md', /— \d+ записи: (\d+) типов блоков/, 'blockTypes'],
+  ['CHANGELOG.md', /Роадмап на (\d+) шагов/, 'roadmapSteps'],
+  ['CHANGELOG.md', /на (\d+) % \(12 000 из 14 462 px\)/, 'renderPercent'],
+
+  // --- README.md, продолжение: 83 % и пары тем
+  ['README.md', /`14871:1319` — на \*\*(\d+) %\*\*/, 'renderPercent'],
+  ['README.md', /`14871:1319` просмотрен на (\d+) %\*\*/, 'renderPercent'],
+  ['README.md', /Пар «одна страница в двух темах» — (\d+) из 22 узлов/, 'themePairs'],
+];
+
+// -------------------------------------------------------------------------
+// Инвентаризация против самой себя. Её собственные итоги написаны там же,
+// где данные, и точно так же правятся руками.
+// -------------------------------------------------------------------------
+const selfChecks = [
+  ['inventory.registryTotals.total', inventory.registryTotals.total, actual.registryTotal[0]],
+  ['inventory.registryTotals.blocks', inventory.registryTotals.blocks, actual.blockTypes[0]],
+  ['inventory.registryTotals.primitives', inventory.registryTotals.primitives, actual.primitives[0]],
+  ['inventory.roadmapTotals.steps', inventory.roadmapTotals.steps, actual.roadmapSteps[0]],
+  ['inventory.roadmapTotals.byWave.R0', inventory.roadmapTotals.byWave.R0, actual.roadmapR0[0]],
+  ['inventory.findings.total', inventory.findings.total,
+    ['landings', 'brand'].reduce((sum, side) => sum + ['p0', 'p1', 'p2']
+      .reduce((inner, level) => inner + (inventory.findings[side][level]?.length ?? 0), 0), 0)],
+];
+
+// Строка coverage у самого блока с длиной его же списка узлов. Сторож ловил
+// расхождение документа с инвентаризацией, но не расхождение инвентаризации
+// с самой собой: вычеркнутый узел оставлял «18/18» при 17 узлах, и ни одна
+// строка об этом не говорила. Это источник, из которого R0-05 заполнит реестр.
+for (const block of inventory.blocks) {
+  const fraction = typeof block.coverage === 'string' ? block.coverage.match(/^(\d+)\/(\d+)$/) : null;
+  if (!fraction) {
+    selfChecks.push([`inventory.blocks[${block.id}].coverage — дробь вида 15/18`, block.coverage, `${block.nodes.length}/${block.coverageBase}`]);
+    continue;
+  }
+  selfChecks.push([`inventory.blocks[${block.id}].coverage числитель`, Number(fraction[1]), block.nodes.length]);
+  selfChecks.push([`inventory.blocks[${block.id}].coverageBase`, block.coverageBase, Number(fraction[2])]);
+}
+
+// Инвентаризация о самой себе: строка renderCovered несёт и пиксели,
+// и процент, и они правятся одной рукой.
+if (partialNode) {
+  const statedPercent = partialNode.renderCovered?.match(/(\d+)\s*%/);
+  selfChecks.push([
+    `inventory.nodes[${partialNode.id}].renderCovered — процент`,
+    statedPercent ? Number(statedPercent[1]) : partialNode.renderCovered,
+    renderPercent,
+  ]);
+}
+
+const problems = [];
+const skipped = [];
+const rows = [];
+
+// Число в тексте пишется с разделителем разрядов: «12 000 из 14 462 px».
+const asNumber = (text) => Number(String(text).replace(/[\s ]/g, ''));
+
+for (const [file, re, key] of claims) {
+  if (!exists(file)) { skipped.push(`${file} — файла ещё нет`); continue; }
+  // Все вхождения, а не первое: одна и та же формулировка, повторённая
+  // в файле дважды, сторожилась в одном месте из двух, и вторая копия
+  // молча расходилась с первой.
+  const all = [...read(file).matchAll(new RegExp(re.source, re.flags.includes('g') ? re.flags : `${re.flags}g`))];
+  if (!all.length) {
+    problems.push(`${file}: не найдено утверждение для «${key}» — правило проверки устарело (${re})`);
+    continue;
+  }
+  const [value, source] = actual[key] ?? [];
+  if (value === null || value === undefined) { skipped.push(`${file} → ${key} — считать пока не из чего`); continue; }
+  for (const [order, match] of all.entries()) {
+    const where = all.length > 1 ? `${file} (вхождение ${order + 1} из ${all.length})` : file;
+    const stated = asNumber(match[1]);
+    rows.push([where, key, stated, value, source]);
+    if (stated !== value) problems.push(`${where}: заявлено ${stated}, на самом деле ${value} (${key} — ${source})`);
+  }
+}
+
+for (const [what, stated, value] of selfChecks) {
+  rows.push([inventoryFile, what, stated, value, 'пересчёт по самой инвентаризации']);
+  if (stated !== value) problems.push(`${inventoryFile}: ${what} = ${stated}, пересчёт даёт ${value}`);
+}
+
+if (explain) {
+  const width = Math.max(...rows.map(([file]) => file.length));
+  console.log('Что где написано и чем измерено:\n');
+  for (const [file, key, stated, value, source] of rows) {
+    console.log(`  ${file.padEnd(width)}  ${key} = ${stated}  ${stated === value ? '==' : '!='} ${value}  ← ${source}`);
+  }
+  console.log('');
+}
+
+if (skipped.length) {
+  console.warn(`Пропущено (${skipped.length}) — появится по мере сборки:`);
+  for (const line of skipped) console.warn(`  ${line}`);
+  console.warn('');
+}
+
+if (problems.length) {
+  console.error(`Счётчики разошлись (${problems.length}):\n`);
+  for (const line of problems) console.error(`  ${line}`);
+  console.error('\nПравьте документацию — или правило в tools/validate-counts.mjs,');
+  console.error('если изменилась формулировка. Инвариант И-7: числа не округляются.');
+  process.exit(1);
+}
+
+console.log(`Проверено утверждений: ${rows.length} в ${new Set(rows.map(([file]) => file)).size} файлах. Все сходятся.`);
+console.log(Object.entries(actual).map(([key, [value]]) => `  ${key}: ${value ?? '—'}`).join('\n'));
