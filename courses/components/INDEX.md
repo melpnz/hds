@@ -197,6 +197,12 @@ DOM, записанное в [`selector-census.json`](selector-census.json). Р�
 заводится в `components/STATES.md` на шаге R1-01; до неё `requiredStates` пуст
 у всех записей, и это значит «матрицы ещё нет», а не «состояний нет».
 
+Снятость каждого требуемого состояния — снято источником, дописано нормативом
+в `ui/state-contract.css` или явно адресовано на будущий шаг — заводится в
+`components/STATE-CAPTURE.md` на шаге R1-02: поля `capturedStates`/
+`normativeStates`/`uncapturedStates` каждой записи манифеста — партиция её
+`requiredStates`, машиночитаемое зеркало того же разбора.
+
 ---
 
 ## Категории
