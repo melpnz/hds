@@ -190,25 +190,63 @@ const SELECTOR_EXEMPT_FROM_PREFIX = new Set([':root']);
 // подкрасила витрина» стало бы не видно. Поэтому каждый селектор обязан нести
 // класс оболочки.
 //
-// Конструктор лендингов (index / lab.css / hds.css) продуктовый CSS пакета
-// НЕ подключает — он самостоятельная страница и приносит собственный сброс.
-// Задевать в нём нечего: продуктовой разметки внутри нет. Требовать от его
-// сброса префикс значило бы переписать перенесённую витрину, а её внешний вид
-// сохраняется по условию задачи.
+// Конструктор лендингов раньше был исключением целиком: он не подключал
+// продуктовый CSS пакета, задевать в нём было нечего, и showcase/lab.css,
+// showcase/hds.css и showcase/index.html освобождались от требования целыми
+// файлами. ЭТО БОЛЬШЕ НЕ ТАК. С этапа 2 showcase/index.html подключает
+// ui/landings.css, и вся продуктовая разметка живёт внутри конструктора:
+// голый `button` теперь красит .button пакета, голый `input` — .form-field-input.
+// Прежнее послабление молча разрешало ровно тот случай, ради которого правило
+// и написано.
 //
-// Послабление касается ТОЛЬКО голых селекторов внутри этих файлов. Проверка
-// в обратную сторону — что ни doc-, ни ml- не протекли в ui/ — действует
-// для всех файлов без исключения, и именно она стережёт инвариант.
-const SELF_CONTAINED_SHOWCASE = new Set(['showcase/lab.css', 'showcase/hds.css', 'showcase/index.html']);
+// Что вместо него. showcase/hds.css и showcase/index.html послабления больше
+// не получают вовсе: после перевода на классы пакета голых селекторов там нет
+// (кроме :root, он освобождён отдельно и несёт только переменные --ml-*).
+//
+// У showcase/lab.css остаётся ровно одна причина держать голые селекторы:
+// он приносит БАЗУ ДОКУМЕНТА для страницы стенда — сброс полей, фон и шрифт
+// body, кольцо фокуса, наследование шрифта контролами, поведение картинок,
+// диалог. Класс оболочки на них не навесить: они говорят про html, body, *
+// и про элементы, у которых в разметке нет своего класса. Пакет эту базу
+// сегодня не даёт — ui/foundations.css пустой каркас до шага R0-03.
+//
+// Поэтому послабление сузилось с «файла целиком» до ПОИМЕННОГО СПИСКА.
+// Список — не украшение: любой НОВЫЙ голый селектор в lab.css теперь роняет
+// проверку, потому что новый голый селектор — это новая молчаливая перекраска
+// продуктовой разметки, а не база документа. Когда R0-03 наполнит
+// ui/foundations.css, список должен схлопнуться до пустого, а не переписаться
+// длиннее.
+const SHOWCASE_DOCUMENT_BASE = new Map([
+  ['showcase/lab.css', new Set([
+    // сброс и база страницы стенда
+    '*', 'html', 'body', 'main', 'img', '[hidden]',
+    // типографика документа: пакетные блоки задают свою классами,
+    // и класс всегда сильнее элемента
+    'h1', 'h2', 'h3', 'p', 'p+p',
+    // наследование шрифта контролами и указатель
+    'button', 'input', 'textarea', 'select', 'a', 'summary', 'button:disabled',
+    // кольцо фокуса. В 18 макетах фокус не встретился ни разу (BRIEF §5 п. 8),
+    // пакет его не даёт — стенд обязан дать сам, иначе клавиатурой не пройти
+    'a:focus-visible', 'button:focus-visible', 'input:focus-visible',
+    'select:focus-visible', 'summary:focus-visible', 'textarea:focus-visible',
+    // окно статьи стенда
+    'dialog', 'dialog h2', 'dialog::backdrop',
+  ])],
+]);
 
 function selectorLeaks(css, label) {
-  if (SELF_CONTAINED_SHOWCASE.has(label)) return [];
+  const documentBase = SHOWCASE_DOCUMENT_BASE.get(label) ?? new Set();
   const found = [];
   forEachRule(withoutComments(css), (preamble) => {
     for (const selector of splitSelectorList(preamble)) {
       if (SELECTOR_EXEMPT_FROM_PREFIX.has(selector)) continue;
       const hasShellClass = [...classNames(selector)].some((name) => SHELL_PREFIXES.some((p) => name.startsWith(p)));
-      if (!hasShellClass) found.push(`${label}: селектор без класса оболочки витрины (${SHELL_PREFIXES.join(' / ')}) — ${selector}`);
+      if (hasShellClass) continue;
+      // Пробелы внутри селектора приводятся к одному: `dialog  h2` и
+      // `dialog h2` — один и тот же селектор, и список не должен зависеть
+      // от того, как его набрали.
+      if (documentBase.has(selector.replace(/\s+/g, ' '))) continue;
+      found.push(`${label}: селектор без класса оболочки витрины (${SHELL_PREFIXES.join(' / ')}) — ${selector}`);
     }
   });
   return found;

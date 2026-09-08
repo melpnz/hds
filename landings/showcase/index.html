@@ -3,8 +3,13 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <title>HDS — конструктор лендингов</title>
-  <link rel="stylesheet" href="../ui/fonts.css">
-  <link rel="stylesheet" href="../ui/tokens.css">
+  <!-- Слой пакета целиком: ui/landings.css уже импортирует fonts.css, tokens.css,
+       foundations.css и blocks/index.css (примитивы + блоки ядра). Отдельные строки
+       для fonts.css и tokens.css убраны — они были бы вторым подключением тех же
+       файлов. Порядок значим: компоненты пакета объявляются ДО оболочки стенда,
+       чтобы lab.css и hds.css могли их допозиционировать, а значения приходили
+       из ui/. -->
+  <link rel="stylesheet" href="../ui/landings.css">
   <link rel="stylesheet" href="lab.css">
   <link rel="stylesheet" href="hds.css">
 </head>

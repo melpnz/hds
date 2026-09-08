@@ -1,32 +1,78 @@
-/* Вторая итерация: оформление лендингов HDS поверх экспериментальных композиций.
-   Все изменения локальны. Основной пакет landings не изменяется. */
+/* Оформление конструктора лендингов ПОВЕРХ компонентов пакета.
+   Этап 2: витрина подключает ui/landings.css и рисует .button, .card,
+   .form-field*, .site-header, .hero, .program, .form-section, .footer-corp,
+   .glass-chip и .product-lockup вместо собственных перерисовок.
+
+   Что здесь осталось и почему:
+
+     раскладка      сетки, отступы, порядок колонок, медиазапросы стенда —
+                    это оболочка демонстрации, а не вид компонента;
+     элементы,      .ml-tag, .ml-avatar, .ml-price-card, .ml-glyph,
+     которых        .ml-faq-grid, .ml-map, .ml-demo-result, .ml-brand-art,
+     в пакете нет   .ml-article-*, .ml-textarea, .ml-chips — список ведётся
+                    в отчёте этапа;
+     подгонка       .ml-stage>… — секции пакета несут отступ страницы
+     сцены          (--core-gutter, 218 px при холсте 1600). Сцена стенда
+                    не холст: внутри неё этот отступ съел бы половину
+                    ширины. Значение остаётся в ui/tokens.css и показано
+                    на blocks.html; здесь его заменяет рамка сцены.
+
+   Чего здесь больше НЕТ (пришло из пакета): радиус и геометрия кнопки,
+   фон/радиус/поля карточки, граница и фон поля ввода, кегли Display,
+   заголовков и цитаты, стеклянная подложка формы, шапка и подвал.
+   ================================================================= */
+
+/* Секции пакета — прямые дети сцены. Заменяем отступ страницы рамкой сцены,
+   вертикальные отступы секций (--core-section-pad-*) остаются снятыми. */
+.ml-stage>.site-header,
+.ml-stage>.hero,
+.ml-stage>.program,
+.ml-stage>.form-section,
+.ml-stage>.footer-corp{padding-inline:32px}
+/* Сцена уже 640: раскладка пакета для двух колонок держится до 640 px ширины
+   ОКНА, а не сцены. Внутри стенда сцена всегда уже окна — поэтому колонки
+   складываются раньше. */
+@media(max-width:1100px){.ml-stage .hero-split .hero-in,.ml-stage .program-item{grid-template-columns:minmax(0,1fr)}.ml-stage .footer-corp-in{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.ml-center .hero-lead{margin-inline:auto}
+.ml-center .hero-actions{justify-content:center}
+.ml-stage .program-item .card{margin-top:24px}
+.ml-footer-row+.ml-footer-row{margin-top:40px}
+/* Многострочного поля в пакете нет: .form-field-input снят как однострочный,
+   высота 60 px. Высоту, внутренние поля и радиус текстовой области задаёт
+   стенд — по ступеням лестницы Р-7, без претензии на снимок. */
+.ml-textarea{height:156px;padding-top:16px;padding-bottom:16px;border-radius:var(--core-radius-step-16);line-height:var(--core-body-lh);resize:vertical}
+.ml-chips{align-items:center}
+.ml-chips .glass-chip{flex:none}
+.ml-quote-author{font-size:var(--core-body);line-height:var(--core-body-lh);color:var(--core-text-secondary)}
+.ml-cta-title{max-width:800px;margin:24px auto}
+.ml-cta-lead{margin-inline:auto}
+
 /* У текстовых знаков одинаковый viewBox по высоте (20): единый масштаб сохраняет размер слова «Хабр». */
 #logo .ml-service-logos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px 32px;padding:32px}
 #logo .ml-service-logo{display:flex;justify-content:center;align-items:center;min-width:0;min-height:64px;margin:0}
 #logo .ml-service-logo .ml-wordmark{height:28px!important;width:auto!important;max-width:none}
 @media(max-width:1100px){#logo .ml-service-logos{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;padding:24px}#logo .ml-service-logo .ml-wordmark{height:24px!important}}
 @media(max-width:520px){#logo .ml-service-logos{grid-template-columns:1fr;gap:8px;padding:20px}#logo .ml-service-logo{min-height:56px}}
-.ml-foundations{padding-top:40px;border-top:0}.ml-foundations .ml-stage{padding-top:32px}.ml-foundations .ml-stage>h3{margin:32px 0 24px}.ml-foundations .ml-stage>h3:first-child{margin-top:0}.ml-type-row{display:grid;grid-template-columns:190px minmax(0,1fr);gap:24px;align-items:center;padding:24px 0;border-bottom:1px solid var(--ml-line)}.ml-type-row p{overflow-wrap:anywhere;margin:0}.ml-type-row small,.ml-swatches small{display:block;font:400 12px/1.5 var(--core-font-text);color:var(--core-text-secondary);margin-top:6px;overflow-wrap:anywhere}.ml-elements-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin:40px 0}.ml-elements-grid .ml-form{margin-top:24px}.ml-spec-note{font-size:var(--core-small);color:var(--core-text-secondary);margin-top:24px}.ml-swatches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}.ml-swatches strong{font-size:var(--core-small)}.ml-swatch{height:72px;border:1px solid var(--ml-line);margin-bottom:12px}.ml-radius-samples{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}.ml-radius-samples>div>div{height:72px;background:var(--core-bg-surface);border:1px solid var(--product-cta);margin-bottom:12px}
+.ml-foundations{padding-top:40px;border-top:0}.ml-foundations .ml-stage{padding-top:32px}.ml-foundations .ml-stage>h3{margin:32px 0 24px}.ml-foundations .ml-stage>h3:first-child{margin-top:0}.ml-type-row{display:grid;grid-template-columns:190px minmax(0,1fr);gap:24px;align-items:center;padding:24px 0;border-bottom:1px solid var(--ml-line)}.ml-type-row p{overflow-wrap:anywhere;margin:0}.ml-type-row small,.ml-swatches small{display:block;font:400 12px/1.5 var(--core-font-text);color:var(--core-text-secondary);margin-top:6px;overflow-wrap:anywhere}.ml-elements-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin:40px 0}.ml-elements-grid .ml-fields{margin-top:24px}.ml-spec-note{font-size:var(--core-small);color:var(--core-text-secondary);margin-top:24px}.ml-swatches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}.ml-swatches strong{font-size:var(--core-small)}.ml-swatch{height:72px;border:1px solid var(--ml-line);margin-bottom:12px}.ml-radius-samples{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px}.ml-radius-samples>div>div{height:72px;background:var(--core-bg-surface);border:1px solid var(--product-cta);margin-bottom:12px}
 @media(max-width:800px){.ml-type-row{grid-template-columns:1fr;gap:12px}.ml-elements-grid{grid-template-columns:1fr}.ml-swatches,.ml-radius-samples{grid-template-columns:repeat(2,minmax(0,1fr))}}
 :root{--ml-panel:var(--core-bg-surface);--ml-soft:color-mix(in srgb,var(--product-accent) 12%,var(--core-bg-surface))}
 .ml-intro{padding-top:48px}.ml-intro h1{max-width:950px}.ml-intro-tags span{border-radius:0;border:0;border-left:2px solid var(--product-cta);padding-left:12px}
 .ml-stage{border:0;border-radius:0}.ml-family{padding-bottom:64px}.ml-family-head{padding:0 0 20px;border-bottom:1px solid var(--ml-line)}
 .ml-block{padding:72px 32px}.ml-section-head{margin-bottom:48px}.ml-section-head h2{max-width:780px}.ml-section-head p{font-size:var(--core-lead);line-height:var(--core-lead-lh);max-width:54ch}
-.ml-display{text-transform:uppercase}.ml-btn{border-radius:var(--core-radius-step-pill)}.ml-actions{margin-top:32px;gap:16px}.ml-card{border:0;padding:32px}.ml-card h3{font-family:var(--core-font-heading)}
+.ml-actions{margin-top:32px;gap:16px}
 .ml-tag{border:0;border-radius:0;padding:0;font-size:var(--core-small);letter-spacing:.025em}.ml-tag::before{border-radius:0}
-.ml-nav{background:transparent;padding:24px 0;border-bottom:1px solid var(--ml-line)}.ml-nav .ml-wordmark{height:40px!important}
 .ml-brand-art{min-height:440px;position:relative;display:grid;place-items:center;padding:48px 24px;isolation:isolate}.ml-brand-disc{width:min(82%,360px);aspect-ratio:1;border-radius:50%;display:grid;place-items:center;background:var(--core-glass-bg);box-shadow:var(--core-glass-glow)}.ml-brand-disc img{width:82%;height:82%;object-fit:contain}.ml-art-label{position:absolute;background:var(--core-bg-surface);padding:16px 24px;border-radius:var(--core-radius-step-pill);font-size:var(--core-small);line-height:1.4;max-width:90%}.ml-art-label-top{top:20px;left:0}.ml-art-label-bottom{bottom:12px;right:0}.ml-art-coordinate{position:absolute;right:0;top:72px;font-size:72px;line-height:1;color:var(--product-accent)}
-#header .ml-split{grid-template-columns:1.3fr 1fr;gap:24px}#header .ml-display{font-size:clamp(40px,6vw,96px)}#header .ml-hero-center .ml-display{font-size:var(--core-h1)}#header .ml-grid .ml-card{background:transparent;padding:24px 0;border-top:2px solid var(--product-cta);border-radius:0}#header .ml-grid .ml-glyph{display:none}
-#feature .ml-grid .ml-card{background:transparent;border-radius:0;border-top:1px solid var(--ml-line);padding:28px 0}#feature .ml-grid .ml-glyph{background:none;border-radius:0;color:var(--product-cta);justify-content:start}#feature .ml-grid{gap:32px}#feature .ml-grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
-#content .ml-scroll .ml-card{background:var(--core-bg-surface);min-height:280px;display:flex;flex-direction:column;justify-content:end}#content .ml-scroll .ml-glyph{display:none}#content .ml-scroll .ml-card h3{margin-top:0}.ml-demo-result{border:0;background:var(--core-bg-surface)}
-#integration .ml-card,#logo .ml-card{background:transparent;border:1px solid var(--ml-line)}#integration .ml-glyph,#logo .ml-glyph{background:none;border-radius:0;width:64px;height:64px}#integration .ml-glyph img,#logo .ml-glyph img{width:56px;height:56px}
-.ml-price-card{border-top:4px solid transparent}.ml-price-card.ml-featured{background:var(--core-bg-surface);border-color:var(--product-cta)}.ml-price-card .ml-tag{font-size:var(--core-caption)}
+#header .ml-grid .ml-glyph{display:none}
+#feature .ml-grid .ml-glyph,#feature .card-grid .ml-glyph{background:none;border-radius:0;color:var(--product-cta);justify-content:start}#feature .ml-grid{gap:32px}#feature .ml-grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
+#content .ml-scroll .card{min-height:280px;justify-content:flex-end}#content .ml-scroll .ml-glyph{display:none}.ml-demo-result{border:0;background:var(--core-bg-surface)}
+#integration .ml-glyph,#logo .ml-glyph{background:none;border-radius:0;width:64px;height:64px}#integration .ml-glyph img,#logo .ml-glyph img{width:56px;height:56px}
+.ml-price-card{border-top:4px solid transparent}.ml-price-card.ml-featured{border-color:var(--product-cta)}.ml-price-card .ml-tag{font-size:var(--core-caption)}
 .ml-avatar{background:var(--core-bg-page);border-radius:0;color:var(--core-text-secondary)}.ml-person{grid-template-columns:80px minmax(0,1fr)}.ml-team-tall .ml-avatar{min-height:180px}#team .ml-grid-4{grid-template-columns:repeat(2,minmax(0,1fr))}
-#testimonial .ml-card{background:transparent;border:0;border-top:2px solid var(--product-cta);border-radius:0;padding:28px 0}.ml-quote-mark{display:none}.ml-quote{font-size:var(--core-lead);font-family:var(--core-font-text);line-height:1.5}.ml-article-art{background:var(--core-bg-surface);border-radius:var(--core-radius-step-16);font-size:80px}#blog .ml-card{background:transparent;padding:0}
+.ml-quote-mark{display:none}.ml-article-art{background:var(--core-bg-surface);border-radius:var(--core-radius-step-16);font-size:80px}
 .ml-faq-grid details{background:transparent;border:0;border-bottom:1px solid var(--ml-line);border-radius:0;padding:24px 0}.ml-faq-grid{column-gap:40px}.ml-faq-grid summary{font-size:var(--core-lead);line-height:1.5}.ml-faq-grid details p{font-size:var(--core-body)}
-#contact .ml-card{background:var(--core-glass-bg);box-shadow:var(--core-glass-glow);padding:40px}.ml-form input:not([type="checkbox"]),.ml-form textarea{background:var(--core-bg-field);border:1px solid var(--core-border-field)}.ml-form .ml-consent{font-size:var(--core-small)}.ml-form-status{color:var(--core-text-primary)}
-#cta .ml-block{border-top:1px solid var(--ml-line);border-bottom:1px solid var(--ml-line);padding-block:88px}#cta .ml-card{background:transparent;padding:0}#cta .ml-glyph{display:none}#cta .ml-grid{gap:48px}#cta .ml-card .ml-btn{width:auto}
-.ml-footer-links{padding-top:24px}.ml-footer-bottom{padding-top:24px}.ml-map{background:var(--core-bg-surface);border:0}.ml-step>.ml-card{background:var(--core-bg-surface)}
-@media(max-width:1100px){.ml-block{padding:56px 24px}#header .ml-split{grid-template-columns:1fr}#header .ml-display{font-size:var(--core-display)}.ml-brand-art{max-width:500px;width:100%;margin:auto}.ml-person{grid-template-columns:1fr}}
-@media(max-width:800px){.ml-block{padding:44px 20px}.ml-nav{padding-inline:0}.ml-section-head{margin-bottom:32px}.ml-brand-art{min-height:380px}}
-@media(max-width:520px){.ml-block{padding:36px 4px}.ml-intro h1{font-size:var(--core-h1)}#header .ml-display{font-size:var(--core-display)}.ml-brand-art{min-height:300px;padding-inline:16px}.ml-art-label{padding:12px 16px;font-size:12px}.ml-art-coordinate{font-size:48px;top:64px}#feature .ml-grid-4,#team .ml-grid-4{grid-template-columns:1fr}.ml-card{padding:24px}.ml-person{grid-template-columns:72px minmax(0,1fr)}#contact .ml-card{padding:24px 18px}.ml-section-head p{font-size:var(--core-body)}#cta .ml-block{padding-block:48px}.ml-family{padding-bottom:40px}}
+.ml-form-status{color:var(--core-text-primary)}
+#cta .ml-block{border-top:1px solid var(--ml-line);border-bottom:1px solid var(--ml-line);padding-block:88px}#cta .ml-glyph{display:none}#cta .ml-grid{gap:48px}
+.ml-map{background:var(--core-bg-surface);border:0}
+@media(max-width:1100px){.ml-block{padding:56px 24px}.ml-stage>.site-header,.ml-stage>.hero,.ml-stage>.program,.ml-stage>.form-section,.ml-stage>.footer-corp{padding-inline:24px}.ml-brand-art{max-width:500px;width:100%;margin:auto}.ml-person{grid-template-columns:1fr}.ml-stage .card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:800px){.ml-block{padding:44px 20px}.ml-section-head{margin-bottom:32px}.ml-brand-art{min-height:380px}.ml-stage .card-grid{grid-template-columns:minmax(0,1fr)}}
+@media(max-width:520px){.ml-block{padding:36px 4px}.ml-stage>.site-header,.ml-stage>.hero,.ml-stage>.program,.ml-stage>.form-section,.ml-stage>.footer-corp{padding-inline:16px}.ml-intro h1{font-size:var(--core-h1)}.ml-brand-art{min-height:300px;padding-inline:16px}.ml-art-label{padding:12px 16px;font-size:12px}.ml-art-coordinate{font-size:48px;top:64px}#feature .ml-grid-4,#team .ml-grid-4{grid-template-columns:1fr}.ml-person{grid-template-columns:72px minmax(0,1fr)}.ml-section-head p{font-size:var(--core-body)}#cta .ml-block{padding-block:48px}.ml-family{padding-bottom:40px}}
