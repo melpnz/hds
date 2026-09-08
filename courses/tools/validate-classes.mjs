@@ -13,18 +13,55 @@
  *    не сработает — инвариант копируемости METHOD §6.1.
  *
  * 2. Отделённость витрины, METHOD §6.2. Обратное направление того же
- *    правила, которое до R0-06 не проверял никто: оболочка витрины обязана
- *    целиком лежать под своим префиксом, а `ui/` — не знать о ней ничего.
+ *    правила: оболочка витрины обязана целиком лежать под своим префиксом,
+ *    а `ui/` — не знать о ней ничего.
  *
- *      showcase/*.css   каждый класс в селекторе начинается с `doc-`
+ *      showcase/*.css   в каждом отдельном селекторе (по обе стороны любого
+ *                        комбинатора — потомок, `>`, `+`, `~` — и в любом
+ *                        составном classname.classname на одном элементе)
+ *                        каждый класс несёт `doc-`; тег, `:pseudo`,
+ *                        `[атрибут]`, `*` классом не считаются и это
+ *                        требование к ним не относится, но селектор без
+ *                        единого класса (`body`, `button, input, a`) —
+ *                        тоже протечка: упрекнуть некого, но и подтвердить
+ *                        нечем, кроме исключения `:root`
  *      ui/**\/*.css      ни одного класса `doc-*`, ни одного `--doc-*`
+ *                        (объявленного или использованного — в значении
+ *                        свойства, в `@property`, в параметрах любого
+ *                        at-rule вроде `@custom-media`)
  *
- *    Проверка нужна именно механическая. Образец
- *    `career/showcase/components.css` держит префикс только у переменных:
- *    100 селекторов там без префикса, среди них `.layout`, `.main`, `.nav`,
- *    `.callout`, `.hint`, `.legend`. Внимание автора этот инвариант не
- *    удержало ни разу, и вторая проверка стоит здесь, чтобы не удерживать
- *    его внимание и в Курсах.
+ * Механизм — настоящий CSS-парсер (`postcss`), а не ручной регексп/разбор
+ * скобок. Три независимых итерации ревью R0-06 нашли четыре обхода именно
+ * механизма самодельного разбора: инлайновый `<style>` не проверялся;
+ * составной селектор засчитывался по «хотя бы один» класс вместо «каждого»;
+ * белый список at-rules пропускал `@container`; CSS-экранирование
+ * (`\6c`, `\64` — hex/unicode-escape) обходило разбор в обе стороны. Ручной
+ * разбор скобок вдобавок структурно не может отличить `{`/`}`/`;` внутри
+ * строки (`[data-x="a{b}"]`, `@import url("a;b.css")`) от настоящих границ
+ * правила — это разбирает `postcss` по построению, а не как побочный
+ * эффект регулярного выражения. Списки классов внутри селектора разбирает
+ * `postcss-selector-parser` — он же снимает CSS-экранирование как часть
+ * своей обычной работы, без отдельного `UNESCAPE`.
+ *
+ * `root.walkRules()` у `postcss` рекурсивно обходит тело любого at-rule
+ * произвольной вложенности (`@media`, `@supports`, `@layer`, `@container`,
+ * `@scope`, `@starting-style` и любой будущий at-rule с таким же телом) —
+ * специального списка/исключения для рекурсии не нужно вовсе. Единственное
+ * настоящее исключение — правила внутри `@keyframes`: `postcss` создаёт для
+ * `0%`/`50%`/`from`/`to` такие же узлы Rule, но это не селекторы элементов
+ * и в них никогда не бывает классов; такие узлы пропускаются по признаку
+ * «есть предок at-rule с именем `keyframes`», а не по имени текущего
+ * at-rule. `@font-face`, `@page`, `@property` вообще не порождают узлов
+ * Rule (их тело — плоские объявления или, у `@page`, служебные селекторы
+ * вида `:first`/`@top-left`, которые `postcss` не считает Rule), поэтому
+ * им не нужно никакое отдельное исключение.
+ *
+ * Проверка нужна именно механическая. Образец
+ * `career/showcase/components.css` держит префикс только у переменных:
+ * 100 селекторов там без префикса, среди них `.layout`, `.main`, `.nav`,
+ * `.callout`, `.hint`, `.legend`. Внимание автора этот инвариант не
+ * удержало ни разу, и вторая проверка стоит здесь, чтобы не удерживать
+ * его внимание и в Курсах.
  *
  * Запуск:
  *   node tools/validate-classes.mjs                    # витрины пакета
@@ -35,11 +72,18 @@
  *
  * Перенесён из `career/tools/validate-classes.mjs` (read-only образец).
  * Отличия от образца: инвариант §6.2 проверяется, а не оставляется ревью;
- * имена классов берутся из селекторов, а не из всего текста CSS; базовая
- * линия известных пробелов необязательна.
+ * имена классов берутся из селекторов настоящим CSS-парсером, а не из
+ * всего текста регулярным выражением; базовая линия известных пробелов
+ * необязательна.
+ *
+ * Регрессионные пробы на все четыре обхода трёх итераций ревью R0-06 и на
+ * новые углы парсерного подхода — `tools/validate-classes.selftest.mjs`
+ * (`node tools/validate-classes.selftest.mjs`).
  */
 import fs from 'node:fs';
 import path from 'node:path';
+import postcss from 'postcss';
+import selectorParser from 'postcss-selector-parser';
 
 const args = process.argv.slice(2);
 const own = args.length > 0;
@@ -72,84 +116,104 @@ const uiCssFiles = walk('ui').filter(file => file.endsWith('.css'));
 const showcaseCssFiles = walk('showcase').filter(file => file.endsWith('.css'));
 const cssFiles = [...uiCssFiles, ...(own ? [] : showcaseCssFiles)];
 
-// Комментарии срезаются до всякого разбора. Иначе определением класса
-// становится любое имя, упомянутое в пояснении: `ui/courses.css` называет
-// в комментарии и `.doc-layout`, и `.nav`, и путь файла. Тот же приём и по
-// той же причине стоит в tools/validate-components.mjs.
-const withoutComments = css => css.replace(/\/\*[\s\S]*?\*\//g, ' ');
+// -------------------------------------------------------------------------
+// Разбор CSS настоящим парсером. `parseCss` не глотает ошибку молча и не
+// прерывает работу всего инструмента ради одного файла: сломанный CSS —
+// это находка (`parseErrors`, ниже), а не тихий пропуск проверки. Файл,
+// который не разобрался, дальше не участвует ни в одной из проверок этого
+// файла — по нему нельзя ни подтвердить, ни опровергнуть METHOD §6.1/§6.2,
+// и притворяться, что он «чист», нельзя.
+// -------------------------------------------------------------------------
+const parseErrors = [];
 
-// Селекторы, а не весь текст. Один проход снимает самые внутренние блоки
-// объявлений — вложенных фигурных скобок в них не бывает, — и остаётся
-// то, что стояло перед каждым блоком: селекторы и преамбулы @media.
-// Без этого шага `padding: 0 .5em` объявляло класс `5em`, а `font: 400
-// 12.5px/1.5` — класс `5px`: имена из значений свойств попадали в набор
-// определённых наравне с настоящими.
-const selectorText = css => withoutComments(css).replace(/\{[^{}]*\}/g, ' ');
+// Один и тот же CSS-блок (файл `ui/`, файл `showcase/`, инлайновый `<style>`
+// конкретной витрины) разбирается несколькими проверками подряд —
+// построение набора «класс объявлен где-то» и поиск протечек §6.2 читают
+// один и тот же текст. Кеш по подписи (`from`) разбирает каждый блок один
+// раз и не печатает одну и ту же ошибку разбора дважды.
+//
+// Подпись обязана быть уникальной на блок, а не на файл: файла с реальным
+// путём (`ui/tokens.css`, `showcase/components.css`) одна на файл — вызывается
+// один раз, коллизий нет. Но инлайновых `<style>` в одном HTML-файле может
+// быть несколько, и до review-4 R0-06 оба места ниже, что зовут `parseCss`
+// для инлайновых блоков, помечали их одинаковым ярлыком `${file} <style>`
+// независимо от того, какой это блок по счёту — второй и следующие блоки
+// получали закешированный результат первого вместо разбора своего содержимого,
+// и протечка в них (METHOD §6.2) не проверялась вовсе. Ярлык инлайнового
+// блока обязан включать его порядковый номер в файле (`parseCss` ключуется
+// строкой `from`, а не содержимым `css`, — см. ниже).
+const parseCache = new Map();
 
-// Имя класса не начинается с цифры — этим отсеиваются остатки чисел
-// из преамбул вида `@media (min-width: 37.5em)`.
-const SELECTOR = /\.((?:[\w-]|\\.)+)/g;
-const UNESCAPE = /\\(.)/g;
+function parseCss(css, from) {
+  const key = from ?? css;
+  if (parseCache.has(key)) return parseCache.get(key);
+  let result;
+  try {
+    result = postcss.parse(css, from ? { from } : undefined);
+  } catch (err) {
+    parseErrors.push(`${from ?? 'без имени'}: CSS не разобран настоящим парсером — ${err.message}`);
+    result = null;
+  }
+  parseCache.set(key, result);
+  return result;
+}
 
-function classNames(text) {
+// Узел Rule — потомок at-rule с именем keyframes (с любым вендорным
+// префиксом)? Единственное настоящее исключение из «каждый Rule — это
+// селектор элемента»: тело @keyframes порождает узлы Rule для `0%`/`50%`/
+// `from`/`to`, но это не селекторы, классов там не бывает и требование
+// doc-* к ним не относится. Проверяется по предку, а не по имени текущего
+// at-rule — так это исключение не может случайно накрыть селектор внутри
+// @container/@layer/@supports, вложенного куда угодно.
+function isInsideKeyframes(rule) {
+  let node = rule.parent;
+  while (node && node.type !== 'root') {
+    if (node.type === 'atrule' && /^(?:-[\w]+-)?keyframes$/i.test(node.name)) return true;
+    node = node.parent;
+  }
+  return false;
+}
+
+const sp = selectorParser();
+
+// Список селекторов (то, что стоит перед `{`, включая запятые верхнего
+// уровня) разбирается на отдельные простые селекторы, и для каждого —
+// список имён классов, которые встречаются в нём где угодно (по обе
+// стороны любого комбинатора, внутри составного classname.classname, внутри
+// аргумента функционального псевдокласса вроде :not()/::slotted()).
+// postcss-selector-parser снимает CSS-экранирование как часть обычного
+// разбора идентификатора — `\6c` и `\64` (hex/unicode-escape) декодируются
+// в реальное имя класса той же функцией, что разбирает `\.`/`\:`, а не
+// отдельным механизмом, который можно забыть обновить.
+function selectorParts(selectorList) {
+  let root;
+  try {
+    root = sp.astSync(selectorList);
+  } catch (err) {
+    return [{ selector: selectorList.trim(), classes: [], parseError: err.message }];
+  }
+  return root.nodes.map(selectorNode => {
+    const classes = [];
+    selectorNode.walkClasses(node => classes.push(node.value));
+    return { selector: selectorNode.toString().trim(), classes };
+  });
+}
+
+// Все имена классов, встречающиеся в селекторах правил файла — для набора
+// «класс объявлен где-то в CSS пакета» (METHOD §6.1). Узлы Rule внутри
+// @keyframes пропускаются: `0%`/`50%` никогда не несут классов, но это
+// не имеет значения для этого набора (пустой вклад в любом случае).
+function collectSelectorClasses(css, from) {
+  const root = parseCss(css, from);
   const names = new Set();
-  for (const match of text.matchAll(SELECTOR)) {
-    const name = match[1].replace(UNESCAPE, '$1');
-    if (!/^\d/.test(name)) names.add(name);
-  }
+  if (!root) return names;
+  root.walkRules(rule => {
+    if (isInsideKeyframes(rule)) return;
+    for (const part of selectorParts(rule.selector)) {
+      for (const name of part.classes) names.add(name);
+    }
+  });
   return names;
-}
-
-// -------------------------------------------------------------------------
-// Разбор правил CSS в пары (список селекторов, тело объявлений), с рекурсией
-// по @media/@supports/@layer. Нужен там, где недостаточно знать, какие имена
-// классов встретились где-то в файле (`classNames`/`selectorText` выше), а
-// нужно проверить каждый селектор в отдельности — METHOD §6.2 ниже.
-// -------------------------------------------------------------------------
-function forEachRule(css, visit) {
-  let i = 0;
-  while (i < css.length) {
-    const open = css.indexOf('{', i);
-    if (open === -1) break;
-    const preamble = css.slice(i, open);
-    let depth = 1;
-    let j = open + 1;
-    while (j < css.length && depth > 0) {
-      if (css[j] === '{') depth++;
-      else if (css[j] === '}') depth--;
-      j++;
-    }
-    const body = css.slice(open + 1, j - 1);
-    const atRule = preamble.trim().match(/^@([\w-]+)/);
-    if (atRule && ['media', 'supports', 'layer'].includes(atRule[1].toLowerCase())) {
-      // У этих @-правил внутри лежат обычные правила с обычными селекторами —
-      // разбираем тело рекурсивно. Остальные @-правила (@font-face,
-      // @keyframes, @page…) селекторов в нашем смысле не несут — пропускаем.
-      forEachRule(body, visit);
-    } else if (!atRule) {
-      visit(preamble, body);
-    }
-    i = j;
-  }
-}
-
-// Разбивает список селекторов по запятым верхнего уровня — то есть не внутри
-// () или []: `:not(.a, .b)` и `[data-x="a,b"]` остаются одним селектором.
-function splitSelectorList(text) {
-  const parts = [];
-  let depth = 0;
-  let start = 0;
-  for (let k = 0; k < text.length; k++) {
-    const ch = text[k];
-    if (ch === '(' || ch === '[') depth++;
-    else if (ch === ')' || ch === ']') depth--;
-    else if (ch === ',' && depth === 0) {
-      parts.push(text.slice(start, k));
-      start = k + 1;
-    }
-  }
-  parts.push(text.slice(start));
-  return parts.map(part => part.trim()).filter(Boolean);
 }
 
 // Селекторы, которым не нужен класс doc-: `:root` несёт только переменные
@@ -157,20 +221,35 @@ function splitSelectorList(text) {
 const SELECTOR_EXEMPT_FROM_PREFIX = new Set([':root']);
 
 // Каждый отдельный селектор оболочки витрины обязан содержать класс doc-* —
-// а не файл в целом. Раньше проверка смотрела на набор имён классов файла
-// целиком (`classNames(selectorText(...))`), и от неё ускользали ровно два
-// случая: селектор вовсе без класса (`body`, `button, input, a`) — классов
-// там нет, значит и упрекнуть нечем, — и класс, который есть, но объявлен
-// не в showcase/*.css, а в инлайновом `<style>` витрины (эта функция такие
-// файлы не читала). Ревью R0-06, находка 1 (обходы а/б/в).
+// а не файл в целом и не «хотя бы один класс из тех, что нашлись». Критерий:
+// «классы в этом селекторе есть, и каждый из них несёт doc-» — селектор без
+// единого класса (`button, input, a`) значит «упрекнуть некого, но и
+// подтвердить нечем», и тоже считается протечкой (кроме :root).
 function selectorLeaks(css, label) {
   const found = [];
-  forEachRule(withoutComments(css), (preamble) => {
-    for (const selector of splitSelectorList(preamble)) {
-      if (SELECTOR_EXEMPT_FROM_PREFIX.has(selector)) continue;
-      const hasDocClass = [...classNames(selector)].some(name => name.startsWith('doc-'));
+  const root = parseCss(css, label);
+  if (!root) return found;
+  root.walkRules(rule => {
+    if (isInsideKeyframes(rule)) return;
+    for (const part of selectorParts(rule.selector)) {
+      if (part.parseError) {
+        found.push(`${label}: селектор не разобран (${part.parseError}) — ${part.selector}`);
+        continue;
+      }
+      if (SELECTOR_EXEMPT_FROM_PREFIX.has(part.selector)) continue;
+      const hasDocClass = part.classes.length > 0 && part.classes.every(name => name.startsWith('doc-'));
       if (!hasDocClass) {
-        found.push(`${label}: селектор без класса витрины doc- — ${selector}`);
+        // Селектор с CSS-экранированием (\6c, \64, \.) печатается как в
+        // исходнике, но рядом — уже раскрытые имена классов: то, что
+        // сохраняется в исходнике под экранированием, не должно требовать
+        // от читателя отчёта самому раскрывать hex/unicode-escape в уме,
+        // чтобы увидеть, какой класс реально не несёт doc- (review-3,
+        // находка 1 — обход держался именно на том, что это раскрытие
+        // никто не делал).
+        const decoded = part.selector.includes('\\') && part.classes.length
+          ? ` (классы после разбора: ${part.classes.join(', ')})`
+          : '';
+        found.push(`${label}: селектор без класса витрины doc- — ${part.selector}${decoded}`);
       }
     }
   });
@@ -185,7 +264,7 @@ const known = own || !fs.existsSync(baselineFile) ? {} : JSON.parse(fs.readFileS
 
 const defined = new Set();
 for (const file of cssFiles) {
-  for (const name of classNames(selectorText(fs.readFileSync(file, 'utf8')))) defined.add(name);
+  for (const name of collectSelectorClasses(fs.readFileSync(file, 'utf8'), file)) defined.add(name);
 }
 
 // Классы, использованные в разметке.
@@ -194,8 +273,14 @@ for (const file of htmlFiles) {
   const html = fs.readFileSync(file, 'utf8');
   // <style> внутри разметки — тоже определение: так, например, объявляют
   // анимацию внутри встроенного SVG.
+  //
+  // Ярлык несёт порядковый номер блока (`#1`, `#2`, …): двух и более <style>
+  // в одном файле с одинаковым ярлыком `parseCss` закешировал бы под одним
+  // ключом и разобрал только первый (review-4, находка 1).
+  let styleIndex = 0;
   for (const style of html.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)) {
-    for (const name of classNames(selectorText(style[1]))) defined.add(name);
+    styleIndex += 1;
+    for (const name of collectSelectorClasses(style[1], `${file} <style>#${styleIndex}`)) defined.add(name);
   }
   // Значение атрибута class бывает в двойных кавычках, в одинарных и вовсе
   // без кавычек — валидный HTML допускает все три формы. Регулярка на одни
@@ -226,27 +311,51 @@ for (const file of showcaseCssFiles) {
 // Инлайновый <style> внутри самой витрины — та же оболочка, только не в
 // showcase/*.css. Проверяется по реальным файлам витрины всегда, независимо
 // от `own`: своя разметка (аргументом) к этому инварианту отношения не
-// имеет, он про CSS пакета. До этой правки такой <style> участвовал только
-// в проверке «класс без правила» (объявление) и не участвовал в проверке
-// префикса — класс оболочки, объявленный только там, проходил §6.2 кодом 0.
+// имеет, он про CSS пакета.
 for (const file of showcaseFiles.filter(f => fs.existsSync(f))) {
   const html = fs.readFileSync(file, 'utf8');
+  // Тот же порядковый номер блока, что и выше в сборе `defined` — обе
+  // проверки должны видеть каждый инлайновый <style> как отдельный блок,
+  // а не разделять один и тот же кеш-ярлык на несколько разных блоков.
+  let styleIndex = 0;
   for (const style of html.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)) {
-    leaks.push(...selectorLeaks(style[1], `${file} <style>`));
+    styleIndex += 1;
+    leaks.push(...selectorLeaks(style[1], `${file} <style>#${styleIndex}`));
   }
 }
 
+// ui/**/*.css — ни одного класса doc-*, ни одной переменной --doc-*, ни
+// объявленной, ни использованной (в значении свойства через var(), в имени
+// @property, в параметрах любого другого at-rule вроде @custom-media).
 for (const file of uiCssFiles) {
   const raw = fs.readFileSync(file, 'utf8');
-  const css = withoutComments(raw);
-  for (const name of classNames(css.replace(/\{[^{}]*\}/g, ' '))) {
-    if (name.startsWith('doc-')) {
-      leaks.push(`${file}: класс оболочки витрины в продуктовом слое — .${name}`);
+  const root = parseCss(raw, file);
+  if (!root) continue;
+
+  root.walkRules(rule => {
+    for (const part of selectorParts(rule.selector)) {
+      for (const name of part.classes) {
+        if (name.startsWith('doc-')) {
+          leaks.push(`${file}: класс оболочки витрины в продуктовом слое — .${name}`);
+        }
+      }
     }
-  }
-  for (const match of css.matchAll(/--doc-[\w-]*/g)) {
-    leaks.push(`${file}: переменная оболочки витрины в продуктовом слое — ${match[0]}`);
-  }
+  });
+
+  const DOC_VARIABLE = /--doc-[\w-]*/gi;
+  root.walkDecls(decl => {
+    if (/^--doc-/i.test(decl.prop)) {
+      leaks.push(`${file}: переменная оболочки витрины в продуктовом слое — ${decl.prop}`);
+    }
+    for (const match of decl.value.matchAll(DOC_VARIABLE)) {
+      leaks.push(`${file}: переменная оболочки витрины в продуктовом слое — ${match[0]}`);
+    }
+  });
+  root.walkAtRules(atRule => {
+    for (const match of (atRule.params || '').matchAll(DOC_VARIABLE)) {
+      leaks.push(`${file}: переменная оболочки витрины в продуктовом слое — ${match[0]}`);
+    }
+  });
 }
 
 const undefinedClasses = [...used].filter(([cls]) => !defined.has(cls));
@@ -273,6 +382,15 @@ if (baseline.length) {
 }
 
 let failed = false;
+
+if (parseErrors.length) {
+  console.error(`CSS не разобран настоящим парсером (${parseErrors.length}):\n`);
+  for (const err of parseErrors.sort()) console.error(`  ${err}`);
+  console.error('\nЭто настоящий CSS-парсер (postcss), а не регэксп по тексту: файл, который');
+  console.error('он не разбирает, дальше не проверяется вовсе — по нему нельзя ни подтвердить,');
+  console.error('ни опровергнуть METHOD §6.1/§6.2, притворяться, что он «чист», нельзя.\n');
+  failed = true;
+}
 
 if (leaks.length) {
   console.error(`Оболочка витрины и продуктовый слой смешались (${leaks.length}) — METHOD §6.2:\n`);
