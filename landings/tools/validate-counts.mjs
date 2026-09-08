@@ -49,6 +49,26 @@ try {
 }
 
 const roadmap = exists('ROADMAP.md') ? read('ROADMAP.md') : '';
+
+// Разбор состава секций: 18 узлов Figma, разложенных на члены стопки.
+// Числа берутся из самого разбора, а не из строки в статье: иначе сторож
+// сверял бы прозу с прозой. Файла может не быть — тогда правила о нём
+// пропускаются, как и все прочие правила о ненаписанных файлах.
+const sectionsFile = '.pipeline/section-map/sections.json';
+let sections = null;
+if (exists(sectionsFile)) {
+  try {
+    sections = Object.values(JSON.parse(read(sectionsFile)));
+  } catch (error) {
+    console.error(`${sectionsFile} не разбирается как JSON: ${error.message}`);
+    process.exit(1);
+  }
+}
+const stacks = sections ? sections.filter((page) => page.stack) : null;
+const stackMembers = stacks ? stacks.reduce((sum, page) => sum + page.members, 0) : null;
+const typedMembers = stacks
+  ? stacks.reduce((sum, page) => sum + page.sections.filter((s) => s.type !== '?').length, 0)
+  : null;
 const countMatches = (text, re) => (text.match(re) || []).length;
 
 // Покрытие блока — то же число, что дробь в тексте, и берётся оно из длины
@@ -107,6 +127,10 @@ const actual = {
   renderCoveredPx: [renderCoveredPx, `числитель renderCovered у ${partialNode?.id}`],
   renderNodeHeight: [partialNode?.height ?? null, `высота узла ${partialNode?.id}`],
   themePairs: [themePairs, 'проекты, у которых среди nodes есть и тёмный, и светлый узел'],
+  stacks: [stacks?.length ?? null, 'страницы со stack: true в sections.json'],
+  stackMembers: [stackMembers, 'сумма members по стопкам в sections.json'],
+  typedMembers: [typedMembers, 'члены стопок с типом, отличным от «?»'],
+  untypedMembers: [stackMembers === null ? null : stackMembers - typedMembers, 'члены стопок с типом «?»'],
 };
 
 // Покрытия блоков — дробью, числитель из списка узлов (И-7). Ключ заводится
@@ -237,6 +261,39 @@ const claims = [
   ['CHANGELOG.md', /— \d+ записи: (\d+) типов блоков/, 'blockTypes'],
   ['CHANGELOG.md', /Роадмап на (\d+) шагов/, 'roadmapSteps'],
   ['CHANGELOG.md', /на (\d+) % \(12 000 из 14 462 px\)/, 'renderPercent'],
+
+  // --- Покрытие формы и бегущей строки. Разбор состава секций
+  // (evidence/section-map.md) поменял оба: форма 11 → 14, бегущая строка
+  // осталась 4, но состав другой. Числа стояли в семи местах прозой,
+  // и сторожилось из них два — строка R2-06 в роадмапе и строка брифа.
+  // Подмена 14 → 11 в GUIDE, в статьях блоков и в самой таблице разбора
+  // проходила зелёной.
+  ['GUIDE.md', /\| Форма с полем ввода \| (\d+)\/18 \|/, 'cover:form'],
+  ['GUIDE.md', /\*\*Форма — (\d+)\/18\.\*\*/, 'cover:form'],
+  ['GUIDE.md', /\| \*\*Бегущая строка\*\* \| (\d+)\/18 \|/, 'cover:marquee'],
+  ['ROADMAP.md', /\| R2-06 \| \*\*Форма\*\* — (\d+) узлов/, 'cover:form'],
+  ['BRIEF.md', /форма с полем ввода — \*\*(\d+)\/18\*\*/, 'cover:form'],
+  ['tools/README.md', /`(\d+)\/18` форма/, 'cover:form'],
+  ['docs/guide/composition.md', /форма — (\d+)\/18\.\*\*/, 'cover:form'],
+  ['docs/guide/composition.md', /\+ 4 = \*\*(\d+)\/18\*\*/, 'cover:form'],
+  ['docs/guide/composition.md', /\+ 1 = \*\*(\d+)\/18\*\*/, 'cover:marquee'],
+  ['evidence/section-map.md', /### Форма: \d+\/18 → \*\*(\d+)\/18\*\*/, 'cover:form'],
+  ['evidence/section-map.md', /\+ 4 = \*\*(\d+)\/18\*\*/, 'cover:form'],
+  ['evidence/section-map.md', /### Бегущая строка: \d+\/18 → \*\*(\d+)\/18\*\*/, 'cover:marquee'],
+  ['evidence/section-map.md', /\+ 1 = \*\*(\d+)\/18\*\*/, 'cover:marquee'],
+  ['blocks/form-field.md', /уточнено до (\d+)\/18/, 'cover:form'],
+  ['blocks/form-section.md', /уточнено до (\d+)\/18/, 'cover:form'],
+  ['blocks/marquee.md', /\+ 1 = \*\*(\d+)\/18\*\*/, 'cover:marquee'],
+
+  // --- Разбор состава секций: сколько узлов, стопок, членов и типов.
+  // Числа стоят и в статье композиции, и в таблице разбора, и правятся
+  // руками в обоих местах.
+  ['docs/guide/composition.md', /\| — из них построены стопкой секций \| \*\*(\d+)\/18\*\*/, 'stacks'],
+  ['docs/guide/composition.md', /\| Тип члена стопки установлен \| \*\*(\d+)\/168\*\* членов/, 'typedMembers'],
+  ['evidence/section-map.md', /\| Из них построены стопкой секций \| \*\*(\d+)\/18\*\* \|/, 'stacks'],
+  ['evidence/section-map.md', /\| Членов стопки всего \| \*\*(\d+)\*\* \|/, 'stackMembers'],
+  ['evidence/section-map.md', /\| Тип установлен \| \*\*(\d+)\/168\*\* \|/, 'typedMembers'],
+  ['evidence/section-map.md', /\| Тип не определён \| \*\*(\d+)\/168\*\* \|/, 'untypedMembers'],
 
   // --- README.md, продолжение: 83 % и пары тем
   ['README.md', /`14871:1319` — на \*\*(\d+) %\*\*/, 'renderPercent'],
