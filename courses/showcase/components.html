@@ -1,0 +1,366 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Хабр Курсы — витрина компонентов</title>
+<meta name="description" content="Живая витрина пакета знаний «Хабр Курсы»: компоненты настоящей вёрсткой на настоящем CSS продукта. Каркас заведён шагом R0-06, компоненты приходят волнами R2–R5.">
+<!-- Пустая иконка вкладки. Без неё браузер сам просит /favicon.ico, получает
+     404 и кладёт ошибку в консоль — при том, что страница цела. Консоль
+     витрины должна быть чистой: на неё смотрит smoke-тест (строка X-01). -->
+<link rel="icon" href="data:,">
+<!--
+  Порядок подключения обязателен и проверяется ревью.
+
+  ../ui/courses.css   продуктовый слой. Одна строка — по инварианту
+                      METHOD §6.1 её достаточно, чтобы разметка из любой
+                      спецификации выглядела правильно на пустой странице.
+  components.css      документационная оболочка. Только doc-* и --doc-*,
+                      в ui/ не протекает (METHOD §6.2).
+
+  Оболочка идёт второй потому, что перекрывает базу документа продукта
+  на своей стороне страницы. Обратно продукт получает своё внутри
+  .doc-stage — см. комментарий к .doc-stage в components.css.
+-->
+<link rel="stylesheet" href="../ui/courses.css">
+<link rel="stylesheet" href="components.css">
+</head>
+<body class="doc-body">
+
+<a class="doc-skip" href="#doc-main">К содержанию</a>
+
+<div class="doc-layout">
+
+<nav class="doc-nav" aria-label="Разделы витрины">
+  <p class="doc-nav__brand">Хабр Курсы</p>
+  <p class="doc-nav__title">Витрина компонентов</p>
+  <p class="doc-nav__state">каркас R0-06 · компонентов пока нет</p>
+
+  <ul class="doc-nav__list">
+    <li><a class="doc-nav__link doc-nav__link--top" href="#doc-about">О витрине</a></li>
+    <li><a class="doc-nav__link doc-nav__link--top" href="#doc-legend">Условные обозначения</a></li>
+    <li><a class="doc-nav__link doc-nav__link--top" href="#doc-form">Форма секции компонента</a></li>
+    <li>
+      <a class="doc-nav__link doc-nav__link--top" href="#doc-components">Компоненты</a>
+      <ul class="doc-nav__list doc-nav__list--sub">
+        <li><a class="doc-nav__link" href="#doc-cat-data-display">data-display</a></li>
+        <li><a class="doc-nav__link" href="#doc-cat-actions">actions</a></li>
+        <li><a class="doc-nav__link" href="#doc-cat-forms">forms</a></li>
+        <li><a class="doc-nav__link" href="#doc-cat-navigation">navigation</a></li>
+        <li><a class="doc-nav__link" href="#doc-cat-collections">collections</a></li>
+        <li><a class="doc-nav__link" href="#doc-cat-layout">layout</a></li>
+        <li><a class="doc-nav__link" href="#doc-cat-feedback">feedback</a></li>
+        <li><a class="doc-nav__link" href="#doc-cat-overlays">overlays</a></li>
+        <li><a class="doc-nav__link" href="#doc-cat-frame-modules">frame-modules</a></li>
+        <li><a class="doc-nav__link" href="#doc-cat-entities">entities</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <p class="doc-nav__foot">
+    Реестр — <a href="../components/INDEX.md">components/INDEX.md</a>
+    и <a href="../components/manifest.json">manifest.json</a>.
+    Роадмап — <a href="../ROADMAP.md">ROADMAP.md</a>.
+  </p>
+</nav>
+
+<main class="doc-main" id="doc-main">
+
+<header class="doc-head">
+  <h1>Витрина компонентов Хабр Курсов</h1>
+  <p>
+    Каждый компонент пакета показан здесь настоящей вёрсткой на настоящем CSS
+    продукта — той же разметкой, что стоит в спецификации, и тем же
+    <code>ui/courses.css</code>, который подключает у себя читатель.
+    Витрина не рисует компоненты и не подправляет их: она их показывает.
+  </p>
+  <p>
+    Сегодня она пустая. Шаг R0-06 заводит оболочку, места под категории
+    и форму секции; сами компоненты приходят волнами R2–R5.
+  </p>
+</header>
+
+<!-- ===================================================================== -->
+<section class="doc-section" id="doc-about">
+  <div class="doc-section__head">
+    <span class="doc-section__num">1</span>
+    <h2>О витрине</h2>
+    <p>Что здесь показывают, чем это отличается от спецификации и что проверяется машиной.</p>
+  </div>
+
+  <p class="doc-text">
+    Витрина — второй потребитель реестра после спецификаций. У каждой записи
+    <code>components/manifest.json</code> есть якорь <code>c-&lt;id&gt;</code>,
+    и по нему находится секция на этой странице: <code>c-button</code>,
+    <code>c-course-card</code>. Соглашение записано в самом реестре, в поле
+    <code>conventions.showcaseAnchor</code>, и сверяется командой
+    <code>node tools/validate-components.mjs</code>.
+  </p>
+
+  <div class="doc-callout">
+    <h3>Оболочка отделена от продукта</h3>
+    <p>
+      Всё, что относится к документации — раскладка страницы, боковая навигация,
+      карточки образцов, подписи, бейджи источников, — живёт в
+      <code>showcase/components.css</code> под префиксом <code>doc-</code>
+      у классов и <code>--doc-</code> у переменных. В <code>ui/</code> оболочка
+      не протекает: там нет ни одного селектора <code>.doc-*</code> и ни одного
+      объявления <code>--doc-*</code>.
+    </p>
+    <p>
+      Это инвариант METHOD §6.2, и он проверяется механически:
+      <code>node tools/validate-classes.mjs</code>. Обратная сторона того же
+      правила — компонент не имеет права опираться на классы витрины: если его
+      класс определён только в <code>showcase/*.css</code>, на пустой странице
+      с одним <code>ui/courses.css</code> он не сработает.
+    </p>
+  </div>
+
+  <div class="doc-callout doc-callout--warn">
+    <h3>Чего эта витрина сегодня не проверяет</h3>
+    <p>
+      Копируемость (METHOD §6.1) проверяется на разметке спецификаций.
+      Спецификаций в пакете ноль, <code>ui/utilities.css</code> с утилитами
+      продукта заводит шаг R0-04, а <code>ui/layout.css</code> пуст до того же
+      шага. Пока это так, зелёный <code>validate-classes</code> означает
+      «в витрине нет классов без правила», а не «разметка пакета копируется».
+    </p>
+    <p>
+      Раскладку витрина несёт свою, в <code>showcase/components.css</code>,
+      и от <code>ui/layout.css</code> не зависит — иначе оболочка ждала бы
+      R0-04, а компоненты некуда было бы класть.
+    </p>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section class="doc-section" id="doc-legend">
+  <div class="doc-section__head">
+    <span class="doc-section__num">2</span>
+    <h2>Условные обозначения</h2>
+    <p>Два ряда меток: откуда снят компонент и в каком он состоянии.</p>
+  </div>
+
+  <p class="doc-text">
+    Источник — значение поля <code>sourceScope</code> из реестра. Метка стоит
+    в заголовке карточки образца и отвечает на первый вопрос читателя:
+    видел ли это кто-нибудь в живом продукте.
+  </p>
+
+  <ul class="doc-legend">
+    <li><span class="doc-src doc-src--production" title="production">П</span> снято с продакшена</li>
+    <li><span class="doc-src doc-src--storybook" title="storybook-only">S</span> есть только в Storybook</li>
+    <li><span class="doc-src doc-src--figma" title="figma-only">F</span> есть только в макете Figma</li>
+  </ul>
+
+  <p class="doc-text">
+    Состояние — значение поля <code>status</code>. <code>complete</code> ставится
+    только тогда, когда покрыты все обязательные состояния записи; иначе
+    <code>partial</code> с перечислением непокрытого.
+  </p>
+
+  <ul class="doc-legend">
+    <li><span class="doc-tag doc-tag--complete">complete</span> обязательные состояния покрыты</li>
+    <li><span class="doc-tag doc-tag--partial">partial</span> покрыты не все, непокрытое названо</li>
+    <li><span class="doc-tag doc-tag--planned">planned</span> вёрстка не начата</li>
+    <li><span class="doc-tag doc-tag--normative">норматив</span> дописано пакетом, в продукте не снято (METHOD §4)</li>
+  </ul>
+</section>
+
+<!-- ===================================================================== -->
+<section class="doc-section" id="doc-form">
+  <div class="doc-section__head">
+    <span class="doc-section__num">3</span>
+    <h2>Форма секции компонента</h2>
+    <p>Одна секция на компонент, якорь <code>c-&lt;id&gt;</code>. Ниже — та же форма живьём и её исходник.</p>
+  </div>
+
+  <p class="doc-text">
+    Секция состоит из карточек образцов. Карточка — это заголовок с именем
+    и метками, сцена с настоящей разметкой компонента, ряд измерений и
+    примечания. Сцена возвращает внутри себя базу документа продукта, поэтому
+    компонент в ней выглядит так же, как на странице Курсов.
+  </p>
+
+  <div class="doc-specimen">
+    <div class="doc-specimen__head">
+      <h3>Имя варианта</h3>
+      <code>.crs-&lt;id&gt;</code>
+      <span class="doc-specimen__spacer"></span>
+      <span class="doc-src-group">
+        <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+      </span>
+      <span class="doc-tag doc-tag--planned">planned</span>
+    </div>
+    <div class="doc-stage doc-stage--rows">
+      <div class="doc-variant">
+        <span class="doc-variant__label">подпись варианта — размер, состояние, ширина</span>
+        <div class="doc-variant__row">
+          <div class="doc-slot">сюда встаёт разметка компонента из спецификации</div>
+        </div>
+      </div>
+    </div>
+    <dl class="doc-spec">
+      <div><dt>высота</dt><dd>—</dd></div>
+      <div><dt>радиус</dt><dd>—</dd></div>
+      <div><dt>кегль</dt><dd>—</dd></div>
+    </dl>
+    <p class="doc-note">
+      <strong>Примечание.</strong> Строка измерений и примечание заполняются
+      снятыми значениями: <code>computed.json</code>, правило сборки, узел Figma.
+      Пустых прочерков в готовой секции не остаётся — раздел, которому нечем
+      подтвердиться, не пишется.
+    </p>
+  </div>
+
+  <p class="doc-text">Исходник для копирования:</p>
+
+  <pre class="doc-code">&lt;section class="doc-section" id="c-&lt;id&gt;"&gt;
+  &lt;div class="doc-section__head"&gt;
+    &lt;h4&gt;CanonicalName&lt;/h4&gt;
+    &lt;p&gt;Одна строка о роли компонента в интерфейсе.&lt;/p&gt;
+  &lt;/div&gt;
+
+  &lt;div class="doc-specimen"&gt;
+    &lt;div class="doc-specimen__head"&gt;
+      &lt;h5&gt;Имя варианта&lt;/h5&gt;
+      &lt;code&gt;.crs-&lt;id&gt;&lt;/code&gt;
+      &lt;span class="doc-specimen__spacer"&gt;&lt;/span&gt;
+      &lt;span class="doc-src-group"&gt;
+        &lt;span class="doc-src doc-src--production" title="production" aria-label="production"&gt;П&lt;/span&gt;
+      &lt;/span&gt;
+      &lt;span class="doc-tag doc-tag--complete"&gt;complete&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="doc-stage doc-stage--grid"&gt;
+      &lt;div class="doc-variant"&gt;
+        &lt;span class="doc-variant__label"&gt;default&lt;/span&gt;
+        &lt;div class="doc-variant__row"&gt;
+          &lt;!-- разметка компонента, слово в слово как в спецификации --&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;dl class="doc-spec"&gt;
+      &lt;div&gt;&lt;dt&gt;высота&lt;/dt&gt;&lt;dd&gt;40&lt;/dd&gt;&lt;/div&gt;
+    &lt;/dl&gt;
+    &lt;p class="doc-note"&gt;Что здесь важно знать читателю.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/section&gt;</pre>
+
+  <div class="doc-callout">
+    <h3>Что делает шаг, который кладёт сюда компонент</h3>
+    <p>
+      Секция ставится в свою категорию ниже, вместо заглушки «пока пусто».
+      В реестре у записи проставляются <code>showcaseAnchor: "c-&lt;id&gt;"</code>
+      и <code>specPath</code>, а статус меняется с <code>planned</code>.
+      Пока статус <code>planned</code>, реестр требует, чтобы оба поля были
+      <code>null</code>: якорь появляется вместе с секцией, а не раньше.
+    </p>
+  </div>
+</section>
+
+<!-- ===================================================================== -->
+<section class="doc-section" id="doc-components">
+  <div class="doc-section__head">
+    <span class="doc-section__num">4</span>
+    <h2>Компоненты</h2>
+    <p>Десять категорий METHOD §5 в том порядке, в каком их подключает <code>ui/courses.css</code>. Состав и шаги — в <code>components/INDEX.md</code>.</p>
+  </div>
+
+  <section class="doc-category" id="doc-cat-data-display">
+    <div class="doc-category__head">
+      <h3>Показ данных</h3>
+      <code>data-display</code>
+      <p>Иконки, аватары, логотипы, чипы, бейджи, текстовый блок.</p>
+    </div>
+    <p class="doc-empty">Пока пусто. Секции ставит волна R2.</p>
+  </section>
+
+  <section class="doc-category" id="doc-cat-actions">
+    <div class="doc-category__head">
+      <h3>Действия</h3>
+      <code>actions</code>
+      <p>Кнопки — текстовые и иконочные.</p>
+    </div>
+    <p class="doc-empty">Пока пусто. Секции ставит волна R3.</p>
+  </section>
+
+  <section class="doc-category" id="doc-cat-forms">
+    <div class="doc-category__head">
+      <h3>Формы</h3>
+      <code>forms</code>
+      <p>Поля, списки, флажки, переключатели, фильтры.</p>
+    </div>
+    <p class="doc-empty">Пока пусто. Секции ставят волны R3 и R4.</p>
+  </section>
+
+  <section class="doc-category" id="doc-cat-navigation">
+    <div class="doc-category__head">
+      <h3>Навигация</h3>
+      <code>navigation</code>
+      <p>Ссылки, вкладки, хлебные крошки, пагинация, панель фильтров.</p>
+    </div>
+    <p class="doc-empty">Пока пусто. Секции ставят волны R3 и R4.</p>
+  </section>
+
+  <section class="doc-category" id="doc-cat-collections">
+    <div class="doc-category__head">
+      <h3>Наборы</h3>
+      <code>collections</code>
+      <p>Стопки аватаров, карусели, сетки ссылок, таблицы.</p>
+    </div>
+    <p class="doc-empty">Пока пусто. Секции ставят волны R2 и R4.</p>
+  </section>
+
+  <section class="doc-category" id="doc-cat-layout">
+    <div class="doc-category__head">
+      <h3>Раскладка внутри страницы</h3>
+      <code>layout</code>
+      <p>Секция, сетка карточек, рекламное место. Оболочка страницы — не здесь, а в <code>ui/layout.css</code>.</p>
+    </div>
+    <p class="doc-empty">Пока пусто. Секции ставит волна R4.</p>
+  </section>
+
+  <section class="doc-category" id="doc-cat-feedback">
+    <div class="doc-category__head">
+      <h3>Обратная связь</h3>
+      <code>feedback</code>
+      <p>Сообщения о состоянии — пустой результат и подобное.</p>
+    </div>
+    <p class="doc-empty">Пока пусто. Секции ставит волна R4.</p>
+  </section>
+
+  <section class="doc-category" id="doc-cat-overlays">
+    <div class="doc-category__head">
+      <h3>Поверх страницы</h3>
+      <code>overlays</code>
+      <p>Выпадающие меню, модальные окна, каталог.</p>
+    </div>
+    <p class="doc-empty">Пока пусто. Секции ставит волна R4.</p>
+  </section>
+
+  <section class="doc-category" id="doc-cat-frame-modules">
+    <div class="doc-category__head">
+      <h3>Оболочка страницы</h3>
+      <code>frame-modules</code>
+      <p>Шапка, футер, шапка раздела.</p>
+    </div>
+    <p class="doc-empty">Пока пусто. Секции ставит волна R4.</p>
+  </section>
+
+  <section class="doc-category" id="doc-cat-entities">
+    <div class="doc-category__head">
+      <h3>Сущности продукта</h3>
+      <code>entities</code>
+      <p>Карточки курса, школы, промокода, отзыва, автора и заголовки сущностей.</p>
+    </div>
+    <p class="doc-empty">Пока пусто. Секции ставит волна R5.</p>
+  </section>
+
+</section>
+
+</main>
+
+</div>
+
+</body>
+</html>

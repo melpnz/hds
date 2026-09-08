@@ -32,6 +32,18 @@ if (!Array.isArray(manifest.components)) {
 }
 const showcaseExists = fs.existsSync(showcasePath);
 const showcase = showcaseExists ? fs.readFileSync(showcasePath, "utf8") : "";
+// Разметка для поиска якорей: комментарии, <pre> и <code> вырезаны. Без этого
+// строка внутри примера кода для копирования (`<pre>…id="c-badge"…</pre>`)
+// удовлетворяла бы проверке якоря наравне с настоящим узлом — ревью R0-06,
+// находка «дыра 1»: подставленный якорь без живой секции проходил зелёным.
+// Сами `<pre>`/`<code>` в разметке экранируют `<` и `>`, но не кавычки, так
+// что текст примера мог содержать valid-looking `id="…"` буквально.
+const showcaseSearchable = showcaseExists
+  ? showcase
+      .replace(/<!--[\s\S]*?-->/g, " ")
+      .replace(/<pre[^>]*>[\s\S]*?<\/pre>/gi, " ")
+      .replace(/<code[^>]*>[\s\S]*?<\/code>/gi, " ")
+  : "";
 // Комментарии из CSS вырезаются: иначе классом компонента проходит любое имя,
 // упомянутое в пояснении, — включая имена витрины (.doc-layout) и пути файлов.
 const cssText = fs
@@ -763,6 +775,15 @@ for (const component of manifest.components ?? []) {
   if (!["planned", "legacy-only"].includes(component.status) && !component.specPath) {
     errors.push(issue(target, "non-planned component must have specPath"));
   }
+  // Зеркало того же правила для showcaseAnchor — METHOD §6.5. До этой строки
+  // запись могла дойти до complete/partial с showcaseAnchor: null и пройти
+  // --strict кодом 0: обязательным был только якорь, который сам себя уже
+  // объявил (см. проверку соответствия c-<id> ниже и поиск узла дальше).
+  // Ревью R0-06, находка «дыра 2»: без зеркального правила отказ расставлять
+  // якоря заранее (см. planned-ветку выше) ничего не покупал.
+  if (!["planned", "legacy-only"].includes(component.status) && !component.showcaseAnchor) {
+    errors.push(issue(target, "non-planned component must have showcaseAnchor"));
+  }
   // Соглашения манифеста (conventions): путь спецификации и якорь витрины
   // выводятся из category и id. Проверяются, когда значение уже проставлено,
   // — так соглашение держится механически, а не 55 раз вниманием автора.
@@ -824,8 +845,14 @@ for (const component of manifest.components ?? []) {
   }
 
   if (component.showcaseAnchor && showcaseExists) {
-    const anchor = `id="${component.showcaseAnchor}"`;
-    if (!showcase.includes(anchor)) {
+    // Ищем id настоящего узла (`showcaseSearchable` — без комментариев,
+    // <pre> и <code>), а не подстроку по всему файлу: иначе заполнитель
+    // `c-<id>` в примере кода для копирования, как только его заменят
+    // реальным именем, удовлетворял бы проверке навсегда, независимо от
+    // того, поставлена секция или нет (ревью R0-06, «дыра 1»).
+    const anchorId = component.showcaseAnchor.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const anchorTag = new RegExp(`<[a-zA-Z][^>]*\\sid=["']${anchorId}["'][^>]*>`);
+    if (!anchorTag.test(showcaseSearchable)) {
       errors.push(issue(target, `showcase anchor not found: ${component.showcaseAnchor}`));
     }
   }
