@@ -1,0 +1,63 @@
+===== RED-A =====
+Счётчики разошлись (5):
+
+  GUIDE.md: заявлено 7, на самом деле 6 (literalFontSizes — объявления font-size без var(--core*) вне @media в ui/blocks/*.css)
+  ui/tokens.css: заявлено 7, на самом деле 6 (literalFontSizes — объявления font-size без var(--core*) вне @media в ui/blocks/*.css)
+  ui/tokens.css: заявлено 7, на самом деле 6 (literalFontSizes — объявления font-size без var(--core*) вне @media в ui/blocks/*.css)
+  CHANGELOG.md: заявлено 7, на самом деле 6 (literalFontSizes — объявления font-size без var(--core*) вне @media в ui/blocks/*.css)
+  showcase/blocks.html: заявлено 7, на самом деле 6 (literalFontSizes — объявления font-size без var(--core*) вне @media в ui/blocks/*.css)
+
+Правьте документацию — или правило в tools/validate-counts.mjs,
+если изменилась формулировка. Инвариант И-7: числа не округляются.
+
+===== RED-B =====
+Счётчики разошлись (1):
+
+  GUIDE.md: заявлено 1, на самом деле 7 (literalFontSizes — объявления font-size без var(--core*) вне @media в ui/blocks/*.css)
+
+Правьте документацию — или правило в tools/validate-counts.mjs,
+если изменилась формулировка. Инвариант И-7: числа не округляются.
+
+===== RED-C =====
+Счётчики разошлись (5):
+
+  GUIDE.md: заявлено 1, на самом деле 0 (mobileFontSizes — те же объявления внутри @media)
+  ui/tokens.css: заявлено 1, на самом деле 0 (mobileFontSizes — те же объявления внутри @media)
+  ui/tokens.css: заявлено 1, на самом деле 0 (mobileFontSizes — те же объявления внутри @media)
+  CHANGELOG.md: заявлено 1, на самом деле 0 (mobileFontSizes — те же объявления внутри @media)
+  showcase/blocks.html: заявлено 1, на самом деле 0 (mobileFontSizes — те же объявления внутри @media)
+
+Правьте документацию — или правило в tools/validate-counts.mjs,
+если изменилась формулировка. Инвариант И-7: числа не округляются.
+
+===== RED-D =====
+Счётчики разошлись (1):
+
+  GUIDE.md: заявлено 7, на самом деле 6 (roleSubstitutions — маркеры «@normative подстановка роли» в ui/blocks/*.css)
+
+Правьте документацию — или правило в tools/validate-counts.mjs,
+если изменилась формулировка. Инвариант И-7: числа не округляются.
+
+===== RED-E =====
+Счётчики разошлись (6):
+
+  GUIDE.md: заявлено 8, на самом деле 7 (alsHaussRules — маркеры @snapshot, называющие ALS Hauss, в ui/blocks/*.css)
+  ui/blocks/core.css: заявлено 8, на самом деле 7 (alsHaussRules — маркеры @snapshot, называющие ALS Hauss, в ui/blocks/*.css)
+  ui/blocks/core.css: заявлено 8, на самом деле 7 (alsHaussRules — маркеры @snapshot, называющие ALS Hauss, в ui/blocks/*.css)
+  showcase/core.html: заявлено 8, на самом деле 7 (alsHaussRules — маркеры @snapshot, называющие ALS Hauss, в ui/blocks/*.css)
+  showcase/primitives.html: заявлено 8, на самом деле 7 (alsHaussRules — маркеры @snapshot, называющие ALS Hauss, в ui/blocks/*.css)
+  evidence/coverage-notes.md: заявлено 8, на самом деле 7 (alsHaussRules — маркеры @snapshot, называющие ALS Hauss, в ui/blocks/*.css)
+
+Правьте документацию — или правило в tools/validate-counts.mjs,
+если изменилась формулировка. Инвариант И-7: числа не округляются.
+
+===== sha256 после откатов =====
+# Четыре файла — те же байты, что до красных тестов (сверено с резервными копиями).
+# CHANGELOG.md ниже посчитан ПОСЛЕ записи приёмки, поэтому отличается от
+# дотестового 3acd2b183eaf647884a219eb7ee9f5ee232a3655f5dc4d15df910751568d0171:
+# красные тесты его не трогали, запись приёмки — трогала.
+e9706dc6374d12695d717e8759f0154e031d0389eb4f2ecdab3f789981b54d86 *GUIDE.md
+725e277bbf4121f4addd9fbe7645f802a5c124458b154b68c47acf9899e5fb63 *ui/tokens.css
+6d7789f8ba34599599c9109ca52cf796b3d7f7dac1ce0a26cb5a2d77bc9e85b8 *ui/blocks/core.css
+8805c2bc2e21f67cff594277f57b95bc28be5afd1516495fea0d1254fba0f2bc *ui/blocks/primitives.css
+8170cd6d7cdb9b6b0ed27b4425f5c3d59d0ac24f5b89a2976d453cd9a19c0e19 *CHANGELOG.md

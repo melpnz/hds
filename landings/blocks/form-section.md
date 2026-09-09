@@ -134,7 +134,7 @@
 └── .form-section-in
     ├── .form-section-head
     │   ├── span.form-section-label   надзаголовок-метка, трекинг +4
-    │   └── h2.form-section-title     28/1.286
+    │   └── h2.form-section-title     роль h3 24/28.8 (в узле 28/36, Bold)
     ├── form
     │   ├── .form-section-rows .form-section-rows-2
     │   │   └── input.form-field-input                            (примитив R1)
@@ -171,6 +171,14 @@
 | `--core-caption` | `12px` | норматив (шкала) |
 | `--core-bg-field` | `#4b5558` тёмная / норматив светлая | снято, `6509:20474` |
 | `--product-accent` | по продукту | снято |
+
+**Что подставлено ролью, а не снято.** Округление до роли шкалы — решение,
+а не снимок (инвариант И-7), и в CSS оно помечено `@normative` рядом
+с исходным `@snapshot`:
+
+| Правило | Снято | Отрисовано ролью |
+|---|---|---|
+| `.form-section-title` | 28 / 36 (1.286) Inter Bold 700 (`1324:8080`) | роль h3: 24 / 28.8 / −0.24 px, вес 600 |
 
 ## Разметка
 

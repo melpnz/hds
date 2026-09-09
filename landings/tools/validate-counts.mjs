@@ -103,6 +103,53 @@ const themePairs = [...themesByProject.values()]
   .filter((themes) => themes.has('dark') && themes.has('light')).length;
 
 // -------------------------------------------------------------------------
+// Четыре числа о типографике живут не в inventory.json, а в самом CSS блоков,
+// и до этой правки их не сторожил никто. Гайд успел утверждать про них
+// «такой блок один» при семи литеральных кеглях и предписывать литералам
+// @normative, которого не нёс ни один из семи (находка 03-17,
+// .pipeline/R0-03/review-3.md), а пробел ALS Hauss записать по четырём
+// правилам при восьми затронутых (находка 03-20). Ни один из шести сторожей
+// такого не ловит: validate-normative разбирает наличие маркера, а не
+// правдивость счёта, а здесь считалось только записанное в инвентаризации.
+// Инвентаризация о содержимом ui/ ничего не знает — она снята до вёрстки.
+const blocksDir = 'ui/blocks';
+const blockCssFiles = exists(blocksDir)
+  ? fs.readdirSync(rel(blocksDir)).filter((name) => name.endsWith('.css')).map((name) => `${blocksDir}/${name}`)
+  : [];
+// Комментарии заменяются пробелами той же длины: иначе кегль из маркера
+// («ALS Hauss Medium 15/1.5») считается объявлением, а номера строк едут.
+const blankCssComments = (css) => css.replace(/\/\*[\s\S]*?\*\//g, (chunk) => chunk.replace(/[^\n]/g, ' '));
+let literalFontSizes = 0;   // снятый абсолютный кегль вместо роли шкалы
+let mobileFontSizes = 0;    // тот же литерал, но внутри @media — мобильная ступень
+let roleSubstitutions = 0;  // роль шкалы вместо снятого числа, помеченная @normative
+let alsHaussRules = 0;      // правила, чей @snapshot называет ALS Hauss
+for (const file of blockCssFiles) {
+  const raw = read(file);
+  roleSubstitutions += countMatches(raw, /@normative подстановка роли/g);
+  // Регистр не важен: часть маркеров называет гарнитуру снятым начертанием
+  // («ALS Hauss Medium 15/1.5»), часть — ссылкой на блок-пробел в конце
+  // core.css, который написан капителью. Затронуто правило в обоих случаях.
+  alsHaussRules += countMatches(raw, /@snapshot[^*]*ALS Hauss/gi);
+  // Глубина @media считается вручную: font-size внутри медиазапроса — это
+  // мобильная ступень, снаружи — обычное объявление. Значение с var(--core*)
+  // литералом не считается: это и есть роль шкалы.
+  const css = blankCssComments(raw);
+  const mediaAt = [];
+  let depth = 0;
+  for (const token of css.matchAll(/@media|[{}]|font-size\s*:\s*([^;}]+)/g)) {
+    if (token[0] === '@media') { mediaAt.push(depth); continue; }
+    if (token[0] === '{') { depth += 1; continue; }
+    if (token[0] === '}') {
+      depth -= 1;
+      if (mediaAt.length && mediaAt.at(-1) >= depth) mediaAt.pop();
+      continue;
+    }
+    if (/var\(/.test(token[1])) continue;
+    if (mediaAt.length) mobileFontSizes += 1; else literalFontSizes += 1;
+  }
+}
+
+// -------------------------------------------------------------------------
 // Измерения: значение и то, чем оно получено.
 // -------------------------------------------------------------------------
 const actual = {
@@ -131,6 +178,11 @@ const actual = {
   stackMembers: [stackMembers, 'сумма members по стопкам в sections.json'],
   typedMembers: [typedMembers, 'члены стопок с типом, отличным от «?»'],
   untypedMembers: [stackMembers === null ? null : stackMembers - typedMembers, 'члены стопок с типом «?»'],
+  // Четыре числа о типографике — из самого ui/blocks/*.css, а не из документа.
+  literalFontSizes: [blockCssFiles.length ? literalFontSizes : null, 'объявления font-size без var(--core*) вне @media в ui/blocks/*.css'],
+  mobileFontSizes: [blockCssFiles.length ? mobileFontSizes : null, 'те же объявления внутри @media'],
+  roleSubstitutions: [blockCssFiles.length ? roleSubstitutions : null, 'маркеры «@normative подстановка роли» в ui/blocks/*.css'],
+  alsHaussRules: [blockCssFiles.length ? alsHaussRules : null, 'маркеры @snapshot, называющие ALS Hauss, в ui/blocks/*.css'],
 };
 
 // Покрытия блоков — дробью, числитель из списка узлов (И-7). Ключ заводится
@@ -294,6 +346,29 @@ const claims = [
   ['evidence/section-map.md', /\| Членов стопки всего \| \*\*(\d+)\*\* \|/, 'stackMembers'],
   ['evidence/section-map.md', /\| Тип установлен \| \*\*(\d+)\/168\*\* \|/, 'typedMembers'],
   ['evidence/section-map.md', /\| Тип не определён \| \*\*(\d+)\/168\*\* \|/, 'untypedMembers'],
+
+  // --- Типографика: литералы, мобильные ступени, подстановки роли и пробел
+  // ALS Hauss. Числа стоят в шести местах прозой — в гайде, в маркере шкалы
+  // ui/tokens.css, в записи CHANGELOG и на трёх страницах витрины, — и до
+  // находок 03-17 и 03-20 не сторожились нигде. Считаются они по CSS блоков,
+  // а не по другому документу: иначе сторож сверял бы прозу с прозой.
+  ['GUIDE.md', /Правил с такой пометкой \*\*(\d+)\*\*/, 'roleSubstitutions'],
+  ['GUIDE.md', /Литеральных кеглей в `ui\/blocks\/` \*\*(\d+)\*\*/, 'literalFontSizes'],
+  ['GUIDE.md', /Мобильных ступеней кегля в пакете \*\*(\d+)\*\*/, 'mobileFontSizes'],
+  ['GUIDE.md', /\*\*Затронуто (\d+) правил\*\*/, 'alsHaussRules'],
+  ['ui/tokens.css', /Литеральных кеглей в ui\/blocks\/ (\d+)/, 'literalFontSizes'],
+  ['ui/tokens.css', /мобильную ступень из них имеет ровно (\d+)/, 'mobileFontSizes'],
+  ['ui/tokens.css', /мобильную ступень имеет ровно\s+(\d+) блок из \d+/, 'mobileFontSizes'],
+  ['ui/tokens.css', /мобильную ступень имеет ровно\s+\d+ блок из (\d+)/, 'literalFontSizes'],
+  ['ui/blocks/core.css', /всего по пакету (\d+)/, 'alsHaussRules'],
+  ['ui/blocks/core.css', /переопределены 3 из (\d+) затронутых/, 'alsHaussRules'],
+  ['CHANGELOG.md', /Литеральных кеглей в `ui\/blocks\/` \*\*(\d+)\*\*/, 'literalFontSizes'],
+  ['CHANGELOG.md', /мобильную ступень из них\n  имеет ровно \*\*(\d+)\*\*/, 'mobileFontSizes'],
+  ['showcase/blocks.html', /Литеральных кеглей в <span class="doc-src">ui\/blocks\/<\/span> (\d+)/, 'literalFontSizes'],
+  ['showcase/blocks.html', /мобильную ступень из них имеет ровно (\d+)/, 'mobileFontSizes'],
+  ['showcase/core.html', /Затронуто (\d+) правил пакета/, 'alsHaussRules'],
+  ['showcase/primitives.html', /Затронуто (\d+) правил пакета/, 'alsHaussRules'],
+  ['evidence/coverage-notes.md', /\*\*Сколько правил затронуто — (\d+)\.\*\*/, 'alsHaussRules'],
 
   // --- README.md, продолжение: 83 % и пары тем
   ['README.md', /`14871:1319` — на \*\*(\d+) %\*\*/, 'renderPercent'],

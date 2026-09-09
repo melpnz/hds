@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>fix-3 — семь литеральных кеглей на голой странице</title>
+<!--
+  Проверка утверждения GUIDE §5 после правки по находке 03-17: литеральных
+  кеглей семь, мобильную ступень имеет ровно один (.program-date), остальным
+  шести она не нужна — горизонтальной прокрутки на 320 они не дают.
+
+  Страница нарочно голая: один ui/landings.css, собственного CSS ни строки,
+  data-product не ставится. Разметка взята из статей блоков буквально
+  (blocks/site-header.md, program.md, glass-chip.md, card.md, marquee.md).
+-->
+<link rel="stylesheet" href="/ui/landings.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="site-header-in">
+    <a class="product-lockup" href="/">Хабр Карьера</a>
+    <ul class="site-header-nav">
+      <li><a class="site-header-link" href="#program">Программа</a></li>
+      <li><a class="site-header-link" href="#speakers">Спикеры</a></li>
+      <li><a class="site-header-link" href="#faq">Вопросы</a></li>
+    </ul>
+    <button class="site-header-toggle" type="button">Меню</button>
+  </div>
+</header>
+
+<section class="program">
+  <div class="program-in">
+    <ul class="program-list">
+      <li class="program-item">
+        <div>
+          <span class="program-date">26</span>
+          <span class="program-date-cap">/ февраля /</span>
+        </div>
+        <div class="card card-r24">
+          <h3 class="program-item-title">Разбор резюме вживую</h3>
+          <p class="program-item-text">Показываем, что видит нанимающий менеджер.</p>
+        </div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<p>
+  <span class="glass-chip"><span class="glass-chip-text">28 февраля</span></span>
+  <span class="glass-chip"><span class="glass-chip-text glass-chip-text-l">Онлайн</span></span>
+</p>
+
+<article class="card card-r20 card-glow">
+  <span class="card-stat">1500+</span>
+  <p>пациентов за год</p>
+</article>
+
+<div class="marquee marquee-60">
+  <div class="marquee-track">
+    <div class="marquee-group">
+      <span class="marquee-item">Хабр Карьера</span>
+      <span class="marquee-item">Хабр Курсы</span>
+      <span class="marquee-item">Хабр Q&amp;A</span>
+    </div>
+    <div class="marquee-group" aria-hidden="true">
+      <span class="marquee-item">Хабр Карьера</span>
+      <span class="marquee-item">Хабр Курсы</span>
+      <span class="marquee-item">Хабр Q&amp;A</span>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
