@@ -134,6 +134,7 @@ const PACKAGE_TOKEN = /^--(?:core|product|concept)-[a-z0-9-]+$/;
 // предписывает, из чего собрать блок, а не пересказывает историю.
 const RETIRED = new Map([
   ['--core-glow-hero', 'вынесен из ядра на R0-02: роль → --product-glow-hero, снятый оранжевый 20216:120 → модификатор проекта .hero-glow-sanatorium'],
+  ['--core-glow-inset', 'вынесен из ядра на R0-02 (находка R2-1): роль → --product-glow-inset, снятый синий 18085:3890 → модификатор проекта .card-glow-napopravku'],
 ]);
 
 const VALUE_LIKE = /^(?:clamp\([^)]*\)|-?\d+(?:\.\d+)?(?:px|em|rem|vw|vh|%|s|ms)?|#[0-9a-fA-F]{3,8}|(?:rgba?|hsla?)\([^)]*\)|(?:[-\d.]+px\s+){1,3}[-\d.]+(?:px)?\s*(?:rgba?\([^)]*\))?)$/;
