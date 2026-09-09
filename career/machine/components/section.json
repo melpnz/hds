@@ -1,0 +1,111 @@
+{
+  "id": "section",
+  "name": "Section",
+  "category": "layout",
+  "kind": "component",
+  "spec": "components\\data\\section.md",
+  "status": "complete",
+  "states": [],
+  "cssRoots": [
+    "base-section"
+  ],
+  "anchor": "showcase/components.html#d-section",
+  "markup": {
+    "html": "<div class=\"bg-ui-gray p-8\">\n  <section class=\"base-section base-section--background-white base-section--padding-medium rounded-3xl\">\n    <h1 class=\"base-section__title base-section__title--size-s base-section__title--padding-medium\">Заголовок секции</h1>\n    Контент секции\n  </section>\n</div>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [],
+  "storybookNames": [
+    "BaseSection"
+  ],
+  "code": {
+    "component": "BaseSection",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "section",
+    "name": "Section",
+    "category": "layout",
+    "kind": "component",
+    "spec": "components\\data\\section.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "base-section"
+    ],
+    "anchor": "showcase/components.html#d-section",
+    "markup": {
+      "html": "<div class=\"bg-ui-gray p-8\">\n  <section class=\"base-section base-section--background-white base-section--padding-medium rounded-3xl\">\n    <h1 class=\"base-section__title base-section__title--size-s base-section__title--padding-medium\">Заголовок секции</h1>\n    Контент секции\n  </section>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "BaseSection"
+    ],
+    "code": {
+      "component": "BaseSection",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "Section",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Основная карточка Career. Ею обёрнуто почти всё содержимое страниц: блоки профиля, карточки листингов, боковые модули. Геометрия карточки — самый устойчивый факт системы: она одинакова в обеих реализациях Career.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "base-section"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "BaseSection",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fsection.json",
+      "covers": [],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Не выявлено: разметка, CSS и props извлечены полностью."
+  ],
+  "markdown": "# Section · BaseSection\n\n| | |\n|---|---|\n| **Категория** | Отображение данных |\n| **Корневой класс** | `base-section` |\n| **CSS** | `ui/components/cards.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 1 из 1 |\n\n## Назначение\n\nОсновная карточка Career. Ею обёрнуто почти всё содержимое страниц: блоки профиля, карточки листингов, боковые модули. Геометрия карточки — самый устойчивый факт системы: она одинакова в обеих реализациях Career.\n\n## Анатомия\n\n```\ndiv.bg-ui-gray.p-8\n  section.base-section.base-section--background-white.base-section--padding-medium.rounded-3xl\n    h1.base-section__title.base-section__title--size-s.base-section__title--padding-medium\n      · «Заголовок секции»\n    · «Контент секции»\n```\n\n_Разметка story `common-layout-basesection--base-section-story`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Варианты\n\n| Класс | Фон | Текст | Рамка |\n|---|---|---|---|\n| `base-section--background-white` | var(--color-ui-white) | — | — |\n| `base-section--background-opacity-white` | #ffffffb3 | — | — |\n| `base-section--padding-medium` | transparent | — | — |\n| `base-section--padding-big` | transparent | — | — |\n| `base-section--padding-modal-content` | transparent | — | — |\n| `base-section--padding-list-section` | transparent | — | — |\n| `base-section--padding-none` | transparent | — | — |\n\n## Состояния\n\nУ статической Section собственных состояний нет. Опциональное сворачивание использует disclosure-контракт управляющей кнопки, а не состояние контейнера-карточки.\n\n## Слоты\n\n- `button`\n- `subtitle`\n- `default`\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `title` | string | — | — | `text` |\n| `padding` | BaseSectionPadding | — | medium · none · modal-content · big · list-section | `select` |\n| `titlePadding` | BaseSectionPadding | — | medium · none · modal-content · big · list-section | `select` |\n| `background` | BaseSectionBackgroundStyle | `'white'` | white · opacity-white | `select` |\n| `tag` | \"h1\" \\| \"h2\" \\| \"h3\" | `'h2'` | h1 · h2 · h3 | `select` |\n| `titleSize` | BaseSectionTitleSize | — | — | `object` |\n| `underlinedTitle` | boolean | — | — | `boolean` |\n| `collapsable` | boolean | — | — | `boolean` |\n| `isCollapsed` | boolean | `false` | — | `boolean` |\n| `squareTop` | boolean | — | — | `boolean` |\n| `borderless` | boolean | — | — | `boolean` |\n| `toggle` | boolean | — | — | `object` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-icon-gray` | `var(--color-ui-gray-2)` | из `:root` Career |\n| `--color-ui-gray` | `#ccc` | из `:root` Career |\n| `--color-ui-gray-bg` | `#ededed` | из `:root` Career |\n| `--color-ui-white` | `#fff` | из `:root` Career |\n\n## Responsive\n\nКомпонент реагирует на: `(max-width:767px)`.\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## Поведение\n\n- Заголовок — часть компонента (`base-section__title`), а не свободная разметка внутри.\n- Модификатор `--background-white` существует, потому что фон карточки не всегда белый.\n\n## Разметка\n\n```html\n<div class=\"bg-ui-gray p-8\">\n  <section class=\"base-section base-section--background-white base-section--padding-medium rounded-3xl\">\n    <h1 class=\"base-section__title base-section__title--size-s base-section__title--padding-medium\">Заголовок секции</h1>\n    Контент секции\n  </section>\n</div>\n```\n\n## CSS\n\n```css\n.base-section { box-sizing:border-box }\n:where(.base-section) { border-color:#182e391a;border-style:solid;border-width:1px;padding:1.5rem }\n.base-section--background-white { background-color:var(--color-ui-white) }\n.base-section--background-opacity-white { background-color:#ffffffb3 }\n:where(.base-section--padding-medium) { padding:1rem }\n:where(.base-section--padding-big) { padding:1.5rem }\n:where(.base-section--padding-modal-content) { padding:14px }\n:where(.base-section--padding-list-section) { padding-bottom:.75rem }\n:where(.base-section--padding-none) { padding:0 }\n.base-section__title { font-size:24px;font-weight:600;line-height:28px;margin:0 }\n.base-section__title--size-l { font-size:28px;line-height:32px }\n.base-section__title--size-s,.base-section__title--size-small { font-size:20px;line-height:24px }\n.base-section__title--size-xs { font-size:18px;line-height:24px }\n.base-section__title--size-title { font-size:16px;line-height:24px }\n.base-section__title--collapsable { align-items:center;display:flex;justify-content:space-between }\n.base-section__title--collapsable.base-section__title--padding-none { padding-left:0;padding-right:0 }\n.base-section__title--underlined { border-bottom-width:1px;border-color:var(--color-ui-gray-bg);margin-bottom:1.5rem;padding-bottom:.75rem }\n.base-section--padding-medium .base-section__title--underlined { margin-bottom:1rem }\n.base-section__title--padding-none { padding:0 }\n.base-section--padding-none .base-section__title--padding-big { padding:1rem }\n.base-section__header { align-items:flex-start;display:flex;gap:1.25rem;justify-content:space-between;width:100% }\n.base-section__arrow { flex-shrink:0;--tw-rotate:180deg;color:var(--color-icon-gray);cursor:pointer }\n.base-section__arrow,.base-section__arrow--collapsed { transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) }\n.base-section__arrow--collapsed { --tw-rotate:0deg }\n@media (max-width:767px) {\n  .base-section__header { flex-wrap:wrap;gap:.5rem }\n}\n```\n\n## Ограничения\n\n- Не выявлено: разметка, CSS и props извлечены полностью.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/common/base-section/base-section.stories.ts`\n- Storybook `career-web`: `common-layout-basesection--base-section-story`\n- CSS: секция `base-section` в `ui/components/cards.css`\n- Production: замерено на 12 страницах в обеих реализациях (`../../../03-habr-career.md` §10)\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n\n## Нормативный контракт R2-E\n\nSection — layout component: `section` используйте только когда есть доступный заголовок; иначе предпочтителен `div`. Уровень `h1`–`h3` выбирается по иерархии страницы, `titleSize` не должен определять semantic level.\n\nПри `collapsable=true` заголовок содержит реальный `button` с `aria-expanded` и `aria-controls`; тело следует контракту CollapsedContent. Клик по свободной области заголовка не заменяет доступную кнопку. Padding/background/title size — variants, не states.\n",
+  "sourcePath": "archive:career/v1/components/data/section.md",
+  "legacyDocument": "archive:career/v1/components/data/section.md"
+}

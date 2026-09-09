@@ -1,0 +1,131 @@
+{
+  "id": "loader",
+  "name": "Loader",
+  "category": "feedback",
+  "kind": "primitive",
+  "spec": "components\\feedback\\loader.md",
+  "status": "complete",
+  "states": [
+    "loading"
+  ],
+  "cssRoots": [
+    "base-loader"
+  ],
+  "anchor": "showcase/components.html#fb-loading-contract",
+  "markup": null,
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": "1144:33168",
+      "sourceName": "loader"
+    }
+  ],
+  "storybookNames": [
+    "BaseLoader"
+  ],
+  "code": {
+    "component": "BaseLoader",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "loader",
+    "name": "Loader",
+    "category": "feedback",
+    "kind": "primitive",
+    "spec": "components\\feedback\\loader.md",
+    "status": "complete",
+    "states": [
+      "loading"
+    ],
+    "cssRoots": [
+      "base-loader"
+    ],
+    "anchor": "showcase/components.html#fb-loading-contract",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "1144:33168",
+        "sourceName": "loader"
+      }
+    ],
+    "storybookNames": [
+      "BaseLoader"
+    ],
+    "code": {
+      "component": "BaseLoader",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "Loader",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Круговой индикатор загрузки. Своих story не имеет — виден только внутри кнопки в состоянии loading.",
+  "implementation": {
+    "markup": null,
+    "cssRoots": [
+      "base-loader"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "BaseLoader",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    },
+    "missingReason": "copy-safe-markup-not-captured",
+    "fallback": "Не придумывать классы. Использовать ближайший компонент с разметкой или явно отметить пробел."
+  },
+  "stateGroups": {
+    "ui": [
+      "loading"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "isolated-example",
+      "title": "Загрузка",
+      "file": "examples/components-isolated/loader.html",
+      "covers": [
+        "isolated-example",
+        "fb-loading-contract",
+        "loading"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "provenance": {
+        "source": "archive:career/v1/showcase/components.html#fb-loading-contract",
+        "extraction": "exact-dom-subtree"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Собственных story нет; CSS минимален (анимация вращения), форма задаётся SVG внутри компонента."
+  ],
+  "markdown": "# Loader · BaseLoader\n\n| | |\n|---|---|\n| **Категория** | Обратная связь |\n| **Корневой класс** | — |\n| **CSS** | `ui/components/feedback.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 0 из 0 |\n\n## Назначение\n\nКруговой индикатор загрузки. Своих story не имеет — виден только внутри кнопки в состоянии `loading`.\n\n## Анатомия\n\n_Разметка недоступна: см. «Ограничения»._\n\n## Состояния\n\nLoader сам представляет визуальное состояние `loading`; дополнительных интерактивных состояний у него нет.\n\n## Props\n\n_Storybook не отдаёт controls для этого компонента._\n\n## Токены\n\n_Компонент не обращается к переменным напрямую._\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## CSS\n\n```css\n.base-loader { animation:rotate 1s infinite;transform-origin:50% 50% }\n```\n\n## Ограничения\n\n- Собственных story нет; CSS минимален (анимация вращения), форма задаётся SVG внутри компонента.\n\n## Источники\n\n- Storybook `career-web`: \n- CSS: секция `base-loader` в `ui/components/feedback.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n\n## Нормативный контракт R2-E\n\nКорневой класс — `base-loader`. SVG Loader скрывается от accessibility tree через `aria-hidden=\"true\"`. Загружаемая кнопка, секция или список получает `aria-busy=\"true\"`; при необходимости рядом остаётся визуально скрытый текст «Загрузка». Не назначайте каждому spinner `role=\"status\"`: это создаёт повторяющиеся объявления.\n\nПри `prefers-reduced-motion: reduce` вращение замедляется, но индикатор не исчезает.\n",
+  "sourcePath": "archive:career/v1/components/feedback/loader.md",
+  "legacyDocument": "archive:career/v1/components/feedback/loader.md"
+}

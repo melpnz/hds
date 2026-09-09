@@ -1,0 +1,111 @@
+{
+  "id": "social-icon",
+  "name": "SocialIcon",
+  "category": "data-display",
+  "kind": "primitive",
+  "spec": "components\\data\\social-icon.md",
+  "status": "complete",
+  "states": [],
+  "cssRoots": [
+    "svg-icon"
+  ],
+  "anchor": "showcase/components.html#f-icons-pack",
+  "markup": {
+    "html": "<svg class=\"svg-icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n  <use xlink:href=\"../../ui/assets/icons/social-v3.1.svg#facebook\"/>\n</svg>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [],
+  "storybookNames": [
+    "SocialIcon"
+  ],
+  "code": {
+    "component": "SocialIcon",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "social-icon",
+    "name": "SocialIcon",
+    "category": "data-display",
+    "kind": "primitive",
+    "spec": "components\\data\\social-icon.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "svg-icon"
+    ],
+    "anchor": "showcase/components.html#f-icons-pack",
+    "markup": {
+      "html": "<svg class=\"svg-icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n  <use xlink:href=\"../../ui/assets/icons/social-v3.1.svg#facebook\"/>\n</svg>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "SocialIcon"
+    ],
+    "code": {
+      "component": "SocialIcon",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "SocialIcon",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Иконки внешних сервисов и контактов: github, telegram, linkedin и прочие. Берутся из отдельных спрайтов contacts.svg и social-v3.1.svg.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "svg-icon"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "SocialIcon",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fsocial-icon.json",
+      "covers": [],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Не выявлено: разметка, CSS и props извлечены полностью."
+  ],
+  "markdown": "# SocialIcon · Иконка сервиса\n\n| | |\n|---|---|\n| **Категория** | Отображение данных |\n| **Корневой класс** | `svg-icon` |\n| **CSS** | _только утилиты_ |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 2 из 2 |\n\n## Назначение\n\nИконки внешних сервисов и контактов: github, telegram, linkedin и прочие. Берутся из отдельных спрайтов `contacts.svg` и `social-v3.1.svg`.\n\n## Анатомия\n\n```\nsvg.svg-icon\n  use  [xlink:href=\"/career-web/images/sprites/social-v3.1.svg#facebook\"]\n```\n\n_Разметка story `icons-socialicon--default`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\n_В извлечённом CSS и разметке состояний не объявлено. Не достраиваем._\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `icon` | SocialIconVariant | — | facebook · twitter · instagram · youtube · vk · dzen · github · telegram · telegram-bot | `select` |\n| `size` | string\\|number | `24` | — | `number` |\n\n## Токены\n\n_Компонент не обращается к переменным напрямую._\n\n## Иконки\n\n| Спрайт | Символ | Локальный файл |\n|---|---|---|\n| `social-v3.1.svg` | `#dzen` | `ui/assets/icons/social-v3.1.svg` |\n| `social-v3.1.svg` | `#facebook` | `ui/assets/icons/social-v3.1.svg` |\n| `social-v3.1.svg` | `#github` | `ui/assets/icons/social-v3.1.svg` |\n| `social-v3.1.svg` | `#instagram` | `ui/assets/icons/social-v3.1.svg` |\n| `social-v3.1.svg` | `#telegram` | `ui/assets/icons/social-v3.1.svg` |\n| `social-v3.1.svg` | `#telegram-bot` | `ui/assets/icons/social-v3.1.svg` |\n| `social-v3.1.svg` | `#twitter` | `ui/assets/icons/social-v3.1.svg` |\n| `social-v3.1.svg` | `#vk` | `ui/assets/icons/social-v3.1.svg` |\n| `social-v3.1.svg` | `#youtube` | `ui/assets/icons/social-v3.1.svg` |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## Разметка\n\n```html\n<svg class=\"svg-icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n  <use xlink:href=\"../../ui/assets/icons/social-v3.1.svg#facebook\"/>\n</svg>\n```\n\n_Пути к спрайтам и изображениям в этом блоке — локальные, от папки спецификации. В блоке «Анатомия» выше сохранён продовый путь: это протокол снятого DOM, а не образец для вёрстки._\n\n## CSS\n\n_Собственного CSS нет: компонент собран утилитами Tailwind прямо в разметке. Все нужные правила — в `ui/utilities.css`._\n\n## Ограничения\n\n- Не выявлено: разметка, CSS и props извлечены полностью.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/icons/social-icon.stories.ts`\n- Storybook `career-web`: `icons-socialicon--default`, `icons-socialicon--all-variants`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n\n## Нормативный контракт R2-E\n\nSocialIcon — неинтерактивный primitive без собственных состояний. В ссылке иконка декоративна (`aria-hidden=\"true\"`, `focusable=\"false\"`), а ссылка получает имя вроде `aria-label=\"GitHub компании\"`. Не используйте имя файла или бренда как единственный текст без контекста назначения ссылки.\n",
+  "sourcePath": "archive:career/v1/components/data/social-icon.md",
+  "legacyDocument": "archive:career/v1/components/data/social-icon.md"
+}

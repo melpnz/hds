@@ -1,0 +1,61 @@
+{
+  "id": "SH-5",
+  "kind": "rule",
+  "scope": "Оболочка",
+  "statement": "Контейнер: `max-width: 1100px`, `padding: 0 12px`, по центру. Полезная ширина **1076**",
+  "predicate": {
+    "type": "computed",
+    "page": "showcase/pages.html",
+    "checks": [
+      {
+        "selector": "#p-listing .page-width",
+        "property": "maxWidth",
+        "equals": "1100px"
+      },
+      {
+        "selector": "#p-listing .page-width",
+        "property": "paddingLeft",
+        "equals": "12px"
+      },
+      {
+        "selector": "#p-listing .page-width",
+        "property": "paddingRight",
+        "equals": "12px"
+      }
+    ]
+  },
+  "evidence": {
+    "observations": "16/16, обе реализации"
+  },
+  "humanDoc": "docs/guide/composition.md#sh-5",
+  "title": "SH-5 · Оболочка",
+  "category": "оболочка",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "observed-rule"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Контейнер: `max-width: 1100px`, `padding: 0 12px`, по центру. Полезная ширина **1076**",
+  "implementation": {
+    "markup": null,
+    "styles": [],
+    "scripts": [],
+    "missingReason": "not-a-visual-entity",
+    "fallback": "Применить правило к выбранному паттерну или компоненту."
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [],
+  "accessibility": [],
+  "unknowns": [],
+  "previewMode": "none"
+}

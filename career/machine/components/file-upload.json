@@ -1,0 +1,121 @@
+{
+  "id": "file-upload",
+  "name": "FileUpload",
+  "category": "forms",
+  "kind": "component",
+  "spec": "components\\forms\\file-upload.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "disabled",
+    "loading",
+    "error",
+    "success"
+  ],
+  "cssRoots": [
+    "file-upload"
+  ],
+  "anchor": "showcase/components.html#r3-upload",
+  "markup": null,
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": null,
+      "sourceName": "files"
+    }
+  ],
+  "legacySource": {
+    "id": "file-upload",
+    "name": "FileUpload",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\file-upload.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "disabled",
+      "loading",
+      "error",
+      "success"
+    ],
+    "cssRoots": [
+      "file-upload"
+    ],
+    "anchor": "showcase/components.html#r3-upload",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "files"
+      }
+    ]
+  },
+  "title": "FileUpload",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "FileUpload — сущность UI kit Career.",
+  "implementation": {
+    "markup": null,
+    "cssRoots": [
+      "file-upload"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "missingReason": "copy-safe-markup-not-captured",
+    "fallback": "Не придумывать классы. Использовать ближайший компонент с разметкой или явно отметить пробел."
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "disabled",
+      "loading",
+      "error",
+      "success"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "isolated-example",
+      "title": "Состояния файлов",
+      "file": "examples/components-isolated/file-upload.html",
+      "covers": [
+        "isolated-example",
+        "r3-upload",
+        "default",
+        "disabled",
+        "loading",
+        "error",
+        "success"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "provenance": {
+        "source": "archive:career/v1/showcase/components.html#r3-upload",
+        "extraction": "exact-dom-subtree"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [],
+  "markdown": "# FileUpload · Загрузка файлов\n\n| | |\n|---|---|\n| **Корневой класс** | `file-upload` |\n| **CSS** | `ui/components.css` |\n| **Showcase** | `showcase/components.html#r3-upload` |\n\nВыбор файлов и список задач загрузки. Dropzone — альтернативный trigger того же input, не второй upload engine.\n\n## Состояния\n\n| State | Контракт |\n|---|---|\n| `default` | файл выбран/ожидает отправки |\n| `loading` | item `aria-busy=\"true\"`, видимый прогресс или статус |\n| `error` | `data-state=\"error\"`, причина и повтор |\n| `success` | `data-state=\"success\"`, подтверждение завершения |\n| `disabled` | input disabled, triggers и remove/retry недоступны |\n\n## Контракт\n\nИспользуется нативный `input type=\"file\"` с `accept` и `multiple`; accept не заменяет серверную проверку MIME, размера и содержимого. Имя, размер, прогресс и ошибка доступны текстом. Кнопки удаления/повтора имеют имя с filename. Прогресс — `progress` либо progressbar с `aria-valuenow`; неопределённая загрузка — `aria-busy`. Статусы очереди объявляются одним `aria-live=\"polite\"` контейнером. Отмена должна отменять сетевой запрос, а не только удалять строку.\n",
+  "sourcePath": "archive:career/v1/components/forms/file-upload.md",
+  "legacyDocument": "archive:career/v1/components/forms/file-upload.md"
+}

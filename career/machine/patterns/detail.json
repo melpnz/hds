@@ -1,0 +1,117 @@
+{
+  "id": "detail",
+  "name": "Страница сущности",
+  "summary": "Тот же каркас, что у листинга. Меняется содержимое сайдбара: вместо фильтров — связанные сущности.",
+  "grid": {
+    "container": 1100,
+    "padding": "0 12px",
+    "main": 752,
+    "gap": 24,
+    "aside": 300,
+    "asideSide": "right"
+  },
+  "note": null,
+  "areas": null,
+  "responsive": [
+    {
+      "maxWidth": 1023,
+      "change": "связанное содержимое сайдбара уходит вниз"
+    }
+  ],
+  "rules": [
+    "D-1",
+    "D-2",
+    "D-3",
+    "D-4",
+    "D-5",
+    "CT-2",
+    "R-3"
+  ],
+  "example": {
+    "showcase": "showcase/pages.html#p-detail"
+  },
+  "title": "Страница сущности",
+  "kind": "pattern",
+  "category": "page-families",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production-showcase",
+      "observed-rules"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Тот же каркас, что у листинга. Меняется содержимое сайдбара: вместо фильтров — связанные сущности.",
+  "implementation": {
+    "markup": "examples/patterns/detail.html",
+    "cssRoots": [],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [
+      "examples/patterns/patterns.js"
+    ]
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [
+      "success"
+    ],
+    "domain": []
+  },
+  "ruleFiles": [
+    "machine/rules/d-1.json",
+    "machine/rules/d-2.json",
+    "machine/rules/d-3.json",
+    "machine/rules/d-4.json",
+    "machine/rules/d-5.json",
+    "machine/rules/ct-2.json",
+    "machine/rules/r-3.json"
+  ],
+  "examples": [
+    {
+      "id": "page",
+      "title": "Страница сущности",
+      "file": "examples/patterns/detail.html",
+      "covers": [
+        "detail"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "height": 720
+      }
+    }
+  ],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "showcase",
+      "ref": "showcase/pages.html#p-detail"
+    },
+    {
+      "type": "rules",
+      "ref": [
+        "D-1",
+        "D-2",
+        "D-3",
+        "D-4",
+        "D-5",
+        "CT-2",
+        "R-3"
+      ]
+    }
+  ],
+  "unknowns": [
+    "Последовательность areas пока не извлечена из ad-hoc showcase composition."
+  ]
+}

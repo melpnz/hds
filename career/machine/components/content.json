@@ -1,0 +1,85 @@
+{
+  "id": "content",
+  "name": "Content",
+  "category": "data-display",
+  "kind": "component",
+  "spec": "components\\data\\content.md",
+  "status": "complete",
+  "states": [],
+  "cssRoots": [
+    "editor__content"
+  ],
+  "anchor": "showcase/components.html#d-content",
+  "markup": null,
+  "evidence": [],
+  "legacySource": {
+    "id": "content",
+    "name": "Content",
+    "category": "data-display",
+    "kind": "component",
+    "spec": "components\\data\\content.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "editor__content"
+    ],
+    "anchor": "showcase/components.html#d-content",
+    "markup": null,
+    "evidence": []
+  },
+  "title": "Content",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Оформление произвольного HTML: описание вакансии, текст компании, тело статьи. Не компонент, а слой стилей, применяемый к контейнеру .editorcontent.",
+  "implementation": {
+    "markup": null,
+    "cssRoots": [
+      "editor__content"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "missingReason": "copy-safe-markup-not-captured",
+    "fallback": "Не придумывать классы. Использовать ближайший компонент с разметкой или явно отметить пробел."
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "isolated-example",
+      "title": "Длинный текст",
+      "file": "examples/components-isolated/content.html",
+      "covers": [
+        "isolated-example",
+        "d-content"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "provenance": {
+        "source": "archive:career/v1/showcase/components.html#d-content",
+        "extraction": "exact-dom-subtree"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Собственных story нет. 125 правил извлечены из сборки и лежат в ui/components/content.css."
+  ],
+  "markdown": "# Content · Длинный текст\n\n| | |\n|---|---|\n| **Категория** | Отображение данных |\n| **Корневой класс** | — |\n| **CSS** | _только утилиты_ |\n| **Живая реализация** | частичная |\n| **Snapshot Storybook** | 0 из 0 |\n\n## Назначение\n\nОформление произвольного HTML: описание вакансии, текст компании, тело статьи. Не компонент, а слой стилей, применяемый к контейнеру `.editor__content`.\n\n## Анатомия\n\n_Разметка недоступна: см. «Ограничения»._\n\n## Состояния\n\n_В извлечённом CSS и разметке состояний не объявлено. Не достраиваем._\n\n## Props\n\n_Storybook не отдаёт controls для этого компонента._\n\n## Токены\n\n_Компонент не обращается к переменным напрямую._\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## CSS\n\n_Собственного CSS нет: компонент собран утилитами Tailwind прямо в разметке. Все нужные правила — в `ui/utilities.css`._\n\n## Ограничения\n\n- Собственных story нет. 125 правил извлечены из сборки и лежат в `ui/components/content.css`.\n\n## Источники\n\n- Storybook `career-web`: \n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n\n## Нормативный контракт R2-E\n\nContent — style primitive (`editor__content`), а не stateful widget; собственных UI states нет. Внутренние ссылки, `details`, таблицы и media сохраняют нативную семантику и focus behavior.\n\n- HTML до рендера санитизируется по allowlist; обработчики событий и опасные URL запрещены.\n- Heading levels следуют структуре страницы, а не размеру шрифта.\n- Таблицы получают caption или доступное имя; изображения — осмысленный `alt` либо пустой `alt` для декора.\n- Для code/pre сохраняется горизонтальная прокрутка, для media — адаптивная ширина.\n",
+  "sourcePath": "archive:career/v1/components/data/content.md",
+  "legacyDocument": "archive:career/v1/components/data/content.md"
+}

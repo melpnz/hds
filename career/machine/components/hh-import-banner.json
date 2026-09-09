@@ -1,0 +1,69 @@
+{
+  "id": "hh-import-banner",
+  "title": "HHImportProfileStatusBanner · Статус импорта профиля",
+  "kind": "module",
+  "category": "banners",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "published-spec",
+      "storybook-snapshot"
+    ],
+    "confidence": "medium",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Полоса состояния импорта профиля из внешнего сервиса: идёт, удался, не удался.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "markup": {
+    "html": "<div class=\"max-w-[760px] p-4\">\n  <div class=\"relative overflow-hidden rounded-3xl\">\n    <section class=\"flex gap-2 rounded-3xl border bg-ui-white p-6 items-center border-ui-blue\" aria-labelledby=\"hh-import-profile-title\">\n      <svg class=\"svg-icon fill-ui-blue text-ui-blue h-6 w-6 shrink-0\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n        <use xlink:href=\"../../ui/assets/icons/sprite.svg#postpone-circle\"/>\n      </svg>\n      <div class=\"relative grow\">\n        <div class=\"flex flex-wrap items-baseline\">\n          <h2 id=\"hh-import-profile-title\" class=\"m-0 text-body-l\">Заполнение резюме</h2>\n          <span class=\"inline-separator inline-separator ml-2\">•</span>\n          <button class=\"ghost-button base-button inline-flex appearance-none size-m is-sizeable ghost-button\" type=\"button\" target=\"_self\">\n            <span class=\"base-button__inner\">\n              <span class=\"base-button__content\">Обновить</span>\n            </span>\n          </button>\n        </div>\n        <button class=\"!absolute right-0 top-0 ghost-button base-button inline-flex appearance-none size-m is-sizeable !absolute right-0 top-0 ghost-button\" type=\"button\" target=\"_self\">\n          <span class=\"base-button__inner\">\n            <span class=\"base-button__content\">Отменить</span>\n          </span>\n        </button>\n      </div>\n    </section>\n  </div>\n</div>"
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка из спецификации",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fhh-import-banner.json",
+      "covers": [
+        "published-markup"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          375,
+          768,
+          1100
+        ],
+        "height": 560
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Собственного CSS нет: компонент собран утилитами."
+  ],
+  "evidence": [
+    {
+      "type": "published-spec",
+      "ref": "archive:career/v1/components/banners/hh-import-banner.md"
+    }
+  ],
+  "markdown": "# HHImportProfileStatusBanner · Статус импорта профиля\n\n| | |\n|---|---|\n| **Категория** | Баннеры |\n| **Корневой класс** | `max-w-[760px]` |\n| **CSS** | _только утилиты_ |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 3 из 3 |\n\n## Назначение\n\nПолоса состояния импорта профиля из внешнего сервиса: идёт, удался, не удался.\n\n## Анатомия\n\n```\ndiv.max-w-[760px].p-4\n  div.relative.overflow-hidden.rounded-3xl\n    section.flex.gap-2.rounded-3xl.border.bg-ui-white.p-6.items-center.border-ui-blue\n      svg.svg-icon.fill-ui-blue.text-ui-blue.h-6.w-6.shrink-0\n        use  [xlink:href=\"/career-web/images/sprites/sprite.svg?v=5.63.0#postpone-circle\"]\n      div.relative.grow\n        div.flex.flex-wrap.items-baseline\n          h2.m-0.text-body-l  [id=\"hh-import-profile-title\"]\n            · «Заполнение резюме»\n          span.inline-separator.inline-separator.ml-2\n            · «•»\n          button.ghost-button.base-button.inline-flex.appearance-none.size-m.is-sizeable.ghost-button  [type=\"button\" target=\"_self\"]\n            span.base-button__inner\n              …\n        button.!absolute.right-0.top-0.ghost-button.base-button.inline-flex.appearance-none.size-m.is-sizeable.!absolute.right-0.top-0.ghost-button  [type=\"button\" target=\"_self\"]\n          span.base-button__inner\n            span.base-button__content\n              · «Отменить»\n```\n\n_Разметка story `banners-hhimportprofilestatusbanner--in-progress`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\nПодтверждены CSS и разметкой: `.is-sizeable`.\n\n## Props\n\n_Storybook не отдаёт controls для этого компонента._\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-icon-gray` | `var(--color-ui-gray-2)` | из `:root` Career |\n| `--color-ui-blue` | `#1ba1ee` | из `:root` Career |\n| `--color-ui-gray-shadow` | `rgba(24,46,57,.1)` | из `:root` Career |\n| `--color-ui-green` | `#3dc24a` | из `:root` Career |\n| `--color-ui-red` | `#f8651b` | из `:root` Career |\n| `--color-ui-white` | `#fff` | из `:root` Career |\n\n## Иконки\n\n| Спрайт | Символ | Локальный файл |\n|---|---|---|\n| `sprite.svg` | `#check-circle-empty` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#cross` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#minus-circle` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#postpone-circle` | `ui/assets/icons/sprite.svg` |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\nАтрибуты, встречающиеся в реальной разметке: `aria-labelledby=\"hh-import-profile-title\"`.\n\n## Поведение\n\n- Три story — три состояния процесса. Это готовый образец того, как Career показывает длительную фоновую операцию.\n\n## Разметка\n\n```html\n<div class=\"max-w-[760px] p-4\">\n  <div class=\"relative overflow-hidden rounded-3xl\">\n    <section class=\"flex gap-2 rounded-3xl border bg-ui-white p-6 items-center border-ui-blue\" aria-labelledby=\"hh-import-profile-title\">\n      <svg class=\"svg-icon fill-ui-blue text-ui-blue h-6 w-6 shrink-0\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n        <use xlink:href=\"../../ui/assets/icons/sprite.svg#postpone-circle\"/>\n      </svg>\n      <div class=\"relative grow\">\n        <div class=\"flex flex-wrap items-baseline\">\n          <h2 id=\"hh-import-profile-title\" class=\"m-0 text-body-l\">Заполнение резюме</h2>\n          <span class=\"inline-separator inline-separator ml-2\">•</span>\n          <button class=\"ghost-button base-button inline-flex appearance-none size-m is-sizeable ghost-button\" type=\"button\" target=\"_self\">\n            <span class=\"base-button__inner\">\n              <span class=\"base-button__content\">Обновить</span>\n            </span>\n          </button>\n        </div>\n        <button class=\"!absolute right-0 top-0 ghost-button base-button inline-flex appearance-none size-m is-sizeable !absolute right-0 top-0 ghost-button\" type=\"button\" target=\"_self\">\n          <span class=\"base-button__inner\">\n            <span class=\"base-button__content\">Отменить</span>\n          </span>\n        </button>\n      </div>\n    </section>\n  </div>\n</div>\n```\n\n_Пути к спрайтам и изображениям в этом блоке — локальные, от папки спецификации. В блоке «Анатомия» выше сохранён продовый путь: это протокол снятого DOM, а не образец для вёрстки._\n\n## CSS\n\n_Собственного CSS нет: компонент собран утилитами Tailwind прямо в разметке. Все нужные правила — в `ui/utilities.css`._\n\n## Ограничения\n\n- Собственного CSS нет: компонент собран утилитами.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/hh-import-profile/hh-import-profile-status-banner/hh-import-profile-status-banner.stories.ts`\n- Storybook `career-web`: `banners-hhimportprofilestatusbanner--in-progress`, `banners-hhimportprofilestatusbanner--succeeded`, `banners-hhimportprofilestatusbanner--failed`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/banners/hh-import-banner.md",
+  "legacyDocument": "archive:career/v1/components/banners/hh-import-banner.md",
+  "legacyUnindexed": true
+}

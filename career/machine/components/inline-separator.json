@@ -1,0 +1,85 @@
+{
+  "id": "inline-separator",
+  "name": "InlineSeparator",
+  "category": "data-display",
+  "kind": "primitive",
+  "spec": "components\\data\\inline-separator.md",
+  "status": "complete",
+  "states": [],
+  "cssRoots": [
+    "inline-separator"
+  ],
+  "anchor": "showcase/components.html#d-pretty-scroll-contract",
+  "markup": null,
+  "evidence": [],
+  "legacySource": {
+    "id": "inline-separator",
+    "name": "InlineSeparator",
+    "category": "data-display",
+    "kind": "primitive",
+    "spec": "components\\data\\inline-separator.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "inline-separator"
+    ],
+    "anchor": "showcase/components.html#d-pretty-scroll-contract",
+    "markup": null,
+    "evidence": []
+  },
+  "title": "InlineSeparator",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Точка-разделитель между строчными фрагментами метаданных: «Москва · Полный день · Удалённо».",
+  "implementation": {
+    "markup": null,
+    "cssRoots": [
+      "inline-separator"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "missingReason": "copy-safe-markup-not-captured",
+    "fallback": "Не придумывать классы. Использовать ближайший компонент с разметкой или явно отметить пробел."
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "isolated-example",
+      "title": "Разделитель в строке",
+      "file": "examples/components-isolated/inline-separator.html",
+      "covers": [
+        "isolated-example",
+        "d-pretty-scroll-contract"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "provenance": {
+        "source": "archive:career/v1/showcase/components.html#d-pretty-scroll-contract",
+        "extraction": "exact-dom-subtree"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Собственных story нет — данные из CSS и из разметки карточек."
+  ],
+  "markdown": "# InlineSeparator · Строчный разделитель\n\n| | |\n|---|---|\n| **Категория** | Отображение данных |\n| **Корневой класс** | — |\n| **CSS** | `ui/components/primitives.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 0 из 0 |\n\n## Назначение\n\nТочка-разделитель между строчными фрагментами метаданных: «Москва · Полный день · Удалённо».\n\n## Анатомия\n\n_Разметка недоступна: см. «Ограничения»._\n\n## Состояния\n\n_В извлечённом CSS и разметке состояний не объявлено. Не достраиваем._\n\n## Props\n\n_Storybook не отдаёт controls для этого компонента._\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-font-gray` | `var(--color-ui-gray-2)` | из `:root` Career |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## CSS\n\n```css\n.inline-separator { color:var(--color-font-gray);white-space:pre-wrap }\n.inline-separator--inheritColor { color:inherit }\n```\n\n## Ограничения\n\n- Собственных story нет — данные из CSS и из разметки карточек.\n\n## Источники\n\n- Storybook `career-web`: \n- CSS: секция `inline-separator` в `ui/components/primitives.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n\n## Нормативный контракт R2-E\n\nInlineSeparator — декоративный primitive без состояний. Символ отделяется от соседнего текста пробелами и получает `aria-hidden=\"true\"`, чтобы screen reader не произносил пунктуацию. Если разделитель несёт смысл, используйте список (`ul`) или отдельные доступные подписи вместо визуального символа.\n",
+  "sourcePath": "archive:career/v1/components/data/inline-separator.md",
+  "legacyDocument": "archive:career/v1/components/data/inline-separator.md"
+}

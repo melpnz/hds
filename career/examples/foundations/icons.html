@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Иконки</title>
+  <link rel="stylesheet" href="foundation.css">
+  <style>
+    .toolbar{position:sticky;top:0;z-index:2;display:flex;gap:12px;align-items:center;padding:12px 0;background:var(--color-ui-gray-7)}
+    input{width:min(420px,100%);height:40px;padding:0 12px;border:1px solid var(--color-ui-gray-5);border-radius:12px;font:inherit}
+    .summary{color:var(--color-font-gray);font-size:12px}
+    .icons{display:grid;grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:10px}
+    .icon-card{min-width:0;padding:12px;border-radius:12px;background:var(--color-ui-white);box-shadow:inset 0 0 0 1px var(--color-ui-gray-shadow)}
+    .icon-svg{display:block;width:24px;height:24px;margin-bottom:12px;color:var(--color-font-black)}.icon-svg svg{display:block;width:24px;height:24px;fill:currentColor}
+    .icon-card code{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .group-title{margin:8px 0 12px;font-size:16px}
+    .sprite-list{display:grid;gap:8px;margin:0;padding:0;list-style:none}.sprite-list li{display:flex;justify-content:space-between;gap:12px;padding:10px 12px;border-radius:8px;background:var(--color-ui-gray-6)}
+    .empty{display:none;padding:24px;color:var(--color-font-gray)}
+  </style>
+</head>
+<body>
+  <main class="sheet">
+    <div class="toolbar"><input id="filter" type="search" placeholder="Фильтр по имени или группе" aria-label="Фильтр иконок"><span class="summary" id="summary"></span></div>
+    <div id="catalog"></div>
+    <p class="empty" id="empty">Ничего не найдено</p>
+    <section class="group"><h2>Сборные sprite-файлы</h2><ul class="sprite-list" id="sprites"></ul></section>
+  </main>
+  <script>
+    const escapeHtml=value=>String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;');
+    fetch('../../machine/foundations/icons-inventory.json').then(response=>response.json()).then(inventory=>{
+      const standalone=inventory.assets.filter(item=>item.representation==='standalone');
+      const sprites=inventory.assets.filter(item=>item.representation==='sprite-sheet');
+      const render=query=>{
+        const needle=query.trim().toLowerCase();
+        const visible=standalone.filter(item=>`${item.name} ${item.group}`.toLowerCase().includes(needle));
+        const groups=visible.reduce((result,item)=>{(result[item.group]??=[]).push(item);return result},{});
+        document.querySelector('#catalog').innerHTML=Object.entries(groups).map(([group,items])=>`<section class="group"><h2 class="group-title">${escapeHtml(group)} · ${items.length}</h2><div class="icons">${items.map(item=>`<article class="icon-card" title="${escapeHtml(item.path)}"><span class="icon-svg" data-src="../../${encodeURI(item.path)}" aria-hidden="true"></span><code>${escapeHtml(item.name)}</code></article>`).join('')}</div></section>`).join('');
+        document.querySelectorAll('.icon-svg[data-src]').forEach(slot=>fetch(slot.dataset.src).then(response=>response.text()).then(svg=>{slot.innerHTML=svg}).catch(()=>{slot.textContent='×'}));
+        document.querySelector('#summary').textContent=`${visible.length} из ${standalone.length}`;
+        document.querySelector('#empty').style.display=visible.length?'none':'block';
+      };
+      document.querySelector('#sprites').innerHTML=sprites.map(item=>`<li><code>${escapeHtml(item.name)}</code><span>${item.symbolCount} символов</span></li>`).join('');
+      document.querySelector('#filter').addEventListener('input',event=>render(event.target.value));
+      render('');
+    }).catch(error=>{document.querySelector('#catalog').textContent=`Не удалось загрузить инвентарь: ${error.message}`});
+  </script>
+</body>
+</html>

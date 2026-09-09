@@ -1,0 +1,112 @@
+{
+  "id": "badge",
+  "name": "Badge",
+  "category": "data-display",
+  "kind": "component",
+  "spec": "components\\labels\\badge.md",
+  "status": "complete",
+  "states": [
+    "default"
+  ],
+  "cssRoots": [
+    "base-badge"
+  ],
+  "anchor": "showcase/components.html#l-badge",
+  "markup": {
+    "html": "<span class=\"base-badge\">7</span>\n<span class=\"base-badge base-badge--dot\" aria-hidden=\"true\"></span>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": "658:361",
+      "sourceName": "badge"
+    }
+  ],
+  "legacySource": {
+    "id": "badge",
+    "name": "Badge",
+    "category": "data-display",
+    "kind": "component",
+    "spec": "components\\labels\\badge.md",
+    "status": "complete",
+    "states": [
+      "default"
+    ],
+    "cssRoots": [
+      "base-badge"
+    ],
+    "anchor": "showcase/components.html#l-badge",
+    "markup": {
+      "html": "<span class=\"base-badge\">7</span>\n<span class=\"base-badge base-badge--dot\" aria-hidden=\"true\"></span>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "658:361",
+        "sourceName": "badge"
+      }
+    ]
+  },
+  "title": "Badge",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Короткий числовой или точечный индикатор рядом с action, tab или avatar. Badge не является самостоятельным действием и не получает focus.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "base-badge"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "stateGroups": {
+    "ui": [
+      "default"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fbadge.json",
+      "covers": [
+        "default"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Отдельного Storybook component/API пока нет.",
+    "Semantic color variants не подтверждены production и не добавляются по Figma.",
+    "Overflow policy подтверждена только примером 99+; автоматическое"
+  ],
+  "markdown": "# Badge · Бейдж и счётчик\n\n| | |\n|---|---|\n| **Категория** | Метки и статусы |\n| **Каноническое имя** | `Badge` |\n| **Корневой класс** | `base-badge` |\n| **CSS** | `ui/components.css` |\n| **Живая реализация** | `showcase/components.html#l-badge` |\n| **Storybook** | отдельного компонента нет |\n\n## Назначение\n\nКороткий числовой или точечный индикатор рядом с action, tab или avatar. Badge\nне является самостоятельным действием и не получает focus.\n\nНе использовать вместо StatusChip: Badge показывает количество или наличие\nсобытия, StatusChip — именованный статус сущности.\n\n## Анатомия\n\n```text\nspan.base-badge\n  · короткое значение\n```\n\nДля dot-варианта текстового узла нет.\n\n## Варианты\n\n| Вариант | Класс | Назначение |\n|---|---|---|\n| count | `base-badge` | число или короткое значение вроде `99+` |\n| dot | `base-badge--dot` | факт наличия события без количества |\n| ring | `base-badge--ring` | отделяет Badge от цветной/графической подложки |\n\n## Состояния\n\nBadge статичен. Его единственное обязательное состояние — `default`.\n\n`hover`, `focus-visible`, `pressed`, `selected`, `disabled` и `loading` принадлежат\nродительскому интерактивному компоненту. Не переносить их на Badge.\n\n## API\n\nЕсли компонент будет оформлен в runtime, минимальный контракт:\n\n| Prop | Тип | По умолчанию | Назначение |\n|---|---|---|---|\n| `value` | `string \\| number` | — | отображаемое значение |\n| `dot` | `boolean` | `false` | точечный вариант |\n| `ring` | `boolean` | `false` | контрастное кольцо |\n| `max` | `number` | — | форматирует превышение как `${max}+` |\n\nНазвания API — решение UI kit, а не копия Figma properties.\n\n## Токены\n\n- `--color-ui-primary`\n- `--color-ui-white`\n- `--font-base`\n\n## Доступность\n\n- Декоративный dot скрывается от assistive technology через `aria-hidden=\"true\"`.\n- Значение count должно входить в accessible name родительского элемента либо\n  иметь понятную соседнюю подпись. Число `7` без контекста неинформативно.\n- Badge внутри disabled action не должен отдельно объявлять `aria-disabled`.\n\n## Разметка\n\n```html\n<span class=\"base-badge\">7</span>\n<span class=\"base-badge base-badge--dot\" aria-hidden=\"true\"></span>\n```\n\n## CSS\n\n```css\n.base-badge {\n  display: inline-flex;\n  align-items: center;\n  justify-content: center;\n  min-width: 20px;\n  height: 20px;\n  padding: 0 4px;\n  border-radius: 999px;\n  background: var(--color-ui-primary);\n  color: var(--color-ui-white);\n  font: 600 11px/16px var(--font-base);\n}\n.base-badge--dot { width: 12px; height: 12px; min-width: 12px; padding: 0; }\n.base-badge--ring { box-shadow: 0 0 0 2px var(--color-ui-white); }\n```\n\n## Ограничения\n\n- Отдельного Storybook component/API пока нет.\n- Semantic color variants не подтверждены production и не добавляются по Figma.\n- Overflow policy подтверждена только примером `99+`; автоматическое\n  форматирование появится вместе с runtime API.\n\n## Источники\n\n- Production: счётчики внутри buttons и tabs.\n- Локальный CSS: `ui/components.css`, секция «Бейдж-счётчик».\n- Showcase: `showcase/components.html#l-badge`.\n- Figma evidence: `new-career-lib`, `badge`, node `658:361`. Названия и API Figma\n  не нормативны.\n",
+  "sourcePath": "archive:career/v1/components/labels/badge.md",
+  "legacyDocument": "archive:career/v1/components/labels/badge.md"
+}

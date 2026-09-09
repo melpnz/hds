@@ -1,0 +1,72 @@
+{
+  "id": "conversation-messages",
+  "title": "Messages · Лента сообщений",
+  "kind": "module",
+  "category": "modules",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "published-spec",
+      "storybook-snapshot"
+    ],
+    "confidence": "medium",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Лента сообщений переписки: группировка по дням и отправителю, входящие и исходящие, вложения, время, статус доставки.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "markup": {
+    "html": "<a href=\"https://habrastorage.org/mock/report.pdf\" download=\"report.pdf\" target=\"_blank\" class=\"mb-2 block text-inherit last:mb-0\">\n  <div class=\"grid items-center gap-2 px-4 py-2 grid-cols-[40px_minmax(0,1fr)] !p-0\">\n    <div class=\"uploading-animation relative h-10 w-10 overflow-hidden rounded-lg uploading-animation-finish uploading-animation-just-present bg-ui-red-second\">\n      <div class=\"uploading-animation-conic absolute inset-0 m-auto h-7 w-7 -scale-x-100 rounded-full\" style=\"background: conic-gradient(\n      var(--color-ui-white-60) 0 0deg,\n      rgba(255, 255, 255, 0) 0\n    );\"></div>\n      <div class=\"absolute left-1/2 top-1/2 max-w-[36px] -translate-x-1/2 -translate-y-1/2 transform truncate text-center text-body-m font-semibold text-ui-white\">pdf</div>\n    </div>\n    <div class=\"text-body-l\">\n      <div class=\"grid grid-cols-[minmax(0,min-content)_min-content]\">\n        <div class=\"truncate\">report</div>\n        <div class=\"whitespace-nowrap\">.pdf</div>\n      </div>\n      <div class=\"flex items-center gap-1 text-body-m text-ui-gray-2\">\n        <div class=\"text-body-m\">2 MB</div>\n      </div>\n    </div>\n  </div>\n</a>\n<span class=\"block text-body-m text-font-gray\">Файл доступен 7 дней</span>"
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка из спецификации",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fconversation-messages.json",
+      "covers": [
+        "published-markup"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          375,
+          768,
+          1100
+        ],
+        "height": 560
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Ядро ленты не снялось: Messages (25 story), MessagesGroup (3) и ConversationMessages (6) сломаны в самом Storybook Career — сборка не отдаёт чанки -iqz-73v.js и -2YzXgxt.js (оба 404).",
+    "Снялись только периферийные части: вложения в сообщении, иконка статуса, время.",
+    "CSS обеих сломанных секций сохранён, но он крошечный (66 и 114 байт): пузырь сообщения собран утилитами, из CSS не восстанавливается.",
+    "ЧЕГО НЕ ХВАТАЕТ: разметки одного входящего и одного исходящего сообщения, разделителя дня и метки непрочитанных. Достаточно одного snapshot страницы /conversations production."
+  ],
+  "evidence": [
+    {
+      "type": "published-spec",
+      "ref": "archive:career/v1/components/modules/conversation-messages.md"
+    }
+  ],
+  "markdown": "# Messages · Лента сообщений\n\n| | |\n|---|---|\n| **Категория** | Модуль: переписка |\n| **Корневой класс** | `block`, `last:mb-0`, `notification` |\n| **CSS** | `ui/components/conversations.css` |\n| **Живая реализация** | частичная |\n| **Snapshot Storybook** | 15 из 49 |\n\n## Назначение\n\nЛента сообщений переписки: группировка по дням и отправителю, входящие и исходящие, вложения, время, статус доставки.\n\n## Анатомия\n\n```\na.mb-2.block.text-inherit.last:mb-0  [href=\"https://habrastorage.org/mock/report.pdf\" target=\"_blank\"]\n  div.grid.items-center.gap-2.px-4.py-2.grid-cols-[40px_minmax(0,1fr)].!p-0\n    div.uploading-animation.relative.h-10.w-10.overflow-hidden.rounded-lg.uploading-animation-finish.uploading-animation-just-present.bg-ui-red-second\n      div.uploading-animation-conic.absolute.inset-0.m-auto.h-7.w-7.-scale-x-100.rounded-full\n      div.absolute.left-1/2.top-1/2.max-w-[36px].-translate-x-1/2.-translate-y-1/2.transform.truncate.text-center.text-body-m.font-semibold.text-ui-white\n        · «pdf»\n    div.text-body-l\n      div.grid.grid-cols-[minmax(0,min-content)_min-content]\n        div.truncate\n          · «report»\n        div.whitespace-nowrap\n          · «.pdf»\n      div.flex.items-center.gap-1.text-body-m.text-ui-gray-2\n        div.text-body-m\n          · «2 MB»\nspan.block.text-body-m.text-font-gray\n  · «Файл доступен 7 дней»\n```\n\n_Разметка story `conversations-messages-messageattachements--single-file`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\nПодтверждены CSS и разметкой: `:first-child`, `:last-child`.\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `attachments` | FileUploadedByUser[] | — | — | — |\n| `daysBeforeRemovalAttachments` | number | — | — | — |\n| `didAttachmentsDelete` | boolean | — | — | — |\n| `isMine` | boolean | — | — | — |\n| `isLastMessageWithAttachments` | boolean | — | — | — |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-font-gray` | `var(--color-ui-gray-2)` | из `:root` Career |\n| `--color-graph-cyan` | `#83d3fc` | из `:root` Career |\n| `--color-ui-blue-accent` | `#0464d2` | из `:root` Career |\n| `--color-ui-gray-2` | `#55798b` | из `:root` Career |\n| `--color-ui-gray-3` | `#7996a5` | из `:root` Career |\n| `--color-ui-green` | `#3dc24a` | из `:root` Career |\n| `--color-ui-orange` | `#fdad0d` | из `:root` Career |\n| `--color-ui-red-second` | `var( --color-ui-red-light )` | из `:root` Career |\n| `--color-ui-white` | `#fff` | из `:root` Career |\n\n## Иконки\n\n| Спрайт | Символ | Локальный файл |\n|---|---|---|\n| `sprite.svg` | `#info` | `ui/assets/icons/sprite.svg` |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## Разметка\n\n```html\n<a href=\"https://habrastorage.org/mock/report.pdf\" download=\"report.pdf\" target=\"_blank\" class=\"mb-2 block text-inherit last:mb-0\">\n  <div class=\"grid items-center gap-2 px-4 py-2 grid-cols-[40px_minmax(0,1fr)] !p-0\">\n    <div class=\"uploading-animation relative h-10 w-10 overflow-hidden rounded-lg uploading-animation-finish uploading-animation-just-present bg-ui-red-second\">\n      <div class=\"uploading-animation-conic absolute inset-0 m-auto h-7 w-7 -scale-x-100 rounded-full\" style=\"background: conic-gradient(\n      var(--color-ui-white-60) 0 0deg,\n      rgba(255, 255, 255, 0) 0\n    );\"></div>\n      <div class=\"absolute left-1/2 top-1/2 max-w-[36px] -translate-x-1/2 -translate-y-1/2 transform truncate text-center text-body-m font-semibold text-ui-white\">pdf</div>\n    </div>\n    <div class=\"text-body-l\">\n      <div class=\"grid grid-cols-[minmax(0,min-content)_min-content]\">\n        <div class=\"truncate\">report</div>\n        <div class=\"whitespace-nowrap\">.pdf</div>\n      </div>\n      <div class=\"flex items-center gap-1 text-body-m text-ui-gray-2\">\n        <div class=\"text-body-m\">2 MB</div>\n      </div>\n    </div>\n  </div>\n</a>\n<span class=\"block text-body-m text-font-gray\">Файл доступен 7 дней</span>\n```\n\n## CSS\n\n```css\n.conversation-messages .simplebar-content { padding:24px!important }\n.message-body>p { margin:8px 0 }\n.message-body>p:first-child { margin-top:0 }\n.message-body>p:last-child { margin-bottom:0 }\n```\n\n## Ограничения\n\n- Ядро ленты не снялось: `Messages` (25 story), `MessagesGroup` (3) и `ConversationMessages` (6) сломаны в самом Storybook Career — сборка не отдаёт чанки `-iqz-73v.js` и `-2YzXgxt.js` (оба 404).\n- Снялись только периферийные части: вложения в сообщении, иконка статуса, время.\n- CSS обеих сломанных секций сохранён, но он крошечный (66 и 114 байт): пузырь сообщения собран утилитами, из CSS не восстанавливается.\n- ЧЕГО НЕ ХВАТАЕТ: разметки одного входящего и одного исходящего сообщения, разделителя дня и метки непрочитанных. Достаточно одного snapshot страницы `/conversations` production.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/conversations/messages/messages.stories.ts`, `./src/components/conversations/messages-group.stories.ts`, `./src/components/conversations/conversation-messages.stories.ts`, `./src/components/conversations/messages/message-attachements.stories.ts`, `./src/components/conversations/message-status-icon.stories.ts`, `./src/components/conversations/message-time.stories.ts`\n- Storybook `career-web`: `conversations-messages-messages--user-incoming`, `conversations-messages-messages--user-outgoing`, `conversations-messages-messages--changed-subject`, `conversations-messages-messages--job-invite`, `conversations-messages-messages--question-with-buttons`, `conversations-messages-messages--question-answered`, `conversations-messages-messages--consultation-confirmation-with-buttons`, `conversations-messages-messages--consultation-confirmation-without-buttons`, `conversations-messages-messages--consultation-confirmed`, `conversations-messages-messages--consultation-rejected`, `conversations-messages-messages--consultation-cancelled`, `conversations-messages-messages--consultation-status-check-with-buttons`, `conversations-messages-messages--consultation-status-check-without-buttons`, `conversations-messages-messages--consultation-completed-with-rate-button`, `conversations-messages-messages--consultation-completed-already-rated`, `conversations-messages-messages--consultation-rated`, `conversations-messages-messages--test-requested-with-buttons`, `conversations-messages-messages--test-requested-without-buttons`, `conversations-messages-messages--test-rejected`, `conversations-messages-messages--test-passed`, `conversations-messages-messages--test-hidden`, `conversations-messages-messages--screening-recommendation`, `conversations-messages-messages--current-date`, `conversations-messages-messages--past-date`, `conversations-messages-messages--unread-label`, `conversations-messages-messagesgroup--with-user-messages`, `conversations-messages-messagesgroup--with-unread-label`, `conversations-messages-messagesgroup--yesterday-group`, `conversations-messages-conversationmessages--loading`, `conversations-messages-conversationmessages--empty`, `conversations-messages-conversationmessages--default`, `conversations-messages-conversationmessages--unread`, `conversations-messages-conversationmessages--load-more-pending`, `conversations-messages-conversationmessages--refresh-pending`, `conversations-messages-messageattachements--single-file`, `conversations-messages-messageattachements--multiple-files`, `conversations-messages-messageattachements--deleted-today`, `conversations-messages-messageattachements--storage-expired`, `conversations-messages-messageattachements--with-security-notice`, `conversations-messages-messageattachements--all-file-types`, `conversations-messages-messageattachements--my-files`, `conversations-messages-messagestatusicon--mine-read`, `conversations-messages-messagestatusicon--mine-unread`, `conversations-messages-messagestatusicon--not-mine`, `conversations-messages-messagetime--today`, `conversations-messages-messagetime--yesterday`, `conversations-messages-messagetime--this-year`, `conversations-messages-messagetime--last-year`, `conversations-messages-messagetime--time-only`\n- CSS: секция `conversation-messages` в `ui/components/conversations.css`, секция `messages-group` в `ui/components/conversations.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/modules/conversation-messages.md",
+  "legacyDocument": "archive:career/v1/components/modules/conversation-messages.md",
+  "legacyUnindexed": true
+}

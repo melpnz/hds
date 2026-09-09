@@ -1,0 +1,154 @@
+{
+  "id": "textarea",
+  "name": "Textarea",
+  "category": "forms",
+  "kind": "component",
+  "spec": "components\\forms\\textarea.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "disabled",
+    "readOnly",
+    "invalid"
+  ],
+  "cssRoots": [
+    "base-textarea"
+  ],
+  "anchor": "showcase/components.html#fo-textarea",
+  "markup": {
+    "html": "<div class=\"base-textarea\">\n  <textarea class=\"base-textarea__textarea\" rows=\"3\" placeholder=\"Placeholder\" maxlength=\"100\" style=\"--textarea--maxRows: 5; overflow: hidden; overflow-wrap: break-word; height: 90px;\"></textarea>\n  <div class=\"flex justify-between gap-2\">\n    <div></div>\n    <div class=\"text-length whitespace-nowrap\">0 / 100</div>\n  </div>\n</div>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": null,
+      "sourceName": "textarea"
+    }
+  ],
+  "storybookNames": [
+    "BaseTextarea"
+  ],
+  "code": {
+    "component": "BaseTextarea",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "textarea",
+    "name": "Textarea",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\textarea.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "disabled",
+      "readOnly",
+      "invalid"
+    ],
+    "cssRoots": [
+      "base-textarea"
+    ],
+    "anchor": "showcase/components.html#fo-textarea",
+    "markup": {
+      "html": "<div class=\"base-textarea\">\n  <textarea class=\"base-textarea__textarea\" rows=\"3\" placeholder=\"Placeholder\" maxlength=\"100\" style=\"--textarea--maxRows: 5; overflow: hidden; overflow-wrap: break-word; height: 90px;\"></textarea>\n  <div class=\"flex justify-between gap-2\">\n    <div></div>\n    <div class=\"text-length whitespace-nowrap\">0 / 100</div>\n  </div>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "textarea"
+      }
+    ],
+    "storybookNames": [
+      "BaseTextarea"
+    ],
+    "code": {
+      "component": "BaseTextarea",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "Textarea",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Многострочное поле с автоматическим ростом и счётчиком символов. Основное поле сопроводительных писем и шаблонов откликов.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "base-textarea"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "BaseTextarea",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "disabled",
+      "readOnly",
+      "invalid"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Ftextarea.json",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "disabled",
+        "readOnly",
+        "invalid"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "readOnly, focus-visible ring и ARIA-связь error/counter добавлены нормативным"
+  ],
+  "markdown": "# Textarea · BaseTextarea\n\n| | |\n|---|---|\n| **Категория** | Формы |\n| **Корневой класс** | `base-textarea` |\n| **CSS** | `ui/components/forms.css`, `ui/state-contract.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 4 из 4 |\n\n## Назначение\n\nМногострочное поле с автоматическим ростом и счётчиком символов. Основное поле сопроводительных писем и шаблонов откликов.\n\n## Анатомия\n\n```\ndiv.base-textarea\n  textarea.base-textarea__textarea  [placeholder=\"Placeholder\"]\n  div.flex.justify-between.gap-2\n    div\n    div.text-length.whitespace-nowrap\n      · «0 / 100»\n```\n\n_Разметка story `form-basetextarea--default`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\n| Состояние | Канонический контракт | Legacy alias |\n|---|---|---|\n| `default` | нативный textarea | — |\n| `hover` | `:hover` | production CSS |\n| `focus-visible` | `:focus-visible`, border + ring | legacy `:focus` задаёт только border |\n| `disabled` | нативный `disabled` | `--disabled` modifiers |\n| `readOnly` | нативный `readonly`; поле остаётся focusable | UI kit contract |\n| `invalid` | `aria-invalid=\"true\"` + `aria-describedby` | `--invalid` modifiers |\n\nАвтоматический рост и filled/empty не являются состояниями design-system API.\n\nПодтверждены CSS и разметкой: `.base-textarea--disabled`, `.base-textarea--invalid`, `.base-textarea__textarea--disabled`, `.base-textarea__textarea--invalid`, `:focus`, `:hover`, `:placeholder`.\n\n```css\n.base-textarea__textarea:hover { border-color:var(--color-ui-gray-4) }\n.base-textarea__textarea--disabled:hover { border-color:var(--color-ui-gray-6) }\n```\n\n## Слоты\n\n- `error`\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `modelValue` | string | — | — | `text` |\n| `placeholder` | string | — | — | `text` |\n| `rows` | string \\| number | `1` | — | `number` |\n| `maxRows` | string \\| number | `5` | — | `number` |\n| `disabled` | boolean | — | — | `boolean` |\n| `invalid` | boolean | — | — | `boolean` |\n| `readOnly` | boolean | `false` | UI kit contract | `boolean` |\n| `maxLength` | number | — | — | `number` |\n| `name` | string | — | — | `text` |\n| `autofocus` | boolean | — | — | `boolean` |\n| `appearance` | string | — | — | `text` |\n| `update:modelValue` | other | — | — | `object` |\n| `focus` | other | — | — | `object` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-ui-gray-1` | `#1b272c` | из `:root` Career |\n| `--color-ui-gray-2` | `#55798b` | из `:root` Career |\n| `--color-ui-gray-3` | `#7996a5` | из `:root` Career |\n| `--color-ui-gray-4` | `#a6bdc9` | из `:root` Career |\n| `--color-ui-gray-5` | `#d4dee2` | из `:root` Career |\n| `--color-ui-gray-6` | `#eaf2f5` | из `:root` Career |\n| `--color-ui-red` | `#f8651b` | из `:root` Career |\n| `--color-ui-white` | `#fff` | из `:root` Career |\n| `--font-letter-spacing-0` | — | задаётся компонентом или средой, значения в сборке нет |\n| `--font-line-height-body-m` | — | задаётся компонентом или средой, значения в сборке нет |\n| `--font-line-height-display-m` | — | задаётся компонентом или средой, значения в сборке нет |\n| `--font-size-body-l` | — | задаётся компонентом или средой, значения в сборке нет |\n| `--font-size-body-s` | — | задаётся компонентом или средой, значения в сборке нет |\n| `--font-weight-regular` | — | задаётся компонентом или средой, значения в сборке нет |\n| `--textarea--maxRows` | — | задаётся компонентом или средой, значения в сборке нет |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\nTextarea связывается с InputLabel через `for`/`id`. Error и TextLength имеют\nстабильные id и перечисляются в `aria-describedby`; invalid дополнительно\nставит `aria-invalid=\"true\"`. Счётчик не должен становиться частью label.\n\n## Поведение\n\n- Высота растёт до `maxRows`: количество строк передаётся в CSS инлайновой переменной `--textarea--maxRows`, высота выставляется в пикселях тем же инлайновым стилем.\n- Счётчик символов — отдельный компонент `text-length` в подвале поля; при ошибке слева от него появляется её текст.\n\n## Разметка\n\n```html\n<div class=\"base-textarea\">\n  <textarea class=\"base-textarea__textarea\" rows=\"3\" placeholder=\"Placeholder\" maxlength=\"100\" style=\"--textarea--maxRows: 5; overflow: hidden; overflow-wrap: break-word; height: 90px;\"></textarea>\n  <div class=\"flex justify-between gap-2\">\n    <div></div>\n    <div class=\"text-length whitespace-nowrap\">0 / 100</div>\n  </div>\n</div>\n```\n\n## CSS\n\n```css\n.base-textarea { display:flex;flex-direction:column;row-gap:4px }\n.base-textarea--disabled { color:var(--color-ui-gray-4) }\n.base-textarea__textarea { background-color:var(--color-ui-white);border:1px solid var(--color-ui-gray-5);border-radius:12px;color:var(--color-ui-gray-1);flex:1 1 auto;font-size:var(--font-size-body-l,16px);font-weight:var(--font-weight-regular,400);letter-spacing:var(--font-letter-spacing-0,0);line-height:var(--font-line-height-display-m,24px);max-height:max(88px,calc(18px + var(--textarea--maxRows)*24px));min-height:88px;min-width:0;overflow:auto!important;padding:8px 16px;resize:none }\n.base-textarea__textarea:hover { border-color:var(--color-ui-gray-4) }\n.base-textarea__textarea--disabled:hover { border-color:var(--color-ui-gray-6) }\n.base-textarea__textarea:focus { border-color:var(--color-ui-gray-2);outline:0 }\n.base-textarea__textarea--invalid { border-color:var(--color-ui-red) }\n.base-textarea__textarea::-moz-placeholder { color:var(--color-ui-gray-3) }\n.base-textarea__textarea::placeholder { color:var(--color-ui-gray-3) }\n.base-textarea__textarea--disabled { border-color:var(--color-ui-gray-6);color:var(--color-ui-gray-4) }\n.base-textarea__textarea--disabled::-moz-placeholder { color:var(--color-ui-gray-4) }\n.base-textarea__textarea--disabled::placeholder { color:var(--color-ui-gray-4) }\n.base-textarea>.flex { color:var(--color-ui-gray-3);font-size:var(--font-size-body-s,12px);line-height:var(--font-line-height-body-m,16px) }\n.base-textarea>.flex :where(.text-length) { color:var(--color-ui-gray-3);font-size:var(--font-size-body-s,12px);line-height:var(--font-line-height-body-m,16px) }\n.base-textarea--appearance-feedback .base-textarea__textarea { min-height:88px;padding:10px 12px }\n.text-length { color:var(--color-ui-gray-3);font-size:12px;line-height:16px;text-align:right }\n.text-length--exceeded { color:var(--color-ui-gray-3) }\n```\n\n## Ограничения\n\n- `readOnly`, focus-visible ring и ARIA-связь error/counter добавлены нормативным\n  контрактом; production snapshot показывал только визуальные modifiers.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/form/base-textarea.stories.ts`\n- Storybook `career-web`: `form-basetextarea--default`, `form-basetextarea--filled`, `form-basetextarea--disabled`, `form-basetextarea--error`\n- CSS: секция `base-textarea` в `ui/components/forms.css`, секция `text-length` в `ui/components/forms.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/forms/textarea.md",
+  "legacyDocument": "archive:career/v1/components/forms/textarea.md"
+}

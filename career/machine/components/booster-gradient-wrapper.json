@@ -1,0 +1,85 @@
+{
+  "id": "booster-gradient-wrapper",
+  "name": "BoosterGradientWrapper",
+  "category": "feedback",
+  "kind": "component",
+  "spec": "components\\feedback\\booster-gradient.md",
+  "status": "complete",
+  "states": [],
+  "cssRoots": [
+    "booster-gradient-wrapper"
+  ],
+  "anchor": "showcase/components.html#d-avatar",
+  "markup": null,
+  "evidence": [],
+  "legacySource": {
+    "id": "booster-gradient-wrapper",
+    "name": "BoosterGradientWrapper",
+    "category": "feedback",
+    "kind": "component",
+    "spec": "components\\feedback\\booster-gradient.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "booster-gradient-wrapper"
+    ],
+    "anchor": "showcase/components.html#d-avatar",
+    "markup": null,
+    "evidence": []
+  },
+  "title": "BoosterGradientWrapper",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Градиентная рамка вокруг блока для платных возможностей («бустер»). Режим avatar отмечает профиль пользователя с подпиской, поэтому живой пример стоит рядом со шкалой аватаров, а не среди служебных display roots. Career держит для этого отдельные токены-градиенты: --color-booster-gradient, --color-booster-badge, --color-booster-banner-bg.",
+  "implementation": {
+    "markup": null,
+    "cssRoots": [
+      "booster-gradient-wrapper"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "missingReason": "copy-safe-markup-not-captured",
+    "fallback": "Не придумывать классы. Использовать ближайший компонент с разметкой или явно отметить пробел."
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "isolated-example",
+      "title": "Градиентное кольцо",
+      "file": "examples/components-isolated/booster-gradient-wrapper.html",
+      "covers": [
+        "isolated-example",
+        "d-avatar"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "provenance": {
+        "source": "archive:career/v1/showcase/components.html#d-avatar",
+        "extraction": "exact-dom-subtree"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Собственных story нет — данные из CSS и токенов."
+  ],
+  "markdown": "# BoosterGradientWrapper · Градиентная обёртка\r\n\r\n| | |\r\n|---|---|\r\n| **Категория** | Обратная связь |\r\n| **Корневой класс** | — |\r\n| **CSS** | `ui/components/primitives.css` |\r\n| **Живая реализация** | `showcase/components.html#d-avatar` |\r\n| **Snapshot Storybook** | 0 из 0 |\r\n\r\n## Назначение\r\n\r\nГрадиентная рамка вокруг блока для платных возможностей («бустер»). Режим `avatar` отмечает профиль пользователя с подпиской, поэтому живой пример стоит рядом со шкалой аватаров, а не среди служебных display roots. Career держит для этого отдельные токены-градиенты: `--color-booster-gradient`, `--color-booster-badge`, `--color-booster-banner-bg`.\r\n\r\n## Анатомия\r\n\r\n_Разметка недоступна: см. «Ограничения»._\r\n\r\n## Состояния\r\n\r\n_В извлечённом CSS и разметке состояний не объявлено. Не достраиваем._\r\n\r\n## Props\r\n\r\n_Storybook не отдаёт controls для этого компонента._\r\n\r\n## Токены\r\n\r\n| Переменная | Значение | Статус |\r\n|---|---|---|\r\n| `--color-booster-gradient` | `radial-gradient(circle at 0% 0%,var(--color-ui-orange) 10%,var(--color-ui-pink) 40%,var(--color-ui-primary-light) 80%)` | из `:root` Career |\r\n\r\n## Responsive\r\n\r\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\r\n\r\n## Доступность\r\n\r\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\r\n\r\n## CSS\r\n\r\n```css\r\n.booster-gradient-wrapper { height:-moz-min-content;height:min-content;position:relative;width:-moz-min-content;width:min-content }\r\n.booster-gradient-wrapper:before { background:var(--color-booster-gradient);content:\"\";-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;position:absolute }\r\n.booster-gradient-wrapper--mode-avatar:before { border-radius:50%;top:-4px;right:-4px;bottom:-4px;left:-4px;padding:2px }\r\n.booster-gradient-wrapper--mode-card { height:auto;width:auto }\r\n.booster-gradient-wrapper--mode-card:before { border-radius:24px;top:0;right:0;bottom:0;left:0;padding:2px }\r\n.booster-gradient-wrapper--mode-card .base-section { border:none }\r\n.booster-gradient-wrapper>span.base-avatar { display:block }\r\n```\r\n\r\n## Ограничения\r\n\r\n- Собственных story нет — данные из CSS и токенов.\r\n\r\n## Источники\r\n\r\n- Storybook `career-web`: \r\n- CSS: секция `booster-gradient-wrapper` в `ui/components/primitives.css`\r\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\r\n\r\n## Нормативный контракт base scope\r\n\r\nBoosterGradientWrapper — декоративный wrapper без UI states и без собственной семантики. Канонические modes: `avatar` и `card`; они меняют геометрию рамки, а не смысл содержимого. Псевдоэлемент не попадает в accessibility tree, поэтому имя и интерактивность всегда принадлежат вложенному Avatar, Card или действию.\r\n\r\nНе используйте booster-gradient как единственный признак платной функции: статус должен быть продублирован текстом или доступной меткой.\r\n",
+  "sourcePath": "archive:career/v1/components/feedback/booster-gradient.md",
+  "legacyDocument": "archive:career/v1/components/feedback/booster-gradient.md"
+}

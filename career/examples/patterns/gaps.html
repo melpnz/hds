@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Чего здесь нет и почему</title><link rel="stylesheet" href="../../ui/career.css"><link rel="stylesheet" href="patterns.css"><style>body{min-width:0;padding:20px}</style></head>
+<body><section class="pattern" id="gaps">
+  <div class="pattern__head">
+    <span class="pattern__num">—</span>
+    <h2>Чего здесь нет и почему</h2>
+    <p>Пустые места оставлены пустыми намеренно.</p>
+  </div>
+  <div class="tablewrap"><table class="doc">
+    <thead><tr><th>Не воспроизведено</th><th>Причина</th></tr></thead>
+    <tbody>
+      <tr><td>Всё, что видит авторизованный пользователь</td><td>Исследование велось гостем. Личный кабинет, отклики, диалоги, настройки — не наблюдались</td></tr>
+      <tr><td>Загрузка, скелетоны</td><td>Не пойманы: страницы отдаются сервером готовыми</td></tr>
+      <tr><td>Ошибки формы на странице</td><td>Единственная доступная гостю форма — фильтры, где ошибок нет</td></tr>
+      <tr><td>Модальные окна</td><td>Ни одно не открывается без входа</td></tr>
+      <tr><td>Горизонтальная карусель связанных сущностей</td><td>Механика видна, геометрия не измерена</td></tr>
+      <tr><td>Брендированный профиль компании</td><td>Это <b>не продуктовый язык Career</b>: типографика 40/40, полноширинные блоки, фирменный цвет рекламодателя. Пример — в <code>../evidence/curated/module-composition/</code></td></tr>
+      <tr><td>Журнал</td><td>Legacy-вёрстка блога вне сетки Career</td></tr>
+      <tr><td>Вход и регистрация</td><td>У Career их нет: <code>/users/sign_in</code> уводит на Хабр Аккаунт с другой дизайн-системой. Это граница продукта, а не пробел</td></tr>
+      <tr><td>Иконки и иллюстрации</td><td>Начертания библиотеки не извлекались. Иконки на странице — заглушки правильного размера</td></tr>
+    </tbody>
+  </table></div>
+  <div class="callout callout--warn" style="margin-top:20px">
+    <h3>Главное ограничение</h3>
+    <p>Все паттерны выше — <strong>публичная часть продукта</strong>. Для функции, которая
+       живёт внутри личного кабинета, этот пакет даст правильные компоненты и, скорее всего,
+       неправильный экран. В таком случае правильнее спросить, а не достроить.</p>
+  </div>
+</section><script src="patterns.js"></script></body></html>

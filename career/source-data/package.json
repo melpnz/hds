@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "scripts": {
+    "validate": "node tools/validate-components.mjs --strict && node tools/validate-showcase-icons.mjs",
+    "test": "node tools/validate-components.mjs --strict && node tools/validate-counts.mjs && node tools/validate-classes.mjs && node tools/sync-showcase-icons.mjs --check && node tools/validate-machine.mjs && playwright test",
+    "serve": "node tools/serve.mjs",
+    "build:machine": "node tools/build-machine.mjs"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0"
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "id": "steps-sidebar",
+  "name": "StepsSidebar",
+  "category": "navigation",
+  "kind": "component",
+  "spec": "components\\navigation\\steps-sidebar.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "current",
+    "disabled"
+  ],
+  "cssRoots": [
+    "company-rating-steps__link"
+  ],
+  "anchor": "showcase/components.html#n-steps",
+  "markup": {
+    "html": "<nav class=\"overflow-hidden rounded-3xl border border-ui-gray-shadow bg-ui-white p-1\">\n  <ul class=\"m-0 flex list-none flex-col p-1\">\n    <li>\n      <a href=\"#company\" class=\"company-rating-steps__link relative flex min-h-[40px] w-full items-center overflow-hidden rounded-xl px-4 py-2 text-body-l font-regular text-ui-gray-1 no-underline focus-visible:outline-none\">\n        <span class=\"relative z-[1] truncate\">Компания и роль</span>\n      </a>\n    </li>\n    <li>\n      <a href=\"#common\" class=\"company-rating-steps__link relative flex min-h-[40px] w-full items-center overflow-hidden rounded-xl px-4 py-2 text-body-l font-regular text-ui-gray-1 no-underline focus-visible:outline-none company-rating-steps__link--active bg-ui-primary-20\" aria-current=\"step\">\n        <span class=\"relative z-[1] truncate\">Общая оценка</span>\n      </a>\n    </li>\n    <li>\n      <a href=\"#recommendation\" class=\"company-rating-steps__link relative flex min-h-[40px] w-full items-center overflow-hidden rounded-xl px-4 py-2 text-body-l font-regular text-ui-gray-1 no-underline focus-visible:outline-none company-rating-steps__link--disabled cursor-default text-ui-gray-4\" aria-disabled=\"true\" tabindex=\"-1\">\n        <span class=\"relative z-[1] truncate\">Рекомендация работодателя</span>\n      </a>\n    </li>\n    <li>\n      <a href=\"#experience\" class=\"company-rating-steps__link relative flex min-h-[40px] w-full items-center overflow-hidden rounded-xl px-4 py-2 text-body-l font-regular text-ui-gray-1 no-underline focus-visible:outline-none company-rating-steps__link--disabled cursor-default text-ui-gray-4\" aria-disabled=\"true\" tabindex=\"-1\">\n        <span class=\"relative z-[1] truncate\">Опыт и приватность</span>\n      </a>\n    </li>\n  </ul>\n</nav>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [],
+  "legacySource": {
+    "id": "steps-sidebar",
+    "name": "StepsSidebar",
+    "category": "navigation",
+    "kind": "component",
+    "spec": "components\\navigation\\steps-sidebar.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "current",
+      "disabled"
+    ],
+    "cssRoots": [
+      "company-rating-steps__link"
+    ],
+    "anchor": "showcase/components.html#n-steps",
+    "markup": {
+      "html": "<nav class=\"overflow-hidden rounded-3xl border border-ui-gray-shadow bg-ui-white p-1\">\n  <ul class=\"m-0 flex list-none flex-col p-1\">\n    <li>\n      <a href=\"#company\" class=\"company-rating-steps__link relative flex min-h-[40px] w-full items-center overflow-hidden rounded-xl px-4 py-2 text-body-l font-regular text-ui-gray-1 no-underline focus-visible:outline-none\">\n        <span class=\"relative z-[1] truncate\">Компания и роль</span>\n      </a>\n    </li>\n    <li>\n      <a href=\"#common\" class=\"company-rating-steps__link relative flex min-h-[40px] w-full items-center overflow-hidden rounded-xl px-4 py-2 text-body-l font-regular text-ui-gray-1 no-underline focus-visible:outline-none company-rating-steps__link--active bg-ui-primary-20\" aria-current=\"step\">\n        <span class=\"relative z-[1] truncate\">Общая оценка</span>\n      </a>\n    </li>\n    <li>\n      <a href=\"#recommendation\" class=\"company-rating-steps__link relative flex min-h-[40px] w-full items-center overflow-hidden rounded-xl px-4 py-2 text-body-l font-regular text-ui-gray-1 no-underline focus-visible:outline-none company-rating-steps__link--disabled cursor-default text-ui-gray-4\" aria-disabled=\"true\" tabindex=\"-1\">\n        <span class=\"relative z-[1] truncate\">Рекомендация работодателя</span>\n      </a>\n    </li>\n    <li>\n      <a href=\"#experience\" class=\"company-rating-steps__link relative flex min-h-[40px] w-full items-center overflow-hidden rounded-xl px-4 py-2 text-body-l font-regular text-ui-gray-1 no-underline focus-visible:outline-none company-rating-steps__link--disabled cursor-default text-ui-gray-4\" aria-disabled=\"true\" tabindex=\"-1\">\n        <span class=\"relative z-[1] truncate\">Опыт и приватность</span>\n      </a>\n    </li>\n  </ul>\n</nav>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": []
+  },
+  "title": "StepsSidebar",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Список шагов многоэтапной формы в боковой колонке: оценка компании, импорт вакансий, заполнение профиля.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "company-rating-steps__link"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "current",
+      "disabled"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fsteps-sidebar.json",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "current",
+        "disabled"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Не выявлено: разметка, CSS и props извлечены полностью."
+  ],
+  "markdown": "# StepsSidebar · Шаги в боковой колонке\n\n| | |\n|---|---|\n| **Категория** | Навигация |\n| **Корневой класс** | `company-rating-steps__link` — класса `steps-sidebar` нет: так называется файл сборки |\n| **CSS** | `ui/components/navigation.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 3 из 3 |\n\n## Назначение\n\nСписок шагов многоэтапной формы в боковой колонке: оценка компании, импорт вакансий, заполнение профиля.\n\n## Анатомия\n\n```\nnav.overflow-hidden.rounded-3xl.border.border-ui-gray-shadow.bg-ui-white.p-1\n  ul.m-0.flex.list-none.flex-col.p-1\n    li\n      a.company-rating-steps__link.relative.flex.min-h-[40px].w-full.items-center.overflow-hidden.rounded-xl.px-4.py-2.text-body-l.font-regular.text-ui-gray-1.no-underline.focus-visible:outline-none  [href=\"#company\"]\n        span.relative.z-[1].truncate\n          · «Компания и роль»\n    li\n      a.company-rating-steps__link.relative.flex.min-h-[40px].w-full.items-center.overflow-hidden.rounded-xl.px-4.py-2.text-body-l.font-regular.text-ui-gray-1.no-underline.focus-visible:outline-none.company-rating-steps__link--active.bg-ui-primary-20  [aria-current=\"step\" href=\"#common\"]\n        span.relative.z-[1].truncate\n          · «Общая оценка»\n    li\n      a.company-rating-steps__link.relative.flex.min-h-[40px].w-full.items-center.overflow-hidden.rounded-xl.px-4.py-2.text-body-l.font-regular.text-ui-gray-1.no-underline.focus-visible:outline-none.company-rating-steps__link--disabled.cursor-default.text-ui-gray-4  [tabindex=\"-1\" href=\"#recommendation\"]\n        span.relative.z-[1].truncate\n          · «Рекомендация работодателя»\n    li\n      a.company-rating-steps__link.relative.flex.min-h-[40px].w-full.items-center.overflow-hidden.rounded-xl.px-4.py-2.text-body-l.font-regular.text-ui-gray-1.no-underline.focus-visible:outline-none.company-rating-steps__link--disabled.cursor-default.text-ui-gray-4  [tabindex=\"-1\" href=\"#experience\"]\n        span.relative.z-[1].truncate\n          · «Опыт и приватность»\n```\n\n_Разметка story `companies-companyratingstepssidebar--default`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\nПодтверждены CSS и разметкой: `.company-rating-steps__link--active`, `.company-rating-steps__link--disabled`, `:focus`, `:hover`.\n\n```css\n.company-rating-steps__link:hover { color:var(--color-ui-gray-1);text-decoration-line:none }\n.company-rating-steps__link:focus-visible:before,.company-rating-steps__link:hover:before { opacity:.1 }\n.company-rating-steps__link:focus-visible:after { opacity:.6 }\n.company-rating-steps__link--active:focus-visible:before,.company-rating-steps__link--active:hover:before { opacity:0 }\n.company-rating-steps__link--active:focus-visible:after { border-color:var(--color-ui-primary-60);opacity:1 }\n.company-rating-steps__link--disabled:after,.company-rating-steps__link--disabled:before,.company-rating-steps__link--disabled:focus-visible:before,.company-rating-steps__link--disabled:hover:before { opacity:0 }\n.company-rating-steps__link--disabled:hover { color:var(--color-ui-gray-4) }\n```\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `steps` | TSTypeOperator | — | — | `object` |\n| `activeStep` | string | — | — | `text` |\n| `select` | CompanyRatingStep | — | — | `object` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-ui-gray-1` | `#1b272c` | из `:root` Career |\n| `--color-ui-gray-2` | `#55798b` | из `:root` Career |\n| `--color-ui-gray-3` | `#7996a5` | из `:root` Career |\n| `--color-ui-gray-4` | `#a6bdc9` | из `:root` Career |\n| `--color-ui-gray-shadow` | `rgba(24,46,57,.1)` | из `:root` Career |\n| `--color-ui-primary-20` | `color-mix(in srgb,var(--color-ui-primary) 20%,transparent)` | из `:root` Career |\n| `--color-ui-primary-60` | `color-mix(in srgb,var(--color-ui-primary) 60%,transparent)` | из `:root` Career |\n| `--color-ui-white` | `#fff` | из `:root` Career |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\nАтрибуты, встречающиеся в реальной разметке: `aria-current=\"step\"`, `aria-disabled=\"true\"`, `tabindex=\"-1\"`.\n\n## Разметка\n\n```html\n<nav class=\"overflow-hidden rounded-3xl border border-ui-gray-shadow bg-ui-white p-1\">\n  <ul class=\"m-0 flex list-none flex-col p-1\">\n    <li>\n      <a href=\"#company\" class=\"company-rating-steps__link relative flex min-h-[40px] w-full items-center overflow-hidden rounded-xl px-4 py-2 text-body-l font-regular text-ui-gray-1 no-underline focus-visible:outline-none\">\n        <span class=\"relative z-[1] truncate\">Компания и роль</span>\n      </a>\n    </li>\n    <li>\n      <a href=\"#common\" class=\"company-rating-steps__link relative flex min-h-[40px] w-full items-center overflow-hidden rounded-xl px-4 py-2 text-body-l font-regular text-ui-gray-1 no-underline focus-visible:outline-none company-rating-steps__link--active bg-ui-primary-20\" aria-current=\"step\">\n        <span class=\"relative z-[1] truncate\">Общая оценка</span>\n      </a>\n    </li>\n    <li>\n      <a href=\"#recommendation\" class=\"company-rating-steps__link relative flex min-h-[40px] w-full items-center overflow-hidden rounded-xl px-4 py-2 text-body-l font-regular text-ui-gray-1 no-underline focus-visible:outline-none company-rating-steps__link--disabled cursor-default text-ui-gray-4\" aria-disabled=\"true\" tabindex=\"-1\">\n        <span class=\"relative z-[1] truncate\">Рекомендация работодателя</span>\n      </a>\n    </li>\n    <li>\n      <a href=\"#experience\" class=\"company-rating-steps__link relative flex min-h-[40px] w-full items-center overflow-hidden rounded-xl px-4 py-2 text-body-l font-regular text-ui-gray-1 no-underline focus-visible:outline-none company-rating-steps__link--disabled cursor-default text-ui-gray-4\" aria-disabled=\"true\" tabindex=\"-1\">\n        <span class=\"relative z-[1] truncate\">Опыт и приватность</span>\n      </a>\n    </li>\n  </ul>\n</nav>\n```\n\n## CSS\n\n```css\n.company-rating-steps__link { transition:background-color .15s ease,color .15s ease }\n.company-rating-steps__link:before { background-color:var(--color-ui-gray-3);z-index:0 }\n.company-rating-steps__link:after,.company-rating-steps__link:before { border-radius:.75rem;content:\"\";top:0;right:0;bottom:0;left:0;opacity:0;pointer-events:none;position:absolute;transition-duration:.2s;transition-property:opacity;transition-timing-function:cubic-bezier(.4,0,.2,1) }\n.company-rating-steps__link:after { border-color:var(--color-ui-gray-2);border-width:2px;z-index:2 }\n.company-rating-steps__link:hover { color:var(--color-ui-gray-1);text-decoration-line:none }\n.company-rating-steps__link:focus-visible:before,.company-rating-steps__link:hover:before { opacity:.1 }\n.company-rating-steps__link:focus-visible:after { opacity:.6 }\n.company-rating-steps__link--active:after { border-color:var(--color-ui-primary-60) }\n.company-rating-steps__link--active:focus-visible:before,.company-rating-steps__link--active:hover:before { opacity:0 }\n.company-rating-steps__link--active:focus-visible:after { border-color:var(--color-ui-primary-60);opacity:1 }\n.company-rating-steps__link--disabled:after,.company-rating-steps__link--disabled:before,.company-rating-steps__link--disabled:focus-visible:before,.company-rating-steps__link--disabled:hover:before { opacity:0 }\n.company-rating-steps__link--disabled:hover { color:var(--color-ui-gray-4) }\n```\n\n## Ограничения\n\n- Не выявлено: разметка, CSS и props извлечены полностью.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/companies/company-rating/steps-sidebar.stories.ts`\n- Storybook `career-web`: `companies-companyratingstepssidebar--default`, `companies-companyratingstepssidebar--first-step`, `companies-companyratingstepssidebar--disabled-states`\n- CSS: секция `steps-sidebar` в `ui/components/navigation.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n\n## Нормативный контракт base scope\n\nОбёртка — `nav` с доступным именем, шаги — упорядоченный список, если порядок обязателен. Состояния: `default`, `hover`, `focus-visible`, `current` через `aria-current=\"step\"` и `disabled` через `aria-disabled=\"true\"`. Модификаторы `--active`/`--disabled` остаются visual aliases.\n\nНедоступная ссылка удаляется из tab order и обязана блокировать переход; если шаг выполняет действие без навигации, используйте `button`. Не применяйте tablist semantics: шаги мастера — последовательная навигация, а не переключение вкладок.\n",
+  "sourcePath": "archive:career/v1/components/navigation/steps-sidebar.md",
+  "legacyDocument": "archive:career/v1/components/navigation/steps-sidebar.md"
+}

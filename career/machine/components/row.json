@@ -1,0 +1,151 @@
+{
+  "id": "row",
+  "name": "Row",
+  "category": "collections",
+  "kind": "component",
+  "spec": "components\\data\\row.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "selected",
+    "disabled"
+  ],
+  "cssRoots": [
+    "base-row"
+  ],
+  "anchor": "showcase/components.html#d-row",
+  "markup": null,
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": null,
+      "sourceName": "row / main"
+    }
+  ],
+  "storybookNames": [
+    "BaseRow"
+  ],
+  "code": {
+    "component": "BaseRow",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "row",
+    "name": "Row",
+    "category": "collections",
+    "kind": "component",
+    "spec": "components\\data\\row.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "selected",
+      "disabled"
+    ],
+    "cssRoots": [
+      "base-row"
+    ],
+    "anchor": "showcase/components.html#d-row",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "row / main"
+      }
+    ],
+    "storybookNames": [
+      "BaseRow"
+    ],
+    "code": {
+      "component": "BaseRow",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "Row",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Строка списка внутри карточки: разделитель сверху, отступы, состояние наведения. Своих story не имеет.",
+  "implementation": {
+    "markup": null,
+    "cssRoots": [
+      "base-row"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "BaseRow",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    },
+    "missingReason": "copy-safe-markup-not-captured",
+    "fallback": "Не придумывать классы. Использовать ближайший компонент с разметкой или явно отметить пробел."
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "selected",
+      "disabled"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "isolated-example",
+      "title": "Состояния",
+      "file": "examples/components-isolated/row.html",
+      "covers": [
+        "isolated-example",
+        "d-row",
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "selected",
+        "disabled"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "provenance": {
+        "source": "archive:career/v1/showcase/components.html#d-row",
+        "extraction": "exact-dom-subtree"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Собственных story нет — данные из CSS."
+  ],
+  "markdown": "# Row · BaseRow\n\n| | |\n|---|---|\n| **Категория** | Отображение данных |\n| **Корневой класс** | — |\n| **CSS** | `ui/components/cards.css` |\n| **Живая реализация** | частичная |\n| **Snapshot Storybook** | 0 из 0 |\n\n## Назначение\n\nСтрока списка внутри карточки: разделитель сверху, отступы, состояние наведения. Своих story не имеет.\n\n## Анатомия\n\n_Разметка недоступна: см. «Ограничения»._\n\n## Состояния\n\nПодтверждены CSS и разметкой: `:focus`, `:hover`.\n\n```css\n.base-row:hover { background-color:var(--color-ui-gray-3-10) }\n.base-row:focus-visible { background-color:var(--color-ui-gray-3-10);outline-style:solid }\n.base-row.hover,.base-row:has(:hover) { background-color:var(--color-ui-gray-3-10) }\n```\n\n## Props\n\n_Storybook не отдаёт controls для этого компонента._\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-icon-gray` | `var(--color-ui-gray-2)` | из `:root` Career |\n| `--color-ui-gray-1` | `#1b272c` | из `:root` Career |\n| `--color-ui-gray-2` | `#55798b` | из `:root` Career |\n| `--color-ui-gray-3-10` | `color-mix(in srgb,var(--color-ui-gray-3) 10%,transparent)` | из `:root` Career |\n| `--color-ui-primary-20` | `color-mix(in srgb,var(--color-ui-primary) 20%,transparent)` | из `:root` Career |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## CSS\n\n```css\n.base-row { border-radius:.75rem;color:var(--color-ui-gray-1);cursor:pointer;outline-color:var(--color-ui-gray-2);outline-offset:-2px;outline-width:2px;padding:.5rem 1rem }\n.base-row:hover { background-color:var(--color-ui-gray-3-10) }\n.base-row:focus-visible { background-color:var(--color-ui-gray-3-10);outline-style:solid }\n.base-row.hover,.base-row:has(:hover) { background-color:var(--color-ui-gray-3-10) }\n.base-row.disabled { cursor:not-allowed;opacity:.4 }\n.base-row.selected { background-color:var(--color-ui-primary-20) }\n.base-row.selected svg { fill:var(--color-icon-gray);color:var(--color-icon-gray) }\n```\n\n## Ограничения\n\n- Собственных story нет — данные из CSS.\n\n## Источники\n\n- Storybook `career-web`: \n- CSS: секция `base-row` в `ui/components/cards.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n\n## Нормативный контракт R2-D\n\nКорневой класс — `base-row`. Строка-действие рендерится как `button` или `a`; строка выбора в listbox — как элемент с `role=\"option\"`. Не оборачивайте вложенные ссылки и кнопки в ещё одну кнопку.\n\n| Состояние | Контракт |\n|---|---|\n| `default` | нейтральная строка |\n| `hover` | `:hover` |\n| `focus-visible` | `:focus-visible` на корневом действии |\n| `pressed` | `:active`; `.is-pressed` только для стенда |\n| `selected` | `aria-selected=\"true\"`; `.selected` — legacy alias |\n| `disabled` | `disabled` или `aria-disabled=\"true\"`; без событий |\n\nСписок отвечает за стрелочную навигацию и управление фокусом, Row — за визуальное состояние.\n",
+  "sourcePath": "archive:career/v1/components/data/row.md",
+  "legacyDocument": "archive:career/v1/components/data/row.md"
+}

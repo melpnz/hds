@@ -1,0 +1,100 @@
+{
+  "id": "page-header",
+  "name": "PageHeader",
+  "category": "frame-modules",
+  "kind": "module",
+  "spec": "components\\modules\\page-header.md",
+  "status": "complete",
+  "states": [
+    "closed",
+    "open"
+  ],
+  "cssRoots": [
+    "page-header",
+    "page-header__menu-toggle"
+  ],
+  "anchor": "showcase/components.html#r4-page-header",
+  "markup": {
+    "html": "<header class=\"page-header\">\n  <div class=\"tm-panel\"><div class=\"page-width tm-panel__inner\"><a class=\"tm-panel__logo\" href=\"#\"><b>Хабр</b> Карьера</a><span class=\"tm-panel__divider\" aria-hidden=\"true\"></span><span class=\"tm-panel__promo\">Работа для IT-специалистов</span></div></div>\n  <div class=\"page-header__bar\"><div class=\"page-width page-header__inner\">\n    <button class=\"page-header__menu-toggle\" type=\"button\" aria-label=\"Открыть меню\" aria-expanded=\"false\" aria-controls=\"r4-mobile-menu\" data-page-header-toggle><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 6h18M3 12h18M3 18h18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></button>\n    <a class=\"page-header__logo\" href=\"#\"><b>Хабр</b> Карьера</a>\n    <nav class=\"page-header__nav\" id=\"r4-mobile-menu\" data-state=\"closed\" aria-label=\"Основная навигация\"><a class=\"page-header__link\" aria-current=\"page\" href=\"#\">Вакансии</a><a class=\"page-header__link\" href=\"#\">Специалисты</a><a class=\"page-header__link\" href=\"#\">Компании</a><a class=\"page-header__link\" href=\"#\">Зарплаты</a></nav>\n    <div class=\"page-header__user\"><button type=\"button\" class=\"base-button inline-flex appearance-main size-m is-sizeable\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Войти</span></span></button></div>\n  </div></div>\n</header>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [],
+  "legacySource": {
+    "id": "page-header",
+    "name": "PageHeader",
+    "category": "frame-modules",
+    "kind": "module",
+    "spec": "components\\modules\\page-header.md",
+    "status": "complete",
+    "states": [
+      "closed",
+      "open"
+    ],
+    "cssRoots": [
+      "page-header",
+      "page-header__menu-toggle"
+    ],
+    "anchor": "showcase/components.html#r4-page-header",
+    "markup": {
+      "html": "<header class=\"page-header\">\n  <div class=\"tm-panel\"><div class=\"page-width tm-panel__inner\"><a class=\"tm-panel__logo\" href=\"#\"><b>Хабр</b> Карьера</a><span class=\"tm-panel__divider\" aria-hidden=\"true\"></span><span class=\"tm-panel__promo\">Работа для IT-специалистов</span></div></div>\n  <div class=\"page-header__bar\"><div class=\"page-width page-header__inner\">\n    <button class=\"page-header__menu-toggle\" type=\"button\" aria-label=\"Открыть меню\" aria-expanded=\"false\" aria-controls=\"r4-mobile-menu\" data-page-header-toggle><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 6h18M3 12h18M3 18h18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></button>\n    <a class=\"page-header__logo\" href=\"#\"><b>Хабр</b> Карьера</a>\n    <nav class=\"page-header__nav\" id=\"r4-mobile-menu\" data-state=\"closed\" aria-label=\"Основная навигация\"><a class=\"page-header__link\" aria-current=\"page\" href=\"#\">Вакансии</a><a class=\"page-header__link\" href=\"#\">Специалисты</a><a class=\"page-header__link\" href=\"#\">Компании</a><a class=\"page-header__link\" href=\"#\">Зарплаты</a></nav>\n    <div class=\"page-header__user\"><button type=\"button\" class=\"base-button inline-flex appearance-main size-m is-sizeable\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Войти</span></span></button></div>\n  </div></div>\n</header>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": []
+  },
+  "title": "PageHeader",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Глобальная навигация Career: верхняя панель экосистемы Хабра, основная строка с навигацией и user/guest panel, а на узкой ширине — кнопка и раскрываемое меню. Это shell module, не заголовок контентной секции.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "page-header",
+      "page-header__menu-toggle"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "stateGroups": {
+    "ui": [
+      "closed",
+      "open"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fpage-header.json",
+      "covers": [
+        "closed",
+        "open"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [],
+  "markdown": "# PageHeader · Глобальная шапка\r\n\r\n| | |\r\n|---|---|\r\n| **Категория** | Каркасные модули |\r\n| **Корневой класс** | `page-header` |\r\n| **CSS** | `ui/modules.css`, `ui/layout.css` |\r\n| **Живая реализация** | `showcase/components.html#r4-page-header` |\r\n| **Источник** | Production header 1440/375; Figma — только evidence |\r\n\r\n## Назначение\r\n\r\nГлобальная навигация Career: верхняя панель экосистемы Хабра, основная строка\r\nс навигацией и user/guest panel, а на узкой ширине — кнопка и раскрываемое меню.\r\nЭто shell module, не заголовок контентной секции.\r\n\r\n## Анатомия\r\n\r\n```text\r\nheader.page-header\r\n  .tm-panel\r\n  .page-header__bar\r\n    button.page-header__menu-toggle\r\n    logo\r\n    nav.page-header__nav\r\n    .page-header__user\r\n```\r\n\r\n## Состояния\r\n\r\n- `closed`: menu trigger имеет `aria-expanded=\"false\"`, menu — `data-state=\"closed\"`.\r\n- `open`: `aria-expanded=\"true\"`; `aria-controls` указывает на видимое menu.\r\n- Hover, focus-visible, pressed и disabled принадлежат вложенным Button/links.\r\n\r\n## API\r\n\r\n- `activeItem`: текущая ссылка через `aria-current=\"page\"`.\r\n- `user`: slot для AvatarButton/Menu или guest Button.\r\n- `mobileMenuOpen`: управляет только раскрытием; desktop и mobile не являются states.\r\n- `primaryNav`, `secondaryNav`: коллекции ссылок с устойчивыми id.\r\n\r\n## Responsive\r\n\r\nОдин DOM и один набор ссылок. На `≤1023` nav становится раскрываемым блоком и\r\nпоявляется доступная menu button; раскладка меняется только CSS.\r\n\r\n## Доступность\r\n\r\n- Header — `<header>`, каждая группа ссылок — именованный `<nav>`.\r\n- Menu trigger — `<button>` с доступным именем, `aria-expanded` и `aria-controls`.\r\n- Escape закрывает меню и возвращает фокус trigger; после перехода меню закрывается.\r\n- Порядок Tab совпадает с визуальным; декоративные SVG имеют `aria-hidden=\"true\"`.\r\n\r\n## Разметка\r\n\r\nСнято с живого примера витрины — [`showcase/components.html#r4-page-header`](../../showcase/components.html#r4-page-header).\r\nРаботает на пустой странице с одним `ui/career.css`.\r\n\r\n```html\r\n<header class=\"page-header\">\r\n  <div class=\"tm-panel\"><div class=\"page-width tm-panel__inner\"><a class=\"tm-panel__logo\" href=\"#\"><b>Хабр</b> Карьера</a><span class=\"tm-panel__divider\" aria-hidden=\"true\"></span><span class=\"tm-panel__promo\">Работа для IT-специалистов</span></div></div>\r\n  <div class=\"page-header__bar\"><div class=\"page-width page-header__inner\">\r\n    <button class=\"page-header__menu-toggle\" type=\"button\" aria-label=\"Открыть меню\" aria-expanded=\"false\" aria-controls=\"r4-mobile-menu\" data-page-header-toggle><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" aria-hidden=\"true\"><path d=\"M3 6h18M3 12h18M3 18h18\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"2\" stroke-linecap=\"round\"/></svg></button>\r\n    <a class=\"page-header__logo\" href=\"#\"><b>Хабр</b> Карьера</a>\r\n    <nav class=\"page-header__nav\" id=\"r4-mobile-menu\" data-state=\"closed\" aria-label=\"Основная навигация\"><a class=\"page-header__link\" aria-current=\"page\" href=\"#\">Вакансии</a><a class=\"page-header__link\" href=\"#\">Специалисты</a><a class=\"page-header__link\" href=\"#\">Компании</a><a class=\"page-header__link\" href=\"#\">Зарплаты</a></nav>\r\n    <div class=\"page-header__user\"><button type=\"button\" class=\"base-button inline-flex appearance-main size-m is-sizeable\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Войти</span></span></button></div>\r\n  </div></div>\r\n</header>\r\n```\r\n\r\n## Источники\r\n\r\n- [`evidence/README.md`](../../evidence/README.md): `responsive-header-1440/375`.\r\n- [`ui/layout.css`](../../ui/layout.css): SH-1…SH-5 и R-1/R-8.\r\n- [`composition.md`](../../docs/guide/composition.md): реальные границы responsive.\r\n",
+  "sourcePath": "archive:career/v1/components/modules/page-header.md",
+  "legacyDocument": "archive:career/v1/components/modules/page-header.md"
+}

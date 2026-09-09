@@ -1,0 +1,69 @@
+{
+  "id": "track-banner",
+  "title": "TrackBanner · Баннер трека",
+  "kind": "module",
+  "category": "banners",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "published-spec",
+      "storybook-snapshot"
+    ],
+    "confidence": "medium",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Баннер обучающего трека. Есть отдельная story для мобильного вида.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "markup": {
+    "html": "<div class=\"max-w-[760px]\">\n  <div class=\"relative flex min-h-[176px] w-full flex-col items-center gap-2 overflow-hidden rounded-3xl bg-[#CCC2FF] bg-cover bg-center bg-no-repeat p-8 text-[#7e61bd]\" style=\"background-image: url(&quot;https://assets.habr.com/staging-career-web/career-web/images/banners/assessment-results-banner.png&quot;);\">\n    <a href=\"https://track.habr.com/ipr\" target=\"_blank\" class=\"absolute inset-0 cursor-pointer hover:bg-[rgba(193,165,252,0.2)]\"></a>\n    <div class=\"text-body-l\">Создайте свой</div>\n    <div class=\"text-center text-hero font-semibold leading-[40px] phone:text-[32px] phone:leading-[32px]\">\n      <div>Индивидуальный</div>\n      <div>план развития</div>\n    </div>\n    <div class=\"text-body-l\">на track.habr.com</div>\n  </div>\n</div>"
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка из спецификации",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Ftrack-banner.json",
+      "covers": [
+        "published-markup"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          375,
+          768,
+          1100
+        ],
+        "height": 560
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Собственного CSS нет: компонент собран утилитами."
+  ],
+  "evidence": [
+    {
+      "type": "published-spec",
+      "ref": "archive:career/v1/components/banners/track-banner.md"
+    }
+  ],
+  "markdown": "# TrackBanner · Баннер трека\n\n| | |\n|---|---|\n| **Категория** | Баннеры |\n| **Корневой класс** | `max-w-[760px]`, `max-w-[343px]` |\n| **CSS** | _только утилиты_ |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 2 из 2 |\n\n## Назначение\n\nБаннер обучающего трека. Есть отдельная story для мобильного вида.\n\n## Анатомия\n\n```\ndiv.max-w-[760px]\n  div.relative.flex.min-h-[176px].w-full.flex-col.items-center.gap-2.overflow-hidden.rounded-3xl.bg-[#CCC2FF].bg-cover.bg-center.bg-no-repeat.p-8.text-[#7e61bd]\n    a.absolute.inset-0.cursor-pointer.hover:bg-[rgba(193,165,252,0.2)]  [href=\"https://track.habr.com/ipr\" target=\"_blank\"]\n    div.text-body-l\n      · «Создайте свой»\n    div.text-center.text-hero.font-semibold.leading-[40px].phone:text-[32px].phone:leading-[32px]\n      div\n        · «Индивидуальный»\n      div\n        · «план развития»\n    div.text-body-l\n      · «на track.habr.com»\n```\n\n_Разметка story `banners-trackbanner--default`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\n_В извлечённом CSS и разметке состояний не объявлено. Не достраиваем._\n\n## Props\n\n_Storybook не отдаёт controls для этого компонента._\n\n## Токены\n\n_Компонент не обращается к переменным напрямую._\n\n## Responsive\n\nКомпонент реагирует на: `(max-width:767px)`.\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## Разметка\n\n```html\n<div class=\"max-w-[760px]\">\n  <div class=\"relative flex min-h-[176px] w-full flex-col items-center gap-2 overflow-hidden rounded-3xl bg-[#CCC2FF] bg-cover bg-center bg-no-repeat p-8 text-[#7e61bd]\" style=\"background-image: url(&quot;https://assets.habr.com/staging-career-web/career-web/images/banners/assessment-results-banner.png&quot;);\">\n    <a href=\"https://track.habr.com/ipr\" target=\"_blank\" class=\"absolute inset-0 cursor-pointer hover:bg-[rgba(193,165,252,0.2)]\"></a>\n    <div class=\"text-body-l\">Создайте свой</div>\n    <div class=\"text-center text-hero font-semibold leading-[40px] phone:text-[32px] phone:leading-[32px]\">\n      <div>Индивидуальный</div>\n      <div>план развития</div>\n    </div>\n    <div class=\"text-body-l\">на track.habr.com</div>\n  </div>\n</div>\n```\n\n## CSS\n\n_Собственного CSS нет: компонент собран утилитами Tailwind прямо в разметке. Все нужные правила — в `ui/utilities.css`._\n\n## Ограничения\n\n- Собственного CSS нет: компонент собран утилитами.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/banners/track-banner.stories.ts`\n- Storybook `career-web`: `banners-trackbanner--default`, `banners-trackbanner--mobile`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/banners/track-banner.md",
+  "legacyDocument": "archive:career/v1/components/banners/track-banner.md",
+  "legacyUnindexed": true
+}

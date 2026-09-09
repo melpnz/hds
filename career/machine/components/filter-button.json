@@ -1,0 +1,161 @@
+{
+  "id": "filter-button",
+  "name": "FilterButton",
+  "category": "actions",
+  "kind": "component",
+  "spec": "components\\actions\\filter-button.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "selected",
+    "disabled",
+    "loading"
+  ],
+  "cssRoots": [
+    "filter-button",
+    "base-button"
+  ],
+  "anchor": "showcase/components.html#a-filter",
+  "markup": {
+    "html": "<button class=\"filter-button is-panel base-button inline-flex appearance-passive size-l has-before has-after is-sizeable filter-button is-panel\" type=\"button\" target=\"_self\">\n  <span class=\"base-button__inner\">\n    <span class=\"base-button__before\">\n      <svg class=\"svg-icon filter-button__icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n        <use xlink:href=\"../../ui/assets/icons/sprite.svg#filter\"/>\n      </svg>\n    </span>\n    <span class=\"base-button__content\">Фильтры</span>\n    <span class=\"base-button__after\">\n      <span class=\"filter-button__badge filter-button__badge--count\">0</span>\n    </span>\n  </span>\n</button>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": "661:687",
+      "sourceName": "button / L / filter"
+    }
+  ],
+  "storybookNames": [
+    "FilterButton"
+  ],
+  "code": {
+    "component": "FilterButton",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "filter-button",
+    "name": "FilterButton",
+    "category": "actions",
+    "kind": "component",
+    "spec": "components\\actions\\filter-button.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "selected",
+      "disabled",
+      "loading"
+    ],
+    "cssRoots": [
+      "filter-button",
+      "base-button"
+    ],
+    "anchor": "showcase/components.html#a-filter",
+    "markup": {
+      "html": "<button class=\"filter-button is-panel base-button inline-flex appearance-passive size-l has-before has-after is-sizeable filter-button is-panel\" type=\"button\" target=\"_self\">\n  <span class=\"base-button__inner\">\n    <span class=\"base-button__before\">\n      <svg class=\"svg-icon filter-button__icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n        <use xlink:href=\"../../ui/assets/icons/sprite.svg#filter\"/>\n      </svg>\n    </span>\n    <span class=\"base-button__content\">Фильтры</span>\n    <span class=\"base-button__after\">\n      <span class=\"filter-button__badge filter-button__badge--count\">0</span>\n    </span>\n  </span>\n</button>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "661:687",
+        "sourceName": "button / L / filter"
+      }
+    ],
+    "storybookNames": [
+      "FilterButton"
+    ],
+    "code": {
+      "component": "FilterButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "FilterButton",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Кнопка открытия фильтра со счётчиком выбранных значений. Основной элемент управления в листингах вакансий, резюме и компаний.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "filter-button",
+      "base-button"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "FilterButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "selected",
+      "disabled",
+      "loading"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Ffilter-button.json",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "selected",
+        "disabled",
+        "loading"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Не выявлено: разметка, CSS и props извлечены полностью."
+  ],
+  "markdown": "# FilterButton · Кнопка фильтра\n\n| | |\n|---|---|\n| **Категория** | Действия |\n| **Корневой класс** | `filter-button` |\n| **CSS** | `ui/components/buttons.css`, `ui/state-contract.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 2 из 2 |\n\n## Назначение\n\nКнопка открытия фильтра со счётчиком выбранных значений. Основной элемент управления в листингах вакансий, резюме и компаний.\n\n## Анатомия\n\n```\nbutton.filter-button.is-panel.base-button.inline-flex.appearance-passive.size-l.has-before.has-after.is-sizeable.filter-button.is-panel  [type=\"button\" target=\"_self\"]\n  span.base-button__inner\n    span.base-button__before\n      svg.svg-icon.filter-button__icon\n        use  [xlink:href=\"/career-web/images/sprites/sprite.svg?v=5.63.0#filter\"]\n    span.base-button__content\n      · «Фильтры»\n    span.base-button__after\n      span.filter-button__badge.filter-button__badge--count\n        · «0»\n```\n\n_Разметка story `common-buttons-filterbutton--default`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\n| Состояние | Канонический контракт | Совместимость |\n|---|---|---|\n| `default` | без state-атрибутов; для chip — `aria-pressed=\"false\"` | `.is-chip-inactive` |\n| `hover` | `:hover` | наследуется от Button |\n| `focus-visible` | `:focus-visible` | наследуется от Button |\n| `pressed` | `:active` | `.is-pressed` только для story |\n| `selected` | `aria-pressed=\"true\"` только для chip-варианта | `.is-chip-active` |\n| `disabled` | нативный `disabled` | badge получает disabled-представление |\n| `loading` | `.is-loading` + `aria-busy=\"true\"` | loader из Button |\n\nPanel-вариант, открывающий фильтры, использует `aria-expanded`, а не selected.\n`is-chip-active` остаётся legacy CSS alias и не является названием публичного\nсостояния.\n\nПодтверждены CSS и разметкой: `.filter-button__badge--disabled`, `.has-after`, `.has-before`, `.is-chip`, `.is-chip-active`, `.is-chip-inactive`, `.is-panel`, `.is-sizeable`, `:focus`, `:hover`.\n\n```css\n.filter-button.is-chip:focus-visible { border-radius:9999px!important }\n.filter-button.is-chip.is-chip-active,.filter-button.is-chip.is-chip-active:focus,.filter-button.is-chip.is-chip-active:hover { background-color:var(--color-ui-primary-20)!important }\n```\n\n## Слоты\n\n- `before`\n- `default`\n- `after`\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `label` | string | — | — | `text` |\n| `badge` | string \\| number \\| null | — | — | `object` |\n| `badgeVariant` | BadgeVariant | `'count'` | count · dot | `radio` |\n| `disabled` | boolean \\| null | — | true · false | `radio` |\n| `loading` | boolean | `false` | true · false | `radio` |\n| `to` | RouteLocationRaw | — | — | `object` |\n| `href` | string | — | — | `text` |\n| `type` | ButtonType | `'button'` | — | `object` |\n| `target` | \"_blank\" \\| \"_self\" | `'_self'` | — | `object` |\n| `fullWidth` | boolean | `false` | — | `boolean` |\n| `variant` | FilterButtonVariant | `'panel'` | — | `object` |\n| `active` | boolean | `false` | — | `boolean` |\n| `size` | BaseButtonSize | `'l'` | — | `object` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-ui-gray-1` | `#1b272c` | из `:root` Career |\n| `--color-ui-gray-2` | `#55798b` | из `:root` Career |\n| `--color-ui-gray-5` | `#d4dee2` | из `:root` Career |\n| `--color-ui-primary` | `#8164f7` | из `:root` Career |\n| `--color-ui-primary-20` | `color-mix(in srgb,var(--color-ui-primary) 20%,transparent)` | из `:root` Career |\n| `--color-ui-primary-accent` | `#5014f5` | из `:root` Career |\n| `--color-ui-white` | `#fff` | из `:root` Career |\n\n## Иконки\n\n| Спрайт | Символ | Локальный файл |\n|---|---|---|\n| `sprite.svg` | `#filter` | `ui/assets/icons/sprite.svg` |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## Поведение\n\n- Счётчик показывается двумя способами: числом (`__badge--count`) и точкой (`__badge--dot`), когда число не важно.\n- Форма чипа включается классами `is-chip` / `is-chip-inactive` — так кнопка встраивается в ряд фильтров.\n\n## Разметка\n\n```html\n<button class=\"filter-button is-panel base-button inline-flex appearance-passive size-l has-before has-after is-sizeable filter-button is-panel\" type=\"button\" target=\"_self\">\n  <span class=\"base-button__inner\">\n    <span class=\"base-button__before\">\n      <svg class=\"svg-icon filter-button__icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n        <use xlink:href=\"../../ui/assets/icons/sprite.svg#filter\"/>\n      </svg>\n    </span>\n    <span class=\"base-button__content\">Фильтры</span>\n    <span class=\"base-button__after\">\n      <span class=\"filter-button__badge filter-button__badge--count\">0</span>\n    </span>\n  </span>\n</button>\n```\n\n_Пути к спрайтам и изображениям в этом блоке — локальные, от папки спецификации. В блоке «Анатомия» выше сохранён продовый путь: это протокол снятого DOM, а не образец для вёрстки._\n\n## CSS\n\n```css\n.filter-button { min-height:unset!important }\n.filter-button__icon { color:var(--color-ui-gray-2) }\n.filter-button.is-chip { border-radius:9999px!important;height:2rem!important;padding:.25rem .5rem!important }\n.filter-button.is-chip:focus-visible { border-radius:9999px!important }\n.filter-button.is-chip.is-chip-active { border-color:transparent!important;color:var(--color-ui-primary-accent)!important }\n.filter-button.is-chip.is-chip-active,.filter-button.is-chip.is-chip-active:focus,.filter-button.is-chip.is-chip-active:hover { background-color:var(--color-ui-primary-20)!important }\n.filter-button.is-chip.is-chip-inactive { background-color:transparent!important;border-color:var(--color-ui-gray-5)!important;color:var(--color-ui-gray-1)!important }\n.filter-button.is-chip .base-button__content { font-size:14px;font-weight:400;line-height:20px }\n.filter-button__badge { align-items:center;background-color:var(--color-ui-primary);border-radius:9999px;color:var(--color-ui-white);display:inline-flex;font-weight:600;justify-content:center;text-align:center }\n.filter-button__badge--count { font-size:11px;height:1.25rem;line-height:16px;min-width:1.25rem;padding-left:.25rem;padding-right:.25rem }\n.filter-button__badge--dot { height:.75rem;width:.75rem }\n.filter-button__badge--disabled { background-color:var(--color-ui-gray-5);color:var(--color-ui-white) }\n.filter-button .base-button__loader { color:var(--color-ui-gray-2) }\n```\n\n## Ограничения\n\n- Не выявлено: разметка, CSS и props извлечены полностью.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/common/filter-button/filter-button.stories.ts`\n- Storybook `career-web`: `common-buttons-filterbutton--default`, `common-buttons-filterbutton--dot-badge`\n- CSS: секция `filter-button` в `ui/components/buttons.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/actions/filter-button.md",
+  "legacyDocument": "archive:career/v1/components/actions/filter-button.md"
+}

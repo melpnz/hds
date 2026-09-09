@@ -1,12 +1,13 @@
 {
   "private": true,
   "scripts": {
-    "validate": "node tools/validate-components.mjs --strict && node tools/validate-showcase-icons.mjs",
-    "test": "node tools/validate-components.mjs --strict && node tools/validate-counts.mjs && node tools/validate-classes.mjs && node tools/sync-showcase-icons.mjs --check && node tools/validate-machine.mjs && playwright test",
-    "serve": "node tools/serve.mjs",
-    "build:machine": "node tools/build-machine.mjs"
+    "migrate:first-slice": "node tools/import-first-slice.mjs",
+    "migrate": "node tools/import-first-slice.mjs && node tools/migrate-all.mjs",
+    "validate": "node validate.mjs",
+    "validate:viewer": "node tools/validate-viewer.mjs",
+    "serve": "node serve.mjs"
   },
   "devDependencies": {
-    "@playwright/test": "1.63.0"
+    "playwright": "^1.63.0"
   }
 }

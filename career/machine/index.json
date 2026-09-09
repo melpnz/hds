@@ -1,45 +1,86 @@
 {
-  "product": "career",
-  "kind": "product-interface",
-  "language": "ru",
-  "css": "ui/career.css",
-  "shell": {
-    "wrapper": ".career-shell",
-    "note": "нужен только для layout.css: он написан на @container, а не на @media"
+  "schemaVersion": 3,
+  "product": {
+    "id": "career",
+    "title": "Хабр Карьера",
+    "guideVersion": "1.2",
+    "status": "active"
   },
+  "readOrder": [
+    "machine/catalog.json",
+    "один section.file или groups[].file",
+    "только выбранный item.file",
+    "ruleFiles, groups, implementation и examples — только при необходимости"
+  ],
   "files": {
-    "tokens": "machine/tokens.json",
-    "components": "machine/components.json",
-    "rules": "machine/rules.json",
-    "patterns": "machine/patterns.json",
-    "content": "machine/content.json"
+    "catalog": "machine/catalog.json",
+    "states": "machine/states.json",
+    "schema": "schema.json",
+    "roadmap": "ROADMAP.md",
+    "audit": "machine/migration-audit.json",
+    "componentExamples": "machine/migration/component-examples.json"
   },
-  "humanDocs": [
-    "README.md",
-    "docs/development/quick-start.md",
-    "docs/guide/composition.md",
-    "docs/guide/decisions.md"
-  ],
-  "checks": [
-    "node tools/validate-machine.mjs",
-    "node tools/validate-components.mjs --strict",
-    "node tools/validate-classes.mjs <файл.html>",
-    "node tools/validate-counts.mjs"
-  ],
   "coverage": {
-    "componentsComplete": 72,
-    "componentsTotal": 72,
-    "specs": 95,
-    "rules": 57,
-    "decisionGuides": 16,
+    "boundary": "Полный перенос опубликованного Career v1.2; evidence ограничен публичным гостевым срезом.",
+    "known": [
+      "foundations",
+      "components",
+      "page-families",
+      "composition-rules",
+      "decision-guides",
+      "feature-states",
+      "content"
+    ],
+    "unknown": [
+      "личный кабинет",
+      "живые формы ввода",
+      "модальные потоки",
+      "ошибки форм",
+      "авторизованные сценарии"
+    ],
+    "onUnknown": {
+      "action": "use-nearest-known-pattern-and-disclose-assumption",
+      "doc": "machine/guides/coverage.json"
+    }
+  },
+  "provenance": {
+    "legacyPrefix": "archive:career/v1/",
+    "archivePublished": false,
+    "note": "Legacy locators document migration origin; all consumable knowledge is copied into this package."
+  },
+  "checks": [
+    "npm run validate",
+    "npm run validate:viewer"
+  ],
+  "metrics": {
+    "catalogItems": 266,
+    "foundations": 8,
+    "primitives": 9,
+    "components": 49,
+    "adapters": 4,
+    "modules": 33,
     "patterns": 8,
-    "tokens": 121,
-    "boundary": "публичная часть продукта, снятая гостем. Не покрыты: личный кабинет, формы ввода, модальные потоки, загрузка, ошибки форм, сценарии успеха",
-    "onUncovered": "взять ближайший подтверждённый паттерн, назвать допущение вслух и спросить — не достраивать молча"
+    "decision-guides": 16,
+    "rules": 57,
+    "contents": 1,
+    "guides": 81,
+    "sourceComponents": 72,
+    "sourceRules": 57,
+    "sourceDecisionGuides": 16,
+    "sourcePatterns": 8,
+    "sourceMarkdownDocuments": 125,
+    "additionalPublishedSpecs": 23,
+    "sourceJsonDocuments": 29,
+    "uiImageAssets": 265,
+    "evidenceImageAssets": 97,
+    "showcaseSections": 19,
+    "componentReferenceFragments": 19,
+    "pageSupplementSections": 3,
+    "variables": 121,
+    "colorTokens": 113,
+    "typeStyles": 8,
+    "examples": 132
   },
-  "notGenerated": {
-    "areas": "последовательность областей внутри паттерна не извлечена: композиции в showcase/pages.html собраны не из каркасных модулей R4, а из ad-hoc классов — извлекать не из чего. См. ROADMAP.md"
-  },
-  "generatedAt": "2026-09-07",
-  "generatedBy": "tools/build-machine.mjs"
+  "generatedAt": "2026-09-09",
+  "generatedBy": "tools/migrate-all.mjs"
 }

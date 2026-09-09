@@ -1,0 +1,119 @@
+{
+  "id": "status-chip",
+  "name": "StatusChip",
+  "category": "collections",
+  "kind": "component",
+  "spec": "components\\labels\\status-chip.md",
+  "status": "complete",
+  "states": [
+    "default"
+  ],
+  "cssRoots": [
+    "status-chip"
+  ],
+  "anchor": "showcase/components.html#d-base-scope-tail",
+  "markup": {
+    "html": "<div class=\"relative grid min-h-8 w-min grid-flow-col items-center whitespace-nowrap rounded-lg px-2 py-1 text-body-m text-font-black bg-ui-green-10 pl-[26px]\">\n  <div class=\"absolute left-1 top-1\">\n    <svg class=\"svg-icon text-ui-green\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n      <use xlink:href=\"../../ui/assets/icons/sprite.svg#single-check\"/>\n    </svg>\n  </div>\n  <span class=\"px-[6px]\">Заявка подтверждена</span>\n</div>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [],
+  "storybookNames": [
+    "ConversationsChip"
+  ],
+  "code": {
+    "component": "ConversationsChip",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "status-chip",
+    "name": "StatusChip",
+    "category": "collections",
+    "kind": "component",
+    "spec": "components\\labels\\status-chip.md",
+    "status": "complete",
+    "states": [
+      "default"
+    ],
+    "cssRoots": [
+      "status-chip"
+    ],
+    "anchor": "showcase/components.html#d-base-scope-tail",
+    "markup": {
+      "html": "<div class=\"relative grid min-h-8 w-min grid-flow-col items-center whitespace-nowrap rounded-lg px-2 py-1 text-body-m text-font-black bg-ui-green-10 pl-[26px]\">\n  <div class=\"absolute left-1 top-1\">\n    <svg class=\"svg-icon text-ui-green\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n      <use xlink:href=\"../../ui/assets/icons/sprite.svg#single-check\"/>\n    </svg>\n  </div>\n  <span class=\"px-[6px]\">Заявка подтверждена</span>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "ConversationsChip"
+    ],
+    "code": {
+      "component": "ConversationsChip",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "StatusChip",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Цветная метка состояния отклика: «На связи», «Принято», «Отклонено», «Неактивно». Отличается от BaseChip тем, что не кликается и несёт только смысл статуса.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "status-chip"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "ConversationsChip",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [
+      "default"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fstatus-chip.json",
+      "covers": [
+        "default"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Собственного CSS нет: компонент целиком собран утилитами."
+  ],
+  "markdown": "# StatusChip · ConversationsChip\r\n\r\n| | |\r\n|---|---|\r\n| **Категория** | Метки и статусы |\r\n| **Корневой класс** | `min-h-8`, `whitespace-nowrap`, `rounded-lg` |\r\n| **CSS** | _только утилиты_ |\r\n| **Живая реализация** | `showcase/components.html` |\r\n| **Snapshot Storybook** | 6 из 6 |\r\n\r\n## Назначение\r\n\r\nЦветная метка состояния отклика: «На связи», «Принято», «Отклонено», «Неактивно». Отличается от BaseChip тем, что не кликается и несёт только смысл статуса.\r\n\r\n## Анатомия\r\n\r\n```\r\ndiv.relative.grid.min-h-8.w-min.grid-flow-col.items-center.whitespace-nowrap.rounded-lg.px-2.py-1.text-body-m.text-font-black.bg-ui-green-10.pl-[26px]\r\n  div.absolute.left-1.top-1\r\n    svg.svg-icon.text-ui-green\r\n      use  [xlink:href=\"/career-web/images/sprites/sprite.svg?v=5.63.0#single-check\"]\r\n  span.px-[6px]\r\n    · «Заявка подтверждена»\r\n```\r\n\r\n_Разметка story `conversations-list-conversationschip--green-with-icon`, снятая из DOM. Vue-скоуп `data-v-*` снят._\r\n\r\n## Состояния\r\n\r\nКомпонент имеет только состояние отображения `default`; цветовые исполнения — semantic variants, не интерактивные states.\r\n\r\n## Слоты\r\n\r\n- `icon`\r\n- `default`\r\n\r\n## Props\r\n\r\n| Prop | Тип | По умолчанию | Значения | Control |\r\n|---|---|---|---|---|\r\n| `color` | SupportedColors | `'orange'` | — | `object` |\r\n\r\n## Токены\r\n\r\n| Переменная | Значение | Статус |\r\n|---|---|---|\r\n| `--color-font-black` | `var(--color-ui-gray-1)` | из `:root` Career |\r\n| `--color-ui-gray-3-10` | `color-mix(in srgb,var(--color-ui-gray-3) 10%,transparent)` | из `:root` Career |\r\n| `--color-ui-green` | `#3dc24a` | из `:root` Career |\r\n| `--color-ui-green-10` | `color-mix(in srgb,var(--color-ui-green) 10%,transparent)` | из `:root` Career |\r\n| `--color-ui-orange-10` | `color-mix(in srgb,var(--color-ui-orange) 10%,transparent)` | из `:root` Career |\r\n| `--color-ui-red` | `#f8651b` | из `:root` Career |\r\n| `--color-ui-red-10` | `color-mix(in srgb,var(--color-ui-red) 10%,transparent)` | из `:root` Career |\r\n\r\n## Иконки\r\n\r\n| Спрайт | Символ | Локальный файл |\r\n|---|---|---|\r\n| `sprite.svg` | `#cross-large` | `ui/assets/icons/sprite.svg` |\r\n| `sprite.svg` | `#single-check` | `ui/assets/icons/sprite.svg` |\r\n\r\n## Responsive\r\n\r\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\r\n\r\n## Доступность\r\n\r\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\r\n\r\n## Поведение\r\n\r\n- Цвет задаётся заливкой 10% от статусного цвета: `bg-ui-orange-10`, `bg-ui-green-10`, `bg-ui-red-10`, `bg-ui-gray-3-10`. Текст при этом всегда `--color-font-black`, а не цветной.\r\n- Иконка ставится абсолютно в левый верхний угол, а контент сдвигается `pl-[26px]` — то есть под иконку не делается отдельная колонка.\r\n\r\n## Разметка\r\n\r\n```html\r\n<div class=\"relative grid min-h-8 w-min grid-flow-col items-center whitespace-nowrap rounded-lg px-2 py-1 text-body-m text-font-black bg-ui-green-10 pl-[26px]\">\r\n  <div class=\"absolute left-1 top-1\">\r\n    <svg class=\"svg-icon text-ui-green\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\r\n      <use xlink:href=\"../../ui/assets/icons/sprite.svg#single-check\"/>\r\n    </svg>\r\n  </div>\r\n  <span class=\"px-[6px]\">Заявка подтверждена</span>\r\n</div>\r\n```\r\n\r\n_Пути к спрайтам и изображениям в этом блоке — локальные, от папки спецификации. В блоке «Анатомия» выше сохранён продовый путь: это протокол снятого DOM, а не образец для вёрстки._\r\n\r\n## CSS\r\n\r\n_Собственного CSS нет: компонент собран утилитами Tailwind прямо в разметке. Все нужные правила — в `ui/utilities.css`._\r\n\r\n## Ограничения\r\n\r\n- Собственного CSS нет: компонент целиком собран утилитами.\r\n\r\n## Источники\r\n\r\n- Файлы в репозитории `career-web`: `./src/components/conversations/conversations-chip.stories.ts`\r\n- Storybook `career-web`: `conversations-list-conversationschip--orange`, `conversations-list-conversationschip--green`, `conversations-list-conversationschip--red`, `conversations-list-conversationschip--gray`, `conversations-list-conversationschip--green-with-icon`, `conversations-list-conversationschip--red-with-icon`\r\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\r\n\r\n## Нормативный контракт base scope\r\n\r\nСтабильный root — `status-chip`. Канонические варианты: `neutral`, `pending`, `success`, `error`; старый prop `color` маппится соответственно из gray/orange/green/red. StatusChip всегда неинтерактивен: для фильтра или действия используйте Chip/Button.\r\n\r\nRoot — `inline-flex` с `vertical-align: middle`. Без него базовая линия чипа\r\nберётся от первого flex-элемента, и чип с ведущей иконкой встаёт выше соседей\r\nс текстом: базовая линия SVG — его нижний край. То же делает `.checkbox`\r\nв сборке. Учтите это, если добавляете иконку в начало другого инлайнового чипа.\r\n\r\nТекст статуса обязателен, цвет и иконка только дублируют его. Для уже видимого статуса role не нужен; при асинхронном изменении контейнер может получить `role=\"status\"`. Иконка декоративна и имеет `aria-hidden=\"true\"`.\r\n",
+  "sourcePath": "archive:career/v1/components/labels/status-chip.md",
+  "legacyDocument": "archive:career/v1/components/labels/status-chip.md"
+}

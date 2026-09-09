@@ -1,0 +1,96 @@
+{
+  "id": "dropdown-modal",
+  "name": "DropdownModal",
+  "category": "overlays",
+  "kind": "adapter",
+  "spec": "components\\overlays\\dropdown-modal.md",
+  "status": "complete",
+  "states": [
+    "closed",
+    "open"
+  ],
+  "cssRoots": [
+    "dropdown-modal-popper"
+  ],
+  "anchor": "showcase/components.html#ov-dropdown-modal",
+  "markup": null,
+  "evidence": [],
+  "legacySource": {
+    "id": "dropdown-modal",
+    "name": "DropdownModal",
+    "category": "overlays",
+    "kind": "adapter",
+    "spec": "components\\overlays\\dropdown-modal.md",
+    "status": "complete",
+    "states": [
+      "closed",
+      "open"
+    ],
+    "cssRoots": [
+      "dropdown-modal-popper"
+    ],
+    "anchor": "showcase/components.html#ov-dropdown-modal",
+    "markup": null,
+    "evidence": []
+  },
+  "title": "DropdownModal",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Выпадающий блок, который на узком экране показывается как модальное окно снизу. Механизм, на котором построено «изоморфное» контекстное меню.",
+  "implementation": {
+    "markup": null,
+    "cssRoots": [
+      "dropdown-modal-popper"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "missingReason": "copy-safe-markup-not-captured",
+    "fallback": "Не придумывать классы. Использовать ближайший компонент с разметкой или явно отметить пробел."
+  },
+  "stateGroups": {
+    "ui": [
+      "closed",
+      "open"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "isolated-example",
+      "title": "Закрытое состояние",
+      "file": "examples/components-isolated/dropdown-modal.html",
+      "covers": [
+        "isolated-example",
+        "ov-dropdown-modal",
+        "closed",
+        "open"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "provenance": {
+        "source": "archive:career/v1/showcase/components.html#ov-dropdown-modal",
+        "extraction": "exact-dom-subtree"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Собственных story нет — данные из CSS и из разметки ContextMenu."
+  ],
+  "markdown": "# DropdownModal · Меню как модальное окно\n\n| | |\n|---|---|\n| **Категория** | Оверлеи |\n| **Корневой класс** | — |\n| **CSS** | `ui/components/overlays.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 0 из 0 |\n\n## Назначение\n\nВыпадающий блок, который на узком экране показывается как модальное окно снизу. Механизм, на котором построено «изоморфное» контекстное меню.\n\n## Анатомия\n\n_Разметка недоступна: см. «Ограничения»._\n\n## Состояния\n\n_В извлечённом CSS и разметке состояний не объявлено. Не достраиваем._\n\n## Props\n\n_Storybook не отдаёт controls для этого компонента._\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-shadow-overlay-60` | `hsla(207,9%,81%,.6)` | из `:root` Career |\n| `--color-ui-white` | `#fff` | из `:root` Career |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## CSS\n\n```css\n.dropdown-modal-popper.v-popper--theme-dropdown .v-popper__inner { background-color:var(--color-ui-white);border-radius:1rem;border-style:none;color:inherit;overflow-y:hidden }\n.dropdown-modal-popper.v-popper--theme-dropdown .v-popper__inner [role=listbox] { box-shadow:0 1px 2px 0 var(--color-shadow-overlay-60),0 2px 6px 2px var(--color-shadow-overlay-60) }\n.v-popper__popper[aria-hidden=false] [role=listbox] { min-width:190px }\n.dropdown-modal-popper.v-popper--theme-dropdown .v-popper__arrow-container { display:none }\n```\n\n## Ограничения\n\n- Собственных story нет — данные из CSS и из разметки ContextMenu.\n\n## Источники\n\n- Storybook `career-web`: \n- CSS: секция `dropdown-modal` в `ui/components/overlays.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n\n## Нормативный контракт R2-D\n\nDropdownModal — responsive adapter: на широком экране это немодальный popover, на узком — dialog/bottom sheet. Состояния `closed` и `open` синхронизируются между `aria-expanded` триггера и `aria-hidden` попапа.\n\nВ dialog-режиме обязательны `role=\"dialog\"`, `aria-modal=\"true\"`, доступное имя, focus trap, Escape и возврат фокуса. В popover-режиме ловушки фокуса нет. Смена брейкпоинта при открытом состоянии не должна терять активный элемент.\n",
+  "sourcePath": "archive:career/v1/components/overlays/dropdown-modal.md",
+  "legacyDocument": "archive:career/v1/components/overlays/dropdown-modal.md"
+}

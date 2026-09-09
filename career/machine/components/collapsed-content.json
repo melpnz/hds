@@ -1,0 +1,91 @@
+{
+  "id": "collapsed-content",
+  "name": "CollapsedContent",
+  "category": "data-display",
+  "kind": "component",
+  "spec": "components\\data\\collapsed-content.md",
+  "status": "complete",
+  "states": [
+    "collapsed",
+    "expanded"
+  ],
+  "cssRoots": [
+    "collapsed-content"
+  ],
+  "anchor": "showcase/components.html#d-collapsed-contract",
+  "markup": {
+    "html": "<div class=\"collapsed-content\" data-state=\"collapsed\">\n  <div class=\"collapsed-content__body\" id=\"vacancy-description\">…</div>\n  <button class=\"collapsed-content__toggle\" type=\"button\"\n          aria-expanded=\"false\" aria-controls=\"vacancy-description\">\n    Показать полностью\n  </button>\n</div>"
+  },
+  "evidence": [],
+  "legacySource": {
+    "id": "collapsed-content",
+    "name": "CollapsedContent",
+    "category": "data-display",
+    "kind": "component",
+    "spec": "components\\data\\collapsed-content.md",
+    "status": "complete",
+    "states": [
+      "collapsed",
+      "expanded"
+    ],
+    "cssRoots": [
+      "collapsed-content"
+    ],
+    "anchor": "showcase/components.html#d-collapsed-contract",
+    "markup": null,
+    "evidence": []
+  },
+  "title": "CollapsedContent",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Ограничение длинного текста по высоте с кнопкой «показать полностью». Применяется к описаниям вакансий и компаний.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "collapsed-content"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "stateGroups": {
+    "ui": [
+      "collapsed",
+      "expanded"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fcollapsed-content.json",
+      "covers": [
+        "collapsed",
+        "expanded"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Собственных story нет — данные из CSS."
+  ],
+  "markdown": "# CollapsedContent · Свёрнутый блок\n\n| | |\n|---|---|\n| **Категория** | Отображение данных |\n| **Корневой класс** | — |\n| **CSS** | `ui/components/primitives.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 0 из 0 |\n\n## Назначение\n\nОграничение длинного текста по высоте с кнопкой «показать полностью». Применяется к описаниям вакансий и компаний.\n\n## Анатомия\n\n_Разметка недоступна: см. «Ограничения»._\n\n## Состояния\n\nКомпонент имеет два состояния: `collapsed` и `expanded`. Визуальные legacy-классы не заменяют ARIA-состояние управляющей кнопки.\n\n## Props\n\n_Storybook не отдаёт controls для этого компонента._\n\n## Токены\n\n_Компонент не обращается к переменным напрямую._\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## CSS\n\n```css\n.collapsed-content { will-change:height }\n.collapsed-content--overflow { overflow:hidden }\n.collapsed-content--animated { transition:height .25s ease-in-out }\n.collapsed-content__body { opacity:0;transition:opacity .25s ease-in-out;will-change:opacity }\n.collapsed-content__body--notTransparent,.collapsed-content__body--show { opacity:1 }\n```\n\n## Ограничения\n\n- Собственных story нет — данные из CSS.\n\n## Источники\n\n- Storybook `career-web`: \n- CSS: секция `collapsed-content` в `ui/components/primitives.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n\n## Нормативный контракт R2-E\n\n```html\n<div class=\"collapsed-content\" data-state=\"collapsed\">\n  <div class=\"collapsed-content__body\" id=\"vacancy-description\">…</div>\n  <button class=\"collapsed-content__toggle\" type=\"button\"\n          aria-expanded=\"false\" aria-controls=\"vacancy-description\">\n    Показать полностью\n  </button>\n</div>\n```\n\nВ `collapsed` текст ограничен по высоте, кнопка сообщает `aria-expanded=\"false\"`. В `expanded` ограничение снимается, `aria-expanded=\"true\"`, подпись меняется на «Свернуть». Фокус остаётся на кнопке; клавиши Enter и Space работают нативно. Если текст помещается, trigger не рендерится. При reduced motion переход становится практически мгновенным.\n",
+  "sourcePath": "archive:career/v1/components/data/collapsed-content.md",
+  "legacyDocument": "archive:career/v1/components/data/collapsed-content.md"
+}

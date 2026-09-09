@@ -1,0 +1,42 @@
+{
+  "id": "guide-showcase-assets-readme",
+  "title": "assets/",
+  "kind": "guide",
+  "category": "assets",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "published-guide"
+    ],
+    "confidence": "high",
+    "scope": "package"
+  },
+  "purpose": "Адресная машинная копия документа showcase/assets/README.md.",
+  "implementation": {
+    "markup": null,
+    "styles": [],
+    "scripts": [],
+    "missingReason": "document-only",
+    "fallback": "Читайте sections выбранного документа."
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "legacy-document",
+      "ref": "archive:career/v1/showcase/assets/README.md"
+    }
+  ],
+  "unknowns": [],
+  "sourcePath": "archive:career/v1/showcase/assets/README.md",
+  "markdown": "# assets/\n\n**Пуста, и теперь по хорошей причине.**\n\nНи `components.html`, ни `pages.html` не держат своих ресурсов: настоящие ассеты\nCareer извлечены и лежат в слое `ui/`, откуда их берут обе витрины.\nРаньше здесь лежали два одинаковых объяснения — по одному на витрину; после\nобъединения витрин в `showcase/` осталось одно.\n\n| Что | Где | Сколько |\n|---|---|---|\n| Иконки | [`../../ui/assets/icons/`](../../ui/assets/README.md) | 146 символов в 5 спрайтах |\n| Иллюстрации | `../../ui/assets/illustrations/` | 41 файл |\n| Изображения продукта | `../../ui/assets/images/` | 53 файла |\n| Шрифт | [`../../ui/fonts.css`](../../ui/fonts.css) | Inter из Google Fonts |\n\nЕдинственная сетевая загрузка страницы — Inter из Google Fonts. К `assets.habr.com`\nона не обращается: иконки и изображения локальные.\n\nСкриншоты исследования сюда по-прежнему не копируются — они остаются\nresearch evidence и лежат отдельно:\n\n```\n../../evidence/source/figma/       6 PNG\n../../evidence/source/storybook/  20 PNG @2x\n```\n\nКаталог оставлен на случай, если витрине понадобится что-то своё —\nнапример, схема или диаграмма, не принадлежащая продукту.\nАссеты Career сюда дублировать не нужно.\n",
+  "previewMode": "none"
+}

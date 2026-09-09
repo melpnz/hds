@@ -1,0 +1,69 @@
+{
+  "id": "conversation-templates",
+  "title": "ConversationsTemplates · Шаблоны ответов",
+  "kind": "module",
+  "category": "modules",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "published-spec",
+      "storybook-snapshot"
+    ],
+    "confidence": "medium",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Шаблоны ответов работодателя: список, шапка со счётчиком, форма создания и редактирования.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "markup": {
+    "html": "<button type=\"button\" class=\"m-0 flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent p-0 text-current outline-2 outline-offset-2 outline-ui-primary-60 transition-colors focus-visible:outline disabled:cursor-default text-ui-gray-2 hover:bg-ui-gray-3-10 hover:text-ui-gray-1 focus-visible:bg-ui-gray-3-10\">\n  <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" class=\"h-6 w-6\">\n    <rect x=\"6\" y=\"7\" width=\"8\" height=\"2\" fill=\"currentColor\"/>\n    <rect x=\"6\" y=\"11\" width=\"12\" height=\"2\" fill=\"currentColor\"/>\n    <rect x=\"6\" y=\"15\" width=\"12\" height=\"2\" fill=\"currentColor\"/>\n    <rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"3\" stroke=\"currentColor\" stroke-width=\"2\"/>\n  </svg>\n</button>"
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка из спецификации",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fconversation-templates.json",
+      "covers": [
+        "published-markup"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          375,
+          768,
+          1100
+        ],
+        "height": 560
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Собственного CSS нет: собраны утилитами."
+  ],
+  "evidence": [
+    {
+      "type": "published-spec",
+      "ref": "archive:career/v1/components/modules/conversation-templates.md"
+    }
+  ],
+  "markdown": "# ConversationsTemplates · Шаблоны ответов\n\n| | |\n|---|---|\n| **Категория** | Модуль: переписка |\n| **Корневой класс** | `size-10`, `shrink-0`, `cursor-pointer` |\n| **CSS** | _только утилиты_ |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 8 из 8 |\n\n## Назначение\n\nШаблоны ответов работодателя: список, шапка со счётчиком, форма создания и редактирования.\n\n## Анатомия\n\n```\nbutton.m-0.flex.size-10.shrink-0.cursor-pointer.items-center.justify-center.rounded-full.border-none.bg-transparent.p-0.text-current.outline-2.outline-offset-2.outline-ui-primary-60.transition-colors.focus-visible:outline.disabled:cursor-default.text-ui-gray-2.hover:bg-ui-gray-3-10.hover:text-ui-gray-1.focus-visible:bg-ui-gray-3-10  [type=\"button\"]\n  svg.h-6.w-6\n    rect\n    rect\n    rect\n    rect\n```\n\n_Разметка story `conversations-templates-conversationstemplates--default`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\n_В извлечённом CSS и разметке состояний не объявлено. Не достраиваем._\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `templates` | ConversationsTemplate[] | — | — | `object` |\n| `noTemplates` | boolean | — | — | `boolean` |\n| `isLoading` | boolean | — | — | `boolean` |\n| `loadMore` | other | — | — | `object` |\n| `selectTemplate` | ConversationsTemplate | — | — | `object` |\n| `editTemplate` | ConversationsTemplate | — | — | `object` |\n| `deleteTemplate` | ConversationsTemplate | — | — | `object` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-font-black` | `var(--color-ui-gray-1)` | из `:root` Career |\n| `--color-font-gray` | `var(--color-ui-gray-2)` | из `:root` Career |\n| `--color-ui-gray-1` | `#1b272c` | из `:root` Career |\n| `--color-ui-gray-2` | `#55798b` | из `:root` Career |\n| `--color-ui-gray-3-10` | `color-mix(in srgb,var(--color-ui-gray-3) 10%,transparent)` | из `:root` Career |\n| `--color-ui-gray-shadow` | `rgba(24,46,57,.1)` | из `:root` Career |\n| `--color-ui-primary-60` | `color-mix(in srgb,var(--color-ui-primary) 60%,transparent)` | из `:root` Career |\n\n## Иконки\n\n| Спрайт | Символ | Локальный файл |\n|---|---|---|\n| `sprite.svg` | `#edit_new` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#more` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#plus` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#trash` | `ui/assets/icons/sprite.svg` |\n\n## Responsive\n\nКомпонент реагирует на: `(max-width:767px)`.\n\n## Доступность\n\nАтрибуты, встречающиеся в реальной разметке: `aria-disabled=\"false\"`, `aria-label=\"scrollable content\"`, `role=\"region\"`, `tabindex=\"0\"`, `tabindex=\"1\"`.\n\n## Разметка\n\n```html\n<button type=\"button\" class=\"m-0 flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent p-0 text-current outline-2 outline-offset-2 outline-ui-primary-60 transition-colors focus-visible:outline disabled:cursor-default text-ui-gray-2 hover:bg-ui-gray-3-10 hover:text-ui-gray-1 focus-visible:bg-ui-gray-3-10\">\n  <svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" class=\"h-6 w-6\">\n    <rect x=\"6\" y=\"7\" width=\"8\" height=\"2\" fill=\"currentColor\"/>\n    <rect x=\"6\" y=\"11\" width=\"12\" height=\"2\" fill=\"currentColor\"/>\n    <rect x=\"6\" y=\"15\" width=\"12\" height=\"2\" fill=\"currentColor\"/>\n    <rect x=\"3\" y=\"3\" width=\"18\" height=\"18\" rx=\"3\" stroke=\"currentColor\" stroke-width=\"2\"/>\n  </svg>\n</button>\n```\n\n## CSS\n\n_Собственного CSS нет: компонент собран утилитами Tailwind прямо в разметке. Все нужные правила — в `ui/utilities.css`._\n\n## Ограничения\n\n- Собственного CSS нет: собраны утилитами.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/conversations/templates/conversations-templates.stories.ts`, `./src/components/conversations/templates/conversations-templates-list.stories.ts`, `./src/components/conversations/templates/conversations-templates-header.stories.ts`, `./src/components/conversations/templates/conversations-template-form.stories.ts`\n- Storybook `career-web`: `conversations-templates-conversationstemplates--default`, `conversations-templates-conversationstemplateslist--with-templates`, `conversations-templates-conversationstemplateslist--loading`, `conversations-templates-conversationstemplateslist--empty`, `conversations-templates-conversationstemplateslist--loading-more`, `conversations-templates-conversationstemplatesheader--default`, `conversations-templates-conversationstemplateform--create-form`, `conversations-templates-conversationstemplateform--edit-form`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/modules/conversation-templates.md",
+  "legacyDocument": "archive:career/v1/components/modules/conversation-templates.md",
+  "legacyUnindexed": true
+}

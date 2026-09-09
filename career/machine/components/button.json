@@ -1,0 +1,284 @@
+{
+  "id": "button",
+  "title": "Button · BaseButton",
+  "kind": "component",
+  "category": "actions",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "storybook",
+      "production-css",
+      "normative"
+    ],
+    "confidence": "high",
+    "scope": "public-and-shared"
+  },
+  "purpose": "Основное действие Career. При href или to рендерится ссылка, иначе button.",
+  "anatomy": [
+    "base-button",
+    "base-button__inner",
+    "base-button__before?",
+    "base-button__content",
+    "base-button__after?",
+    "base-button__loader?"
+  ],
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "base-button"
+    ],
+    "styles": [
+      "ui/tokens.css",
+      "ui/foundations.css",
+      "ui/components/buttons.css",
+      "ui/state-contract.css"
+    ],
+    "scripts": [
+      "examples/button/toggle-loading.js"
+    ],
+    "component": {
+      "component": "BaseButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "variants": [
+    {
+      "id": "main",
+      "class": "appearance-main",
+      "use": "основное действие"
+    },
+    {
+      "id": "main-border",
+      "class": "appearance-main-border",
+      "use": "контурное основное действие"
+    },
+    {
+      "id": "passive",
+      "class": "appearance-passive",
+      "use": "нейтральное действие"
+    },
+    {
+      "id": "danger",
+      "class": "appearance-danger",
+      "use": "опасное действие"
+    },
+    {
+      "id": "danger-border",
+      "class": "appearance-danger-border",
+      "use": "контурное опасное действие"
+    },
+    {
+      "id": "success",
+      "class": "appearance-success",
+      "use": "успешное действие"
+    },
+    {
+      "id": "success-border",
+      "class": "appearance-success-border",
+      "use": "контурное успешное действие"
+    },
+    {
+      "id": "ghost",
+      "class": "appearance-ghost",
+      "use": "малозаметное действие"
+    },
+    {
+      "id": "menu",
+      "class": "appearance-menu",
+      "use": "действие в меню"
+    },
+    {
+      "id": "avatar",
+      "class": "appearance-avatar",
+      "use": "служебный прозрачный вариант"
+    },
+    {
+      "id": "branded",
+      "class": "appearance-branded",
+      "use": "действие в профиле компании"
+    },
+    {
+      "id": "branded-outline",
+      "class": "appearance-branded-outline",
+      "use": "контурное брендированное действие"
+    },
+    {
+      "id": "branded-secondary-outline",
+      "class": "appearance-branded-secondary-outline",
+      "use": "вторичное брендированное действие"
+    }
+  ],
+  "sizes": [
+    {
+      "id": "sm",
+      "class": "size-sm",
+      "height": 28,
+      "padding": "4px 8px",
+      "radius": 8,
+      "typography": "12/16"
+    },
+    {
+      "id": "m",
+      "class": "size-m",
+      "height": 32,
+      "padding": "4px 8px",
+      "radius": 8,
+      "typography": "14/20"
+    },
+    {
+      "id": "l",
+      "class": "size-l",
+      "height": 40,
+      "padding": "8px 12px",
+      "radius": 12,
+      "typography": "14/20"
+    },
+    {
+      "id": "xl",
+      "class": "size-xl",
+      "height": 48,
+      "padding": "12px 16px",
+      "radius": 12,
+      "typography": "16/24"
+    }
+  ],
+  "states": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "disabled",
+      "loading"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [
+    "machine/rules/button-semantics.json"
+  ],
+  "examples": [
+    {
+      "id": "variants",
+      "title": "Варианты",
+      "file": "examples/button/variants.html",
+      "covers": [
+        "13 appearances"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "sizes",
+      "title": "Размеры",
+      "file": "examples/button/sizes.html",
+      "covers": [
+        "sm",
+        "m",
+        "l",
+        "xl"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "states",
+      "title": "Состояния",
+      "file": "examples/button/states.html",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "loading"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [
+    "Use native button for actions and a without href plus aria-disabled for a disabled link.",
+    "Loading sets aria-busy=true and preserves width.",
+    "focus-visible outline is required."
+  ],
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": "631:1710",
+      "sourceName": "button / M / main"
+    },
+    {
+      "type": "production-css",
+      "ref": "archive:career/v1/ui/components/buttons.css"
+    },
+    {
+      "type": "spec",
+      "ref": "archive:career/v1/components/actions/button.md"
+    }
+  ],
+  "unknowns": [
+    "appearance-avatar and appearance-ghost exist in CSS but are absent from Storybook argTypes.",
+    "Branded variants require runtime company colors; preview values are explicitly illustrative."
+  ],
+  "legacySource": {
+    "id": "button",
+    "name": "Button",
+    "category": "actions",
+    "kind": "component",
+    "spec": "components\\actions\\button.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "disabled",
+      "loading"
+    ],
+    "cssRoots": [
+      "base-button"
+    ],
+    "anchor": "showcase/components.html#a-states",
+    "markup": {
+      "html": "<button href type=\"button\" target=\"_self\" class=\"base-button inline-flex appearance-main-border size-l has-before has-after is-sizeable\">\n  <span class=\"base-button__inner\">\n    <span class=\"base-button__before\">\n      <svg class=\"svg-icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n        <use xlink:href=\"../../ui/assets/icons/sprite.svg#filter\"/>\n      </svg>\n    </span>\n    <span class=\"base-button__content\">Фильтры</span>\n    <span class=\"base-button__after\">\n      <span class=\"inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-ui-primary px-1 text-body-xs font-semibold leading-4 text-ui-white\">0</span>\n    </span>\n  </span>\n</button>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "631:1710",
+        "sourceName": "button / M / main"
+      }
+    ],
+    "storybookNames": [
+      "BaseButton"
+    ],
+    "code": {
+      "component": "BaseButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "markup": {
+    "html": "<button href type=\"button\" target=\"_self\" class=\"base-button inline-flex appearance-main-border size-l has-before has-after is-sizeable\">\n  <span class=\"base-button__inner\">\n    <span class=\"base-button__before\">\n      <svg class=\"svg-icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n        <use xlink:href=\"../../ui/assets/icons/sprite.svg#filter\"/>\n      </svg>\n    </span>\n    <span class=\"base-button__content\">Фильтры</span>\n    <span class=\"base-button__after\">\n      <span class=\"inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-ui-primary px-1 text-body-xs font-semibold leading-4 text-ui-white\">0</span>\n    </span>\n  </span>\n</button>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "markdown": "# Button · BaseButton\n\n| | |\n|---|---|\n| **Категория** | Действия |\n| **Корневой класс** | `base-button` |\n| **CSS** | `ui/components/buttons.css`, `ui/state-contract.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 2 из 2 |\n\n## Назначение\n\nОсновная кнопка Career. Через неё проходят почти все действия интерфейса: отправка форм, переходы, подтверждения, опасные операции. Один компонент покрывает и кнопку, и ссылку: при `href` или `to` рендерится `a`, иначе `button`.\n\nИз BaseButton собраны и другие кнопки Career — FilterButton, GhostButton, SalaryHeadButton добавляют свои классы к `base-button` и наследуют всю его геометрию.\n\n## Анатомия\n\nАнатомия стабильна во всех вариантах: корень → `__inner` → необязательный `__before`, обязательный `__content`, необязательный `__after`. Слоты `before`/`after` отмечаются на корне классами `has-before` / `has-after` — по ним CSS понимает, что отступы делит не один элемент. Отдельным абсолютно позиционированным узлом `__loader` показывается загрузка.\n\n```\nbutton.base-button.inline-flex.appearance-main-border.size-l.has-before.has-after.is-sizeable  [type=\"button\" href target=\"_self\"]\n  span.base-button__inner\n    span.base-button__before\n      svg.svg-icon\n        use  [xlink:href=\"/career-web/images/sprites/sprite.svg?v=5.63.0#filter\"]\n    span.base-button__content\n      · «Фильтры»\n    span.base-button__after\n      span.inline-flex.h-5.min-w-5.items-center.justify-center.rounded-full.bg-ui-primary.px-1.text-body-xs.font-semibold.leading-4.text-ui-white\n        · «0»\n```\n\n_Разметка story `common-buttons-basebutton--affixes-button`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Варианты\n\nВнешний вид задаётся классом `appearance-*`, размер — `size-*`. Оба обязательны: без `appearance-*` кнопка прозрачная и без рамки, без `is-sizeable` не применяется ни один размер. Реальная разметка Career всегда содержит `is-sizeable`, если prop `sizeable` не выключен явно.\n\n| Класс | Фон | Текст | Рамка |\n|---|---|---|---|\n| `appearance-main` | var(--color-ui-primary) | var(--color-ui-white) | нет |\n| `appearance-main-border` | transparent | var(--color-ui-primary) | inset 0 0 0 1px var(--shadow-border-color) |\n| `appearance-avatar` | transparent | — | нет |\n| `appearance-passive` | var(--color-ui-white) | var(--color-ui-gray-1) | inset 0 0 0 1px var(--shadow-border-color) |\n| `appearance-danger` | var(--color-ui-red) | var(--color-ui-white) | нет |\n| `appearance-danger-border` | transparent | var(--color-ui-red) | 1px var(--color-ui-red) |\n| `appearance-branded` | var(--color-branded-profile-primary) | var(--color-branded-profile-text-primary) | 1px var(--color-branded-profile-primary) |\n| `appearance-branded-outline` | var(--color-ui-white) | var(--color-branded-profile-primary) | 1px var(--color-branded-profile-primary) |\n| `appearance-branded-secondary-outline` | transparent | var(--color-font-black) | 1px var(--color-ui-checkbox) |\n| `appearance-menu` | var(--color-ui-gray-bg) | var(--color-font-black) | — |\n| `appearance-success` | var(--color-ui-green) | var(--color-ui-white) | нет |\n| `appearance-success-border` | transparent | var(--color-ui-green) | 1px var(--color-ui-green) |\n| `appearance-ghost` | transparent | var(--color-ui-gray-2) | нет |\n\n## Размеры\n\n| Класс | Высота | Padding | Radius | Кегль |\n|---|---|---|---|---|\n| `size-sm` | 28px | 4px 8px | 8px | 12px / 16px |\n| `size-m` | 32px | 4px 8px | 8px | 14px / 20px |\n| `size-l` | 40px | 8px 12px | 12px | 14px / 20px |\n| `size-xl` | 48px | 12px 16px | 12px | 16px / 24px |\n\n## Состояния\n\nНормативный контракт UI kit:\n\n| Состояние | Контракт | Реализация |\n|---|---|---|\n| `default` | без state-атрибутов | production CSS |\n| `hover` | `:hover` | production CSS для каждого `appearance` |\n| `focus-visible` | `:focus-visible` | production CSS; видимый outline/ring обязателен |\n| `pressed` | `:active`; `.is-pressed` только для story/визуальных тестов | `ui/state-contract.css` |\n| `disabled` | нативный `disabled`; для ссылки — `aria-disabled=\"true\"` без `href` | production CSS + state contract |\n| `loading` | `.is-loading` и `aria-busy=\"true\"`; действие блокируется, ширина сохраняется | production CSS + state contract |\n\n`focus` не является публичным состоянием: в новом коде используется только\n`focus-visible`. Классы `is-link-disabled` и `is-hidden` остаются runtime-деталями\nсуществующей реализации, но не заменяют семантические атрибуты.\n\nПодтверждены CSS и разметкой: `.has-after`, `.has-before`, `.is-full-width`, `.is-hidden`, `.is-link-disabled`, `.is-loading`, `.is-sizeable`, `:disabled`, `:focus`, `:hover`, `:not`.\n\n```css\n.base-button:hover { text-decoration-line:none }\n.base-button:disabled { pointer-events:none }\n.base-button.appearance-main:focus,.base-button.appearance-main:hover { opacity:.8 }\n.base-button.appearance-main:focus-visible { outline-color:var(--color-ui-primary-60);outline-offset:2px;outline-style:solid;outline-width:2px }\n.base-button.appearance-main:disabled { background-color:var(--color-ui-gray-5);border-style:none;color:var(--color-ui-white) }\n.base-button.appearance-main-border:focus,.base-button.appearance-main-border:hover { background-color:var(--color-ui-primary-10) }\n.base-button.appearance-main-border:focus-visible { outline-color:var(--color-ui-primary-60);outline-offset:2px;outline-style:solid;outline-width:2px }\n.base-button.appearance-main-border:disabled { background-color:transparent;color:var(--color-ui-gray-4);--tw-shadow:inset 0 0 0 1px var(--shadow-border-color-disabled);--tw-shadow-colored:inset 0 0 0 1px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow) }\n.base-button.appearance-passive:hover { --tw-shadow:inset 0 0 0 1px var(--shadow-border-color-hover);--tw-shadow-colored:inset 0 0 0 1px var(--tw-shadow-color) }\n.base-button.appearance-passive:focus,.base-button.appearance-passive:hover { background-color:var(--color-ui-gray-3-10);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow) }\n.base-button.appearance-passive:focus-visible { outline-color:var(--color-ui-gray-2-60);outline-offset:2px;outline-style:solid;outline-width:2px }\n.base-button.appearance-passive:disabled { background-color:transparent;color:var(--color-ui-gray-4);--tw-shadow:inset 0 0 0 1px var(--shadow-border-color-disabled);--tw-shadow-colored:inset 0 0 0 1px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow) }\n.base-button.appearance-danger:focus,.base-button.appearance-danger:hover { opacity:.8 }\n.base-button.appearance-danger:focus-visible { outline-color:var(--color-ui-red-60);outline-offset:2px;outline-style:solid;outline-width:2px }\n.base-button.appearance-danger:disabled { background-color:var(--color-ui-gray-5);border-style:none;color:var(--color-ui-white) }\n.base-button.appearance-danger-border:focus,.base-button.appearance-danger-border:hover { background-color:var(--color-ui-red-10) }\n.base-button.appearance-danger-border:focus-visible { outline-color:var(--color-ui-red-60);outline-offset:2px;outline-style:solid;outline-width:2px }\n.base-button.appearance-danger-border:disabled { background-color:transparent;border-color:var(--color-ui-gray-shadow);color:var(--color-ui-gray-4) }\n.base-button.appearance-branded:focus,.base-button.appearance-branded:hover { opacity:.8 }\n.base-button.appearance-branded:focus-visible { --tw-shadow:0 0 0 1px #fff,0 0 0 3px var(--color-font-black);--tw-shadow-colored:0 0 0 1px var(--tw-shadow-color),0 0 0 3px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow) }\n.base-button.appearance-branded-outline:hover { background-color:var(--color-branded-profile-primary);color:var(--color-ui-white) }\n.base-button.appearance-branded-outline:focus-visible { --tw-shadow:0 0 0 1px #fff,0 0 0 3px var(--color-font-black);--tw-shadow-colored:0 0 0 1px var(--tw-shadow-color),0 0 0 3px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow) }\n.base-button.appearance-branded-secondary-outline:hover { background-color:var(--color-branded-profile-primary);border-color:var(--color-branded-profile-primary);color:var(--color-ui-white) }\n.base-button.appearance-branded-secondary-outline:focus-visible { --tw-shadow:0 0 0 1px #fff,0 0 0 3px var(--color-font-black);--tw-shadow-colored:0 0 0 1px var(--tw-shadow-color),0 0 0 3px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow) }\n```\n\nЗаметьте разницу подходов: у сплошных вариантов (`main`, `danger`, `success`, `branded`) hover — это `opacity: .8`, а не другой цвет. У контурных и пассивных — смена фона. Фокус везде показывается через `:focus-visible`, то есть только при клавиатурной навигации.\n\n## Слоты\n\n- `before`\n- `default`\n- `after`\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `appearance` | BaseButtonAppearance | `'main'` | main · main-border · none · passive · danger · danger-border · branded · menu · branded-outline · branded-secondary-outline · success · success-border | `radio` |\n| `size` | BaseButtonSize | `'l'` | sm · m · l · xl | `radio` |\n| `type` | ButtonType | `'button'` | button · submit · reset | `radio` |\n| `fullWidth` | boolean | `false` | — | `boolean` |\n| `target` | \"_blank\" \\| \"_self\" | `'_self'` | _self · _blank | `radio` |\n| `disabled` | boolean \\| null | — | — | `boolean` |\n| `sizeable` | boolean | `true` | — | `boolean` |\n| `loading` | boolean | `false` | — | `boolean` |\n| `href` | string | — | — | `text` |\n| `to` | RouteLocationRaw | — | — | `text` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-branded-profile-primary` | — | задаётся компонентом или средой, значения в сборке нет |\n| `--color-branded-profile-text-primary` | — | задаётся компонентом или средой, значения в сборке нет |\n| `--color-font-black` | `var(--color-ui-gray-1)` | из `:root` Career |\n| `--color-ui-blue-60` | `color-mix(in srgb,var(--color-ui-blue) 60%,transparent)` | из `:root` Career |\n| `--color-ui-checkbox` | `#666` | из `:root` Career |\n| `--color-ui-gray-1` | `#1b272c` | из `:root` Career |\n| `--color-ui-gray-2` | `#55798b` | из `:root` Career |\n| `--color-ui-gray-2-60` | `color-mix(in srgb,var(--color-ui-gray-2) 60%,transparent)` | из `:root` Career |\n| `--color-ui-gray-3-10` | `color-mix(in srgb,var(--color-ui-gray-3) 10%,transparent)` | из `:root` Career |\n| `--color-ui-gray-4` | `#a6bdc9` | из `:root` Career |\n| `--color-ui-gray-5` | `#d4dee2` | из `:root` Career |\n| `--color-ui-gray-bg` | `#ededed` | из `:root` Career |\n| `--color-ui-gray-shadow` | `rgba(24,46,57,.1)` | из `:root` Career |\n| `--color-ui-green` | `#3dc24a` | из `:root` Career |\n| `--color-ui-green-10` | `color-mix(in srgb,var(--color-ui-green) 10%,transparent)` | из `:root` Career |\n| `--color-ui-green-60` | `color-mix(in srgb,var(--color-ui-green) 60%,transparent)` | из `:root` Career |\n| `--color-ui-primary` | `#8164f7` | из `:root` Career |\n| `--color-ui-primary-10` | `color-mix(in srgb,var(--color-ui-primary) 10%,transparent)` | из `:root` Career |\n| `--color-ui-primary-60` | `color-mix(in srgb,var(--color-ui-primary) 60%,transparent)` | из `:root` Career |\n| `--color-ui-red` | `#f8651b` | из `:root` Career |\n| `--color-ui-red-10` | `color-mix(in srgb,var(--color-ui-red) 10%,transparent)` | из `:root` Career |\n| `--color-ui-red-60` | `color-mix(in srgb,var(--color-ui-red) 60%,transparent)` | из `:root` Career |\n| `--color-ui-white` | `#fff` | из `:root` Career |\n| `--shadow-border-color` | `var(--color-ui-gray-5)` | из `:root` Career |\n| `--shadow-border-color-disabled` | `var(--color-ui-gray-shadow)` | из `:root` Career |\n| `--shadow-border-color-focus` | `var(--color-ui-gray-4)` | из `:root` Career |\n| `--shadow-border-color-hover` | `var(--color-ui-gray-4)` | из `:root` Career |\n\n## Иконки\n\n| Спрайт | Символ | Локальный файл |\n|---|---|---|\n| `sprite.svg` | `#filter` | `ui/assets/icons/sprite.svg` |\n\n## Responsive\n\nКомпонент реагирует на: `(max-width:767px)`.\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## Поведение\n\n- `loading` не убирает содержимое, а гасит его `opacity: 0` (`is-loading` + `__inner.is-hidden`) и накладывает лоадер 24×24 по центру. Ширина кнопки при загрузке не прыгает.\n- `disabled` и `is-loading` выключают `pointer-events`. У ссылки роль disabled играет `is-link-disabled`.\n- `fullWidth` даёт `width: 100%` (`is-full-width`).\n- На экранах ≤767px содержимое центрируется: `.base-button__content { justify-content: center; text-align: center }`.\n- Иконка в слоте — `svg.svg-icon` 24×24; размер задан инлайн-стилем, а не классом.\n\n## Разметка\n\n```html\n<button href type=\"button\" target=\"_self\" class=\"base-button inline-flex appearance-main-border size-l has-before has-after is-sizeable\">\n  <span class=\"base-button__inner\">\n    <span class=\"base-button__before\">\n      <svg class=\"svg-icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n        <use xlink:href=\"../../ui/assets/icons/sprite.svg#filter\"/>\n      </svg>\n    </span>\n    <span class=\"base-button__content\">Фильтры</span>\n    <span class=\"base-button__after\">\n      <span class=\"inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-ui-primary px-1 text-body-xs font-semibold leading-4 text-ui-white\">0</span>\n    </span>\n  </span>\n</button>\n```\n\n_Пути к спрайтам и изображениям в этом блоке — локальные, от папки спецификации. В блоке «Анатомия» выше сохранён продовый путь: это протокол снятого DOM, а не образец для вёрстки._\n\n## CSS\n\n```css\n.base-button { align-items:center;cursor:pointer;font-size:14px;font-weight:600;justify-content:center;line-height:20px;position:relative;-webkit-user-select:none;-moz-user-select:none;user-select:none }\n.base-button:hover { text-decoration-line:none }\n.base-button:disabled { pointer-events:none }\n.base-button.is-full-width { width:100% }\n.base-button.is-link-disabled,.base-button.is-loading { pointer-events:none }\n.base-button__inner { align-items:center;display:inline-flex;gap:.25rem }\n.base-button__after,.base-button__before { align-items:center;display:inline-flex;flex-shrink:0;justify-content:center }\n.base-button__content { align-items:center;display:inline-flex;padding-left:.25rem;padding-right:.25rem }\n.base-button__content--appearance-avatar { padding:0 }\n.base-button__content.is-hidden,.base-button__inner.is-hidden { opacity:0 }\n.base-button__loader { align-items:center;display:inline-flex;height:1.5rem;top:0;right:0;bottom:0;left:0;justify-content:center;margin:auto;pointer-events:none;position:absolute;width:1.5rem }\n.base-button.is-sizeable.size-sm { border-radius:.5rem;font-size:12px;line-height:16px;max-height:1.75rem;min-height:1.75rem;padding:.25rem .5rem }\n.base-button.is-sizeable.size-m { border-radius:.5rem;font-size:14px;font-weight:600;line-height:20px;max-height:2rem;min-height:2rem;padding:.25rem .5rem }\n.base-button.is-sizeable.size-l { border-radius:.75rem;font-size:14px;font-weight:600;line-height:20px;max-height:2.5rem;min-height:2.5rem;padding:.5rem .75rem }\n.base-button.is-sizeable.size-xl { border-radius:.75rem;font-size:16px;font-weight:600;line-height:24px;max-height:3rem;min-height:3rem;padding:.75rem 1rem }\n.base-button.appearance-main { background-color:var(--color-ui-primary);border-style:none;color:var(--color-ui-white) }\n.base-button.appearance-main:focus,.base-button.appearance-main:hover { opacity:.8 }\n.base-button.appearance-main:focus-visible { outline-color:var(--color-ui-primary-60);outline-offset:2px;outline-style:solid;outline-width:2px }\n.base-button.appearance-main:disabled { background-color:var(--color-ui-gray-5);border-style:none;color:var(--color-ui-white) }\n.base-button.appearance-main-border { --shadow-border-color:var(--color-ui-primary);background-color:transparent;color:var(--color-ui-primary);--tw-shadow:inset 0 0 0 1px var(--shadow-border-color);--tw-shadow-colored:inset 0 0 0 1px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow) }\n.base-button.appearance-main-border:focus,.base-button.appearance-main-border:hover { background-color:var(--color-ui-primary-10) }\n.base-button.appearance-main-border:focus-visible { outline-color:var(--color-ui-primary-60);outline-offset:2px;outline-style:solid;outline-width:2px }\n.base-button.appearance-main-border:disabled { background-color:transparent;color:var(--color-ui-gray-4);--tw-shadow:inset 0 0 0 1px var(--shadow-border-color-disabled);--tw-shadow-colored:inset 0 0 0 1px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow) }\n.base-button.appearance-avatar,.base-button.appearance-none { background-color:transparent;border-style:none }\n.base-button.appearance-passive { background-color:var(--color-ui-white);color:var(--color-ui-gray-1);--tw-shadow:inset 0 0 0 1px var(--shadow-border-color);--tw-shadow-colored:inset 0 0 0 1px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow) }\n.base-button.appearance-passive:hover { --tw-shadow:inset 0 0 0 1px var(--shadow-border-color-hover);--tw-shadow-colored:inset 0 0 0 1px var(--tw-shadow-color) }\n.base-button.appearance-passive:focus,.base-button.appearance-passive:hover { background-color:var(--color-ui-gray-3-10);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow) }\n.base-button.appearance-passive:focus { --tw-shadow:inset 0 0 0 1px var(--shadow-border-color-focus);--tw-shadow-colored:inset 0 0 0 1px var(--tw-shadow-color) }\n.base-button.appearance-passive:focus-visible { outline-color:var(--color-ui-gray-2-60);outline-offset:2px;outline-style:solid;outline-width:2px }\n.base-button.appearance-passive:disabled { background-color:transparent;color:var(--color-ui-gray-4);--tw-shadow:inset 0 0 0 1px var(--shadow-border-color-disabled);--tw-shadow-colored:inset 0 0 0 1px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow) }\n.base-button.appearance-danger { background-color:var(--color-ui-red);border-style:none;color:var(--color-ui-white);transition-duration:.2s;transition-property:opacity;transition-timing-function:cubic-bezier(.4,0,.2,1) }\n.base-button.appearance-danger:focus,.base-button.appearance-danger:hover { opacity:.8 }\n.base-button.appearance-danger:focus-visible { outline-color:var(--color-ui-red-60);outline-offset:2px;outline-style:solid;outline-width:2px }\n.base-button.appearance-danger:disabled { background-color:var(--color-ui-gray-5);border-style:none;color:var(--color-ui-white) }\n.base-button.appearance-danger-border { background-color:transparent;border-color:var(--color-ui-red);border-width:1px;color:var(--color-ui-red) }\n.base-button.appearance-danger-border:focus,.base-button.appearance-danger-border:hover { background-color:var(--color-ui-red-10) }\n.base-button.appearance-danger-border:focus-visible { outline-color:var(--color-ui-red-60);outline-offset:2px;outline-style:solid;outline-width:2px }\n.base-button.appearance-danger-border:disabled { background-color:transparent;border-color:var(--color-ui-gray-shadow);color:var(--color-ui-gray-4) }\n.base-button.appearance-branded { background-color:var(--color-branded-profile-primary);border-color:var(--color-branded-profile-primary);border-width:1px;color:var(--color-branded-profile-text-primary);transition-duration:.2s;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1) }\n.base-button.appearance-branded:focus,.base-button.appearance-branded:hover { opacity:.8 }\n.base-button.appearance-branded:focus-visible { --tw-shadow:0 0 0 1px #fff,0 0 0 3px var(--color-font-black);--tw-shadow-colored:0 0 0 1px var(--tw-shadow-color),0 0 0 3px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow) }\n.base-button.appearance-branded-outline { background-color:var(--color-ui-white);border-color:var(--color-branded-profile-primary);border-width:1px;color:var(--color-branded-profile-primary) }\n.base-button.appearance-branded-outline:hover { background-color:var(--color-branded-profile-primary);color:var(--color-ui-white) }\n.base-button.appearance-branded-outline:focus-visible { --tw-shadow:0 0 0 1px #fff,0 0 0 3px var(--color-font-black);--tw-shadow-colored:0 0 0 1px var(--tw-shadow-color),0 0 0 3px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow) }\n.base-button.appearance-branded-secondary-outline { border-color:var(--color-ui-checkbox);border-width:1px;color:var(--color-font-black) }\n.base-button.appearance-branded-secondary-outline:hover { background-color:var(--color-branded-profile-primary);border-color:var(--color-branded-profile-primary);color:var(--color-ui-white) }\n.base-button.appearance-branded-secondary-outline:focus-visible { --tw-shadow:0 0 0 1px #fff,0 0 0 3px var(--color-font-black);--tw-shadow-colored:0 0 0 1px var(--tw-shadow-color),0 0 0 3px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow) }\n.base-button.appearance-menu { background-color:var(--color-ui-gray-bg);color:var(--color-font-black) }\n.base-button.appearance-menu:focus-visible { --tw-shadow:0 0 0 1px #fff,0 0 0 3px var(--color-ui-blue-60);--tw-shadow-colored:0 0 0 1px var(--tw-shadow-color),0 0 0 3px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow) }\n.base-button.appearance-success { background-color:var(--color-ui-green);border-style:none;color:var(--color-ui-white) }\n.base-button.appearance-success:focus,.base-button.appearance-success:hover { opacity:.8 }\n.base-button.appearance-success:focus-visible { outline-color:var(--color-ui-green-60);outline-offset:2px;outline-style:solid;outline-width:2px }\n.base-button.appearance-success:disabled { background-color:var(--color-ui-gray-5);border-style:none;color:var(--color-ui-white) }\n.base-button.appearance-success-border { background-color:transparent;border-color:var(--color-ui-green);border-width:1px;color:var(--color-ui-green) }\n.base-button.appearance-success-border:focus,.base-button.appearance-success-border:hover { background-color:var(--color-ui-green-10) }\n.base-button.appearance-success-border:focus-visible { outline-color\n/* … полный текст: ui/components/buttons.css */\n```\n\n## Ограничения\n\n- Появление `appearance-avatar` и `appearance-ghost` в CSS не подтверждено ни одной story: они существуют в стилях, но в `argTypes` их нет. Использовать можно, но это не документированный публичный вариант.\n- `--color-branded-profile-*` в сборке не определены: варианты `branded*` подставляют цвет компании во время выполнения. В витрине показаны с подставленным примерным цветом, помеченным как демонстрационный.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/common/base-button/base-button.stories.ts`\n- Storybook `career-web`: `common-buttons-basebutton--primary-button`, `common-buttons-basebutton--affixes-button`\n- CSS: секция `base-button` в `ui/components/buttons.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/actions/button.md"
+}

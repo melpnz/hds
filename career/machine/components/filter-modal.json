@@ -1,0 +1,101 @@
+{
+  "id": "filter-modal",
+  "name": "FilterModal",
+  "category": "frame-modules",
+  "kind": "module",
+  "spec": "components\\modules\\filter-modal.md",
+  "status": "complete",
+  "states": [
+    "closed",
+    "open",
+    "loading"
+  ],
+  "cssRoots": [
+    "filter-modal"
+  ],
+  "anchor": "showcase/components.html#r4-filters",
+  "markup": {
+    "html": "<div class=\"filter-modal\" id=\"r4-filter-modal\" data-filter-modal data-state=\"closed\" hidden>\n      <div class=\"filter-modal__dialog\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"r4-filter-modal-title\">\n        <header class=\"filter-modal__header\"><h3 class=\"filter-modal__title\" id=\"r4-filter-modal-title\">Фильтры вакансий</h3><button type=\"button\" class=\"icon-button\" aria-label=\"Закрыть фильтры\" data-filter-modal-close><svg class=\"svg-icon icon-inline\" width=\"24\" height=\"24\" aria-hidden=\"true\" data-icon-src=\"../../ui/assets/icons/single/sprite/close.svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M16.2929 6.29287C16.6834 5.90237 17.3166 5.90237 17.7071 6.29287C18.0976 6.68338 18.0976 7.31658 17.7071 7.70708L13.4142 12L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L12 13.4142L7.70708 17.7071C7.31658 18.0976 6.68338 18.0976 6.29287 17.7071C5.90237 17.3166 5.90237 16.6834 6.29287 16.2929L10.5858 12L6.29278 7.70708C5.90248 7.31658 5.90247 6.68337 6.29287 6.29297C6.68348 5.90247 7.31667 5.90247 7.70718 6.29297L12 10.5858L16.2929 6.29287Z\" />\n</svg></button></header>\n        <div class=\"filter-modal__body\">\n          <form class=\"filter-panel\" id=\"r4-filter-form-modal\">\n            <div class=\"filter-panel__body\">\n              <fieldset class=\"filter-panel__group\"><legend class=\"filter-panel__legend\">Специализация</legend><label class=\"filter-panel__field\" for=\"r4-modal-specialization\"><span class=\"filter-panel__field-label\">Направление</span><span class=\"text-input\"><input class=\"text-input__input\" id=\"r4-modal-specialization\" name=\"specialization\" autocomplete=\"off\" placeholder=\"Выберите специализацию\"></span></label></fieldset>\n              <fieldset class=\"filter-panel__group\"><legend class=\"filter-panel__legend\">Квалификация</legend><span class=\"base-select\"><select class=\"base-select__input\" name=\"level\" aria-label=\"Квалификация\"><option value=\"\">Любая</option><option>Junior</option><option>Middle</option><option>Senior</option></select></span></fieldset>\n              <fieldset class=\"filter-panel__group\"><legend class=\"filter-panel__legend\">Формат работы</legend><span class=\"checkbox\"><label class=\"checkbox-label\"><span class=\"checkbox-icon\"><input class=\"checkbox-input visually-hidden\" type=\"checkbox\" name=\"remote\" checked><span class=\"checkbox-button\"></span></span><span class=\"checkbox-text\">Можно удалённо</span></label></span><span class=\"checkbox\"><label class=\"checkbox-label\"><span class=\"checkbox-icon\"><input class=\"checkbox-input visually-hidden\" type=\"checkbox\" name=\"office\"><span class=\"checkbox-button\"></span></span><span class=\"checkbox-text\">В офисе</span></label></span></fieldset>\n            </div>\n          </form>\n        </div>\n        <footer class=\"filter-modal__footer\"><button type=\"reset\" form=\"r4-filter-form-modal\" class=\"base-button inline-flex appearance-passive size-l is-sizeable\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Сбросить</span></span></button><button type=\"submit\" form=\"r4-filter-form-modal\" class=\"base-button inline-flex appearance-main size-l is-sizeable\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Показать 1 272</span></span></button></footer>\n      </div>\n    </div>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [],
+  "legacySource": {
+    "id": "filter-modal",
+    "name": "FilterModal",
+    "category": "frame-modules",
+    "kind": "module",
+    "spec": "components\\modules\\filter-modal.md",
+    "status": "complete",
+    "states": [
+      "closed",
+      "open",
+      "loading"
+    ],
+    "cssRoots": [
+      "filter-modal"
+    ],
+    "anchor": "showcase/components.html#r4-filters",
+    "markup": {
+      "html": "<div class=\"filter-modal\" id=\"r4-filter-modal\" data-filter-modal data-state=\"closed\" hidden>\n      <div class=\"filter-modal__dialog\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"r4-filter-modal-title\">\n        <header class=\"filter-modal__header\"><h3 class=\"filter-modal__title\" id=\"r4-filter-modal-title\">Фильтры вакансий</h3><button type=\"button\" class=\"icon-button\" aria-label=\"Закрыть фильтры\" data-filter-modal-close><svg class=\"svg-icon icon-inline\" width=\"24\" height=\"24\" aria-hidden=\"true\" data-icon-src=\"../../ui/assets/icons/single/sprite/close.svg\" viewBox=\"0 0 24 24\">\n  <path d=\"M16.2929 6.29287C16.6834 5.90237 17.3166 5.90237 17.7071 6.29287C18.0976 6.68338 18.0976 7.31658 17.7071 7.70708L13.4142 12L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L12 13.4142L7.70708 17.7071C7.31658 18.0976 6.68338 18.0976 6.29287 17.7071C5.90237 17.3166 5.90237 16.6834 6.29287 16.2929L10.5858 12L6.29278 7.70708C5.90248 7.31658 5.90247 6.68337 6.29287 6.29297C6.68348 5.90247 7.31667 5.90247 7.70718 6.29297L12 10.5858L16.2929 6.29287Z\" />\n</svg></button></header>\n        <div class=\"filter-modal__body\">\n          <form class=\"filter-panel\" id=\"r4-filter-form-modal\">\n            <div class=\"filter-panel__body\">\n              <fieldset class=\"filter-panel__group\"><legend class=\"filter-panel__legend\">Специализация</legend><label class=\"filter-panel__field\" for=\"r4-modal-specialization\"><span class=\"filter-panel__field-label\">Направление</span><span class=\"text-input\"><input class=\"text-input__input\" id=\"r4-modal-specialization\" name=\"specialization\" autocomplete=\"off\" placeholder=\"Выберите специализацию\"></span></label></fieldset>\n              <fieldset class=\"filter-panel__group\"><legend class=\"filter-panel__legend\">Квалификация</legend><span class=\"base-select\"><select class=\"base-select__input\" name=\"level\" aria-label=\"Квалификация\"><option value=\"\">Любая</option><option>Junior</option><option>Middle</option><option>Senior</option></select></span></fieldset>\n              <fieldset class=\"filter-panel__group\"><legend class=\"filter-panel__legend\">Формат работы</legend><span class=\"checkbox\"><label class=\"checkbox-label\"><span class=\"checkbox-icon\"><input class=\"checkbox-input visually-hidden\" type=\"checkbox\" name=\"remote\" checked><span class=\"checkbox-button\"></span></span><span class=\"checkbox-text\">Можно удалённо</span></label></span><span class=\"checkbox\"><label class=\"checkbox-label\"><span class=\"checkbox-icon\"><input class=\"checkbox-input visually-hidden\" type=\"checkbox\" name=\"office\"><span class=\"checkbox-button\"></span></span><span class=\"checkbox-text\">В офисе</span></label></span></fieldset>\n            </div>\n          </form>\n        </div>\n        <footer class=\"filter-modal__footer\"><button type=\"reset\" form=\"r4-filter-form-modal\" class=\"base-button inline-flex appearance-passive size-l is-sizeable\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Сбросить</span></span></button><button type=\"submit\" form=\"r4-filter-form-modal\" class=\"base-button inline-flex appearance-main size-l is-sizeable\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Показать 1 272</span></span></button></footer>\n      </div>\n    </div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": []
+  },
+  "title": "FilterModal",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Modal adapter для того же FilterPanel, который на desktop находится в Sidebar. FilterModal владеет только overlay, focus lifecycle, заголовком и нижней панелью действий; поля и их model принадлежат FilterPanel.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "filter-modal"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "stateGroups": {
+    "ui": [
+      "closed",
+      "open",
+      "loading"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Ffilter-modal.json",
+      "covers": [
+        "closed",
+        "open",
+        "loading"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [],
+  "markdown": "# FilterModal · Мобильные фильтры\r\n\r\n| | |\r\n|---|---|\r\n| **Категория** | Каркасные модули |\r\n| **Корневой класс** | `filter-modal` |\r\n| **CSS** | `ui/modules.css` |\r\n| **Живая реализация** | `showcase/components.html#r4-filters` |\r\n\r\n## Назначение\r\n\r\nModal adapter для того же FilterPanel, который на desktop находится в Sidebar.\r\nFilterModal владеет только overlay, focus lifecycle, заголовком и нижней панелью\r\nдействий; поля и их model принадлежат FilterPanel.\r\n\r\n## Состояния\r\n\r\n- `closed`: overlay скрыт/размонтирован, trigger имеет `aria-expanded=\"false\"`.\r\n- `open`: `role=\"dialog\"`, `aria-modal=\"true\"`, доступное имя и focus trap;\r\n  trigger имеет `aria-expanded=\"true\"`.\r\n- `loading`: dialog и вложенный FilterPanel получают `aria-busy=\"true\"`, submit\r\n  блокируется и показывает Loader.\r\n\r\n## API\r\n\r\n- `open`: controlled state; события `open`, `close`, `submit`, `reset`.\r\n- `title`, `resultCount` и `triggerId`.\r\n- slot `default`: ровно один FilterPanel с общей model value.\r\n- Закрытие без submit сохраняет draft только если это явно решено продуктом;\r\n  default — откат к последним применённым значениям.\r\n\r\n## Responsive\r\n\r\nНа `≤479` dialog становится bottom sheet с радиусом только сверху и высотой не\r\nбольше viewport. На большей ширине — центрированное окно до 480px. Это варианты\r\nраскладки одного dialog, не отдельные `mobile/tablet` компоненты.\r\n\r\n## Доступность\r\n\r\n- Trigger: FilterButton с `aria-haspopup=\"dialog\"`, `aria-expanded` и\r\n  `aria-controls`.\r\n- Dialog: `role=\"dialog\"`, `aria-modal=\"true\"`, `aria-labelledby`.\r\n- При открытии фокус переходит на первый control; Tab остаётся внутри.\r\n- Escape/close возвращают фокус trigger. Фоновый документ становится inert в\r\n  приложении; showcase ограничивает trap самим примером.\r\n\r\n## Разметка\r\n\r\nСнято с живого примера витрины — [`showcase/components.html#r4-filters`](../../showcase/components.html#r4-filters).\r\nРаботает на пустой странице с одним `ui/career.css`.\r\n\r\n```html\r\n<div class=\"filter-modal\" id=\"r4-filter-modal\" data-filter-modal data-state=\"closed\" hidden>\r\n      <div class=\"filter-modal__dialog\" role=\"dialog\" aria-modal=\"true\" aria-labelledby=\"r4-filter-modal-title\">\r\n        <header class=\"filter-modal__header\"><h3 class=\"filter-modal__title\" id=\"r4-filter-modal-title\">Фильтры вакансий</h3><button type=\"button\" class=\"icon-button\" aria-label=\"Закрыть фильтры\" data-filter-modal-close><svg class=\"svg-icon icon-inline\" width=\"24\" height=\"24\" aria-hidden=\"true\" data-icon-src=\"../../ui/assets/icons/single/sprite/close.svg\" viewBox=\"0 0 24 24\">\r\n  <path d=\"M16.2929 6.29287C16.6834 5.90237 17.3166 5.90237 17.7071 6.29287C18.0976 6.68338 18.0976 7.31658 17.7071 7.70708L13.4142 12L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L12 13.4142L7.70708 17.7071C7.31658 18.0976 6.68338 18.0976 6.29287 17.7071C5.90237 17.3166 5.90237 16.6834 6.29287 16.2929L10.5858 12L6.29278 7.70708C5.90248 7.31658 5.90247 6.68337 6.29287 6.29297C6.68348 5.90247 7.31667 5.90247 7.70718 6.29297L12 10.5858L16.2929 6.29287Z\" />\r\n</svg></button></header>\r\n        <div class=\"filter-modal__body\">\r\n          <form class=\"filter-panel\" id=\"r4-filter-form-modal\">\r\n            <div class=\"filter-panel__body\">\r\n              <fieldset class=\"filter-panel__group\"><legend class=\"filter-panel__legend\">Специализация</legend><label class=\"filter-panel__field\" for=\"r4-modal-specialization\"><span class=\"filter-panel__field-label\">Направление</span><span class=\"text-input\"><input class=\"text-input__input\" id=\"r4-modal-specialization\" name=\"specialization\" autocomplete=\"off\" placeholder=\"Выберите специализацию\"></span></label></fieldset>\r\n              <fieldset class=\"filter-panel__group\"><legend class=\"filter-panel__legend\">Квалификация</legend><span class=\"base-select\"><select class=\"base-select__input\" name=\"level\" aria-label=\"Квалификация\"><option value=\"\">Любая</option><option>Junior</option><option>Middle</option><option>Senior</option></select></span></fieldset>\r\n              <fieldset class=\"filter-panel__group\"><legend class=\"filter-panel__legend\">Формат работы</legend><span class=\"checkbox\"><label class=\"checkbox-label\"><span class=\"checkbox-icon\"><input class=\"checkbox-input visually-hidden\" type=\"checkbox\" name=\"remote\" checked><span class=\"checkbox-button\"></span></span><span class=\"checkbox-text\">Можно удалённо</span></label></span><span class=\"checkbox\"><label class=\"checkbox-label\"><span class=\"checkbox-icon\"><input class=\"checkbox-input visually-hidden\" type=\"checkbox\" name=\"office\"><span class=\"checkbox-button\"></span></span><span class=\"checkbox-text\">В офисе</span></label></span></fieldset>\r\n            </div>\r\n          </form>\r\n        </div>\r\n        <footer class=\"filter-modal__footer\"><button type=\"reset\" form=\"r4-filter-form-modal\" class=\"base-button inline-flex appearance-passive size-l is-sizeable\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Сбросить</span></span></button><button type=\"submit\" form=\"r4-filter-form-modal\" class=\"base-button inline-flex appearance-main size-l is-sizeable\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Показать 1 272</span></span></button></footer>\r\n      </div>\r\n    </div>\r\n```\r\n\r\n## Источники\r\n\r\n- [`overlays/modal.md`](../overlays/modal.md): modal lifecycle.\r\n- [`actions/filter-button.md`](../actions/filter-button.md): trigger contract.\r\n- [`ui/layout.css`](../../ui/layout.css): R-3/R-4, скрытие desktop sidebar.\r\n\r\n",
+  "sourcePath": "archive:career/v1/components/modules/filter-modal.md",
+  "legacyDocument": "archive:career/v1/components/modules/filter-modal.md"
+}

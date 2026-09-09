@@ -1,0 +1,108 @@
+{
+  "id": "rating",
+  "name": "Рейтинг",
+  "summary": "Гибрид: каркас листинга при содержимом дашборда. Ранжированный список с переключателем фильтрации над ним.",
+  "grid": {
+    "container": 1100,
+    "padding": "0 12px",
+    "main": 752,
+    "gap": 24,
+    "aside": 300,
+    "asideSide": "right"
+  },
+  "note": "каркас листинга при содержимом дашборда",
+  "areas": null,
+  "responsive": [
+    {
+      "maxWidth": 767,
+      "change": "переключатель фильтрации получает горизонтальную прокрутку"
+    }
+  ],
+  "rules": [
+    "L-1",
+    "L-3",
+    "L-4",
+    "R-8"
+  ],
+  "example": {
+    "showcase": "showcase/pages.html#p-rating"
+  },
+  "title": "Рейтинг",
+  "kind": "pattern",
+  "category": "page-families",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production-showcase",
+      "observed-rules"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Гибрид: каркас листинга при содержимом дашборда. Ранжированный список с переключателем фильтрации над ним.",
+  "implementation": {
+    "markup": "examples/patterns/rating.html",
+    "cssRoots": [],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [
+      "examples/patterns/patterns.js"
+    ]
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [
+      "success"
+    ],
+    "domain": []
+  },
+  "ruleFiles": [
+    "machine/rules/l-1.json",
+    "machine/rules/l-3.json",
+    "machine/rules/l-4.json",
+    "machine/rules/r-8.json"
+  ],
+  "examples": [
+    {
+      "id": "page",
+      "title": "Рейтинг",
+      "file": "examples/patterns/rating.html",
+      "covers": [
+        "rating"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "height": 720
+      }
+    }
+  ],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "showcase",
+      "ref": "showcase/pages.html#p-rating"
+    },
+    {
+      "type": "rules",
+      "ref": [
+        "L-1",
+        "L-3",
+        "L-4",
+        "R-8"
+      ]
+    }
+  ],
+  "unknowns": [
+    "Последовательность areas пока не извлечена из ad-hoc showcase composition."
+  ]
+}

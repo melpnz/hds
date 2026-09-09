@@ -1,0 +1,42 @@
+{
+  "id": "guide-page-families",
+  "title": "Компоненты, модули и семейства страниц",
+  "kind": "guide",
+  "category": "guide",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "published-guide"
+    ],
+    "confidence": "high",
+    "scope": "package"
+  },
+  "purpose": "Адресная машинная копия документа docs/guide/page-families.md.",
+  "implementation": {
+    "markup": null,
+    "styles": [],
+    "scripts": [],
+    "missingReason": "document-only",
+    "fallback": "Читайте sections выбранного документа."
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "legacy-document",
+      "ref": "archive:career/v1/docs/guide/page-families.md"
+    }
+  ],
+  "unknowns": [],
+  "sourcePath": "archive:career/v1/docs/guide/page-families.md",
+  "markdown": "# Компоненты, модули и семейства страниц\r\n\r\nЧто в системе есть на трёх уровнях: компонент, модуль, страница. Реестр\r\nкомпонентов — [`components/INDEX.md`](../../components/INDEX.md).\r\n\r\n---\r\n\r\n## Components\r\n\r\nТри уровня, отвечающие на разные вопросы.\r\n\r\n| Уровень | Что даёт | Где |\r\n|---|---|---|\r\n| **Витрина** | как выглядит и как это сверстать | [`showcase/components.html`](../../showcase/components.html) |\r\n| **Спецификации** | анатомия DOM, props, варианты, состояния, токены, ограничения | [`components/INDEX.md`](../../components/INDEX.md) |\r\n| **Стили** | настоящий CSS Career, готовый к подключению | [`ui/career.css`](../../ui/career.css) |\r\n\r\n**99 компонентов** сведены из 427 записей Storybook. Из них 73 показаны настоящей\r\nвёрсткой, 19 — частично (не удалось снять состояние, живущее в портале),\r\n7 не имеют разметки, потому что сломаны в самом Storybook Career.\r\nРазбор — [`evidence/coverage.md`](../../evidence/coverage.md).\r\n\r\nЧто закрылось в v0.5 относительно прежних пробелов: switch, состояние загрузки,\r\nкольцо фокуса, danger-кнопка, контекстное меню, тумблер, каркас загрузки —\r\nвсё извлечено и показано. Полный список того, чего по-прежнему нет,\r\nв разделе **Unknown** и в конце витрины.\r\n\r\n---\r\n\r\n## Modules\r\n\r\nПервая нормативная волна каркасных модулей R4 реализована в UI kit:\r\n`PageHeader`, `PageFooter`, `SectionHeader`, `ContentSection`, `EmptySection`,\r\n`Sidebar`, `SidebarSection`, `FilterPanel` и `FilterModal`. Контракты собраны в\r\n[`components/INDEX.md`](../../components/INDEX.md#каркасные-модули-r4), живые responsive\r\nпримеры — в [`showcase/components.html`](../../showcase/components.html#s-r4-frame),\r\nстили — в [`ui/modules.css`](../../ui/modules.css).\r\n\r\nСоставные продуктовые блоки, извлечённые ранее: карточка вакансии, карточка\r\nрейтинга, онбординг-тултип (в\r\n[`showcase/#s-modules`](../../showcase/components.html#s-modules)), карточка компании и\r\nкарточка эксперта (в живом окружении —\r\n[`evidence/curated/module-composition/`](../../evidence/README.md)).\r\n\r\nАрхивная библиотека `new-career-modules` содержит **15 модулей** и остаётся\r\nresearch evidence. Имена новых публичных модулей следуют frontend-семантике, а\r\nне автоматически повторяют имена Figma или legacy-библиотеки.\r\n\r\n---\r\n\r\n## Page families\r\n\r\nЖивые паттерны — [`showcase/`](../../showcase/pages.html).\r\nРазбор — `research/system-audit.md` §18.\r\n\r\n```\r\nPRODUCT SCREENS — общая сетка, общий язык\r\n├── LISTING     вертикальный список сущностей, фильтры справа\r\n├── DETAIL      сущность: шапка-карточка, секции, связанное справа\r\n├── PROFILE     человек или организация — САЙДБАР СЛЕВА\r\n├── RATING      каркас листинга, содержимое дашборда\r\n├── DASHBOARD   собственный каркас: 264 + 800\r\n└── SERVICE     404 и подобное: сетка отменяется\r\n\r\nADJACENT — внутри оболочки, но не продуктовый язык\r\n├── BRANDED PROFILE   рекламное пространство компании\r\n└── JOURNAL           legacy-вёрстка блога\r\n\r\nOUTSIDE\r\n└── AUTH              Хабр Аккаунт, другая дизайн-система\r\n```\r\n\r\n---\r\n\r\n## Composition rules · Responsive · States\r\n\r\n**Канонический свод — [композиция](composition.md).** 57 правил с идентификаторами\r\nи указанием покрытия: 44 композиционных (`SH` `L` `D` `P` `DB` `C` `F` `M` `CT`),\r\n8 адаптивных (`R`), 5 состояний (`ST`). Живая проверка — переключатели ширины\r\nв [`showcase/pages.html`](../../showcase/pages.html).\r\n\r\nВосемь правил, без которых экран не будет похож на Career:\r\n\r\n| ID | Правило |\r\n|---|---|\r\n| `SH-5` | Контейнер 1100 / `0 12px`. Не изменился при переезде на другой стек |\r\n| `L-1` | Сетка **752 + 24 + 300**. Сайдбар фиксирован, сжимается главная колонка |\r\n| `L-3` | **Заголовок страницы лежит внутри карточки** — вместе с поиском, сортировкой и счётчиком |\r\n| `L-4` | Шаг между карточками — **12**, на всех вьюпортах |\r\n| `D-3` | Атрибуты группируются **микро-меткой 12/16·400 `gray-3`** + строкой чипов |\r\n| `D-4` | **Основное действие — в шапке сущности**, а не в конце страницы и не в липкой панели |\r\n| `P-1` | **Профиль — единственное семейство с сайдбаром слева.** Действие прикреплено к личности |\r\n| `C-1` | Карточка: padding 24 · radius 24 · border 1px. Ни тени, ни подъёма при наведении |\r\n\r\nТри вещи, на которых чаще всего ошибаются:\r\n\r\n* **Перестроение оболочки — на 1023, а не на 767.** Медиазапросы сравниваются\r\n  с шириной окна, включая полосу прокрутки. Разбор — [композиция](composition.md) §11.\r\n* **Типографика не масштабируется:** H1 остаётся 28/32 и на 375.\r\n* **Состояния авторизованного пользователя не наблюдались.** Их отсутствие\r\n  в пакете означает «не знаем», а не «не существует».\r\n\r\n---\r\n",
+  "previewMode": "none"
+}

@@ -1,0 +1,125 @@
+{
+  "id": "dropzone",
+  "name": "Dropzone",
+  "category": "forms",
+  "kind": "component",
+  "spec": "components\\forms\\dropzone.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "dragActive",
+    "disabled",
+    "invalid"
+  ],
+  "cssRoots": [
+    "dropzone"
+  ],
+  "anchor": "showcase/components.html#r3-upload",
+  "markup": null,
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": null,
+      "sourceName": "drag&drop / picture / horizontal"
+    }
+  ],
+  "legacySource": {
+    "id": "dropzone",
+    "name": "Dropzone",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\dropzone.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "dragActive",
+      "disabled",
+      "invalid"
+    ],
+    "cssRoots": [
+      "dropzone"
+    ],
+    "anchor": "showcase/components.html#r3-upload",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "drag&drop / picture / horizontal"
+      }
+    ]
+  },
+  "title": "Dropzone",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Dropzone — сущность UI kit Career.",
+  "implementation": {
+    "markup": null,
+    "cssRoots": [
+      "dropzone"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "missingReason": "copy-safe-markup-not-captured",
+    "fallback": "Не придумывать классы. Использовать ближайший компонент с разметкой или явно отметить пробел."
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "dragActive",
+      "disabled",
+      "invalid"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "isolated-example",
+      "title": "Зона загрузки",
+      "file": "examples/components-isolated/dropzone.html",
+      "covers": [
+        "isolated-example",
+        "r3-upload",
+        "default",
+        "hover",
+        "focus-visible",
+        "dragActive",
+        "disabled",
+        "invalid"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "provenance": {
+        "source": "archive:career/v1/showcase/components.html#r3-upload",
+        "extraction": "exact-dom-subtree"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [],
+  "markdown": "# Dropzone · Область перетаскивания файлов\n\n| | |\n|---|---|\n| **Корневой класс** | `dropzone` |\n| **CSS** | `ui/components.css` |\n| **Showcase** | `showcase/components.html#r3-upload` |\n\nДополнительный способ передать файлы в FileUpload. Всегда сохраняет доступный выбор через native file input.\n\n## Состояния\n\n`default`, `hover`, `focus-visible`, `dragActive` (`data-drag-active=\"true\"`), `disabled` (`aria-disabled=\"true\"` + disabled input), `invalid` (`aria-invalid=\"true\"` и текст ошибки).\n\nКорень — `label` для input или button, который вызывает input. Enter/Space открывают chooser. Drag handlers отменяют browser navigation только для файлов; dragActive сбрасывается на drop/dragleave/blur. Вложенные элементы не должны мигать состоянием из-за счётчика dragenter/leaves. Текст перечисляет допустимые типы и лимит, цвет не единственный сигнал. Paste может поддерживаться как тот же входной канал.\n",
+  "sourcePath": "archive:career/v1/components/forms/dropzone.md",
+  "legacyDocument": "archive:career/v1/components/forms/dropzone.md"
+}

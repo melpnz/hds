@@ -1,0 +1,154 @@
+{
+  "id": "chip",
+  "name": "Chip",
+  "category": "collections",
+  "kind": "component",
+  "spec": "components\\labels\\chip.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "selected",
+    "disabled"
+  ],
+  "cssRoots": [
+    "base-chip"
+  ],
+  "anchor": "showcase/components.html#l-chip-contract",
+  "markup": {
+    "html": "<div class=\"flex flex-wrap gap-3\">\n  <button type=\"button\" class=\"base-chip base-chip--default base-chip--clickable base-chip--interactive\">\n    <span class=\"base-chip__content\">\n      <span class=\"px-1\">Default</span>\n    </span>\n  </button>\n  <button type=\"button\" class=\"base-chip base-chip--approved base-chip--clickable base-chip--interactive\">\n    <span class=\"base-chip__content\">\n      <span class=\"px-1\">Approved</span>\n    </span>\n  </button>\n  <button type=\"button\" class=\"base-chip base-chip--ghost base-chip--clickable base-chip--interactive\">\n    <span class=\"base-chip__content\">\n      <span class=\"px-1\">Ghost</span>\n    </span>\n  </button>\n</div>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": "838:700",
+      "sourceName": "chips / 1-line"
+    }
+  ],
+  "storybookNames": [
+    "BaseChip"
+  ],
+  "code": {
+    "component": "BaseChip",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "chip",
+    "name": "Chip",
+    "category": "collections",
+    "kind": "component",
+    "spec": "components\\labels\\chip.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "selected",
+      "disabled"
+    ],
+    "cssRoots": [
+      "base-chip"
+    ],
+    "anchor": "showcase/components.html#l-chip-contract",
+    "markup": {
+      "html": "<div class=\"flex flex-wrap gap-3\">\n  <button type=\"button\" class=\"base-chip base-chip--default base-chip--clickable base-chip--interactive\">\n    <span class=\"base-chip__content\">\n      <span class=\"px-1\">Default</span>\n    </span>\n  </button>\n  <button type=\"button\" class=\"base-chip base-chip--approved base-chip--clickable base-chip--interactive\">\n    <span class=\"base-chip__content\">\n      <span class=\"px-1\">Approved</span>\n    </span>\n  </button>\n  <button type=\"button\" class=\"base-chip base-chip--ghost base-chip--clickable base-chip--interactive\">\n    <span class=\"base-chip__content\">\n      <span class=\"px-1\">Ghost</span>\n    </span>\n  </button>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "838:700",
+        "sourceName": "chips / 1-line"
+      }
+    ],
+    "storybookNames": [
+      "BaseChip"
+    ],
+    "code": {
+      "component": "BaseChip",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "Chip",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Компактная метка: навык, тег, выбранное значение фильтра, статус. Может быть статичной, кликабельной и удаляемой; тег корня меняется props (button, span, a) под роль.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "base-chip"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "BaseChip",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "selected",
+      "disabled"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fchip.json",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "selected",
+        "disabled"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Не выявлено: разметка, CSS и props извлечены полностью."
+  ],
+  "markdown": "# Chip · BaseChip\r\n\r\n| | |\r\n|---|---|\r\n| **Категория** | Метки и статусы |\r\n| **Корневой класс** | `base-chip` |\r\n| **CSS** | `ui/components/chips.css` |\r\n| **Живая реализация** | `showcase/components.html` |\r\n| **Snapshot Storybook** | 4 из 4 |\r\n\r\n## Назначение\r\n\r\nКомпактная метка: навык, тег, выбранное значение фильтра, статус. Может быть статичной, кликабельной и удаляемой; тег корня меняется props (`button`, `span`, `a`) под роль.\r\n\r\n## Анатомия\r\n\r\n```\r\ndiv.flex.flex-wrap.gap-3\r\n  button.base-chip.base-chip--default.base-chip--clickable.base-chip--interactive  [type=\"button\"]\r\n    span.base-chip__content\r\n      span.px-1\r\n        · «Default»\r\n  button.base-chip.base-chip--approved.base-chip--clickable.base-chip--interactive  [type=\"button\"]\r\n    span.base-chip__content\r\n      span.px-1\r\n        · «Approved»\r\n  button.base-chip.base-chip--ghost.base-chip--clickable.base-chip--interactive  [type=\"button\"]\r\n    span.base-chip__content\r\n      span.px-1\r\n        · «Ghost»\r\n```\r\n\r\n_Разметка story `common-chips-basechip--variants`, снятая из DOM. Vue-скоуп `data-v-*` снят._\r\n\r\n## Варианты\r\n\r\nТри варианта заливки: `--default`, `--approved` (подтверждённый навык), `--ghost` (только рамка). Интерактивность добавляется отдельными классами `--clickable` и `--interactive`, а не вариантом.\r\n\r\n| Класс | Фон | Текст | Рамка |\r\n|---|---|---|---|\r\n| `base-chip--clickable` | transparent | — | — |\r\n| `base-chip--disabled` | var(--color-ui-green-10) | var(--color-ui-gray-4) | — |\r\n| `base-chip--default` | var(--color-ui-gray-4-20) | — | — |\r\n| `base-chip--approved` | var(--color-ui-green-10) | — | — |\r\n| `base-chip--ghost` | transparent | — | — |\r\n| `base-chip--blue` | var(--color-ui-turquoise-10) | — | — |\r\n\r\n## Состояния\r\n\r\nПодтверждены CSS и разметкой: `.base-chip--disabled`, `:active`, `:focus`, `:hover`, `:not`.\r\n\r\n```css\r\n.base-chip--interactive.base-chip--default:focus-visible,.base-chip:not(.base-chip--disabled).base-chip--default:active,.base-chip:not(.base-chip--disabled).base-chip--default:hover { background-color:var(--color-ui-gray-4-30) }\r\n.base-chip--interactive.base-chip--approved:focus-visible,.base-chip:not(.base-chip--disabled).base-chip--approved:active,.base-chip:not(.base-chip--disabled).base-chip--approved:hover { background-color:var(--color-ui-green-20) }\r\n.base-chip--interactive.base-chip--ghost:focus-visible,.base-chip:not(.base-chip--disabled).base-chip--ghost:active,.base-chip:not(.base-chip--disabled).base-chip--ghost:hover { background-color:var(--color-ui-gray-4-20) }\r\n.base-chip--interactive:focus-visible { outline:2px solid var(--color-ui-gray-2-60);outline-offset:2px }\r\n.base-chip:not(.base-chip--clickable).base-chip--disabled:hover { color:var(--color-ui-gray-4);cursor:default }\r\n.base-chip:not(.base-chip--clickable).base-chip--default:hover { background-color:var(--color-ui-gray-4-20) }\r\n.base-chip:not(.base-chip--clickable).base-chip--approved:hover { background-color:var(--color-ui-green-10) }\r\n.base-chip:not(.base-chip--clickable).base-chip--ghost:hover { background-color:transparent }\r\n.base-chip:not(.base-chip--clickable).base-chip--blue:hover { background-color:var(--color-ui-turquoise-10) }\r\n```\r\n\r\n## Слоты\r\n\r\n- `default`\r\n- `append`\r\n\r\n## Props\r\n\r\n| Prop | Тип | По умолчанию | Значения | Control |\r\n|---|---|---|---|---|\r\n| `tag` | ChipTag | `'span'` | button · span · a | `radio` |\r\n| `variant` | ChipVariant | `'default'` | default · approved · ghost | `radio` |\r\n| `clickable` | boolean | `true` | — | `boolean` |\r\n| `disabled` | boolean | `false` | — | `boolean` |\r\n| `target` | \"_blank\" \\| \"_self\" | `'_self'` | _self · _blank | `radio` |\r\n| `text` | string | — | — | `text` |\r\n| `href` | string | — | — | `text` |\r\n| `click` | other | — | — | `object` |\r\n\r\n## Токены\r\n\r\n| Переменная | Значение | Статус |\r\n|---|---|---|\r\n| `--color-icon-gray` | `var(--color-ui-gray-2)` | из `:root` Career |\r\n| `--color-ui-gray-1` | `#1b272c` | из `:root` Career |\r\n| `--color-ui-gray-2-60` | `color-mix(in srgb,var(--color-ui-gray-2) 60%,transparent)` | из `:root` Career |\r\n| `--color-ui-gray-4` | `#a6bdc9` | из `:root` Career |\r\n| `--color-ui-gray-4-20` | `color-mix(in srgb,var(--color-ui-gray-4) 20%,transparent)` | из `:root` Career |\r\n| `--color-ui-gray-4-30` | `color-mix(in srgb,var(--color-ui-gray-4) 30%,transparent)` | из `:root` Career |\r\n| `--color-ui-gray-7` | `#f8fbfc` | из `:root` Career |\r\n| `--color-ui-green-10` | `color-mix(in srgb,var(--color-ui-green) 10%,transparent)` | из `:root` Career |\r\n| `--color-ui-green-20` | `color-mix(in srgb,var(--color-ui-green) 20%,transparent)` | из `:root` Career |\r\n| `--color-ui-turquoise-10` | `color-mix(in srgb,var(--color-ui-turquoise) 10%,transparent)` | из `:root` Career |\r\n\r\n## Иконки\r\n\r\n| Спрайт | Символ | Локальный файл |\r\n|---|---|---|\r\n| `sprite.svg` | `#cross` | `ui/assets/icons/sprite.svg` |\r\n\r\n## Responsive\r\n\r\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\r\n\r\n## Доступность\r\n\r\nАтрибуты, встречающиеся в реальной разметке: `aria-label=\"Удалить\"`, `tabindex=\"-1\"`.\r\n\r\n## Поведение\r\n\r\n- Статичный чип получает `tabindex=\"-1\"`, кликабельный — реальный `button` с `type=\"button\"`.\r\n- Кнопка удаления — вложенный `button` с `aria-label=\"Удалить\"`, а не иконка на самом чипе.\r\n\r\n## Разметка\r\n\r\n```html\r\n<div class=\"flex flex-wrap gap-3\">\r\n  <button type=\"button\" class=\"base-chip base-chip--default base-chip--clickable base-chip--interactive\">\r\n    <span class=\"base-chip__content\">\r\n      <span class=\"px-1\">Default</span>\r\n    </span>\r\n  </button>\r\n  <button type=\"button\" class=\"base-chip base-chip--approved base-chip--clickable base-chip--interactive\">\r\n    <span class=\"base-chip__content\">\r\n      <span class=\"px-1\">Approved</span>\r\n    </span>\r\n  </button>\r\n  <button type=\"button\" class=\"base-chip base-chip--ghost base-chip--clickable base-chip--interactive\">\r\n    <span class=\"base-chip__content\">\r\n      <span class=\"px-1\">Ghost</span>\r\n    </span>\r\n  </button>\r\n</div>\r\n```\r\n\r\n## CSS\r\n\r\n```css\r\n.base-chip { align-items:center;border-radius:.5rem;color:var(--color-ui-gray-1);display:inline-flex;font-size:14px;font-weight:400;line-height:20px;min-height:2rem;padding:.25rem;text-decoration-line:none }\r\n.base-chip--clickable { cursor:pointer }\r\n.base-chip--disabled { color:var(--color-ui-gray-4);cursor:default }\r\n.base-chip--default { background-color:var(--color-ui-gray-4-20) }\r\n.base-chip--approved { background-color:var(--color-ui-green-10) }\r\n.base-chip--ghost { background-color:transparent }\r\n.base-chip--blue { background-color:var(--color-ui-turquoise-10) }\r\n.base-chip--interactive.base-chip--default:focus-visible,.base-chip:not(.base-chip--disabled).base-chip--default:active,.base-chip:not(.base-chip--disabled).base-chip--default:hover { background-color:var(--color-ui-gray-4-30) }\r\n.base-chip--interactive.base-chip--approved:focus-visible,.base-chip:not(.base-chip--disabled).base-chip--approved:active,.base-chip:not(.base-chip--disabled).base-chip--approved:hover { background-color:var(--color-ui-green-20) }\r\n.base-chip--interactive.base-chip--ghost:focus-visible,.base-chip:not(.base-chip--disabled).base-chip--ghost:active,.base-chip:not(.base-chip--disabled).base-chip--ghost:hover { background-color:var(--color-ui-gray-4-20) }\r\n.base-chip--interactive:focus-visible { outline:2px solid var(--color-ui-gray-2-60);outline-offset:2px }\r\n.base-chip--disabled.base-chip--default { background-color:var(--color-ui-gray-7) }\r\n.base-chip--disabled.base-chip--approved { background-color:var(--color-ui-green-10);opacity:.5 }\r\n.base-chip__content { align-items:center;display:inline-flex }\r\n.base-chip__text { margin-left:.25rem;margin-right:.25rem }\r\n.base-chip:not(.base-chip--clickable).base-chip--disabled:hover { color:var(--color-ui-gray-4);cursor:default }\r\n.base-chip:not(.base-chip--clickable).base-chip--default:hover { background-color:var(--color-ui-gray-4-20) }\r\n.base-chip:not(.base-chip--clickable).base-chip--approved:hover { background-color:var(--color-ui-green-10) }\r\n.base-chip:not(.base-chip--clickable).base-chip--ghost:hover { background-color:transparent }\r\n.base-chip:not(.base-chip--clickable).base-chip--blue:hover { background-color:var(--color-ui-turquoise-10) }\r\n```\r\n\r\n## Ограничения\r\n\r\n- Не выявлено: разметка, CSS и props извлечены полностью.\r\n\r\n## Источники\r\n\r\n- Файлы в репозитории `career-web`: `./src/components/common/base-chip.stories.ts`\r\n- Storybook `career-web`: `common-chips-basechip--playground`, `common-chips-basechip--variants`, `common-chips-basechip--interactive-and-disabled`, `common-chips-basechip--closable`\r\n- CSS: секция `base-chip` в `ui/components/chips.css`\r\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\r\n\r\n## Нормативный контракт R2-D\r\n\r\nСначала выберите семантику: статическая метка — `span` без `tabindex`; действие — `button` или `a`; переключатель фильтра — `button` с `aria-pressed`. Не делайте статическую метку фокусируемой и не вкладывайте кнопку в кнопку.\r\n\r\n| Состояние | Контракт |\r\n|---|---|\r\n| `default` | базовый вариант оформления |\r\n| `hover` | только для интерактивного chip |\r\n| `focus-visible` | только для интерактивного chip |\r\n| `pressed` | нативный `:active`; `.is-pressed` только для стенда |\r\n| `selected` | `aria-pressed=\"true\"`, только для toggle |\r\n| `disabled` | `disabled` у `button`; `aria-disabled=\"true\"` у ссылки |\r\n\r\nНормативные дополнения лежат в `ui/state-contract.css`.\r\n\r\n**Выбранный чип держит свой фон под курсором.** `aria-pressed=\"true\"` красит чип\r\nв `--color-ui-primary-20`, и на ховере цвет не меняется — так же ведёт себя\r\nвыбранный чип-фильтр в самом Career (`.filter-button.is-chip.is-chip-active:hover`).\r\nОтклик на нажатие даёт `.base-chip--interactive:active`, а не смена фона.\r\n\r\nПравилу пришлось повторить форму извлечённого селектора\r\n(`.base-chip:not(.base-chip--disabled)[aria-pressed=\"true\"]:hover`): ховер из\r\nсборки объявлен как `.base-chip:not(.base-chip--disabled).base-chip--default:hover`\r\nи по специфичности (0,4,0) перебивал бы короткое `.base-chip[aria-pressed=\"true\"]`\r\n(0,2,0). Учтите это, если добавляете свои цветовые варианты чипа.\r\n\r\nЦвет варианта (`--approved`, `--blue`, `--ghost`) выбранное состояние\r\nперекрывает: `aria-pressed` сильнее по специфичности. Один чип не должен\r\nодновременно нести вариант-данные и `aria-pressed` — это две разные оси.\r\n",
+  "sourcePath": "archive:career/v1/components/labels/chip.md",
+  "legacyDocument": "archive:career/v1/components/labels/chip.md"
+}

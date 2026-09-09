@@ -1,0 +1,93 @@
+{
+  "id": "empty-section",
+  "name": "EmptySection",
+  "category": "frame-modules",
+  "kind": "module",
+  "spec": "components\\modules\\empty-section.md",
+  "status": "complete",
+  "states": [
+    "empty"
+  ],
+  "cssRoots": [
+    "empty-section"
+  ],
+  "anchor": "showcase/components.html#r4-content-section",
+  "markup": {
+    "html": "<section class=\"base-section base-section--background-white rounded-3xl empty-section\" aria-labelledby=\"empty-saved-title\"><div><img class=\"empty-section__illustration\" src=\"../../ui/assets/illustrations/no-content.svg\" alt=\"\"><h3 class=\"empty-section__title\" id=\"empty-saved-title\">Нет сохранённых вакансий</h3><p class=\"empty-section__description\">Добавляйте интересные вакансии в избранное, чтобы вернуться к ним позже.</p><div class=\"empty-section__actions\"><a class=\"base-button inline-flex appearance-main size-m is-sizeable\" href=\"#\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Найти вакансии</span></span></a></div></div></section>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [],
+  "legacySource": {
+    "id": "empty-section",
+    "name": "EmptySection",
+    "category": "frame-modules",
+    "kind": "module",
+    "spec": "components\\modules\\empty-section.md",
+    "status": "complete",
+    "states": [
+      "empty"
+    ],
+    "cssRoots": [
+      "empty-section"
+    ],
+    "anchor": "showcase/components.html#r4-content-section",
+    "markup": {
+      "html": "<section class=\"base-section base-section--background-white rounded-3xl empty-section\" aria-labelledby=\"empty-saved-title\"><div><img class=\"empty-section__illustration\" src=\"../../ui/assets/illustrations/no-content.svg\" alt=\"\"><h3 class=\"empty-section__title\" id=\"empty-saved-title\">Нет сохранённых вакансий</h3><p class=\"empty-section__description\">Добавляйте интересные вакансии в избранное, чтобы вернуться к ним позже.</p><div class=\"empty-section__actions\"><a class=\"base-button inline-flex appearance-main size-m is-sizeable\" href=\"#\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Найти вакансии</span></span></a></div></div></section>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": []
+  },
+  "title": "EmptySection",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Пустое состояние, занимающее место ContentSection. Композирует EmptyPlaceholder, illustration и существующие Button; не используется для ошибки или первоначальной загрузки.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "empty-section"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "stateGroups": {
+    "ui": [
+      "empty"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fempty-section.json",
+      "covers": [
+        "empty"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [],
+  "markdown": "# EmptySection · Пустая контентная секция\r\n\r\n| | |\r\n|---|---|\r\n| **Категория** | Каркасные модули |\r\n| **Корневой класс** | `empty-section` |\r\n| **CSS** | `ui/modules.css` |\r\n| **Живая реализация** | `showcase/components.html#r4-content-section` |\r\n\r\n## Назначение\r\n\r\nПустое состояние, занимающее место ContentSection. Композирует\r\nEmptyPlaceholder, illustration и существующие Button; не используется для\r\nошибки или первоначальной загрузки.\r\n\r\n## Состояния\r\n\r\n- `empty`: данных нет после успешного ответа или у нового пользователя.\r\n- Hover/focus-visible/pressed принадлежат optional action.\r\n- Error и loading не являются вариантами EmptySection.\r\n\r\n## API\r\n\r\n- `title` обязателен; `description`, `illustration`, `primaryAction`,\r\n  `secondaryAction` опциональны.\r\n- Illustration имеет пустой `alt`, если повторяет текст; информативное\r\n  изображение получает осмысленный `alt`.\r\n\r\n## Responsive\r\n\r\nНа `≤479` уменьшаются внутренние поля и минимальная высота; содержимое и порядок\r\nчтения остаются теми же.\r\n\r\n## Доступность\r\n\r\nОбычное пустое состояние не получает `role=\"alert\"`. Если оно появилось после\r\nдействия пользователя, объявление делает внешний live region. Заголовок входит\r\nв иерархию страницы.\r\n\r\n## Разметка\r\n\r\nСнято с живого примера витрины — [`showcase/components.html#r4-content-section`](../../showcase/components.html#r4-content-section).\r\nРаботает на пустой странице с одним `ui/career.css`.\r\n\r\n```html\r\n<section class=\"base-section base-section--background-white rounded-3xl empty-section\" aria-labelledby=\"empty-saved-title\"><div><img class=\"empty-section__illustration\" src=\"../../ui/assets/illustrations/no-content.svg\" alt=\"\"><h3 class=\"empty-section__title\" id=\"empty-saved-title\">Нет сохранённых вакансий</h3><p class=\"empty-section__description\">Добавляйте интересные вакансии в избранное, чтобы вернуться к ним позже.</p><div class=\"empty-section__actions\"><a class=\"base-button inline-flex appearance-main size-m is-sizeable\" href=\"#\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Найти вакансии</span></span></a></div></div></section>\r\n```\r\n\r\n## Источники\r\n\r\n- [`feedback/empty-placeholder.md`](../feedback/empty-placeholder.md).\r\n- [`evidence/README.md`](../../evidence/README.md): `state-empty-block-1440`.\r\n\r\n",
+  "sourcePath": "archive:career/v1/components/modules/empty-section.md",
+  "legacyDocument": "archive:career/v1/components/modules/empty-section.md"
+}

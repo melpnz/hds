@@ -1,0 +1,109 @@
+{
+  "id": "tooltip",
+  "name": "Tooltip",
+  "category": "overlays",
+  "kind": "component",
+  "spec": "components\\overlays\\tooltip.md",
+  "status": "complete",
+  "states": [
+    "closed",
+    "open"
+  ],
+  "cssRoots": [
+    "tooltip"
+  ],
+  "anchor": "showcase/components.html#r3-tooltip",
+  "markup": null,
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": "6786:4080",
+      "sourceName": "Tooltip"
+    }
+  ],
+  "legacySource": {
+    "id": "tooltip",
+    "name": "Tooltip",
+    "category": "overlays",
+    "kind": "component",
+    "spec": "components\\overlays\\tooltip.md",
+    "status": "complete",
+    "states": [
+      "closed",
+      "open"
+    ],
+    "cssRoots": [
+      "tooltip"
+    ],
+    "anchor": "showcase/components.html#r3-tooltip",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "6786:4080",
+        "sourceName": "Tooltip"
+      }
+    ]
+  },
+  "title": "Tooltip",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Короткое дополнительное пояснение к элементу. Tooltip не содержит ссылок, кнопок, формы или критически важной информации. Для интерактивного содержимого используйте Popover.",
+  "implementation": {
+    "markup": null,
+    "cssRoots": [
+      "tooltip"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "missingReason": "copy-safe-markup-not-captured",
+    "fallback": "Не придумывать классы. Использовать ближайший компонент с разметкой или явно отметить пробел."
+  },
+  "stateGroups": {
+    "ui": [
+      "closed",
+      "open"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "isolated-example",
+      "title": "Открытое состояние",
+      "file": "examples/components-isolated/tooltip.html",
+      "covers": [
+        "isolated-example",
+        "r3-tooltip",
+        "closed",
+        "open"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "provenance": {
+        "source": "archive:career/v1/showcase/components.html#r3-tooltip",
+        "extraction": "exact-dom-subtree"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [],
+  "markdown": "# Tooltip · Контекстная подсказка\r\n\r\n| | |\r\n|---|---|\r\n| **Категория** | Оверлеи |\r\n| **Корневой класс** | `tooltip` |\r\n| **CSS** | `ui/components.css` |\r\n| **Живая реализация** | `showcase/components.html#r3-tooltip` |\r\n| **Источник** | production v-popper usages; Figma `Tooltip` — visual evidence |\r\n\r\n## Назначение\r\n\r\nКороткое дополнительное пояснение к элементу. Tooltip не содержит ссылок, кнопок, формы или критически важной информации. Для интерактивного содержимого используйте Popover.\r\n\r\n## Состояния\r\n\r\n| Состояние | Контракт |\r\n|---|---|\r\n| `closed` | tooltip `hidden`/не смонтирован; связь может оставаться подготовленной |\r\n| `open` | tooltip имеет `role=\"tooltip\"`; trigger ссылается через `aria-describedby` |\r\n\r\n## Поведение\r\n\r\n- Открывается при hover после 400–600 мс и немедленно при `focus-visible`.\r\n- Остаётся видимым при движении указателя между trigger и tooltip, но содержимое не интерактивно.\r\n- Закрывается по Escape, blur и уходу указателя с небольшой задержкой.\r\n- На touch первый tap показывает подсказку только когда это не ломает основное действие; tap снаружи dismiss. Предпочтительнее доступный текст в интерфейсе.\r\n- Повторный показ в одной группе может быть без задержки.\r\n\r\n## Ширина\r\n\r\n`.tooltip` — абсолютный слой, и его containing block — обёртка `.popover`,\r\nшириной с триггер. Поэтому подгонка под содержимое упирается в ширину триггера:\r\nу иконочной кнопки это 40 px, и текст встаёт колонкой по самому длинному слову,\r\nа `max-width` не достигается никогда. Ширину задаёт `width: max-content` —\r\nестественная ширина строки, которую `max-width: min(280px, 100vw - 24px)`\r\nи ограничивает.\r\n\r\nСтенд в витрине задаёт `min-height` с запасом: `.specimen` обрезает содержимое\r\nпо `overflow: hidden` ради скругления, а tooltip выходит вниз за пределы стенда.\r\n\r\nТекст tooltip не дублирует accessible name. Не используйте только tooltip для подписи icon button: у кнопки всё равно должен быть `aria-label`.\r\n",
+  "sourcePath": "archive:career/v1/components/overlays/tooltip.md",
+  "legacyDocument": "archive:career/v1/components/overlays/tooltip.md"
+}

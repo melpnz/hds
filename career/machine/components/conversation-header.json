@@ -1,0 +1,69 @@
+{
+  "id": "conversation-header",
+  "title": "ConversationHeader · Шапка переписки",
+  "kind": "module",
+  "category": "modules",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "published-spec",
+      "storybook-snapshot"
+    ],
+    "confidence": "medium",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Верхняя строка открытой переписки: собеседник, ссылка на компанию, отметка администратора, меню действий. Собрана из четырёх мелких компонентов.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "markup": {
+    "html": "<header class=\"grid max-w-full grid-cols-[40px_minmax(0px,_1fr)_40px] items-center gap-3 py-2 pl-6 pr-4 small-phone:grid-cols-[24px_40px_1fr_40px] phone:pl-4 phone:pr-2\">\n  <a href=\"/conversations\" class=\"hidden h-6 items-center justify-center bg-transparent small-phone:flex\">\n    <svg class=\"svg-icon text-icon-gray\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n      <use xlink:href=\"../../ui/assets/icons/sprite.svg#arrow-left-rounded\"/>\n    </svg>\n  </a>\n  <a class=\"h-10 w-10 shrink-0\" href=\"/ivan-petrov\">\n    <img class=\"user-avatar user-avatar--rounded\" src=\"../../ui/assets/illustrations/avatar-default-user.svg\" width=\"40\" height=\"40\" style=\"width: 40px; height: 40px;\">\n  </a>\n  <div class=\"grid grid-cols-1 grid-rows-[24px_min-content] items-center text-body-l\">\n    <div class=\"flex max-w-full items-center gap-x-2\">\n      <a class=\"block shrink grow-0 overflow-hidden text-ellipsis whitespace-nowrap font-semibold text-font-black\" href=\"/ivan-petrov\">Иван Петров</a>\n      <div class=\"flex gap-x-1\"></div>\n    </div>\n    <span class=\"col-start-1 col-end-3 row-start-2 block max-w-full shrink overflow-hidden text-ellipsis whitespace-nowrap text-ui-gray-3\">Добрый день! Готов рассмотреть ваше предложение.</span>\n  </div>\n  <div class=\"h-10 w-10\"></div>\n</header>"
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка из спецификации",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fconversation-header.json",
+      "covers": [
+        "published-markup"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          375,
+          768,
+          1100
+        ],
+        "height": 560
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Собственного CSS нет: собрана утилитами."
+  ],
+  "evidence": [
+    {
+      "type": "published-spec",
+      "ref": "archive:career/v1/components/modules/conversation-header.md"
+    }
+  ],
+  "markdown": "# ConversationHeader · Шапка переписки\n\n| | |\n|---|---|\n| **Категория** | Модуль: переписка |\n| **Корневой класс** | `max-w-full`, `small-phone:grid-cols-[24px_40px_1fr_40px]`, `phone:pl-4` |\n| **CSS** | _только утилиты_ |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 9 из 9 |\n\n## Назначение\n\nВерхняя строка открытой переписки: собеседник, ссылка на компанию, отметка администратора, меню действий. Собрана из четырёх мелких компонентов.\n\n## Анатомия\n\n```\nheader.grid.max-w-full.grid-cols-[40px_minmax(0px,_1fr)_40px].items-center.gap-3.py-2.pl-6.pr-4.small-phone:grid-cols-[24px_40px_1fr_40px].phone:pl-4.phone:pr-2\n  a.hidden.h-6.items-center.justify-center.bg-transparent.small-phone:flex  [href=\"/conversations\"]\n    svg.svg-icon.text-icon-gray\n      use  [xlink:href=\"/career-web/images/sprites/sprite.svg?v=5.63.0#arrow-left-rounded\"]\n  a.h-10.w-10.shrink-0  [href=\"/ivan-petrov\"]\n    img.user-avatar.user-avatar--rounded\n  div.grid.grid-cols-1.grid-rows-[24px_min-content].items-center.text-body-l\n    div.flex.max-w-full.items-center.gap-x-2\n      a.block.shrink.grow-0.overflow-hidden.text-ellipsis.whitespace-nowrap.font-semibold.text-font-black  [href=\"/ivan-petrov\"]\n        · «Иван Петров»\n      div.flex.gap-x-1\n    span.col-start-1.col-end-3.row-start-2.block.max-w-full.shrink.overflow-hidden.text-ellipsis.whitespace-nowrap.text-ui-gray-3\n      · «Добрый день! Готов рассмотреть ваше пред…»\n  div.h-10.w-10\n```\n\n_Разметка story `conversations-header-conversationheader--without-subject`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\n_В извлечённом CSS и разметке состояний не объявлено. Не достраиваем._\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `conversation` | ConversationBrief | — | — | `object` |\n| `showMarkUnread` | boolean | `false` | — | `boolean` |\n| `triggerSize` | string \\| undefined | — | — | `object` |\n| `isOnDark` | boolean | — | — | `boolean` |\n| `hide` | other | — | — | `object` |\n| `show` | other | — | — | `object` |\n| `updateConversation` | ConversationBrief | — | — | `object` |\n| `changeSubject` | { login: string; subject: ConversationSubject } | — | — | `object` |\n| `deleteConversation` | other | — | — | `object` |\n| `markUnread` | string | — | — | `object` |\n| `markRead` | string | — | — | `object` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-font-black` | `var(--color-ui-gray-1)` | из `:root` Career |\n| `--color-icon-gray` | `var(--color-ui-gray-2)` | из `:root` Career |\n| `--color-ui-gray-1` | `#1b272c` | из `:root` Career |\n| `--color-ui-gray-2` | `#55798b` | из `:root` Career |\n| `--color-ui-gray-3` | `#7996a5` | из `:root` Career |\n| `--color-ui-gray-3-10` | `color-mix(in srgb,var(--color-ui-gray-3) 10%,transparent)` | из `:root` Career |\n| `--color-ui-primary-60` | `color-mix(in srgb,var(--color-ui-primary) 60%,transparent)` | из `:root` Career |\n| `--color-ui-purple-20` | `color-mix(in srgb,var(--color-ui-purple) 20%,transparent)` | из `:root` Career |\n| `--color-ui-white` | `#fff` | из `:root` Career |\n\n## Иконки\n\n| Спрайт | Символ | Локальный файл |\n|---|---|---|\n| `sprite.svg` | `#arrow-left-rounded` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#more` | `ui/assets/icons/sprite.svg` |\n\n## Responsive\n\nКомпонент реагирует на: `(max-width:479px)`, `(max-width:767px)`.\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## Разметка\n\n```html\n<header class=\"grid max-w-full grid-cols-[40px_minmax(0px,_1fr)_40px] items-center gap-3 py-2 pl-6 pr-4 small-phone:grid-cols-[24px_40px_1fr_40px] phone:pl-4 phone:pr-2\">\n  <a href=\"/conversations\" class=\"hidden h-6 items-center justify-center bg-transparent small-phone:flex\">\n    <svg class=\"svg-icon text-icon-gray\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n      <use xlink:href=\"../../ui/assets/icons/sprite.svg#arrow-left-rounded\"/>\n    </svg>\n  </a>\n  <a class=\"h-10 w-10 shrink-0\" href=\"/ivan-petrov\">\n    <img class=\"user-avatar user-avatar--rounded\" src=\"../../ui/assets/illustrations/avatar-default-user.svg\" width=\"40\" height=\"40\" style=\"width: 40px; height: 40px;\">\n  </a>\n  <div class=\"grid grid-cols-1 grid-rows-[24px_min-content] items-center text-body-l\">\n    <div class=\"flex max-w-full items-center gap-x-2\">\n      <a class=\"block shrink grow-0 overflow-hidden text-ellipsis whitespace-nowrap font-semibold text-font-black\" href=\"/ivan-petrov\">Иван Петров</a>\n      <div class=\"flex gap-x-1\"></div>\n    </div>\n    <span class=\"col-start-1 col-end-3 row-start-2 block max-w-full shrink overflow-hidden text-ellipsis whitespace-nowrap text-ui-gray-3\">Добрый день! Готов рассмотреть ваше предложение.</span>\n  </div>\n  <div class=\"h-10 w-10\"></div>\n</header>\n```\n\n_Пути к спрайтам и изображениям в этом блоке — локальные, от папки спецификации. В блоке «Анатомия» выше сохранён продовый путь: это протокол снятого DOM, а не образец для вёрстки._\n\n## CSS\n\n_Собственного CSS нет: компонент собран утилитами Tailwind прямо в разметке. Все нужные правила — в `ui/utilities.css`._\n\n## Ограничения\n\n- Собственного CSS нет: собрана утилитами.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/conversations/conversation-header.stories.ts`, `./src/components/conversations/conversation-company-link.stories.ts`, `./src/components/conversations/conversation-habr-admin-label.stories.ts`, `./src/components/conversations/conversation-context-menu.stories.ts`\n- Storybook `career-web`: `conversations-header-conversationheader--without-subject`, `conversations-header-conversationheader--with-subject-link`, `conversations-header-conversationheader--with-company`, `conversations-header-conversationheader--career-staff`, `conversations-header-conversationcompanylink--default`, `conversations-header-conversationhabradminlabel--default`, `conversations-header-conversationcontextmenu--mark-as-unread`, `conversations-header-conversationcontextmenu--mark-as-read`, `conversations-header-conversationcontextmenu--with-complaint`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/modules/conversation-header.md",
+  "legacyDocument": "archive:career/v1/components/modules/conversation-header.md",
+  "legacyUnindexed": true
+}

@@ -1,0 +1,115 @@
+{
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production-css",
+      "normative"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "accessibility": [],
+  "unknowns": [
+    "CSS-классы теней являются именованной шкалой, но не :root tokens."
+  ],
+  "rules": [],
+  "id": "shadows",
+  "title": "Тени",
+  "purpose": "Тени зарезервированы для всплывающих слоёв; обычные поверхности разделяются границей.",
+  "values": {
+    "border-color": {
+      "$type": "other",
+      "$value": "{color.ui-gray-5}",
+      "$extensions": {
+        "guide": {
+          "cssVar": "--shadow-border-color",
+          "source": ":root career-web"
+        }
+      }
+    },
+    "border-color-hover": {
+      "$type": "other",
+      "$value": "{color.ui-gray-4}",
+      "$extensions": {
+        "guide": {
+          "cssVar": "--shadow-border-color-hover",
+          "source": ":root career-web"
+        }
+      }
+    },
+    "border-color-focus": {
+      "$type": "other",
+      "$value": "{color.ui-gray-4}",
+      "$extensions": {
+        "guide": {
+          "cssVar": "--shadow-border-color-focus",
+          "source": ":root career-web"
+        }
+      }
+    },
+    "border-color-disabled": {
+      "$type": "other",
+      "$value": "{color.ui-gray-shadow}",
+      "$extensions": {
+        "guide": {
+          "cssVar": "--shadow-border-color-disabled",
+          "source": ":root career-web"
+        }
+      }
+    },
+    "dropdown": {
+      "$type": "other",
+      "$value": "0 1px 20px 0 rgba(0,0,0,.2)",
+      "$extensions": {
+        "guide": {
+          "cssVar": "--shadow-dropdown",
+          "source": ":root career-web"
+        }
+      }
+    }
+  },
+  "tokenFiles": [
+    "machine/tokens/shadow.json"
+  ],
+  "kind": "foundation",
+  "category": "foundations",
+  "implementation": {
+    "markup": "standalone-example",
+    "cssRoots": [],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "examples": [
+    {
+      "id": "shadows",
+      "title": "Тени",
+      "file": "examples/foundations/shadows.html",
+      "covers": [
+        "shadows"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "guide",
+      "ref": "archive:career/v1/docs/guide/design.md"
+    },
+    {
+      "type": "production-css",
+      "ref": "archive:career/v1/ui/"
+    }
+  ]
+}

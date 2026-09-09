@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Метки и статусы</title>
+  <link rel="stylesheet" href="../../ui/career.css">
+  <link rel="stylesheet" href="reference.css">
+  <style>body{margin:0;padding:20px;background:#fff}.site-nav{display:none}</style>
+</head>
+<body>
+<section class="section" id="s-labels">
+  <div class="section__head">
+    <p class="section__num">6</p>
+    <h2>Метки и статусы</h2>
+    <p>Чипы, счётчики и цветные метки состояния.</p>
+  </div>
+
+  <div class="subsection" id="l-chip">
+    <div class="specimen" data-name="чип: варианты base-chip--default · --approved · --ghost">
+      <div class="specimen__head"><h4>Чип: варианты</h4><code>base-chip--default · --approved · --ghost</code></div>
+      <div class="stage">
+<div class="flex flex-wrap gap-3">
+  <button type="button" class="base-chip base-chip--default base-chip--clickable base-chip--interactive">
+    <span class="base-chip__content">
+      <span class="px-1">Default</span>
+    </span>
+  </button>
+  <button type="button" class="base-chip base-chip--approved base-chip--clickable base-chip--interactive">
+    <span class="base-chip__content">
+      <span class="px-1">Approved</span>
+    </span>
+  </button>
+  <button type="button" class="base-chip base-chip--ghost base-chip--clickable base-chip--interactive">
+    <span class="base-chip__content">
+      <span class="px-1">Ghost</span>
+    </span>
+  </button>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="l-chip-state">
+    <div class="specimen" data-name="чип: интерактивность --clickable · --interactive · --disabled">
+      <div class="specimen__head"><h4>Чип: интерактивность</h4><code>--clickable · --interactive · --disabled</code></div>
+      <div class="stage">
+<div class="flex flex-wrap gap-3">
+  <button type="button" class="base-chip base-chip--default base-chip--clickable base-chip--interactive">
+    <span class="base-chip__content">
+      <span class="px-1">Clickable</span>
+    </span>
+  </button>
+  <span tabindex="-1" class="base-chip base-chip--default">
+    <span class="base-chip__content">
+      <span class="px-1">Static</span>
+    </span>
+  </span>
+  <button type="button" disabled class="base-chip base-chip--default base-chip--disabled base-chip--clickable">
+    <span class="base-chip__content">
+      <span class="px-1">Disabled</span>
+    </span>
+  </button>
+  <button type="button" class="base-chip base-chip--default base-chip--clickable base-chip--interactive">
+    <span class="base-chip__content">
+      <span class="px-1">Focus via keyboard</span>
+    </span>
+  </button>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="l-chip-close">
+    <div class="specimen" data-name="чип с удалением closable-chip__close">
+      <div class="specimen__head"><h4>Чип с удалением</h4><code>closable-chip__close</code></div>
+      <div class="stage">
+<div class="flex flex-wrap gap-3">
+  <span tabindex="-1" class="base-chip base-chip--default">
+    <span class="base-chip__content">
+      <span class="px-1">Python</span>
+      <button type="button" aria-label="Удалить" class="inline-flex h-[22px] w-[22px] items-center justify-center rounded-full border-none bg-transparent p-0 text-icon-gray">
+        <svg class="svg-icon icon-inline" width="24" height="24" style="width: 24px; height: 24px;" data-icon-src="../../ui/assets/icons/single/sprite/close.svg" viewBox="0 0 24 24">
+    <path d="M16.2929 6.29287C16.6834 5.90237 17.3166 5.90237 17.7071 6.29287C18.0976 6.68338 18.0976 7.31658 17.7071 7.70708L13.4142 12L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L12 13.4142L7.70708 17.7071C7.31658 18.0976 6.68338 18.0976 6.29287 17.7071C5.90237 17.3166 5.90237 16.6834 6.29287 16.2929L10.5858 12L6.29278 7.70708C5.90248 7.31658 5.90247 6.68337 6.29287 6.29297C6.68348 5.90247 7.31667 5.90247 7.70718 6.29297L12 10.5858L16.2929 6.29287Z" />
+  </svg>
+      </button>
+    </span>
+  </span>
+</div><span tabindex="0" class="base-chip base-chip--default base-chip--clickable base-chip--interactive">
+  <span class="base-chip__content">
+    Python
+    <button type="button" class="closable-chip__close" aria-label="Удалить">
+      <svg class="svg-icon icon-inline" width="24" height="24" style="width: 24px; height: 24px;" data-icon-src="../../ui/assets/icons/single/sprite/close.svg" viewBox="0 0 24 24">
+    <path d="M16.2929 6.29287C16.6834 5.90237 17.3166 5.90237 17.7071 6.29287C18.0976 6.68338 18.0976 7.31658 17.7071 7.70708L13.4142 12L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L12 13.4142L7.70708 17.7071C7.31658 18.0976 6.68338 18.0976 6.29287 17.7071C5.90237 17.3166 5.90237 16.6834 6.29287 16.2929L10.5858 12L6.29278 7.70708C5.90248 7.31658 5.90247 6.68337 6.29287 6.29297C6.68348 5.90247 7.31667 5.90247 7.70718 6.29297L12 10.5858L16.2929 6.29287Z" />
+  </svg>
+    </button>
+  </span>
+</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="l-skill">
+    <div class="specimen" data-name="чип навыка skill-chip подтверждённый навык — вариант --approved с иконкой #check-approved и грейдом.">
+      <div class="specimen__head"><h4>Чип навыка</h4><code>skill-chip</code></div>
+      <p class="note">Подтверждённый навык — вариант <code>--approved</code> с иконкой <code>#check-approved</code> и грейдом.</p>
+      <div class="stage">
+<div class="flex flex-wrap gap-2">
+  <button type="button" class="base-chip base-chip--default base-chip--clickable base-chip--interactive skill-chip">
+    <span class="base-chip__content">
+      <span class="skill-chip__title">JavaScript</span>
+    </span>
+  </button>
+  <button type="button" class="base-chip base-chip--approved base-chip--clickable base-chip--interactive skill-chip">
+    <span class="base-chip__content">
+      <span class="skill-chip__title">TypeScript</span>
+      <svg class="svg-icon skill-chip__icon icon-inline" width="24" height="24" style="width: 24px; height: 24px;" data-icon-src="../../ui/assets/icons/single/sprite/check-approved.svg" viewBox="0 0 24 24">
+    <path d="M17.6549 7.2443c.4174.3617.4625.99326.1008 1.41062l-6.5 7.49998c-.1818.2098-.4426.3346-.7201.3444-.2774.0099-.54642-.0959-.74271-.2922l-3.5-3.5c-.39052-.3905-.39052-1.0237 0-1.4142.39053-.3905 1.02369-.3905 1.41422 0l2.74059 2.7406 5.7966-6.68845c.3617-.41735.9933-.46246 1.4106-.10075Z"/>
+  </svg>
+      <span class="skill-chip__grade">expert</span>
+    </span>
+  </button>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="l-status">
+    <div class="specimen" data-name="метка статуса заливка 10% от статусного цвета">
+      <div class="specimen__head"><h4>Метка статуса</h4><code>заливка 10% от статусного цвета</code></div>
+      <div class="stage">
+<div class="relative grid min-h-8 w-min grid-flow-col items-center whitespace-nowrap rounded-lg px-2 py-1 text-body-m text-font-black bg-ui-orange-10">
+  <span class="px-[6px]">На связи</span>
+</div><div class="relative grid min-h-8 w-min grid-flow-col items-center whitespace-nowrap rounded-lg px-2 py-1 text-body-m text-font-black bg-ui-green-10">
+  <span class="px-[6px]">Принято</span>
+</div><div class="relative grid min-h-8 w-min grid-flow-col items-center whitespace-nowrap rounded-lg px-2 py-1 text-body-m text-font-black bg-ui-red-10">
+  <span class="px-[6px]">Отклонено</span>
+</div><div class="relative grid min-h-8 w-min grid-flow-col items-center whitespace-nowrap rounded-lg px-2 py-1 text-body-m text-font-black bg-ui-gray-3-10">
+  <span class="px-[6px]">Неактивно</span>
+</div><div class="relative grid min-h-8 w-min grid-flow-col items-center whitespace-nowrap rounded-lg px-2 py-1 text-body-m text-font-black bg-ui-green-10 pl-[26px]">
+  <div class="absolute left-1 top-1">
+    <svg class="svg-icon text-ui-green icon-inline" width="24" height="24" style="width: 24px; height: 24px;" data-icon-src="../../ui/assets/icons/single/sprite/single-check.svg" viewBox="0 0 24 24" fill="none">
+    <path
+      d="M9.00039 16.1996L4.80039 11.9996L3.40039 13.3996L9.00039 18.9996L21.0004 6.99961L19.6004 5.59961L9.00039 16.1996Z"
+      fill="currentColor"
+    />
+  </svg>
+  </div>
+  <span class="px-[6px]">Заявка подтверждена</span>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="l-counter">
+    <div class="specimen" data-name="счётчик непрочитанного unread-counter">
+      <div class="specimen__head"><h4>Счётчик непрочитанного</h4><code>unread-counter</code></div>
+      <div class="stage">
+<span class="unread-counter inline-flex h-5 min-w-[20px] items-center justify-center rounded-[22px] border-2 border-ui-white bg-ui-primary px-[5px] text-center text-unread font-semibold leading-unread text-ui-white min-w-5">1</span><span class="unread-counter inline-flex h-5 min-w-[20px] items-center justify-center rounded-[22px] border-2 border-ui-white bg-ui-primary px-[5px] text-center text-unread font-semibold leading-unread text-ui-white min-w-5">99</span><span class="unread-counter inline-flex h-5 min-w-[20px] items-center justify-center rounded-[22px] border-2 border-ui-white bg-ui-primary px-[5px] text-center text-unread font-semibold leading-unread text-ui-white min-w-5">1000</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="l-badge">
+    <div class="specimen" data-name="бейдж base-badge · вне сборки отдельного компонента в career-web нет: счётчик каждый раз собирается утилитами. класс base-badge — запись той же геометрии, источник — figma и замеры.">
+      <div class="specimen__head"><h4>Бейдж</h4><code>base-badge · вне сборки</code></div>
+      <p class="note">Отдельного компонента в career-web нет: счётчик каждый раз собирается утилитами. Класс <code>base-badge</code> — запись той же геометрии, источник — Figma и замеры.</p>
+      <div class="stage">
+<div class="variant__row"><span class="base-badge">1</span><span class="base-badge">12</span><span class="base-badge">99+</span><span class="base-badge base-badge--dot"></span></div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Формы</title>
+  <link rel="stylesheet" href="../../ui/career.css">
+  <link rel="stylesheet" href="reference.css">
+  <style>body{margin:0;padding:20px;background:#fff}.site-nav{display:none}</style>
+</head>
+<body>
+<section class="section" id="s-forms">
+  <div class="section__head">
+    <p class="section__num">5</p>
+    <h2>Формы</h2>
+    <p>Поля ввода и элементы выбора. Career всегда выносит метку в отдельный компонент над полем.</p>
+  </div>
+
+  <div class="subsection" id="fo-label">
+    <div class="specimen" data-name="метка поля base-input-label">
+      <div class="specimen__head"><h4>Метка поля</h4><code>base-input-label</code></div>
+      <div class="stage">
+<label class="base-input-label">
+  <span class="base-input-label__title base-input-label__title--errorsPosition-above base-input-label__title--appearance-default">Поле ввода</span>
+  <input type="text" placeholder="Введите значение">
+</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="fo-label-all">
+    <div class="specimen" data-name="метка: размеры, обязательность, ошибка base-input-label__title--*">
+      <div class="specimen__head"><h4>Метка: размеры, обязательность, ошибка</h4><code>base-input-label__title--*</code></div>
+      <div class="stage">
+<label class="base-input-label" for="required-field">
+  <span class="base-input-label__title base-input-label__title--required base-input-label__title--errorsPosition-above base-input-label__title--appearance-default">Обязательное поле</span>
+  <input id="required-field" type="text" placeholder="Введите значение" required>
+</label><label class="base-input-label">
+  <span class="base-input-label__title base-input-label__title--errorsPosition-above base-input-label__title--appearance-default">Поле с подсказкой</span>
+  <span class="base-input-label__subtitle base-input-label__subtitle--errorsPosition-above">Дополнительное описание поля</span>
+  <input type="text" placeholder="Введите значение">
+</label><label class="base-input-label base-input-label--invalid" for="invalid-field">
+  <span class="base-input-label__title base-input-label__title--required base-input-label__title--hasErrors base-input-label__title--errorsPosition-above base-input-label__title--appearance-default">Поле с ошибкой</span>
+  <span class="text-input text-input--invalid"><input id="invalid-field" class="text-input__input" type="text" required aria-invalid="true" aria-describedby="invalid-field-error"></span>
+  <span id="invalid-field-error" class="base-input-label__error">Поле обязательно для заполнения</span>
+</label><label class="base-input-label">
+  <span class="base-input-label__title base-input-label__title--errorsPosition-above base-input-label__title--appearance-textarea">Текстовая область</span>
+  <textarea rows="4" placeholder="Введите текст"></textarea>
+</label><label class="base-input-label">
+  <span class="base-input-label__title base-input-label__title--size-large base-input-label__title--errorsPosition-above base-input-label__title--appearance-default">Большой заголовок</span>
+  <input type="text" placeholder="Введите значение">
+</label><label class="base-input-label">
+  <span class="base-input-label__title base-input-label__title--size-small base-input-label__title--errorsPosition-above base-input-label__title--appearance-default">Маленький заголовок</span>
+  <input type="text" placeholder="Введите значение">
+</label><label class="base-input-label">
+  <span class="base-input-label__title base-input-label__title--errorsPosition-above base-input-label__title--appearance-default base-input-label__title--disabled">Отключённое поле</span>
+</label>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="fo-input">
+    <div class="specimen" data-name="text input default filled readonly disabled invalid focus-visible">
+      <div class="specimen__head"><h4>Однострочное поле: состояния</h4><code>default · filled · readOnly · disabled · invalid</code></div>
+      <p class="note">Состояние хранится на нативном <code>input</code>; классы на wrapper остаются aliases старой Vue-реализации.</p>
+      <div class="stage stage--rows">
+<div class="variant"><p class="variant__label">default / filled</p><div class="variant__row"><span class="text-input"><input class="text-input__input" aria-label="Пустое поле" placeholder="Placeholder"></span><span class="text-input"><input class="text-input__input" aria-label="Заполненное поле" value="Frontend developer"></span></div></div>
+<div class="variant"><p class="variant__label">readOnly / disabled / invalid</p><div class="variant__row"><span class="text-input"><input class="text-input__input" aria-label="Только чтение" value="Нельзя изменить" readonly></span><span class="text-input text-input--disabled"><input class="text-input__input" aria-label="Недоступное поле" placeholder="Недоступно" disabled></span><span class="text-input text-input--invalid"><input class="text-input__input" aria-label="Поле с ошибкой" value="x" aria-invalid="true" aria-describedby="text-input-error"></span><span id="text-input-error" class="base-input-label__error">Минимум 3 символа</span></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="fo-textarea">
+    <div class="specimen" data-name="многострочное поле base-textarea + text-length">
+      <div class="specimen__head"><h4>Многострочное поле</h4><code>base-textarea + text-length</code></div>
+      <div class="stage stage--rows">
+<div class="base-textarea">
+  <textarea class="base-textarea__textarea" rows="3" placeholder="Placeholder" maxlength="100" style="--textarea--maxRows: 5; overflow: hidden; overflow-wrap: break-word; height: 90px;"></textarea>
+  <div class="flex justify-between gap-2">
+    <div></div>
+    <div class="text-length whitespace-nowrap">0 / 100</div>
+  </div>
+</div><div class="base-textarea">
+  <textarea class="base-textarea__textarea" rows="3" placeholder="Placeholder" maxlength="100" style="--textarea--maxRows: 5; overflow: hidden; overflow-wrap: break-word; height: 90px;"></textarea>
+  <div class="flex justify-between gap-2">
+    <div></div>
+    <div class="text-length whitespace-nowrap">4 / 100</div>
+  </div>
+</div><div class="base-textarea base-textarea--disabled">
+  <textarea class="base-textarea__textarea base-textarea__textarea--disabled" rows="3" placeholder="Placeholder" maxlength="100" disabled style="--textarea--maxRows: 5; overflow: hidden; overflow-wrap: break-word; height: 90px;"></textarea>
+  <div class="flex justify-between gap-2">
+    <div></div>
+    <div class="text-length whitespace-nowrap">4 / 100</div>
+  </div>
+</div><div class="base-textarea base-textarea--invalid">
+  <textarea class="base-textarea__textarea base-textarea__textarea--invalid" rows="3" placeholder="Placeholder" maxlength="100" aria-invalid="true" aria-describedby="textarea-error textarea-count" style="--textarea--maxRows: 5; overflow: hidden; overflow-wrap: break-word; height: 90px;"></textarea>
+  <div class="flex justify-between gap-2">
+    <div id="textarea-error" class="base-input-label__error">Расскажите подробнее</div>
+    <div id="textarea-count" class="text-length text-length--invalid whitespace-nowrap">104 / 100</div>
+  </div>
+</div><div class="base-textarea">
+  <textarea class="base-textarea__textarea" rows="3" readonly aria-label="Комментарий только для чтения" style="--textarea--maxRows: 5; height: 90px;">Сохранённый комментарий</textarea>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="fo-select">
+    <div class="specimen" data-name="select custom select default selected disabled invalid closed open listbox">
+      <div class="specimen__head"><h4>Select и CustomSelect</h4><code>native select · select-only combobox</code></div>
+      <p class="note">У нативного Select нет управляемых open/closed states. CustomSelect использует combobox trigger и связанный listbox.</p>
+      <div class="stage stage--overlay stage--rows" style="padding-bottom:200px">
+<div class="variant"><p class="variant__label">Select · selected / disabled / invalid</p><div class="variant__row">
+  <div class="base-select"><select aria-label="Период" name="period" class="base-select__input"><option value="day">За последний день</option><option selected value="week">За неделю</option><option value="month">За месяц</option></select></div>
+  <div class="base-select base-select--disabled"><select aria-label="Недоступный период" disabled name="disabled-period" class="base-select__input"><option selected value="week">За неделю</option></select></div>
+  <div class="base-select"><select aria-label="Период с ошибкой" aria-invalid="true" aria-describedby="select-error" name="invalid-period" class="base-select__input"><option value="">Выберите период</option></select></div><span id="select-error" class="base-input-label__error">Выберите период</span>
+</div></div>
+<div class="variant"><p class="variant__label">CustomSelect · closed / disabled / invalid</p><div class="variant__row">
+  <div class="custom-select"><button type="button" class="base-custom-select-button base-custom-select-button--default" role="combobox" aria-haspopup="listbox" aria-label="Специализация" aria-expanded="false"><span class="block h-6 min-w-0 flex-1 overflow-hidden truncate px-1 pr-8"><span class="text-ui-gray-3">Выберите специализацию</span></span></button></div>
+  <div class="custom-select"><button type="button" disabled class="base-custom-select-button base-custom-select-button--disabled" role="combobox" aria-haspopup="listbox" aria-label="Недоступная специализация" aria-expanded="false"><span class="px-1">Frontend</span></button></div>
+  <div class="custom-select"><button type="button" class="base-custom-select-button base-custom-select-button--default" role="combobox" aria-haspopup="listbox" aria-label="Специализация с ошибкой" aria-expanded="false" aria-invalid="true" aria-describedby="custom-select-error"><span class="text-ui-gray-3 px-1">Выберите специализацию</span></button><span id="custom-select-error" class="base-input-label__error">Поле обязательно</span></div>
+</div></div>
+<div class="variant"><p class="variant__label">CustomSelect · open / selected / active option</p>
+  <div class="custom-select" style="max-width:360px"><button id="specialization-trigger" type="button" class="base-custom-select-button base-custom-select-button--shown" role="combobox" aria-haspopup="listbox" aria-label="Специализация" aria-controls="specialization-list" aria-expanded="true" aria-activedescendant="specialization-option-2"><span class="px-1">Frontend</span></button><div id="specialization-list" class="custom-select__listbox" role="listbox" aria-labelledby="specialization-trigger"><div id="specialization-option-1" class="custom-select__option" role="option" aria-selected="true">Frontend</div><div id="specialization-option-2" class="custom-select__option" role="option" aria-selected="false" data-active="true">Backend</div><div class="custom-select__option" role="option" aria-selected="false">Дизайн</div><div class="custom-select__option" role="option" aria-selected="false" aria-disabled="true">Аналитика</div></div></div>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="fo-choice">
+    <div class="specimen" data-name="selection controls checkbox radio switch default checked indeterminate disabled loading focus-visible">
+      <div class="specimen__head"><h4>Элементы выбора и состояния</h4><code>checkbox · radio · switch</code></div>
+      <p class="note">Источник состояния — настоящий <code>input</code>. Legacy-классы сохранены как aliases; новая разметка использует <code>checked</code>, <code>disabled</code>, <code>:indeterminate</code> и <code>aria-busy</code>.</p>
+      <div class="stage stage--rows">
+<div class="variant"><p class="variant__label">Checkbox · default / checked / indeterminate / disabled / loading</p><div class="variant__row">
+  <span class="checkbox"><label class="checkbox-label"><span class="checkbox-icon"><input type="checkbox" class="checkbox-input visually-hidden"><span class="checkbox-button"></span></span><span class="checkbox-text">Обычный</span></label></span>
+  <span class="checkbox"><label class="checkbox-label"><span class="checkbox-icon"><input type="checkbox" class="checkbox-input visually-hidden" checked><span class="checkbox-button"></span></span><span class="checkbox-text">Выбран</span></label></span>
+  <span class="checkbox"><label class="checkbox-label"><span class="checkbox-icon"><input type="checkbox" class="checkbox-input visually-hidden" data-demo-indeterminate><span class="checkbox-button"></span></span><span class="checkbox-text">Часть группы</span></label></span>
+  <span class="checkbox"><label class="checkbox-label is-disabled"><span class="checkbox-icon"><input type="checkbox" class="checkbox-input visually-hidden" disabled><span class="checkbox-button is-disabled"></span></span><span class="checkbox-text">Недоступен</span></label></span>
+  <span class="checkbox is-loading" aria-busy="true"><label class="checkbox-label"><span class="checkbox-icon"><input type="checkbox" class="checkbox-input visually-hidden" disabled><span class="checkbox-button"></span></span><span class="checkbox-text">Сохраняется</span></label></span>
+</div></div>
+<div class="variant"><p class="variant__label">RadioButton · unchecked / checked / disabled</p><fieldset class="grid gap-2"><legend class="sr-only">Уровень опыта</legend>
+  <label class="radio"><span class="radio-icon"><input class="radio-input visually-hidden" type="radio" name="base-radio-story" value="option-1"><span class="radio-button"></span></span><span class="radio-text">Начальный</span></label>
+  <label class="radio"><span class="radio-icon"><input class="radio-input visually-hidden" type="radio" name="base-radio-story" value="option-2" checked><span class="radio-button"></span></span><span class="radio-text">Средний</span></label>
+  <label class="radio is-disabled"><span class="radio-icon"><input class="radio-input visually-hidden" type="radio" name="base-radio-story" value="option-3" disabled><span class="radio-button"></span></span><span class="radio-text">Недоступен</span></label>
+  <label class="radio is-disabled"><span class="radio-icon"><input class="radio-input visually-hidden" type="radio" name="base-radio-disabled-story" value="option-4" checked disabled><span class="radio-button"></span></span><span class="radio-text">Выбран и недоступен</span></label>
+</fieldset></div>
+<div class="variant"><p class="variant__label">Switch · off / on / disabled / loading</p><div class="variant__row">
+  <label class="switch"><span class="switch-field"><input type="checkbox" name="switch-off" class="switch-input visually-hidden"><span class="switch-control"><span class="switch-track"></span><span class="switch-thumb"><span class="switch-dot"></span></span></span></span><span class="switch-label">Выключен</span></label>
+  <label class="switch"><span class="switch-field"><input type="checkbox" name="switch-on" class="switch-input visually-hidden" checked><span class="switch-control"><span class="switch-track"></span><span class="switch-thumb"><span class="switch-dot"></span></span></span></span><span class="switch-label">Включён</span></label>
+  <label class="switch"><span class="switch-field"><input type="checkbox" name="switch-disabled" class="switch-input visually-hidden" checked disabled><span class="switch-control"><span class="switch-track"></span><span class="switch-thumb"><span class="switch-dot"></span></span></span></span><span class="switch-label">Недоступен</span></label>
+  <label class="switch is-loading" aria-busy="true"><span class="switch-loading" aria-hidden="true"><span class="switch-loading-ghost"></span><svg class="svg-icon switch-spinner icon-inline" width="24" height="24" data-icon-src="../../ui/assets/icons/single/sprite/button-loader.svg" viewBox="0 0 24 24">
+    <path d="M10.524 3.62913C12.1796 3.33721 13.8846 3.54278 15.4233 4.21985C16.9621 4.89693 18.2656 6.01509 19.1688 7.43295C20.0721 8.85081 20.5347 10.5047 20.498 12.1854C20.4613 13.8662 19.9271 15.4983 18.9628 16.8754C17.9985 18.2525 16.6476 19.3128 15.0807 19.9221C13.5139 20.5314 11.8016 20.6624 10.1603 20.2985C8.51897 19.9347 7.02244 19.0923 5.85991 17.8779C4.69737 16.6635 3.92106 15.1316 3.62913 13.476" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/>
+  </svg></span><span class="switch-label">Сохраняется</span></label>
+</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="fo-stars">
+    <div class="specimen" data-name="оценка звёздами star-rating default hover focus-visible checked disabled readonly">
+      <div class="specimen__head"><h4>Оценка звёздами</h4><code>default · checked · compact · disabled · readOnly</code></div>
+      <p class="note">Интерактивные варианты состоят из radio inputs. Последний ряд — неинтерактивный <code>readOnly</code> с единым доступным именем.</p>
+      <div class="stage">
+<div class="star-rating wrapper grid w-min shrink-0 grid-flow-col">
+  <label class="star-label cursor-pointer pl-1 pr-1 first:pl-0 last:pr-0">
+    <input class="star-input sr-only" type="radio" name="star-rating-story" value="1" aria-label="1 звезда">
+    <svg class="svg-icon star-icon stroke-[1.3px] opacity-60 icon-inline" width="36" height="36" style="width: 36px; height: 36px;" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg>
+  </label>
+  <label class="star-label cursor-pointer pl-1 pr-1 first:pl-0 last:pr-0">
+    <input class="star-input sr-only" type="radio" name="star-rating-story" value="2" aria-label="2 звезды">
+    <svg class="svg-icon star-icon stroke-[1.3px] opacity-60 icon-inline" width="36" height="36" style="width: 36px; height: 36px;" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg>
+  </label>
+  <label class="star-label cursor-pointer pl-1 pr-1 first:pl-0 last:pr-0">
+    <input class="star-input sr-only" type="radio" name="star-rating-story" value="3" aria-label="3 звезды">
+    <svg class="svg-icon star-icon stroke-[1.3px] opacity-60 icon-inline" width="36" height="36" style="width: 36px; height: 36px;" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg>
+  </label>
+  <label class="star-label cursor-pointer pl-1 pr-1 first:pl-0 last:pr-0">
+    <input class="star-input sr-only" type="radio" name="star-rating-story" value="4" aria-label="4 звезды">
+    <svg class="svg-icon star-icon stroke-[1.3px] opacity-60 icon-inline" width="36" height="36" style="width: 36px; height: 36px;" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg>
+  </label>
+  <label class="star-label cursor-pointer pl-1 pr-1 first:pl-0 last:pr-0">
+    <input class="star-input sr-only" type="radio" name="star-rating-story" value="5" aria-label="5 звёзд">
+    <svg class="svg-icon star-icon stroke-[1.3px] opacity-60 icon-inline" width="36" height="36" style="width: 36px; height: 36px;" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg>
+  </label>
+</div><div class="star-rating wrapper grid w-min shrink-0 grid-flow-col">
+  <label class="star-label cursor-pointer pl-1 pr-1 first:pl-0 last:pr-0 star-label-checked">
+    <input class="star-input sr-only" type="radio" name="star-rating-story" value="1">
+    <svg class="svg-icon star-icon stroke-[1.3px] opacity-60 icon-inline" width="36" height="36" style="width: 36px; height: 36px;" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg>
+  </label>
+  <label class="star-label cursor-pointer pl-1 pr-1 first:pl-0 last:pr-0 star-label-checked">
+    <input class="star-input sr-only" type="radio" name="star-rating-story" value="2">
+    <svg class="svg-icon star-icon stroke-[1.3px] opacity-60 icon-inline" width="36" height="36" style="width: 36px; height: 36px;" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg>
+  </label>
+  <label class="star-label cursor-pointer pl-1 pr-1 first:pl-0 last:pr-0 star-label-checked">
+    <input class="star-input sr-only" type="radio" name="star-rating-story" checked value="3">
+    <svg class="svg-icon star-icon stroke-[1.3px] opacity-60 icon-inline" width="36" height="36" style="width: 36px; height: 36px;" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg>
+  </label>
+  <label class="star-label cursor-pointer pl-1 pr-1 first:pl-0 last:pr-0">
+    <input class="star-input sr-only" type="radio" name="star-rating-story" value="4">
+    <svg class="svg-icon star-icon stroke-[1.3px] opacity-60 icon-inline" width="36" height="36" style="width: 36px; height: 36px;" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg>
+  </label>
+  <label class="star-label cursor-pointer pl-1 pr-1 first:pl-0 last:pr-0">
+    <input class="star-input sr-only" type="radio" name="star-rating-story" value="5">
+    <svg class="svg-icon star-icon stroke-[1.3px] opacity-60 icon-inline" width="36" height="36" style="width: 36px; height: 36px;" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg>
+  </label>
+</div><div class="star-rating wrapper grid w-min shrink-0 grid-flow-col">
+  <label class="star-label cursor-pointer flex h-8 items-center justify-center p-0">
+    <input class="star-input sr-only" type="radio" name="company-rating-criteria-story" value="1">
+    <svg class="svg-icon star-icon stroke-[1.3px] opacity-60 star-icon--compact star-icon--filled-empty icon-inline" width="32" height="32" style="width: 32px; height: 32px;" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg>
+  </label>
+  <label class="star-label cursor-pointer flex h-8 items-center justify-center p-0">
+    <input class="star-input sr-only" type="radio" name="company-rating-criteria-story" value="2">
+    <svg class="svg-icon star-icon stroke-[1.3px] opacity-60 star-icon--compact star-icon--filled-empty icon-inline" width="32" height="32" style="width: 32px; height: 32px;" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg>
+  </label>
+  <label class="star-label cursor-pointer flex h-8 items-center justify-center p-0">
+    <input class="star-input sr-only" type="radio" name="company-rating-criteria-story" value="3">
+    <svg class="svg-icon star-icon stroke-[1.3px] opacity-60 star-icon--compact star-icon--filled-empty icon-inline" width="32" height="32" style="width: 32px; height: 32px;" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg>
+  </label>
+  <label class="star-label cursor-pointer flex h-8 items-center justify-center p-0">
+    <input class="star-input sr-only" type="radio" name="company-rating-criteria-story" value="4">
+    <svg class="svg-icon star-icon stroke-[1.3px] opacity-60 star-icon--compact star-icon--filled-empty icon-inline" width="32" height="32" style="width: 32px; height: 32px;" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg>
+  </label>
+  <label class="star-label cursor-pointer flex h-8 items-center justify-center p-0">
+    <input class="star-input sr-only" type="radio" name="company-rating-criteria-story" value="5">
+    <svg class="svg-icon star-icon stroke-[1.3px] opacity-60 star-icon--compact star-icon--filled-empty icon-inline" width="32" height="32" style="width: 32px; height: 32px;" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg>
+  </label>
+</div><div class="star-rating wrapper grid w-min shrink-0 grid-flow-col is-disabled">
+  <label class="star-label cursor-pointer pl-1 pr-1 first:pl-0 last:pr-0 star-label-checked">
+    <input class="star-input sr-only" type="radio" disabled name="star-rating-story" value="1">
+    <svg class="svg-icon star-icon stroke-[1.3px] opacity-60 icon-inline" width="36" height="36" style="width: 36px; height: 36px;" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg>
+  </label>
+  <label class="star-label cursor-pointer pl-1 pr-1 first:pl-0 last:pr-0 star-label-checked">
+    <input class="star-input sr-only" type="radio" disabled name="star-rating-story" value="2">
+    <svg class="svg-icon star-icon stroke-[1.3px] opacity-60 icon-inline" width="36" height="36" style="width: 36px; height: 36px;" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg>
+  </label>
+  <label class="star-label cursor-pointer pl-1 pr-1 first:pl-0 last:pr-0 star-label-checked">
+    <input class="star-input sr-only" type="radio" disabled name="star-rating-story" value="3">
+    <svg class="svg-icon star-icon stroke-[1.3px] opacity-60 icon-inline" width="36" height="36" style="width: 36px; height: 36px;" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg>
+  </label>
+  <label class="star-label cursor-pointer pl-1 pr-1 first:pl-0 last:pr-0 star-label-checked">
+    <input class="star-input sr-only" type="radio" disabled name="star-rating-story" checked value="4">
+    <svg class="svg-icon star-icon stroke-[1.3px] opacity-60 icon-inline" width="36" height="36" style="width: 36px; height: 36px;" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg>
+  </label>
+  <label class="star-label cursor-pointer pl-1 pr-1 first:pl-0 last:pr-0">
+    <input class="star-input sr-only" type="radio" disabled name="star-rating-story" value="5">
+    <svg class="svg-icon star-icon stroke-[1.3px] opacity-60 icon-inline" width="36" height="36" style="width: 36px; height: 36px;" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg>
+  </label>
+</div><div class="star-rating is-readonly wrapper grid w-min shrink-0 grid-flow-col" role="img" aria-label="Оценка 4 из 5">
+  <span class="star-label star-label-checked pl-1 pr-1 first:pl-0 last:pr-0"><svg class="svg-icon star-icon stroke-[1.3px] opacity-60 icon-inline" aria-hidden="true" width="36" height="36" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg></span>
+  <span class="star-label star-label-checked pl-1 pr-1 first:pl-0 last:pr-0"><svg class="svg-icon star-icon stroke-[1.3px] opacity-60 icon-inline" aria-hidden="true" width="36" height="36" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg></span>
+  <span class="star-label star-label-checked pl-1 pr-1 first:pl-0 last:pr-0"><svg class="svg-icon star-icon stroke-[1.3px] opacity-60 icon-inline" aria-hidden="true" width="36" height="36" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg></span>
+  <span class="star-label star-label-checked pl-1 pr-1 first:pl-0 last:pr-0"><svg class="svg-icon star-icon stroke-[1.3px] opacity-60 icon-inline" aria-hidden="true" width="36" height="36" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg></span>
+  <span class="star-label pl-1 pr-1 first:pl-0 last:pr-0"><svg class="svg-icon star-icon stroke-[1.3px] opacity-60 icon-inline" aria-hidden="true" width="36" height="36" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 24 24">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg></span>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="fo-multi">
+    <div class="specimen" data-name="multi select combobox closed open selected disabled loading invalid empty">
+      <div class="specimen__head"><h4>Множественный выбор</h4><code>editable combobox + multiselect listbox</code></div>
+      <p class="note">Keyboard highlight (<code>data-active</code>/<code>aria-activedescendant</code>) отделён от выбранности (<code>aria-selected</code>).</p>
+      <div class="stage stage--rows">
+<div class="variant"><p class="variant__label">open / selected / active option</p><div class="multi-select suggestions-picker">
+  <div class="suggestions-picker__wrapper--with-tags">
+    <span class="base-chip base-chip--default"><span class="base-chip__content"><span class="px-1">JavaScript</span></span></span>
+    <span class="text-input text-input--with-tags"><input id="skills-combobox" class="text-input__input" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-controls="skills-listbox" aria-activedescendant="skills-option-2" aria-label="Навыки" value="Re"></span>
+  </div>
+  <div id="skills-listbox" class="suggestions-picker__results" role="listbox" aria-multiselectable="true" aria-label="Варианты навыков" style="position:static;margin-top:4px">
+    <div id="skills-option-1" class="suggestion-item" role="option" aria-selected="true">JavaScript</div>
+    <div id="skills-option-2" class="suggestion-item suggestion-item--active" role="option" aria-selected="false">React</div>
+    <div class="suggestion-item" role="option" aria-selected="false">Redux</div>
+  </div>
+</div></div>
+<div class="variant"><p class="variant__label">disabled / invalid</p><div class="variant__row">
+  <div class="multi-select is-disabled"><div class="suggestions-picker__wrapper--with-tags"><span class="text-input text-input--with-tags text-input--disabled"><input class="text-input__input" aria-label="Недоступные навыки" placeholder="Навыки" disabled></span></div></div>
+  <div class="multi-select is-invalid"><div class="suggestions-picker__wrapper--with-tags"><span class="text-input text-input--with-tags text-input--invalid"><input class="text-input__input" aria-label="Навыки с ошибкой" aria-invalid="true" aria-describedby="skills-error"></span></div><span id="skills-error" class="base-input-label__error">Выберите хотя бы один навык</span></div>
+</div></div>
+<div class="variant"><p class="variant__label">loading / empty</p><div class="variant__row">
+  <div class="multi-select is-loading" aria-busy="true"><div class="suggestions-picker__results multi-select__status" role="status" style="position:static">Загружаем варианты…</div></div>
+  <div class="multi-select"><div class="suggestions-picker__results multi-select__status" role="status" style="position:static">Ничего не найдено</div></div>
+</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,52 @@
+{
+  "id": "promotion-card",
+  "title": "PromotionCard · Карточка продвижения",
+  "kind": "module",
+  "category": "banners",
+  "maturity": {
+    "spec": "partial",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "published-spec",
+      "storybook-snapshot"
+    ],
+    "confidence": "low",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Промо-карточка платной возможности в боковой колонке.",
+  "implementation": {
+    "markup": null,
+    "cssRoots": [],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "missingReason": "copy-safe-markup-not-captured",
+    "fallback": "Не додумывать DOM; использовать ближайший подтверждённый модуль."
+  },
+  "markup": null,
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [],
+  "accessibility": [],
+  "unknowns": [
+    "Единственная story сломана в самом Storybook Career (недостающие чанки сборки).",
+    "CSS компонента сохранён (2 142 байта) — геометрия и цвета восстановимы, структура DOM нет.",
+    "ЧЕГО НЕ ХВАТАЕТ: разметки. Достаточно одного snapshot production страницы, где карточка показана."
+  ],
+  "evidence": [
+    {
+      "type": "published-spec",
+      "ref": "archive:career/v1/components/banners/promotion-card.md"
+    }
+  ],
+  "markdown": "# PromotionCard · Карточка продвижения\n\n| | |\n|---|---|\n| **Категория** | Баннеры |\n| **Корневой класс** | — |\n| **CSS** | `ui/components/cards.css` |\n| **Живая реализация** | нет — см. «Ограничения» |\n| **Snapshot Storybook** | 0 из 1 |\n\n## Назначение\n\nПромо-карточка платной возможности в боковой колонке.\n\n## Анатомия\n\n_Разметка недоступна: см. «Ограничения»._\n\n## Состояния\n\n_В извлечённом CSS и разметке состояний не объявлено. Не достраиваем._\n\n## Props\n\n_Storybook не отдаёт controls для этого компонента._\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-font-black` | `var(--color-ui-gray-1)` | из `:root` Career |\n| `--color-ui-white` | `#fff` | из `:root` Career |\n\n## Responsive\n\nКомпонент реагирует на: `(max-width:479px)`, `(max-width:1023px)`.\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## CSS\n\n```css\n.promotion-modal { padding:0 24px 24px;text-align:left }\n.promotion-modal__description { color:var(--color-font-black);font-size:16px;font-weight:400;line-height:20px }\n.promotion-modal__actions { display:flex;gap:8px;margin-top:24px }\n.promotion-card { align-items:center;background:radial-gradient(120.12% 28471.04% at 104.17% 101.5%,#d1a8fa 0,#8164f7 65.06%),#fff;border-radius:8px;color:var(--color-ui-white);cursor:pointer;display:grid;position:relative }\n.promotion-card--appearance-header { border-radius:4px;grid-template-columns:28px 1fr 24px;padding:2px 4px 2px 0 }\n.promotion-card--appearance-resumes { grid-template-columns:44px 1fr 32px;padding:6px 8px 6px 0 }\n.promotion-card__icon--appearance-header { height:28px;width:28px }\n.promotion-card__icon--appearance-resumes { height:44px;width:44px }\n.promotion-card__button--appearance-resumes { height:32px;width:32px }\n.promotion-card__info { display:grid;grid-auto-flow:row;text-align:left }\n.promotion-card__title { display:none }\n.promotion-card__title--short.promotion-card__title--appearance-header { display:block }\n.promotion-card__title--appearance-resumes { display:block;font-size:16px;font-weight:600;line-height:20px }\n.promotion-card__title--appearance-resumes.promotion-card__title--short { display:none }\n.promotion-card__title--appearance-header { font-size:14px;font-weight:600;line-height:20px;margin-right:8px }\n.promotion-card__description { color:#ffffffb3;font-size:14px;font-weight:400;line-height:20px }\n.promotion-card__description--appearance-header { display:none }\n.promotion-card__button--appearance-header { height:24px;width:24px }\n@media (max-width:479px) {\n  .promotion-modal { padding:0 24px 16px }\n  .promotion-modal__actions { margin-top:16px }\n}\n@media (max-width:1023px) {\n  .promotion-card--appearance-header { grid-template-columns:44px 1fr 32px;padding:6px 8px 6px 0 }\n  .promotion-card__icon--appearance-header { height:44px;width:44px }\n  .promotion-card__title--short.promotion-card__title--appearance-header { display:none }\n  .promotion-card__title--appearance-header { display:block;font-size:16px;margin-right:0 }\n  .promotion-card__description--appearance-header { display:block }\n  .promotion-card__button--appearance-header { height:32px;width:32px }\n}\n```\n\n## Ограничения\n\n- Единственная story сломана в самом Storybook Career (недостающие чанки сборки).\n- CSS компонента сохранён (2 142 байта) — геометрия и цвета восстановимы, структура DOM нет.\n- ЧЕГО НЕ ХВАТАЕТ: разметки. Достаточно одного snapshot production страницы, где карточка показана.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/promotion-card/promotion-card.stories.ts`\n- Storybook `career-web`: `banners-promotioncard--default`\n- CSS: секция `promotion-card` в `ui/components/cards.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/banners/promotion-card.md",
+  "legacyDocument": "archive:career/v1/components/banners/promotion-card.md",
+  "legacyUnindexed": true
+}

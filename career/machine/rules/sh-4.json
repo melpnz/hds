@@ -1,0 +1,51 @@
+{
+  "id": "SH-4",
+  "kind": "rule",
+  "scope": "Оболочка",
+  "statement": "Фон страницы — **чистый белый `#ffffff`**. Разделение поверхностей делается границей 1px и тинтом, а не серым фоном",
+  "predicate": {
+    "type": "computed",
+    "page": "showcase/pages.html",
+    "checks": [
+      {
+        "selector": "#p-listing .career-shell",
+        "property": "backgroundColor",
+        "equals": "rgb(255, 255, 255)"
+      }
+    ]
+  },
+  "evidence": {
+    "observations": "16/16"
+  },
+  "humanDoc": "docs/guide/composition.md#sh-4",
+  "title": "SH-4 · Оболочка",
+  "category": "оболочка",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "observed-rule"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Фон страницы — **чистый белый `#ffffff`**. Разделение поверхностей делается границей 1px и тинтом, а не серым фоном",
+  "implementation": {
+    "markup": null,
+    "styles": [],
+    "scripts": [],
+    "missingReason": "not-a-visual-entity",
+    "fallback": "Применить правило к выбранному паттерну или компоненту."
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [],
+  "accessibility": [],
+  "unknowns": [],
+  "previewMode": "none"
+}

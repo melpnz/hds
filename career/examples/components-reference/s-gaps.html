@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Чего не хватает</title>
+  <link rel="stylesheet" href="../../ui/career.css">
+  <link rel="stylesheet" href="reference.css">
+  <style>body{margin:0;padding:20px;background:#fff}.site-nav{display:none}</style>
+</head>
+<body>
+<section class="section" id="s-gaps">
+  <div class="section__head">
+    <p class="section__num">14</p>
+    <h2>Чего не хватает</h2>
+    <p>Честный список пробелов. Он не уменьшается додумыванием.</p>
+  </div>
+
+  <div class="subsection" id="gaps-broken">
+    <div class="specimen" data-name="пробелы сломанные компоненты">
+      <div class="specimen__head"><h4>Компоненты без разметки</h4><code>сломаны в самом Storybook Career</code></div>
+      <p class="note">Сборка Storybook Career не отдаёт два чанка — <code>-iqz-73v.js</code> и
+      <code>-2YzXgxt.js</code>, оба отвечают 404. Из-за этого 104 story не рендерятся. Это дефект выкладки,
+      а не пробел исследования.</p>
+      <div class="stage stage--rows">
+        <div class="tablewrap"><table class="spec-table"><thead><tr><th>Компонент</th><th>Что уцелело</th><th>Чего не хватает</th></tr></thead><tbody>
+          <tr><td>Messages · MessagesGroup · ConversationMessages</td><td>CSS (66 и 114 B), вложения, время, статус</td><td>разметка пузыря сообщения, разделителя дня, метки непрочитанных</td></tr>
+          <tr><td>ResumeCard</td><td>CSS 158 B</td><td>разметка целиком</td></tr>
+          <tr><td>ButtonRange</td><td>CSS 1785 B — геометрия и состояния</td><td>структура DOM</td></tr>
+          <tr><td>PromotionCard</td><td>CSS 2142 B — варианты и цвета</td><td>структура DOM</td></tr>
+          <tr><td>JournalBlockSidebar</td><td>ничего</td><td>разметка и CSS</td></tr>
+          <tr><td>ConversationsLayout</td><td>части (шапка, карточка, пустые состояния)</td><td>внешняя раскладка двух колонок</td></tr>
+          <tr><td>Tests: TestResultItem, TestResultAdditional, модалки результатов</td><td>все семь исходов TestItem, BaseModal</td><td>развёрнутый результат с разбором по темам</td></tr>
+        </tbody></table></div>
+        <p class="hint">Любой из пробелов закрывается одним snapshot соответствующей страницы production
+        либо узлом Figma — не требуется чинить Storybook.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="gaps-other">
+    <div class="specimen" data-name="пробелы порталы состояния">
+      <div class="specimen__head"><h4>Состояния, живущие в порталах</h4></div>
+      <div class="stage stage--rows">
+        <ul class="legend legend--always">
+          <li><strong>Раскрытые списки.</strong> CustomSelect, MultiSelect и контекстное меню рендерят
+          выпадающую часть вне корня story. В snapshot попала только закрытая форма.</li>
+          <li><strong>Тост.</strong> <code>notify()</code> рисует сообщение в портал. Есть CSS, нет разметки.</li>
+          <li><strong>Наведение и фокус.</strong> Показаны только там, где объявлены в CSS. Статических
+          снимков этих состояний не существует, и мы их не имитируем.</li>
+          <li><strong>Пять изображений</strong> из 102, встречающихся в разметке, не сохранились локально:
+          три значка оценки, одно фото и логотип партнёра.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,44 @@
+{
+  "id": "ST-1",
+  "kind": "rule",
+  "scope": "Состояния",
+  "statement": "**Пустой результат поиска**",
+  "predicate": {
+    "type": "manual",
+    "check": "Пустой результат поиска"
+  },
+  "evidence": {
+    "observations": "Шапка страницы, фильтры и сайдбар остаются; исчезает только список; пустой блок занимает место одной карточки | `/vacancies?q=<мусор>`"
+  },
+  "humanDoc": "docs/guide/composition.md#st-1",
+  "title": "ST-1 · Состояния",
+  "category": "состояния",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "observed-rule"
+    ],
+    "confidence": "medium",
+    "scope": "public-guest"
+  },
+  "purpose": "**Пустой результат поиска**",
+  "implementation": {
+    "markup": null,
+    "styles": [],
+    "scripts": [],
+    "missingReason": "not-a-visual-entity",
+    "fallback": "Применить правило к выбранному паттерну или компоненту."
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [],
+  "accessibility": [],
+  "unknowns": [],
+  "previewMode": "none"
+}

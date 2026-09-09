@@ -1,0 +1,69 @@
+{
+  "id": "visibility-settings",
+  "title": "VisibilitySettings · Переключатель видимости",
+  "kind": "module",
+  "category": "cards",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "published-spec",
+      "storybook-snapshot"
+    ],
+    "confidence": "medium",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Круглая кнопка «глаз», скрывающая или показывающая блок профиля другим пользователям, плюс уведомление, объясняющее текущий режим.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "markup": {
+    "html": "<div title=\"Видно только вам\">\n  <button type=\"button\" class=\"m-0 flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent p-0 text-current outline-2 outline-offset-2 outline-ui-primary-60 transition-colors focus-visible:outline disabled:cursor-default text-ui-gray-2 hover:bg-ui-gray-3-10 hover:text-ui-gray-1 focus-visible:bg-ui-gray-3-10 fill-icon-gray text-icon-gray\">\n    <svg class=\"svg-icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n      <use xlink:href=\"../../ui/assets/icons/sprite.svg#crossed-eye\"/>\n    </svg>\n  </button>\n</div>"
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка из спецификации",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fvisibility-settings.json",
+      "covers": [
+        "published-markup"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          375,
+          768,
+          1100
+        ],
+        "height": 560
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Собственного CSS нет: компонент собран утилитами."
+  ],
+  "evidence": [
+    {
+      "type": "published-spec",
+      "ref": "archive:career/v1/components/cards/visibility-settings.md"
+    }
+  ],
+  "markdown": "# VisibilitySettings · Переключатель видимости\n\n| | |\n|---|---|\n| **Категория** | Карточки |\n| **Корневой класс** | — собственных классов нет, блок собран утилитами |\n| **CSS** | _только утилиты_ |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 6 из 6 |\n\n## Назначение\n\nКруглая кнопка «глаз», скрывающая или показывающая блок профиля другим пользователям, плюс уведомление, объясняющее текущий режим.\n\n## Анатомия\n\n```\ndiv\n  button.m-0.flex.size-10.shrink-0.cursor-pointer.items-center.justify-center.rounded-full.border-none.bg-transparent.p-0.text-current.outline-2.outline-offset-2.outline-ui-primary-60.transition-colors.focus-visible:outline.disabled:cursor-default.text-ui-gray-2.hover:bg-ui-gray-3-10.hover:text-ui-gray-1.focus-visible:bg-ui-gray-3-10.fill-icon-gray.text-icon-gray  [type=\"button\"]\n    svg.svg-icon\n      use  [xlink:href=\"/career-web/images/sprites/sprite.svg?v=5.63.0#crossed-eye\"]\n```\n\n_Разметка story `tests-visibilitysettings--hidden`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\n_В извлечённом CSS и разметке состояний не объявлено. Не достраиваем._\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `isHidden` | boolean | — | — | `boolean` |\n| `color` | string | — | — | `text` |\n| `changeVisibility` | other | — | — | `object` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-icon-gray` | `var(--color-ui-gray-2)` | из `:root` Career |\n| `--color-ui-blue` | `#1ba1ee` | из `:root` Career |\n| `--color-ui-blue-overlay` | `#ebefff` | из `:root` Career |\n| `--color-ui-gray-1` | `#1b272c` | из `:root` Career |\n| `--color-ui-gray-2` | `#55798b` | из `:root` Career |\n| `--color-ui-gray-3-10` | `color-mix(in srgb,var(--color-ui-gray-3) 10%,transparent)` | из `:root` Career |\n| `--color-ui-primary-60` | `color-mix(in srgb,var(--color-ui-primary) 60%,transparent)` | из `:root` Career |\n| `--color-ui-white` | `#fff` | из `:root` Career |\n\n## Иконки\n\n| Спрайт | Символ | Локальный файл |\n|---|---|---|\n| `sprite.svg` | `#crossed-eye` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#eye` | `ui/assets/icons/sprite.svg` |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## Поведение\n\n- Иконка меняется между `#eye` и `#crossed-eye`; цвет можно переопределить props `color`.\n\n## Разметка\n\n```html\n<div title=\"Видно только вам\">\n  <button type=\"button\" class=\"m-0 flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent p-0 text-current outline-2 outline-offset-2 outline-ui-primary-60 transition-colors focus-visible:outline disabled:cursor-default text-ui-gray-2 hover:bg-ui-gray-3-10 hover:text-ui-gray-1 focus-visible:bg-ui-gray-3-10 fill-icon-gray text-icon-gray\">\n    <svg class=\"svg-icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n      <use xlink:href=\"../../ui/assets/icons/sprite.svg#crossed-eye\"/>\n    </svg>\n  </button>\n</div>\n```\n\n_Пути к спрайтам и изображениям в этом блоке — локальные, от папки спецификации. В блоке «Анатомия» выше сохранён продовый путь: это протокол снятого DOM, а не образец для вёрстки._\n\n## CSS\n\n_Собственного CSS нет: компонент собран утилитами Tailwind прямо в разметке. Все нужные правила — в `ui/utilities.css`._\n\n## Ограничения\n\n- Собственного CSS нет: компонент собран утилитами.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/tests/visibility-settings.stories.ts`, `./src/components/tests/visibility-settings-notification.stories.ts`\n- Storybook `career-web`: `tests-visibilitysettings--hidden`, `tests-visibilitysettings--visible`, `tests-visibilitysettings--with-custom-color`, `tests-visibilitysettingsnotification--hidden-by-default`, `tests-visibilitysettingsnotification--skills-test-in-profile`, `tests-visibilitysettingsnotification--specs-test-in-profile`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/cards/visibility-settings.md",
+  "legacyDocument": "archive:career/v1/components/cards/visibility-settings.md",
+  "legacyUnindexed": true
+}

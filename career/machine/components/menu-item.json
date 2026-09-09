@@ -1,0 +1,120 @@
+{
+  "id": "menu-item",
+  "name": "MenuItem",
+  "category": "navigation",
+  "kind": "component",
+  "spec": "components\\navigation\\menu-item.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "selected",
+    "disabled"
+  ],
+  "cssRoots": [
+    "menu-item"
+  ],
+  "anchor": "showcase/components.html#r3-menu",
+  "markup": {
+    "html": "<button class=\"menu-item\" type=\"button\" role=\"menuitem\">\n  <svg class=\"svg-icon menu-item__icon\" aria-hidden=\"true\" focusable=\"false\">…</svg>\n  <span class=\"menu-item__label\">Редактировать</span>\n  <span class=\"menu-item__meta\" aria-hidden=\"true\">⌘E</span>\n</button>"
+  },
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": null,
+      "sourceName": "row / menu"
+    }
+  ],
+  "legacySource": {
+    "id": "menu-item",
+    "name": "MenuItem",
+    "category": "navigation",
+    "kind": "component",
+    "spec": "components\\navigation\\menu-item.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "selected",
+      "disabled"
+    ],
+    "cssRoots": [
+      "menu-item"
+    ],
+    "anchor": "showcase/components.html#r3-menu",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "row / menu"
+      }
+    ]
+  },
+  "title": "MenuItem",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Одна команда внутри Menu. Корень — button для действия или a для реального перехода. Не используйте div с click-handler.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "menu-item"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "selected",
+      "disabled"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fmenu-item.json",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "selected",
+        "disabled"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [],
+  "markdown": "# MenuItem · Команда меню\n\n| | |\n|---|---|\n| **Категория** | Навигация |\n| **Корневой класс** | `menu-item` |\n| **CSS** | `ui/components.css` |\n| **Живая реализация** | `showcase/components.html#r3-menu` |\n| **Источник** | ContextMenu production; Figma `row / menu` — evidence only |\n\n## Назначение\n\nОдна команда внутри Menu. Корень — `button` для действия или `a` для реального перехода. Не используйте `div` с click-handler.\n\n## Анатомия\n\n```html\n<button class=\"menu-item\" type=\"button\" role=\"menuitem\">\n  <svg class=\"svg-icon menu-item__icon\" aria-hidden=\"true\" focusable=\"false\">…</svg>\n  <span class=\"menu-item__label\">Редактировать</span>\n  <span class=\"menu-item__meta\" aria-hidden=\"true\">⌘E</span>\n</button>\n```\n\n## Состояния\n\n| Состояние | Контракт |\n|---|---|\n| `default` | доступная команда |\n| `hover` | pointer hover; не заменяет keyboard active item |\n| `focus-visible` | явное внутреннее кольцо |\n| `pressed` | нативный `:active`; `.is-pressed` только для стенда |\n| `selected` | только check/radio menuitem: `aria-checked=\"true\"`; для текущего перехода допустим `aria-current` |\n| `disabled` | `disabled` у button либо `aria-disabled=\"true\"`; команда не активируется |\n\nMenu управляет roving `tabindex`: только один доступный item имеет `tabindex=\"0\"`. Иконка и shortcut не входят в tab order. Опасная команда может иметь danger appearance, но требует отдельного подтверждения по риску, а не по цвету.\n",
+  "sourcePath": "archive:career/v1/components/navigation/menu-item.md",
+  "legacyDocument": "archive:career/v1/components/navigation/menu-item.md"
+}

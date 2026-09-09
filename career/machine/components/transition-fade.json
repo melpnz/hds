@@ -1,0 +1,68 @@
+{
+  "id": "transition-fade",
+  "name": "TransitionFade",
+  "category": "feedback",
+  "kind": "primitive",
+  "spec": "components\\feedback\\transition-fade.md",
+  "status": "complete",
+  "states": [],
+  "cssRoots": [
+    "transition-fade"
+  ],
+  "anchor": "showcase/components.html#fb-motion-contract",
+  "markup": null,
+  "evidence": [],
+  "legacySource": {
+    "id": "transition-fade",
+    "name": "TransitionFade",
+    "category": "feedback",
+    "kind": "primitive",
+    "spec": "components\\feedback\\transition-fade.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "transition-fade"
+    ],
+    "anchor": "showcase/components.html#fb-motion-contract",
+    "markup": null,
+    "evidence": []
+  },
+  "title": "TransitionFade",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Стандартный переход появления и исчезновения. Применяется к выпадающим блокам, модальным окнам и уведомлениям.",
+  "implementation": {
+    "markup": null,
+    "cssRoots": [
+      "transition-fade"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "missingReason": "copy-safe-markup-not-captured",
+    "fallback": "Не придумывать классы. Использовать ближайший компонент с разметкой или явно отметить пробел."
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [],
+  "accessibility": [],
+  "unknowns": [
+    "Собственных story нет — данные из CSS."
+  ],
+  "markdown": "# TransitionFade · Появление затуханием\n\n| | |\n|---|---|\n| **Категория** | Обратная связь |\n| **Корневой класс** | — |\n| **CSS** | `ui/components/feedback.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 0 из 0 |\n\n## Назначение\n\nСтандартный переход появления и исчезновения. Применяется к выпадающим блокам, модальным окнам и уведомлениям.\n\n## Анатомия\n\n_Разметка недоступна: см. «Ограничения»._\n\n## Состояния\n\n_В извлечённом CSS и разметке состояний не объявлено. Не достраиваем._\n\n## Props\n\n_Storybook не отдаёт controls для этого компонента._\n\n## Токены\n\n_Компонент не обращается к переменным напрямую._\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## CSS\n\n```css\n.transition-fade-enter-active,.transition-fade-leave-active { transition:.2s;transition-property:opacity }\n.transition-fade-enter-from,.transition-fade-leave-to { opacity:0 }\n```\n\n## Ограничения\n\n- Собственных story нет — данные из CSS.\n\n## Источники\n\n- Storybook `career-web`: \n- CSS: секция `transition-fade` в `ui/components/feedback.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n\n## Нормативный контракт R2-E\n\nTransitionFade — motion primitive без собственных UI states и без семантики. Классы `enter-from`, `enter-active`, `leave-active`, `leave-to` описывают фазы перехода, а не публичные состояния компонента.\n\nНе задерживайте удаление focusable content после закрытия. Accessibility state (`hidden`, mount/unmount, `aria-expanded`) меняется вместе с логическим состоянием, независимо от opacity. При `prefers-reduced-motion: reduce` длительность сокращается до практически мгновенной.\n",
+  "sourcePath": "archive:career/v1/components/feedback/transition-fade.md",
+  "legacyDocument": "archive:career/v1/components/feedback/transition-fade.md"
+}

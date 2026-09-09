@@ -1,0 +1,104 @@
+{
+  "id": "menu",
+  "name": "Menu",
+  "category": "navigation",
+  "kind": "component",
+  "spec": "components\\navigation\\menu.md",
+  "status": "complete",
+  "states": [
+    "closed",
+    "open"
+  ],
+  "cssRoots": [
+    "menu"
+  ],
+  "anchor": "showcase/components.html#r3-menu",
+  "markup": {
+    "html": "<div class=\"popover\">\n  <button type=\"button\" aria-haspopup=\"menu\" aria-expanded=\"true\" aria-controls=\"actions-menu\">Действия</button>\n  <div class=\"popover__surface\" data-state=\"open\" data-placement=\"bottom-end\">\n    <div class=\"menu\" id=\"actions-menu\" role=\"menu\" aria-label=\"Действия с вакансией\">\n      <button class=\"menu-item\" type=\"button\" role=\"menuitem\" tabindex=\"0\">Редактировать</button>\n      <button class=\"menu-item\" type=\"button\" role=\"menuitem\" tabindex=\"-1\">Дублировать</button>\n    </div>\n  </div>\n</div>"
+  },
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": null,
+      "sourceName": "wrapper / menu"
+    }
+  ],
+  "legacySource": {
+    "id": "menu",
+    "name": "Menu",
+    "category": "navigation",
+    "kind": "component",
+    "spec": "components\\navigation\\menu.md",
+    "status": "complete",
+    "states": [
+      "closed",
+      "open"
+    ],
+    "cssRoots": [
+      "menu"
+    ],
+    "anchor": "showcase/components.html#r3-menu",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "wrapper / menu"
+      }
+    ]
+  },
+  "title": "Menu",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Список команд, открываемый кнопкой. Menu не используется для обычной навигации, выбора одного значения формы или произвольного контента: для них нужны ссылки, Select/Listbox или Popover.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "menu"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "stateGroups": {
+    "ui": [
+      "closed",
+      "open"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fmenu.json",
+      "covers": [
+        "closed",
+        "open"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [],
+  "markdown": "# Menu · Меню команд\n\n| | |\n|---|---|\n| **Категория** | Навигация |\n| **Корневой класс** | `menu` |\n| **CSS** | `ui/components.css` |\n| **Живая реализация** | `showcase/components.html#r3-menu` |\n| **Источник** | ContextMenu/BaseDropdown production; Figma — evidence only |\n\n## Назначение\n\nСписок команд, открываемый кнопкой. Menu не используется для обычной навигации, выбора одного значения формы или произвольного контента: для них нужны ссылки, Select/Listbox или Popover.\n\n## Анатомия\n\n```html\n<div class=\"popover\">\n  <button type=\"button\" aria-haspopup=\"menu\" aria-expanded=\"true\" aria-controls=\"actions-menu\">Действия</button>\n  <div class=\"popover__surface\" data-state=\"open\" data-placement=\"bottom-end\">\n    <div class=\"menu\" id=\"actions-menu\" role=\"menu\" aria-label=\"Действия с вакансией\">\n      <button class=\"menu-item\" type=\"button\" role=\"menuitem\" tabindex=\"0\">Редактировать</button>\n      <button class=\"menu-item\" type=\"button\" role=\"menuitem\" tabindex=\"-1\">Дублировать</button>\n    </div>\n  </div>\n</div>\n```\n\n## Состояния\n\n| Состояние | Контракт |\n|---|---|\n| `closed` | trigger `aria-expanded=\"false\"`; popup `hidden`/не смонтирован |\n| `open` | trigger `aria-expanded=\"true\"`; menu видимо и доступно |\n\n## Keyboard и focus\n\n- Enter/Space/ArrowDown открывают и фокусируют первый доступный item; ArrowUp — последний.\n- Up/Down перемещают фокус циклически; Home/End — к первому/последнему.\n- Escape закрывает и возвращает фокус trigger; Tab закрывает без focus trap.\n- Поиск по первой букве рекомендуется для длинного меню.\n\n## Ограничения\n\nMenu — поведенческий компонент поверх Popover и MenuItem. Позиционирование и collision handling принадлежат Popover.\n",
+  "sourcePath": "archive:career/v1/components/navigation/menu.md",
+  "legacyDocument": "archive:career/v1/components/navigation/menu.md"
+}

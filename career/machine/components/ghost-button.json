@@ -1,0 +1,157 @@
+{
+  "id": "ghost-button",
+  "name": "GhostButton",
+  "category": "actions",
+  "kind": "component",
+  "spec": "components\\actions\\ghost-button.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading"
+  ],
+  "cssRoots": [
+    "ghost-button",
+    "base-button"
+  ],
+  "anchor": "showcase/components.html#a-special",
+  "markup": {
+    "html": "<button class=\"ghost-button base-button inline-flex appearance-none size-m is-sizeable ghost-button\" type=\"button\" target=\"_self\">\n  <span class=\"base-button__inner\">\n    <span class=\"base-button__content\">Button</span>\n  </span>\n</button>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": "644:1916",
+      "sourceName": "button / M / ghost"
+    }
+  ],
+  "storybookNames": [
+    "GhostButton"
+  ],
+  "code": {
+    "component": "GhostButton",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "ghost-button",
+    "name": "GhostButton",
+    "category": "actions",
+    "kind": "component",
+    "spec": "components\\actions\\ghost-button.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "disabled",
+      "loading"
+    ],
+    "cssRoots": [
+      "ghost-button",
+      "base-button"
+    ],
+    "anchor": "showcase/components.html#a-special",
+    "markup": {
+      "html": "<button class=\"ghost-button base-button inline-flex appearance-none size-m is-sizeable ghost-button\" type=\"button\" target=\"_self\">\n  <span class=\"base-button__inner\">\n    <span class=\"base-button__content\">Button</span>\n  </span>\n</button>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "644:1916",
+        "sourceName": "button / M / ghost"
+      }
+    ],
+    "storybookNames": [
+      "GhostButton"
+    ],
+    "code": {
+      "component": "GhostButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "GhostButton",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Кнопка без фона и рамки для второстепенных действий рядом с основной кнопкой или внутри карточки. Собрана поверх BaseButton с appearance-none.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "ghost-button",
+      "base-button"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "GhostButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "disabled",
+      "loading"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fghost-button.json",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "loading"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Не выявлено: разметка, CSS и props извлечены полностью."
+  ],
+  "markdown": "# GhostButton · Кнопка без фона\n\n| | |\n|---|---|\n| **Категория** | Действия |\n| **Корневой класс** | `ghost-button` |\n| **CSS** | `ui/components/buttons.css`, `ui/state-contract.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 2 из 2 |\n\n## Назначение\n\nКнопка без фона и рамки для второстепенных действий рядом с основной кнопкой или внутри карточки. Собрана поверх BaseButton с `appearance-none`.\n\n## Анатомия\n\n```\nbutton.ghost-button.base-button.inline-flex.appearance-none.size-m.is-sizeable.ghost-button  [type=\"button\" target=\"_self\"]\n  span.base-button__inner\n    span.base-button__content\n      · «Button»\n```\n\n_Разметка story `common-buttons-ghostbutton--default`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\nНормативные состояния: `default`, `hover`, `focus-visible`, `pressed`,\n`disabled`, `loading`. Первые четыре задаются псевдоклассами; `.is-pressed`\nразрешён только для story и визуальных тестов. Loading оформляется через\n`.is-loading` + `aria-busy=\"true\"` и использует `.base-button__loader`.\n`ui/state-contract.css` добавляет недостающий pressed overlay.\n\nПодтверждены CSS и разметкой: `.has-before`, `.is-sizeable`, `:disabled`, `:focus`, `:hover`.\n\n```css\n.ghost-button:hover { color:var(--color-ui-gray-1) }\n.ghost-button:hover:before { content:var(--tw-content);opacity:.1 }\n.ghost-button:focus-visible { outline-color:var(--color-ui-gray-2-60);outline-offset:2px;outline-style:solid;outline-width:2px }\n.ghost-button:focus-visible:before { content:var(--tw-content);opacity:.1 }\n.ghost-button:disabled { color:var(--color-ui-gray-4) }\n```\n\n## Слоты\n\n- `before`\n- `default`\n- `after`\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `label` | string | `'Button'` | — | `text` |\n| `disabled` | boolean \\| null | — | true · false | `radio` |\n| `loading` | boolean | `false` | true · false | `radio` |\n| `to` | RouteLocationRaw | — | — | `object` |\n| `href` | string | — | — | `text` |\n| `type` | ButtonType | `'button'` | — | `object` |\n| `target` | \"_blank\" \\| \"_self\" | `'_self'` | — | `object` |\n| `fullWidth` | boolean | `false` | — | `boolean` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-ui-gray-1` | `#1b272c` | из `:root` Career |\n| `--color-ui-gray-2` | `#55798b` | из `:root` Career |\n| `--color-ui-gray-2-60` | `color-mix(in srgb,var(--color-ui-gray-2) 60%,transparent)` | из `:root` Career |\n| `--color-ui-gray-3` | `#7996a5` | из `:root` Career |\n| `--color-ui-gray-4` | `#a6bdc9` | из `:root` Career |\n\n## Иконки\n\n| Спрайт | Символ | Локальный файл |\n|---|---|---|\n| `sprite.svg` | `#question-circle` | `ui/assets/icons/sprite.svg` |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## Разметка\n\n```html\n<button class=\"ghost-button base-button inline-flex appearance-none size-m is-sizeable ghost-button\" type=\"button\" target=\"_self\">\n  <span class=\"base-button__inner\">\n    <span class=\"base-button__content\">Button</span>\n  </span>\n</button>\n```\n\n## CSS\n\n```css\n.ghost-button { background-color:transparent;border-style:none;color:var(--color-ui-gray-2);isolation:isolate;overflow:hidden;padding:0 }\n.ghost-button:before { background-color:var(--color-ui-gray-3);border-radius:.5rem;top:0;right:0;bottom:0;left:0;opacity:0;pointer-events:none;position:absolute;transition-duration:.2s;transition-property:opacity;transition-timing-function:cubic-bezier(.4,0,.2,1);z-index:10;--tw-content:\"\";content:var(--tw-content) }\n.ghost-button:hover { color:var(--color-ui-gray-1) }\n.ghost-button:hover:before { content:var(--tw-content);opacity:.1 }\n.ghost-button:focus { color:var(--color-ui-gray-1) }\n.ghost-button:focus:before { content:var(--tw-content);opacity:.1 }\n.ghost-button:focus-visible { outline-color:var(--color-ui-gray-2-60);outline-offset:2px;outline-style:solid;outline-width:2px }\n.ghost-button:focus-visible:before { content:var(--tw-content);opacity:.1 }\n.ghost-button:disabled { color:var(--color-ui-gray-4) }\n.ghost-button .base-button__content { padding-left:0;padding-right:0 }\n.ghost-button .base-button__loader { color:var(--color-ui-gray-2) }\n```\n\n## Ограничения\n\n- Не выявлено: разметка, CSS и props извлечены полностью.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/common/ghost-button/ghost-button.stories.ts`\n- Storybook `career-web`: `common-buttons-ghostbutton--default`, `common-buttons-ghostbutton--with-icon`\n- CSS: секция `ghost-button` в `ui/components/buttons.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/actions/ghost-button.md",
+  "legacyDocument": "archive:career/v1/components/actions/ghost-button.md"
+}

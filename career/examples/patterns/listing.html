@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Листинг</title>
+  <link rel="stylesheet" href="../../ui/career.css">
+  <link rel="stylesheet" href="patterns.css">
+  <style>
+    body{min-width:0}
+    .pattern{margin:0;padding:20px}
+    .pattern__head,.rules,.vp-bar{display:none!important}
+    .viewport{height:auto!important;overflow:visible!important;border:0!important;background:transparent!important}
+    .viewport__inner{width:auto!important;transform:none!important}
+  </style>
+</head>
+<body>
+<section class="pattern" id="p-listing">
+  <div class="pattern__head">
+    <span class="pattern__num">02</span>
+    <h2>Листинг</h2>
+    <p>Самое частое семейство: вакансии, компании, эксперты, специалисты.
+       Вертикальный список одинаковых карточек, фильтры в правом сайдбаре.</p>
+  </div>
+  <ul class="rules">
+    <li title="Сетка 752 + 24 + 300">L-1</li>
+    <li title="Сайдбар фиксирован 300, сжимается только главная колонка">L-2</li>
+    <li title="Заголовок страницы внутри карточки вместе с поиском и сортировкой">L-3</li>
+    <li title="Шаг между карточками 12 на всех вьюпортах">L-4</li>
+    <li title="Пагинация — отдельная карточка внизу">L-5</li>
+    <li title="Фильтры справа и залипают">L-6</li>
+    <li title="Промо-блок над фильтрами — единственный градиент продукта">L-7</li>
+    <li title="Продвигаемая сущность — рамка 2px фирменного цвета">C-4</li>
+    <li title="Фильтры сворачиваются в кнопку">R-4</li>
+  </ul>
+
+  <div class="vp-bar" data-for="vp-listing"><span class="vp-bar__label">Ширина</span><button class="vp-btn" data-w="320" title="узкий телефон" aria-pressed="false">320</button><button class="vp-btn" data-w="480" title="телефон" aria-pressed="false">480</button><button class="vp-btn" data-w="768" title="планшет" aria-pressed="false">768</button><button class="vp-btn" data-w="1024" title="десктоп" aria-pressed="false">1024</button><button class="vp-btn" data-w="1100" title="потолок контейнера" aria-pressed="true">1100</button><span class="vp-bar__meta"></span></div>
+  <div class="viewport" id="vp-listing"><div class="viewport__inner">
+    <div class="career-shell">
+      <div class="tm-panel"><div class="page-width tm-panel__inner"><a class="tm-panel__logo" href="#" data-href="/"><b>Хабр</b> Карьера</a><span class="tm-panel__divider"></span><span class="tm-panel__chevron"><svg class="svg-icon icon-inline" width="20" height="20" style="width:20px;height:20px" data-icon-src="../../ui/assets/icons/single/sprite/arrow.svg" viewBox="0 0 24 24">
+    <path d="M4.3 8.3a1 1 0 011.4 0l6.3 6.29 6.3-6.3a1 1 0 111.4 1.42l-7 7a1 1 0 01-1.4 0l-7-7a1 1 0 010-1.42z"/>
+  </svg></span><span class="tm-panel__promo"><span class="tm-panel__emoji">🧑‍🎓</span>Если потянуло к знаниям</span></div></div>
+      <div class="app-header"><div class="page-width app-header__inner"><span class="app-header__burger"><!-- Гамбургера в спрайте Career нет: в продукте он нарисован в разметке. --><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="6" width="18" height="2" rx="1" fill="currentColor"/><rect x="3" y="11" width="18" height="2" rx="1" fill="currentColor"/><rect x="3" y="16" width="18" height="2" rx="1" fill="currentColor"/></svg></span><a class="app-header__logo" href="#" data-href="/"><b>Хабр</b> Карьера</a><nav class="app-header__nav"><a class="app-header__link is-active" href="#p-shell">Вакансии</a><a class="app-header__link" href="#p-shell">Специалисты</a><a class="app-header__link" href="#p-shell">Курсы и обучение</a><a class="app-header__link" href="#p-shell">Эксперты</a><a class="app-header__link" href="#p-shell">Компании</a><a class="app-header__link" href="#p-shell">Рейтинг</a><a class="app-header__link" href="#p-shell">Зарплаты</a><a class="app-header__link" href="#p-shell">Журнал</a></nav><span class="app-header__action"><button type="button" class="base-button inline-flex appearance-main size-l is-sizeable"><span class="base-button__inner"><span class="base-button__content">Войти</span></span></button></span></div></div>
+      <div class="page-width"><nav class="app-subnav"><a class="app-subnav__link is-active" href="#p-shell">Вакансии</a><a class="app-subnav__link" href="#p-shell">Специалисты</a><a class="app-subnav__link" href="#p-shell">Курсы и обучение</a><a class="app-subnav__link" href="#p-shell">Эксперты</a><a class="app-subnav__link" href="#p-shell">Компании</a><a class="app-subnav__link" href="#p-shell">Рейтинг</a><a class="app-subnav__link" href="#p-shell">Зарплаты</a><a class="app-subnav__link" href="#p-shell">Журнал</a></nav></div>
+
+      <div class="page-body"><div class="page-width">
+      <div class="page-layout">
+        <div class="page-layout__main">
+          <div class="section-group">
+
+            <!-- L-3: шапка страницы = карточка -->
+            <div class="basic-section">
+              <div class="page-header-card">
+                <div class="page-header-card__top">
+                  <h1 class="page-header-card__title">Работа и вакансии</h1>
+                  <button class="base-button inline-flex appearance-main-border size-m is-sizeable"><span class="base-button__inner"><span class="base-button__content">Подписаться на вакансии</span></span></button>
+                </div>
+                <div class="page-header-card__controls">
+                  <span class="search-input"><span class="text-input"><input class="text-input__input" type="search" placeholder="Поиск"></span><svg class="svg-icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/search.svg" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M17 11C17 14.3137 14.3137 17 11 17C7.68629 17 5 14.3137 5 11C5 7.68629 7.68629 5 11 5C14.3137 5 17 7.68629 17 11ZM15.5838 17.5574C14.2857 18.4665 12.7051 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11C19 12.9998 18.2662 14.8282 17.0533 16.2307C17.0767 16.2502 17.0994 16.2709 17.1214 16.2929L20.4143 19.5858C20.8048 19.9763 20.8048 20.6095 20.4143 21C20.0238 21.3905 19.3906 21.3905 19.0001 21L15.7072 17.7071C15.6605 17.6604 15.6194 17.6102 15.5838 17.5574Z" />
+  </svg></span>
+                  <span class="base-select" style="width:230px"><select class="base-select__input"><option>По соответствию</option><option>По дате размещения</option></select></span>
+                  <button type="button" class="filter-button is-panel filters-trigger base-button inline-flex appearance-passive size-l has-before has-after is-sizeable"><span class="base-button__inner"><span class="base-button__before"><svg class="svg-icon filter-button__icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/filter.svg" viewBox="0 0 24 24">
+    <path d="M3 17v2h6v-2ZM3 5v2h10V5Zm10 16v-2h8v-2h-8v-2h-2v6zM7 9v2H3v2h4v2h2V9Zm14 4v-2H11v2zm-6-4h2V7h4V5h-4V3h-2z"/>
+  </svg></span><span class="base-button__content">Фильтры</span><span class="base-button__after"><span class="filter-button__badge filter-button__badge--count">3</span></span></span></button>
+                </div>
+                <div class="page-header-card__count">Найдено 1 272 вакансии</div>
+              </div>
+            </div>
+
+            <div class="promo-card promo-card--mobile"><span class="promo-card__art"></span> Поднимите резюме с подпиской</div>
+
+            <!-- обычная карточка -->
+            <article class="vacancy-card">
+              <div>
+                <div class="vacancy-card__main">
+                  <span class="vacancy-card__icon-link"><img class="vacancy-card__logo" src="../../ui/assets/illustrations/avatar-default-company.svg" alt=""></span>
+                  <div class="vacancy-card__info">
+                    <div class="vacancy-card__company"><span class="vacancy-card__company-name">Финтех-платформа</span><span class="rating"><svg class="svg-icon icon-inline" width="16" height="16" style="width:16px;height:16px" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 12 12">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg>4.6</span><span class="vacancy-card__date">2 сентября</span></div>
+                    <a class="vacancy-card__title" href="#p-listing">Старший бэкенд-разработчик в команду платежей</a>
+                    <div class="vacancy-meta"><span class="vacancy-card__salary">от 280 000 ₽</span></div>
+                    <div class="vacancy-card__skills"><span class="base-chip base-chip--blue"><span class="base-chip__content"><span class="px-1">Senior</span></span></span><span class="base-chip base-chip--blue"><span class="base-chip__content"><span class="px-1">Можно удалённо</span></span></span></div><div class="vacancy-card__skills"><span class="base-chip base-chip--default"><span class="base-chip__content"><span class="px-1">Go</span></span></span><span class="base-chip base-chip--default"><span class="base-chip__content"><span class="px-1">PostgreSQL</span></span></span><span class="base-chip base-chip--default"><span class="base-chip__content"><span class="px-1">Kafka</span></span></span></div>
+                  </div>
+                </div>
+                <div class="vacancy-card__footer">
+                  <button class="base-button inline-flex appearance-main size-l is-sizeable"><span class="base-button__inner"><span class="base-button__content">Откликнуться</span></span></button>
+                  <button class="icon-button base-button appearance-none size-l is-sizeable" aria-label="В избранное"><svg class="svg-icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/favorite.svg" viewBox="0 0 24 24" fill="none">
+    <path d="M12.6402 16.2318L12 15.6983L11.3598 16.2318L5.76822 20.8914C5.68405 20.9616 5.57795 21 5.46837 21C5.2097 21 5 20.7903 5 20.5316V6C5 4.34315 6.34315 3 8 3H16C17.6569 3 19 4.34315 19 6V20.5316C19 20.7903 18.7903 21 18.5316 21C18.4221 21 18.316 20.9616 18.2318 20.8914L12.6402 16.2318Z" fill="none" stroke="currentColor" stroke-width="2"/>
+  </svg></button>
+                </div>
+              </div>
+            </article>
+
+            <!-- C-4: продвигаемая вакансия -->
+            <article class="card-promoted" style="--promo-color:#001c66;--promo-bg:rgba(0,28,102,.03)">
+              <div>
+                <div class="vacancy-card__main">
+                  <span class="vacancy-card__icon-link"><img class="vacancy-card__logo" src="../../ui/assets/illustrations/avatar-default-company.svg" alt=""></span>
+                  <div class="vacancy-card__info">
+                    <div class="vacancy-card__company"><span class="vacancy-card__company-name">Облачный провайдер</span><span class="rating"><svg class="svg-icon icon-inline" width="16" height="16" style="width:16px;height:16px" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 12 12">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg>4.8</span><span class="vacancy-card__date">2 сентября</span></div>
+                    <a class="vacancy-card__title" href="#p-listing">Инженер по данным</a>
+                    <div class="vacancy-meta"><span class="vacancy-card__salary vacancy-card__salary--unknown">Зарплата не указана</span></div>
+                    <div class="vacancy-card__skills"><span class="base-chip base-chip--blue"><span class="base-chip__content"><span class="px-1">Middle</span></span></span></div><div class="vacancy-card__skills"><span class="base-chip base-chip--default"><span class="base-chip__content"><span class="px-1">Python</span></span></span><span class="base-chip base-chip--default"><span class="base-chip__content"><span class="px-1">Airflow</span></span></span></div>
+                  </div>
+                </div>
+                <div class="vacancy-card__footer">
+                  <button class="base-button inline-flex appearance-main size-l is-sizeable"><span class="base-button__inner"><span class="base-button__content">Откликнуться</span></span></button>
+                  <button class="icon-button base-button appearance-none size-l is-sizeable" aria-label="В избранное"><svg class="svg-icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/favorite.svg" viewBox="0 0 24 24" fill="none">
+    <path d="M12.6402 16.2318L12 15.6983L11.3598 16.2318L5.76822 20.8914C5.68405 20.9616 5.57795 21 5.46837 21C5.2097 21 5 20.7903 5 20.5316V6C5 4.34315 6.34315 3 8 3H16C17.6569 3 19 4.34315 19 6V20.5316C19 20.7903 18.7903 21 18.5316 21C18.4221 21 18.316 20.9616 18.2318 20.8914L12.6402 16.2318Z" fill="none" stroke="currentColor" stroke-width="2"/>
+  </svg></button>
+                </div>
+              </div>
+            </article>
+
+            <article class="vacancy-card">
+              <div>
+                <div class="vacancy-card__main">
+                  <span class="vacancy-card__icon-link"><img class="vacancy-card__logo" src="../../ui/assets/illustrations/avatar-default-company.svg" alt=""></span>
+                  <div class="vacancy-card__info">
+                    <div class="vacancy-card__company"><span class="vacancy-card__company-name">Промышленная автоматизация</span><span class="vacancy-card__date">1 сентября</span></div>
+                    <a class="vacancy-card__title" href="#p-listing">Ведущий инженер по надёжности</a>
+                    <div class="vacancy-meta"><span class="vacancy-card__salary">от 240 000 до 320 000 ₽</span></div>
+                    <div class="vacancy-card__skills"><span class="base-chip base-chip--blue"><span class="base-chip__content"><span class="px-1">Lead</span></span></span></div><div class="vacancy-card__skills"><span class="base-chip base-chip--default"><span class="base-chip__content"><span class="px-1">Kubernetes</span></span></span><span class="base-chip base-chip--default"><span class="base-chip__content"><span class="px-1">Prometheus</span></span></span></div>
+                  </div>
+                </div>
+                <div class="vacancy-card__footer">
+                  <button class="base-button inline-flex appearance-main size-l is-sizeable"><span class="base-button__inner"><span class="base-button__content">Откликнуться</span></span></button>
+                  <button class="icon-button base-button appearance-none size-l is-sizeable" aria-label="В избранное"><svg class="svg-icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/favorite.svg" viewBox="0 0 24 24" fill="none">
+    <path d="M12.6402 16.2318L12 15.6983L11.3598 16.2318L5.76822 20.8914C5.68405 20.9616 5.57795 21 5.46837 21C5.2097 21 5 20.7903 5 20.5316V6C5 4.34315 6.34315 3 8 3H16C17.6569 3 19 4.34315 19 6V20.5316C19 20.7903 18.7903 21 18.5316 21C18.4221 21 18.316 20.9616 18.2318 20.8914L12.6402 16.2318Z" fill="none" stroke="currentColor" stroke-width="2"/>
+  </svg></button>
+                </div>
+              </div>
+            </article>
+
+            <!-- L-5: пагинация — отдельная карточка -->
+            <nav class="flex items-center justify-between rounded-3xl border border-ui-gray-shadow bg-ui-white p-2" aria-label="Pagination"><div class="flex items-center justify-center"><button type="button" class="rotate-90 pagination-button is-status-disable base-button inline-flex appearance-none size-l is-sizeable" aria-label="Previous page" disabled><span class="base-button__content"><span class="pagination-button__content"><svg class="svg-icon fill-current text-ui-gray-4 icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/arrow.svg" viewBox="0 0 24 24">
+    <path d="M4.3 8.3a1 1 0 011.4 0l6.3 6.29 6.3-6.3a1 1 0 111.4 1.42l-7 7a1 1 0 01-1.4 0l-7-7a1 1 0 010-1.42z"/>
+  </svg></span></span></button></div><div class="grid auto-cols-min grid-flow-col items-end"><button type="button" class="pagination-button is-selected base-button inline-flex appearance-none size-l is-sizeable" aria-label="Page 1" aria-current="page"><span class="base-button__content"><span class="pagination-button__content">1</span></span></button><a href="#" data-href="/vacancies?page=2" class="pagination-button base-button inline-flex appearance-none size-l is-sizeable" aria-label="Page 2"><span class="base-button__content"><span class="pagination-button__content">2</span></span></a><a href="#" data-href="/vacancies?page=3" class="pagination-button base-button inline-flex appearance-none size-l is-sizeable" aria-label="Page 3"><span class="base-button__content"><span class="pagination-button__content">3</span></span></a><span class="flex h-10 min-w-10 items-center justify-center px-2 py-2 text-body-l font-semibold text-ui-gray-1" aria-hidden="true">…</span><a href="#" data-href="/vacancies?page=64" class="pagination-button base-button inline-flex appearance-none size-l is-sizeable" aria-label="Page 64"><span class="base-button__content"><span class="pagination-button__content">64</span></span></a></div><div class="flex items-center justify-center"><button type="button" class="-rotate-90 pagination-button base-button inline-flex appearance-none size-l is-sizeable" aria-label="Next page"><span class="base-button__content"><span class="pagination-button__content"><svg class="svg-icon fill-current text-ui-gray-4 icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/arrow.svg" viewBox="0 0 24 24">
+    <path d="M4.3 8.3a1 1 0 011.4 0l6.3 6.29 6.3-6.3a1 1 0 111.4 1.42l-7 7a1 1 0 01-1.4 0l-7-7a1 1 0 010-1.42z"/>
+  </svg></span></span></button></div></nav>
+          </div>
+        </div>
+
+        <aside class="page-layout__sidebar page-layout__sidebar--sticky page-layout__sidebar--filters">
+          <div class="section-group">
+            <!-- L-7: единственный градиент продукта -->
+            <div class="promo-card"><span class="promo-card__art"></span> Поднимите резюме с подпиской</div>
+            <div class="basic-section">
+              <div class="section-group section-group--gap-24">
+                <div>
+                  <div class="base-input-label"><span class="base-input-label__title" style="font:600 16px/24px var(--font-base)">Специализация</span></div>
+                  <span class="text-input"><input class="text-input__input" type="text" placeholder="Выберите специализацию"></span>
+                </div>
+                <div>
+                  <div class="base-input-label"><span class="base-input-label__title" style="font:600 16px/24px var(--font-base)">Квалификация</span></div>
+                  <span class="base-select"><select class="base-select__input"><option>Любая</option><option>Senior</option></select></span>
+                </div>
+                <div>
+                  <div class="base-input-label"><span class="base-input-label__title" style="font:600 16px/24px var(--font-base)">Зарплата</span></div>
+                  <div style="display:flex;gap:8px"><span class="text-input"><input class="text-input__input" type="text" placeholder="От"></span><span class="base-select" style="width:112px;flex:none"><select class="base-select__input"><option>₽</option></select></span></div>
+                  <label class="checkbox__wrapper" style="margin-top:8px"><input type="checkbox"><span class="checkbox__icon-wrapper"><span class="checkbox__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span></span><span class="checkbox__text">Указана</span></label>
+                </div>
+                <div>
+                  <div class="base-input-label"><span class="base-input-label__title" style="font:600 16px/24px var(--font-base)">Тип занятости</span></div>
+                  <span class="base-select"><select class="base-select__input"><option>Любой</option></select></span>
+                  <label class="checkbox__wrapper" style="margin-top:8px"><input type="checkbox" checked><span class="checkbox__icon-wrapper"><span class="checkbox__box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 12.5l5 5L20 6.5"/></svg></span></span><span class="checkbox__text">Можно удалённо</span></label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+      </div></div>
+      <footer class="app-footer"><div class="page-width app-footer__inner"><div class="app-footer__col"><p class="app-footer__title">Хабр Карьера</p><ul class="app-footer__list"><li><a href="#" data-href="/info">О сервисе</a></li><li><a href="#" data-href="/info">Услуги и цены</a></li><li><a href="#" data-href="/info">Журнал</a></li><li><a href="#" data-href="/info">Каталог вакансий</a></li><li><a href="#" data-href="/info">Каталог курсов</a></li><li><a href="#" data-href="/info">Карта сайта</a></li></ul></div><div class="app-footer__col"><p class="app-footer__title">Образование</p><ul class="app-footer__list"><li><a href="#" data-href="/info">Отзывы об онлайн-школах</a></li><li><a href="#" data-href="/info">Рейтинг школ</a></li><li><a href="#" data-href="/info">Промокоды и скидки</a></li></ul></div><div class="app-footer__col"><p class="app-footer__title">Помощь</p><ul class="app-footer__list"><li><a href="#" data-href="/info">Для соискателя</a></li><li><a href="#" data-href="/info">Для работодателя</a></li><li><a href="#" data-href="/info">API сервиса</a></li><li><a href="#" data-href="/info">Служба поддержки</a></li></ul></div><div class="app-footer__col"><p class="app-footer__title">Документы</p><ul class="app-footer__list"><li><a href="#" data-href="/info">Соглашение с пользователем</a></li><li><a href="#" data-href="/info">Правила оказания услуг</a></li><li><a href="#" data-href="/info">Прайс-лист</a></li></ul></div><div class="app-footer__col"><p class="app-footer__title">Следите за нами в соцсетях</p><div class="app-footer__social"><a href="#" data-href="/social" aria-label="twitter"><img class="svg-icon icon-image" width="24" height="24" style="width:24px;height:24px" src="../../ui/assets/icons/single/social-v3.1/twitter.svg" alt=""></a><a href="#" data-href="/social" aria-label="facebook"><img class="svg-icon icon-image" width="24" height="24" style="width:24px;height:24px" src="../../ui/assets/icons/single/social-v3.1/facebook.svg" alt=""></a><a href="#" data-href="/social" aria-label="vk"><img class="svg-icon icon-image" width="24" height="24" style="width:24px;height:24px" src="../../ui/assets/icons/single/social-v3.1/vk.svg" alt=""></a><a href="#" data-href="/social" aria-label="instagram" class="icon-instagram"><img class="svg-icon icon-image" width="24" height="24" style="width:24px;height:24px" src="../../ui/assets/icons/single/social-v3.1/instagram.svg" alt=""></a><a href="#" data-href="/social" aria-label="telegram"><img class="svg-icon icon-image" width="24" height="24" style="width:24px;height:24px" src="../../ui/assets/icons/single/social-v3.1/telegram.svg" alt=""></a><a href="#" data-href="/social" aria-label="telegram-bot"><img class="svg-icon icon-image" width="24" height="24" style="width:24px;height:24px" src="../../ui/assets/icons/single/social-v3.1/telegram-bot.svg" alt=""></a></div></div></div></footer>
+    </div>
+  </div></div>
+  <p class="note"><strong>Заголовок страницы лежит внутри карточки</strong> — вместе с
+     действием, поиском, сортировкой и счётчиком найденного. Это правило <code>L-3</code>,
+     наблюдалось на шести листингах. Самая частая ошибка при воспроизведении Career —
+     вынести H1 наружу, над карточками.</p>
+  <p class="note"><strong>Шаг между карточками — 12,</strong> и он не меняется ни на одном
+     вьюпорте. Карточка при наведении не поднимается, не получает тень и не меняет фон:
+     меняется только цвет заголовка (<code>C-3</code>).</p>
+  <p class="note"><strong>Продвигаемая вакансия</strong> получает рамку <b>2px</b>
+     фирменного цвета компании при том же радиусе 24 (<code>C-4</code>). Это единственный
+     способ выделения в списке — ни тени, ни заливки, ни увеличения.</p>
+  <p class="note"><strong>На 1023 сайдбар фильтров исчезает, а не уезжает вниз.</strong> Доступ
+     к фильтрам остаётся только через кнопку «Фильтры» в карточке-шапке
+     (<code>R-4</code>); саму панель наш макет не показывает — её раскрытое состояние
+     не замерено. В дампе production при ширине документа 375 и 753 все блоки
+     фильтров имеют размер 0×0, а кнопка — 309×40 внутри шапки. Промо-баннер
+     при этом переезжает из сайдбара в главную колонку, сразу под шапку.
+     Прежняя запись «фильтры уезжают вниз» была неверной.</p>
+</section>
+<script src="patterns.js"></script>
+</body>
+</html>

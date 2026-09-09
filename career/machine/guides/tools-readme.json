@@ -1,0 +1,42 @@
+{
+  "id": "guide-tools-readme",
+  "title": "Проверки Career components",
+  "kind": "guide",
+  "category": "tooling",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "published-guide"
+    ],
+    "confidence": "high",
+    "scope": "package"
+  },
+  "purpose": "Адресная машинная копия документа tools/README.md.",
+  "implementation": {
+    "markup": null,
+    "styles": [],
+    "scripts": [],
+    "missingReason": "document-only",
+    "fallback": "Читайте sections выбранного документа."
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "legacy-document",
+      "ref": "archive:career/v1/tools/README.md"
+    }
+  ],
+  "unknowns": [],
+  "sourcePath": "archive:career/v1/tools/README.md",
+  "markdown": "# Проверки Career components\r\n\r\n## Базовая проверка\r\n\r\n```bash\r\nnode career/tools/validate-components.mjs\r\n```\r\n\r\nПроверяет структуру `components/manifest.json`, уникальность имён, допустимый\r\nсловарь состояний, существование спецификаций и showcase anchors. Пробелы в\r\nstate evidence выводятся как warnings, чтобы текущий baseline можно было\r\nулучшать постепенно.\r\n\r\n## Строгий режим\r\n\r\n```bash\r\nnode career/tools/validate-components.mjs --strict\r\n```\r\n\r\nЗавершается с ненулевым кодом и при errors, и при warnings. Текущий baseline\r\nпроходит strict-режим; команда предназначена для CI вместе с `npm test`.\r\n\r\nWarnings нельзя устранять добавлением слов в спецификацию. Они закрываются\r\nодним из трёх способов:\r\n\r\n1. состояние реализовано и показано живым примером;\r\n2. существующее поведение найдено в runtime и корректно задокументировано;\r\n3. состояние помечено `unsupported` с обоснованием и удалено из requiredStates.\r\n\r\n## Иконки витрины\r\n\r\n```bash\r\nnode career/tools/sync-showcase-icons.mjs          # обновить\r\nnode career/tools/sync-showcase-icons.mjs --check  # только проверить\r\n```\r\n\r\n`inline-showcase-icons.mjs` переносит иконку в разметку один раз, после чего\r\nеё содержимое живёт в HTML копией: правка файла в `ui/assets/` до витрины\r\nне доходит. `sync-showcase-icons.mjs` перечитывает каждый\r\n`<svg data-icon-src=\"…\">` и обновляет внутренность, `viewBox` и `fill`.\r\nРежим `--check` ничего не пишет и падает, если копии разошлись, — его место\r\nв CI рядом с `validate-showcase-icons.mjs`.\r\n\r\n## Классы без определения\r\n\r\n```bash\r\nnode career/tools/validate-classes.mjs                   # витрины пакета\r\nnode career/tools/validate-classes.mjs путь/к/фиче.html   # своя разметка\r\n```\r\n\r\n`ui/utilities.css` — не весь Tailwind, а только правила, встретившиеся\r\nв разметке Career. Валидная утилита вроде `gap-5` или `md:flex` в нём\r\nотсутствует и поэтому не применяется — молча, без ошибки в консоли. Проверка\r\nсравнивает классы разметки с тем, что реально объявлено в CSS, и падает,\r\nесли найден класс без правила.\r\n\r\nСвоя разметка сверяется только с `ui/`: если класса там нет, на странице\r\nс одним `career.css` он не сработает.\r\n\r\nБазовая линия известных пробелов — `tools/known-missing-classes.json`,\r\nу каждой записи указана причина. Они выводятся предупреждением и не роняют\r\nпроверку, чтобы не мешать поймать новые.\r\n\r\n## Счётчики в документации\r\n\r\n```bash\r\nnode career/tools/validate-counts.mjs\r\n```\r\n\r\nЧисла — компонентов, спецификаций, переменных, утилит, иконок — записаны\r\nв прозе в десятке мест и правятся руками. После правки пакета они расходятся\r\nмолча, и по устаревшему числу судят о покрытии. Проверка считает реальные\r\nзначения и сверяет их с заявленными; при расхождении печатает, где и на сколько.\r\n\r\n## Машинный слой\r\n\r\n```bash\r\nnode career/tools/build-machine.mjs      # собрать machine/*.json из источников\r\nnode career/tools/validate-machine.mjs   # сверить его с текстом и с CSS\r\n```\r\n\r\n`machine/` собирается **из источников**, а не пишется руками: правка\r\n`machine/*.json` бессмысленна, следующая сборка её сотрёт. То, чего скрипт снять\r\nне может, живёт в `machine/*.overrides.json`.\r\n\r\nВалидатор падает, если `id` разошлись между JSON и `manifest.json`, значение\r\nтокена не совпало с CSS, правило не найдено в markdown, в разметке компонента\r\nесть класс без правила или счётчики в `index.json` разъехались с содержимым.\r\n\r\n## Возраст evidence\r\n\r\n```bash\r\nnode career/tools/check-evidence-age.mjs --max-age=90\r\n```\r\n\r\nСнимки продакшена стареют молча: даты снятия внутри файлов нет. Скрипт печатает\r\nвозраст каждого снимка и его URL. Старше порога — не ошибка, а повод пересверить;\r\nпорядок пересъёмки описан в `docs/guide/coverage.md`.\r\n",
+  "previewMode": "none"
+}

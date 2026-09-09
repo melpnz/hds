@@ -1,0 +1,154 @@
+{
+  "id": "select",
+  "name": "Select",
+  "category": "forms",
+  "kind": "component",
+  "spec": "components\\forms\\select.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "selected",
+    "disabled",
+    "invalid"
+  ],
+  "cssRoots": [
+    "base-select"
+  ],
+  "anchor": "showcase/components.html#fo-select",
+  "markup": {
+    "html": "<div class=\"base-select\">\n  <select name=\"base-select\" class=\"base-select__input\">\n    <option value=\"day\">За последний день</option>\n    <option selected value=\"week\">За неделю</option>\n    <option value=\"month\">За месяц</option>\n  </select>\n</div>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": null,
+      "sourceName": "select"
+    }
+  ],
+  "storybookNames": [
+    "BaseSelect"
+  ],
+  "code": {
+    "component": "BaseSelect",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "select",
+    "name": "Select",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\select.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "selected",
+      "disabled",
+      "invalid"
+    ],
+    "cssRoots": [
+      "base-select"
+    ],
+    "anchor": "showcase/components.html#fo-select",
+    "markup": {
+      "html": "<div class=\"base-select\">\n  <select name=\"base-select\" class=\"base-select__input\">\n    <option value=\"day\">За последний день</option>\n    <option selected value=\"week\">За неделю</option>\n    <option value=\"month\">За месяц</option>\n  </select>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "select"
+      }
+    ],
+    "storybookNames": [
+      "BaseSelect"
+    ],
+    "code": {
+      "component": "BaseSelect",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "Select",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Нативный выпадающий список в оформлении Career. Применяется там, где важна работа со штатным поведением платформы, особенно на мобильных.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "base-select"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "BaseSelect",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "selected",
+      "disabled",
+      "invalid"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fselect.json",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "selected",
+        "disabled",
+        "invalid"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Invalid и focus-visible ring добавлены UI kit contract. Open/closed намеренно"
+  ],
+  "markdown": "# Select · BaseSelect\n\n| | |\n|---|---|\n| **Категория** | Формы |\n| **Корневой класс** | `base-select` |\n| **CSS** | `ui/components/forms.css`, `ui/state-contract.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 2 из 2 |\n\n## Назначение\n\nНативный выпадающий список в оформлении Career. Применяется там, где важна работа со штатным поведением платформы, особенно на мобильных.\n\n## Анатомия\n\nОбёртка `div.base-select` рисует рамку и стрелку, внутри — настоящий `select.base-select__input`.\n\n```\ndiv.base-select\n  select.base-select__input  [name=\"base-select\"]\n    option\n      · «За последний день»\n    option\n      · «За неделю»\n    option\n      · «За месяц»\n```\n\n_Разметка story `form-baseselect--default`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\n| Состояние | Контракт |\n|---|---|\n| `default` | нативный select без state-атрибутов |\n| `hover` | `:hover` |\n| `focus-visible` | `:focus-visible`, border + ring |\n| `selected` | нативный `select.value`; соответствующий option имеет `selected` |\n| `disabled` | нативный `disabled` |\n| `invalid` | `aria-invalid=\"true\"` + error id в `aria-describedby` |\n\n`open`/`closed` не входят в публичный контракт нативного Select: раскрытием\nуправляет платформа, а CSS/JS не получают надёжного состояния popup. Если нужен\nконтролируемый popup, используется CustomSelect.\n\nПодтверждены CSS и разметкой: `.base-select--disabled`, `:disabled`, `:focus`, `:hover`.\n\n```css\n.base-select__input:hover { border-color:var(--color-ui-gray-4) }\n.base-select__input:disabled { background-image:url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23A6BDC9' viewBox='0 0 24 24'%3E%3Cpath d='M4.3 8.3a1 1 0 0 1 1.4 0l6.3 6.3 6.3-6.3a1 1 0 1 1 1.4 1.4l-7 7a1 1 0 0 1-1.4 0l-7-7a1 1 0 0 1 0-1.4'/%3E%3C/svg%3E\");color:var(--color-font-gray);cursor:not-allowed }\n.base-select__input:disabled,.base-select__input:disabled:hover { border-color:var(--color-ui-gray-6) }\n```\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `options` | SelectOption[] | — | — | `object` |\n| `modelValue` | unknown | — | — | `object` |\n| `disabled` | boolean | — | — | `boolean` |\n| `invalid` | boolean | `false` | UI kit contract | `boolean` |\n| `name` | string | — | — | `text` |\n| `update:modelValue` | undefined | — | — | `object` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-font-black` | `var(--color-ui-gray-1)` | из `:root` Career |\n| `--color-font-gray` | `var(--color-ui-gray-2)` | из `:root` Career |\n| `--color-ui-gray-2` | `#55798b` | из `:root` Career |\n| `--color-ui-gray-4` | `#a6bdc9` | из `:root` Career |\n| `--color-ui-gray-5` | `#d4dee2` | из `:root` Career |\n| `--color-ui-gray-6` | `#eaf2f5` | из `:root` Career |\n| `--color-ui-white` | `#fff` | из `:root` Career |\n| `--font-letter-spacing-0` | — | задаётся компонентом или средой, значения в сборке нет |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\nНативному select не нужны `role=\"combobox\"`, `aria-expanded` или ручная keyboard\nnavigation. Он получает label через `for`/`id`; invalid и error связываются\n`aria-invalid` + `aria-describedby`.\n\n## Разметка\n\n```html\n<div class=\"base-select\">\n  <select name=\"base-select\" class=\"base-select__input\">\n    <option value=\"day\">За последний день</option>\n    <option selected value=\"week\">За неделю</option>\n    <option value=\"month\">За месяц</option>\n  </select>\n</div>\n```\n\n## CSS\n\n```css\n.base-select { display:flex;width:100% }\n.base-select--disabled { color:var(--color-font-gray) }\n.base-select__input { -webkit-appearance:none;-moz-appearance:none;appearance:none;background-color:var(--color-ui-white);background-image:url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%2355798B' viewBox='0 0 24 24'%3E%3Cpath d='M4.3 8.3a1 1 0 0 1 1.4 0l6.3 6.3 6.3-6.3a1 1 0 1 1 1.4 1.4l-7 7a1 1 0 0 1-1.4 0l-7-7a1 1 0 0 1 0-1.4'/%3E%3C/svg%3E\");background-position:right 12px top 50%;background-repeat:no-repeat;background-size:24px;border:1px solid var(--color-ui-gray-5);border-radius:12px;color:var(--color-font-black);cursor:pointer;flex:1;font-size:16px;height:40px;letter-spacing:var(--font-letter-spacing-0,0);line-height:24px;max-width:100%;min-width:24px;overflow:hidden;padding:8px 44px 8px 16px;width:100% }\n.base-select__input:hover { border-color:var(--color-ui-gray-4) }\n.base-select__input:focus { border-color:var(--color-ui-gray-2);outline:none }\n.base-select__input:disabled { background-image:url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23A6BDC9' viewBox='0 0 24 24'%3E%3Cpath d='M4.3 8.3a1 1 0 0 1 1.4 0l6.3 6.3 6.3-6.3a1 1 0 1 1 1.4 1.4l-7 7a1 1 0 0 1-1.4 0l-7-7a1 1 0 0 1 0-1.4'/%3E%3C/svg%3E\");color:var(--color-font-gray);cursor:not-allowed }\n.base-select__input:disabled,.base-select__input:disabled:hover { border-color:var(--color-ui-gray-6) }\n```\n\n## Ограничения\n\n- Invalid и focus-visible ring добавлены UI kit contract. Open/closed намеренно\n  не моделируются: это внутреннее состояние нативного control.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/common/base-select.stories.ts`\n- Storybook `career-web`: `form-baseselect--default`, `form-baseselect--disabled`\n- CSS: секция `base-select` в `ui/components/forms.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/forms/select.md",
+  "legacyDocument": "archive:career/v1/components/forms/select.md"
+}

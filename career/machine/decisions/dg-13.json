@@ -1,0 +1,50 @@
+{
+  "id": "DG-13",
+  "kind": "decision-guide",
+  "name": "Ошибка поля",
+  "observed": "Невалидное поле получает красную рамку через модификатор обёртки `text-input--invalid`; имени `--error` в реализации нет. Текст ошибки принадлежит метке-обёртке `base-input-label`, и её prop `errorsPosition` имеет значение по умолчанию **`above`** — то есть ошибка по умолчанию стоит **над** полем, а не под ним.",
+  "when": "Новая форма с валидацией.",
+  "prefer": "Красную рамку плюс текст над полем. Позиция необычная, и воспроизводить её стоит сознательно — иначе форма будет выглядеть не по-карьерному при формально верных компонентах.",
+  "avoid": "Сообщения под полем без причины. Собственного класса `--error`.",
+  "gap": "Момент валидации, текст ошибки, поведение формы после отправки — неизвестны целиком. См. §15.",
+  "confidence": "MEDIUM",
+  "humanDoc": "docs/guide/decisions.md#dg-13",
+  "title": "DG-13 · Ошибка поля",
+  "category": "decision-guides",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "decision-guide"
+    ],
+    "confidence": "medium",
+    "scope": "public-guest"
+  },
+  "purpose": "Красную рамку плюс текст над полем. Позиция необычная, и воспроизводить её стоит сознательно — иначе форма будет выглядеть не по-карьерному при формально верных компонентах.",
+  "implementation": {
+    "markup": null,
+    "styles": [],
+    "scripts": [],
+    "missingReason": "not-a-visual-entity",
+    "fallback": "Применить правило к выбранному паттерну или компоненту."
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "decision-guide",
+      "ref": "docs/guide/decisions.md#dg-13"
+    }
+  ],
+  "unknowns": [
+    "Момент валидации, текст ошибки, поведение формы после отправки — неизвестны целиком. См. §15."
+  ],
+  "previewMode": "none"
+}

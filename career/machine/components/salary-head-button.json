@@ -1,0 +1,142 @@
+{
+  "id": "salary-head-button",
+  "name": "SalaryHeadButton",
+  "category": "actions",
+  "kind": "component",
+  "spec": "components\\actions\\salary-head-button.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading"
+  ],
+  "cssRoots": [
+    "salary-head-button",
+    "base-button"
+  ],
+  "anchor": "showcase/components.html#a-special",
+  "markup": {
+    "html": "<div class=\"salary-head-button\">\n  <a href=\"salaries/reports\" rel=\"noopener noreferrer\" class=\"salary-head-button__companies-link\">Для компаний</a>\n  <button class=\"salary-head-button__update-btn base-button inline-flex appearance-main size-l is-sizeable salary-head-button__update-btn\" type=\"button\" target=\"_self\">\n    <span class=\"base-button__inner\">\n      <span class=\"base-button__content\">Обновить мои данные</span>\n    </span>\n  </button>\n</div>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [],
+  "storybookNames": [
+    "SalaryHeadButton"
+  ],
+  "code": {
+    "component": "SalaryHeadButton",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "salary-head-button",
+    "name": "SalaryHeadButton",
+    "category": "actions",
+    "kind": "component",
+    "spec": "components\\actions\\salary-head-button.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "disabled",
+      "loading"
+    ],
+    "cssRoots": [
+      "salary-head-button",
+      "base-button"
+    ],
+    "anchor": "showcase/components.html#a-special",
+    "markup": {
+      "html": "<div class=\"salary-head-button\">\n  <a href=\"salaries/reports\" rel=\"noopener noreferrer\" class=\"salary-head-button__companies-link\">Для компаний</a>\n  <button class=\"salary-head-button__update-btn base-button inline-flex appearance-main size-l is-sizeable salary-head-button__update-btn\" type=\"button\" target=\"_self\">\n    <span class=\"base-button__inner\">\n      <span class=\"base-button__content\">Обновить мои данные</span>\n    </span>\n  </button>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "SalaryHeadButton"
+    ],
+    "code": {
+      "component": "SalaryHeadButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "SalaryHeadButton",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Составная кнопка в шапке раздела зарплат: показывает текущее значение и даёт добавить или обновить данные.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "salary-head-button",
+      "base-button"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "SalaryHeadButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "disabled",
+      "loading"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fsalary-head-button.json",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "loading"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Не выявлено: разметка, CSS и props извлечены полностью."
+  ],
+  "markdown": "# SalaryHeadButton · Кнопка зарплаты\n\n| | |\n|---|---|\n| **Категория** | Действия |\n| **Корневой класс** | `salary-head-button` |\n| **CSS** | `ui/components/buttons.css`, `ui/state-contract.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 1 из 1 |\n\n## Назначение\n\nСоставная кнопка в шапке раздела зарплат: показывает текущее значение и даёт добавить или обновить данные.\n\n## Анатомия\n\n```\ndiv.salary-head-button\n  a.salary-head-button__companies-link  [href=\"salaries/reports\"]\n    · «Для компаний»\n  button.salary-head-button__update-btn.base-button.inline-flex.appearance-main.size-l.is-sizeable.salary-head-button__update-btn  [type=\"button\" target=\"_self\"]\n    span.base-button__inner\n      span.base-button__content\n        · «Обновить мои данные»\n```\n\n_Разметка story `common-buttons-salaryheadbutton--salary-head-button-story`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\nSalaryHeadButton — композиция ссылки и Button, а не новый button primitive.\nСостояния `default`, `hover`, `focus-visible`, `pressed`, `disabled` и `loading`\nпринадлежат вложенному Button и наследуют его контракт. Loading задаётся как\n`.is-loading` + `aria-busy=\"true\"`; disabled — нативным `disabled`.\n\nСсылка `salary-head-button__companies-link` поддерживает `hover` и\n`focus-visible`, но не получает искусственные disabled/loading состояния. Если\nпереход недоступен, ссылку следует не рендерить. Корневой контейнер собственных\nинтерактивных состояний не имеет.\n\nПодтверждены CSS и разметкой: `.is-sizeable`.\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `hasAnySalary` | boolean | — | — | `boolean` |\n| `showAdd` | boolean | — | — | `boolean` |\n| `hasServices` | boolean | — | — | `boolean` |\n\n## Токены\n\n_Компонент не обращается к переменным напрямую._\n\n## Responsive\n\nКомпонент реагирует на: `(max-width:767px)`.\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## Разметка\n\n```html\n<div class=\"salary-head-button\">\n  <a href=\"salaries/reports\" rel=\"noopener noreferrer\" class=\"salary-head-button__companies-link\">Для компаний</a>\n  <button class=\"salary-head-button__update-btn base-button inline-flex appearance-main size-l is-sizeable salary-head-button__update-btn\" type=\"button\" target=\"_self\">\n    <span class=\"base-button__inner\">\n      <span class=\"base-button__content\">Обновить мои данные</span>\n    </span>\n  </button>\n</div>\n```\n\n## CSS\n\n```css\n.salary-head-button__update-btn { margin-left:16px }\n.salary-head-button__companies-link { font-weight:600 }\n@media (max-width:767px) {\n  .salary-head-button__update-btn { height:40px;margin:0;width:100% }\n  .salary-head-button__companies-link { display:block;margin-bottom:16px }\n  .salary-head-button { width:100% }\n}\n```\n\n## Ограничения\n\n- Не выявлено: разметка, CSS и props извлечены полностью.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/buttons/salary-head-button/salary-head-button.stories.ts`\n- Storybook `career-web`: `common-buttons-salaryheadbutton--salary-head-button-story`\n- CSS: секция `salary-head-button` в `ui/components/buttons.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/actions/salary-head-button.md",
+  "legacyDocument": "archive:career/v1/components/actions/salary-head-button.md"
+}

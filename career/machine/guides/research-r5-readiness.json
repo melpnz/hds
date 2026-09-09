@@ -1,0 +1,42 @@
+{
+  "id": "guide-research-r5-readiness",
+  "title": "R5 — готовность entity-модулей",
+  "kind": "guide",
+  "category": "research",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "published-guide"
+    ],
+    "confidence": "high",
+    "scope": "package"
+  },
+  "purpose": "Адресная машинная копия документа research/r5-readiness.md.",
+  "implementation": {
+    "markup": null,
+    "styles": [],
+    "scripts": [],
+    "missingReason": "document-only",
+    "fallback": "Читайте sections выбранного документа."
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "legacy-document",
+      "ref": "archive:career/v1/research/r5-readiness.md"
+    }
+  ],
+  "unknowns": [],
+  "sourcePath": "archive:career/v1/research/r5-readiness.md",
+  "markdown": "# R5 — готовность entity-модулей\r\n\r\nДата проверки: **7 сентября 2026**. Цель — выбрать первую entity-карточку без\r\nдостраивания закрытых или неподтверждённых продуктовых сценариев.\r\n\r\n## Решение\r\n\r\nПервой задачей R5 была **VacancyCard**. Она нормализована как\r\nканоническую карточку листинга: состав, адаптив, неполные данные и доступные\r\nдействия имеют evidence в локальном пакете и на публичной странице.\r\n\r\n`QuickApply` не входит в эту задачу: публичное действие «Откликнуться» видно,\r\nно форма и её состояния требуют авторизации и не исследованы.\r\n\r\n## Evidence на 7 сентября 2026\r\n\r\n| Кандидат | Что подтверждено | Что мешает закрыть |\r\n|---|---|---|\r\n| VacancyCard | Локальная спецификация, 12/12 Storybook snapshots, CSS, витрина, responsive правило до 1023 px; публичный листинг показывает компанию, название, зарплату/её отсутствие, grade, remote/location, skills и действие «Откликнуться». | Нужны отдельные решения для action «Откликнуться» и saved/applied — это бизнес-сценарии. |\r\n| ResumeCard | Публичный листинг показывает имя, дату, специализацию + grade, зарплатное ожидание/статус и skills. | 0/3 Storybook snapshots; нет снятой DOM-разметки, controls и устойчивого CSS root. Нельзя честно заявить API, адаптив или интерактивные состояния. |\r\n| CompanyCard | Есть public listing и evidence в пакете. | Нет отдельной канонической спецификации/manifest entry; нужно сначала отделить её от CompanyRatingCard. |\r\n| TestCard | Есть частичное evidence. | 7/59 snapshots; сценарии owner/guest/payment требуют отдельной business-state модели. |\r\n\r\n## Граница первой задачи\r\n\r\n`VacancyCard` должна принимать данные, а не исполнять продуктовые действия:\r\n\r\n```text\r\ncompany, title, publishedAt, salary?, grade?, workFormat?, locations[], skills[],\r\nrating?, accreditation?, saved?\r\n```\r\n\r\n`saved` — допустимое presentation state только для кнопки избранного. `applied`,\r\n`hidden`, `promoted`, результат отклика, loading/error/success отклика и авторизация\r\nостаются за пределами карточки до R6 или отдельного domain-contract.\r\n\r\n## Следующее изменение\r\n\r\n1. ~~Разделить старую Storybook-карточку и карточку листинга в одной спецификации.~~\r\n2. ~~Внести `VacancyCard` в manifest как entity-модуль с data variants, а не с\r\n   выдуманными UI states.~~\r\n3. ~~Добавить живой листинговый пример и browser tests для desktop/mobile и\r\n   отсутствующих salary, rating, skills, company logo.~~\r\n4. Зафиксировать отдельный `QuickApply` backlog с зависимостью от evidence\r\n   авторизованного сценария.\r\n\r\n## Источники\r\n\r\n- Локальная [спецификация VacancyCard](../components/cards/vacancy-card.md),\r\n  [страница-композиция](../showcase/pages.html) и\r\n  [`list-vacancies` production evidence](../evidence/source/production/list-vacancies.json).\r\n- Локальная [спецификация ResumeCard](../components/cards/resume-card.md) и\r\n  [`list-resumes` production evidence](../evidence/source/production/list-resumes.json).\r\n- Публичные страницы: <https://career.habr.com/vacancies>,\r\n  <https://career.habr.com/resumes>, <https://career.habr.com/companies>.\r\n",
+  "previewMode": "none"
+}

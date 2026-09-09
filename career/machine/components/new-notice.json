@@ -1,0 +1,69 @@
+{
+  "id": "new-notice",
+  "title": "NewNotice · Всплывающая подсказка",
+  "kind": "module",
+  "category": "banners",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "published-spec",
+      "storybook-snapshot"
+    ],
+    "confidence": "medium",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Подсказка о новой возможности, появляющаяся по условию: через время, после нескольких кликов, при переходе по ссылке. Показ и закрытие учитываются на сервере.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "markup": {
+    "html": "<div class=\"min-h-[320px] bg-[linear-gradient(180deg,#f5f7fb_0%,#ffffff_100%)] p-6\">\n  <div class=\"space-y-4\">\n    <div class=\"flex flex-wrap gap-3\">\n      <div class=\"rounded-md bg-ui-white px-3 py-2 text-body-s\">\n        Отправленные действия:\n        <span data-testid=\"tracked-actions\">view</span>\n      </div>\n      <div class=\"rounded-md bg-ui-white px-3 py-2 text-body-s\">\n        Закрытий:\n        <span data-testid=\"close-count\">0</span>\n      </div>\n    </div>\n    <div class=\"fixed bottom-4 left-1/2 z-50 w-[702px] -translate-x-1/2 animate-popUpNotice text-body-l tablet:w-full\">\n      <div class=\"hidden\"></div>\n      <div class=\"mx-3 grid grid-cols-[24px_auto_24px] items-start gap-2 rounded-lg border border-solid border-ui-green bg-ui-green-overlay py-3 pl-4 pr-3 text-font-black shadow-float-notice\">\n        <div class=\"text-center\">🎉</div>\n        <section>\n          <h3 class=\"m-0 text-body-l font-semibold\">Новая функция в профиле</h3>\n          <div class=\"my-2\">\n            Открыли быстрый просмотр откликов.\n            <a href=\"#guide\">Подробнее о сценарии</a>\n            .\n          </div>\n        </section>\n        <button aria-label=\"Закрыть уведомление\" class=\"flex cursor-pointer items-center justify-center border-none bg-transparent p-0\">\n          <svg class=\"svg-icon h-6 w-6 text-ui-green\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n            <use xlink:href=\"../../ui/assets/icons/sprite.svg#cross\"/>\n          </svg>\n        </button>\n      </div>\n    </div>\n  </div>\n</div>"
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка из спецификации",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fnew-notice.json",
+      "covers": [
+        "published-markup"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          375,
+          768,
+          1100
+        ],
+        "height": 560
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Собственного CSS нет: компонент собран утилитами."
+  ],
+  "evidence": [
+    {
+      "type": "published-spec",
+      "ref": "archive:career/v1/components/banners/new-notice.md"
+    }
+  ],
+  "markdown": "# NewNotice · Всплывающая подсказка\n\n| | |\n|---|---|\n| **Категория** | Баннеры |\n| **Корневой класс** | `min-h-[320px]` |\n| **CSS** | _только утилиты_ |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 3 из 3 |\n\n## Назначение\n\nПодсказка о новой возможности, появляющаяся по условию: через время, после нескольких кликов, при переходе по ссылке. Показ и закрытие учитываются на сервере.\n\n## Анатомия\n\n```\ndiv.min-h-[320px].bg-[linear-gradient(180deg,#f5f7fb_0%,#ffffff_100%)].p-6\n  div.space-y-4\n    div.flex.flex-wrap.gap-3\n      div.rounded-md.bg-ui-white.px-3.py-2.text-body-s\n        · «Отправленные действия:»\n        span\n          · «view»\n      div.rounded-md.bg-ui-white.px-3.py-2.text-body-s\n        · «Закрытий:»\n        span\n          · «0»\n    div.fixed.bottom-4.left-1/2.z-50.w-[702px].-translate-x-1/2.animate-popUpNotice.text-body-l.tablet:w-full\n      div.hidden\n      div.mx-3.grid.grid-cols-[24px_auto_24px].items-start.gap-2.rounded-lg.border.border-solid.border-ui-green.bg-ui-green-overlay.py-3.pl-4.pr-3.text-font-black.shadow-float-notice\n        div.text-center\n          · «🎉»\n        section\n          h3.m-0.text-body-l.font-semibold\n            · «Новая функция в профиле»\n          div.my-2\n            · «Открыли быстрый просмотр откликов.»\n            a  [href=\"#guide\"]\n              · «Подробнее о сценарии»\n            · «.»\n        button.flex.cursor-pointer.items-center.justify-center.border-none.bg-transparent.p-0  [aria-label=\"Закрыть уведомление\"]\n          svg.svg-icon.h-6.w-6.text-ui-green\n            use  [xlink:href=\"/career-web/images/sprites/sprite.svg?v=5.63.0#cross\"]\n```\n\n_Разметка story `banners-newnotice--timed`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\n_В извлечённом CSS и разметке состояний не объявлено. Не достраиваем._\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `notice` | BannerNew | — | — | — |\n| `getNoticesApi` | NewNoticeApiFactory | — | — | — |\n| `close` | other | — | — | — |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-font-black` | `var(--color-ui-gray-1)` | из `:root` Career |\n| `--color-ui-green` | `#3dc24a` | из `:root` Career |\n| `--color-ui-green-overlay` | `#ecf8ef` | из `:root` Career |\n| `--color-ui-white` | `#fff` | из `:root` Career |\n\n## Иконки\n\n| Спрайт | Символ | Локальный файл |\n|---|---|---|\n| `sprite.svg` | `#cross` | `ui/assets/icons/sprite.svg` |\n\n## Responsive\n\nКомпонент реагирует на: `(max-width:1023px)`.\n\n## Доступность\n\nАтрибуты, встречающиеся в реальной разметке: `aria-label=\"Закрыть уведомление\"`.\n\n## Поведение\n\n- Три story — это три правила показа, а не три вида оформления.\n\n## Разметка\n\n```html\n<div class=\"min-h-[320px] bg-[linear-gradient(180deg,#f5f7fb_0%,#ffffff_100%)] p-6\">\n  <div class=\"space-y-4\">\n    <div class=\"flex flex-wrap gap-3\">\n      <div class=\"rounded-md bg-ui-white px-3 py-2 text-body-s\">\n        Отправленные действия:\n        <span data-testid=\"tracked-actions\">view</span>\n      </div>\n      <div class=\"rounded-md bg-ui-white px-3 py-2 text-body-s\">\n        Закрытий:\n        <span data-testid=\"close-count\">0</span>\n      </div>\n    </div>\n    <div class=\"fixed bottom-4 left-1/2 z-50 w-[702px] -translate-x-1/2 animate-popUpNotice text-body-l tablet:w-full\">\n      <div class=\"hidden\"></div>\n      <div class=\"mx-3 grid grid-cols-[24px_auto_24px] items-start gap-2 rounded-lg border border-solid border-ui-green bg-ui-green-overlay py-3 pl-4 pr-3 text-font-black shadow-float-notice\">\n        <div class=\"text-center\">🎉</div>\n        <section>\n          <h3 class=\"m-0 text-body-l font-semibold\">Новая функция в профиле</h3>\n          <div class=\"my-2\">\n            Открыли быстрый просмотр откликов.\n            <a href=\"#guide\">Подробнее о сценарии</a>\n            .\n          </div>\n        </section>\n        <button aria-label=\"Закрыть уведомление\" class=\"flex cursor-pointer items-center justify-center border-none bg-transparent p-0\">\n          <svg class=\"svg-icon h-6 w-6 text-ui-green\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n            <use xlink:href=\"../../ui/assets/icons/sprite.svg#cross\"/>\n          </svg>\n        </button>\n      </div>\n    </div>\n  </div>\n</div>\n```\n\n_Пути к спрайтам и изображениям в этом блоке — локальные, от папки спецификации. В блоке «Анатомия» выше сохранён продовый путь: это протокол снятого DOM, а не образец для вёрстки._\n\n## CSS\n\n_Собственного CSS нет: компонент собран утилитами Tailwind прямо в разметке. Все нужные правила — в `ui/utilities.css`._\n\n## Ограничения\n\n- Собственного CSS нет: компонент собран утилитами.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/banners/new-notice/new-notice.stories.ts`\n- Storybook `career-web`: `banners-newnotice--timed`, `banners-newnotice--click-trigger`, `banners-newnotice--link-and-close`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/banners/new-notice.md",
+  "legacyDocument": "archive:career/v1/components/banners/new-notice.md",
+  "legacyUnindexed": true
+}

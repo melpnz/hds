@@ -1,0 +1,154 @@
+{
+  "id": "switch",
+  "name": "Switch",
+  "category": "forms",
+  "kind": "component",
+  "spec": "components\\forms\\switch.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "checked",
+    "disabled",
+    "loading"
+  ],
+  "cssRoots": [
+    "switch"
+  ],
+  "anchor": "showcase/components.html#fo-choice",
+  "markup": {
+    "html": "<label class=\"switch\">\n  <span class=\"switch-field\">\n    <input type=\"checkbox\" true-value=\"true\" false-value=\"false\" name=\"base-switch-story\" class=\"switch-input visually-hidden\">\n    <span class=\"switch-control\">\n      <span class=\"switch-track\"></span>\n      <span class=\"switch-thumb\">\n        <span class=\"switch-dot\"></span>\n      </span>\n    </span>\n  </span>\n  <span class=\"switch-label\">Text</span>\n</label>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": "693:1718",
+      "sourceName": "controls / switch"
+    }
+  ],
+  "storybookNames": [
+    "BaseSwitch"
+  ],
+  "code": {
+    "component": "BaseSwitch",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "switch",
+    "name": "Switch",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\switch.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "checked",
+      "disabled",
+      "loading"
+    ],
+    "cssRoots": [
+      "switch"
+    ],
+    "anchor": "showcase/components.html#fo-choice",
+    "markup": {
+      "html": "<label class=\"switch\">\n  <span class=\"switch-field\">\n    <input type=\"checkbox\" true-value=\"true\" false-value=\"false\" name=\"base-switch-story\" class=\"switch-input visually-hidden\">\n    <span class=\"switch-control\">\n      <span class=\"switch-track\"></span>\n      <span class=\"switch-thumb\">\n        <span class=\"switch-dot\"></span>\n      </span>\n    </span>\n  </span>\n  <span class=\"switch-label\">Text</span>\n</label>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "693:1718",
+        "sourceName": "controls / switch"
+      }
+    ],
+    "storybookNames": [
+      "BaseSwitch"
+    ],
+    "code": {
+      "component": "BaseSwitch",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "Switch",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Тумблер для настроек, применяющихся сразу, без кнопки сохранения: видимость профиля, подписки, уведомления.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "switch"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "BaseSwitch",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "checked",
+      "disabled",
+      "loading"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fswitch.json",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "checked",
+        "disabled",
+        "loading"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Production Vue синхронизирует .is-checked/.is-disabled с input. Прямая"
+  ],
+  "markdown": "# Switch · BaseSwitch\r\n\r\n| | |\r\n|---|---|\r\n| **Категория** | Формы |\r\n| **Корневой класс** | `switch` |\r\n| **CSS** | `ui/components/forms.css`, `ui/state-contract.css` |\r\n| **Живая реализация** | `showcase/components.html` |\r\n| **Snapshot Storybook** | 1 из 1 |\r\n\r\n## Назначение\r\n\r\nТумблер для настроек, применяющихся сразу, без кнопки сохранения: видимость профиля, подписки, уведомления.\r\n\r\n## Анатомия\r\n\r\nВнутри три вложенных узла: `switch-track` — дорожка, `switch-thumb` — бегунок, `switch-dot` — точка внутри бегунка, которая и показывает загрузку.\r\n\r\n```\r\nlabel.switch\r\n  span.switch-field\r\n    input.switch-input.visually-hidden  [type=\"checkbox\" name=\"base-switch-story\"]\r\n    span.switch-control\r\n      span.switch-track\r\n      span.switch-thumb\r\n        span.switch-dot\r\n  span.switch-label\r\n    · «Text»\r\n```\r\n\r\n_Разметка story `form-baseswitch--default`, снятая из DOM. Vue-скоуп `data-v-*` снят._\r\n\r\n## Состояния\r\n\r\n| Состояние | Канонический контракт | Совместимость |\r\n|---|---|---|\r\n| `default` | нативный checkbox без `checked` | — |\r\n| `hover` | `.switch:hover`, только если input доступен | production CSS |\r\n| `focus-visible` | `input:focus-visible`; ring рисуется на `.switch-control` | production CSS + state contract |\r\n| `checked` | нативный `input.checked = true` | `.switch.is-checked` |\r\n| `disabled` | нативный `disabled` | `.switch.is-disabled` |\r\n| `loading` | `.switch.is-loading` + `aria-busy=\"true\"`; input disabled | `.switch-loading` branch |\r\n\r\n`is-checked` и `is-disabled` остаются aliases существующей Vue-реализации.\r\nНовая разметка может получать визуальное состояние напрямую из нативного input;\r\nоно описано в `ui/state-contract.css`.\r\n\r\nПодтверждены CSS и разметкой: `.has-before`, `.is-checked`, `.is-disabled`, `:focus`, `:hover`, `:not`.\r\n\r\n```css\r\n.switch:not(.is-disabled):hover .switch-track { border-color:var(--color-ui-gray-4) }\r\n.switch.is-checked:not(.is-disabled):hover .switch-track { opacity:.8 }\r\n```\r\n\r\n## Слоты\r\n\r\n- `before`\r\n- `default`\r\n\r\n## Props\r\n\r\n| Prop | Тип | По умолчанию | Значения | Control |\r\n|---|---|---|---|---|\r\n| `modelValue` | boolean \\| null \\| string | — | — | `boolean` |\r\n| `name` | string | — | — | `text` |\r\n| `disabled` | boolean | — | — | `boolean` |\r\n| `isLoading` | boolean | — | — | `boolean` |\r\n| `trueValue` | boolean \\| null \\| string | `true` | — | `object` |\r\n| `falseValue` | boolean \\| null | `false` | — | `object` |\r\n| `update:modelValue` | union | — | — | `object` |\r\n\r\n## Токены\r\n\r\n| Переменная | Значение | Статус |\r\n|---|---|---|\r\n| `--color-font-black` | `var(--color-ui-gray-1)` | из `:root` Career |\r\n| `--color-font-gray` | `var(--color-ui-gray-2)` | из `:root` Career |\r\n| `--color-ui-gray-2` | `#55798b` | из `:root` Career |\r\n| `--color-ui-gray-2-60` | `color-mix(in srgb,var(--color-ui-gray-2) 60%,transparent)` | из `:root` Career |\r\n| `--color-ui-gray-4` | `#a6bdc9` | из `:root` Career |\r\n| `--color-ui-gray-5` | `#d4dee2` | из `:root` Career |\r\n| `--color-ui-gray-6` | `#eaf2f5` | из `:root` Career |\r\n| `--color-ui-primary` | `#8164f7` | из `:root` Career |\r\n| `--color-ui-primary-60` | `color-mix(in srgb,var(--color-ui-primary) 60%,transparent)` | из `:root` Career |\r\n| `--color-ui-white` | `#fff` | из `:root` Career |\r\n\r\n## Responsive\r\n\r\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\r\n\r\n## Доступность\r\n\r\nSwitch реализуется нативным `input[type=\"checkbox\"]` с видимой подписью внутри\r\n`label`; отдельные `role=\"switch\"` и `aria-checked` не обязательны. Если продукт\r\nрешает озвучивать именно «переключатель», допустимо добавить `role=\"switch\"` на\r\ninput — checked по-прежнему остаётся нативным источником истины.\r\n\r\n## Поведение\r\n\r\n- Вращение spinner задаётся в `ui/state-contract.css` и требует двух оговорок,\r\n  обе — из-за того, что `.switch-spinner` центрируется через `transform`\r\n  (`top:50%` плюс Tailwind `--tw-translate-y:-50%`). Первая: анимация задаёт\r\n  свой `transform` и это центрирование затирает, поэтому оно перенесено\r\n  в отдельное свойство `translate`. Вторая: кейфрейм обязан задавать оба конца\r\n  одной функцией (`from{rotate(0turn)} to{rotate(1turn)}`) — с одним только\r\n  `to` начальным значением становится составной `transform` элемента, списки\r\n  функций не совпадают, браузер переходит на интерполяцию матриц, а\r\n  `rotate(1turn)` как матрица равна `rotate(0)`, и вращения не происходит вовсе.\r\n- `isLoading` заменяет control на spinner, ставит `aria-busy=\"true\"` и блокирует\r\n  input до завершения операции. Checked-значение при этом не сбрасывается.\r\n- Switch применяется для настройки с немедленным эффектом. Если изменение\r\n  требует отдельного Submit, нужен Checkbox, а не Switch.\r\n\r\n## Разметка\r\n\r\n```html\r\n<label class=\"switch\">\r\n  <span class=\"switch-field\">\r\n    <input type=\"checkbox\" true-value=\"true\" false-value=\"false\" name=\"base-switch-story\" class=\"switch-input visually-hidden\">\r\n    <span class=\"switch-control\">\r\n      <span class=\"switch-track\"></span>\r\n      <span class=\"switch-thumb\">\r\n        <span class=\"switch-dot\"></span>\r\n      </span>\r\n    </span>\r\n  </span>\r\n  <span class=\"switch-label\">Text</span>\r\n</label>\r\n```\r\n\r\n## CSS\r\n\r\n```css\r\n.switch { align-items:flex-start;cursor:pointer;display:grid;gap:.5rem;grid-template-columns:40px 1fr;max-width:100% }\r\n.switch.has-before { display:flex }\r\n.switch.is-disabled { cursor:default }\r\n.switch-label { color:var(--color-font-black);font-size:16px;line-height:24px;transition-duration:.15s;transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1);-webkit-user-select:none;-moz-user-select:none;user-select:none }\r\n.switch.is-disabled .switch-label { color:var(--color-font-gray) }\r\n.switch-loading { align-items:center;color:var(--color-ui-gray-2);display:flex;height:1.5rem;justify-content:center;position:relative;width:2.5rem }\r\n.switch-loading-ghost { height:1.5rem;opacity:0;width:2.5rem }\r\n.switch-spinner { left:.5rem;position:absolute;top:50%;--tw-translate-y:-50%;transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y)) }\r\n.switch-field { align-items:center;display:flex;height:1.5rem;justify-content:center;width:2.5rem }\r\n.switch-control { border-radius:9999px;height:1.5rem;position:relative;width:2.5rem }\r\n.switch-track { background-color:var(--color-ui-white);border-color:var(--color-ui-gray-5);border-radius:9999px;border-width:1px;height:1.25rem;left:.125rem;position:absolute;top:.125rem;transition-duration:.15s;transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);width:2.25rem }\r\n.switch-thumb { height:1.5rem;left:0;top:0;transition-property:transform;transition-timing-function:cubic-bezier(.4,0,.2,1);width:1.5rem }\r\n.switch-dot,.switch-thumb { border-radius:9999px;position:absolute;transition-duration:.15s }\r\n.switch-dot { height:.75rem;left:50%;top:50%;width:.75rem;--tw-translate-x:-50%;--tw-translate-y:-50%;background-color:var(--color-ui-gray-2);transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));transition-property:color,background-color,border-color,text-decoration-color,fill,stroke;transition-timing-function:cubic-bezier(.4,0,.2,1) }\r\n.switch:not(.is-disabled):hover .switch-track { border-color:var(--color-ui-gray-4) }\r\n.switch.is-checked .switch-track { background-color:var(--color-ui-primary);border-color:transparent }\r\n.switch.is-checked:not(.is-disabled):hover .switch-track { opacity:.8 }\r\n.switch.is-checked .switch-thumb { transform:translate(16px) }\r\n.switch.is-checked .switch-dot,.switch.is-disabled .switch-track { background-color:var(--color-ui-white) }\r\n.switch.is-disabled .switch-track { border-color:var(--color-ui-gray-6) }\r\n.switch.is-disabled .switch-dot { background-color:var(--color-ui-gray-4) }\r\n.switch.is-disabled.is-checked .switch-track { background-color:var(--color-ui-gray-5);border-color:transparent }\r\n.switch.is-disabled.is-checked .switch-dot { background-color:var(--color-ui-white) }\r\n.switch-field:focus-within .switch-control { --tw-shadow:0 0 0 2px var(--color-ui-gray-2-60);--tw-shadow-colored:0 0 0 2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow) }\r\n.switch.is-checked .switch-field:focus-within .switch-control { --tw-shadow:0 0 0 2px var(--color-ui-primary-60);--tw-shadow-colored:0 0 0 2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow) }\r\n```\r\n\r\n## Ограничения\r\n\r\n- Production Vue синхронизирует `.is-checked`/`.is-disabled` с input. Прямая\r\n  связь через `:has(input:checked)` и подавление pointer-only focus ring —\r\n  нормативные дополнения UI kit.\r\n\r\n## Источники\r\n\r\n- Файлы в репозитории `career-web`: `./src/components/form/base-switch.stories.ts`\r\n- Storybook `career-web`: `form-baseswitch--default`\r\n- CSS: секция `base-switch` в `ui/components/forms.css`\r\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\r\n",
+  "sourcePath": "archive:career/v1/components/forms/switch.md",
+  "legacyDocument": "archive:career/v1/components/forms/switch.md"
+}

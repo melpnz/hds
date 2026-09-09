@@ -1,0 +1,154 @@
+{
+  "id": "pagination-button",
+  "name": "PaginationButton",
+  "category": "actions",
+  "kind": "component",
+  "spec": "components\\actions\\pagination-button.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "current",
+    "disabled"
+  ],
+  "cssRoots": [
+    "pagination-button"
+  ],
+  "anchor": "showcase/components.html#a-round",
+  "markup": {
+    "html": "<button class=\"pagination-button base-button inline-flex appearance-none size-l pagination-button\" type=\"button\" target=\"_self\">\n  <span class=\"base-button__content\">\n    <span class=\"pagination-button__content\">00</span>\n  </span>\n</button>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": "3926:4579",
+      "sourceName": "button / L / pagination"
+    }
+  ],
+  "storybookNames": [
+    "BasePaginationButton"
+  ],
+  "code": {
+    "component": "BasePaginationButton",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "pagination-button",
+    "name": "PaginationButton",
+    "category": "actions",
+    "kind": "component",
+    "spec": "components\\actions\\pagination-button.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "current",
+      "disabled"
+    ],
+    "cssRoots": [
+      "pagination-button"
+    ],
+    "anchor": "showcase/components.html#a-round",
+    "markup": {
+      "html": "<button class=\"pagination-button base-button inline-flex appearance-none size-l pagination-button\" type=\"button\" target=\"_self\">\n  <span class=\"base-button__content\">\n    <span class=\"pagination-button__content\">00</span>\n  </span>\n</button>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "3926:4579",
+        "sourceName": "button / L / pagination"
+      }
+    ],
+    "storybookNames": [
+      "BasePaginationButton"
+    ],
+    "code": {
+      "component": "BasePaginationButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "PaginationButton",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Отдельная кнопка страницы. Строительный блок компонента Pagination, но применяется и самостоятельно — например, «показать ещё».",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "pagination-button"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "BasePaginationButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "current",
+      "disabled"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fpagination-button.json",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "current",
+        "disabled"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Не выявлено: разметка, CSS и props извлечены полностью."
+  ],
+  "markdown": "# PaginationButton · BasePaginationButton\n\n| | |\n|---|---|\n| **Категория** | Действия |\n| **Корневой класс** | `pagination-button` |\n| **CSS** | `ui/components/buttons.css`, `ui/state-contract.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 1 из 1 |\n\n## Назначение\n\nОтдельная кнопка страницы. Строительный блок компонента Pagination, но применяется и самостоятельно — например, «показать ещё».\n\n## Анатомия\n\n```\nbutton.pagination-button.base-button.inline-flex.appearance-none.size-l.pagination-button  [type=\"button\" target=\"_self\"]\n  span.base-button__content\n    span.pagination-button__content\n      · «00»\n```\n\n_Разметка story `common-buttons-basepaginationbutton--default`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\n| Состояние | Канонический контракт | Legacy/story alias |\n|---|---|---|\n| `default` | без state-атрибутов | без modifier |\n| `hover` | `:hover` | `.is-status-hover` |\n| `focus-visible` | `:focus-visible` | `.is-status-focus` |\n| `pressed` | `:active` | `.is-pressed` только для визуальных тестов |\n| `current` | `aria-current=\"page\"` | `.is-selected` |\n| `disabled` | нативный `disabled`; у ссылки — удалить `href` и добавить `aria-disabled=\"true\"` | `.is-status-disable` |\n\nПубличное состояние называется `current`, а не selected: кнопка обозначает\nтекущую страницу, а не элемент множественного выбора.\n\nПодтверждены CSS и разметкой: `.is-selected`, `.is-status-disable`, `.is-status-focus`, `.is-status-hover`, `:disabled`, `:focus`, `:hover`.\n\n```css\n.pagination-button:hover:before { content:var(--tw-content);opacity:.1 }\n.pagination-button:focus-visible { outline:2px solid transparent;outline-offset:2px;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000);--tw-ring-color:var(--color-ui-primary-60);--tw-ring-offset-width:2px;--tw-ring-offset-color:var(--color-ui-white) }\n.pagination-button:focus-visible:before { content:var(--tw-content);opacity:.1 }\n.pagination-button:disabled { background-color:transparent;color:var(--color-ui-gray-4) }\n```\n\n## Слоты\n\n- `default`\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `status` | PaginationButtonStatus | `'inactive'` | inactive · hover · focus · selected · disable · loading | `radio` |\n| `label` | string | `'00'` | — | `text` |\n| `to` | RouteLocationRaw | — | — | `object` |\n| `href` | string | — | — | `text` |\n| `type` | ButtonType | `'button'` | — | `object` |\n| `target` | \"_blank\" \\| \"_self\" | `'_self'` | — | `object` |\n| `disabled` | boolean \\| null | — | — | `object` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-ui-gray-1` | `#1b272c` | из `:root` Career |\n| `--color-ui-gray-2` | `#55798b` | из `:root` Career |\n| `--color-ui-gray-3` | `#7996a5` | из `:root` Career |\n| `--color-ui-gray-4` | `#a6bdc9` | из `:root` Career |\n| `--color-ui-primary` | `#8164f7` | из `:root` Career |\n| `--color-ui-primary-60` | `color-mix(in srgb,var(--color-ui-primary) 60%,transparent)` | из `:root` Career |\n| `--color-ui-primary-accent` | `#5014f5` | из `:root` Career |\n| `--color-ui-white` | `#fff` | из `:root` Career |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## Разметка\n\n```html\n<button class=\"pagination-button base-button inline-flex appearance-none size-l pagination-button\" type=\"button\" target=\"_self\">\n  <span class=\"base-button__content\">\n    <span class=\"pagination-button__content\">00</span>\n  </span>\n</button>\n```\n\n## CSS\n\n```css\n.pagination-button { background-color:transparent;border-radius:9999px;border-style:none;color:var(--color-ui-gray-1);font-size:16px;font-weight:600;height:2.5rem;isolation:isolate;line-height:24px;min-width:2.5rem;padding:.5rem;position:relative }\n.pagination-button:before { background-color:var(--color-ui-gray-3);border-radius:9999px;top:0;right:0;bottom:0;left:0;opacity:0;pointer-events:none;position:absolute;transition-duration:.2s;transition-property:opacity;transition-timing-function:cubic-bezier(.4,0,.2,1);z-index:10;--tw-content:\"\";content:var(--tw-content) }\n.pagination-button:hover:before { content:var(--tw-content);opacity:.1 }\n.pagination-button:focus-visible { outline:2px solid transparent;outline-offset:2px;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000);--tw-ring-color:var(--color-ui-primary-60);--tw-ring-offset-width:2px;--tw-ring-offset-color:var(--color-ui-white) }\n.pagination-button:focus-visible:before { content:var(--tw-content);opacity:.1 }\n.pagination-button:disabled { background-color:transparent;color:var(--color-ui-gray-4) }\n.pagination-button__content { align-items:center;color:var(--color-ui-gray-2);display:inline-flex;height:1.5rem;justify-content:center;min-width:1.5rem }\n.pagination-button .base-button__content { padding-left:0;padding-right:0 }\n.pagination-button.is-status-focus:before,.pagination-button.is-status-hover:before { opacity:.1 }\n.pagination-button.is-status-focus { --tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000);--tw-ring-color:var(--color-ui-primary-60);--tw-ring-offset-width:2px;--tw-ring-offset-color:var(--color-ui-white) }\n.pagination-button.is-selected,.pagination-button.is-selected .pagination-button__content { color:var(--color-ui-primary-accent) }\n.pagination-button.is-selected:before { background-color:var(--color-ui-primary);opacity:.2 }\n.pagination-button.is-status-disable,.pagination-button.is-status-disable .pagination-button__content { color:var(--color-ui-gray-4) }\n.pagination-button.is-status-disable:before { opacity:0 }\n.pagination-button .base-button__loader { color:var(--color-ui-primary) }\n```\n\n## Ограничения\n\n- Не выявлено: разметка, CSS и props извлечены полностью.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/common/base-pagination-button/base-pagination-button.stories.ts`\n- Storybook `career-web`: `common-buttons-basepaginationbutton--default`\n- CSS: секция `base-pagination-button` в `ui/components/buttons.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/actions/pagination-button.md",
+  "legacyDocument": "archive:career/v1/components/actions/pagination-button.md"
+}

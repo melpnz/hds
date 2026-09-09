@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Дашборд</title>
+  <link rel="stylesheet" href="../../ui/career.css">
+  <link rel="stylesheet" href="patterns.css">
+  <style>
+    body{min-width:0}
+    .pattern{margin:0;padding:20px}
+    .pattern__head,.rules,.vp-bar{display:none!important}
+    .viewport{height:auto!important;overflow:visible!important;border:0!important;background:transparent!important}
+    .viewport__inner{width:auto!important;transform:none!important}
+  </style>
+</head>
+<body>
+<section class="pattern" id="p-dashboard">
+  <div class="pattern__head">
+    <span class="pattern__num">07</span>
+    <h2>Дашборд</h2>
+    <p>Единственное семейство, где композиция строится вокруг данных, а не вокруг списка
+       сущностей. Собственный каркас.</p>
+  </div>
+  <ul class="rules">
+    <li title="Шапка дашборда — карточка во всю ширину 1076">DB-1</li>
+    <li title="Рабочая область — асимметричная пара 264 + 12 + 800">DB-2</li>
+    <li title="Крупное числовое значение 42/48·600">DB-3</li>
+    <li title="Плотная сетка карточек: radius 12, граница 1px">C-5</li>
+    <li title="Трёхколоночный грид схлопывается сразу в одну колонку">R-6</li>
+  </ul>
+
+  <div class="vp-bar" data-for="vp-dash"><span class="vp-bar__label">Ширина</span><button class="vp-btn" data-w="320" title="узкий телефон" aria-pressed="false">320</button><button class="vp-btn" data-w="480" title="телефон" aria-pressed="false">480</button><button class="vp-btn" data-w="768" title="планшет" aria-pressed="false">768</button><button class="vp-btn" data-w="1024" title="десктоп" aria-pressed="false">1024</button><button class="vp-btn" data-w="1100" title="потолок контейнера" aria-pressed="true">1100</button><span class="vp-bar__meta"></span></div>
+  <div class="viewport" id="vp-dash"><div class="viewport__inner">
+    <div class="career-shell">
+      <div class="page-body" style="padding-top:24px"><div class="page-width">
+        <div class="section-group">
+
+          <!-- DB-1: шапка во всю ширину -->
+          <div class="basic-section">
+            <div class="page-header-card">
+              <div class="page-header-card__top">
+                <h1 class="page-header-card__title">Зарплаты в IT</h1>
+                <button class="base-button inline-flex appearance-main size-l is-sizeable"><span class="base-button__inner"><span class="base-button__content">Добавить свои данные</span></span></button>
+              </div>
+              <div class="page-header-card__controls">
+                <span class="search-input"><span class="text-input"><input class="text-input__input" type="search" placeholder="Поиск по специализации"></span><svg class="svg-icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/search.svg" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M17 11C17 14.3137 14.3137 17 11 17C7.68629 17 5 14.3137 5 11C5 7.68629 7.68629 5 11 5C14.3137 5 17 7.68629 17 11ZM15.5838 17.5574C14.2857 18.4665 12.7051 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11C19 12.9998 18.2662 14.8282 17.0533 16.2307C17.0767 16.2502 17.0994 16.2709 17.1214 16.2929L20.4143 19.5858C20.8048 19.9763 20.8048 20.6095 20.4143 21C20.0238 21.3905 19.3906 21.3905 19.0001 21L15.7072 17.7071C15.6605 17.6604 15.6194 17.6102 15.5838 17.5574Z" />
+  </svg></span>
+                <button type="button" class="filter-button is-panel base-button inline-flex appearance-passive size-l has-before is-sizeable"><span class="base-button__inner"><span class="base-button__before"><svg class="svg-icon filter-button__icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/filter.svg" viewBox="0 0 24 24">
+    <path d="M3 17v2h6v-2ZM3 5v2h10V5Zm10 16v-2h8v-2h-8v-2h-2v6zM7 9v2H3v2h4v2h2V9Zm14 4v-2H11v2zm-6-4h2V7h4V5h-4V3h-2z"/>
+  </svg></span><span class="base-button__content">Фильтры</span></span></button>
+              </div>
+            </div>
+          </div>
+
+          <!-- DB-2: 264 + 800 -->
+          <div class="dashboard-split">
+            <div class="basic-section">
+              <h3 class="sidebar-card__title">Квалификации</h3>
+              <div>
+                <button class="facet-row is-active"><span>Все</span><span class="facet-row__value">191k</span></button>
+                <button class="facet-row"><span>Lead</span><span class="facet-row__value">377k</span></button>
+                <button class="facet-row"><span>Senior</span><span class="facet-row__value">293k</span></button>
+                <button class="facet-row"><span>Middle</span><span class="facet-row__value">167k</span></button>
+                <button class="facet-row"><span>Junior</span><span class="facet-row__value">93k</span></button>
+                <button class="facet-row"><span>Intern</span><span class="facet-row__value">68k</span></button>
+              </div>
+            </div>
+
+            <div class="basic-section">
+              <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:16px">
+                <h2 class="base-section__title">По всем IT-специалистам</h2>
+                <button class="base-button inline-flex appearance-passive size-l is-sizeable"><span class="base-button__inner"><span class="base-button__before"><svg class="svg-icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/share.svg" viewBox="0 0 24 24" fill="none">
+    <path d="M8.68387 13.3419C8.88616 12.9381 9 12.4824 9 12C9 11.5176 8.88616 11.0619 8.68387 10.6581M8.68387 13.3419C8.19134 14.3251 7.17449 15 6 15C4.34315 15 3 13.6569 3 12C3 10.3431 4.34315 9 6 9C7.17449 9 8.19134 9.67492 8.68387 10.6581M8.68387 13.3419L15.3161 16.6581M8.68387 10.6581L15.3161 7.34193M15.3161 7.34193C15.8087 8.32508 16.8255 9 18 9C19.6569 9 21 7.65685 21 6C21 4.34315 19.6569 3 18 3C16.3431 3 15 4.34315 15 6C15 6.48237 15.1138 6.93815 15.3161 7.34193ZM15.3161 16.6581C15.1138 17.0619 15 17.5176 15 18C15 19.6569 16.3431 21 18 21C19.6569 21 21 19.6569 21 18C21 16.3431 19.6569 15 18 15C16.8255 15 15.8087 15.6749 15.3161 16.6581Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="currentColor" />
+  </svg></span><span class="base-button__content">Поделиться</span></span></button>
+              </div>
+              <div class="metric">
+                <div class="metric__value">190 833 ₽</div>
+                <div class="metric__parts">
+                  <span>170 000 ₽</span><span style="color:var(--color-ui-gray-3)">+</span><span>20 833 ₽</span>
+                </div>
+                <div class="metric__parts"><small>зарплата</small><small style="margin-left:26px">премия</small></div>
+                <div class="metric__bar" style="margin-top:12px"><span style="width:58%;margin-left:14%"></span></div>
+                <div class="metric__scale"><span>68k</span><span style="color:var(--color-ui-primary)">108k</span><span style="color:var(--color-ui-primary)">306k</span><span>443k</span></div>
+              </div>
+              <div class="notification notification--info" style="margin-top:16px"><div class="notification__wrapper"><span class="notification__icon"><svg class="svg-icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/info.svg" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM13 7C13 7.55228 12.5523 8 12 8C11.4477 8 11 7.55228 11 7C11 6.44772 11.4477 6 12 6C12.5523 6 13 6.44772 13 7ZM13 10V17H11V10H13ZM20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z" />
+  </svg></span><div class="notification__content"><div class="notification__description">Добавьте свои данные, чтобы посмотреть, как менялись зарплаты в вашей специализации</div></div></div></div>
+            </div>
+          </div>
+
+          <!-- C-5 / R-6: плотная сетка -->
+          <div class="card-grid">
+            <a class="grid-card" href="#p-dashboard" style="text-decoration:none">
+              <div class="grid-card__date">2 сентября</div>
+              <div class="grid-card__company"><img class="avatar avatar--entity avatar--24" src="../../ui/assets/illustrations/avatar-default-company.svg" alt=""> Финтех-платформа</div>
+              <div class="grid-card__title">Старший бэкенд-разработчик</div>
+            </a>
+            <a class="grid-card" href="#p-dashboard" style="text-decoration:none">
+              <div class="grid-card__date">2 сентября</div>
+              <div class="grid-card__company"><img class="avatar avatar--entity avatar--24" src="../../ui/assets/illustrations/avatar-default-company.svg" alt=""> Облачный провайдер</div>
+              <div class="grid-card__title">Инженер по данным</div>
+            </a>
+            <a class="grid-card" href="#p-dashboard" style="text-decoration:none">
+              <div class="grid-card__date">1 сентября</div>
+              <div class="grid-card__company"><img class="avatar avatar--entity avatar--24" src="../../ui/assets/illustrations/avatar-default-company.svg" alt=""> Промышленная автоматизация</div>
+              <div class="grid-card__title">Ведущий инженер по надёжности</div>
+            </a>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </div></div>
+  <p class="note"><strong>Шапка дашборда шире, чем у листинга:</strong> 1076 вместо 752.
+     Это единственное семейство, где карточка занимает всю полезную ширину.</p>
+  <p class="note"><strong>Пара 264 + 800 асимметрична намеренно:</strong> узкая колонка —
+     разрезы данных, широкая — визуализация. При сужении узкая колонка остаётся
+     фиксированной, сжимается только широкая.</p>
+  <p class="note"><strong>42/48·600 — самая крупная типографика продукта.</strong>
+     Она существует только здесь: во всех остальных семействах максимум — H1 28/32.
+     Активная строка разреза заливается <code>primary @ 10%</code> с фиолетовой границей —
+     редкий случай, когда фиолетовый выступает фоном, и единственный найденный.</p>
+  <p class="note"><strong>Осторожно: покрытие слабое.</strong> Правила <code>DB-*</code>
+     выведены из <em>одной</em> страницы. Для нового дашборда они дают направление,
+     но не гарантию.</p>
+</section>
+<script src="patterns.js"></script>
+</body>
+</html>

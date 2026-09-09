@@ -1,0 +1,96 @@
+{
+  "id": "text-length",
+  "name": "TextLength",
+  "category": "forms",
+  "kind": "component",
+  "spec": "components\\forms\\text-length.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "invalid"
+  ],
+  "cssRoots": [
+    "text-length"
+  ],
+  "anchor": "showcase/components.html#fo-textarea",
+  "markup": null,
+  "evidence": [],
+  "legacySource": {
+    "id": "text-length",
+    "name": "TextLength",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\text-length.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "invalid"
+    ],
+    "cssRoots": [
+      "text-length"
+    ],
+    "anchor": "showcase/components.html#fo-textarea",
+    "markup": null,
+    "evidence": []
+  },
+  "title": "TextLength",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Счётчик «введено / максимум» под многострочным полем. Отдельного набора story нет — компонент виден только внутри Textarea.",
+  "implementation": {
+    "markup": null,
+    "cssRoots": [
+      "text-length"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "missingReason": "copy-safe-markup-not-captured",
+    "fallback": "Не придумывать классы. Использовать ближайший компонент с разметкой или явно отметить пробел."
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "invalid"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "isolated-example",
+      "title": "Счётчики",
+      "file": "examples/components-isolated/text-length.html",
+      "covers": [
+        "isolated-example",
+        "fo-textarea",
+        "default",
+        "invalid"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "provenance": {
+        "source": "archive:career/v1/showcase/components.html#fo-textarea",
+        "extraction": "exact-dom-subtree"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Собственных story нет. Каноническая разметка и invalid-state оформлены как UI"
+  ],
+  "markdown": "# TextLength · Счётчик символов\n\n| | |\n|---|---|\n| **Категория** | Формы |\n| **Корневой класс** | `text-length` |\n| **CSS** | `ui/components/forms.css`, `ui/state-contract.css` |\n| **Живая реализация** | `showcase/components.html#fo-textarea` |\n| **Snapshot Storybook** | 0 из 0 |\n\n## Назначение\n\nСчётчик «введено / максимум» под многострочным полем. Отдельного набора story нет — компонент виден только внутри Textarea.\n\n## Анатомия\n\n```\nspan.text-length  [id]\n  · «84 / 100»\n```\n\n## Состояния\n\n| Состояние | Контракт |\n|---|---|\n| `default` | текущее количество не превышает limit |\n| `invalid` | количество превышает limit; `.text-length--invalid` |\n\n`.text-length--exceeded` сохранён как legacy alias invalid. В production он\nошибочно имеет тот же серый цвет; UI kit исправляет его на semantic red.\n\n## Props\n\n_Storybook не отдаёт controls для этого компонента._\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-ui-gray-3` | `#7996a5` | из `:root` Career |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\nTextarea связывается со счётчиком через `aria-describedby`. Если ввод жёстко\nограничен `maxlength`, достаточно обычного описания. При мягком лимите invalid\ncounter может получить `aria-live=\"polite\"`, но обновление не должно озвучиваться\nна каждом символе до приближения к лимиту.\n\n## CSS\n\n```css\n.text-length { color:var(--color-ui-gray-3);font-size:12px;line-height:16px;text-align:right }\n.text-length--exceeded { color:var(--color-ui-gray-3) }\n```\n\n## Ограничения\n\n- Собственных story нет. Каноническая разметка и invalid-state оформлены как UI\n  kit contract на основании использования внутри Textarea.\n\n## Источники\n\n- Storybook `career-web`: \n- CSS: секция `text-length` в `ui/components/forms.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/forms/text-length.md",
+  "legacyDocument": "archive:career/v1/components/forms/text-length.md"
+}

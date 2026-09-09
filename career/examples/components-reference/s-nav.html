@@ -1,0 +1,355 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Навигация</title>
+  <link rel="stylesheet" href="../../ui/career.css">
+  <link rel="stylesheet" href="reference.css">
+  <style>body{margin:0;padding:20px;background:#fff}.site-nav{display:none}</style>
+</head>
+<body>
+<section class="section" id="s-nav">
+  <div class="section__head">
+    <p class="section__num">7</p>
+    <h2>Навигация</h2>
+    <p>Постраничная навигация, переключатели представлений, меню.</p>
+  </div>
+
+  <div class="subsection" id="n-pagination">
+    <div class="specimen" data-name="постраничная навигация nav[aria-label=pagination] каждая страница — pagination-button поверх base-button с appearance-none . текущая помечена aria-current="page" .">
+      <div class="specimen__head"><h4>Постраничная навигация</h4><code>nav[aria-label=Pagination]</code></div>
+      <p class="note">Каждая страница — <code>pagination-button</code> поверх <code>base-button</code> с <code>appearance-none</code>. Текущая помечена <code>aria-current="page"</code>.</p>
+      <div class="stage">
+<div class="grid text-font-black gap-0.5 pb-2">
+  <nav class="flex items-center justify-between rounded-3xl border border-ui-gray-shadow bg-ui-white p-2" aria-label="Pagination">
+    <div class="flex items-center justify-center">
+      <button class="rotate-90 pagination-button is-status-disable base-button inline-flex appearance-none size-l rotate-90 pagination-button is-status-disable" aria-label="Previous page" type="button" disabled target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">
+            <svg class="svg-icon fill-current text-ui-gray-4 icon-inline" width="24" height="24" style="width: 24px; height: 24px;" data-icon-src="../../ui/assets/icons/single/sprite/arrow.svg" viewBox="0 0 24 24">
+    <path d="M4.3 8.3a1 1 0 011.4 0l6.3 6.29 6.3-6.3a1 1 0 111.4 1.42l-7 7a1 1 0 01-1.4 0l-7-7a1 1 0 010-1.42z"/>
+  </svg>
+          </span>
+        </span>
+      </button>
+    </div>
+    <div class="grid auto-cols-min grid-flow-col items-end">
+      <button aria-current="page" aria-label="Page 1" class="pagination-button is-selected base-button inline-flex appearance-none size-l pagination-button is-selected" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">1</span>
+        </span>
+      </button>
+      <button aria-label="Page 2" class="pagination-button base-button inline-flex appearance-none size-l pagination-button" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">2</span>
+        </span>
+      </button>
+      <button aria-label="Page 3" class="pagination-button base-button inline-flex appearance-none size-l pagination-button" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">3</span>
+        </span>
+      </button>
+      <button aria-label="Page 4" class="pagination-button base-button inline-flex appearance-none size-l pagination-button" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">4</span>
+        </span>
+      </button>
+      <button aria-label="Page 5" class="pagination-button base-button inline-flex appearance-none size-l pagination-button" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">5</span>
+        </span>
+      </button>
+      <button aria-label="Page 6" class="pagination-button base-button inline-flex appearance-none size-l pagination-button" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">6</span>
+        </span>
+      </button>
+      <button aria-label="Page 7" class="pagination-button base-button inline-flex appearance-none size-l pagination-button" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">7</span>
+        </span>
+      </button>
+      <button aria-label="Page 8" class="pagination-button base-button inline-flex appearance-none size-l pagination-button" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">8</span>
+        </span>
+      </button>
+      <span class="flex h-10 min-w-10 items-center justify-center px-2 py-2 text-body-l font-semibold tracking-[0] text-ui-gray-1" aria-hidden="true">...</span>
+    </div>
+    <div class="flex items-center justify-center">
+      <button rel="next" class="-rotate-90 pagination-button base-button inline-flex appearance-none size-l -rotate-90 pagination-button" aria-label="Next page" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">
+            <svg class="svg-icon fill-current text-ui-gray-2 icon-inline" width="24" height="24" style="width: 24px; height: 24px;" data-icon-src="../../ui/assets/icons/single/sprite/arrow.svg" viewBox="0 0 24 24">
+    <path d="M4.3 8.3a1 1 0 011.4 0l6.3 6.29 6.3-6.3a1 1 0 111.4 1.42l-7 7a1 1 0 01-1.4 0l-7-7a1 1 0 010-1.42z"/>
+  </svg>
+          </span>
+        </span>
+      </button>
+    </div>
+  </nav>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="n-pagination-mid">
+    <div class="specimen" data-name="середина и конец списка is-selected · is-status-disable">
+      <div class="specimen__head"><h4>Середина и конец списка</h4><code>is-selected · is-status-disable</code></div>
+      <div class="stage">
+<div class="grid text-font-black gap-0.5 pb-2">
+  <nav class="flex items-center justify-between rounded-3xl border border-ui-gray-shadow bg-ui-white p-2" aria-label="Pagination">
+    <div class="flex items-center justify-center">
+      <button rel="prev" class="rotate-90 pagination-button base-button inline-flex appearance-none size-l rotate-90 pagination-button" aria-label="Previous page" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">
+            <svg class="svg-icon fill-current text-ui-gray-2 icon-inline" width="24" height="24" style="width: 24px; height: 24px;" data-icon-src="../../ui/assets/icons/single/sprite/arrow.svg" viewBox="0 0 24 24">
+    <path d="M4.3 8.3a1 1 0 011.4 0l6.3 6.29 6.3-6.3a1 1 0 111.4 1.42l-7 7a1 1 0 01-1.4 0l-7-7a1 1 0 010-1.42z"/>
+  </svg>
+          </span>
+        </span>
+      </button>
+    </div>
+    <div class="grid auto-cols-min grid-flow-col items-end">
+      <span class="flex h-10 min-w-10 items-center justify-center px-2 py-2 text-body-l font-semibold text-ui-gray-1" aria-hidden="true">...</span>
+      <button aria-label="Page 8" class="pagination-button base-button inline-flex appearance-none size-l pagination-button" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">8</span>
+        </span>
+      </button>
+      <button aria-label="Page 9" class="pagination-button base-button inline-flex appearance-none size-l pagination-button" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">9</span>
+        </span>
+      </button>
+      <button aria-label="Page 10" class="pagination-button base-button inline-flex appearance-none size-l pagination-button" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">10</span>
+        </span>
+      </button>
+      <button aria-label="Page 11" class="pagination-button base-button inline-flex appearance-none size-l pagination-button" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">11</span>
+        </span>
+      </button>
+      <button aria-current="page" aria-label="Page 12" class="pagination-button is-selected base-button inline-flex appearance-none size-l pagination-button is-selected" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">12</span>
+        </span>
+      </button>
+      <button aria-label="Page 13" class="pagination-button base-button inline-flex appearance-none size-l pagination-button" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">13</span>
+        </span>
+      </button>
+      <button aria-label="Page 14" class="pagination-button base-button inline-flex appearance-none size-l pagination-button" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">14</span>
+        </span>
+      </button>
+      <button aria-label="Page 15" class="pagination-button base-button inline-flex appearance-none size-l pagination-button" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">15</span>
+        </span>
+      </button>
+      <span class="flex h-10 min-w-10 items-center justify-center px-2 py-2 text-body-l font-semibold tracking-[0] text-ui-gray-1" aria-hidden="true">...</span>
+    </div>
+    <div class="flex items-center justify-center">
+      <button rel="next" class="-rotate-90 pagination-button base-button inline-flex appearance-none size-l -rotate-90 pagination-button" aria-label="Next page" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">
+            <svg class="svg-icon fill-current text-ui-gray-2 icon-inline" width="24" height="24" style="width: 24px; height: 24px;" data-icon-src="../../ui/assets/icons/single/sprite/arrow.svg" viewBox="0 0 24 24">
+    <path d="M4.3 8.3a1 1 0 011.4 0l6.3 6.29 6.3-6.3a1 1 0 111.4 1.42l-7 7a1 1 0 01-1.4 0l-7-7a1 1 0 010-1.42z"/>
+  </svg>
+          </span>
+        </span>
+      </button>
+    </div>
+  </nav>
+</div><div class="grid text-font-black gap-0.5 pb-2">
+  <nav class="flex items-center justify-between rounded-3xl border border-ui-gray-shadow bg-ui-white p-2" aria-label="Pagination">
+    <div class="flex items-center justify-center">
+      <button rel="prev" class="rotate-90 pagination-button base-button inline-flex appearance-none size-l rotate-90 pagination-button" aria-label="Previous page" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">
+            <svg class="svg-icon fill-current text-ui-gray-2 icon-inline" width="24" height="24" style="width: 24px; height: 24px;" data-icon-src="../../ui/assets/icons/single/sprite/arrow.svg" viewBox="0 0 24 24">
+    <path d="M4.3 8.3a1 1 0 011.4 0l6.3 6.29 6.3-6.3a1 1 0 111.4 1.42l-7 7a1 1 0 01-1.4 0l-7-7a1 1 0 010-1.42z"/>
+  </svg>
+          </span>
+        </span>
+      </button>
+    </div>
+    <div class="grid auto-cols-min grid-flow-col items-end">
+      <button aria-label="Page 1" class="pagination-button base-button inline-flex appearance-none size-l pagination-button" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">1</span>
+        </span>
+      </button>
+      <button aria-label="Page 2" class="pagination-button base-button inline-flex appearance-none size-l pagination-button" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">2</span>
+        </span>
+      </button>
+      <button aria-current="page" aria-label="Page 3" class="pagination-button is-selected base-button inline-flex appearance-none size-l pagination-button is-selected" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">3</span>
+        </span>
+      </button>
+      <button aria-label="Page 4" class="pagination-button base-button inline-flex appearance-none size-l pagination-button" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">4</span>
+        </span>
+      </button>
+      <button aria-label="Page 5" class="pagination-button base-button inline-flex appearance-none size-l pagination-button" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">5</span>
+        </span>
+      </button>
+      <button aria-label="Page 6" class="pagination-button base-button inline-flex appearance-none size-l pagination-button" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">6</span>
+        </span>
+      </button>
+    </div>
+    <div class="flex items-center justify-center">
+      <button rel="next" class="-rotate-90 pagination-button base-button inline-flex appearance-none size-l -rotate-90 pagination-button" aria-label="Next page" type="button" target="_self">
+        <span class="base-button__content">
+          <span class="pagination-button__content">
+            <svg class="svg-icon fill-current text-ui-gray-2 icon-inline" width="24" height="24" style="width: 24px; height: 24px;" data-icon-src="../../ui/assets/icons/single/sprite/arrow.svg" viewBox="0 0 24 24">
+    <path d="M4.3 8.3a1 1 0 011.4 0l6.3 6.29 6.3-6.3a1 1 0 111.4 1.42l-7 7a1 1 0 01-1.4 0l-7-7a1 1 0 010-1.42z"/>
+  </svg>
+          </span>
+        </span>
+      </button>
+    </div>
+  </nav>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="n-segmented">
+    <div class="specimen" data-name="переключатель-таблетка basesegmentedtabs активная вкладка подсвечивается отдельным слоем под текстом, а не фоном самой ссылки. фокус рисуется псевдоэлементом ::after .">
+      <div class="specimen__head"><h4>Переключатель-таблетка</h4><code>BaseSegmentedTabs</code></div>
+      <p class="note">Активная вкладка подсвечивается отдельным слоем под текстом, а не фоном самой ссылки. Фокус рисуется псевдоэлементом <code>::after</code>.</p>
+      <div class="stage">
+<nav class="overflow-x-auto" aria-label="Вкладки">
+  <div class="relative inline-flex items-center gap-0 rounded-full p-1">
+    <div class="absolute inset-0 rounded-full bg-ui-gray-3 opacity-10"></div>
+    <a aria-current="page" href="#" data-href="/tab-1" class="relative isolate inline-flex min-h-8 items-center justify-center gap-1 rounded-full px-2 py-1 text-body-m font-semibold no-underline transition-colors hover:no-underline text-ui-white focus-visible:outline-none after:pointer-events-none after:absolute after:-inset-1 after:z-[3] after:rounded-full after:border-2 after:border-ui-primary after:opacity-0 after:transition-opacity after:content-[''] focus-visible:after:opacity-60">
+      <span class="relative z-[2] inline-flex min-h-6 items-center px-1">Tab</span>
+      <span class="absolute inset-0 z-[1] rounded-full bg-ui-primary"></span>
+    </a>
+    <a href="#" data-href="/tab-2" class="relative isolate inline-flex min-h-8 items-center justify-center gap-1 rounded-full px-2 py-1 text-body-m font-semibold no-underline transition-colors hover:no-underline text-ui-gray-1 before:pointer-events-none before:absolute before:inset-0 before:z-[1] before:rounded-full before:bg-ui-gray-3 before:opacity-0 before:transition-opacity before:content-[''] hover:before:opacity-10 focus-visible:before:opacity-10 after:pointer-events-none after:absolute after:-inset-1 after:z-[3] after:rounded-full after:border-2 after:border-ui-primary after:opacity-0 after:transition-opacity after:content-[''] focus-visible:after:opacity-60 focus-visible:outline-none hover:no-underline">
+      <span class="relative z-[2] inline-flex min-h-6 items-center px-1">Tab</span>
+    </a>
+    <a href="#" data-href="/tab-3" class="relative isolate inline-flex min-h-8 items-center justify-center gap-1 rounded-full px-2 py-1 text-body-m font-semibold no-underline transition-colors hover:no-underline text-ui-gray-1 before:pointer-events-none before:absolute before:inset-0 before:z-[1] before:rounded-full before:bg-ui-gray-3 before:opacity-0 before:transition-opacity before:content-[''] hover:before:opacity-10 focus-visible:before:opacity-10 after:pointer-events-none after:absolute after:-inset-1 after:z-[3] after:rounded-full after:border-2 after:border-ui-primary after:opacity-0 after:transition-opacity after:content-[''] focus-visible:after:opacity-60 focus-visible:outline-none hover:no-underline">
+      <span class="relative z-[2] inline-flex min-h-6 items-center px-1">Tab</span>
+    </a>
+  </div>
+</nav><nav class="overflow-x-auto" aria-label="Вкладки">
+  <div class="relative inline-flex items-center gap-0 rounded-full p-1">
+    <div class="absolute inset-0 rounded-full bg-ui-gray-3 opacity-10"></div>
+    <a aria-current="page" href="#" data-href="/billing/accounts" class="relative isolate inline-flex min-h-8 items-center justify-center gap-1 rounded-full px-2 py-1 text-body-m font-semibold no-underline transition-colors hover:no-underline text-ui-white focus-visible:outline-none after:pointer-events-none after:absolute after:-inset-1 after:z-[3] after:rounded-full after:border-2 after:border-ui-primary after:opacity-0 after:transition-opacity after:content-[''] focus-visible:after:opacity-60">
+      <span class="relative z-[2] inline-flex min-h-6 items-center px-1">Баланс</span>
+      <span class="relative z-[2] inline-flex min-w-5 items-center justify-center rounded-full bg-ui-primary px-1 py-0.5 text-body-xs font-semibold text-ui-white">
+        2
+        <span class="pointer-events-none absolute -inset-0.5 rounded-full border-2 border-ui-white"></span>
+      </span>
+      <span class="absolute inset-0 z-[1] rounded-full bg-ui-primary"></span>
+    </a>
+    <a href="#" data-href="/billing/transactions" class="relative isolate inline-flex min-h-8 items-center justify-center gap-1 rounded-full px-2 py-1 text-body-m font-semibold no-underline transition-colors hover:no-underline text-ui-gray-1 before:pointer-events-none before:absolute before:inset-0 before:z-[1] before:rounded-full before:bg-ui-gray-3 before:opacity-0 before:transition-opacity before:content-[''] hover:before:opacity-10 focus-visible:before:opacity-10 after:pointer-events-none after:absolute after:-inset-1 after:z-[3] after:rounded-full after:border-2 after:border-ui-primary after:opacity-0 after:transition-opacity after:content-[''] focus-visible:after:opacity-60 focus-visible:outline-none hover:no-underline">
+      <span class="relative z-[2] inline-flex min-h-6 items-center px-1">Транзакции</span>
+      <span class="relative z-[2] inline-flex min-w-5 items-center justify-center rounded-full bg-ui-primary px-1 py-0.5 text-body-xs font-semibold text-ui-white">
+        10
+        <span class="pointer-events-none absolute -inset-0.5 rounded-full border-2 border-ui-white"></span>
+      </span>
+    </a>
+    <a href="#" data-href="/billing/documents" class="relative isolate inline-flex min-h-8 items-center justify-center gap-1 rounded-full px-2 py-1 text-body-m font-semibold no-underline transition-colors hover:no-underline text-ui-gray-1 before:pointer-events-none before:absolute before:inset-0 before:z-[1] before:rounded-full before:bg-ui-gray-3 before:opacity-0 before:transition-opacity before:content-[''] hover:before:opacity-10 focus-visible:before:opacity-10 after:pointer-events-none after:absolute after:-inset-1 after:z-[3] after:rounded-full after:border-2 after:border-ui-primary after:opacity-0 after:transition-opacity after:content-[''] focus-visible:after:opacity-60 focus-visible:outline-none hover:no-underline">
+      <span class="relative z-[2] inline-flex min-h-6 items-center px-1">Документы</span>
+      <span class="relative z-[2] inline-flex min-w-5 items-center justify-center rounded-full bg-ui-primary px-1 py-0.5 text-body-xs font-semibold text-ui-white">
+        0
+        <span class="pointer-events-none absolute -inset-0.5 rounded-full border-2 border-ui-white"></span>
+      </span>
+    </a>
+  </div>
+</nav>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="n-menu">
+    <div class="specimen" data-name="контекстное меню context-menu__content · base-dropdown">
+      <div class="specimen__head"><h4>Контекстное меню</h4><code>context-menu__content · base-dropdown</code></div>
+      <div class="stage stage--overlay">
+<div class="flex w-full items-center justify-center">
+  <div class="context-menu w-6">
+    <div class="base-dropdown">
+      <div class="base-dropdown__toggle">
+        <button type="button" class="m-0 flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent p-0 text-current outline-2 outline-offset-2 outline-ui-primary-60 transition-colors focus-visible:outline disabled:cursor-default text-ui-gray-2 hover:bg-ui-gray-3-10 hover:text-ui-gray-1 focus-visible:bg-ui-gray-3-10">
+          <svg class="svg-icon icon-inline" width="24" height="24" style="width: 24px; height: 24px;" data-icon-src="../../ui/assets/icons/single/sprite/more.svg" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 12C7 13.1046 6.10457 14 5 14C3.89543 14 3 13.1046 3 12C3 10.8954 3.89543 10 5 10C6.10457 10 7 10.8954 7 12ZM14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12ZM19 14C20.1046 14 21 13.1046 21 12C21 10.8954 20.1046 10 19 10C17.8954 10 17 10.8954 17 12C17 13.1046 17.8954 14 19 14Z"/>
+  </svg>
+        </button>
+      </div>
+      <div class="base-dropdown__content base-dropdown__content--alignment-right" style="margin-top: 0px;">
+        <div class="context-menu__content">
+          <button class="w-full cursor-pointer overflow-hidden whitespace-nowrap text-left border-b border-solid border-ui-gray-bg bg-transparent px-4 py-[10px] text-font-black hover:bg-ui-blue hover:text-ui-white active:bg-ui-blue active:text-ui-white focus:outline-3 focus:outline focus:-outline-offset-1 focus:outline-[var(--color-ui-blue)]" border="false">Item 1</button>
+          <button class="w-full cursor-pointer overflow-hidden whitespace-nowrap text-left border-b border-solid border-ui-gray-bg bg-transparent px-4 py-[10px] text-font-black hover:bg-ui-blue hover:text-ui-white active:bg-ui-blue active:text-ui-white focus:outline-3 focus:outline focus:-outline-offset-1 focus:outline-[var(--color-ui-blue)]" border="false">Item 2</button>
+          <button class="w-full cursor-pointer overflow-hidden whitespace-nowrap text-left border-b border-solid border-ui-gray-bg bg-transparent px-4 py-[10px] text-font-black hover:bg-ui-blue hover:text-ui-white active:bg-ui-blue active:text-ui-white focus:outline-3 focus:outline focus:-outline-offset-1 focus:outline-[var(--color-ui-blue)]" border="false">Item 3</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div><ol>
+  <li>≥768px: показывает VDropdown</li>
+  <li>&lt;768px: превращается в нижнюю шторку через Teleport + ModalOverlay</li>
+</ol>
+<div class="flex w-full items-center justify-center">
+  <div class="v-popper v-popper--theme-dropdown">
+    <button type="button" class="m-0 flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent p-0 text-current outline-2 outline-offset-2 outline-ui-primary-60 transition-colors focus-visible:outline disabled:cursor-default text-ui-gray-2 hover:bg-ui-gray-3-10 hover:text-ui-gray-1 focus-visible:bg-ui-gray-3-10 h-10 w-10">
+      <svg class="svg-icon icon-inline" width="24" height="24" style="width: 24px; height: 24px;" data-icon-src="../../ui/assets/icons/single/sprite/more.svg" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 12C7 13.1046 6.10457 14 5 14C3.89543 14 3 13.1046 3 12C3 10.8954 3.89543 10 5 10C6.10457 10 7 10.8954 7 12ZM14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12ZM19 14C20.1046 14 21 13.1046 21 12C21 10.8954 20.1046 10 19 10C17.8954 10 17 10.8954 17 12C17 13.1046 17.8954 14 19 14Z"/>
+  </svg>
+    </button>
+  </div>
+</div>
+      <p class="note">Верхнее троеточие раскрывается: у снятой разметки есть и триггер, и меню, поведение к ним подключено как reference — в продукте им управляет <code>BaseDropdown</code>. Нижнее не раскрывается и не может: это вариант на <code>v-popper</code>, его всплывающий слой живёт в портале и в снимок Storybook не попал. Нормативный интерактивный пример — <a href="#n-menu-contract">Dropdown и ContextMenu</a>.</p></div>
+    </div>
+  </div>
+
+  <div class="subsection" id="n-steps">
+    <div class="specimen" data-name="шаги в боковой колонке steps-sidebar">
+      <div class="specimen__head"><h4>Шаги в боковой колонке</h4><code>steps-sidebar</code></div>
+      <div class="stage">
+<nav class="overflow-hidden rounded-3xl border border-ui-gray-shadow bg-ui-white p-1">
+  <ul class="m-0 flex list-none flex-col p-1">
+    <li>
+      <a href="#company" class="company-rating-steps__link relative flex min-h-[40px] w-full items-center overflow-hidden rounded-xl px-4 py-2 text-body-l font-regular text-ui-gray-1 no-underline focus-visible:outline-none">
+        <span class="relative z-[1] truncate">Компания и роль</span>
+      </a>
+    </li>
+    <li>
+      <a href="#common" class="company-rating-steps__link relative flex min-h-[40px] w-full items-center overflow-hidden rounded-xl px-4 py-2 text-body-l font-regular text-ui-gray-1 no-underline focus-visible:outline-none company-rating-steps__link--active bg-ui-primary-20" aria-current="step">
+        <span class="relative z-[1] truncate">Общая оценка</span>
+      </a>
+    </li>
+    <li>
+      <a href="#recommendation" class="company-rating-steps__link relative flex min-h-[40px] w-full items-center overflow-hidden rounded-xl px-4 py-2 text-body-l font-regular text-ui-gray-1 no-underline focus-visible:outline-none company-rating-steps__link--disabled cursor-default text-ui-gray-4" aria-disabled="true" tabindex="-1">
+        <span class="relative z-[1] truncate">Рекомендация работодателя</span>
+      </a>
+    </li>
+    <li>
+      <a href="#experience" class="company-rating-steps__link relative flex min-h-[40px] w-full items-center overflow-hidden rounded-xl px-4 py-2 text-body-l font-regular text-ui-gray-1 no-underline focus-visible:outline-none company-rating-steps__link--disabled cursor-default text-ui-gray-4" aria-disabled="true" tabindex="-1">
+        <span class="relative z-[1] truncate">Опыт и приватность</span>
+      </a>
+    </li>
+  </ul>
+</nav>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

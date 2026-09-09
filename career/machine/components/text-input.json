@@ -1,0 +1,154 @@
+{
+  "id": "text-input",
+  "name": "TextInput",
+  "category": "forms",
+  "kind": "component",
+  "spec": "components\\forms\\text-input.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "disabled",
+    "readOnly",
+    "invalid"
+  ],
+  "cssRoots": [
+    "text-input"
+  ],
+  "anchor": "showcase/components.html#fo-input",
+  "markup": {
+    "html": "<span class=\"text-input text-input\">\n  <input class=\"text-input__input\" data-allow-mismatch placeholder=\"Placeholder\">\n</span>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": null,
+      "sourceName": "input"
+    }
+  ],
+  "storybookNames": [
+    "TextInput"
+  ],
+  "code": {
+    "component": "TextInput",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "text-input",
+    "name": "TextInput",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\text-input.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "disabled",
+      "readOnly",
+      "invalid"
+    ],
+    "cssRoots": [
+      "text-input"
+    ],
+    "anchor": "showcase/components.html#fo-input",
+    "markup": {
+      "html": "<span class=\"text-input text-input\">\n  <input class=\"text-input__input\" data-allow-mismatch placeholder=\"Placeholder\">\n</span>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "input"
+      }
+    ],
+    "storybookNames": [
+      "TextInput"
+    ],
+    "code": {
+      "component": "TextInput",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "TextInput",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Однострочное текстовое поле: поиск, ссылки, имена, любые короткие значения. Может нести иконки слева и справа и режим ввода тегов.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "text-input"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "TextInput",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "disabled",
+      "readOnly",
+      "invalid"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Ftext-input.json",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "disabled",
+        "readOnly",
+        "invalid"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "readOnly, focus-visible ring и прямое отображение aria-invalid —"
+  ],
+  "markdown": "# TextInput · Однострочное поле\n\n| | |\n|---|---|\n| **Категория** | Формы |\n| **Корневой класс** | `text-input` |\n| **CSS** | `ui/components/forms.css`, `ui/state-contract.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 4 из 4 |\n\n## Назначение\n\nОднострочное текстовое поле: поиск, ссылки, имена, любые короткие значения. Может нести иконки слева и справа и режим ввода тегов.\n\n## Анатомия\n\nОбратите внимание: корень — `span.text-input`, а не сам `input`. Рамка, фон и состояния живут на обёртке, поэтому иконки внутри поля не ломают геометрию.\n\n```\nspan.text-input.text-input\n  input.text-input__input  [placeholder=\"Placeholder\"]\n```\n\n_Разметка story `form-textinput--default`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\n| Состояние | Канонический контракт | Legacy alias |\n|---|---|---|\n| `default` | нативный input | — |\n| `hover` | `input:hover` меняет border wrapper | `.text-input:hover` |\n| `focus-visible` | `input:focus-visible`, ring на wrapper | `:focus-within` |\n| `disabled` | нативный `disabled` | `.text-input--disabled` |\n| `readOnly` | нативный `readonly`; поле остаётся focusable | UI kit contract |\n| `invalid` | `aria-invalid=\"true\"` + error id в `aria-describedby` | `.text-input--invalid` |\n\nFilled/empty определяются значением input и не являются отдельными modifier\nstates. Placeholder не заменяет label.\n\nПодтверждены CSS и разметкой: `.text-input--disabled`, `.text-input--invalid`, `:focus`, `:hover`, `:placeholder`.\n\n```css\n.text-input--with-tags,.text-input--with-tags.text-input:hover { border-color:transparent }\n.text-input:hover { border-color:var(--color-ui-gray-4) }\n.text-input--disabled:hover { border-color:var(--color-ui-gray-6) }\n```\n\n## Слоты\n\n- `iconLeft`\n- `iconRight`\n- `icon`\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `modelValue` | string | — | — | `text` |\n| `placeholder` | string | — | — | `text` |\n| `invalid` | boolean | — | — | `boolean` |\n| `disabled` | boolean | — | — | `boolean` |\n| `readOnly` | boolean | `false` | UI kit contract | `boolean` |\n| `type` | string | — | — | `text` |\n| `withTags` | boolean | — | — | `boolean` |\n| `autocomplete` | string | — | — | `text` |\n| `selectOnFocus` | boolean | — | — | `boolean` |\n| `hasMask` | boolean | — | — | `boolean` |\n| `focus` | FocusEvent | — | — | `object` |\n| `blur` | other | — | — | `object` |\n| `getInputEl` | other | — | — | `object` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-ui-gray-1` | `#1b272c` | из `:root` Career |\n| `--color-ui-gray-2` | `#55798b` | из `:root` Career |\n| `--color-ui-gray-3` | `#7996a5` | из `:root` Career |\n| `--color-ui-gray-4` | `#a6bdc9` | из `:root` Career |\n| `--color-ui-gray-6` | `#eaf2f5` | из `:root` Career |\n| `--color-ui-white` | `#fff` | из `:root` Career |\n| `--font-letter-spacing-0` | — | задаётся компонентом или средой, значения в сборке нет |\n| `--font-line-height-display-m` | — | задаётся компонентом или средой, значения в сборке нет |\n| `--font-size-body-l` | — | задаётся компонентом или средой, значения в сборке нет |\n| `--font-weight-regular` | — | задаётся компонентом или средой, значения в сборке нет |\n| `--shadow-border-color` | `var(--color-ui-gray-5)` | из `:root` Career |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\nПоле получает доступное имя через InputLabel. Hint и error связываются через\n`aria-describedby`; invalid — через `aria-invalid=\"true\"`. Нативный `readonly`\nне заменяется `disabled`: значение остаётся доступно фокусу и копированию.\n\n## Поведение\n\n- Состояния объявлены модификаторами на обёртке: `text-input--disabled`, `text-input--invalid`. Имени `--error` в реализации нет.\n\n## Разметка\n\n```html\n<span class=\"text-input text-input\">\n  <input class=\"text-input__input\" data-allow-mismatch placeholder=\"Placeholder\">\n</span>\n```\n\n## CSS\n\n```css\n.text-input { align-items:center;background-color:var(--color-ui-white);-moz-column-gap:4px;column-gap:4px;display:flex;--tw-shadow:inset 0 0 0 1px var(--shadow-border-color);--tw-shadow-colored:inset 0 0 0 1px var(--tw-shadow-color);border-radius:12px;box-shadow:var(--tw-ring-offset-shadow,0 0 #0000),var(--tw-ring-shadow,0 0 #0000),var(--tw-shadow);max-height:40px;padding:8px 12px }\n.text-input--with-tags { background:transparent;flex-grow:1;min-width:200px;padding:0 6px }\n.text-input--with-tags,.text-input--with-tags.text-input:hover { border-color:transparent }\n.text-input:hover { border-color:var(--color-ui-gray-4) }\n.text-input--disabled:hover { border-color:var(--color-ui-gray-6) }\n.text-input:focus-within { border-color:var(--color-ui-gray-2) }\n.text-input--with-tags:focus-within { background-color:transparent;border-color:transparent }\n.text-input--disabled { border-color:var(--color-ui-gray-6) }\n.text-input--with-tags .text-input__input { height:26px;min-height:26px }\n.text-input__input { -webkit-appearance:none;-moz-appearance:none;appearance:none;background:none;border:none;color:var(--color-ui-gray-1);flex:1;font-size:var(--font-size-body-l,16px);font-weight:var(--font-weight-regular,400);letter-spacing:var(--font-letter-spacing-0,0);line-height:var(--font-line-height-display-m,24px);min-height:24px;min-width:24px;padding:0 4px;text-overflow:ellipsis;width:100% }\n.text-input__input:focus { outline:none }\n.text-input--disabled .text-input__input { color:var(--color-ui-gray-4) }\n.text-input__input::-moz-placeholder { color:var(--color-ui-gray-3) }\n.text-input__input::placeholder { color:var(--color-ui-gray-3) }\n.text-input--disabled .text-input__input::-moz-placeholder { color:var(--color-ui-gray-4) }\n.text-input--disabled .text-input__input::placeholder { color:var(--color-ui-gray-4) }\n.text-input__icon { align-items:center;color:var(--color-ui-gray-2);display:flex;height:24px;justify-content:center;width:24px }\n.text-input--disabled .text-input__icon { color:var(--color-ui-gray-4) }\n```\n\n## Ограничения\n\n- `readOnly`, focus-visible ring и прямое отображение `aria-invalid` —\n  нормативные дополнения UI kit поверх извлечённых wrapper modifiers.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/form/text-input.stories.ts`\n- Storybook `career-web`: `form-textinput--default`, `form-textinput--filled`, `form-textinput--disabled`, `form-textinput--error`\n- CSS: секция `text-input` в `ui/components/forms.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/forms/text-input.md",
+  "legacyDocument": "archive:career/v1/components/forms/text-input.md"
+}

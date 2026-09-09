@@ -1,0 +1,135 @@
+{
+  "id": "dropdown",
+  "name": "Dropdown",
+  "category": "navigation",
+  "kind": "adapter",
+  "spec": "components\\navigation\\dropdown.md",
+  "status": "complete",
+  "states": [
+    "closed",
+    "open"
+  ],
+  "cssRoots": [
+    "base-dropdown"
+  ],
+  "anchor": "showcase/components.html#n-menu-contract",
+  "markup": null,
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": null,
+      "sourceName": "dropdown"
+    }
+  ],
+  "storybookNames": [
+    "BaseDropdown"
+  ],
+  "code": {
+    "component": "BaseDropdown",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "dropdown",
+    "name": "Dropdown",
+    "category": "navigation",
+    "kind": "adapter",
+    "spec": "components\\navigation\\dropdown.md",
+    "status": "complete",
+    "states": [
+      "closed",
+      "open"
+    ],
+    "cssRoots": [
+      "base-dropdown"
+    ],
+    "anchor": "showcase/components.html#n-menu-contract",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "dropdown"
+      }
+    ],
+    "storybookNames": [
+      "BaseDropdown"
+    ],
+    "code": {
+      "component": "BaseDropdown",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "Dropdown",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Обвязка выпадающего блока: триггер плюс содержимое с выравниванием влево или вправо. Базис для ContextMenu и CustomSelect; собственных story не имеет.",
+  "implementation": {
+    "markup": null,
+    "cssRoots": [
+      "base-dropdown"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "BaseDropdown",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    },
+    "missingReason": "copy-safe-markup-not-captured",
+    "fallback": "Не придумывать классы. Использовать ближайший компонент с разметкой или явно отметить пробел."
+  },
+  "stateGroups": {
+    "ui": [
+      "closed",
+      "open"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "isolated-example",
+      "title": "Открытое меню",
+      "file": "examples/components-isolated/dropdown.html",
+      "covers": [
+        "isolated-example",
+        "n-menu-contract",
+        "closed",
+        "open"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "provenance": {
+        "source": "archive:career/v1/showcase/components.html#n-menu-contract",
+        "extraction": "exact-dom-subtree"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Собственных story нет — данные из CSS и из разметки компонентов, которые его используют."
+  ],
+  "markdown": "# Dropdown · BaseDropdown\n\n| | |\n|---|---|\n| **Категория** | Навигация |\n| **Корневой класс** | — |\n| **CSS** | `ui/components/navigation.css` |\n| **Живая реализация** | частичная |\n| **Snapshot Storybook** | 0 из 0 |\n\n## Назначение\n\nОбвязка выпадающего блока: триггер плюс содержимое с выравниванием влево или вправо. Базис для ContextMenu и CustomSelect; собственных story не имеет.\n\n## Анатомия\n\n_Разметка недоступна: см. «Ограничения»._\n\n## Состояния\n\nПодтверждены CSS и разметкой: `:not`.\n\n## Props\n\n_Storybook не отдаёт controls для этого компонента._\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-ui-gray-shadow` | `rgba(24,46,57,.1)` | из `:root` Career |\n| `--color-ui-white` | `#fff` | из `:root` Career |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## CSS\n\n```css\n.base-dropdown { position:relative }\n.base-dropdown__toggle { min-height:32px }\n.base-dropdown__toggle>* { cursor:pointer }\n.base-dropdown__content { background:var(--color-ui-white);border-radius:16px;box-shadow:0 1px 4px 1px var(--color-ui-gray-shadow,rgba(24,46,57,.1)),0 4px 8px 2px var(--color-ui-gray-shadow,rgba(24,46,57,.1));position:absolute;transform:translateZ(0);visibility:hidden;z-index:1000 }\n.base-dropdown__content--open { visibility:visible }\n.base-dropdown__content--alignment-right { right:0 }\n.base-dropdown__content--alignment-top-left { bottom:28px;right:12px }\n.base-dropdown__content--alignment-left { left:-8px }\n.base-dropdown__content--fullWidth { width:100% }\n.base-dropdown__content--select { background:inherit;border-radius:inherit;box-shadow:inherit;position:relative }\n.base-dropdown__content--select:not(.base-dropdown__content--open) { display:none }\n```\n\n## Ограничения\n\n- Собственных story нет — данные из CSS и из разметки компонентов, которые его используют.\n\n## Источники\n\n- Storybook `career-web`: \n- CSS: секция `base-dropdown` в `ui/components/navigation.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n\n## Нормативный контракт R2-D\n\nDropdown — только adapter геометрии, позиционирования и состояний `closed`/`open`. Он не назначает `role`: потребитель выбирает `menu`, `listbox` или немодальный dialog pattern.\n\nТриггер всегда хранит `aria-expanded` и `aria-controls`. Закрытый контент имеет `hidden` (предпочтительно) либо `aria-hidden=\"true\"`; открытый — `.base-dropdown__content--open` и не должен оставаться `aria-hidden`. Escape закрывает попап и возвращает фокус триггеру; клик снаружи закрывает без переноса фокуса.\n",
+  "sourcePath": "archive:career/v1/components/navigation/dropdown.md",
+  "legacyDocument": "archive:career/v1/components/navigation/dropdown.md"
+}

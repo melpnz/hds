@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Loader</title>
+  <link rel="stylesheet" href="../../ui/career.css">
+  <link rel="stylesheet" href="../components-reference/reference.css">
+  <style>body{margin:0;padding:20px;background:#fff}.isolated-stage{display:flex;flex-wrap:wrap;align-items:flex-start;gap:16px}</style>
+</head>
+<body>
+  <!-- Extracted from archive:career/v1/showcase/components.html#fb-loading-contract; supporting wrapper belongs only to this preview. -->
+  <div class="isolated-stage"><span class="base-loader" aria-hidden="true"><svg class="svg-icon icon-inline" width="24" height="24" data-icon-src="../../ui/assets/icons/single/sprite/spinner.svg" viewBox="0 0 50 50">
+    <style>
+      .spinner { transform-origin: 25px 25px; animation: spinner-rotate 2s linear infinite }
+      .spinner circle {
+        fill: none; stroke: currentColor; stroke-width: 5; stroke-linecap: round;
+        stroke-dasharray: 1 200; stroke-dashoffset: 0;
+        animation: spinner-dash 1.5s ease-in-out infinite;
+      }
+      @keyframes spinner-rotate { to { transform: rotate(360deg) } }
+      @keyframes spinner-dash {
+        0%   { stroke-dasharray: 1 200;  stroke-dashoffset: 0 }
+        50%  { stroke-dasharray: 89 200; stroke-dashoffset: -35 }
+        100% { stroke-dasharray: 89 200; stroke-dashoffset: -124 }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        .spinner { animation-duration: 6s }
+        .spinner circle { animation: none; stroke-dasharray: 89 200 }
+      }
+    </style>
+    <g class="spinner"><circle cx="25" cy="25" r="20"/></g>
+  </svg></span></div>
+</body>
+</html>

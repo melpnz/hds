@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Нормативные состояния коллекций и оверлеев</title>
+  <link rel="stylesheet" href="../../ui/career.css">
+  <link rel="stylesheet" href="reference.css">
+  <style>body{margin:0;padding:20px;background:#fff}.site-nav{display:none}</style>
+</head>
+<body>
+<section class="section" id="s-r2d-contracts">
+  <div class="section__head">
+    <p class="section__num">R2-D</p>
+    <h2>Нормативные состояния коллекций и оверлеев</h2>
+    <p>Стабильные классы и ARIA-контракты для нового кода. Старые Storybook-снимки выше сохранены как evidence.</p>
+  </div>
+
+  <div class="subsection" id="d-row">
+    <div class="specimen"><div class="specimen__head"><h4>Row</h4><code>default · selected · disabled</code></div>
+      <div class="stage stage--rows">
+        <button class="base-row" type="button">Обычная строка</button>
+        <button class="base-row" type="button" aria-selected="true">Выбранная строка</button>
+        <button class="base-row" type="button" disabled>Недоступная строка</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="l-chip-contract">
+    <div class="specimen"><div class="specimen__head"><h4>Chip: три разные роли</h4><code>span · button · button[aria-pressed]</code></div>
+      <div class="stage">
+        <span class="base-chip base-chip--default"><span class="base-chip__content"><span class="base-chip__text">Статическая метка</span></span></span>
+        <button class="base-chip base-chip--default base-chip--clickable base-chip--interactive" type="button"><span class="base-chip__content"><span class="base-chip__text">Действие</span></span></button>
+        <button class="base-chip base-chip--default base-chip--clickable base-chip--interactive" type="button" aria-pressed="true"><span class="base-chip__content"><span class="base-chip__text">Выбранный toggle</span></span></button>
+        <span class="base-chip base-chip--default"><span class="base-chip__content"><span class="base-chip__text">Python</span><button class="closable-chip__close" type="button" aria-label="Удалить Python"><svg class="svg-icon icon-inline" width="20" height="20" data-icon-src="../../ui/assets/icons/single/sprite/close.svg" viewBox="0 0 24 24">
+    <path d="M16.2929 6.29287C16.6834 5.90237 17.3166 5.90237 17.7071 6.29287C18.0976 6.68338 18.0976 7.31658 17.7071 7.70708L13.4142 12L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L12 13.4142L7.70708 17.7071C7.31658 18.0976 6.68338 18.0976 6.29287 17.7071C5.90237 17.3166 5.90237 16.6834 6.29287 16.2929L10.5858 12L6.29278 7.70708C5.90248 7.31658 5.90247 6.68337 6.29287 6.29297C6.68348 5.90247 7.31667 5.90247 7.70718 6.29297L12 10.5858L16.2929 6.29287Z" />
+  </svg></button></span></span>
+        <button class="base-chip base-chip--approved base-chip--clickable base-chip--interactive skill-chip" type="button" aria-pressed="true"><span class="base-chip__content"><span class="skill-chip__title">TypeScript</span><svg class="svg-icon skill-chip__icon icon-inline" width="20" height="20" data-icon-src="../../ui/assets/icons/single/sprite/check-approved.svg" viewBox="0 0 24 24">
+    <path d="M17.6549 7.2443c.4174.3617.4625.99326.1008 1.41062l-6.5 7.49998c-.1818.2098-.4426.3346-.7201.3444-.2774.0099-.54642-.0959-.74271-.2922l-3.5-3.5c-.39052-.3905-.39052-1.0237 0-1.4142.39053-.3905 1.02369-.3905 1.41422 0l2.74059 2.7406 5.7966-6.68845c.3617-.41735.9933-.46246 1.4106-.10075Z"/>
+  </svg></span></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="n-segmented-contract">
+    <div class="specimen"><div class="specimen__head"><h4>SegmentedTabs</h4><code>nav · aria-current</code></div>
+      <div class="stage"><nav class="segmented-tabs" aria-label="Вид результатов"><a class="segmented-tabs__item" href="#" aria-current="page">Список</a><a class="segmented-tabs__item" href="#">Карта</a><a class="segmented-tabs__item" href="#" aria-disabled="true">График</a></nav></div>
+    </div>
+  </div>
+
+  <div class="subsection" id="n-menu-contract">
+    <div class="specimen"><div class="specimen__head"><h4>Dropdown и ContextMenu</h4><code>aria-expanded · menu</code></div>
+      <div class="stage" style="min-height:220px"><div class="context-menu base-dropdown" style="width:220px"><div class="base-dropdown__toggle"><button class="context-menu__trigger icon-button" type="button" aria-haspopup="menu" aria-expanded="true" aria-controls="demo-context-menu" aria-label="Действия"><svg class="svg-icon icon-inline" width="24" height="24" data-icon-src="../../ui/assets/icons/single/sprite/more.svg" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M7 12C7 13.1046 6.10457 14 5 14C3.89543 14 3 13.1046 3 12C3 10.8954 3.89543 10 5 10C6.10457 10 7 10.8954 7 12ZM14 12C14 13.1046 13.1046 14 12 14C10.8954 14 10 13.1046 10 12C10 10.8954 10.8954 10 12 10C13.1046 10 14 10.8954 14 12ZM19 14C20.1046 14 21 13.1046 21 12C21 10.8954 20.1046 10 19 10C17.8954 10 17 10.8954 17 12C17 13.1046 17.8954 14 19 14Z"/>
+  </svg></button></div><div class="base-dropdown__content base-dropdown__content--open" id="demo-context-menu"><div class="context-menu__content" role="menu"><button class="context-menu__item" type="button" role="menuitem">Редактировать</button><button class="context-menu__item" type="button" role="menuitem">Дублировать</button><button class="context-menu__item" type="button" role="menuitem" disabled>Архивировать</button></div></div></div></div>
+    </div>
+  </div>
+
+  <div class="subsection" id="fb-toast-contract">
+    <div class="specimen"><div class="specimen__head"><h4>Toast</h4><code>info · success · warning · error</code></div>
+      <div class="stage" aria-live="polite"><div class="toast toast--info">Информационное сообщение</div><div class="toast toast--success">Изменения сохранены</div><div class="toast toast--warning">Проверьте введённые данные</div><div class="toast toast--error" role="alert">Не удалось сохранить</div></div>
+    </div>
+  </div>
+
+  <div class="subsection" id="ov-dropdown-modal">
+    <div class="specimen"><div class="specimen__head"><h4>DropdownModal и Modal</h4><code>open · closed · loading</code></div>
+      <p class="note">Открытый адаптер синхронизирует <code>aria-expanded</code> триггера и <code>aria-hidden</code> попапа. В dialog-режиме добавляются focus trap, Escape и возврат фокуса.</p>
+      <div class="stage"><button class="base-button inline-flex appearance-main size-m is-sizeable" type="button" aria-expanded="false" aria-controls="demo-sheet">Закрытый dropdown-modal</button><div id="demo-sheet" class="dropdown-modal-popper" aria-hidden="true"></div><div class="notification notification--info" role="status">Modal loading: <code>aria-busy="true"</code>, содержимое остаётся доступно для чтения.</div></div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

@@ -1,0 +1,42 @@
+{
+  "id": "guide-quick-start",
+  "title": "Быстрый старт",
+  "kind": "guide",
+  "category": "development",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "published-guide"
+    ],
+    "confidence": "high",
+    "scope": "package"
+  },
+  "purpose": "Адресная машинная копия документа docs/development/quick-start.md.",
+  "implementation": {
+    "markup": null,
+    "styles": [],
+    "scripts": [],
+    "missingReason": "document-only",
+    "fallback": "Читайте sections выбранного документа."
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "legacy-document",
+      "ref": "archive:career/v1/docs/development/quick-start.md"
+    }
+  ],
+  "unknowns": [],
+  "sourcePath": "archive:career/v1/docs/development/quick-start.md",
+  "markdown": "# Быстрый старт\r\n\r\nСобрать экран Career с нуля. Пять шагов; после каждого можно открыть файл\r\nв браузере и увидеть результат.\r\n\r\n## 1. Подключить слой\r\n\r\n```html\r\n<link rel=\"stylesheet\" href=\"career/ui/career.css\">\r\n```\r\n\r\nОдна строка. Порядок слоёв, обёртка `.career-shell` и три добавленных правила —\r\n[подключение](installation.md).\r\n\r\n## 2. Выбрать семейство страницы\r\n\r\nCareer различает шесть продуктовых семейств, и от выбора зависит каркас:\r\nLISTING · DETAIL · PROFILE · RATING · DASHBOARD · SERVICE. Разбор и признаки —\r\n[компоненты, модули и семейства страниц](../guide/page-families.md).\r\n\r\nНе подходит ни одно — значит задача в непокрытой зоне. Смотрите\r\n[границы](../guide/coverage.md) прежде, чем достраивать.\r\n\r\n## 3. Поставить каркас\r\n\r\nКонтейнер 1100 с полями `0 12px`, сетка `752 + 24 + 300`. Сайдбар фиксирован,\r\nсжимается главная колонка.\r\n\r\n```html\r\n<div class=\"career-shell\">\r\n  <div class=\"page-width\">\r\n    <div class=\"page-layout\">\r\n      <main class=\"page-layout__main\">…</main>\r\n      <aside class=\"sidebar\">…</aside>\r\n    </div>\r\n  </div>\r\n</div>\r\n```\r\n\r\nПравила `SH-5`, `L-1`, `L-2` — [композиция](../guide/composition.md).\r\nОбёртка `.career-shell` нужна потому, что `layout.css` написан на `@container`,\r\nа не на `@media`.\r\n\r\n## 4. Собрать содержимое из готовых компонентов\r\n\r\nНайдите нужное в [реестре](../../components/INDEX.md), откройте спецификацию,\r\nскопируйте блок «Разметка». Разметка любой спецификации работает на пустой\r\nстранице с одним `career.css` — вместе с иконками.\r\n\r\nЖивьём всё видно в [витрине](../../showcase/components.html); композиции\r\nстраниц с переключателями ширины — в [паттернах](../../showcase/pages.html).\r\n\r\nЧетыре правила, без которых экран не будет похож на Career:\r\n\r\n- заголовок страницы лежит **внутри** первой карточки, вместе с поиском,\r\n  сортировкой и счётчиком (`L-3`);\r\n- шаг между карточками **12**, padding карточки **24**, радиус **24**,\r\n  граница 1px — ни тени, ни подъёма при наведении (`L-4`, `C-1`);\r\n- основное действие — **в шапке сущности**, а не в конце страницы (`D-4`);\r\n- метаданные группируются микро-меткой 12/16 · 400 `gray-3` (`D-3`).\r\n\r\n## 5. Проверить\r\n\r\nПолный список — [чеклист готовности](checklist.md). Коротко:\r\n\r\n- Четыре ширины: **375 · 768 · 1024 · 1440**. Оболочка перестраивается на\r\n  **1023**, а не на 767 — медиазапрос сравнивается с шириной окна вместе\r\n  с полосой прокрутки.\r\n- Типографика **не** масштабируется: H1 остаётся 28/32 и на 375.\r\n- Нет горизонтальной прокрутки документа.\r\n- Состояния: default, hover, focus-visible, pressed, disabled — словарь\r\n  и матрица обязательных в [`components/STATES.md`](../../components/STATES.md).\r\n- Кольцо фокуса у полей показывается только при переходе Tab; за это отвечает\r\n  необязательный `ui/focus-modality.js`.\r\n\r\n## Чего делать не надо\r\n\r\nCareer узнаётся по пяти признакам, и нарушение любого ломает сходство сильнее,\r\nчем неверный компонент: белый фон и границы вместо теней · холодная сине-серая\r\nнейтральная шкала · фиолетовый только для действия, синий только для ссылки ·\r\nмикро-метка как способ группировки · высокая плотность. Разбор —\r\n[дизайн-основа](../guide/design.md).\r\n\r\nЕсли нужного паттерна в продукте нет — не достраивайте молча. Возьмите ближайший\r\nподтверждённый как отправную точку и назовите допущение вслух: для этого есть\r\n16 Decision Guides в [решениях](../guide/decisions.md), каждый с оценкой\r\nуверенности и указанием, где заканчивается evidence.\r\n",
+  "previewMode": "none"
+}

@@ -1,0 +1,85 @@
+{
+  "id": "sidebar-section",
+  "name": "SidebarSection",
+  "category": "frame-modules",
+  "kind": "module",
+  "spec": "components\\modules\\sidebar-section.md",
+  "status": "complete",
+  "states": [],
+  "cssRoots": [
+    "sidebar-section"
+  ],
+  "anchor": "showcase/components.html#r4-sidebar",
+  "markup": {
+    "html": "<section class=\"base-section base-section--background-white rounded-3xl sidebar-section\" aria-labelledby=\"sidebar-company\"><h3 class=\"sidebar-section__title\" id=\"sidebar-company\">О компании</h3><p class=\"sidebar-section__description\">Продуктовая IT-компания</p><div class=\"sidebar-section__body\"><p style=\"margin:0\">Москва · 500–1000 сотрудников</p></div><div class=\"sidebar-section__footer\"><a class=\"link-styled-button\" href=\"#\">Перейти в профиль</a></div></section>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [],
+  "legacySource": {
+    "id": "sidebar-section",
+    "name": "SidebarSection",
+    "category": "frame-modules",
+    "kind": "module",
+    "spec": "components\\modules\\sidebar-section.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "sidebar-section"
+    ],
+    "anchor": "showcase/components.html#r4-sidebar",
+    "markup": {
+      "html": "<section class=\"base-section base-section--background-white rounded-3xl sidebar-section\" aria-labelledby=\"sidebar-company\"><h3 class=\"sidebar-section__title\" id=\"sidebar-company\">О компании</h3><p class=\"sidebar-section__description\">Продуктовая IT-компания</p><div class=\"sidebar-section__body\"><p style=\"margin:0\">Москва · 500–1000 сотрудников</p></div><div class=\"sidebar-section__footer\"><a class=\"link-styled-button\" href=\"#\">Перейти в профиль</a></div></section>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": []
+  },
+  "title": "SidebarSection",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Карточка внутри Sidebar с компактным заголовком 16/24·600, body и optional footer. Композирует базовый Section и существующие controls/collections.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "sidebar-section"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fsidebar-section.json",
+      "covers": [],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [],
+  "markdown": "# SidebarSection · Секция боковой колонки\r\n\r\n| | |\r\n|---|---|\r\n| **Категория** | Каркасные модули |\r\n| **Корневой класс** | `sidebar-section` |\r\n| **CSS** | `ui/modules.css` |\r\n| **Живая реализация** | `showcase/components.html#r4-sidebar` |\r\n\r\n## Назначение\r\n\r\nКарточка внутри Sidebar с компактным заголовком `16/24·600`, body и optional\r\nfooter. Композирует базовый Section и существующие controls/collections.\r\n\r\n## Анатомия\r\n\r\n```text\r\nsection.base-section.sidebar-section\r\n  h2.sidebar-section__title\r\n  p.sidebar-section__description\r\n  .sidebar-section__body\r\n  .sidebar-section__footer\r\n```\r\n\r\n## Состояния\r\n\r\nСобственных states нет. Disclosure использует Accordion, выбор — Checkbox/Row,\r\nа pending/error — соответствующие feedback components.\r\n\r\n## API\r\n\r\n- `headingLevel`: уровень по outline страницы, независимо от компактного вида.\r\n- slots: `title`, `description`, `default`, `footer`.\r\n- Padding и background берутся из Section, не дублируются локальными props.\r\n\r\n## Responsive\r\n\r\nКомпонент следует ширине Sidebar. Он не скрывается самостоятельно и не содержит\r\ndevice-specific markup.\r\n\r\n## Доступность\r\n\r\nИспользуйте `<section aria-labelledby>` при наличии heading. Список ссылок или\r\nфильтров получает собственную семантику (`nav`, `fieldset`) внутри body.\r\n\r\n## Разметка\r\n\r\nСнято с живого примера витрины — [`showcase/components.html#r4-sidebar`](../../showcase/components.html#r4-sidebar).\r\nРаботает на пустой странице с одним `ui/career.css`.\r\n\r\n```html\r\n<section class=\"base-section base-section--background-white rounded-3xl sidebar-section\" aria-labelledby=\"sidebar-company\"><h3 class=\"sidebar-section__title\" id=\"sidebar-company\">О компании</h3><p class=\"sidebar-section__description\">Продуктовая IT-компания</p><div class=\"sidebar-section__body\"><p style=\"margin:0\">Москва · 500–1000 сотрудников</p></div><div class=\"sidebar-section__footer\"><a class=\"link-styled-button\" href=\"#\">Перейти в профиль</a></div></section>\r\n```\r\n\r\n## Источники\r\n\r\n- [`evidence/README.md`](../../evidence/README.md): `module-sidebar-box-1440`.\r\n- [`ui/layout.css`](../../ui/layout.css): C-6.\r\n\r\n",
+  "sourcePath": "archive:career/v1/components/modules/sidebar-section.md",
+  "legacyDocument": "archive:career/v1/components/modules/sidebar-section.md"
+}

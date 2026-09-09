@@ -1,0 +1,127 @@
+{
+  "id": "input-label",
+  "name": "InputLabel",
+  "category": "forms",
+  "kind": "component",
+  "spec": "components\\forms\\input-label.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "disabled",
+    "invalid"
+  ],
+  "cssRoots": [
+    "base-input-label"
+  ],
+  "anchor": "showcase/components.html#fo-label-all",
+  "markup": {
+    "html": "<label class=\"base-input-label base-input-label--invalid\" for=\"profile-name\">\n  <span class=\"base-input-label__title base-input-label__title--required\">Имя</span>\n  <span id=\"profile-name-hint\" class=\"base-input-label__subtitle\">Как в документах</span>\n  <span class=\"text-input text-input--invalid\">\n    <input id=\"profile-name\" class=\"text-input__input\" required\n           aria-invalid=\"true\" aria-describedby=\"profile-name-hint profile-name-error\">\n  </span>\n  <span id=\"profile-name-error\" class=\"base-input-label__error\">Заполните поле</span>\n</label>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [],
+  "storybookNames": [
+    "BaseInputLabel"
+  ],
+  "code": {
+    "component": "BaseInputLabel",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "input-label",
+    "name": "InputLabel",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\input-label.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "disabled",
+      "invalid"
+    ],
+    "cssRoots": [
+      "base-input-label"
+    ],
+    "anchor": "showcase/components.html#fo-label-all",
+    "markup": {
+      "html": "<label class=\"base-input-label base-input-label--invalid\" for=\"profile-name\">\n  <span class=\"base-input-label__title base-input-label__title--required\">Имя</span>\n  <span id=\"profile-name-hint\" class=\"base-input-label__subtitle\">Как в документах</span>\n  <span class=\"text-input text-input--invalid\">\n    <input id=\"profile-name\" class=\"text-input__input\" required\n           aria-invalid=\"true\" aria-describedby=\"profile-name-hint profile-name-error\">\n  </span>\n  <span id=\"profile-name-error\" class=\"base-input-label__error\">Заполните поле</span>\n</label>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "BaseInputLabel"
+    ],
+    "code": {
+      "component": "BaseInputLabel",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "InputLabel",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Обвязка поля: заголовок, отметка обязательности, подпись и текст ошибки. Career не встраивает подпись в само поле — метка всегда отдельный компонент, оборачивающий любой контрол.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "base-input-label"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "BaseInputLabel",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "disabled",
+      "invalid"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Finput-label.json",
+      "covers": [
+        "default",
+        "disabled",
+        "invalid"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Связи aria-describedby/aria-invalid и стабильный error class не были"
+  ],
+  "markdown": "# InputLabel · BaseInputLabel\n\n| | |\n|---|---|\n| **Категория** | Формы |\n| **Корневой класс** | `base-input-label` |\n| **CSS** | `ui/components/forms.css`, `ui/state-contract.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 8 из 8 |\n\n## Назначение\n\nОбвязка поля: заголовок, отметка обязательности, подпись и текст ошибки. Career не встраивает подпись в само поле — метка всегда отдельный компонент, оборачивающий любой контрол.\n\n## Анатомия\n\nКлючевая особенность — ошибки могут стоять и над полем, и под ним: за это отвечает `--errorsPosition-above`. Модификатор `--appearance-textarea` меняет отступы под многострочное поле.\n\n```\nlabel.base-input-label\n  span.base-input-label__title.base-input-label__title--errorsPosition-above.base-input-label__title--appearance-default\n    · «Поле ввода»\n  input  [type=\"text\" placeholder=\"Введите значение\"]\n```\n\n_Разметка story `common-form-baseinputlabel--default`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\n| Состояние | Контракт |\n|---|---|\n| `default` | label и control связаны вложенностью или `for`/`id` |\n| `disabled` | control получает нативный `disabled`, title — `--disabled` |\n| `invalid` | control получает `aria-invalid=\"true\"` и `aria-describedby`; root — `.base-input-label--invalid` |\n\n### FormField contract\n\nInputLabel является обвязкой любого form control. Порядок элементов:\n`title → subtitle/hint → control → error`. У каждого hint/error стабильный `id`,\nа control перечисляет их в `aria-describedby`. Визуальный `required` обязательно\nдублируется нативным `required` или `aria-required=\"true\"` на самом control.\n\nПодтверждены CSS и разметкой: `.base-input-label__title--disabled`.\n\n## Слоты\n\n- `nextToTitle`\n- `default`\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `title` | string | — | — | `text` |\n| `subtitle` | string | — | — | `text` |\n| `tag` | string | `'label'` | — | `text` |\n| `required` | boolean | — | — | `boolean` |\n| `size` | string | — | — | `text` |\n| `errors` | string \\| string[] \\| null | — | — | `object` |\n| `errorsPosition` | string | `'above'` | — | `text` |\n| `errorsClass` | string | — | — | `text` |\n| `labelFor` | string | — | — | `text` |\n| `appearance` | string | `'default'` | — | `text` |\n| `smallSubtitle` | boolean | — | — | `boolean` |\n| `disabled` | boolean | `false` | — | `boolean` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-ui-gray-1` | `#1b272c` | из `:root` Career |\n| `--color-ui-gray-3` | `#7996a5` | из `:root` Career |\n| `--color-ui-gray-4` | `#a6bdc9` | из `:root` Career |\n| `--color-ui-red` | `#f8651b` | из `:root` Career |\n\n## Responsive\n\nКомпонент реагирует на: `(max-width:767px)`.\n\n## Доступность\n\nПредпочтительна явная связь `label[for]` → `control[id]`; вложенность также\nдопустима для простого поля. Ошибка не заменяет label и связывается с control\nчерез `aria-describedby`. Для invalid задаётся `aria-invalid=\"true\"`.\n\n## Поведение\n\n- Размер метки задаётся `--size-large` / `--size-small`, а не размером самого поля.\n- Признак обязательности — модификатор `--required` на заголовке, а не отдельный узел со звёздочкой.\n\n## Разметка\n\n```html\n<label class=\"base-input-label base-input-label--invalid\" for=\"profile-name\">\n  <span class=\"base-input-label__title base-input-label__title--required\">Имя</span>\n  <span id=\"profile-name-hint\" class=\"base-input-label__subtitle\">Как в документах</span>\n  <span class=\"text-input text-input--invalid\">\n    <input id=\"profile-name\" class=\"text-input__input\" required\n           aria-invalid=\"true\" aria-describedby=\"profile-name-hint profile-name-error\">\n  </span>\n  <span id=\"profile-name-error\" class=\"base-input-label__error\">Заполните поле</span>\n</label>\n```\n\n## CSS\n\n```css\n.base-input-label__title { color:var(--color-ui-gray-1);display:block;font-size:16px;font-weight:600;line-height:24px;margin-bottom:8px }\n.base-input-label__title--appearance-textarea { margin-bottom:8px }\n.base-input-label:has(.base-input-label__subtitle) .base-input-label__title { margin-bottom:0;white-space:nowrap }\n.base-input-label__subtitle { color:var(--color-ui-gray-3);display:block;margin-bottom:8px;margin-top:4px;white-space:nowrap }\n.base-input-label__subtitle--smallSubtitle { font-size:14px;line-height:20px;white-space:break-spaces }\n.base-input-label__subtitle--hasErrors.base-input-label__subtitle--errorsPosition-above { margin-bottom:4px }\n.base-input-label__title--size-small { font-size:14px;line-height:20px;margin-bottom:1rem }\n.base-input-label__title--size-large { font-size:20px;line-height:24px;margin-bottom:1.5rem }\n.base-input-label__title--disabled { color:var(--color-ui-gray-4);margin-bottom:0 }\n.base-input-label__title--required:after { color:var(--color-ui-red);content:\" *\" }\n.base-input-label__title--hasErrors.base-input-label__title--errorsPosition-above { margin-bottom:4px }\n@media (max-width:767px) {\n  .base-input-label__subtitle { white-space:break-spaces }\n}\n```\n\n## Ограничения\n\n- Связи `aria-describedby`/`aria-invalid` и стабильный error class не были\n  оформлены в snapshot; они добавлены нормативным FormField contract.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/common/base-input-label.stories.ts`\n- Storybook `career-web`: `common-form-baseinputlabel--default`, `common-form-baseinputlabel--required`, `common-form-baseinputlabel--with-subtitle`, `common-form-baseinputlabel--with-errors`, `common-form-baseinputlabel--size-small`, `common-form-baseinputlabel--size-large`, `common-form-baseinputlabel--disabled`, `common-form-baseinputlabel--appearance-textarea`\n- CSS: секция `base-input-label` в `ui/components/forms.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/forms/input-label.md",
+  "legacyDocument": "archive:career/v1/components/forms/input-label.md"
+}

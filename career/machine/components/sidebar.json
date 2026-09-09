@@ -1,0 +1,85 @@
+{
+  "id": "sidebar",
+  "name": "Sidebar",
+  "category": "frame-modules",
+  "kind": "module",
+  "spec": "components\\modules\\sidebar.md",
+  "status": "complete",
+  "states": [],
+  "cssRoots": [
+    "sidebar"
+  ],
+  "anchor": "showcase/components.html#r4-sidebar",
+  "markup": {
+    "html": "<aside class=\"sidebar\" aria-label=\"Дополнительная информация\"><section class=\"base-section base-section--background-white rounded-3xl sidebar-section\" aria-labelledby=\"sidebar-company\"><h3 class=\"sidebar-section__title\" id=\"sidebar-company\">О компании</h3><p class=\"sidebar-section__description\">Продуктовая IT-компания</p><div class=\"sidebar-section__body\"><p style=\"margin:0\">Москва · 500–1000 сотрудников</p></div><div class=\"sidebar-section__footer\"><a class=\"link-styled-button\" href=\"#\">Перейти в профиль</a></div></section><section class=\"base-section base-section--background-white rounded-3xl sidebar-section\" aria-labelledby=\"sidebar-subscribe\"><h3 class=\"sidebar-section__title\" id=\"sidebar-subscribe\">Новые вакансии</h3><div class=\"sidebar-section__body\"><button type=\"button\" class=\"base-button inline-flex appearance-passive size-m is-sizeable w-full\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Подписаться</span></span></button></div></section></aside>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [],
+  "legacySource": {
+    "id": "sidebar",
+    "name": "Sidebar",
+    "category": "frame-modules",
+    "kind": "module",
+    "spec": "components\\modules\\sidebar.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "sidebar"
+    ],
+    "anchor": "showcase/components.html#r4-sidebar",
+    "markup": {
+      "html": "<aside class=\"sidebar\" aria-label=\"Дополнительная информация\"><section class=\"base-section base-section--background-white rounded-3xl sidebar-section\" aria-labelledby=\"sidebar-company\"><h3 class=\"sidebar-section__title\" id=\"sidebar-company\">О компании</h3><p class=\"sidebar-section__description\">Продуктовая IT-компания</p><div class=\"sidebar-section__body\"><p style=\"margin:0\">Москва · 500–1000 сотрудников</p></div><div class=\"sidebar-section__footer\"><a class=\"link-styled-button\" href=\"#\">Перейти в профиль</a></div></section><section class=\"base-section base-section--background-white rounded-3xl sidebar-section\" aria-labelledby=\"sidebar-subscribe\"><h3 class=\"sidebar-section__title\" id=\"sidebar-subscribe\">Новые вакансии</h3><div class=\"sidebar-section__body\"><button type=\"button\" class=\"base-button inline-flex appearance-passive size-m is-sizeable w-full\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Подписаться</span></span></button></div></section></aside>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": []
+  },
+  "title": "Sidebar",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Контейнер боковой колонки шириной 300px, который группирует SidebarSection. Положение слева/справа задаёт PageLayout; Sidebar не знает семейство страницы.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "sidebar"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fsidebar.json",
+      "covers": [],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [],
+  "markdown": "# Sidebar · Боковая колонка\r\n\r\n| | |\r\n|---|---|\r\n| **Категория** | Каркасные модули |\r\n| **Корневой класс** | `sidebar` |\r\n| **CSS** | `ui/modules.css`, `ui/layout.css` |\r\n| **Живая реализация** | `showcase/components.html#r4-sidebar` |\r\n\r\n## Назначение\r\n\r\nКонтейнер боковой колонки шириной 300px, который группирует SidebarSection.\r\nПоложение слева/справа задаёт PageLayout; Sidebar не знает семейство страницы.\r\n\r\n## Варианты\r\n\r\n- default — обычная колонка.\r\n- `sidebar--sticky` — залипает с отступом 12px.\r\n- `data-responsive=\"hidden\"` — продуктовый sidebar фильтров скрывается на\r\n  `≤1023`; вместо него должен существовать доступный trigger FilterModal.\r\n\r\n## Состояния\r\n\r\nУ контейнера нет interaction states. `sticky` и responsive visibility — layout\r\nvariants, не `selected/open`.\r\n\r\n## API\r\n\r\n- slot `default`: только SidebarSection или документированное promo.\r\n- `sticky`: boolean layout variant.\r\n- `responsive`: `stack | hidden`; значение `hidden` требует альтернативного\r\n  способа доступа к содержимому.\r\n\r\n## Responsive\r\n\r\nDesktop width — 300px. На `≤1023` sidebar получает width 100% и перестаёт быть\r\nsticky; вариант `hidden` удаляется из layout. Порядок колонки определяет parent.\r\n\r\n## Доступность\r\n\r\n`<aside>` получает `aria-label` или `aria-labelledby`, если это complementary\r\ncontent. Для основной навигации используйте `<nav>`, а не generic aside.\r\n\r\n## Разметка\r\n\r\nСнято с живого примера витрины — [`showcase/components.html#r4-sidebar`](../../showcase/components.html#r4-sidebar).\r\nРаботает на пустой странице с одним `ui/career.css`.\r\n\r\n```html\r\n<aside class=\"sidebar\" aria-label=\"Дополнительная информация\"><section class=\"base-section base-section--background-white rounded-3xl sidebar-section\" aria-labelledby=\"sidebar-company\"><h3 class=\"sidebar-section__title\" id=\"sidebar-company\">О компании</h3><p class=\"sidebar-section__description\">Продуктовая IT-компания</p><div class=\"sidebar-section__body\"><p style=\"margin:0\">Москва · 500–1000 сотрудников</p></div><div class=\"sidebar-section__footer\"><a class=\"link-styled-button\" href=\"#\">Перейти в профиль</a></div></section><section class=\"base-section base-section--background-white rounded-3xl sidebar-section\" aria-labelledby=\"sidebar-subscribe\"><h3 class=\"sidebar-section__title\" id=\"sidebar-subscribe\">Новые вакансии</h3><div class=\"sidebar-section__body\"><button type=\"button\" class=\"base-button inline-flex appearance-passive size-m is-sizeable w-full\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Подписаться</span></span></button></div></section></aside>\r\n```\r\n\r\n## Источники\r\n\r\n- [`evidence/README.md`](../../evidence/README.md): `module-sidebar-box-1440`.\r\n- [`ui/layout.css`](../../ui/layout.css): L-2, L-6, R-3/R-5.\r\n\r\n",
+  "sourcePath": "archive:career/v1/components/modules/sidebar.md",
+  "legacyDocument": "archive:career/v1/components/modules/sidebar.md"
+}

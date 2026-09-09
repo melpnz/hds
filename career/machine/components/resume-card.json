@@ -1,0 +1,52 @@
+{
+  "id": "resume-card",
+  "title": "ResumeCard · Карточка резюме",
+  "kind": "module",
+  "category": "cards",
+  "maturity": {
+    "spec": "partial",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "published-spec",
+      "storybook-snapshot"
+    ],
+    "confidence": "low",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Карточка специалиста в поиске резюме: аватар, имя, специализация, навыки, действия.",
+  "implementation": {
+    "markup": null,
+    "cssRoots": [],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "missingReason": "copy-safe-markup-not-captured",
+    "fallback": "Не додумывать DOM; использовать ближайший подтверждённый модуль."
+  },
+  "markup": null,
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [],
+  "accessibility": [],
+  "unknowns": [
+    "Все три story сломаны в самом Storybook Career (недостающие чанки сборки, HTTP 404). Разметка не снята.",
+    "Собственный CSS компонента — 158 байт: почти вся карточка собрана утилитами прямо в разметке, поэтому из CSS её вид не восстанавливается.",
+    "ЧЕГО НЕ ХВАТАЕТ: рабочего Storybook, либо snapshot страницы /resumes production, либо узла Figma с карточкой резюме."
+  ],
+  "evidence": [
+    {
+      "type": "published-spec",
+      "ref": "archive:career/v1/components/cards/resume-card.md"
+    }
+  ],
+  "markdown": "# ResumeCard · Карточка резюме\n\n| | |\n|---|---|\n| **Категория** | Карточки |\n| **Корневой класс** | — |\n| **CSS** | `ui/components/cards.css` |\n| **Живая реализация** | нет — см. «Ограничения» |\n| **Snapshot Storybook** | 0 из 3 |\n\n## Назначение\n\nКарточка специалиста в поиске резюме: аватар, имя, специализация, навыки, действия.\n\n## Анатомия\n\n_Разметка недоступна: см. «Ограничения»._\n\n## Состояния\n\n_В извлечённом CSS и разметке состояний не объявлено. Не достраиваем._\n\n## Props\n\n_Storybook не отдаёт controls для этого компонента._\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-rank-bronze` | `#d1a584` | из `:root` Career |\n| `--color-ui-gray` | `#ccc` | из `:root` Career |\n| `--color-ui-orange` | `#fdad0d` | из `:root` Career |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## CSS\n\n```css\n.gold { fill:var(--color-ui-orange) }\n.silver { fill:var(--color-ui-gray) }\n.bronze { fill:var(--color-rank-bronze) }\n```\n\n## Ограничения\n\n- Все три story сломаны в самом Storybook Career (недостающие чанки сборки, HTTP 404). Разметка не снята.\n- Собственный CSS компонента — 158 байт: почти вся карточка собрана утилитами прямо в разметке, поэтому из CSS её вид не восстанавливается.\n- ЧЕГО НЕ ХВАТАЕТ: рабочего Storybook, либо snapshot страницы `/resumes` production, либо узла Figma с карточкой резюме.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/resumes/resume-card/resume-card.stories.ts`\n- Storybook `career-web`: `resumes-resumecard--specialist`, `resumes-resumecard--specialist-searching`, `resumes-resumecard--habr-specialist`\n- CSS: секция `resume-card` в `ui/components/cards.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/cards/resume-card.md",
+  "legacyDocument": "archive:career/v1/components/cards/resume-card.md",
+  "legacyUnindexed": true
+}

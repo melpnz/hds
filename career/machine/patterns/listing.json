@@ -1,0 +1,127 @@
+{
+  "id": "listing",
+  "name": "Листинг",
+  "summary": "Самое частое семейство: вакансии, компании, эксперты, специалисты. Вертикальный список одинаковых карточек, фильтры в правом сайдбаре.",
+  "grid": {
+    "container": 1100,
+    "padding": "0 12px",
+    "main": 752,
+    "gap": 24,
+    "aside": 300,
+    "asideSide": "right"
+  },
+  "note": null,
+  "areas": null,
+  "responsive": [
+    {
+      "maxWidth": 1023,
+      "change": "сайдбар уходит под главную колонку; оболочка перестраивается на 1023, а не на 767"
+    },
+    {
+      "maxWidth": 767,
+      "change": "фильтры сворачиваются в кнопку и открываются модально"
+    }
+  ],
+  "rules": [
+    "L-1",
+    "L-2",
+    "L-3",
+    "L-4",
+    "L-5",
+    "L-6",
+    "L-7",
+    "C-4",
+    "R-4"
+  ],
+  "example": {
+    "showcase": "showcase/pages.html#p-listing"
+  },
+  "title": "Листинг",
+  "kind": "pattern",
+  "category": "page-families",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production-showcase",
+      "observed-rules"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Самое частое семейство: вакансии, компании, эксперты, специалисты. Вертикальный список одинаковых карточек, фильтры в правом сайдбаре.",
+  "implementation": {
+    "markup": "examples/patterns/listing.html",
+    "cssRoots": [],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [
+      "examples/patterns/patterns.js"
+    ]
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [
+      "success"
+    ],
+    "domain": []
+  },
+  "ruleFiles": [
+    "machine/rules/l-1.json",
+    "machine/rules/l-2.json",
+    "machine/rules/l-3.json",
+    "machine/rules/l-4.json",
+    "machine/rules/l-5.json",
+    "machine/rules/l-6.json",
+    "machine/rules/l-7.json",
+    "machine/rules/c-4.json",
+    "machine/rules/r-4.json"
+  ],
+  "examples": [
+    {
+      "id": "page",
+      "title": "Листинг",
+      "file": "examples/patterns/listing.html",
+      "covers": [
+        "listing"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "height": 720
+      }
+    }
+  ],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "showcase",
+      "ref": "showcase/pages.html#p-listing"
+    },
+    {
+      "type": "rules",
+      "ref": [
+        "L-1",
+        "L-2",
+        "L-3",
+        "L-4",
+        "L-5",
+        "L-6",
+        "L-7",
+        "C-4",
+        "R-4"
+      ]
+    }
+  ],
+  "unknowns": [
+    "Последовательность areas пока не извлечена из ad-hoc showcase composition."
+  ]
+}

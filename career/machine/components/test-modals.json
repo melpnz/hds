@@ -1,0 +1,52 @@
+{
+  "id": "test-modals",
+  "title": "TestResultModals · Окна результатов тестов",
+  "kind": "module",
+  "category": "modules",
+  "maturity": {
+    "spec": "partial",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "published-spec",
+      "storybook-snapshot"
+    ],
+    "confidence": "low",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Модальные окна с результатом теста: разбор по навыкам, разбор по специализациям и список доступных скринингов.",
+  "implementation": {
+    "markup": null,
+    "cssRoots": [],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "missingReason": "copy-safe-markup-not-captured",
+    "fallback": "Не додумывать DOM; использовать ближайший подтверждённый модуль."
+  },
+  "markup": null,
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [],
+  "accessibility": [],
+  "unknowns": [
+    "Все семь story сломаны в самом Storybook Career (недостающие чанки сборки). Разметка не снята.",
+    "CSS обеих секций сохранён, но он крошечный (по 86 байт): окна собраны из BaseModal плюс утилиты.",
+    "ЧЕГО НЕ ХВАТАЕТ: разметки. Основа — BaseModal — восстановлена полностью, недостаёт только содержимого."
+  ],
+  "evidence": [
+    {
+      "type": "published-spec",
+      "ref": "archive:career/v1/components/modules/test-modals.md"
+    }
+  ],
+  "markdown": "# TestResultModals · Окна результатов тестов\n\n| | |\n|---|---|\n| **Категория** | Модуль: тесты |\n| **Корневой класс** | — |\n| **CSS** | `ui/components/overlays.css` |\n| **Живая реализация** | нет — см. «Ограничения» |\n| **Snapshot Storybook** | 0 из 7 |\n\n## Назначение\n\nМодальные окна с результатом теста: разбор по навыкам, разбор по специализациям и список доступных скринингов.\n\n## Анатомия\n\n_Разметка недоступна: см. «Ограничения»._\n\n## Состояния\n\n_В извлечённом CSS и разметке состояний не объявлено. Не достраиваем._\n\n## Props\n\n_Storybook не отдаёт controls для этого компонента._\n\n## Токены\n\n_Компонент не обращается к переменным напрямую._\n\n## Responsive\n\nКомпонент реагирует на: `(max-width:479px)`.\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## CSS\n\n```css\n@media (max-width:479px) {\n  .test-result-modal-item { padding:0 1.5rem }\n}\n```\n\n## Ограничения\n\n- Все семь story сломаны в самом Storybook Career (недостающие чанки сборки). Разметка не снята.\n- CSS обеих секций сохранён, но он крошечный (по 86 байт): окна собраны из BaseModal плюс утилиты.\n- ЧЕГО НЕ ХВАТАЕТ: разметки. Основа — BaseModal — восстановлена полностью, недостаёт только содержимого.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/tests/skills-test-result-modal.stories.ts`, `./src/components/tests/specs-test-result-modal.stories.ts`, `./src/components/tests/screenings-list-modal.stories.ts`\n- Storybook `career-web`: `tests-modals-skillstestresultmodal--owner-view`, `tests-modals-skillstestresultmodal--guest-view`, `tests-modals-skillstestresultmodal--expired-result`, `tests-modals-specstestresultmodal--owner-view`, `tests-modals-specstestresultmodal--guest-view`, `tests-modals-screeningslistmodal--guest-view`, `tests-modals-screeningslistmodal--owner-view`\n- CSS: секция `specs-test-result-modal` в `ui/components/overlays.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/modules/test-modals.md",
+  "legacyDocument": "archive:career/v1/components/modules/test-modals.md",
+  "legacyUnindexed": true
+}

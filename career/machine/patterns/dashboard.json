@@ -1,0 +1,99 @@
+{
+  "id": "dashboard",
+  "name": "Дашборд",
+  "summary": "Единственное семейство, где композиция строится вокруг данных, а не вокруг списка сущностей. Собственный каркас.",
+  "grid": null,
+  "note": "собственный каркас 264 + 800 (правило DB-2), не общая сетка 752 + 24 + 300. Наблюдался один раз — правила DB-* помечены как ненадёжные",
+  "areas": null,
+  "responsive": [],
+  "rules": [
+    "DB-1",
+    "DB-2",
+    "DB-3",
+    "C-5",
+    "R-6"
+  ],
+  "example": {
+    "showcase": "showcase/pages.html#p-dashboard"
+  },
+  "title": "Дашборд",
+  "kind": "pattern",
+  "category": "page-families",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production-showcase",
+      "observed-rules"
+    ],
+    "confidence": "low",
+    "scope": "public-guest"
+  },
+  "purpose": "Единственное семейство, где композиция строится вокруг данных, а не вокруг списка сущностей. Собственный каркас.",
+  "implementation": {
+    "markup": "examples/patterns/dashboard.html",
+    "cssRoots": [],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [
+      "examples/patterns/patterns.js"
+    ]
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [
+      "success"
+    ],
+    "domain": []
+  },
+  "ruleFiles": [
+    "machine/rules/db-1.json",
+    "machine/rules/db-2.json",
+    "machine/rules/db-3.json",
+    "machine/rules/c-5.json",
+    "machine/rules/r-6.json"
+  ],
+  "examples": [
+    {
+      "id": "page",
+      "title": "Дашборд",
+      "file": "examples/patterns/dashboard.html",
+      "covers": [
+        "dashboard"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "height": 720
+      }
+    }
+  ],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "showcase",
+      "ref": "showcase/pages.html#p-dashboard"
+    },
+    {
+      "type": "rules",
+      "ref": [
+        "DB-1",
+        "DB-2",
+        "DB-3",
+        "C-5",
+        "R-6"
+      ]
+    }
+  ],
+  "unknowns": [
+    "Последовательность areas пока не извлечена из ad-hoc showcase composition."
+  ]
+}

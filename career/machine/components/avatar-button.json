@@ -1,0 +1,158 @@
+{
+  "id": "avatar-button",
+  "name": "AvatarButton",
+  "category": "actions",
+  "kind": "component",
+  "spec": "components\\actions\\avatar-button.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "selected",
+    "disabled",
+    "loading"
+  ],
+  "cssRoots": [
+    "avatar-button"
+  ],
+  "anchor": "showcase/components.html#a-round",
+  "markup": {
+    "html": "<button class=\"avatar-button base-button inline-flex appearance-avatar size-l avatar-button\" type=\"button\" target=\"_self\">\n  <span class=\"base-button__content base-button__content--appearance-avatar\">\n    <img src=\"../../ui/assets/illustrations/avatar-default-user.svg\" alt=\"Аватар пользователя\" class=\"size-full object-cover\">\n  </span>\n</button>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": "3989:22984",
+      "sourceName": "button / L / avatar"
+    }
+  ],
+  "storybookNames": [
+    "BaseAvatarButton"
+  ],
+  "code": {
+    "component": "BaseAvatarButton",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "avatar-button",
+    "name": "AvatarButton",
+    "category": "actions",
+    "kind": "component",
+    "spec": "components\\actions\\avatar-button.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "selected",
+      "disabled",
+      "loading"
+    ],
+    "cssRoots": [
+      "avatar-button"
+    ],
+    "anchor": "showcase/components.html#a-round",
+    "markup": {
+      "html": "<button class=\"avatar-button base-button inline-flex appearance-avatar size-l avatar-button\" type=\"button\" target=\"_self\">\n  <span class=\"base-button__content base-button__content--appearance-avatar\">\n    <img src=\"../../ui/assets/illustrations/avatar-default-user.svg\" alt=\"Аватар пользователя\" class=\"size-full object-cover\">\n  </span>\n</button>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "3989:22984",
+        "sourceName": "button / L / avatar"
+      }
+    ],
+    "storybookNames": [
+      "BaseAvatarButton"
+    ],
+    "code": {
+      "component": "BaseAvatarButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "AvatarButton",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Кнопка-аватар: круглая область с изображением пользователя или компании, реагирующая на наведение и фокус. Открывает меню профиля в шапке и карточку пользователя в списках.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "avatar-button"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "BaseAvatarButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "selected",
+      "disabled",
+      "loading"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Favatar-button.json",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "selected",
+        "disabled",
+        "loading"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Не выявлено: разметка, CSS и props извлечены полностью."
+  ],
+  "markdown": "# AvatarButton · BaseAvatarButton\n\n| | |\n|---|---|\n| **Категория** | Действия |\n| **Корневой класс** | `avatar-button` |\n| **CSS** | `ui/components/buttons.css`, `ui/state-contract.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 2 из 2 |\n\n## Назначение\n\nКнопка-аватар: круглая область с изображением пользователя или компании, реагирующая на наведение и фокус. Открывает меню профиля в шапке и карточку пользователя в списках.\n\n## Анатомия\n\n```\nbutton.avatar-button.base-button.inline-flex.appearance-avatar.size-l.avatar-button  [type=\"button\" target=\"_self\"]\n  span.base-button__content.base-button__content--appearance-avatar\n    img.size-full.object-cover\n```\n\n_Разметка story `common-buttons-baseavatarbutton--default`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\n| Состояние | Канонический контракт | Legacy/story alias |\n|---|---|---|\n| `default` | без state-атрибутов | `status=\"inactive\"` |\n| `hover` | `:hover` | `.is-status-hover` |\n| `focus-visible` | `:focus-visible` | `.is-status-focus` |\n| `pressed` | `:active` | `.is-pressed` только для визуальных тестов |\n| `selected` | `aria-pressed=\"true\"` для toggle-кнопки | `.is-selected` |\n| `disabled` | нативный `disabled` | `.is-disabled`, `.is-status-disable` |\n| `loading` | `.is-loading` + `aria-busy=\"true\"` | `status=\"loading\"` |\n\nЗначения Storybook `inactive`, `focus` и `disable` не переносятся в новый API:\nэто legacy vocabulary. Если кнопка только открывает меню, вместо `selected`\nследует применять `aria-expanded`, а не `aria-pressed`.\n\nПодтверждены CSS и разметкой: `.is-disabled`, `.is-status-disable`, `.is-status-focus`, `.is-status-hover`, `:focus`, `:hover`.\n\n```css\n.avatar-button:hover:after { content:var(--tw-content);opacity:.1 }\n.avatar-button:focus-visible { outline:2px solid transparent;outline-offset:2px;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000);--tw-ring-color:var(--color-ui-primary-60);--tw-ring-offset-width:2px;--tw-ring-offset-color:var(--color-ui-white) }\n.avatar-button:focus-visible:after { content:var(--tw-content);opacity:.1 }\n```\n\n## Слоты\n\n- `default`\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `status` | AvatarButtonStatus | `'inactive'` | inactive · hover · focus · selected · disable · loading | `radio` |\n| `to` | RouteLocationRaw | — | — | `object` |\n| `href` | string | — | — | `text` |\n| `type` | ButtonType | `'button'` | — | `object` |\n| `target` | \"_blank\" \\| \"_self\" | `'_self'` | — | `object` |\n| `disabled` | boolean \\| null | — | — | `object` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-ui-gray-3` | `#7996a5` | из `:root` Career |\n| `--color-ui-primary` | `#8164f7` | из `:root` Career |\n| `--color-ui-primary-60` | `color-mix(in srgb,var(--color-ui-primary) 60%,transparent)` | из `:root` Career |\n| `--color-ui-white` | `#fff` | из `:root` Career |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## Поведение\n\n- Наведение и фокус показываются не сменой фона, а двумя псевдоэлементами: `::before` — серая подложка `opacity: .1`, `::after` — кольцо 2px цвета `--color-ui-primary`, `opacity: .6` при `:focus-visible`.\n- Изображение обрезается по кругу самой кнопкой (`overflow: hidden`), а не радиусом на `img`.\n\n## Разметка\n\n```html\n<button class=\"avatar-button base-button inline-flex appearance-avatar size-l avatar-button\" type=\"button\" target=\"_self\">\n  <span class=\"base-button__content base-button__content--appearance-avatar\">\n    <img src=\"../../ui/assets/illustrations/avatar-default-user.svg\" alt=\"Аватар пользователя\" class=\"size-full object-cover\">\n  </span>\n</button>\n```\n\n_Пути к спрайтам и изображениям в этом блоке — локальные, от папки спецификации. В блоке «Анатомия» выше сохранён продовый путь: это протокол снятого DOM, а не образец для вёрстки._\n\n## CSS\n\n```css\n.avatar-button { display:flex }\n.avatar-button:before { z-index:0 }\n.avatar-button:after,.avatar-button:before { border-radius:9999px;top:0;right:0;bottom:0;left:0;pointer-events:none;position:absolute;--tw-content:\"\";content:var(--tw-content) }\n.avatar-button:after { background-color:var(--color-ui-gray-3);opacity:0;transition-duration:.2s;transition-property:opacity;transition-timing-function:cubic-bezier(.4,0,.2,1);z-index:10 }\n.avatar-button:hover:after { content:var(--tw-content);opacity:.1 }\n.avatar-button:focus-visible { outline:2px solid transparent;outline-offset:2px;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000);--tw-ring-color:var(--color-ui-primary-60);--tw-ring-offset-width:2px;--tw-ring-offset-color:var(--color-ui-white) }\n.avatar-button:focus-visible:after { content:var(--tw-content);opacity:.1 }\n.avatar-button.is-status-focus:after,.avatar-button.is-status-hover:after { opacity:.1 }\n.avatar-button.is-status-focus { --tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow),var(--tw-ring-shadow),var(--tw-shadow,0 0 #0000);--tw-ring-color:var(--color-ui-primary-60);--tw-ring-offset-width:2px;--tw-ring-offset-color:var(--color-ui-white) }\n.avatar-button.is-disabled,.avatar-button.is-status-disable { opacity:.4 }\n.avatar-button .base-button__loader { color:var(--color-ui-primary) }\n```\n\n## Ограничения\n\n- Не выявлено: разметка, CSS и props извлечены полностью.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/common/base-avatar-button/base-avatar-button.stories.ts`\n- Storybook `career-web`: `common-buttons-baseavatarbutton--default`, `common-buttons-baseavatarbutton--default-image`\n- CSS: секция `base-avatar-button` в `ui/components/buttons.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/actions/avatar-button.md",
+  "legacyDocument": "archive:career/v1/components/actions/avatar-button.md"
+}

@@ -1,0 +1,125 @@
+{
+  "id": "accordion",
+  "name": "Accordion",
+  "category": "data-display",
+  "kind": "component",
+  "spec": "components\\data\\accordion.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "collapsed",
+    "expanded",
+    "disabled"
+  ],
+  "cssRoots": [
+    "accordion"
+  ],
+  "anchor": "showcase/components.html#r3-accordion",
+  "markup": null,
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": null,
+      "sourceName": "accordion"
+    }
+  ],
+  "legacySource": {
+    "id": "accordion",
+    "name": "Accordion",
+    "category": "data-display",
+    "kind": "component",
+    "spec": "components\\data\\accordion.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "collapsed",
+      "expanded",
+      "disabled"
+    ],
+    "cssRoots": [
+      "accordion"
+    ],
+    "anchor": "showcase/components.html#r3-accordion",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "accordion"
+      }
+    ]
+  },
+  "title": "Accordion",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Accordion — сущность UI kit Career.",
+  "implementation": {
+    "markup": null,
+    "cssRoots": [
+      "accordion"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "missingReason": "copy-safe-markup-not-captured",
+    "fallback": "Не придумывать классы. Использовать ближайший компонент с разметкой или явно отметить пробел."
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "collapsed",
+      "expanded",
+      "disabled"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "isolated-example",
+      "title": "Состояния",
+      "file": "examples/components-isolated/accordion.html",
+      "covers": [
+        "isolated-example",
+        "r3-accordion",
+        "default",
+        "hover",
+        "focus-visible",
+        "collapsed",
+        "expanded",
+        "disabled"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "provenance": {
+        "source": "archive:career/v1/showcase/components.html#r3-accordion",
+        "extraction": "exact-dom-subtree"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [],
+  "markdown": "# Accordion · Раскрывающиеся секции\r\n\r\n| | |\r\n|---|---|\r\n| **Корневой класс** | `accordion` |\r\n| **CSS** | `ui/components.css` |\r\n| **Showcase** | `showcase/components.html#r3-accordion` |\r\n| **Evidence** | Figma `accordion`; semantics нормализована по disclosure pattern |\r\n\r\nAccordion группирует несколько disclosure items. Для одного сворачиваемого текста используйте CollapsedContent; для навигации между панелями — Tabs.\r\n\r\n## Иконка\r\n\r\nУказатель раскрытия — `arrow` из `single/sprite`, 24x24, справа от заголовка.\r\nНаследует `currentColor` и поворачивается на 180 градусов при\r\n`aria-expanded=\"true\"`; поворот снимается при `prefers-reduced-motion: reduce`.\r\n\r\n## Состояния\r\n\r\n`default`, `hover`, `focus-visible`, `collapsed`, `expanded`, `disabled`. Trigger — `button` внутри heading, использует `aria-expanded` и `aria-controls`; panel имеет `id`, а закрытая panel — `hidden`.\r\n\r\nEnter/Space переключают нативно. Фокус не переносится в panel и остаётся на trigger. Стрелочная навигация между headings опциональна, но если добавлена — должна быть полной и документированной. Single/multiple expansion задаётся группе; компонент не меняет heading level ради визуального размера. Disabled trigger остаётся читаемым, но не переключает panel. Анимация высоты учитывает reduced motion и не задерживает accessibility state.\r\n",
+  "sourcePath": "archive:career/v1/components/data/accordion.md",
+  "legacyDocument": "archive:career/v1/components/data/accordion.md"
+}

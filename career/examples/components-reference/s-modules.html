@@ -1,0 +1,376 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Модули</title>
+  <link rel="stylesheet" href="../../ui/career.css">
+  <link rel="stylesheet" href="reference.css">
+  <style>body{margin:0;padding:20px;background:#fff}.site-nav{display:none}</style>
+</head>
+<body>
+<section class="section" id="s-modules">
+  <div class="section__head">
+    <p class="section__num">13</p>
+    <h2>Модули</h2>
+    <p>Составные блоки: переписка, вложения, шаблоны, кабинет компании.</p>
+  </div>
+
+  <div class="subsection" id="m-conv-header">
+    <div class="specimen" data-name="шапка переписки conversationheader">
+      <div class="specimen__head"><h4>Шапка переписки</h4><code>ConversationHeader</code></div>
+      <div class="stage">
+<header class="grid max-w-full grid-cols-[40px_minmax(0px,_1fr)_40px] items-center gap-3 py-2 pl-6 pr-4 small-phone:grid-cols-[24px_40px_1fr_40px] phone:pl-4 phone:pr-2">
+  <a href="#" data-href="/conversations" class="hidden h-6 items-center justify-center bg-transparent small-phone:flex">
+    <svg class="svg-icon text-icon-gray icon-inline" width="24" height="24" style="width: 24px; height: 24px;" data-icon-src="../../ui/assets/icons/single/sprite/arrow-left-rounded.svg" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.7071 6.70711C12.0976 6.31658 12.0976 5.68342 11.7071 5.29289C11.3166 4.90237 10.6834 4.90237 10.2929 5.29289L4.29289 11.2929C3.90237 11.6834 3.90237 12.3166 4.29289 12.7071L10.2929 18.7071C10.6834 19.0976 11.3166 19.0976 11.7071 18.7071C12.0976 18.3166 12.0976 17.6834 11.7071 17.2929L7.41421 13L19 13C19.5523 13 20 12.5523 20 12C20 11.4477 19.5523 11 19 11L7.41421 11L11.7071 6.70711Z"  />
+  </svg>
+  </a>
+  <a class="h-10 w-10 shrink-0" href="#" data-href="/anna-sidorova">
+    <img class="user-avatar user-avatar--rounded" src="../../ui/assets/images/009.png" width="40" height="40" style="width: 40px; height: 40px;">
+  </a>
+  <div class="grid grid-cols-1 grid-rows-[24px_min-content] items-center text-body-l">
+    <div class="flex max-w-full items-center gap-x-2">
+      <a class="block shrink grow-0 overflow-hidden text-ellipsis whitespace-nowrap font-semibold text-font-black" href="#" data-href="/anna-sidorova">Анна Сидорова</a>
+      <div class="flex gap-x-1"></div>
+    </div>
+    <a href="#" data-href="/vacancies/123" target="_blank" class="col-start-1 col-end-3 row-start-2 block max-w-full shrink overflow-hidden text-ellipsis whitespace-nowrap">Senior Frontend Developer в Яндекс</a>
+  </div>
+  <div class="h-10 w-10"></div>
+</header><a href="#" data-href="/companies/yandex" class="block h-6 w-6 overflow-hidden rounded border-2 border-ui-white bg-ui-white v-popper--has-tooltip" target="_blank">
+  <img src="../../ui/assets/images/medium_586e9aeb81f9123e31337c951432b4ba.png" alt="Логотип компании" class="h-full w-full rounded object-contain text-mute">
+</a><div class="block h-6 w-6 overflow-hidden rounded border-2 border-ui-white bg-ui-purple-20 v-popper--has-tooltip">
+  <img src="../../ui/assets/icons/admin.svg" alt="Иконка администратора" class="h-full w-full rounded object-contain text-mute">
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="m-conv-sidebar">
+    <div class="specimen" data-name="шапка списка откликов conversationssidebarheader">
+      <div class="specimen__head"><h4>Шапка списка откликов</h4><code>ConversationsSidebarHeader</code></div>
+      <div class="stage stage--overlay">
+<div class="relative flex items-center py-3 pl-6 pr-4 small-phone:pl-5 small-phone:pr-2 phablet-only:hidden">
+  <div class="m-0 flex-auto text-display-xl font-semibold" aria-hidden="true">Диалоги</div>
+</div>
+<div class="relative hidden items-center gap-2 px-4 py-3 small-phone:hidden phablet-only:flex phablet-only:!border-0 phone:px-2">
+  <button type="button" class="hidden h-10 w-10 items-center justify-center bg-transparent p-0 text-icon-gray phablet-only:flex rotate-90 translate-x-0">
+    <span class="visually-hidden">Скрыть боковую панель</span>
+    <svg class="svg-icon icon-inline" width="24" height="24" style="width: 24px; height: 24px;" data-icon-src="../../ui/assets/icons/single/sprite/arrow.svg" viewBox="0 0 24 24">
+    <path d="M4.3 8.3a1 1 0 011.4 0l6.3 6.29 6.3-6.3a1 1 0 111.4 1.42l-7 7a1 1 0 01-1.4 0l-7-7a1 1 0 010-1.42z"/>
+  </svg>
+  </button>
+  <div class="m-0 flex-auto text-display-l font-semibold" aria-hidden="true">Диалоги</div>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="m-conv-form">
+    <div class="specimen" data-name="форма ответа conversationform">
+      <div class="specimen__head"><h4>Форма ответа</h4><code>ConversationForm</code></div>
+      <div class="stage stage--overlay">
+<div class="grid grid-flow-row">
+  <input type="file" multiple class="sr-only">
+</div>
+<form method="post" action="/" class="relative grid max-h-full grid-cols-[minmax(0,1fr)_136px] grid-rows-1 items-end gap-1 py-2 pl-3 pr-3 text-font-black placeholder:text-font-gray phone:grid-cols-1 phone:grid-rows-[minmax(0,1fr)_40px] phone:gap-0 phone:p-1 phone:pb-2">
+  <textarea placeholder="Сообщение..." class="max-h-[204px] resize-none px-3 py-[10px] leading-md outline-none transition-opacity phone:mt-2 phone:max-h-[160px] phone:px-3 phone:pb-2 phone:pt-2 phone:text-body-l" rows="1" style="font-size: 1rem; overflow: hidden; overflow-wrap: break-word; text-align: start; height: 40px;"></textarea>
+  <div class="grid grid-cols-[repeat(3,auto)] justify-end gap-2 phone:flex phone:justify-between phone:gap-2 phone:px-2">
+    <button type="button" class="m-0 flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent p-0 text-current outline-2 outline-offset-2 outline-ui-primary-60 transition-colors focus-visible:outline disabled:cursor-default text-ui-gray-2 hover:bg-ui-gray-3-10 hover:text-ui-gray-1 focus-visible:bg-ui-gray-3-10">
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="h-6 w-6">
+        <rect x="6" y="7" width="8" height="2" fill="currentColor"/>
+        <rect x="6" y="11" width="12" height="2" fill="currentColor"/>
+        <rect x="6" y="15" width="12" height="2" fill="currentColor"/>
+        <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="2"/>
+      </svg>
+    </button>
+    <button type="button" class="m-0 flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent p-0 text-current outline-2 outline-offset-2 outline-ui-primary-60 transition-colors focus-visible:outline disabled:cursor-default text-ui-gray-2 hover:bg-ui-gray-3-10 hover:text-ui-gray-1 focus-visible:bg-ui-gray-3-10 phone:mr-auto">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6">
+        <path d="M8.2929 13.2924L13.2924 8.29293C13.6828 7.90252 14.316 7.90273 14.7066 8.29293C15.0971 8.68346 15.0971 9.31662 14.7066 9.70715L9.70711 14.7066C9.26921 15.1445 9.26921 15.8556 9.70711 16.2935C10.145 16.7312 10.8554 16.7306 11.2933 16.2928L18.2545 9.3315C19.2659 8.3201 19.2658 6.68032 18.2545 5.6689L17.5205 4.93487C16.4048 3.81916 14.5952 3.81916 13.4795 4.93487L6.44986 11.9645C4.49724 13.9171 4.49724 17.0829 6.44986 19.0356L6.96431 19.55C8.91693 21.5026 12.0828 21.5026 14.0354 19.55L18.2925 15.2929C18.683 14.9024 19.3162 14.9026 19.7067 15.2929C20.0973 15.6834 20.0973 16.3166 19.7067 16.7071L15.4496 20.9642C12.7159 23.6979 8.28377 23.6979 5.5501 20.9642L5.03565 20.4498C2.30198 17.7161 2.30198 13.284 5.03565 10.5503L12.0653 3.52065C13.962 1.6239 17.038 1.6239 18.9347 3.52065L19.6688 4.25469C21.4611 6.04716 21.4611 8.95326 19.6688 10.7457L12.7075 17.707C11.4886 18.9259 9.51186 18.9264 8.2929 17.7077C7.07395 16.4887 7.07395 14.5113 8.2929 13.2924Z" fill="currentColor"/>
+      </svg>
+    </button>
+    <button type="submit" class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-ui-white p-0 transition-colors hover:bg-ui-gray-3-10 disabled:cursor-not-allowed disabled:hover:bg-ui-white" disabled>
+      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="h-6 w-6 shrink-0">
+        <path d="M4.81642 22C4.36552 22 4 21.6345 4 21.1836V15C4 13.8954 4.89543 13 6 13H11C11.5523 13 12 12.5523 12 12C12 11.4477 11.5523 11 11 11H6C4.89543 11 4 10.1046 4 9V2.81642C4 2.36552 4.36552 2 4.81642 2C4.9373 2 5.05667 2.02684 5.16591 2.07859L23.0963 10.5719C23.6481 10.8333 24 11.3893 24 12C24 12.6107 23.6481 13.1667 23.0963 13.4281L5.16591 21.9214C5.05667 21.9732 4.9373 22 4.81642 22Z" class="fill-icon-gray"/>
+      </svg>
+    </button>
+  </div>
+</form>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="m-files">
+    <div class="specimen" data-name="вложения conversationattachedfiles плитка файла, иконка по типу, анимация загрузки, выбор из загруженных.">
+      <div class="specimen__head"><h4>Вложения</h4><code>ConversationAttachedFiles</code></div>
+      <p class="note">Плитка файла, иконка по типу, анимация загрузки, выбор из загруженных.</p>
+      <div class="stage stage--overlay">
+<div class="grid items-center gap-2 px-4 py-2 grid-cols-[40px_minmax(0,1fr)_24px]">
+  <div class="uploading-animation relative h-10 w-10 overflow-hidden rounded-lg uploading-animation-finish bg-ui-red-second">
+    <div class="uploading-animation-conic absolute inset-0 m-auto h-7 w-7 -scale-x-100 rounded-full" style="background: conic-gradient(
+      var(--color-ui-white-60) 0 182deg,
+      rgba(255, 255, 255, 0) 0
+    );"></div>
+    <div class="absolute left-1/2 top-1/2 max-w-[36px] -translate-x-1/2 -translate-y-1/2 transform truncate text-center text-body-m font-semibold text-ui-white">pdf</div>
+  </div>
+  <div class="text-body-l">
+    <div class="grid grid-cols-[minmax(0,min-content)_min-content]">
+      <div class="truncate">report</div>
+      <div class="whitespace-nowrap">.pdf</div>
+    </div>
+    <div class="flex items-center gap-1 text-body-m text-ui-gray-2">
+      <div class="text-body-m">2 MB</div>
+    </div>
+  </div>
+  <button type="button" class="m-0 flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent p-0 text-current outline-2 outline-offset-2 outline-ui-primary-60 transition-colors focus-visible:outline disabled:cursor-default text-ui-gray-2 hover:bg-ui-gray-3-10 hover:text-ui-gray-1 focus-visible:bg-ui-gray-3-10">
+    <svg class="svg-icon icon-inline" width="24" height="24" style="width: 24px; height: 24px;" data-icon-src="../../ui/assets/icons/single/sprite/close.svg" viewBox="0 0 24 24">
+    <path d="M16.2929 6.29287C16.6834 5.90237 17.3166 5.90237 17.7071 6.29287C18.0976 6.68338 18.0976 7.31658 17.7071 7.70708L13.4142 12L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L12 13.4142L7.70708 17.7071C7.31658 18.0976 6.68338 18.0976 6.29287 17.7071C5.90237 17.3166 5.90237 16.6834 6.29287 16.2929L10.5858 12L6.29278 7.70708C5.90248 7.31658 5.90247 6.68337 6.29287 6.29297C6.68348 5.90247 7.31667 5.90247 7.70718 6.29297L12 10.5858L16.2929 6.29287Z" />
+  </svg>
+  </button>
+</div><div class="border-b border-b-ui-gray-bg">
+  <h4 class="m-0 px-6 pb-6 pt-4 text-body-m font-regular text-font-gray">Файлы хранятся 30 дней</h4>
+  <div data-simplebar="init" class="conversation-attached-files-scroll max-h-[308px] phone:max-h-[178px]">
+    <div class="simplebar-wrapper" style="margin: 0px;">
+      <div class="simplebar-height-auto-observer-wrapper">
+        <div class="simplebar-height-auto-observer"></div>
+      </div>
+      <div class="simplebar-mask">
+        <div class="simplebar-offset" style="right: 0px; bottom: 0px;">
+          <div class="simplebar-content-wrapper" tabindex="0" role="region" aria-label="scrollable content" style="height: auto; overflow: hidden;">
+            <div class="simplebar-content" style="padding: 0px;">
+              <div class="pretty-scroll__content h-full" style="--pretty-scroll-content-gap: 0px;">
+                <div class="pb-2">
+                  <div class="grid items-center gap-2 px-4 py-2 grid-cols-[40px_minmax(0,1fr)_24px]">
+                    <div class="uploading-animation relative h-10 w-10 overflow-hidden rounded-lg uploading-animation-finish bg-ui-turquoise">
+                      <div class="uploading-animation-conic absolute inset-0 m-auto h-7 w-7 -scale-x-100 rounded-full" style="background: conic-gradient(
+      var(--color-ui-white-60) 0 162deg,
+      rgba(255, 255, 255, 0) 0
+    );"></div>
+                      <div class="absolute left-1/2 top-1/2 max-w-[36px] -translate-x-1/2 -translate-y-1/2 transform truncate text-center text-body-m font-semibold text-ui-white">jpg</div>
+                    </div>
+                    <div class="text-body-l">
+                      <div class="grid grid-cols-[minmax(0,min-content)_min-content]">
+                        <div class="truncate">screenshot</div>
+                        <div class="whitespace-nowrap">.jpg</div>
+                      </div>
+                      <div class="flex items-center gap-1 text-body-m text-ui-gray-2">
+                        <div class="text-body-m">2 KB</div>
+                        <span class="v-leave-active v-leave-to">
+                          <span>•</span>
+                          <span>0%</span>
+                        </span>
+                      </div>
+                    </div>
+                    <button type="button" class="m-0 flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent p-0 text-current outline-2 outline-offset-2 outline-ui-primary-60 transition-colors focus-visible:outline disabled:cursor-default text-ui-gray-2 hover:bg-ui-gray-3-10 hover:text-ui-gray-1 focus-visible:bg-ui-gray-3-10">
+                      <svg class="svg-icon icon-inline" width="24" height="24" style="width: 24px; height: 24px;" data-icon-src="../../ui/assets/icons/single/sprite/close.svg" viewBox="0 0 24 24">
+    <path d="M16.2929 6.29287C16.6834 5.90237 17.3166 5.90237 17.7071 6.29287C18.0976 6.68338 18.0976 7.31658 17.7071 7.70708L13.4142 12L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L12 13.4142L7.70708 17.7071C7.31658 18.0976 6.68338 18.0976 6.29287 17.7071C5.90237 17.3166 5.90237 16.6834 6.29287 16.2929L10.5858 12L6.29278 7.70708C5.90248 7.31658 5.90247 6.68337 6.29287 6.29297C6.68348 5.90247 7.31667 5.90247 7.70718 6.29297L12 10.5858L16.2929 6.29287Z" />
+  </svg>
+                    </button>
+                  </div>
+                  <div class="grid items-center gap-2 px-4 py-2 grid-cols-[40px_minmax(0,1fr)_24px]">
+                    <div class="uploading-animation relative h-10 w-10 overflow-hidden rounded-lg uploading-animation-finish bg-ui-turquoise">
+                      <div class="uploading-animation-conic absolute inset-0 m-auto h-7 w-7 -scale-x-100 rounded-full" style="background: conic-gradient(
+      var(--color-ui-white-60) 0 162deg,
+      rgba(255, 255, 255, 0) 0
+    );"></div>
+                      <div class="absolute left-1/2 top-1/2 max-w-[36px] -translate-x-1/2 -translate-y-1/2 transform truncate text-center text-body-m font-semibold text-ui-white">jpg</div>
+                    </div>
+                    <div class="text-body-l">
+                      <div class="grid grid-cols-[minmax(0,min-content)_min-content]">
+                        <div class="truncate">screenshot</div>
+                        <div class="whitespace-nowrap">.jpg</div>
+                      </div>
+                      <div class="flex items-center gap-1 text-body-m text-ui-gray-2">
+                        <div class="text-body-m">2 KB</div>
+                        <span class="v-leave-active v-leave-to">
+                          <span>•</span>
+                          <span>0%</span>
+                        </span>
+                      </div>
+                    </div>
+                    <button type="button" class="m-0 flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent p-0 text-current outline-2 outline-offset-2 outline-ui-primary-60 transition-colors focus-visible:outline disabled:cursor-default text-ui-gray-2 hover:bg-ui-gray-3-10 hover:text-ui-gray-1 focus-visible:bg-ui-gray-3-10">
+                      <svg class="svg-icon icon-inline" width="24" height="24" style="width: 24px; height: 24px;" data-icon-src="../../ui/assets/icons/single/sprite/close.svg" viewBox="0 0 24 24">
+    <path d="M16.2929 6.29287C16.6834 5.90237 17.3166 5.90237 17.7071 6.29287C18.0976 6.68338 18.0976 7.31658 17.7071 7.70708L13.4142 12L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L12 13.4142L7.70708 17.7071C7.31658 18.0976 6.68338 18.0976 6.29287 17.7071C5.90237 17.3166 5.90237 16.6834 6.29287 16.2929L10.5858 12L6.29278 7.70708C5.90248 7.31658 5.90247 6.68337 6.29287 6.29297C6.68348 5.90247 7.31667 5.90247 7.70718 6.29297L12 10.5858L16.2929 6.29287Z" />
+  </svg>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="simplebar-placeholder" style="width: 1248px; height: 136px;"></div>
+    </div>
+    <div class="simplebar-track simplebar-horizontal" style="visibility: hidden;">
+      <div class="simplebar-scrollbar" style="width: 0px; display: none;"></div>
+    </div>
+    <div class="simplebar-track simplebar-vertical" style="visibility: hidden;">
+      <div class="simplebar-scrollbar" style="height: 0px; display: none;"></div>
+    </div>
+  </div>
+</div><div class="p-4">
+  <div class="uploading-animation relative h-10 w-10 overflow-hidden rounded-lg bg-ui-red-second">
+    <div class="uploading-animation-conic absolute inset-0 m-auto h-7 w-7 -scale-x-100 rounded-full" style="background: conic-gradient(
+      var(--color-ui-white-60) 0 282deg,
+      rgba(255, 255, 255, 0) 0
+    );"></div>
+    <div class="absolute left-1/2 top-1/2 max-w-[36px] -translate-x-1/2 -translate-y-1/2 transform truncate text-center text-body-m font-semibold text-ui-white">pdf</div>
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="m-file-icons">
+    <div class="specimen" data-name="иконки типов файлов conversationfileicon">
+      <div class="specimen__head"><h4>Иконки типов файлов</h4><code>ConversationFileIcon</code></div>
+      <div class="stage stage--grid">
+<div class="p-4">
+  <div class="uploading-animation relative h-10 w-10 overflow-hidden rounded-lg uploading-animation-finish uploading-animation-just-present bg-ui-turquoise">
+    <div class="uploading-animation-conic absolute inset-0 m-auto h-7 w-7 -scale-x-100 rounded-full" style="background: conic-gradient(
+      var(--color-ui-white-60) 0 0deg,
+      rgba(255, 255, 255, 0) 0
+    );"></div>
+    <div class="absolute left-1/2 top-1/2 max-w-[36px] -translate-x-1/2 -translate-y-1/2 transform truncate text-center text-body-m font-semibold text-ui-white">png</div>
+  </div>
+</div><div class="p-4">
+  <div class="uploading-animation relative h-10 w-10 overflow-hidden rounded-lg uploading-animation-finish uploading-animation-just-present bg-ui-red-second">
+    <div class="uploading-animation-conic absolute inset-0 m-auto h-7 w-7 -scale-x-100 rounded-full" style="background: conic-gradient(
+      var(--color-ui-white-60) 0 0deg,
+      rgba(255, 255, 255, 0) 0
+    );"></div>
+    <div class="absolute left-1/2 top-1/2 max-w-[36px] -translate-x-1/2 -translate-y-1/2 transform truncate text-center text-body-m font-semibold text-ui-white">pdf</div>
+  </div>
+</div><div class="p-4">
+  <div class="uploading-animation relative h-10 w-10 overflow-hidden rounded-lg uploading-animation-finish uploading-animation-just-present bg-graph-cyan">
+    <div class="uploading-animation-conic absolute inset-0 m-auto h-7 w-7 -scale-x-100 rounded-full" style="background: conic-gradient(
+      var(--color-ui-white-60) 0 0deg,
+      rgba(255, 255, 255, 0) 0
+    );"></div>
+    <div class="absolute left-1/2 top-1/2 max-w-[36px] -translate-x-1/2 -translate-y-1/2 transform truncate text-center text-body-m font-semibold text-ui-white">docx</div>
+  </div>
+</div><div class="p-4">
+  <div class="uploading-animation relative h-10 w-10 overflow-hidden rounded-lg uploading-animation-finish uploading-animation-just-present bg-ui-green">
+    <div class="uploading-animation-conic absolute inset-0 m-auto h-7 w-7 -scale-x-100 rounded-full" style="background: conic-gradient(
+      var(--color-ui-white-60) 0 0deg,
+      rgba(255, 255, 255, 0) 0
+    );"></div>
+    <div class="absolute left-1/2 top-1/2 max-w-[36px] -translate-x-1/2 -translate-y-1/2 transform truncate text-center text-body-m font-semibold text-ui-white">xlsx</div>
+  </div>
+</div><div class="p-4">
+  <div class="uploading-animation relative h-10 w-10 overflow-hidden rounded-lg uploading-animation-finish uploading-animation-just-present bg-ui-orange">
+    <div class="uploading-animation-conic absolute inset-0 m-auto h-7 w-7 -scale-x-100 rounded-full" style="background: conic-gradient(
+      var(--color-ui-white-60) 0 0deg,
+      rgba(255, 255, 255, 0) 0
+    );"></div>
+    <div class="absolute left-1/2 top-1/2 max-w-[36px] -translate-x-1/2 -translate-y-1/2 transform truncate text-center text-body-m font-semibold text-ui-white">zip</div>
+  </div>
+</div><div class="p-4">
+  <div class="uploading-animation relative h-10 w-10 overflow-hidden rounded-lg bg-ui-red-second">
+    <div class="uploading-animation-conic absolute inset-0 m-auto h-7 w-7 -scale-x-100 rounded-full" style="background: conic-gradient(
+      var(--color-ui-white-60) 0 282deg,
+      rgba(255, 255, 255, 0) 0
+    );"></div>
+    <div class="absolute left-1/2 top-1/2 max-w-[36px] -translate-x-1/2 -translate-y-1/2 transform truncate text-center text-body-m font-semibold text-ui-white">pdf</div>
+  </div>
+</div><div class="p-4">
+  <div class="flex h-10 w-10 items-center justify-center rounded border border-ui-red bg-transparent p-0">
+    <svg class="svg-icon text-ui-red icon-inline" width="24" height="24" style="width: 24px; height: 24px;" data-icon-src="../../ui/assets/icons/single/sprite/minus-circle.svg" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z" fill="currentColor"/>
+    <path d="M8 12H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg>
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="m-templates">
+    <div class="specimen" data-name="шаблоны ответов conversationstemplates">
+      <div class="specimen__head"><h4>Шаблоны ответов</h4><code>ConversationsTemplates</code></div>
+      <div class="stage stage--overlay">
+<div class="grid grid-cols-[minmax(0,1fr)_40px] grid-rows-1 items-center rounded-t-xl border-b border-ui-gray-shadow py-2 pl-4 pr-3">
+  <h3 class="m-0 text-display-s">Шаблоны</h3>
+  <button type="button" class="m-0 flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent p-0 text-current outline-2 outline-offset-2 outline-ui-primary-60 transition-colors focus-visible:outline disabled:cursor-default text-ui-gray-2 hover:bg-ui-gray-3-10 hover:text-ui-gray-1 focus-visible:bg-ui-gray-3-10" title="Добавить шаблон">
+    <svg class="svg-icon icon-inline" width="24" height="24" style="width: 24px; height: 24px;" data-icon-src="../../ui/assets/icons/single/sprite/plus.svg" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 3a1 1 0 0 0-1 1v7H4a1 1 0 1 0 0 2h7v7a1 1 0 1 0 2 0v-7h7a1 1 0 1 0 0-2h-7V4a1 1 0 0 0-1-1Z"/>
+  </svg>
+  </button>
+</div><button type="button" class="m-0 flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent p-0 text-current outline-2 outline-offset-2 outline-ui-primary-60 transition-colors focus-visible:outline disabled:cursor-default text-ui-gray-2 hover:bg-ui-gray-3-10 hover:text-ui-gray-1 focus-visible:bg-ui-gray-3-10">
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="h-6 w-6">
+    <rect x="6" y="7" width="8" height="2" fill="currentColor"/>
+    <rect x="6" y="11" width="12" height="2" fill="currentColor"/>
+    <rect x="6" y="15" width="12" height="2" fill="currentColor"/>
+    <rect x="3" y="3" width="18" height="18" rx="3" stroke="currentColor" stroke-width="2"/>
+  </svg>
+</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="m-import">
+    <div class="specimen" data-name="импорт вакансий в кабинете компании vacancyimports/card">
+      <div class="specimen__head"><h4>Импорт вакансий в кабинете компании</h4><code>VacancyImports/Card</code></div>
+      <div class="stage">
+<div class="grid min-h-10 grid-cols-[24px_minmax(0,1fr)_max-content_minmax(200px,max-content)_40px] items-center gap-2 rounded-xl border border-solid px-4 py-4 tablet:grid-cols-[24px_minmax(0,1fr)_40px] tablet:items-start tablet:gap-x-2 tablet:gap-y-1 border-ui-gray-shadow tablet:grid-rows-[repeat(3,min-content)]">
+  <svg class="svg-icon text-ui-green tablet:col-start-1 tablet:row-span-2 tablet:row-start-1 desktop:col-start-1 icon-inline" width="24" height="24" style="width: 24px; height: 24px;" data-icon-src="../../ui/assets/icons/single/sprite/check-circle-empty.svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8z"/><path d="m15.3 8.3-4.8 5.2-1.8-1.9c-.4-.4-1-.4-1.4-.1-.4.4-.4 1-.1 1.4l2.5 2.7c.2.2.5.3.7.3s.5-.1.7-.3l5.5-6c.4-.4.3-1-.1-1.4-.2-.3-.9-.3-1.2.1z"/></svg>
+  <div class="min-w-0 text-body-l font-semibold text-ui-gray-1 tablet:col-start-2 tablet:row-start-1 desktop:col-start-2">Загрузка завершена: 1 из 1</div>
+  <div class="whitespace-nowrap text-body-m text-ui-gray-2 tablet:col-start-2 tablet:row-start-2 desktop:col-start-3">15 фев. 2024, 10:41</div>
+  <div class="justify-self-end tablet:col-span-full tablet:row-start-3 tablet:mt-2 tablet:w-full desktop:col-start-4">
+    <a class="tablet:w-full base-button inline-flex appearance-main-border size-m is-sizeable tablet:w-full" href="#" data-href="/companies/habr/cp/vacancies/unpublished" target="_self">
+      <span class="base-button__inner">
+        <span class="base-button__content">Перейти к вакансиям</span>
+      </span>
+    </a>
+  </div>
+  <button class="tablet:col-start-3 tablet:row-span-2 tablet:row-start-1 desktop:col-start-5 icon-button base-button inline-flex appearance-none size-l tablet:col-start-3 tablet:row-span-2 tablet:row-start-1 desktop:col-start-5 icon-button" title="Скрыть импорт" aria-label="Скрыть импорт" type="button" target="_self">
+    <span class="base-button__content">
+      <svg class="svg-icon icon-inline" width="24" height="24" style="width: 24px; height: 24px;" data-icon-src="../../ui/assets/icons/single/sprite/close.svg" viewBox="0 0 24 24">
+    <path d="M16.2929 6.29287C16.6834 5.90237 17.3166 5.90237 17.7071 6.29287C18.0976 6.68338 18.0976 7.31658 17.7071 7.70708L13.4142 12L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L12 13.4142L7.70708 17.7071C7.31658 18.0976 6.68338 18.0976 6.29287 17.7071C5.90237 17.3166 5.90237 16.6834 6.29287 16.2929L10.5858 12L6.29278 7.70708C5.90248 7.31658 5.90247 6.68337 6.29287 6.29297C6.68348 5.90247 7.31667 5.90247 7.70718 6.29297L12 10.5858L16.2929 6.29287Z" />
+  </svg>
+    </span>
+  </button>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="m-visibility">
+    <div class="specimen" data-name="видимость блока профиля visibilitysettings">
+      <div class="specimen__head"><h4>Видимость блока профиля</h4><code>VisibilitySettings</code></div>
+      <div class="stage">
+<div title="Видно всем">
+  <button type="button" class="m-0 flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent p-0 text-current outline-2 outline-offset-2 outline-ui-primary-60 transition-colors focus-visible:outline disabled:cursor-default text-ui-gray-2 hover:bg-ui-gray-3-10 hover:text-ui-gray-1 focus-visible:bg-ui-gray-3-10 fill-icon-gray text-icon-gray">
+    <svg class="svg-icon icon-inline" width="24" height="24" style="width: 24px; height: 24px;" data-icon-src="../../ui/assets/icons/single/sprite/eye.svg" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M11.9998 17C8.09839 17 4.71479 14.7653 3.06654 11.5C4.71479 8.23471 8.09839 6 11.9998 6C15.9012 6 19.2848 8.23472 20.933 11.5C19.2848 14.7653 15.9012 17 11.9998 17ZM11.9998 4C17.0359 4 21.3474 7.10226 23.1275 11.5C21.3474 15.8977 17.0359 19 11.9998 19C6.96373 19 2.65223 15.8977 0.87207 11.5C2.65223 7.10225 6.96373 4 11.9998 4ZM14.5 11.5C14.5 12.8807 13.3807 14 12 14C10.6193 14 9.5 12.8807 9.5 11.5C9.5 10.1193 10.6193 9 12 9C13.3807 9 14.5 10.1193 14.5 11.5ZM16.5 11.5C16.5 13.9853 14.4853 16 12 16C9.51472 16 7.5 13.9853 7.5 11.5C7.5 9.01472 9.51472 7 12 7C14.4853 7 16.5 9.01472 16.5 11.5Z"/>
+  </svg>
+  </button>
+</div><div title="Видно только вам">
+  <button type="button" class="m-0 flex size-10 shrink-0 cursor-pointer items-center justify-center rounded-full border-none bg-transparent p-0 text-current outline-2 outline-offset-2 outline-ui-primary-60 transition-colors focus-visible:outline disabled:cursor-default text-ui-gray-2 hover:bg-ui-gray-3-10 hover:text-ui-gray-1 focus-visible:bg-ui-gray-3-10 fill-icon-gray text-icon-gray">
+    <svg class="svg-icon icon-inline" width="24" height="24" style="width: 24px; height: 24px;" data-icon-src="../../ui/assets/icons/single/sprite/crossed-eye.svg" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" clip-rule="evenodd"
+          d="M20.251 4.414 18.837 3l-1.972 1.971A11.96 11.96 0 0 0 12.128 4C7.092 4 2.78 7.102 1 11.5a12.04 12.04 0 0 0 4.105 5.232l-1.977 1.977 1.414 1.414 15.71-15.709ZM6.541 15.296l1.637-1.637a4.5 4.5 0 0 1 6.108-6.108l1.031-1.032A9.99 9.99 0 0 0 12.127 6a10 10 0 0 0-8.933 5.5 10.045 10.045 0 0 0 3.347 3.796Zm6.216-6.216a2.5 2.5 0 0 0-3.05 3.05l3.05-3.05Z"
+          fill="currentColor"/>
+    <path d="m20.147 7.073-1.416 1.416c.956.841 1.75 1.862 2.33 3.011a10 10 0 0 1-10.688 5.347l-1.66 1.66c1.082.32 2.228.493 3.415.493 5.036 0 9.347-3.102 11.127-7.5a12.025 12.025 0 0 0-3.108-4.427Z"
+          fill="currentColor"/>
+    <path d="m16.551 10.669-5.254 5.254a4.5 4.5 0 0 0 5.255-5.255Z" fill="currentColor"/>
+  </svg>
+  </button>
+</div><div class="w-full max-w-[1100px] rounded-xl border border-solid border-ui-blue bg-ui-white">
+  <div class="rounded-xl bg-ui-blue-overlay px-4 py-3">
+    <div class="flex items-start gap-2">
+      <div class="flex h-6 w-6 items-center justify-center">🤫</div>
+      <div class="flex flex-col gap-2 py-0.5">
+        <div class="text-body-m font-semibold">Результат теста скрыт</div>
+        <div>Тест не пройден, и результат виден только вам. Можно пройти тест заново, чтобы улучшить&nbsp;результат.</div>
+      </div>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

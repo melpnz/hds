@@ -1,0 +1,125 @@
+{
+  "id": "empty-placeholder",
+  "name": "EmptyPlaceholder",
+  "category": "feedback",
+  "kind": "component",
+  "spec": "components\\feedback\\empty-placeholder.md",
+  "status": "complete",
+  "states": [
+    "empty"
+  ],
+  "cssRoots": [
+    "empty-placeholder"
+  ],
+  "anchor": "showcase/components.html#fb-empty",
+  "markup": {
+    "html": "<div class=\"hidden\">\n  <img src=\"../../ui/assets/illustrations/no-conversations.svg\" alt=\"Нет диалогов\" width=\"48\" height=\"48\" class=\"ml-4 mt-3\">\n</div>\n<div class=\"h-full pb-[44px]\">\n  <div class=\"empty-placeholder empty-placeholder--fullWidth empty-placeholder--noBorder empty-placeholder--fullHeight\">\n    <img src=\"../../ui/assets/illustrations/no-conversations.svg\" alt width=\"96\" height=\"96\" class=\"empty-placeholder__image\">\n    <div class=\"empty-placeholder__title\">Нет диалогов</div>\n    <div class=\"empty-placeholder__description\">Вы можете найти собеседников в списке специалистов.</div>\n    <div class=\"empty-placeholder__actions\">\n      <a href=\"/resumes\" target=\"_self\" class=\"base-button inline-flex appearance-main size-l is-sizeable\">\n        <span class=\"base-button__inner\">\n          <span class=\"base-button__content\">В раздел специалистов</span>\n        </span>\n      </a>\n    </div>\n  </div>\n</div>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [],
+  "storybookNames": [
+    "ConversationNotSelected",
+    "NoConversationsFound",
+    "NoConversations",
+    "NoMessages"
+  ],
+  "code": {
+    "component": "ConversationNotSelected",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "empty-placeholder",
+    "name": "EmptyPlaceholder",
+    "category": "feedback",
+    "kind": "component",
+    "spec": "components\\feedback\\empty-placeholder.md",
+    "status": "complete",
+    "states": [
+      "empty"
+    ],
+    "cssRoots": [
+      "empty-placeholder"
+    ],
+    "anchor": "showcase/components.html#fb-empty",
+    "markup": {
+      "html": "<div class=\"hidden\">\n  <img src=\"../../ui/assets/illustrations/no-conversations.svg\" alt=\"Нет диалогов\" width=\"48\" height=\"48\" class=\"ml-4 mt-3\">\n</div>\n<div class=\"h-full pb-[44px]\">\n  <div class=\"empty-placeholder empty-placeholder--fullWidth empty-placeholder--noBorder empty-placeholder--fullHeight\">\n    <img src=\"../../ui/assets/illustrations/no-conversations.svg\" alt width=\"96\" height=\"96\" class=\"empty-placeholder__image\">\n    <div class=\"empty-placeholder__title\">Нет диалогов</div>\n    <div class=\"empty-placeholder__description\">Вы можете найти собеседников в списке специалистов.</div>\n    <div class=\"empty-placeholder__actions\">\n      <a href=\"/resumes\" target=\"_self\" class=\"base-button inline-flex appearance-main size-l is-sizeable\">\n        <span class=\"base-button__inner\">\n          <span class=\"base-button__content\">В раздел специалистов</span>\n        </span>\n      </a>\n    </div>\n  </div>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "ConversationNotSelected",
+      "NoConversationsFound",
+      "NoConversations",
+      "NoMessages"
+    ],
+    "code": {
+      "component": "ConversationNotSelected",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "EmptyPlaceholder",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Единый компонент пустого состояния Career: иллюстрация, заголовок, пояснение и необязательное действие. Через него сделаны все «ничего не найдено» в переписке, и он же годится для любого пустого списка.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "empty-placeholder"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "ConversationNotSelected",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [
+      "empty"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fempty-placeholder.json",
+      "covers": [
+        "empty"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Не выявлено: разметка, CSS и props извлечены полностью."
+  ],
+  "markdown": "# EmptyPlaceholder · Пустое состояние\n\n| | |\n|---|---|\n| **Категория** | Обратная связь |\n| **Корневой класс** | `empty-placeholder` |\n| **CSS** | `ui/components/feedback.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 6 из 6 |\n\n## Назначение\n\nЕдиный компонент пустого состояния Career: иллюстрация, заголовок, пояснение и необязательное действие. Через него сделаны все «ничего не найдено» в переписке, и он же годится для любого пустого списка.\n\n## Анатомия\n\n```\ndiv.hidden\n  img.ml-4.mt-3\ndiv.h-full.pb-[44px]\n  div.empty-placeholder.empty-placeholder--fullWidth.empty-placeholder--noBorder.empty-placeholder--fullHeight\n    img.empty-placeholder__image\n    div.empty-placeholder__title\n      · «Нет диалогов»\n    div.empty-placeholder__description\n      · «Вы можете найти собеседников в списке сп…»\n    div.empty-placeholder__actions\n      a.base-button.inline-flex.appearance-main.size-l.is-sizeable  [href=\"/resumes\" target=\"_self\"]\n        span.base-button__inner\n          span.base-button__content\n            · «В раздел специалистов»\n```\n\n_Разметка story `conversations-list-noconversations--full-view`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\nСемантическое состояние компонента — `empty`. Интерактивные состояния возможной CTA принадлежат Button/Link, а не контейнеру EmptyPlaceholder.\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `narrowView` | boolean | — | — | `boolean` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-font-gray` | `var(--color-ui-gray-2)` | из `:root` Career |\n| `--color-ui-white` | `#fff` | из `:root` Career |\n\n## Responsive\n\nКомпонент реагирует на: `(min-width:480px) and (max-width:767px)`, `(max-width:479px)`.\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## Поведение\n\n- Иллюстрация — отдельный `img`, а не фон. Реальные файлы Career сохранены в `ui/assets/illustrations/`.\n- Блок действий (`__actions`) необязателен: у состояния «ничего не найдено» кнопки нет, у «нет диалогов» — есть.\n\n## Разметка\n\n```html\n<div class=\"hidden\">\n  <img src=\"../../ui/assets/illustrations/no-conversations.svg\" alt=\"Нет диалогов\" width=\"48\" height=\"48\" class=\"ml-4 mt-3\">\n</div>\n<div class=\"h-full pb-[44px]\">\n  <div class=\"empty-placeholder empty-placeholder--fullWidth empty-placeholder--noBorder empty-placeholder--fullHeight\">\n    <img src=\"../../ui/assets/illustrations/no-conversations.svg\" alt width=\"96\" height=\"96\" class=\"empty-placeholder__image\">\n    <div class=\"empty-placeholder__title\">Нет диалогов</div>\n    <div class=\"empty-placeholder__description\">Вы можете найти собеседников в списке специалистов.</div>\n    <div class=\"empty-placeholder__actions\">\n      <a href=\"/resumes\" target=\"_self\" class=\"base-button inline-flex appearance-main size-l is-sizeable\">\n        <span class=\"base-button__inner\">\n          <span class=\"base-button__content\">В раздел специалистов</span>\n        </span>\n      </a>\n    </div>\n  </div>\n</div>\n```\n\n_Пути к спрайтам и изображениям в этом блоке — локальные, от папки спецификации. В блоке «Анатомия» выше сохранён продовый путь: это протокол снятого DOM, а не образец для вёрстки._\n\n## CSS\n\n```css\n.empty-placeholder { background:var(--color-ui-white);border:1px solid rgba(24,46,57,.1);border-radius:24px;margin:0 auto;max-width:480px;padding:48px 24px 40px;text-align:center }\n.empty-placeholder--noBorder { border:none }\n.empty-placeholder--fullWidth { max-width:100%;width:100% }\n.empty-placeholder--fullHeight { align-items:center;display:flex;flex-direction:column;height:100%;justify-content:center;max-height:100% }\n.empty-placeholder--embed { border-radius:0;height:auto;padding:24px }\n.empty-placeholder__image { display:block;margin:0 auto 24px }\n.empty-placeholder__title { font-size:18px;font-weight:600;line-height:23px;margin-bottom:8px }\n.empty-placeholder__description { color:var(--color-font-gray);font-size:14px;line-height:20px }\n.empty-placeholder__actions { align-items:center;display:flex;gap:8px;justify-content:center;margin-top:16px }\n```\n\n## Ограничения\n\n- Не выявлено: разметка, CSS и props извлечены полностью.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/conversations/no-conversations.stories.ts`, `./src/components/conversations/no-conversations-found.stories.ts`, `./src/components/conversations/no-messages.stories.ts`, `./src/components/conversations/conversation-not-selected.stories.ts`\n- Storybook `career-web`: `conversations-list-noconversations--full-view`, `conversations-list-noconversations--narrow-view`, `conversations-list-noconversationsfound--not-found`, `conversations-list-noconversationsfound--narrow-view`, `conversations-messages-nomessages--empty`, `conversations-layout-conversationnotselected--default`\n- CSS: секция `empty-placeholder` в `ui/components/feedback.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n\n## Нормативный контракт R2-E\n\nEmptyPlaceholder рендерится вместо пустой коллекции и содержит короткий заголовок, объяснение и не более одного основного действия. Иллюстрация обычно декоративна (`alt=\"\"`), поскольку смысл уже выражен текстом.\n\nДля изначально пустой страницы live-role не нужен. Если результат стал `empty` после действия пользователя, контейнер может получить `role=\"status\"`; фокус при этом не переносится. «Нет данных», «ничего не найдено» и «ошибка загрузки» — разные состояния: ошибка использует Notification/ErrorState, не EmptyPlaceholder.\n",
+  "sourcePath": "archive:career/v1/components/feedback/empty-placeholder.md",
+  "legacyDocument": "archive:career/v1/components/feedback/empty-placeholder.md"
+}

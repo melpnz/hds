@@ -1,0 +1,144 @@
+{
+  "id": "typography",
+  "title": "Типографика",
+  "kind": "foundation",
+  "category": "foundations",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production-css",
+      "normative"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Единая неизменяемая на мобильном шкала Inter для плотного продуктового интерфейса.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "text-display-*",
+      "text-body-*"
+    ],
+    "styles": [
+      "ui/fonts.css",
+      "ui/foundations.css"
+    ],
+    "scripts": []
+  },
+  "family": {
+    "$type": "other",
+    "$value": "Inter, -apple-system, \"Segoe UI\", Roboto, sans-serif",
+    "$extensions": {
+      "guide": {
+        "cssVar": "--font-base",
+        "source": ":root career-web"
+      }
+    }
+  },
+  "weights": [
+    {
+      "value": 400,
+      "role": "regular"
+    },
+    {
+      "value": 600,
+      "role": "semibold"
+    }
+  ],
+  "availableWeightRange": [
+    100,
+    900
+  ],
+  "typeScale": [
+    {
+      "id": "text-display-xl",
+      "size": 28,
+      "lineHeight": 32
+    },
+    {
+      "id": "text-display-l",
+      "size": 24,
+      "lineHeight": 28
+    },
+    {
+      "id": "text-display-m",
+      "size": 20,
+      "lineHeight": 24
+    },
+    {
+      "id": "text-display-s",
+      "size": 18,
+      "lineHeight": 24
+    },
+    {
+      "id": "text-body-l",
+      "size": 16,
+      "lineHeight": 24
+    },
+    {
+      "id": "text-body-m",
+      "size": 14,
+      "lineHeight": 20
+    },
+    {
+      "id": "text-body-s",
+      "size": 12,
+      "lineHeight": 16
+    },
+    {
+      "id": "text-body-xs",
+      "size": 11,
+      "lineHeight": 16
+    }
+  ],
+  "responsive": [
+    {
+      "maxWidth": 767,
+      "change": "Шкала не уменьшается; display-xl остаётся 28/32."
+    }
+  ],
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [
+    "machine/rules/color-roles.json"
+  ],
+  "examples": [
+    {
+      "id": "scale",
+      "title": "Шкала",
+      "file": "examples/foundations/typography.html",
+      "covers": [
+        "8 named styles",
+        "400",
+        "600",
+        "Cyrillic"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [
+    "Body copy uses 16/24 by default.",
+    "The 11/16 style is reserved for compact secondary data."
+  ],
+  "evidence": [
+    {
+      "type": "production-css",
+      "ref": "archive:career/v1/ui/foundations.css"
+    },
+    {
+      "type": "guide",
+      "ref": "archive:career/v1/docs/guide/design.md"
+    }
+  ],
+  "unknowns": [
+    "Legacy unnamed font sizes exist but are not promoted to the canonical scale."
+  ]
+}

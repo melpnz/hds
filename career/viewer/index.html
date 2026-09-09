@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Machine-first гайд Хабр Карьеры">
+  <title>Хабр Карьера · UI guide</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="shell">
+    <aside class="sidebar">
+      <a class="brand" href="#colors" aria-label="Главная страница витрины">
+        <span class="brand__mark">К</span>
+        <span><strong id="product-title">Хабр Карьера</strong><small>machine-first preview</small></span>
+      </a>
+      <div class="search">
+        <label class="search__label" for="guide-search">Поиск по гайду</label>
+        <div class="search__control">
+          <span aria-hidden="true">⌕</span>
+          <input id="guide-search" type="search" placeholder="Цвет, текст, кнопка…" autocomplete="off">
+          <kbd>Ctrl K</kbd>
+        </div>
+        <span class="search__meta" id="search-meta" aria-live="polite"></span>
+      </div>
+      <p class="sidebar__label">Материалы</p>
+      <nav id="navigation" aria-label="Материалы гайда"></nav>
+      <footer class="sidebar__foot">
+        <span id="guide-version">Guide 0.1</span>
+        <a href="../machine/index.json">machine/index.json</a>
+      </footer>
+    </aside>
+
+    <main class="content">
+      <header class="content__head">
+        <div>
+          <p class="eyebrow">Живой пример</p>
+          <h1 id="item-title">Загрузка…</h1>
+        </div>
+        <div class="badges" id="item-badges"></div>
+      </header>
+
+      <section class="preview-card" aria-labelledby="preview-title">
+        <div class="preview-toolbar">
+          <strong id="preview-title">Preview</strong>
+          <div class="viewport-controls" id="viewport-controls" aria-label="Ширина примера"></div>
+          <span id="viewport-meta">по ширине контейнера</span>
+        </div>
+        <div class="example-tabs" id="example-tabs" role="tablist" aria-label="Примеры"></div>
+        <div class="preview-stage">
+          <iframe id="preview" title="Интерактивный пример компонента"></iframe>
+          <div class="preview-missing" id="preview-missing" hidden></div>
+        </div>
+      </section>
+
+      <article class="guide" id="guide" aria-live="polite"></article>
+      <details class="raw-data">
+        <summary>Машинная спецификация</summary>
+        <pre id="raw-json"></pre>
+      </details>
+      <p class="source-link">Источник: <a id="spec-source" href="#">—</a></p>
+    </main>
+  </div>
+  <script src="app.js"></script>
+</body>
+</html>

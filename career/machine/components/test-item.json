@@ -1,0 +1,72 @@
+{
+  "id": "test-item",
+  "title": "TestItem · Карточка теста",
+  "kind": "module",
+  "category": "cards",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "published-spec",
+      "storybook-snapshot"
+    ],
+    "confidence": "medium",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Карточка теста в профиле: название, результат, дата, настройки видимости. Один и тот же компонент показывает все исходы — пройден, провален, просрочен.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "markup": {
+    "html": "<div class=\"grid gap-0.5 px-6\">\n  <div class=\"relative grid gap-2 rounded-t-xl p-4 bg-ui-green-12\">\n    <div class=\"text-body-m font-semibold uppercase text-ui-green\">Пройден</div>\n    <div class=\"flex items-center gap-2\">\n      <img src=\"../../ui/assets/illustrations/avatar-default-company.svg\" class=\"h-6 w-6 rounded\" alt=\"Логотип компании Хантфлоу\">\n      <div class=\"text-body-m\">Хантфлоу</div>\n    </div>\n    <div class=\"text-body-m\">Тест от 15 января 2024</div>\n    <div class=\"-mt-1.5 font-semibold capitalize\">Уровень «Middle»</div>\n  </div>\n</div>"
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка из спецификации",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Ftest-item.json",
+      "covers": [
+        "published-markup"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          375,
+          768,
+          1100
+        ],
+        "height": 560
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Логотип провайдера в блоке «Разметка» — заглушка avatar-default-company.svg. Настоящий huntflow.svg из корпуса недоступен, см. coverage.md.",
+    "Из 59 story группы Tests снялось 13. Остальные сломаны в самом Storybook (недостающие чанки сборки).",
+    "Снятыми оказались все семь исходов TestItem — то есть смысловое покрытие полное, хотя количественное низкое.",
+    "ЧЕГО НЕ ХВАТАЕТ: разметки TestResultItem и TestResultAdditional — развёрнутого результата с разбором по темам."
+  ],
+  "evidence": [
+    {
+      "type": "published-spec",
+      "ref": "archive:career/v1/components/cards/test-item.md"
+    }
+  ],
+  "markdown": "# TestItem · Карточка теста\n\n| | |\n|---|---|\n| **Категория** | Карточки |\n| **Корневой класс** | — собственных классов нет, блок собран утилитами; корень снимка — `div.grid.gap-0.5.px-6` |\n| **CSS** | _только утилиты_ |\n| **Живая реализация** | частичная |\n| **Snapshot Storybook** | 7 из 59 |\n\n## Назначение\n\nКарточка теста в профиле: название, результат, дата, настройки видимости. Один и тот же компонент показывает все исходы — пройден, провален, просрочен.\n\n## Анатомия\n\nВ Storybook исходы разложены по отдельным записям (`TestItemPassed`, `TestItemFailed`, `TestItemExpired`), но это не разные компоненты: у `TestItem` есть story на каждый исход, и они снялись. Здесь сведено в одну сущность.\n\n```\ndiv.grid.gap-0.5.px-6\n  div.relative.grid.gap-2.rounded-t-xl.p-4.bg-ui-green-12\n    div.text-body-m.font-semibold.uppercase.text-ui-green\n      · «Пройден»\n    div.flex.items-center.gap-2\n      img.h-6.w-6.rounded\n      div.text-body-m\n        · «Хантфлоу»\n    div.text-body-m\n      · «Тест от 15 января 2024»\n    div.-mt-1.5.font-semibold.capitalize\n      · «Уровень «Middle»»\n```\n\n_Разметка story `tests-cards-testitem--passed`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\n_В извлечённом CSS и разметке состояний не объявлено. Не достраиваем._\n\n## Слоты\n\n- `mainBlock`\n- `additionalBlock`\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `provider` | TestResultProvider | — | — | — |\n| `hasVisibilitySettings` | boolean | — | — | — |\n| `isHidden` | boolean | — | — | — |\n| `appearance` | \"passed\" \\| \"expired\" \\| \"failed\" | — | — | — |\n| `statusName` | string | — | — | — |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-icon-gray` | `var(--color-ui-gray-2)` | из `:root` Career |\n| `--color-ui-gray` | `#ccc` | из `:root` Career |\n| `--color-ui-gray-1` | `#1b272c` | из `:root` Career |\n| `--color-ui-gray-2` | `#55798b` | из `:root` Career |\n| `--color-ui-gray-3-10` | `color-mix(in srgb,var(--color-ui-gray-3) 10%,transparent)` | из `:root` Career |\n| `--color-ui-green` | `#3dc24a` | из `:root` Career |\n| `--color-ui-green-12` | `color-mix(in srgb,var(--color-ui-green) 12%,transparent)` | из `:root` Career |\n| `--color-ui-orange-dirty` | `var(--color-ui-orange-accent)` | из `:root` Career |\n| `--color-ui-orange-dirty-12` | `color-mix(in srgb,var(--color-ui-orange-dirty) 12%,transparent)` | из `:root` Career |\n| `--color-ui-primary-60` | `color-mix(in srgb,var(--color-ui-primary) 60%,transparent)` | из `:root` Career |\n| `--color-ui-red` | `#f8651b` | из `:root` Career |\n| `--color-ui-red-overlay` | `color-mix(in srgb,var(--color-ui-red) 12%,transparent)` | из `:root` Career |\n\n## Иконки\n\n| Спрайт | Символ | Локальный файл |\n|---|---|---|\n| `sprite.svg` | `#crossed-eye` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#eye` | `ui/assets/icons/sprite.svg` |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## Поведение\n\n- Видимость теста переключается отдельным компонентом VisibilitySettings — круглой кнопкой с иконкой `#eye` / `#crossed-eye`.\n\n## Разметка\n\n```html\n<div class=\"grid gap-0.5 px-6\">\n  <div class=\"relative grid gap-2 rounded-t-xl p-4 bg-ui-green-12\">\n    <div class=\"text-body-m font-semibold uppercase text-ui-green\">Пройден</div>\n    <div class=\"flex items-center gap-2\">\n      <img src=\"../../ui/assets/illustrations/avatar-default-company.svg\" class=\"h-6 w-6 rounded\" alt=\"Логотип компании Хантфлоу\">\n      <div class=\"text-body-m\">Хантфлоу</div>\n    </div>\n    <div class=\"text-body-m\">Тест от 15 января 2024</div>\n    <div class=\"-mt-1.5 font-semibold capitalize\">Уровень «Middle»</div>\n  </div>\n</div>\n```\n\n## CSS\n\n_Собственного CSS нет: компонент собран утилитами Tailwind прямо в разметке. Все нужные правила — в `ui/utilities.css`._\n\n## Ограничения\n\n- Логотип провайдера в блоке «Разметка» — заглушка `avatar-default-company.svg`. Настоящий `huntflow.svg` из корпуса недоступен, см. `coverage.md`.\n- Из 59 story группы Tests снялось 13. Остальные сломаны в самом Storybook (недостающие чанки сборки).\n- Снятыми оказались все семь исходов `TestItem` — то есть смысловое покрытие полное, хотя количественное низкое.\n- ЧЕГО НЕ ХВАТАЕТ: разметки `TestResultItem` и `TestResultAdditional` — развёрнутого результата с разбором по темам.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/tests/cards/test-item.stories.ts`, `./src/components/tests/cards/test-item-passed.stories.ts`, `./src/components/tests/cards/test-item-failed.stories.ts`, `./src/components/tests/cards/test-item-expired.stories.ts`, `./src/components/tests/cards/specs-test-item-passed.stories.ts`, `./src/components/tests/cards/basic-screening-card.stories.ts`, `./src/components/tests/cards/test-result-item.stories.ts`, `./src/components/tests/cards/test-result-additional.stories.ts`\n- Storybook `career-web`: `tests-cards-testitem--passed`, `tests-cards-testitem--expired`, `tests-cards-testitem--failed`, `tests-cards-testitem--visible-to-all`, `tests-cards-testitem--hidden-from-others`, `tests-cards-testitem--guest-visibility`, `tests-cards-testitem--with-additional-block`, `tests-cards-testitempassed--guest-view`, `tests-cards-testitempassed--owner-with-paid-attempts`, `tests-cards-testitempassed--owner-already-paid`, `tests-cards-testitempassed--owner-unpaid`, `tests-cards-testitempassed--owner-with-payment-error`, `tests-cards-testitempassed--hidden-result`, `tests-cards-testitempassed--with-level`, `tests-cards-testitempassed--with-available-attempts`, `tests-cards-testitempassed--type-spec`, `tests-cards-testitemfailed--can-pass-again`, `tests-cards-testitemfailed--cannot-pass-again`, `tests-cards-testitemfailed--with-paid-attempts`, `tests-cards-testitemfailed--with-available-attempts`, `tests-cards-testitemfailed--paid-attempts-cannot-pass-again`, `tests-cards-testitemexpired--owner-can-pass-again`, `tests-cards-testitemexpired--owner-cannot-pass-again`, `tests-cards-testitemexpired--owner-with-paid-attempts`, `tests-cards-testitemexpired--guest-view`, `tests-cards-testitemexpired--with-level`, `tests-cards-testitemexpired--hidden`, `tests-cards-testitemexpired--with-report-payment-required`, `tests-cards-specstestitempassed--guest-view`, `tests-cards-specstestitempassed--owner-can-pass-again`, `tests-cards-specstestitempassed--owner-cannot-pass-again`, `tests-cards-specstestitempassed--owner-with-paid-attempts`, `tests-cards-specstestitempassed--with-level`, `tests-cards-specstestitempassed--hidden`, `tests-cards-basicscreeningcard--guest-view`, `tests-cards-basicscreeningcard--owner-view`, `tests-cards-basicscreeningcard--already-sent`, `tests-cards-basicscreeningcard--with-description`, `tests-cards-basicscreeningcard--marked`, `tests-cards-basicscreeningcard--marked-not-highlighted`, `tests-cards-basicscreeningcard--with-screening-info`, `tests-cards-testresultitem--skill-passed-owner`, `tests-cards-testresultitem--skill-passed-guest`, `tests-cards-testresultitem--spec-passed-owner`, `tests-cards-testresultitem--spec-passed-guest`, `tests-cards-testresultitem--expired-owner-can-pass-again`, `tests-cards-testresultitem--expired-owner-cannot-pass-again`, `tests-cards-testresultitem--expired-guest`, `tests-cards-testresultitem--failed-can-pass-again`, `tests-cards-testresultitem--failed-cannot-pass-again`, `tests-cards-testresultitem--failed-with-paid-attempts`, `tests-cards-testresultitem--passed-with-paid-attempts`, `tests-cards-testresultitem--passed-hidden`, `tests-cards-testresultadditional--has-report`, `tests-cards-testresultadditional--payment-required`, `tests-cards-testresultadditional--free-period-report`, `tests-cards-testresultadditional--payment-cancelled`, `tests-cards-testresultadditional--payment-processing`, `tests-cards-testresultadditional--curator-view`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/cards/test-item.md",
+  "legacyDocument": "archive:career/v1/components/cards/test-item.md",
+  "legacyUnindexed": true
+}

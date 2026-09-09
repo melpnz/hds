@@ -1,0 +1,100 @@
+{
+  "id": "avatar",
+  "name": "Avatar",
+  "category": "data-display",
+  "kind": "primitive",
+  "spec": "components\\data\\avatar.md",
+  "status": "complete",
+  "states": [],
+  "cssRoots": [
+    "base-avatar"
+  ],
+  "anchor": "showcase/components.html#d-avatar",
+  "markup": null,
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": "722:1599",
+      "sourceName": "avatar/user"
+    }
+  ],
+  "legacySource": {
+    "id": "avatar",
+    "name": "Avatar",
+    "category": "data-display",
+    "kind": "primitive",
+    "spec": "components\\data\\avatar.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "base-avatar"
+    ],
+    "anchor": "showcase/components.html#d-avatar",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "722:1599",
+        "sourceName": "avatar/user"
+      }
+    ]
+  },
+  "title": "Avatar",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Изображение пользователя или компании. Размер и радиус задаются не классами, а инлайновыми переменными --avatar-size и --avatar-radius — поэтому шкала размеров не фиксирована в CSS.",
+  "implementation": {
+    "markup": null,
+    "cssRoots": [
+      "base-avatar"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "missingReason": "copy-safe-markup-not-captured",
+    "fallback": "Не придумывать классы. Использовать ближайший компонент с разметкой или явно отметить пробел."
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "isolated-example",
+      "title": "Размеры и типы",
+      "file": "examples/components-isolated/avatar.html",
+      "covers": [
+        "isolated-example",
+        "d-avatar"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "provenance": {
+        "source": "archive:career/v1/showcase/components.html#d-avatar",
+        "extraction": "exact-dom-subtree"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Своих story нет. Шкала размеров, которая используется в продукте, извлечена из production-замеров, а не из Storybook: см. ui/components.css, класс .avatar--."
+  ],
+  "markdown": "# Avatar · Аватар\n\n| | |\n|---|---|\n| **Категория** | Отображение данных |\n| **Корневой класс** | — |\n| **CSS** | `ui/components/primitives.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 0 из 0 |\n\n## Назначение\n\nИзображение пользователя или компании. Размер и радиус задаются не классами, а инлайновыми переменными `--avatar-size` и `--avatar-radius` — поэтому шкала размеров не фиксирована в CSS.\n\n## Анатомия\n\n_Разметка недоступна: см. «Ограничения»._\n\n## Состояния\n\n_В извлечённом CSS и разметке состояний не объявлено. Не достраиваем._\n\n## Props\n\n_Storybook не отдаёт controls для этого компонента._\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--avatar-radius` | — | задаётся компонентом или средой, значения в сборке нет |\n| `--avatar-size` | — | задаётся компонентом или средой, значения в сборке нет |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## Поведение\n\n- `--avatar-radius: 9999px` даёт круг для человека; для компании ставится небольшой радиус.\n\n## CSS\n\n```css\n.base-avatar { --avatar-size:24px;--avatar-radius:8px;display:inline-block;flex-shrink:0;height:var(--avatar-size);overflow:visible;position:relative;width:var(--avatar-size) }\n.base-avatar,.base-avatar__img { border-radius:var(--avatar-radius) }\n.base-avatar__img { display:block;height:100%;-o-object-fit:cover;object-fit:cover;width:100% }\n.user-avatar { border-radius:3px;display:block;-o-object-fit:cover;object-fit:cover;overflow:hidden }\n.user-avatar--rounded { border-radius:50% }\n```\n\n## Ограничения\n\n- Своих story нет. Шкала размеров, которая используется в продукте, извлечена из production-замеров, а не из Storybook: см. `ui/components.css`, класс `.avatar--*`.\n\n## Источники\n\n- Storybook `career-web`: \n- CSS: секция `base-avatar` в `ui/components/primitives.css`, секция `user-avatar` в `ui/components/primitives.css`\n- Production: шкала 20/24/32/36/40/48/56/72/96/140 замерена в production\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n\n## Нормативный контракт R2-E\n\nAvatar — неинтерактивный primitive без UI states. Если аватар открывает профиль или меню, интерактивность принадлежит `a`/`AvatarButton`, а не изображению.\n\n- Фотография, дублирующая видимое имя: `alt=\"\"`.\n- Самостоятельно значимое изображение: `alt` содержит имя человека или компании.\n- Размер задаётся `--avatar-size`, форма — `--avatar-radius`; для нового кода корень `base-avatar`.\n",
+  "sourcePath": "archive:career/v1/components/data/avatar.md",
+  "legacyDocument": "archive:career/v1/components/data/avatar.md"
+}

@@ -1,0 +1,69 @@
+{
+  "id": "vacancy-import-card",
+  "title": "VacancyImportCard · Карточка импорта вакансии",
+  "kind": "module",
+  "category": "cards",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "published-spec",
+      "storybook-snapshot"
+    ],
+    "confidence": "medium",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Карточка вакансии в кабинете компании при импорте из внешнего источника: статус разбора, найденные поля, действия.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "markup": {
+    "html": "<div class=\"grid min-h-10 grid-cols-[24px_minmax(0,1fr)_max-content_minmax(200px,max-content)_40px] items-center gap-2 rounded-xl border border-solid px-4 py-4 tablet:grid-cols-[24px_minmax(0,1fr)_40px] tablet:items-start tablet:gap-x-2 tablet:gap-y-1 border-ui-blue tablet:grid-rows-[repeat(3,min-content)]\">\n  <svg class=\"svg-icon text-ui-blue tablet:col-start-1 tablet:row-span-2 tablet:row-start-1 desktop:col-start-1\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n    <use xlink:href=\"../../ui/assets/icons/sprite.svg#postpone-circle\"/>\n  </svg>\n  <div class=\"min-w-0 text-body-l font-semibold text-ui-gray-1 tablet:col-start-2 tablet:row-start-1 desktop:col-start-2\">Загрузка вакансий</div>\n  <div class=\"justify-self-end tablet:col-span-full tablet:row-start-3 tablet:mt-2 tablet:w-full desktop:col-start-4\">\n    <button class=\"tablet:w-full base-button inline-flex appearance-main-border size-m is-sizeable tablet:w-full\" type=\"button\" target=\"_self\">\n      <span class=\"base-button__inner\">\n        <span class=\"base-button__content\">Отменить</span>\n      </span>\n    </button>\n  </div>\n</div>"
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка из спецификации",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fvacancy-import-card.json",
+      "covers": [
+        "published-markup"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          375,
+          768,
+          1100
+        ],
+        "height": 560
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Собственного CSS нет: компонент собран утилитами."
+  ],
+  "evidence": [
+    {
+      "type": "published-spec",
+      "ref": "archive:career/v1/components/cards/vacancy-import-card.md"
+    }
+  ],
+  "markdown": "# VacancyImportCard · Карточка импорта вакансии\n\n| | |\n|---|---|\n| **Категория** | Карточки |\n| **Корневой класс** | `min-h-10`, `rounded-xl`, `border` |\n| **CSS** | _только утилиты_ |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 6 из 6 |\n\n## Назначение\n\nКарточка вакансии в кабинете компании при импорте из внешнего источника: статус разбора, найденные поля, действия.\n\n## Анатомия\n\n```\ndiv.grid.min-h-10.grid-cols-[24px_minmax(0,1fr)_max-content_minmax(200px,max-content)_40px].items-center.gap-2.rounded-xl.border.border-solid.px-4.py-4.tablet:grid-cols-[24px_minmax(0,1fr)_40px].tablet:items-start.tablet:gap-x-2.tablet:gap-y-1.border-ui-blue.tablet:grid-rows-[repeat(3,min-content)]\n  svg.svg-icon.text-ui-blue.tablet:col-start-1.tablet:row-span-2.tablet:row-start-1.desktop:col-start-1\n    use  [xlink:href=\"/career-web/images/sprites/sprite.svg?v=5.63.0#postpone-circle\"]\n  div.min-w-0.text-body-l.font-semibold.text-ui-gray-1.tablet:col-start-2.tablet:row-start-1.desktop:col-start-2\n    · «Загрузка вакансий»\n  div.justify-self-end.tablet:col-span-full.tablet:row-start-3.tablet:mt-2.tablet:w-full.desktop:col-start-4\n    button.tablet:w-full.base-button.inline-flex.appearance-main-border.size-m.is-sizeable.tablet:w-full  [type=\"button\" target=\"_self\"]\n      span.base-button__inner\n        span.base-button__content\n          · «Отменить»\n```\n\n_Разметка story `companies-cp-vacancyimports-card--pending`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\nПодтверждены CSS и разметкой: `.is-sizeable`.\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `companyAlias` | string | — | — | `text` |\n| `importItem` | VacancyImportItem | — | — | `object` |\n| `refresh` | other | — | — | `object` |\n| `close` | other | — | — | `object` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-ui-blue` | `#1ba1ee` | из `:root` Career |\n| `--color-ui-gray-1` | `#1b272c` | из `:root` Career |\n| `--color-ui-gray-2` | `#55798b` | из `:root` Career |\n| `--color-ui-gray-shadow` | `rgba(24,46,57,.1)` | из `:root` Career |\n| `--color-ui-green` | `#3dc24a` | из `:root` Career |\n| `--color-ui-orange` | `#fdad0d` | из `:root` Career |\n| `--color-ui-red` | `#f8651b` | из `:root` Career |\n\n## Иконки\n\n| Спрайт | Символ | Локальный файл |\n|---|---|---|\n| `sprite.svg` | `#check-circle-empty` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#cross` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#danger` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#minus-circle` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#postpone-circle` | `ui/assets/icons/sprite.svg` |\n\n## Responsive\n\nКомпонент реагирует на: `(max-width:1023px)`, `(min-width:1024px)`.\n\n## Доступность\n\nАтрибуты, встречающиеся в реальной разметке: `aria-label=\"Скрыть импорт\"`.\n\n## Разметка\n\n```html\n<div class=\"grid min-h-10 grid-cols-[24px_minmax(0,1fr)_max-content_minmax(200px,max-content)_40px] items-center gap-2 rounded-xl border border-solid px-4 py-4 tablet:grid-cols-[24px_minmax(0,1fr)_40px] tablet:items-start tablet:gap-x-2 tablet:gap-y-1 border-ui-blue tablet:grid-rows-[repeat(3,min-content)]\">\n  <svg class=\"svg-icon text-ui-blue tablet:col-start-1 tablet:row-span-2 tablet:row-start-1 desktop:col-start-1\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n    <use xlink:href=\"../../ui/assets/icons/sprite.svg#postpone-circle\"/>\n  </svg>\n  <div class=\"min-w-0 text-body-l font-semibold text-ui-gray-1 tablet:col-start-2 tablet:row-start-1 desktop:col-start-2\">Загрузка вакансий</div>\n  <div class=\"justify-self-end tablet:col-span-full tablet:row-start-3 tablet:mt-2 tablet:w-full desktop:col-start-4\">\n    <button class=\"tablet:w-full base-button inline-flex appearance-main-border size-m is-sizeable tablet:w-full\" type=\"button\" target=\"_self\">\n      <span class=\"base-button__inner\">\n        <span class=\"base-button__content\">Отменить</span>\n      </span>\n    </button>\n  </div>\n</div>\n```\n\n_Пути к спрайтам и изображениям в этом блоке — локальные, от папки спецификации. В блоке «Анатомия» выше сохранён продовый путь: это протокол снятого DOM, а не образец для вёрстки._\n\n## CSS\n\n_Собственного CSS нет: компонент собран утилитами Tailwind прямо в разметке. Все нужные правила — в `ui/utilities.css`._\n\n## Ограничения\n\n- Собственного CSS нет: компонент собран утилитами.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/companies/cp/vacancy-imports/cp-vacancy-import-card.stories.ts`\n- Storybook `career-web`: `companies-cp-vacancyimports-card--pending`, `companies-cp-vacancyimports-card--pending-groups`, `companies-cp-vacancyimports-card--select-groups`, `companies-cp-vacancyimports-card--finished`, `companies-cp-vacancyimports-card--incomplete`, `companies-cp-vacancyimports-card--error`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/cards/vacancy-import-card.md",
+  "legacyDocument": "archive:career/v1/components/cards/vacancy-import-card.md",
+  "legacyUnindexed": true
+}

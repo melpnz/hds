@@ -1,0 +1,48 @@
+{
+  "id": "DG-5",
+  "kind": "decision-guide",
+  "name": "Как отделяются поверхности",
+  "observed": "Фон страницы чистый белый. Поверхности разделяются границей 1px и полупрозрачным сине-серым тинтом. У карточки нет тени ни в одном состоянии. Тень принадлежит всплывающим слоям — и ещё двум местам зарплатной шкалы, где работает как графический акцент на диаграмме.",
+  "when": "Нужно отделить новый блок от окружения.",
+  "prefer": "Границу 1px `rgba(24,46,57,.1)` и, если нужно, заливку альфа-производной от токена. Тень — только если блок физически всплывает над содержимым.",
+  "avoid": "Серого фона страницы для разделения. Тени у плоскости. Подъёма при наведении.",
+  "gap": null,
+  "confidence": "HIGH",
+  "humanDoc": "docs/guide/decisions.md#dg-5",
+  "title": "DG-5 · Как отделяются поверхности",
+  "category": "decision-guides",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "decision-guide"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Границу 1px `rgba(24,46,57,.1)` и, если нужно, заливку альфа-производной от токена. Тень — только если блок физически всплывает над содержимым.",
+  "implementation": {
+    "markup": null,
+    "styles": [],
+    "scripts": [],
+    "missingReason": "not-a-visual-entity",
+    "fallback": "Применить правило к выбранному паттерну или компоненту."
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "decision-guide",
+      "ref": "docs/guide/decisions.md#dg-5"
+    }
+  ],
+  "unknowns": [],
+  "previewMode": "none"
+}

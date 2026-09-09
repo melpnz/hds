@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Служебный экран</title>
+  <link rel="stylesheet" href="../../ui/career.css">
+  <link rel="stylesheet" href="patterns.css">
+  <style>
+    body{min-width:0}
+    .pattern{margin:0;padding:20px}
+    .pattern__head,.rules,.vp-bar{display:none!important}
+    .viewport{height:auto!important;overflow:visible!important;border:0!important;background:transparent!important}
+    .viewport__inner{width:auto!important;transform:none!important}
+  </style>
+</head>
+<body>
+<section class="pattern" id="p-service">
+  <div class="pattern__head">
+    <span class="pattern__num">08</span>
+    <h2>Служебный экран</h2>
+    <p>404 и подобные. Сетка отменяется целиком.</p>
+  </div>
+  <ul class="rules">
+    <li title="Сетка отменяется: одна колонка во всю ширину, без сайдбара">ST-3</li>
+  </ul>
+
+  <div class="vp-bar" data-for="vp-service"><span class="vp-bar__label">Ширина</span><button class="vp-btn" data-w="320" title="узкий телефон" aria-pressed="false">320</button><button class="vp-btn" data-w="480" title="телефон" aria-pressed="false">480</button><button class="vp-btn" data-w="768" title="планшет" aria-pressed="false">768</button><button class="vp-btn" data-w="1024" title="десктоп" aria-pressed="false">1024</button><button class="vp-btn" data-w="1100" title="потолок контейнера" aria-pressed="true">1100</button><span class="vp-bar__meta"></span></div>
+  <div class="viewport" id="vp-service"><div class="viewport__inner">
+    <div class="career-shell">
+      <div class="page-body" style="padding-top:24px"><div class="page-width">
+        <div class="page-layout page-layout--full">
+          <div class="service-screen">
+            <h1 class="service-screen__title">Ошибка 404</h1>
+            <p class="service-screen__text">Страница не найдена или больше не существует.</p>
+            <button class="base-button inline-flex appearance-main size-l is-sizeable"><span class="base-button__inner"><span class="base-button__content">На главную</span></span></button>
+          </div>
+        </div>
+      </div></div>
+    </div>
+  </div></div>
+  <p class="note"><strong>Ни сайдбара, ни карточки.</strong> Служебный экран — единственное
+     место, где Career отказывается и от сетки, и от карточной оболочки.
+     Заголовок остаётся H1 28/32·600.</p>
+  <p class="note">Иллюстрации служебных страниц (404, 500, 502, технические работы) в
+     библиотеке Figma существуют — семь штук размером около 480×175. В живом виде на
+     измеренной странице их не было, поэтому здесь они не воспроизведены.</p>
+</section>
+<script src="patterns.js"></script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+{
+  "id": "pretty-scroll",
+  "name": "PrettyScroll",
+  "category": "data-display",
+  "kind": "primitive",
+  "spec": "components\\data\\pretty-scroll.md",
+  "status": "complete",
+  "states": [],
+  "cssRoots": [
+    "pretty-scroll"
+  ],
+  "anchor": "showcase/components.html#d-pretty-scroll-contract",
+  "markup": null,
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": null,
+      "sourceName": "scroll"
+    }
+  ],
+  "legacySource": {
+    "id": "pretty-scroll",
+    "name": "PrettyScroll",
+    "category": "data-display",
+    "kind": "primitive",
+    "spec": "components\\data\\pretty-scroll.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "pretty-scroll"
+    ],
+    "anchor": "showcase/components.html#d-pretty-scroll-contract",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "scroll"
+      }
+    ]
+  },
+  "title": "PrettyScroll",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Обёртка с тонкой оформленной полосой прокрутки для списков внутри модальных окон и боковых панелей.",
+  "implementation": {
+    "markup": null,
+    "cssRoots": [
+      "pretty-scroll"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "missingReason": "copy-safe-markup-not-captured",
+    "fallback": "Не придумывать классы. Использовать ближайший компонент с разметкой или явно отметить пробел."
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "isolated-example",
+      "title": "Прокручиваемый список",
+      "file": "examples/components-isolated/pretty-scroll.html",
+      "covers": [
+        "isolated-example",
+        "d-pretty-scroll-contract"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "provenance": {
+        "source": "archive:career/v1/showcase/components.html#d-pretty-scroll-contract",
+        "extraction": "exact-dom-subtree"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Собственных story нет — данные из CSS."
+  ],
+  "markdown": "# PrettyScroll · Оформленная прокрутка\n\n| | |\n|---|---|\n| **Категория** | Отображение данных |\n| **Корневой класс** | — |\n| **CSS** | `ui/components/primitives.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 0 из 0 |\n\n## Назначение\n\nОбёртка с тонкой оформленной полосой прокрутки для списков внутри модальных окон и боковых панелей.\n\n## Анатомия\n\n_Разметка недоступна: см. «Ограничения»._\n\n## Состояния\n\nПодтверждены CSS и разметкой: `:hover`.\n\n```css\n.simplebar-scrolling .simplebar-track,.simplebar-wrapper:hover~.simplebar-track { opacity:.3 }\n```\n\n## Props\n\n_Storybook не отдаёт controls для этого компонента._\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-font-black` | `var(--color-ui-gray-1)` | из `:root` Career |\n| `--color-ui-gray` | `#ccc` | из `:root` Career |\n| `--pretty-scroll-content-gap` | — | задаётся компонентом или средой, значения в сборке нет |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## CSS\n\n```css\n[data-simplebar] { align-content:flex-start;align-items:flex-start;flex-direction:column;flex-wrap:wrap;justify-content:flex-start;position:relative }\n.simplebar-wrapper { height:inherit;max-height:inherit;max-width:inherit;overflow:hidden;width:inherit }\n.simplebar-mask { direction:inherit;height:auto!important;overflow:hidden;width:auto!important;z-index:0 }\n.simplebar-mask,.simplebar-offset { bottom:0;left:0;margin:0;padding:0;position:absolute;right:0;top:0 }\n.simplebar-offset { box-sizing:inherit!important;direction:inherit!important;resize:none!important;-webkit-overflow-scrolling:touch }\n.simplebar-content-wrapper { box-sizing:border-box!important;direction:inherit;display:block;height:100%;max-height:100%;max-width:100%;overflow:auto;position:relative;scrollbar-width:none;width:auto;-ms-overflow-style:none }\n.simplebar-content-wrapper::-webkit-scrollbar,.simplebar-hide-scrollbar::-webkit-scrollbar { display:none;height:0;width:0 }\n.simplebar-content:after,.simplebar-content:before { content:\" \";display:table }\n.simplebar-placeholder { max-height:100%;max-width:100%;pointer-events:none;width:100% }\n.simplebar-height-auto-observer-wrapper { box-sizing:inherit!important;flex-basis:0;flex-grow:inherit;flex-shrink:0;float:left;height:100%;margin:0;max-height:1px;max-width:1px;overflow:hidden;padding:0;pointer-events:none;position:relative;width:100%;z-index:-1 }\n.simplebar-height-auto-observer { box-sizing:inherit;display:block;height:1000%;left:0;min-height:1px;min-width:1px;opacity:0;top:0;width:1000%;z-index:-1 }\n.simplebar-height-auto-observer,.simplebar-track { overflow:hidden;pointer-events:none;position:absolute }\n.simplebar-track { opacity:0;transition:opacity .3s ease-out }\n[data-simplebar].simplebar-dragging,[data-simplebar].simplebar-dragging .simplebar-content { pointer-events:none;-webkit-touch-callout:none;-webkit-user-select:none;-moz-user-select:none;user-select:none }\n[data-simplebar].simplebar-dragging .simplebar-track { pointer-events:all }\n.simplebar-scrollbar { z-index:1 }\n.simplebar-scrollbar:before { bottom:2px;left:2px;right:2px;top:2px }\n.simplebar-scrollbar.simplebar-visible:before { opacity:.5;transition-delay:0s;transition-duration:0s }\n.simplebar-track.simplebar-vertical { width:12px }\n.simplebar-track.simplebar-horizontal { height:12px }\n.simplebar-track.simplebar-horizontal .simplebar-scrollbar { bottom:0;left:0;min-height:0;min-width:10px;right:auto;top:0;width:auto }\n[data-simplebar-direction=rtl] .simplebar-track.simplebar-vertical { left:0;right:auto }\n.simplebar-dummy-scrollbar-size { direction:rtl;height:500px;opacity:0;overflow-x:scroll;overflow-y:hidden;position:fixed;visibility:hidden;width:500px;-ms-overflow-style:scrollbar!important }\n.simplebar-dummy-scrollbar-size>div { height:200%;margin:10px 0;width:200% }\n.simplebar-hide-scrollbar { left:0;overflow-y:scroll;position:fixed;scrollbar-width:none;visibility:hidden;-ms-overflow-style:none }\n.pretty-scroll__content>*+*,.pretty-scroll__content>:only-child>*+* { margin-top:var(--pretty-scroll-content-gap) }\n.simplebar-content { padding:4px!important }\n.simplebar-scrolling .simplebar-track,.simplebar-wrapper:hover~.simplebar-track { opacity:.3 }\n.simplebar-scrollbar.simplebar-scrollbar:before { background:var(--color-font-black);border-radius:8px;bottom:4px;left:4px;opacity:1;right:4px;top:4px;z-index:2 }\n.simplebar-track:after { background:var(--color-ui-gray);border-radius:8px;bottom:4px;content:\"\";left:4px;position:absolute;right:4px;top:4px }\n.simplebar-vertical.simplebar-hover .simplebar-scrollbar.simplebar-scrollbar:before,.simplebar-vertical.simplebar-hover:after { left:0 }\n```\n\n## Ограничения\n\n- Собственных story нет — данные из CSS.\n\n## Источники\n\n- Storybook `career-web`: \n- CSS: секция `pretty-scroll` в `ui/components/primitives.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n\n## Нормативный контракт R2-E\n\nPrettyScroll оформляет native scroll container и не вводит выбранные/нажатые состояния. `hover` в исходном CSS относится только к видимости scrollbar chrome.\n\nПрокручиваемая область должна работать колесом, touch и клавиатурой. Когда она не получает нативный keyboard focus, используйте `tabindex=\"0\"`, класс `pretty-scroll__viewport` и доступное имя через `aria-label`/`aria-labelledby`. Не скрывайте системную прокрутку, если custom scrollbar не инициализировался. Контент сохраняет DOM-порядок.\n",
+  "sourcePath": "archive:career/v1/components/data/pretty-scroll.md",
+  "legacyDocument": "archive:career/v1/components/data/pretty-scroll.md"
+}

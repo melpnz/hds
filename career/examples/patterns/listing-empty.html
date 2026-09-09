@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Листинг · пустой результат</title>
+  <link rel="stylesheet" href="../../ui/career.css">
+  <link rel="stylesheet" href="patterns.css">
+  <style>
+    body{min-width:0}
+    .pattern{margin:0;padding:20px}
+    .pattern__head,.rules,.vp-bar{display:none!important}
+    .viewport{height:auto!important;overflow:visible!important;border:0!important;background:transparent!important}
+    .viewport__inner{width:auto!important;transform:none!important}
+  </style>
+</head>
+<body>
+<section class="pattern" id="p-listing-empty">
+  <div class="pattern__head">
+    <span class="pattern__num">03</span>
+    <h2>Листинг · пустой результат</h2>
+    <p>Показан отдельно, потому что решение неочевидное: страница почти не меняется.</p>
+  </div>
+  <ul class="rules">
+    <li title="Шапка, фильтры и сайдбар остаются; исчезает только список">ST-1</li>
+    <li title="Блок пустого состояния: 18/24·600 + 14/20 gray-3, без иллюстрации и кнопки">ST-2</li>
+  </ul>
+
+  <div class="vp-bar" data-for="vp-empty"><span class="vp-bar__label">Ширина</span><button class="vp-btn" data-w="320" title="узкий телефон" aria-pressed="false">320</button><button class="vp-btn" data-w="480" title="телефон" aria-pressed="false">480</button><button class="vp-btn" data-w="768" title="планшет" aria-pressed="false">768</button><button class="vp-btn" data-w="1024" title="десктоп" aria-pressed="false">1024</button><button class="vp-btn" data-w="1100" title="потолок контейнера" aria-pressed="true">1100</button><span class="vp-bar__meta"></span></div>
+  <div class="viewport" id="vp-empty"><div class="viewport__inner">
+    <div class="career-shell">
+      <div class="page-body" style="padding-top:24px"><div class="page-width">
+        <div class="page-layout">
+          <div class="page-layout__main"><div class="section-group">
+            <div class="basic-section">
+              <div class="page-header-card">
+                <div class="page-header-card__top">
+                  <h1 class="page-header-card__title">Работа и вакансии</h1>
+                  <button class="base-button inline-flex appearance-main-border size-m is-sizeable"><span class="base-button__inner"><span class="base-button__content">Подписаться на вакансии</span></span></button>
+                </div>
+                <div class="page-header-card__controls">
+                  <span class="search-input"><span class="text-input"><input class="text-input__input" type="search" value="незнакомый запрос"></span><svg class="svg-icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/search.svg" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M17 11C17 14.3137 14.3137 17 11 17C7.68629 17 5 14.3137 5 11C5 7.68629 7.68629 5 11 5C14.3137 5 17 7.68629 17 11ZM15.5838 17.5574C14.2857 18.4665 12.7051 19 11 19C6.58172 19 3 15.4183 3 11C3 6.58172 6.58172 3 11 3C15.4183 3 19 6.58172 19 11C19 12.9998 18.2662 14.8282 17.0533 16.2307C17.0767 16.2502 17.0994 16.2709 17.1214 16.2929L20.4143 19.5858C20.8048 19.9763 20.8048 20.6095 20.4143 21C20.0238 21.3905 19.3906 21.3905 19.0001 21L15.7072 17.7071C15.6605 17.6604 15.6194 17.6102 15.5838 17.5574Z" />
+  </svg></span>
+                  <span class="base-select" style="width:230px"><select class="base-select__input"><option>По соответствию</option></select></span>
+                </div>
+                <div class="page-header-card__count">Ничего не найдено</div>
+              </div>
+            </div>
+            <div class="basic-section">
+              <div class="no-content">
+                <p class="no-content__title">Поиск не дал результатов</p>
+                <p class="no-content__description">Попробуйте изменить условия поиска</p>
+              </div>
+            </div>
+          </div></div>
+          <aside class="page-layout__sidebar page-layout__sidebar--sticky page-layout__sidebar--filters">
+            <div class="basic-section">
+              <div class="section-group section-group--gap-24">
+                <div>
+                  <div class="base-input-label"><span class="base-input-label__title" style="font:600 16px/24px var(--font-base)">Специализация</span></div>
+                  <span class="text-input"><input class="text-input__input" type="text" placeholder="Выберите специализацию"></span>
+                </div>
+                <div>
+                  <div class="base-input-label"><span class="base-input-label__title" style="font:600 16px/24px var(--font-base)">Квалификация</span></div>
+                  <span class="base-select"><select class="base-select__input"><option>Любая</option></select></span>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div></div>
+    </div>
+  </div></div>
+  <p class="note"><strong>Career не заменяет экран.</strong> Шапка страницы с поиском,
+     сортировкой и счётчиком остаётся, сайдбар с фильтрами остаётся, — исчезает только
+     список. Пустой блок занимает место примерно одной карточки.</p>
+  <p class="note"><strong>Ни иллюстрации, ни кнопки.</strong> Заголовок <b>18/24·600</b>,
+     описание 14/20·400 <code>gray-3</code>, по центру. Это меньше, чем H2 секции —
+     пустое состояние намеренно не претендует на внимание.
+     <em>Это исправление более ранней записи исследования, где значилось 28/32 с иллюстрацией
+     и кнопкой.</em></p>
+  <p class="note">В библиотеке Figma есть <b>25 иллюстраций пустых состояний</b> 96×96.
+     Живого примера их применения найти не удалось — вероятно, они используются на
+     экранах, доступных только после входа.</p>
+</section>
+<script src="patterns.js"></script>
+</body>
+</html>

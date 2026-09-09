@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Machine-first showcase item",
+  "type": "object",
+  "required": ["id", "title", "kind", "category", "maturity", "knowledge", "purpose", "implementation", "states", "examples", "evidence", "unknowns"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[A-Za-z0-9-]+$" },
+    "title": { "type": "string" },
+    "kind": { "enum": ["foundation", "primitive", "component", "adapter", "module", "pattern", "rule", "decision-guide", "content", "guide"] },
+    "category": { "type": "string" },
+    "maturity": {
+      "type": "object",
+      "required": ["spec", "markup"],
+      "properties": {
+        "spec": { "enum": ["complete", "partial", "missing"] },
+        "markup": { "enum": ["available", "partial", "missing"] }
+      },
+      "additionalProperties": false
+    },
+    "knowledge": { "type": "object", "required": ["authority", "confidence", "scope"] },
+    "purpose": { "type": "string" },
+    "implementation": { "type": "object", "required": ["markup", "styles"] },
+    "states": { "type": ["object", "array"] },
+    "stateGroups": { "type": "object", "required": ["ui", "feature", "domain"] },
+    "previewMode": { "enum": ["none", "intrinsic", "viewport"] },
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "file", "preview"],
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "file": { "type": "string" },
+          "provenance": {
+            "type": "object",
+            "properties": {
+              "source": { "type": "string" },
+              "extraction": { "type": "string" }
+            }
+          },
+          "preview": {
+            "oneOf": [
+              {
+                "type": "object",
+                "required": ["mode"],
+                "properties": { "mode": { "const": "intrinsic" } },
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "required": ["mode", "widths", "height"],
+                "properties": {
+                  "mode": { "const": "viewport" },
+                  "widths": { "type": "array", "items": { "type": "number" }, "minItems": 1 },
+                  "height": { "type": "number", "exclusiveMinimum": 0 }
+                },
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      }
+    },
+    "evidence": { "type": "array" },
+    "unknowns": { "type": "array", "items": { "type": "string" } },
+    "rules": { "type": "array", "items": { "type": "string" } },
+    "variants": { "type": "array" },
+    "sizes": { "type": "array" },
+    "anatomy": { "type": "array" },
+    "groups": { "type": "array" },
+    "roles": { "type": "array" },
+    "typeScale": { "type": "array" },
+    "accessibility": { "type": "array", "items": { "type": "string" } },
+    "responsive": { "type": "array" },
+    "family": { "type": "string" },
+    "areas": { "type": ["array", "null"] },
+    "modules": { "type": "array" },
+    "components": { "type": "array" }
+  }
+}

@@ -1,0 +1,161 @@
+{
+  "id": "multi-select",
+  "name": "MultiSelect",
+  "category": "forms",
+  "kind": "component",
+  "spec": "components\\forms\\multi-select.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "open",
+    "closed",
+    "selected",
+    "disabled",
+    "loading",
+    "invalid",
+    "empty"
+  ],
+  "cssRoots": [
+    "multi-select",
+    "text-input",
+    "suggestions-picker"
+  ],
+  "anchor": "showcase/components.html#fo-multi",
+  "markup": {
+    "html": "<div class=\"multi-select suggestions-picker\">\n  <div class=\"suggestions-picker__wrapper--with-tags\">\n    <span class=\"base-chip base-chip--default\">JavaScript</span>\n    <span class=\"text-input text-input--with-tags\">\n      <input id=\"skills-combobox\" class=\"text-input__input\" role=\"combobox\"\n             aria-label=\"Навыки\" aria-autocomplete=\"list\"\n             aria-expanded=\"true\" aria-controls=\"skills-listbox\"\n             aria-activedescendant=\"skills-option-2\">\n    </span>\n  </div>\n  <div id=\"skills-listbox\" class=\"suggestions-picker__results\"\n       role=\"listbox\" aria-label=\"Варианты навыков\"\n       aria-multiselectable=\"true\">\n    <div class=\"suggestion-item\" role=\"option\"\n         aria-selected=\"true\">JavaScript</div>\n    <div id=\"skills-option-2\" class=\"suggestion-item suggestion-item--active\"\n         role=\"option\" aria-selected=\"false\">React</div>\n  </div>\n</div>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [],
+  "storybookNames": [
+    "MultiSelect"
+  ],
+  "code": {
+    "component": "MultiSelect",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "multi-select",
+    "name": "MultiSelect",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\multi-select.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "open",
+      "closed",
+      "selected",
+      "disabled",
+      "loading",
+      "invalid",
+      "empty"
+    ],
+    "cssRoots": [
+      "multi-select",
+      "text-input",
+      "suggestions-picker"
+    ],
+    "anchor": "showcase/components.html#fo-multi",
+    "markup": {
+      "html": "<div class=\"multi-select suggestions-picker\">\n  <div class=\"suggestions-picker__wrapper--with-tags\">\n    <span class=\"base-chip base-chip--default\">JavaScript</span>\n    <span class=\"text-input text-input--with-tags\">\n      <input id=\"skills-combobox\" class=\"text-input__input\" role=\"combobox\"\n             aria-label=\"Навыки\" aria-autocomplete=\"list\"\n             aria-expanded=\"true\" aria-controls=\"skills-listbox\"\n             aria-activedescendant=\"skills-option-2\">\n    </span>\n  </div>\n  <div id=\"skills-listbox\" class=\"suggestions-picker__results\"\n       role=\"listbox\" aria-label=\"Варианты навыков\"\n       aria-multiselectable=\"true\">\n    <div class=\"suggestion-item\" role=\"option\"\n         aria-selected=\"true\">JavaScript</div>\n    <div id=\"skills-option-2\" class=\"suggestion-item suggestion-item--active\"\n         role=\"option\" aria-selected=\"false\">React</div>\n  </div>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "MultiSelect"
+    ],
+    "code": {
+      "component": "MultiSelect",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "MultiSelect",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Выбор нескольких значений с поиском и подсказками: навыки, города, специализации. Главный компонент фильтров Career.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "multi-select",
+      "text-input",
+      "suggestions-picker"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "MultiSelect",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "open",
+      "closed",
+      "selected",
+      "disabled",
+      "loading",
+      "invalid",
+      "empty"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fmulti-select.json",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "open",
+        "closed",
+        "selected",
+        "disabled",
+        "loading",
+        "invalid",
+        "empty"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Раскрытый production popup не попал в snapshot. Showcase содержит нормативный"
+  ],
+  "markdown": "# MultiSelect · Множественный выбор\n\n| | |\n|---|---|\n| **Категория** | Формы |\n| **Корневой класс** | `multi-select`; production snapshot использует generic `wrapper` |\n| **CSS** | `ui/components/forms.css`, `ui/state-contract.css` |\n| **Живая реализация** | `showcase/components.html#fo-multi` |\n| **Snapshot Storybook** | 3 из 3 |\n\n## Назначение\n\nВыбор нескольких значений с поиском и подсказками: навыки, города, специализации. Главный компонент фильтров Career.\n\n## Анатомия\n\n```\ndiv.wrapper\n  div.v-popper.v-popper--theme-dropdown\n    div.relative\n      div\n        div.wrapper.relative\n          span.text-input.text-input\n            input.cursor-pointer.text-input__input  [placeholder]\n          span.pointer-events-none.absolute.bottom-0.left-0.right-0.top-0.flex.items-center.justify-between.bg-transparent.px-3\n            span.block.max-w-[calc(100%-24px)].shrink-0.grow.truncate.px-1\n              …\n            svg.svg-icon.h-6.w-6.shrink-0.fill-icon-gray.text-icon-gray.transition-transform  [aria-hidden=\"true\"]\n              …\n```\n\n_Разметка story `form-multiselect--base-story`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\nMultiSelect — editable combobox с multiselect listbox.\n\n| Состояние | Контракт |\n|---|---|\n| `default` | combobox input, `aria-expanded=\"false\"` |\n| `hover` | hover wrapper/options | production CSS |\n| `focus-visible` | input `:focus-visible`, ring на wrapper | state contract |\n| `closed` | listbox не рендерится |\n| `open` | `aria-expanded=\"true\"`, `aria-controls` указывает на listbox |\n| `selected` | option `aria-selected=\"true\"`; выбранные значения показываются chips |\n| `disabled` | нативный `disabled` на input, root `.is-disabled` |\n| `loading` | root `aria-busy=\"true\"`; listbox показывает status |\n| `invalid` | input `aria-invalid=\"true\"` + error в `aria-describedby` |\n| `empty` | вместо listbox показывается `role=\"status\"` с `noResultsMessage` |\n\n`.suggestion-item--active` означает keyboard highlight, а не selected. Active\noption задаётся `aria-activedescendant`; выбранность — только `aria-selected`.\n\nПодтверждены CSS и разметкой: `.has-after`, `.is-chip`, `.is-chip-inactive`, `.is-sizeable`, `.suggestion-item--active`, `.text-input--disabled`, `.text-input--invalid`, `:focus`, `:hover`.\n\n```css\n.suggestion-item--active,.suggestion-item:focus-within,.suggestion-item:hover { background-color:var(--color-ui-gray-3-10) }\n.suggestion-item--withSeparator:hover { background-color:var(--color-ui-gray-3-10) }\n.suggestions-picker__wrapper--with-tags:hover { border-color:var(--color-ui-gray-4) }\n```\n\n## Слоты\n\n- `content`\n- `footer-button`\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `modelValue` | MultiSelectOptionValue[] | — | — | `object` |\n| `defaultLabel` | string | `''` | — | `text` |\n| `searchPlaceholder` | string | — | — | `text` |\n| `action` | MultiSelectSearchAction | — | — | `object` |\n| `noResultsMessage` | string | — | — | `text` |\n| `withBaseFilter` | boolean | `false` | — | `boolean` |\n| `label` | string | — | — | `text` |\n| `termMinLength` | number | `0` | — | `number` |\n| `cacheKey` | string | — | — | `text` |\n| `preCachedOptions` | MultiselectOption[] | — | — | `object` |\n| `textInputId` | string | — | — | `text` |\n| `showInsertMessage` | boolean | `true` | — | `boolean` |\n| `hasAppliedOptions` | boolean | `false` | — | `boolean` |\n| `placement` | \"bottom-start\" \\| \"bottom\" | `'bottom'` | — | `object` |\n| `selectionControl` | \"checkbox\" \\| \"none\" | `'checkbox'` | — | `object` |\n| `disabled` | boolean | `false` | — | `boolean` |\n| `invalid` | boolean | `false` | UI kit contract | `boolean` |\n| `loading` | boolean | `false` | UI kit contract | `boolean` |\n| `update:modelValue` | Array | — | — | `object` |\n| `insertToSearch` | string | — | — | `object` |\n| `close` | other | — | — | `object` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-font-gray` | `var(--color-ui-gray-2)` | из `:root` Career |\n| `--color-icon-gray` | `var(--color-ui-gray-2)` | из `:root` Career |\n| `--color-ui-gray-2` | `#55798b` | из `:root` Career |\n| `--color-ui-gray-3` | `#7996a5` | из `:root` Career |\n| `--color-ui-gray-3-10` | `color-mix(in srgb,var(--color-ui-gray-3) 10%,transparent)` | из `:root` Career |\n| `--color-ui-gray-4` | `#a6bdc9` | из `:root` Career |\n| `--color-ui-gray-5` | `#d4dee2` | из `:root` Career |\n| `--color-ui-gray-6` | `#eaf2f5` | из `:root` Career |\n| `--color-ui-gray-bg` | `#ededed` | из `:root` Career |\n| `--color-ui-gray-shadow` | `rgba(24,46,57,.1)` | из `:root` Career |\n| `--color-ui-red` | `#f8651b` | из `:root` Career |\n| `--color-ui-white` | `#fff` | из `:root` Career |\n\n## Иконки\n\n| Спрайт | Символ | Локальный файл |\n|---|---|---|\n| `sprite.svg` | `#arrow-down-small` | `ui/assets/icons/sprite.svg` |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\nInput использует `role=\"combobox\"`, `aria-autocomplete=\"list\"`,\n`aria-expanded`, `aria-controls` и при навигации `aria-activedescendant`.\nPopup — `role=\"listbox\" aria-multiselectable=\"true\"`; options используют\n`aria-selected`. Remove-action каждого выбранного chip имеет доступное имя.\n\n## Поведение\n\n- Умеет жить в двух обвязках: обычной (`div.wrapper`) и внутри кнопки фильтра (`with-base-filter` + FilterButton как триггер).\n- Кеширует список опций по `cacheKey` и умеет показывать предзагруженные значения до первого запроса.\n- `ArrowDown` открывает список и двигает active option, `Enter`/`Space` меняют\n  выбранность, `Escape` закрывает, Backspace удаляет последний chip только при\n  пустом поисковом запросе.\n\n## Разметка\n\n```html\n<div class=\"multi-select suggestions-picker\">\n  <div class=\"suggestions-picker__wrapper--with-tags\">\n    <span class=\"base-chip base-chip--default\">JavaScript</span>\n    <span class=\"text-input text-input--with-tags\">\n      <input id=\"skills-combobox\" class=\"text-input__input\" role=\"combobox\"\n             aria-label=\"Навыки\" aria-autocomplete=\"list\"\n             aria-expanded=\"true\" aria-controls=\"skills-listbox\"\n             aria-activedescendant=\"skills-option-2\">\n    </span>\n  </div>\n  <div id=\"skills-listbox\" class=\"suggestions-picker__results\"\n       role=\"listbox\" aria-label=\"Варианты навыков\"\n       aria-multiselectable=\"true\">\n    <div class=\"suggestion-item\" role=\"option\"\n         aria-selected=\"true\">JavaScript</div>\n    <div id=\"skills-option-2\" class=\"suggestion-item suggestion-item--active\"\n         role=\"option\" aria-selected=\"false\">React</div>\n  </div>\n</div>\n```\n\n_Пути к спрайтам и изображениям в этом блоке — локальные, от папки спецификации. В блоке «Анатомия» выше сохранён продовый путь: это протокол снятого DOM, а не образец для вёрстки._\n\n## CSS\n\n```css\n.label .base-checkbox__icon-wrapper { margin:0 }\n.wrapper input { padding-right:1.5rem }\n.divider { background-color:var(--color-ui-gray-bg);height:1px;margin:.5rem 1rem }\n.with-base-filter .v-popper { width:-moz-max-content;width:max-content }\n.filter-item { display:block;line-height:24px;max-width:100% }\n.filter-item__title { margin-right:4px;min-width:0;word-break:break-word }\n.filter-item--staticView .filter-item__title { margin-right:0 }\n.filter-item--nowrap { align-items:center;display:flex;justify-content:space-between }\n.filter-item--nowrap .filter-item__title { overflow:hidden;text-overflow:ellipsis;white-space:nowrap }\n.filter-item__remove { align-items:center;background-color:transparent;border-radius:9999px;border-style:none;color:var(--color-icon-gray);cursor:pointer;display:inline-flex;flex:none;height:22px;justify-content:center;padding:0;width:22px }\n.filter-item__remove:focus { outline:2px solid transparent;outline-offset:2px }\n.empty-suggest-item { color:var(--color-font-gray);padding:28px 4px }\n.empty-suggest-item__title { font-weight:700 }\n.empty-suggest-item--centered { text-align:center }\n.suggestion-item { background-color:var(--color-ui-white);border-radius:12px;cursor:pointer;margin:0;min-height:40px;overflow:hidden;padding:8px 16px }\n.suggestion-item--active,.suggestion-item:focus-within,.suggestion-item:hover { background-color:var(--color-ui-gray-3-10) }\n.suggestion-item--withSeparator+.suggestion-item--withSeparator { border-top:1px solid var(--color-ui-gray-bg) }\n.suggestion-item--withSeparator:hover { background-color:var(--color-ui-gray-3-10) }\n.suggestion-item__button { background-color:transparent;border:none;cursor:pointer;display:block;padding:0;text-align:left;width:100% }\n.suggestion-item__button:focus { outline:none }\n.search-input__icon { align-items:center;background-color:transparent;border:none;color:var(--color-ui-gray-2);display:flex;height:24px;justify-content:center;padding:0;width:24px }\n.search-input__icon--filled { cursor:pointer }\n.suggestions-picker { position:relative }\n.suggestions-picker--hidden,.suggestions-picker__wrapper--hidden { display:contents }\n.suggestions-picker__wrapper--with-tags { align-items:center;background-color:var(--color-ui-white);border:1px solid var(--color-ui-gray-5);border-radius:12px;display:inline-flex;flex-wrap:wrap;gap:6px;min-height:40px;padding:7px;transition:border-color .2s ease;width:100% }\n.suggestions-picker__wrapper--with-tags:hover { border-color:var(--color-ui-gray-4) }\n.suggestions-picker__wrapper--with-tags:focus-within { border-color:var(--color-ui-gray-2) }\n.suggestions-picker__wrapper--with-tags:has(.text-input--disabled) { border-color:var(--color-ui-gray-6) }\n.suggestions-picker__wrapper--with-tags:has(.text-input--invalid) { border-color:var(--color-ui-red) }\n.suggestions-picker__results { background-color:var(--color-ui-white);border:none;border-radius:16px;box-shadow:0 1px 4px 1px var(--color-ui-gray-shadow),0 4px 8px 2px var(--color-ui-gray-shadow);display:flex;flex-direction:column;gap:4px;max-height:445px;overflow:auto;padding:4px;position:absolute;top:100%;width:100%;z-index:11 }\n.suggestions-picker__results--compact { max-height:200px }\n.suggestions-picker__icon { cursor:pointer;fill:var(--color-ui-gray-2) }\n.base-suggest-picker { display:grid;gap:8px }\n```\n\n## Ограничения\n\n- Раскрытый production popup не попал в snapshot. Showcase содержит нормативный\n  listbox, собранный на существующих `suggestions-picker` и `suggestion-item`\n  styles; это UI kit reconstruction, не исторический Vue DOM.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/form/multi-select/multi-select.stories.ts`\n- Storybook `career-web`: `form-multiselect--base-story`, `form-multiselect--with-base-filters-story`, `form-multiselect--with-images-story`\n- CSS: секция `multi-select` в `ui/components/forms.css`, секция `base-suggest-picker` в `ui/components/forms.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/forms/multi-select.md",
+  "legacyDocument": "archive:career/v1/components/forms/multi-select.md"
+}

@@ -1,0 +1,135 @@
+{
+  "id": "colors",
+  "title": "Цвета",
+  "kind": "foundation",
+  "category": "foundations",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production-css",
+      "normative"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Холодная сине-серая палитра Career. Фиолетовый обозначает действие, синий — переход.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      ":root"
+    ],
+    "styles": [
+      "ui/tokens.css"
+    ],
+    "scripts": []
+  },
+  "groups": [
+    {
+      "id": "neutral",
+      "title": "Нейтральная шкала",
+      "file": "machine/foundations/colors/neutral.json",
+      "tokens": 31
+    },
+    {
+      "id": "action-link",
+      "title": "Действия и ссылки",
+      "file": "machine/foundations/colors/action-link.json",
+      "tokens": 14
+    },
+    {
+      "id": "status",
+      "title": "Статусные цвета",
+      "file": "machine/foundations/colors/status.json",
+      "tokens": 26
+    },
+    {
+      "id": "semantic",
+      "title": "Семантические алиасы",
+      "file": "machine/foundations/colors/semantic.json",
+      "tokens": 11
+    },
+    {
+      "id": "data-visualization",
+      "title": "Графики и иллюстрации",
+      "file": "machine/foundations/colors/data-visualization.json",
+      "tokens": 13
+    },
+    {
+      "id": "component-promo",
+      "title": "Компоненты и промо",
+      "file": "machine/foundations/colors/component-promo.json",
+      "tokens": 18
+    }
+  ],
+  "roles": [
+    {
+      "role": "action",
+      "token": "--color-ui-primary",
+      "value": "#8164f7"
+    },
+    {
+      "role": "link",
+      "token": "--color-ui-blue-accent",
+      "value": "#0464d2"
+    },
+    {
+      "role": "content-text",
+      "token": "--color-ui-gray-1",
+      "value": "#1b272c"
+    },
+    {
+      "role": "supporting-text",
+      "token": "--color-ui-gray-2",
+      "value": "#55798b"
+    },
+    {
+      "role": "metadata",
+      "token": "--color-ui-gray-3",
+      "value": "#7996a5"
+    }
+  ],
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [
+    "machine/rules/color-roles.json"
+  ],
+  "examples": [
+    {
+      "id": "palette",
+      "title": "Палитра",
+      "file": "examples/foundations/colors.html",
+      "covers": [
+        "113 color tokens",
+        "roles",
+        "derived colors"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [
+    "gray-1 passes AA on white",
+    "gray-2 passes AA on white",
+    "gray-3 is only for large text or secondary metadata"
+  ],
+  "evidence": [
+    {
+      "type": "production-css",
+      "ref": "archive:career/v1/ui/tokens.css"
+    },
+    {
+      "type": "analysis",
+      "ref": "archive:career/v1/evidence/tokens.md"
+    }
+  ],
+  "unknowns": [
+    "Runtime branded profile colors have names but no fixed values and are not part of these 113 tokens."
+  ]
+}

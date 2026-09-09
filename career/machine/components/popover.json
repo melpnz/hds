@@ -1,0 +1,97 @@
+{
+  "id": "popover",
+  "name": "Popover",
+  "category": "overlays",
+  "kind": "primitive",
+  "spec": "components\\overlays\\popover.md",
+  "status": "complete",
+  "states": [
+    "closed",
+    "open"
+  ],
+  "cssRoots": [
+    "popover",
+    "popover__surface"
+  ],
+  "anchor": "showcase/components.html#r3-popover",
+  "markup": null,
+  "evidence": [],
+  "legacySource": {
+    "id": "popover",
+    "name": "Popover",
+    "category": "overlays",
+    "kind": "primitive",
+    "spec": "components\\overlays\\popover.md",
+    "status": "complete",
+    "states": [
+      "closed",
+      "open"
+    ],
+    "cssRoots": [
+      "popover",
+      "popover__surface"
+    ],
+    "anchor": "showcase/components.html#r3-popover",
+    "markup": null,
+    "evidence": []
+  },
+  "title": "Popover",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Немодальный позиционируемый слой для Menu и короткого интерактивного контента. Tooltip использует более узкий контракт; Select/Listbox и dialog сохраняют собственную семантику.",
+  "implementation": {
+    "markup": null,
+    "cssRoots": [
+      "popover",
+      "popover__surface"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "missingReason": "copy-safe-markup-not-captured",
+    "fallback": "Не придумывать классы. Использовать ближайший компонент с разметкой или явно отметить пробел."
+  },
+  "stateGroups": {
+    "ui": [
+      "closed",
+      "open"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "isolated-example",
+      "title": "Открытое состояние",
+      "file": "examples/components-isolated/popover.html",
+      "covers": [
+        "isolated-example",
+        "r3-popover",
+        "closed",
+        "open"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "provenance": {
+        "source": "archive:career/v1/showcase/components.html#r3-popover",
+        "extraction": "exact-dom-subtree"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [],
+  "markdown": "# Popover · Позиционируемый оверлей\r\n\r\n| | |\r\n|---|---|\r\n| **Категория** | Оверлеи |\r\n| **Корневой класс** | `popover`, `popover__surface` |\r\n| **CSS** | `ui/components.css` |\r\n| **Живая реализация** | `showcase/components.html#r3-popover` |\r\n| **Источник** | BaseDropdown/v-popper production; Figma — evidence only |\r\n\r\n## Назначение\r\n\r\nНемодальный позиционируемый слой для Menu и короткого интерактивного контента. Tooltip использует более узкий контракт; Select/Listbox и dialog сохраняют собственную семантику.\r\n\r\n## Состояния\r\n\r\n| Состояние | Контракт |\r\n|---|---|\r\n| `closed` | trigger `aria-expanded=\"false\"`; surface `hidden` или отсутствует |\r\n| `open` | trigger `aria-expanded=\"true\"`; `data-state=\"open\"` |\r\n\r\n## API\r\n\r\n- `placement`: `top-start`, `top-end`, `bottom-start`, `bottom-end`.\r\n- `open`, `onOpenChange`, `trigger`, `content`.\r\n- Фактический placement после collision detection записывается в `data-placement`.\r\n\r\n## Accessibility и поведение\r\n\r\nTrigger — реальная кнопка с `aria-expanded` и `aria-controls`; `aria-haspopup` задаёт потребитель (`menu`, `listbox`, `dialog`). Сам Popover не назначает role содержимому.\r\n\r\nEscape и клик снаружи закрывают слой. При открытии фокус остаётся trigger либо переносится внутрь только для интерактивного popover; при Escape возвращается trigger. Focus trap отсутствует. Popup портируется в overlay root, но логический DOM/API сохраняет связь trigger-content.\r\n\r\nПозиционер обязан обрабатывать viewport collision, scroll/resize, RTL и ширину мобильного экрана. `z-index` берётся из overlay layer, а не задаётся потребителем.\r\n\r\n## Поверхность и вложенные компоненты\r\n\r\n`.popover__surface` рисует поверхность — фон, радиус 16 и тень — для произвольного\r\nсодержимого. Если внутрь кладётся компонент с собственной поверхностью, слой\r\nеё не дублирует: `.popover__surface:has(> .menu)` обнуляет фон, тень и padding,\r\nи Popover остаётся чистым позиционером. Это касается Menu и всего, что на нём\r\nпостроено, — TimePicker в том числе.\r\n\r\nCareer решает это так же: `.context-menu--select .base-dropdown__content`\r\nобнуляет `background`, `border-radius` и `box-shadow`, когда внутри лежит\r\n`.context-menu__content` со своей поверхностью (`ui/components/navigation.css`).\r\n",
+  "sourcePath": "archive:career/v1/components/overlays/popover.md",
+  "legacyDocument": "archive:career/v1/components/overlays/popover.md"
+}

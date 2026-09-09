@@ -1,0 +1,109 @@
+{
+  "id": "vacancy-card",
+  "name": "VacancyCard",
+  "category": "entities",
+  "kind": "module",
+  "spec": "components\\cards\\vacancy-card.md",
+  "status": "complete",
+  "states": [],
+  "cssRoots": [
+    "vacancy-card"
+  ],
+  "anchor": "showcase/components.html#c-vacancy-prod",
+  "markup": {
+    "html": "<article class=\"vacancy-card\" aria-labelledby=\"vacancy-title\">\n  <div class=\"vacancy-card__main\">\n    <a class=\"vacancy-card__icon-link\" href=\"/companies/example\" aria-label=\"Компания Example\">\n      <img class=\"vacancy-card__logo\" src=\"../../ui/assets/illustrations/avatar-default-company.svg\" alt=\"\">\n    </a>\n    <div class=\"vacancy-card__info\">\n      <div class=\"vacancy-card__company\">\n        <a class=\"vacancy-card__company-name\" href=\"/companies/example\">Example</a>\n        <time class=\"vacancy-card__date\" datetime=\"2026-09-07\">Сегодня</time>\n      </div>\n      <a class=\"vacancy-card__title\" id=\"vacancy-title\" href=\"/vacancies/1\">Frontend developer</a>\n      <p class=\"vacancy-meta\"><span class=\"vacancy-card__salary\">от 250 000 ₽</span></p>\n      <div class=\"vacancy-card__skills\" aria-label=\"Условия\"><a class=\"base-chip\" href=\"#\">Senior</a></div>\n      <div class=\"vacancy-card__skills\" aria-label=\"Навыки\"><a class=\"base-chip\" href=\"#\">TypeScript</a></div>\n    </div>\n  </div>\n  <footer class=\"vacancy-card__footer\">\n    <button type=\"button\">Откликнуться</button>\n    <button type=\"button\" aria-pressed=\"false\" aria-label=\"Добавить в избранное\">…</button>\n  </footer>\n</article>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [],
+  "storybookNames": [
+    "VacancyCardWithCompanyAndDate"
+  ],
+  "code": {
+    "component": "VacancyCardWithCompanyAndDate",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "vacancy-card",
+    "name": "VacancyCard",
+    "category": "entities",
+    "kind": "module",
+    "spec": "components\\cards\\vacancy-card.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "vacancy-card"
+    ],
+    "anchor": "showcase/components.html#c-vacancy-prod",
+    "markup": {
+      "html": "<article class=\"vacancy-card\" aria-labelledby=\"vacancy-title\">\n  <div class=\"vacancy-card__main\">\n    <a class=\"vacancy-card__icon-link\" href=\"/companies/example\" aria-label=\"Компания Example\">\n      <img class=\"vacancy-card__logo\" src=\"../../ui/assets/illustrations/avatar-default-company.svg\" alt=\"\">\n    </a>\n    <div class=\"vacancy-card__info\">\n      <div class=\"vacancy-card__company\">\n        <a class=\"vacancy-card__company-name\" href=\"/companies/example\">Example</a>\n        <time class=\"vacancy-card__date\" datetime=\"2026-09-07\">Сегодня</time>\n      </div>\n      <a class=\"vacancy-card__title\" id=\"vacancy-title\" href=\"/vacancies/1\">Frontend developer</a>\n      <p class=\"vacancy-meta\"><span class=\"vacancy-card__salary\">от 250 000 ₽</span></p>\n      <div class=\"vacancy-card__skills\" aria-label=\"Условия\"><a class=\"base-chip\" href=\"#\">Senior</a></div>\n      <div class=\"vacancy-card__skills\" aria-label=\"Навыки\"><a class=\"base-chip\" href=\"#\">TypeScript</a></div>\n    </div>\n  </div>\n  <footer class=\"vacancy-card__footer\">\n    <button type=\"button\">Откликнуться</button>\n    <button type=\"button\" aria-pressed=\"false\" aria-label=\"Добавить в избранное\">…</button>\n  </footer>\n</article>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "VacancyCardWithCompanyAndDate"
+    ],
+    "code": {
+      "component": "VacancyCardWithCompanyAndDate",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "VacancyCard",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "VacancyCard — сущность UI kit Career.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "vacancy-card"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "VacancyCardWithCompanyAndDate",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fvacancy-card.json",
+      "covers": [],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [],
+  "markdown": "# VacancyCard · Карточка вакансии\r\n\r\n| | |\r\n|---|---|\r\n| **Категория** | Entity-модуль |\r\n| **Корневой класс** | `vacancy-card` |\r\n| **CSS** | `ui/components.css` |\r\n| **Showcase** | `showcase/components.html#c-vacancy-prod` |\r\n| **Evidence** | public listing + production measurements; legacy Storybook `VacancyCardWithCompanyAndDate` |\r\n\r\nКарточка представляет одну вакансию в листинге. Она получает данные и композицию\r\nиз готовых primitives; не управляет откликом, авторизацией или загрузкой данных.\r\n\r\n## Data contract\r\n\r\n| Поле | Обязательность | Представление |\r\n|---|---|---|\r\n| `company`, `title`, `href`, `publishedAt` | обязательно | ссылка компании, заголовок вакансии, дата |\r\n| `logo` | optional | без логотипа подставляется штатная заглушка `illustrations/avatar-default-company.svg`; место не схлопывается |\r\n| `rating`, `accreditation` | optional | скрывать пустой элемент, а не показывать фиктивные данные |\r\n| `salary` | optional | указанная сумма — зелёная; отсутствие — `Зарплата не указана` оранжевым |\r\n| `grade`, `workFormat`, `locations`, `skills` | optional arrays | два независимых ряда: атрибуты вакансии и навыки |\r\n| `saved` | optional presentation state | `aria-pressed` у отдельной кнопки «В избранном» |\r\n\r\n`applied`, `hidden`, `promoted`, `loading`, `error`, `success` и авторизация —\r\nbusiness states контейнера или отдельного сценария. Они не являются состояниями\r\nкарточки.\r\n\r\n## Варианты данных\r\n\r\n| Variant | Контракт |\r\n|---|---|\r\n| `salary-known` | Показывает сумму или диапазон зарплаты. |\r\n| `salary-unknown` | Вместо суммы показывает текст «Зарплата не указана». |\r\n| `compact-metadata` | Не имеет rating и skills; на месте логотипа — заглушка. Оставшиеся данные не меняют порядок блоков. |\r\n| `saved` | Кнопка избранного имеет `aria-pressed=\"true\"`; выбор не выполняет сетевой запрос внутри карточки. |\r\n\r\n## Семантика и доступность\r\n\r\n- Корень — `article`; заголовок вакансии — единственная основная ссылка.\r\n- Компания, рейтинг и tag/skill links остаются отдельными ссылками. Не оборачивайте\r\n  всю карточку ссылкой: внутри есть независимые интерактивные элементы.\r\n- Логотип имеет пустой `alt`, когда рядом выводится название компании; fallback\r\n  изображает компанию без ложного текста. Заглушка — не «фиктивные данные»:\r\n  это то, что продукт показывает сам, когда логотипа нет или он не загрузился\r\n  (`ui/assets/README.md`, «Заглушки аватара»). Скрывать логотип целиком нельзя —\r\n  колонка 48x48 держит выравнивание всей карточки.\r\n- Кнопка избранного имеет имя, которое меняется вместе с `aria-pressed`.\r\n- Кнопка «Откликнуться» — slot/action потребителя. Поведение, loading и результат\r\n  принадлежат `QuickApply`, а не VacancyCard.\r\n\r\n## Responsive\r\n\r\nНа ширине контейнера до 1023 px дата выходит первой строкой, логотип переезжает\r\nвправо и текст обтекает его. Действия остаются отдельной строкой. Обе композиции\r\nпроверены в browser suite на 375 и 1440 px.\r\n\r\n## Разметка\r\n\r\n```html\r\n<article class=\"vacancy-card\" aria-labelledby=\"vacancy-title\">\r\n  <div class=\"vacancy-card__main\">\r\n    <a class=\"vacancy-card__icon-link\" href=\"/companies/example\" aria-label=\"Компания Example\">\r\n      <img class=\"vacancy-card__logo\" src=\"../../ui/assets/illustrations/avatar-default-company.svg\" alt=\"\">\r\n    </a>\r\n    <div class=\"vacancy-card__info\">\r\n      <div class=\"vacancy-card__company\">\r\n        <a class=\"vacancy-card__company-name\" href=\"/companies/example\">Example</a>\r\n        <time class=\"vacancy-card__date\" datetime=\"2026-09-07\">Сегодня</time>\r\n      </div>\r\n      <a class=\"vacancy-card__title\" id=\"vacancy-title\" href=\"/vacancies/1\">Frontend developer</a>\r\n      <p class=\"vacancy-meta\"><span class=\"vacancy-card__salary\">от 250 000 ₽</span></p>\r\n      <div class=\"vacancy-card__skills\" aria-label=\"Условия\"><a class=\"base-chip\" href=\"#\">Senior</a></div>\r\n      <div class=\"vacancy-card__skills\" aria-label=\"Навыки\"><a class=\"base-chip\" href=\"#\">TypeScript</a></div>\r\n    </div>\r\n  </div>\r\n  <footer class=\"vacancy-card__footer\">\r\n    <button type=\"button\">Откликнуться</button>\r\n    <button type=\"button\" aria-pressed=\"false\" aria-label=\"Добавить в избранное\">…</button>\r\n  </footer>\r\n</article>\r\n```\r\n\r\n## Legacy Storybook variant\r\n\r\n`VacancyCardWithCompanyAndDate` — выделенный вариант с голубой подложкой и\r\nвнешней шириной 560 px. Он сохранён как `storybookName` и evidence, но не заменяет\r\nканоническую карточку листинга. Его 12 snapshots подтверждают варианты неполных\r\nданных; новый API не наследует его визуальную обёртку.\r\n\r\n## Источники\r\n\r\n- `evidence/source/production/list-vacancies.json`.\r\n- `evidence/curated/listing/listing-vacancies-1440.png` и `listing-vacancies-375.png`.\r\n- `Vacancies/VacancyCardWithCompanyAndDate` — 12/12 локальных Storybook snapshots.\r\n- Публичный листинг: <https://career.habr.com/vacancies> (проверен 7 сентября 2026).\r\n",
+  "sourcePath": "archive:career/v1/components/cards/vacancy-card.md",
+  "legacyDocument": "archive:career/v1/components/cards/vacancy-card.md"
+}

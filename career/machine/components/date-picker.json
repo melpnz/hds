@@ -1,0 +1,133 @@
+{
+  "id": "date-picker",
+  "name": "DatePicker",
+  "category": "forms",
+  "kind": "component",
+  "spec": "components\\forms\\date-picker.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "open",
+    "closed",
+    "selected",
+    "disabled",
+    "invalid"
+  ],
+  "cssRoots": [
+    "date-picker"
+  ],
+  "anchor": "showcase/components.html#r3-calendar",
+  "markup": null,
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": "770:8784",
+      "sourceName": "calendar / date-picker"
+    }
+  ],
+  "legacySource": {
+    "id": "date-picker",
+    "name": "DatePicker",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\date-picker.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "open",
+      "closed",
+      "selected",
+      "disabled",
+      "invalid"
+    ],
+    "cssRoots": [
+      "date-picker"
+    ],
+    "anchor": "showcase/components.html#r3-calendar",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "770:8784",
+        "sourceName": "calendar / date-picker"
+      }
+    ]
+  },
+  "title": "DatePicker",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "DatePicker — сущность UI kit Career.",
+  "implementation": {
+    "markup": null,
+    "cssRoots": [
+      "date-picker"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "missingReason": "copy-safe-markup-not-captured",
+    "fallback": "Не придумывать классы. Использовать ближайший компонент с разметкой или явно отметить пробел."
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "open",
+      "closed",
+      "selected",
+      "disabled",
+      "invalid"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "isolated-example",
+      "title": "Открытый выбор даты",
+      "file": "examples/components-isolated/date-picker.html",
+      "covers": [
+        "isolated-example",
+        "r3-calendar",
+        "default",
+        "hover",
+        "focus-visible",
+        "open",
+        "closed",
+        "selected",
+        "disabled",
+        "invalid"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "provenance": {
+        "source": "archive:career/v1/showcase/components.html#r3-calendar",
+        "extraction": "exact-dom-subtree"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [],
+  "markdown": "# DatePicker · Выбор даты\n\n| | |\n|---|---|\n| **Корневой класс** | `date-picker` |\n| **CSS** | `ui/components.css` |\n| **Showcase** | `showcase/components.html#r3-calendar` |\n\nDatePicker объединяет TextInput/FormField, кнопку календаря, Popover и Calendar. Внешнее значение — дата/диапазон, а не локализованная строка поля.\n\n## Состояния\n\n`default`, `hover`, `focus-visible`, `open`, `closed`, `selected`, `disabled`, `invalid`. Open/closed отражаются в `aria-expanded`; ошибка — `aria-invalid` и связанный error text.\n\n## Контракт\n\nПоле допускает клавиатурный ввод только если парсер однозначен для locale; иначе используйте readOnly input с кнопкой. Кнопка имеет `aria-haspopup=\"dialog\"`, `aria-controls` и доступное имя. Escape закрывает popover и возвращает фокус. Выбор даты обновляет поле; закрытие после выбора зависит от single/range mode. Min/max и недоступные даты одинаково применяются к вводу и Calendar. Не храните timezone в компоненте календарной даты без времени.\n",
+  "sourcePath": "archive:career/v1/components/forms/date-picker.md",
+  "legacyDocument": "archive:career/v1/components/forms/date-picker.md"
+}

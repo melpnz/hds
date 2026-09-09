@@ -1,0 +1,157 @@
+{
+  "id": "ai-button",
+  "name": "AIButton",
+  "category": "actions",
+  "kind": "component",
+  "spec": "components\\actions\\ai-button.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled",
+    "loading"
+  ],
+  "cssRoots": [
+    "ai-button",
+    "base-button"
+  ],
+  "anchor": "showcase/components.html#a-special",
+  "markup": {
+    "html": "<button class=\"ai-button base-button inline-flex appearance-main size-m has-before is-sizeable ai-button\" type=\"button\" target=\"_self\">\n  <span class=\"base-button__inner\">\n    <span class=\"base-button__before\">\n      <svg class=\"svg-icon\" width=\"24\" height=\"24\" aria-hidden=\"true\" style=\"width: 24px; height: 24px;\">\n        <use xlink:href=\"../../ui/assets/icons/sprite.svg#booster\"/>\n      </svg>\n    </span>\n    <span class=\"base-button__content\">AI кнопка</span>\n  </span>\n</button>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": "2067:314",
+      "sourceName": "button / M / ai"
+    }
+  ],
+  "storybookNames": [
+    "AIButton"
+  ],
+  "code": {
+    "component": "AIButton",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "ai-button",
+    "name": "AIButton",
+    "category": "actions",
+    "kind": "component",
+    "spec": "components\\actions\\ai-button.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "disabled",
+      "loading"
+    ],
+    "cssRoots": [
+      "ai-button",
+      "base-button"
+    ],
+    "anchor": "showcase/components.html#a-special",
+    "markup": {
+      "html": "<button class=\"ai-button base-button inline-flex appearance-main size-m has-before is-sizeable ai-button\" type=\"button\" target=\"_self\">\n  <span class=\"base-button__inner\">\n    <span class=\"base-button__before\">\n      <svg class=\"svg-icon\" width=\"24\" height=\"24\" aria-hidden=\"true\" style=\"width: 24px; height: 24px;\">\n        <use xlink:href=\"../../ui/assets/icons/sprite.svg#booster\"/>\n      </svg>\n    </span>\n    <span class=\"base-button__content\">AI кнопка</span>\n  </span>\n</button>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "2067:314",
+        "sourceName": "button / M / ai"
+      }
+    ],
+    "storybookNames": [
+      "AIButton"
+    ],
+    "code": {
+      "component": "AIButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "AIButton",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Отдельная кнопка для действий с участием AI. Отличается от обычной кнопки не цветом фона, а градиентной рамкой: у Career для этого есть специальный токен --color-ai-gradient.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "ai-button",
+      "base-button"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "AIButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "disabled",
+      "loading"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fai-button.json",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "loading"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Не выявлено: разметка, CSS и props извлечены полностью."
+  ],
+  "markdown": "# AIButton · Кнопка AI\n\n| | |\n|---|---|\n| **Категория** | Действия |\n| **Корневой класс** | `ai-button` |\n| **CSS** | `ui/components/buttons.css`, `ui/state-contract.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 1 из 1 |\n\n## Назначение\n\nОтдельная кнопка для действий с участием AI. Отличается от обычной кнопки не цветом фона, а градиентной рамкой: у Career для этого есть специальный токен `--color-ai-gradient`.\n\n## Анатомия\n\n```\nbutton.ai-button.base-button.inline-flex.appearance-main.size-m.has-before.is-sizeable.ai-button  [type=\"button\" target=\"_self\"]\n  span.base-button__inner\n    span.base-button__before\n      svg.svg-icon  [aria-hidden=\"true\"]\n        use  [xlink:href=\"/career-web/images/sprites/sprite.svg?v=5.63.0#booster\"]\n    span.base-button__content\n      · «AI кнопка»\n```\n\n_Разметка story `common-buttons-aibutton--default`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\nAIButton наследует полный контракт Button: `default`, `hover`, `focus-visible`,\n`pressed`, `disabled`, `loading`. Для loading одновременно задаются\n`.is-loading` и `aria-busy=\"true\"`; подпись остаётся в потоке с `opacity: 0`,\nчтобы ширина не менялась. Собственный CSS AIButton меняет только градиент в\n`disabled`, остальные состояния реализует `base-button` и\n`ui/state-contract.css`.\n\nПодтверждены CSS и разметкой: `.has-before`, `.is-sizeable`, `:disabled`.\n\n```css\n.ai-button:disabled { background-image:none }\n```\n\n## Слоты\n\n- `before`\n- `default`\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `size` | AIButtonSize | `'m'` | m · l | `radio` |\n| `label` | string | `'Кнопка AI'` | — | `text` |\n| `disabled` | boolean \\| null | — | true · false | `radio` |\n| `type` | ButtonType | `'button'` | — | `object` |\n| `fullWidth` | boolean | `false` | — | `boolean` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-ai-gradient` | `radial-gradient(110.74% 217.18% at -3.37% -17.02%,#64c178 0%,#74caba 10%,#83d3fc 20%,#8dabfc 50%,#9783fc 80%)` | из `:root` Career |\n\n## Иконки\n\n| Спрайт | Символ | Локальный файл |\n|---|---|---|\n| `sprite.svg` | `#booster` | `ui/assets/icons/sprite.svg` |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\nАтрибуты, встречающиеся в реальной разметке: `aria-hidden=\"true\"`.\n\n## Поведение\n\n- Размеров два — `m` и `l`, а не четыре, как у BaseButton.\n\n## Разметка\n\n```html\n<button class=\"ai-button base-button inline-flex appearance-main size-m has-before is-sizeable ai-button\" type=\"button\" target=\"_self\">\n  <span class=\"base-button__inner\">\n    <span class=\"base-button__before\">\n      <svg class=\"svg-icon\" width=\"24\" height=\"24\" aria-hidden=\"true\" style=\"width: 24px; height: 24px;\">\n        <use xlink:href=\"../../ui/assets/icons/sprite.svg#booster\"/>\n      </svg>\n    </span>\n    <span class=\"base-button__content\">AI кнопка</span>\n  </span>\n</button>\n```\n\n_Пути к спрайтам и изображениям в этом блоке — локальные, от папки спецификации. В блоке «Анатомия» выше сохранён продовый путь: это протокол снятого DOM, а не образец для вёрстки._\n\n## CSS\n\n```css\n.ai-button { background-image:var(--color-ai-gradient) }\n.ai-button:disabled { background-image:none }\n```\n\n## Ограничения\n\n- Не выявлено: разметка, CSS и props извлечены полностью.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/common/ai-button/ai-button.stories.ts`\n- Storybook `career-web`: `common-buttons-aibutton--default`\n- CSS: секция `ai-button` в `ui/components/buttons.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/actions/ai-button.md",
+  "legacyDocument": "archive:career/v1/components/actions/ai-button.md"
+}

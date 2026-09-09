@@ -1,0 +1,85 @@
+{
+  "id": "section-header",
+  "name": "SectionHeader",
+  "category": "frame-modules",
+  "kind": "module",
+  "spec": "components\\modules\\section-header.md",
+  "status": "complete",
+  "states": [],
+  "cssRoots": [
+    "section-header"
+  ],
+  "anchor": "showcase/components.html#r4-section-header",
+  "markup": {
+    "html": "<header class=\"section-header\"><div class=\"section-header__content\"><p class=\"section-header__eyebrow\">Вакансии компании</p><h3 class=\"section-header__title\">Открытые позиции</h3><p class=\"section-header__description\">12 вакансий для разработчиков и аналитиков</p></div><div class=\"section-header__actions\"><button type=\"button\" class=\"base-button inline-flex appearance-passive size-m is-sizeable\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Подписаться</span></span></button></div></header>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [],
+  "legacySource": {
+    "id": "section-header",
+    "name": "SectionHeader",
+    "category": "frame-modules",
+    "kind": "module",
+    "spec": "components\\modules\\section-header.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "section-header"
+    ],
+    "anchor": "showcase/components.html#r4-section-header",
+    "markup": {
+      "html": "<header class=\"section-header\"><div class=\"section-header__content\"><p class=\"section-header__eyebrow\">Вакансии компании</p><h3 class=\"section-header__title\">Открытые позиции</h3><p class=\"section-header__description\">12 вакансий для разработчиков и аналитиков</p></div><div class=\"section-header__actions\"><button type=\"button\" class=\"base-button inline-flex appearance-passive size-m is-sizeable\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Подписаться</span></span></button></div></header>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": []
+  },
+  "title": "SectionHeader",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Единая композиция title, optional eyebrow/description и группы действий для listing, detail и profile. Уровень заголовка задаёт контекст страницы, а не визуальный размер.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "section-header"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fsection-header.json",
+      "covers": [],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [],
+  "markdown": "# SectionHeader · Заголовок контентного блока\r\n\r\n| | |\r\n|---|---|\r\n| **Категория** | Каркасные модули |\r\n| **Корневой класс** | `section-header` |\r\n| **CSS** | `ui/modules.css` |\r\n| **Живая реализация** | `showcase/components.html#r4-section-header` |\r\n\r\n## Назначение\r\n\r\nЕдиная композиция title, optional eyebrow/description и группы действий для\r\nlisting, detail и profile. Уровень заголовка задаёт контекст страницы, а не\r\nвизуальный размер.\r\n\r\n## Варианты\r\n\r\n- default — заголовок секции `20/24·600`.\r\n- `section-header--page` — заголовок уровня страницы `28/32·600`.\r\n- Наличие eyebrow, description и actions — slots, не boolean variants.\r\n\r\n## Состояния\r\n\r\nУ SectionHeader собственных states нет. Loading/error/empty принадлежат секции,\r\nа interaction states — вложенным Button/links.\r\n\r\n## API\r\n\r\n- `as`: `div` или `header` по структуре документа.\r\n- `headingLevel`: `h1`–`h3`, обязателен и не выводится из visual variant.\r\n- slots: `eyebrow`, `title`, `description`, `actions`.\r\n\r\n## Responsive\r\n\r\nНа `≤479` actions переходят под текст и могут занять всю ширину. Markup и\r\nпорядок чтения не меняются.\r\n\r\n## Доступность\r\n\r\nВ каждом экземпляре ровно один heading. Кнопки сохраняют видимые подписи или\r\nдоступные имена; action group не перехватывает keyboard navigation.\r\n\r\n## Разметка\r\n\r\nСнято с живого примера витрины — [`showcase/components.html#r4-section-header`](../../showcase/components.html#r4-section-header).\r\nРаботает на пустой странице с одним `ui/career.css`.\r\n\r\n```html\r\n<header class=\"section-header\"><div class=\"section-header__content\"><p class=\"section-header__eyebrow\">Вакансии компании</p><h3 class=\"section-header__title\">Открытые позиции</h3><p class=\"section-header__description\">12 вакансий для разработчиков и аналитиков</p></div><div class=\"section-header__actions\"><button type=\"button\" class=\"base-button inline-flex appearance-passive size-m is-sizeable\"><span class=\"base-button__inner\"><span class=\"base-button__content\">Подписаться</span></span></button></div></header>\r\n```\r\n\r\n## Источники\r\n\r\n- Production listing/detail/profile в [`showcase/pages.html`](../../showcase/pages.html).\r\n- Типографика и ритм: [`composition.md`](../../docs/guide/composition.md).\r\n\r\n",
+  "sourcePath": "archive:career/v1/components/modules/section-header.md",
+  "legacyDocument": "archive:career/v1/components/modules/section-header.md"
+}

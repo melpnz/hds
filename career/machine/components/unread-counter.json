@@ -1,0 +1,119 @@
+{
+  "id": "unread-counter",
+  "name": "UnreadCounter",
+  "category": "data-display",
+  "kind": "component",
+  "spec": "components\\labels\\unread-counter.md",
+  "status": "complete",
+  "states": [
+    "default"
+  ],
+  "cssRoots": [
+    "unread-counter"
+  ],
+  "anchor": "showcase/components.html#d-base-scope-tail",
+  "markup": {
+    "html": "<span class=\"unread-counter inline-flex h-5 min-w-[20px] items-center justify-center rounded-[22px] border-2 border-ui-white bg-ui-primary px-[5px] text-center text-unread font-semibold leading-unread text-ui-white\">0</span>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [],
+  "storybookNames": [
+    "UnreadCounter"
+  ],
+  "code": {
+    "component": "UnreadCounter",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "unread-counter",
+    "name": "UnreadCounter",
+    "category": "data-display",
+    "kind": "component",
+    "spec": "components\\labels\\unread-counter.md",
+    "status": "complete",
+    "states": [
+      "default"
+    ],
+    "cssRoots": [
+      "unread-counter"
+    ],
+    "anchor": "showcase/components.html#d-base-scope-tail",
+    "markup": {
+      "html": "<span class=\"unread-counter inline-flex h-5 min-w-[20px] items-center justify-center rounded-[22px] border-2 border-ui-white bg-ui-primary px-[5px] text-center text-unread font-semibold leading-unread text-ui-white\">0</span>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "UnreadCounter"
+    ],
+    "code": {
+      "component": "UnreadCounter",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "UnreadCounter",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Круглый счётчик непрочитанных сообщений на карточке отклика и в навигации.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "unread-counter"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "UnreadCounter",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [
+      "default"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Funread-counter.json",
+      "covers": [
+        "default"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Собственного CSS нет: компонент собран утилитами."
+  ],
+  "markdown": "# UnreadCounter · Счётчик непрочитанного\n\n| | |\n|---|---|\n| **Категория** | Метки и статусы |\n| **Корневой класс** | `unread-counter`, `min-w-[20px]`, `rounded-[22px]` |\n| **CSS** | _только утилиты_ |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 5 из 5 |\n\n## Назначение\n\nКруглый счётчик непрочитанных сообщений на карточке отклика и в навигации.\n\n## Анатомия\n\n```\nspan.unread-counter.inline-flex.h-5.min-w-[20px].items-center.justify-center.rounded-[22px].border-2.border-ui-white.bg-ui-primary.px-[5px].text-center.text-unread.font-semibold.leading-unread.text-ui-white\n  · «0»\n```\n\n_Разметка story `conversations-list-unreadcounter--zero`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\nКомпонент имеет только визуальное состояние `default`; значение счётчика является данными, а не UI state.\n\n## Слоты\n\n- `default`\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `counter` | number | — | — | `number` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-ui-primary` | `#8164f7` | из `:root` Career |\n| `--color-ui-white` | `#fff` | из `:root` Career |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## Разметка\n\n```html\n<span class=\"unread-counter inline-flex h-5 min-w-[20px] items-center justify-center rounded-[22px] border-2 border-ui-white bg-ui-primary px-[5px] text-center text-unread font-semibold leading-unread text-ui-white\">0</span>\n```\n\n## CSS\n\n_Собственного CSS нет: компонент собран утилитами Tailwind прямо в разметке. Все нужные правила — в `ui/utilities.css`._\n\n## Ограничения\n\n- Собственного CSS нет: компонент собран утилитами.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/conversations/unread-counter.stories.ts`\n- Storybook `career-web`: `conversations-list-unreadcounter--zero`, `conversations-list-unreadcounter--one`, `conversations-list-unreadcounter--five`, `conversations-list-unreadcounter--ninety-nine`, `conversations-list-unreadcounter--large-number`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n\n## Нормативный контракт base scope\n\nСтабильный root — `unread-counter`. При `counter=0` компонент обычно не рендерится; если место нужно сохранить, он скрывается через `aria-hidden=\"true\"`. Визуальное значение ограничивается `99+`, доступное имя сохраняет точное число и контекст, например `aria-label=\"124 непрочитанных сообщения\"`.\n\nСчётчик внутри ссылки/кнопки может быть `aria-hidden=\"true\"`, если доступное имя родителя уже включает число. Не назначайте live-region каждому badge; объявления обновлений принадлежат контейнеру сообщений.\n",
+  "sourcePath": "archive:career/v1/components/labels/unread-counter.md",
+  "legacyDocument": "archive:career/v1/components/labels/unread-counter.md"
+}

@@ -1,0 +1,42 @@
+{
+  "id": "guide-evidence-verification-readme",
+  "title": "Browser verification — 7 September 2026",
+  "kind": "guide",
+  "category": "evidence",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "published-guide"
+    ],
+    "confidence": "high",
+    "scope": "package"
+  },
+  "purpose": "Адресная машинная копия документа evidence/verification/README.md.",
+  "implementation": {
+    "markup": null,
+    "styles": [],
+    "scripts": [],
+    "missingReason": "document-only",
+    "fallback": "Читайте sections выбранного документа."
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "legacy-document",
+      "ref": "archive:career/v1/evidence/verification/README.md"
+    }
+  ],
+  "unknowns": [],
+  "sourcePath": "archive:career/v1/evidence/verification/README.md",
+  "markdown": "# Browser verification — 7 September 2026\n\nСнимки сгенерированы из `showcase/components.html` на Edge в headless-режиме.\nОни фиксируют открытые Calendar и FilterModal, а также R3/R4-примеры на ширинах\n375, 768, 1024 и 1440 px.\n`vacancy-card-320.png` и `vacancy-card-1100.png` фиксируют R5 VacancyCard в\nмобильной и широкой композиции листинга.\n\nПроверка запускается командой:\n\n```bash\nnpm test\n```\n\n`tests/core.spec.mjs` проверяет keyboard/focus lifecycle, Escape и dismiss,\nroving tabindex календаря, выбор времени и даты, очередь FileUpload, общий draft\nFilterPanel/FilterModal, inert background и отсутствие горизонтального overflow.\nТест также блокирует HTTP-ошибки локальных ассетов и проверяет SVG mask иконки\nзакрытия модального окна.\n\nЭти снимки проверяют reference implementation локального UI kit. Они не являются\nдоказательством поведения production Career или закрытых авторизованных сценариев.\n",
+  "previewMode": "none"
+}

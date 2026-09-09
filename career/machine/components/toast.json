@@ -1,0 +1,144 @@
+{
+  "id": "toast",
+  "name": "Toast",
+  "category": "feedback",
+  "kind": "component",
+  "spec": "components\\feedback\\toast.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "error",
+    "success"
+  ],
+  "cssRoots": [
+    "toast"
+  ],
+  "anchor": "showcase/components.html#fb-toast-contract",
+  "markup": {
+    "html": "<div class=\"flex min-h-[180px] flex-col gap-3 rounded-xl\">\n  <p class=\"m-0 text-body-m text-font-black-60\">\n    Тост рендерится через\n    <code>notify(...)</code>\n    в правом верхнем углу страницы.\n  </p>\n  <div>\n    <button type=\"button\" target=\"_self\" class=\"base-button inline-flex appearance-main size-l is-sizeable\">\n      <span class=\"base-button__inner\">\n        <span class=\"base-button__content\">Показать тост</span>\n      </span>\n    </button>\n  </div>\n</div>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": null,
+      "sourceName": "tost"
+    }
+  ],
+  "storybookNames": [
+    "notify"
+  ],
+  "code": {
+    "component": "notify",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "toast",
+    "name": "Toast",
+    "category": "feedback",
+    "kind": "component",
+    "spec": "components\\feedback\\toast.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "error",
+      "success"
+    ],
+    "cssRoots": [
+      "toast"
+    ],
+    "anchor": "showcase/components.html#fb-toast-contract",
+    "markup": {
+      "html": "<div class=\"flex min-h-[180px] flex-col gap-3 rounded-xl\">\n  <p class=\"m-0 text-body-m text-font-black-60\">\n    Тост рендерится через\n    <code>notify(...)</code>\n    в правом верхнем углу страницы.\n  </p>\n  <div>\n    <button type=\"button\" target=\"_self\" class=\"base-button inline-flex appearance-main size-l is-sizeable\">\n      <span class=\"base-button__inner\">\n        <span class=\"base-button__content\">Показать тост</span>\n      </span>\n    </button>\n  </div>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "tost"
+      }
+    ],
+    "storybookNames": [
+      "notify"
+    ],
+    "code": {
+      "component": "notify",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "Toast",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Всплывающее сообщение в правом верхнем углу. Вызывается функцией notify(...), а не ставится в разметку. Три типа: notice, warning, error.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "toast"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "notify",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "error",
+      "success"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Ftoast.json",
+      "covers": [
+        "default",
+        "error",
+        "success"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "В snapshot попал только триггер: сам тост рендерится в портал вне корня story и в момент снятия отсутствует.",
+    "Оформление восстановимо из CSS (ui/components/feedback.css, секция notify), но не структура DOM.",
+    "ЧЕГО НЕ ХВАТАЕТ: snapshot открытого тоста каждого из трёх типов."
+  ],
+  "markdown": "# Toast · notify()\n\n| | |\n|---|---|\n| **Категория** | Обратная связь |\n| **Корневой класс** | `min-h-[180px]`, `rounded-xl` |\n| **CSS** | `ui/components/feedback.css` |\n| **Живая реализация** | частичная |\n| **Snapshot Storybook** | 4 из 4 |\n\n## Назначение\n\nВсплывающее сообщение в правом верхнем углу. Вызывается функцией `notify(...)`, а не ставится в разметку. Три типа: `notice`, `warning`, `error`.\n\n## Анатомия\n\n```\ndiv.flex.min-h-[180px].flex-col.gap-3.rounded-xl\n  p.m-0.text-body-m.text-font-black-60\n    · «Тост рендерится через»\n    code\n      · «notify(...)»\n    · «в правом верхнем углу страницы.»\n  div\n    button.base-button.inline-flex.appearance-main.size-l.is-sizeable  [type=\"button\" target=\"_self\"]\n      span.base-button__inner\n        span.base-button__content\n          · «Показать тост»\n```\n\n_Разметка story `common-notifications-toastify--notice`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\nПодтверждены CSS и разметкой: `.is-sizeable`.\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `type` | string | — | notice · warning · error | `select` |\n| `message` | string | — | — | `text` |\n| `escapeMarkup` | boolean | — | — | `boolean` |\n\n## Токены\n\n_Компонент не обращается к переменным напрямую._\n\n## Responsive\n\nКомпонент реагирует на: `only screen and (max-width:360px)`.\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## Разметка\n\n```html\n<div class=\"flex min-h-[180px] flex-col gap-3 rounded-xl\">\n  <p class=\"m-0 text-body-m text-font-black-60\">\n    Тост рендерится через\n    <code>notify(...)</code>\n    в правом верхнем углу страницы.\n  </p>\n  <div>\n    <button type=\"button\" target=\"_self\" class=\"base-button inline-flex appearance-main size-l is-sizeable\">\n      <span class=\"base-button__inner\">\n        <span class=\"base-button__content\">Показать тост</span>\n      </span>\n    </button>\n  </div>\n</div>\n```\n\n## CSS\n\n```css\n.toastify { background:linear-gradient(135deg,#73a5ff,#5477f5);border-radius:2px;box-shadow:0 3px 6px -1px #0000001f,0 10px 36px -4px #4d60e84d;color:#fff;cursor:pointer;display:inline-block;max-width:calc(50% - 20px);opacity:0;padding:12px 20px;position:fixed;text-decoration:none;transition:all .4s cubic-bezier(.215,.61,.355,1);z-index:2147483647 }\n.toastify.on { opacity:1 }\n.toast-close { background:transparent;border:0;color:#fff;cursor:pointer;font-family:inherit;font-size:1em;opacity:.4;padding:0 5px }\n.toastify-right { right:15px }\n.toastify-left { left:15px }\n.toastify-top { top:-150px }\n.toastify-bottom { bottom:-150px }\n.toastify-rounded { border-radius:25px }\n.toastify-avatar { border-radius:2px;height:1.5em;margin:-7px 5px;width:1.5em }\n.toastify-center { left:0;margin-left:auto;margin-right:auto;max-width:fit-content;max-width:-moz-fit-content;right:0 }\n@media only screen and (max-width:360px) {\n  .toastify-left,.toastify-right { left:0;margin-left:auto;margin-right:auto;max-width:-moz-fit-content;max-width:fit-content;right:0 }\n}\n```\n\n## Ограничения\n\n- В snapshot попал только триггер: сам тост рендерится в портал вне корня story и в момент снятия отсутствует.\n- Оформление восстановимо из CSS (`ui/components/feedback.css`, секция `notify`), но не структура DOM.\n- ЧЕГО НЕ ХВАТАЕТ: snapshot открытого тоста каждого из трёх типов.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/common/toastify.stories.ts`\n- Storybook `career-web`: `common-notifications-toastify--notice`, `common-notifications-toastify--warning`, `common-notifications-toastify--error`, `common-notifications-toastify--with-auth-link`\n- CSS: секция `notify` в `ui/components/feedback.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n\n## Нормативный контракт R2-D\n\nКанонические типы: `info` (`notice` — legacy alias), `success`, `warning`, `error`; `default` соответствует `info`. Для нового DOM используйте корень `toast` и модификаторы `toast--*`; `.toastify` остаётся adapter сторонней библиотеки.\n\nКонтейнер очереди имеет `aria-live=\"polite\"`; срочная ошибка может использовать `role=\"alert\"`. Не переносите фокус на toast автоматически. Автозакрытие ставится на паузу при hover/focus, длительность увеличивается для длинного текста, постоянный toast получает кнопку с `aria-label=\"Закрыть уведомление\"`. Одновременно показывайте не более трёх сообщений; повторения объединяйте.\n",
+  "sourcePath": "archive:career/v1/components/feedback/toast.md",
+  "legacyDocument": "archive:career/v1/components/feedback/toast.md"
+}

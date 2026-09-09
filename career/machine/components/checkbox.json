@@ -1,0 +1,158 @@
+{
+  "id": "checkbox",
+  "name": "Checkbox",
+  "category": "forms",
+  "kind": "component",
+  "spec": "components\\forms\\checkbox.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "checked",
+    "indeterminate",
+    "disabled",
+    "loading"
+  ],
+  "cssRoots": [
+    "checkbox"
+  ],
+  "anchor": "showcase/components.html#fo-choice",
+  "markup": {
+    "html": "<span class=\"checkbox\">\n  <label class=\"checkbox-label\">\n    <span class=\"checkbox-icon\">\n      <input type=\"checkbox\" class=\"checkbox-input visually-hidden\">\n      <span class=\"checkbox-button\"></span>\n    </span>\n    <span class=\"checkbox-text\">Text</span>\n  </label>\n</span>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": "687:1279",
+      "sourceName": "controls / checkbox"
+    }
+  ],
+  "storybookNames": [
+    "BaseCheckbox"
+  ],
+  "code": {
+    "component": "BaseCheckbox",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "checkbox",
+    "name": "Checkbox",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\checkbox.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "checked",
+      "indeterminate",
+      "disabled",
+      "loading"
+    ],
+    "cssRoots": [
+      "checkbox"
+    ],
+    "anchor": "showcase/components.html#fo-choice",
+    "markup": {
+      "html": "<span class=\"checkbox\">\n  <label class=\"checkbox-label\">\n    <span class=\"checkbox-icon\">\n      <input type=\"checkbox\" class=\"checkbox-input visually-hidden\">\n      <span class=\"checkbox-button\"></span>\n    </span>\n    <span class=\"checkbox-text\">Text</span>\n  </label>\n</span>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "687:1279",
+        "sourceName": "controls / checkbox"
+      }
+    ],
+    "storybookNames": [
+      "BaseCheckbox"
+    ],
+    "code": {
+      "component": "BaseCheckbox",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "Checkbox",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Флажок. Основной множественный выбор в фильтрах и настройках.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "checkbox"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "BaseCheckbox",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "checked",
+      "indeterminate",
+      "disabled",
+      "loading"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fcheckbox.json",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "checked",
+        "indeterminate",
+        "disabled",
+        "loading"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Production snapshot не показывал isLoading, хотя prop объявлен. Loading и"
+  ],
+  "markdown": "# Checkbox · BaseCheckbox\r\n\r\n| | |\r\n|---|---|\r\n| **Категория** | Формы |\r\n| **Корневой класс** | `checkbox` |\r\n| **CSS** | `ui/components/forms.css`, `ui/state-contract.css` |\r\n| **Живая реализация** | `showcase/components.html` |\r\n| **Snapshot Storybook** | 1 из 1 |\r\n\r\n## Назначение\r\n\r\nФлажок. Основной множественный выбор в фильтрах и настройках.\r\n\r\n## Анатомия\r\n\r\nНастоящий `input` скрыт классом `visually-hidden`, видимый квадрат — `span.checkbox-button`. Так состояние берётся из `:checked`/`:disabled` настоящего поля, а рисуется соседним элементом.\r\n\r\nИмена классов в новой реализации — `checkbox`, `checkbox-label`, `checkbox-icon`, `checkbox-input`, `checkbox-button`, `checkbox-text`. Это не то же самое, что `checkbox__wrapper`/`checkbox__box` в старой реализации Career на Rails; оба варианта живые, см. `ui/components.css`.\r\n\r\n```\r\nspan.checkbox\r\n  label.checkbox-label\r\n    span.checkbox-icon\r\n      input.checkbox-input.visually-hidden  [type=\"checkbox\"]\r\n      span.checkbox-button\r\n    span.checkbox-text\r\n      · «Text»\r\n```\r\n\r\n_Разметка story `form-basecheckbox--default`, снятая из DOM. Vue-скоуп `data-v-*` снят._\r\n\r\n## Состояния\r\n\r\n| Состояние | Канонический контракт | Совместимость |\r\n|---|---|---|\r\n| `default` | нативный input без state properties | — |\r\n| `hover` | `input:not(:disabled):hover + .checkbox-button` | production CSS |\r\n| `focus-visible` | `input:focus-visible + .checkbox-button` | production CSS |\r\n| `checked` | `input.checked = true` / атрибут `checked` | `:checked` |\r\n| `indeterminate` | `input.indeterminate = true` после создания DOM | `.checkbox-button.is-minus` |\r\n| `disabled` | нативный `disabled` | `.is-disabled` только визуальный alias на label/button |\r\n| `loading` | `.checkbox.is-loading` + `aria-busy=\"true\"`; input обязательно disabled | state contract |\r\n\r\n`minusWhenNotChecked` — legacy API. В новом API это состояние называется\r\n`indeterminate`; оно не означает unchecked и не передаётся HTML-атрибутом.\r\n\r\nПодтверждены CSS и разметкой: `.is-disabled`, `.is-minus`, `:checked`, `:disabled`, `:focus`, `:hover`, `:not`.\r\n\r\n```css\r\n.checkbox-input:not(:disabled):hover+.checkbox-button { border-color:var(--color-ui-gray-4) }\r\n.checkbox-input:focus-visible+.checkbox-button { border-color:var(--color-ui-gray-4);outline-color:var(--color-ui-gray-2-60);outline-offset:1px;outline-style:solid;outline-width:2px }\r\n.checkbox-input:checked+.checkbox-button { background-color:var(--color-ui-primary);background-image:url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 20 20'%3E%3Cpath d='M5.77 9.92a1 1 0 1 0-1.54 1.27zM8.64 15l-.78.63a1 1 0 0 0 1.62-.1zm7.2-9.46a1 1 0 0 0-1.68-1.08zM4.23 11.19l3.63 4.44 1.55-1.26-3.64-4.45zm5.25 4.35 6.36-10-1.68-1.08-6.37 10z'/%3E%3C/svg%3E\");border-color:var(--color-ui-primary) }\r\n.checkbox-input:not(:disabled):checked:hover+.checkbox-button { opacity:.8 }\r\n.checkbox-input:focus-visible:checked+.checkbox-button { outline-color:var(--color-ui-primary-60) }\r\n.checkbox-input:checked:disabled+.checkbox-button { background-color:var(--color-ui-gray-5);border-color:var(--color-ui-gray-5) }\r\n```\r\n\r\n## Слоты\r\n\r\n- `default`\r\n\r\n## Props\r\n\r\n| Prop | Тип | По умолчанию | Значения | Control |\r\n|---|---|---|---|---|\r\n| `modelValue` | unknown | — | — | `boolean` |\r\n| `disabled` | boolean | — | — | `boolean` |\r\n| `minusWhenNotChecked` | boolean | — | — | `boolean` |\r\n| `alignItems` | \"center\" \\| \"start\" | — | start · center | `radio` |\r\n| `value` | unknown | — | — | `object` |\r\n| `trueValue` | unknown | — | — | `object` |\r\n| `falseValue` | unknown | — | — | `object` |\r\n| `name` | string | — | — | `text` |\r\n| `fullWidth` | boolean | — | — | `boolean` |\r\n| `isLoading` | boolean | — | — | `boolean` |\r\n| `update:modelValue` | unknown | — | — | `object` |\r\n\r\n## Токены\r\n\r\n| Переменная | Значение | Статус |\r\n|---|---|---|\r\n| `--color-font-black` | `var(--color-ui-gray-1)` | из `:root` Career |\r\n| `--color-ui-gray-2-60` | `color-mix(in srgb,var(--color-ui-gray-2) 60%,transparent)` | из `:root` Career |\r\n| `--color-ui-gray-4` | `#a6bdc9` | из `:root` Career |\r\n| `--color-ui-gray-5` | `#d4dee2` | из `:root` Career |\r\n| `--color-ui-gray-6` | `#eaf2f5` | из `:root` Career |\r\n| `--color-ui-primary` | `#8164f7` | из `:root` Career |\r\n| `--color-ui-primary-60` | `color-mix(in srgb,var(--color-ui-primary) 60%,transparent)` | из `:root` Career |\r\n| `--color-ui-white` | `#fff` | из `:root` Career |\r\n\r\n## Responsive\r\n\r\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\r\n\r\n## Доступность\r\n\r\nНативный `input[type=\"checkbox\"]` обеспечивает role, keyboard interaction и\r\nобъявление checked/disabled. У indeterminate-состояния нужно установить DOM\r\nproperty `input.indeterminate = true`; браузер сам передаст mixed-state\r\naccessibility tree. Видимая подпись находится внутри `<label>`.\r\n\r\n## Поведение\r\n\r\n- `indeterminate` рисует минус вместо галочки и обозначает частично выбранную\r\n  группу. После пользовательского выбора приложение должно явно пересчитать\r\n  `checked` и `indeterminate`.\r\n- При `loading` input блокируется, корень получает `aria-busy=\"true\"`, а квадрат\r\n  показывает spinner. Loading не является третьим значением checkbox.\r\n- **Квадрат выравнивается по первой строке подписи.** Это состояние по умолчанию\r\n  и в извлечённом CSS (`.checkbox-label{align-items:flex-start}`), и в UI kit:\r\n  коробка значка ровно 24px, как и `line-height` текста, поэтому квадрат\r\n  совпадает с первой строкой при любом числе строк. Так же устроены\r\n  [RadioButton](radio-button.md) и [Switch](switch.md).\r\n- `alignItems` (класс `align-center`) центрирует квадрат по всей высоте подписи.\r\n  Это опция для заведомо однострочных подписей; на многострочной она отрывает\r\n  квадрат от первой строки, поэтому в витрине не используется.\r\n\r\n## Разметка\r\n\r\n```html\r\n<span class=\"checkbox\">\r\n  <label class=\"checkbox-label\">\r\n    <span class=\"checkbox-icon\">\r\n      <input type=\"checkbox\" class=\"checkbox-input visually-hidden\">\r\n      <span class=\"checkbox-button\"></span>\r\n    </span>\r\n    <span class=\"checkbox-text\">Text</span>\r\n  </label>\r\n</span>\r\n```\r\n\r\n## CSS\r\n\r\n```css\r\n.checkbox { display:inline-flex;vertical-align:top }\r\n.checkbox-label { align-items:flex-start;cursor:pointer;display:inline-flex }\r\n.checkbox-label.align-center { align-items:center }\r\n.checkbox-label.is-disabled { cursor:not-allowed }\r\n.checkbox-icon { align-items:center;display:inline-flex;flex-shrink:0;height:1.5rem;justify-content:center;margin-right:.5rem;width:1.5rem }\r\n.checkbox-button { background-color:var(--color-ui-white);background-position:50%;background-repeat:no-repeat;border-color:var(--color-ui-gray-5);border-radius:.375rem;border-width:1px;height:22px;transition-duration:.15s;transition-property:all;transition-timing-function:cubic-bezier(.4,0,.2,1);width:22px }\r\n.checkbox-text { color:var(--color-font-black);font-size:16px;line-height:24px }\r\n.checkbox-input:not(:disabled):hover+.checkbox-button { border-color:var(--color-ui-gray-4) }\r\n.checkbox-button.is-disabled { border-color:var(--color-ui-gray-6) }\r\n.checkbox-label.is-disabled .checkbox-text { color:var(--color-ui-gray-4) }\r\n.checkbox-input:focus-visible+.checkbox-button { border-color:var(--color-ui-gray-4);outline-color:var(--color-ui-gray-2-60);outline-offset:1px;outline-style:solid;outline-width:2px }\r\n.checkbox-input:checked+.checkbox-button { background-color:var(--color-ui-primary);background-image:url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%23fff' viewBox='0 0 20 20'%3E%3Cpath d='M5.77 9.92a1 1 0 1 0-1.54 1.27zM8.64 15l-.78.63a1 1 0 0 0 1.62-.1zm7.2-9.46a1 1 0 0 0-1.68-1.08zM4.23 11.19l3.63 4.44 1.55-1.26-3.64-4.45zm5.25 4.35 6.36-10-1.68-1.08-6.37 10z'/%3E%3C/svg%3E\");border-color:var(--color-ui-primary) }\r\n.checkbox-input:not(:disabled):checked:hover+.checkbox-button { opacity:.8 }\r\n.checkbox-input:focus-visible:checked+.checkbox-button { outline-color:var(--color-ui-primary-60) }\r\n.checkbox-input:checked:disabled+.checkbox-button { background-color:var(--color-ui-gray-5);border-color:var(--color-ui-gray-5) }\r\n.checkbox-button.is-minus { background-color:var(--color-ui-primary);background-image:url(\"data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' viewBox='0 0 20 20'%3E%3Cpath fill='%23fff' d='M5 9a1 1 0 0 0 0 2zm10 2a1 1 0 0 0 0-2zM5 11h10V9H5z'/%3E%3C/svg%3E\");border-color:var(--color-ui-primary) }\r\n```\r\n\r\n## Ограничения\r\n\r\n- Production snapshot не показывал `isLoading`, хотя prop объявлен. Loading и\r\n  нативный `:indeterminate` оформлены как нормативные дополнения UI kit в\r\n  `ui/state-contract.css`.\r\n\r\n## Источники\r\n\r\n- Файлы в репозитории `career-web`: `./src/components/form/base-checkbox.stories.ts`\r\n- Storybook `career-web`: `form-basecheckbox--default`\r\n- CSS: секция `base-checkbox` в `ui/components/forms.css`\r\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\r\n",
+  "sourcePath": "archive:career/v1/components/forms/checkbox.md",
+  "legacyDocument": "archive:career/v1/components/forms/checkbox.md"
+}

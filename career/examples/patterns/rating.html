@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Рейтинг</title>
+  <link rel="stylesheet" href="../../ui/career.css">
+  <link rel="stylesheet" href="patterns.css">
+  <style>
+    body{min-width:0}
+    .pattern{margin:0;padding:20px}
+    .pattern__head,.rules,.vp-bar{display:none!important}
+    .viewport{height:auto!important;overflow:visible!important;border:0!important;background:transparent!important}
+    .viewport__inner{width:auto!important;transform:none!important}
+  </style>
+</head>
+<body>
+<section class="pattern" id="p-rating">
+  <div class="pattern__head">
+    <span class="pattern__num">06</span>
+    <h2>Рейтинг</h2>
+    <p>Гибрид: каркас листинга при содержимом дашборда. Ранжированный список
+       с переключателем фильтрации над ним.</p>
+        <p class="note"><b>ДОПУЩЕНИЕ.</b> Переключатель года собран на
+       <code>SegmentedTabs</code>. Снятый ранее <code>dash-ratings.json</code>
+       показывает на этом месте вкладки с подчёркиванием, но в живом продукте
+       их уже нет — снимок устарел, а чем переключатель свёрстан сейчас,
+       не переснято. Правило <code>R-8</code> про горизонтальную прокрутку
+       сохранено: оно про поведение, а не про начертание.</p>
+  </div>
+  <ul class="rules">
+    <li title="Сетка листинга">L-1</li>
+    <li title="Заголовок внутри карточки">L-3</li>
+    <li title="Шаг 12">L-4</li>
+    <li title="Переключатель имеет встроенный overflow-x auto">R-8</li>
+  </ul>
+
+  <div class="vp-bar" data-for="vp-rating"><span class="vp-bar__label">Ширина</span><button class="vp-btn" data-w="320" title="узкий телефон" aria-pressed="false">320</button><button class="vp-btn" data-w="480" title="телефон" aria-pressed="false">480</button><button class="vp-btn" data-w="768" title="планшет" aria-pressed="false">768</button><button class="vp-btn" data-w="1024" title="десктоп" aria-pressed="false">1024</button><button class="vp-btn" data-w="1100" title="потолок контейнера" aria-pressed="true">1100</button><span class="vp-bar__meta"></span></div>
+  <div class="viewport" id="vp-rating"><div class="viewport__inner">
+    <div class="career-shell">
+      <div class="page-body" style="padding-top:24px"><div class="page-width">
+        <div class="page-layout">
+          <div class="page-layout__main"><div class="section-group">
+            <div class="basic-section">
+              <div class="page-header-card">
+                <div class="page-header-card__top">
+                  <h1 class="page-header-card__title">Рейтинг компаний</h1>
+                </div>
+                <nav class="segmented-tabs" aria-label="Год рейтинга" style="overflow-x:auto"><a class="segmented-tabs__item" href="#" data-href="/companies/ratings?y=2025" aria-current="page">2025</a><a class="segmented-tabs__item" href="#" data-href="/companies/ratings?y=2024">2024</a><a class="segmented-tabs__item" href="#" data-href="/companies/ratings?y=2023">2023</a><a class="segmented-tabs__item" href="#" data-href="/companies/ratings?y=2022">2022</a></nav>
+                <div class="page-header-card__count">Более 5000 сотрудников · 48 компаний</div>
+              </div>
+            </div>
+
+            <article class="rating-card">
+              <div style="display:flex;gap:16px;flex:1 1 auto;min-width:0">
+                <div class="rating-card__pos">#1</div>
+                <div style="min-width:0">
+                  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+                    <img class="avatar avatar--entity avatar--48" src="../../ui/assets/illustrations/avatar-default-company.svg" alt="">
+                    <div>
+                      <h2 class="rating-card__title">Облачный провайдер</h2>
+                      <span class="rating-card__score"><svg class="svg-icon icon-inline" width="20" height="20" style="width:20px;height:20px" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 12 12">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg> 4.81</span>
+                    </div>
+                  </div>
+                  <p class="rating-card__desc">Инфраструктурные и платформенные сервисы. Распределённая
+                     команда, более 3000 сотрудников в двенадцати городах.</p>
+                  <div style="margin-top:16px"><button class="base-button inline-flex appearance-success size-m is-sizeable"><span class="base-button__inner"><span class="base-button__content">Оценить компанию</span></span></button></div>
+                </div>
+              </div>
+            </article>
+
+            <article class="rating-card">
+              <div style="display:flex;gap:16px;flex:1 1 auto;min-width:0">
+                <div class="rating-card__pos">#2</div>
+                <div style="min-width:0">
+                  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+                    <img class="avatar avatar--entity avatar--48" src="../../ui/assets/illustrations/avatar-default-company.svg" alt="">
+                    <div>
+                      <h2 class="rating-card__title">Финтех-платформа</h2>
+                      <span class="rating-card__score"><svg class="svg-icon icon-inline" width="20" height="20" style="width:20px;height:20px" data-icon-src="../../ui/assets/icons/single/sprite/star.svg" viewBox="0 0 12 12">
+    <path d="M11.97 4.54c-.05-.17-.22-.45-.78-.46l-2.86-.04c-.3 0-.65-.28-.75-.57L6.66.64C6.48.08 6.16 0 6 0c-.17 0-.48.08-.66.64l-.92 2.83c-.1.29-.46.56-.75.57L.8 4.08c-.56 0-.73.3-.78.46-.06.17-.08.5.37.86L2.7 7.19c.24.19.37.63.29.92l-.85 2.86c-.1.33-.08.6.06.8.2.29.6.32 1.01 0l2.34-1.71a.9.9 0 01.92 0l2.34 1.72c.2.15.38.22.56.22.18 0 .35-.09.45-.23.14-.2.16-.47.06-.8L9.03 8.1a.97.97 0 01.28-.92l2.3-1.8c.44-.35.42-.68.36-.85z"/>
+  </svg> 4.74</span>
+                    </div>
+                  </div>
+                  <p class="rating-card__desc">Платёжные сервисы для бизнеса и внутренние продукты
+                     для партнёров. Более 900 сотрудников.</p>
+                  <div style="margin-top:16px"><button class="base-button inline-flex appearance-success size-m is-sizeable"><span class="base-button__inner"><span class="base-button__content">Оценить компанию</span></span></button></div>
+                </div>
+              </div>
+            </article>
+          </div></div>
+          <aside class="page-layout__sidebar page-layout__sidebar--sticky ">
+            <div class="basic-section">
+              <h3 class="sidebar-card__title">Как считается рейтинг</h3>
+              <p style="margin:0;font:400 14px/20px var(--font-base);color:var(--color-ui-gray-2)">
+                Оценка складывается из отзывов сотрудников по шести факторам. Учитываются
+                анкеты за последние двенадцать месяцев.</p>
+            </div>
+          </aside>
+        </div>
+      </div></div>
+    </div>
+  </div></div>
+  <p class="note"><strong>Порядковый номер живёт слева от содержимого карточки,</strong>
+     а не внутри заголовка и не в виде бейджа. Название компании здесь H2 20/24·600 —
+     то есть карточка в ранжированном списке использует ту же иерархию, что секция.</p>
+  <p class="note"><strong>Табы прокручиваются, а не переносятся.</strong>
+     <code>overflow-x: auto</code> встроен в компонент — это подтверждено и в production,
+     и в Storybook (<code>R-8</code>).</p>
+</section>
+<script src="patterns.js"></script>
+</body>
+</html>

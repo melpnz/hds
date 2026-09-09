@@ -1,0 +1,71 @@
+{
+  "id": "conversations-list",
+  "title": "ConversationsList · Список откликов",
+  "kind": "module",
+  "category": "modules",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "published-spec",
+      "storybook-snapshot"
+    ],
+    "confidence": "medium",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Левая колонка раздела откликов: шапка с поиском и фильтром, список карточек, пустые состояния.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "markup": {
+    "html": "<div class=\"relative flex items-center py-3 pl-6 pr-4 small-phone:pl-5 small-phone:pr-2 phablet-only:hidden\">\n  <div class=\"m-0 flex-auto text-display-xl font-semibold\" aria-hidden=\"true\">Диалоги</div>\n</div>\n<div class=\"relative hidden items-center gap-2 px-4 py-3 small-phone:hidden phablet-only:flex phablet-only:!border-0 phone:px-2\">\n  <button type=\"button\" class=\"hidden h-10 w-10 items-center justify-center bg-transparent p-0 text-icon-gray phablet-only:flex rotate-90 translate-x-0\">\n    <span class=\"visually-hidden\">Скрыть боковую панель</span>\n    <svg class=\"svg-icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n      <use xlink:href=\"../../ui/assets/icons/sprite.svg#arrow\"/>\n    </svg>\n  </button>\n  <div class=\"m-0 flex-auto text-display-l font-semibold\" aria-hidden=\"true\">Диалоги</div>\n</div>"
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка из спецификации",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fconversations-list.json",
+      "covers": [
+        "published-markup"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          375,
+          768,
+          1100
+        ],
+        "height": 560
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "ConversationsLayout (3 story) сломан в самом Storybook — общая раскладка двух колонок не снята.",
+    "Отдельные части (шапка, карточка, пустые состояния, каркас загрузки) сняты полностью.",
+    "ЧЕГО НЕ ХВАТАЕТ: разметки внешней раскладки. Пропорции колонок замерены в production и лежат в ui/layout.css."
+  ],
+  "evidence": [
+    {
+      "type": "published-spec",
+      "ref": "archive:career/v1/components/modules/conversations-list.md"
+    }
+  ],
+  "markdown": "# ConversationsList · Список откликов\n\n| | |\n|---|---|\n| **Категория** | Модуль: переписка |\n| **Корневой класс** | `small-phone:pl-5`, `small-phone:pr-2`, `phablet-only:hidden` |\n| **CSS** | `ui/components/navigation.css` |\n| **Живая реализация** | частичная |\n| **Snapshot Storybook** | 2 из 5 |\n\n## Назначение\n\nЛевая колонка раздела откликов: шапка с поиском и фильтром, список карточек, пустые состояния.\n\n## Анатомия\n\n```\ndiv.relative.flex.items-center.py-3.pl-6.pr-4.small-phone:pl-5.small-phone:pr-2.phablet-only:hidden\n  div.m-0.flex-auto.text-display-xl.font-semibold  [aria-hidden=\"true\"]\n    · «Диалоги»\ndiv.relative.hidden.items-center.gap-2.px-4.py-3.small-phone:hidden.phablet-only:flex.phablet-only:!border-0.phone:px-2\n  button.hidden.h-10.w-10.items-center.justify-center.bg-transparent.p-0.text-icon-gray.phablet-only:flex.rotate-90.translate-x-0  [type=\"button\"]\n    span.visually-hidden\n      · «Скрыть боковую панель»\n    svg.svg-icon\n      use  [xlink:href=\"/career-web/images/sprites/sprite.svg?v=5.63.0#arrow\"]\n  div.m-0.flex-auto.text-display-l.font-semibold  [aria-hidden=\"true\"]\n    · «Диалоги»\n```\n\n_Разметка story `conversations-layout-conversationssidebarheader--panel-open`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\n_В извлечённом CSS и разметке состояний не объявлено. Не достраиваем._\n\n## Слоты\n\n- `search`\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `sidebarIsOpen` | boolean | — | — | `boolean` |\n| `update:sidebarIsOpen` | boolean | — | — | `object` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-icon-gray` | `var(--color-ui-gray-2)` | из `:root` Career |\n\n## Иконки\n\n| Спрайт | Символ | Локальный файл |\n|---|---|---|\n| `sprite.svg` | `#arrow` | `ui/assets/icons/sprite.svg` |\n\n## Responsive\n\nКомпонент реагирует на: `(max-width:479px)`, `(min-width:480px) and (max-width:767px)`, `(max-width:767px)`.\n\n## Доступность\n\nАтрибуты, встречающиеся в реальной разметке: `aria-hidden=\"true\"`.\n\n## Разметка\n\n```html\n<div class=\"relative flex items-center py-3 pl-6 pr-4 small-phone:pl-5 small-phone:pr-2 phablet-only:hidden\">\n  <div class=\"m-0 flex-auto text-display-xl font-semibold\" aria-hidden=\"true\">Диалоги</div>\n</div>\n<div class=\"relative hidden items-center gap-2 px-4 py-3 small-phone:hidden phablet-only:flex phablet-only:!border-0 phone:px-2\">\n  <button type=\"button\" class=\"hidden h-10 w-10 items-center justify-center bg-transparent p-0 text-icon-gray phablet-only:flex rotate-90 translate-x-0\">\n    <span class=\"visually-hidden\">Скрыть боковую панель</span>\n    <svg class=\"svg-icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n      <use xlink:href=\"../../ui/assets/icons/sprite.svg#arrow\"/>\n    </svg>\n  </button>\n  <div class=\"m-0 flex-auto text-display-l font-semibold\" aria-hidden=\"true\">Диалоги</div>\n</div>\n```\n\n_Пути к спрайтам и изображениям в этом блоке — локальные, от папки спецификации. В блоке «Анатомия» выше сохранён продовый путь: это протокол снятого DOM, а не образец для вёрстки._\n\n## CSS\n\n```css\n.simplebar-content { padding:8px!important }\n```\n\n## Ограничения\n\n- `ConversationsLayout` (3 story) сломан в самом Storybook — общая раскладка двух колонок не снята.\n- Отдельные части (шапка, карточка, пустые состояния, каркас загрузки) сняты полностью.\n- ЧЕГО НЕ ХВАТАЕТ: разметки внешней раскладки. Пропорции колонок замерены в production и лежат в `ui/layout.css`.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/conversations/conversations-sidebar-header.stories.ts`, `./src/components/conversations/conversations-layout.stories.ts`\n- Storybook `career-web`: `conversations-layout-conversationssidebarheader--panel-open`, `conversations-layout-conversationssidebarheader--panel-collapsed`, `conversations-layout-conversationslayout--full-layout-no-conversation`, `conversations-layout-conversationslayout--full-layout-with-conversation`, `conversations-layout-conversationslayout--full-layout-narrow-sidebar`\n- CSS: секция `conversations-sidebar` в `ui/components/navigation.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/modules/conversations-list.md",
+  "legacyDocument": "archive:career/v1/components/modules/conversations-list.md",
+  "legacyUnindexed": true
+}

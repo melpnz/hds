@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>О странице</title>
+  <link rel="stylesheet" href="../../ui/career.css">
+  <link rel="stylesheet" href="reference.css">
+  <style>body{margin:0;padding:20px;background:#fff}.site-nav{display:none}</style>
+</head>
+<body>
+<section class="section" id="s-about">
+  <div class="section__head">
+    <p class="section__num">0</p>
+    <h2>О странице</h2>
+    <p>Что здесь показано и чему можно верить.</p>
+  </div>
+
+  <div class="subsection" id="about-rules">
+    <div class="specimen" data-name="о странице правила источники">
+      <div class="specimen__head"><h4>Правила</h4></div>
+      <div class="stage stage--rows">
+        <ul class="legend legend--always">
+          <li><strong>Ничего не додумано.</strong> Если состояние, вариант или разметка не подтверждены
+          источником, они не показаны. Пробелы перечислены в конце страницы.</li>
+          <li><strong>Классы настоящие.</strong> Разметку отсюда можно переносить в Career как есть:
+          имена классов, порядок узлов и атрибуты совпадают с продуктом.</li>
+          <li><strong>Разметка смешанная по природе.</strong> Career верстает BEM-классами и утилитами
+          Tailwind одновременно. Так и показано — это не небрежность, а устройство системы.</li>
+          <li><strong>Оболочка документации отделена.</strong> Внешний вид компонентов задаёт
+          <code>ui/career.css</code>; <code>docs.css</code> на них не влияет.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="about-layers">
+    <div class="specimen" data-name="слои css порядок подключения">
+      <div class="specimen__head"><h4>Слои CSS</h4><code>ui/career.css</code></div>
+      <div class="stage stage--rows">
+        <div class="tablewrap"><table class="spec-table"><thead><tr><th>Файл</th><th>Что внутри</th><th>Откуда</th></tr></thead><tbody>
+          <tr><td><code>fonts.css</code></td><td>подключение переменного Inter</td><td>Google Fonts; в продукте — assets.habr.com</td></tr>
+          <tr><td><code>tokens.css</code></td><td>121 переменная <code>:root</code></td><td>сборка, 1:1</td></tr>
+          <tr><td><code>foundations.css</code></td><td>база документа, <code>--tw-*</code>, шкала кеглей</td><td>сборка, 1:1</td></tr>
+          <tr><td><code>utilities.css</code></td><td>549 правил Tailwind, реально встречающихся в разметке</td><td>сборка, подмножество</td></tr>
+          <tr><td><code>components/*.css</code></td><td>64 секции настоящего CSS компонентов из 63 файлов сборки</td><td>сборка, снят только <code>data-v-*</code></td></tr>
+          <tr><td><code>components.css</code></td><td>то, чего в сборке нет: старая реализация, Figma, замеры</td><td>помечено по источнику</td></tr>
+          <tr><td><code>layout.css</code></td><td>оболочка страницы и колонки</td><td>замеры production</td></tr>
+        </tbody></table></div>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

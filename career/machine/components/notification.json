@@ -1,0 +1,142 @@
+{
+  "id": "notification",
+  "name": "Notification",
+  "category": "feedback",
+  "kind": "component",
+  "spec": "components\\feedback\\notification.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "error",
+    "success"
+  ],
+  "cssRoots": [
+    "notification"
+  ],
+  "anchor": "showcase/components.html#fb-notification",
+  "markup": {
+    "html": "<div class=\"notification notification--info\">\n  <div class=\"notification__wrapper\">\n    <svg class=\"svg-icon notification__icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n      <use xlink:href=\"../../ui/assets/icons/sprite.svg#info\"/>\n    </svg>\n    <div class=\"notification__content\">\n      <div class=\"notification__title\">Текст</div>\n      <div class=\"notification__description\">Описание с возможностью закрытия</div>\n    </div>\n    <button class=\"notification__close\">\n      <svg class=\"svg-icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n        <use xlink:href=\"../../ui/assets/icons/sprite.svg#cross\"/>\n      </svg>\n    </button>\n  </div>\n</div>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": null,
+      "sourceName": "informer / on-page"
+    }
+  ],
+  "storybookNames": [
+    "BaseNotification"
+  ],
+  "code": {
+    "component": "BaseNotification",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "notification",
+    "name": "Notification",
+    "category": "feedback",
+    "kind": "component",
+    "spec": "components\\feedback\\notification.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "error",
+      "success"
+    ],
+    "cssRoots": [
+      "notification"
+    ],
+    "anchor": "showcase/components.html#fb-notification",
+    "markup": {
+      "html": "<div class=\"notification notification--info\">\n  <div class=\"notification__wrapper\">\n    <svg class=\"svg-icon notification__icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n      <use xlink:href=\"../../ui/assets/icons/sprite.svg#info\"/>\n    </svg>\n    <div class=\"notification__content\">\n      <div class=\"notification__title\">Текст</div>\n      <div class=\"notification__description\">Описание с возможностью закрытия</div>\n    </div>\n    <button class=\"notification__close\">\n      <svg class=\"svg-icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n        <use xlink:href=\"../../ui/assets/icons/sprite.svg#cross\"/>\n      </svg>\n    </button>\n  </div>\n</div>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": null,
+        "sourceName": "informer / on-page"
+      }
+    ],
+    "storybookNames": [
+      "BaseNotification"
+    ],
+    "code": {
+      "component": "BaseNotification",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "Notification",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Врезка с сообщением внутри страницы: подсказка, предупреждение, ошибка, новость. В отличие от тоста не исчезает сама и стоит в потоке содержимого.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "notification"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "BaseNotification",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "error",
+      "success"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fnotification.json",
+      "covers": [
+        "default",
+        "error",
+        "success"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Не выявлено: разметка, CSS и props извлечены полностью."
+  ],
+  "markdown": "# Notification · BaseNotification\n\n| | |\n|---|---|\n| **Категория** | Обратная связь |\n| **Корневой класс** | `notification` |\n| **CSS** | `ui/components/feedback.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 4 из 4 |\n\n## Назначение\n\nВрезка с сообщением внутри страницы: подсказка, предупреждение, ошибка, новость. В отличие от тоста не исчезает сама и стоит в потоке содержимого.\n\n## Анатомия\n\nКорневой класс — `notification`, не `base-notification`. Это важное расхождение: имя компонента в Storybook и имя класса в разметке различаются.\n\n```\ndiv.notification.notification--info\n  div.notification__wrapper\n    svg.svg-icon.notification__icon\n      use  [xlink:href=\"/career-web/images/sprites/sprite.svg?v=5.63.0#info\"]\n    div.notification__content\n      div.notification__title\n        · «Текст»\n      div.notification__description\n        · «Описание с возможностью закрытия»\n    button.notification__close\n      svg.svg-icon\n        use  [xlink:href=\"/career-web/images/sprites/sprite.svg?v=5.63.0#cross\"]\n```\n\n_Разметка story `common-notifications-basenotification--closable-info`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Варианты\n\nЧетыре вида. Вид задаёт три вещи разом: фон, цвет рамки и переменную\n`--notification-accent-color`, от которой берут цвет значок, крестик и ссылки\nвнутри описания.\n\n| Класс | Вид | Фон | Рамка и акцент | Типичный значок |\n|---|---|---|---|---|\n| `notification--info` | подсказка | `var(--color-ui-blue-10)` | `var(--color-ui-blue)` | `#info` |\n| `notification--news` | новость, успех | `var(--color-ui-green-10)` | `var(--color-ui-green)` | `#check-circle-empty` |\n| `notification--attention` | предупреждение | `var(--color-ui-orange-10)` | `var(--color-ui-orange)` | `#danger` |\n| `notification--alert` | ошибка | `var(--color-ui-red-10)` | `var(--color-ui-red)` | `#minus-circle` |\n\nЗначок берётся из prop `icon` и жёстко к виду не привязан — сопоставление выше\nвзято из story и production, а не из кода.\n\n### Рамка зависит от размещения\n\n| Класс | Когда | Рамка |\n|---|---|---|\n| без модификатора | врезка стоит на странице, на сером фоне | `1px solid` цветом вида |\n| `notification--borderless` | врезка встроена в блок на белом фоне | `border-width: 0`, остаётся только заливка |\n\nЭто единственное различие: `--borderless` не меняет ни фон, ни отступы, ни акцент.\n\n### Отступы\n\n| Класс | Padding |\n|---|---|\n| без модификатора | `12px 16px` |\n| `notification--padding-medium` | `10px 16px` |\n| `notification--padding-small` | `8px 12px` |\n\n### Что необязательно\n\n- **Заголовок.** `notification__title` рендерится только при непустом `title`.\n  Без него описание остаётся единственной строкой, `min-height` содержимого 24px\n  держит высоту.\n- **Крестик.** `notification__close` появляется при `closable`. Он окрашен\n  акцентом вида, а не серым.\n- **Ссылки.** Блок `notification__links` — необязательный слот под описанием.\n\nТо есть матрица вариантов: **4 вида × заголовок есть/нет × крестик есть/нет ×\nрамка есть/нет** — все шестнадцать сочетаний каждого вида законны, специальных\nзапретов в коде нет.\n\n## Состояния\n\n_В извлечённом CSS и разметке состояний не объявлено. Не достраиваем._\n\n## Слоты\n\n- `default`\n- `links`\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `appearance` | NotificationAppearance | `'info'` | info · attention · alert · news | `select` |\n| `title` | string | `''` | — | `text` |\n| `closable` | boolean | `false` | — | `boolean` |\n| `borderless` | boolean | `false` | — | `boolean` |\n| `padding` | NotificationPadding | `''` |  · small · medium | `select` |\n| `fullWidth` | boolean | — | — | `boolean` |\n| `icon` | NotificationIcon | — | — | `text` |\n| `iconSize` | number | `24` | — | `number` |\n| `description` | string | `''` | — | `text` |\n| `close` | other | — | — | `object` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-font-black` | `var(--color-ui-gray-1)` | из `:root` Career |\n| `--color-ui-blue` | `#1ba1ee` | из `:root` Career |\n| `--color-ui-blue-10` | `color-mix(in srgb,var(--color-ui-blue) 10%,transparent)` | из `:root` Career |\n| `--color-ui-green` | `#3dc24a` | из `:root` Career |\n| `--color-ui-green-10` | `color-mix(in srgb,var(--color-ui-green) 10%,transparent)` | из `:root` Career |\n| `--color-ui-orange` | `#fdad0d` | из `:root` Career |\n| `--color-ui-orange-10` | `color-mix(in srgb,var(--color-ui-orange) 10%,transparent)` | из `:root` Career |\n| `--color-ui-red` | `#f8651b` | из `:root` Career |\n| `--color-ui-red-10` | `color-mix(in srgb,var(--color-ui-red) 10%,transparent)` | из `:root` Career |\n| `--notification-accent-color` | — | задаётся компонентом или средой, значения в сборке нет |\n\n## Иконки\n\n| Спрайт | Символ | Локальный файл |\n|---|---|---|\n| `sprite.svg` | `#cross` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#danger` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#info` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#minus-circle` | `ui/assets/icons/sprite.svg` |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## Поведение\n\n- `borderless` убирает рамку, оставляя заливку — так уведомление встраивается внутрь карточки.\n- `padding` меняет плотность (`small` / `medium`), а не размер шрифта.\n- Заголовок необязателен: у варианта без заголовка остаётся только `__description`.\n\n## Разметка\n\n```html\n<div class=\"notification notification--info\">\n  <div class=\"notification__wrapper\">\n    <svg class=\"svg-icon notification__icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n      <use xlink:href=\"../../ui/assets/icons/sprite.svg#info\"/>\n    </svg>\n    <div class=\"notification__content\">\n      <div class=\"notification__title\">Текст</div>\n      <div class=\"notification__description\">Описание с возможностью закрытия</div>\n    </div>\n    <button class=\"notification__close\">\n      <svg class=\"svg-icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n        <use xlink:href=\"../../ui/assets/icons/sprite.svg#cross\"/>\n      </svg>\n    </button>\n  </div>\n</div>\n```\n\n_Пути к спрайтам и изображениям в этом блоке — локальные, от папки спецификации. В блоке «Анатомия» выше сохранён продовый путь: это протокол снятого DOM, а не образец для вёрстки._\n\n## CSS\n\n```css\n.notification { border-radius:.75rem;border-style:solid;border-width:1px;padding:.75rem 1rem }\n.notification__wrapper { align-items:flex-start;-moz-column-gap:.25rem;column-gap:.25rem;display:flex }\n.notification--info { background-color:var(--color-ui-blue-10);border-color:var(--color-ui-blue);--notification-accent-color:var(--color-ui-blue) }\n.notification--alert { background-color:var(--color-ui-red-10);border-color:var(--color-ui-red);--notification-accent-color:var(--color-ui-red) }\n.notification--attention { background-color:var(--color-ui-orange-10);border-color:var(--color-ui-orange);--notification-accent-color:var(--color-ui-orange) }\n.notification--news { background-color:var(--color-ui-green-10);border-color:var(--color-ui-green);--notification-accent-color:var(--color-ui-green) }\n.notification--padding-small { padding:.5rem .75rem }\n.notification--padding-medium { padding:10px 1rem }\n.notification--borderless { border-width:0 }\n.notification__content { display:flex;flex:1 1 0%;flex-direction:column;justify-content:center;min-height:24px;min-width:0;padding-left:.25rem;padding-right:.25rem;row-gap:.25rem }\n.notification__title { color:var(--color-font-black);font-size:16px;font-weight:600;line-height:24px }\n.notification__description { color:var(--color-font-black);font-size:14px;line-height:20px }\n.notification__links { align-items:center;display:flex;font-size:0;gap:.5rem;padding-bottom:.25rem;padding-top:.25rem }\n.notification__description a { color:var(--notification-accent-color) }\n.notification__icon { color:var(--notification-accent-color);flex-shrink:0 }\n.notification__close { background-color:transparent;border-width:0;color:var(--notification-accent-color);cursor:pointer;line-height:0;padding:0 }\n```\n\n## Ограничения\n\n- Не выявлено: разметка, CSS и props извлечены полностью.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/common/base-notification.stories.ts`\n- Storybook `career-web`: `common-notifications-basenotification--default`, `common-notifications-basenotification--invoice-creation-attention`, `common-notifications-basenotification--closable-info`, `common-notifications-basenotification--alert`\n- CSS: секция `base-notification` в `ui/components/feedback.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n\n## Нормативный контракт R2-D\n\nКанонические варианты API: `info`, `warning`, `success`, `error`. Совместимость: `attention → warning`, `news → success`, `alert → error`. `default` означает `info`. Новые имена поддержаны в `ui/state-contract.css`.\n\nСтатическая подсказка не получает live-role. Динамическое некритичное сообщение использует `role=\"status\"`; ошибка, требующая немедленного внимания, — `role=\"alert\"`. Кнопка закрытия обязана иметь `aria-label`, `hover` и `focus-visible`; закрытие не должно неожиданно переносить фокус.\n",
+  "sourcePath": "archive:career/v1/components/feedback/notification.md",
+  "legacyDocument": "archive:career/v1/components/feedback/notification.md"
+}

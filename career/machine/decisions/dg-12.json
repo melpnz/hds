@@ -1,0 +1,50 @@
+{
+  "id": "DG-12",
+  "kind": "decision-guide",
+  "name": "Врезка: вид и рамка",
+  "observed": "Четыре вида: `info` подсказка, `news` успех, `attention` предупреждение, `alert` ошибка. Вид задаёт фон, цвет рамки и акцент разом. Рамка зависит от размещения: врезка на странице — с рамкой, врезка внутри белого блока — `--borderless`, остаётся только заливка.",
+  "when": "Нужно сообщить что-то в потоке страницы.",
+  "prefer": "Выбирать вид по смыслу сообщения, а рамку — по фону, на котором врезка стоит. Это два независимых решения, и их удобно принимать раздельно.",
+  "avoid": "Рамки у врезки, встроенной в карточку: два контура подряд в Career не встречаются.",
+  "gap": "Выбор **канала** — врезка, сообщение у поля или тост — evidence не покрывает. Tooltip в извлечённом CSS отсутствует вовсе.",
+  "confidence": "HIGH",
+  "humanDoc": "docs/guide/decisions.md#dg-12",
+  "title": "DG-12 · Врезка: вид и рамка",
+  "category": "decision-guides",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "decision-guide"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Выбирать вид по смыслу сообщения, а рамку — по фону, на котором врезка стоит. Это два независимых решения, и их удобно принимать раздельно.",
+  "implementation": {
+    "markup": null,
+    "styles": [],
+    "scripts": [],
+    "missingReason": "not-a-visual-entity",
+    "fallback": "Применить правило к выбранному паттерну или компоненту."
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "decision-guide",
+      "ref": "docs/guide/decisions.md#dg-12"
+    }
+  ],
+  "unknowns": [
+    "Выбор **канала** — врезка, сообщение у поля или тост — evidence не покрывает. Tooltip в извлечённом CSS отсутствует вовсе."
+  ],
+  "previewMode": "none"
+}

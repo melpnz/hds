@@ -1,0 +1,135 @@
+{
+  "id": "rounded-arrow-button",
+  "name": "RoundedArrowButton",
+  "category": "actions",
+  "kind": "component",
+  "spec": "components\\actions\\rounded-arrow-button.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled"
+  ],
+  "cssRoots": [
+    "rounded-arrow-button"
+  ],
+  "anchor": "showcase/components.html#a-special",
+  "markup": {
+    "html": "<a href=\"https://google.com\" title=\"Example\" aria-label=\"Example\" rel=\"noopener noreferrer\" class=\"rounded-arrow-button flex h-10 w-10 transform items-center justify-center rounded-full border border-ui-gray-5 text-center transition-all border-icon-gray bg-transparent hover:bg-branded-profile-primary hover:border-branded-profile-primary hover:text-ui-white text-ui-checkbox rotate-180\" target=\"_blank\">\n  <svg class=\"svg-icon shrink-0 fill-current transition-all\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n    <use xlink:href=\"../../ui/assets/icons/sprite.svg#arrow-left-rounded\"/>\n  </svg>\n</a>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [],
+  "storybookNames": [
+    "RoundedArrowButton"
+  ],
+  "code": {
+    "component": "RoundedArrowButton",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "rounded-arrow-button",
+    "name": "RoundedArrowButton",
+    "category": "actions",
+    "kind": "component",
+    "spec": "components\\actions\\rounded-arrow-button.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "disabled"
+    ],
+    "cssRoots": [
+      "rounded-arrow-button"
+    ],
+    "anchor": "showcase/components.html#a-special",
+    "markup": {
+      "html": "<a href=\"https://google.com\" title=\"Example\" aria-label=\"Example\" rel=\"noopener noreferrer\" class=\"rounded-arrow-button flex h-10 w-10 transform items-center justify-center rounded-full border border-ui-gray-5 text-center transition-all border-icon-gray bg-transparent hover:bg-branded-profile-primary hover:border-branded-profile-primary hover:text-ui-white text-ui-checkbox rotate-180\" target=\"_blank\">\n  <svg class=\"svg-icon shrink-0 fill-current transition-all\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n    <use xlink:href=\"../../ui/assets/icons/sprite.svg#arrow-left-rounded\"/>\n  </svg>\n</a>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "RoundedArrowButton"
+    ],
+    "code": {
+      "component": "RoundedArrowButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "RoundedArrowButton",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Кнопка-стрелка с подписью для перехода вперёд или назад: карусели, промо-блоки, брендированные страницы компаний. Направление и оформление задаются props.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "rounded-arrow-button"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "RoundedArrowButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "disabled"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Frounded-arrow-button.json",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "В production snapshot вид собран утилитами; UI kit добавляет стабильный root и"
+  ],
+  "markdown": "# RoundedArrowButton · Кнопка со стрелкой\n\n| | |\n|---|---|\n| **Категория** | Действия |\n| **Корневой класс** | `rounded-arrow-button` |\n| **CSS** | `ui/state-contract.css` + utility-классы production snapshot |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 1 из 1 |\n\n## Назначение\n\nКнопка-стрелка с подписью для перехода вперёд или назад: карусели, промо-блоки, брендированные страницы компаний. Направление и оформление задаются props.\n\n## Анатомия\n\n```\na.rounded-arrow-button.flex.h-10.w-10.items-center.justify-center.rounded-full.border  [aria-label=\"Example\" href=\"https://google.com\" target=\"_blank\"]\n  svg.svg-icon.shrink-0.fill-current.transition-all\n    use  [xlink:href=\"/career-web/images/sprites/sprite.svg?v=5.63.0#arrow-left-rounded\"]\n```\n\n_Разметка story `common-buttons-roundedarrowbutton--rounded-arrow-button-story`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\nProduction snapshot подтверждает `default` и `hover`: подложка и рамка получают\nbranded primary, текст становится белым. UI kit дополняет контракт:\n\n| Состояние | Контракт |\n|---|---|\n| `default` | ссылка с `href` и доступным именем |\n| `hover` | `:hover`, branded background/border и белая иконка |\n| `focus-visible` | `:focus-visible`, видимый focus ring |\n| `pressed` | `:active`; `.is-pressed` только для story/визуальных тестов |\n| `disabled` | без `href`, `aria-disabled=\"true\"`; обработчик блокирует click |\n\n`aria-disabled` сам по себе не блокирует событие. Реализация обязана удалить\n`href` и не выполнять переход; disabled-ссылка не должна открывать новую вкладку.\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `title` | string | — | — | `text` |\n| `link` | string | — | — | `text` |\n| `direction` | \"right\" \\| \"below\" | — | left · right | `radio` |\n| `appearance` | \"branded-outline\" \\| \"branded\" \\| \"branded-white\" \\| \"branded-white-secondary\" | — | branded-outline · branded · branded-white | `radio` |\n| `linkTarget` | \"_blank\" | — | _blank | `check` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-branded-profile-primary` | — | задаётся компонентом или средой, значения в сборке нет |\n| `--color-icon-gray` | `var(--color-ui-gray-2)` | из `:root` Career |\n| `--color-ui-checkbox` | `#666` | из `:root` Career |\n| `--color-ui-gray-5` | `#d4dee2` | из `:root` Career |\n| `--color-ui-white` | `#fff` | из `:root` Career |\n\n## Иконки\n\n| Спрайт | Символ | Локальный файл |\n|---|---|---|\n| `sprite.svg` | `#arrow-left-rounded` | `ui/assets/icons/sprite.svg` |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\nУ icon-only ссылки обязательно доступное имя через `aria-label`. Для\n`target=\"_blank\"` задаётся `rel=\"noopener noreferrer\"`. Disabled-вариант не\nдолжен иметь `href` и получает `aria-disabled=\"true\"`.\n\n## Разметка\n\n```html\n<a href=\"https://google.com\" title=\"Example\" aria-label=\"Example\" rel=\"noopener noreferrer\" class=\"rounded-arrow-button flex h-10 w-10 transform items-center justify-center rounded-full border border-ui-gray-5 text-center transition-all border-icon-gray bg-transparent hover:bg-branded-profile-primary hover:border-branded-profile-primary hover:text-ui-white text-ui-checkbox rotate-180\" target=\"_blank\">\n  <svg class=\"svg-icon shrink-0 fill-current transition-all\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n    <use xlink:href=\"../../ui/assets/icons/sprite.svg#arrow-left-rounded\"/>\n  </svg>\n</a>\n```\n\n_Пути к спрайтам и изображениям в этом блоке — локальные, от папки спецификации. В блоке «Анатомия» выше сохранён продовый путь: это протокол снятого DOM, а не образец для вёрстки._\n\n## CSS\n\nProduction snapshot собран utility-классами. Для новых реализаций стабильный\nroot и недостающие состояния определены в `ui/state-contract.css`.\n\n## Ограничения\n\n- В production snapshot вид собран утилитами; UI kit добавляет стабильный root и\n  состояния в `ui/state-contract.css`. Варианты `branded*` по-прежнему зависят\n  от цвета компании, который в сборке не определён.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/buttons/rounded-arrow-button/rounded-arrow-button.stories.ts`\n- Storybook `career-web`: `common-buttons-roundedarrowbutton--rounded-arrow-button-story`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/actions/rounded-arrow-button.md",
+  "legacyDocument": "archive:career/v1/components/actions/rounded-arrow-button.md"
+}

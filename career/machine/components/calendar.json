@@ -1,0 +1,125 @@
+{
+  "id": "calendar",
+  "name": "Calendar",
+  "category": "forms",
+  "kind": "component",
+  "spec": "components\\forms\\calendar.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "selected",
+    "current",
+    "disabled"
+  ],
+  "cssRoots": [
+    "calendar"
+  ],
+  "anchor": "showcase/components.html#r3-calendar",
+  "markup": null,
+  "evidence": [
+    {
+      "type": "figma",
+      "fileKey": "e3XSMS635aYngCzY7VQaXY",
+      "nodeId": "767:7307",
+      "sourceName": "calendar / date-elements"
+    }
+  ],
+  "legacySource": {
+    "id": "calendar",
+    "name": "Calendar",
+    "category": "forms",
+    "kind": "component",
+    "spec": "components\\forms\\calendar.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "selected",
+      "current",
+      "disabled"
+    ],
+    "cssRoots": [
+      "calendar"
+    ],
+    "anchor": "showcase/components.html#r3-calendar",
+    "markup": null,
+    "evidence": [
+      {
+        "type": "figma",
+        "fileKey": "e3XSMS635aYngCzY7VQaXY",
+        "nodeId": "767:7307",
+        "sourceName": "calendar / date-elements"
+      }
+    ]
+  },
+  "title": "Calendar",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "figma",
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Calendar — сущность UI kit Career.",
+  "implementation": {
+    "markup": null,
+    "cssRoots": [
+      "calendar"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "missingReason": "copy-safe-markup-not-captured",
+    "fallback": "Не придумывать классы. Использовать ближайший компонент с разметкой или явно отметить пробел."
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "selected",
+      "current",
+      "disabled"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "isolated-example",
+      "title": "Календарь",
+      "file": "examples/components-isolated/calendar.html",
+      "covers": [
+        "isolated-example",
+        "r3-calendar",
+        "default",
+        "hover",
+        "focus-visible",
+        "selected",
+        "current",
+        "disabled"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "provenance": {
+        "source": "archive:career/v1/showcase/components.html#r3-calendar",
+        "extraction": "exact-dom-subtree"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [],
+  "markdown": "# Calendar · Календарная сетка\n\n| | |\n|---|---|\n| **Корневой класс** | `calendar` |\n| **CSS** | `ui/components.css` |\n| **Showcase** | `showcase/components.html#r3-calendar` |\n| **Evidence** | Figma `calendar / date-elements`; API нормализован по HTML/ARIA patterns |\n\nCalendar отображает один месяц и выбирает дату или диапазон. Это внутренний компонент DatePicker, но может использоваться отдельно.\n\n## Состояния\n\n`default`, `hover`, `focus-visible`, `selected` (`aria-selected=\"true\"`), `current`/today (`aria-current=\"date\"`), `disabled`; дополнительные data variants: `data-in-range` и `data-outside-month`.\n\n## Семантика и keyboard\n\nЗаголовок месяца — live-регион `polite`; сетка имеет доступное имя. День — `button` с полным `aria-label`. В tab order находится одна дата (roving tabindex). Стрелки двигают по дням/неделям, Home/End — по неделе, PageUp/PageDown — по месяцам, Enter/Space выбирают. Disabled даты пропускаются или объявляются недоступными. Locale определяет первый день недели, подписи и формат; вычисления используют реальную calendar library, не строки.\n\nRange selection не обозначается одним цветом: начало/конец имеют полные доступные подписи. Изменение месяца не переносит фокус в document body.\n",
+  "sourcePath": "archive:career/v1/components/forms/calendar.md",
+  "legacyDocument": "archive:career/v1/components/forms/calendar.md"
+}

@@ -1,0 +1,120 @@
+{
+  "id": "sprite-icon",
+  "name": "Icon",
+  "category": "data-display",
+  "kind": "primitive",
+  "spec": "components\\data\\sprite-icon.md",
+  "status": "complete",
+  "states": [],
+  "cssRoots": [
+    "icon-inline",
+    "icon-image"
+  ],
+  "anchor": "showcase/components.html#f-icons-sprite",
+  "markup": {
+    "html": "<svg class=\"svg-icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n  <use xlink:href=\"../../ui/assets/icons/sprite.svg#arrow\"/>\n</svg>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [],
+  "storybookNames": [
+    "SpriteIcon"
+  ],
+  "code": {
+    "component": "SpriteIcon",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacyAliases": [
+    "SpriteIcon"
+  ],
+  "legacySource": {
+    "id": "sprite-icon",
+    "name": "Icon",
+    "category": "data-display",
+    "kind": "primitive",
+    "spec": "components\\data\\sprite-icon.md",
+    "status": "complete",
+    "states": [],
+    "cssRoots": [
+      "icon-inline",
+      "icon-image"
+    ],
+    "anchor": "showcase/components.html#f-icons-sprite",
+    "markup": {
+      "html": "<svg class=\"svg-icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n  <use xlink:href=\"../../ui/assets/icons/sprite.svg#arrow\"/>\n</svg>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "SpriteIcon"
+    ],
+    "code": {
+      "component": "SpriteIcon",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    },
+    "legacyAliases": [
+      "SpriteIcon"
+    ]
+  },
+  "title": "Icon",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Нормативный способ вывода иконок в UI kit — отдельный SVG-файл из ui/assets/icons/single/. Монохромные symbols выводятся как inline SVG из точного экспортированного файла и сохраняют currentColor; цветные social/reactions — через icon-image. SpriteIcon и внешний <use> остаются legacy evidence исходного Career.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "icon-inline",
+      "icon-image"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "SpriteIcon",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fsprite-icon.json",
+      "covers": [],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Не выявлено: разметка, CSS и props извлечены полностью."
+  ],
+  "markdown": "# Icon · Отдельная иконка\n\n| | |\n|---|---|\n| **Категория** | Отображение данных |\n| **Корневой класс** | `icon-inline` · `icon-image` |\n| **CSS** | `ui/components/primitives.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 2 из 2 |\n\n## Назначение\n\nНормативный способ вывода иконок в UI kit — отдельный SVG-файл из\n`ui/assets/icons/single/`. Монохромные symbols выводятся как inline SVG из\nточного экспортированного файла и сохраняют `currentColor`; цветные\nsocial/reactions — через `icon-image`.\n`SpriteIcon` и внешний `<use>` остаются legacy evidence исходного Career.\n\nНабор `single/sprite/` нормализован: у каждого значения интерфейса один значок,\n14 дубликатов по смыслу убраны. Таблица «Иконки» ниже перечисляет символы\nисходного `sprite.svg` — он не менялся, и убранные символы в нём на месте.\nСоответствие «убрано → осталось» и разбор четырёх исправленных начертаний —\nв [`ui/assets/README.md`](../../ui/assets/README.md).\n\n## Анатомия\n\n```\nsvg.svg-icon.icon-inline  [viewBox из `…/single/sprite/arrow.svg`]\nimg.svg-icon.icon-image  [src=\"…/single/social-v3.1/telegram.svg\"]\n```\n\n_Разметка story `icons-spriteicon--default`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\n_В извлечённом CSS и разметке состояний не объявлено. Не достраиваем._\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `name` | IconName | — | имя файла в выбранном наборе | `select` |\n| `set` | IconSet | `'sprite'` | sprite · social-v3.1 · reactions · contacts · services | `select` |\n| `size` | string\\|number | `24` | — | `number` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-icon-gray` | `var(--color-ui-gray-2)` | из `:root` Career |\n\n## Исходные символы\n\nТаблица ниже фиксирует provenance исходных sprite symbols. Runtime-путь для\nкаждой строки: `ui/assets/icons/single/<set>/<name>.svg`.\n\n| Спрайт | Символ | Локальный файл |\n|---|---|---|\n| `sprite.svg` | `#accreditation` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#additional-menu` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#arrow` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#arrow-back` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#arrow-big` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#arrow-bold` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#arrow-down` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#arrow-down-small` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#arrow-forward` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#arrow-left-rounded` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#arrow-right` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#banner` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#bar-arrow` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#bell` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#blue-loader` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#bookmark` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#bookmark-filled` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#booster` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#button-loader` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#cert` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#cert-blank` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#check` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#check-approved` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#check-circle` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#check-circle-empty` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#close` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#copy` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#cross` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#cross-large` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#cross-old` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#cross-separator` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#crossed-eye` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#danger` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#datepicker` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#decorated-modal-error` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#decorated-modal-loading` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#decorated-modal-success` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#decorated-modal-warning` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#direction` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#dots` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#down` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#download` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#edit_new` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#emoji-add` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#empty-star` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#expert-icon` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#eye` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#favorite` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#filter` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#gear` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#globe` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#habr-icon` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#hh` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#home` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#info` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#invite` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#location` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#location-legacy` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#mail` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#message` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#minus` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#minus-circle` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#mobile-menu` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#more` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#ny-bell` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#pen` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#person` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#phone` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#place-mark` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#plus` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#postpone-circle` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#question-circle` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#readBy` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#recover` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#reviews` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#search` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#selection` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#settings` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#share` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#sharp-star` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#single-check` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#sort` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#spinner` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#star` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#star-small` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#trash` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#up` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#update` | `ui/assets/icons/sprite.svg` |\n| `sprite.svg` | `#user` | `ui/assets/icons/sprite.svg` |\n\n## Responsive\n\nКомпонент реагирует на: `(max-width:1023px)`.\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## Поведение\n\n- Размер задаётся атрибутами `width`/`height` и дублируется инлайновым стилем — класса размера нет.\n- Цвет наследуется через `fill: currentColor`, поэтому иконку красят цветом текста родителя.\n\n## Разметка\n\n```html\n<svg class=\"svg-icon\" width=\"24\" height=\"24\" style=\"width: 24px; height: 24px;\">\n  <use xlink:href=\"../../ui/assets/icons/sprite.svg#arrow\"/>\n</svg>\n```\n\n_Пути к спрайтам и изображениям в этом блоке — локальные, от папки спецификации. В блоке «Анатомия» выше сохранён продовый путь: это протокол снятого DOM, а не образец для вёрстки._\n\n## CSS\n\n```css\n.svg-icon { fill:currentColor }\n```\n\n## Ограничения\n\n- Не выявлено: разметка, CSS и props извлечены полностью.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/icons/sprite-icon.stories.ts`\n- Storybook `career-web`: `icons-spriteicon--default`, `icons-spriteicon--all-variants`\n- CSS: секция `svg-icon` в `ui/components/primitives.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n\n## Нормативный контракт R2-E\n\nSpriteIcon — неинтерактивный primitive без собственных состояний. Декоративная иконка получает `aria-hidden=\"true\"` и `focusable=\"false\"`. Если иконка — единственное содержимое кнопки, доступное имя задаётся кнопке через `aria-label`, не SVG. Самостоятельно значимая иконка использует `role=\"img\"` и `aria-label` либо `<title>` с корректной связью.\n\nЦвет наследуется через `currentColor`; интерактивные цвета и состояния задаёт родительский компонент.\n",
+  "sourcePath": "archive:career/v1/components/data/sprite-icon.md",
+  "legacyDocument": "archive:career/v1/components/data/sprite-icon.md"
+}

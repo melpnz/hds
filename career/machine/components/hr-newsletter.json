@@ -1,0 +1,69 @@
+{
+  "id": "hr-newsletter",
+  "title": "HrNewsletterSubscription · Подписка на рассылку",
+  "kind": "module",
+  "category": "banners",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "published-spec",
+      "storybook-snapshot"
+    ],
+    "confidence": "medium",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Блок подписки на рассылку для работодателей: заголовок, поле почты, кнопка.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "markup": {
+    "html": "<div class=\"max-w-[300px]\">\n  <div class=\"relative\">\n    <section class=\"base-section base-section--background-white rounded-3xl\">\n      <div class=\"grid gap-3\">\n        <h3 class=\"m-0 text-body-l font-semibold\">Рассылка для HR в IT</h3>\n        <p class=\"m-0 text-body-m text-ui-gray-1\">Аналитика по зарплатам, тренды рынка, карьерные треки и маркетинговые материалы. Пишем пару раз в месяц и только по делу.</p>\n        <button type=\"button\" target=\"_self\" class=\"base-button inline-flex appearance-main size-l is-sizeable is-full-width\">\n          <span class=\"base-button__inner\">\n            <span class=\"base-button__content\">Подписаться</span>\n          </span>\n        </button>\n      </div>\n    </section>\n  </div>\n</div>"
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка из спецификации",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fhr-newsletter.json",
+      "covers": [
+        "published-markup"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          375,
+          768,
+          1100
+        ],
+        "height": 560
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Собственного CSS нет: компонент собран утилитами."
+  ],
+  "evidence": [
+    {
+      "type": "published-spec",
+      "ref": "archive:career/v1/components/banners/hr-newsletter.md"
+    }
+  ],
+  "markdown": "# HrNewsletterSubscription · Подписка на рассылку\n\n| | |\n|---|---|\n| **Категория** | Баннеры |\n| **Корневой класс** | `max-w-[300px]` |\n| **CSS** | _только утилиты_ |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 1 из 1 |\n\n## Назначение\n\nБлок подписки на рассылку для работодателей: заголовок, поле почты, кнопка.\n\n## Анатомия\n\n```\ndiv.max-w-[300px]\n  div.relative\n    section.base-section.base-section--background-white.rounded-3xl\n      div.grid.gap-3\n        h3.m-0.text-body-l.font-semibold\n          · «Рассылка для HR в IT»\n        p.m-0.text-body-m.text-ui-gray-1\n          · «Аналитика по зарплатам, тренды рынка, ка…»\n        button.base-button.inline-flex.appearance-main.size-l.is-sizeable.is-full-width  [type=\"button\" target=\"_self\"]\n          span.base-button__inner\n            span.base-button__content\n              · «Подписаться»\n```\n\n_Разметка story `banners-hrnewslettersubscription--default`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\nПодтверждены CSS и разметкой: `.is-full-width`, `.is-sizeable`.\n\n## Props\n\n_Storybook не отдаёт controls для этого компонента._\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-ui-gray-1` | `#1b272c` | из `:root` Career |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## Разметка\n\n```html\n<div class=\"max-w-[300px]\">\n  <div class=\"relative\">\n    <section class=\"base-section base-section--background-white rounded-3xl\">\n      <div class=\"grid gap-3\">\n        <h3 class=\"m-0 text-body-l font-semibold\">Рассылка для HR в IT</h3>\n        <p class=\"m-0 text-body-m text-ui-gray-1\">Аналитика по зарплатам, тренды рынка, карьерные треки и маркетинговые материалы. Пишем пару раз в месяц и только по делу.</p>\n        <button type=\"button\" target=\"_self\" class=\"base-button inline-flex appearance-main size-l is-sizeable is-full-width\">\n          <span class=\"base-button__inner\">\n            <span class=\"base-button__content\">Подписаться</span>\n          </span>\n        </button>\n      </div>\n    </section>\n  </div>\n</div>\n```\n\n## CSS\n\n_Собственного CSS нет: компонент собран утилитами Tailwind прямо в разметке. Все нужные правила — в `ui/utilities.css`._\n\n## Ограничения\n\n- Собственного CSS нет: компонент собран утилитами.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/subscriptions/hr-newsletter-subscription.stories.ts`\n- Storybook `career-web`: `banners-hrnewslettersubscription--default`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/banners/hr-newsletter.md",
+  "legacyDocument": "archive:career/v1/components/banners/hr-newsletter.md",
+  "legacyUnindexed": true
+}

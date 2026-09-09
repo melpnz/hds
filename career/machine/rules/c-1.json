@@ -1,0 +1,66 @@
+{
+  "id": "C-1",
+  "kind": "rule",
+  "scope": "Карточки",
+  "statement": "Основная карточка: **padding 24 · radius 24 · border 1px `rgba(24,46,57,.1)`**",
+  "predicate": {
+    "type": "computed",
+    "page": "showcase/pages.html",
+    "checks": [
+      {
+        "selector": "#p-listing .vacancy-card",
+        "property": "paddingTop",
+        "equals": "24px"
+      },
+      {
+        "selector": "#p-listing .vacancy-card",
+        "property": "borderRadius",
+        "equals": "24px"
+      },
+      {
+        "selector": ".base-section",
+        "property": "paddingTop",
+        "equals": "24px"
+      },
+      {
+        "selector": ".base-section",
+        "property": "borderRadius",
+        "equals": "24px"
+      }
+    ]
+  },
+  "evidence": {
+    "observations": "12 страниц, обе реализации"
+  },
+  "humanDoc": "docs/guide/composition.md#c-1",
+  "title": "C-1 · Карточки",
+  "category": "карточки",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "observed-rule"
+    ],
+    "confidence": "medium",
+    "scope": "public-guest"
+  },
+  "purpose": "Основная карточка: **padding 24 · radius 24 · border 1px `rgba(24,46,57,.1)`**",
+  "implementation": {
+    "markup": null,
+    "styles": [],
+    "scripts": [],
+    "missingReason": "not-a-visual-entity",
+    "fallback": "Применить правило к выбранному паттерну или компоненту."
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [],
+  "accessibility": [],
+  "unknowns": [],
+  "previewMode": "none"
+}

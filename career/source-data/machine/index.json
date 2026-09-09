@@ -1,0 +1,45 @@
+{
+  "product": "career",
+  "kind": "product-interface",
+  "language": "ru",
+  "css": "ui/career.css",
+  "shell": {
+    "wrapper": ".career-shell",
+    "note": "нужен только для layout.css: он написан на @container, а не на @media"
+  },
+  "files": {
+    "tokens": "machine/tokens.json",
+    "components": "machine/components.json",
+    "rules": "machine/rules.json",
+    "patterns": "machine/patterns.json",
+    "content": "machine/content.json"
+  },
+  "humanDocs": [
+    "README.md",
+    "docs/development/quick-start.md",
+    "docs/guide/composition.md",
+    "docs/guide/decisions.md"
+  ],
+  "checks": [
+    "node tools/validate-machine.mjs",
+    "node tools/validate-components.mjs --strict",
+    "node tools/validate-classes.mjs <файл.html>",
+    "node tools/validate-counts.mjs"
+  ],
+  "coverage": {
+    "componentsComplete": 72,
+    "componentsTotal": 72,
+    "specs": 95,
+    "rules": 57,
+    "decisionGuides": 16,
+    "patterns": 8,
+    "tokens": 121,
+    "boundary": "публичная часть продукта, снятая гостем. Не покрыты: личный кабинет, формы ввода, модальные потоки, загрузка, ошибки форм, сценарии успеха",
+    "onUncovered": "взять ближайший подтверждённый паттерн, назвать допущение вслух и спросить — не достраивать молча"
+  },
+  "notGenerated": {
+    "areas": "последовательность областей внутри паттерна не извлечена: композиции в showcase/pages.html собраны не из каркасных модулей R4, а из ad-hoc классов — извлекать не из чего. См. ROADMAP.md"
+  },
+  "generatedAt": "2026-09-07",
+  "generatedBy": "tools/build-machine.mjs"
+}

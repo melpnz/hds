@@ -1,0 +1,69 @@
+{
+  "id": "resumes-guide-card",
+  "title": "ResumesGuideCard · Карточка гайда",
+  "kind": "module",
+  "category": "banners",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "published-spec",
+      "storybook-snapshot"
+    ],
+    "confidence": "medium",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Промо-карточка обучающего материала в боковой колонке поиска резюме.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": []
+  },
+  "markup": {
+    "html": "<div class=\"desktop-only:max-w-[300px]\">\n  <section class=\"base-section base-section--background-white rounded-3xl resumes-guide-card relative bg-[112px_auto] bg-no-repeat tablet:pl-[120px] desktop-only:!bg-none\" style=\"--32b2ffee: url(https://assets.habr.com/staging-career-web/career-web/images/spec_help_mobile_1x.png); --32b2ffb0: url(https://assets.habr.com/staging-career-web/career-web/images/spec_help_mobile_2x.png);\">\n    <picture class=\"block text-[0px]\">\n      <source srcset=\"https://assets.habr.com/staging-career-web/career-web/images/spec_help_1x.jpg 1x, https://assets.habr.com/staging-career-web/career-web/images/spec_help_2x.jpg 1.5x\">\n      <img class=\"max-w-full tablet:hidden\" src=\"../../ui/assets/images/spec_help_2x.jpg\" alt width=\"252\" height=\"150\">\n    </picture>\n    <h3 class=\"mb-2 mt-3 text-display-s font-semibold\">Гайд «Как искать по базе»</h3>\n    <p class=\"mb-3 mt-0 text-body-m\">Как эффективно использовать сочетание фильтров и поисковой строки</p>\n    <a class=\"resumes-guide-card__button relative z-20 base-button inline-flex appearance-main size-l is-sizeable resumes-guide-card__button relative z-20\" href=\"/info/resumes_search\" target=\"_blank\">\n      <span class=\"base-button__inner\">\n        <span class=\"base-button__content\">Узнать больше</span>\n      </span>\n    </a>\n    <a class=\"absolute bottom-0 left-0 right-0 top-0 z-10 text-mute\" target=\"_blank\" href=\"/info/resumes_search\" title=\"Узнать больше\"></a>\n  </section>\n</div>"
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка из спецификации",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Fresumes-guide-card.json",
+      "covers": [
+        "published-markup"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          375,
+          768,
+          1100
+        ],
+        "height": 560
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "Не выявлено: разметка, CSS и props извлечены полностью."
+  ],
+  "evidence": [
+    {
+      "type": "published-spec",
+      "ref": "archive:career/v1/components/banners/resumes-guide-card.md"
+    }
+  ],
+  "markdown": "# ResumesGuideCard · Карточка гайда\n\n| | |\n|---|---|\n| **Категория** | Баннеры |\n| **Корневой класс** | `desktop-only:max-w-[300px]` |\n| **CSS** | `ui/components/cards.css` |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 1 из 1 |\n\n## Назначение\n\nПромо-карточка обучающего материала в боковой колонке поиска резюме.\n\n## Анатомия\n\n```\ndiv.desktop-only:max-w-[300px]\n  section.base-section.base-section--background-white.rounded-3xl.resumes-guide-card.relative.bg-[112px_auto].bg-no-repeat.tablet:pl-[120px].desktop-only:!bg-none\n    picture.block.text-[0px]\n      source\n      img.max-w-full.tablet:hidden\n    h3.mb-2.mt-3.text-display-s.font-semibold\n      · «Гайд «Как искать по базе»»\n    p.mb-3.mt-0.text-body-m\n      · «Как эффективно использовать сочетание фи…»\n    a.resumes-guide-card__button.relative.z-20.base-button.inline-flex.appearance-main.size-l.is-sizeable.resumes-guide-card__button.relative.z-20  [href=\"/info/resumes_search\" target=\"_blank\"]\n      span.base-button__inner\n        span.base-button__content\n          · «Узнать больше»\n    a.absolute.bottom-0.left-0.right-0.top-0.z-10.text-mute  [href=\"/info/resumes_search\" target=\"_blank\"]\n```\n\n_Разметка story `banners-resumesguidecard--default`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\nПодтверждены CSS и разметкой: `.is-sizeable`.\n\n## Props\n\n_Storybook не отдаёт controls для этого компонента._\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--32b2ffb0` | — | задаётся компонентом или средой, значения в сборке нет |\n| `--32b2ffee` | — | задаётся компонентом или средой, значения в сборке нет |\n\n## Responsive\n\nКомпонент реагирует на: `(min-width:1024px)`, `(-webkit-min-device-pixel-ratio:1.5)`, `(max-width:1023px)`.\n\n## Доступность\n\n_В снятой разметке нет ARIA-атрибутов и role. Не достраиваем._\n\n## Поведение\n\n- Вся карточка кликабельна за счёт растянутой ссылки-накладки поверх содержимого; кнопка внутри поднята `z-20`, чтобы оставаться отдельной целью.\n- Иллюстрация ведёт себя по-разному на трёх ширинах: фоном справа на десктопе (`desktop-only:!bg-none` отключает), отдельным `img` на узком, с отступом `tablet:pl-[120px]` на среднем.\n\n## Разметка\n\n```html\n<div class=\"desktop-only:max-w-[300px]\">\n  <section class=\"base-section base-section--background-white rounded-3xl resumes-guide-card relative bg-[112px_auto] bg-no-repeat tablet:pl-[120px] desktop-only:!bg-none\" style=\"--32b2ffee: url(https://assets.habr.com/staging-career-web/career-web/images/spec_help_mobile_1x.png); --32b2ffb0: url(https://assets.habr.com/staging-career-web/career-web/images/spec_help_mobile_2x.png);\">\n    <picture class=\"block text-[0px]\">\n      <source srcset=\"https://assets.habr.com/staging-career-web/career-web/images/spec_help_1x.jpg 1x, https://assets.habr.com/staging-career-web/career-web/images/spec_help_2x.jpg 1.5x\">\n      <img class=\"max-w-full tablet:hidden\" src=\"../../ui/assets/images/spec_help_2x.jpg\" alt width=\"252\" height=\"150\">\n    </picture>\n    <h3 class=\"mb-2 mt-3 text-display-s font-semibold\">Гайд «Как искать по базе»</h3>\n    <p class=\"mb-3 mt-0 text-body-m\">Как эффективно использовать сочетание фильтров и поисковой строки</p>\n    <a class=\"resumes-guide-card__button relative z-20 base-button inline-flex appearance-main size-l is-sizeable resumes-guide-card__button relative z-20\" href=\"/info/resumes_search\" target=\"_blank\">\n      <span class=\"base-button__inner\">\n        <span class=\"base-button__content\">Узнать больше</span>\n      </span>\n    </a>\n    <a class=\"absolute bottom-0 left-0 right-0 top-0 z-10 text-mute\" target=\"_blank\" href=\"/info/resumes_search\" title=\"Узнать больше\"></a>\n  </section>\n</div>\n```\n\n_Пути к спрайтам и изображениям в этом блоке — локальные, от папки спецификации. В блоке «Анатомия» выше сохранён продовый путь: это протокол снятого DOM, а не образец для вёрстки._\n\n## CSS\n\n```css\n.resumes-guide-card { background-image:var(--32b2ffee) }\n.resumes-guide-card__button { display:flex;margin:0;width:-moz-fit-content;width:fit-content }\n@media (min-width:1024px) {\n  .resumes-guide-card__button { margin:0 auto }\n}\n@media (-webkit-min-device-pixel-ratio:1.5) {\n  .resumes-guide-card { background-image:var(--32b2ffb0) }\n}\n```\n\n## Ограничения\n\n- Не выявлено: разметка, CSS и props извлечены полностью.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/resumes/resumes-guide-card.stories.ts`\n- Storybook `career-web`: `banners-resumesguidecard--default`\n- CSS: секция `resumes-guide-card` в `ui/components/cards.css`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/banners/resumes-guide-card.md",
+  "legacyDocument": "archive:career/v1/components/banners/resumes-guide-card.md",
+  "legacyUnindexed": true
+}

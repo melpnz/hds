@@ -1,0 +1,42 @@
+{
+  "id": "guide-states",
+  "title": "Состояния компонентов Career",
+  "kind": "guide",
+  "category": "registry",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "published-guide"
+    ],
+    "confidence": "high",
+    "scope": "package"
+  },
+  "purpose": "Адресная машинная копия документа components/STATES.md.",
+  "implementation": {
+    "markup": null,
+    "styles": [],
+    "scripts": [],
+    "missingReason": "document-only",
+    "fallback": "Читайте sections выбранного документа."
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "legacy-document",
+      "ref": "archive:career/v1/components/STATES.md"
+    }
+  ],
+  "unknowns": [],
+  "sourcePath": "archive:career/v1/components/STATES.md",
+  "markdown": "# Состояния компонентов Career\r\n\r\nНормативный словарь для API, CSS, спецификаций и showcase. Он применяется к\r\nлокальному UI kit. Названия вариантов в Figma считаются только evidence и не\r\nпереносятся сюда автоматически.\r\n\r\n## Правила\r\n\r\n- У компонента бывают только применимые состояния. Статичной иконке не нужны\r\n  искусственные `hover`, `disabled` или `loading`.\r\n- DOM-состояние, визуальное состояние и бизнес-статус описываются отдельно.\r\n- В публичном API используются существующие Storybook-имена. Новое имя выбирается\r\n  по семантической роли и общепринятому frontend-термину.\r\n- Для boolean props используются `disabled`, `loading`, `selected`, `checked`,\r\n  `indeterminate`, `open`, `readOnly`, `invalid`.\r\n- Комбинации состояний проверяются отдельно. Наличие `checked` и `disabled` ещё не\r\n  доказывает корректность `checked + disabled`.\r\n\r\n## Канонический словарь\r\n\r\n| State | Когда используется | DOM/API | Запрещённая подмена |\r\n|---|---|---|---|\r\n| `default` | Обычное доступное состояние | отсутствие state prop | `inactive` |\r\n| `hover` | Указатель над interactive target | `:hover` | `focus-visible` |\r\n| `focus-visible` | Видимый keyboard focus | `:focus-visible` | общий `focus` |\r\n\r\n> У текстовых полей `:focus-visible` срабатывает и при фокусе указателем — так\r\n> устроена спецификация: поле принимает клавиатурный ввод независимо от того,\r\n> как в него попали. Поэтому одним селектором Tab от клика там не отличить;\r\n> пакет отмечает режим атрибутом `data-focus-modality` (`ui/focus-modality.js`)\r\n> и гасит по нему кольцо в `ui/state-contract.css`. Для кнопок, вкладок, чипов\r\n> и переключателей `:focus-visible` работает как ожидается и надстройки не требует.\r\n| `pressed` | Action нажат прямо сейчас | `:active`, `aria-pressed` для toggle button | `selected`, `current` |\r\n| `selected` | Элемент выбран из набора | `aria-selected`, state prop | `pressed`, `checked` |\r\n| `current` | Текущий route, page или step | `aria-current` | `selected` формы |\r\n| `checked` | Выбран checkbox, radio или switch | `checked`, `aria-checked` | `selected` |\r\n| `indeterminate` | Частично выбран checkbox | DOM `indeterminate`, `aria-checked=\"mixed\"` | `checked` |\r\n| `expanded` | Раскрыта секция контента | `aria-expanded=\"true\"` | `open` overlay |\r\n| `collapsed` | Секция контента свёрнута | `aria-expanded=\"false\"` | `closed` overlay |\r\n| `open` | Menu, popover, select или modal открыт | `open`, `aria-expanded`, dialog state | `expanded` section |\r\n| `closed` | Overlay закрыт | отсутствие/open=false | `collapsed` section |\r\n| `disabled` | Элемент недоступен | native `disabled` предпочтителен | `readOnly`, `loading` |\r\n| `readOnly` | Значение доступно для чтения и focus, но не для изменения | `readonly` | `disabled` |\r\n| `loading` | Выполняется операция | `loading`; часто `aria-busy` | `disabled` без progress |\r\n| `invalid` | Form control не прошёл валидацию | `aria-invalid=\"true\"`, `:invalid` при уместности | operation `error` |\r\n| `error` | Операция или data request завершились ошибкой | domain state + feedback | field `invalid` |\r\n| `success` | Операция успешно завершена | domain state + feedback | `selected` |\r\n| `empty` | Коллекция или результат не содержит данных | data state | пустая строка input |\r\n| `dragActive` | Перетаскиваемый файл находится над Dropzone | drag events | `hover` |\r\n\r\n## Нормализация Figma evidence\r\n\r\n| В источнике | В документации и коде |\r\n|---|---|\r\n| `inactive` | `default` |\r\n| `disable` | `disabled` |\r\n| `focus` как нарисованное кольцо | `focus-visible` |\r\n| `focus_select` | два состояния: `focus-visible` и `selected` либо `open` |\r\n| `select` как состояние | `selected` |\r\n| `active` как постоянный выбор | `selected` или `current` |\r\n| `error` у отдельного поля | `invalid` |\r\n| `user-choice` | `selected` |\r\n| `another month` | `outside-month` в Calendar, не глобальный state |\r\n\r\n`Property 1`, `Default`, `Variant2` и опечатки из Figma не являются допустимыми\r\nAPI-именами.\r\n\r\n## Матрицы по семействам\r\n\r\nОбозначения:\r\n\r\n- **R** — required;\r\n- **C** — conditional, только если сценарий поддерживается;\r\n- **—** — не требуется.\r\n\r\n### Actions\r\n\r\n| State | Button | IconButton | Link action | Toggle action |\r\n|---|---:|---:|---:|---:|\r\n| default | R | R | R | R |\r\n| hover | R | R | R | R |\r\n| focus-visible | R | R | R | R |\r\n| pressed | R | R | R | R |\r\n| selected | — | C | — | R |\r\n| disabled | R | R | C | R |\r\n| loading | R | C | C | C |\r\n\r\n### Selection controls\r\n\r\n| State | Checkbox | RadioButton | Switch | StarRating |\r\n|---|---:|---:|---:|---:|\r\n| default | R | R | R | R |\r\n| hover | R | R | R | R |\r\n| focus-visible | R | R | R | R |\r\n| checked/value | R | R | R | R |\r\n| indeterminate | R | — | — | — |\r\n| disabled | R | R | R | R |\r\n| readOnly | — | — | C | C |\r\n| loading | C | C | C | — |\r\n\r\n### Fields\r\n\r\n| State | TextInput/Textarea | Select | Combobox/MultiSelect |\r\n|---|---:|---:|---:|\r\n| default empty | R | R | R |\r\n| filled | R | R | R |\r\n| hover | R | R | R |\r\n| focus-visible | R | R | R |\r\n| disabled | R | R | R |\r\n| readOnly | R | C | C |\r\n| invalid | R | R | R |\r\n| open/closed | — | R | R |\r\n| option highlighted | — | R | R |\r\n| option selected | — | R | R |\r\n| loading | — | C | R |\r\n| empty/no-results | — | C | R |\r\n\r\n### Navigation and collections\r\n\r\n| State | SegmentedTabs | Pagination | MenuItem | Interactive Row/Chip |\r\n|---|---:|---:|---:|---:|\r\n| default | R | R | R | R |\r\n| hover | R | R | R | R |\r\n| focus-visible | R | R | R | R |\r\n| pressed | R | R | R | R |\r\n| selected | R | — | C | C |\r\n| current | C | R | C | C |\r\n| disabled | R | R | R | C |\r\n| loading | C | C | C | C |\r\n| empty | — | — | C | C |\r\n\r\n### Overlays and asynchronous feedback\r\n\r\n| Component | Required states/behavior |\r\n|---|---|\r\n| Modal | closed, open, entering/leaving, focus trap, Escape, focus return |\r\n| Menu/Popover | closed, open, trigger focus, keyboard navigation, dismiss |\r\n| Tooltip | hidden/shown, hover and focus trigger, Escape/touch dismiss |\r\n| Toast | entering, visible, dismissing; info/success/warning/error |\r\n| Notification | info/success/warning/error; optional dismiss |\r\n| FileUpload | default, loading, error, success, disabled |\r\n| Dropzone | default, hover, focus-visible, dragActive, disabled, invalid |\r\n\r\n## Бизнес-состояния\r\n\r\n`archived`, `applied`, `unread`, `sent`, `rejected`, `expired`, `promoted`,\r\n`paymentFailed` и похожие значения не добавляются в глобальный список. Они\r\nпринадлежат модулю и сопоставляются с общими feedback states только визуально.\r\n\r\n## Definition of Done для states\r\n\r\n- Все required states реализованы или явно отмечены `unsupported` с причиной.\r\n- Для keyboard-interactive элемента есть видимый `focus-visible`.\r\n- Для state есть не только CSS, но и воспроизводимый story/showcase example.\r\n- Нативная семантика используется раньше ARIA.\r\n- Disabled, loading и readOnly не смешаны.\r\n- Selected/current/checked/pressed не используются как синонимы.\r\n- В state section учтены component CSS, utility classes, props и ARIA.\r\n",
+  "previewMode": "none"
+}

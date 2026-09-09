@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Обратная связь</title>
+  <link rel="stylesheet" href="../../ui/career.css">
+  <link rel="stylesheet" href="reference.css">
+  <style>body{margin:0;padding:20px;background:#fff}.site-nav{display:none}</style>
+</head>
+<body>
+<section class="section" id="s-feedback">
+  <div class="section__head">
+    <p class="section__num">9</p>
+    <h2>Обратная связь</h2>
+    <p>Уведомления, пустые состояния, каркасы загрузки.</p>
+  </div>
+
+  <div class="subsection" id="fb-notification">
+    <div class="specimen" data-name="информатор: четыре вида notification--info · --attention · --news · --alert вид задаёт и заливку, и цвет рамки, и акцентный цвет иконки, крестика и ссылок — через переменную компонента --notification-accent-color . заливка везде 10% от статусного цвета, рамка — он же в полную силу. иконка видом не определяется: это отдельный prop icon . ниже показаны те, что встречаются в снятых story; у --news подтверждённой иконки нет. корневой класс — notification , а не base-notification : имя компонента в storybook и имя класса в разметке различаются.">
+      <div class="specimen__head"><h4>Информатор: четыре вида</h4><code>notification--info · --attention · --news · --alert</code></div>
+      <p class="note">Вид задаёт и заливку, и цвет рамки, и акцентный цвет иконки, крестика и ссылок — через переменную компонента <code>--notification-accent-color</code>. Заливка везде 10% от статусного цвета, рамка — он же в полную силу.<br>Иконка видом <b>не</b> определяется: это отдельный prop <code>icon</code>. Ниже показаны те, что встречаются в снятых story; у <code>--news</code> подтверждённой иконки нет.<br>Корневой класс — <code>notification</code>, а не <code>base-notification</code>: имя компонента в Storybook и имя класса в разметке различаются.</p>
+      <div class="stage">
+<div style="display:grid;gap:8px"><div class="notification notification--info"><div class="notification__wrapper"><svg class="svg-icon notification__icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/info.svg" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM13 7C13 7.55228 12.5523 8 12 8C11.4477 8 11 7.55228 11 7C11 6.44772 11.4477 6 12 6C12.5523 6 13 6.44772 13 7ZM13 10V17H11V10H13ZM20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z" />
+  </svg><div class="notification__content"><div class="notification__title">Информация</div><div class="notification__description">Синий: нейтральное сообщение и подсказка.</div></div></div></div><div class="notification notification--attention"><div class="notification__wrapper"><svg class="svg-icon notification__icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/danger.svg" fill="none"><path fill="none" stroke="currentColor" stroke-width="2" d="M11.957 3.02a.048.048 0 0 1 .008-.01.02.02 0 0 1 .004-.003A.066.066 0 0 1 12 3c.015 0 .026.004.03.007a.02.02 0 0 1 .005.003c.001 0 .004.003.008.01l9.953 16.946a.072.072 0 0 1 .004.006.043.043 0 0 1-.017.022.033.033 0 0 1-.008.004.078.078 0 0 1-.021.002H2.046a.078.078 0 0 1-.02-.002.031.031 0 0 1-.008-.003.042.042 0 0 1-.018-.023.06.06 0 0 1 .004-.006L11.957 3.02Z"/><path fill="currentColor" fill-rule="evenodd" d="M11 17a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm1-2a1 1 0 0 1-1-1v-4a1 1 0 1 1 2 0v4a1 1 0 0 1-1 1Z" clip-rule="evenodd"/></svg><div class="notification__content"><div class="notification__title">Внимание</div><div class="notification__description">Жёлтый: предупреждение, действие ещё можно исправить.</div></div></div></div><div class="notification notification--news"><div class="notification__wrapper"><svg class="svg-icon notification__icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/check-circle-empty.svg" viewBox="0 0 24 24"><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm0 18c-4.4 0-8-3.6-8-8s3.6-8 8-8 8 3.6 8 8-3.6 8-8 8z"/><path d="m15.3 8.3-4.8 5.2-1.8-1.9c-.4-.4-1-.4-1.4-.1-.4.4-.4 1-.1 1.4l2.5 2.7c.2.2.5.3.7.3s.5-.1.7-.3l5.5-6c.4-.4.3-1-.1-1.4-.2-.3-.9-.3-1.2.1z"/></svg><div class="notification__content"><div class="notification__title">Новость</div><div class="notification__description">Зелёный: успешный исход или новая возможность.</div></div></div></div><div class="notification notification--alert"><div class="notification__wrapper"><svg class="svg-icon notification__icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/minus-circle.svg" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z" fill="currentColor"/>
+    <path d="M8 12H16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  </svg><div class="notification__content"><div class="notification__title">Ошибка</div><div class="notification__description">Красный: критическая ошибка, требуется вмешательство.</div></div></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="fb-notification-parts">
+    <div class="specimen" data-name="заголовок и крестик — необязательны title · closable оба слоя включаются props title и closable и могут отсутствовать в любом сочетании. без заголовка описание остаётся один на один с иконкой и центрируется по ней.">
+      <div class="specimen__head"><h4>Заголовок и крестик — необязательны</h4><code>title · closable</code></div>
+      <p class="note">Оба слоя включаются props <code>title</code> и <code>closable</code> и могут отсутствовать в любом сочетании. Без заголовка описание остаётся один на один с иконкой и центрируется по ней.</p>
+      <div class="stage">
+<div style="display:grid;gap:8px"><div class="notification notification--info"><div class="notification__wrapper"><svg class="svg-icon notification__icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/info.svg" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM13 7C13 7.55228 12.5523 8 12 8C11.4477 8 11 7.55228 11 7C11 6.44772 11.4477 6 12 6C12.5523 6 13 6.44772 13 7ZM13 10V17H11V10H13ZM20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z" />
+  </svg><div class="notification__content"><div class="notification__title">С заголовком и крестиком</div><div class="notification__description">Описание</div></div><button type="button" class="notification__close" aria-label="Закрыть"><svg class="svg-icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/close.svg" viewBox="0 0 24 24">
+    <path d="M16.2929 6.29287C16.6834 5.90237 17.3166 5.90237 17.7071 6.29287C18.0976 6.68338 18.0976 7.31658 17.7071 7.70708L13.4142 12L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L12 13.4142L7.70708 17.7071C7.31658 18.0976 6.68338 18.0976 6.29287 17.7071C5.90237 17.3166 5.90237 16.6834 6.29287 16.2929L10.5858 12L6.29278 7.70708C5.90248 7.31658 5.90247 6.68337 6.29287 6.29297C6.68348 5.90247 7.31667 5.90247 7.70718 6.29297L12 10.5858L16.2929 6.29287Z" />
+  </svg></button></div></div><div class="notification notification--info"><div class="notification__wrapper"><svg class="svg-icon notification__icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/info.svg" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM13 7C13 7.55228 12.5523 8 12 8C11.4477 8 11 7.55228 11 7C11 6.44772 11.4477 6 12 6C12.5523 6 13 6.44772 13 7ZM13 10V17H11V10H13ZM20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z" />
+  </svg><div class="notification__content"><div class="notification__title">Только заголовок</div><div class="notification__description">Описание</div></div></div></div><div class="notification notification--info"><div class="notification__wrapper"><svg class="svg-icon notification__icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/info.svg" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM13 7C13 7.55228 12.5523 8 12 8C11.4477 8 11 7.55228 11 7C11 6.44772 11.4477 6 12 6C12.5523 6 13 6.44772 13 7ZM13 10V17H11V10H13ZM20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z" />
+  </svg><div class="notification__content"><div class="notification__description">Только описание, с крестиком</div></div><button type="button" class="notification__close" aria-label="Закрыть"><svg class="svg-icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/close.svg" viewBox="0 0 24 24">
+    <path d="M16.2929 6.29287C16.6834 5.90237 17.3166 5.90237 17.7071 6.29287C18.0976 6.68338 18.0976 7.31658 17.7071 7.70708L13.4142 12L17.7071 16.2929C18.0976 16.6834 18.0976 17.3166 17.7071 17.7071C17.3166 18.0976 16.6834 18.0976 16.2929 17.7071L12 13.4142L7.70708 17.7071C7.31658 18.0976 6.68338 18.0976 6.29287 17.7071C5.90237 17.3166 5.90237 16.6834 6.29287 16.2929L10.5858 12L6.29278 7.70708C5.90248 7.31658 5.90247 6.68337 6.29287 6.29297C6.68348 5.90247 7.31667 5.90247 7.70718 6.29297L12 10.5858L16.2929 6.29287Z" />
+  </svg></button></div></div><div class="notification notification--info"><div class="notification__wrapper"><svg class="svg-icon notification__icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/info.svg" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM13 7C13 7.55228 12.5523 8 12 8C11.4477 8 11 7.55228 11 7C11 6.44772 11.4477 6 12 6C12.5523 6 13 6.44772 13 7ZM13 10V17H11V10H13ZM20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z" />
+  </svg><div class="notification__content"><div class="notification__description">Только описание</div></div></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="fb-notification-border">
+    <div class="specimen" data-name="обводка зависит от места notification--borderless на странице информатор идёт с рамкой — она отделяет его от фона. встроенный в карточку, на белом, рамку снимает модификатор --borderless : заливки достаточно, а вторая рамка внутри карточки дала бы двойную обводку.">
+      <div class="specimen__head"><h4>Обводка зависит от места</h4><code>notification--borderless</code></div>
+      <p class="note">На странице информатор идёт с рамкой — она отделяет его от фона. Встроенный в карточку, на белом, рамку снимает модификатор <code>--borderless</code>: заливки достаточно, а вторая рамка внутри карточки дала бы двойную обводку.</p>
+      <div class="stage">
+<div style="display:grid;gap:16px"><div><div class="notification notification--attention"><div class="notification__wrapper"><svg class="svg-icon notification__icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/danger.svg" fill="none"><path fill="none" stroke="currentColor" stroke-width="2" d="M11.957 3.02a.048.048 0 0 1 .008-.01.02.02 0 0 1 .004-.003A.066.066 0 0 1 12 3c.015 0 .026.004.03.007a.02.02 0 0 1 .005.003c.001 0 .004.003.008.01l9.953 16.946a.072.072 0 0 1 .004.006.043.043 0 0 1-.017.022.033.033 0 0 1-.008.004.078.078 0 0 1-.021.002H2.046a.078.078 0 0 1-.02-.002.031.031 0 0 1-.008-.003.042.042 0 0 1-.018-.023.06.06 0 0 1 .004-.006L11.957 3.02Z"/><path fill="currentColor" fill-rule="evenodd" d="M11 17a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm1-2a1 1 0 0 1-1-1v-4a1 1 0 1 1 2 0v4a1 1 0 0 1-1 1Z" clip-rule="evenodd"/></svg><div class="notification__content"><div class="notification__description">На странице — с рамкой.</div></div></div></div></div><section class="base-section base-section--background-white rounded-3xl"><h3 class="base-section__title base-section__title--size-s">Внутри карточки</h3><p class="text-body-m" style="margin:12px 0">Тот же информатор без рамки:</p><div class="notification notification--attention notification--borderless"><div class="notification__wrapper"><svg class="svg-icon notification__icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/danger.svg" fill="none"><path fill="none" stroke="currentColor" stroke-width="2" d="M11.957 3.02a.048.048 0 0 1 .008-.01.02.02 0 0 1 .004-.003A.066.066 0 0 1 12 3c.015 0 .026.004.03.007a.02.02 0 0 1 .005.003c.001 0 .004.003.008.01l9.953 16.946a.072.072 0 0 1 .004.006.043.043 0 0 1-.017.022.033.033 0 0 1-.008.004.078.078 0 0 1-.021.002H2.046a.078.078 0 0 1-.02-.002.031.031 0 0 1-.008-.003.042.042 0 0 1-.018-.023.06.06 0 0 1 .004-.006L11.957 3.02Z"/><path fill="currentColor" fill-rule="evenodd" d="M11 17a1 1 0 1 1 2 0 1 1 0 0 1-2 0Zm1-2a1 1 0 0 1-1-1v-4a1 1 0 1 1 2 0v4a1 1 0 0 1-1 1Z" clip-rule="evenodd"/></svg><div class="notification__content"><div class="notification__description">Встроен в блок — рамки нет.</div></div></div></div></section></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="fb-notification-density">
+    <div class="specimen" data-name="плотность notification--padding-small · --padding-medium три ступени внутреннего отступа: по умолчанию 12/16, --padding-medium 10/16, --padding-small 8/12. кегль не меняется.">
+      <div class="specimen__head"><h4>Плотность</h4><code>notification--padding-small · --padding-medium</code></div>
+      <p class="note">Три ступени внутреннего отступа: по умолчанию 12/16, <code>--padding-medium</code> 10/16, <code>--padding-small</code> 8/12. Кегль не меняется.</p>
+      <div class="stage">
+<div style="display:grid;gap:8px"><div class="notification notification--info"><div class="notification__wrapper"><svg class="svg-icon notification__icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/info.svg" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM13 7C13 7.55228 12.5523 8 12 8C11.4477 8 11 7.55228 11 7C11 6.44772 11.4477 6 12 6C12.5523 6 13 6.44772 13 7ZM13 10V17H11V10H13ZM20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z" />
+  </svg><div class="notification__content"><div class="notification__description">По умолчанию — padding 12 / 16</div></div></div></div><div class="notification notification--info notification--padding-medium"><div class="notification__wrapper"><svg class="svg-icon notification__icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/info.svg" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM13 7C13 7.55228 12.5523 8 12 8C11.4477 8 11 7.55228 11 7C11 6.44772 11.4477 6 12 6C12.5523 6 13 6.44772 13 7ZM13 10V17H11V10H13ZM20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z" />
+  </svg><div class="notification__content"><div class="notification__description">medium — padding 10 / 16</div></div></div></div><div class="notification notification--info notification--padding-small"><div class="notification__wrapper"><svg class="svg-icon notification__icon icon-inline" width="24" height="24" style="width:24px;height:24px" data-icon-src="../../ui/assets/icons/single/sprite/info.svg" viewBox="0 0 24 24">
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM13 7C13 7.55228 12.5523 8 12 8C11.4477 8 11 7.55228 11 7C11 6.44772 11.4477 6 12 6C12.5523 6 13 6.44772 13 7ZM13 10V17H11V10H13ZM20 12C20 16.4183 16.4183 20 12 20C7.58172 20 4 16.4183 4 12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12Z" />
+  </svg><div class="notification__content"><div class="notification__description">small — padding 8 / 12</div></div></div></div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="fb-empty">
+    <div class="specimen" data-name="пустое состояние empty-placeholder единый компонент: иллюстрация, заголовок, пояснение и необязательное действие. иллюстрации — настоящие файлы career.">
+      <div class="specimen__head"><h4>Пустое состояние</h4><code>empty-placeholder</code></div>
+      <p class="note">Единый компонент: иллюстрация, заголовок, пояснение и необязательное действие. Иллюстрации — настоящие файлы Career.</p>
+      <div class="stage">
+<div class="hidden">
+  <img src="../../ui/assets/illustrations/no-conversations.svg" alt="Нет диалогов" width="48" height="48" class="ml-4 mt-3">
+</div>
+<div class="h-full pb-[44px]">
+  <div class="empty-placeholder empty-placeholder--fullWidth empty-placeholder--noBorder empty-placeholder--fullHeight">
+    <img src="../../ui/assets/illustrations/no-conversations.svg" alt width="96" height="96" class="empty-placeholder__image">
+    <div class="empty-placeholder__title">Нет диалогов</div>
+    <div class="empty-placeholder__description">Вы можете найти собеседников в списке специалистов.</div>
+    <div class="empty-placeholder__actions">
+      <a href="#" data-href="/resumes" target="_self" class="base-button inline-flex appearance-main size-l is-sizeable">
+        <span class="base-button__inner">
+          <span class="base-button__content">В раздел специалистов</span>
+        </span>
+      </a>
+    </div>
+  </div>
+</div><div class="hidden">
+  <img src="../../ui/assets/icons/no-results.svg" alt="Диалоги не найдены" width="48" height="48" class="ml-4 mt-3">
+</div>
+<div class="h-full pb-[44px]">
+  <div class="empty-placeholder empty-placeholder--fullWidth empty-placeholder--fullHeight">
+    <img src="../../ui/assets/icons/no-results.svg" alt width="96" height="96" class="empty-placeholder__image">
+    <div class="empty-placeholder__title">Диалоги не найдены</div>
+    <div class="empty-placeholder__description">Мы не нашли диалоги, которые бы соответствовали этому запросу. Попробуйте изменить условия поиска.</div>
+  </div>
+</div><div class="empty-placeholder empty-placeholder--fullWidth empty-placeholder--noBorder empty-placeholder--fullHeight">
+  <img src="../../ui/assets/illustrations/no-conversations.svg" alt width="96" height="96" class="empty-placeholder__image">
+  <div class="empty-placeholder__title">Нет сообщений</div>
+  <div class="empty-placeholder__description">Напишите первое сообщение собеседнику.</div>
+</div><div class="h-full border-none small-phone:hidden">
+  <div class="empty-placeholder empty-placeholder--fullWidth empty-placeholder--noBorder empty-placeholder--fullHeight">
+    <img src="../../ui/assets/illustrations/empty-conversation.svg" alt width="96" height="96" class="empty-placeholder__image">
+    <div class="empty-placeholder__title">Выберите собеседника</div>
+    <div class="empty-placeholder__description">Чтобы начать диалог выберите собеседника.</div>
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="fb-skeleton">
+    <div class="specimen" data-name="каркас загрузки skeleton-pulse · skeleton-shape">
+      <div class="specimen__head"><h4>Каркас загрузки</h4><code>skeleton-pulse · skeleton-shape</code></div>
+      <div class="stage">
+<div class="skeleton-pulse phablet-only:w-[320px]">
+  <div class="flex items-center gap-3 px-4 py-3">
+    <div class="skeleton-shape shrink-0" style="width: 48px; height: 48px; border-radius: 50%;"></div>
+    <div class="grow">
+      <div class="mb-3 flex items-end justify-between gap-6">
+        <div class="skeleton-shape max-w-[200px] grow" style="width: auto; height: 16px;"></div>
+        <div class="skeleton-shape" style="width: 48px; height: 12px;"></div>
+      </div>
+      <div class="skeleton-shape" style="width: 100%; height: 12px;"></div>
+    </div>
+  </div>
+  <div class="flex items-center gap-3 px-4 py-3">
+    <div class="skeleton-shape shrink-0" style="width: 48px; height: 48px; border-radius: 50%;"></div>
+    <div class="grow">
+      <div class="mb-3 flex items-end justify-between gap-6">
+        <div class="skeleton-shape max-w-[200px] grow" style="width: auto; height: 16px;"></div>
+        <div class="skeleton-shape" style="width: 48px; height: 12px;"></div>
+      </div>
+      <div class="skeleton-shape" style="width: 100%; height: 12px;"></div>
+    </div>
+  </div>
+  <div class="flex items-center gap-3 px-4 py-3">
+    <div class="skeleton-shape shrink-0" style="width: 48px; height: 48px; border-radius: 50%;"></div>
+    <div class="grow">
+      <div class="mb-3 flex items-end justify-between gap-6">
+        <div class="skeleton-shape max-w-[200px] grow" style="width: auto; height: 16px;"></div>
+        <div class="skeleton-shape" style="width: 48px; height: 12px;"></div>
+      </div>
+      <div class="skeleton-shape" style="width: 100%; height: 12px;"></div>
+    </div>
+  </div>
+  <div class="flex items-center gap-3 px-4 py-3">
+    <div class="skeleton-shape shrink-0" style="width: 48px; height: 48px; border-radius: 50%;"></div>
+    <div class="grow">
+      <div class="mb-3 flex items-end justify-between gap-6">
+        <div class="skeleton-shape max-w-[200px] grow" style="width: auto; height: 16px;"></div>
+        <div class="skeleton-shape" style="width: 48px; height: 12px;"></div>
+      </div>
+      <div class="skeleton-shape" style="width: 100%; height: 12px;"></div>
+    </div>
+  </div>
+  <div class="flex items-center gap-3 px-4 py-3">
+    <div class="skeleton-shape shrink-0" style="width: 48px; height: 48px; border-radius: 50%;"></div>
+    <div class="grow">
+      <div class="mb-3 flex items-end justify-between gap-6">
+        <div class="skeleton-shape max-w-[200px] grow" style="width: auto; height: 16px;"></div>
+        <div class="skeleton-shape" style="width: 48px; height: 12px;"></div>
+      </div>
+      <div class="skeleton-shape" style="width: 100%; height: 12px;"></div>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="subsection" id="fb-toast">
+    <div class="specimen" data-name="всплывающее сообщение toastify · вызывается notify() в snapshot попал только триггер: тост рендерится в портал. оформление есть в css ( ui/components/feedback.css ), разметка не подтверждена — здесь не достраивается.">
+      <div class="specimen__head"><h4>Всплывающее сообщение</h4><code>toastify · вызывается notify()</code></div>
+      <p class="note">В snapshot попал только триггер: тост рендерится в портал. Оформление есть в CSS (<code>ui/components/feedback.css</code>), разметка не подтверждена — здесь не достраивается.</p>
+      <div class="stage">
+<p class="hint">Разметка тоста не извлечена. См. <code>components/feedback/toast.md</code>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+</body>
+</html>

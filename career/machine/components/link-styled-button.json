@@ -1,0 +1,135 @@
+{
+  "id": "link-styled-button",
+  "name": "LinkStyledButton",
+  "category": "actions",
+  "kind": "component",
+  "spec": "components\\actions\\link-styled-button.md",
+  "status": "complete",
+  "states": [
+    "default",
+    "hover",
+    "focus-visible",
+    "pressed",
+    "disabled"
+  ],
+  "cssRoots": [
+    "link-styled-button"
+  ],
+  "anchor": "showcase/components.html#a-special",
+  "markup": {
+    "html": "<button class=\"link-styled-button inline-block text-body-m\" type=\"button\">Кнопка выглядящая как ссылка</button>",
+    "requires": [
+      "ui/career.css"
+    ]
+  },
+  "evidence": [],
+  "storybookNames": [
+    "LinkStyledButton"
+  ],
+  "code": {
+    "component": "LinkStyledButton",
+    "importPath": null,
+    "props": null,
+    "note": "import-путь и props требуют доступа к репозиторию career-web"
+  },
+  "legacySource": {
+    "id": "link-styled-button",
+    "name": "LinkStyledButton",
+    "category": "actions",
+    "kind": "component",
+    "spec": "components\\actions\\link-styled-button.md",
+    "status": "complete",
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "disabled"
+    ],
+    "cssRoots": [
+      "link-styled-button"
+    ],
+    "anchor": "showcase/components.html#a-special",
+    "markup": {
+      "html": "<button class=\"link-styled-button inline-block text-body-m\" type=\"button\">Кнопка выглядящая как ссылка</button>",
+      "requires": [
+        "ui/career.css"
+      ]
+    },
+    "evidence": [],
+    "storybookNames": [
+      "LinkStyledButton"
+    ],
+    "code": {
+      "component": "LinkStyledButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "title": "LinkStyledButton",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "extracted-package"
+    ],
+    "confidence": "high",
+    "scope": "public-and-storybook"
+  },
+  "purpose": "Кнопка, выглядящая как ссылка. Нужна для вторичного действия, которое выполняет операцию на текущем экране, но визуально не должно конкурировать с основной кнопкой. Для навигации всегда используется <a>.",
+  "implementation": {
+    "markup": "markup.html",
+    "cssRoots": [
+      "link-styled-button"
+    ],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [],
+    "code": {
+      "component": "LinkStyledButton",
+      "importPath": null,
+      "props": null,
+      "note": "import-путь и props требуют доступа к репозиторию career-web"
+    }
+  },
+  "stateGroups": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "disabled"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "specimen",
+      "title": "Разметка",
+      "file": "viewer/specimen.html",
+      "query": "spec=machine%2Fcomponents%2Flink-styled-button.json",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "accessibility": [],
+  "unknowns": [
+    "В production snapshot собственного CSS не было: внешний вид был собран"
+  ],
+  "markdown": "# LinkStyledButton · Кнопка-ссылка\n\n| | |\n|---|---|\n| **Категория** | Действия |\n| **Корневой класс** | `link-styled-button` |\n| **CSS** | `ui/state-contract.css` + utility-классы production snapshot |\n| **Живая реализация** | `showcase/components.html` |\n| **Snapshot Storybook** | 1 из 1 |\n\n## Назначение\n\nКнопка, выглядящая как ссылка. Нужна для вторичного действия, которое выполняет\nоперацию на текущем экране, но визуально не должно конкурировать с основной\nкнопкой. Для навигации всегда используется `<a>`.\n\n## Анатомия\n\n```\nbutton.link-styled-button.inline-block.text-body-m  [type=\"button\"]\n  · «Кнопка выглядящая как ссылка»\n```\n\n_Разметка story `common-buttons-linkstyledbutton--link-styled-button-story`, снятая из DOM. Vue-скоуп `data-v-*` снят._\n\n## Состояния\n\nProduction snapshot подтверждает `default` и `hover`. UI kit закрывает\nнедостающие состояния отдельным стабильным root-классом:\n\n| Состояние | Контракт |\n|---|---|\n| `default` | `<button type=\"button\">` без state-атрибутов |\n| `hover` | `:hover`, появляется подчёркивание |\n| `focus-visible` | `:focus-visible`, видимый focus ring |\n| `pressed` | `:active`; `.is-pressed` только для story/визуальных тестов |\n| `disabled` | нативный `disabled`; событие не отправляется |\n\nLinkStyledButton используется только для действий. Для перехода применяется\nобычный `<a>` — визуально он может быть таким же, но это не этот компонент.\n\n## Слоты\n\n- `default`\n\n## Props\n\n| Prop | Тип | По умолчанию | Значения | Control |\n|---|---|---|---|---|\n| `type` | \"submit\" \\| \"button\" \\| \"reset\" | `'button'` | button · submit · reset | `select` |\n\n## Токены\n\n| Переменная | Значение | Статус |\n|---|---|---|\n| `--color-ui-blue-accent` | `#0464d2` | из `:root` Career |\n\n## Responsive\n\n_В CSS и разметке компонента брейкпоинтов не объявлено — он подстраивается только под ширину контейнера._\n\n## Доступность\n\nНативный `<button>` сохраняет keyboard behavior без дополнительных role или\n`tabindex`. Disabled задаётся атрибутом `disabled`, не только цветом.\n\n## Разметка\n\n```html\n<button class=\"link-styled-button inline-block text-body-m\" type=\"button\">Кнопка выглядящая как ссылка</button>\n```\n\n## CSS\n\nProduction snapshot собран utility-классами. Для новых реализаций стабильный\nконтракт находится в `ui/state-contract.css`; `hover:*` utilities больше не\nявляются публичным API компонента.\n\n## Ограничения\n\n- В production snapshot собственного CSS не было: внешний вид был собран\n  утилитами. UI kit добавляет стабильный root и состояния в\n  `ui/state-contract.css`.\n\n## Источники\n\n- Файлы в репозитории `career-web`: `./src/components/common/link-styled-button/link-styled-button.stories.ts`\n- Storybook `career-web`: `common-buttons-linkstyledbutton--link-styled-button-story`\n- Исходный корпус: `_sources/career/` (архивный, пакет от него не зависит)\n",
+  "sourcePath": "archive:career/v1/components/actions/link-styled-button.md",
+  "legacyDocument": "archive:career/v1/components/actions/link-styled-button.md"
+}

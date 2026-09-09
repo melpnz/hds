@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="../../ui/career-slice.css">
+  <style>
+    body{padding:24px;background:#fff}.roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:28px}.role,.token{border:1px solid rgba(24,46,57,.1);border-radius:12px;overflow:hidden}.role-swatch,.token-swatch{height:72px;background:var(--swatch)}.role div:last-child,.token div:last-child{padding:10px 12px}.role b,.token b{display:block;font-size:12px;line-height:16px}.role code,.token code{color:#7996a5;font-size:10px}.group{margin:24px 0 10px;font-size:18px;line-height:24px}.tokens{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+  </style>
+</head>
+<body>
+  <div class="roles">
+    <div class="role"><div class="role-swatch" style="--swatch:#8164f7"></div><div><b>Действие</b><code>#8164f7</code></div></div>
+    <div class="role"><div class="role-swatch" style="--swatch:#0464d2"></div><div><b>Ссылка</b><code>#0464d2</code></div></div>
+    <div class="role"><div class="role-swatch" style="--swatch:#1b272c"></div><div><b>Текст</b><code>#1b272c</code></div></div>
+    <div class="role"><div class="role-swatch" style="--swatch:#55798b"></div><div><b>Вторичный</b><code>#55798b</code></div></div>
+    <div class="role"><div class="role-swatch" style="--swatch:#7996a5"></div><div><b>Мета</b><code>#7996a5</code></div></div>
+  </div>
+  <main id="palette"></main>
+  <script>
+    const groups=['neutral','action-link','status','semantic','data-visualization','component-promo'];
+    const escape=value=>String(value).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+    Promise.all(groups.map(id=>fetch(`../../machine/foundations/colors/${id}.json`).then(r=>r.json()))).then(data=>{
+      document.querySelector('#palette').innerHTML=data.map(group=>`<h2 class="group">${escape(group.title)} · ${Object.keys(group.tokens).length}</h2><section class="tokens">${Object.entries(group.tokens).map(([name,token])=>{const cssVar=token.$extensions?.guide?.cssVar;const swatch=cssVar?`var(${cssVar})`:token.$value;return `<div class="token"><div class="token-swatch" style="--swatch:${escape(swatch)}"></div><div><b>${escape(name)}</b><code>${escape(token.$value)}</code></div></div>`}).join('')}</section>`).join('');
+    });
+  </script>
+</body>
+</html>

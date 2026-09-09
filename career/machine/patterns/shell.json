@@ -1,0 +1,110 @@
+{
+  "id": "shell",
+  "name": "Оболочка",
+  "summary": "Общая для всех продуктовых экранов. Единственная часть Career, которая не меняется ни между семействами страниц, ни между двумя реализациями продукта.",
+  "grid": {
+    "container": 1100,
+    "padding": "0 12px"
+  },
+  "note": "оболочка продукта: шапка 112 (48 тёмная панель Хабра + 64 навигация Career), контейнер, подвал",
+  "areas": null,
+  "responsive": [
+    {
+      "maxWidth": 1023,
+      "change": "навигация сворачивается в бургер"
+    }
+  ],
+  "rules": [
+    "SH-1",
+    "SH-2",
+    "SH-3",
+    "SH-4",
+    "SH-5",
+    "R-1"
+  ],
+  "example": {
+    "showcase": "showcase/pages.html#p-shell"
+  },
+  "title": "Оболочка",
+  "kind": "pattern",
+  "category": "page-families",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production-showcase",
+      "observed-rules"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Общая для всех продуктовых экранов. Единственная часть Career, которая не меняется ни между семействами страниц, ни между двумя реализациями продукта.",
+  "implementation": {
+    "markup": "examples/patterns/shell.html",
+    "cssRoots": [],
+    "styles": [
+      "ui/career.css"
+    ],
+    "scripts": [
+      "examples/patterns/patterns.js"
+    ]
+  },
+  "stateGroups": {
+    "ui": [],
+    "feature": [
+      "success"
+    ],
+    "domain": []
+  },
+  "ruleFiles": [
+    "machine/rules/sh-1.json",
+    "machine/rules/sh-2.json",
+    "machine/rules/sh-3.json",
+    "machine/rules/sh-4.json",
+    "machine/rules/sh-5.json",
+    "machine/rules/r-1.json"
+  ],
+  "examples": [
+    {
+      "id": "page",
+      "title": "Оболочка",
+      "file": "examples/patterns/shell.html",
+      "covers": [
+        "shell"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          375,
+          768,
+          1024,
+          1440
+        ],
+        "height": 720
+      }
+    }
+  ],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "showcase",
+      "ref": "showcase/pages.html#p-shell"
+    },
+    {
+      "type": "rules",
+      "ref": [
+        "SH-1",
+        "SH-2",
+        "SH-3",
+        "SH-4",
+        "SH-5",
+        "R-1"
+      ]
+    }
+  ],
+  "unknowns": [
+    "Последовательность areas пока не извлечена из ad-hoc showcase composition."
+  ]
+}
