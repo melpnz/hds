@@ -1,0 +1,47 @@
+===== node tools/validate-blocks.mjs =====
+К проверке руками (7):
+
+  entries[0] product-lockup: узел 5141:5053 не перечислен в inventory.nodes/brandBoards — проверьте руками (баннеры внутри досок там не перечислены)
+  entries[0] product-lockup: узел 5141:5088 не перечислен в inventory.nodes/brandBoards — проверьте руками (баннеры внутри досок там не перечислены)
+  entries[1] button: узел 15818:15335 не перечислен в inventory.nodes/brandBoards — проверьте руками (баннеры внутри досок там не перечислены)
+  entries[2] glass-chip: узел 5149:6510 не перечислен в inventory.nodes/brandBoards — проверьте руками (баннеры внутри досок там не перечислены)
+  entries[2] glass-chip: узел 5164:8042 не перечислен в inventory.nodes/brandBoards — проверьте руками (баннеры внутри досок там не перечислены)
+  entries[3] form-field: узел 20775:861 не перечислен в inventory.nodes/brandBoards — проверьте руками (баннеры внутри досок там не перечислены)
+  Записей в реестре 12, инвентаризация ожидает 24 (registryTotals.total) — реестр наполняется волнами
+
+Записей 12: статьи на месте, cssRoots сошлись, якоря сошлись.
+EXIT=0
+
+===== node tools/validate-classes.mjs =====
+Проверено классов: 201 в 4 файле(ах) против 11 таблиц стилей.
+METHOD §6.2: витрин 3 с префиксом doc-, файлов ui/ без doc- — 8.
+EXIT=0
+
+===== node tools/validate-counts.mjs =====
+Проверено утверждений: 170 в 17 файлах. Все сходятся.
+EXIT=0
+
+===== node tools/validate-normative.mjs =====
+Проверено: объявлений 775 в 8 файле(ах) CSS, статей 17.
+Нормативных областей 3: светлая тема · ось игривости · перенос брендового стиля на веб-формат.
+EXIT=0
+
+===== node tools/validate-radius.mjs =====
+ок         .form-field-box = var(--core-radius-step-6) → 6          против .button = var(--core-radius-step-pill) → пилюля    (пары нет, база)
+ок         .form-field-box-round = 10px → 10                        против .button = var(--core-radius-step-pill) → пилюля    (пары нет, база)
+равно      .form-field-input = var(--core-radius-step-pill) → пилюля против .button = var(--core-radius-step-pill) → пилюля    (база)
+ок         .form-field-outline = var(--core-radius-l) → 40          против .button = var(--core-radius-step-pill) → пилюля    (пары нет, база)
+равно      .form-field-r0 = var(--core-radius-step-0) → 0           против .button-r0 = var(--core-radius-step-0) → 0         (суффикс)
+равно      .form-field-r16 = var(--core-radius-step-16) → 16        против .button-r16 = var(--core-radius-step-16) → 16      (суффикс)
+ок         .form-field-r8 = var(--core-radius-s) → 8                против .button = var(--core-radius-step-pill) → пилюля    (пары нет, база)
+ок         .form-field-textarea = var(--core-radius-step-16) → 16   против .button = var(--core-radius-step-pill) → пилюля    (пары нет, база)
+
+Правило Ф-3 (Р-8): проверено пар 8, нарушений 0.
+Лестница Р-7: 0 · 6 · 16 · пилюля, ступени читаются из ui/tokens.css.
+EXIT=0
+
+===== node tools/validate-tokens.mjs =====
+Проверено ссылок на токены: 565 в 11 файлах CSS и 20 статьях.
+Сверено значений в таблицах «Токены»: 69. Объявлено имён: 121.
+EXIT=0
+

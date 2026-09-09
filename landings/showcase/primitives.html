@@ -117,6 +117,19 @@
     <span class="doc-src">ui/state-contract.css</span> — именно затем, чтобы нарисованное
     состояние нельзя было принять за снятое. Матрица обязательных по видам —
     <span class="doc-src">components/STATES.md</span>.</p>
+    <p class="doc-note"><span class="doc-note-strong">Этот стенд проверку кольца
+    не заменяет.</span> На стенде на корне стоит <span class="doc-src">data-product</span>,
+    и до review-3 R0-08 именно это скрывало отказ: цвет кольца шёл через
+    <span class="doc-src">--product-accent</span>, объявленный только под этим атрибутом,
+    и на странице без него всё объявление <span class="doc-src">outline</span> становилось
+    недействительным — кольцо пропадало вместе с браузерным. Проверять кольцо нужно там,
+    где живёт инвариант копируемости: пустая страница с одним
+    <span class="doc-src">ui/landings.css</span> и без
+    <span class="doc-src">data-product</span>. Теперь у каждой ссылки на слой продукта
+    есть запасное значение из ядра, и на такой странице кольцо
+    <span class="doc-src">solid 3px</span> цветом
+    <span class="doc-src">--core-text-primary</span>, а отмеченный чекбокс —
+    заливка <span class="doc-src">#5a6c7c</span> с белой галочкой.</p>
     <p class="doc-note"><span class="doc-note-strong">CSS примитивов подключён отдельной строкой.</span>
     <span class="doc-src">ui/blocks/primitives.css</span> ещё не внесён в
     <span class="doc-src">ui/blocks/index.css</span>, поэтому одного
@@ -261,7 +274,7 @@
           <tr><td>Чекбокс дизайн-системы Хабра</td><td>радиус 6</td><td class="doc-node">20775:861</td><td><span class="doc-badge doc-badge-snap">снято, импорт</span></td></tr>
           <tr><td>Чекбокс и радиокнопка 20 × 20, граница <span class="doc-src">1px solid #acb8bf</span> на белом и <span class="doc-src">2px solid #5a6c7c</span> на тёмном</td><td>радиус 10, 18 вхождений</td><td class="doc-node">I1324:8114;1311:6957;1311:6948</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
           <tr><td>Чекбокс: <span class="doc-src">appearance: none</span></td><td>—</td><td class="doc-node">—</td><td><span class="doc-badge doc-badge-norm">норматив</span><span class="doc-badge-why">свойства appearance в Figma нет; без него снятая граница не применяется вовсе</span></td></tr>
-          <tr><td>Чекбокс: вид отмеченного состояния</td><td>заливка <span class="doc-src">--product-cta</span>, знак <span class="doc-src">--product-on-acid</span></td><td class="doc-node">—</td><td><span class="doc-badge doc-badge-norm">норматив</span><span class="doc-badge-why">отмеченного экземпляра в источнике нет ни одного</span></td></tr>
+          <tr><td>Чекбокс: вид отмеченного состояния</td><td>заливка <span class="doc-src">--state-accent</span>, знак <span class="doc-src">--state-on-accent</span></td><td class="doc-node">—</td><td><span class="doc-badge doc-badge-norm">норматив</span><span class="doc-badge-why">отмеченного экземпляра в источнике нет ни одного</span></td></tr>
           <tr><td>Многострочное поле</td><td>высота 156, поля 16, радиус 16</td><td class="doc-node">—</td><td><span class="doc-badge doc-badge-norm">норматив</span><span class="doc-badge-why">textarea нет ни у одного из 18 узлов; радиус — ступень канона Р-7</span></td></tr>
           <tr><td>Плейсхолдер <span class="doc-src">#999999</span>, uppercase, трекинг +0.5</td><td>ALS Hauss Medium 18/1.0</td><td class="doc-node">10943:2465</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
           <tr><td>Плейсхолдер <span class="doc-src">#999999</span>, uppercase, трекинг +0.5</td><td>ALS Hauss Medium 16/1.0</td><td class="doc-node">9519:2170</td><td><span class="doc-badge doc-badge-snap">снято</span></td></tr>
@@ -521,8 +534,10 @@
   <section class="doc-section">
     <h2 class="doc-h2">Чего на этой странице нет</h2>
     <ul class="doc-limits">
-      <li class="doc-limit"><span class="doc-limit-k">Снятых состояний.</span> Ни одного из
-      четырёх (hover, focus-visible, disabled, invalid) ни у одного из шести примитивов.
+      <li class="doc-limit"><span class="doc-limit-k">Снятых состояний.</span> Ни одного
+      из восьми, реализованных пакетом (hover, focus-visible, pressed, checked,
+      indeterminate, disabled, readOnly, invalid), ни у одного из шести примитивов;
+      полю формы из них положено пять — 0 из 5 снятых, <span class="doc-src">blocks/form-field.md</span>.
       В 18 макетах их нет; Figma поведения не отдаёт. Всё, что на странице работает, —
       норматив из <span class="doc-src">ui/state-contract.css</span>, и подтвердить его
       источником нечем.</li>

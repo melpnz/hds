@@ -151,12 +151,12 @@
   text-decoration: none;
 }
 
-/* @normative состояния ссылки: hover, focus-visible и disabled в 18 макетах не встретились (BRIEF §5 п. 8) */
-.site-header-link:hover,
-.site-header-link:focus-visible {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-}
+/* Состояния ссылки и кнопки раскрытия (hover, focus-visible) живут
+   в ui/state-contract.css — единственном файле, объявленном нормативным для
+   состояний пакета (review-1 R0-08, находка 3; кнопка добавлена по review-2,
+   находка 1). disabled навигационной ссылке матрица не требует вовсе: у <a>
+   нет атрибута disabled, и строка «Ссылка» components/STATES.md называет это
+   состояние неприменимым, а не недостающим. */
 
 /* @snapshot 02_Landings 17473:826 — свёрнутое меню: бургер у 18085:3890, надпись «Меню» у 19319:7049, 3 узла из 18 */
 .site-header-toggle {
@@ -501,9 +501,9 @@
   color: var(--core-text-secondary);
 }
 
-/* @snapshot 02_Landings 6509:20515 — ссылка в подписи под формой окрашена акцентом проекта */
+/* @snapshot 02_Landings 6509:20515 — ссылка в подписи под формой окрашена акцентом проекта. Запасное значение дописано по review-3 R0-08 (находка 1) и снимком не является: без data-product подстановка пуста, объявление становится недействительным, color берёт unset и наследуется от .form-section-note — ссылка красилась ровно тем же --core-text-secondary, что и подпись вокруг неё, то есть переставала быть отличима (замерено rgb(143,143,143) у обеих). Запасное — основной текст ядра, ближайшая роль того же слоя */
 .form-section-note a {
-  color: var(--product-accent);
+  color: var(--product-accent, var(--core-text-primary));
 }
 
 /* @normative отступ кнопки отправки от последнего поля не снят ни у одного из 11 узлов */

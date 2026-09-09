@@ -50,7 +50,12 @@
   -webkit-font-smoothing: antialiased;
 }
 
-.doc-page :focus-visible { outline: 2px solid var(--product-accent); outline-offset: 2px; }
+/* Кольцо фокуса оболочка больше не назначает (review-1 R0-08, находка 5):
+   .doc-page :focus-visible здесь перекрывало пакетное :focus-visible
+   по специфичности (0,2,0 против 0,1,0) и рисовало 2px/2px вместо
+   заявленных 3px/3px из ui/state-contract.css — ровно тот отказ инварианта
+   копируемости METHOD §6.1, который components/STATES.md считала закрытым.
+   Кольцо теперь только одно, из пакета. */
 
 /* --- шапка стенда ------------------------------------------------------- */
 

@@ -35,7 +35,7 @@
 
 | id | Имя | Категория | Статус | Статья | CSS root | Живой пример |
 |---|---|---|---|---|---|---|
-| `product-lockup` | ProductLockup | layout | **complete** | [`product-lockup.md`](product-lockup.md) | `.product-lockup` | [`primitives.html#product-lockup`](../showcase/primitives.html) |
+| `product-lockup` | ProductLockup | layout | **partial** | [`product-lockup.md`](product-lockup.md) | `.product-lockup` | [`primitives.html#product-lockup`](../showcase/primitives.html) |
 | `button` | Button | actions | **complete** | [`button.md`](button.md) | `.button` | [`primitives.html#button`](../showcase/primitives.html) |
 | `glass-chip` | GlassChip | data-display | **complete** | [`glass-chip.md`](glass-chip.md) | `.glass-chip` | [`primitives.html#glass-chip`](../showcase/primitives.html) |
 | `form-field` | FormField | forms | **complete** | [`form-field.md`](form-field.md) | `.form-field` | [`primitives.html#form-field`](../showcase/primitives.html) |
@@ -65,15 +65,20 @@
 
 | id | Чего не хватает | Почему так вышло |
 |---|---|---|
+| `product-lockup` | `hover` | класс несёт две роли: как знак (`<span role="img">`) он состояний не требует, но в шапке тот же класс надет на `<a href>` и по матрице идёт строкой «Ссылка»; `focus-visible` ему даёт голое правило кольца, `:hover` не объявлен нигде |
 | `site-header` | `expanded` | вариант со свёрнутым меню (3/18) размечен настоящим контролом — `<button class="site-header-toggle" aria-expanded="false">`, — а правила на раскрытое меню нет ни в `ui/blocks/core.css`, ни в `ui/state-contract.css` |
-| `footer-social` | `hover` | плитки соцсетей размечены ссылками; фокус им даёт общее правило `:focus-visible`, а `:hover` не объявлен нигде — по матрице ссылка-кнопка обязана его нести |
+| `footer-social` | `hover` | плитки соцсетей размечены ссылками; фокус им даёт общее правило `:focus-visible`, а `:hover` не объявлен нигде — по матрице строка «Ссылка» обязана его нести |
 
 **Как это выглядело час назад.** До R0-08 `partial` стояло у пяти записей,
 и причина у всех была одна: состояний в пакете не было вообще. Матрица
-и `ui/state-contract.css` закрыли семь состояний из двадцати — hover,
-focus-visible, pressed, checked, indeterminate, disabled, invalid, — и три
+и `ui/state-contract.css` закрыли восемь состояний из двадцати — hover,
+focus-visible, pressed, checked, indeterminate, disabled, readOnly,
+invalid, — и три
 записи (`button`, `form-field`, `form-section`) стали `complete`. Осталось
-две, и каждая названа конкретным непокрытым состоянием, а не общей дырой.
+три, и каждая названа конкретным непокрытым состоянием, а не общей дырой.
+Третья, `product-lockup`, пришла на итерации review-3: запись стояла
+`complete` с требованием одного `default`, а тот же класс в шапке надет
+на `<a href>` и по матрице обязан нести `hover`.
 
 **Значения состояний нормативные, и это не мелочь.** Ни одного состояния
 в 18 макетах не встретилось; `ui/state-contract.css` помечен нормативом

@@ -82,10 +82,15 @@
           "fileKey": "eSJbNN1A788KEHaSBr2AfM1u"
         }
       ],
-      "status": "complete",
-      "statusReason": "Обязательное состояние по матрице components/STATES.md — только default: лок-ап интерактивным не бывает. Статья, класс .product-lockup и живой пример на месте.",
+      "status": "partial",
+      "statusReason": "Класс .product-lockup несёт две роли, и матрица components/STATES.md держит их отдельными строками. Как знак (<span role=\"img\"> — blocks/product-lockup.md, showcase/primitives.html) он идёт строкой «Знак и лента»: обязателен только default, и он покрыт. В шапке тот же класс надет на <a href> (blocks/site-header.md, showcase/core.html — 2 экземпляра) и идёт строкой «Ссылка»: default покрыт снимковым правилом, focus-visible — голым правилом кольца ui/state-contract.css, а :hover не объявлен нигде. Прежняя запись говорила «лок-ап интерактивным не бывает» и противоречила собственной разметке пакета (review-3 R0-08, находка 2).",
       "requiredStates": [
-        "default"
+        "default",
+        "hover",
+        "focus-visible"
+      ],
+      "missingStates": [
+        "hover"
       ],
       "wave": "R1",
       "step": "R1-01",
@@ -402,7 +407,7 @@
         }
       ],
       "status": "partial",
-      "statusReason": "Плитки соцсетей размечены ссылками (a.footer-social-tile). Фокус им даёт общее правило :focus-visible из ui/state-contract.css, а :hover не объявлен нигде — по матрице components/STATES.md ссылка-кнопка обязана его нести.",
+      "statusReason": "Плитки соцсетей размечены ссылками (a.footer-social-tile). Фокус им даёт общее правило :focus-visible из ui/state-contract.css, а :hover не объявлен нигде — по матрице components/STATES.md строка «Ссылка» обязана его нести. Термин «ссылка-кнопка» здесь стоял ошибочно: components/STATES.md закрепляет его за строкой «Действие» (.button на <a>), а плитка соцсетей стоит в строке «Ссылка».",
       "requiredStates": [
         "default",
         "hover",
@@ -538,7 +543,7 @@
         }
       ],
       "status": "partial",
-      "statusReason": "Ссылки шапки несут :hover и :focus-visible. Но вариант со свёрнутым меню (3/18) размечен настоящим контролом — button.site-header-toggle с aria-expanded=\"false\", — а правила на раскрытое меню нет ни в ui/blocks/core.css, ни в ui/state-contract.css: раскрытого вида у меню не существует.",
+      "statusReason": "И ссылки меню, и кнопка раскрытия несут :hover и :focus-visible — одним правилом ui/state-contract.css, раздел 6 (кнопка добавлена по review-2 R0-08: строка матрицы «Раскрывающийся контрол» требует наведения, а .site-header-toggle не менял при нём ничего). Не хватает одного expanded: вариант со свёрнутым меню (3/18) размечен настоящим контролом — button.site-header-toggle с aria-expanded=\"false\", — а правила на раскрытое меню нет ни в ui/blocks/core.css, ни в ui/state-contract.css: раскрытого вида у меню не существует.",
       "requiredStates": [
         "default",
         "hover",
