@@ -150,6 +150,20 @@ for (const file of blockCssFiles) {
 }
 
 // -------------------------------------------------------------------------
+// Границы покрытия живут в двух местах: разделами в evidence/coverage.md
+// и записями coverageLimits в инвентаризации. До этого правила пара
+// расходилась молча — файл нёс 17 границ, реестр 12, — и подмена любого числа
+// самого файла проходила зелёной: ни один регэксп сторожа не смотрел
+// в evidence/ вовсе (находка 1 ревью R0-07). Число берётся из структуры файла,
+// заголовков вида «## 7.», а не из его же прозы: иначе сторож сверял бы
+// документ с самим собой. Заголовки 8а/8б/8в буквой не считаются — это
+// подпункты одной границы, и в реестре им отвечает одна запись CL-8.
+const coverageFile = 'evidence/coverage.md';
+const coverageSections = exists(coverageFile)
+  ? countMatches(read(coverageFile), /^## \d+\. /gm)
+  : null;
+
+// -------------------------------------------------------------------------
 // Измерения: значение и то, чем оно получено.
 // -------------------------------------------------------------------------
 const actual = {
@@ -165,6 +179,7 @@ const actual = {
   findings: [inventory.findings.total, 'inventory.findings.total'],
   openQuestions: [inventory.openQuestions.length, 'длина inventory.openQuestions'],
   coverageLimits: [inventory.coverageLimits.length, 'длина inventory.coverageLimits'],
+  coverageSections: [coverageSections, 'разделы вида «## N.» в evidence/coverage.md'],
   // Шаги считаются по строкам таблиц роадмапа, а не по числу в его же сводке.
   roadmapSteps: [countMatches(roadmap, /^\| R\d-\d{2} \|/gm), 'строки таблиц ROADMAP.md вида | R0-01 |'],
   roadmapR0: [countMatches(roadmap, /^\| R0-\d{2} \|/gm), 'строки таблицы R0 в ROADMAP.md'],
@@ -289,7 +304,24 @@ const claims = [
   ['ROADMAP.md', /Пар «один макет в двух темах» — \*\*(\d+)\*\* из 22 узлов/, 'themePairs'],
   ['ROADMAP.md', /(\d+) пар из 22 узлов/, 'themePairs'],
   ['ROADMAP.md', /(\d+) % у `14871:1319`/, 'renderPercent'],
-  ['ROADMAP.md', /83 % у `14871:1319`, 0 мобильных артбордов, (\d+) пар тем/, 'themePairs'],
+  // Строка шага R0-07 переписана самим шагом: «0 мобильных артбордов» ушло —
+  // число ничем не измерялось (граница 4 evidence/coverage.md), — а привязка
+  // осталась на том же месте и на том же числе.
+  ['ROADMAP.md', /83 % у `14871:1319`, мобильные раскладки не установлены, (\d+) пар тем/, 'themePairs'],
+  // --- Границы покрытия: реестр против самого файла и против прозы
+  ['ROADMAP.md', /называет все (\d+) границ/, 'coverageLimits'],
+  ['evidence/coverage.md', /Границ в файле\s+\*\*(\d+)\*\*/, 'coverageLimits'],
+  ['README.md', /\(evidence\/coverage\.md\), \*\*(\d+) границ\*\*/, 'coverageLimits'],
+  ['README.md', /coverage\.md — (\d+) границ покрытия/, 'coverageLimits'],
+  ['BRIEF.md', /\*\*(\d+) границ\*\*: эти двенадцать/, 'coverageLimits'],
+  ['tools/README.md', /(\d+) границ\s+покрытия/, 'coverageLimits'],
+  ['tools/README.md', /(\d+) измеренных CSS/, 'measuredCss'],
+  // Граница 16 называет число ключей семейства cover:* — по ключу на запись
+  // реестра блоков. Оно и есть blockTypes: цикл заводит ключ на каждый блок
+  // инвентаризации. Итог прогона («N утверждений в M файлах») в границе не
+  // пишется — он меняется от собственных правок сторожа и ключом не берётся:
+  // правило на это число само стало бы строкой прогона (находка 11 review-2).
+  ['evidence/coverage.md', /ключ на каждый из \*\*(\d+) типов блоков\*\*/, 'blockTypes'],
   ['ROADMAP.md', /`14871:1319` просмотрен на (\d+) %/, 'renderPercent'],
 
   // --- BRIEF.md
@@ -390,6 +422,17 @@ const selfChecks = [
     ['landings', 'brand'].reduce((sum, side) => sum + ['p0', 'p1', 'p2']
       .reduce((inner, level) => inner + (inventory.findings[side][level]?.length ?? 0), 0), 0)],
 ];
+
+// Реестр границ против самого evidence/coverage.md: длина coverageLimits
+// должна равняться числу разделов файла. Пара сверяется структурой,
+// а не прозой, поэтому стоит здесь, среди самопроверок.
+if (coverageSections !== null) {
+  selfChecks.push([
+    'inventory.coverageLimits — длина против разделов evidence/coverage.md',
+    inventory.coverageLimits.length,
+    coverageSections,
+  ]);
+}
 
 // Строка coverage у самого блока с длиной его же списка узлов. Сторож ловил
 // расхождение документа с инвентаризацией, но не расхождение инвентаризации

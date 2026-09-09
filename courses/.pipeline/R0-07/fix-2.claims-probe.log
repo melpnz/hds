@@ -1,0 +1,59 @@
+ui/ — файлов 17, классов 64, переменных 102
+корпус — файлов 22, классов 974, переменных 110
+
+=== A. Собственный слой ui/ ===
+
+A1 — ВСЕ префиксные классы ui/ (все шесть префиксов, разбор 17 файлов):
+  phone:text-h1-mobile       foundations.css:342   @media (max-width:767px)
+  phone:text-h1-mobile       foundations.css:344   @media (max-width:767px)
+  phone:text-h2              foundations.css:343   @media (max-width:767px)
+  phone:text-h2              foundations.css:344   @media (max-width:767px)
+  small-phone:text-center    utilities.css:78   @media (max-width:479px)
+  tablet:px-6                layout.css:163   @media (max-width:1023px)
+  ИТОГО: префиксов 3, классов 4, различных правил 5 (foundations.css:342 · foundations.css:343 · foundations.css:344 · layout.css:163 · utilities.css:78), медиазапросов 3
+  по префиксам: small-phone:=1 · phone:=2 · phablet-and-tablet:=0 · tablet-only:=0 · tablet:=1 · desktop:=0
+
+A2 — поимённо названные витриной классы, в ui/ (есть / нет):
+  phone:text-h1-mobile       foundations.css:342 [@media (max-width:767px)], foundations.css:344 [@media (max-width:767px)]
+  phone:text-h2              foundations.css:343 [@media (max-width:767px)], foundations.css:344 [@media (max-width:767px)]
+  small-phone:text-center    utilities.css:78 [@media (max-width:479px)]
+  tablet:px-6                layout.css:163 [@media (max-width:1023px)]
+  desktop:hidden             — НЕТ
+  tablet:flex                — НЕТ
+  tablet-only:hidden         — НЕТ
+  phablet-and-tablet:block   — НЕТ
+  border                     — НЕТ
+  rounded-lg                 — НЕТ
+  bg-ui-black-50             — НЕТ
+  bg-ui-white                — НЕТ
+  container                  — НЕТ
+  text-card-title            — НЕТ
+
+A3 — --swiper-theme-color в ui/ (утверждение «в слое нет намеренно»):
+  объявление: — НЕТ
+  ссылка var(): — НЕТ
+  в корпусе прода объявлена: course-card-skeleton.DgMnfZhS.css:1
+
+A4 — ступенчатые утилиты шкалы под small-phone: в ui/:
+  все small-phone: в ui/ — small-phone:text-center
+  из них ступени шкалы (text-h*/text-card-title/text-small/text-micro/text-caps): нет
+
+=== B. Корпус прода — то, что витрина зовёт «сборкой» ===
+
+B1 — ВСЕ small-phone: классы корпуса (X-73: ложные отрицания были именно тут):
+  всего 23: small-phone:bg-[image:var(--header-background-gradient)], small-phone:bg-[length:100%_200%], small-phone:bg-no-repeat, small-phone:bg-top, small-phone:block, small-phone:break-words, small-phone:grid-cols-1, small-phone:grid-cols-[86px_86px_86px_86px], small-phone:h-[50dvh], small-phone:hidden, small-phone:m-0, small-phone:max-h-[250px], small-phone:max-w-full, small-phone:min-w-[440px], small-phone:min-w-full, small-phone:mt-0, small-phone:pt-0, small-phone:px-6, small-phone:py-0, small-phone:rounded-b-none, small-phone:rounded-t-3xl, small-phone:text-center, small-phone:w-full
+  из них ступени шкалы: нет
+
+B2 — .text-card-title в корпусе («класса .text-card-title в сборке нет»):
+  — НЕТ
+
+B3 — .container в корпусе («объявлен и не применяется»):
+  author.css:1, author.css:1 [@media (min-width:480px)], author.css:1 [@media (min-width:768px)], author.css:1 [@media (min-width:1024px)], author.css:5, author.css:5 [@media (min-width:480px)], author.css:5 [@media (min-width:768px)], author.css:5 [@media (min-width:1024px)], authors.css:1, authors.css:1 [@media (min-width:480px)], authors.css:1 [@media (min-width:768px)], authors.css:1 [@media (min-width:1024px)], authors.css:5, authors.css:5 [@media (min-width:480px)], authors.css:5 [@media (min-width:768px)], authors.css:5 [@media (min-width:1024px)], courses-listing.css:1, courses-listing.css:1 [@media (min-width:480px)], courses-listing.css:1 [@media (min-width:768px)], courses-listing.css:1 [@media (min-width:1024px)], courses-listing.css:5, courses-listing.css:5 [@media (min-width:480px)], courses-listing.css:5 [@media (min-width:768px)], courses-listing.css:5 [@media (min-width:1024px)], editors.css:1, editors.css:1 [@media (min-width:480px)], editors.css:1 [@media (min-width:768px)], editors.css:1 [@media (min-width:1024px)], editors.css:5, editors.css:5 [@media (min-width:480px)], editors.css:5 [@media (min-width:768px)], editors.css:5 [@media (min-width:1024px)], education-center.css:1, education-center.css:1 [@media (min-width:480px)], education-center.css:1 [@media (min-width:768px)], education-center.css:1 [@media (min-width:1024px)], education-center.css:5, education-center.css:5 [@media (min-width:480px)], education-center.css:5 [@media (min-width:768px)], education-center.css:5 [@media (min-width:1024px)], education-centers-listing.css:1, education-centers-listing.css:1 [@media (min-width:480px)], education-centers-listing.css:1 [@media (min-width:768px)], education-centers-listing.css:1 [@media (min-width:1024px)], education-centers-listing.css:5, education-centers-listing.css:5 [@media (min-width:480px)], education-centers-listing.css:5 [@media (min-width:768px)], education-centers-listing.css:5 [@media (min-width:1024px)], promocodes.css:1, promocodes.css:1 [@media (min-width:480px)], promocodes.css:1 [@media (min-width:768px)], promocodes.css:1 [@media (min-width:1024px)], promocodes.css:5, promocodes.css:5 [@media (min-width:480px)], promocodes.css:5 [@media (min-width:768px)], promocodes.css:5 [@media (min-width:1024px)], rating.css:1, rating.css:1 [@media (min-width:480px)], rating.css:1 [@media (min-width:768px)], rating.css:1 [@media (min-width:1024px)], rating.css:5, rating.css:5 [@media (min-width:480px)], rating.css:5 [@media (min-width:768px)], rating.css:5 [@media (min-width:1024px)], reviews.css:1, reviews.css:1 [@media (min-width:480px)], reviews.css:1 [@media (min-width:768px)], reviews.css:1 [@media (min-width:1024px)], reviews.css:5, reviews.css:5 [@media (min-width:480px)], reviews.css:5 [@media (min-width:768px)], reviews.css:5 [@media (min-width:1024px)], schools-for-children.css:1, schools-for-children.css:1 [@media (min-width:480px)], schools-for-children.css:1 [@media (min-width:768px)], schools-for-children.css:1 [@media (min-width:1024px)], schools-for-children.css:5, schools-for-children.css:5 [@media (min-width:480px)], schools-for-children.css:5 [@media (min-width:768px)], schools-for-children.css:5 [@media (min-width:1024px)]
+
+B4 — все .leading-* корпуса («других .leading-* в корпусе нет»):
+  leading-5, leading-none
+
+B5 — .outline-2 и .outline-offset-1 в корпусе («в сборке есть, в разметке не стоят»):
+  outline-offset-1     author.css:1, author.css:5, authors.css:1, authors.css:5, courses-listing.css:1, courses-listing.css:5, editors.css:1, editors.css:5, education-center.css:1, education-center.css:5, education-centers-listing.css:1, education-centers-listing.css:5, promocodes.css:1, promocodes.css:5, rating.css:1, rating.css:5, reviews.css:1, reviews.css:5, schools-for-children.css:1, schools-for-children.css:5
+  outline-2            author.css:1, author.css:5, authors.css:1, authors.css:5, courses-listing.css:1, courses-listing.css:5, editors.css:1, editors.css:5, education-center.css:1, education-center.css:5, education-centers-listing.css:1, education-centers-listing.css:5, promocodes.css:1, promocodes.css:5, rating.css:1, rating.css:5, reviews.css:1, reviews.css:5, schools-for-children.css:1, schools-for-children.css:5
+  outline-none         author.css:1, author.css:5, authors.css:1, authors.css:5, courses-listing.css:1, courses-listing.css:5, editors.css:1, editors.css:5, education-center.css:1, education-center.css:5, education-centers-listing.css:1, education-centers-listing.css:5, promocodes.css:1, promocodes.css:5, rating.css:1, rating.css:5, reviews.css:1, reviews.css:5, schools-for-children.css:1, schools-for-children.css:5

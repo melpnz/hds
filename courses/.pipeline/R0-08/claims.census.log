@@ -1,0 +1,445 @@
+=== Величины, выведенные из разбора ui/ ===
+  vars.total             51
+  vars.color             41
+  vars.noncolor          10
+  vars.live              26
+  vars.noMarkup          15
+  vars.unreferenced      9
+  vars.runtime           1
+  scale.steps            9
+  bp.prefixes.total      6
+  bp.prefixes.ui         3
+  bp.classes.ui          4
+  bp.rules.ui            5
+  bp.media.ui            3
+  container.maxWidth     1124
+  container.padding      24
+  grid.gap               48
+  grid.paddingTop        40
+  grid.paddingBottom     40
+  container.zone         1076
+  (rem = 16px, файлов ui/ 17, классов 64, переменных 51)
+
+=== Префиксные классы ui/ ===
+  phone:text-h1-mobile     ui/foundations.css:342  @media (max-width:767px)
+  phone:text-h1-mobile     ui/foundations.css:344  @media (max-width:767px)
+  phone:text-h2            ui/foundations.css:343  @media (max-width:767px)
+  phone:text-h2            ui/foundations.css:344  @media (max-width:767px)
+  small-phone:text-center  ui/utilities.css:78  @media (max-width:479px)
+  tablet:px-6              ui/layout.css:163  @media (max-width:1023px)
+
+=== Разобранные клаузы с сущностями (176) ===
+  [showcase/components.html:18] слой=ui полярность=negative сущности=--doc-*
+      Только doc-* и --doc-*, в ui/ не протекает (METHOD §6.2).
+  [showcase/components.html:22] слой=none полярность=positive сущности=.doc-stage
+      Обратно продукт получает своё внутри .doc-stage
+  [showcase/components.html:23] слой=none полярность=positive сущности=.doc-stage
+      см. комментарий к .doc-stage в components.css.
+  [showcase/components.html:120] слой=ui полярность=negative сущности=--doc-*, .doc-*
+      там нет ни одного селектора .doc-* и ни одного объявления --doc-*.
+  [showcase/components.html:137] слой=other полярность=negative сущности=validate-classes
+      Пока это так, зелёный validate-classes означает «в витрине и в спецификациях нет классов без правила, кроме перечисленных»
+  [showcase/components.html:301] слой=ui полярность=positive сущности=--color-…
+      фон ей задаёт var(--color-…) из ui/tokens.css.
+  [showcase/components.html:340] слой=none полярность=positive сущности=--color-…
+      var(--color-…)
+  [showcase/components.html:354] слой=none полярность=positive сущности=--color-ui-blue-50
+      --color-ui-blue-50
+  [showcase/components.html:363] слой=none полярность=positive сущности=--color-ui-blue-300
+      --color-ui-blue-300
+  [showcase/components.html:372] слой=none полярность=positive сущности=--color-ui-blue-400
+      --color-ui-blue-400
+  [showcase/components.html:381] слой=none полярность=positive сущности=--color-ui-blue-500
+      --color-ui-blue-500
+  [showcase/components.html:390] слой=none полярность=positive сущности=--color-ui-blue-600
+      --color-ui-blue-600
+  [showcase/components.html:404] слой=none полярность=positive сущности=--color-ui-black-50
+      --color-ui-black-50
+  [showcase/components.html:413] слой=none полярность=positive сущности=--color-ui-black-100
+      --color-ui-black-100
+  [showcase/components.html:422] слой=none полярность=positive сущности=--color-ui-black-150
+      --color-ui-black-150
+  [showcase/components.html:431] слой=none полярность=positive сущности=--color-ui-black-200
+      --color-ui-black-200
+  [showcase/components.html:440] слой=none полярность=positive сущности=--color-ui-black-300
+      --color-ui-black-300
+  [showcase/components.html:449] слой=none полярность=positive сущности=--color-ui-black-400
+      --color-ui-black-400
+  [showcase/components.html:458] слой=none полярность=positive сущности=--color-ui-black-500
+      --color-ui-black-500
+  [showcase/components.html:467] слой=none полярность=positive сущности=--color-ui-black-850
+      --color-ui-black-850
+  [showcase/components.html:481] слой=none полярность=positive сущности=--color-ui-black-transparent-50
+      --color-ui-black-transparent-50
+  [showcase/components.html:490] слой=none полярность=positive сущности=--color-ui-black-transparent-120
+      --color-ui-black-transparent-120
+  [showcase/components.html:499] слой=none полярность=positive сущности=--color-ui-black-transparent-300
+      --color-ui-black-transparent-300
+  [showcase/components.html:513] слой=none полярность=positive сущности=--color-ui-white
+      --color-ui-white
+  [showcase/components.html:522] слой=none полярность=positive сущности=--color-ui-white-transparent-50
+      --color-ui-white-transparent-50
+  [showcase/components.html:536] слой=none полярность=positive сущности=--color-ui-yellow-50
+      --color-ui-yellow-50
+  [showcase/components.html:545] слой=none полярность=positive сущности=--color-ui-yellow-400
+      --color-ui-yellow-400
+  [showcase/components.html:554] слой=none полярность=positive сущности=--color-ui-yellow-500
+      --color-ui-yellow-500
+  [showcase/components.html:563] слой=none полярность=positive сущности=--color-ui-red-50
+      --color-ui-red-50
+  [showcase/components.html:572] слой=none полярность=positive сущности=--color-ui-red-400
+      --color-ui-red-400
+  [showcase/components.html:581] слой=none полярность=positive сущности=--color-ui-red-500
+      --color-ui-red-500
+  [showcase/components.html:590] слой=none полярность=positive сущности=--color-ui-green-50
+      --color-ui-green-50
+  [showcase/components.html:599] слой=none полярность=positive сущности=--color-ui-green-400
+      --color-ui-green-400
+  [showcase/components.html:608] слой=none полярность=positive сущности=--color-ui-green-500
+      --color-ui-green-500
+  [showcase/components.html:622] слой=none полярность=positive сущности=--color-ui-orange-50
+      --color-ui-orange-50
+  [showcase/components.html:631] слой=none полярность=positive сущности=--color-ui-orange-500
+      --color-ui-orange-500
+  [showcase/components.html:640] слой=none полярность=positive сущности=--color-ui-violet-50
+      --color-ui-violet-50
+  [showcase/components.html:649] слой=none полярность=positive сущности=--color-ui-violet-500
+      --color-ui-violet-500
+  [showcase/components.html:663] слой=none полярность=positive сущности=--color-habr
+      --color-habr
+  [showcase/components.html:672] слой=none полярность=positive сущности=--color-career
+      --color-career
+  [showcase/components.html:681] слой=none полярность=positive сущности=--color-qna
+      --color-qna
+  [showcase/components.html:695] слой=none полярность=positive сущности=--color-chip-press
+      --color-chip-press
+  [showcase/components.html:704] слой=none полярность=positive сущности=--color-chip-inactive
+      --color-chip-inactive
+  [showcase/components.html:718] слой=none полярность=positive сущности=--color-white-background
+      --color-white-background
+  [showcase/components.html:719] слой=none полярность=positive сущности=--color-ui-white
+      var(--color-ui-white)
+  [showcase/components.html:727] слой=none полярность=positive сущности=--color-text-main
+      --color-text-main
+  [showcase/components.html:728] слой=none полярность=positive сущности=--color-ui-black-850
+      var(--color-ui-black-850)
+  [showcase/components.html:736] слой=none полярность=positive сущности=--color-links-main
+      --color-links-main
+  [showcase/components.html:737] слой=none полярность=positive сущности=--color-ui-blue-500
+      var(--color-ui-blue-500)
+  [showcase/components.html:750] слой=none полярность=positive сущности=--color-main-gradient-first
+      --color-main-gradient-first
+  [showcase/components.html:751] слой=none полярность=positive сущности=--color-ui-blue-500
+      linear-gradient(180deg,var(--color-ui-blue-500) 0%,var(--color-ui-blue-500) 100%)
+  [showcase/components.html:759] слой=none полярность=positive сущности=--color-main-gradient-second
+      --color-main-gradient-second
+  [showcase/components.html:760] слой=none полярность=positive сущности=--color-ui-blue-500, --color-ui-blue-400
+      linear-gradient(180deg,var(--color-ui-blue-500) 0%,var(--color-ui-blue-400) 100%)
+  [showcase/components.html:788] слой=ui полярность=negative сущности=--swiper-theme-color
+      Пятьдесят второй переменной, --swiper-theme-color: #007aff, в слое нет намеренно
+  [showcase/components.html:820] слой=none полярность=positive сущности=--font-weight-title
+      --font-weight-title
+  [showcase/components.html:820] слой=none полярность=positive сущности=.font-semibold
+      .font-semibold
+  [showcase/components.html:821] слой=none полярность=positive сущности=--font-size-h2
+      --font-size-h2
+  [showcase/components.html:821] слой=none полярность=positive сущности=.text-h2
+      .text-h2
+  [showcase/components.html:822] слой=none полярность=positive сущности=--font-size-h3
+      --font-size-h3
+  [showcase/components.html:822] слой=none полярность=positive сущности=.text-h3
+      .text-h3
+  [showcase/components.html:823] слой=none полярность=positive сущности=--font-size-h4
+      --font-size-h4
+  [showcase/components.html:823] слой=none полярность=positive сущности=.text-h4
+      .text-h4
+  [showcase/components.html:824] слой=none полярность=positive сущности=--line-height-h2
+      --line-height-h2
+  [showcase/components.html:824] слой=none полярность=positive сущности=.text-h2
+      .text-h2
+  [showcase/components.html:825] слой=none полярность=positive сущности=--line-height-h3
+      --line-height-h3
+  [showcase/components.html:825] слой=none полярность=positive сущности=.text-h3
+      .text-h3
+  [showcase/components.html:826] слой=none полярность=positive сущности=--line-height-h4
+      --line-height-h4
+  [showcase/components.html:826] слой=none полярность=positive сущности=.text-h4
+      .text-h4
+  [showcase/components.html:827] слой=none полярность=positive сущности=--line-height-card-title
+      --line-height-card-title
+  [showcase/components.html:827] слой=none полярность=positive сущности=.text-card-title
+      .text-card-title
+  [showcase/components.html:835] слой=none полярность=positive сущности=--shadow-dropdown
+      --shadow-dropdown: 0 1px 20px 0 rgba(0,0,0,.2)
+  [showcase/components.html:835] слой=none полярность=positive сущности=--color-ui-black-transparent-50, .shadow-context-menu-dropdown
+      выпадашки продукта рисуют тень другим правилом, .shadow-context-menu-dropdown через --color-ui-black-transparent-50
+  [showcase/components.html:837] слой=none полярность=positive сущности=--shadow-dropdown
+      --shadow-dropdown
+  [showcase/components.html:843] слой=none полярность=positive сущности=--header-height
+      --header-height: 64px
+  [showcase/components.html:845] слой=none полярность=positive сущности=--header-height
+      высота = var(--header-height)
+  [showcase/components.html:858] слой=other полярность=negative сущности=--header-height
+      ссылок var(--header-height) в CSS сборки нет ни одной.
+  [showcase/components.html:861] слой=other полярность=positive сущности=--header-height
+      style="top: var(--header-height)" у липкой полосы рубрикатора на /courses.
+  [showcase/components.html:887] слой=none полярность=positive сущности=.text-h1
+      .text-h1 …
+  [showcase/components.html:887] слой=none полярность=positive сущности=.text-caps
+      .text-caps
+  [showcase/components.html:896] слой=none полярность=positive сущности=.text-h1
+      .text-h1
+  [showcase/components.html:900] слой=none полярность=positive сущности=.text-h1-mobile
+      .text-h1-mobile
+  [showcase/components.html:904] слой=none полярность=positive сущности=.text-h2
+      .text-h2
+  [showcase/components.html:908] слой=none полярность=positive сущности=.text-h3
+      .text-h3
+  [showcase/components.html:912] слой=none полярность=positive сущности=.text-h4
+      .text-h4
+  [showcase/components.html:916] слой=none полярность=positive сущности=.text-default
+      .text-default
+  [showcase/components.html:920] слой=none полярность=positive сущности=.text-small
+      .text-small
+  [showcase/components.html:924] слой=none полярность=positive сущности=.text-micro
+      .text-micro
+  [showcase/components.html:928] слой=none полярность=positive сущности=.text-caps
+      .text-caps
+  [showcase/components.html:930] слой=other полярность=positive сущности=.uppercase
+      заглавные делает .uppercase, вес
+  [showcase/components.html:930] слой=other полярность=exhaustive сущности=.font-semibold
+      .font-semibold, сама ступень задаёт только 10/14
+  [showcase/components.html:944] слой=none полярность=exhaustive сущности=font-size, line-height
+      Ступень задаёт только font-size, line-height и трекинг
+  [showcase/components.html:963] слой=none полярность=positive сущности=.font-normal, .font-semibold, .font-bold
+      .font-normal · .font-semibold · .font-bold
+  [showcase/components.html:971] слой=none полярность=positive сущности=.font-normal
+      .font-normal
+  [showcase/components.html:975] слой=none полярность=positive сущности=.font-semibold
+      .font-semibold
+  [showcase/components.html:979] слой=none полярность=positive сущности=.font-bold
+      .font-bold
+  [showcase/components.html:992] слой=none полярность=positive сущности=.leading-none, .leading-5
+      .leading-none · .leading-5
+  [showcase/components.html:1000] слой=none полярность=positive сущности=.text-small
+      .text-small
+  [showcase/components.html:1004] слой=none полярность=positive сущности=.text-small, .leading-none
+      .text-small .leading-none
+  [showcase/components.html:1008] слой=none полярность=positive сущности=.text-micro, .leading-5
+      .text-micro .leading-5
+  [showcase/components.html:1016] слой=none полярность=positive сущности=.leading-none
+      «Ступень задаёт кегль и интерлиньяж» верно ровно до тех пор, пока рядом не стоит .leading-none.
+  [showcase/components.html:1019] слой=other полярность=negative сущности=.leading-*
+      Других .leading-* в корпусе нет.
+  [showcase/components.html:1032] слой=none полярность=positive сущности=phone:text-h1-mobile
+      text-h1 phone:text-h1-mobile
+  [showcase/components.html:1049] слой=none полярность=positive сущности=.text-h1
+      .text-h1
+  [showcase/components.html:1054] слой=none полярность=positive сущности=phone:text-h2, .phone
+      .phone:text-h2
+  [showcase/components.html:1096] слой=none полярность=positive сущности=--font-size-h3, --line-height-h3
+      --font-size-h3 / --line-height-h3
+  [showcase/components.html:1100] слой=none полярность=positive сущности=.text-h3
+      .text-h3
+  [showcase/components.html:1104] слой=none полярность=positive сущности=--font-size-h2, --line-height-h2
+      --font-size-h2 / --line-height-h2
+  [showcase/components.html:1108] слой=none полярность=positive сущности=.text-h2
+      .text-h2
+  [showcase/components.html:1115] слой=none полярность=positive сущности=.text-card-title
+      .text-card-title
+  [showcase/components.html:1124] слой=none полярность=positive сущности=--line-height-card-title
+      Восьмая, --line-height-card-title: 32px, ветки не имеет вовсе
+  [showcase/components.html:1125] слой=other полярность=negative сущности=.text-card-title
+      класса .text-card-title в сборке нет.
+  [showcase/components.html:1126] слой=none полярность=positive сущности=.text-h1, .text-h1-mobile, .text-h2, .text-h3, .text-h4
+      −0.5px даёт отдельное правило .text-h1,.text-h1-mobile,.text-h2,.text-h3,.text-h4{letter-spacing:-.5px}, поэтому левые строки идут без него
+  [showcase/components.html:1140] слой=none полярность=positive сущности=gap-12
+      Прижатый футер, контейнер 1124 + 24 и сетка секций gap-12.
+  [showcase/components.html:1146] слой=none полярность=positive сущности=.app-container, .app-content
+      .app-container и .app-content
+  [showcase/components.html:1152] слой=none полярность=positive сущности=.app-container, .app-content
+      .app-container · .app-content
+  [showcase/components.html:1160] слой=none полярность=positive сущности=.app-content
+      .app-content растянут flex:1 0 auto
+  [showcase/components.html:1160] слой=other полярность=positive сущности=.app-container
+      высоту холста (220px) задаёт оболочка, потому что height:100% у .app-container должен считаться от чего-то
+  [showcase/components.html:1164] слой=none полярность=positive сущности=.app-content
+      .app-content
+  [showcase/components.html:1172] слой=none полярность=positive сущности=.app-container
+      .app-container
+  [showcase/components.html:1173] слой=none полярность=positive сущности=.app-content
+      .app-content
+  [showcase/components.html:1178] слой=ui полярность=positive сущности=.app-container
+      body,html{height:100%} в ui/foundations.css: без неё height:100% у .app-container не от чего считать.
+  [showcase/components.html:1190] слой=other полярность=negative сущности=.container
+      .container Tailwind объявлен и не применяется ни разу на 10 из 10 страниц.
+  [showcase/components.html:1195] слой=none полярность=positive сущности=tablet:px-6
+      mx-auto max-w-[1124px] px-6 py-0 tablet:px-6
+  [showcase/components.html:1212] слой=none полярность=positive сущности=tablet:
+      вторая связка того же контейнера, без py-0 и tablet:
+  [showcase/components.html:1238] слой=none полярность=positive сущности=max-width
+      это max-width самой коробки, с падингом внутри
+  [showcase/components.html:1242] слой=none полярность=positive сущности=tablet:px-6, px-6
+      tablet:px-6 переутверждает то же значение 24px, что и базовый px-6
+  [showcase/components.html:1284] слой=other полярность=negative сущности=phone:gap-*, tablet:gap-*
+      Ни одного phone:gap-* или tablet:gap-* рядом с этой связкой в разметке нет.
+  [showcase/components.html:1287] слой=none полярность=positive сущности=phone:pt-0
+      1 из 7, pt-6 pb-28 с phone:pt-0
+  [showcase/components.html:1336] слой=none полярность=positive сущности=phone:, tablet:
+      479small-phone: + phone: + tablet:
+  [showcase/components.html:1337] слой=none полярность=positive сущности=phablet-and-tablet:, tablet:
+      767phone: + phablet-and-tablet: + tablet:
+  [showcase/components.html:1338] слой=none полярность=positive сущности=phablet-and-tablet:, tablet:
+      1023tablet-only: + phablet-and-tablet: + tablet:
+  [showcase/components.html:1339] слой=none полярность=positive сущности=desktop:
+      1024 →desktop:
+  [showcase/components.html:1346] слой=none полярность=positive сущности=small-phone:
+      small-phone:
+  [showcase/components.html:1347] слой=none полярность=positive сущности=phone:
+      phone:
+  [showcase/components.html:1348] слой=none полярность=positive сущности=phablet-and-tablet:
+      phablet-and-tablet:
+  [showcase/components.html:1349] слой=none полярность=positive сущности=tablet-only:
+      tablet-only:
+  [showcase/components.html:1350] слой=none полярность=positive сущности=tablet:
+      tablet:
+  [showcase/components.html:1351] слой=none полярность=positive сущности=desktop:
+      desktop:
+  [showcase/components.html:1359] слой=none полярность=positive сущности=desktop:
+      верхняя граница desktop:
+  [showcase/components.html:1362] слой=none полярность=positive сущности=small-phone:
+      верхняя граница small-phone: (479)
+  [showcase/components.html:1363] слой=none полярность=positive сущности=phone:
+      а не phone:
+  [showcase/components.html:1363] слой=none полярность=positive сущности=phone:
+      правила phone: действуют до 767 включительно.
+  [showcase/components.html:1366] слой=none полярность=positive сущности=phone:, phablet-and-tablet:
+      Между ними, на 480…767, одновременно активны phone: и phablet-and-tablet:
+  [showcase/components.html:1370] слой=other полярность=negative сущности=phablet-and-tablet:
+      phablet-and-tablet: объявлен в сборке и в разметке десяти страниц не стоит ни разу
+  [showcase/components.html:1378] слой=ui полярность=positive сущности=phone:text-h1-mobile, phone:text-h2
+      phone:text-h1-mobile и phone:text-h2 (ui/foundations.css, строки 342–344
+  [showcase/components.html:1379] слой=ui полярность=positive сущности=small-phone:text-center, tablet:px-6
+      это и есть раздел «Мобильная ступень»), small-phone:text-center (ui/utilities.css, строка 78) и tablet:px-6 в контейнере (ui/layout.css, строка 163).
+  [showcase/components.html:1389] слой=ui полярность=negative сущности=desktop:, tablet-only:, phablet-and-tablet:
+      desktop:, tablet-only:, phablet-and-tablet:, ни одного класса ни у одного из них,
+  [showcase/components.html:1391] слой=ui полярность=negative(наследовано) сущности=tablet:*, tablet:flex, px-6
+      и все утилиты tablet:*, кроме px-6, в том числе tablet:flex.
+  [showcase/components.html:1420] слой=none полярность=positive сущности=.focus, .focus-visible
+      .focus:outline-none · .focus-visible:outline · .focus-visible:outline-ui-black-400
+  [showcase/components.html:1428] слой=none полярность=positive сущности=--color-ui-black-400
+      rgb(166,167,169) это #a6a7a9, то есть var(--color-ui-black-400)
+  [showcase/components.html:1464] слой=none полярность=positive сущности=.peer, .peer-focus-visible
+      .peer на поле и .peer-focus-visible:outline на соседе
+  [showcase/components.html:1484] слой=none полярность=positive сущности=focus:outline-none
+      focus:outline-none гасит фокус любого происхождения шорткатом outline: 2px solid transparent
+  [showcase/components.html:1486] слой=none полярность=positive сущности=outline-style
+      а два лонгханда :focus-visible возвращают outline-style и цвет.
+  [showcase/components.html:1489] слой=other полярность=positive сущности=.outline-2, .outline-offset-1
+      утилиты .outline-2 и .outline-offset-1 в сборке есть
+  [showcase/components.html:1499] слой=none полярность=positive сущности=.crs-header-dropdown
+      .crs-header-dropdown__trigger:focus-visible
+  [showcase/components.html:1535] слой=none полярность=positive сущности=.sr-only, .visually-hidden
+      .sr-only · .visually-hidden
+  [showcase/components.html:1552] слой=none полярность=positive сущности=.sr-only
+      .sr-only
+  [showcase/components.html:1554] слой=other полярность=positive сущности=.visually-hidden
+      .visually-hidden
+  [showcase/components.html:1554] слой=other полярность=positive сущности=overflow:hidden, opacity:0
+      своя, нулевым размером с overflow:hidden и opacity:0
+  [showcase/components.html:1576] слой=none полярность=positive сущности=data-display
+      data-display
+  [showcase/components.html:1589] слой=none полярность=positive сущности=.svg-icon
+      .svg-icon
+  [showcase/components.html:1660] слой=none полярность=positive сущности=svg-icon
+      svg-icon
+  [showcase/components.html:1664] слой=other полярность=positive сущности=.svg-icon
+      .svg-icon{fill:currentColor}, побайтово одинаковое во всём корпусе (10 инлайновых файлов + внешний entry.Dcg7kqZY.css).
+  [showcase/components.html:1669] слой=other полярность=positive сущности=star-empty
+      Полный разбор, включая найденную битую разметку одного из символов star-empty
+  [showcase/components.html:1679] слой=none полярность=positive сущности=star-rounded, star-rounded-small, text-ui-yellow-500
+      Иконка рейтинга (star-rounded, star-rounded-small) всегда получает цвет утилитой text-ui-yellow-500
+  [showcase/components.html:1683] слой=none полярность=positive сущности=arrow-small
+      arrow-small: 28 из 36 узлов красятся fill-ui-black-500 text-ui-black-500, восемь наследуют цвет родителя без собственной утилиты (не то же правило, не включено сюда).
+  [showcase/components.html:1755] слой=none полярность=positive сущности=frame-modules
+      frame-modules
+  [showcase/components.css:11] слой=other полярность=exhaustive сущности=--doc-*, --doc-bg, --doc-ink, --doc-line, .doc-layout, .doc-nav, .doc-specimen
+      классы doc-* .doc-layout, .doc-nav, .doc-specimen переменные --doc-* --doc-bg, --doc-ink, --doc-line Образец career/showcase/components.css префикс держит только у переменных
+  [showcase/components.css:15] слой=other полярность=positive сущности=.layout, .main, .nav, .callout, .hint, .legend
+      100 селекторов там без префикса, среди них .layout, .main, .nav, .callout, .hint, .legend (посчитано 8 сентября 2026 по career/showcase/components.css, read-only).
+  [showcase/components.css:18] слой=other полярность=positive сущности=.nav
+      .nav в витрине и .nav в продукте однажды встретятся.
+  [showcase/components.css:30] слой=other полярность=exhaustive сущности=.doc-stage
+      но только там, где восстанавливает продуктовую поверхность внутри сцены (.doc-stage).
+  [showcase/components.css:52] слой=other полярность=positive сущности=.doc-layout
+      ------------------------------------------------------------------------- Раскладка страницы ------------------------------------------------------------------------- Шрифт оболочки поставлен на .doc-layout
+  [showcase/components.css:58] слой=none полярность=positive сущности=.doc-layout, .doc-stage
+      На .doc-layout оно перекрывается объявлением .doc-stage
+  [showcase/components.css:199] слой=other полярность=positive сущности=.doc-category
+      имя компонента (CanonicalName) в форме секции, когда та стоит внутри .doc-category (h3) и h2 там пропустил бы уровень.
+  [showcase/components.css:308] слой=none полярность=positive сущности=.doc-category, .doc-specimen
+      .doc-category(h3) > секция(h4) > .doc-specimen, следующий уровень
+  [showcase/components.css:705] слой=ui полярность=exhaustive сущности=phone:
+      в ui/ из шести поднят только phone:
+
+=== Числовые утверждения (25) ===
+  [showcase/components.html:328] vars.color: заявлено 41, ui/ даёт 41
+      51 переменная :root: 41 цветовая
+  [showcase/components.html:328] vars.total: заявлено 51, ui/ даёт 51
+      51 переменная :root: 41 цветовая
+  [showcase/components.html:328] vars.noncolor: заявлено 10, ui/ даёт 10
+      плашками, 10 остальных
+  [showcase/components.html:334] vars.color: заявлено 41, ui/ даёт 41
+      Сорок одна цветовая переменная десятью группами.
+  [showcase/components.html:334] vars.live: заявлено 26, ui/ даёт 26
+      Двадцать шесть живых
+  [showcase/components.html:334] vars.noMarkup: заявлено 15, ui/ даёт 15
+      пятнадцать объявлены в сборке и в разметке десяти снятых страниц не встречаются
+  [showcase/components.html:768] vars.total: заявлено 51, ui/ даёт 51
+      51
+  [showcase/components.html:769] vars.color: заявлено 41, ui/ даёт 41
+      41
+  [showcase/components.html:851] vars.unreferenced: заявлено 9, ui/ даёт 9
+      9
+  [showcase/components.html:852] vars.runtime: заявлено 1, ui/ даёт 1
+      1
+  [showcase/components.html:880] scale.steps: заявлено 9, ui/ даёт 9
+      Девять ступеней
+  [showcase/components.html:935] scale.steps: заявлено 9, ui/ даёт 9
+      9
+  [showcase/components.html:1196] container.maxWidth: заявлено 1124, ui/ даёт 1124
+      max-width:1124px · padding:0 24px
+  [showcase/components.html:1196] container.padding: заявлено 24, ui/ даёт 24
+      max-width:1124px · padding:0 24px
+  [showcase/components.html:1207] container.padding: заявлено 24, ui/ даёт 24
+      padding: 0 24px
+  [showcase/components.html:1232] container.maxWidth: заявлено 1124, ui/ даёт 1124
+      1124px, border-box
+  [showcase/components.html:1234] container.zone: заявлено 1076, ui/ даёт 1076
+      1076px
+  [showcase/components.html:1239] container.zone: заявлено 1076, ui/ даёт 1076
+      зона содержимого 1124 − 48 = 1076px, что подтверждает grid-template-columns: 1076px у сетки секций внутри такого контейнера на вьюпорте 1440.
+  [showcase/components.html:1266] grid.gap: заявлено 48, ui/ даёт 48
+      это gap-12 = 48px
+  [showcase/components.html:1266] grid.paddingTop: заявлено 40, ui/ даёт 40
+      pt-10 / pb-10 = 40px, победитель по частоте (5 из 7 страниц)
+  [showcase/components.html:1302] bp.prefixes.total: заявлено 6, ui/ даёт 6
+      шесть префиксов сборки
+  [showcase/components.html:1344] bp.prefixes.total: заявлено 6, ui/ даёт 6
+      шесть префиксов, каждый
+  [showcase/components.html:1376] bp.prefixes.total: заявлено 6, ui/ даёт 6
+      Сам ui/ из шести префиксов поднимает три
+  [showcase/components.html:1376] bp.prefixes.ui: заявлено 3, ui/ даёт 3
+      Сам ui/ из шести префиксов поднимает три
+  [showcase/components.html:1377] bp.classes.ui: заявлено 4, ui/ даёт 4
+      и всего четырьмя классами
+
+Витрина утверждает о ui/ то, что разбором ui/ не подтверждается (1):
+
+  Перечисление «только …», неполное по разбору ui/ (1):
+    showcase/components.css:705 — сказано «только phone:», а в ui/ подняты и small-phone: (small-phone:text-center); tablet: (tablet:px-6)
+      клауза: «в ui/ из шести поднят только phone:»
+
+Утверждение витрины о собственном слое — такой же факт, как значение,
+и требует такого же источника. Либо исправьте утверждение, либо
+назовите слой, о котором оно на самом деле (сборка, корпус, разметка).

@@ -1,0 +1,92 @@
+ФАЙЛОВ CSS в ui/ (без assets/): 17
+    components/actions.css
+    components/collections.css
+    components/data-display.css
+    components/entities.css
+    components/feedback.css
+    components/forms.css
+    components/frame-modules.css
+    components/layout.css
+    components/navigation.css
+    components/overlays.css
+    courses.css
+    fonts.css
+    foundations.css
+    layout.css
+    state-contract.css
+    tokens.css
+    utilities.css
+
+ВСЕГО правил в ui/: 107
+ВСЕГО различных классов в ui/: 64
+
+=== БРЕЙКПОИНТ-ПРЕФИКСЫ в ui/ ===
+
+small-phone: = 1 класс(ов)
+    .small-phone:text-center  ->  utilities.css:78   media=[@media (max-width:479px)]   sel=.small-phone\:text-center
+
+phone: = 2 класс(ов)
+    .phone:text-h1-mobile  ->  foundations.css:342   media=[@media (max-width:767px)]   sel=.phone\:text-h1-mobile
+    .phone:text-h1-mobile  ->  foundations.css:344   media=[@media (max-width:767px)]   sel=.phone\:text-h1-mobile,.phone\:text-h2
+    .phone:text-h2  ->  foundations.css:343   media=[@media (max-width:767px)]   sel=.phone\:text-h2
+    .phone:text-h2  ->  foundations.css:344   media=[@media (max-width:767px)]   sel=.phone\:text-h1-mobile,.phone\:text-h2
+
+phablet-and-tablet: = 0 класс(ов)
+
+tablet-only: = 0 класс(ов)
+
+tablet: = 1 класс(ов)
+    .tablet:px-6  ->  layout.css:163   media=[@media (max-width:1023px)]   sel=.tablet\:px-6
+
+desktop: = 0 класс(ов)
+
+ИТОГО: префиксов с >=1 классом = 3 | классов = 4 | различных правил = 5 | различных медиазапросов = 3
+правила: foundations.css:342 · foundations.css:343 · foundations.css:344 · layout.css:163 · utilities.css:78
+медиазапросы:
+    @media (max-width:479px)
+    @media (max-width:767px)
+    @media (max-width:1023px)
+
+=== прочие псевдо-префиксы с двоеточием (не брейкпоинты) ===
+  focus -> 2 кл.: focus:outline-none, focus:bg-ui-black-50
+  focus-visible -> 2 кл.: focus-visible:outline, focus-visible:outline-ui-black-400
+  focus-within -> 2 кл.: focus-within:border-ui-black-850, focus-within:bg-ui-white
+  hover -> 2 кл.: hover:underline, hover:no-underline
+  peer-focus-visible -> 1 кл.: peer-focus-visible:outline
+  placeholder -> 1 кл.: placeholder:text-small
+
+=== ПОИМЁННО ===
+  desktop:hidden               — НЕТ В ui/
+  tablet:flex                  — НЕТ В ui/
+  tablet-only:hidden           — НЕТ В ui/
+  phablet-and-tablet:block     — НЕТ В ui/
+  small-phone:text-center      utilities.css:78
+  tablet:px-6                  layout.css:163
+  phone:text-h1-mobile         foundations.css:342, foundations.css:344
+  phone:text-h2                foundations.css:343, foundations.css:344
+  m-0                          — НЕТ В ui/
+  flex                         — НЕТ В ui/
+  flex-col                     — НЕТ В ui/
+  gap-10                       — НЕТ В ui/
+  block                        — НЕТ В ui/
+  border                       — НЕТ В ui/
+  rounded-lg                   — НЕТ В ui/
+  bg-ui-black-50               — НЕТ В ui/
+  bg-ui-white                  — НЕТ В ui/
+  container                    — НЕТ В ui/
+  text-card-title              — НЕТ В ui/
+  outline-2                    foundations.css:419
+  outline-offset-1             foundations.css:420
+  leading-5                    foundations.css:251
+  leading-none                 foundations.css:250
+
+=== все классы ui/ вида small-phone:* / tablet:* ===
+   tablet:px-6
+   small-phone:text-center
+
+=== все .leading-* в ui/ ===
+   leading-none
+   leading-5
+
+переменных объявлено в ui/: 102 | var()-ссылок различных: 9
+--swiper-theme-color объявлена в ui/: false | используется в ui/: false

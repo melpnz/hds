@@ -465,3 +465,289 @@
   margin: 0;
   padding: 14px 16px;
 }
+
+/* -------------------------------------------------------------------------
+   ОСНОВАНИЯ — оболочка раздела «Основания» (шаг R0-07)
+   -------------------------------------------------------------------------
+   Раздел показывает три принятых слоя ui/ (tokens · foundations · layout)
+   живыми примерами. Всё, что ниже, — только оболочка: плашка, шахматка под
+   альфой, подложка-линейка, лампочки диапазонов, таблица фактов.
+
+   Измеряемое всегда продуктовое, измеряющее — документационное. Плашка
+   цвета не знает ни одного значения палитры: фон ей задаёт var(--color-…)
+   из ui/tokens.css прямо в разметке. Подложка раскладки не знает ни 1124,
+   ни 24, ни 48: она просто окрашена, а расстояния на ней прочерчивает сам
+   контейнер и сама сетка секций из ui/layout.css.
+
+   Три места, где оболочка всё же называет число, и почему это не подмена
+   продукта:
+     .doc-measure--1240   ширина документационного холста. Колонка витрины
+                          уже потолка контейнера (1124), и без более широкого
+                          холста потолок нечем показать. 1240 — размер
+                          холста, а не утверждение о продукте.
+     .doc-shell           высота 220px у макета прижатого футера: приёму
+                          нужна определённая высота родителя, иначе
+                          height:100% у .app-container не от чего считать.
+     .doc-axis__seg       пропорции flex на полосе диапазонов равны ширине
+                          самих диапазонов в пикселях (160 / 288 / 256 / 377
+                          и 424 / 280 / 377) — они выведены из границ
+                          479 / 767 / 1023 / 1024 и 744 / 1024, а не назначены.
+
+   И одно место, где оболочка вмешивается в само измеряемое поведение:
+     .doc-input           outline:none гасит собственный контур фокуса у
+                          <input> в примере обёртки поля. В продукте его
+                          гасит утилита focus:outline-none на самом поле
+                          (её в разметке примера нет), и без этого правила
+                          браузерный контур перекрыл бы то, ради чего
+                          пример стоит, — реакцию обёртки на focus-within.
+                          Оболочка здесь воспроизводит продуктовое
+                          поведение, а не показывает его: измеряемое в этом
+                          примере — цвет фона и цвет рамки обёртки.
+   ------------------------------------------------------------------------- */
+
+/* --- Плашки палитры --- */
+
+.doc-swatches {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(178px, 1fr));
+  margin-bottom: 4px;
+  width: 100%;
+}
+
+.doc-swatch {
+  background: var(--doc-canvas);
+  border: 1px solid var(--doc-line);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.doc-swatch--wide { grid-column: 1 / -1; }
+
+.doc-swatch__chip {
+  border-bottom: 1px solid var(--doc-line);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.05);
+  height: 52px;
+}
+/* Шахматка под полупрозрачными ступенями: на белом холсте альфа .05 и .12
+   неотличима от белого, и плашка врала бы, что цвет непрозрачный. */
+.doc-swatch__chip--alpha {
+  background-color: #fff;
+  background-image:
+    linear-gradient(45deg, #dcdfe3 25%, transparent 25%, transparent 75%, #dcdfe3 75%),
+    linear-gradient(45deg, #dcdfe3 25%, transparent 25%, transparent 75%, #dcdfe3 75%);
+  background-position: 0 0, 6px 6px;
+  background-size: 12px 12px;
+}
+.doc-swatch__wash { display: block; height: 100%; width: 100%; }
+
+.doc-swatch__body { padding: 8px 9px 9px; }
+.doc-swatch__name {
+  color: var(--doc-ink);
+  font: 400 11px/1.4 var(--doc-mono);
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.doc-swatch__value {
+  color: var(--doc-ink-2);
+  font: 400 11px/1.5 var(--doc-mono);
+  margin: 2px 0 0;
+  overflow-wrap: anywhere;
+}
+.doc-swatch__figma {
+  color: var(--doc-ink-3);
+  font: 400 10.5px/1.5 var(--doc-mono);
+  margin: 1px 0 0;
+  overflow-wrap: anywhere;
+}
+
+/* --- Пометка переменной: та же классификация, что в ui/tokens.css --- */
+
+.doc-mark {
+  border: 1px solid;
+  border-radius: 3px;
+  display: inline-block;
+  font: 600 9.5px/1.5 var(--doc-mono);
+  letter-spacing: 0.03em;
+  margin-top: 6px;
+  padding: 1px 6px;
+  text-transform: uppercase;
+}
+.doc-mark--live { background: #eef7f1; border-color: #b3d8bf; color: #1a5b2e; }
+.doc-mark--no-markup { background: #fdf1ea; border-color: #e8c0a4; color: #8a3d10; }
+.doc-mark--unreferenced { background: #f4f5f6; border-color: var(--doc-line-strong); color: var(--doc-ink-2); }
+.doc-mark--runtime { background: #eef2fb; border-color: #b8c6e4; color: #23417e; }
+
+/* --- Таблица фактов --- */
+
+.doc-scroll { max-width: 100%; overflow-x: auto; }
+
+.doc-table {
+  border-collapse: collapse;
+  font-size: 12.5px;
+  min-width: 100%;
+}
+.doc-table th,
+.doc-table td {
+  border-bottom: 1px solid var(--doc-line);
+  padding: 6px 16px 6px 0;
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap;
+}
+.doc-table th {
+  color: var(--doc-ink-3);
+  font: 600 10.5px/1.4 var(--doc-mono);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.doc-table td { color: var(--doc-ink-2); }
+.doc-table code { color: var(--doc-ink); font: 400 11.5px/1.4 var(--doc-mono); }
+.doc-table__wrap { min-width: 22ch; white-space: normal; }
+
+/* --- Ступень шкалы --- */
+
+.doc-scale { display: flex; flex-direction: column; width: 100%; }
+.doc-scale__row { border-top: 1px dashed var(--doc-line); padding: 14px 0 4px; }
+.doc-scale__row:first-child { border-top: 0; padding-top: 0; }
+.doc-scale__meta {
+  align-items: baseline;
+  color: var(--doc-ink-3);
+  display: flex;
+  flex-wrap: wrap;
+  font: 400 11px/1.5 var(--doc-mono);
+  gap: 2px 14px;
+  margin: 0 0 7px;
+}
+.doc-scale__meta b { color: var(--doc-ink-2); font-weight: 600; }
+
+/* Мёртвый токен, отрисованный своим объявленным значением. Стоит отдельно
+   и подписан: продукт этой ступени не печатает — ссылок var(--…) на неё нет
+   ни в инлайновом CSS десяти страниц, ни в двенадцати внешних .css сборки. */
+.doc-dead { border-left: 3px solid #e8c0a4; padding-left: 12px; }
+
+/* --- Подложка-линейка раскладки --- */
+
+.doc-measure {
+  background: #ffeedd;
+  border: 1px solid #e8c9a8;
+  border-radius: 6px;
+}
+.doc-measure--1240 { width: 1240px; }
+
+.doc-fill {
+  background: #dfe9fb;
+  border: 1px solid #aec4e8;
+  border-radius: 4px;
+  color: #24406e;
+  font: 400 11.5px/1.5 var(--doc-mono);
+  margin: 0;
+  padding: 12px;
+  text-align: center;
+}
+.doc-fill--muted { background: #e8ebee; border-color: var(--doc-line-strong); color: var(--doc-ink-2); }
+
+.doc-shell {
+  background: #ffeedd;
+  border: 1px solid #e8c9a8;
+  border-radius: 6px;
+  height: 220px;
+  width: 100%;
+}
+
+/* --- Полоса диапазонов --- */
+
+.doc-axis { margin: 0 0 14px; width: 100%; }
+.doc-axis__label { color: var(--doc-ink-3); font: 400 11px/1.4 var(--doc-mono); margin: 0 0 5px; }
+.doc-axis__bar { display: flex; gap: 3px; min-width: 520px; }
+.doc-axis__seg {
+  border-radius: 4px;
+  color: #24406e;
+  font: 400 10px/1.35 var(--doc-mono);
+  min-width: 0;
+  overflow: hidden;
+  padding: 8px 7px;
+}
+.doc-axis__seg b { display: block; font-weight: 600; }
+.doc-axis__seg--a { background: #dfe9fb; }
+.doc-axis__seg--b { background: #ffe4cd; color: #7a4a12; }
+.doc-axis__seg--c { background: #e2f1e6; color: #1a5b2e; }
+.doc-axis__seg--d { background: #ece3fa; color: #4a2b7d; }
+
+/* --- Лампочки: какие условия сборки активны на текущей ширине --- */
+
+.doc-bp { list-style: none; margin: 0; padding: 0; width: 100%; }
+.doc-bp__row {
+  align-items: center;
+  border-top: 1px solid var(--doc-line);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+  padding: 8px 0;
+}
+.doc-bp__row:first-child { border-top: 0; }
+.doc-bp__name { color: var(--doc-ink); font: 600 11.5px/1.4 var(--doc-mono); min-width: 168px; }
+.doc-bp__cond { color: var(--doc-ink-2); font: 400 11.5px/1.4 var(--doc-mono); min-width: 252px; }
+.doc-bp__lamp {
+  background: #f4f5f6;
+  border: 1px solid var(--doc-line-strong);
+  border-radius: 3px;
+  color: var(--doc-ink-3);
+  display: inline-block;
+  font: 600 10px/1.5 var(--doc-mono);
+  letter-spacing: 0.03em;
+  padding: 1px 7px;
+  text-transform: uppercase;
+}
+.doc-bp__lamp::after { content: "не активен"; }
+
+/* Условия ниже — копия шести условий сборки Курсов, снятых брейс-сканом
+   (docs/guide/layout.md, «Брейкпоинты»). Оболочка воспроизводит их у себя,
+   чтобы границы было видно перетаскиванием окна: в ui/ из шести поднят
+   только phone:, и только для двух ступеней шкалы. */
+@media (max-width: 479px) {
+  .doc-bp__lamp--small-phone { background: #eef7f1; border-color: #b3d8bf; color: #1a5b2e; }
+  .doc-bp__lamp--small-phone::after { content: "активен"; }
+}
+@media (max-width: 767px) {
+  .doc-bp__lamp--phone { background: #eef7f1; border-color: #b3d8bf; color: #1a5b2e; }
+  .doc-bp__lamp--phone::after { content: "активен"; }
+}
+@media (max-width: 1023px) {
+  .doc-bp__lamp--tablet { background: #eef7f1; border-color: #b3d8bf; color: #1a5b2e; }
+  .doc-bp__lamp--tablet::after { content: "активен"; }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .doc-bp__lamp--tablet-only { background: #eef7f1; border-color: #b3d8bf; color: #1a5b2e; }
+  .doc-bp__lamp--tablet-only::after { content: "активен"; }
+}
+@media (min-width: 480px) and (max-width: 1023px) {
+  .doc-bp__lamp--phablet-and-tablet { background: #eef7f1; border-color: #b3d8bf; color: #1a5b2e; }
+  .doc-bp__lamp--phablet-and-tablet::after { content: "активен"; }
+}
+@media (min-width: 1024px) {
+  .doc-bp__lamp--desktop { background: #eef7f1; border-color: #b3d8bf; color: #1a5b2e; }
+  .doc-bp__lamp--desktop::after { content: "активен"; }
+}
+
+/* --- Фокус --- */
+
+.doc-focus-row { align-items: center; display: flex; flex-wrap: wrap; gap: 18px; }
+
+/* Подложка поля. Продукт красит обёртку <input> в bg-ui-black-50, и без
+   этого фона переход focus-within к белому нечем показать. Цвет — токен
+   продукта; ширина рамки — оболочки, потому что *{border:0 solid} обнуляет
+   ширину всем, а focus-within:border-ui-black-850 меняет только цвет. */
+.doc-field {
+  background: var(--color-ui-black-50);
+  border: 1px solid var(--color-ui-black-100);
+  border-radius: 8px;
+  display: inline-flex;
+  padding: 7px 11px;
+}
+.doc-input {
+  background: transparent;
+  border: 0;
+  color: inherit;
+  outline: none;
+  width: 16ch;
+}

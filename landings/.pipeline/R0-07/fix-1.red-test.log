@@ -1,0 +1,47 @@
+=== Красный тест 1: проза coverage.md 17 -> 12
+1
+Счётчики разошлись (1):
+
+  evidence/coverage.md: заявлено 12, на самом деле 17 (coverageLimits — длина inventory.coverageLimits)
+
+Правьте документацию — или правило в tools/validate-counts.mjs,
+если изменилась формулировка. Инвариант И-7: числа не округляются.
+EXIT=1
+откат 1: байт в байт
+
+=== Красный тест 2: из coverage.md удалён раздел «## 17.» (структура файла)
+Счётчики разошлись (1):
+
+  .pipeline/inventory.json: inventory.coverageLimits — длина против разделов evidence/coverage.md = 17, пересчёт даёт 16
+
+Правьте документацию — или правило в tools/validate-counts.mjs,
+если изменилась формулировка. Инвариант И-7: числа не округляются.
+EXIT=1
+откат 2: байт в байт
+
+=== Красный тест 3: из coverageLimits реестра удалена запись CL-17
+Счётчики разошлись (8):
+
+  ROADMAP.md: заявлено 17, на самом деле 16 (coverageLimits — длина inventory.coverageLimits)
+  evidence/coverage.md: заявлено 17, на самом деле 16 (coverageLimits — длина inventory.coverageLimits)
+  README.md: заявлено 17, на самом деле 16 (coverageLimits — длина inventory.coverageLimits)
+  README.md: заявлено 17, на самом деле 16 (coverageLimits — длина inventory.coverageLimits)
+  BRIEF.md: заявлено 17, на самом деле 16 (coverageLimits — длина inventory.coverageLimits)
+  tools/README.md: заявлено 17, на самом деле 16 (coverageLimits — длина inventory.coverageLimits)
+  BRIEF.md: заявлено 17, на самом деле 16 (coverageLimits — длина inventory.coverageLimits)
+  .pipeline/inventory.json: inventory.coverageLimits — длина против разделов evidence/coverage.md = 16, пересчёт даёт 17
+
+Правьте документацию — или правило в tools/validate-counts.mjs,
+если изменилась формулировка. Инвариант И-7: числа не округляются.
+EXIT=1
+откат 3: байт в байт
+
+=== Красный тест 4: measuredCss в ROADMAP 18 -> 9 (перенесённое число)
+Счётчики разошлись (1):
+
+  ROADMAP.md: заявлено 9, на самом деле 18 (measuredCss — inventory.sources.figmaLandings.capturedCss)
+
+Правьте документацию — или правило в tools/validate-counts.mjs,
+если изменилась формулировка. Инвариант И-7: числа не округляются.
+EXIT=1
+откат 4: байт в байт

@@ -34,12 +34,22 @@
 <nav class="doc-nav" aria-label="Разделы витрины">
   <p class="doc-nav__brand">Хабр Курсы</p>
   <p class="doc-nav__title">Витрина компонентов</p>
-  <p class="doc-nav__state">каркас R0-06 · компонентов пока нет</p>
+  <p class="doc-nav__state">каркас R0-06 · основания R0-07</p>
 
   <ul class="doc-nav__list">
     <li><a class="doc-nav__link doc-nav__link--top" href="#doc-about">О витрине</a></li>
     <li><a class="doc-nav__link doc-nav__link--top" href="#doc-legend">Условные обозначения</a></li>
     <li><a class="doc-nav__link doc-nav__link--top" href="#doc-form">Форма секции компонента</a></li>
+    <li>
+      <a class="doc-nav__link doc-nav__link--top" href="#doc-foundations">Основания</a>
+      <ul class="doc-nav__list doc-nav__list--sub">
+        <li><a class="doc-nav__link" href="#f-tokens">Палитра и переменные</a></li>
+        <li><a class="doc-nav__link" href="#f-typography">Типографическая шкала</a></li>
+        <li><a class="doc-nav__link" href="#f-layout">Оболочка, контейнер и сетка</a></li>
+        <li><a class="doc-nav__link" href="#f-breakpoints">Брейкпоинты</a></li>
+        <li><a class="doc-nav__link" href="#f-focus">Фокус</a></li>
+      </ul>
+    </li>
     <li>
       <a class="doc-nav__link doc-nav__link--top" href="#doc-components">Компоненты</a>
       <ul class="doc-nav__list doc-nav__list--sub">
@@ -75,8 +85,11 @@
     Витрина не рисует компоненты и не подправляет их: она их показывает.
   </p>
   <p>
-    Сегодня она пустая. Шаг R0-06 заводит оболочку, места под категории
-    и форму секции; сами компоненты приходят волнами R2–R5.
+    Оболочку, места под категории и форму секции завёл шаг R0-06. Раздел
+    «Основания» — шаг R0-07: палитра, типографическая шкала, оболочка
+    страницы с сеткой, брейкпоинты и фокус, то есть три принятых слоя
+    <code>ui/</code> живыми примерами. Компоненты приходят волнами R2–R5,
+    и первый из них уже здесь.
   </p>
 </header>
 
@@ -120,15 +133,19 @@
     <h3>Чего эта витрина сегодня не проверяет</h3>
     <p>
       Копируемость (METHOD §6.1) проверяется на разметке спецификаций.
-      Спецификаций в пакете ноль, <code>ui/utilities.css</code> с утилитами
-      продукта заводит шаг R0-04, а <code>ui/layout.css</code> пуст до того же
-      шага. Пока это так, зелёный <code>validate-classes</code> означает
-      «в витрине нет классов без правила», а не «разметка пакета копируется».
+      Спецификаций в пакете пока одна, и известные пробелы у неё названы
+      поимённо — <code>tools/known-missing-classes.json</code>. Пока это так,
+      зелёный <code>validate-classes</code> означает «в витрине и в
+      спецификациях нет классов без правила, кроме перечисленных», а не
+      «разметка пакета копируется целиком».
     </p>
     <p>
       Раскладку витрина несёт свою, в <code>showcase/components.css</code>,
       и от <code>ui/layout.css</code> не зависит — иначе оболочка ждала бы
-      R0-04, а компоненты некуда было бы класть.
+      R0-04, а компоненты некуда было бы класть. Внутри образцов всё
+      наоборот: раздел «Основания» показывает контейнер и сетку секций
+      настоящими классами <code>ui/layout.css</code>, а оболочка под ними
+      только подкрашивает поле, чтобы отступы были видны.
     </p>
   </div>
 </section>
@@ -144,7 +161,9 @@
   <p class="doc-text">
     Источник — значение поля <code>sourceScope</code> из реестра. Метка стоит
     в заголовке карточки образца и отвечает на первый вопрос читателя:
-    видел ли это кто-нибудь в живом продукте.
+    видел ли это кто-нибудь в живом продукте. У карточек раздела «Основания»
+    записи в реестре нет — там метка отвечает на тот же вопрос про слой
+    <code>ui/</code>: правила сняты с продакшена.
   </p>
 
   <ul class="doc-legend">
@@ -259,9 +278,1294 @@
 </section>
 
 <!-- ===================================================================== -->
-<section class="doc-section" id="doc-components">
+<section class="doc-section" id="doc-foundations">
   <div class="doc-section__head">
     <span class="doc-section__num">4</span>
+    <h2>Основания</h2>
+    <p>Палитра, типографическая шкала, оболочка с сеткой, брейкпоинты и фокус — тремя принятыми слоями <code>ui/</code>, живыми примерами.</p>
+  </div>
+
+  <p class="doc-text">
+    Три слоя оснований пакет принял шагами R0-02, R0-03 и R0-04 и разобрал
+    в <code>docs/guide/</code> — тысяча с лишним строк текста. Здесь то же самое
+    видно глазами: цвет — плашкой, ступень шкалы — своим кеглем, отступ —
+    подложкой, диапазон — лампочкой, фокус — клавишей Tab. Нового этот раздел
+    не добывает: значения, пометки и покрытия перенесены из принятого разбора,
+    новой съёмки продакшена и Figma на нём не было.
+  </p>
+
+  <div class="doc-callout">
+    <h3>Как читать примеры раздела</h3>
+    <p>
+      Измеряемое здесь всегда продуктовое, измеряющее — документационное.
+      Плашка цвета не знает ни одного значения палитры: фон ей задаёт
+      <code>var(--color-…)</code> из <code>ui/tokens.css</code>. Ступень шкалы
+      набрана живой утилитой <code>ui/foundations.css</code>, а не подделана
+      размером оболочки. Отступы контейнера и сетки прочерчивает сам
+      <code>ui/layout.css</code>; оранжевая подложка только показывает, где он
+      их оставил, и своих чисел в них не вносит.
+    </p>
+    <p>
+      Пометка у переменной — та же классификация, что в <code>ui/tokens.css</code>:
+      <span class="doc-mark doc-mark--live">живая</span> — правило продукта
+      подставляет её, и правило достаётся разметке снятых страниц;
+      <span class="doc-mark doc-mark--no-markup">no markup</span> — утилита
+      в сборке есть, но ни один элемент десяти снятых страниц её не несёт;
+      <span class="doc-mark doc-mark--unreferenced">unreferenced</span> —
+      объявлена в <code>:root</code>, а ссылок <code>var(--…)</code> на неё нет
+      ни в инлайновом CSS страниц, ни в двенадцати внешних <code>.css</code>
+      сборки; <span class="doc-mark doc-mark--runtime">runtime</span> — значение
+      переписывает скрипт во время работы. Пометки взаимоисключающие: у
+      переменной стоит одна.
+    </p>
+  </div>
+
+  <!-- ------------------------------------------------------------------- -->
+  <section class="doc-category" id="f-tokens">
+    <div class="doc-category__head">
+      <h3>Палитра и переменные</h3>
+      <code>ui/tokens.css</code>
+      <p>51 переменная <code>:root</code>: 41 цветовая — плашками, 10 остальных — таблицей и отрисовкой. Разбор — <a href="../docs/guide/tokens.md">docs/guide/tokens.md</a>.</p>
+    </div>
+
+    <section class="doc-section" id="f-tokens-color">
+      <div class="doc-section__head">
+        <h4>Цвет</h4>
+        <p>Сорок одна цветовая переменная десятью группами. Группы собраны по смыслу, порядок здесь читательский: в <code>:root</code> продукта они объявлены иначе. Двадцать шесть живых; пятнадцать объявлены в сборке и в разметке десяти снятых страниц не встречаются — они стоят здесь с пометкой, а не подмешаны к живым.</p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>Палитра</h5>
+          <code>var(--color-…)</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+          </span>
+        </div>
+        <div class="doc-stage doc-stage--rows">
+    <div class="doc-variant">
+      <span class="doc-variant__label">Синяя шкала — фирменный синий 500 — ссылка, кнопка, градиент шапки; пять ступеней, все живые</span>
+    </div>
+    <div class="doc-swatches">
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-blue-50)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-blue-50</p>
+          <p class="doc-swatch__value">#eff5ff</p>
+          <p class="doc-swatch__figma">Figma · blue/50 Solid</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-blue-300)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-blue-300</p>
+          <p class="doc-swatch__value">#94bdfc</p>
+          <p class="doc-swatch__figma">Figma · blue/300 Solid</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-blue-400)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-blue-400</p>
+          <p class="doc-swatch__value">#6bacfd</p>
+          <p class="doc-swatch__figma">Figma · blue/400 Solid</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-blue-500)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-blue-500</p>
+          <p class="doc-swatch__value">#346ef4</p>
+          <p class="doc-swatch__figma">Figma · blue/500 Solid</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-blue-600)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-blue-600</p>
+          <p class="doc-swatch__value">#2755e9</p>
+          <p class="doc-swatch__figma">Figma · blue/600 Solid</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+    </div>
+    <div class="doc-variant">
+      <span class="doc-variant__label">Нейтральная шкала — восемь ступеней; ступени 600 и 700 продукт не объявляет — пропуск в шкале настоящий, не наш</span>
+    </div>
+    <div class="doc-swatches">
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-black-50)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-black-50</p>
+          <p class="doc-swatch__value">#f1f1f1</p>
+          <p class="doc-swatch__figma">Figma · black/50 Solid</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-black-100)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-black-100</p>
+          <p class="doc-swatch__value">#e9e9ea</p>
+          <p class="doc-swatch__figma">Figma · black/100 Solid</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-black-150)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-black-150</p>
+          <p class="doc-swatch__value">#dededf</p>
+          <p class="doc-swatch__figma">Figma · black/150 Solid</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-black-200)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-black-200</p>
+          <p class="doc-swatch__value">#d3d3d4</p>
+          <p class="doc-swatch__figma">Figma · black/200 Solid</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-black-300)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-black-300</p>
+          <p class="doc-swatch__value">#bcbdbf</p>
+          <p class="doc-swatch__figma">Figma · black/300 Solid</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-black-400)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-black-400</p>
+          <p class="doc-swatch__value">#a6a7a9</p>
+          <p class="doc-swatch__figma">Figma · black/400 Solid</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-black-500)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-black-500</p>
+          <p class="doc-swatch__value">#909194</p>
+          <p class="doc-swatch__figma">Figma · black/500 Solid</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-black-850)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-black-850</p>
+          <p class="doc-swatch__value">#2c2e34</p>
+          <p class="doc-swatch__figma">Figma · black/850 Solid</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+    </div>
+    <div class="doc-variant">
+      <span class="doc-variant__label">Полупрозрачный чёрный — альфу Курсы держат отдельными значениями, а не выводят через color-mix; под плашками шахматка оболочки — иначе альфа не видна</span>
+    </div>
+    <div class="doc-swatches">
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip doc-swatch__chip--alpha"><span class="doc-swatch__wash" style="background: var(--color-ui-black-transparent-50)"></span></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-black-transparent-50</p>
+          <p class="doc-swatch__value">rgba(0,0,0,.05)</p>
+          <p class="doc-swatch__figma">Figma · black/50 Transparent</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip doc-swatch__chip--alpha"><span class="doc-swatch__wash" style="background: var(--color-ui-black-transparent-120)"></span></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-black-transparent-120</p>
+          <p class="doc-swatch__value">rgba(0,0,0,.12)</p>
+          <p class="doc-swatch__figma">Figma · black/120 Transparent</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip doc-swatch__chip--alpha"><span class="doc-swatch__wash" style="background: var(--color-ui-black-transparent-300)"></span></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-black-transparent-300</p>
+          <p class="doc-swatch__value">rgba(0,0,0,.3)</p>
+          <p class="doc-swatch__figma">Figma · black/300 Transparent</p>
+          <span class="doc-mark doc-mark--no-markup">no markup</span>
+        </div>
+      </div>
+    </div>
+    <div class="doc-variant">
+      <span class="doc-variant__label">Белый — полупрозрачного белого в палитре Figma нет — переменная существует только в проде</span>
+    </div>
+    <div class="doc-swatches">
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-white)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-white</p>
+          <p class="doc-swatch__value">#fff</p>
+          <p class="doc-swatch__figma">Figma · white/1000 Solid</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip doc-swatch__chip--alpha"><span class="doc-swatch__wash" style="background: var(--color-ui-white-transparent-50)"></span></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-white-transparent-50</p>
+          <p class="doc-swatch__value">hsla(0,0%,100%,.5)</p>
+          <p class="doc-swatch__figma">Figma · в палитре нет</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+    </div>
+    <div class="doc-variant">
+      <span class="doc-variant__label">Статусные цвета — девять ступеней, в разметке десяти снятых страниц встречаются две: жёлтая 500 и зелёная 500, обе — заливка иконки; красная не встречается ни разу, экраны ошибки гостю недоступны</span>
+    </div>
+    <div class="doc-swatches">
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-yellow-50)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-yellow-50</p>
+          <p class="doc-swatch__value">#fff2e2</p>
+          <p class="doc-swatch__figma">Figma · yellow/50 Solid</p>
+          <span class="doc-mark doc-mark--no-markup">no markup</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-yellow-400)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-yellow-400</p>
+          <p class="doc-swatch__value">#ffb51b</p>
+          <p class="doc-swatch__figma">Figma · yellow/400 Solid</p>
+          <span class="doc-mark doc-mark--no-markup">no markup</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-yellow-500)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-yellow-500</p>
+          <p class="doc-swatch__value">#ff960c</p>
+          <p class="doc-swatch__figma">Figma · yellow/500 Solid</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-red-50)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-red-50</p>
+          <p class="doc-swatch__value">#fce9e9</p>
+          <p class="doc-swatch__figma">Figma · red/50 Solid</p>
+          <span class="doc-mark doc-mark--no-markup">no markup</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-red-400)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-red-400</p>
+          <p class="doc-swatch__value">#f37676</p>
+          <p class="doc-swatch__figma">Figma · red/400 Solid</p>
+          <span class="doc-mark doc-mark--no-markup">no markup</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-red-500)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-red-500</p>
+          <p class="doc-swatch__value">#e84444</p>
+          <p class="doc-swatch__figma">Figma · red/500 Solid</p>
+          <span class="doc-mark doc-mark--no-markup">no markup</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-green-50)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-green-50</p>
+          <p class="doc-swatch__value">#e7f6ea</p>
+          <p class="doc-swatch__figma">Figma · green/50 Solid</p>
+          <span class="doc-mark doc-mark--no-markup">no markup</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-green-400)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-green-400</p>
+          <p class="doc-swatch__value">#5bcd72</p>
+          <p class="doc-swatch__figma">Figma · green/400 Solid</p>
+          <span class="doc-mark doc-mark--no-markup">no markup</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-green-500)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-green-500</p>
+          <p class="doc-swatch__value">#34b24f</p>
+          <p class="doc-swatch__figma">Figma · green/500 Solid</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+    </div>
+    <div class="doc-variant">
+      <span class="doc-variant__label">Дополнительные оттенки — оранжевая 500 — заливка бейджа-pill, фиолетовая 500 — текст и его hover; обе ступени 50 в разметке не встречаются</span>
+    </div>
+    <div class="doc-swatches">
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-orange-50)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-orange-50</p>
+          <p class="doc-swatch__value">#fcf2ed</p>
+          <p class="doc-swatch__figma">Figma · orange/50 Solid</p>
+          <span class="doc-mark doc-mark--no-markup">no markup</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-orange-500)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-orange-500</p>
+          <p class="doc-swatch__value">#ff7e47</p>
+          <p class="doc-swatch__figma">Figma · orange/500 Solid</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-violet-50)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-violet-50</p>
+          <p class="doc-swatch__value">#f2eafe</p>
+          <p class="doc-swatch__figma">Figma · violet/50 Solid</p>
+          <span class="doc-mark doc-mark--no-markup">no markup</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-ui-violet-500)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-ui-violet-500</p>
+          <p class="doc-swatch__value">#9863f1</p>
+          <p class="doc-swatch__figma">Figma · violet/500 Solid</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+    </div>
+    <div class="doc-variant">
+      <span class="doc-variant__label">Цвета сервисов Хабра — утилиты произвольного значения в сборке есть, носителя в разметке нет: панель сервисов приходит заглушкой и гидрируется</span>
+    </div>
+    <div class="doc-swatches">
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-habr)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-habr</p>
+          <p class="doc-swatch__value">#629fbc</p>
+          <p class="doc-swatch__figma">Figma · brand/habr</p>
+          <span class="doc-mark doc-mark--no-markup">no markup</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-career)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-career</p>
+          <p class="doc-swatch__value">#6274bc</p>
+          <p class="doc-swatch__figma">Figma · brand/career</p>
+          <span class="doc-mark doc-mark--no-markup">no markup</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-qna)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-qna</p>
+          <p class="doc-swatch__value">#434b60</p>
+          <p class="doc-swatch__figma">Figma · brand/qna</p>
+          <span class="doc-mark doc-mark--no-markup">no markup</span>
+        </div>
+      </div>
+    </div>
+    <div class="doc-variant">
+      <span class="doc-variant__label">Чипы фильтров — обе утилиты в сборке есть, но pill-элементы прода покрашены в bg-ui-black-50; конфликт с Figma не разрешён — GAP-1 в tokens.md</span>
+    </div>
+    <div class="doc-swatches">
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-chip-press)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-chip-press</p>
+          <p class="doc-swatch__value">#b8d5ff</p>
+          <p class="doc-swatch__figma">Figma · в палитре нет</p>
+          <span class="doc-mark doc-mark--no-markup">no markup</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-chip-inactive)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-chip-inactive</p>
+          <p class="doc-swatch__value">#ebf3ff</p>
+          <p class="doc-swatch__figma">Figma · в палитре нет</p>
+          <span class="doc-mark doc-mark--no-markup">no markup</span>
+        </div>
+      </div>
+    </div>
+    <div class="doc-variant">
+      <span class="doc-variant__label">Семантические алиасы — поздний блок :root, три переменные; их подставляют базовые правила документа body,html{background-color; color} и a{color}, поэтому они достаются каждой странице</span>
+    </div>
+    <div class="doc-swatches">
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-white-background)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-white-background</p>
+          <p class="doc-swatch__value">var(--color-ui-white)</p>
+          <p class="doc-swatch__figma">Figma · в палитре нет</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-text-main)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-text-main</p>
+          <p class="doc-swatch__value">var(--color-ui-black-850)</p>
+          <p class="doc-swatch__figma">Figma · в палитре нет</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: var(--color-links-main)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-links-main</p>
+          <p class="doc-swatch__value">var(--color-ui-blue-500)</p>
+          <p class="doc-swatch__figma">Figma · в палитре нет</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+    </div>
+    <div class="doc-variant">
+      <span class="doc-variant__label">Градиенты — ссылки var(--…) внутри значения стоят в самом продукте, здесь они 1:1</span>
+    </div>
+    <div class="doc-swatches">
+      <div class="doc-swatch doc-swatch--wide">
+        <div class="doc-swatch__chip" style="background: var(--color-main-gradient-first)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-main-gradient-first</p>
+          <p class="doc-swatch__value">linear-gradient(180deg,var(--color-ui-blue-500) 0%,var(--color-ui-blue-500) 100%)</p>
+          <p class="doc-swatch__figma">заливка шапки · в палитре Figma нет</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+      <div class="doc-swatch doc-swatch--wide">
+        <div class="doc-swatch__chip" style="background: var(--color-main-gradient-second)"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--color-main-gradient-second</p>
+          <p class="doc-swatch__value">linear-gradient(180deg,var(--color-ui-blue-500) 0%,var(--color-ui-blue-400) 100%)</p>
+          <p class="doc-swatch__figma">hero и полоса рубрикатора · в палитре Figma нет</p>
+          <span class="doc-mark doc-mark--live">живая</span>
+        </div>
+      </div>
+    </div>
+        </div>
+        <dl class="doc-spec">
+          <div><dt>переменных :root</dt><dd>51</dd></div>
+          <div><dt>из них цветовых</dt><dd>41</dd></div>
+          <div><dt>живых</dt><dd>26</dd></div>
+          <div><dt>no markup</dt><dd>15</dd></div>
+          <div><dt>сверено с Figma</dt><dd>33 / 33</dd></div>
+        </dl>
+        <p class="doc-note">
+          <strong>Примечание.</strong> Значения — инлайновый <code>&lt;style&gt;</code>
+          серверного ответа <code>career.habr.com</code>, снято 8 сентября 2026:
+          10 страниц × 7 ширин, набор один и тот же везде. Сверка с Figma —
+          страница «colors» библиотеки <code>education-lib</code> (<code>33:15585</code>,
+          узел <code>4127:6558</code>): совпали 33 из 33, у трёх прозрачных
+          ступеней — с точностью до округления альфы (<code>#0000000d</code>
+          против <code>rgba(0,0,0,.05)</code>). Восемнадцати переменных пакета
+          на этой странице нет вовсе — оба чипа, оба градиента, полупрозрачный
+          белый, восемь типографических, тень, высота шапки и три алиаса;
+          страницы компонентов <code>education-lib</code> через MCP не читаются,
+          доступна одна «colors».
+        </p>
+        <p class="doc-note">
+          Пятьдесят второй переменной, <code>--swiper-theme-color: #007aff</code>,
+          в слое нет намеренно: её объявляет чанк библиотеки Swiper, а не продукт,
+          и появляется она ровно на тех семи страницах из десяти, где есть
+          карусель. Разбор — «Почему 51» в <a href="../docs/guide/tokens.md">tokens.md</a>.
+        </p>
+      </div>
+    </section>
+
+    <section class="doc-section" id="f-tokens-rest">
+      <div class="doc-section__head">
+        <h4>Переменные без цвета</h4>
+        <p>Десять оставшихся: восемь типографических токенов, тень выпадашки и высота шапки. Девять из десяти — мёртвые, десятую переписывает скрипт.</p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>Типографические токены, тень и высота шапки</h5>
+          <code>[UNREFERENCED] · [RUNTIME]</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+          </span>
+        </div>
+        <div class="doc-stage doc-stage--rows">
+          <div class="doc-variant">
+            <span class="doc-variant__label">Восемь типографических токенов — ни одной ссылки var(--…) во всём корпусе; шкалу вместо них задают утилиты Tailwind литералами</span>
+            <div class="doc-scroll">
+              <table class="doc-table">
+                <thead>
+                  <tr><th>переменная</th><th>значение</th><th>живая утилита</th><th>печатает</th><th>сходится</th></tr>
+                </thead>
+                <tbody>
+                  <tr><td><code>--font-weight-title</code></td><td>600</td><td><code>.font-semibold</code></td><td>600</td><td>да</td></tr>
+                  <tr><td><code>--font-size-h2</code></td><td>24px</td><td><code>.text-h2</code></td><td>24px</td><td>да</td></tr>
+                  <tr><td><code>--font-size-h3</code></td><td>21px</td><td><code>.text-h3</code></td><td><b>20px</b></td><td><b>нет</b></td></tr>
+                  <tr><td><code>--font-size-h4</code></td><td>18px</td><td><code>.text-h4</code></td><td>18px</td><td>да</td></tr>
+                  <tr><td><code>--line-height-h2</code></td><td>27px</td><td><code>.text-h2</code></td><td><b>28px</b></td><td><b>нет</b></td></tr>
+                  <tr><td><code>--line-height-h3</code></td><td>27px</td><td><code>.text-h3</code></td><td><b>24px</b></td><td><b>нет</b></td></tr>
+                  <tr><td><code>--line-height-h4</code></td><td>22px</td><td><code>.text-h4</code></td><td>22px</td><td>да</td></tr>
+                  <tr><td><code>--line-height-card-title</code></td><td>32px</td><td><code>.text-card-title</code></td><td><b>класса нет</b></td><td><b>нет ветки</b></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <span class="doc-variant__label">все восемь — unreferenced; отрисовать их живым текстом нечем: продукт их не подставляет нигде</span>
+          </div>
+
+          <div class="doc-variant">
+            <span class="doc-variant__label">--shadow-dropdown: 0 1px 20px 0 rgba(0,0,0,.2) — так выглядит объявленное значение; выпадашки продукта рисуют тень другим правилом, .shadow-context-menu-dropdown через --color-ui-black-transparent-50</span>
+            <div class="doc-variant__row">
+              <p class="doc-fill" style="background: var(--color-ui-white); border-color: var(--color-ui-black-100); box-shadow: var(--shadow-dropdown); width: 220px">--shadow-dropdown</p>
+              <span class="doc-mark doc-mark--unreferenced">unreferenced</span>
+            </div>
+          </div>
+
+          <div class="doc-variant">
+            <span class="doc-variant__label">--header-height: 64px — коробка ровно этой высоты; значение подставляет скрипт, а не CSS: в самом CSS продукта объявлено 112px, а на 767 и ниже — 144px, и это объявление до экрана не доживает</span>
+            <div class="doc-variant__row">
+              <p class="doc-fill doc-fill--muted" style="height: var(--header-height); width: 220px">высота = var(--header-height)</p>
+              <span class="doc-mark doc-mark--runtime">runtime</span>
+            </div>
+          </div>
+        </div>
+        <dl class="doc-spec">
+          <div><dt>unreferenced</dt><dd>9</dd></div>
+          <div><dt>runtime</dt><dd>1</dd></div>
+          <div><dt>расхождений с живой утилитой</dt><dd>3</dd></div>
+          <div><dt>оборванных веток</dt><dd>1</dd></div>
+        </dl>
+        <p class="doc-note">
+          <strong>Примечание.</strong> Единственная <code>[RUNTIME]</code>-переменная
+          подпадает и под определение <code>[UNREFERENCED]</code> дословно: ссылок
+          <code>var(--header-height)</code> в CSS сборки нет ни одной. Пометка
+          сильнее, потому что потребитель у переменной есть — не правило, а атрибут
+          разметки: <code>style="top: var(--header-height)"</code> у липкой полосы
+          рубрикатора на <code>/courses</code>. Значение 64px держится на девяти
+          страницах из десяти на всех семи снятых ширинах; 108px — только на
+          <code>/courses</code> и только ниже 768, где шапка переносит строку.
+        </p>
+      </div>
+    </section>
+  </section>
+
+  <!-- ------------------------------------------------------------------- -->
+  <section class="doc-category" id="f-typography">
+    <div class="doc-category__head">
+      <h3>Типографическая шкала</h3>
+      <code>ui/foundations.css</code>
+      <p>Девять живых ступеней, три начертания, одна утилита интерлиньяжа поверх ступени и единственное место, где шкала зависит от ширины. Разбор — <a href="../docs/guide/typography.md">docs/guide/typography.md</a>.</p>
+    </div>
+
+    <section class="doc-section" id="f-typography-scale">
+      <div class="doc-section__head">
+        <h4>Девять ступеней</h4>
+        <p>Все объявлены литералами в утилитах Tailwind. Ниже — каждая своим кеглем, начертанием базы документа (400) и своим интерлиньяжем.</p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>Шкала</h5>
+          <code>.text-h1 … .text-caps</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+          </span>
+        </div>
+        <div class="doc-stage doc-stage--rows">
+          <div class="doc-scale">
+            <div class="doc-scale__row">
+              <p class="doc-scale__meta"><b>.text-h1</b><span>44 / 48</span><span>трекинг −0.5px</span><span>7 вхождений · 7 из 10 страниц</span><span>Figma: значений нет</span></p>
+              <div class="text-h1">Курсы и профессии</div>
+            </div>
+            <div class="doc-scale__row">
+              <p class="doc-scale__meta"><b>.text-h1-mobile</b><span>30 / 34</span><span>трекинг −0.5px</span><span>2 вхождения · 2 из 10 страниц</span><span>Figma: имени в библиотеке нет</span></p>
+              <div class="text-h1-mobile">Курсы и профессии</div>
+            </div>
+            <div class="doc-scale__row">
+              <p class="doc-scale__meta"><b>.text-h2</b><span>24 / 28</span><span>трекинг −0.5px</span><span>32 вхождения · 10 из 10 страниц</span><span>Figma: Header/H2 24/28</span></p>
+              <div class="text-h2">Курсы и профессии</div>
+            </div>
+            <div class="doc-scale__row">
+              <p class="doc-scale__meta"><b>.text-h3</b><span>20 / 24</span><span>трекинг −0.5px</span><span>1 вхождение · 1 из 10 страниц</span><span>Figma: Header/H3 20/24</span></p>
+              <div class="text-h3">Курсы и профессии</div>
+            </div>
+            <div class="doc-scale__row">
+              <p class="doc-scale__meta"><b>.text-h4</b><span>18 / 22</span><span>трекинг −0.5px</span><span>258 вхождений · 9 из 10 страниц</span><span>Figma: Header/H4 18/22</span></p>
+              <div class="text-h4">Курсы и профессии</div>
+            </div>
+            <div class="doc-scale__row">
+              <p class="doc-scale__meta"><b>.text-default</b><span>16 / 22</span><span>без трекинга</span><span>20 вхождений · 7 из 10 страниц</span><span>Figma: text 16/22</span></p>
+              <div class="text-default">Курсы и профессии</div>
+            </div>
+            <div class="doc-scale__row">
+              <p class="doc-scale__meta"><b>.text-small</b><span>14 / 20</span><span>без трекинга</span><span>1237 вхождений · 10 из 10 страниц</span><span>Figma: text small 14/20</span></p>
+              <div class="text-small">Курсы и профессии</div>
+            </div>
+            <div class="doc-scale__row">
+              <p class="doc-scale__meta"><b>.text-micro</b><span>12 / 16</span><span>без трекинга</span><span>505 вхождений · 10 из 10 страниц</span><span>Figma: text micro 12/16</span></p>
+              <div class="text-micro">Курсы и профессии</div>
+            </div>
+            <div class="doc-scale__row">
+              <p class="doc-scale__meta"><b>.text-caps</b><span>10 / 14</span><span>без трекинга</span><span>0 вхождений · 0 из 10 страниц</span><span>Figma: значений нет</span></p>
+              <div class="text-caps uppercase font-semibold">Курсы и профессии</div>
+              <p class="doc-scale__meta"><span class="doc-mark doc-mark--no-markup">no markup</span><span>показана тройкой <code>text-caps uppercase font-semibold</code> — единственным известным способом её применения, из образца типографики Storybook; заглавные делает <code>.uppercase</code>, вес — <code>.font-semibold</code>, сама ступень задаёт только 10/14</span></p>
+            </div>
+          </div>
+        </div>
+        <dl class="doc-spec">
+          <div><dt>ступеней</dt><dd>9</dd></div>
+          <div><dt>кегль</dt><dd>44 · 30 · 24 · 20 · 18 · 16 · 14 · 12 · 10</dd></div>
+          <div><dt>трекинг</dt><dd>−0.5px у пяти заголовочных</dd></div>
+          <div><dt>вхождений всего</dt><dd>2062</dd></div>
+          <div><dt>сверено с Figma</dt><dd>7 из 9</dd></div>
+        </dl>
+        <p class="doc-note">
+          <strong>Примечание.</strong> Интерфейс Курсов набран мелким текстом:
+          1742 вхождения из 2062 приходятся на две ступени, 14/20 и 12/16,
+          а заголовков крупнее 18px на всех десяти страницах ровно 42. Ступень
+          задаёт только <code>font-size</code>, <code>line-height</code> и трекинг:
+          вес ставится отдельной утилитой, цвет — утилитой палитры. Одна утилита
+          выходит за шкалу и в слой не идёт — <code>.text-[8px]</code>, 20 вхождений
+          на 3 страницах из 10: интерлиньяжа она не задаёт и разбирается вместе
+          с несущим её компонентом.
+        </p>
+      </div>
+    </section>
+
+    <section class="doc-section" id="f-typography-weight">
+      <div class="doc-section__head">
+        <h4>Начертания и интерлиньяж поверх ступени</h4>
+        <p>Три веса из одного переменного файла Inter и одна утилита, которая перебивает интерлиньяж любой ступени.</p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>Начертания</h5>
+          <code>.font-normal · .font-semibold · .font-bold</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+          </span>
+        </div>
+        <div class="doc-stage doc-stage--rows">
+          <div class="doc-variant">
+            <span class="doc-variant__label">.font-normal — 400, 1 вхождение на 1 из 10 страниц: вес 400 приходит из базы документа, и возвращать его почти никогда не нужно</span>
+            <div class="text-default font-normal">Курсы и профессии</div>
+          </div>
+          <div class="doc-variant">
+            <span class="doc-variant__label">.font-semibold — 600, 909 вхождений на 10 из 10 страниц: рабочая пара продукта — 400 по умолчанию и 600 утилитой</span>
+            <div class="text-default font-semibold">Курсы и профессии</div>
+          </div>
+          <div class="doc-variant">
+            <span class="doc-variant__label">.font-bold — 700, 10 вхождений на 10 из 10 страниц, то есть по одному разу на страницу</span>
+            <div class="text-default font-bold">Курсы и профессии</div>
+          </div>
+        </div>
+        <dl class="doc-spec">
+          <div><dt>начертаний</dt><dd>3 — 400 · 600 · 700</dd></div>
+          <div><dt>файлов</dt><dd>один переменный Inter, ось font-weight: 100 900</dd></div>
+        </dl>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>Интерлиньяж поверх ступени</h5>
+          <code>.leading-none · .leading-5</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+          </span>
+        </div>
+        <div class="doc-stage doc-stage--rows">
+          <div class="doc-variant">
+            <span class="doc-variant__label">.text-small — 14 / 20, интерлиньяж ступени; две строки видно по расстоянию между ними</span>
+            <div class="text-small">Курсы, школы и профессии.<br>Вторая строка того же абзаца.</div>
+          </div>
+          <div class="doc-variant">
+            <span class="doc-variant__label">.text-small .leading-none — 14 / 14, а не 14 / 20: утилита снимает у ступени интерлиньяж; 40 вхождений на 10 из 10 страниц</span>
+            <div class="text-small leading-none">Курсы, школы и профессии.<br>Вторая строка того же абзаца.</div>
+          </div>
+          <div class="doc-variant">
+            <span class="doc-variant__label">.text-micro .leading-5 — 12 / 20; правило в сборке объявлено, в разметке десяти страниц не встречается</span>
+            <div class="doc-variant__row">
+              <div class="text-micro leading-5">Курсы, школы и профессии.<br>Вторая строка того же абзаца.</div>
+              <span class="doc-mark doc-mark--no-markup">no markup</span>
+            </div>
+          </div>
+        </div>
+        <p class="doc-note">
+          <strong>Примечание.</strong> «Ступень задаёт кегль и интерлиньяж» верно
+          ровно до тех пор, пока рядом не стоит <code>.leading-none</code>. Продукт
+          ставит её там, где строка одна и высоту держит сам контейнер — например,
+          на пункте выпадающего меню. Других <code>.leading-*</code> в корпусе нет.
+        </p>
+      </div>
+    </section>
+
+    <section class="doc-section" id="f-typography-mobile">
+      <div class="doc-section__head">
+        <h4>Мобильная ступень</h4>
+        <p>Единственное место, где шкала зависит от ширины. Граница — 767/768, и это граница реализации, а не канона пакета.</p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>text-h1 phone:text-h1-mobile</h5>
+          <code>@media (max-width:767px)</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+          </span>
+        </div>
+        <div class="doc-stage doc-stage--rows">
+          <div class="doc-variant">
+            <span class="doc-variant__label">пара целиком — 44/48 на 768 и шире, 30/34 на 767 и уже; сузьте окно, заголовок ниже переключится сам</span>
+            <div class="text-h1 phone:text-h1-mobile">Курсы и профессии</div>
+          </div>
+          <div class="doc-variant">
+            <span class="doc-variant__label">замер живьём, /education_centers, msedge, шесть ширин</span>
+            <div class="doc-scroll">
+              <table class="doc-table">
+                <thead><tr><th>ширина</th><th>744</th><th>766</th><th>767</th><th>768</th><th>769</th><th>1024</th></tr></thead>
+                <tbody><tr><td><code>.text-h1</code></td><td>30/34</td><td>30/34</td><td>30/34</td><td><b>44/48</b></td><td>44/48</td><td>44/48</td></tr></tbody>
+              </table>
+            </div>
+          </div>
+          <div class="doc-variant">
+            <span class="doc-variant__label">.phone:text-h2 — второе правило того же медиазапроса; объявлено и в разметке десяти страниц не встречается</span>
+            <div class="doc-variant__row">
+              <div class="text-default phone:text-h2">Курсы и профессии</div>
+              <span class="doc-mark doc-mark--no-markup">no markup</span>
+            </div>
+          </div>
+        </div>
+        <dl class="doc-spec">
+          <div><dt>граница</dt><dd>767 / 768</dd></div>
+          <div><dt>вхождений пары</dt><dd>7 · 7 из 10 страниц</dd></div>
+          <div><dt>покрытие h1</dt><dd>7 из 8</dd></div>
+        </dl>
+        <p class="doc-note">
+          <strong>Примечание.</strong> Канон пакета — 320 / 744 / 1024, реализация —
+          480 / 768 / 1024. На канонической ширине 744 продукт отдаёт мобильный
+          заголовок: 744 лежит внутри диапазона <code>phone:</code>, который кончается
+          на 767. Писать «≤ 744» вместо 767 нельзя — 744 это ближайшая снятая ширина,
+          а не граница. Восьмой <code>&lt;h1&gt;</code> пары не несёт вовсе: он набран
+          <code>text-small font-normal</code>, то есть <code>&lt;h1&gt;</code>
+          в Курсах не равен «крупный заголовок страницы». Ниже 480 шкала не меняется:
+          ступенчатых утилит под префиксом <code>small-phone:</code> в сборке нет.
+        </p>
+      </div>
+    </section>
+
+    <section class="doc-section" id="f-typography-dead">
+      <div class="doc-section__head">
+        <h4>Мёртвые токены шкалы против живых утилит</h4>
+        <p>Три расхождения из восьми типографических переменных. Слева — то, что утверждает мёртвая переменная; справа — то, что печатает живая утилита и что видит пользователь.</p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>21 против 20, 27 против 28 и 24</h5>
+          <code>[UNREFERENCED]</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+          </span>
+        </div>
+        <div class="doc-stage doc-stage--rows">
+          <div class="doc-variant">
+            <span class="doc-variant__label">--font-size-h3 / --line-height-h3 — 21 / 27, значение мёртвой переменной, отрисованное оболочкой; продукт эту ступень так не печатает нигде</span>
+            <div class="doc-dead" style="font-size: var(--font-size-h3); line-height: var(--line-height-h3)">Курсы и профессии</div>
+          </div>
+          <div class="doc-variant">
+            <span class="doc-variant__label">.text-h3 — 20 / 24, живая утилита; расходится и по кеглю, и по интерлиньяжу</span>
+            <div class="text-h3">Курсы и профессии</div>
+          </div>
+          <div class="doc-variant">
+            <span class="doc-variant__label">--font-size-h2 / --line-height-h2 — 24 / 27, значение мёртвой переменной: кегль сходится, интерлиньяж нет</span>
+            <div class="doc-dead" style="font-size: var(--font-size-h2); line-height: var(--line-height-h2)">Курсы и профессии</div>
+          </div>
+          <div class="doc-variant">
+            <span class="doc-variant__label">.text-h2 — 24 / 28, живая утилита</span>
+            <div class="text-h2">Курсы и профессии</div>
+          </div>
+        </div>
+        <dl class="doc-spec">
+          <div><dt>переменных мертво</dt><dd>8 из 8</dd></div>
+          <div><dt>расходится с утилитой</dt><dd>3</dd></div>
+          <div><dt>оборванных веток</dt><dd>1 — .text-card-title</dd></div>
+        </dl>
+        <p class="doc-note">
+          <strong>Примечание.</strong> Обе левые строки нарисованы оболочкой витрины
+          намеренно: подставить эти переменные больше некому — во всём корпусе
+          (10 инлайновых файлов + 12 внешних <code>.css</code> сборки) на них нет
+          ни одной ссылки <code>var(--…)</code>. Показаны они затем, что расхождение
+          иначе не увидеть: в тексте это две строки таблицы, а на экране — заметно
+          другая ступень. Опираться на эти переменные нельзя; берите утилиту.
+          Восьмая, <code>--line-height-card-title: 32px</code>, ветки не имеет
+          вовсе — класса <code>.text-card-title</code> в сборке нет. Трекинга
+          у мёртвых переменных нет ни у одной: −0.5px даёт отдельное правило
+          <code>.text-h1,.text-h1-mobile,.text-h2,.text-h3,.text-h4{letter-spacing:-.5px}</code>,
+          поэтому левые строки идут без него — разница на экране складывается
+          из кегля, интерлиньяжа и его отсутствия.
+        </p>
+      </div>
+    </section>
+  </section>
+
+  <!-- ------------------------------------------------------------------- -->
+  <section class="doc-category" id="f-layout">
+    <div class="doc-category__head">
+      <h3>Оболочка, контейнер и сетка</h3>
+      <code>ui/layout.css</code>
+      <p>Прижатый футер, контейнер <code>1124 + 24</code> и сетка секций <code>gap-12</code>. Оранжевым — подложка витрины, синим — то, что стоит внутри контейнера; расстояния между ними прочерчивает сам продукт. Разбор — <a href="../docs/guide/layout.md">docs/guide/layout.md</a>.</p>
+    </div>
+
+    <section class="doc-section" id="f-layout-shell">
+      <div class="doc-section__head">
+        <h4>Оболочка страницы</h4>
+        <p><code>.app-container</code> и <code>.app-content</code> — реальные классы обёртки на 10 из 10 снятых страниц, по одному узлу каждого на страницу.</p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>Прижатый футер</h5>
+          <code>.app-container · .app-content</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+          </span>
+        </div>
+        <div class="doc-stage doc-stage--rows">
+          <div class="doc-variant">
+            <span class="doc-variant__label">короткая страница: содержимого мало, а подвал всё равно внизу — .app-content растянут flex:1 0 auto; высоту холста (220px) задаёт оболочка, потому что height:100% у .app-container должен считаться от чего-то</span>
+            <div class="doc-shell">
+              <div class="app-container">
+                <div class="app-content">
+                  <p class="doc-fill">.app-content — flex: 1 0 auto</p>
+                </div>
+                <p class="doc-fill doc-fill--muted">подвал</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <dl class="doc-spec">
+          <div><dt>.app-container</dt><dd>display:flex; flex-direction:column; height:100%</dd></div>
+          <div><dt>.app-content</dt><dd>flex:1 0 auto</dd></div>
+          <div><dt>покрытие</dt><dd>10 из 10 страниц</dd></div>
+          <div><dt>медиазапросов</dt><dd>ни одного</dd></div>
+        </dl>
+        <p class="doc-note">
+          <strong>Примечание.</strong> Вторая половина цепочки — <code>body,html{height:100%}</code>
+          в <code>ui/foundations.css</code>: без неё <code>height:100%</code> у
+          <code>.app-container</code> не от чего считать. На витрине эту роль играет
+          холст оболочки. Ни на один из двух классов продукт не вешает ни одного
+          <code>@media</code> — пара работает одинаково на всех измеренных ширинах.
+        </p>
+      </div>
+    </section>
+
+    <section class="doc-section" id="f-layout-container">
+      <div class="doc-section__head">
+        <h4>Контейнер</h4>
+        <p>Одного именованного класса «контейнер» у продукта нет: <code>.container</code> Tailwind объявлен и не применяется ни разу на 10 из 10 страниц. Контейнер собирается из атомарных утилит, повторённых одинаковой связкой везде.</p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>mx-auto max-w-[1124px] px-6 py-0 tablet:px-6</h5>
+          <code>max-width:1124px · padding:0 24px</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+          </span>
+        </div>
+        <div class="doc-stage doc-stage--rows">
+          <div class="doc-variant">
+            <span class="doc-variant__label">контейнер по ширине витрины: оранжевого ровно по 24px с каждой стороны, и это не меняется ни на одной измеренной ширине — 320 · 375 · 479 · 480 · 744 · 768 · 1440</span>
+            <div class="doc-measure">
+              <div class="mx-auto max-w-[1124px] px-6 py-0 tablet:px-6">
+                <p class="doc-fill">padding: 0 24px</p>
+              </div>
+            </div>
+          </div>
+          <div class="doc-variant">
+            <span class="doc-variant__label">вторая связка того же контейнера, без py-0 и tablet: — m-auto max-w-[1124px] px-6, 8 из 10 страниц; геометрия та же</span>
+            <div class="doc-measure">
+              <div class="m-auto max-w-[1124px] px-6">
+                <p class="doc-fill">m-auto max-w-[1124px] px-6</p>
+              </div>
+            </div>
+          </div>
+          <div class="doc-variant">
+            <span class="doc-variant__label">потолок ширины на холсте оболочки шириной 1240: за 1124 коробка расти перестаёт, и mx-auto оставляет по 58px поля с каждой стороны — оранжевое поле слева шире, чем в примерах выше, потому что к падингу 24 добавились эти 58</span>
+            <div class="doc-scroll">
+              <div class="doc-measure doc-measure--1240">
+                <div class="mx-auto max-w-[1124px] px-6 py-0 tablet:px-6">
+                  <p class="doc-fill">зона содержимого — 1124 − 48 = 1076px</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <span class="doc-variant__label">холст 1240 шире колонки витрины, поэтому его правый край уходит за границу образца: прокрутите полосу вбок, чтобы увидеть второе поле — оно такое же</span>
+        </div>
+        <dl class="doc-spec">
+          <div><dt>max-width</dt><dd>1124px, border-box</dd></div>
+          <div><dt>padding</dt><dd>0 24px</dd></div>
+          <div><dt>зона содержимого</dt><dd>1076px</dd></div>
+          <div><dt>покрытие</dt><dd>10 из 10 страниц: шапка, подвал, и ещё раз глубже на части страниц</dd></div>
+        </dl>
+        <p class="doc-note">
+          <strong>Примечание.</strong> «1124 + 24» — это <code>max-width</code> самой
+          коробки, с падингом внутри, а не «1124 плюс ещё 24 сверху»: зона
+          содержимого 1124 − 48 = 1076px, что подтверждает
+          <code>grid-template-columns: 1076px</code> у сетки секций внутри такого
+          контейнера на вьюпорте 1440. <code>tablet:px-6</code> переутверждает то же
+          значение 24px, что и базовый <code>px-6</code>, а не другое; правило
+          сохранено отдельным, потому что так его печатает прод.
+        </p>
+      </div>
+    </section>
+
+    <section class="doc-section" id="f-layout-grid">
+      <div class="doc-section__head">
+        <h4>Сетка секций</h4>
+        <p>Секции верхнего уровня складываются в одну колонку через <code>grid</code>, не <code>flex</code> — правило подтверждено на 7 из 7 страниц, где секций больше одной.</p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pt-10 pb-10</h5>
+          <code>gap: 48px · padding: 40px 0</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+          </span>
+        </div>
+        <div class="doc-stage doc-stage--rows">
+          <div class="doc-variant">
+            <span class="doc-variant__label">оранжевые полосы между синими секциями — это gap-12 = 48px; полосы сверху и снизу — pt-10 / pb-10 = 40px, победитель по частоте (5 из 7 страниц)</span>
+            <div class="doc-measure">
+              <div class="relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pt-10 pb-10">
+                <section class="doc-fill">секция 1</section>
+                <section class="doc-fill">секция 2</section>
+                <section class="doc-fill">секция 3</section>
+              </div>
+            </div>
+          </div>
+        </div>
+        <dl class="doc-spec">
+          <div><dt>gap-12</dt><dd>48px, одинаково на всех измеренных ширинах</dd></div>
+          <div><dt>колонок</dt><dd>одна — minmax(0,1fr)</dd></div>
+          <div><dt>pt-10 pb-10</dt><dd>40 / 40px — 5 из 7 страниц</dd></div>
+          <div><dt>покрытие сетки</dt><dd>7 из 7 страниц с более чем одной секцией</dd></div>
+        </dl>
+        <p class="doc-note">
+          <strong>Примечание.</strong> <code>grid</code> здесь используется ради
+          <code>gap</code>, а не ради многоколоночной раскладки. Ни одного
+          <code>phone:gap-*</code> или <code>tablet:gap-*</code> рядом с этой связкой
+          в разметке нет. Вертикальный отступ секции в правило не входит и по
+          страницам варьируется: <code>pt-6 pb-6</code> — 1 из 7,
+          <code>pt-6 pb-28</code> с <code>phone:pt-0</code> — 1 из 7; сверстан
+          победитель, два других — исключения с адресом. Три страницы из десяти
+          (<code>author</code>, <code>authors</code>, <code>editors</code>) сетки
+          секций не используют вовсе — складывают секции через
+          <code>flex flex-col gap-10</code>; это GAP-1 в <a href="../docs/guide/layout.md">layout.md</a>.
+        </p>
+      </div>
+    </section>
+  </section>
+
+  <!-- ------------------------------------------------------------------- -->
+  <section class="doc-category" id="f-breakpoints">
+    <div class="doc-category__head">
+      <h3>Брейкпоинты</h3>
+      <code>шесть префиксов сборки</code>
+      <p>Границы независимо пересчитаны брейс-сканом вложенности <code>@media</code> по 22 файлам корпуса. Каноническая схема Figma и реализация продукта не совпадают — расхождение показано как факт, оно зафиксировано решением пользователя от 8 сентября 2026.</p>
+    </div>
+
+    <section class="doc-section" id="f-breakpoints-scale">
+      <div class="doc-section__head">
+        <h4>Две схемы на одной оси</h4>
+        <p>Ось 320 → 1400. Ширина каждого отрезка пропорциональна ширине самого диапазона в пикселях.</p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>Канон пакета против реализации</h5>
+          <code>320 / 744 / 1024 · 480 / 768 / 1024</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+          </span>
+        </div>
+        <div class="doc-stage doc-stage--rows">
+          <div class="doc-axis">
+            <p class="doc-axis__label">канон пакета — схема Figma, три артборда</p>
+            <div class="doc-scroll">
+              <div class="doc-axis__bar">
+                <div class="doc-axis__seg doc-axis__seg--a" style="flex: 424"><b>320 … 743</b>мобильный</div>
+                <div class="doc-axis__seg doc-axis__seg--c" style="flex: 280"><b>744 … 1023</b>планшет</div>
+                <div class="doc-axis__seg doc-axis__seg--d" style="flex: 377"><b>1024 →</b>десктоп</div>
+              </div>
+            </div>
+          </div>
+          <div class="doc-axis">
+            <p class="doc-axis__label">реализация — какие префиксы сборки действуют на самом деле</p>
+            <div class="doc-scroll">
+              <div class="doc-axis__bar">
+                <div class="doc-axis__seg doc-axis__seg--a" style="flex: 160"><b>320 … 479</b>small-phone: + phone: + tablet:</div>
+                <div class="doc-axis__seg doc-axis__seg--b" style="flex: 288"><b>480 … 767</b>phone: + phablet-and-tablet: + tablet:</div>
+                <div class="doc-axis__seg doc-axis__seg--c" style="flex: 256"><b>768 … 1023</b>tablet-only: + phablet-and-tablet: + tablet:</div>
+                <div class="doc-axis__seg doc-axis__seg--d" style="flex: 377"><b>1024 →</b>desktop:</div>
+              </div>
+            </div>
+          </div>
+          <div class="doc-variant">
+            <span class="doc-variant__label">шесть префиксов, каждый — ровно одно условие; лампочка показывает, активно ли условие на текущей ширине окна, и загорается сама при её изменении</span>
+            <ul class="doc-bp">
+              <li class="doc-bp__row"><span class="doc-bp__name">small-phone:</span><span class="doc-bp__cond">(max-width: 479px)</span><span class="doc-bp__lamp doc-bp__lamp--small-phone"></span><span class="doc-bp__cond">460 правил · 20 узлов на 4 из 10 страниц</span></li>
+              <li class="doc-bp__row"><span class="doc-bp__name">phone:</span><span class="doc-bp__cond">(max-width: 767px)</span><span class="doc-bp__lamp doc-bp__lamp--phone"></span><span class="doc-bp__cond">2170 правил · 927 узлов на 10 из 10 страниц</span></li>
+              <li class="doc-bp__row"><span class="doc-bp__name">phablet-and-tablet:</span><span class="doc-bp__cond">(min-width: 480px) and (max-width: 1023px)</span><span class="doc-bp__lamp doc-bp__lamp--phablet-and-tablet"></span><span class="doc-bp__cond">20 правил · 0 узлов на 0 из 10 страниц</span></li>
+              <li class="doc-bp__row"><span class="doc-bp__name">tablet-only:</span><span class="doc-bp__cond">(min-width: 768px) and (max-width: 1023px)</span><span class="doc-bp__lamp doc-bp__lamp--tablet-only"></span><span class="doc-bp__cond">80 правил · 36 узлов на 10 из 10 страниц</span></li>
+              <li class="doc-bp__row"><span class="doc-bp__name">tablet:</span><span class="doc-bp__cond">(max-width: 1023px)</span><span class="doc-bp__lamp doc-bp__lamp--tablet"></span><span class="doc-bp__cond">300 правил · 95 узлов на 10 из 10 страниц</span></li>
+              <li class="doc-bp__row"><span class="doc-bp__name">desktop:</span><span class="doc-bp__cond">(min-width: 1024px)</span><span class="doc-bp__lamp doc-bp__lamp--desktop"></span><span class="doc-bp__cond">20 правил · 10 узлов на 10 из 10 страниц</span></li>
+            </ul>
+          </div>
+        </div>
+        <dl class="doc-spec">
+          <div><dt>префиксов</dt><dd>6</dd></div>
+          <div><dt>условий на префикс</dt><dd>ровно одно</dd></div>
+          <div><dt>границ ниже 1024</dt><dd>две — 480 и 768</dd></div>
+          <div><dt>верхняя граница desktop:</dt><dd>нет, диапазон открыт вправо</dd></div>
+        </dl>
+        <p class="doc-note">
+          <strong>Примечание.</strong> 480 — верхняя граница <code>small-phone:</code>
+          (479), а не <code>phone:</code>: правила <code>phone:</code> действуют до 767
+          включительно. Ниже 1024 границ две, и они разной природы: 480 переключает
+          реализацию фильтра (модалка становится нижним листом, 6 из 10 страниц),
+          767/768 переключает оболочку и все сетки (10 из 10). Между ними, на
+          480…767, одновременно активны <code>phone:</code> и
+          <code>phablet-and-tablet:</code> — поэтому каноническая ширина пакета 744
+          отдаёт мобильную оболочку с планшетным дропдауном фильтра одновременно.
+          <code>phablet-and-tablet:</code> объявлен в сборке и в разметке десяти
+          страниц не стоит ни разу; счёт приведён потому, что это отрицательное
+          утверждение.
+        </p>
+        <p class="doc-note">
+          <strong>Чего этот пример не показывает.</strong> Лампочки и полосы рисует
+          документационная оболочка, воспроизводя у себя те же шесть условий. Сам
+          <code>ui/</code> из шести префиксов поднимает три, и всего четырьмя
+          классами: <code>phone:text-h1-mobile</code> и <code>phone:text-h2</code>
+          (<code>ui/foundations.css</code>, строки 342–344 — это и есть раздел
+          «Мобильная ступень»), <code>small-phone:text-center</code>
+          (<code>ui/utilities.css</code>, строка 78) и <code>tablet:px-6</code>
+          в контейнере (<code>ui/layout.css</code>, строка 163). Все четыре живые:
+          на пустой странице с одним <code>ui/courses.css</code> выравнивание
+          переключается ровно на границе 479/480, а падинг контейнера — на
+          1023/1024.
+        </p>
+        <p class="doc-note">
+          Не раскрываются в подключённом <code>ui/courses.css</code> три префикса
+          целиком — <code>desktop:</code>, <code>tablet-only:</code>,
+          <code>phablet-and-tablet:</code>, ни одного класса ни у одного из них, —
+          и все утилиты <code>tablet:*</code>, кроме <code>px-6</code>, в том числе
+          <code>tablet:flex</code>. До появления соответствующих компонентов
+          разметка пакета на них опираться не может. Каждое отрицание в этом
+          абзаце получено разбором всех 17 файлов <code>ui/</code> парсером
+          (<code>postcss</code>, тот же механизм, что у гейта витрины), а не
+          чтением глазами: утверждение о собственном слое иначе на витрину
+          не попадает.
+        </p>
+      </div>
+    </section>
+  </section>
+
+  <!-- ------------------------------------------------------------------- -->
+  <section class="doc-category" id="f-focus">
+    <div class="doc-category__head">
+      <h3>Фокус</h3>
+      <code>ui/foundations.css · ui/state-contract.css</code>
+      <p>Единого правила фокуса у Курсов нет: во всём корпусе одиннадцать селекторов с <code>:focus</code>, <code>:focus-visible</code> или <code>:focus-within</code>, и ни один не элементный. Примеры ниже смотрят с клавиатуры — нажмите Tab.</p>
+    </div>
+
+    <section class="doc-section" id="f-focus-ring">
+      <div class="doc-section__head">
+        <h4>Как выглядит фокус</h4>
+        <p>Шесть вариантов: четыре случая, снятые живьём на <code>/courses</code> в msedge на 1440 клавиатурной модальностью, и две утилиты сборки, которых в разметке десяти снятых страниц нет ни разу, — они стоят с пометкой.</p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>Тройка утилит и то, что вместо неё</h5>
+          <code>.focus:outline-none · .focus-visible:outline · .focus-visible:outline-ui-black-400</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+          </span>
+        </div>
+        <div class="doc-stage doc-stage--rows">
+          <div class="doc-variant">
+            <span class="doc-variant__label">свой ринг продукта — outline: rgb(166,167,169) solid 2px, offset 2px; rgb(166,167,169) это #a6a7a9, то есть var(--color-ui-black-400)</span>
+            <div class="doc-focus-row">
+              <button type="button" class="text-small focus:outline-none focus-visible:outline focus-visible:outline-ui-black-400">кнопка с тройкой</button>
+              <a class="text-small focus:outline-none focus-visible:outline focus-visible:outline-ui-black-400" href="#f-focus-ring">ссылка-кнопка с той же тройкой</a>
+            </div>
+          </div>
+          <div class="doc-variant">
+            <span class="doc-variant__label">контур погашен и ничем не заменён — только focus:outline-none: фокус есть, видимого следа нет. Носитель этих десяти узлов — кнопка раскрытия панели сервисов в шапке, один и тот же узел на каждой из десяти страниц: 10 узлов, 10 из 10 страниц. У поля поиска контур погашен так же, но след возвращает обёртка — вариант ниже</span>
+            <div class="doc-focus-row">
+              <button type="button" class="text-small focus:outline-none">кнопка без замены</button>
+            </div>
+          </div>
+          <div class="doc-variant">
+            <span class="doc-variant__label">ничего не объявлено — ринг рисует браузер: outline rgb(16,16,16) auto 1px, offset 1px; так ведут себя 1034 фокусируемых узла из 1264, то есть 82 %</span>
+            <div class="doc-focus-row">
+              <a class="text-small" href="#f-focus-ring">обычная ссылка</a>
+            </div>
+          </div>
+          <div class="doc-variant">
+            <span class="doc-variant__label">фон вместо контура — focus:bg-ui-black-50, утилита сборки, в разметке десяти снятых страниц не встречается: при фокусе подложка становится #f1f1f1; браузерный контур при этом остаётся, гасящей его утилиты в этом примере нет</span>
+            <div class="doc-variant__row">
+              <div class="doc-focus-row">
+                <button type="button" class="text-small focus:bg-ui-black-50">кнопка с подсветкой фона</button>
+              </div>
+              <span class="doc-mark doc-mark--no-markup">no markup</span>
+            </div>
+          </div>
+          <div class="doc-variant">
+            <span class="doc-variant__label">обёртка вместо элемента — focus-within:bg-ui-white и focus-within:border-ui-black-850 на обёртке поля: при фокусе внутри подложка становится белой, а рамка меняет цвет с #e9e9ea на #2c2e34 — замер по Tab. Ширину рамки и серый фон даёт оболочка: *{border:0 solid} обнуляет ширину всем, а базовых утилит поля (border, rounded-lg, bg-ui-black-50) в ui/ нет; цвет в обоих состояниях — токены продукта</span>
+            <div class="doc-focus-row">
+              <span class="doc-field focus-within:bg-ui-white focus-within:border-ui-black-850">
+                <input class="doc-input text-small" type="text" placeholder="поиск">
+              </span>
+            </div>
+          </div>
+          <div class="doc-variant">
+            <span class="doc-variant__label">соседний элемент — .peer на поле и .peer-focus-visible:outline на соседе: ринг получает не сам фокусируемый узел; правило в сборке есть, в разметке десяти снятых страниц не встречается</span>
+            <div class="doc-variant__row">
+              <div class="doc-focus-row">
+                <label class="text-small">
+                  <input class="peer" type="checkbox">
+                  <span class="peer-focus-visible:outline">сосед получает ринг</span>
+                </label>
+              </div>
+              <span class="doc-mark doc-mark--no-markup">no markup</span>
+            </div>
+          </div>
+        </div>
+        <dl class="doc-spec">
+          <div><dt>селекторов фокуса в корпусе</dt><dd>11, ни одного элементного</dd></div>
+          <div><dt>свой ринг продукта</dt><dd>191 узел · 15 % · 9 из 10 страниц</dd></div>
+          <div><dt>реагирует focus-within</dt><dd>29 узлов · 2 % · 6 из 10 страниц</dd></div>
+          <div><dt>погашено без замены</dt><dd>10 узлов · 1 % · 10 из 10 страниц</dd></div>
+          <div><dt>рисует браузер</dt><dd>1034 узла · 82 % · 10 из 10 страниц</dd></div>
+        </dl>
+        <p class="doc-note">
+          <strong>Примечание.</strong> Механика тройки: <code>focus:outline-none</code>
+          гасит фокус любого происхождения шорткатом
+          <code>outline: 2px solid transparent; outline-offset: 2px</code>, а два
+          лонгханда <code>:focus-visible</code> возвращают <code>outline-style</code>
+          и цвет. Убрать первую утилиту нельзя: без неё у ринга не останется ни
+          ширины, ни отступа — утилиты <code>.outline-2</code> и
+          <code>.outline-offset-1</code> в сборке есть, но в разметке не стоят
+          ни разу. Читается это так: фокус в Курсах — свойство кнопки, а не
+          документа. Нормативного глобального фокуса пакет не дописывает.
+        </p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>Единственный дописанный фокус</h5>
+          <code>.crs-header-dropdown__trigger:focus-visible</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+          </span>
+          <span class="doc-tag doc-tag--normative">норматив</span>
+        </div>
+        <div class="doc-stage doc-stage--rows">
+          <div class="doc-variant">
+            <span class="doc-variant__label">слева — факт прода: outline-none без замены, клавиатурный пользователь не видит фокуса; справа — тот же узел с дописанным правилом ui/state-contract.css</span>
+            <div class="doc-focus-row">
+              <button type="button" class="text-small outline-none">как в проде</button>
+              <button type="button" class="text-small outline-none crs-header-dropdown__trigger">с нормативным правилом</button>
+            </div>
+          </div>
+        </div>
+        <dl class="doc-spec">
+          <div><dt>источник значений</dt><dd>скопировано с Button — 191 из 191 вхождений</dd></div>
+          <div><dt>новых значений</dt><dd>ноль</dd></div>
+          <div><dt>файл</dt><dd>ui/state-contract.css</dd></div>
+        </dl>
+        <p class="doc-note">
+          <strong>Примечание.</strong> Триггер <code>HeaderDropdown</code> — единственный
+          из 30 узлов корпуса с погашенным контуром, у которого нет ни
+          <code>focus-visible</code>-утилиты, ни компенсации <code>focus-within</code>
+          на обёртке, а <code>focus-visible</code> уже объявлен обязательным
+          состоянием записи. Приём и оба значения скопированы с кнопки буквально,
+          ни одного изобретённого цвета здесь нет. Селектор временный: шаг вёрстки
+          <code>HeaderDropdown</code> навесит класс на реальный
+          <code>&lt;button&gt;</code> или заменит его на класс записи.
+        </p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>Скрытие от глаз</h5>
+          <code>.sr-only · .visually-hidden</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+          </span>
+        </div>
+        <div class="doc-stage doc-stage--rows">
+          <div class="doc-variant">
+            <span class="doc-variant__label">обе утилиты объявлены в сборке и в разметке десяти страниц не встречаются ни разу; между словами «видно» и «видно» ниже стоят два спрятанных слова — по одному каждой утилитой</span>
+            <div class="doc-variant__row">
+              <div class="text-small">видно <span class="sr-only">спрятано sr-only</span><span class="visually-hidden">спрятано visually-hidden</span> видно</div>
+              <span class="doc-mark doc-mark--no-markup">no markup</span>
+            </div>
+          </div>
+        </div>
+        <p class="doc-note">
+          <strong>Примечание.</strong> Утилиты не эквивалентны:
+          <code>.sr-only</code> — штатная Tailwind, прячет через
+          <code>clip: rect(0,0,0,0)</code> при размере 1×1px;
+          <code>.visually-hidden</code> — своя, нулевым размером с
+          <code>overflow:hidden</code> и <code>opacity:0</code>, и этот способ
+          в части браузеров выносит содержимое из доступного дерева. Текста,
+          доступного только скринридеру, в снятой публичной части продукта нет.
+        </p>
+      </div>
+    </section>
+  </section>
+
+</section>
+
+<!-- ===================================================================== -->
+<section class="doc-section" id="doc-components">
+  <div class="doc-section__head">
+    <span class="doc-section__num">5</span>
     <h2>Компоненты</h2>
     <p>Десять категорий METHOD §5 в том порядке, в каком их подключает <code>ui/courses.css</code>. Состав и шаги — в <code>components/INDEX.md</code>.</p>
   </div>

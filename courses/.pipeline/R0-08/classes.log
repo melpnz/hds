@@ -1,0 +1,14 @@
+Отложено (1) — витрины ещё нет:
+  showcase/pages.html — заводит шаг R6
+
+Известные пробелы (7) — см. tools/known-missing-classes.json:
+  fill-ui-black-850 — то же — fill:var(--color-ui-black-850), пара к text-ui-black-850 на одном узле
+  rotate-90 — утилита Tailwind продукта (transform:rotate(90deg)); в ui/ не заведена ни в одном слое — стоит прямо на <svg class="svg-icon rotate-90…"> символа more (кнопка «показать ещё», SpriteIcon#more, R2-01), не на обёртывающей кнопке
+  text-ui-black-400 — то же — color:var(--color-ui-black-400)
+  text-ui-black-850 — то же — color:var(--color-ui-black-850)
+  text-ui-green-500 — то же — color:var(--color-ui-green-500)
+  text-ui-white — то же — color:var(--color-ui-white)
+  text-ui-yellow-500 — утилита Tailwind продукта (color:var(--color-ui-yellow-500)); токен есть в ui/tokens.css с R0-02, самого класса-утилиты нет ни в ui/utilities.css (его сфера — перенос/обрезка/выравнивание текста, GAP-9 docs/guide/typography.md, не цвет), ни где-либо ещё в ui/ — R2-01, sprite-icon.md, раздел «Ограничения»
+
+Checked 151 classes in 1 showcase file(s) + 5 spec file(s) against 18 stylesheets. No new undefined classes (7 known gaps).
+METHOD §6.2: 1 showcase stylesheet(s) prefixed doc-, 17 ui stylesheet(s) free of doc-.

@@ -1,0 +1,48 @@
+<!--
+  Проверка METHOD §6.1 (копируемость) для R0-04: ui/layout.css и
+  ui/utilities.css. Пустая страница, один <link> на ui/courses.css,
+  без витрины. Открывать через node tools/serve.mjs (порт 4179),
+  не file:// — путь /ui/courses.css абсолютный от корня пакета.
+-->
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<title>R0-04 copy-check</title>
+<link rel="stylesheet" href="/ui/courses.css">
+</head>
+<body>
+  <div class="app-container" id="shell" style="min-height:100vh">
+    <div class="app-content">
+      <header style="background:#eef">
+        <div class="mx-auto max-w-[1124px] px-6 py-0 tablet:px-6" id="header-container" style="background:#dde">
+          шапка внутри контейнера 1124+24
+        </div>
+      </header>
+      <div class="mx-auto max-w-[1124px] px-6 py-0 tablet:px-6" id="main-container">
+        <div class="relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pt-10 pb-10" id="section-grid">
+          <section id="s1" style="background:#efe">Секция 1</section>
+          <section id="s2" style="background:#fee">Секция 2</section>
+          <section id="s3" style="background:#eef">Секция 3</section>
+        </div>
+      </div>
+      <footer style="background:#eed">
+        <div class="mx-auto max-w-[1124px] px-6 py-0 tablet:px-6">подвал внутри того же контейнера</div>
+      </footer>
+    </div>
+  </div>
+
+  <hr>
+  <h2>Утилиты ui/utilities.css</h2>
+  <p class="whitespace-nowrap" id="u-nowrap" style="width:120px;border:1px solid;overflow:hidden">Съешь ещё этих мягких французских булок да выпей чаю</p>
+  <p class="truncate" id="u-truncate" style="width:120px;border:1px solid">Съешь ещё этих мягких французских булок да выпей чаю</p>
+  <p class="break-words" id="u-breakwords" style="width:80px;border:1px solid">Оченьдлинноеслововбезпробелов1234567890</p>
+  <p class="line-clamp-2" id="u-clamp2" style="width:160px;border:1px solid">Съешь ещё этих мягких французских булок да выпей чаю. Съешь ещё этих мягких французских булок да выпей чаю.</p>
+  <p class="line-clamp-3" id="u-clamp3" style="width:160px;border:1px solid">Съешь ещё этих мягких французских булок да выпей чаю. Съешь ещё этих мягких французских булок да выпей чаю. Съешь ещё этих мягких французских булок да выпей чаю.</p>
+  <p class="line-clamp-1" id="u-clamp1" style="width:160px;border:1px solid">Съешь ещё этих мягких французских булок да выпей чаю.</p>
+  <p class="text-center" id="u-center" style="border:1px solid">по центру</p>
+  <p class="text-right" id="u-right" style="border:1px solid">направо</p>
+  <p class="text-left" id="u-left" style="border:1px solid">налево</p>
+  <p class="small-phone:text-center" id="u-smallphone" style="border:1px solid">small-phone:text-center — по центру только ≤479px</p>
+</body>
+</html>
