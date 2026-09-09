@@ -60,7 +60,7 @@ ${styleBlock}
 // инлайновым <style>). Возвращает путь к каталогу пакета.
 const BASE_DOC_CSS = '.doc-body { margin: 0; }\n.doc-layout { display: block; }\n';
 
-function fixture({ uiFiles = {}, showcaseCss = '', inlineStyle = '', inlineStyles = null } = {}) {
+function fixture({ uiFiles = {}, showcaseCss = '', inlineStyle = '', inlineStyles = null, specFiles = null, knownMissing = null } = {}) {
   fixtureCounter += 1;
   const root = path.join(tmpRoot, String(fixtureCounter));
   fs.mkdirSync(path.join(root, 'ui'), { recursive: true });
@@ -83,6 +83,21 @@ function fixture({ uiFiles = {}, showcaseCss = '', inlineStyle = '', inlineStyle
   const styleTag = blocks.map(css => `<style>\n${css}\n</style>`).join('\n');
   fs.writeFileSync(path.join(root, 'showcase', 'components.css'), BASE_DOC_CSS + showcaseCss);
   fs.writeFileSync(path.join(root, 'showcase', 'components.html'), html(styleTag));
+  // `specFiles` — { 'category/name.md': markdown } — X-75 (ROADMAP.md):
+  // components/**/*.md с фрагментами ```html обязаны проверяться в дефолтном
+  // прогоне так же, как showcase/*.html, не только когда их разметка
+  // случайно совпадает с уже проверенной копией в витрине.
+  if (specFiles) {
+    for (const [name, content] of Object.entries(specFiles)) {
+      const full = path.join(root, 'components', name);
+      fs.mkdirSync(path.dirname(full), { recursive: true });
+      fs.writeFileSync(full, content);
+    }
+  }
+  if (knownMissing) {
+    fs.mkdirSync(path.join(root, 'tools'), { recursive: true });
+    fs.writeFileSync(path.join(root, 'tools', 'known-missing-classes.json'), JSON.stringify(knownMissing));
+  }
   return root;
 }
 
@@ -345,6 +360,153 @@ probe('NEW-7: @property с именем --doc- в продуктовом сло�
   },
   expectCode: 1,
   expectContains: ['переменная оболочки витрины в продуктовом слое — --doc-x'],
+});
+
+// =========================================================================
+// 2.5. X-75 (ROADMAP.md) — components/**/*.md проверяются в дефолтном
+//      прогоне, не только showcase/*.html. До этой правки инструмент
+//      никогда не читал спецификации: класс, сославшийся на несуществующую
+//      в ui/ утилиту внутри фрагмента ```html спецификации, было нечем
+//      поймать, если он случайно не совпадал с уже проверенной разметкой
+//      showcase (ревью R2-01, review-1, находка 4).
+// =========================================================================
+
+probe('X75-1: неизвестный класс только во фрагменте ```html спецификации — ловится', {
+  // Класс нигде не встречается в showcase/*.html — только в components/*.md.
+  // До правки X-75 инструмент вообще не читал components/, и это прошло бы
+  // молча (EXIT=0), хотя класс не определён ни в одном файле ui/.
+  fixtureOpts: {
+    specFiles: {
+      'data-display/widget.md': [
+        '# Widget',
+        '',
+        '## Разметка',
+        '',
+        '```html',
+        '<div class="spec-only-undefined-class">Пример</div>',
+        '```',
+        '',
+      ].join('\n'),
+    },
+  },
+  expectCode: 1,
+  expectContains: ['Классы без определения в CSS', 'spec-only-undefined-class'],
+});
+
+probe('X75-2: класс из ```html спецификации, объявленный в ui/, — не ложная находка', {
+  fixtureOpts: {
+    uiFiles: { 'components.css': '.spec-real-class { color: black; }\n' },
+    specFiles: {
+      'data-display/widget.md': '## Разметка\n\n```html\n<div class="spec-real-class">Пример</div>\n```\n',
+    },
+  },
+  expectCode: 0,
+  expectContains: ['All defined.'],
+});
+
+probe('X75-3: класс из ```html спецификации в базовой линии known-missing-classes.json — предупреждение, не ошибка', {
+  // Ровно сценарий SpriteIcon/R2-01: спецификация ссылается на реальную
+  // Tailwind-утилиту продукта, которой пока нет ни в одном слое ui/ —
+  // задокументированный GAP, а не регресс. EXIT=0, но с предупреждением.
+  fixtureOpts: {
+    uiFiles: { 'components.css': '.svg-icon{fill:currentColor}\n' },
+    specFiles: {
+      'data-display/sprite-icon.md': '## Разметка\n\n```html\n<svg class="svg-icon text-ui-yellow-500"></svg>\n```\n',
+    },
+    knownMissing: {
+      'text-ui-yellow-500': 'утилита продукта, токен есть, класса в ui/ нет — GAP, sprite-icon.md',
+    },
+  },
+  expectCode: 0,
+  expectContains: ['Известные пробелы (1)', 'text-ui-yellow-500'],
+  expectNotContains: ['Классы без определения в CSS'],
+});
+
+probe('X75-4 (контроль): фрагмент ```css внутри спецификации не читается как разметка для копирования', {
+  // ```css показывает правило ui/, не разметку для копирования — класс
+  // в имени селектора CSS-примера не должен требовать class="…" в HTML.
+  // (Здесь `.some-css-only-selector` встречается только как селектор внутри
+  // ```css — collectClassUses ищет `class="…"`, что внутри ```css не
+  // встречается вовсе, так что находка была бы возможна только при ошибке
+  // в выборе fence-языка.)
+  fixtureOpts: {
+    specFiles: {
+      'data-display/widget.md': '## CSS\n\n```css\n.some-css-only-selector{color:red}\n```\n',
+    },
+  },
+  expectCode: 0,
+  expectContains: ['All defined.'],
+});
+
+// =========================================================================
+// 2.6. Review-2 (R2-01), находка 1 — извлечение ```html-блока не должно
+//      зависеть от точного текста границы. Старый парсер
+//      (`/```html\n([\s\S]*?)```/`) требовал буквально этот текст: висячий
+//      пробел/таб после `html` на строке открывающей метки или `\r\n`
+//      вместо `\n` (CRLF) не совпадали вовсе — блок пропадал молча, класс
+//      внутри него не шёл ни в `used`, ни в находку, и гейт X-75 давал
+//      EXIT=0 «All defined» на файле с необъявленным классом. Каждая проба
+//      ниже проваливалась на коде до этой правки (класс не находился —
+//      «All defined», хотя должен быть найден как неопределённый) и
+//      проходит после (класс пойман).
+// =========================================================================
+
+probe('X75-5 (review-2, находка 1): висячий пробел после `html` на строке открывающей метки', {
+  fixtureOpts: {
+    specFiles: {
+      'data-display/widget.md': '## Разметка\n\n```html \n<div class="trailing-space-fence-undefined"></div>\n```\n',
+    },
+  },
+  expectCode: 1,
+  expectContains: ['Классы без определения в CSS', 'trailing-space-fence-undefined'],
+});
+
+probe('X75-6 (review-2, находка 1): висячий таб после `html` на строке открывающей метки', {
+  fixtureOpts: {
+    specFiles: {
+      'data-display/widget.md': '## Разметка\n\n```html\t\n<div class="trailing-tab-fence-undefined"></div>\n```\n',
+    },
+  },
+  expectCode: 1,
+  expectContains: ['Классы без определения в CSS', 'trailing-tab-fence-undefined'],
+});
+
+probe('X75-7 (review-2, находка 1): CRLF-перенос строки во всём файле спецификации', {
+  fixtureOpts: {
+    specFiles: {
+      // \r\n на каждой границе, как в файле, сохранённом Windows-редактором
+      // или до нормализации `.gitattributes` (`* text=auto eol=lf`) при
+      // коммите — на диске в рабочей копии `\r\n` не исключён.
+      'data-display/widget.md': '## Разметка\r\n\r\n```html\r\n<div class="crlf-fence-undefined"></div>\r\n```\r\n',
+    },
+  },
+  expectCode: 1,
+  expectContains: ['Классы без определения в CSS', 'crlf-fence-undefined'],
+});
+
+probe('X75-8 (контроль): отступ перед тройными бэктиками (блок кода внутри списка) — тоже читается', {
+  // Ни одна спецификация пакета сегодня так не пишет ```html (проверено
+  // grep по components/**/*.md на этой итерации) — markdown это допускает
+  // (код внутри пункта списка/цитаты), и раз парсинг границы чинится, эта
+  // проба закрывает и этот случай на будущее, а не оставляет его следующим
+  // 54 спецификациям.
+  fixtureOpts: {
+    specFiles: {
+      'data-display/widget.md': '## Разметка\n\n- пункт списка с кодом:\n\n  ```html\n  <div class="indented-fence-undefined"></div>\n  ```\n',
+    },
+  },
+  expectCode: 1,
+  expectContains: ['Классы без определения в CSS', 'indented-fence-undefined'],
+});
+
+probe('X75-9 (контроль): CRLF + висячий пробел вместе — обе границы одновременно', {
+  fixtureOpts: {
+    specFiles: {
+      'data-display/widget.md': '## Разметка\r\n\r\n```html \r\n<div class="crlf-and-space-fence-undefined"></div>\r\n```\r\n',
+    },
+  },
+  expectCode: 1,
+  expectContains: ['Классы без определения в CSS', 'crlf-and-space-fence-undefined'],
 });
 
 // =========================================================================

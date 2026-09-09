@@ -170,9 +170,11 @@
       "legacyAliases": [],
       "category": "data-display",
       "kind": "primitive",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "data-display/sprite-icon.md",
+      "cssRoots": [
+        "svg-icon"
+      ],
+      "showcaseAnchor": "c-sprite-icon",
       "figmaEvidence": [
         {
           "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
@@ -182,10 +184,30 @@
           "nodeId": null,
           "componentKey": "74adfe6b",
           "url": null,
-          "note": "icon/* в education-lib, ~40 компонентов"
+          "note": "заметка инвентаризации; уточнено на R2-01: componentKey резолвится в icon/check (74adfe6b0594c14463bc47de9226555d3c21458c) — конкретный узел, не общий адрес icon/*. get_metadata на файл отдаёт только страницу 33:15585 «colors», страницы компонентов не читаются — componentKey остаётся единственным способом адресации"
+        },
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "sourceName": "icon/search",
+          "layerName": "icon/search",
+          "nodeId": null,
+          "componentKey": "cd8ad75ae4fe81f35ce1c71d7283f9a85f9c6003",
+          "url": null,
+          "note": "точное совпадение имени с символом sprite.svg#search (search_design_system, includeLibraryKeys education-lib); nodeId недоступен по той же причине, что у componentKey выше"
+        },
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "sourceName": "icon/catalog",
+          "layerName": "icon/catalog",
+          "nodeId": null,
+          "componentKey": "117b08b047bdad224da76813f004280af2699500",
+          "url": null,
+          "note": "точное совпадение имени с символом sprite.svg#catalog (search_design_system, includeLibraryKeys education-lib); nodeId недоступен по той же причине, что у componentKey выше"
         }
       ],
-      "status": "planned",
+      "status": "complete",
       "requiredStates": [
         "default"
       ],
@@ -223,10 +245,10 @@
           "story": "icons-spriteicon--all-variants",
           "file": "_sources/courses/rendered/icons-spriteicon--all-variants.html",
           "renders": true,
-          "note": null
+          "note": "argTypes.icon перечисляет 22 значения (весь набор символов sprite.svg); в снятой разметке 10 страниц подтверждено 13 из них — остальные девять storybook-only относительно этой выборки"
         }
       ],
-      "notes": "в проде спрайт sprite.svg?v=1.29.0, в Storybook v1.28.0. Используется 14 символов: star-rounded, star-rounded-small, comment, arrow-large, arrow-small, percents, more, star-empty, accreditation, building, search, cross-large, catalog + отдельный external-profile.svg"
+      "notes": "в проде спрайт sprite.svg?v=1.29.0 (скачан 2026-09-09, ui/assets/icons/sprite.svg), в Storybook v1.28.0 — набор из 22 id идентичен в обеих версиях, различается только query-string (перепроверено R2-01, ранее было расхождение версий без сверки состава). 13 символов подтверждены собственным подсчётом по всем 10 dom.html: star-rounded (119), star-rounded-small (93), comment (92), arrow-large (47), arrow-small (36), percents (28), more (20), star-empty (21, из них 11 с битым href — см. спецификацию), accreditation (18), building (10), search (1), cross-large (1), catalog (1) = 487. Отдельно от sprite.svg тем же селектором svg.svg-icon находятся ещё 124 узла на трёх других спрайтах: social-v3.1.svg (60, материал social-icon R2-02), external-profile.svg (61) и experts.svg (3) — последние два в реестре пока не заведены отдельными записями, это находка R2-01, не решение. Storybook Icons/CatalogIcon (catalog-icon.vue) — отдельный от SpriteIcon компонент, обе story падают (X-60); решено не сопоставлять алиасом за отсутствием evidence, символ catalog уже покрыт через прод"
     },
     {
       "id": "social-icon",

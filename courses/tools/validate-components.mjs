@@ -155,67 +155,73 @@ const METHOD = {
   forbiddenStateNames: ["active", "focus", "select", "inactive"],
 };
 
-// …и сверка самого литерала с METHOD.md, если он доступен. Литерал выше —
-// вторая копия закрытого списка, и правилом она не удерживалась: изменение
-// METHOD §5 либо прошло бы незамеченным, либо покрасило гейт на верном
-// манифесте, не назвав причины (review-3, minor 5). Тот же класс, что «пять
-// префиксов против таблицы из шести», только копия лежала в коде.
+// …и сверка самого литерала с контрактом метода, если он доступен. Литерал
+// выше — вторая копия закрытого списка, и правилом она не удерживалась:
+// изменение словарей метода либо прошло бы незамеченным, либо покрасило гейт
+// на верном манифесте, не назвав причины (review-3, minor 5). Тот же класс,
+// что «пять префиксов против таблицы из шести», только копия лежала в коде.
 //
-// METHOD.md — контракт конвейера, он живёт над пакетом и в поставку пакета
-// не входит. Поэтому его отсутствие — не ошибка, а отложенная проверка:
-// пакет остаётся самодостаточным, но там, где контракт рядом, расхождение
-// с ним видно.
-const methodPath = path.resolve(packageDir, "../.claude/guide/METHOD.md");
-const methodSectionHeadings = {
+// Контракт конвейера живёт над пакетом и в поставку пакета не входит. Поэтому
+// его отсутствие — не ошибка, а отложенная проверка: пакет остаётся
+// самодостаточным, но там, где контракт рядом, расхождение с ним видно.
+//
+// Адрес словарей менялся: раньше они лежали в §5 монолитного METHOD.md, теперь
+// METHOD.md — маршрутизатор, а закрытые словари живут в областном документе
+// naming-states.md. Сверяется тот файл, где они находятся сейчас; сам переезд
+// поймал этот же гейт — «раздел §5 не найден», а не молчание.
+const methodPath = path.resolve(packageDir, "../.claude/guide/naming-states.md");
+const methodDoc = "naming-states.md";
+const methodDictHeadings = {
   statuses: /^-\s*Статусы:/,
   categories: /^-\s*Категории:/,
   kinds: /^-\s*Виды:/,
-  states: /^-\s*Словарь состояний закрыт:/,
+  states: /^-\s*Состояния:/,
 };
+// Запрещённые имена состояний стоят отдельным абзацем, а не пунктом списка.
+const forbiddenHeading = /^Не используй неоднозначные состояния/;
 let methodChecked = false;
 if (fs.existsSync(methodPath)) {
   const text = fs.readFileSync(methodPath, "utf8");
-  const section = text.match(/^##\s*5\.[^\n]*$([\s\S]*?)(?=^##\s)/m)?.[1];
-  if (!section) {
-    errors.push(`${path.relative(packageDir, methodPath)}: раздел §5 не найден — словари сверить не с чем`);
-  } else {
-    // Каждый словарь §5 — маркированный пункт, значения в обратных кавычках.
-    // Состояния и запрещённые имена стоят в одном пункте: всё до слова
-    // «Слова» — разрешённые, после — запрещённые.
-    const bullets = section.split(/\n(?=-\s)/).map((line) => line.replace(/\s+/g, " ").trim());
-    const ticked = (text) => [...text.matchAll(/`([^`]+)`/g)].map((match) => match[1]);
-    const found = {};
-    for (const [key, heading] of Object.entries(methodSectionHeadings)) {
-      const bullet = bullets.find((line) => heading.test(line));
-      if (!bullet) continue;
-      if (key === "states") {
-        const [allowed, forbidden] = bullet.split(/Слова\s/);
-        found.states = ticked(allowed);
-        if (forbidden) found.forbiddenStateNames = ticked(forbidden);
-      } else {
-        found[key] = ticked(bullet);
-      }
-    }
-    for (const key of ["statuses", "categories", "kinds", "states", "forbiddenStateNames"]) {
-      const fromMethod = found[key];
-      if (!fromMethod?.length) {
-        errors.push(`METHOD §5: словарь ${key} в ${path.relative(packageDir, methodPath)} не прочитан`);
-        continue;
-      }
-      const extra = METHOD[key].filter((name) => !fromMethod.includes(name));
-      const absent = fromMethod.filter((name) => !METHOD[key].includes(name));
-      if (extra.length) {
-        errors.push(`METHOD §5: список ${key} в валидаторе шире METHOD.md: ${extra.join(", ")}`);
-      }
-      if (absent.length) {
-        errors.push(`METHOD §5: список ${key} в валидаторе не содержит имён METHOD.md: ${absent.join(", ")}`);
-      }
-    }
-    methodChecked = true;
+  // Пункт словаря занимает несколько строк, поэтому блок режется по началу
+  // следующего пункта и обрывается на первой пустой строке: иначе абзац
+  // запрещённых имён прилип бы к последнему пункту и его слова попали бы
+  // в список разрешённых состояний — ровно та ошибка, против которой стоит
+  // двусторонняя сверка ниже.
+  const blocks = text
+    .split(/\n(?=-\s)/)
+    .map((block) => block.split(/\n[ \t]*\n/)[0].replace(/\s+/g, " ").trim());
+  const paragraphs = text
+    .split(/\n[ \t]*\n/)
+    .map((paragraph) => paragraph.replace(/\s+/g, " ").trim());
+  const ticked = (source) => [...source.matchAll(/`([^`]+)`/g)].map((match) => match[1]);
+  const found = {};
+  for (const [key, heading] of Object.entries(methodDictHeadings)) {
+    const block = blocks.find((line) => heading.test(line));
+    if (block) found[key] = ticked(block);
   }
+  const forbiddenParagraph = paragraphs.find((line) => forbiddenHeading.test(line));
+  if (forbiddenParagraph) found.forbiddenStateNames = ticked(forbiddenParagraph);
+
+  const errorsBefore = errors.length;
+  for (const key of ["statuses", "categories", "kinds", "states", "forbiddenStateNames"]) {
+    const fromMethod = found[key];
+    if (!fromMethod?.length) {
+      errors.push(`${methodDoc}: словарь ${key} не прочитан — сверить литерал валидатора не с чем`);
+      continue;
+    }
+    const extra = METHOD[key].filter((name) => !fromMethod.includes(name));
+    const absent = fromMethod.filter((name) => !METHOD[key].includes(name));
+    if (extra.length) {
+      errors.push(`${methodDoc}: список ${key} в валидаторе шире контракта метода: ${extra.join(", ")}`);
+    }
+    if (absent.length) {
+      errors.push(`${methodDoc}: список ${key} в валидаторе не содержит имён контракта метода: ${absent.join(", ")}`);
+    }
+  }
+  methodChecked = errors.length === errorsBefore;
 } else {
   deferred.push(
-    `${path.relative(packageDir, methodPath)} рядом с пакетом нет — списки METHOD §5 в валидаторе сверены только с манифестом, но не с самим контрактом`,
+    `${path.relative(packageDir, methodPath)} рядом с пакетом нет — закрытые словари в валидаторе сверены только с манифестом, но не с самим контрактом метода`,
   );
 }
 
@@ -1222,8 +1228,8 @@ const scopeCounts = Object.fromEntries(
 console.log(`Validated ${manifest.components.length} component records.`);
 console.log(
   methodChecked
-    ? `Словари METHOD §5 сверены с ${path.relative(packageDir, methodPath).replaceAll("\\", "/")}.`
-    : "Словари METHOD §5 с самим METHOD.md не сверены — см. «Отложено».",
+    ? `Закрытые словари метода сверены с ${path.relative(packageDir, methodPath).replaceAll("\\", "/")}.`
+    : "Закрытые словари метода с naming-states.md не сверены — см. «Отложено».",
 );
 console.log(`Status counts: ${JSON.stringify(statusCounts)}`);
 console.log(`Source scope counts: ${JSON.stringify(scopeCounts)}`);

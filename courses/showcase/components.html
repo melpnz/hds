@@ -272,7 +272,114 @@
       <code>data-display</code>
       <p>Иконки, аватары, логотипы, чипы, бейджи, текстовый блок.</p>
     </div>
-    <p class="doc-empty">Пока пусто. Секции ставит волна R2.</p>
+
+    <section class="doc-section" id="c-sprite-icon">
+      <div class="doc-section__head">
+        <h4>SpriteIcon</h4>
+        <p>Монохромная пиктограмма из общего спрайта продукта — рейтинг, счётчики, значки навигации.</p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>default</h5>
+          <code>.svg-icon</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+          </span>
+          <span class="doc-tag doc-tag--complete">complete</span>
+        </div>
+        <div class="doc-stage doc-stage--grid">
+          <div class="doc-variant">
+            <span class="doc-variant__label">star-rounded — рейтинг, 24×24, text-ui-yellow-500 (утилита не определена в ui/ — см. «Ограничения» спецификации, значок ниже тёмный, унаследованный, не жёлтый; в проде утилита есть и красит в #ff960c)</span>
+            <div class="doc-variant__row">
+              <svg class="svg-icon text-ui-yellow-500" width="24" height="24" style="width: 24px; height: 24px;">
+                <use xlink:href="../ui/assets/icons/sprite.svg#star-rounded"></use>
+              </svg>
+            </div>
+          </div>
+          <div class="doc-variant">
+            <span class="doc-variant__label">star-rounded-small — рейтинг в компактной строке, 16×16, text-ui-yellow-500 (та же неопределённая утилита, тот же тёмный, а не жёлтый значок — см. «Ограничения»)</span>
+            <div class="doc-variant__row">
+              <svg class="svg-icon text-ui-yellow-500" width="16" height="16" style="width: 16px; height: 16px;">
+                <use xlink:href="../ui/assets/icons/sprite.svg#star-rounded-small"></use>
+              </svg>
+            </div>
+          </div>
+          <div class="doc-variant">
+            <span class="doc-variant__label">comment — счётчик отзывов, 16×16, text-ui-black-400 (утилита не определена в ui/ — значок ниже темнее продового светло-серого #a6a7a9, см. «Ограничения»)</span>
+            <div class="doc-variant__row">
+              <svg class="svg-icon text-ui-black-400" width="16" height="16" style="width: 16px; height: 16px;">
+                <use xlink:href="../ui/assets/icons/sprite.svg#comment"></use>
+              </svg>
+            </div>
+          </div>
+          <div class="doc-variant">
+            <span class="doc-variant__label">accreditation — отметка аккредитации, 20×20, text-ui-green-500 (утилита не определена в ui/ — значок ниже тёмный, не зелёный, см. «Ограничения»)</span>
+            <div class="doc-variant__row">
+              <svg class="svg-icon text-ui-green-500" width="20" height="20" style="width: 20px; height: 20px;">
+                <use xlink:href="../ui/assets/icons/sprite.svg#accreditation"></use>
+              </svg>
+            </div>
+          </div>
+          <div class="doc-variant">
+            <span class="doc-variant__label">building — без утилиты цвета, наследует родителя, 24×24</span>
+            <div class="doc-variant__row">
+              <svg class="svg-icon" width="24" height="24" style="width: 24px; height: 24px;">
+                <use xlink:href="../ui/assets/icons/sprite.svg#building"></use>
+              </svg>
+            </div>
+          </div>
+          <div class="doc-variant">
+            <span class="doc-variant__label">catalog / cross-large — открытое/закрытое состояние одной кнопки-переключателя, 24×24, text-ui-white (утилита не определена в ui/ — см. «Ограничения» спецификации, значки ниже не белые, а унаследованного тёмного цвета, поэтому не видны на тёмном фоне)</span>
+            <div class="doc-variant__row" style="background:#2c2e34;padding:8px;border-radius:8px;">
+              <svg class="svg-icon text-ui-white" width="24" height="24" style="width: 24px; height: 24px;">
+                <use xlink:href="../ui/assets/icons/sprite.svg#catalog"></use>
+              </svg>
+              <svg class="svg-icon text-ui-white" width="24" height="24" style="width: 24px; height: 24px;">
+                <use xlink:href="../ui/assets/icons/sprite.svg#cross-large"></use>
+              </svg>
+            </div>
+          </div>
+          <div class="doc-variant">
+            <span class="doc-variant__label">more — «показать ещё», 22×22, fill-ui-black-850/text-ui-black-850, rotate-90 — на самом &lt;svg&gt;, не на кнопке-обёртке</span>
+            <div class="doc-variant__row">
+              <svg class="svg-icon rotate-90 fill-ui-black-850 text-ui-black-850" width="22" height="22" style="width: 22px; height: 22px;">
+                <use xlink:href="../ui/assets/icons/sprite.svg#more"></use>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <dl class="doc-spec">
+          <div><dt>размеры</dt><dd>16 · 20 · 22 · 24 (по месту использования)</dd></div>
+          <div><dt>цвет</dt><dd>currentColor</dd></div>
+          <div><dt>корневой класс</dt><dd><code>svg-icon</code></dd></div>
+          <div><dt>вхождений</dt><dd>487 / 611 (sprite.svg из четырёх спрайтов на этом селекторе)</dd></div>
+        </dl>
+        <p class="doc-note">
+          <strong>Примечание.</strong> Единственное CSS-правило — <code>.svg-icon{fill:currentColor}</code>,
+          побайтово одинаковое во всём корпусе (10 инлайновых файлов + внешний
+          <code>entry.Dcg7kqZY.css</code>). Размер задают атрибуты <code>width</code>/<code>height</code>
+          с продублированным инлайновым <code>style</code>, а не класс. Спрайт — локальная копия
+          <code>ui/assets/icons/sprite.svg</code>, снятая с прода 2026-09-09 (версия <code>v1.29.0</code>
+          зафиксирована комментарием в файле). Полный разбор, включая найденную битую разметку
+          одного из символов <code>star-empty</code> — <a href="../components/data-display/sprite-icon.md">спецификация</a>.
+        </p>
+      </div>
+
+      <div class="doc-rule" data-rule="sprite-icon-rating-color">
+        <div class="doc-rule__head">
+          <h3>Правило</h3>
+          <span class="doc-rule__votes">212 / 212</span>
+        </div>
+        <p>Иконка рейтинга (<code>star-rounded</code>, <code>star-rounded-small</code>) всегда получает
+        цвет утилитой <code>text-ui-yellow-500</code> — без исключений на всех 212 подтверждённых узлах,
+        10 из 10 снятых страниц.</p>
+        <p class="doc-rule__exception">Исключений в выборке не найдено. Соседний случай без единогласия —
+        <code>arrow-small</code>: 28 из 36 узлов красятся <code>fill-ui-black-500 text-ui-black-500</code>,
+        восемь наследуют цвет родителя без собственной утилиты (не то же правило, не включено сюда).</p>
+      </div>
+    </section>
   </section>
 
   <section class="doc-category" id="doc-cat-actions">

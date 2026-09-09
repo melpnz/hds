@@ -12,6 +12,26 @@
  *    протекла в компонент, и на пустой странице с одним `ui/courses.css` он
  *    не сработает — инвариант копируемости METHOD §6.1.
  *
+ *    Дефолтный прогон (без аргумента) читает не только `showcase/*.html`,
+ *    но и фрагменты ```html внутри `components/**\/*.md` (X-75, ROADMAP.md).
+ *    До этой правки предполагалось, что showcase копирует «Разметку»
+ *    спецификации дословно, и достаточно проверить только копию — но само
+ *    совпадение копии с оригиналом ничем не проверялось. Первая же
+ *    спецификация (R2-01, `SpriteIcon`) сослалась на шесть цветовых утилит
+ *    и `rotate-90`, которых нет ни в одном файле `ui/`, — поймать это было
+ *    нечем (ревью R2-01, review-1, находка 4). ```css`-фрагменты не
+ *    читаются: они показывают правило `ui/`, а не разметку для копирования.
+ *
+ *    Разбор не различает раздел спецификации: любой ```html-блок файла
+ *    считается наравне, включая «Анатомию» (протокол снятого DOM с продовыми
+ *    путями/классами — цитата прода, не пример для копипаста) наряду
+ *    с «Разметкой» (нормативный пример). Сегодня это не даёт ложных находок
+ *    (классы «Анатомии» совпадают с уже занесёнными классами «Разметки» на
+ *    единственной принятой спецификации), но конструктивно смешивает «это
+ *    цитата прода» с «наша копия не работает» — известное упрощение
+ *    (review-2, R2-01, находка 2), не устранённое в этой правке: она чинит
+ *    границу самого fence-блока, не разбор по разделам.
+ *
  * 2. Отделённость витрины, METHOD §6.2. Обратное направление того же
  *    правила: оболочка витрины обязана целиком лежать под своим префиксом,
  *    а `ui/` — не знать о ней ничего.
@@ -267,10 +287,12 @@ for (const file of cssFiles) {
   for (const name of collectSelectorClasses(fs.readFileSync(file, 'utf8'), file)) defined.add(name);
 }
 
-// Классы, использованные в разметке.
-const used = new Map();
-for (const file of htmlFiles) {
-  const html = fs.readFileSync(file, 'utf8');
+// Классы, использованные в разметке. Вынесено в функцию: тот же разбор
+// (class="…" в трёх формах кавычек + инлайновый <style>) нужен и для
+// showcase/*.html, и для фрагментов ```html внутри components/*.md — X-75,
+// см. ниже.
+function collectClassUses(html, label) {
+  const found = new Map();
   // <style> внутри разметки — тоже определение: так, например, объявляют
   // анимацию внутри встроенного SVG.
   //
@@ -280,7 +302,7 @@ for (const file of htmlFiles) {
   let styleIndex = 0;
   for (const style of html.matchAll(/<style[^>]*>([\s\S]*?)<\/style>/g)) {
     styleIndex += 1;
-    for (const name of collectSelectorClasses(style[1], `${file} <style>#${styleIndex}`)) defined.add(name);
+    for (const name of collectSelectorClasses(style[1], `${label} <style>#${styleIndex}`)) defined.add(name);
   }
   // Значение атрибута class бывает в двойных кавычках, в одинарных и вовсе
   // без кавычек — валидный HTML допускает все три формы. Регулярка на одни
@@ -290,7 +312,58 @@ for (const file of htmlFiles) {
     const value = match[1] ?? match[2] ?? match[3] ?? '';
     for (const cls of value.split(/\s+/)) {
       if (!cls || cls.includes('{')) continue;
-      if (!used.has(cls)) used.set(cls, file);
+      if (!found.has(cls)) found.set(cls, label);
+    }
+  }
+  return found;
+}
+
+const used = new Map();
+for (const file of htmlFiles) {
+  for (const [cls, label] of collectClassUses(fs.readFileSync(file, 'utf8'), file)) {
+    if (!used.has(cls)) used.set(cls, label);
+  }
+}
+
+// Спецификации: components/**/*.md — X-75 (ROADMAP.md). До этой правки
+// инструмент в дефолтном прогоне видел только showcase/*.html; фрагменты
+// ```html внутри спецификации (разделы «Анатомия» и «Разметка») не читал
+// вовсе — предполагалось, что showcase копирует разметку спецификации
+// дословно, но само это совпадение ничем не проверялось. Первая же
+// спецификация (R2-01, SpriteIcon) сослалась на шесть несуществующих в ui/
+// цветовых утилит и rotate-90 — поймать это было нечем (ревью R2-01,
+// review-1, находка 4). Разбираются только блоки ```html — ```css` показывает
+// правило ui/, а не разметку для копирования, классы в нём не «используются».
+// Своя разметка (`own`) сюда не входит — она уже проверяется целиком как
+// единственный переданный файл.
+const specFiles = own ? [] : walk('components').filter(file => file.endsWith('.md'));
+
+function extractHtmlFences(markdown) {
+  // R2-01, review-2, находка 1: буквальный `/```html\n([\s\S]*?)```/` требовал
+  // ровно этот текст между меткой и переносом строки — висячий пробел/таб
+  // после `html` (частый артефакт копипаста) или `\r\n` вместо `\n` (CRLF,
+  // Windows) не совпадали вовсе, блок пропадал молча, и гейт X-75 переставал
+  // ловить именно то, ради чего был заведён (тихий пропуск необъявленного
+  // класса). Открывающая и закрывающая метка теперь допускают: пробелы/табы
+  // после `html` и перед закрывающими бэктиками, `\r?\n` вместо `\n` на обеих
+  // границах, и отступ перед тройными бэктиками (блок кода внутри списка/
+  // цитаты — синтаксис markdown это допускает, хотя ни одна спецификация
+  // пакета сегодня так не делает). `^`/`$` с флагом `m` привязывают обе метки
+  // к началу своей строки, а не к произвольному месту текста.
+  const blocks = [];
+  const fenceRe = /^[ \t]*```html[ \t]*\r?\n([\s\S]*?)^[ \t]*```[ \t]*\r?$/gm;
+  for (const match of markdown.matchAll(fenceRe)) blocks.push(match[1]);
+  return blocks;
+}
+
+for (const file of specFiles) {
+  const markdown = fs.readFileSync(file, 'utf8');
+  let blockIndex = 0;
+  for (const block of extractHtmlFences(markdown)) {
+    blockIndex += 1;
+    const label = `${file} \`\`\`html#${blockIndex}`;
+    for (const [cls, blockLabel] of collectClassUses(block, label)) {
+      if (!used.has(cls)) used.set(cls, blockLabel);
     }
   }
 }
@@ -423,5 +496,5 @@ if (missing.length) {
 
 if (failed) process.exit(1);
 
-console.log(`Checked ${used.size} classes in ${htmlFiles.length} file(s) against ${cssFiles.length} stylesheets.` + (baseline.length ? ` No new undefined classes (${baseline.length} known gaps).` : ' All defined.'));
+console.log(`Checked ${used.size} classes in ${htmlFiles.length} showcase file(s) + ${specFiles.length} spec file(s) against ${cssFiles.length} stylesheets.` + (baseline.length ? ` No new undefined classes (${baseline.length} known gaps).` : ' All defined.'));
 console.log(`METHOD §6.2: ${showcaseCssFiles.length} showcase stylesheet(s) prefixed doc-, ${uiCssFiles.length} ui stylesheet(s) free of doc-.`);

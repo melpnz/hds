@@ -1,0 +1,23 @@
+{
+  "_": [
+    "Классы, встречающиеся в разметке showcase/components.html и components/**/*.md,",
+    "но не имеющие правила ни в одном файле ui/. Проверка tools/validate-classes.mjs",
+    "выводит их предупреждением (не ошибкой) только в дефолтном прогоне (витрина +",
+    "спецификации) — своя разметка (аргументом, например .pipeline/<id>/copy-check.html)",
+    "базовую линию не читает по замыслу, METHOD §6.1 иначе перестал бы проверяться",
+    "там, где нужен. Заведено на R2-01 вместе с первой секцией витрины (SpriteIcon).",
+    "Значения не восстанавливаются наугад: все семь ниже — реальные правила Tailwind",
+    "продукта, подтверждённые построчно во всех 10 файлов",
+    "evidence/source/production/css/inline/*.css (байт-в-байт одинаковы), а не",
+    "опечатка и не выдуманное имя (ревью R2-01, review-1, находка 1) — не хватает",
+    "только самого класса-правила в ui/, токены под них в ui/tokens.css уже есть."
+  ],
+
+  "text-ui-yellow-500": "утилита Tailwind продукта (color:var(--color-ui-yellow-500)); токен есть в ui/tokens.css с R0-02, самого класса-утилиты нет ни в ui/utilities.css (его сфера — перенос/обрезка/выравнивание текста, GAP-9 docs/guide/typography.md, не цвет), ни где-либо ещё в ui/ — R2-01, sprite-icon.md, раздел «Ограничения»",
+  "text-ui-black-400": "то же — color:var(--color-ui-black-400)",
+  "text-ui-black-850": "то же — color:var(--color-ui-black-850)",
+  "fill-ui-black-850": "то же — fill:var(--color-ui-black-850), пара к text-ui-black-850 на одном узле",
+  "text-ui-green-500": "то же — color:var(--color-ui-green-500)",
+  "text-ui-white": "то же — color:var(--color-ui-white)",
+  "rotate-90": "утилита Tailwind продукта (transform:rotate(90deg)); в ui/ не заведена ни в одном слое — стоит прямо на <svg class=\"svg-icon rotate-90…\"> символа more (кнопка «показать ещё», SpriteIcon#more, R2-01), не на обёртывающей кнопке"
+}

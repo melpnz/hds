@@ -234,6 +234,51 @@
 .doc-callout--warn { border-left-color: #b5731f; }
 
 /* -------------------------------------------------------------------------
+   Правило с покрытием
+   -------------------------------------------------------------------------
+   METHOD §6, инвариант 8: правило с покрытием ≥2 стоит живым примером
+   рядом с формулировкой и счётом голосов, не только в markdown. Первая
+   запись — SpriteIcon (R2-01), data-rule="sprite-icon-rating-color".
+   Тот же id несёт machine/rules.json, когда его заводит R8 (сейчас
+   scaffold, записей ещё нет).
+   ------------------------------------------------------------------------- */
+
+.doc-rule {
+  background: var(--doc-canvas);
+  border: 1px solid var(--doc-line-strong);
+  border-left: 3px solid var(--doc-focus);
+  border-radius: 0 var(--doc-radius) var(--doc-radius) 0;
+  margin: 16px 0 20px;
+  max-width: 90ch;
+  padding: 14px 18px;
+}
+.doc-rule__head {
+  align-items: baseline;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin: 0 0 6px;
+}
+.doc-rule__head h3 {
+  color: var(--doc-ink-3);
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  margin: 0;
+  text-transform: uppercase;
+}
+.doc-rule__votes {
+  background: #eef3fb;
+  border: 1px solid #b9cbe6;
+  border-radius: 4px;
+  color: #2a4d78;
+  font: 600 11px/1.4 var(--doc-mono);
+  padding: 1px 7px;
+}
+.doc-rule p { color: var(--doc-ink); margin: 0 0 6px; }
+.doc-rule p:last-child { margin-bottom: 0; }
+.doc-rule__exception { color: var(--doc-ink-2); }
+
+/* -------------------------------------------------------------------------
    Карточка образца
    -------------------------------------------------------------------------
    Форма, в которую шаги R2–R5 кладут компонент. Заполняется по образцу
