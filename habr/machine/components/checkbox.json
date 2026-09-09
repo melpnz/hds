@@ -1,0 +1,70 @@
+{
+  "$schema": "../../schema.json",
+  "id": "checkbox",
+  "title": "Checkbox",
+  "kind": "component",
+  "category": "forms",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "storybook"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Флажок. Построен на настоящем <input type=\"checkbox\">, не на <div> — доступность встроена в разметку, не имитируется CSS.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "checkbox"
+    ],
+    "styles": [
+      "ui/components/checkbox.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "primer-1",
+      "title": "Пример 1",
+      "file": "examples/generated/components/checkbox/primer-1.html",
+      "covers": [
+        "checkbox"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "legacy-showcase",
+      "ref": "archive:habr/v1/showcase/components.html#checkbox"
+    },
+    {
+      "type": "component-spec",
+      "ref": "components/forms/checkbox.md"
+    }
+  ],
+  "unknowns": [],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Слева направо: пусто → отмечено → отключено → отключено+отмечено. Все состояния — нативные псевдоклассы input, не классы-модификаторы. Наведите курсор на пустой чекбокс — рамка посинеет: в checkbox-CJ1LCFDi.css нет :hover -селектора, значение взято из Figma."
+    },
+    {
+      "type": "guidance",
+      "text": ".checkbox · checkbox.css · 1/16 страниц (production) + Figma"
+    }
+  ],
+  "markdown": "components/forms/checkbox.md"
+}

@@ -6,9 +6,10 @@
   <title>Страница сущности</title>
   <link rel="stylesheet" href="../../ui/career.css">
   <link rel="stylesheet" href="patterns.css">
+  <link rel="stylesheet" href="page-preview.css">
   <style>
-    body{min-width:0}
-    .pattern{margin:0;padding:20px}
+    body{min-width:0;background:#fff}
+    .pattern{margin:0;padding:0}
     .pattern__head,.rules,.vp-bar{display:none!important}
     .viewport{height:auto!important;overflow:visible!important;border:0!important;background:transparent!important}
     .viewport__inner{width:auto!important;transform:none!important}
@@ -141,26 +142,10 @@
       </div></div>
     </div>
   </div></div>
-  <p class="note"><strong>Микро-метка 12/16·400 <code>gray-3</code> — фирменный приём Career.</strong>
-     Она группирует атрибуты сущности и встречается на страницах обеих реализаций:
-     на вакансии, в карточке специалиста, в профиле. Это не подпись поля и не заголовок,
-     а именно ярлык группы.</p>
-  <p class="note"><strong>Три тона чипов, и различие смысловое.</strong> Замер пикселей снимков
-     production: <code>turquoise @10%</code> <code>#e6f7fb</code> — атрибут из справочника
-     с бирюзовой иконкой (квалификация), у него есть настоящий модификатор
-     <code>base-chip--blue</code>; <code>gray-4 @20%</code> <code>#edf2f4</code> —
-     свободный навык, это <code>base-chip--default</code>; <code>gray-3 @10%</code>
-     <code>#f1f4f6</code> — условия работы с серой иконкой, у этого тона модификатора
-     в career-web нет, он встречается только в устаревающей реализации.
-     Прежняя запись «голубой #ebf3ff» была неточной: <code>--color-chip-inactive</code>
-     существует, но в карточке вакансии не используется.</p>
-  <p class="note"><strong>Действие живёт в шапке.</strong> «Откликнуться» стоит внутри
-     карточки-шапки, сразу под атрибутами, а не в конце длинного описания и не в липкой
-     панели. Липких панелей действий в Career не найдено ни на одном экране.</p>
-  <p class="note"><strong>Здесь сайдбар исчезает, а не складывается.</strong> Это отличие
-     от листинга: связанные сущности на узком экране перерисовываются в главной колонке
-     горизонтальной каруселью. В этом паттерне карусель не воспроизведена — её геометрия
-     не измерена.</p>
+
+
+
+
 </section>
 <script src="patterns.js"></script>
 </body>

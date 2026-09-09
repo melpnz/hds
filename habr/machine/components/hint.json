@@ -1,0 +1,73 @@
+{
+  "$schema": "../../schema.json",
+  "id": "hint",
+  "title": "Informer / Hint",
+  "kind": "component",
+  "category": "overlays",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "storybook"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Три отдельных компонента с разным назначением, объединены в один файл CSS/спецификации, потому что каждый маленький и все — варианты одной идеи «контекстная подсказка».",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "hint"
+    ],
+    "styles": [
+      "ui/components/hint.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "cetyre-tipa-podlozka-i-ramka-v-cvet-tipa",
+      "title": "Четыре типа — подложка и рамка в цвет типа",
+      "file": "examples/generated/components/hint/cetyre-tipa-podlozka-i-ramka-v-cvet-tipa.html",
+      "covers": [
+        "hint"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "legacy-showcase",
+      "ref": "archive:habr/v1/showcase/components.html#hint"
+    },
+    {
+      "type": "component-spec",
+      "ref": "components/overlays/hint.md"
+    }
+  ],
+  "unknowns": [
+    "GAP на разметке: снимок Storybook (rendered/hintsbasehintdefault.html)",
+    "GAP — ширина. informerhintwidth — inline CSS var, задаётся"
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "В production захвачен один вид информера — синий, без иконки и даты. Четыре типа и раскладка «иконка + заголовок + дата + крестик» взяты из Figma. Цвета типов сопоставлены с боевыми токенами, не вбиты хексами: info → --accent-primary , success → --accent-positive , warning → --label-sorbus , danger → --accent-danger . Подложка — тот же цвет с альфой 12%, рамка — он же с альфой 60%."
+    },
+    {
+      "type": "guidance",
+      "text": ".informer-hint · hint.css · в Figma — informer (1292:45154)"
+    }
+  ],
+  "markdown": "components/overlays/hint.md"
+}

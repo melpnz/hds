@@ -1,0 +1,114 @@
+{
+  "$schema": "../../schema.json",
+  "id": "button",
+  "title": "Button",
+  "kind": "component",
+  "category": "actions",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "storybook"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Основное интерактивное действие продукта. Единственный класс формы (.btn) и отдельный класс цвета (.tm-button) комбинируются в разметке — это два независимых слоя, не один компонент с пропом.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "button"
+    ],
+    "styles": [
+      "ui/components/button.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "forma-razmer",
+      "title": "Форма × размер",
+      "file": "examples/generated/components/button/forma-razmer.html",
+      "covers": [
+        "button"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "rol-figma-cvet-production",
+      "title": "Роль (Figma) → цвет (production)",
+      "file": "examples/generated/components/button/rol-figma-cvet-production.html",
+      "covers": [
+        "button"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "sostoania",
+      "title": "Состояния",
+      "file": "examples/generated/components/button/sostoania.html",
+      "covers": [
+        "button"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "tm-button-link-sosednij-klass-ne-btn",
+      "title": "tm-button-link — соседний класс, не .btn",
+      "file": "examples/generated/components/button/tm-button-link-sosednij-klass-ne-btn.html",
+      "covers": [
+        "button"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "legacy-showcase",
+      "ref": "archive:habr/v1/showcase/components.html#button"
+    },
+    {
+      "type": "component-spec",
+      "ref": "components/actions/button.md"
+    }
+  ],
+  "unknowns": [
+    "не найдено (GAP, не выдумывать).",
+    "GAP — focus. Figmaбиблиотека показывает отдельную стадию focus для",
+    ":focusvisible не найдено. Не подтверждено, есть ли в реальности разница",
+    "Один слот — текстовое содержимое. Иконка внутри кнопки не подтверждена",
+    "отдельным компонентом, не модификатором .btn) — GAP.",
+    "gap: 4px), в извлечённом срезе — только цвет christi (успех). GAP:"
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Два независимых слоя классов: форма ( .btn_* ) и роль/цвет ( .tm-button_color-* ). Роли — из Figma, цвета — из production; сопоставление — в actions/button.md ."
+    },
+    {
+      "type": "guidance",
+      "text": "Исходно ни один модификатор не задавал color на заливке — текст был синим (дефолт ссылки) на зелёном фоне. Исправлено по указанию пользователя при визуальном ревью: добавлен color:var(--background-primary) , по аналогии с тем, как везде в проекте `.btn_solid`-подобные классы парой задают background+color. Не переверено повторно на живом habr.com — используется как разумное исправление, не как заново подтверждённое production-значение."
+    },
+    {
+      "type": "guidance",
+      "text": ".btn · button.css · 15/16 страниц"
+    }
+  ],
+  "markdown": "components/actions/button.md"
+}

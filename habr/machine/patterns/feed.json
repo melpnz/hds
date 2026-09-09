@@ -1,0 +1,77 @@
+{
+  "$schema": "../../schema.json",
+  "id": "feed",
+  "title": "Content Feed / Listing",
+  "kind": "pattern",
+  "category": "page-families",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Layout regions. Shell → главная колонка: (опционально) H1 + Tabs (поток-навигация, .tabs.tm-tabspage-header) → вертикальный список article-snippet → tm-pagination. Сайдбар пуст для гостя (см. §1), кроме user-posts (facts-блок автора).",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [],
+    "styles": [
+      "ui/habr.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "stranica",
+      "title": "Страница",
+      "file": "examples/generated/patterns/feed/stranica.html",
+      "covers": [
+        "feed"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 700
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "ref": "docs/patterns/feed.md"
+    }
+  ],
+  "unknowns": [
+    "(везде были статьи). GAP."
+  ],
+  "sourceStatus": "confirmed",
+  "family": "FEED",
+  "areas": [],
+  "modules": [],
+  "components": [],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Shell → (опционально Tabs) → вертикальный список ArticleCard → Pagination . Список карточек не меняет структуру при сжатии — одна колонка на любой ширине."
+    },
+    {
+      "type": "guidance",
+      "text": "production · feed, articles-all, news, hub, company, user-posts, sandbox — 7/14"
+    }
+  ],
+  "markdown": "docs/patterns/feed.md"
+}

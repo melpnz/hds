@@ -1,0 +1,483 @@
+/* =========================================================================
+   HABR SHOWCASE · DOCUMENTATION SHELL
+   =========================================================================
+   Это НЕ Habr UI. Оболочка витрины, полностью отделена от продуктового CSS
+   префиксом --doc-*. Ни один класс здесь не пересекается с классами Habr
+   (tm-*, btn, base-*) — конфликтов быть не может по построению.
+   ========================================================================= */
+
+:root {
+  --doc-bg: #ffffff;
+  --doc-bg-muted: #f7f7f8;
+  --doc-border: #e2e2e6;
+  --doc-text: #1a1a1e;
+  --doc-text-muted: #6b6b74;
+  --doc-accent: #3355ee;
+  --doc-mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --doc-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+/* Сброс только для оболочки документации.
+   Раньше здесь стоял `* { box-sizing: border-box }` — и он молча менял
+   блочную модель продуктовой разметки внутри витрины. На habr.com
+   `.tm-pagination__page` и `.tm-pagination__arrow` — content-box, поэтому
+   min-width 24 + padding 8 дают квадрат 32×32, а иконка 16 + padding 8×2
+   даёт 32. Под глобальным border-box те же элементы схлопывались до 24 и 16:
+   выбранная страница переставала быть квадратной, а стрелка сжималась до
+   нулевого контента и «пропадала». Витрина обязана показывать продукт таким,
+   какой он в проде, поэтому сброс ограничен классами doc-*. */
+html, body,
+[class^="doc-"], [class*=" doc-"] { box-sizing: border-box; }
+
+.doc-body {
+  margin: 0;
+  font-family: var(--doc-sans);
+  color: var(--doc-text);
+  background: var(--doc-bg);
+  display: flex;
+  min-height: 100vh;
+}
+
+.doc-nav {
+  width: 240px;
+  flex: none;
+  border-right: 1px solid var(--doc-border);
+  padding: 20px 16px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+.doc-nav h1 { font-size: 15px; margin: 0 0 4px; }
+.doc-nav .doc-nav-sub { font-size: 12px; color: var(--doc-text-muted); margin: 0 0 16px; }
+.doc-nav a {
+  display: block;
+  padding: 4px 8px;
+  border-radius: 6px;
+  color: var(--doc-text);
+  text-decoration: none;
+  font-size: 13px;
+}
+.doc-nav a:hover { background: var(--doc-bg-muted); }
+.doc-nav .doc-nav-cat {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: .04em;
+  color: var(--doc-text-muted);
+  margin: 16px 0 4px;
+  padding: 0 8px;
+}
+
+.doc-main { flex: 1; min-width: 0; padding: 32px 40px 120px; max-width: 980px; }
+
+.doc-section { margin-bottom: 64px; padding-top: 8px; }
+.doc-section h2 { font-size: 22px; margin: 0 0 4px; }
+.doc-section .doc-meta {
+  font-size: 12px;
+  color: var(--doc-text-muted);
+  font-family: var(--doc-mono);
+  margin: 0 0 16px;
+}
+.doc-note {
+  font-size: 13px;
+  color: var(--doc-text-muted);
+  line-height: 1.5;
+  margin: 8px 0 16px;
+  max-width: 68ch;
+}
+.doc-note b { color: var(--doc-text); }
+.doc-note code { font-family: var(--doc-mono); background: var(--doc-bg-muted); padding: 1px 4px; border-radius: 3px; }
+
+.doc-specimen {
+  border: 1px solid var(--doc-border);
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 12px;
+  background: var(--doc-bg-muted);
+  overflow: auto;
+}
+.doc-specimen-label {
+  font-size: 11px;
+  color: var(--doc-text-muted);
+  font-family: var(--doc-mono);
+  margin-bottom: 10px;
+}
+.doc-row { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.doc-gap-big { gap: 24px; }
+
+.doc-gaps {
+  border: 1px solid var(--doc-border);
+  border-radius: 10px;
+  padding: 16px 20px;
+  background: var(--doc-bg-muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+.doc-gaps li { margin-bottom: 4px; }
+
+.doc-top {
+  border-bottom: 1px solid var(--doc-border);
+  padding-bottom: 24px;
+  margin-bottom: 32px;
+}
+.doc-top p { color: var(--doc-text-muted); max-width: 68ch; line-height: 1.6; }
+
+/* =========================================================================
+   FOUNDATIONS — grid reference, type scale, color swatches, spacing ruler
+   ========================================================================= */
+
+.doc-nav-group { margin-bottom: 8px; }
+.doc-nav-group-title {
+  font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--doc-accent); padding: 8px 8px 2px;
+}
+
+/* --- grid overlay ------------------------------------------------------- */
+.doc-grid-row { margin-bottom: 28px; }
+.doc-grid-label {
+  font-family: var(--doc-mono); font-size: 12px; color: var(--doc-text-muted);
+  display: flex; justify-content: flex-start; gap: 10px; margin-bottom: 6px;
+}
+.doc-grid-label b { color: var(--doc-text); font-size: 13px; }
+.doc-grid-track {
+  position: relative; height: 64px; background: repeating-linear-gradient(
+    90deg, #eef0f4 0, #eef0f4 1px, transparent 1px, transparent 8px);
+  border-radius: 4px; overflow: hidden;
+}
+.doc-grid-viewport {
+  position: absolute; top: 0; bottom: 0; left: 0;
+  background: #fafbfc; border-right: 2px dashed #c7cbd4;
+}
+.doc-grid-container {
+  position: absolute; top: 8px; bottom: 8px;
+  background: #e7ecf5; border: 1px solid #b9c4dc;
+}
+.doc-grid-main {
+  position: absolute; top: 18px; bottom: 18px;
+  background: #cfe0f7; border: 1px solid #8fb4e6;
+}
+.doc-grid-sidebar {
+  position: absolute; top: 18px; bottom: 18px;
+  background: #ffe4c7; border: 1px solid #e8b787;
+}
+.doc-grid-tag {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  font-family: var(--doc-mono); font-size: 10px; color: #445; white-space: nowrap;
+  left: 4px;
+}
+
+/* --- typography scale ----------------------------------------------------*/
+.doc-type-row {
+  display: flex; align-items: baseline; gap: 20px; padding: 14px 0;
+  border-bottom: 1px solid var(--doc-border);
+}
+.doc-type-row:last-child { border-bottom: none; }
+.doc-type-meta {
+  width: 200px; flex: none; font-family: var(--doc-mono); font-size: 11px;
+  color: var(--doc-text-muted); line-height: 1.6;
+}
+.doc-type-meta b { display: block; color: var(--doc-text); font-family: var(--doc-sans); font-size: 12px; margin-bottom: 2px; }
+.doc-type-sample { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.doc-type-fix { font-family: var(--doc-mono) !important; font-size: 12px !important; color: #a24b00; }
+
+/* --- color swatches ------------------------------------------------------*/
+.doc-color-group { margin-bottom: 24px; }
+.doc-color-group-title {
+  font-size: 11px; text-transform: uppercase; letter-spacing: .05em;
+  color: var(--doc-text-muted); margin-bottom: 8px; font-weight: 600;
+}
+.doc-color-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 10px; }
+.doc-color-card { border: 1px solid var(--doc-border); border-radius: 8px; overflow: hidden; }
+.doc-color-swatch { height: 44px; display: flex; }
+.doc-color-swatch > div { flex: 1; }
+.doc-color-info { padding: 6px 8px; font-family: var(--doc-mono); font-size: 10.5px; background: var(--doc-bg); }
+.doc-color-info b { display: block; font-family: var(--doc-sans); font-size: 11px; color: var(--doc-text); font-weight: 600; }
+
+/* --- spacing ruler ---------------------------------------------------------*/
+.doc-space-row { display: flex; align-items: center; gap: 14px; margin-bottom: 8px; }
+.doc-space-val { width: 46px; flex: none; font-family: var(--doc-mono); font-size: 12px; text-align: right; color: var(--doc-text); }
+.doc-space-bar { height: 14px; background: #cfe0f7; border-radius: 2px; }
+.doc-space-use { font-size: 12px; color: var(--doc-text-muted); }
+
+/* --- avatar default illustrations (user-provided assets) ------------------
+   Белый фон + обводка цветом самой иллюстрации (не токен — это decorative
+   fill конкретного SVG, как у любой многоцветной иконки) — по прямому
+   указанию пользователя. */
+/* фон и обводку даёт продуктовый .avatar-default (ui/components/avatar.css) */
+.doc-avatar-default { display: inline-block; border-radius: 3px; }
+.doc-avatar-cap { font-size: 11px; color: var(--doc-text-muted); margin-top: 6px; font-family: var(--doc-mono); }
+
+/* --- surfaces gallery ------------------------------------------------------*/
+.doc-surface-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+.doc-surface-card { border-radius: 8px; padding: 16px; font-size: 12px; }
+.doc-surface-card b { display: block; font-size: 13px; margin-bottom: 4px; }
+.doc-surface-card code { font-family: var(--doc-mono); font-size: 11px; }
+
+/* =========================================================================
+   RESPONSIVE FIX (CORRECTION PASS) — documentation shell only, never ui/
+   =========================================================================
+   Проблема: .doc-body{display:flex} без единого @media; .doc-nav{width:240px;
+   flex:none} не схлопывается на узких viewport; вложенные flex-строки
+   (.doc-grid-label, .doc-type-row) с длинным текстом без wrap/min-width:0
+   отказывались сжиматься — это и раздувало всю страницу по горизонтали,
+   а не сами диаграммы (у тех overflow:hidden уже был). Найдено визуальным
+   аудитом (не диагностировано по одному только чтению CSS).
+   ========================================================================= */
+@media (max-width: 640px) {
+  .doc-body { flex-direction: column; }
+  .doc-nav {
+    position: static;
+    width: 100%;
+    height: auto;
+    max-height: 220px;
+    border-right: none;
+    border-bottom: 1px solid var(--doc-border);
+  }
+  .doc-main { padding: 20px 16px 60px; max-width: 100%; }
+
+  /* Длинные имена токенов и API в <code> не имеют точек переноса */
+  .doc-note code, .doc-meta code { overflow-wrap: anywhere; }
+
+  /* Сцена «телефон» — ровно 320px, это её смысл; вместо того чтобы сжимать её
+     и врать про ширину, выпускаем её в поля .doc-main */
+  .doc-phone-stage { margin-left: -16px; margin-right: -16px; }
+
+  /* длинные подписи в flex-строках — раньше отказывались сжиматься,
+     раздувая всю страницу вширь; теперь переносятся на вторую строку */
+  .doc-grid-label { flex-wrap: wrap; row-gap: 2px; }
+  .doc-grid-label span { flex-basis: 100%; white-space: normal; }
+  .doc-type-row { flex-wrap: wrap; }
+  .doc-type-meta { width: 100%; }
+  .doc-type-sample { flex-basis: 100%; white-space: normal; }
+  .doc-space-row { flex-wrap: wrap; row-gap: 2px; }
+  .doc-space-use { flex-basis: 100%; }
+
+  /* диаграммы Grid Foundations на 320/480 шире экрана по смыслу (это
+     реальные, неусреднённые измеренные пиксели 768/1024/1100/1440) —
+     не искажать их масштаб; вместо этого прокрутка ЛОКАЛЬНО внутри
+     своей строки, не всей страницей */
+  .doc-grid-track { overflow-x: auto; overflow-y: hidden; }
+}
+/* Тёмная половина свотчей: значения скопированы из ui/themes/dark-v2.css
+   один в один. Скоуп только на .doc-dark — на продуктовые компоненты
+   витрины не влияет. */
+.doc-dark {
+  --text-main: hsl(0, 0%, 87%);
+  --text-secondary: hsl(0, 0%, 67%);
+  --text-inactive: hsl(0, 0%, 67%);
+  --icon-primary: hsl(0, 0%, 40%);
+  --icon-secondary: hsl(201, 16%, 50%);
+  --background-primary: hsl(0, 0%, 9%);
+  --background-secondary: hsl(0, 0%, 15%);
+  --background-gray: hsl(0, 0%, 3%);
+  --background-orange: hsl(356, 41%, 16%);
+  --background-green: hsl(78, 51%, 16%);
+  --background-blue: hsl(201, 21%, 13%);
+  --other-disabled-elements: hsl(0, 0%, 30%);
+  --other-overlay-shadows: hsl(0, 0%, 100%);
+  --accent-primary: hsl(200, 80%, 61%);
+  --accent-primary-hover: hsl(199, 100%, 75%);
+  --accent-positive: hsl(76, 100%, 35%);
+  --accent-positive-hover: hsl(89, 45%, 56%);
+  --accent-danger: hsl(0, 100%, 73%);
+  --comments-author: hsl(88, 39%, 13%);
+  --comments-new: hsl(211, 50%, 20%);
+  --comments-moderation: hsl(352, 31%, 29%);
+  --comments-user: hsl(36, 88%, 13%);
+  --complexity-low: hsl(140, 45%, 42%);
+  --complexity-medium: hsl(200, 60%, 48%);
+  --complexity-high: hsl(350, 50%, 58%);
+  --label-dodger-blue: hsl(210, 100%, 68%);
+  --label-pelorous: hsl(185, 100%, 48%);
+  --label-deluge: hsl(239, 41%, 74%);
+  --label-apple: hsl(134, 74%, 71%);
+  --label-sorbus: hsl(30, 100%, 63%);
+  --label-mulberry: hsl(320, 67%, 64%);
+  --label-scarlet: hsl(0, 85%, 71%);
+  --label-dark-orchid: hsl(285, 100%, 68%);
+  --header-text: hsl(0, 0%, 100%);
+  --header-background: hsl(0, 0%, 5%);
+  --header-secondary-background: hsl(0, 0%, 3%);
+  --header-megapost-anakiwa: hsl(200, 75%, 74%);
+  --header-megapost-mint-green: hsl(128, 57%, 66%);
+  --header-megapost-pale-canary: hsl(60, 65%, 70%);
+  --header-megapost-mona-lisa: hsl(5, 100%, 76%);
+  --header-megapost-lavender-rose: hsl(305, 79%, 72%);
+}
+
+/* Свотч из двух половин: слева светлая тема, справа тёмная */
+.doc-color-swatch > div { flex: 1; height: 100%; }
+.doc-color-swatch .doc-dark { display: flex; }
+.doc-color-old {
+  display: block; font-family: var(--doc-mono); font-size: 10px;
+  color: var(--doc-text-muted); margin-top: 2px;
+}
+.doc-color-val {
+  display: block; font-family: var(--doc-mono); font-size: 10px;
+  color: var(--doc-text); margin-top: 2px; white-space: nowrap;
+}
+.doc-color-val i {
+  font-style: normal; color: var(--doc-text-muted);
+  display: inline-block; width: 30px;
+}
+.doc-color-use {
+  display: block; font-size: 10.5px; line-height: 1.35;
+  color: var(--doc-text-muted); margin-top: 6px;
+}
+/* белые свотчи иначе сливаются с карточкой — рамка и разделитель половин */
+.doc-color-swatch { border-bottom: 1px solid var(--doc-border); }
+.doc-color-swatch > div + div { border-left: 1px solid var(--doc-border); }
+/* внутренний div тёмной половины должен растягиваться, иначе он нулевой */
+.doc-color-swatch .doc-dark { flex: 1; }
+.doc-color-swatch .doc-dark > div { flex: 1; width: 100%; height: 100%; }
+
+/* --- сцены для Dialog ------------------------------------------------------*/
+.doc-modal-stage {
+  display: flex; justify-content: center; padding: 24px 12px;
+  background: hsl(from #000 h s l / 12%); border-radius: 8px;
+}
+.doc-phone-stage {
+  position: relative; overflow: hidden; margin: 0 auto;
+  width: 320px; height: 460px; border-radius: 12px;
+  background: var(--doc-bg); border: 1px solid var(--doc-border);
+}
+/* заглушка обложки: не выдаём за реальный ассет продукта */
+.doc-cover-stub {
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--doc-mono); font-size: 20px; letter-spacing: .2em;
+  color: #fff; background:
+    repeating-linear-gradient(45deg, #5b6486 0 10px, #525b7c 10px 20px);
+}
+.doc-table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+.doc-table th, .doc-table td {
+  text-align: left; padding: 8px 12px;
+  border-bottom: 1px solid var(--doc-border); vertical-align: top;
+}
+.doc-table th { font-weight: 600; color: var(--doc-text); background: var(--doc-bg); }
+.doc-table td { color: var(--doc-text-muted); }
+.doc-table tr:last-child td { border-bottom: none; }
+/* оверлей шторки внутри сцены: z-index:-1 иначе уходит за фон страницы */
+.doc-phone-stage { isolation: isolate; }
+.doc-informer-grid { display: grid; gap: 12px; justify-content: start; }
+
+/* Демонстрационный переключатель для Pagination.
+   Продукт прячет подписи «Сюда»/«Туда» медиазапросом (min-width: 1024) —
+   значит десктопную и планшетную форму нельзя увидеть одновременно.
+   Этот класс живёт только в витрине и повторяет то, что делает медиазапрос,
+   чтобы обе формы стояли рядом. Продуктовый CSS не трогается. */
+.doc-force-compact .tm-pagination__navigation-link-title { display: none; }
+
+/* =========================================================================
+   ICON GALLERY — полный набор, а не выборка
+   ========================================================================= */
+.doc-h3 {
+  font-size: 16px; margin: 36px 0 6px; padding-top: 12px;
+  border-top: 1px solid var(--doc-border);
+}
+.doc-icon-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 4px;
+}
+.doc-icon-grid-wide { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+.doc-icon {
+  margin: 0; padding: 10px 4px 8px;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  border-radius: 8px; background: var(--doc-bg);
+  border: 1px solid transparent;
+  color: var(--doc-text);            /* иконки спрайта наследуют этот цвет */
+  min-width: 0;
+}
+.doc-icon:hover { border-color: var(--doc-border); color: var(--doc-accent); }
+.doc-icon figcaption {
+  font-family: var(--doc-mono); font-size: 9.5px; line-height: 1.3;
+  color: var(--doc-text-muted); text-align: center;
+  overflow-wrap: anywhere; max-width: 100%;
+}
+.doc-icon svg, .doc-icon img { flex: none; display: block; }
+.doc-icon-pair span { display: flex; gap: 10px; align-items: center; }
+.doc-icon-illu { padding: 12px 6px 8px; }
+.doc-icon-illu img { max-width: 100%; height: 96px; }
+
+@media (max-width: 640px) {
+  .doc-icon-grid { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); }
+  .doc-icon-grid-wide { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+}
+/* символы с зашитым в файл цветом — CSS их не перекрашивает */
+.doc-icon-fixed { border-color: var(--doc-border) !important; border-style: dashed; }
+/* символ есть в production, но заменён другим ассетом */
+.doc-icon-old { opacity: .55; }
+.doc-icon-old figcaption { text-decoration: line-through; }
+/* блок кода — паттерн разметки, а не живой пример */
+.doc-code {
+  font-family: var(--doc-mono); font-size: 12px; line-height: 1.6;
+  margin: 0 0 10px; padding: 12px 14px; overflow-x: auto;
+  background: var(--doc-bg); border: 1px solid var(--doc-border);
+  border-radius: 8px; color: var(--doc-text);
+}
+
+/* =========================================================================
+   ПЕРЕКЛЮЧАТЕЛЬ ШИРИНЫ — по образцу оболочки Career
+   =========================================================================
+   Подход тот же, что в career/showcase: панель с кнопками ширины над рамкой
+   и подпись с текущим масштабом. Реализация другая, и разница существенная.
+
+   В Career адаптив паттернов сделан на @container, поэтому там можно взять
+   ОБЫЧНЫЙ div, задать ему ширину и уменьшить трансформацией — контейнерный
+   запрос смотрит на размер элемента и отработает честно.
+
+   У Хабра адаптив на @media, а медиазапрос смотрит на viewport. Уменьшенный
+   div шириной 320 остался бы для CSS десктопом. Поэтому внутри рамки —
+   <iframe>: у него собственный viewport, 320px внутри это настоящие 320px,
+   и правила @media срабатывают по-настоящему. Масштаб применяется СНАРУЖИ,
+   к самому iframe, и на срабатывание медиазапросов не влияет. */
+.doc-vp-bar {
+  display: flex; align-items: center; gap: 6px; flex-wrap: wrap;
+  padding: 8px 10px;
+  border: 1px solid var(--doc-border);
+  border-bottom: 0;
+  border-radius: 10px 10px 0 0;
+  background: var(--doc-bg-muted);
+}
+.doc-vp-bar__label { font-size: 12px; color: var(--doc-text-muted); margin-right: 4px; }
+.doc-vp-btn {
+  height: 26px; padding: 0 10px;
+  font: 500 12px/1 var(--doc-sans);
+  color: var(--doc-text); background: var(--doc-bg);
+  border: 1px solid var(--doc-border); border-radius: 6px; cursor: pointer;
+}
+.doc-vp-btn:hover { background: var(--doc-bg-muted); }
+.doc-vp-btn[aria-pressed="true"] {
+  background: var(--doc-text); border-color: var(--doc-text);
+  color: var(--doc-bg); font-weight: 600;
+}
+.doc-vp-btn:focus-visible { outline: 2px solid var(--doc-accent); outline-offset: 1px; }
+.doc-vp-btn_toggle { margin-left: 10px; }
+.doc-vp-bar__meta {
+  margin-left: auto; font: 400 11.5px/1 var(--doc-mono); color: var(--doc-text-muted);
+}
+.doc-vp {
+  position: relative; overflow: hidden;
+  border: 1px solid var(--doc-border);
+  border-radius: 0 0 10px 10px;
+  background: var(--doc-bg);
+}
+.doc-vp iframe {
+  display: block; border: 0; background: var(--doc-bg);
+  transform-origin: top left;
+}
+@media (max-width: 640px) {
+  .doc-vp-bar__meta { display: none; }
+}
+/* дубль внутри спрайта: тот же рисунок под другим именем */
+.doc-icon-dupe { position: relative; }
+.doc-icon-dupe:after {
+  content: ""; position: absolute; top: 0; right: 0;
+  border: 6px solid transparent; border-top-color: var(--doc-border);
+  border-right-color: var(--doc-border); border-top-right-radius: 8px;
+}
+/* Коробка иконки в поле ввода. В production её задаёт класс страницы
+   (.icon с Vue-скоупом), а не компонент — см. пояснение в секции Field.
+   Здесь центрирование, размеры остаются инлайном, чтобы было видно,
+   что это композиция витрины, а не значение компонента. */
+.doc-input-icon { display: flex; align-items: center; justify-content: center; height: 100%; }

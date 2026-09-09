@@ -1,0 +1,75 @@
+{
+  "$schema": "../../schema.json",
+  "id": "admin-list",
+  "title": "Admin · Management List",
+  "kind": "pattern",
+  "category": "page-families",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Layout regions. Строка (desktop): заголовок (обрезка в 2 строки) + иконка-редактирование + меню «⋯» → статус-чипы («В черновиках»/«На сайте», «Отложена: вкл/выкл») с иконками → переключатель «Трекинг: вкл/выкл» → 4 числовые метрики с цветным фоном ячейки (зелёный/голубой/оранжевый — предположительно вид метрики) → FB/VK счётчики шеринга.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [],
+    "styles": [
+      "ui/habr.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "stranica",
+      "title": "Страница",
+      "file": "examples/generated/patterns/admin-list/stranica.html",
+      "covers": [
+        "admin-list"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 700
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "figma",
+      "ref": "docs/patterns/admin-list.md"
+    }
+  ],
+  "unknowns": [],
+  "sourceStatus": "confirmed",
+  "family": "ADMIN_LIST",
+  "areas": [],
+  "modules": [],
+  "components": [],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Заголовок + иконки правки/меню + статус-чипы + переключатель + 4 метрики + счётчики шеринга. На мобильном — не сжатие, а перекомпоновка : метрики переезжают под заголовок, группируясь парами иконка+число — тот же принцип, что у Dialog (окно → шторка)."
+    },
+    {
+      "type": "guidance",
+      "text": "Figma m.habr-admin-company · строка таблицы статей, mobile=no/yes"
+    }
+  ],
+  "markdown": "docs/patterns/admin-list.md"
+}

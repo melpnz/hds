@@ -1,0 +1,77 @@
+{
+  "$schema": "../../schema.json",
+  "id": "directory",
+  "title": "Directory Listing",
+  "kind": "pattern",
+  "category": "page-families",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "medium",
+    "scope": "habr"
+  },
+  "purpose": "Формально похоже на §2 (Shell → Tabs → список → Pagination), но список — не статьи, а карточки сущностей (.tm-hub, компании, .author-item), и, в отличие от §2, сайдбар населён функционально: companies-list — фильтр («Фильтр» + счётчик), authors — статистика («Статистика», «Всего»), hubs-list — пуст (как §2).",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [],
+    "styles": [
+      "ui/habr.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "stranica",
+      "title": "Страница",
+      "file": "examples/generated/patterns/directory/stranica.html",
+      "covers": [
+        "directory"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 700
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "ref": "docs/patterns/directory.md"
+    }
+  ],
+  "unknowns": [
+    "Responsive. Не проверено детально — GAP."
+  ],
+  "sourceStatus": "confirmed",
+  "family": "DIRECTORY",
+  "areas": [],
+  "modules": [],
+  "components": [],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Похоже на §02, но список — карточки сущностей, не статей, и сайдбар функционален (фильтр/статистика), а не пуст. Каждый тип сущности использует СВОЮ карточку (не единый переиспользуемый модуль, в отличие от ArticleCard ) — не специфицировано отдельно, page-bound. Ниже — только layout-скелет, без точного кода карточки."
+    },
+    {
+      "type": "guidance",
+      "text": "production · hubs-list, companies-list, authors — 3/14"
+    }
+  ],
+  "markdown": "docs/patterns/directory.md"
+}

@@ -1,0 +1,75 @@
+{
+  "$schema": "../../schema.json",
+  "id": "dropdown",
+  "title": "Dropdown",
+  "kind": "component",
+  "category": "overlays",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "storybook"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Обвязка выпадающей панели: триггер (.head) + панель (.body). Не задаёт содержимое панели — это меню, список фильтров или что угодно ещё, переданное в слот.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "dropdown"
+    ],
+    "styles": [
+      "ui/components/dropdown.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "primer-1",
+      "title": "Пример 1",
+      "file": "examples/generated/components/dropdown/primer-1.html",
+      "covers": [
+        "dropdown"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "legacy-showcase",
+      "ref": "archive:habr/v1/showcase/components.html#dropdown"
+    },
+    {
+      "type": "component-spec",
+      "ref": "components/overlays/dropdown.md"
+    }
+  ],
+  "unknowns": [
+    "(dropdown / menu), separator, title. GAP: ни один класс строки не",
+    "| row/gap | 8 |",
+    "| row/gapvertical | 4 (между строкой и описанием) |",
+    "GAP: брейкпоинт переключения не подтверждён CSS — в"
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Состояния строки меню (hover/pressed/loading/not-found) не подтверждены CSS: готовых классов для содержимого панели в извлечённом срезе нет."
+    },
+    {
+      "type": "guidance",
+      "text": ".dropdown · dropdown.css · монтируется по клику, вне 101 production-файла"
+    }
+  ],
+  "markdown": "components/overlays/dropdown.md"
+}

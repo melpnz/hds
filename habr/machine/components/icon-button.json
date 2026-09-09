@@ -1,0 +1,72 @@
+{
+  "$schema": "../../schema.json",
+  "id": "icon-button",
+  "title": "IconButton",
+  "kind": "component",
+  "category": "actions",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "storybook"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Ни имя, ни стиль не подтверждены production как отдельный переиспользуемый компонент. Ближайшая реальная параллель — .close-informer-hint (ui/components/hint.css) — тоже безрамочная кнопка-иконка, но это конкретное закрытие информера, не общий класс. getvariabledefs подтвердил, что цвета Figma-варианта — реальные Habr-токены (--icon-secondary, --accent-primary, --other-disabled-elements), не выдуманы.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "icon-button"
+    ],
+    "styles": [
+      "ui/components/icon-button.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "primer-1",
+      "title": "Пример 1",
+      "file": "examples/generated/components/icon-button/primer-1.html",
+      "covers": [
+        "icon-button"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "legacy-showcase",
+      "ref": "archive:habr/v1/showcase/components.html#icon-button"
+    },
+    {
+      "type": "component-spec",
+      "ref": "components/actions/icon-button.md"
+    }
+  ],
+  "unknowns": [
+    "Ни имя, ни стиль не подтверждены production как отдельный переиспользуемый"
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Слева направо: default → hover-цвет (наведите) → disabled → border=yes → near-textfield=yes (40×40). Ближайшая реальная параллель — .close-informer-hint ( hint.css ), но это конкретное закрытие информера, не общий класс. Цвета сверены через get_variable_defs с уже принятыми токенами ( --icon-secondary / --accent-primary ) — не выдуманы, но сам класс и вся структура — реконструкция."
+    },
+    {
+      "type": "guidance",
+      "text": ".tm-icon-button · icon-button.css · условное имя, нет production-эквивалента"
+    }
+  ],
+  "markdown": "components/actions/icon-button.md"
+}

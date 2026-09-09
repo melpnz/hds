@@ -1,0 +1,99 @@
+{
+  "$schema": "../../schema.json",
+  "id": "avatar",
+  "title": "Avatar",
+  "kind": "component",
+  "category": "content",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "storybook"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Три fallback-иллюстрации: пользователь, компания и хаб/поток. Форма у всех одна — скруглённый квадрат border-radius: 3px : столько у .tm-user-info__userpic (24×24) и у .tm-hub-card__avatar (48×48). Круглых аватаров на habr.com не нашлось ни одного — перебрал все элементы с радиусом 50% на ленте и на странице пользователя. Иллюстрации лежат в ui/assets/illustrations/avatars/ .",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "avatar"
+    ],
+    "styles": [
+      "ui/components/avatar.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "avatar-polzovatela-default",
+      "title": "Аватар пользователя (default)",
+      "file": "examples/generated/components/avatar/avatar-polzovatela-default.html",
+      "covers": [
+        "avatar"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "avatar-kompanii-default",
+      "title": "Аватар компании (default)",
+      "file": "examples/generated/components/avatar/avatar-kompanii-default.html",
+      "covers": [
+        "avatar"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "avatar-haba-potoka-default",
+      "title": "Аватар хаба / потока (default)",
+      "file": "examples/generated/components/avatar/avatar-haba-potoka-default.html",
+      "covers": [
+        "avatar"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "legacy-showcase",
+      "ref": "archive:habr/v1/showcase/components.html#avatar"
+    }
+  ],
+  "unknowns": [],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Три fallback-иллюстрации: пользователь, компания и хаб/поток. Форма у всех одна — скруглённый квадрат border-radius: 3px : столько у .tm-user-info__userpic (24×24) и у .tm-hub-card__avatar (48×48). Круглых аватаров на habr.com не нашлось ни одного — перебрал все элементы с радиусом 50% на ленте и на странице пользователя. Иллюстрации лежат в ui/assets/illustrations/avatars/ ."
+    },
+    {
+      "type": "guidance",
+      "text": "Иллюстрации прозрачные, поэтому плитке нужен свой белый фон и обводка в цвет иллюстрации — иначе сквозь неё просвечивает то, на чём она лежит: заливка чипа, серый фон страницы. Это класс .avatar-default ( ui/components/avatar.css ) с модификаторами _user / _company / _hub ; он ставится рядом с классом компонента-хозяина и снимается, когда приходит настоящая картинка. Размер и скругление задаёт хозяин: .tm-user-info__userpic 24×24 r3, .tm-hub-card__avatar 48×48 r3, .tm-chip__avatar 24×24 r6."
+    },
+    {
+      "type": "guidance",
+      "text": "Чемодан у хаба — иконка work из Google Material Symbols (Apache-2.0), вписанная в тот же viewBox 0 0 87 87 . Цвет #a5b58c продолжает ряд: у трёх иллюстраций одни и те же насыщенность и светлота ( hsl(·, 22%, 63%) ), различается только тон — 196° / 317° / 84°."
+    },
+    {
+      "type": "guidance",
+      "text": "Шкала одна и та же для всех трёх: 60 · 48 · 40 · 36 · 32 · 24 · 20 . Размер задаётся инлайн (атрибуты <img> или style) — CSS-модификатора размера у Habr нет."
+    },
+    {
+      "type": "guidance",
+      "text": ".tm-user-info__userpic / .tm-hub-card__avatar · размер задаётся инлайн, отдельного размерного API нет"
+    }
+  ]
+}

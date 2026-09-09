@@ -1,0 +1,77 @@
+{
+  "$schema": "../../schema.json",
+  "id": "block",
+  "title": "Block",
+  "kind": "component",
+  "category": "content",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "storybook"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Обёртка секции с заголовком, телом и подвалом — ближайший смысловой аналог base-section в Career, но устроен иначе: варианты называют плотность (condensed/stucked/island/equal), а не размер.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "block"
+    ],
+    "styles": [
+      "ui/components/block.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "full-krupnyj-zagolovok-variant-border-bottom",
+      "title": "Full — крупный заголовок, вариант border-bottom",
+      "file": "examples/generated/components/block/full-krupnyj-zagolovok-variant-border-bottom.html",
+      "covers": [
+        "block"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "eyebrow-zagolovok-po-umolcaniu",
+      "title": "Eyebrow-заголовок (по умолчанию)",
+      "file": "examples/generated/components/block/eyebrow-zagolovok-po-umolcaniu.html",
+      "covers": [
+        "block"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "legacy-showcase",
+      "ref": "archive:habr/v1/showcase/components.html#block"
+    },
+    {
+      "type": "component-spec",
+      "ref": "components/content/block.md"
+    }
+  ],
+  "unknowns": [],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": ".tm-block · block.css · монтируется по клику, вне 101 production-файла"
+    }
+  ],
+  "markdown": "components/content/block.md"
+}

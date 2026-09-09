@@ -1,0 +1,105 @@
+{
+  "$schema": "../../schema.json",
+  "id": "dialog",
+  "title": "Dialog / modal",
+  "kind": "component",
+  "category": "overlays",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "storybook"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Модальное окно продукта. Единственный компонент выборки с прямо подтверждённой responsive-трансформацией макета, а не просто сжатием: на широких экранах — центрированное окно, на узких — нижняя шторка (bottom sheet).",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "dialog"
+    ],
+    "styles": [
+      "ui/components/dialog.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "desktop-i-planset-centrirovannoe-okno-est-skroll",
+      "title": "Десктоп и планшет — центрированное окно · есть скролл → полоски видны",
+      "file": "examples/generated/components/dialog/desktop-i-planset-centrirovannoe-okno-est-skroll.html",
+      "covers": [
+        "dialog"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "bez-kartinki-kontent-pomesaetsa-skrolla-net-polo",
+      "title": "Без картинки, контент помещается → скролла нет, полосок тоже нет",
+      "file": "examples/generated/components/dialog/bez-kartinki-kontent-pomesaetsa-skrolla-net-polo.html",
+      "covers": [
+        "dialog"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "telefon-niznaa-storka-bottom-drawer-inner-s-ruck",
+      "title": "Телефон — нижняя шторка (.bottom-drawer-inner), с ручкой перетаскивания",
+      "file": "examples/generated/components/dialog/telefon-niznaa-storka-bottom-drawer-inner-s-ruck.html",
+      "covers": [
+        "dialog"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "legacy-showcase",
+      "ref": "archive:habr/v1/showcase/components.html#dialog"
+    },
+    {
+      "type": "component-spec",
+      "ref": "components/overlays/dialog.md"
+    }
+  ],
+  "unknowns": [
+    "планшете показывают шторку. Брейкпоинт переключения попрежнему GAP, но",
+    "GAP: конкретный брейкпоинт переключения между .modalwindow и",
+    "брейкпоинт переключения desktop/mobile раскладки — GAP;",
+    "ширина по умолчанию — GAP (только значение story);"
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Единственный компонент с подтверждённой responsive- трансформацией макета: широкий экран — центрированное окно, телефон — нижняя шторка. Разметка ниже — копия из Storybook-снимка dialog--minimal , классы настоящие."
+    },
+    {
+      "type": "guidance",
+      "text": "Полоски под шапкой и над подвалом появляются только когда тело прокручивается. Это не декоративная рамка, а индикатор обрезанного контента: за них отвечают классы .header.scrolled / .footer.scrolled (в шторке — .with-divider ). Нет скролла — нет полосок; ниже показаны оба случая. Картинка-обложка ( .cover-image , 140px) — необязательная часть, тело принимает произвольный контент."
+    },
+    {
+      "type": "guidance",
+      "text": "position:absolute проставлен инлайн только чтобы удержать шторку внутри этой рамки — в продукте у неё position:fixed на весь экран."
+    },
+    {
+      "type": "guidance",
+      "text": ".modal-window · .bottom-drawer-inner · dialog.css · в Figma называется modal (4181:8544)"
+    }
+  ],
+  "markdown": "components/overlays/dialog.md"
+}

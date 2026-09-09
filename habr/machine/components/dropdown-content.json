@@ -1,0 +1,118 @@
+{
+  "$schema": "../../schema.json",
+  "id": "dropdown-content",
+  "title": "Dropdown · строки панели",
+  "kind": "component",
+  "category": "overlays",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "storybook"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Обвязка выпадающей панели: триггер (.head) + панель (.body). Не задаёт содержимое панели — это меню, список фильтров или что угодно ещё, переданное в слот.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "dropdown-content"
+    ],
+    "styles": [],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "type-dropdown-pola-16-vybor-zalivkoj",
+      "title": "type=dropdown — поля 16, выбор заливкой",
+      "file": "examples/generated/components/dropdown-content/type-dropdown-pola-16-vybor-zalivkoj.html",
+      "covers": [
+        "dropdown-content"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "type-menu-pola-20-vybor-cvetom-teksta-i-polosoj",
+      "title": "type=menu — поля 20, выбор цветом текста и полосой 2px, без заливки",
+      "file": "examples/generated/components/dropdown-content/type-menu-pola-20-vybor-cvetom-teksta-i-polosoj.html",
+      "covers": [
+        "dropdown-content"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "primer-3",
+      "title": "Пример 3",
+      "file": "examples/generated/components/dropdown-content/primer-3.html",
+      "covers": [
+        "dropdown-content"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "mobile-yes-niznaa-storka",
+      "title": "mobile=yes — нижняя шторка",
+      "file": "examples/generated/components/dropdown-content/mobile-yes-niznaa-storka.html",
+      "covers": [
+        "dropdown-content"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "legacy-showcase",
+      "ref": "archive:habr/v1/showcase/components.html#dropdown-content"
+    },
+    {
+      "type": "component-spec",
+      "ref": "components/overlays/dropdown.md"
+    }
+  ],
+  "unknowns": [
+    "(dropdown / menu), separator, title. GAP: ни один класс строки не",
+    "| row/gap | 8 |",
+    "| row/gapvertical | 4 (между строкой и описанием) |",
+    "GAP: брейкпоинт переключения не подтверждён CSS — в"
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Строка — один компонент с четырьмя свойствами: status , type , separator , title . Типа два, и они отличаются полями и способом показать выбор."
+    },
+    {
+      "type": "guidance",
+      "text": "На мобильном панель не всплывает у триггера, а выезжает снизу на всю ширину. Отличий от десктопной ровно три: скругление только сверху, вертикальные поля 12 вместо 4 и ручка 64×4 над шторкой. Оверлей — чёрный с альфой 20%."
+    },
+    {
+      "type": "guidance",
+      "text": "Горизонтального варианта у панели нет — в библиотеке только два: mobile=no и mobile=yes , оба вертикальные."
+    },
+    {
+      "type": "guidance",
+      "text": "Ни один класс строки не найден в dropdown-B6xIm0Cp.css ; всё собрано на реальных Habr-токенах. Контейнер .body выше — наоборот, настоящий production-класс из Storybook."
+    },
+    {
+      "type": "guidance",
+      "text": ".dropdown-row / .menu-row · dropdown.css · FIGMA-RECONSTRUCTED"
+    }
+  ],
+  "markdown": "components/overlays/dropdown.md"
+}

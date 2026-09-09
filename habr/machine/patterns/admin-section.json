@@ -1,0 +1,77 @@
+{
+  "$schema": "../../schema.json",
+  "id": "admin-section",
+  "title": "Admin · Section Screen",
+  "kind": "pattern",
+  "category": "page-families",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma"
+    ],
+    "confidence": "medium",
+    "scope": "habr"
+  },
+  "purpose": "Layout regions. Стандартная шапка Habr (та же, что в public — логотип, поиск, колокольчик, аватар) → identity-карточка компании (см. §6, тот же приём) → горизонтальные Tabs шести секций (Статистика/Публикации/ Компания/Биллинг/Настройки/FAQ — тот же компонент Tabs, что в public) → главная колонка: контентные карточки раздела (заголовок + описание + условное состояние/форма) → правый сайдбар: вторичный список (карточка с построчной навигацией внутри раздела, активный пункт — левая полоса акцентным цветом + счётчик) + виджет «Новости Хабра» (та же карточка, что и в public — заголовок + список ссылок с описанием).",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [],
+    "styles": [
+      "ui/habr.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "stranica",
+      "title": "Страница",
+      "file": "examples/generated/patterns/admin-section/stranica.html",
+      "covers": [
+        "admin-section"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 700
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "figma",
+      "ref": "docs/patterns/admin-section.md"
+    }
+  ],
+  "unknowns": [
+    "Responsive. Не подтверждено — GAP (Figma не давала mobileверсию"
+  ],
+  "sourceStatus": "confirmed",
+  "family": "ADMIN_SECTION",
+  "areas": [],
+  "modules": [],
+  "components": [],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Тот же Tabs , что в public (6 секций: Статистика/Публикации/ Компания/Биллинг/Настройки/FAQ), под identity-карточкой компании (тот же приём, что §06). Справа — вторичный список раздела (активный пункт — акцентная полоса слева + счётчик) и виджет новостей. Состояние услуги — либо форма+действие, либо информер о статусе заявки (state-driven контент одного и того же блока)."
+    },
+    {
+      "type": "guidance",
+      "text": "Figma m.habr-admin-company · production недоступен (требует входа)"
+    }
+  ],
+  "markdown": "docs/patterns/admin-section.md"
+}

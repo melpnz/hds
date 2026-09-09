@@ -1,0 +1,74 @@
+{
+  "$schema": "../../schema.json",
+  "id": "title",
+  "title": "Title",
+  "kind": "component",
+  "category": "content",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "storybook"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Заголовок-обёртка + заголовок-ссылка на статью. Единственный компонент выборки, где подтверждено переключение шрифта: обёртка .tm-title набрана системным стеком (наследует от body), а .tm-titlelink — явно задаёт font-family: Fira Sans. Подтверждено дважды: перечнем CSS и прямым getComputedStyle на живой habr.com/ru/feed/ (h2-обёртка → системный стек, a.tm-titlelink внутри неё → Fira Sans). См. evidence/runtime-contract.md, раздел «Шрифты».",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "title"
+    ],
+    "styles": [
+      "ui/components/title.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "primer-1",
+      "title": "Пример 1",
+      "file": "examples/generated/components/title/primer-1.html",
+      "covers": [
+        "title"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "legacy-showcase",
+      "ref": "archive:habr/v1/showcase/components.html#title"
+    },
+    {
+      "type": "component-spec",
+      "ref": "components/content/title.md"
+    }
+  ],
+  "unknowns": [
+    "| .tmtitlelink | 20px/1.3, Fira Sans, :hover/:visited → акцентный цвет — тоже базовое, реально варьируется, см. GAP |",
+    "GAP исправлен после Visual Foundations pass. Базовые 24px .tmtitleh1",
+    "не является заголовком полноразмерной статьи — GAP, конкретное место"
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": ".tm-title набран системным шрифтом (наследует от body ), но .tm-title__link явно переключает на Fira Sans — подтверждено дважды, см. evidence/runtime-contract.md ."
+    },
+    {
+      "type": "guidance",
+      "text": ".tm-title · title.css · 9/16 страниц"
+    }
+  ],
+  "markdown": "components/content/title.md"
+}

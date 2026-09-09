@@ -1,0 +1,77 @@
+{
+  "$schema": "../../schema.json",
+  "id": "entity",
+  "title": "Profile / Entity",
+  "kind": "pattern",
+  "category": "page-families",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Ключевое отличие от интуиции, унаследованной из Career: идентификационная карточка сущности (аватар, имя, рейтинг/подписчики, действие «подписаться») стоит в верхней части главной колонки, а не в левом сайдбаре. Подтверждено трижды позиционным сравнением в DOM (tm-hub-card/user-card/ tm-company-profile-card встречаются в разметке РАНЬШЕ tm-pagesidebar на всех трёх страницах). Сайдбар при этом не пуст — несёт вторичные факты: tm-user-basic-info/tm-company-basic-info (DescriptionList) + tm-user-specialization (квалификация/зарплата/навыки).",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [],
+    "styles": [
+      "ui/habr.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "stranica",
+      "title": "Страница",
+      "file": "examples/generated/patterns/entity/stranica.html",
+      "covers": [
+        "entity"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 700
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "ref": "docs/patterns/entity.md"
+    }
+  ],
+  "unknowns": [
+    "Responsive. Не проверено детально — GAP."
+  ],
+  "sourceStatus": "confirmed",
+  "family": "ENTITY",
+  "areas": [],
+  "modules": [],
+  "components": [],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Идентичность — в верхней части главной колонки, не в сайдбаре — подтверждено позиционным сравнением DOM на всех трёх страницах, и повторно на скриншоте admin-дашборда компании (Figma). Сайдбар несёт вторичные факты ( DescriptionList ), не идентичность. Действие («Подписаться») — на identity-карточке, рядом с сущностью."
+    },
+    {
+      "type": "guidance",
+      "text": "production · user, hub, company — 3/14"
+    }
+  ],
+  "markdown": "docs/patterns/entity.md"
+}

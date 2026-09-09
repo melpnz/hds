@@ -59,6 +59,18 @@ a:hover {
   outline: 1px solid var(--accent-primary);
 }
 
+/* Accessibility utility required by the copy-safe Checkbox and Radio markup.
+   The legacy showcase declared it inline next to Checkbox, so isolated
+   examples and consumers of ui/habr.css did not receive it. */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+}
+
 /* Единственный найденный глобальный простой селектор * во всём 111-файловом
    срезе — косметический переход, не влияющий на геометрию. */
 * {

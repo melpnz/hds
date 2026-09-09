@@ -286,6 +286,8 @@ const foundationDefaults = {
   rules: []
 };
 
+const previewWidths = [320, 480, 768, 1024];
+
 const foundations = [
   {
     id: 'spacing',
@@ -329,14 +331,17 @@ const foundations = [
   {
     id: 'layout-responsive',
     title: 'Сетка и адаптив',
-    purpose: 'Контейнер 1100px с полезной шириной 1076px и тремя реальными брейкпоинтами.',
+    purpose: 'Page-превью поддерживают ширины от 320px, перестраиваются на 768px и 1024px и растут до потолка контейнера 1100px.',
     container: { maxWidth: 1100, padding: '0 12px' },
     breakpoints: [
-      { value: 480, names: ['small-phone', 'phablet-only'] },
-      { value: 768, names: ['phone', 'tablet-only'] },
-      { value: 1024, names: ['tablet', 'desktop'] }
+      { value: 320, role: 'minimum-supported-width', names: ['mobile'] },
+      { value: 768, role: 'mobile-to-tablet', names: ['tablet'] },
+      { value: 1024, role: 'tablet-to-desktop', names: ['desktop'] }
     ],
-    nonBreakpoints: [320, 1100, 1440],
+    previewWidths: [...previewWidths, 'auto'],
+    fluidRanges: [[320, 767], [768, 1023], [1024, 1100]],
+    nonBreakpoints: [480, 1100],
+    componentUtilityBreakpoints: [480, 768, 1024],
     rules: sourceRules.filter(rule => /^SH-|^R-/.test(rule.id)).map(rule => `machine/rules/${fileSlug(rule.id)}.json`)
   },
   {
@@ -503,7 +508,7 @@ for (const specPath of additionalComponentDocs) {
       file: 'viewer/specimen.html',
       query: `spec=${encodeURIComponent(file)}`,
       covers: ['published-markup'],
-      preview: { mode: 'viewport', widths: [375, 768, 1100], height: 560 }
+      preview: { mode: 'viewport', widths: previewWidths, height: 560 }
     }] : [],
     accessibility: [],
     unknowns: limitations,
@@ -609,6 +614,34 @@ function classElementStarts(html, className) {
     .map(match => match.index);
 }
 
+function extractClassElements(html, className) {
+  const elements = classElementStarts(html, className).map(start => ({ start, html: extractElementAt(html, start) }));
+  const cleaned = [...elements].reverse().reduce((result, element) =>
+    `${result.slice(0, element.start)}${result.slice(element.start + element.html.length)}`, html);
+  return { html: cleaned.replaceAll(/^[\t ]+$/gm, ''), elements: elements.map(element => element.html) };
+}
+
+function htmlToPlainText(html) {
+  return html
+    .replaceAll(/<br\s*\/?>/gi, ' ')
+    .replaceAll(/<[^>]+>/g, ' ')
+    .replaceAll('&nbsp;', ' ')
+    .replaceAll('&lt;', '<')
+    .replaceAll('&gt;', '>')
+    .replaceAll('&amp;', '&')
+    .replaceAll('&quot;', '"')
+    .replaceAll('&#39;', "'")
+    .replaceAll(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
+    .replaceAll(/\s+/g, ' ')
+    .trim();
+}
+
+function previewNoteType(text) {
+  if (/^ДОПУЩЕНИЕ(?:[.:\s]|$)/i.test(text)) return 'assumption';
+  if (/^Осторожно(?:[.:\s]|$)|не удалось|не подтвержден/i.test(text)) return 'coverage-warning';
+  return 'guidance';
+}
+
 function extractElementByClass(html, className, occurrence = 0) {
   const start = classElementStarts(html, className)[occurrence];
   if (start === undefined) throw new Error(`Missing .${className} occurrence ${occurrence}`);
@@ -629,7 +662,12 @@ function extractAncestorByClass(html, className, tag, occurrence = 0) {
 for (const source of sourcePatterns) {
   const file = `machine/patterns/${source.id}.json`;
   const anchor = source.example.showcase.split('#')[1];
-  const fragment = extractElementById(pageShowcase, anchor).replaceAll('../ui/', '../../ui/');
+  const extractedFragment = extractClassElements(extractElementById(pageShowcase, anchor), 'note');
+  const fragment = extractedFragment.html.replaceAll('../ui/', '../../ui/');
+  const previewNotes = extractedFragment.elements.map(note => {
+    const text = htmlToPlainText(note);
+    return { type: previewNoteType(text), text };
+  });
   const exampleFile = `examples/patterns/${source.id}.html`;
   writeText(exampleFile, `<!doctype html>
 <html lang="ru">
@@ -639,9 +677,10 @@ for (const source of sourcePatterns) {
   <title>${source.name}</title>
   <link rel="stylesheet" href="../../ui/career.css">
   <link rel="stylesheet" href="patterns.css">
+  <link rel="stylesheet" href="page-preview.css">
   <style>
-    body{min-width:0}
-    .pattern{margin:0;padding:20px}
+    body{min-width:0;background:#fff}
+    .pattern{margin:0;padding:0}
     .pattern__head,.rules,.vp-bar{display:none!important}
     .viewport{height:auto!important;overflow:visible!important;border:0!important;background:transparent!important}
     .viewport__inner{width:auto!important;transform:none!important}
@@ -661,7 +700,8 @@ ${fragment}
     maturity: { spec: source.areas === null ? 'partial' : 'complete', markup: 'available' },
     knowledge: { authority: ['production-showcase', 'observed-rules'], confidence: source.id === 'dashboard' ? 'low' : 'high', scope: 'public-guest' },
     purpose: source.summary,
-    implementation: { markup: exampleFile, cssRoots: [], styles: ['ui/career.css'], scripts: ['examples/patterns/patterns.js'] },
+    previewNotes,
+    implementation: { markup: exampleFile, cssRoots: [], styles: ['ui/career.css', 'examples/patterns/page-preview.css'], scripts: ['examples/patterns/patterns.js'] },
     stateGroups: { ui: [], feature: source.id.includes('empty') ? ['no-results'] : ['success'], domain: [] },
     ruleFiles: source.rules.map(id => `machine/${id.startsWith('DG-') ? 'decisions' : 'rules'}/${fileSlug(id)}.json`),
     examples: [{
@@ -669,7 +709,7 @@ ${fragment}
       title: source.name,
       file: exampleFile,
       covers: [source.id],
-      preview: { mode: 'viewport', widths: [375, 768, 1024, 1440], height: 720 }
+      preview: { mode: 'viewport', widths: previewWidths, height: 720 }
     }],
     accessibility: [],
     evidence: [{ type: 'showcase', ref: source.example.showcase }, { type: 'rules', ref: source.rules }],
@@ -679,13 +719,30 @@ ${fragment}
   addCatalog(item, file, [source.id, source.name, 'page', 'responsive', ...source.rules]);
 }
 
+const pageAboutFragment = `<section id="about">
+  <div class="callout">
+    <h3>Как читать адаптив страниц</h3>
+    <ul>
+      <li><b>Брейкпоинты page-превью: 320 / 768 / 1024.</b> 320 — минимальная поддерживаемая ширина, 768 — переход mobile/tablet, 1024 — tablet/desktop.</li>
+      <li><code>480</code> остаётся контрольной кнопкой viewer внутри мобильного диапазона. Это проверка резины, а не отдельный брейкпоинт.</li>
+      <li>Между брейкпоинтами ширина и свободное место меняются непрерывно; отдельная фиксированная композиция для каждого пресета не создаётся.</li>
+      <li><code>1100</code> — потолок контейнера, а не брейкпоинт. После него контент не растёт: увеличиваются только поля фоновой поверхности.</li>
+      <li>Горизонтальный скролл допустим внутри специально прокручиваемой навигации, но не у документа страницы целиком.</li>
+    </ul>
+  </div>
+  <div class="callout callout--warn">
+    <h3>Техническое отличие preview</h3>
+    <p>Адаптив page-примеров использует <code>@container</code>, чтобы реагировать на ширину iframe. В продукте те же переходы могут быть реализованы через <code>@media</code>.</p>
+  </div>
+</section>`;
+
 const pageSupplementIds = ['about', 'rules', 'gaps'];
 for (const anchor of pageSupplementIds) {
-  const fragment = extractElementById(pageShowcase, anchor).replaceAll('../ui/', '../../ui/');
+  const fragment = (anchor === 'about' ? pageAboutFragment : extractElementById(pageShowcase, anchor)).replaceAll('../ui/', '../../ui/');
   const title = fragment.match(/<h[1-4][^>]*>([\s\S]*?)<\/h[1-4]>/i)?.[1].replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim() || anchor;
   const exampleFile = `examples/patterns/${anchor}.html`;
   writeText(exampleFile, `<!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><link rel="stylesheet" href="../../ui/career.css"><link rel="stylesheet" href="patterns.css"><style>body{min-width:0;padding:20px}</style></head>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>${title}</title><link rel="stylesheet" href="../../ui/career.css"><link rel="stylesheet" href="patterns.css"><style>body{min-width:0;padding:0;background:#fff}</style></head>
 <body>${fragment}<script src="patterns.js"></script></body></html>
 `);
   const id = `showcase-pages-${anchor}`;
@@ -700,7 +757,7 @@ for (const anchor of pageSupplementIds) {
     purpose: `Отдельная секция #${anchor} старой page-витрины.`,
     implementation: { markup: exampleFile, styles: ['ui/career.css', 'examples/patterns/patterns.css'], scripts: ['examples/patterns/patterns.js'] },
     stateGroups: { ui: [], feature: [], domain: [] },
-    examples: [{ id: 'showcase-section', title, file: exampleFile, covers: [anchor], preview: { mode: 'viewport', widths: [375, 768, 1100], height: 700 } }],
+    examples: [{ id: 'showcase-section', title, file: exampleFile, covers: [anchor], preview: { mode: 'viewport', widths: previewWidths, height: 700 } }],
     accessibility: [],
     evidence: [{ type: 'legacy-showcase', ref: `${legacyPrefix}showcase/pages.html#${anchor}` }],
     unknowns: [],

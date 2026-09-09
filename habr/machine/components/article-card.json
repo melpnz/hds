@@ -1,0 +1,73 @@
+{
+  "$schema": "../../schema.json",
+  "id": "article-card",
+  "title": "ArticleCard",
+  "kind": "component",
+  "category": "content",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "storybook"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Карточка статьи в ленте. Появляется на feed, articles-all, news, hub, company, user-posts, sandbox — везде с одинаковой структурой.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "article-card"
+    ],
+    "styles": [
+      "ui/components/article-card.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "primer-1",
+      "title": "Пример 1",
+      "file": "examples/generated/components/article-card/primer-1.html",
+      "covers": [
+        "article-card"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "legacy-showcase",
+      "ref": "archive:habr/v1/showcase/components.html#article-card"
+    },
+    {
+      "type": "component-spec",
+      "ref": "components/content/article-card.md"
+    }
+  ],
+  "unknowns": [
+    "| .articlesnippet.noborder | без рамки (в извлечённом CSS border у .articlesnippet не задан вообще — модификатор, вероятно, снимает границу, добавляемую точечно другим правилом; не полностью прослежено — GAP) |",
+    "noborder — назначение не до конца прослежено (GAP);"
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Representative specimen — обычная карточка ленты, не полный набор вариантов (типы публикации/full-article/no-border — см. article-card.md ). Footer с голосованием/закладками/комментариями — сосед .article-snippet , не потомок (см. spec, «Ключевая структурная деталь»). Реальная плотность: заголовок + метаданные + время чтения + охват + хабы + голос/закладка/комментарии — ровно то, что видно в реальной ленте, не упрощено для показа."
+    },
+    {
+      "type": "guidance",
+      "text": ".article-snippet + .tm-articles-list__item-footer · article-card.css · 9/16 страниц — флагманский модуль"
+    }
+  ],
+  "markdown": "components/content/article-card.md"
+}

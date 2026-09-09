@@ -35,38 +35,63 @@
   ],
   "id": "layout-responsive",
   "title": "Сетка и адаптив",
-  "purpose": "Контейнер 1100px с полезной шириной 1076px и тремя реальными брейкпоинтами.",
+  "purpose": "Page-превью поддерживают ширины от 320px, перестраиваются на 768px и 1024px и растут до потолка контейнера 1100px.",
   "container": {
     "maxWidth": 1100,
     "padding": "0 12px"
   },
   "breakpoints": [
     {
-      "value": 480,
+      "value": 320,
+      "role": "minimum-supported-width",
       "names": [
-        "small-phone",
-        "phablet-only"
+        "mobile"
       ]
     },
     {
       "value": 768,
+      "role": "mobile-to-tablet",
       "names": [
-        "phone",
-        "tablet-only"
+        "tablet"
       ]
     },
     {
       "value": 1024,
+      "role": "tablet-to-desktop",
       "names": [
-        "tablet",
         "desktop"
       ]
     }
   ],
-  "nonBreakpoints": [
+  "previewWidths": [
     320,
-    1100,
-    1440
+    480,
+    768,
+    1024,
+    "auto"
+  ],
+  "fluidRanges": [
+    [
+      320,
+      767
+    ],
+    [
+      768,
+      1023
+    ],
+    [
+      1024,
+      1100
+    ]
+  ],
+  "nonBreakpoints": [
+    480,
+    1100
+  ],
+  "componentUtilityBreakpoints": [
+    480,
+    768,
+    1024
   ],
   "kind": "foundation",
   "category": "foundations",

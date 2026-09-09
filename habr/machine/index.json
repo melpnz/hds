@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 3,
+  "product": {
+    "id": "habr",
+    "title": "Хабр",
+    "guideVersion": "1.0",
+    "status": "active",
+    "productionRelease": "2.346.1",
+    "lastVerified": "2026-09-07"
+  },
+  "readOrder": [
+    "machine/catalog.json",
+    "только выбранный file из catalog",
+    "markdown, rules, implementation и examples — только при необходимости"
+  ],
+  "files": {
+    "catalog": "machine/catalog.json",
+    "states": "machine/states.json",
+    "tokens": "machine/tokens.json",
+    "assets": "machine/assets.json",
+    "migrationMap": "machine/migration-map.json",
+    "schema": "schema.json",
+    "roadmap": "ROADMAP.md"
+  },
+  "coverage": {
+    "boundary": "public guest production + company admin Figma",
+    "known": [
+      "public shell",
+      "content feed",
+      "directory",
+      "entity",
+      "company admin"
+    ],
+    "unknown": [
+      "editor screen",
+      "settings outside admin",
+      "service/error",
+      "authenticated production"
+    ],
+    "onUnknown": {
+      "action": "use-nearest-confirmed-pattern-and-disclose-assumption",
+      "doc": "ROADMAP.md"
+    }
+  },
+  "viewerContract": {
+    "intrinsic": "components and foundations, stacked without viewport toolbar",
+    "viewport": "modules and pages at 320/480/768/1024/Auto",
+    "pageBreakpoints": [
+      320,
+      768,
+      1024
+    ],
+    "fluidCheckpoints": [
+      480
+    ],
+    "notes": "previewNotes are rendered outside iframe"
+  },
+  "provenance": {
+    "legacyPrefix": "archive:habr/v1/",
+    "archivePublished": false,
+    "note": "Структура пакета мигрирована без объявления нового релиза; все доступные для использования знания находятся в habr/."
+  },
+  "checks": [
+    "node validate.mjs",
+    "node tools/validate-viewer.mjs"
+  ],
+  "migration": {
+    "source": "archive/habr/v1",
+    "inventory": {
+      "files": 362,
+      "componentSpecs": 23,
+      "showcaseSections": 34,
+      "pageSections": 8,
+      "singleIcons": 109,
+      "libraryIcons": 137,
+      "spriteIcons": 138,
+      "illustrations": 20
+    },
+    "mapping": "machine/migration-map.json"
+  },
+  "metrics": {
+    "catalogItems": 89,
+    "foundations": 7,
+    "components": 25,
+    "patterns": 14,
+    "documents": 43,
+    "examples": 63
+  }
+}

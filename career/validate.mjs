@@ -9,6 +9,7 @@ const oldRoot = resolve(root, '..', 'archive', 'career', 'v1');
 const hasArchive = existsSync(oldRoot);
 const readArchive = path => JSON.parse(readFileSync(resolve(oldRoot, path), 'utf8'));
 const requiredItemKeys = ['id', 'title', 'kind', 'category', 'maturity', 'knowledge', 'purpose', 'implementation', 'examples', 'evidence', 'unknowns'];
+const viewportWidths = [320, 480, 768, 1024];
 const errors = [];
 const index = read('machine/index.json');
 const catalogIndex = read(index.files.catalog);
@@ -63,6 +64,8 @@ for (const entry of catalog) {
       errors.push(`${entry.id}/${example.id}: incomplete preview contract`);
     } else if (example.preview.mode === 'viewport' && (!example.preview.widths?.length || !example.preview.height)) {
       errors.push(`${entry.id}/${example.id}: viewport preview requires widths and height`);
+    } else if (example.preview.mode === 'viewport' && JSON.stringify(example.preview.widths) !== JSON.stringify(viewportWidths)) {
+      errors.push(`${entry.id}/${example.id}: viewport widths must be ${viewportWidths.join(', ')}`);
     } else if (example.preview.mode === 'intrinsic' && (example.preview.widths || example.preview.height)) {
       errors.push(`${entry.id}/${example.id}: intrinsic preview must not prescribe viewport dimensions`);
     }
@@ -85,6 +88,7 @@ const countKind = kind => catalog.filter(entry => entry.kind === kind).length;
 const colorSpec = read('machine/foundations/colors.json');
 const migratedColors = Object.assign({}, ...colorSpec.groups.map(group => read(group.file).tokens));
 const typography = read('machine/foundations/typography.json');
+const layoutResponsive = read('machine/foundations/layout-responsive.json');
 const button = read('machine/components/button.json');
 const oldButton = oldComponents.find(item => item.id === 'button');
 if (index.metrics.catalogItems !== catalog.length) errors.push('index: catalogItems metric is stale');
@@ -94,6 +98,10 @@ for (const kind of ['foundation', 'primitive', 'component', 'adapter', 'module',
 }
 if (index.metrics.colorTokens !== Object.keys(migratedColors).length) errors.push('index: colorTokens metric is stale');
 if (index.metrics.typeStyles !== typography.typeScale.length) errors.push('index: typeStyles metric is stale');
+if (JSON.stringify(layoutResponsive.breakpoints.map(item => item.value)) !== JSON.stringify([320, 768, 1024])) errors.push('layout: page breakpoints must be 320, 768 and 1024');
+if (layoutResponsive.container.maxWidth !== 1100) errors.push('layout: page container cap must be 1100');
+if (JSON.stringify(layoutResponsive.fluidRanges) !== JSON.stringify([[320, 767], [768, 1023], [1024, 1100]])) errors.push('layout: fluid ranges are stale');
+if (!layoutResponsive.nonBreakpoints.includes(480) || !layoutResponsive.nonBreakpoints.includes(1100)) errors.push('layout: 480 and 1100 must be marked as non-breakpoints');
 if (button.implementation.markup !== 'markup.html') errors.push('button: canonical markup file is missing');
 if (hasArchive) {
   const oldColorKeys = Object.keys(oldTokens.color);
@@ -121,6 +129,7 @@ let sourceSummary = 'archive checks skipped';
 if (hasArchive) {
 const oldRules = readArchive('machine/rules.json');
 const oldPatterns = readArchive('machine/patterns.json');
+const oldPageShowcase = readFileSync(resolve(oldRoot, 'showcase/pages.html'), 'utf8');
 const oldContent = readArchive('machine/content.json');
 const oldFiles = walkAll(oldRoot);
 const oldMarkdownPaths = oldFiles.filter(path => path.endsWith('.md'));
@@ -230,7 +239,12 @@ for (const source of oldPatterns) {
   if (anchor && !html.includes(`id="${anchor}"`)) errors.push(`pattern ${source.id}: anchor #${anchor} is missing`);
   const example = migrated.examples?.find(candidate => candidate.covers?.includes(source.id));
   if (!example || !readFileSync(resolve(root, example.file), 'utf8').includes(`id="${anchor}"`)) errors.push(`pattern ${source.id}: sliced page reference is missing`);
+  else if (/class=["'][^"']*\bnote\b/i.test(readFileSync(resolve(root, example.file), 'utf8'))) errors.push(`pattern ${source.id}: documentation note remains inside preview`);
+  if (!migrated.previewNotes?.length || migrated.previewNotes.some(note => !note.type || !note.text)) errors.push(`pattern ${source.id}: preview notes are missing or incomplete`);
 }
+const oldPreviewNoteCount = (oldPageShowcase.match(/class=["'][^"']*\bnote\b/gi) || []).length;
+const migratedPreviewNoteCount = oldPatterns.reduce((sum, source) => sum + (migratedById.get(source.id)?.previewNotes?.length || 0), 0);
+if (migratedPreviewNoteCount !== oldPreviewNoteCount) errors.push(`pattern notes: expected ${oldPreviewNoteCount}, migrated ${migratedPreviewNoteCount}`);
 if (JSON.stringify(migratedById.get('product-copy')?.content) !== JSON.stringify(oldContent)) errors.push('content: source object was not preserved');
 for (const [name, source] of Object.entries(oldTokens)) {
   if (name === 'color') continue;

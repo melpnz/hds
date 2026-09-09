@@ -28,11 +28,22 @@
     "scope": "public-guest"
   },
   "purpose": "404 и подобные. Сетка отменяется целиком.",
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Ни сайдбара, ни карточки. Служебный экран — единственное место, где Career отказывается и от сетки, и от карточной оболочки. Заголовок остаётся H1 28/32·600."
+    },
+    {
+      "type": "guidance",
+      "text": "Иллюстрации служебных страниц (404, 500, 502, технические работы) в библиотеке Figma существуют — семь штук размером около 480×175. В живом виде на измеренной странице их не было, поэтому здесь они не воспроизведены."
+    }
+  ],
   "implementation": {
     "markup": "examples/patterns/service.html",
     "cssRoots": [],
     "styles": [
-      "ui/career.css"
+      "ui/career.css",
+      "examples/patterns/page-preview.css"
     ],
     "scripts": [
       "examples/patterns/patterns.js"
@@ -59,10 +70,10 @@
       "preview": {
         "mode": "viewport",
         "widths": [
-          375,
+          320,
+          480,
           768,
-          1024,
-          1440
+          1024
         ],
         "height": 720
       }

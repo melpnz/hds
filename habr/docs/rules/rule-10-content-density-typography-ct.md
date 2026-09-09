@@ -1,0 +1,15 @@
+## 10 · Content Density & Typography · CT
+
+| ID | Observation | Evidence | Coverage | Confidence |
+|---|---|---|---|---|
+| **CT-1** | **Два регистра шрифта**: интерфейсная хромка (кнопки, шапка, пагинация, табы) — системный стек; заголовки статей и контентные заголовки — Fira Sans | `evidence/runtime-contract.md`, дважды подтверждено (CSS-перечень + `getComputedStyle` на живом `habr.com`) | 15/16 (системный), 9/16 (Fira Sans context) | HIGH |
+| **CT-2** | Habr встраивает **normalize.css v8 целиком, без изменений** — базовая типографика (`h1{margin:.67em 0;font-size:2em}` и т.д.) не переопределена продуктом почти нигде | `ui/normalize.css`, найдено полным проходом по «голым» селекторам | 15/16 (шелл-бандл) | HIGH |
+| **CT-3** | Кавычки языкозависимы: `:lang(ru)` — «ёлочки», `:lang(en)` — двойные прямые | `ui/foundations.css` | шелл-бандл, применимость к реальному тексту не проверена (нужен `<q>`/`content:open-quote`) | MEDIUM |
+| **CT-4** | Ярлык типа публикации (`publication-type-label`) кодирует три коротких типа (Новость/Пост/Голос) через цвет текста, без фона | `ArticleCard` | 9/16 | HIGH |
+| **CT-5** | «Чип» в Habr — это таксономия значений (~45: user-label, system-label, stream и т.д.), а не набор визуальных тонов, как у Career | `evidence/conflicts.md` CFL-3, Figma `habr-lib → chips` | Figma-only для полного списка значений | HIGH (сам факт различия) |
+| **CT-6** | Плотность admin выше, чем у public: одна строка management list несёт до 8 единиц информации одновременно (заголовок, 2 иконки, 2 статуса, переключатель, 4 метрики, 2 счётчика) | AD-6 | 1 таблица | MEDIUM |
+| **CT-7** | Реальная типографическая шкала (9 подтверждённых уровней): Article title 32/40 Fira Sans w500 · Section title large 20/28 Fira Sans w500 · Feed card title 20/26 Fira Sans w500 (ArticleCard-специфично) · Section name 19.9/28 системный w700 · Body 16/24 системный w400 · Interface text small 14/18 системный w400 · Section title default 13/20 Fira Sans w500 uppercase · Metadata 13/15 системный w500 · Counter 13/13 системный w700 | `showcase/components.html` #f-typography, `getComputedStyle` и `CSS.getMatchedStylesForNode` на живых feed/article/events | 4 страницы для верификации, каждый уровень — конкретный класс | HIGH |
+| **CT-8** | «Card title» — **не один флэт-размер**: реальный фид показывает диапазон 14–20px (20/26, 18/23, 17/24, 16/20, 14/21) для разных модулей карточек (тизер, промо-блок, дайджест) с одним и тем же весом (Fira Sans w500). 20/26 подтверждён именно для `ArticleCard`, не для всех карточек Habr | Visual Foundations typo-scan, полный проход по видимым текстовым узлам feed | 1 страница, 5+ уникальных размеров | MEDIUM — принцип подтверждён, привязка каждого размера к конкретному модулю не прослежена |
+| **CT-9** | Code/моноширинный текст — стек `Menlo, Monaco, Consolas`, 14px/22.4px w400 — самая частая типографическая комбинация на странице статьи с кодом (398 узлов на одной странице) | Visual Foundations typo-scan, `article` | 1 страница | HIGH |
+
+---

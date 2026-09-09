@@ -1,0 +1,67 @@
+{
+  "$schema": "../../schema.json",
+  "id": "user-info",
+  "title": "UserInfo",
+  "kind": "component",
+  "category": "content",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "storybook"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Аватар + имя + дата — переиспользуется в ArticleCard (см. выше) и других контекстах. __realauthor — вариант без ссылки-имени (например, для официальных публикаций). __user_appearance-post на ≤767 переносит автора в колонку — см. article-card.md , Responsive.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "user-info"
+    ],
+    "styles": [],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "primer-1",
+      "title": "Пример 1",
+      "file": "examples/generated/components/user-info/primer-1.html",
+      "covers": [
+        "user-info"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "legacy-showcase",
+      "ref": "archive:habr/v1/showcase/components.html#user-info"
+    }
+  ],
+  "unknowns": [],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Аватар + имя + дата — переиспользуется в ArticleCard (см. выше) и других контекстах. __realauthor — вариант без ссылки-имени (например, для официальных публикаций). __user_appearance-post на ≤767 переносит автора в колонку — см. article-card.md , Responsive."
+    },
+    {
+      "type": "guidance",
+      "text": "Класс author — часть анатомии, а не опция. Зазор 4px между именем и датой даёт правило .author .tm-user-info__user { gap: 4px } ; у самого .tm-user-info__user своего зазора нет. Перебор разметки живых страниц: 31 из 31 экземпляра .tm-user-info несёт author , без него не встречается ни разу — поэтому в примере выше он есть. Правило заскоуплено под .article-snippet : все такие .author лежат внутри него (остальные .author на странице — подписи к картинкам, другой компонент)."
+    },
+    {
+      "type": "guidance",
+      "text": ".tm-user-info · article-card.css · часть ArticleCard, показан отдельно как самостоятельный модуль"
+    }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "$schema": "../../schema.json",
+  "id": "typography",
+  "title": "Типографика",
+  "kind": "foundation",
+  "category": "foundations",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "storybook",
+      "figma"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Fira Sans — только заголовки. Всё остальное — системный шрифт: Arial на Windows, San Francisco на macOS и iOS, Roboto на Android, Ubuntu на Ubuntu. Стек -apple-system, BlinkMacSystemFont, Arial, sans-serif подставляет тот, что есть в системе.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "f-typography"
+    ],
+    "styles": [
+      "ui/habr.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "primer-1",
+      "title": "Пример 1",
+      "file": "examples/generated/foundations/f-typography/primer-1.html",
+      "covers": [
+        "f-typography"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "primer-2",
+      "title": "Пример 2",
+      "file": "examples/generated/foundations/f-typography/primer-2.html",
+      "covers": [
+        "f-typography"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "legacy-showcase",
+      "ref": "archive:habr/v1/showcase/components.html#f-typography"
+    }
+  ],
+  "unknowns": [],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Fira Sans — только заголовки. Всё остальное — системный шрифт: Arial на Windows, San Francisco на macOS и iOS, Roboto на Android, Ubuntu на Ubuntu. Стек -apple-system, BlinkMacSystemFont, Arial, sans-serif подставляет тот, что есть в системе."
+    },
+    {
+      "type": "guidance",
+      "text": "Относится только к публикациям — тело статьи и её заголовок."
+    },
+    {
+      "type": "guidance",
+      "text": "Вертикальный ритм: отступ сверху у h2 — 56px, у h3 и h4 — 32px, у абзаца — 12px, у pre и blockquote — 32px. Снизу отступов нет ни у одного, кроме blockquote (12px)."
+    },
+    {
+      "type": "guidance",
+      "text": "GAP, зафиксирован честно, не дорисован: «feed card title» на практике НЕ один флэт-размер — на реальной ленте встречаются 20/26, 18/23, 17/24, 16/20, 14/21px для разных типов карточек (главный тизер, промо-блок, дайджест) с одним и тем же визуальным весом (w500, Fira Sans). 20/26 — подтверждённое значение именно ArticleCard , не универсальный «card title» всего Habr."
+    }
+  ]
+}

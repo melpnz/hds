@@ -1,0 +1,72 @@
+{
+  "$schema": "../../schema.json",
+  "id": "radio",
+  "title": "Radio",
+  "kind": "component",
+  "category": "forms",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "storybook"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": ".tm-radiooption/.tm-radiolabel реально встречаются в разметке votes-lever-XAPVRp2k.css (.tm-minus-reason .tm-radiooption + .tm-radiooption и т.д. — см. components/actions/votes.md GAP) — значит класс существует в продакшене. Но собственное объявление стиля .tm-radio не попало ни в один из 111 извлечённых файлов — его чанк не был найден. Имя класса — не выдумано; оформление ниже — реконструкция.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "radio"
+    ],
+    "styles": [
+      "ui/components/radio.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "primer-1",
+      "title": "Пример 1",
+      "file": "examples/generated/components/radio/primer-1.html",
+      "covers": [
+        "radio"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "legacy-showcase",
+      "ref": "archive:habr/v1/showcase/components.html#radio"
+    },
+    {
+      "type": "component-spec",
+      "ref": "components/forms/radio.md"
+    }
+  ],
+  "unknowns": [
+    "и т.д. — см. components/actions/votes.md GAP) — значит класс существует"
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Класс .tm-radio__option реально встречается в разметке ( votes-lever → попап причины минуса), но собственный стиль не найден ни в одном из 111 файлов — реконструирован на токенах уже подтверждённого Checkbox ( get_variable_defs показал общее пространство имён переменных)."
+    },
+    {
+      "type": "guidance",
+      "text": ".tm-radio · radio.css · имя реальное, стиль FIGMA-RECONSTRUCTED"
+    }
+  ],
+  "markdown": "components/forms/radio.md"
+}

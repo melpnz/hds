@@ -1,0 +1,82 @@
+{
+  "$schema": "../../schema.json",
+  "id": "shell",
+  "title": "Оболочка",
+  "kind": "pattern",
+  "category": "page-families",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Layout regions. Шапка (sticky, 56/48px) → .tm-page-width контейнер (1096/24 · 768/16 · edge-to-edge) → .tm-pagewrapper (flex) → .tm-pagemainhas-sidebar (гибкая) + .tm-pagesidebar (300px, position: relative, НЕ липкий) → подвал (tm-footer-menu + tm-footer).",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [],
+    "styles": [
+      "ui/habr.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "stranica",
+      "title": "Страница",
+      "file": "examples/generated/patterns/shell/stranica.html",
+      "covers": [
+        "shell"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 700
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "ref": "docs/patterns/shell.md"
+    }
+  ],
+  "unknowns": [
+    "Reusable modules. Header (не специфицирован отдельно — GAP, см. §7),",
+    "Footer (не специфицирован — GAP), ui/layout.css."
+  ],
+  "sourceStatus": "confirmed",
+  "family": "SHELL",
+  "areas": [],
+  "modules": [],
+  "components": [],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Контейнер .tm-page-width (1096/24 · 768/16 · edge-to-edge) → .tm-page__wrapper flex → главная колонка + .tm-page__sidebar (300px, НЕ липкий). Сайдбар — зарезервированная колонка: на 6 из 14 страниц она физически пуста для гостя (см. заметку ниже). Ширина фрейма ограничена для показа — меняйте окно браузера, чтобы увидеть реальный брейкпоинт 1024/768."
+    },
+    {
+      "type": "guidance",
+      "text": "Шапка — .tm-header , реальные размеры 56px/48px (≤767), sticky. Показана один раз здесь как универсальный элемент оболочки — идентична на всех подтверждённых семействах (см. Foundations → Header ), дальше в примерах ниже не повторяется, чтобы не раздувать разметку."
+    },
+    {
+      "type": "guidance",
+      "text": "production · 14/14 страниц"
+    }
+  ],
+  "markdown": "docs/patterns/shell.md"
+}

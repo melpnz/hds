@@ -1,0 +1,78 @@
+{
+  "$schema": "../../schema.json",
+  "id": "spacing",
+  "title": "Интервалы",
+  "kind": "foundation",
+  "category": "foundations",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "storybook",
+      "figma"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Сетка 4px, без исключений. В Figma это коллекция spacing/0…8 , где значение равно номеру × 4 ( spacing/4 = 16, spacing/6 = 24). Все замеренные в production зазоры кратны 4. Промежуточных значений не бывает — если нужного шага нет в лестнице, берётся соседний, а не придумывается новый.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "f-spacing"
+    ],
+    "styles": [
+      "ui/habr.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "primer-1",
+      "title": "Пример 1",
+      "file": "examples/generated/foundations/f-spacing/primer-1.html",
+      "covers": [
+        "f-spacing"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "legacy-showcase",
+      "ref": "archive:habr/v1/showcase/components.html#f-spacing"
+    }
+  ],
+  "unknowns": [],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Сетка 4px, без исключений. В Figma это коллекция spacing/0…8 , где значение равно номеру × 4 ( spacing/4 = 16, spacing/6 = 24). Все замеренные в production зазоры кратны 4. Промежуточных значений не бывает — если нужного шага нет в лестнице, берётся соседний, а не придумывается новый."
+    },
+    {
+      "type": "guidance",
+      "text": "Шаг выбирается по тому, что от чего отделяем : чем дальше друг от друга смысловые части, тем больше шаг."
+    },
+    {
+      "type": "guidance",
+      "text": "Шаги 28 и 32 ( spacing/7 , spacing/8 ) в лестнице есть, но в замерах интерфейса не встретились — они используются в вертикальном ритме публикации (отступы над h3 и pre , см. Typography)."
+    },
+    {
+      "type": "guidance",
+      "text": "У Block девять именованных вариантов плотности со значениями от 8 до 24 — это тот же набор шагов под разные ситуации, перечень в components/content/block.md ."
+    },
+    {
+      "type": "guidance",
+      "text": "шаг сетки 4px · Figma spacing/0…8 = N×4"
+    }
+  ]
+}

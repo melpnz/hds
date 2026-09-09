@@ -1,0 +1,81 @@
+{
+  "$schema": "../../schema.json",
+  "id": "votes",
+  "title": "Votes",
+  "kind": "component",
+  "category": "actions",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "storybook"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Голосование — один из самых узнаваемых визуальных паттернов Habr (карма пользователя, рейтинг статьи, +/- под комментарием). Два разных компонента, которые часто путают:",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "votes"
+    ],
+    "styles": [
+      "ui/components/votes.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "voteslever-rycag-nravitsa-ne-nravitsa",
+      "title": "VotesLever — рычаг «нравится / не нравится»",
+      "file": "examples/generated/components/votes/voteslever-rycag-nravitsa-ne-nravitsa.html",
+      "covers": [
+        "votes"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "legacy-showcase",
+      "ref": "archive:habr/v1/showcase/components.html#votes"
+    },
+    {
+      "type": "component-spec",
+      "ref": "components/actions/votes.md"
+    }
+  ],
+  "unknowns": [
+    "GAP: собственное объявление .tmradio не найдено ни в одном из",
+    "GAP закрыт замером. Раньше здесь стояло, что неизвестно, какая"
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Обе стрелки — один и тот же глиф counter-vote 24×24; нижняя перевёрнута классом _arrow-down ( transform: scaleY(-1) ). До голосования обе — --icon-secondary ; цвет счётчика задаёт знак: --accent-positive при плюсе, --accent-danger при минусе. Кликабельная зона у кнопки 40×40 через :after , сама иконка меньше."
+    },
+    {
+      "type": "guidance",
+      "text": ".tm-votes-meter — второй класс из этого же файла, только отображение , без кнопок: одна иконка counter-rating 24×24 в --icon-secondary плюс значение 13/13 w700 с отступом 6px. Именно он стоит в карточках ленты (20 экземпляров на /ru/articles/ ), рычаг — на странице статьи (2 экземпляра)."
+    },
+    {
+      "type": "guidance",
+      "text": "GAP: попап причины минуса ( .vote-hint-popup → .tm-minus-reason ) ссылается на .tm-radio , который нигде больше не встретился в извлечённых 111 файлах — не специфицирован."
+    },
+    {
+      "type": "guidance",
+      "text": ".tm-votes-meter (7/16) · .tm-votes-lever (5/16) · votes.css"
+    }
+  ],
+  "markdown": "components/actions/votes.md"
+}

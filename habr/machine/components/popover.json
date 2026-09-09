@@ -1,0 +1,77 @@
+{
+  "$schema": "../../schema.json",
+  "id": "popover",
+  "title": "Popover",
+  "kind": "component",
+  "category": "overlays",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "storybook"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Позиционирующая обвязка без содержательной семантики: сама по себе не добавляет ни фона, ни рамки, ни отступов — «сырой slot-контракт» (формулировка из docs самой story). Оформление приходит через variant.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "popover"
+    ],
+    "styles": [
+      "ui/components/popover.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "primer-1",
+      "title": "Пример 1",
+      "file": "examples/generated/components/popover/primer-1.html",
+      "covers": [
+        "popover"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "legacy-showcase",
+      "ref": "archive:habr/v1/showcase/components.html#popover"
+    },
+    {
+      "type": "component-spec",
+      "ref": "components/overlays/popover.md"
+    }
+  ],
+  "unknowns": [
+    "| .varianthub | заливка + рамка iconsecondary + тень, textalign:left | GAP: конкретное место использования не подтверждено |",
+    ".varianthub — назначение не подтверждено конкретным местом в продукте;"
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Без варианта — «сырой slot-контракт»: ни фона, ни рамки, ни отступов. Оформление приходит через variant ."
+    },
+    {
+      "type": "guidance",
+      "text": "Позиционирование в реальном использовании — не top / left , а transform: translate() (Floating UI, 12 placement ). Здесь — position:static только чтобы показать все варианты рядом на витрине."
+    },
+    {
+      "type": "guidance",
+      "text": ".base-popover · popover.css · 15/16 страниц"
+    }
+  ],
+  "markdown": "components/overlays/popover.md"
+}

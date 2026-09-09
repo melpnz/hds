@@ -1,0 +1,134 @@
+{
+  "$schema": "../../schema.json",
+  "id": "chip",
+  "title": "Chip",
+  "kind": "component",
+  "category": "forms",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "storybook"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "В файле три компонента с разным статусом. Это не варианты одного — у чипа и у плашки формата разная типографика, разные поля и разный источник.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "chip"
+    ],
+    "styles": [
+      "ui/components/chip.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "teg-pustoj-zapolnennyj-tolko-dla-ctenia-i-to-ze",
+      "title": "Тег — пустой, заполненный, только для чтения, и то же с ошибкой",
+      "file": "examples/generated/components/chip/teg-pustoj-zapolnennyj-tolko-dla-ctenia-i-to-ze.html",
+      "covers": [
+        "chip"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "hab-to-ze-plus-avatar-24-24-radius-6-i-sostoanie",
+      "title": "Хаб — то же плюс аватар 24×24 (радиус 6) и состояние «подписан»",
+      "file": "examples/generated/components/chip/hab-to-ze-plus-avatar-24-24-radius-6-i-sostoanie.html",
+      "covers": [
+        "chip"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "publication-label-statusy",
+      "title": ".publication-label — статусы",
+      "file": "examples/generated/components/chip/publication-label-statusy.html",
+      "covers": [
+        "chip"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "vse-dvenadcat-formatov",
+      "title": "Все двенадцать форматов",
+      "file": "examples/generated/components/chip/vse-dvenadcat-formatov.html",
+      "covers": [
+        "chip"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "primer-5",
+      "title": "Пример 5",
+      "file": "examples/generated/components/chip/primer-5.html",
+      "covers": [
+        "chip"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "legacy-showcase",
+      "ref": "archive:habr/v1/showcase/components.html#chip"
+    },
+    {
+      "type": "component-spec",
+      "ref": "components/forms/chip.md"
+    }
+  ],
+  "unknowns": [],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Высота 30 , радиус 8 , текст 14/18 . Цвет у чипа один и работает в трёх ролях сразу: текст — он же, заливка — он же с альфой 12% , рамка пустого — он же с альфой 40% . Поля зависят от состава: без иконок 4px 12px , со стороны иконки — 4px , со стороны аватара — 3px ."
+    },
+    {
+      "type": "guidance",
+      "text": "Геометрия одна на все плашки: пилюля 30px , радиус 8 , поля 6px 12px , текст 12/14 w700 uppercase , заливка — тот же цвет с альфой 12% . Различает их только цвет."
+    },
+    {
+      "type": "guidance",
+      "text": ".publication-label — статус публикации, а не её формат. Цвет постоянный, --label-deluge , форматом не управляется."
+    },
+    {
+      "type": "guidance",
+      "text": ".article-label — формат публикации; здесь цвет кодирует формат, по цвету на несколько форматов."
+    },
+    {
+      "type": "guidance",
+      "text": "У чипа production-класса нет: выбор хабов и тегов живёт в редакторе статьи, недоступном гостевому краулу. Имя .tm-chip наше, значения — из Figma article-labels / v3 через get_design_context ; цвета сопоставлены с боевыми токенами по совпадению hex, не вбиты хексами. У плашек формата и статуса имена не выдуманы: .publication-label снят с живой страницы, .article-label назван по фрейму Figma."
+    },
+    {
+      "type": "guidance",
+      "text": "Оформление .publication-label выше — не то, что отгружено. В production это контурная плашка без заливки и без uppercase: border-radius: 4px , рамка --label-deluge с альфой 40%, поля 0 8px , кегль наследуется от карточки. Приведение к общему виду v3 — решение по дизайну, а не замер; production-значения сохранены дословно в chip.css и components/forms/chip.md ."
+    },
+    {
+      "type": "guidance",
+      "text": ".tm-chip / .publication-label / .article-label · chip.css"
+    }
+  ],
+  "markdown": "components/forms/chip.md"
+}

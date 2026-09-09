@@ -4,6 +4,7 @@ const searchMeta = document.querySelector('#search-meta');
 const title = document.querySelector('#item-title');
 const badges = document.querySelector('#item-badges');
 const exampleTabs = document.querySelector('#example-tabs');
+const exampleStack = document.querySelector('#example-stack');
 const viewportControls = document.querySelector('#viewport-controls');
 const viewportMeta = document.querySelector('#viewport-meta');
 const preview = document.querySelector('#preview');
@@ -11,6 +12,7 @@ const previewMissing = document.querySelector('#preview-missing');
 const previewCard = document.querySelector('.preview-card');
 const previewToolbar = document.querySelector('.preview-toolbar');
 const previewStage = document.querySelector('.preview-stage');
+const previewNotes = document.querySelector('#preview-notes');
 const guide = document.querySelector('#guide');
 const rawJson = document.querySelector('#raw-json');
 const specSource = document.querySelector('#spec-source');
@@ -19,7 +21,8 @@ let catalog = [];
 let searchDocuments = new Map();
 let currentItem;
 let currentExample;
-let previewResizeObserver;
+let previewResizeObservers = [];
+const viewportWidths = [320, 480, 768, 1024];
 
 const escapeHtml = value => String(value ?? '')
   .replaceAll('&', '&amp;')
@@ -197,10 +200,9 @@ function setViewport(width) {
   });
 }
 
-function renderViewportControls(example) {
-  const widths = [...new Set(example.preview.widths)];
+function renderViewportControls() {
   viewportControls.innerHTML = [
-    ...widths.map(width => `<button type="button" data-width="${width}">${width}</button>`),
+    ...viewportWidths.map(width => `<button type="button" data-width="${width}">${width}</button>`),
     '<button type="button" data-width="full" aria-pressed="true">Auto</button>'
   ].join('');
   viewportControls.querySelectorAll('button').forEach(button => {
@@ -210,30 +212,30 @@ function renderViewportControls(example) {
 }
 
 function disconnectPreviewObserver() {
-  previewResizeObserver?.disconnect();
-  previewResizeObserver = undefined;
+  previewResizeObservers.forEach(observer => observer.disconnect());
+  previewResizeObservers = [];
 }
 
-function fitPreviewHeight() {
-  if (currentExample?.preview?.mode !== 'intrinsic') return;
-  const documentElement = preview.contentDocument?.documentElement;
-  const body = preview.contentDocument?.body;
+function fitPreviewHeight(frame = preview) {
+  const documentElement = frame.contentDocument?.documentElement;
+  const body = frame.contentDocument?.body;
   if (!documentElement || !body) return;
-  preview.style.height = '1px';
+  frame.style.height = '1px';
   const height = Math.max(body.scrollHeight, body.offsetHeight, documentElement.scrollHeight, documentElement.offsetHeight);
-  preview.style.height = `${Math.max(1, Math.ceil(height))}px`;
+  frame.style.height = `${Math.max(1, Math.ceil(height))}px`;
 }
 
-function watchIntrinsicPreview() {
-  disconnectPreviewObserver();
-  fitPreviewHeight();
-  const body = preview.contentDocument?.body;
-  if (!body || !preview.contentWindow?.ResizeObserver) return;
-  previewResizeObserver = new preview.contentWindow.ResizeObserver(() => requestAnimationFrame(fitPreviewHeight));
-  previewResizeObserver.observe(body);
-  preview.contentDocument.fonts?.ready.then(fitPreviewHeight);
-  preview.contentDocument.querySelectorAll('img').forEach(image => {
-    if (!image.complete) image.addEventListener('load', fitPreviewHeight, { once: true });
+function watchIntrinsicPreview(frame = preview) {
+  fitPreviewHeight(frame);
+  const body = frame.contentDocument?.body;
+  if (!body || !frame.contentWindow?.ResizeObserver) return;
+  const fit = () => fitPreviewHeight(frame);
+  const observer = new frame.contentWindow.ResizeObserver(() => requestAnimationFrame(fit));
+  observer.observe(body);
+  previewResizeObservers.push(observer);
+  frame.contentDocument.fonts?.ready.then(fit);
+  frame.contentDocument.querySelectorAll('img').forEach(image => {
+    if (!image.complete) image.addEventListener('load', fit, { once: true });
   });
 }
 
@@ -258,14 +260,41 @@ function selectExample(exampleId) {
   preview.style.width = '100%';
   preview.style.height = isIntrinsic ? '1px' : `${currentExample.preview.height}px`;
   if (isIntrinsic) viewportControls.innerHTML = '';
-  else renderViewportControls(currentExample);
+  else renderViewportControls();
   preview.title = `${currentItem.title}: ${currentExample.title}`;
   const query = currentExample.query ? `?${currentExample.query}` : '';
   const anchor = currentExample.anchor || '';
   preview.src = `../${currentExample.file}${query}${anchor}`;
 }
 
+function renderIntrinsicExampleStack(item) {
+  disconnectPreviewObserver();
+  currentExample = undefined;
+  previewToolbar.hidden = true;
+  exampleTabs.hidden = true;
+  previewStage.hidden = true;
+  exampleStack.hidden = false;
+  exampleStack.innerHTML = item.examples.map(example => `
+    <section class="stacked-example" data-stacked-example="${escapeHtml(example.id)}">
+      <h2>${escapeHtml(example.title)}</h2>
+      <div class="preview-stage preview-stage--intrinsic">
+        <iframe class="preview-frame" scrolling="no" title="${escapeHtml(`${item.title}: ${example.title}`)}"></iframe>
+      </div>
+    </section>`).join('');
+  item.examples.forEach(example => {
+    const section = exampleStack.querySelector(`[data-stacked-example="${CSS.escape(example.id)}"]`);
+    const frame = section.querySelector('iframe');
+    frame.addEventListener('load', () => watchIntrinsicPreview(frame));
+    const query = example.query ? `?${example.query}` : '';
+    frame.src = `../${example.file}${query}${example.anchor || ''}`;
+  });
+}
+
 function renderExamples(item) {
+  disconnectPreviewObserver();
+  exampleStack.hidden = true;
+  exampleStack.innerHTML = '';
+  previewStage.hidden = false;
   if (item.previewMode === 'none') {
     previewCard.hidden = true;
     return;
@@ -284,6 +313,15 @@ function renderExamples(item) {
     return;
   }
 
+  const stackIntrinsicExamples = item.examples.length > 1 &&
+    item.examples.every(example => example.preview?.mode === 'intrinsic');
+  if (stackIntrinsicExamples) {
+    preview.hidden = true;
+    previewMissing.hidden = true;
+    renderIntrinsicExampleStack(item);
+    return;
+  }
+
   exampleTabs.hidden = item.examples.length < 2;
   preview.hidden = false;
   previewMissing.hidden = true;
@@ -295,6 +333,19 @@ function renderExamples(item) {
     button.addEventListener('click', () => selectExample(button.dataset.example));
   });
   selectExample(item.examples[0].id);
+}
+
+function renderPreviewNotes(item) {
+  const notes = item.previewNotes || [];
+  previewNotes.hidden = notes.length === 0;
+  previewNotes.innerHTML = notes.length ? `
+    <h2 id="preview-notes-title">Примечания к превью</h2>
+    <ul>${notes.map(note => `
+      <li data-note-type="${escapeHtml(note.type)}">
+        <span>${note.type === 'assumption' ? 'Допущение' : note.type === 'coverage-warning' ? 'Ограничение покрытия' : 'Пояснение'}</span>
+        <p>${escapeHtml(note.text)}</p>
+      </li>`).join('')}
+    </ul>` : '';
 }
 
 function renderGuide(item) {
@@ -369,10 +420,10 @@ function renderGuide(item) {
       <h2>Значения</h2>
       <div class="json-card"><pre>${escapeHtml(JSON.stringify(item.values, null, 2))}</pre></div>
     </section>` : '';
-  const foundationGeometry = item.container || item.breakpoints || item.nonBreakpoints ? `
+  const foundationGeometry = item.container || item.breakpoints || item.previewWidths || item.nonBreakpoints ? `
     <section class="spec-section">
       <h2>Геометрия</h2>
-      <div class="json-card"><pre>${escapeHtml(JSON.stringify({ container: item.container, breakpoints: item.breakpoints, nonBreakpoints: item.nonBreakpoints }, null, 2))}</pre></div>
+      <div class="json-card"><pre>${escapeHtml(JSON.stringify({ container: item.container, breakpoints: item.breakpoints, previewWidths: item.previewWidths, fluidRanges: item.fluidRanges, nonBreakpoints: item.nonBreakpoints, componentUtilityBreakpoints: item.componentUtilityBreakpoints }, null, 2))}</pre></div>
     </section>` : '';
   const implementation = item.code || item.storybookNames?.length || item.legacyAliases?.length ? `
     <section class="spec-section">
@@ -504,6 +555,7 @@ async function renderItem() {
   title.textContent = currentItem.title;
   renderBadges(currentItem);
   renderExamples(currentItem);
+  renderPreviewNotes(currentItem);
   renderGuide(currentItem);
   rawJson.textContent = JSON.stringify(currentItem, null, 2);
   specSource.href = `../${entry.file}`;

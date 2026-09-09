@@ -1,0 +1,99 @@
+{
+  "$schema": "../../schema.json",
+  "id": "pagination",
+  "title": "Pagination",
+  "kind": "component",
+  "category": "navigation",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "storybook"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Постраничная навигация списков. Составной компонент: PaginationButton (prev/next) встроен внутрь Pagination.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "pagination"
+    ],
+    "styles": [
+      "ui/components/pagination.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "desktop-podpisi-suda-tuda-strelki-sirina-kak-vo",
+      "title": "Desktop — подписи «Сюда»/«Туда» + стрелки, ширина как во фрейме Figma (480)",
+      "file": "examples/generated/components/pagination/desktop-podpisi-suda-tuda-strelki-sirina-kak-vo.html",
+      "covers": [
+        "pagination"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "tablet-mobile-te-ze-strelki-bez-podpisej-frejm-f",
+      "title": "Tablet / Mobile — те же стрелки без подписей, фрейм Figma 320",
+      "file": "examples/generated/components/pagination/tablet-mobile-te-ze-strelki-bez-podpisej-frejm-f.html",
+      "covers": [
+        "pagination"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "legacy-showcase",
+      "ref": "archive:habr/v1/showcase/components.html#pagination"
+    },
+    {
+      "type": "component-spec",
+      "ref": "components/navigation/pagination.md"
+    }
+  ],
+  "unknowns": [
+    "не подтверждена CSS~~ — снято: форм всего две, и переключение между ними"
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Подписи у стрелок — «Сюда» и «Туда» , а не «Назад»/«Далее»: так в живой разметке habr.com. Многоточие — это три точки с пробелами ( ... ), а не символ … ."
+    },
+    {
+      "type": "guidance",
+      "text": "Планшет и мобильная версия одинаковые — отличие от десктопа ровно одно: подписи скрыты, остаются только стрелки. В продукте это делает медиазапрос @media (min-width: 1024px) в pagination.css ; здесь подписи спрятаны классом витрины .doc-force-compact , чтобы обе формы было видно рядом без изменения ширины окна."
+    },
+    {
+      "type": "guidance",
+      "text": "Глобального сброса box-sizing на habr.com нет — замерено: 2702 элемента из 2847 — content-box , border-box расставлен точечно самими компонентами (145 штук). Пагинация на это опирается: выбранная страница — 32×32 как min-width: 24px плюс padding: 4px , а иконка 16px с отступом 8px даёт 32px. Под навязанным * { box-sizing: border-box } обе геометрии схлопываются."
+    },
+    {
+      "type": "guidance",
+      "text": "Мёртвое правило в production CSS. .tm-pagination__arrow { fill: var(--icon-primary) } на habr.com не срабатывает никогда: у него та же специфичность, что у .tm-svg-img { fill: currentColor } , а файл со вторым правилом грузится позже. Проверено не чтением CSS, а CSS.getMatchedStylesForNode на живой странице — вычисленный fill равен цвету ссылки. В нашей сборке icon.css импортируется раньше pagination.css , каскад переворачивался и стрелка становилась серой. В pagination.css теперь написано currentColor явно — результат совпадает с продом и не зависит от порядка @import ."
+    },
+    {
+      "type": "guidance",
+      "text": "Дефект доступности в production, не скопирован. У обеих стрелок на habr.com <title> одинаковый — «Назад», в том числе у стрелки «вперёд». Скринридер объявляет обе ссылки одинаково. В витрине у второй стрелки стоит «Вперёд»: это единственное намеренное отступление от живой разметки в этом компоненте."
+    },
+    {
+      "type": "guidance",
+      "text": ".tm-pagination · pagination.css · 11/16 страниц"
+    }
+  ],
+  "markdown": "components/navigation/pagination.md"
+}

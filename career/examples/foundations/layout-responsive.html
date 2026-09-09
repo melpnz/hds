@@ -1,1 +1,39 @@
-<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Сетка и адаптив</title><link rel="stylesheet" href="foundation.css"><style>.grid{display:grid;grid-template-columns:minmax(0,752fr) minmax(12px,24fr) minmax(180px,300fr);height:160px}.main,.aside{display:grid;place-items:center;border-radius:12px}.main{background:var(--color-ui-primary-20);color:var(--color-ui-primary-accent)}.gap{display:grid;place-items:center;color:var(--color-ui-gray-3);font-size:11px}.aside{background:var(--color-ui-gray-6)}.values{display:flex;gap:8px;flex-wrap:wrap}.values code{padding:8px 10px;border-radius:8px;background:var(--color-ui-gray-6)}.note{margin:12px 0 0;color:var(--color-font-gray);font-size:12px}@media(max-width:767px){.grid{grid-template-columns:1fr;height:auto;gap:12px}.main,.aside{height:100px}.gap{display:none}}</style></head><body><main class="sheet"><section class="group"><h2>Контейнер 1100px: 752 + 24 + 300</h2><div class="grid"><div class="main">main · 752</div><div class="gap">24</div><div class="aside">aside · 300</div></div><p class="note">Внешние поля: 12px с каждой стороны · полезная ширина: 1076px</p></section><section class="group"><h2>Рабочие брейкпоинты</h2><div class="values"><code>480px</code><code>768px</code><code>1024px</code></div></section><section class="group"><h2>Справочные ширины, не брейкпоинты</h2><div class="values"><code>320px</code><code>1100px</code><code>1440px</code></div></section></main></body></html>
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Сетка и адаптив</title>
+  <link rel="stylesheet" href="foundation.css">
+  <style>
+    .grid{display:grid;grid-template-columns:minmax(0,752fr) minmax(12px,24fr) minmax(180px,300fr);height:160px}
+    .main,.aside{display:grid;place-items:center;border-radius:12px}
+    .main{background:var(--color-ui-primary-20);color:var(--color-ui-primary-accent)}
+    .gap{display:grid;place-items:center;color:var(--color-ui-gray-3);font-size:11px}
+    .aside{background:var(--color-ui-gray-6)}
+    .values{display:flex;gap:8px;flex-wrap:wrap}
+    .values code{padding:8px 10px;border-radius:8px;background:var(--color-ui-gray-6)}
+    .note{margin:12px 0 0;color:var(--color-font-gray);font-size:12px}
+    @media(max-width:767px){.grid{grid-template-columns:1fr;height:auto;gap:12px}.main,.aside{height:100px}.gap{display:none}}
+  </style>
+</head>
+<body>
+  <main class="sheet">
+    <section class="group">
+      <h2>Контейнер 1100px: 752 + 24 + 300</h2>
+      <div class="grid"><div class="main">main · 752</div><div class="gap">24</div><div class="aside">aside · 300</div></div>
+      <p class="note">До 1100px контейнер резиновый. После 1100px контент не растёт — увеличивается только фон по краям. Внешние поля: 12px, полезная ширина: 1076px.</p>
+    </section>
+    <section class="group">
+      <h2>Брейкпоинты страниц</h2>
+      <div class="values"><code>320px</code><code>768px</code><code>1024px</code></div>
+      <p class="note">320px — минимальная поддерживаемая ширина; 768px — mobile/tablet; 1024px — tablet/desktop. Между точками сетка меняется резиново.</p>
+    </section>
+    <section class="group">
+      <h2>Контрольные ширины viewer</h2>
+      <div class="values"><code>320px</code><code>480px</code><code>768px</code><code>1024px</code><code>Auto</code></div>
+      <p class="note">480px проверяет промежуточное резиновое состояние и не является брейкпоинтом страницы. Auto занимает всю доступную ширину viewer.</p>
+    </section>
+  </main>
+</body>
+</html>

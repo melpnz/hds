@@ -1,0 +1,91 @@
+{
+  "$schema": "../../schema.json",
+  "id": "badges",
+  "title": "Badges",
+  "kind": "component",
+  "category": "content",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "storybook"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Список наград профиля — пилюли с иконкой, каждая со своей подсказкой (cursor: help, заголовок через title/tooltip на самом элементе, не через компонент Hint).",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "badges"
+    ],
+    "styles": [
+      "ui/components/badges.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "obycnaa-nagrada-tolko-tekst",
+      "title": "Обычная награда — только текст",
+      "file": "examples/generated/components/badges/obycnaa-nagrada-tolko-tekst.html",
+      "covers": [
+        "badges"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "nagrada-ssylka-edinstvennyj-slucaj-kogda-est-iko",
+      "title": "Награда-ссылка — единственный случай, когда есть иконка",
+      "file": "examples/generated/components/badges/nagrada-ssylka-edinstvennyj-slucaj-kogda-est-iko.html",
+      "covers": [
+        "badges"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "legacy-showcase",
+      "ref": "archive:habr/v1/showcase/components.html#badges"
+    },
+    {
+      "type": "component-spec",
+      "ref": "components/content/badges.md"
+    }
+  ],
+  "unknowns": [
+    "Состояние disabled/полученонеполучено не подтверждено — GAP: на"
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Пилюля 32px , border-radius: 18px , поля 0 16px , текст 12/16 w400 , рамка и текст — --accent-primary , фона нет. Подсказка — нативный title , не компонент Hint."
+    },
+    {
+      "type": "guidance",
+      "text": "Иконки у награды нет. На профиле с 14 наградами иконка есть ровно у одной — той, что ведёт на страницу акции: она размечена <a class=\"badge\" href> , а не <div class=\"badge\"> , и получает arrow-link-small 11×11 после текста с отступом margin-left: 6px . Остальные 13 — просто текст в <span> . То есть иконка обозначает не награду, а то, что по ней можно перейти."
+    },
+    {
+      "type": "guidance",
+      "text": "Состояние «получено / не получено» не подтверждено — на доступных страницах показаны только полученные."
+    },
+    {
+      "type": "guidance",
+      "text": ".badges · badges.css · 1/16 страниц (user), критично для Profile/Entity"
+    }
+  ],
+  "markdown": "components/content/badges.md"
+}

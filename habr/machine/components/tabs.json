@@ -1,0 +1,115 @@
+{
+  "$schema": "../../schema.json",
+  "id": "tabs",
+  "title": "Tabs",
+  "kind": "component",
+  "category": "navigation",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "storybook"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Переключатель представления. Не компонент Storybook — реконструирован из production CSS и живой разметки (page-article.html).",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "tabs"
+    ],
+    "styles": [
+      "ui/components/tabs.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "large-production-sostoania-obycnoe-vybrannoe-otk",
+      "title": "Large — production. Состояния: обычное, выбранное, отключённое + счётчики",
+      "file": "examples/generated/components/tabs/large-production-sostoania-obycnoe-vybrannoe-otk.html",
+      "covers": [
+        "tabs"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "medium-sistemnyj-srift-radius-4-vybrannoe-sostoa",
+      "title": "Medium — системный шрифт, радиус 4, выбранное состояние рамкой",
+      "file": "examples/generated/components/tabs/medium-sistemnyj-srift-radius-4-vybrannoe-sostoa.html",
+      "covers": [
+        "tabs"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "small-kompaktnyj-zirnyj-bez-uppercase-vybrannoe",
+      "title": "Small — компактный, жирный, без uppercase; выбранное подчёркнуто пунктиром",
+      "file": "examples/generated/components/tabs/small-kompaktnyj-zirnyj-bez-uppercase-vybrannoe.html",
+      "covers": [
+        "tabs"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "legacy-showcase",
+      "ref": "archive:habr/v1/showcase/components.html#tabs"
+    },
+    {
+      "type": "component-spec",
+      "ref": "components/navigation/tabs.md"
+    }
+  ],
+  "unknowns": [
+    "нет — GAP~~ — GAP снят. .tablink это и есть Large: совпало по",
+    "— назначение и разметка не подтверждены отдельно, вероятно оборачивает",
+    "| loading | спиннер вместо текста | нет; не реконструирован — нужна разметка, которой в production не наблюдалось (GAP) |",
+    "~~GAP по Medium: в Figma эти табы лежат в серой скруглённой подложке,",
+    "но её цвет не выведен отдельной переменной~~ — GAP снят, он был",
+    "| зазор между табами | elements/tab/medium/gaptabs = 0 | marginright: 0 |"
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Три размера: Small , Medium , Large . В production живёт Large — шрифт Fira Sans Medium 14, uppercase, счётчик --accent-primary , счётчик новых --accent-positive . Small и Medium в production не найдены."
+    },
+    {
+      "type": "guidance",
+      "text": "Счётчиков два и они разные: .tab-counter — синий, просто количество; .tab-counter-new — зелёный, «сколько добавилось». Наведите на неактивный таб — текст станет акцентным. Есть ещё модификатор .slim — он меняет только высоту, 44 → 38px, и отдельным примером не показан: визуально это тот же Large."
+    },
+    {
+      "type": "guidance",
+      "text": "Это единственный размер, у которого вся группа заключена в общую обводку — сегмент-контрол, табы стыкуются вплотную ( gap: 0 ). Цвет рамки — --icon-primary с альфой 40%, тот же приём, которым в production нарисована нижняя линия Large."
+    },
+    {
+      "type": "guidance",
+      "text": "В production живут четыре состояния: обычное, :hover , .active , .disabled . Своего правила для кольца фокуса в production CSS нет — оно взято из Figma."
+    },
+    {
+      "type": "guidance",
+      "text": "Список прокручивается горизонтально с градиентными масками по краям, а не переносится. На ≥1024 прокрутка выключается."
+    },
+    {
+      "type": "guidance",
+      "text": ".tabs · tabs.css · 14/16 страниц · нет Storybook, есть в Figma — tab (901:10896)"
+    }
+  ],
+  "markdown": "components/navigation/tabs.md"
+}

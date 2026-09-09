@@ -1,0 +1,74 @@
+/* =========================================================================
+   HABR SHOWCASE · PAGES — DOCUMENTATION SHELL
+   =========================================================================
+   Не Habr UI. Изолировано префиксом --doc-*, как components.css.
+   ========================================================================= */
+
+:root {
+  --doc-bg: #ffffff;
+  --doc-bg-muted: #f7f7f8;
+  --doc-border: #e2e2e6;
+  --doc-text: #1a1a1e;
+  --doc-text-muted: #6b6b74;
+  --doc-mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
+  --doc-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+/* сброс только для оболочки документации — обоснование в components.css:
+   на habr.com глобального border-box нет (2702 из 2847 элементов content-box),
+   и навязывать его продуктовой разметке значит показывать не тот продукт */
+html, body,
+[class^="doc-"], [class*=" doc-"] { box-sizing: border-box; }
+.doc-body { margin: 0; font-family: var(--doc-sans); color: var(--doc-text); background: var(--doc-bg-muted); }
+
+.doc-top { padding: 28px 32px 20px; background: var(--doc-bg); border-bottom: 1px solid var(--doc-border); }
+.doc-top h1 { margin: 0 0 6px; font-size: 22px; }
+.doc-top p { color: var(--doc-text-muted); max-width: 74ch; line-height: 1.6; margin: 0; }
+
+.doc-nav-bar {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  padding: 12px 32px; background: var(--doc-bg); border-bottom: 1px solid var(--doc-border);
+  position: sticky; top: 0; z-index: 10;
+}
+.doc-nav-bar a {
+  font-size: 12px; padding: 5px 10px; border-radius: 6px;
+  color: var(--doc-text); text-decoration: none; background: var(--doc-bg-muted);
+}
+.doc-nav-bar a:hover { background: #ececef; }
+
+.doc-family {
+  margin: 28px 32px; background: var(--doc-bg); border: 1px solid var(--doc-border);
+  border-radius: 12px; overflow: hidden;
+}
+.doc-family__head { padding: 18px 24px; border-bottom: 1px solid var(--doc-border); }
+.doc-family__head h2 { margin: 0 0 4px; font-size: 18px; display: flex; align-items: center; gap: 8px; }
+.doc-family__meta { font-size: 12px; color: var(--doc-text-muted); font-family: var(--doc-mono); }
+.doc-family__note { font-size: 13px; color: var(--doc-text-muted); line-height: 1.6; margin: 8px 0 0; max-width: 80ch; }
+.doc-family__note code { font-family: var(--doc-mono); background: var(--doc-bg-muted); padding: 1px 4px; border-radius: 3px; }
+
+.doc-status { font-size: 10px; font-family: var(--doc-mono); padding: 2px 7px; border-radius: 4px; text-transform: uppercase; letter-spacing: .03em; }
+.doc-status-confirmed { color: #0a7d3a; background: #e6f7ee; border: 1px solid #bfe8d2; }
+.doc-status-partial { color: #a24b00; background: #fff6ea; border: 1px solid #f0c896; }
+.doc-status-figma { color: #7a3ff0; background: #f7f2ff; border: 1px solid #d9c8fb; }
+
+.doc-frame {
+  background: #fafafb;
+  overflow: auto;
+}
+.doc-frame iframe-sim { display: block; }
+.doc-frame-inner { transform-origin: top left; }
+
+.doc-gaps { margin: 28px 32px; padding: 18px 24px; background: var(--doc-bg); border: 1px solid var(--doc-border); border-radius: 12px; font-size: 13px; line-height: 1.7; }
+.doc-gaps table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+.doc-gaps th, .doc-gaps td { text-align: left; padding: 6px 10px; border-bottom: 1px solid var(--doc-border); font-size: 12.5px; vertical-align: top; }
+.doc-gaps th { color: var(--doc-text-muted); font-weight: 600; }
+
+/* =========================================================================
+   RESPONSIVE — оболочка документации, не продукт
+   =========================================================================
+   .doc-gaps лежит на полях 32px, внутри — таблица с колонками, которые не
+   сжимаются: при viewport 320 документ раздувался до 362px (замерено).
+   Таблица прокручивается сама, поля сокращаются. */
+@media (max-width: 640px) {
+  .doc-gaps { margin: 24px 16px; padding: 14px 16px; }
+  .doc-gaps table { display: block; overflow-x: auto; max-width: 100%; }
+}

@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Input — inactive</title>
+  <link rel="stylesheet" href="../../../../ui/themes/light-v2.css">
+  <link rel="stylesheet" href="../../../../ui/habr.css">
+  <link rel="stylesheet" href="../../../../examples/showcase-components.css">
+  <link rel="stylesheet" href="../../../../examples/example-shell.css">
+</head>
+<body class="migration-example migration-example--intrinsic">
+
+<div>
+
+<div class="tm-input-text-decorated">
+<input class="tm-input-text-decorated__input" placeholder="Введите значение" type="text"/>
+</div>
+</div>
+<div>
+<div class="doc-specimen-label">Input — с иконкой слева (has-label-before)</div>
+<div class="tm-input-text-decorated tm-input-text-decorated_has-label-before">
+<input class="tm-input-text-decorated__input" placeholder="Поиск" type="text"/>
+<div class="tm-input-text-decorated__label tm-input-text-decorated__label_before doc-input-icon" style="width:44px">
+<span class="tm-svg-icon__wrapper" style="width:24px;height:24px">
+<svg class="tm-svg-img tm-svg-icon" height="16" width="16"><title>Поиск</title>
+<use xlink:href="../../../../ui/assets/icons/megazord.svg#search"></use></svg>
+</span>
+</div>
+</div>
+</div>
+<div>
+<div class="doc-specimen-label">Input — с иконкой справа (has-label-after)</div>
+<div class="tm-input-text-decorated tm-input-text-decorated_has-label-after">
+<input class="tm-input-text-decorated__input" placeholder="Поиск" type="text"/>
+<div class="tm-input-text-decorated__label tm-input-text-decorated__label_after doc-input-icon" style="width:40px">
+<span class="tm-svg-icon__wrapper" style="width:24px;height:24px">
+<svg class="tm-svg-img tm-svg-icon" height="16" width="16"><title>Поиск</title>
+<use xlink:href="../../../../ui/assets/icons/megazord.svg#search"></use></svg>
+</span>
+</div>
+</div>
+</div>
+<div>
+<div class="doc-specimen-label">Input — disabled</div>
+<div class="tm-input-text-decorated">
+<input class="tm-input-text-decorated__input" disabled="" type="text" value="Нельзя изменить"/>
+</div>
+</div>
+<div>
+<div class="doc-specimen-label">Input — invalid + hint</div>
+<div class="tm-input-text-decorated">
+<input class="tm-input-text-decorated__input tm-input-text-decorated__input_invalid" type="text" value="bad@"/>
+</div>
+<div class="error" style="color:var(--header-megapost-mona-lisa);margin:9px 0 0;padding:0;font-size:.75rem;line-height:1.125rem">Введите корректный адрес</div>
+</div>
+<div style="grid-column:1/-1">
+<div class="doc-specimen-label">Textarea — FIGMA-RECONSTRUCTED (нет production)</div>
+<textarea class="tm-textarea-reconstructed" placeholder="Многострочный текст…"></textarea>
+</div>
+
+<script src="../../../../examples/components.js"></script>
+</body>
+</html>

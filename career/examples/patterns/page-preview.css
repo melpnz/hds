@@ -1,0 +1,29 @@
+/* Page-preview responsive contract.
+   320 is the minimum supported canvas, 768 and 1024 are layout transitions.
+   Between them the composition is fluid; 1100 is a container cap, not a breakpoint. */
+
+.section-group > *,
+.entity-header__top,
+.entity-header__title {
+  min-width: 0;
+}
+
+@container (max-width: 767px) {
+  .dashboard-split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .page-header-card__title {
+    max-width: 100%;
+  }
+
+  .dashboard-split .basic-section > div:first-child {
+    flex-wrap: wrap;
+  }
+
+  /* Keep a compact current/ellipsis/last sequence on the minimum canvas. */
+  nav[aria-label="Pagination"] > div:nth-child(2) > :nth-child(2),
+  nav[aria-label="Pagination"] > div:nth-child(2) > :nth-child(3) {
+    display: none;
+  }
+}

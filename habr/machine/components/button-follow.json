@@ -1,0 +1,80 @@
+{
+  "$schema": "../../schema.json",
+  "id": "button-follow",
+  "title": "ButtonFollow",
+  "kind": "component",
+  "category": "actions",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "storybook"
+    ],
+    "confidence": "high",
+    "scope": "habr"
+  },
+  "purpose": "Кнопка «Подписаться» с анимированным переключением в состояние «Отписаться» (хаб, компания, пользователь). Ширина зафиксирована (112px), чтобы переключение состояний не сдвигало соседние элементы.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "button-follow"
+    ],
+    "styles": [
+      "ui/components/button-follow.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "primer-1",
+      "title": "Пример 1",
+      "file": "examples/generated/components/button-follow/primer-1.html",
+      "covers": [
+        "button-follow"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "legacy-showcase",
+      "ref": "archive:habr/v1/showcase/components.html#button-follow"
+    },
+    {
+      "type": "component-spec",
+      "ref": "components/actions/button-follow.md"
+    }
+  ],
+  "unknowns": [
+    "в showcase/pages.html без backing CSS — GAP закрыт."
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Найден как реальный GAP: класс использовался в showcase/pages.html без backing CSS до этого прохода. Базовое состояние использует tm-button_color-christi — подтверждено реальной разметкой (см. pages.html , карточка хаба): рамка/текст зелёные уже в состоянии «Подписаться», не только после подписки."
+    },
+    {
+      "type": "guidance",
+      "text": "Это не самостоятельный компонент. Полный набор классов на живом habr.com (замерено на /hubs/programming/ ) — btn btn_transparent btn_small tm-button_color-christi tm-button-follow . То есть обычная кнопка плюс модификатор, который добавляет только фиксированную ширину 112px и анимацию переключения в состояние «подписан». Без первых четырёх классов .tm-button-follow не даёт ни формы, ни цвета."
+    },
+    {
+      "type": "guidance",
+      "text": "Текст «Подписан» — сокращён вручную для показа: реального скопированного текста для subscribed-состояния нет (компонент реконструирован только по CSS-геометрии), а .button-content.subscribed{width:calc(100% - 26px)} — 86px при 12px шрифте — не вмещает более длинные варианты без переноса."
+    },
+    {
+      "type": "guidance",
+      "text": ".tm-button-follow · button-follow.css · 6/16 страниц — модификатор поверх .btn"
+    }
+  ],
+  "markdown": "components/actions/button-follow.md"
+}

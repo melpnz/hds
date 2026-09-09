@@ -1,0 +1,47 @@
+{
+  "$schema": "../../schema.json",
+  "id": "search",
+  "title": "Search",
+  "kind": "pattern",
+  "category": "page-families",
+  "maturity": {
+    "spec": "partial",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "low",
+    "scope": "habr"
+  },
+  "purpose": "Shell + Tabs (тип результата: судя по всему публикации/пользователи/etc, не проверено детально) + pull-down обёртка (pull-to-refresh на мобильном паттерне, неожиданная находка) + форма (3 input). GAP: карточки результатов не идентифицированы отдельным классом (не article-snippet, не post-snippet — ни один не найден в разметке этой страницы); возможно, результат конкретного запроса был пуст или рендерится динамически без SSR — не установлено.",
+  "implementation": {
+    "markup": null,
+    "styles": [],
+    "missingReason": "copy-safe-page-example-not-captured",
+    "fallback": "Использовать ближайший подтверждённый паттерн и явно раскрыть допущение. Не восстанавливать DOM по названию семейства."
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [],
+  "evidence": [
+    {
+      "type": "production",
+      "ref": "docs/patterns/search.md"
+    }
+  ],
+  "unknowns": [
+    "паттерне, неожиданная находка) + форма (3 input). GAP: карточки"
+  ],
+  "sourceStatus": "partial",
+  "family": "SEARCH",
+  "areas": [],
+  "modules": [],
+  "components": [],
+  "previewNotes": [],
+  "markdown": "docs/patterns/search.md"
+}

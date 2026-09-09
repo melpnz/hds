@@ -1,163 +1,108 @@
-# Habr — Design System Knowledge
+# Хабр — machine-first UI guide
 
-Пакет знаний о визуальном языке и композиции **Хабра** (`habr.com`).
-Собран обратной разработкой: production release `2.346.1`, Storybook
-(`@storybook/vue3-vite`), Figma-библиотека `habr-lib` и Figma-файл
-company admin `m.habr-admin-company`.
+Пакет знаний о визуальном языке и композиции `habr.com`. Данные перенесены из Habr guide v1 на адресную структуру showcase-template.
 
-Дата последнего обновления: **7 сентября 2026**.
-Срез production: `2.346.1`. На `2.346.2` сверка `check/parity.js`
-проходит без расхождений — значения не разъехались.
-Статус: **v1.0 — MVP Product Design System**. Career был методологическим
-образцом (архитектура пакета, дисциплина evidence, формат спецификаций) —
-**не источником содержимого**. Ни один токен, компонент или правило не
-перенесены из Career; Habr и Career не разделяют ни одного значения.
+- Последняя подтверждённая production-версия: `2.346.1`.
+- Сверка без расхождений выполнялась также на `2.346.2`.
+- Последняя дата исходного исследования: 7 сентября 2026.
+- Источники: production гостя, Storybook, Figma `habr-lib` и company admin.
+- Архив исходного пакета: `archive/habr/v1` — только для сверки миграции, не для обычного чтения.
 
----
+## Как читать ИИ
 
-## Coverage / Known limits
+1. Открой только [`machine/index.json`](machine/index.json).
+2. По задаче найди сущность в [`machine/catalog.json`](machine/catalog.json) по `id`, `kind`, группе или `tags`.
+3. Открой только её поле `file`.
+4. Загружай `markdown`, `implementation`, `rules` и `examples` только если они нужны для реализации.
+5. Не читай весь каталог, все иконки, `viewer/` или архив заранее.
 
-Читать до всего остального. Habr исследован **гостем** (production) и
-**дизайном company admin** (Figma) — это два принципиально разных типа
-evidence, и граница между ними важнее, чем кажется.
+Канон — небольшие JSON-файлы в `machine/`. Viewer и Markdown — адресные человеческие представления и evidence, а не параллельные спецификации.
 
-**Хорошо покрыто (production-confirmed):**
+## Граница знаний
 
-* оболочка: шапка, контейнер, сайдбар, подвал — 14/14 страниц;
-* публичный листинг контента (`ArticleCard`, `Tabs`, `Pagination`) —
-  7 страниц;
-* directory-листинги (хабы/компании/авторы) — 3 страницы;
-* профиль/сущность (user/hub/company) — идентичность вверху главной
-  колонки, не в сайдбаре — 3 страницы;
-* 25 компонентов с реальным CSS и copy-safe разметкой, 23 из них
-  со спецификацией (`components/INDEX.md`).
+Хорошо подтверждены production:
 
-**Покрыто, но только Figma (не production):**
+- публичная оболочка и контейнер;
+- content feed/listing;
+- directory listing;
+- profile/entity;
+- 25 компонентных сущностей с реальным CSS и изолированными примерами.
 
-* весь слой **company admin** — навигация кабинета, wizard создания
-  сущности, management list статей. Production для admin недоступен
-  вообще: `/auth/` уводит на другую систему, авторизованный HTML не
-  снимается. Каждое admin-правило в `RULES.md` помечено `Figma`, не
-  `production`, и держится на **одном** полном экране на подпаттерн —
-  не усредняйте это доверие с production-правилами;
-* интерактивные оверлеи (Dialog/Dropdown/Hint) — реальный код из
-  Storybook, но ни один не встретился в живой гостевой разметке
-  (требуют клика/входа).
+Company admin подтверждён только Figma. Это сильная гипотеза о композиции, но не production-разметка.
 
-**Не покрыто / недостаточно evidence:**
+Частично покрыты article detail, comments, search и overlay flows. Не покрыты полноценный editor, settings вне admin, service/error и авторизованный production. Для этих зон используй ближайший подтверждённый паттерн, явно раскрывай допущение и не придумывай DOM.
 
-* редактор контента — только иконки тулбара в Figma, не композиция
-  экрана;
-* полноценные формы настроек вне admin;
-* модальные потоки как **паттерн страницы** (что именно их открывает) —
-  компоненты покрыты, места вызова нет;
-* состояния: пустой результат листинга, ошибка формы, загрузка,
-  сообщение об успехе — не встретились ни разу;
-* служебный экран 404 — production отдаёт пустой ответ без разметки.
+## Основные входы
 
-### Главное правило
-
-**Если задача лежит в непокрытой зоне, пакет гарантирует визуальный язык
-и компоненты — и не гарантирует правильную структуру экрана.** Это
-особенно верно для editor/settings/error: компоненты (Button, Block,
-Input) будут стилистически верны, но состав экрана — реконструкция,
-не факт. Для company admin ситуация мягче: паттерн есть, но подтверждён
-только дизайном, не кодом — трактовать как сильную гипотезу, не как
-готовый код.
-
-Полный разбор — [`RULES.md`](RULES.md) §1–§12 (описание) и §13 (решения),
-[`evidence/pattern-taxonomy.md`](evidence/pattern-taxonomy.md) (статус
-каждого семейства страниц).
-
----
-
-## Purpose
-
-| Вопрос | Где ответ |
+| Задача | Файл |
 |---|---|
-| Как выглядит Habr? | `RULES.md` §6 (Surfaces), §10 (Content Density & Typography) |
-| Из чего строить? | [`showcase/components.html`](showcase/components.html) — живая витрина, 34 раздела |
-| Как устроен конкретный компонент? | [`components/INDEX.md`](components/INDEX.md) |
-| По каким правилам собирается страница? | [`RULES.md`](RULES.md) §1–§12 |
-| Как решать то, чего в продукте ещё нет? | [`RULES.md`](RULES.md) §13 — 13 Decision Guides |
-| Как из этого строить целую страницу? | [`showcase/pages.html`](showcase/pages.html) |
-| Какие семейства страниц подтверждены | [`evidence/pattern-taxonomy.md`](evidence/pattern-taxonomy.md) |
-| Откуда взят каждый факт | [`evidence/source-map.md`](evidence/source-map.md), [`evidence/conflicts.md`](evidence/conflicts.md) |
-| Что нужно для standalone-рендера | [`evidence/runtime-contract.md`](evidence/runtime-contract.md) |
-| Не разъехался ли пакет с продуктом | `python check/run.py` — см. [`check/README.md`](check/README.md) |
+| Маршрутизация для ИИ | [`machine/index.json`](machine/index.json) → [`machine/catalog.json`](machine/catalog.json) |
+| Визуальная витрина | [`viewer/`](viewer/) |
+| Токены тем | [`machine/tokens.json`](machine/tokens.json) |
+| Ассеты | [`machine/assets.json`](machine/assets.json) |
+| Полный реестр компонентов | [`components/INDEX.md`](components/INDEX.md) |
+| Композиционные правила | [`RULES.md`](RULES.md) |
+| Runtime CSS | [`evidence/runtime-contract.md`](evidence/runtime-contract.md) |
+| Источники и конфликты | [`evidence/source-map.md`](evidence/source-map.md), [`evidence/conflicts.md`](evidence/conflicts.md) |
+| Незакрытые области | [`ROADMAP.md`](ROADMAP.md) |
+| Карта миграции | [`machine/migration-map.json`](machine/migration-map.json) |
 
-## When to use
+Старые адреса `showcase/components.html` и `showcase/pages.html` сохранены как лёгкие переходы в новый viewer.
 
-* Новый публичный экран или фича Хабра;
-* Новый экран внутри company admin — с поправкой на то, что admin-
-  правила Figma-confirmed, не production-confirmed;
-* Прототип, который должен выглядеть и вести себя как Habr;
-* Проверка готового макета на соответствие продукту.
+## Структура
 
-## Do not mix with
-
-Хабр — три разные системы на одном домене. Этот пакет описывает
-**обычный Хабр** (`habr.com/ru/...`). Не переносить эти правила на:
-
-* **Хабр Карьеру** (`career.habr.com`) — отдельный пакет `../career/`,
-  другой контейнер, другая нейтральная шкала, другой акцент;
-* **Хабр Курсы** — ещё одна дизайн-система на career.habr.com/courses,
-  не покрыта ни этим пакетом, ни `career/`;
-* **Хабр Аккаунт** (`id.habr.com`, `/auth/`) — вход и регистрация уводят
-  на отдельную систему; Habr не имеет собственных экранов входа.
-
----
-
-## Структура пакета
-
-```
+```text
 habr/
-  README.md          эта карта
-  RULES.md           77 описательных правил + 13 Decision Guides
-  ui/
-    habr.css          единая точка входа
-    normalize.css     normalize.css v8, встроен в сборку без изменений
-    foundations.css   добавки Habr поверх normalize
-    themes.css + themes/light-v2.css, dark-v2.css
-    fonts.css         Fira Sans через Google Fonts
-    layout.css        оболочка: контейнер, сайдбар, шапка
-    patterns.css      page-bound CSS, нужный для воспроизведения паттернов
-    components/       25 компонентов, каждый — свой CSS-файл
-    assets/           109 иконки в собранном наборе (138 в production-каноне),
-                      3 иллюстрации-аватара, 17 пустых состояний + README
-  components/
-    INDEX.md          реестр компонентов + coverage checkpoint
-    actions/ content/ data/ feedback/ forms/ navigation/ overlays/
-  showcase/
-    components.html   живая витрина, 34 раздела
-    pages.html        живое воспроизведение подтверждённых паттернов
-  check/             проверки пакета: одна команда python check/run.py
-  evidence/
-    source-map.md         классификация всех 111 файлов сборки
-    conflicts.md           4 расхождения источников, ничего не усреднено
-    runtime-contract.md    что нужно для standalone-рендера + история поправки
-    pattern-taxonomy.md    14 семейств страниц, каждое — CONFIRMED/PARTIAL/MISSING
+  machine/
+    index.json              граница знаний и порядок чтения
+    catalog.json            компактный маршрутизатор по 89 сущностям
+    foundations/*.json      основы и ассеты
+    components/*.json       компоненты
+    patterns/*.json         14 семейств страниц, включая пробелы
+    documents/*.json        адреса правил, решений и evidence
+    tokens.json             значения light/dark тем
+    assets.json             инвентарь ассетов
+    migration-map.json      сверка старого и нового слоя
+  examples/generated/       63 изолированных HTML-примера
+  components/               подробные Markdown-спецификации
+  docs/rules/               разрезанные правила и Decision Guides
+  docs/patterns/            разрезанная таксономия страниц
+  evidence/                 источники и границы достоверности
+  ui/                       CSS и ассеты Habr
+  viewer/                   человеческая оболочка
+  tools/migrate-from-v1.py  локально воспроизводимая миграция из архива
 ```
 
-## Runtime contract
+## Preview-контракт
 
-Минимум для рендера вне Storybook:
+- Небольшие сущности используют `intrinsic`: без панели разрешений, варианты друг под другом, iframe по высоте содержимого.
+- Страницы используют `viewport`: `320 / 480 / 768 / 1024 / Auto`.
+- Контрольные брейкпоинты страницы — 320, 768 и 1024; 480 проверяет резину между ними.
+- Пояснения находятся в `previewNotes` снаружи iframe.
+- Точечный фон принадлежит viewer; белый фон внутри iframe принадлежит продукту.
+
+## Запуск и проверка
+
+```powershell
+npm install
+npm run validate
+npm run serve
+npm run validate:viewer -- http://127.0.0.1:4173
+```
+
+Viewer: `http://127.0.0.1:4173/viewer/`.
+
+Статическая проверка сверяет пути, метрики и зафиксированный при миграции baseline: 23 исходные спецификации, 109 production-иконок, 137 editor-иконок и 20 иллюстраций. Браузерная проверка проходит все 89 страниц, проверяет поиск, preview-режимы, ширины, overflow и декодирование ассетов.
+
+`npm run migrate` нужен только для локальной повторной сборки и требует игнорируемый Git архив `archive/habr/v1`. Обычное чтение, публикация и обе проверки от архива не зависят.
+
+## Совместимость
+
+Минимальное подключение CSS не изменилось:
 
 ```html
 <link rel="stylesheet" href="ui/themes/light-v2.css">
 <link rel="stylesheet" href="ui/habr.css">
 ```
 
-`ui/habr.css` уже импортирует `normalize.css` и `foundations.css` — их
-не нужно подключать отдельно. Полный разбор, включая found-after-copy-test
-поправку про normalize.css, — [`evidence/runtime-contract.md`](evidence/runtime-contract.md).
-
-## Method note
-
-Career доказал метод (audit → runtime contract → Figma inventory →
-conflict pass → extraction → UI kit → components → showcase →
-pattern library → product grammar) на первом продукте. Habr прошёл тот
-же метод во второй раз, без промежуточных шагов, которые в Career
-были исследовательскими, — и это первое подтверждение, что метод
-переносится. Что перенеслось, а что пришлось делать иначе — в финальном
-отчёте по итогам Product Grammar (см. историю разработки пакета).
+`ui/habr.css` уже импортирует normalize и foundations. Пути `ui/`, `components/`, `evidence/`, `RULES.md` и `ROADMAP.md` сохранены.

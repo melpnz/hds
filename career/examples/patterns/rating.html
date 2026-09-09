@@ -6,9 +6,10 @@
   <title>Рейтинг</title>
   <link rel="stylesheet" href="../../ui/career.css">
   <link rel="stylesheet" href="patterns.css">
+  <link rel="stylesheet" href="page-preview.css">
   <style>
-    body{min-width:0}
-    .pattern{margin:0;padding:20px}
+    body{min-width:0;background:#fff}
+    .pattern{margin:0;padding:0}
     .pattern__head,.rules,.vp-bar{display:none!important}
     .viewport{height:auto!important;overflow:visible!important;border:0!important;background:transparent!important}
     .viewport__inner{width:auto!important;transform:none!important}
@@ -21,12 +22,7 @@
     <h2>Рейтинг</h2>
     <p>Гибрид: каркас листинга при содержимом дашборда. Ранжированный список
        с переключателем фильтрации над ним.</p>
-        <p class="note"><b>ДОПУЩЕНИЕ.</b> Переключатель года собран на
-       <code>SegmentedTabs</code>. Снятый ранее <code>dash-ratings.json</code>
-       показывает на этом месте вкладки с подчёркиванием, но в живом продукте
-       их уже нет — снимок устарел, а чем переключатель свёрстан сейчас,
-       не переснято. Правило <code>R-8</code> про горизонтальную прокрутку
-       сохранено: оно про поведение, а не про начертание.</p>
+
   </div>
   <ul class="rules">
     <li title="Сетка листинга">L-1</li>
@@ -103,12 +99,8 @@
       </div></div>
     </div>
   </div></div>
-  <p class="note"><strong>Порядковый номер живёт слева от содержимого карточки,</strong>
-     а не внутри заголовка и не в виде бейджа. Название компании здесь H2 20/24·600 —
-     то есть карточка в ранжированном списке использует ту же иерархию, что секция.</p>
-  <p class="note"><strong>Табы прокручиваются, а не переносятся.</strong>
-     <code>overflow-x: auto</code> встроен в компонент — это подтверждено и в production,
-     и в Storybook (<code>R-8</code>).</p>
+
+
 </section>
 <script src="patterns.js"></script>
 </body>

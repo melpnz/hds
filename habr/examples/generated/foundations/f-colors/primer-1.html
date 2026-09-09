@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Пример 1</title>
+  <link rel="stylesheet" href="../../../../ui/themes/light-v2.css">
+  <link rel="stylesheet" href="../../../../ui/habr.css">
+  <link rel="stylesheet" href="../../../../examples/showcase-components.css">
+  <link rel="stylesheet" href="../../../../examples/example-shell.css">
+</head>
+<body class="migration-example migration-example--intrinsic">
+
+<div class="doc-color-group">
+<div class="doc-color-group-title">Text</div>
+<div class="doc-color-grid">
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--text-main)"></div><div class="doc-dark"><div style="background:var(--text-main)"></div></div></div>
+<div class="doc-color-info"><b>--text-main</b>
+<span class="doc-color-val"><i>св.</i>hsl(0, 0%, 20%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(0, 0%, 87%)</span>
+<span class="doc-color-use">основной текст, иконки сортировки, разделители</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--text-secondary)"></div><div class="doc-dark"><div style="background:var(--text-secondary)"></div></div></div>
+<div class="doc-color-info"><b>--text-secondary</b>
+<span class="doc-color-val"><i>св.</i>hsl(0, 0%, 56%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(0, 0%, 67%)</span>
+<span class="doc-color-use">подписи, подсказки инпутов, неактивные табы, даты</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--text-inactive)"></div><div class="doc-dark"><div style="background:var(--text-inactive)"></div></div></div>
+<div class="doc-color-info"><b>--text-inactive</b>
+<span class="doc-color-val"><i>св.</i>hsl(195, 3%, 45%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(0, 0%, 67%)</span>
+<span class="doc-color-use">заголовки блоков, подписи под рейтингом и кармой</span>
+</div>
+</div>
+</div>
+</div>
+<div class="doc-color-group">
+<div class="doc-color-group-title">Icon</div>
+<div class="doc-color-grid">
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--icon-primary)"></div><div class="doc-dark"><div style="background:var(--icon-primary)"></div></div></div>
+<div class="doc-color-info"><b>--icon-primary</b>
+<span class="doc-color-val"><i>св.</i>hsl(208, 10%, 61%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(0, 0%, 40%)</span>
+<span class="doc-color-use">иконки в кнопках, инпутах, календаре; счётчики. Этот же цвет с альфой 40% — разделительные линии (табы, модалки, календарь) и обводка кнопок-иконок</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--icon-secondary)"></div><div class="doc-dark"><div style="background:var(--icon-secondary)"></div></div></div>
+<div class="doc-color-info"><b>--icon-secondary</b>
+<span class="doc-color-val"><i>св.</i>hsl(200, 25%, 79%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(201, 16%, 50%)</span>
+<span class="doc-color-use">иконки счётчиков, обводки инпутов и чекбоксов</span>
+</div>
+</div>
+</div>
+</div>
+<div class="doc-color-group">
+<div class="doc-color-group-title">Background</div>
+<div class="doc-color-grid">
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--background-primary)"></div><div class="doc-dark"><div style="background:var(--background-primary)"></div></div></div>
+<div class="doc-color-info"><b>--background-primary</b>
+<span class="doc-color-val"><i>св.</i>hsl(0, 0%, 100%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(0, 0%, 9%)</span>
+<span class="doc-color-use">фон плашек, модалок, инпутов; текст на кнопках</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--background-secondary)"></div><div class="doc-dark"><div style="background:var(--background-secondary)"></div></div></div>
+<div class="doc-color-info"><b>--background-secondary</b>
+<span class="doc-color-val"><i>св.</i>hsl(0, 0%, 97%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(0, 0%, 15%)</span>
+<span class="doc-color-use">фон задизейбленных, минорные кнопки, вставка кода</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--background-gray)"></div><div class="doc-dark"><div style="background:var(--background-gray)"></div></div></div>
+<div class="doc-color-info"><b>--background-gray</b>
+<span class="doc-color-val"><i>св.</i>hsl(0, 0%, 94%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(0, 0%, 3%)</span>
+<span class="doc-color-use">фон страницы; скелетоны, хедер комментариев</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--background-orange)"></div><div class="doc-dark"><div style="background:var(--background-orange)"></div></div></div>
+<div class="doc-color-info"><b>--background-orange</b>
+<span class="doc-color-val"><i>св.</i>hsl(29, 94%, 94%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(356, 41%, 16%)</span>
+<span class="doc-color-use">фон сравнения статей, статистика в админке</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--background-green)"></div><div class="doc-dark"><div style="background:var(--background-green)"></div></div></div>
+<div class="doc-color-info"><b>--background-green</b>
+<span class="doc-color-val"><i>св.</i>hsl(78, 70%, 75%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(78, 51%, 16%)</span>
+<span class="doc-color-use">ховер зелёных чипсов-хабов, типограф в редакторе</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--background-blue)"></div><div class="doc-dark"><div style="background:var(--background-blue)"></div></div></div>
+<div class="doc-color-info"><b>--background-blue</b>
+<span class="doc-color-val"><i>св.</i>hsl(202, 52%, 96%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(201, 21%, 13%)</span>
+<span class="doc-color-use">фон чипсов-хабов, ховер строки в списке</span>
+</div>
+</div>
+</div>
+</div>
+<div class="doc-color-group">
+<div class="doc-color-group-title">Other</div>
+<div class="doc-color-grid">
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--other-disabled-elements)"></div><div class="doc-dark"><div style="background:var(--other-disabled-elements)"></div></div></div>
+<div class="doc-color-info"><b>--other-disabled-elements</b>
+<span class="doc-color-val"><i>св.</i>hsl(0, 0%, 75%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(0, 0%, 30%)</span>
+<span class="doc-color-use">задизейбленное, обводка минорных кнопок, линии графиков</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--other-overlay-shadows)"></div><div class="doc-dark"><div style="background:var(--other-overlay-shadows)"></div></div></div>
+<div class="doc-color-info"><b>--other-overlay-shadows</b>
+<span class="doc-color-val"><i>св.</i>hsl(0, 0%, 0%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(0, 0%, 100%)</span>
+<span class="doc-color-use">оверлей модалок и дропдаунов, цвет теней</span>
+</div>
+</div>
+</div>
+</div>
+<div class="doc-color-group">
+<div class="doc-color-group-title">Accent</div>
+<div class="doc-color-grid">
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--accent-primary)"></div><div class="doc-dark"><div style="background:var(--accent-primary)"></div></div></div>
+<div class="doc-color-info"><b>--accent-primary</b>
+<span class="doc-color-val"><i>св.</i>hsl(200, 34%, 50%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(200, 80%, 61%)</span>
+<span class="doc-color-use">основной акцент: кнопки, ссылки, выбранное, username</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--accent-primary-hover)"></div><div class="doc-dark"><div style="background:var(--accent-primary-hover)"></div></div></div>
+<div class="doc-color-info"><b>--accent-primary-hover</b>
+<span class="doc-color-val"><i>св.</i>hsl(200, 43%, 39%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(199, 100%, 75%)</span>
+<span class="doc-color-use">ховер/фокус акцентных: чипсы, залитая кнопка, чекбоксы</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--accent-positive)"></div><div class="doc-dark"><div style="background:var(--accent-positive)"></div></div></div>
+<div class="doc-color-info"><b>--accent-positive</b>
+<span class="doc-color-val"><i>св.</i>hsl(76, 100%, 33%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(76, 100%, 35%)</span>
+<span class="doc-color-use">успех: успешные кнопки, карма, подписки, статусы оплаты</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--accent-positive-hover)"></div><div class="doc-dark"><div style="background:var(--accent-positive-hover)"></div></div></div>
+<div class="doc-color-info"><b>--accent-positive-hover</b>
+<span class="doc-color-val"><i>св.</i>hsl(88, 60%, 32%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(89, 45%, 56%)</span>
+<span class="doc-color-use">текст успешных сообщений, фокус кнопок и хабов</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--accent-danger)"></div><div class="doc-dark"><div style="background:var(--accent-danger)"></div></div></div>
+<div class="doc-color-info"><b>--accent-danger</b>
+<span class="doc-color-val"><i>св.</i>hsl(0, 58%, 56%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(0, 100%, 73%)</span>
+<span class="doc-color-use">ошибки и предупреждения, опасные кнопки, низкая карма</span>
+</div>
+</div>
+</div>
+</div>
+<div class="doc-color-group">
+<div class="doc-color-group-title">Comments</div>
+<div class="doc-color-grid">
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--comments-author)"></div><div class="doc-dark"><div style="background:var(--comments-author)"></div></div></div>
+<div class="doc-color-info"><b>--comments-author</b>
+<span class="doc-color-val"><i>св.</i>hsl(87, 60%, 92%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(88, 39%, 13%)</span>
+<span class="doc-color-use">фон комментария «от автора», зелёные чипсы-хабы</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--comments-new)"></div><div class="doc-dark"><div style="background:var(--comments-new)"></div></div></div>
+<div class="doc-color-info"><b>--comments-new</b>
+<span class="doc-color-val"><i>св.</i>hsl(210, 100%, 95%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(211, 50%, 20%)</span>
+<span class="doc-color-use">фон новых комментариев, новое событие в трекере</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--comments-moderation)"></div><div class="doc-dark"><div style="background:var(--comments-moderation)"></div></div></div>
+<div class="doc-color-info"><b>--comments-moderation</b>
+<span class="doc-color-val"><i>св.</i>hsl(352, 100%, 95%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(352, 31%, 29%)</span>
+<span class="doc-color-use">фон комментариев на модерации, заблокированные чипсы</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--comments-user)"></div><div class="doc-dark"><div style="background:var(--comments-user)"></div></div></div>
+<div class="doc-color-info"><b>--comments-user</b>
+<span class="doc-color-val"><i>св.</i>hsl(29, 94%, 94%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(36, 88%, 13%)</span>
+<span class="doc-color-use">фон собственных комментариев пользователя</span>
+</div>
+</div>
+</div>
+</div>
+<div class="doc-color-group">
+<div class="doc-color-group-title">Complexity</div>
+<div class="doc-color-grid">
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--complexity-low)"></div><div class="doc-dark"><div style="background:var(--complexity-low)"></div></div></div>
+<div class="doc-color-info"><b>--complexity-low</b>
+<span class="doc-color-val"><i>св.</i>hsl(140, 50%, 52%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(140, 45%, 42%)</span>
+<span class="doc-color-use">сложность «простой»; галки, проверенные статусы</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--complexity-medium)"></div><div class="doc-dark"><div style="background:var(--complexity-medium)"></div></div></div>
+<div class="doc-color-info"><b>--complexity-medium</b>
+<span class="doc-color-val"><i>св.</i>hsl(200, 70%, 58%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(200, 60%, 48%)</span>
+<span class="doc-color-use">сложность «средний»; фон информаторов, выделение в редакторе</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--complexity-high)"></div><div class="doc-dark"><div style="background:var(--complexity-high)"></div></div></div>
+<div class="doc-color-info"><b>--complexity-high</b>
+<span class="doc-color-val"><i>св.</i>hsl(350, 80%, 68%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(350, 50%, 58%)</span>
+<span class="doc-color-use">сложность «сложный»; информаторы об опасности</span>
+</div>
+</div>
+</div>
+</div>
+<div class="doc-color-group">
+<div class="doc-color-group-title">Label · таксономия контента</div>
+<div class="doc-color-grid">
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--label-dodger-blue)"></div><div class="doc-dark"><div style="background:var(--label-dodger-blue)"></div></div></div>
+<div class="doc-color-info"><b>--label-dodger-blue</b>
+<span class="doc-color-val"><i>св.</i>hsl(210, 80%, 52%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(210, 100%, 68%)</span>
+<span class="doc-color-use">категории, форматы публикаций, шильдики</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--label-pelorous)"></div><div class="doc-dark"><div style="background:var(--label-pelorous)"></div></div></div>
+<div class="doc-color-info"><b>--label-pelorous</b>
+<span class="doc-color-val"><i>св.</i>hsl(185, 90%, 35%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(185, 100%, 48%)</span>
+<span class="doc-color-use">лейблы, значки, теги</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--label-deluge)"></div><div class="doc-dark"><div style="background:var(--label-deluge)"></div></div></div>
+<div class="doc-color-info"><b>--label-deluge</b>
+<span class="doc-color-val"><i>св.</i>hsl(239, 25%, 52%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(239, 41%, 74%)</span>
+<span class="doc-color-use">метки, обозначения событий</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--label-apple)"></div><div class="doc-dark"><div style="background:var(--label-apple)"></div></div></div>
+<div class="doc-color-info"><b>--label-apple</b>
+<span class="doc-color-val"><i>св.</i>hsl(134, 70%, 38%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(134, 74%, 71%)</span>
+<span class="doc-color-use">метки календаря событий, форматы публикаций</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--label-sorbus)"></div><div class="doc-dark"><div style="background:var(--label-sorbus)"></div></div></div>
+<div class="doc-color-info"><b>--label-sorbus</b>
+<span class="doc-color-val"><i>св.</i>hsl(30, 96%, 49%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(30, 100%, 63%)</span>
+<span class="doc-color-use">теги календаря, предупреждающие информаторы</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--label-mulberry)"></div><div class="doc-dark"><div style="background:var(--label-mulberry)"></div></div></div>
+<div class="doc-color-info"><b>--label-mulberry</b>
+<span class="doc-color-val"><i>св.</i>hsl(320, 52%, 50%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(320, 67%, 64%)</span>
+<span class="doc-color-use">теги календаря, форматы публикаций</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--label-scarlet)"></div><div class="doc-dark"><div style="background:var(--label-scarlet)"></div></div></div>
+<div class="doc-color-info"><b>--label-scarlet</b>
+<span class="doc-color-val"><i>св.</i>hsl(0, 100%, 43%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(0, 85%, 71%)</span>
+<span class="doc-color-use">шильдики спецпроектов, метки сложности</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--label-dark-orchid)"></div><div class="doc-dark"><div style="background:var(--label-dark-orchid)"></div></div></div>
+<div class="doc-color-info"><b>--label-dark-orchid</b>
+<span class="doc-color-val"><i>св.</i>hsl(285, 100%, 43%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(285, 100%, 68%)</span>
+<span class="doc-color-use">метки, выделение пройденных ссылок</span>
+</div>
+</div>
+</div>
+</div>
+<div class="doc-color-group">
+<div class="doc-color-group-title">Header</div>
+<div class="doc-color-grid">
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--header-text)"></div><div class="doc-dark"><div style="background:var(--header-text)"></div></div></div>
+<div class="doc-color-info"><b>--header-text</b>
+<span class="doc-color-val"><i>св.</i>hsl(0, 0%, 100%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(0, 0%, 100%)</span>
+<span class="doc-color-use">текст шапки и подвала — белый в ОБЕИХ темах</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--header-background)"></div><div class="doc-dark"><div style="background:var(--header-background)"></div></div></div>
+<div class="doc-color-info"><b>--header-background</b>
+<span class="doc-color-val"><i>св.</i>hsl(207, 17%, 23%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(0, 0%, 5%)</span>
+<span class="doc-color-use">фон хедера и футера</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--header-secondary-background)"></div><div class="doc-dark"><div style="background:var(--header-secondary-background)"></div></div></div>
+<div class="doc-color-info"><b>--header-secondary-background</b>
+<span class="doc-color-val"><i>св.</i>hsl(210, 9%, 13%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(0, 0%, 3%)</span>
+<span class="doc-color-use">дополнительный фон хедера и футера</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--header-megapost-anakiwa)"></div><div class="doc-dark"><div style="background:var(--header-megapost-anakiwa)"></div></div></div>
+<div class="doc-color-info"><b>--header-megapost-anakiwa</b>
+<span class="doc-color-val"><i>св.</i>hsl(200, 100%, 80%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(200, 75%, 74%)</span>
+<span class="doc-color-use">текст хедера мегапостов, прогресс загрузки</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--header-megapost-mint-green)"></div><div class="doc-dark"><div style="background:var(--header-megapost-mint-green)"></div></div></div>
+<div class="doc-color-info"><b>--header-megapost-mint-green</b>
+<span class="doc-color-val"><i>св.</i>hsl(128, 100%, 80%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(128, 57%, 66%)</span>
+<span class="doc-color-use">текст хедера мегапостов, акценты</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--header-megapost-pale-canary)"></div><div class="doc-dark"><div style="background:var(--header-megapost-pale-canary)"></div></div></div>
+<div class="doc-color-info"><b>--header-megapost-pale-canary</b>
+<span class="doc-color-val"><i>св.</i>hsl(60, 100%, 80%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(60, 65%, 70%)</span>
+<span class="doc-color-use">текст хедера мегапостов, акценты</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--header-megapost-mona-lisa)"></div><div class="doc-dark"><div style="background:var(--header-megapost-mona-lisa)"></div></div></div>
+<div class="doc-color-info"><b>--header-megapost-mona-lisa</b>
+<span class="doc-color-val"><i>св.</i>hsl(5, 100%, 80%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(5, 100%, 76%)</span>
+<span class="doc-color-use">хедер мегапостов, ховер заблокированных чипсов</span>
+</div>
+</div>
+<div class="doc-color-card">
+<div class="doc-color-swatch"><div style="background:var(--header-megapost-lavender-rose)"></div><div class="doc-dark"><div style="background:var(--header-megapost-lavender-rose)"></div></div></div>
+<div class="doc-color-info"><b>--header-megapost-lavender-rose</b>
+<span class="doc-color-val"><i>св.</i>hsl(305, 100%, 80%)</span>
+<span class="doc-color-val"><i>тём.</i>hsl(305, 79%, 72%)</span>
+<span class="doc-color-use">текст хедера мегапостов, иконография</span>
+</div>
+</div>
+</div>
+</div>
+
+<script src="../../../../examples/components.js"></script>
+</body>
+</html>

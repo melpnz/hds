@@ -1,0 +1,78 @@
+{
+  "$schema": "../../schema.json",
+  "id": "admin-form",
+  "title": "Admin · Form / Wizard",
+  "kind": "pattern",
+  "category": "page-families",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma"
+    ],
+    "confidence": "medium",
+    "scope": "habr"
+  },
+  "purpose": "Layout regions. Шапка Habr → заголовок задачи («Заявка на корпоративный блог») как отдельная карточка → главная колонка: карточка формы (заголовок раздела «Реквизиты компании» → radio-группа с обязательной пометкой  → текстовые поля, одно — со счётчиком символов, одно — с иконкой поиска внутри → подсказывающий текст под полем → футер формы: «Вернуться» (ghost) + «Далее» (primary, зелёный)) → правый сайдбар: степпер прогресса (5 шагов: Правила/Контакты/Тариф/Профиль/Реквизиты, завершённые — зелёная галочка, текущий — синий номер).",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [],
+    "styles": [
+      "ui/habr.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [],
+    "domain": []
+  },
+  "examples": [
+    {
+      "id": "stranica",
+      "title": "Страница",
+      "file": "examples/generated/patterns/admin-form/stranica.html",
+      "covers": [
+        "admin-form"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 700
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "figma",
+      "ref": "docs/patterns/admin-form.md"
+    }
+  ],
+  "unknowns": [
+    "(Figmaподтверждён, radio не заведён отдельно от checkbox — GAP, нужен",
+    "Responsive / States. Не подтверждено — Figma не давала альтернативных"
+  ],
+  "sourceStatus": "confirmed",
+  "family": "ADMIN_FORM",
+  "areas": [],
+  "modules": [],
+  "components": [],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Многошаговая форма: карточка формы слева + степпер прогресса справа (пройденные шаги — зелёная галочка, текущий — синий номер). Вторичное действие («Вернуться») — слева, первичное («Далее») — справа, зелёное."
+    },
+    {
+      "type": "guidance",
+      "text": "Figma m.habr-admin-company · шаг «Реквизиты» мастера заявки на блог"
+    }
+  ],
+  "markdown": "docs/patterns/admin-form.md"
+}
