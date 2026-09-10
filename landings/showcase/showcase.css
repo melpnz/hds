@@ -303,3 +303,15 @@
   background: var(--doc-bg-note);
   border-bottom: 1px solid rgba(127, 127, 127, 0.28);
 }
+
+/* Страница «Что выяснено» — findings.html. Демонстрация приёма Р-9 и
+   сравнение трёх источников палитры Курсов (вопрос Q-5). Оболочка стенда,
+   в ui/ не переносится. */
+.doc-stroke-demo { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin: 18px 0 26px; }
+.doc-stroke-cell { margin: 0; padding: 18px 18px 14px; border: 1px solid var(--doc-line-soft); border-radius: 14px; background: var(--doc-surface, transparent); }
+.doc-stroke-cell svg { display: block; width: 100%; height: auto; }
+.doc-stroke-glow { filter: drop-shadow(0 0 7px currentColor); color: var(--product-acid, var(--product-accent)); }
+.doc-stroke-cap { margin-top: 10px; font-size: 12.5px; line-height: 1.5; color: var(--doc-ink-dim); }
+.doc-shots { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin: 20px 0 8px; }
+.doc-shot { margin: 0; }
+.doc-shot img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--doc-line-soft); background: #fff; }

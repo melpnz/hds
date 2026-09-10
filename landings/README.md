@@ -23,6 +23,7 @@
 | | |
 |---|---|
 | Посмотреть основную витрину | [`showcase/index.html`](showcase/index.html); запуск — [`showcase/README.md`](showcase/README.md) |
+| Узнать, что выяснено о продукте | [`showcase/findings.html`](showcase/findings.html) — решения, открытые вопросы, найденные дефекты и границы |
 | Понять объём и границы | [`BRIEF.md`](BRIEF.md) |
 | Понять порядок работ | [`ROADMAP.md`](ROADMAP.md) |
 | Посмотреть, что найдено | [`.pipeline/inventory.json`](.pipeline/inventory.json) |

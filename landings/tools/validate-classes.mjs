@@ -62,12 +62,13 @@ const own = args.length > 0;
 // нести один из них, а ui/ не должен нести ни одного.
 const SHELL_PREFIXES = ['doc-', 'ml-'];
 
-const showcaseFiles = ['showcase/index.html', 'showcase/blocks.html', 'showcase/primitives.html', 'showcase/core.html'];
+const showcaseFiles = ['showcase/index.html', 'showcase/blocks.html', 'showcase/primitives.html', 'showcase/core.html', 'showcase/findings.html'];
 const showcaseSteps = {
   'showcase/index.html': 'перенос конструктора лендингов',
   'showcase/blocks.html': 'R0-06',
   'showcase/primitives.html': 'R1',
   'showcase/core.html': 'R2',
+  'showcase/findings.html': 'сводка находок конвейера',
 };
 
 const htmlFiles = own ? args : showcaseFiles.filter((file) => fs.existsSync(rel(file))).map(rel);
