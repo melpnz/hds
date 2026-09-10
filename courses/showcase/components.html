@@ -6678,6 +6678,112 @@
   </div>
 </section>
 
+
+<!-- ===================================================================== -->
+<section class="doc-section" id="doc-conflicts">
+  <div class="doc-section__head">
+    <span class="doc-section__num">7</span>
+    <h2>Расхождения источников</h2>
+    <p>Инвентаризация назвала шесть расхождений, когда слоя макета в пакете ещё не было, а прод-разметка была снята, но не разобрана. Здесь каждое проверяемое сверено заново — значениями из слоёв и из измерения, а не пересказом.</p>
+  </div>
+
+  <div class="doc-specimen">
+    <div class="doc-specimen__head">
+      <h5>Выбранный фильтр-чип: цвет расходится, геометрия сходится</h5>
+      <code>BRIEF §5, пункт 1</code>
+      <span class="doc-specimen__spacer"></span>
+      <span class="doc-src-group">
+        <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+        <span class="doc-src doc-src--figma" title="figma" aria-label="figma">F</span>
+      </span>
+    </div>
+    <p class="doc-note">Расхождение <strong>подтверждено и оказалось точнее записанного</strong>: сторон не две, а три, и одна из них в продукте мертва.</p>
+    <table class="doc-table">
+      <thead><tr><th>сторона</th><th>что говорит</th><th>чем доказано</th></tr></thead>
+      <tbody>
+        <tr><td>разметка продукта</td><td>тёмный: <code>bg-ui-black-850 text-ui-white border-ui-black-850</code></td><td>5 узлов на 5/10 страниц</td></tr>
+        <tr><td>макет</td><td>синий: заливка <code>#eff5ff</code>, рамка <code>#94bdfc</code>, текст <code>#346ef4</code></td><td><code>ui/tokens-figma.css</code></td></tr>
+        <tr><td>токены продукта</td><td>синий: <code>--color-chip-inactive</code> <code>#ebf3ff</code>, <code>--color-chip-press</code> <code>#b8d5ff</code></td><td>оба помечены <strong>NO MARKUP</strong> — в разметке десяти страниц не встречаются</td></tr>
+      </tbody>
+    </table>
+    <p class="doc-note"><strong>Две подробности, которых на инвентаризации не было.</strong>
+      Первая: заливка макета <code>#eff5ff</code> —
+      это ровно <code>--color-ui-blue-50</code> продукта
+      (<code>#eff5ff</code>). То есть синий макета в продукте
+      существует живым токеном, просто на это состояние не поставлен.
+      Вторая: <strong>геометрия сходится до пикселя</strong> — макет задаёт падинг фильтра
+      <code>12px</code> /
+      <code>8px</code>,
+      и разметка продукта несёт <code>px-3 py-2</code> — те же 12 и 8. Расходится
+      только цвет выбранного состояния, а не форма.</p>
+  </div>
+
+  <div class="doc-specimen">
+    <div class="doc-specimen__head">
+      <h5>Падинг кнопок: ступени не совпадают именами, но совпадают числами</h5>
+      <code>BRIEF §5, пункт 4</code>
+      <span class="doc-specimen__spacer"></span>
+      <span class="doc-src-group">
+        <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+        <span class="doc-src doc-src--figma" title="figma" aria-label="figma">F</span>
+      </span>
+    </div>
+    <p class="doc-note">Измерено заново по всем 191 узлам кнопки на десяти страницах.</p>
+    <table class="doc-table">
+      <thead><tr><th>сторона</th><th>падинг</th><th>узлов</th></tr></thead>
+      <tbody>
+        <tr><td>продукт</td><td><code>px-4 py-2</code> = 16 / 8</td><td>186</td></tr>
+        <tr><td>продукт</td><td><code>px-6 py-3</code> = 24 / 12</td><td>5</td></tr>
+        <tr><td>макет, ступень M</td><td><code>16px</code> / <code>8px</code></td><td>—</td></tr>
+        <tr><td>макет, ступень L</td><td><code>20px</code> / <code>12px</code></td><td>—</td></tr>
+      </tbody>
+    </table>
+    <p class="doc-note"><strong>Что видно из чисел.</strong> Самая частая кнопка продукта
+      (186 узлов из 191) имеет падинг
+      16 / 8 — <strong>ровно ступень M макета</strong>. Ступень L макета
+      (20px / 12px)
+      в продукте не встречается ни разу. Высот у кнопки при этом три —
+      <code>h-10</code> = 40px (171), <code>h-12</code> = 48px (15), <code>h-14</code> = 56px (5), —
+      а падингов два: высота меняется без изменения падинга. Инвентаризация назвала
+      это конфликтом «прод против макета»; измерение уточняет: числа сторон
+      пересекаются, не совпадают только то, какая ступень как называется и какие
+      из них продукт использует. Разложить ступени по именам одна перепись не может —
+      в разметке продукта имён размеров нет, это работа шага R3-01.</p>
+  </div>
+
+  <div class="doc-specimen">
+    <div class="doc-specimen__head">
+      <h5>Мёртвые токены шкалы против живых утилит</h5>
+      <code>BRIEF §5, пункты 3 и 5</code>
+      <span class="doc-specimen__spacer"></span>
+      <span class="doc-src-group">
+        <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+      </span>
+    </div>
+    <p class="doc-note">Расхождение <strong>подтверждено полностью</strong>, и это конфликт внутри самого продукта, а не между источниками: токен объявлен, но на него нет ни одной ссылки, а число печатает утилита — другое.</p>
+    <table class="doc-table">
+      <thead><tr><th>токен</th><th>значение</th><th>пометка в слое</th><th>ссылок <code>var()</code> в корпусе</th><th>что печатает на самом деле</th></tr></thead>
+      <tbody>
+            <tr><td><code>--font-size-h3</code></td><td><code>21px</code></td><td>UNREFERENCED</td><td><code>0</code></td><td><code>.text-h3</code> → <code>20px</code></td></tr>
+            <tr><td><code>--line-height-h2</code></td><td><code>27px</code></td><td>UNREFERENCED</td><td><code>0</code></td><td><code>.text-h2</code> → <code>28px</code></td></tr>
+            <tr><td><code>--line-height-h3</code></td><td><code>27px</code></td><td>UNREFERENCED</td><td><code>0</code></td><td><code>.text-h3</code> → <code>24px</code></td></tr>
+      </tbody>
+    </table>
+    <p class="doc-note">Ссылки считаны по всем 22 файлам корпуса. Ноль означает ноль:
+      токен объявлен и не использован ни разу, а значение на экране даёт утилита.
+      Пометки в слое (<code>[UNREFERENCED]</code>) поставлены на R0-02 и этим
+      измерением подтверждены.</p>
+  </div>
+
+  <p class="doc-text"><strong>Чего здесь нет.</strong> Пункт 2 (<code>--header-height</code>) —
+    расхождение объявления и рантайма, разобрано на R0-02 и решено в пользу поведения
+    продакшена; его место — <a href="../docs/guide/tokens.md">docs/guide/tokens.md</a>, GAP-4.
+    Пункт 6 (брейкпоинты) показан в разделе «Основания» отдельным подразделом.
+    Значения стиля <code>Header/H3</code> из макета по-прежнему не сняты: страницы
+    компонентов библиотеки <code>education-lib</code> через MCP не открываются, и это
+    не изменилось — подтверждено при попытке дочитать их на этом проходе.</p>
+</section>
+
 </main>
 
 </div>
