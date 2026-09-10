@@ -72,7 +72,7 @@
     "showcaseAnchor": "c-<id> — id секции в showcase/components.html",
     "cssFile": "ui/components/<category>.css — имя файла равно значению category",
     "markupUtilities": "Продукт собран утилитами Tailwind, и «Разметка» их сохраняет: заменять утилиты потомками crs- значило бы переписать продукт, а не описать его. Копируемость (METHOD §6.1) обеспечивается тем, что ui/courses.css несёт правила ровно тех утилит, которые встречаются в разметке спецификаций, — файл ui/utilities.css, выписанный из сборки. Пока его нет, node tools/validate-classes.mjs на фрагменте показывает недостающие утилиты списком: это состояние ui/, а не форма разметки. Заносить их в базовую линию известных пробелов нельзя — для своей разметки она не читается по замыслу (tools/validate-classes.mjs), и инвариант §6.1 иначе перестаёт проверяться. Файл заводит R0-04, окончательно закрывает R2-01. Порядок обязателен: ui/utilities.css заводится на R0-04, спецификации начинаются с R2. До R0-06 копируемость (METHOD §6.1) гейтом не проверяется вовсе — безаргументный validate-classes читает витрину, а её заводит R0-06, — поэтому нарушенный порядок даёт первые спецификации с красной проверкой и без средства её закрыть.",
-    "cssRoot": "Собственный класс продукта, если он есть (style-ugc, rubrication-header, svg-icon). Если элемент собран утилитами Tailwind и своего класса не имеет, пакет вводит корневой класс crs-<id> и помечает его в спецификации как новую реализацию имени (METHOD §4): в продукте такого класса нет. Решение принято на R0-05, подтверждается или отменяется на R2-01 — менять его нужно здесь, а не в 55 спецификациях. Проверяемая форма: значение cssRoots обязано либо равняться crs-<id>, либо стоять в class=\"…\" снятого DOM, и в обоих случаях быть селектором в ui/ — не подстрокой в нём."
+    "cssRoot": "Собственный класс продукта, если он есть (style-ugc, rubrication-header, svg-icon). Если элемент собран утилитами Tailwind и своего класса не имеет, пакет вводит корневой класс crs-<id> и помечает его в спецификации как новую реализацию имени (METHOD §4): в продукте такого класса нет. Решение принято на R0-05, подтверждается или отменяется на R2-01 — менять его нужно здесь, а не в 55 спецификациях. Проверяемая форма: значение cssRoots обязано либо равняться crs-<id>, либо стоять в class=\"…\" снятого DOM, и в обоих случаях быть селектором в ui/ — не подстрокой в нём. Третья форма заведена на R2-bulk решением владельца — элементная: `element:<тег>`. Она нужна там, где правило продукта висит на самом теге, а классового корня нет и выдумать его нельзя без вреда. Такой случай в пакете один — Link: 867 узлов `<a>`, ни одного без класса, но общего класса нет (самый частый стоит на 42.9%), при этом `a{color:var(--color-links-main);text-decoration:none}` и `a:hover{text-decoration:underline}` приняты на R0-03 и лежат в ui/foundations.css. Корень `crs-link` пришлось бы наделить объявлениями, и они стали бы вторым носителем тех же значений — тем самым дефектом, ради которого заведён гейт витрины. Проверяемая форма: `element:<тег>` засчитывается, только если в ui/ есть правило с этим тегом в позиции селектора (не подстрокой: `.svg-icon` не делает элементом `svg`, `nav a` не делает корнем `nav`) и если узлы такого тега есть в снятой разметке. Четвёртая форма, там же и тем же решением, — библиотечная: `vendor:<класс>`. Её смысл обратный: корень принадлежит чужому слою, который пакет намеренно не поднимает. В пакете такой случай один — Carousel на Swiper: решением R0-02 библиотечный слой в ui/ не заводится (как и переменная --swiper-theme-color), поэтому корень `swiper` есть в снятой разметке и не имеет и не должен иметь правила в ui/. Запись с таким корнем документирует делегирование: продукт отдаёт поведение библиотеке, и пакет говорит это прямо, а не делает вид, что собрал компонент сам. Проверяемая форма: класс обязан стоять в снятой разметке и обязан ОТСУТСТВОВАТЬ в ui/ — если он там есть, слой поднят, и корень не библиотечный."
   },
   "allowedCategories": {
     "actions": "ui/components/actions.css",
@@ -259,11 +259,14 @@
       "legacyAliases": [],
       "category": "data-display",
       "kind": "primitive",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "data-display/social-icon.md",
+      "cssRoots": [
+        "block",
+        "rounded-full"
+      ],
+      "showcaseAnchor": "c-social-icon",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "hover",
@@ -319,11 +322,16 @@
       "legacyAliases": [],
       "category": "data-display",
       "kind": "primitive",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "data-display/project-icon.md",
+      "cssRoots": [
+        "inline-flex",
+        "h-6",
+        "w-6",
+        "rounded-md"
+      ],
+      "showcaseAnchor": "c-project-icon",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default"
       ],
@@ -373,9 +381,11 @@
       "legacyAliases": [],
       "category": "data-display",
       "kind": "primitive",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "data-display/avatar.md",
+      "cssRoots": [
+        "rounded-full"
+      ],
+      "showcaseAnchor": "c-avatar",
       "figmaEvidence": [
         {
           "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
@@ -388,7 +398,7 @@
           "note": "avatar/user, 305 инстансов"
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "empty"
@@ -429,9 +439,13 @@
       "legacyAliases": [],
       "category": "data-display",
       "kind": "primitive",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "data-display/entity-logo.md",
+      "cssRoots": [
+        "rounded-xl",
+        "border-2",
+        "border-ui-white"
+      ],
+      "showcaseAnchor": "c-entity-logo",
       "figmaEvidence": [
         {
           "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
@@ -444,7 +458,7 @@
           "note": "avatar/school, 167 инстансов"
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "empty"
@@ -482,9 +496,16 @@
       "legacyAliases": [],
       "category": "data-display",
       "kind": "primitive",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "data-display/chip.md",
+      "cssRoots": [
+        "bg-ui-black-50",
+        "flex",
+        "items-center",
+        "px-2",
+        "py-1",
+        "rounded-full"
+      ],
+      "showcaseAnchor": "c-chip",
       "figmaEvidence": [
         {
           "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
@@ -497,7 +518,7 @@
           "note": "tag/text/*: fill #f1f1f1, text #2c2e34, padding 4/4, border_radius 200"
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default"
       ],
@@ -537,9 +558,14 @@
       "legacyAliases": [],
       "category": "data-display",
       "kind": "primitive",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "data-display/badge.md",
+      "cssRoots": [
+        "bg-ui-orange-500",
+        "rounded-full",
+        "text-micro",
+        "text-ui-white"
+      ],
+      "showcaseAnchor": "c-badge",
       "figmaEvidence": [
         {
           "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
@@ -552,7 +578,7 @@
           "note": "tag/color/*: fill #ff7e47, text #fff, padding 2/2"
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default"
       ],
@@ -592,11 +618,18 @@
       "legacyAliases": [],
       "category": "data-display",
       "kind": "primitive",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "data-display/rating-badge.md",
+      "cssRoots": [
+        "bg-ui-white",
+        "rounded-3xl",
+        "flex",
+        "py-1",
+        "pl-1.5",
+        "pr-2"
+      ],
+      "showcaseAnchor": "c-rating-badge",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default"
       ],
@@ -638,11 +671,17 @@
       "legacyAliases": [],
       "category": "data-display",
       "kind": "primitive",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "data-display/meta-pill.md",
+      "cssRoots": [
+        "bg-ui-white",
+        "rounded-3xl",
+        "px-2",
+        "py-1",
+        "text-micro"
+      ],
+      "showcaseAnchor": "c-meta-pill",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default"
       ],
@@ -682,11 +721,16 @@
       "legacyAliases": [],
       "category": "data-display",
       "kind": "primitive",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "data-display/counter-pill.md",
+      "cssRoots": [
+        "bg-ui-black-50",
+        "rounded-full",
+        "text-micro",
+        "text-ui-black-500"
+      ],
+      "showcaseAnchor": "c-counter-pill",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default"
       ],
@@ -721,11 +765,14 @@
       "legacyAliases": [],
       "category": "collections",
       "kind": "component",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "collections/avatar-stack.md",
+      "cssRoots": [
+        "flex",
+        "-space-x-1.5"
+      ],
+      "showcaseAnchor": "c-avatar-stack",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default"
       ],
@@ -763,11 +810,13 @@
       "legacyAliases": [],
       "category": "data-display",
       "kind": "component",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "data-display/prose.md",
+      "cssRoots": [
+        "style-ugc"
+      ],
+      "showcaseAnchor": "c-prose",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default"
       ],
@@ -808,9 +857,16 @@
       ],
       "category": "actions",
       "kind": "component",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "actions/button.md",
+      "cssRoots": [
+        "inline-flex",
+        "rounded-xl",
+        "font-semibold",
+        "inline-flex",
+        "rounded-xl",
+        "font-semibold"
+      ],
+      "showcaseAnchor": "c-button",
       "figmaEvidence": [
         {
           "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
@@ -823,7 +879,7 @@
           "note": "button/M/main; в библиотеке разложен на 15 component set по осям размер×тон"
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "hover",
@@ -889,11 +945,16 @@
       "legacyAliases": [],
       "category": "actions",
       "kind": "component",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "actions/icon-button.md",
+      "cssRoots": [
+        "swiper-button-shadow",
+        "h-9",
+        "w-9",
+        "rounded-full"
+      ],
+      "showcaseAnchor": "c-icon-button",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "hover",
@@ -944,11 +1005,13 @@
       "legacyAliases": [],
       "category": "navigation",
       "kind": "primitive",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "navigation/link.md",
+      "cssRoots": [
+        "element:a"
+      ],
+      "showcaseAnchor": "c-link",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "hover",
@@ -999,9 +1062,18 @@
       ],
       "category": "forms",
       "kind": "component",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "forms/filter-chip.md",
+      "cssRoots": [
+        "h-9",
+        "rounded-full",
+        "border",
+        "border-ui-black-100",
+        "bg-ui-white",
+        "px-3",
+        "py-2",
+        "text-small"
+      ],
+      "showcaseAnchor": "c-filter-chip",
       "figmaEvidence": [
         {
           "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
@@ -1014,7 +1086,7 @@
           "note": "tab / tab-panel; elements/tab/filter/*: fill_select #eff5ff, border_select #94bdfc, text_icon_select #346ef4"
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "hover",
@@ -1077,9 +1149,13 @@
       "legacyAliases": [],
       "category": "navigation",
       "kind": "component",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "navigation/segmented-control.md",
+      "cssRoots": [
+        "bg-ui-black-transparent-120",
+        "rounded-xl",
+        "w-max"
+      ],
+      "showcaseAnchor": "c-segmented-control",
       "figmaEvidence": [
         {
           "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
@@ -1092,7 +1168,7 @@
           "note": "button group / onheader: fill #0000001f, text #fff, radius 12"
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "hover",
@@ -1190,9 +1266,11 @@
       ],
       "category": "forms",
       "kind": "component",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "forms/select.md",
+      "cssRoots": [
+        "w-full"
+      ],
+      "showcaseAnchor": "c-select",
       "figmaEvidence": [
         {
           "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
@@ -1205,7 +1283,7 @@
           "note": "dropdown/select + dropdown/list + dropdown/context-menu"
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "hover",
@@ -1267,11 +1345,13 @@
       "legacyAliases": [],
       "category": "forms",
       "kind": "component",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "forms/multi-select.md",
+      "cssRoots": [
+        "wrapper"
+      ],
+      "showcaseAnchor": "c-multi-select",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "hover",
@@ -1322,9 +1402,11 @@
       "legacyAliases": [],
       "category": "forms",
       "kind": "component",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "forms/search-input.md",
+      "cssRoots": [
+        "courses-filter-search-top-panel-placeholder"
+      ],
+      "showcaseAnchor": "c-search-input",
       "figmaEvidence": [
         {
           "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
@@ -1337,7 +1419,7 @@
           "note": "механика поиска и саджест"
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "hover",
@@ -1435,9 +1517,11 @@
       ],
       "category": "forms",
       "kind": "component",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "forms/checkbox.md",
+      "cssRoots": [
+        "base-checkbox"
+      ],
+      "showcaseAnchor": "c-checkbox",
       "figmaEvidence": [
         {
           "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
@@ -1450,7 +1534,7 @@
           "note": "elements/control/border_radius 6, unchecked/fill #dededf"
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "hover",
@@ -1498,11 +1582,13 @@
       ],
       "category": "forms",
       "kind": "component",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "forms/switch.md",
+      "cssRoots": [
+        "group"
+      ],
+      "showcaseAnchor": "c-switch",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "hover",
@@ -1548,9 +1634,11 @@
       ],
       "category": "forms",
       "kind": "component",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "forms/tile-filter.md",
+      "cssRoots": [
+        "m-0"
+      ],
+      "showcaseAnchor": "c-tile-filter",
       "figmaEvidence": [
         {
           "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
@@ -1563,7 +1651,7 @@
           "note": "Иконка цели фильтра, 8 вариантов"
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "hover",
@@ -1659,9 +1747,11 @@
       "legacyAliases": [],
       "category": "navigation",
       "kind": "component",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "navigation/breadcrumbs.md",
+      "cssRoots": [
+        "crs-breadcrumbs"
+      ],
+      "showcaseAnchor": "c-breadcrumbs",
       "figmaEvidence": [
         {
           "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
@@ -1674,7 +1764,7 @@
           "note": "компонент «Хлебные крошки» 236×20: четыре текста (39, 41, 42, 42 шириной) и три экземпляра icon/arrow-down 20×20 между ними. Снято get_metadata 2026-09-08"
         }
       ],
-      "status": "planned",
+      "status": "figma-only",
       "requiredStates": [
         "default",
         "hover",
@@ -1707,9 +1797,11 @@
       "legacyAliases": [],
       "category": "frame-modules",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "frame-modules/site-header.md",
+      "cssRoots": [
+        "bg-main-gradient-first"
+      ],
+      "showcaseAnchor": "c-site-header",
       "figmaEvidence": [
         {
           "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
@@ -1722,7 +1814,7 @@
           "note": "header/courses, 9 вариантов device×type×fixed"
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default"
       ],
@@ -1755,8 +1847,8 @@
       "productionEvidence": [
         {
           "url": "https://career.habr.com/courses",
-          "selector": "header",
-          "note": null
+          "selector": "header.bg-main-gradient-first",
+          "note": "Сужено на R2-bulk: прежний селектор — голый тег header, у которого нет класса, а METHOD §6.5 требует существующего CSS-корня. Класс bg-main-gradient-first стоит на самом узле шапки в снятой разметке и корнем является настоящим, продуктовым, а не введённым пакетом. Прежний селектор: `header`."
         }
       ],
       "storybookEvidence": [],
@@ -1780,9 +1872,14 @@
       ],
       "category": "overlays",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "overlays/header-dropdown.md",
+      "cssRoots": [
+        "absolute",
+        "-right-10",
+        "rounded-xl",
+        "shadow-context-menu-dropdown"
+      ],
+      "showcaseAnchor": "c-header-dropdown",
       "figmaEvidence": [
         {
           "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
@@ -1795,7 +1892,7 @@
           "note": null
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "hover",
@@ -1864,11 +1961,13 @@
       "legacyAliases": [],
       "category": "navigation",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "navigation/rubrication-bar.md",
+      "cssRoots": [
+        "rubrication-header"
+      ],
+      "showcaseAnchor": "c-rubrication-bar",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default"
       ],
@@ -1904,9 +2003,11 @@
       "legacyAliases": [],
       "category": "frame-modules",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "frame-modules/site-footer.md",
+      "cssRoots": [
+        "bg-ui-black-50"
+      ],
+      "showcaseAnchor": "c-site-footer",
       "figmaEvidence": [
         {
           "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
@@ -1919,7 +2020,7 @@
           "note": null
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default"
       ],
@@ -1952,8 +2053,8 @@
       "productionEvidence": [
         {
           "url": "https://career.habr.com/courses",
-          "selector": "footer",
-          "note": null
+          "selector": "footer.bg-ui-black-50",
+          "note": "Сужено на R2-bulk по той же причине, что у site-header: голый тег footer корнем быть не может. bg-ui-black-50 — первый класс узла подвала в снятой разметке. Прежний селектор: `footer`."
         }
       ],
       "storybookEvidence": [],
@@ -1966,11 +2067,14 @@
       "legacyAliases": [],
       "category": "frame-modules",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "frame-modules/page-hero.md",
+      "cssRoots": [
+        "w-full",
+        "bg-main-gradient-second"
+      ],
+      "showcaseAnchor": "c-page-hero",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default"
       ],
@@ -2015,11 +2119,16 @@
       "legacyAliases": [],
       "category": "forms",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "forms/search-form.md",
+      "cssRoots": [
+        "grid",
+        "grid-cols-[1fr_max-content]",
+        "gap-2",
+        "rounded-md"
+      ],
+      "showcaseAnchor": "c-search-form",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default"
       ],
@@ -2064,11 +2173,15 @@
       ],
       "category": "layout",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "layout/section.md",
+      "cssRoots": [
+        "flex",
+        "flex-col",
+        "gap-4"
+      ],
+      "showcaseAnchor": "c-section",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default"
       ],
@@ -2115,11 +2228,15 @@
       "legacyAliases": [],
       "category": "layout",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "layout/card-grid.md",
+      "cssRoots": [
+        "grid",
+        "grid-cols-4",
+        "gap-3"
+      ],
+      "showcaseAnchor": "c-card-grid",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "empty"
@@ -2161,11 +2278,13 @@
       "legacyAliases": [],
       "category": "collections",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "collections/carousel.md",
+      "cssRoots": [
+        "vendor:swiper"
+      ],
+      "showcaseAnchor": "c-carousel",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "current"
@@ -2209,11 +2328,16 @@
       "legacyAliases": [],
       "category": "collections",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "collections/link-grid.md",
+      "cssRoots": [
+        "grid",
+        "grid-cols-3",
+        "gap-x-4",
+        "gap-y-2"
+      ],
+      "showcaseAnchor": "c-link-grid",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "expanded",
@@ -2256,9 +2380,14 @@
       "legacyAliases": [],
       "category": "navigation",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "navigation/filter-bar.md",
+      "cssRoots": [
+        "flex",
+        "gap-1",
+        "overflow-x-auto",
+        "whitespace-nowrap"
+      ],
+      "showcaseAnchor": "c-filter-bar",
       "figmaEvidence": [
         {
           "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
@@ -2271,7 +2400,7 @@
           "note": "секция «быстрые фильтры», около 28 фреймов"
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default"
       ],
@@ -2454,11 +2583,13 @@
       "legacyAliases": [],
       "category": "layout",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "layout/ad-slot.md",
+      "cssRoots": [
+        "adfox-banner"
+      ],
+      "showcaseAnchor": "c-ad-slot",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default"
       ],
@@ -2498,9 +2629,11 @@
       "legacyAliases": [],
       "category": "feedback",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "feedback/empty-state.md",
+      "cssRoots": [
+        "crs-empty-state"
+      ],
+      "showcaseAnchor": "c-empty-state",
       "figmaEvidence": [
         {
           "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
@@ -2523,7 +2656,7 @@
           "note": "нулевая выдача, 1024/744/320"
         }
       ],
-      "status": "planned",
+      "status": "figma-only",
       "requiredStates": [
         "default"
       ],
@@ -2551,9 +2684,20 @@
       "legacyAliases": [],
       "category": "entities",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "entities/course-card.md",
+      "cssRoots": [
+        "relative",
+        "box-border",
+        "flex",
+        "h-full",
+        "min-w-0",
+        "flex-col",
+        "overflow-hidden",
+        "rounded-3xl",
+        "border",
+        "border-ui-black-100"
+      ],
+      "showcaseAnchor": "c-course-card",
       "figmaEvidence": [
         {
           "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
@@ -2566,7 +2710,7 @@
           "note": "793 инстанса, 284×420, вариант «Рассрочка»"
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "hover",
@@ -2617,11 +2761,21 @@
       "legacyAliases": [],
       "category": "entities",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "entities/school-card.md",
+      "cssRoots": [
+        "relative",
+        "box-border",
+        "h-full",
+        "cursor-pointer",
+        "overflow-hidden",
+        "rounded-3xl",
+        "border",
+        "border-solid",
+        "border-ui-black-100"
+      ],
+      "showcaseAnchor": "c-school-card",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "hover",
@@ -2667,9 +2821,20 @@
       "legacyAliases": [],
       "category": "entities",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "entities/promo-card.md",
+      "cssRoots": [
+        "cursor-pointer",
+        "relative",
+        "flex",
+        "h-full",
+        "flex-col",
+        "overflow-hidden",
+        "rounded-3xl",
+        "border",
+        "border-ui-black-100",
+        "p-6"
+      ],
+      "showcaseAnchor": "c-promo-card",
       "figmaEvidence": [
         {
           "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
@@ -2682,7 +2847,7 @@
           "note": "4 варианта: промокод|акция × завершён"
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "hover"
@@ -2721,9 +2886,18 @@
       "legacyAliases": [],
       "category": "entities",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "entities/review-card.md",
+      "cssRoots": [
+        "relative",
+        "box-border",
+        "h-full",
+        "whitespace-break-spaces",
+        "rounded-3xl",
+        "border",
+        "border-solid",
+        "border-ui-black-100"
+      ],
+      "showcaseAnchor": "c-review-card",
       "figmaEvidence": [
         {
           "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
@@ -2736,7 +2910,7 @@
           "note": null
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "hover"
@@ -2778,9 +2952,18 @@
       "legacyAliases": [],
       "category": "entities",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "entities/article-card.md",
+      "cssRoots": [
+        "relative",
+        "box-border",
+        "h-full",
+        "overflow-hidden",
+        "rounded-3xl",
+        "border",
+        "border-ui-black-100",
+        "flex"
+      ],
+      "showcaseAnchor": "c-article-card",
       "figmaEvidence": [
         {
           "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
@@ -2793,7 +2976,7 @@
           "note": "Статья 272×268"
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "hover",
@@ -2836,9 +3019,21 @@
       "legacyAliases": [],
       "category": "entities",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "entities/person-card.md",
+      "cssRoots": [
+        "relative",
+        "box-border",
+        "flex",
+        "max-h-[365px]",
+        "flex-col",
+        "gap-4",
+        "overflow-hidden",
+        "rounded-3xl",
+        "border",
+        "border-ui-black-100",
+        "p-6"
+      ],
+      "showcaseAnchor": "c-person-card",
       "figmaEvidence": [
         {
           "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
@@ -2851,7 +3046,7 @@
           "note": "карточка эксперта 235×365"
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "hover",
@@ -2894,11 +3089,20 @@
       "legacyAliases": [],
       "category": "entities",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "entities/step-card.md",
+      "cssRoots": [
+        "flex",
+        "flex-col",
+        "gap-1",
+        "rounded-3xl",
+        "border",
+        "border-solid",
+        "border-ui-black-100",
+        "p-6"
+      ],
+      "showcaseAnchor": "c-step-card",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default"
       ],
@@ -2933,11 +3137,19 @@
       "legacyAliases": [],
       "category": "entities",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "entities/ad-card.md",
+      "cssRoots": [
+        "relative",
+        "block",
+        "h-full",
+        "w-full",
+        "cursor-pointer",
+        "overflow-hidden",
+        "rounded-3xl"
+      ],
+      "showcaseAnchor": "c-ad-card",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "hover"
@@ -2978,9 +3190,15 @@
       "legacyAliases": [],
       "category": "collections",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "collections/rating-table.md",
+      "cssRoots": [
+        "overflow-hidden",
+        "rounded-3xl",
+        "border",
+        "border-ui-black-100",
+        "pb-1"
+      ],
+      "showcaseAnchor": "c-rating-table",
       "figmaEvidence": [
         {
           "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
@@ -2993,7 +3211,7 @@
           "note": "Строка (рейтинг), 6 вариантов hover × device"
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "hover",
@@ -3035,11 +3253,17 @@
       "legacyAliases": [],
       "category": "entities",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "entities/numbered-course-item.md",
+      "cssRoots": [
+        "pt-6",
+        "border-b",
+        "border-solid",
+        "border-b-ui-black-100",
+        "pb-6"
+      ],
+      "showcaseAnchor": "c-numbered-course-item",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default"
       ],
@@ -3076,9 +3300,15 @@
       "legacyAliases": [],
       "category": "entities",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "entities/entity-header.md",
+      "cssRoots": [
+        "grid",
+        "overflow-hidden",
+        "rounded-3xl",
+        "border",
+        "border-ui-black-100"
+      ],
+      "showcaseAnchor": "c-entity-header",
       "figmaEvidence": [
         {
           "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
@@ -3091,7 +3321,7 @@
           "note": null
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default"
       ],
@@ -3130,9 +3360,17 @@
       "legacyAliases": [],
       "category": "entities",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "entities/person-header.md",
+      "cssRoots": [
+        "flex",
+        "gap-5",
+        "rounded-3xl",
+        "border",
+        "border-solid",
+        "border-ui-black-100",
+        "p-6"
+      ],
+      "showcaseAnchor": "c-person-header",
       "figmaEvidence": [
         {
           "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
@@ -3145,7 +3383,7 @@
           "note": null
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default"
       ],
@@ -3182,11 +3420,17 @@
       "legacyAliases": [],
       "category": "data-display",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "data-display/info-table.md",
+      "cssRoots": [
+        "grid",
+        "grid-cols-2",
+        "gap-x-4",
+        "gap-y-3",
+        "text-small"
+      ],
+      "showcaseAnchor": "c-info-table",
       "figmaEvidence": [],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default"
       ],

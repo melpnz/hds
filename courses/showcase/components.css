@@ -702,8 +702,10 @@
 
 /* Условия ниже — копия шести условий сборки Курсов, снятых брейс-сканом
    (docs/guide/layout.md, «Брейкпоинты»). Оболочка воспроизводит их у себя,
-   чтобы границы было видно перетаскиванием окна: в ui/ из шести поднят
-   только phone:, и только для двух ступеней шкалы. */
+   чтобы границы было видно перетаскиванием окна. В ui/ из шести префиксов
+   подняты три: phone: (.phone\:text-h1-mobile и .phone\:text-h2,
+   ui/foundations.css), small-phone: (.small-phone\:text-center,
+   ui/utilities.css) и tablet: (.tablet\:px-6, ui/layout.css). */
 @media (max-width: 479px) {
   .doc-bp__lamp--small-phone { background: #eef7f1; border-color: #b3d8bf; color: #1a5b2e; }
   .doc-bp__lamp--small-phone::after { content: "активен"; }
@@ -750,4 +752,18 @@
   color: inherit;
   outline: none;
   width: 16ch;
+}
+
+
+/* Контейнер 320px для блока «адаптив». Ширина фиксированная и с рамкой:
+   читатель должен видеть границу коробки, иначе непонятно, что образец
+   стоит в ограниченной ширине, а не просто узкий сам по себе.
+   Что этот контейнер показывает, а что нет — сказано в самом блоке. */
+.doc-narrow {
+  border: 1px dashed var(--doc-border, #d3d3d4);
+  max-width: 320px;
+  overflow: hidden;
+  padding: 8px;
+  resize: horizontal;
+  width: 320px;
 }

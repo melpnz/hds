@@ -10,6 +10,9 @@
      1. fonts         @font-face переменного Inter — четырнадцать
                       подмножеств продукта, файлы локальные (R0-03, X-03)
      2. tokens        переменные :root, снятые с продакшена Курсов (51 шт.)
+     2a. tokens-figma элементные переменные макета 02_Education-NEW с
+                      префиксом --fig-; справочный слой, вёрстка на него
+                      не ссылается — почему именно так, сказано в шапке файла
      3. foundations   база документа, нормализация, типографическая шкала,
                       фокус
      4. layout        оболочка страницы (app-container/app-content),
@@ -17,6 +20,10 @@
      5. utilities     утилиты переноса, обрезки и выравнивания текста —
                       GAP-9 typography.md; без него METHOD §6.1 не держится
                       для спецификаций R2+ (X-66)
+     5a. utilities-components
+                      утилитарные классы, которые поднимает вёрстка
+                      компонентов; растёт вместе с ними, состав собран
+                      из корпуса прод-CSS парсером
      6. components/   CSS компонентов — по файлу на категорию METHOD §5,
                       внутри по секции на компонент
 
@@ -47,9 +54,11 @@
 
 @import url("fonts.css");
 @import url("tokens.css");
+@import url("tokens-figma.css");
 @import url("foundations.css");
 @import url("layout.css");
 @import url("utilities.css");
+@import url("utilities-components.css");
 @import url("state-contract.css");
 
 /* Категории METHOD §5 в том составе, в каком их использует реестр Курсов.

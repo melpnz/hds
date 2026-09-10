@@ -15,3 +15,78 @@
 
    Пока пусто: компоненты верстаются на шагах R4.
    ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   EmptyState (R2-bulk, figma-only)
+   -------------------------------------------------------------------------
+   Разметка написана по узлу макета `02_Education-NEW` 12135:122618
+   «Empty block» (`get_design_context`). В снятой публичной части продукта
+   пустых выдач нет — гостю их не показывают, — поэтому статус терминальный
+   `figma-only`, а корень введён пакетом: `crs-empty-state` (METHOD §6.5).
+
+   Значения — переменные слоя `ui/tokens-figma.css`. Три из них добавлены
+   в слой этим шагом, потому что прежние четыре узла выгрузки их не давали:
+   `--fig-font-size-display-l` (24), `--fig-font-line-height-display-l` (28)
+   и `--fig-elements-button-secondary-fill-hover` (#e9e9ea).
+
+   Кнопки внутри — `button / M / secondary` того же макета. Своей секции
+   Button в пакете ещё нет (шаг R3-01 не сделан), и подменять её прод-классами
+   нельзя: у прод-кнопки другой состав классов, а у этой — только макет.
+   Поэтому кнопка описана здесь как часть блока, элементом `__chip`, и когда
+   появится настоящая секция Button, эти правила уедут туда.
+   ------------------------------------------------------------------------- */
+.crs-empty-state {
+  align-items: center;
+  background: var(--fig-color-style-white-light);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x4);
+  padding: var(--fig-size-spacing-x0);
+}
+.crs-empty-state__text {
+  color: var(--fig-color-style-font-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x2);
+  width: 100%;
+}
+.crs-empty-state__title {
+  font-size: var(--fig-font-size-display-l);
+  font-weight: var(--fig-font-weight-semibold);
+  letter-spacing: var(--fig-font-letter-spacing-headers);
+  line-height: var(--fig-font-line-height-display-l);
+  margin: 0;
+}
+.crs-empty-state__hint {
+  font-size: var(--fig-font-size-body-m);
+  font-weight: var(--fig-font-weight-regular);
+  line-height: var(--fig-font-line-height-body-l);
+  margin: 0;
+}
+.crs-empty-state__actions {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fig-size-spacing-x2);
+  width: 100%;
+}
+.crs-empty-state__chip {
+  align-items: center;
+  background: var(--fig-elements-button-secondary-fill);
+  border: 0;
+  border-radius: var(--fig-elements-button-border-radius);
+  color: var(--fig-elements-button-main-fill);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: var(--fig-font-size-body-m);
+  font-weight: var(--fig-font-weight-semibold);
+  gap: var(--fig-elements-button-m-gap);
+  justify-content: center;
+  line-height: var(--fig-font-line-height-body-l);
+  min-height: 40px;
+  padding: var(--fig-elements-button-m-padding-top-bottom) var(--fig-elements-button-m-padding-left-right);
+  white-space: nowrap;
+}
+.crs-empty-state__chip:hover {
+  background: var(--fig-elements-button-secondary-fill-hover);
+}
