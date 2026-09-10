@@ -1,0 +1,9 @@
+РАСХОДИТСЯ  N5 ASCII-слепой лоокбихайнд перед ui/ — «дефис-ui/» читается как слой
+    база     EXIT=1      showcase/components.css:705 — сказано «только phone:», а в ui/ подняты и small-phone: (small-phone:text-center); tablet: (tablet:px-6)
+    мутация  EXIT=1      showcase/components.html:1387 — сказано, что в ui/ нет tablet:px-6, а в ui/ есть: tablet:px-6 (ui/layout.css:163) |       клауза: «В сборке класс text-ui/tablet:px-6 не объявлен.» |     showcase/components.css:705 — сказано «только phone:», а в ui/ подняты и small-phone: (small-phone:text-center); tablet: (tablet:px-6)
+РАСХОДИТСЯ  N6 `\b` в закрывающем теге — </style-x> обрывает инлайновый <style>
+    база     EXIT=1      showcase/components.html:29 — сказано, что в ui/ нет tablet:px-6, а в ui/ есть: tablet:px-6 (ui/layout.css:163) |       клауза: «В ui/ нет ни одного tablet:px-6.» |     showcase/components.css:705 — сказано «только phone:», а в ui/ подняты и small-phone: (small-phone:text-center); tablet: (tablet:px-6)
+    мутация  EXIT=1  —
+РАСХОДИТСЯ  N7 трекинг вписан константой — изменение letter-spacing в ui/ не краснеет
+    база     EXIT=1      showcase/components.html:896 — «трекинг −0.5px» — величина scale.tracking: заявлено 0.5, разбор ui/ даёт 0.25 |     showcase/components.html:900 — «трекинг −0.5px» — величина scale.tracking: заявлено 0.5, разбор ui/ даёт 0.25 |     showcase/components.html:904 — «трекинг −0.5px» — величина scale.tracking: заявлено 0.5, разбор ui/ даёт 0.25 |     showcase/components.html:908 — «трекинг −0.5px» — величина scale.tracking: заявлено 0.5, разбор ui/ даёт 0.25 |     showcase/components.html:912 — «трекинг −0.5px» — величина scale.tracking: заявлено 0.5, разбор ui/ даёт 0.25 |     showcase/components.html:937 — «трекинг −0.5px» — величина scale.tracking: заявлено 0.5, разбор ui/ даёт 0.25 |     showcase/components.html:1126 — «letter-spacing:-.5px» — величина scale.tracking: заявлено 0.5, разбор ui/ даёт 0.25
+    мутация  EXIT=1  —

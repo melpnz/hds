@@ -569,6 +569,74 @@ const REAL_LAYOUT_CSS_COMMENT_BUG = `/* ----------------------------------------
 .relative{position:relative}
 `;
 
+probe('R2-bulk: класс с & в имени приходит из HTML сущностью и обязан декодироваться', {
+  // Произвольный вариант Tailwind вида [&>*:first-child]:!m-0 в атрибуте
+  // class обязан быть записан как [&amp;&gt;*:first-child]:!m-0 — этого
+  // требует HTML. В CSS-селекторе класс пишется настоящим именем. Пока
+  // значение атрибута не декодировалось, такой класс не совпадал ни с чем
+  // в ui/ и объявлялся неопределённым при живом правиле. Найдено bulk-
+  // проходом R2-bulk на разметке PromoCard.
+  fixtureOpts: {
+    uiFiles: {
+      'courses.css': String.raw`.\[\&\>\*\:first-child\]\:\!m-0>:first-child{margin:0 !important}` + '\n',
+    },
+    specFiles: {
+      'entities/promo-card.md': [
+        '# PromoCard',
+        '',
+        '```html',
+        '<div class="[&amp;&gt;*:first-child]:!m-0">x</div>',
+        '```',
+        '',
+      ].join('\n'),
+    },
+  },
+  expectCode: 0,
+  expectNotContains: ['Классы без определения'],
+});
+
+probe('R2-bulk (контроль): декодирование не прикрывает настоящий пробел', {
+  // Обратная сторона той же правки: если правила действительно нет,
+  // класс обязан быть назван — и назван декодированным именем, тем самым,
+  // которое надо искать в ui/.
+  fixtureOpts: {
+    specFiles: {
+      'entities/promo-card.md': [
+        '# PromoCard',
+        '',
+        '```html',
+        '<div class="[&amp;&gt;*:first-child]:!m-0">x</div>',
+        '```',
+        '',
+      ].join('\n'),
+    },
+  },
+  expectCode: 1,
+  expectContains: ['[&>*:first-child]:!m-0'],
+});
+
+probe('R2-bulk: комментарий, закрытый раньше времени, не падает — а молча делает из прозы селектор', {
+  // Второй случай того же дефекта. В ui/layout.css он валил парсер, а в
+  // ui/tokens-figma.css (шапка с путём `effect/drop shadow */*`) парсер
+  // не упал: комментарий закрылся на */, остаток абзаца стал «правилом»
+  // с кириллическим селектором, и :root файла со 141 переменной пропал
+  // целиком — тихо. Кириллица в позиции селектора невозможна ни в одном
+  // классе продукта, и это ровно та улика, по которой дефект виден.
+  fixtureOpts: {
+    uiFiles: {
+      'tokens-figma.css': [
+        '/* Шапка слоя.',
+        '   Составляющие ниже по отдельности (effect/drop shadow */*), а сборка —',
+        '   дело компонента. */',
+        ':root { --fig-x: 1px; }',
+        '',
+      ].join('\n'),
+    },
+  },
+  expectCode: 1,
+  expectContains: ['проза в позиции селектора'],
+});
+
 probe('PARSE-ERROR: комментарий с преждевременным "*/" внутри (реальный дефект ui/layout.css)', {
   fixtureOpts: {
     uiFiles: { 'broken.css': REAL_LAYOUT_CSS_COMMENT_BUG },

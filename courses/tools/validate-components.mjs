@@ -329,6 +329,46 @@ function classNamesInCapturedDom() {
   return domClassNames;
 }
 
+// Снятый Storybook — такая же снятая разметка, как прод-страницы, только
+// другого источника. Записи sourceScope: storybook-only в прод-DOM не
+// встречаются вовсе (их классы там проверены и отсутствуют), и до этой
+// функции единственным корнем для них оставалось введённое имя crs-<id> —
+// при том, что настоящий корень у них есть и снят: .base-checkbox у
+// BaseCheckbox, .wrapper у MultiSelect. Разделение источников сохраняется:
+// эта разметка годится в корень только записи, которая сама объявила себя
+// storybook-only, и не смешивается с прод-разметкой (R2-bulk).
+// Сколько узлов такого тега стоит в снятой разметке. Нужно корню вида
+// `element:<тег>`: тег, которого в снятом DOM нет, корнем быть не может
+// так же, как несуществующий класс.
+const elementCounts = new Map();
+function elementCountInCapturedDom(tag) {
+  if (elementCounts.has(tag)) return elementCounts.get(tag);
+  let n = 0;
+  const re = new RegExp(`<${tag}(?=[\\s/>])`, "gi");
+  for (const page of capturedPages) {
+    const file = path.join(pagesDir, page, "dom.html");
+    if (!fs.existsSync(file)) continue;
+    n += (fs.readFileSync(file, "utf8").match(re) || []).length;
+  }
+  elementCounts.set(tag, n);
+  return n;
+}
+
+let storybookClassNames = null;
+const storybookRenderedDir = path.join(packageDir, "evidence/source/storybook/rendered");
+function classNamesInCapturedStorybook() {
+  if (storybookClassNames) return storybookClassNames;
+  storybookClassNames = new Set();
+  if (!fs.existsSync(storybookRenderedDir)) return storybookClassNames;
+  for (const file of fs.readdirSync(storybookRenderedDir).filter((f) => f.endsWith(".html"))) {
+    const html = fs.readFileSync(path.join(storybookRenderedDir, file), "utf8");
+    for (const attribute of html.matchAll(/class="([^"]*)"/g)) {
+      for (const token of attribute[1].split(/\s+/)) if (token) storybookClassNames.add(token);
+    }
+  }
+  return storybookClassNames;
+}
+
 // Правило conventions.cssRoot, проверяемое механически: корень — либо класс,
 // который действительно стоит в снятой разметке, либо введённое пакетом имя
 // crs-<id>. Подстрочного совпадения мало: `svg` находится внутри `.svg-icon`.
@@ -345,6 +385,22 @@ for (const match of cssWithoutImports.matchAll(/\.((?:[\w-]|\\.)+)/g)) {
   const name = match[1].replaceAll(/\\(.)/g, "$1");
   if (/^-?\d/.test(name)) continue;
   cssSelectorNames.add(name);
+}
+
+// Элементные селекторы слоя: имена тегов, на которых у продукта висит
+// собственное правило. Нужны для корня вида `element:<тег>` — см. правило
+// conventions.cssRoot. Ищется тег в начале селектора, за которым сразу идёт
+// `{`, запятая, псевдокласс или потомок: так `a{…}` и `a:hover{…}` считаются,
+// а `.svg-icon` не делает элементом `svg` и `nav a` не делает корнем `nav`.
+const cssElementNames = new Set();
+for (const block of cssWithoutImports.split("}")) {
+  const head = block.slice(block.lastIndexOf(";") + 1);
+  const selector = head.slice(0, head.indexOf("{"));
+  if (!selector || head.indexOf("{") < 0) continue;
+  for (const part of selector.split(",")) {
+    const m = /^\s*([a-z][a-z0-9]*)\s*(?::[a-z-]+(?:\([^)]*\))?)?\s*$/i.exec(part);
+    if (m) cssElementNames.add(m[1].toLowerCase());
+  }
 }
 
 // Разбор селектора без браузера: проверить, что он вообще селектор, и достать
@@ -867,9 +923,52 @@ for (const component of manifest.components ?? []) {
     // Единственное соглашение пакета, которое несёт решение, а не выводится
     // из id: корень — либо снятое имя, либо помеченное новое. Без этой
     // проверки корнем проходило что угодно, включая имена витрины.
+    // Третья форма корня — элементная: `element:<тег>`. Заведена на R2-bulk
+    // для Link. У него 867 узлов `<a>`, ни одного без класса, но общего
+    // класса нет — самый частый стоит на 42.9%; при этом правило продукта
+    // висит именно на теге (`a{color:var(--color-links-main)}`,
+    // `a:hover{text-decoration:underline}`, принято R0-03). Классовый корень
+    // тут не выдумать: `crs-link` пришлось бы дать объявления, и они стали бы
+    // вторым носителем тех же значений — ровно тот дефект, ради которого
+    // заведён гейт витрины. Форма записывается явно, а не голым именем тега:
+    // `a` неотличимо от класса с тем же именем.
+    // Четвёртая форма — библиотечная: `vendor:<класс>`. Заведена на R2-bulk
+    // решением владельца для Carousel. Её смысл обратный обычному: корень
+    // принадлежит чужому слою, который пакет намеренно НЕ поднимает
+    // (решение R0-02 про Swiper), и правила в ui/ у него быть не должно.
+    // Запись с таким корнем документирует делегирование: продукт отдаёт
+    // поведение библиотеке, и пакет говорит об этом прямо, а не делает вид,
+    // что собрал компонент сам.
+    const vendorMatch = /^vendor:((?:[\w-]|\\.)+)$/.exec(cssRoot);
+    if (vendorMatch) {
+      const cls = vendorMatch[1].replaceAll(/\\(.)/g, "$1");
+      if (!classNamesInCapturedDom().has(cls)) {
+        errors.push(issue(target, `vendor CSS root not found in captured DOM: ${cssRoot}`));
+      }
+      if (cssSelectorNames.has(cls)) {
+        errors.push(issue(target, `vendor CSS root is declared in ui/ — then it is not vendor: ${cssRoot}`));
+      }
+      continue;
+    }
+    const elementMatch = /^element:([a-z][a-z0-9]*)$/i.exec(cssRoot);
+    if (elementMatch) {
+      const tag = elementMatch[1].toLowerCase();
+      if (!cssElementNames.has(tag)) {
+        errors.push(issue(target, `element CSS root has no element rule in ui/: ${cssRoot}`));
+      }
+      if (capturedPages.size && !elementCountInCapturedDom(tag)) {
+        errors.push(issue(target, `element CSS root not found in captured DOM: ${cssRoot}`));
+      }
+      continue;
+    }
     const introduced = cssRoot === `crs-${component.id}`;
     const captured = classNamesInCapturedDom().has(cssRoot);
-    if (!introduced && !captured) {
+    // Снятый Storybook засчитывается корнем только записи, которая сама
+    // объявила себя storybook-only: у прод-записи корень обязан стоять
+    // в прод-разметке, и послабление сюда не протекает.
+    const capturedInStorybook = component.sourceScope === "storybook-only"
+      && classNamesInCapturedStorybook().has(cssRoot);
+    if (!introduced && !captured && !capturedInStorybook) {
       errors.push(
         issue(
           target,

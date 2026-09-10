@@ -88,11 +88,19 @@ for (const file of existing) {
   for (const match of source.matchAll(REF_PATTERN)) {
     checked += 1;
     const ref = match[1];
-    if (EXTERNAL_HOST.test(ref)) {
+    // Хост ищется только в пути, до `?query` и `#fragment`. Прежде проверялся
+    // весь атрибут целиком, и локальная ссылка на символ спрайта, чей id —
+    // доменное имя (`../ui/assets/icons/external-profile.svg#career.habr.com`,
+    // ссылки на профили во внешних сетях), объявлялась внешним хостом. Это
+    // был ложный красный: файл лежит в ui/assets/, наружу не ходит ничего,
+    // а совпало имя фрагмента. Поймано bulk-проходом R2-bulk на PersonCard
+    // и PersonHeader — первых записях, у которых такой символ появился.
+    const refPath = ref.split(/[?#]/)[0];
+    if (EXTERNAL_HOST.test(refPath)) {
       externalRefs.push(`${file}: ${ref}`);
       continue;
     }
-    if (!ref.includes('ui/assets/')) {
+    if (!refPath.includes('ui/assets/')) {
       // Не внешний хост, но и не ui/assets/ — например, забытый
       // сайт-абсолютный прод-путь (`/courses-web/images/sprites/sprite.svg`)
       // без хоста вообще: на витрине, поднятой tools/serve.mjs, такой путь
@@ -101,8 +109,7 @@ for (const file of existing) {
       unlocalizedRefs.push(`${file}: ${ref}`);
       continue;
     }
-    const assetPath = ref.split(/[?#]/)[0];
-    const resolved = path.resolve(path.dirname(file), assetPath);
+    const resolved = path.resolve(path.dirname(file), refPath);
     if (!fs.existsSync(resolved)) missingFiles.push(`${file}: ${ref} → ${path.relative('.', resolved)}`);
   }
 }

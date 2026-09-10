@@ -31,7 +31,14 @@
  *      «ничего не нашли» и «нечего искать» выглядят одинаково.
  *
  *   4. ВИДЫ НАХОДОК — по красной и зелёной пробе на каждый вид, включая
- *      числа (X-90) в обеих формах записи: прозой и `data-claim`.
+ *      числа в обеих формах записи: прозой и `data-claim`.
+ *
+ *   5. НАХОДКИ review-1 — по пробе на каждую находку первого ревью.
+ *      Ревью показало, что три из них не покрыты ни одной пробой вовсе:
+ *      мутация «снять фильтр разметки» и правка «кириллическая граница
+ *      в списке исключений» не роняли ни одной пробы из 51. Дефект,
+ *      не покрытый пробой, возвращается молча — поэтому у каждой
+ *      находки здесь своя красная проба и свой зелёный близнец.
  *
  * Запуск: node tools/validate-showcase-claims.selftest.mjs
  * Код возврата: 0 — все пробы дали ожидаемое; 1 — хотя бы одна разошлась.
@@ -137,8 +144,8 @@ function fixture({ ui = UI_THREE, html = null, css = null, manifest = null, file
   return root;
 }
 
-function run(root) {
-  const result = spawnSync(process.execPath, [scriptPath], {
+function run(root, args = []) {
+  const result = spawnSync(process.execPath, [scriptPath, ...args], {
     cwd: root,
     encoding: 'utf8',
     env: { ...process.env, NO_COLOR: '1' },
@@ -148,9 +155,9 @@ function run(root) {
 
 const results = [];
 
-function probe(name, { fixtureOpts, expectCode, expectContains = [], expectNotContains = [] }) {
+function probe(name, { fixtureOpts, args = [], expectCode, expectContains = [], expectNotContains = [] }) {
   const root = fixture(fixtureOpts);
-  const { code, output } = run(root);
+  const { code, output } = run(root, args);
   const problems = [];
   if (code !== expectCode) problems.push(`код возврата ${code}, ожидался ${expectCode}`);
   for (const needle of expectContains) {
@@ -509,6 +516,31 @@ probe('claim-quantity green: то же число, посчитанное вер
   expectCode: 0,
 });
 
+probe('R2-bulk: слой макета --fig-* не входит в счёт продуктовых переменных', {
+  // Появление ui/tokens-figma.css (141 переменная --fig-*) превращало
+  // «4 переменные :root» в «145» и роняло верные утверждения витрины разом.
+  // Слои различает префикс, и он взят именно для этого.
+  fixtureOpts: {
+    ui: { ...UI_THREE, 'tokens-figma.css': ':root{--fig-a:1px;--fig-b:#fff;--fig-c:2px}\n' },
+    html: page('<p>4 переменные :root.</p>'),
+    css: '.doc-x{color:#000}\n',
+  },
+  expectCode: 0,
+});
+
+probe('R2-bulk (контроль): счёт продуктовых переменных по-прежнему строгий', {
+  // Обратная сторона: исключение --fig-* не должно смягчать проверку —
+  // неверное число продуктовых переменных обязано ловиться как раньше,
+  // даже когда слой макета лежит рядом.
+  fixtureOpts: {
+    ui: { ...UI_THREE, 'tokens-figma.css': ':root{--fig-a:1px;--fig-b:#fff;--fig-c:2px}\n' },
+    html: page('<p>7 переменных :root.</p>'),
+    css: '.doc-x{color:#000}\n',
+  },
+  expectCode: 1,
+  expectContains: ['vars.total', 'заявлено 7', 'разбор ui/ даёт 4'],
+});
+
 probe('claim-quantity: пометки переменных ([NO MARKUP] / [UNREFERENCED] / [RUNTIME])', {
   fixtureOpts: {
     html: page(`<dl><div><dt>unreferenced</dt><dd>7</dd></div>
@@ -578,6 +610,265 @@ probe('claim-quantity green: невыводимая величина не даё
     css: '.doc-x{color:#000}\n',
   },
   expectCode: 0,
+});
+
+// =========================================================================
+// 5. НАХОДКИ review-1 — по пробе на каждую, чтобы дефект не вернулся молча
+// =========================================================================
+
+// -- major 1: похожий на тег фрагмент не глушит единицу текста -------------
+// До review-1 `checkUnit` начинался с `if (RE_LOOKS_LIKE_MARKUP.test(...)) return;`
+// и единица выпадала из проверки ЦЕЛИКОМ. Обе пробы ниже — третье и
+// четвёртое исторические проявления, к которым дописан один образец
+// разметки: без правки обе дают «Расхождений нет» и EXIT=0.
+
+probe('major 1: образец разметки в том же комментарии CSS не глушит ложное «только phone:»', {
+  fixtureOpts: {
+    html: page('<p>Раздел ниже.</p>'),
+    css: `/* Разметка лампочки: <li class="doc-bp__row"><span></span></li>.
+   Оболочка воспроизводит условия у себя: в ui/ из шести поднят только phone:. */
+.doc-bp__lamp{color:#000}
+`,
+  },
+  expectCode: 1,
+  expectContains: ['сказано «только phone:»', 'small-phone:', 'tablet:'],
+});
+
+probe('major 1: экранированный тег в том же предложении не глушит число bp.prefixes.ui', {
+  fixtureOpts: {
+    html: page(`<p>Оболочка через <code>&lt;span&gt;</code> воспроизводит их у себя:
+      сам <code>ui/</code> из шести префиксов поднимает только два.</p>`),
+    css: '.doc-x{color:#000}\n',
+  },
+  expectCode: 1,
+  expectContains: ['bp.prefixes.ui', 'заявлено 2', 'разбор ui/ даёт 3'],
+});
+
+probe('major 1: вложенный шаблон (<section id="c-<id>">) гасится целиком, а не наполовину', {
+  fixtureOpts: {
+    html: page('<p>Форма секции.</p>'),
+    css: `/* Форма секции витрины:
+     <section class="doc-section" id="c-<id>"><span class="tablet:px-6"></span></section>
+   Ниже — та же форма живьём. В ui/ подняты phone:, small-phone: и tablet:. */
+.doc-section{color:#000}
+`,
+  },
+  expectCode: 0,
+});
+
+probe('major 1-green: образец разметки сам по себе утверждением не становится', {
+  fixtureOpts: {
+    html: page(`<p>Так выглядит секция:</p>
+      <pre><code>&lt;div class="doc-x"&gt;&lt;span class="text-ui-yellow-500"&gt;&lt;/span&gt;&lt;/div&gt;</code></pre>`),
+    css: '.doc-x{color:#000}\n',
+  },
+  expectCode: 0,
+});
+
+// -- major 2: кириллическая граница слова в списке исключений --------------
+// `\bв\s+том\s+числе\b` был мёртв: ASCII-`\b` не совпадает ни перед «в»,
+// ни после «числе». Из-за этого оборот не обрывал список исключений,
+// и всё, названное после него, считалось исключением из отрицания.
+
+probe('major 2: «кроме px-6 в том числе small-phone:text-center» без запятой — находка есть', {
+  fixtureOpts: {
+    html: page(`<p>В <code>ui/</code> не раскрывается ни одна утилита, кроме
+      <code>px-6</code> в том числе <code>small-phone:text-center</code>.</p>`),
+    css: '.doc-x{color:#000}\n',
+  },
+  expectCode: 1,
+  expectContains: ['нет small-phone:text-center', 'ui/utilities.css'],
+});
+
+probe('major 2: та же форма с запятой — та же находка', {
+  fixtureOpts: {
+    html: page(`<p>В <code>ui/</code> не раскрывается ни одна утилита, кроме
+      <code>px-6</code>, в том числе <code>small-phone:text-center</code>.</p>`),
+    css: '.doc-x{color:#000}\n',
+  },
+  expectCode: 1,
+  expectContains: ['нет small-phone:text-center'],
+});
+
+probe('major 2-green: названное до оборота остаётся исключением', {
+  fixtureOpts: {
+    html: page(`<p>В <code>ui/</code> не раскрывается ни одна утилита, кроме
+      <code>px-6</code> в том числе <code>tablet:flex</code>.</p>`),
+    css: '.doc-x{color:#000}\n',
+  },
+  expectCode: 0,
+});
+
+// -- major 3: величины, выводимые из ui/, обязаны выводиться ---------------
+// Кегли ступеней, трекинг, начертания и граница шкалы стояли на витрине
+// числами, а правила для них не было; `--census` печатал только опознанное
+// и потому неполноту не показывал.
+
+const UI_TYPO = {
+  ...UI_THREE,
+  'typo.css': `.text-h1,.text-h2{letter-spacing:-.5px}
+.font-normal{font-weight:400}
+.font-bold{font-weight:700}
+`,
+};
+
+const pairs = rows => page(`<dl>${rows.map(([dt, dd]) => `<div><dt>${dt}</dt><dd>${dd}</dd></div>`).join('')}</dl>`);
+
+probe('major 3: ряд кеглей ступеней сверяется целиком', {
+  fixtureOpts: { ui: UI_TYPO, html: pairs([['кегль', '44 · 22']]), css: '.doc-x{color:#000}\n' },
+  expectCode: 1,
+  expectContains: ['scale.sizes', 'заявлено 44 · 22', 'разбор ui/ даёт 44 · 24'],
+});
+
+probe('major 3-green: тот же ряд с настоящими кеглями ui/', {
+  fixtureOpts: { ui: UI_TYPO, html: pairs([['кегль', '44 · 24']]), css: '.doc-x{color:#000}\n' },
+  expectCode: 0,
+});
+
+probe('major 3: трекинг и число заголовочных ступеней', {
+  fixtureOpts: { ui: UI_TYPO, html: pairs([['трекинг', '−1px у пяти заголовочных']]), css: '.doc-x{color:#000}\n' },
+  expectCode: 1,
+  expectContains: ['scale.tracking', 'заявлено 1', 'scale.tracked', 'заявлено 5'],
+});
+
+probe('major 3-green: трекинг и число заголовочных, выведенные из ui/', {
+  fixtureOpts: { ui: UI_TYPO, html: pairs([['трекинг', '−0.5px у двух заголовочных']]), css: '.doc-x{color:#000}\n' },
+  expectCode: 0,
+});
+
+probe('major 3: начертания — и счёт, и сам ряд весов', {
+  fixtureOpts: { ui: UI_TYPO, html: pairs([['начертаний', '3 — 400 · 600 · 700']]), css: '.doc-x{color:#000}\n' },
+  expectCode: 1,
+  expectContains: ['weights.count', 'заявлено 3', 'weights.list', 'разбор ui/ даёт 400 · 700'],
+});
+
+probe('major 3-green: начертания, выведенные из ui/', {
+  fixtureOpts: { ui: UI_TYPO, html: pairs([['начертаний', '2 — 400 · 700']]), css: '.doc-x{color:#000}\n' },
+  expectCode: 0,
+});
+
+probe('major 3: граница, на которой шкала зависит от ширины', {
+  fixtureOpts: { ui: UI_TYPO, html: pairs([['граница', '766 / 767']]), css: '.doc-x{color:#000}\n' },
+  expectCode: 1,
+  expectContains: ['scale.edge', 'заявлено 766 · 767', 'разбор ui/ даёт 767 · 768'],
+});
+
+probe('major 3-green: та же граница, выведенная из медиазапроса ui/', {
+  fixtureOpts: { ui: UI_TYPO, html: pairs([['граница', '767 / 768']]), css: '.doc-x{color:#000}\n' },
+  expectCode: 0,
+});
+
+probe('major 3: перепись показывает числа, для которых правила нет', {
+  fixtureOpts: {
+    ui: UI_TYPO,
+    html: page('<p>Вхождений всего 2062 на 10 из 10 страниц.</p>'),
+    css: '.doc-x{color:#000}\n',
+  },
+  args: ['--census'],
+  expectCode: 0,
+  expectContains: ['Числа витрины, для которых правила нет', '2062', 'без правила'],
+});
+
+// -- minor 4: список брейкпоинтных префиксов берётся из реестра ------------
+
+const MANIFEST_SIX = {
+  breakpoints: {
+    prefixes: {
+      'small-phone:': 1, 'phone:': 1, 'phablet-and-tablet:': 1,
+      'tablet-only:': 1, 'tablet:': 1, 'desktop:': 1,
+    },
+  },
+};
+const MANIFEST_SEVEN = {
+  breakpoints: { prefixes: { ...MANIFEST_SIX.breakpoints.prefixes, 'wide:': 1 } },
+};
+const UI_WIDE = {
+  ...UI_THREE,
+  'wide.css': '@media (min-width:1440px){.wide\\:px-8{padding-left:2rem}}\n',
+};
+
+probe('minor 4: седьмой префикс реестра с живым классом ui/ виден разбору', {
+  fixtureOpts: {
+    ui: UI_WIDE,
+    html: page('<p>Из шести префиксов сам <code>ui/</code> поднимает три.</p>'),
+    css: '.doc-x{color:#000}\n',
+    manifest: MANIFEST_SEVEN,
+  },
+  expectCode: 1,
+  expectContains: ['bp.prefixes.ui', 'заявлено 3', 'разбор ui/ даёт 4'],
+});
+
+probe('minor 4-green: тот же слой при реестре из шести префиксов', {
+  fixtureOpts: {
+    ui: UI_WIDE,
+    html: page('<p>Из шести префиксов сам <code>ui/</code> поднимает три.</p>'),
+    css: '.doc-x{color:#000}\n',
+    manifest: MANIFEST_SIX,
+  },
+  expectCode: 0,
+});
+
+// -- minor 5: адрес проверяется при любой полярности клаузы ----------------
+
+probe('minor 5: неверный адрес внутри отрицания с исключением', {
+  fixtureOpts: {
+    html: page(`<p>В <code>ui/</code> не раскрывается ни одна утилита, кроме
+      <code>tablet:px-6</code> (<code>ui/layout.css</code>, строка 999).</p>`),
+    css: '.doc-x{color:#000}\n',
+  },
+  expectCode: 1,
+  expectContains: ['названо место ui/layout.css:999'],
+});
+
+probe('minor 5: неверный адрес внутри перечисления «только …»', {
+  fixtureOpts: {
+    html: page(`<p>Сам <code>ui/</code> поднимает только <code>phone:</code>,
+      <code>small-phone:</code> и <code>tablet:</code> (<code>ui/layout.css</code>, строка 999).</p>`),
+    css: '.doc-x{color:#000}\n',
+  },
+  expectCode: 1,
+  expectContains: ['названо место ui/layout.css:999'],
+});
+
+probe('minor 5-green: тот же адрес, названный верно', {
+  fixtureOpts: {
+    html: page(`<p>Сам <code>ui/</code> поднимает только <code>phone:</code>,
+      <code>small-phone:</code> и <code>tablet:</code> (<code>ui/layout.css</code>, строка 7).</p>`),
+    css: '.doc-x{color:#000}\n',
+  },
+  expectCode: 0,
+});
+
+// -- minor 6: цитата прошлого утверждения не является утверждением ---------
+
+probe('minor 6-green: цитата исправленного ложного утверждения не краснеет', {
+  fixtureOpts: {
+    html: page(`<p>До R0-08 витрина утверждала: «в <code>ui/</code> из шести поднят
+      только <code>phone:</code>» — это было ложно.</p>`),
+    css: '.doc-x{color:#000}\n',
+  },
+  expectCode: 0,
+});
+
+probe('minor 6: то же предложение без глагола цитирования — находка', {
+  fixtureOpts: {
+    html: page(`<p>Правило витрины: «в <code>ui/</code> из шести поднят
+      только <code>phone:</code>».</p>`),
+    css: '.doc-x{color:#000}\n',
+  },
+  expectCode: 1,
+  expectContains: ['сказано «только phone:»'],
+});
+
+probe('minor 6: гасится цитата, а не проза вокруг неё', {
+  fixtureOpts: {
+    html: page(`<p>Витрина утверждала: «в <code>ui/</code> поднят только
+      <code>phone:</code>», и сегодня в <code>ui/</code> нет
+      <code>tablet:px-6</code>.</p>`),
+    css: '.doc-x{color:#000}\n',
+  },
+  expectCode: 1,
+  expectContains: ['нет tablet:px-6, а в ui/ есть'],
 });
 
 // -- вырожденные случаи ----------------------------------------------------

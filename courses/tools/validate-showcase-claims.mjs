@@ -115,15 +115,25 @@
  *   claim-positive     клауза о `ui/` называет сущность, которой в `ui/` нет
  *   claim-location     клауза называет файл и строку `ui/`, а правило
  *                      объявлено не там
- *   claim-quantity     число, названное клаузой, не сходится с числом,
- *                      выведенным из разбора `ui/` (таблица QUANTITIES —
- *                      она же закрывает X-90)
+ *   claim-quantity     число или ряд чисел, названные клаузой, не сходятся
+ *                      с выведенным из разбора `ui/` (таблицы QUANTITIES
+ *                      и SERIES)
  *   claim-unscoped     отрицательное утверждение о названной сущности,
  *                      у которого не назван слой: непроверяемо в принципе,
  *                      и это ровно форма X-73 («в корпусе не встречается»)
  *
- * ЧИСЛА И X-90. Числа раздела «Основания» сторожит этот гейт, а не
- * `validate-counts.mjs`. Обоснование — в `.pipeline/R0-08/capture.md` §5;
+ * ЧИСЛА И X-90. Числа раздела «Основания», ВЫВОДИМЫЕ ИЗ РАЗБОРА `ui/`,
+ * сторожит этот гейт, а не `validate-counts.mjs`. Граница названа точно,
+ * потому что review-1 показал: «закрывает X-90» было шире доказанного.
+ * X-90 перечисляет и числа о корпусе прода — 2062 вхождения, покрытия
+ * фокуса 191 / 29 / 10 / 1034 из 1264, — а они из `ui/` не выводятся
+ * ни при каком расширении таблицы: их источник другой (X-96, X-101).
+ * Что именно сверено и что осталось без правила, печатает `--census`
+ * двумя списками и одной итоговой строкой; список «числа, для которых
+ * правила нет» заведён именно затем, чтобы неполноту было видно
+ * глазами, а не выводить её из кода.
+ *
+ * Обоснование выбора гейта — в `.pipeline/R0-08/capture.md` §5;
  * коротко: `validate-counts` сверяет одно и то же число между текстами
  * («в семи местах написано 51»), а эти числа обязаны сверяться
  * с **разбором `ui/`**, которого у `validate-counts` нет и который туда
@@ -140,6 +150,13 @@
  * целиком, вместе с выведенным значением, чтобы её можно было прочесть
  * глазами, а не выводить из кода.
  *
+ * Ряд чисел («кегль 44 · 30 · … · 10», «начертаний 400 · 600 · 700»,
+ * «граница 767 / 768») одним числом не проверяется и потому вынесен
+ * в таблицу SERIES: сверяется весь ряд целиком и по порядку. Ряд привязан
+ * к ярлыку пары `<dt>/<dd>`, а не ищется по прозе — список чисел без
+ * ярлыка неотличим от перечисления ширин съёмки, и правило по прозе
+ * давало бы шум вместо проверки (названный предел, X-101).
+ *
  * Запуск:
  *   node tools/validate-showcase-claims.mjs            # проверка
  *   node tools/validate-showcase-claims.mjs --census   # + перепись всего,
@@ -151,7 +168,17 @@
  * Регрессия — `tools/validate-showcase-claims.selftest.mjs`, куда входят
  * все четыре исторических проявления красными пробами на копиях пакета
  * и симметричные зелёные, плюс пробы на форму текста (CRLF, висячий
- * пробел, незакрытый тег, незакрытый комментарий).
+ * пробел, незакрытый тег, незакрытый комментарий) и отдельная группа
+ * на каждую находку review-1.
+ *
+ * ЧЕГО ГЕЙТ НЕ ЧИТАЕТ — названные пределы, каждый со строкой долга.
+ * Положительное утверждение без названного слоя (X-95). Утверждения
+ * о корпусе прода и о покрытиях по снятым страницам (X-96, X-101).
+ * Число, стоящее правее отрицания в той же клаузе (X-98). Носители вне
+ * `showcase/` — `docs/guide/`, спецификации `components/` и `tools/README.md`
+ * (X-99). Закавыченный кусок после глагола цитирования: цитата прошлого
+ * утверждения утверждением витрины не считается, и `--census` печатает
+ * каждую такую цитату отдельным списком.
  */
 import fs from 'node:fs';
 import path from 'node:path';
@@ -299,6 +326,9 @@ for (const file of uiCssFiles) {
         file,
         line: node.source && node.source.start ? node.source.start.line : 0,
         marker,
+        // Значение нужно для величин, которые сверяют не количество, а само
+        // число: цвета слоя макета и их совпадение с продуктовыми токенами.
+        value: (node.value || '').trim(),
       });
     });
   });
@@ -313,10 +343,45 @@ if (parseErrors.length) {
 }
 
 // =========================================================================
-// 2. Величины, выведенные из разбора ui/ (закрывают X-90)
+// 2. Величины, выведенные из разбора ui/ (числа, выводимые из ui/)
 // =========================================================================
 
-const BP_PREFIXES = ['small-phone', 'phone', 'phablet-and-tablet', 'tablet-only', 'tablet', 'desktop'];
+// Какие префиксы вообще считаются брейкпоинтными — решает реестр, а не
+// список в коде. До review-1 список был зашит шестёркой, а число
+// `bp.prefixes.total` при этом читалось из `components/manifest.json`:
+// седьмой префикс реестра с живым классом в `ui/` гейт не видел вовсе,
+// краснело только «шесть», и то лишь потому, что так написано в витрине.
+//
+// Вывести список прямо из `ui/` нельзя: префикс в имени класса — это не
+// только брейкпоинт (`hover:no-underline`, `peer-checked:bg-chip-press`,
+// `focus:bg-ui-black-50` объявлены в том же слое). Что из них брейкпоинт,
+// знает только реестр. Поэтому источник — реестр, а зашитый список
+// остаётся аварийным запасом на случай пакета без реестра, и `--census`
+// печатает, откуда список взят.
+const BP_PREFIXES_FALLBACK = ['small-phone', 'phone', 'phablet-and-tablet', 'tablet-only', 'tablet', 'desktop'];
+
+function manifestPrefixNames() {
+  const file = 'components/manifest.json';
+  if (!fs.existsSync(file)) return null;
+  try {
+    const m = JSON.parse(fs.readFileSync(file, 'utf8'));
+    const p = m && m.breakpoints && m.breakpoints.prefixes;
+    if (!p) return null;
+    const names = Object.keys(p)
+      .map(k => k.replace(/:$/, ''))
+      .filter(k => /^[a-z][a-z0-9-]*$/.test(k));
+    return names.length ? names : null;
+  } catch {
+    return null;
+  }
+}
+
+const BP_PREFIXES_SOURCE = manifestPrefixNames();
+// Длинные вперёд: иначе `tablet` в перечислении альтернатив съедает
+// `tablet-only`, и класс уезжает не в тот префикс.
+const BP_PREFIXES = (BP_PREFIXES_SOURCE || BP_PREFIXES_FALLBACK)
+  .slice()
+  .sort((a, b) => b.length - a.length || a.localeCompare(b));
 
 // Ступени типографической шкалы — те `.text-*`, что объявляют и font-size,
 // и line-height одним правилом (это и есть определение ступени в
@@ -381,9 +446,83 @@ function manifestPrefixCount() {
   }
 }
 
+// Кегли ступеней шкалы, по убыванию: «44 · 30 · 24 · 20 · 18 · 16 · 14 · 12 · 10».
+function scaleSizes(steps) {
+  const out = [];
+  for (const name of steps) {
+    const px = lengthOf(name, 'font-size');
+    if (px !== null) out.push(px);
+  }
+  return [...new Set(out)].sort((a, b) => b - a);
+}
+
+// Трекинг ступеней: сколько ступеней его получают и какой величины.
+// Величина берётся модулем: витрина пишет «−0.5px», CSS — «-.5px».
+function scaleTracking(steps) {
+  const names = new Set();
+  const values = new Set();
+  for (const d of ui.decls) {
+    if (d.prop !== 'letter-spacing') continue;
+    const hit = selectorClasses(d.selector).filter(n => steps.has(n));
+    if (!hit.length) continue;
+    for (const n of hit) names.add(n);
+    values.add(d.value.trim());
+  }
+  let px = null;
+  if (values.size === 1) {
+    const m = /^(-?[\d.]+)px$/.exec([...values][0]);
+    if (m) px = Math.abs(Number(m[1]));
+  }
+  return { count: names.size, px };
+}
+
+// Начертания: значения font-weight у утилит `.font-*` слоя. `@font-face`
+// сюда не попадает — walkRules по at-rule не ходит, и ось переменного
+// файла (100 900) начертанием продукта не является.
+function fontWeights() {
+  const vals = new Set();
+  for (const d of ui.decls) {
+    if (d.prop !== 'font-weight') continue;
+    if (!selectorClasses(d.selector).some(n => /^font-/.test(n))) continue;
+    const v = d.value.trim();
+    if (/^\d+$/.test(v)) vals.add(Number(v));
+  }
+  return [...vals].sort((a, b) => a - b);
+}
+
+// Граница, на которой шкала зависит от ширины: max-width того медиазапроса,
+// в котором объявлена префиксная ступень (`phone:text-h1-mobile`).
+// Витрина пишет её парой «767 / 768» — вторая половина это первая плюс один.
+function scaleMediaEdge(steps) {
+  const maxes = new Set();
+  for (const [name, places] of ui.classes) {
+    const bare = name.includes(':') ? name.split(':').pop() : name;
+    if (!steps.has(bare)) continue;
+    for (const pl of places) {
+      for (const q of pl.media) {
+        const m = /max-width\s*:\s*(\d+)px/i.exec(q);
+        if (m) maxes.add(Number(m[1]));
+      }
+    }
+  }
+  return maxes.size === 1 ? [...maxes][0] : null;
+}
+
 const prefClasses = prefixedUiClasses();
 const steps = scaleSteps();
-const vars = [...ui.vars.entries()];
+// Продуктовый слой токенов и справочный слой макета — разные пространства,
+// и величины раздела «Оснований» говорят о первом. Их различает префикс:
+// продукт объявляет --color-*, --header-height и прочее, макет — только
+// --fig-* (ui/tokens-figma.css, R2-bulk), и префикс там взят именно затем,
+// чтобы слои не смешивались. Пока разделения не было, появление слоя макета
+// превращало «51 переменная :root» в «192» и роняло четыре верных
+// утверждения витрины разом — при том, что о слое макета они не говорят.
+// Если понадобится сверять утверждения о самом слое макета, для них нужна
+// своя величина, а не размывание этой.
+const FIGMA_VAR = /^--fig-/;
+const HEX_RE = /^#[0-9a-f]{3,8}$/i;
+const vars = [...ui.vars.entries()].filter(([name]) => !FIGMA_VAR.test(name));
+const figmaVars = [...ui.vars.entries()].filter(([name]) => FIGMA_VAR.test(name));
 const uiRulePlaces = new Set();
 const uiMedia = new Set();
 for (const c of prefClasses) {
@@ -395,6 +534,18 @@ for (const c of prefClasses) {
 
 const DERIVED = {
   'vars.total': vars.length,
+  'vars.figma': figmaVars.length,
+  // Цвета слоя макета и сколько из них совпало по значению с продуктовым
+  // токеном. Считаются здесь, а не пишутся числом на витрине: иначе число
+  // на странице стало бы вторым носителем — тем самым, ради которого этот
+  // гейт и заведён.
+  'vars.figma.color': figmaVars.filter(([, v]) => HEX_RE.test(v.value || '')).length,
+  'vars.figma.matched': (() => {
+    const prodValues = new Set(vars
+      .map(([, v]) => (v.value || '').toLowerCase())
+      .filter((x) => HEX_RE.test(x)));
+    return figmaVars.filter(([, v]) => HEX_RE.test(v.value || '') && prodValues.has((v.value || '').toLowerCase())).length;
+  })(),
   'vars.color': vars.filter(([n]) => n.startsWith('--color-')).length,
   'vars.noncolor': vars.filter(([n]) => !n.startsWith('--color-')).length,
   'vars.live': vars.filter(([, v]) => v.marker === null).length,
@@ -417,6 +568,31 @@ DERIVED['container.zone'] =
   DERIVED['container.maxWidth'] !== null && DERIVED['container.padding'] !== null
     ? DERIVED['container.maxWidth'] - 2 * DERIVED['container.padding']
     : null;
+
+// Величины раздела «Основания», добавленные по review-1 (major 3): все
+// четыре выводятся из того же разбора ui/, и до правки ни одна из них
+// не имела правила — числа стояли на витрине, а гейт их не читал.
+const TRACKING = scaleTracking(steps);
+DERIVED['scale.tracking'] = TRACKING.px;
+DERIVED['scale.tracked'] = TRACKING.count;
+DERIVED['weights.count'] = fontWeights().length || null;
+DERIVED['scale.mediaMax'] = scaleMediaEdge(steps);
+DERIVED['scale.mediaMin'] =
+  DERIVED['scale.mediaMax'] === null ? null : DERIVED['scale.mediaMax'] + 1;
+
+// Величины-ряды: витрина пишет их списком чисел, а не одним числом
+// («кегль 44 · 30 · … · 10», «начертаний 400 · 600 · 700», «граница
+// 767 / 768»). Сверяются целиком и по порядку.
+const DERIVED_SERIES = {
+  'scale.sizes': scaleSizes(steps),
+  'weights.list': fontWeights(),
+  'scale.edge': DERIVED['scale.mediaMax'] === null
+    ? null
+    : [DERIVED['scale.mediaMax'], DERIVED['scale.mediaMax'] + 1],
+};
+for (const [id, list] of Object.entries(DERIVED_SERIES)) {
+  if (!list || !list.length) DERIVED_SERIES[id] = null;
+}
 
 // Числительные словами — витрина пишет числа и цифрами, и словами
 // («Сорок одна цветовая переменная», «Двадцать шесть живых»), и вторая
@@ -455,8 +631,10 @@ const TENS = new Set([20, 30, 40, 50, 60, 70, 80, 90]);
 
 // «сорок одна» → 41, «двадцать шесть» → 26, «пятьдесят одна» → 51.
 function readNumber(text) {
-  const digits = /^\d+$/.exec(text.trim());
-  if (digits) return Number(digits[0]);
+  // Дробное — только цифрами: «−0.5px» трекинга. Запятая как разделитель
+  // дробной части читается наравне с точкой.
+  const digits = /^(?:\d+(?:[.,]\d+)?|[.,]\d+)$/.exec(text.trim());
+  if (digits) return Number(digits[0].replace(',', '.'));
   const words = text.toLowerCase().trim().split(/\s+/).map(w => NUM_WORDS.get(w));
   if (words.some(w => w === undefined)) return null;
   if (words.length === 1) return words[0];
@@ -478,16 +656,38 @@ const NUM_RE_SRC = '(\\d+|(?:[А-Яа-яЁё]+(?:\\s+[А-Яа-яЁё]+)?))';
  * Строки перебираются сверху вниз, применяется первая подошедшая: более
  * узкие («цветовых», «живых») стоят выше общей («переменных»).
  */
+// Клауза о слое макета (--fig-*, ui/tokens-figma.css) говорит о своих числах,
+// а не о продуктовых. Эти строки стоят выше продуктовых и отбираются по
+// контексту, а продуктовые той же оговоркой слой макета из себя исключают.
+// Без разделения «53 цвета макета» сверялись с 41 цветом ui/tokens.css.
+const FIGMA_CONTEXT = /--fig-|tokens-figma\.css|макет/i;
+
 const QUANTITIES = [
+  {
+    id: 'vars.figma.matched',
+    re: new RegExp(NUM_RE_SRC + `\\s+совпал${W}*`, 'i'),
+    context: FIGMA_CONTEXT,
+  },
+  {
+    id: 'vars.figma.color',
+    re: new RegExp(NUM_RE_SRC + `\\s+цветов${W}*(?:\\s+переменн${W}*)?`, 'i'),
+    context: FIGMA_CONTEXT,
+  },
+  {
+    id: 'vars.figma',
+    re: new RegExp(NUM_RE_SRC + `\\s+переменн${W}*\\s+макета`, 'i'),
+  },
   {
     id: 'vars.color',
     re: new RegExp(NUM_RE_SRC + `\\s+цветов${W}*(?:\\s+переменн${W}*)?`, 'i'),
+    unless: FIGMA_CONTEXT,
   },
   {
     // Обратный порядок — пара <dt>из них цветовых</dt><dd>41</dd>.
     id: 'vars.color',
     re: new RegExp(`цветов${W}*\\s*` + NUM_RE_SRC, 'i'),
     context: /переменн|:root|tokens\.css|палитр/i,
+    unless: FIGMA_CONTEXT,
   },
   {
     id: 'vars.unreferenced',
@@ -578,6 +778,49 @@ const QUANTITIES = [
     re: /padding\s*:\s*0\s+(\d+)\s*px/i,
     context: /контейнер|max-w-\[|1124/i,
   },
+  // --- добавлено по review-1, major 3: выводимое из ui/ обязано выводиться ---
+  {
+    // «трекинг −0.5px», «трекинг = −0.5px у пяти заголовочных».
+    id: 'scale.tracking',
+    // Лоокбихайнд не даёт начать разбор с середины числа: `-.5px`
+    // без него читалось бы как «5px».
+    re: /(?:трекинг|letter-spacing)[^\d\n]{0,14}?(?<![\d.,])(\d+(?:[.,]\d+)?|[.,]\d+)\s*px/i,
+  },
+  {
+    id: 'scale.tracked',
+    re: new RegExp('у\\s+' + NUM_RE_SRC + `\\s+заголовочн${W}*`, 'i'),
+  },
+  {
+    id: 'weights.count',
+    re: new RegExp(`начертани${W}*\\s*[—:-]?\\s*` + NUM_RE_SRC, 'i'),
+  },
+  {
+    id: 'weights.count',
+    re: new RegExp(NUM_RE_SRC + `\\s+начертани${W}*`, 'i'),
+  },
+  {
+    id: 'weights.count',
+    re: new RegExp(NUM_RE_SRC + '\\s+вес(?:а|ов)?' + BOUND1, 'i'),
+    context: /начертани|font-weight|Inter/i,
+  },
+];
+
+/**
+ * Величины-ряды. Витрина заявляет их списком чисел, и одним числом такой
+ * ряд не проверяется: «кегль 44 · 30 · 24 · 20 · 18 · 16 · 14 · 12 · 10»
+ * ложен, если хоть одна ступень изменилась, а «девять ступеней» при этом
+ * остаётся верным.
+ *
+ * Ряд привязан к ярлыку пары `<dt>/<dd>` раздела «Основания», а не ищется
+ * по прозе: список чисел без ярлыка неотличим от перечисления ширин съёмки
+ * или вхождений на страницах, и правило по прозе давало бы шум вместо
+ * проверки. Прозаические формы тех же рядов правилом не покрыты — это
+ * названный предел, он же строка долга X-101.
+ */
+const SERIES = [
+  { id: 'scale.sizes', label: new RegExp(`^кегл${W}*$`, 'i'), re: /\d+(?:\s*[·,]\s*\d+)+/ },
+  { id: 'weights.list', label: new RegExp(`^начертани${W}*$`, 'i'), re: /\d+(?:\s*[·,]\s*\d+)+/ },
+  { id: 'scale.edge', label: new RegExp(`^границ${W}*$`, 'i'), re: /\d+\s*\/\s*\d+/ },
 ];
 
 // =========================================================================
@@ -644,7 +887,9 @@ function* htmlTokens(src) {
     advance(j + 1);
     yield { type: 'tag', name, closing, raw, line: tagLine };
     if (!closing && (name === 'script' || name === 'style')) {
-      const close = new RegExp(`</\\s*${name}\\b`, 'i');
+      // Не `\b`: он считает границей и дефис, и кириллицу, то есть
+      // `</style-x>` и `</styleя` закрывали бы `<style>` (review-1, major 2).
+      const close = new RegExp(`</\\s*${name}(?![A-Za-z0-9_-])`, 'i');
       const rest = src.slice(i);
       const m = close.exec(rest);
       const stop = m ? i + m.index : src.length;
@@ -728,7 +973,10 @@ const BLOCK = new Set([
 ]);
 
 function attr(raw, name) {
-  const re = new RegExp(`\\b${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)'|([^\\s"'=<>\`]+))`, 'i');
+  // Не `\b`: имя атрибута содержит дефис, и `\bdata-claim` совпало бы
+  // внутри `x-data-claim`; кириллица слева для `\b` тоже граница
+  // (review-1, major 2).
+  const re = new RegExp(`(?<![A-Za-zА-Яа-яЁё0-9_-])${name}\\s*=\\s*(?:"([^"]*)"|'([^']*)'|([^\\s"'=<>\`]+))`, 'i');
   const m = re.exec(raw);
   return m ? (m[1] ?? m[2] ?? m[3] ?? '') : null;
 }
@@ -948,7 +1196,10 @@ function splitClauses(sentence) {
 // =========================================================================
 
 const RE_UI_LAYER = new RegExp(
-  `(?:^|[^\\w/])ui\\/|подключённ${W}*\\s+ui\\/|` +
+  // Слева от `ui/` — не буква (в том числе русская), не цифра, не дефис
+  // и не слэш. `[^\w/]` пропускало кириллицу как «не букву» — та же
+  // ASCII-слепота, что и в `\b` (review-1, major 2).
+  `(?<![A-Za-zА-Яа-яЁё0-9_/-])ui\\/|подключённ${W}*\\s+ui\\/|` +
   // «в слое нет намеренно» — слой пакета, названный без пути. Слово взято
   // точной формой: `сло${W}*` поймало бы «слово в слово» в образце разметки.
   `в\\s+(?:наш${W}*\\s+|собственн${W}*\\s+)?слое${BOUND1}`, 'i');
@@ -984,11 +1235,17 @@ const WILDCARD = /[*…]$/;
 
 // `--` внутри имени класса (`doc-src--production`, BEM-модификатор) —
 // не переменная: перед двумя дефисами не должно быть буквы или цифры.
-const RE_VAR = /(?<![\w-])--[a-z][\w-]*[*…]?/gi;
+// Кириллица в лоокбихайнде — тот же класс тихой ошибки, что `\b`: `[\w-]`
+// про ASCII, и русская буква слева от токена ограничением не считается,
+// то есть «переменная--color-x» и «утилита.text-center» читались бы как
+// сущности. Здесь всюду BOUND0 — «слева не буква (любого алфавита),
+// не цифра и не дефис» (review-1, major 2).
+const RE_VAR = new RegExp(BOUND0 + '--[a-z][\\w-]*[*…]?', 'gi');
 const RE_PREFIXED = new RegExp(
-  '(?<![\\w-])(?:' + BP_PREFIXES.join('|') + ')\\\\?:[a-z0-9-]*[*…]?',
+  BOUND0 + '(?:' + BP_PREFIXES.join('|') + ')\\\\?:[a-z0-9-]*[*…]?',
   'gi');
-const RE_DOTCLASS = /(?<![\w/\\.-])\.[a-z][a-z0-9-]*(?:\\:[a-z0-9-]+)?[*…]?/gi;
+const RE_DOTCLASS = new RegExp(
+  '(?<![A-Za-zА-Яа-яЁё0-9_/\\\\.-])\\.[a-z][a-z0-9-]*(?:\\\\:[a-z0-9-]+)?[*…]?', 'gi');
 const FILE_EXT = /^\.(?:css|html|htm|json|md|mjs|js|svg|png|jpg|webp|woff2?|txt|log)$/i;
 const CODE_LOOKS_LIKE_CLASS = /^\.?[a-z][a-z0-9-]*(?:\\?:[a-z0-9-]+)?[*…]?$/i;
 
@@ -1028,12 +1285,21 @@ function entitiesOf(text, codes) {
   return [...found.values()];
 }
 
+// Граница списка исключений: запятая либо оборот «(и) в том числе».
+// Здесь стоял `\bв\s+том\s+числе\b` — мёртвое выражение по той самой
+// причине, которую шапка файла объявляет устранённой: ASCII-`\b` перед «в»
+// требует латинской буквы слева, а после «числе» — справа, и ни одно, ни
+// другое в русском тексте не случается. Из-за этого «кроме `px-6` в том
+// числе `small-phone:text-center`» без запятой расширяло множество
+// исключений и молча глотало ложное отрицание о `ui/` (review-1, major 2).
+const RE_EXCEPT_SPLIT = new RegExp(`,|${BOUND0}(?:и\\s+)?в\\s+том\\s+числе${BOUND1}`, 'i');
+
 // «кроме px-6,» — исключения из отрицания и из «только».
 function exceptionsOf(text) {
   const m = RE_EXCEPT.exec(text);
   if (!m) return new Set();
   const tail = text.slice(m.index + m[0].length);
-  const seg = tail.split(/,|\sи\sв\sтом\sчисле|\bв\s+том\s+числе\b/)[0];
+  const seg = tail.split(RE_EXCEPT_SPLIT)[0];
   const out = new Set();
   for (const e of entitiesOf(seg, [])) {
     out.add(e.name);
@@ -1113,20 +1379,32 @@ function checkLocation(unit, clause, entities) {
     prevEnd = loc.index + loc[0].length;
     if (!bound) continue;
     const e = bound.entity;
-    if (e.wildcard) continue;
+    // Шаблон (`tablet:`, `.doc-…`) адреса не лишается: у него просто
+    // больше одного места, и верным считается любое из них. До review-1
+    // шаблон уходил в `continue`, и адрес рядом с префиксом не проверялся
+    // вовсе — а именно так витрина ссылается на `ui/layout.css:163`.
+    const names = has(e);
+    if (!names.length) continue;
     const places = e.kind === 'var'
-      ? (ui.vars.has(e.name) ? [ui.vars.get(e.name)] : [])
-      : (ui.classes.get(e.name) || []);
+      ? names.map(n => ui.vars.get(n)).filter(Boolean)
+      : names.flatMap(n => ui.classes.get(n) || []);
     if (!places.length) continue;
     const ok = places.some(p => p.file === file && p.line >= from - 2 && p.line <= to + 2);
     if (!ok) {
+      const at = [...new Set(places.map(p => `${p.file}:${p.line}`))].join(', ');
       report('claim-location', unit, clause,
-        `названо место ${file}:${loc[2]}${loc[3] ? '–' + loc[3] : ''}, а ${e.kind === 'var' ? e.name : '.' + e.name} объявлен в ${where(e.name, e.kind)}`);
+        `названо место ${file}:${loc[2]}${loc[3] ? '–' + loc[3] : ''}, а ${e.kind === 'var' ? e.name : '.' + e.name} объявлен в ${at}`);
     }
   }
 }
 
 const qline = (unit, clause) => (unit.map ? lineAt(unit.map, clause.absAt || 0) : unit.line);
+
+// Число, стоящее в тексте само по себе, а не куском имени или ссылки:
+// `blue-50`, `#94bdfc`, `R0-06`, `§6.2`, `.crs-<id>` числами витрины
+// не являются и в списке непокрытых были бы шумом, из-за которого список
+// перестают читать. Хвостовая единица измерения допускается: «1124px».
+const RE_STANDALONE_NUMBER = /(?<![\w#§.,-])\d+(?:[.,]\d+)?(?:px|%|em|rem|ms|s)?(?![\w-])/g;
 
 function checkQuantities(unit, clause, negAt) {
   // Отрицание в русском тексте действует вперёд, и число под ним меняет
@@ -1152,17 +1430,46 @@ function checkQuantities(unit, clause, negAt) {
   // текст единицы, а не одна клауза: «Двадцать шесть живых» стоит
   // отдельной клаузой, а слово «переменная», по которому величина
   // опознаётся, — в соседнем предложении того же абзаца.
-  const ctx = `${unit.heading} ${unit.label || ''} ${unit.text}`;
+  const ctx = `${unit.heading} ${unit.label || ''} ${unit.masked || unit.text}`;
   // Одна клауза может нести несколько чисел о разных величинах —
   // «из шести префиксов поднимает три». Поэтому перебираются все строки
   // таблицы, а не первая подошедшая; повторный счёт одного и того же
   // куска текста отсекается по пересечению совпадений. Порядок строк
   // задаёт приоритет: узкие («цветовых», «живых») стоят выше общих.
   const taken = [];
+  const probeText = unit.kind === 'pair' ? `${unit.label} ${clause.text}` : clause.text;
+
+  // Ряды идут первыми: «начертаний 400 · 600 · 700» — это один ряд, а не
+  // число 400, и скалярное правило, добравшись до него первым, сверило бы
+  // первый элемент ряда с количеством начертаний.
+  if (unit.kind === 'pair' && unit.label) {
+    for (const s of SERIES) {
+      if (!s.label.test(unit.label.trim())) continue;
+      const m = s.re.exec(probeText);
+      if (!m) continue;
+      const span = [m.index, m.index + m[0].length];
+      if (negAt !== null && negAt < span[0]) continue;
+      const claimed = m[0].split(/[·,/]/).map(x => readNumber(x)).filter(x => x !== null);
+      if (!claimed.length) continue;
+      taken.push(span);
+      const actual = DERIVED_SERIES[s.id];
+      if (!actual) {
+        census.push({ kind: 'quantity-underivable', unit, clause, id: s.id, claimed: claimed.join(' · '), line: qline(unit, clause) });
+        continue;
+      }
+      const same = claimed.length === actual.length && claimed.every((v, i) => v === actual[i]);
+      census.push({ kind: 'quantity', unit, clause, id: s.id, claimed: claimed.join(' · '), actual: actual.join(' · '), line: qline(unit, clause) });
+      if (!same) {
+        report('claim-quantity', unit, clause,
+          `«${m[0].trim()}» — ряд ${s.id}: заявлено ${claimed.join(' · ')}, разбор ui/ даёт ${actual.join(' · ')}`);
+      }
+    }
+  }
+
   for (const q of QUANTITIES) {
     if (q.context && !q.context.test(ctx)) continue;
     if (q.unless && q.unless.test(ctx)) continue;
-    const probe = unit.kind === 'pair' ? `${unit.label} ${clause.text}` : clause.text;
+    const probe = probeText;
     const m = q.re.exec(probe);
     if (!m) continue;
     const span = [m.index, m.index + m[0].length];
@@ -1182,16 +1489,88 @@ function checkQuantities(unit, clause, negAt) {
         `«${m[0].trim()}» — величина ${q.id}: заявлено ${claimed}, разбор ui/ даёт ${actual}`);
     }
   }
+
+  // Перепись, печатающая только опознанное, скрывает ровно то, что ищут:
+  // по ней нельзя увидеть, что число на витрине стоит, а правила для него
+  // нет (review-1, major 3). Поэтому каждое число клаузы, которое не
+  // подошло ни к одной строке таблицы и ни к одному ряду, попадает
+  // в перепись отдельным списком — покрытие видно глазами, а не выводится
+  // из кода.
+  for (const m of probeText.matchAll(RE_STANDALONE_NUMBER)) {
+    const span = [m.index, m.index + m[0].length];
+    if (taken.some(([a, b]) => span[0] < b && a < span[1])) continue;
+    census.push({
+      kind: 'quantity-unruled',
+      unit,
+      clause,
+      claimed: m[0],
+      underNegation: negAt !== null && negAt < span[0],
+      line: qline(unit, clause),
+    });
+  }
 }
 
-// Образец разметки внутри комментария («так выглядит секция витрины»)
+// Образец разметки внутри текста («так выглядит секция витрины»)
 // утверждением не является: это шаблон для копирования, а не высказывание
-// о содержимом слоя. Признак — теги внутри самого текста единицы.
-const RE_LOOKS_LIKE_MARKUP = /<\/?[a-z][\w-]*(?:\s[^<>]*)?>/i;
+// о содержимом слоя. Но единица текста из-за него из проверки НЕ выпадает:
+// гасится сам тег, а проза вокруг читается как обычно.
+//
+// До review-1 здесь стояло `if (RE_LOOKS_LIKE_MARKUP.test(unit.text)) return;`
+// — один похожий на тег фрагмент глушил абзац или комментарий целиком.
+// Через эту дыру молча проходили третье и четвёртое исторические
+// проявления: `<code>&lt;span&gt;</code>` в том же предложении (сущности
+// декодируются раньше) или образец разметки в том же комментарии CSS —
+// и гейт давал «Расхождений нет». На витрине фильтр гасил 12 единиц,
+// включая три комментария CSS, прямо утверждающих о `ui/` (major 1).
+//
+// Гасится пробелами той же длины: карта «смещение → строка» строится по
+// исходному тексту, и любое изменение длины увело бы строку находки.
+const RE_MARKUP_TAG = /<\/?[a-z][\w-]*(?:\s[^<>]*)?\/?>/gi;
+
+function maskSpans(text, re) {
+  return text.replace(re, m => ' '.repeat(m.length));
+}
+
+function maskMarkup(text) {
+  let out = text;
+  // Вложенный `<` не даёт совпасть внешнему тегу (`id="c-<id>"`), поэтому
+  // проход повторяется: погашенный внутренний тег освобождает внешний.
+  for (let pass = 0; pass < 4; pass++) {
+    const next = maskSpans(out, RE_MARKUP_TAG);
+    if (next === out) break;
+    out = next;
+  }
+  return out;
+}
+
+// Цитата чужого или прошлого утверждения — не утверждение витрины.
+// «До R0-08 витрина утверждала: „в ui/ из шести поднят только phone:“ —
+// это было ложно» обязано оставаться зелёным: следующая итерация R0-07
+// чинит ровно это предложение и захочет его процитировать, а гейт,
+// краснеющий на цитату, чинить мешает (review-1, minor 6).
+//
+// Гасится только сам закавыченный кусок и только если слева от него,
+// вплотную, стоит глагол цитирования. Проза вокруг цитаты проверяется
+// как обычно, и каждая погашенная цитата печатается в `--census`:
+// предел механизма в том, что закавыченное после «утверждала» гейт
+// больше не читает, и это должно быть видно, а не подразумеваться.
+const RE_QUOTE_VERB = new RegExp(
+  `(?:утвержда|говор|цитир|значил|стоял|написан|сказан|читал|звуча|формулиров)${W}*` +
+  `\\s*[:,—–-]?\\s*$`, 'i');
+const RE_QUOTED_SPAN = /«[^«»]*»|„[^“”]*[“”]|"[^"]*"/g;
+
+function maskQuotes(text) {
+  return text.replace(RE_QUOTED_SPAN, (m, at) =>
+    RE_QUOTE_VERB.test(text.slice(0, at)) ? ' '.repeat(m.length) : m);
+}
 
 function checkUnit(unit) {
-  if (RE_LOOKS_LIKE_MARKUP.test(unit.text)) return;
-  for (const sentence of splitSentences(unit.text)) {
+  const masked = maskQuotes(maskMarkup(unit.text));
+  if (masked !== unit.text) {
+    census.push({ kind: 'masked', unit, line: unit.line });
+  }
+  unit.masked = masked;
+  for (const sentence of splitSentences(masked)) {
     let layer = 'none';
     // Полярность, как и слой, наследуется слева направо внутри
     // предложения: «Не раскрываются … три префикса — desktop:,
@@ -1248,6 +1627,14 @@ function checkUnit(unit) {
       }
 
       // layer === 'ui'
+      // Адрес — такой же факт, как сама сущность, и от полярности клаузы
+      // не зависит. До review-1 `checkLocation` вызывался только в конце
+      // положительной ветки, а отрицание и «только …» уходили в `continue`
+      // раньше: неверные файл и строка внутри них не проверялись вовсе —
+      // при том что именно адреса (`ui/utilities.css:78`, `ui/layout.css:163`)
+      // шаг называет доказательством (minor 5).
+      checkLocation(unit, clause, entities);
+
       if (negative) {
         for (const e of entities) {
           const hits = has(e).filter(n => !except.has(n) && !except.has(n.split(':').pop()));
@@ -1282,7 +1669,6 @@ function checkUnit(unit) {
             `названо ${e.raw} как содержимое ui/, а в ui/ такого нет`);
         }
       }
-      checkLocation(unit, clause, entities);
     }
   }
 }
@@ -1313,7 +1699,11 @@ if (CENSUS) {
   for (const [id, value] of Object.entries(DERIVED)) {
     console.log(`  ${id.padEnd(22)} ${value === null ? '— не выводится' : value}`);
   }
+  for (const [id, list] of Object.entries(DERIVED_SERIES)) {
+    console.log(`  ${id.padEnd(22)} ${list === null ? '— не выводится' : list.join(' · ')}`);
+  }
   console.log(`  (rem = ${REM === null ? 'не выводится' : REM + 'px'}, файлов ui/ ${ui.files.length}, классов ${ui.classes.size}, переменных ${ui.vars.size})`);
+  console.log(`  (брейкпоинтные префиксы — ${BP_PREFIXES_SOURCE ? 'из components/manifest.json' : 'РЕЕСТРА НЕТ, аварийный список в коде'}: ${BP_PREFIXES.join(', ')})`);
   console.log('');
   console.log('=== Префиксные классы ui/ ===');
   for (const c of prefClasses) {
@@ -1326,11 +1716,43 @@ if (CENSUS) {
     console.log(`      ${c.clause.text}`);
   }
   console.log('');
-  console.log(`=== Числовые утверждения (${census.filter(c => c.kind.startsWith('quantity')).length}) ===`);
-  for (const c of census.filter(x => x.kind.startsWith('quantity'))) {
+  const ruled = census.filter(x => x.kind === 'quantity' || x.kind === 'quantity-underivable');
+  const unruled = census.filter(x => x.kind === 'quantity-unruled');
+  console.log(`=== Числовые утверждения, сверенные с ui/ (${ruled.length}) ===`);
+  for (const c of ruled) {
     console.log(`  [${c.unit.file}:${c.line}] ${c.id}: заявлено ${c.claimed}${c.kind === 'quantity' ? `, ui/ даёт ${c.actual}` : ' — величина не выводится'}`);
     console.log(`      ${c.clause.text}`);
   }
+  console.log('');
+  // Без этого списка перепись показывает только опознанное и тем скрывает
+  // ровно то, что ищут: число на витрине есть, правила для него нет,
+  // и по переписи это неотличимо от «чисел больше нет» (review-1, major 3).
+  console.log(`=== Числа витрины, для которых правила нет (${unruled.length}) ===`);
+  const byUnit = new Map();
+  for (const c of unruled) {
+    const key = `${c.unit.file}:${c.line}`;
+    if (!byUnit.has(key)) byUnit.set(key, { nums: [], clause: c.clause.text, neg: 0 });
+    const row = byUnit.get(key);
+    row.nums.push(c.claimed);
+    if (c.underNegation) row.neg += 1;
+  }
+  for (const [key, row] of byUnit) {
+    console.log(`  [${key}] ${row.nums.join(' · ')}${row.neg ? `  (${row.neg} под отрицанием, X-98)` : ''}`);
+    console.log(`      ${row.clause.slice(0, 160)}`);
+  }
+  const total = ruled.length + unruled.length;
+  console.log('');
+  console.log(`  Итого чисел витрины ${total}: сверено с разбором ui/ ${ruled.length}, без правила ${unruled.length}.`);
+  console.log('  Числа без правила — это либо утверждения о корпусе и сборке (X-96),');
+  console.log('  либо покрытия по снятым страницам (не выводимы из ui/ в принципе),');
+  console.log('  либо прозаические формы уже покрытых рядов (X-101).');
+  console.log('');
+  const masked = census.filter(x => x.kind === 'masked');
+  console.log(`=== Единицы текста, где погашен образец разметки или цитата (${masked.length}) ===`);
+  for (const c of masked) {
+    console.log(`  [${c.unit.file}:${c.line}] ${c.unit.text.replace(/\s+/g, ' ').slice(0, 120)}`);
+  }
+  console.log('  Гасится только сам фрагмент; остальной текст единицы проверен.');
   console.log('');
 }
 
@@ -1366,4 +1788,4 @@ if (findings.length) {
 }
 
 console.log(`Проверено ${allUnits.length} единиц текста витрины (${showcaseHtmlFiles.length} html + ${showcaseCssFiles.length} css) против разбора ${ui.files.length} файлов ui/.`);
-console.log(`Клауз с сущностями ${census.filter(c => c.kind === 'clause').length}, из них о ui/ ${census.filter(c => c.kind === 'clause' && c.layer === 'ui').length}; числовых утверждений ${census.filter(c => c.kind.startsWith('quantity')).length}. Расхождений нет.`);
+console.log(`Клауз с сущностями ${census.filter(c => c.kind === 'clause').length}, из них о ui/ ${census.filter(c => c.kind === 'clause' && c.layer === 'ui').length}; чисел сверено с ui/ ${census.filter(c => c.kind === 'quantity' || c.kind === 'quantity-underivable').length}, без правила ${census.filter(c => c.kind === 'quantity-unruled').length} (--census печатает оба списка). Расхождений нет.`);

@@ -121,6 +121,29 @@ probe('контроль: ui/assets/ ссылка на несуществующи
   expectContains: ['Файл ассета не найден на диске'],
 });
 
+probe('R2-bulk: локальный спрайт с доменным именем в id символа — не внешний хост', {
+  // Ложный красный, найденный bulk-проходом на PersonCard/PersonHeader:
+  // ссылки на профили во внешних сетях берут символ из локального спрайта,
+  // а id символа — доменное имя. Проверка хоста шла по всему атрибуту, и
+  // локальный путь объявлялся внешним. Хост обязан искаться до `#`.
+  fixtureOpts: {
+    body: '<svg><use xlink:href="../ui/assets/icons/external-profile.svg#career.habr.com"></use></svg>',
+    assetFile: 'ui/assets/icons/external-profile.svg',
+  },
+  expectCode: 0,
+  expectContains: ['все ведут в ui/assets/, все существуют'],
+  expectNotContains: ['внешний хост'],
+});
+
+probe('R2-bulk: доменное имя в id символа не прикрывает настоящий внешний хост', {
+  // Обратная сторона той же правки: смягчать проверку она не должна.
+  fixtureOpts: {
+    body: '<svg><use xlink:href="https://career.habr.com/courses-web/images/sprites/external-profile.svg#career.habr.com"></use></svg>',
+  },
+  expectCode: 1,
+  expectContains: ['внешний хост'],
+});
+
 probe('контроль: обычные href без расширения ассета (якорь, doc-ссылка) не матчатся вовсе', {
   fixtureOpts: {
     body: '<a href="#doc-section">якорь</a><a href="../components/data-display/sprite-icon.md">спека</a><a href="data:,">пусто</a>',

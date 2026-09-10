@@ -291,6 +291,21 @@ for (const file of cssFiles) {
 // (class="…" в трёх формах кавычек + инлайновый <style>) нужен и для
 // showcase/*.html, и для фрагментов ```html внутри components/*.md — X-75,
 // см. ниже.
+// Именованные и числовые ссылки на сущности, встречающиеся в значении
+// атрибута class. Список именованных намеренно короткий: это ровно те, что
+// обязаны экранироваться в атрибуте (`&`, `<`, `>`, кавычки), плюс числовая
+// форма. Расширять его «на всякий случай» нечем — остальные сущности в имени
+// класса не встречаются, а молчаливое расширение спрятало бы настоящую ошибку.
+const NAMED_ENTITIES = { amp: '&', lt: '<', gt: '>', quot: '"', apos: "'", '#39': "'" };
+function decodeEntities(value) {
+  return value.replace(/&(#x?[0-9a-fA-F]+|[a-zA-Z]+);/g, (whole, name) => {
+    if (Object.hasOwn(NAMED_ENTITIES, name)) return NAMED_ENTITIES[name];
+    if (name.startsWith('#x') || name.startsWith('#X')) return String.fromCodePoint(parseInt(name.slice(2), 16));
+    if (name.startsWith('#')) return String.fromCodePoint(parseInt(name.slice(1), 10));
+    return whole;
+  });
+}
+
 function collectClassUses(html, label) {
   const found = new Map();
   // <style> внутри разметки — тоже определение: так, например, объявляют
@@ -312,7 +327,14 @@ function collectClassUses(html, label) {
     const value = match[1] ?? match[2] ?? match[3] ?? '';
     for (const cls of value.split(/\s+/)) {
       if (!cls || cls.includes('{')) continue;
-      if (!found.has(cls)) found.set(cls, label);
+      // Ссылки на сущности в значении атрибута декодируются: в HTML `&`
+      // внутри атрибута обязан быть записан `&amp;`, а в CSS-селекторе класс
+      // пишется своим настоящим именем. Без декодирования произвольный
+      // вариант Tailwind вида `[&>*:first-child]:!m-0` приходил сюда как
+      // `[&amp;&gt;*:first-child]:!m-0`, ни с чем в ui/ не совпадал и
+      // объявлялся неопределённым — при том, что правило на месте.
+      // Найдено bulk-проходом R2-bulk на разметке PromoCard.
+      if (!found.has(decodeEntities(cls))) found.set(decodeEntities(cls), label);
     }
   }
   return found;
@@ -406,6 +428,21 @@ for (const file of uiCssFiles) {
   if (!root) continue;
 
   root.walkRules(rule => {
+    // Проза в позиции селектора — это комментарий, закрытый раньше времени.
+    // Последовательность `*/` внутри текста комментария (например, в пути
+    // `effect/drop shadow */*`) закрывает его, и весь остаток файла парсер
+    // читает как CSS: он не падает, а молча делает из абзаца «правило»
+    // с бессмысленным селектором. Дальше слой цел на вид, но объявленного
+    // в нём больше нет — так пропал целиком :root файла ui/tokens-figma.css
+    // (R2-bulk), и заметил это только гейт витрины, окольно.
+    // Кириллица в селекторе невозможна ни в одном классе продукта: селекторы
+    // Tailwind и собственные имена Курсов — латиница. Проверка узкая
+    // намеренно, чтобы не глушить экзотику вроде :is()/[attr] и не ловить
+    // ложных срабатываний.
+    if (/[Ѐ-ӿ]/.test(rule.selector)) {
+      const head = rule.selector.replace(/\s+/g, ' ').trim().slice(0, 60);
+      leaks.push(`${file}: проза в позиции селектора — комментарий закрыт раньше времени последовательностью */ — «${head}…»`);
+    }
     for (const part of selectorParts(rule.selector)) {
       for (const name of part.classes) {
         if (name.startsWith('doc-')) {
