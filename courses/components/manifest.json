@@ -2499,9 +2499,11 @@
       ],
       "category": "overlays",
       "kind": "module",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "overlays/filter-modal.md",
+      "cssRoots": [
+        "crs-filter-modal"
+      ],
+      "showcaseAnchor": "c-filter-modal",
       "figmaEvidence": [
         {
           "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
@@ -2511,7 +2513,7 @@
           "nodeId": "14613:211399",
           "componentKey": null,
           "url": null,
-          "note": "modal-filter 568 desktop / 320 mobile"
+          "note": "modal-filter 568 desktop / 320 mobile Прочитан 11 сентября 2026: 568×2188 — шапка 72, тело из десяти групп slot-modal/simple (2020), подвал 96; группы с x=24, промежуток 32."
         },
         {
           "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
@@ -2524,7 +2526,7 @@
           "note": "modal-filter 568 desktop / 320 mobile"
         }
       ],
-      "status": "planned",
+      "status": "figma-only",
       "requiredStates": [
         "default",
         "open",
@@ -2538,7 +2540,7 @@
       "uncapturedStates": [
         "open"
       ],
-      "sourceScope": "storybook-only",
+      "sourceScope": "figma-only",
       "wave": "R4",
       "step": "R4-12",
       "dependsOn": [
@@ -2563,7 +2565,7 @@
           "note": null
         }
       ],
-      "notes": "две реализации в Storybook: BaseFilterModalNew актуальна, BaseFilterModal уходит в legacyAliases и отдельной спецификации не получает (BRIEF §9 п. 5 — разложено по строкам в implementations). Открытая разметка есть только в Figma: обе story сняты закрытыми",
+      "notes": "figma-only с 11 сентября 2026 (было storybook-only). Решение владельца: открытая модалка верстается по макету. Storybook снял обе реализации — BaseFilterModal и BaseFilterModalNew — закрытыми, одной кнопкой-триггером; открытого состояния нет ни в Storybook, ни в снятом продукте (гостем оно не видно). Источник вёрстки — макет, узел modal-filter 14613:211399, поэтому и sourceScope — по источнику вёрстки. Свёрстан каркас: шапка «Поиск обучения», группа «Тип обучения» с синими чипами Tab, подвал «Очистить всё / Показать N курсов»; остальные девять групп макета собраны из записей, которые уже стоят на витрине (BaseFilterWithImage, Tab). Какую из двух реализаций Storybook описывает макет — не установлено, это по-прежнему вопрос шага R4-12. Прежняя заметка: «две реализации в Storybook: BaseFilterModalNew актуальна, BaseFilterModal уходит в legacyAliases и отдельной спецификации не получает (BRIEF §9 п. 5 — разложено по строкам в implementations). Открытая разметка есть только в Figma: обе story сняты закрытыми»",
       "implementations": [
         {
           "storybookName": "BaseFilterModalNew",

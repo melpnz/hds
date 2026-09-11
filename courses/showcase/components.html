@@ -5703,6 +5703,68 @@
 
     </section>
 
+
+    <section class="doc-section" id="c-filter-modal">
+      <div class="doc-section__head">
+        <h4>FilterModal</h4>
+        <p>figma-only с 11 сентября 2026 (было storybook-only). Решение владельца: открытая модалка верстается по макету. Storybook снял обе реализации — BaseFilterModal и BaseFilterModalNew — закрытыми, одной кнопкой-триггером; открытого состояния нет ни в Storybook, ни в снятом продукте (гостем оно не видно). Источник вёрстки — макет, узел modal-filter 14613:211399, поэтому и sourceScope — по источнику вёрстки. Свёрстан каркас: шапка «Поиск обучения», группа «Тип обучения» с синими чипами Tab, подвал «Очистить всё / Показать N курсов»; остальные девять групп макета собраны из записей, которые уже стоят на витрине (BaseFilterWithImage, Tab). Какую из двух реализаций Storybook описывает макет — не установлено, это по-прежнему вопрос шага R4-12. Прежняя заметка: «две реализации в Storybook: BaseFilterModalNew актуальна, BaseFilterModal уходит в legacyAliases и отдельной спецификации не получает (BRIEF §9 п. 5 — разложено по строкам в implementations). Открытая разметка есть только в Figma: обе story сняты закрытыми»</p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>default</h5>
+          <code>.crs-filter-modal</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
+          </span>
+          <span class="doc-tag">figma-only</span>
+        </div>
+        <p class="doc-note"><strong>Эта разметка написана по макету, а не снята с продукта.</strong>
+          Единственный такой случай на витрине: компонента в продакшене нет вовсе.
+          Узел — <code>02_Education-NEW</code> <code>14613:211399</code>
+          «modal-filter». Корень <code>crs-filter-modal</code> введён пакетом:
+          настоящего имени взять неоткуда.</p>
+        <div class="doc-stage">
+          <div class="doc-variant">
+            <span class="doc-variant__label">по узлу макета <code>14613:211399</code></span>
+            <div class="doc-variant__row">
+              <div class="crs-filter-modal" role="dialog" aria-label="Поиск обучения">
+                <div class="crs-filter-modal__header">
+                  <p class="crs-filter-modal__title">Поиск обучения</p>
+                  <button type="button" class="crs-filter-modal__close" aria-label="Закрыть"><img src="../ui/assets/icons/modal-close.svg" alt="" width="24" height="24"></button>
+                </div>
+                <div class="crs-filter-modal__body">
+                  <div class="crs-filter-modal__group">
+                    <p class="crs-filter-modal__group-title">Тип обучения</p>
+                    <div class="crs-filter-modal__options">
+                      <button type="button" class="crs-tab crs-tab--plain"><span class="crs-tab__label">Курс</span></button>
+                      <button type="button" class="crs-tab crs-tab--plain crs-tab--selected"><span class="crs-tab__label">Вебинар</span></button>
+                      <button type="button" class="crs-tab crs-tab--plain"><span class="crs-tab__label">Симулятор</span></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="crs-filter-modal__footer">
+                  <button type="button" class="crs-filter-modal__button crs-filter-modal__button--secondary">Очистить всё</button>
+                  <button type="button" class="crs-filter-modal__button crs-filter-modal__button--main">Показать 30 560 курсов</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <dl class="doc-spec">
+          <div><dt>модалка</dt><dd>до 568 в ширину, белая, рамка <code>#e9e9ea</code>, радиус 24 — <code>elements/modal/*</code></dd></div>
+          <div><dt>шапка</dt><dd>падинг 24, заголовок стилем <code>Header/H3</code> (20 / 24, 600, −0.5), крестик 24 × 24</dd></div>
+          <div><dt>тело</dt><dd>группы с отступом 24 от краёв, промежуток между группами 32 — по координатам выгрузки</dd></div>
+          <div><dt>группа</dt><dd>заголовок 16 / 22, 600; под ним чипы <code>Tab</code> в синем варианте, промежуток 4</dd></div>
+          <div><dt>подвал</dt><dd>падинг 24, кнопки L высотой 48: вторичная <code>#f1f1f1</code>, основная <code>#2c2e34</code></dd></div>
+          <div><dt>вхождений в проде</dt><dd>нет — компонента в продукте не существует</dd></div>
+        </dl>
+        <p class="doc-note"><strong>Тексты.</strong> Тексты — содержимое узла макета: заголовок «Поиск обучения», группа «Тип обучения» с вариантами «Курс», «Вебинар» (выбран), «Симулятор», кнопки «Очистить всё» и «Показать 30 560 курсов». Число курсов в кнопке — пример из макета, в продукте его подставляет выдача. Свёрстана одна группа из десяти: остальные собраны из записей, которые уже стоят на витрине, — плиток <code>BaseFilterWithImage</code> и тех же чипов <code>Tab</code>.</p>
+        <p class="doc-note"><strong>Ассеты.</strong> Крестик — экспорт узла макета <code>ui/assets/icons/modal-close.svg</code>, а не символ общего спрайта: у символа <code>sprite.svg#cross-large</code> тот же глиф, но плечи короче на 1 px с каждой стороны, это не тот же символ. Цвет <code>#A6A7A9</code> зашит в экспорт. Затемнение фона под модалкой (слой <code>overlay</code> макета) не воспроизводится: на витрине модалка стоит на странице, а не поверх неё. Полный разбор — <a href="../components/overlays/filter-modal.md">спецификация</a>.</p>
+      </div>
+    </section>
+
   </section>
 
   <section class="doc-category" id="doc-cat-frame-modules">

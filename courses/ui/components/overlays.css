@@ -13,5 +13,119 @@
    литерал стоит в самом продукте, и тогда это отмечается в спецификации
    (METHOD §6.4).
 
-   Пока пусто: компоненты верстаются на шагах R4.
+   Компоненты верстаются на шагах R4. Исключение — FilterModal ниже: открытое
+   состояние свёрстано по макету bulk-проходом R2-bulk (запись figma-only).
    ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   FilterModal (R2-bulk, figma-only) — открытое состояние, каркас
+   -------------------------------------------------------------------------
+   Узел макета — modal-filter 14613:211399 файла 02_Education-NEW, 568×2188:
+   шапка 72, тело из десяти групп фильтров (2020 в высоту), подвал 96.
+   Решением владельца 11 сентября 2026 открытая модалка верстается по макету,
+   а запись переходит из storybook-only в figma-only: Storybook снял обе
+   реализации (BaseFilterModal, BaseFilterModalNew) закрытыми — одну
+   кнопку-триггер, — а в продукте открытое состояние гостем не видно вовсе.
+
+   Каркас, а не весь экран: шапка, одна группа и подвал. Остальные группы
+   макета собраны из тех же записей, что уже стоят на витрине, — плиток
+   BaseFilterWithImage (группа «Рекомендуем вам») и чипов Tab в синем варианте
+   (группа «Тип обучения», показана здесь). Повторять десять групп значило бы
+   повторять эти записи.
+
+   Крестик — экспорт макета (ui/assets/icons/modal-close.svg), а не символ
+   спрайта: у продуктового cross-large тот же глиф, но плечи короче на 1px
+   с каждой стороны (6.3→17.7 против 5.3→18.7 в поле 24), это не тот же
+   символ. Цвет #A6A7A9 зашит в экспорт — равен --fig-color-style-neutral-
+   neutral-heavy.
+   ------------------------------------------------------------------------- */
+.crs-filter-modal {
+  background: var(--fig-elements-modal-fill);
+  border: 1px solid var(--fig-elements-modal-border);
+  border-radius: var(--fig-elements-modal-border-radius);
+  box-sizing: border-box;
+  color: var(--fig-elements-modal-text);
+  max-width: 568px;
+  width: 100%;
+}
+.crs-filter-modal__header {
+  align-items: flex-start;
+  border-bottom: 1px solid var(--fig-elements-modal-border);
+  display: flex;
+  gap: var(--fig-size-spacing-x2);
+  padding: var(--fig-size-spacing-x6);
+}
+.crs-filter-modal__title {
+  flex: 1;
+  font-size: var(--fig-font-size-display-m);
+  font-weight: var(--fig-font-weight-semibold);
+  letter-spacing: var(--fig-font-letter-spacing-headers);
+  line-height: var(--fig-font-line-height-display-m);
+  margin: 0;
+}
+.crs-filter-modal__close {
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+  flex: none;
+  height: 24px;
+  padding: 0;
+  width: 24px;
+}
+.crs-filter-modal__close img {
+  display: block;
+  height: 24px;
+  width: 24px;
+}
+.crs-filter-modal__body {
+  /* По координатам выгрузки страницы: группы стоят с x = 24, промежуток между
+     ними 32, первая начинается с y = 0 — вплотную под шапкой, последняя
+     кончается ровно на нижней границе тела. Вертикального отступа у тела
+     в макете нет: воздух сверху даёт нижний падинг шапки. */
+  display: flex;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x8);
+  padding: 0 var(--fig-size-spacing-x6);
+}
+.crs-filter-modal__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x2);
+}
+.crs-filter-modal__group-title {
+  font-size: var(--fig-font-size-body-l);
+  font-weight: var(--fig-font-weight-semibold);
+  line-height: var(--fig-font-line-height-display-s);
+  margin: 0;
+}
+.crs-filter-modal__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fig-size-spacing-x1);
+}
+.crs-filter-modal__footer {
+  align-items: center;
+  border-top: 1px solid var(--fig-elements-modal-border);
+  display: flex;
+  justify-content: space-between;
+  padding: var(--fig-size-spacing-x6);
+}
+.crs-filter-modal__button {
+  border: 0;
+  border-radius: var(--fig-elements-button-border-radius);
+  cursor: pointer;
+  font-size: var(--fig-font-size-body-l);
+  font-weight: var(--fig-font-weight-semibold);
+  gap: var(--fig-elements-button-l-gap);
+  height: 48px;
+  line-height: var(--fig-font-line-height-display-s);
+  padding: var(--fig-elements-button-l-padding-top-bottom) var(--fig-elements-button-l-padding-left-right);
+}
+.crs-filter-modal__button--secondary {
+  background: var(--fig-elements-button-secondary-fill);
+  color: var(--fig-elements-button-main-fill);
+}
+.crs-filter-modal__button--main {
+  background: var(--fig-elements-button-main-fill);
+  color: var(--fig-elements-button-main-text);
+}
