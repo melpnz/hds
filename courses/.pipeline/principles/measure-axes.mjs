@@ -3,7 +3,8 @@
 // Каждая страница рисуется так же, как в layout.mjs и diff-page.mjs: снятый
 // dom.html (на 375 — dom-375.html) с CSS корпуса, шрифт Inter из
 // ui/assets/fonts, атрибут области видимости Vue снят, скрипт выключен.
-// Ширины: 1440×900 и 375×812 — первый экран считается по этим окнам.
+// Ширины: 1440×900, 1024×900, 768×900, 375×812 — первый экран считается
+// по окнам 1440 и 375.
 //
 // Узлы записей — по селекторам переписи components/selector-census.json.
 // Выход: .pipeline/principles/axes.json. Сводка голосов — principles-evidence.md
@@ -29,7 +30,9 @@ const result = {};
 for (const pageId of pages) {
   result[pageId] = {};
   const css = unscope(fs.readFileSync(path.join(cssDir, "inline", `${pageId}.css`), "utf8"));
-  for (const [W, H] of [[1440, 900], [375, 812]]) {
+  // 1024 и 768 добавлены после ревью R7: на них держатся SH-4, R-2, R-3,
+  // R-4 и L-1, а первая редакция снимала только 1440 и 375.
+  for (const [W, H] of [[1440, 900], [1024, 900], [768, 900], [375, 812]]) {
     const domFile = fs.existsSync(path.join(pagesDir, pageId, `dom-${W}.html`)) ? `dom-${W}.html` : "dom.html";
     const body = fs.readFileSync(path.join(pagesDir, pageId, domFile), "utf8");
     const ctx = await browser.newContext({ javaScriptEnabled: false, viewport: { width: W, height: H } });
@@ -41,7 +44,7 @@ for (const pageId of pages) {
     });
     await page.setContent(`<!doctype html><html><head><style>${css}\n${ext}</style></head>${body.startsWith("<body") ? body : "<body>" + body + "</body>"}</html>`, { waitUntil: "networkidle" });
     await page.evaluate(() => document.fonts.ready);
-    result[pageId][W] = await page.evaluate(({ SEL, CARDS, H }) => {
+    result[pageId][W] = await page.evaluate(({ SEL, CARDS, H, W }) => {
       const vis = (e) => e.checkVisibility({ visibilityProperty: true }) && e.getBoundingClientRect().width > 0;
       const q = (s) => { try { return [...document.querySelectorAll(s)].filter(vis); } catch { return []; } };
       const box = (e) => { const r = e.getBoundingClientRect(); return { x: Math.round(r.x), y: Math.round(r.y + scrollY), w: +r.width.toFixed(1), h: +r.height.toFixed(1) }; };
@@ -154,8 +157,137 @@ for (const pageId of pages) {
         if (last && (() => { try { return last.matches(SEL.button) || last.querySelector(SEL.button); } catch { return false; } })() && last.getBoundingClientRect().width > 300 && last.getBoundingClientRect().height <= 64) out.sectionEnds.wideButton++;
       }
 
+      // --- добавлено по ревью R7 ---------------------------------------
+      // Отступ заголовка секции: каждая видимая секция с h2 (прямым или в
+      // первой обёртке), расстояние от низа h2 до верха следующего видимого
+      // блока. Отбор — по тегу, а не по селектору записи Section, который
+      // сам содержит gap-4 (ревью: отбор совпадал с условием правила).
+      out.sectionHead = {};
+      out.sectionHeadList = [];
+      for (const s of q("section")) {
+        const h = s.querySelector(":scope > h2") || s.querySelector(":scope > div > h2");
+        if (!h || !vis(h)) continue;
+        const sib = [...h.parentElement.children].filter(vis);
+        const next = sib[sib.indexOf(h) + 1];
+        if (!next) continue;
+        const raw = Math.round(next.getBoundingClientRect().top - h.getBoundingClientRect().bottom);
+        inc(out.sectionHead, String(raw));
+        // Видимое начало содержимого: самый верхний потомок следующего блока,
+        // у которого есть текст, картинка, рамка или заливка. Отступ бывает
+        // промежутком секции (gap-4), а бывает полем внутри содержимого (mt-4) —
+        // глазу это одно и то же.
+        let top = Infinity;
+        for (const x of [next, ...next.querySelectorAll("*")]) {
+          if (!vis(x)) continue;
+          const sx = cs(x);
+          const own = [...x.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
+          const mark = own || x.tagName === "IMG" || x.tagName === "svg" || parseFloat(sx.borderTopWidth) > 0 || (sx.backgroundColor !== "rgba(0, 0, 0, 0)");
+          // верх, обрезанный предками с overflow (обложка со scale-* не в счёт)
+          let t = x.getBoundingClientRect().top;
+          for (let p = x.parentElement; p && p !== next.parentElement; p = p.parentElement) if (cs(p).overflowY !== "visible") t = Math.max(t, p.getBoundingClientRect().top);
+          if (mark) top = Math.min(top, t);
+        }
+        const visual = top < Infinity ? Math.round(top - h.getBoundingClientRect().bottom) : null;
+        if (visual != null) { out.sectionHeadVisual = out.sectionHeadVisual || {}; inc(out.sectionHeadVisual, String(visual)); }
+        out.sectionHeadList.push({ h2: h.textContent.trim().slice(0, 32), gap: cs(h.parentElement).rowGap, raw, visual, next: [...next.classList].slice(0, 4).join(".") });
+      }
+      out.sectionHeadVisual = out.sectionHeadVisual || {};
+      // Радиусы всех видимых плоскостей: узел с рамкой или непрозрачным
+      // фоном, отличным от белого. Разбито по размеру — «крупная плоскость»
+      // получает число (ширина от 200 и высота от 60).
+      out.surfaceRadius = { large: {}, small: {} };
+      // Список узлов — чтобы у каждого значения был адрес (только 1440).
+      // Предок со скруглением и overflow:hidden обрезает углы потомка: такой
+      // узел помечен «обрезан», его собственный радиус 0 глазу не виден.
+      out.surfaceList = [];
+      // радиус ближайшего предка, который скругляет и обрезает (0 — такого нет)
+      const clipped = (e) => { for (let p = e.parentElement; p && p !== document.body; p = p.parentElement) { const ps = cs(p); if (ps.overflow !== "visible" && parseFloat(ps.borderTopLeftRadius) > 0) return ps.borderTopLeftRadius; } return 0; };
+      for (const e of document.querySelectorAll("body *")) {
+        if (!vis(e) || e.closest("header") || e.closest("footer")) continue;
+        const s = cs(e); const r = e.getBoundingClientRect();
+        const bordered = parseFloat(s.borderTopWidth) > 0 && s.borderTopStyle !== "none";
+        const filled = s.backgroundColor !== "rgba(0, 0, 0, 0)" && s.backgroundColor !== "rgb(255, 255, 255)" || /gradient/.test(s.backgroundImage);
+        // белая заливка со скруглением видна на картинке или цветном фоне (MetaPill на обложке)
+        const white = s.backgroundColor === "rgb(255, 255, 255)" && parseFloat(s.borderTopLeftRadius) > 0;
+        if (!bordered && !filled && !white && e.tagName !== "IMG") continue;
+        const kind = bordered ? "рамка" : e.tagName === "IMG" ? "картинка" : white ? "белая заливка" : "заливка";
+        const large = r.width >= 200 && r.height >= 60;
+        inc(large ? out.surfaceRadius.large : out.surfaceRadius.small, `${kind} · ${s.borderTopLeftRadius}`);
+        if (W === 1440) out.surfaceList.push([kind, s.borderTopLeftRadius, Math.round(r.width), Math.round(r.height), clipped(e), e.tagName.toLowerCase() + "." + [...e.classList].slice(0, 5).join(".")]);
+      }
+      // Числа от тысячи: с пробелом в разрядах и без него, с соседним словом.
+      out.numbers = { spaced: {}, plain: {} };
+      const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+      while (walker.nextNode()) {
+        const n = walker.currentNode; const el = n.parentElement;
+        if (!el || !vis(el) || el.closest("script,style")) continue;
+        const t = n.textContent;
+        for (const m of t.matchAll(/(?<![\d.,])(\d{1,3}(?:[   ]\d{3})+|\d{4,})(?![\d.,])/g)) {
+          const spaced = /\s/.test(m[1]);
+          const after = t.slice(m.index + m[0].length, m.index + m[0].length + 12).trim().split(/\s/)[0] || "";
+          const before = t.slice(Math.max(0, m.index - 3), m.index);
+          const ctx = /₽/.test(after) ? "₽" : /^(отзыв|выпускник|курс)/.test(after) ? after.replace(/[^а-яё]/gi, "").slice(0, 9) : /\+/.test(before) ? "+N" : /^\d{4}$/.test(m[1]) && +m[1] > 1990 && +m[1] < 2031 ? "год" : "прочее";
+          // фраза — число внутри предложения (текст автора или редакции),
+          // подпись — короткий текст узла (интерфейс: цена, счётчик, ячейка)
+          const kind = t.trim().length > 40 ? "фраза" : "подпись";
+          inc(spaced ? out.numbers.spaced : out.numbers.plain, `${kind} · ${ctx}`);
+          const k = `${spaced ? "пробел" : "слитно"} · ${kind} · ${ctx}`;
+          out.numberSamples = out.numberSamples || {};
+          const sample = t.slice(Math.max(0, m.index - 12), m.index + m[0].length + 14).replace(/\s+/g, " ").trim();
+          if ((out.numberSamples[k] = out.numberSamples[k] || []).length < 4 && !out.numberSamples[k].includes(sample)) out.numberSamples[k].push(sample);
+        }
+      }
+      // Синий #346ef4 и оранжевый #ff7e47: где стоят как фон, градиент, текст.
+      out.hues = { blueBg: 0, blueGradient: 0, blueText: 0, orangeBg: 0, orangeText: 0, orangeWhere: {} };
+      for (const e of document.querySelectorAll("body *")) {
+        if (!vis(e)) continue;
+        const s = cs(e);
+        const where = () => (e.closest("header") ? "шапка" : e.closest("div.w-full.bg-main-gradient-second") ? "hero" : "колонка") + " · " + e.tagName.toLowerCase() + "." + [...e.classList].slice(0, 3).join(".");
+        if (s.backgroundColor === "rgb(52, 110, 244)") { out.hues.blueBg++; (out.hues.blueWhere = out.hues.blueWhere || []).push("фон · " + where()); }
+        if (/rgb\(52, 110, 244\)/.test(s.backgroundImage)) { out.hues.blueGradient++; (out.hues.blueWhere = out.hues.blueWhere || []).push("градиент · " + where()); }
+        const own = [...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
+        if (own && s.color === "rgb(52, 110, 244)") { out.hues.blueText++; out.hues.blueTextWhere = out.hues.blueTextWhere || {}; inc(out.hues.blueTextWhere, (e.closest("a") ? "ссылка" : "не ссылка") + " · " + e.tagName.toLowerCase() + "." + [...e.classList].slice(0, 3).join(".")); }
+        if (s.backgroundColor === "rgb(255, 126, 71)") { out.hues.orangeBg++; inc(out.hues.orangeWhere, [...e.classList].slice(0, 3).join(".")); }
+        if (own && s.color === "rgb(255, 126, 71)") out.hues.orangeText++;
+      }
+      // Все <button>, не только запись Button: фон по записи-хозяину.
+      out.allButtons = {};
+      for (const b of q("button")) {
+        const owner = ["filter-chip", "icon-button", "button"].find((c) => { try { return b.matches(SEL[c]); } catch { return false; } }) || "прочее";
+        inc(out.allButtons, `${owner} · ${cs(b).backgroundColor}`);
+      }
+      // Где стоят тёмные Button: в карточке, в форме поиска, остальные — с подписью.
+      out.darkWhere = { card: 0, search: 0, other: [] };
+      for (const b of q(SEL.button)) {
+        if (cs(b).backgroundColor !== "rgb(44, 46, 52)") continue;
+        if (allCards.some((c) => c.contains(b))) out.darkWhere.card++;
+        else if (b.closest("form") || (SEL["search-form"] && (() => { try { return b.closest(SEL["search-form"]); } catch { return null; } })())) out.darkWhere.search++;
+        else out.darkWhere.other.push((b.closest("header") ? "шапка" : b.closest("div.w-full.bg-main-gradient-second") ? "hero" : "колонка") + " «" + b.textContent.replace(/\s+/g, " ").trim().slice(0, 30) + "»");
+      }
+      // Карусели: корни карточек внутри ленты Swiper — раскладку ленты задаёт скрипт.
+      out.carousel = { swipers: q(".swiper-wrapper").length, cards: allCards.filter((c) => c.closest(".swiper-wrapper")).length, total: allCards.length };
+      // Выход за контейнер: узел шире контейнера содержимого и не обрезан
+      // скруглённым предком (обложки карточек с scale-* обрезаны).
+      if (container) {
+        const cw = container.getBoundingClientRect(), mw = main ? main.getBoundingClientRect() : cw;
+        const bleedOut = (e, lim) => { const r = e.getBoundingClientRect(); return r.left < lim.left - 1 || r.right > lim.right + 1; };
+        // обрезан: есть предок с overflow, который сам в пределах границы
+        const cut = (e, lim) => { for (let p = e.parentElement; p && p !== container; p = p.parentElement) if (cs(p).overflowX !== "visible" && !bleedOut(p, lim)) return true; return false; };
+        const top = (lim) => [...(main || container).querySelectorAll("*")].filter((e) => vis(e) && bleedOut(e, lim) && !cut(e, lim) && !(e.parentElement && bleedOut(e.parentElement, lim))).map((e) => e.tagName.toLowerCase() + "." + [...e.classList].slice(0, 5).join("."));
+        const cin = cs(container); const inner = { left: cw.left + parseFloat(cin.paddingLeft), right: cw.right - parseFloat(cin.paddingRight) };
+        out.bleedColumn = top(inner);
+        out.bleedContainer = top({ left: cw.left, right: cw.right });
+      }
+      // Порядок блоков главной колонки — подпись для сравнения ширин.
+      out.order = main ? [...main.children].map((k) => k.tagName.toLowerCase() + "." + [...k.classList].slice(0, 2).join(".")).join(" | ") : null;
+      // Подвал: число колонок.
+      const fg = document.querySelector("footer div.grid");
+      out.footerCols = fg ? cs(fg).gridTemplateColumns.split(" ").length : null;
+      // Блоки, выходящие за колонку (в край экрана).
+      out.bleed = main ? [...main.querySelectorAll("*")].filter((e) => vis(e) && e.getBoundingClientRect().width > main.getBoundingClientRect().width + 1).map((e) => [...e.classList].slice(0, 4).join(".")).filter((v, i, a) => a.indexOf(v) === i).slice(0, 8) : [];
+
       // 11. Группировка
-      out.grouping = { hr: q("hr").length, bullets: [...document.querySelectorAll(".inline-separator")].filter(vis).length, sectionsWithH2: q("section:has(> h2), section:has(h2)").length };
+      out.grouping = { hr: q("hr").length, bullets: [...document.querySelectorAll(".inline-separator")].filter(vis).length, sectionsWithH2: q("section").filter((s) => s.querySelector(":scope > h2, :scope > div > h2")).length };
 
       // 12. Реакция на курсор — hover-классы по ролям
       out.hover = {};
@@ -168,15 +300,17 @@ for (const pageId of pages) {
       for (const e of document.querySelectorAll("[class*='phone:'], [class*='tablet'], [class*='desktop:'], [class*='small-phone:']")) for (const c of e.classList) if (/^(phone|tablet|tablet-only|desktop|small-phone|phablet-and-tablet):(hidden|flex-col|grid-cols|block|!block|grid|flex|order|basis)/.test(c)) inc(out.responsive, c.replace(/\[.*\]/, "[…]"));
 
       // 17. Тексты — подписи кнопок, числа, даты
+      out.buttonCounts = {};
+      for (const b of q(SEL.button)) { const t = b.textContent.replace(/\s+/g, " ").trim().replace(/^Открыть код.*/, "Открыть код"); if (t) inc(out.buttonCounts, t); }
       out.texts = { buttons: [...new Set(q(SEL.button).map((b) => b.textContent.replace(/\s+/g, " ").trim()).filter(Boolean))].slice(0, 30),
         decimals: (document.body.innerText.match(/\b\d\.\d{1,2}\b/g) || []).length, decimalsComma: (document.body.innerText.match(/\b\d,\d{1,2}\b/g) || []).length,
         rub: (document.body.innerText.match(/₽/g) || []).length, thin: (document.body.innerText.match(/\d[   ]\d{3}/g) || []).length };
       return out;
-    }, { SEL, CARDS, H });
+    }, { SEL, CARDS, H, W });
     await ctx.close();
   }
   process.stdout.write(pageId + " ");
 }
 await browser.close();
 fs.writeFileSync(path.join(d, "axes.json"), JSON.stringify(result, null, 1) + "\n", "utf8");
-console.log(`\naxes.json: ${pages.length} страниц × 2 ширины`);
+console.log(`\naxes.json: ${pages.length} страниц × 4 ширины`);

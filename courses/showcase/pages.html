@@ -525,16 +525,17 @@
   <div class="doc-rule" data-rule="SH-1" id="rule-SH-1">
     <div class="doc-rule__head">
       <h3>SH-1</h3>
-      <span class="doc-rule__votes">10 / 10</span>
+      <span class="doc-rule__votes">10 / 10 × 4 ширины</span>
     </div>
-    <p><strong>Контейнер 1124 с полями 24, колонка на 1440 — 1076.</strong> Связка <code>mx-auto max-w-[1124px] px-6</code> на каждой странице; шире колонки не выходит ни один блок, панель экспертов раздвигается на 24 отрицательным полем.</p>
-    <p class="doc-note">Видно на страницах: <a href="#p-courses-listing">витрина курсов</a>, <a href="#p-education-center">страница школы</a>, <a href="#p-author">профиль</a>.</p>
+    <p><strong>Контейнер 1124 с полями 24, колонка на 1440 — 1076.</strong> Связка <code>mx-auto max-w-[1124px] px-6</code> на каждой странице; за контейнер не выходит ни один узел ни на одной из четырёх ширин.</p>
+    <p class="doc-rule__exception">В поле 24 за колонку уходят: панель экспертов (<code>-mx-6</code>, все ширины); до 767 — таблица рейтинга и шапка школы (<code>phone:-mx-6 phone:rounded-none</code>); стрелки карусели — половиной.</p>
+    <p class="doc-note">Видно на страницах: <a href="#p-courses-listing">витрина курсов</a>, <a href="#p-education-center">страница школы</a>, <a href="#p-authors">эксперты</a>.</p>
   </div>
 
   <div class="doc-rule" data-rule="SH-2" id="rule-SH-2">
     <div class="doc-rule__head">
       <h3>SH-2</h3>
-      <span class="doc-rule__votes">10 / 10 на 1440</span>
+      <span class="doc-rule__votes">10 / 10 на 1440, 1024, 768</span>
     </div>
     <p><strong>Шапка — 64 на градиенте <code>bg-main-gradient-first</code>.</strong> На 375 — 64 у 9 страниц из 10.</p>
     <p class="doc-rule__exception">Витрина курсов на телефоне — 108: поле поиска уходит второй строкой.</p>
@@ -547,16 +548,17 @@
       <span class="doc-rule__votes">9 / 10</span>
     </div>
     <p><strong>Шапка не липкая.</strong></p>
-    <p class="doc-rule__exception">Витрина курсов — <code>sticky top-0</code>.</p>
+    <p class="doc-rule__exception">Нарушитель — витрина курсов: <code>sticky top-0</code>.</p>
     <p class="doc-note">Видно на страницах: <a href="#p-courses-listing">витрина курсов</a>, <a href="#p-education-centers-listing">витрина организаций</a>.</p>
   </div>
 
   <div class="doc-rule" data-rule="SH-4" id="rule-SH-4">
     <div class="doc-rule__head">
       <h3>SH-4</h3>
-      <span class="doc-rule__votes">10 / 10</span>
+      <span class="doc-rule__votes">10 / 10 × 4 ширины</span>
     </div>
-    <p><strong>Подвал на <code>#f1f1f1</code>: 192 от 1024, 256 на 768, 476 на 375.</strong></p>
+    <p><strong>Подвал на <code>#f1f1f1</code>: 192 на 1440 и 1024, 256 на 768, 476 на 375.</strong></p>
+    <p class="doc-rule__exception">В корпусе нарушителей нет.</p>
     <p class="doc-note">Видно на страницах: <a href="#p-rating">рейтинг</a>.</p>
   </div>
 
@@ -566,6 +568,7 @@
       <span class="doc-rule__votes">10 / 10</span>
     </div>
     <p><strong>Фон страницы белый.</strong></p>
+    <p class="doc-rule__exception">В корпусе нарушителей нет.</p>
     <p class="doc-note">Видно на страницах: <a href="#p-education-centers-listing">витрина организаций</a>.</p>
   </div>
 
@@ -574,8 +577,8 @@
       <h3>SH-6</h3>
       <span class="doc-rule__votes">7 / 10</span>
     </div>
-    <p><strong>Раздел с выдачей открывается hero с <code>h1</code> 44/48 по центру.</strong></p>
-    <p class="doc-rule__exception">Без hero — витрина курсов, страница школы, профиль.</p>
+    <p><strong>Раздел с выдачей открывается hero с <code>h1</code> 44/48 по центру; вне hero <code>h1</code> 44/48 не бывает.</strong></p>
+    <p class="doc-rule__exception">Нарушитель — витрина курсов: выдача без hero и без <code>h1</code>. Страница школы и профиль открываются шапкой сущности и шапкой профиля.</p>
     <p class="doc-note">Видно на страницах: <a href="#p-education-centers-listing">витрина организаций</a>, <a href="#p-rating">рейтинг</a>, <a href="#p-authors">эксперты</a>.</p>
   </div>
 
@@ -584,9 +587,10 @@
   <div class="doc-rule" data-rule="L-1" id="rule-L-1">
     <div class="doc-rule__head">
       <h3>L-1</h3>
-      <span class="doc-rule__votes">10 / 10</span>
+      <span class="doc-rule__votes">10 / 10 × 4 ширины</span>
     </div>
     <p><strong>Одна колонка во всю ширину контейнера, без сайдбара.</strong></p>
+    <p class="doc-rule__exception">В корпусе нарушителей нет.</p>
     <p class="doc-note">Видно на страницах: <a href="#p-courses-listing">витрина курсов</a>, <a href="#p-rating">рейтинг</a>.</p>
   </div>
 
@@ -596,26 +600,28 @@
       <span class="doc-rule__votes">8 / 9 сеток</span>
     </div>
     <p><strong>Сетка карточек — 4 × 260 с промежутком 12.</strong></p>
-    <p class="doc-rule__exception">Сетка курсов страницы школы — 4 × 257 с промежутком 16.</p>
+    <p class="doc-rule__exception">Нарушитель — сетка курсов страницы школы: 4 × 257 с промежутком 16.</p>
     <p class="doc-note">Видно на страницах: <a href="#p-courses-listing">витрина курсов</a>, <a href="#p-education-centers-listing">витрина организаций</a>, <a href="#p-education-center">страница школы</a>.</p>
   </div>
 
   <div class="doc-rule" data-rule="L-3a" id="rule-L-3a">
     <div class="doc-rule__head">
       <h3>L-3a</h3>
-      <span class="doc-rule__votes">7 / 7</span>
+      <span class="doc-rule__votes">7 / 10</span>
     </div>
-    <p><strong>Выдача, таблица и сущность: блоки через 48 (<code>gap-12</code>).</strong></p>
+    <p><strong>Блоки главной колонки идут через 48 (<code>gap-12</code>).</strong> Листинги 5 из 5, рейтинг, страница школы.</p>
+    <p class="doc-rule__exception">Нарушитель — профиль автора: 40. Промо-раздел — по L-3b.</p>
     <p class="doc-note">Видно на страницах: <a href="#p-courses-listing">витрина курсов</a>, <a href="#p-rating">рейтинг</a>, <a href="#p-education-center">страница школы</a>.</p>
   </div>
 
   <div class="doc-rule" data-rule="L-3b" id="rule-L-3b">
     <div class="doc-rule__head">
       <h3>L-3b</h3>
-      <span class="doc-rule__votes">3 / 3</span>
+      <span class="doc-rule__votes">2 / 2</span>
     </div>
-    <p><strong>Промо-раздел и профиль: блоки через 40 (<code>gap-10</code>).</strong></p>
-    <p class="doc-note">Видно на страницах: <a href="#p-authors">эксперты</a>, <a href="#p-author">профиль</a>.</p>
+    <p><strong>Промо-раздел: блоки через 40 (<code>gap-10</code>).</strong> Эксперты и редакция; редакция — клон экспертов.</p>
+    <p class="doc-rule__exception">В корпусе нарушителей нет.</p>
+    <p class="doc-note">Видно на страницах: <a href="#p-authors">эксперты</a>.</p>
   </div>
 
   <div class="doc-rule" data-rule="L-4" id="rule-L-4">
@@ -628,13 +634,24 @@
     <p class="doc-note">Видно на страницах: <a href="#p-rating">рейтинг</a>, <a href="#p-courses-listing">витрина курсов</a>, <a href="#p-authors">эксперты</a>.</p>
   </div>
 
-  <div class="doc-rule" data-rule="L-5" id="rule-L-5">
+  <div class="doc-rule" data-rule="L-5a" id="rule-L-5a">
     <div class="doc-rule__head">
-      <h3>L-5</h3>
-      <span class="doc-rule__votes">15 секций</span>
+      <h3>L-5a</h3>
+      <span class="doc-rule__votes">23 / 24 секции</span>
     </div>
-    <p><strong>Заголовок секции отстоит от содержимого на 16.</strong></p>
-    <p class="doc-note">Видно на страницах: <a href="#p-education-centers-listing">витрина организаций</a>.</p>
+    <p><strong>Содержимое секции начинается в 16 под <code>h2</code>.</strong> Счёт по тегу: все видимые секции с <code>h2</code> вне промо-раздела.</p>
+    <p class="doc-rule__exception">Нарушитель — «Больше об авторах» на витрине курсов: 24.</p>
+    <p class="doc-note">Видно на страницах: <a href="#p-education-centers-listing">витрина организаций</a>, <a href="#p-education-center">страница школы</a>.</p>
+  </div>
+
+  <div class="doc-rule" data-rule="L-5b" id="rule-L-5b">
+    <div class="doc-rule__head">
+      <h3>L-5b</h3>
+      <span class="doc-rule__votes">3 / 4 секции</span>
+    </div>
+    <p><strong>Промо-раздел: содержимое секции начинается в 24 под <code>h2</code>.</strong></p>
+    <p class="doc-rule__exception">«Крутые ребята, которые оценивают» — под <code>h2</code> подзаголовок через 12.</p>
+    <p class="doc-note">Видно на страницах: <a href="#p-authors">эксперты</a>.</p>
   </div>
 
   <h3 class="doc-subhead">Поверхности и форма</h3>
@@ -642,10 +659,10 @@
   <div class="doc-rule" data-rule="C-1" id="rule-C-1">
     <div class="doc-rule__head">
       <h3>C-1</h3>
-      <span class="doc-rule__votes">254 / 254</span>
+      <span class="doc-rule__votes">254 / 306</span>
     </div>
-    <p><strong>Карточка — рамка 1px и радиус 24, без заливки и без тени.</strong> Семь типов карточек на девяти страницах.</p>
-    <p class="doc-rule__exception"><code>AdCard</code> — без рамки; <code>NumberedCourseItem</code> — не карточка.</p>
+    <p><strong>Карточка — рамка 1px и радиус 24, без заливки и без тени.</strong> Семь типов карточек; по всем 690 плоскостям от 200×60 тени нет ни у одной.</p>
+    <p class="doc-rule__exception"><code>AdCard</code> (52) — без рамки: картинка во всю карточку. <code>NumberedCourseItem</code> — не карточка.</p>
     <div class="doc-stage doc-stage--grid">
       <div class="doc-variant"><div class="doc-variant__row" style="max-width:320px;display:block"><div class="flex flex-col gap-1 rounded-3xl border border-solid border-ui-black-100 p-6"><div class="font-semibold">Подготовка страницы</div><div class="text-small"> Редакция Хабра отправляет материалы на&nbsp;проверку экспертам, которые работают в&nbsp;нужной профессии. </div></div></div></div>
       <div class="doc-variant"><div class="doc-variant__row" style="max-width:320px;display:block"><div class="relative box-border h-full cursor-pointer overflow-hidden rounded-3xl border border-solid border-ui-black-100"><div class="h-[112px] w-full bg-ui-white"><img src="../ui/assets/images/content-placeholder.svg" alt="Обложка образовательной организации" class="h-[112px] w-full object-cover object-center"></div><div class="relative flex h-[calc(100%-112px)] flex-col items-start bg-ui-white p-6 pt-8"><img src="../ui/assets/images/content-placeholder.svg" alt="" style="--avatar-size:40px;" class="h-[var(--avatar-size)] w-[var(--avatar-size)] object-cover z-2 absolute -top-[20px] rounded-xl border-2 border-solid border-ui-white bg-ui-white"><div class="mb-1.5 flex items-center gap-2"><div class="flex items-center gap-1"><svg class="svg-icon text-ui-yellow-500" style="width:16px;height:16px;" width="16" height="16"><use xlink:href="../ui/assets/icons/sprite.svg#star-rounded-small"></use></svg><span class="text-small font-semibold">4.55</span></div><div class="flex items-center gap-1"><svg class="svg-icon text-ui-black-400" style="width:16px;height:16px;" width="16" height="16"><use xlink:href="../ui/assets/icons/sprite.svg#comment"></use></svg><span class="text-small">1419</span></div></div><div class="mb-4 line-clamp-3 text-h4 font-semibold">Яндекс Практикум</div><div class="flex -space-x-1.5 mb-4"><div class=""><img src="../ui/assets/images/user_avatar_2.svg" class="block h-[24px] w-[24px] rounded-full border border-solid border-ui-white"></div><div class=""><img src="../ui/assets/images/content-placeholder.svg" class="block h-[24px] w-[24px] rounded-full border border-solid border-ui-white"></div><div class=""><img src="../ui/assets/images/user_avatar_2.svg" class="block h-[24px] w-[24px] rounded-full border border-solid border-ui-white"></div><div class="flex h-[24px] items-center rounded-full border border-solid border-ui-white bg-ui-black-50 px-2 text-micro text-ui-black-500"> +18070</div></div><button class="mt-auto inline-flex cursor-pointer select-none items-center justify-center rounded-xl font-semibold hover:no-underline focus:outline-none focus-visible:outline focus-visible:outline-ui-black-400 disabled:pointer-events-none w-full h-10 px-4 py-2 text-small border border-ui-black-850 bg-ui-black-850 text-ui-white hover:opacity-90 disabled:border-ui-black-150 disabled:bg-ui-black-150 disabled:text-ui-white mt-auto" rel="nofollow noreferrer" target="_self"> Подробнее </button></div><a href="#" class="z-1 absolute bottom-0 left-0 right-0 top-0"></a></div></div></div>
@@ -656,24 +673,54 @@
   <div class="doc-rule" data-rule="C-2" id="rule-C-2">
     <div class="doc-rule__head">
       <h3>C-2</h3>
-      <span class="doc-rule__votes">32 узла</span>
+      <span class="doc-rule__votes">32 / 32 узла</span>
     </div>
-    <p><strong>Тень есть только у стрелок карусели и всплывающих слоёв.</strong> Все 32 узла с тенью — <code>swiper-button-shadow</code>; у плоскостей страницы тени нет.</p>
+    <p><strong>Тень есть только у стрелок карусели и всплывающих слоёв.</strong> Все 32 узла с тенью — <code>swiper-button-shadow</code>.</p>
+    <p class="doc-rule__exception">В корпусе нарушителей нет.</p>
     <p class="doc-note">Видно на страницах: <a href="#p-education-center">страница школы</a>.</p>
   </div>
 
-  <div class="doc-rule" data-rule="C-3" id="rule-C-3">
+  <div class="doc-rule" data-rule="C-3a" id="rule-C-3a">
     <div class="doc-rule__head">
-      <h3>C-3</h3>
-      <span class="doc-rule__votes">1 207 узлов</span>
+      <h3>C-3a</h3>
+      <span class="doc-rule__votes">223 / 232</span>
     </div>
-    <p><strong>Радиус по роли: 24 — плоскость, 12 — управляющий элемент, пилюля — метка.</strong> Правило витрины компонентов <code>radius-four-steps</code> даёт те же значения по корням записей.</p>
+    <p><strong>Кнопка и поле высотой 40–56 — радиус 12.</strong></p>
+    <p class="doc-rule__exception">Поля формы поиска — 0: стыкуются в общей обёртке.</p>
     <div class="doc-stage doc-stage--grid">
       <div class="doc-variant"><div class="doc-variant__row" style="max-width:320px;display:block"><button class="mt-4 inline-flex cursor-pointer select-none items-center justify-center rounded-xl font-semibold hover:no-underline focus:outline-none focus-visible:outline focus-visible:outline-ui-black-400 disabled:pointer-events-none w-full h-10 px-4 py-2 text-small border border-ui-black-850 bg-ui-black-850 text-ui-white hover:opacity-90 disabled:border-ui-black-150 disabled:bg-ui-black-150 disabled:text-ui-white mt-4" rel="nofollow noreferrer" target="_self"> Далее </button></div></div>
-      <div class="doc-variant"><div class="doc-variant__row" style="max-width:320px;display:block"><div class="flex items-center gap-0.5 rounded-full bg-ui-black-50 px-2 py-1 max-w-[calc(100%_-48px)]"><div class="max-w-full overflow-hidden text-ellipsis whitespace-nowrap">Git</div></div></div></div>
-      <div class="doc-variant"><div class="doc-variant__row" style="max-width:320px;display:block"><button class="bg-ui-white border-ui-black-100 py-2 text-ui-black-850 relative z-10 flex h-9 cursor-pointer items-center whitespace-nowrap rounded-full border border-solid px-3 text-small">HR и рекрутинг</button></div></div>
+      <div class="doc-variant"><div class="doc-variant__row" style="max-width:320px;display:block"><a href="#" class="inline-flex cursor-pointer select-none items-center justify-center rounded-xl font-semibold hover:no-underline focus:outline-none focus-visible:outline focus-visible:outline-ui-black-400 disabled:pointer-events-none w-full h-12 min-h-12 px-4 py-2 text-default border border-ui-black-50 bg-ui-black-50 text-ui-black-850 hover:bg-ui-black-100 disabled:text-ui-black-300"> Перейти ко всем курсам </a></div></div>
     </div>
-    <p class="doc-note">Видно на страницах: <a href="#p-courses-listing">витрина курсов</a>.</p>
+    <p class="doc-note">Видно на страницах: <a href="#p-courses-listing">витрина курсов</a>, <a href="#p-education-centers-listing">витрина организаций</a>.</p>
+  </div>
+
+  <div class="doc-rule" data-rule="C-3b" id="rule-C-3b">
+    <div class="doc-rule__head">
+      <h3>C-3b</h3>
+      <span class="doc-rule__votes">787 / 807</span>
+    </div>
+    <p><strong>Элемент до 36 в высоту — пилюля или круг.</strong> Чипы, фильтры, бейджи, метки на обложке, стрелки; радиус 24 у метки высотой 24 глазу равен 9999.</p>
+    <p class="doc-rule__exception">Плашка школы в <code>ReviewCard</code> — 32 в высоту, радиус 6.</p>
+    <div class="doc-stage doc-stage--grid">
+      <div class="doc-variant"><div class="doc-variant__row" style="max-width:320px;display:block"><div class="flex flex-wrap items-start gap-1 self-stretch text-micro"><div class="flex items-center gap-0.5 rounded-full bg-ui-black-50 px-2 py-1 max-w-[calc(100%_-48px)]"><div class="max-w-full overflow-hidden text-ellipsis whitespace-nowrap">1С разработка</div></div><div class="flex items-center gap-0.5 rounded-full bg-ui-black-50 px-2 py-1 max-w-[calc(100%_-48px)]"><div class="max-w-full overflow-hidden text-ellipsis whitespace-nowrap">Git</div></div><div class="flex items-center gap-0.5 rounded-full bg-ui-black-50 px-2 py-1"> +9</div></div></div></div>
+      <div class="doc-variant"><div class="doc-variant__row" style="max-width:320px;display:block"><div class="scrollbar-container mt-2 flex gap-1 overflow-x-auto whitespace-nowrap px-px pt-2"><div class="relative"><button class="bg-ui-black-850 text-ui-white border-ui-black-850 py-2 relative z-10 flex h-9 cursor-pointer items-center whitespace-nowrap rounded-full border border-solid px-3 text-small">Все</button></div><div class="relative"><button class="bg-ui-white border-ui-black-100 py-2 text-ui-black-850 relative z-10 flex h-9 cursor-pointer items-center whitespace-nowrap rounded-full border border-solid px-3 text-small">HR и рекрутинг</button></div><div class="relative"><button class="bg-ui-white border-ui-black-100 py-2 text-ui-black-850 relative z-10 flex h-9 cursor-pointer items-center whitespace-nowrap rounded-full border border-solid px-3 text-small">Аналитика и Data Science</button></div><div class="relative"><button class="bg-ui-white border-ui-black-100 py-2 text-ui-black-850 relative z-10 flex h-9 cursor-pointer items-center whitespace-nowrap rounded-full border border-solid px-3 text-small">Бизнес и менеджмент</button></div><div class="relative"><button class="bg-ui-white border-ui-black-100 py-2 text-ui-black-850 relative z-10 flex h-9 cursor-pointer items-center whitespace-nowrap rounded-full border border-solid px-3 text-small">Дизайн и контент</button></div><div class="relative"><button class="bg-ui-white border-ui-black-100 py-2 text-ui-black-850 relative z-10 flex h-9 cursor-pointer items-center whitespace-nowrap rounded-full border border-solid px-3 text-small">Маркетинг и продажи</button></div><div class="relative"><button class="bg-ui-white border-ui-black-100 py-2 text-ui-black-850 relative z-10 flex h-9 cursor-pointer items-center whitespace-nowrap rounded-full border border-solid px-3 text-small">Прикладные программы</button></div><div class="relative"><button class="bg-ui-white border-ui-black-100 py-2 text-ui-black-850 relative z-10 flex h-9 cursor-pointer items-center whitespace-nowrap rounded-full border border-solid px-3 text-small">Программирование и IT</button></div><div class="relative"><button class="bg-ui-white border-ui-black-100 py-2 text-ui-black-850 relative z-10 flex h-9 cursor-pointer items-center whitespace-nowrap rounded-full border border-solid px-3 text-small">Финансы и бухгалтерия</button></div><div class="relative"><button class="bg-ui-white border-ui-black-100 py-2 text-ui-black-850 relative z-10 flex h-9 cursor-pointer items-center whitespace-nowrap rounded-full border border-solid px-3 text-small">Языки</button></div></div></div></div>
+      <div class="doc-variant"><div class="doc-variant__row" style="max-width:320px;display:block"><div class="text-semibold flex items-center rounded-full bg-ui-orange-500 px-1.5 py-0.5 text-micro text-ui-white"> -50% </div></div></div>
+    </div>
+    <p class="doc-note">Видно на страницах: <a href="#p-courses-listing">витрина курсов</a>, <a href="#p-education-center">страница школы</a>.</p>
+  </div>
+
+  <div class="doc-rule" data-rule="C-3c" id="rule-C-3c">
+    <div class="doc-rule__head">
+      <h3>C-3c</h3>
+      <span class="doc-rule__votes">138 / 138 · 267 / 268</span>
+    </div>
+    <p><strong>Фото человека — круг; логотип организации — квадрат со скруглением в четверть стороны.</strong> 24 → 6, 32 → 8, 48 → 12, 100 → 24.</p>
+    <p class="doc-rule__exception">Значок школы на аватаре профиля: 40 → 14.</p>
+    <div class="doc-stage doc-stage--grid">
+      <div class="doc-variant"><div class="doc-variant__row" style="max-width:320px;display:block"><div class="flex items-center gap-2 whitespace-nowrap"><img src="../ui/assets/images/content-placeholder.svg" alt="Логотип Нетология" style="--avatar-size:32px;" class="h-[var(--avatar-size)] w-[var(--avatar-size)] object-cover rounded-lg"><span class="max-w-full overflow-hidden text-ellipsis text-small font-semibold">Нетология</span></div></div></div>
+      <div class="doc-variant"><div class="doc-variant__row" style="max-width:320px;display:block"><div class="relative h-[68px] w-[68px]"><img src="../ui/assets/images/content-placeholder.svg" alt="" style="--avatar-size:68px;" class="h-[var(--avatar-size)] w-[var(--avatar-size)] object-cover overflow-hidden rounded-full object-contain"><div class="absolute -bottom-0.5 -right-0.5 flex h-[28px] w-[28px] items-center justify-center overflow-hidden rounded-[8px] border-2 border-solid border-ui-white bg-ui-white"><img src="../ui/assets/images/content-placeholder.svg" alt="" style="--avatar-size:24px;" class="h-[var(--avatar-size)] w-[var(--avatar-size)] object-cover"></div></div></div></div>
+    </div>
+    <p class="doc-note">Видно на страницах: <a href="#p-courses-listing">витрина курсов</a>, <a href="#p-authors">эксперты</a>, <a href="#p-author">профиль</a>.</p>
   </div>
 
   <h3 class="doc-subhead">Акценты и текст</h3>
@@ -683,7 +730,8 @@
       <h3>A-1</h3>
       <span class="doc-rule__votes">191 / 191</span>
     </div>
-    <p><strong>Кнопок два цвета: тёмная (173) и светлая (18).</strong> Синих и оранжевых кнопок нет. То же правило по записи — <code>button-dark-default</code> на витрине компонентов.</p>
+    <p><strong>Фон <code>Button</code> в корпусе — тёмный (173) или светлый (18), третьего нет.</strong> Синий в продукте — градиент шапки и hero и текст ссылок, фоном <code>Button</code> не бывает. Остальные <code>&lt;button&gt;</code> белые или прозрачные.</p>
+    <p class="doc-rule__exception">Вне области правила: выбранный <code>FilterChip</code> «Все» тёмный — это состояние выбора.</p>
     <div class="doc-stage doc-stage--grid">
       <div class="doc-variant"><div class="doc-variant__row" style="max-width:320px;display:block"><button class="mt-4 inline-flex cursor-pointer select-none items-center justify-center rounded-xl font-semibold hover:no-underline focus:outline-none focus-visible:outline focus-visible:outline-ui-black-400 disabled:pointer-events-none w-full h-10 px-4 py-2 text-small border border-ui-black-850 bg-ui-black-850 text-ui-white hover:opacity-90 disabled:border-ui-black-150 disabled:bg-ui-black-150 disabled:text-ui-white mt-4" rel="nofollow noreferrer" target="_self"> Далее </button></div></div>
       <div class="doc-variant"><div class="doc-variant__row" style="max-width:320px;display:block"><a href="#" class="inline-flex cursor-pointer select-none items-center justify-center rounded-xl font-semibold hover:no-underline focus:outline-none focus-visible:outline focus-visible:outline-ui-black-400 disabled:pointer-events-none w-full h-12 min-h-12 px-4 py-2 text-default border border-ui-black-50 bg-ui-black-50 text-ui-black-850 hover:bg-ui-black-100 disabled:text-ui-black-300"> Перейти ко всем курсам </a></div></div>
@@ -696,7 +744,8 @@
       <h3>A-2</h3>
       <span class="doc-rule__votes">87 / 87</span>
     </div>
-    <p><strong>Оранжевый — только бейдж скидки.</strong></p>
+    <p><strong>Оранжевый <code>ui-orange-500</code> — только фон бейджа скидки.</strong> Оранжевого текста нет; звёзды рейтинга — другой токен, <code>ui-yellow-500</code>.</p>
+    <p class="doc-rule__exception">В корпусе нарушителей нет.</p>
     <div class="doc-stage doc-stage--grid">
       <div class="doc-variant"><div class="doc-variant__row" style="max-width:320px;display:block"><div class="text-semibold flex items-center rounded-full bg-ui-orange-500 px-1.5 py-0.5 text-micro text-ui-white"> -50% </div></div></div>
     </div>
@@ -706,20 +755,21 @@
   <div class="doc-rule" data-rule="A-3" id="rule-A-3">
     <div class="doc-rule__head">
       <h3>A-3</h3>
-      <span class="doc-rule__votes">10 / 10 · 9 / 9</span>
+      <span class="doc-rule__votes">10 / 10 · 28 / 28</span>
     </div>
     <p><strong>Основной текст 14/400, заголовок секции 24/28, 600.</strong></p>
-    <p class="doc-note">Видно на страницах: <a href="#p-rating">рейтинг</a>, <a href="#p-education-center">страница школы</a>.</p>
+    <p class="doc-rule__exception">Профиль — заголовки разделов <code>div.text-h2</code> того же размера.</p>
+    <p class="doc-note">Видно на страницах: <a href="#p-rating">рейтинг</a>, <a href="#p-education-center">страница школы</a>, <a href="#p-author">профиль</a>.</p>
   </div>
 
-  <div class="doc-rule" data-rule="A-4" id="rule-A-4">
+  <div class="doc-rule" data-rule="A-5" id="rule-A-5">
     <div class="doc-rule__head">
-      <h3>A-4</h3>
-      <span class="doc-rule__votes">7 / 10</span>
+      <h3>A-5</h3>
+      <span class="doc-rule__votes">41 / 42 узла</span>
     </div>
-    <p><strong><code>h1</code> 44/48 стоит только в hero.</strong></p>
-    <p class="doc-rule__exception">Витрина курсов — без <code>h1</code>; страница школы — <code>h1</code> 14 внизу колонки; профиль — без заголовков.</p>
-    <p class="doc-note">Видно на страницах: <a href="#p-authors">эксперты</a>, <a href="#p-education-center">страница школы</a>, <a href="#p-author">профиль</a>.</p>
+    <p><strong>Крупнее 18 — только заголовки: <code>h1</code> 44, заголовок раздела 24, имя в шапке 30.</strong></p>
+    <p class="doc-rule__exception">Нарушитель — имя эксперта в «Больше об авторах»: 20/600.</p>
+    <p class="doc-note">Видно на страницах: <a href="#p-education-centers-listing">витрина организаций</a>, <a href="#p-education-center">страница школы</a>, <a href="#p-author">профиль</a>.</p>
   </div>
 
   <h3 class="doc-subhead">Реакция на курсор</h3>
@@ -730,6 +780,7 @@
       <span class="doc-rule__votes">0 / 315</span>
     </div>
     <p><strong>Корень карточки на наведение не реагирует.</strong> Наведите на карточку: меняется только кнопка и подчёркивание ссылок.</p>
+    <p class="doc-rule__exception">В корпусе нарушителей нет.</p>
     <div class="doc-stage doc-stage--grid">
       <div class="doc-variant"><div class="doc-variant__row" style="max-width:320px;display:block"><div class="relative box-border flex h-full min-w-0 flex-col overflow-hidden rounded-3xl border border-ui-black-100" id="2060-1c-programmist-rasshirennyy-kurs"><img src="../ui/assets/images/content-placeholder.svg" alt="Обложка курса" class="z-0 h-[148px] w-full bg-ui-white object-cover object-center"><div class="absolute inset-0 bg-ui-black-transparent-120"></div><div class="relative -mt-5 flex flex-1 cursor-pointer flex-col rounded-t-3xl bg-ui-white p-6 text-ui-black-850"><div class="absolute -top-[34px] left-[10px] flex gap-1"><div class="flex gap-1.5 rounded-3xl bg-ui-white py-1 pl-1.5 pr-2"><div class="flex items-center gap-1"><svg class="svg-icon text-ui-yellow-500" style="width:16px;height:16px;" width="16" height="16"><use xlink:href="../ui/assets/icons/sprite.svg#star-rounded-small"></use></svg><span class="text-micro font-semibold">4.75</span></div><div class="flex items-center gap-0.5"><svg class="svg-icon fill-ui-black-400 text-ui-black-400" style="width:16px;height:16px;" width="16" height="16"><use xlink:href="../ui/assets/icons/sprite.svg#comment"></use></svg><span class="text-micro">6</span></div></div><div class="rounded-3xl bg-ui-white px-2 py-1 text-micro">18 мес</div></div><div class="flex flex-col gap-3"><div class="flex items-center gap-2 whitespace-nowrap"><img src="../ui/assets/images/content-placeholder.svg" alt="Логотип Нетология" style="--avatar-size:32px;" class="h-[var(--avatar-size)] w-[var(--avatar-size)] object-cover rounded-lg"><span class="max-w-full overflow-hidden text-ellipsis text-small font-semibold">Нетология</span></div><div class="line-clamp-2 whitespace-normal break-words">1C-программист: расширенный курс</div><div class="flex flex-wrap items-start gap-1 self-stretch text-micro"><div class="flex items-center gap-0.5 rounded-full bg-ui-black-50 px-2 py-1 max-w-[calc(100%_-48px)]"><div class="max-w-full overflow-hidden text-ellipsis whitespace-nowrap">1С разработка</div></div><div class="flex items-center gap-0.5 rounded-full bg-ui-black-50 px-2 py-1 max-w-[calc(100%_-48px)]"><div class="max-w-full overflow-hidden text-ellipsis whitespace-nowrap">Git</div></div><div class="flex items-center gap-0.5 rounded-full bg-ui-black-50 px-2 py-1"> +9</div></div></div><div class="mt-auto flex flex-col gap-0.5 pt-5"><div class="flex flex-wrap items-center gap-x-2 gap-y-1"><span class="text-h4 font-semibold">от 4&nbsp;223 ₽/мес</span><div class="text-semibold flex items-center rounded-full bg-ui-orange-500 px-1.5 py-0.5 text-micro text-ui-white"> -50% </div></div><span class="text-small text-ui-black-500">или сразу 129&nbsp;200 ₽</span></div><button class="mt-4 inline-flex cursor-pointer select-none items-center justify-center rounded-xl font-semibold hover:no-underline focus:outline-none focus-visible:outline focus-visible:outline-ui-black-400 disabled:pointer-events-none w-full h-10 px-4 py-2 text-small border border-ui-black-850 bg-ui-black-850 text-ui-white hover:opacity-90 disabled:border-ui-black-150 disabled:bg-ui-black-150 disabled:text-ui-white mt-4" rel="nofollow noreferrer" target="_self"> Далее </button></div><a class="z-2 absolute bottom-0 left-0 right-0 top-0" rel="noopener noreferrer nofollow" href="#"></a></div></div></div>
     </div>
@@ -742,6 +793,7 @@
       <span class="doc-rule__votes">173 / 173 · 18 / 18</span>
     </div>
     <p><strong>Тёмная кнопка — <code>opacity-90</code>, светлая — фон <code>bg-ui-black-100</code>.</strong></p>
+    <p class="doc-rule__exception">В корпусе нарушителей нет.</p>
     <div class="doc-stage doc-stage--grid">
       <div class="doc-variant"><div class="doc-variant__row" style="max-width:320px;display:block"><button class="mt-4 inline-flex cursor-pointer select-none items-center justify-center rounded-xl font-semibold hover:no-underline focus:outline-none focus-visible:outline focus-visible:outline-ui-black-400 disabled:pointer-events-none w-full h-10 px-4 py-2 text-small border border-ui-black-850 bg-ui-black-850 text-ui-white hover:opacity-90 disabled:border-ui-black-150 disabled:bg-ui-black-150 disabled:text-ui-white mt-4" rel="nofollow noreferrer" target="_self"> Далее </button></div></div>
       <div class="doc-variant"><div class="doc-variant__row" style="max-width:320px;display:block"><a href="#" class="inline-flex cursor-pointer select-none items-center justify-center rounded-xl font-semibold hover:no-underline focus:outline-none focus-visible:outline focus-visible:outline-ui-black-400 disabled:pointer-events-none w-full h-12 min-h-12 px-4 py-2 text-default border border-ui-black-50 bg-ui-black-50 text-ui-black-850 hover:bg-ui-black-100 disabled:text-ui-black-300"> Перейти ко всем курсам </a></div></div>
@@ -755,6 +807,7 @@
       <span class="doc-rule__votes">37 ссылок</span>
     </div>
     <p><strong>Строка таблицы и номер листания — фон <code>bg-ui-black-50</code>.</strong></p>
+    <p class="doc-rule__exception">В корпусе нарушителей нет; класс <code>phone:hover:bg-none</code> у строк таблицы в CSS не скомпилирован.</p>
     <p class="doc-note">Видно на страницах: <a href="#p-rating">рейтинг</a>, <a href="#p-courses-listing">витрина курсов</a>.</p>
   </div>
 
@@ -766,34 +819,37 @@
       <span class="doc-rule__votes">9 / 9</span>
     </div>
     <p><strong>До 767 каждая сетка карточек — одна колонка.</strong></p>
+    <p class="doc-rule__exception">В корпусе нарушителей нет.</p>
     <p class="doc-note">Видно на страницах: <a href="#p-courses-listing">витрина курсов</a>, <a href="#p-education-centers-listing">витрина организаций</a>.</p>
   </div>
 
   <div class="doc-rule" data-rule="R-2" id="rule-R-2">
     <div class="doc-rule__head">
       <h3>R-2</h3>
-      <span class="doc-rule__votes">7 / 9</span>
+      <span class="doc-rule__votes">7 / 9 на 768</span>
     </div>
-    <p><strong>На 768–1023 сетка карточек — 3 колонки.</strong></p>
-    <p class="doc-rule__exception">Шаги экспертов и редакции — 2 колонки.</p>
+    <p><strong>На 768–1023 сетка карточек — 3 колонки, на 1024 — уже 4.</strong></p>
+    <p class="doc-rule__exception">Нарушитель — шаги экспертов и редакции: 2 колонки.</p>
     <p class="doc-note">Видно на страницах: <a href="#p-courses-listing">витрина курсов</a>, <a href="#p-authors">эксперты</a>.</p>
   </div>
 
   <div class="doc-rule" data-rule="R-3" id="rule-R-3">
     <div class="doc-rule__head">
       <h3>R-3</h3>
-      <span class="doc-rule__votes">10 / 10</span>
+      <span class="doc-rule__votes">10 / 10 × 4 ширины</span>
     </div>
     <p><strong>Подвал: 4 колонки от 1024, 3 на 768–1023, 1 до 767.</strong></p>
+    <p class="doc-rule__exception">В корпусе нарушителей нет.</p>
     <p class="doc-note">Видно на страницах: <a href="#p-rating">рейтинг</a>.</p>
   </div>
 
   <div class="doc-rule" data-rule="R-4" id="rule-R-4">
     <div class="doc-rule__head">
       <h3>R-4</h3>
-      <span class="doc-rule__votes">10 / 10</span>
+      <span class="doc-rule__votes">10 / 10 × 4 ширины</span>
     </div>
     <p><strong>Порядок блоков на всех ширинах один.</strong></p>
+    <p class="doc-rule__exception">Внутри шапки витрины курсов поиск уходит последним — перестановка внутри блока.</p>
     <p class="doc-note">Видно на страницах: <a href="#p-courses-listing">витрина курсов</a>, <a href="#p-education-center">страница школы</a>.</p>
   </div>
 
@@ -803,6 +859,7 @@
       <span class="doc-rule__votes">5 / 5</span>
     </div>
     <p><strong>Форма поиска на телефоне показывает дубль полей в одну колонку, а ряд прячет.</strong></p>
+    <p class="doc-rule__exception">В корпусе нарушителей нет.</p>
     <p class="doc-note">Видно на страницах: <a href="#p-education-centers-listing">витрина организаций</a>, <a href="#p-rating">рейтинг</a>.</p>
   </div>
 
@@ -814,25 +871,47 @@
       <span class="doc-rule__votes">7 / 7</span>
     </div>
     <p><strong>Дробная часть — через точку: «4.55».</strong></p>
+    <p class="doc-rule__exception">В корпусе нарушителей нет; «3,500+» у эксперта — разряды в тексте автора.</p>
     <p class="doc-note">Видно на страницах: <a href="#p-rating">рейтинг</a>.</p>
   </div>
 
-  <div class="doc-rule" data-rule="CT-2" id="rule-CT-2">
+  <div class="doc-rule" data-rule="CT-2a" id="rule-CT-2a">
     <div class="doc-rule__head">
-      <h3>CT-2</h3>
-      <span class="doc-rule__votes">7 / 7</span>
+      <h3>CT-2a</h3>
+      <span class="doc-rule__votes">209 / 210</span>
     </div>
-    <p><strong>Разряды — пробелом, рубль — после числа: «от 4 223 ₽/мес».</strong></p>
+    <p><strong>Цена: разряды через пробел, рубль после числа — «от 4 223 ₽/мес».</strong></p>
+    <p class="doc-rule__exception">Нарушитель — «Скидка 1000 ₽» в карточке промокода.</p>
     <p class="doc-note">Видно на страницах: <a href="#p-courses-listing">витрина курсов</a>.</p>
   </div>
 
-  <div class="doc-rule" data-rule="CT-3" id="rule-CT-3">
+  <div class="doc-rule" data-rule="CT-2b" id="rule-CT-2b">
     <div class="doc-rule__head">
-      <h3>CT-3</h3>
-      <span class="doc-rule__votes">18 / 22 подписей</span>
+      <h3>CT-2b</h3>
+      <span class="doc-rule__votes">23 / 23</span>
     </div>
-    <p><strong>Подпись кнопки перехода и поиска — инфинитив: «Найти школы», «Посмотреть все курсы».</strong></p>
-    <p class="doc-rule__exception">«Далее», «Подробнее» — наречия в карточке; «Каталог», «Больше об эксперте».</p>
+    <p><strong>Счётчик пишется слитно: «1419 отзывов», «+18070».</strong></p>
+    <p class="doc-rule__exception">В корпусе нарушителей нет; числа в тексте автора идут вразнобой — правило их не задаёт.</p>
+    <p class="doc-note">Видно на страницах: <a href="#p-education-centers-listing">витрина организаций</a>, <a href="#p-education-center">страница школы</a>.</p>
+  </div>
+
+  <div class="doc-rule" data-rule="CT-3a" id="rule-CT-3a">
+    <div class="doc-rule__head">
+      <h3>CT-3a</h3>
+      <span class="doc-rule__votes">144 / 144</span>
+    </div>
+    <p><strong>Кнопка перехода в карточке курса и школы — «Далее» или «Подробнее».</strong></p>
+    <p class="doc-rule__exception">Нарушитель — карточка промокода: «Посмотреть», «Открыть код».</p>
+    <p class="doc-note">Видно на страницах: <a href="#p-courses-listing">витрина курсов</a>, <a href="#p-education-centers-listing">витрина организаций</a>.</p>
+  </div>
+
+  <div class="doc-rule" data-rule="CT-3b" id="rule-CT-3b">
+    <div class="doc-rule__head">
+      <h3>CT-3b</h3>
+      <span class="doc-rule__votes">25 / 27</span>
+    </div>
+    <p><strong>Кнопка вне карточки начинается с инфинитива: «Найти школы», «Перейти ко всем курсам».</strong></p>
+    <p class="doc-rule__exception">«Каталог» в шапке; «Больше об эксперте».</p>
     <p class="doc-note">Видно на страницах: <a href="#p-education-centers-listing">витрина организаций</a>, <a href="#p-education-center">страница школы</a>.</p>
   </div>
 </section>
