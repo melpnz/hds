@@ -78,7 +78,7 @@ node tools/validate-components.mjs --strict
 | **R4** | каркасные модули: шапка, футер, hero, секции, сетки, фильтры — **R4 Gate** | 22 | planned |
 | **R5** | entity-модули: карточки сущностей продукта | 18 | planned |
 | **R6** | ключевые страницы: по одной на семейство | 5 | done · 5/5 (шесть страниц), принята 11 сентября 2026 решением владельца на записях bulk-прохода; `showcase/pages.html`, `pages/*.md` |
-| **R7** | принципы: правила композиции и Decision Guides | 3 | planned |
+| **R7** | принципы: правила композиции и Decision Guides | 3 | in-progress · 2/3 собраны 11 сентября 2026 без приёмки (R7-01, R7-02) |
 | **R8** | машинный слой и контракт для модели-потребителя | 4 | planned |
 
 Волны не смешиваются: R4 не начинается до Core Gate, R6 — до закрытия R5.
@@ -731,8 +731,8 @@ R2 и компонентов R3, без собственных значений 
 
 | Шаг | Что делаем | Зависит от | Статус |
 |---|---|---|---|
-| R7-01 | `docs/guide/composition.md` — правила с идентификаторами и покрытием дробью | R6 | planned |
-| R7-02 | `docs/guide/decisions.md` — Decision Guides в формате OBSERVED · Когда · Предпочитай · Избегай · Evidence + Confidence · GAP | R7-01 | planned |
+| R7-01 | `docs/guide/composition.md` — правила с идентификаторами и покрытием дробью | R6 | собран 11 сентября 2026 без приёмки: 30 правил по 17 осям, замеры `.pipeline/principles-evidence.md`, витрина `showcase/pages.html#doc-rules` |
+| R7-02 | `docs/guide/decisions.md` — Decision Guides в формате OBSERVED · Когда · Предпочитай · Избегай · Evidence + Confidence · GAP | R7-01 | собран 11 сентября 2026 без приёмки: 7 решений DG-1…DG-7 |
 | R7-03 | `docs/guide/coverage.md` и `evidence/coverage.md` — границы, источники, разбор конфликтов из BRIEF §5 | R7-01 | planned |
 
 Правила-кандидаты, у которых покрытие уже посчитано на инвентаризации:

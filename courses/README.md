@@ -125,8 +125,9 @@ courses/
   docs/guide/               tokens.md — разбор переменных продукта;
                             typography.md — шкала, база документа, шрифт,
                             фокус; layout.md — оболочка, контейнер, сетка
-                            секций, брейкпоинты; composition, decisions,
-                            coverage — R7
+                            секций, брейкпоинты; composition.md — правила
+                            уровня страницы, decisions.md — Decision Guides
+                            (R7); coverage — R7-03
   docs/development/         заметки по работе с пакетом
   machine/                  пусто; машиночитаемая проекция — R8
   tests/                    пусто; первый спек витрины — R0-06
