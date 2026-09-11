@@ -15,7 +15,7 @@
    видимости [data-v-…] — в разметке пакета его нет (съёмка его срезает),
    и с атрибутом правило не срабатывало бы нигде.
 
-   Классов: 411. Условий @media: 5.
+   Классов: 417. Условий @media: 5.
 
    Чего здесь нет:
    - библиотечный слой Swiper (.swiper*, .banner-swiper) — он объявлен чанком
@@ -58,6 +58,9 @@
 
 /* bottom-0 — 7 комп. */
 .bottom-0{bottom:0}
+
+/* bottom-20 — 1 комп. */
+.bottom-20{bottom:5rem}
 
 /* bottom-6 — 1 комп. */
 .bottom-6{bottom:1.5rem}
@@ -412,6 +415,10 @@
 /* -translate-y-1/2 — 2 комп. */
 .-translate-x-1\/2,.-translate-y-1\/2{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}
 .-translate-y-1\/2{--tw-translate-y:-50%}
+
+/* translate-y-full — 1 комп. */
+.translate-y-full{--tw-translate-y:100%}
+.-rotate-45,.translate-y-full{transform:translate(var(--tw-translate-x),var(--tw-translate-y)) rotate(var(--tw-rotate)) skew(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}
 
 /* -rotate-90 — 1 комп. */
 .-rotate-90{--tw-rotate:-90deg}
@@ -823,6 +830,9 @@
 
 /* pb-20 — 1 комп. */
 .pb-20{padding-bottom:5rem}
+
+/* pb-28 — 1 комп. */
+.pb-28{padding-bottom:7rem}
 
 /* pb-4 — 3 комп. */
 .pb-4{padding-bottom:1rem}
@@ -1262,6 +1272,8 @@
   .phone\:pb-6{padding-bottom:1.5rem}
   /* phone:pl-0 — 1 комп. */
   .phone\:pl-0{padding-left:0}
+  /* phone:pt-0 — 1 комп. */
+  .phone\:pt-0{padding-top:0}
   /* phone:pt-10 — 1 комп. */
   .phone\:pt-10{padding-top:2.5rem}
   /* phone:pt-6 — 1 комп. */
@@ -1272,6 +1284,8 @@
   .phone\:empty\:hidden:empty{display:none}
   /* phone:hover:bg-none — 2 комп. */
   .phone\:hover\:bg-none:hover{background-image:none}
+  /* phone:[&>*:nth-child(n+5)]:hidden — 1 комп. */
+  .phone\:\[\&\>\*\:nth-child\(n\+5\)\]\:hidden>:nth-child(n+5){display:none}
   /* adfox-banner — 1 комп. */
   .adfox-banner{grid-area:5/1/auto/2}
 }
@@ -1292,4 +1306,6 @@
   .tablet-only\:grid-cols-2{grid-template-columns:repeat(2,minmax(0,1fr))}
   /* tablet-only:grid-cols-3 — 1 комп. */
   .tablet-only\:grid-cols-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+  /* tablet-only:[&>*:nth-child(n+7)]:hidden — 1 комп. */
+  .tablet-only\:\[\&\>\*\:nth-child\(n\+7\)\]\:hidden>:nth-child(n+7){display:none}
 }

@@ -29,7 +29,7 @@
 <nav class="doc-nav" aria-label="Разделы витрины страниц">
   <p class="doc-nav__brand">Хабр Курсы</p>
   <p class="doc-nav__title">Страницы</p>
-  <p class="doc-nav__state">шаг R6 · 3 из 5</p>
+  <p class="doc-nav__state">шаг R6 · 4 из 5</p>
 
   <ul class="doc-nav__list">
     <li><a class="doc-nav__link doc-nav__link--top" href="#doc-about">О странице витрины</a></li>
@@ -39,6 +39,7 @@
         <li><a class="doc-nav__link" href="#p-courses-listing">Витрина курсов · листинг</a></li>
         <li><a class="doc-nav__link" href="#p-education-centers-listing">Витрина организаций · листинг</a></li>
         <li><a class="doc-nav__link" href="#p-rating">Рейтинг школ · таблица</a></li>
+        <li><a class="doc-nav__link" href="#p-education-center">Страница школы · сущность</a></li>
       </ul>
     </li>
   </ul>
@@ -88,7 +89,7 @@
   <div class="doc-section__head">
     <span class="doc-section__num">2</span>
     <h2>Страницы</h2>
-    <p>По одной на семейство; у листинга — два представителя. Остальные две — шаги R6-04 и R6-05.</p>
+    <p>По одной на семейство; у листинга — два представителя. Осталась одна — шаг R6-05.</p>
   </div>
 
   <section class="doc-section" id="p-courses-listing">
@@ -319,6 +320,74 @@
       баннеров и листания: таблицу догружает кнопка внутри <code>RatingTable</code>. На
       телефоне таблица выходит в край экрана и прокручивается по горизонтали внутри рамки —
       страница остаётся без прокрутки.
+    </p>
+  </section>
+
+  <section class="doc-section" id="p-education-center">
+    <div class="doc-section__head">
+      <h4>Страница школы · сущность</h4>
+      <p>
+        <code>/education_centers/35-yandeks-praktikum</code> — шапка школы с обложкой и
+        логотипом, курсы с фильтром, ленты историй и отзывов, реквизиты. Статья —
+        <a href="../pages/education-center.md">pages/education-center.md</a>, снимки
+        продакшена — <code>evidence/source/production/pages/education-center/</code>.
+      </p>
+    </div>
+
+    <div class="doc-frames">
+      <div class="doc-frame">
+        <span class="doc-frame__label">375 · phone</span>
+        <div class="doc-frame__box" style="--doc-frame-w:375;--doc-frame-s:1">
+          <iframe src="pages/education-center.html" title="Страница школы на 375" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="doc-frame">
+        <span class="doc-frame__label">768 · tablet-only</span>
+        <div class="doc-frame__box" style="--doc-frame-w:768;--doc-frame-s:0.5">
+          <iframe src="pages/education-center.html" title="Страница школы на 768" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="doc-frame">
+        <span class="doc-frame__label">1024 · desktop</span>
+        <div class="doc-frame__box" style="--doc-frame-w:1024;--doc-frame-s:0.375">
+          <iframe src="pages/education-center.html" title="Страница школы на 1024" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="doc-frame">
+        <span class="doc-frame__label">1440 · desktop</span>
+        <div class="doc-frame__box" style="--doc-frame-w:1440;--doc-frame-s:0.2667">
+          <iframe src="pages/education-center.html" title="Страница школы на 1440" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="doc-frame doc-frame--live">
+      <span class="doc-frame__label">во всю ширину окна — <a href="pages/education-center.html">открыть отдельно</a></span>
+      <div class="doc-frame__box">
+        <iframe src="pages/education-center.html" title="Страница школы во всю ширину" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div class="doc-scroll">
+    <table class="doc-table">
+      <thead><tr><th>область</th><th>1440</th><th>1024</th><th>768</th><th>375</th></tr></thead>
+      <tbody>
+        <tr><td>шапка школы <code>EntityHeader</code></td><td class="doc-table__wrap">1076×358: обложка 208, полоса 148</td><td>976×358</td><td>720×358</td><td class="doc-table__wrap">375×365, в край: обложка 150</td></tr>
+        <tr><td>сетка курсов</td><td class="doc-table__wrap">4 × 257, промежуток 16; 8 карточек</td><td>4 × 232; 8</td><td>3 × 229; 6</td><td>1 × 327; 4</td></tr>
+        <tr><td>отступ колонки сверху · снизу</td><td>24 · 112</td><td>24 · 112</td><td>24 · 112</td><td>0 · 112</td></tr>
+        <tr><td>высота страницы</td><td>3 167</td><td>3 202</td><td>3 252</td><td>4 408</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="doc-note">
+      Высота сходится со скриншотами продакшена в пределах 1,5%. Без сокращений; две ленты
+      Swiper — заглушкой. Сверка с продуктом — 0 расхождений на пяти ширинах.
+    </p>
+    <p class="doc-note">
+      <strong>Чем отличается от листинга.</strong> Нет hero, формы поиска, баннеров и
+      листания: страница открывается шапкой сущности. Сетка курсов сама прячет карточки сверх
+      шести на планшете и сверх четырёх на телефоне. Заголовок <code>h1</code> стоит в самом
+      низу колонки мелким серым текстом; название в шапке школы — не заголовок.
     </p>
   </section>
 </section>

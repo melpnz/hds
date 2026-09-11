@@ -59,4 +59,17 @@ export const PAGES = {
     ],
     hydrated: [],
   },
+  // Сетка курсов не сокращается: 8 карточек, на телефоне продукт сам
+  // оставляет 4 (`phone:[&>*:nth-child(n+5)]:hidden`). hydration-diff — 0.
+  "education-center": {
+    source: "education-center",
+    title: "Страница школы",
+    url: "https://career.habr.com/education_centers/35-yandeks-praktikum",
+    trim: [],
+    stubs: [
+      { sel: "section.flex.flex-col.gap-4 > div.relative:has(.swiper)", index: 0, mod: "journal", name: "Carousel · ArticleCard", text: "«Истории успеха», 8 слайдов ArticleCard" },
+      { sel: "section.flex.flex-col.gap-4 > div.relative:has(.swiper)", index: 1, mod: "reviews", name: "Carousel · ReviewCard", text: "отзывы, 8 слайдов ReviewCard" },
+    ],
+    hydrated: [],
+  },
 };
