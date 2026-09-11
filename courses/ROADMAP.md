@@ -712,7 +712,7 @@ R2 и компонентов R3, без собственных значений 
 |---|---|---|---|---|---|
 | R6-01 | Витрина курсов | листинг | [`/courses`](https://career.habr.com/courses) | R5 | собрана 11 сентября 2026 без приёмки: `pages/courses-listing.md`, `showcase/pages.html#p-courses-listing`; модули страницы заведены: `AuthorsBlock` (R5-18) и вариант `LinkGrid` «Промокоды и акции» |
 | R6-02 | Витрина организаций | листинг | [`/education_centers`](https://career.habr.com/education_centers) | R5 | собрана 11 сентября 2026 без приёмки: `pages/education-centers-listing.md`, `showcase/pages.html#p-education-centers-listing` |
-| R6-03 | Рейтинг школ | таблица | [`/education_centers/rating`](https://career.habr.com/education_centers/rating) | R5-08 | planned |
+| R6-03 | Рейтинг школ | таблица | [`/education_centers/rating`](https://career.habr.com/education_centers/rating) | R5-08 | собрана 11 сентября 2026 без приёмки: `pages/rating.md`, `showcase/pages.html#p-rating` |
 | R6-04 | Страница школы | сущность | [`/education_centers/35-yandeks-praktikum`](https://career.habr.com/education_centers/35-yandeks-praktikum) | R5-10 | planned |
 | R6-05 | Эксперты и профиль автора | промо-раздел + профиль | [`/courses/authors`](https://career.habr.com/courses/authors) · [`/courses/authors/23-stepan-voevodin`](https://career.habr.com/courses/authors/23-stepan-voevodin) | R5-06, R5-11 | planned |
 

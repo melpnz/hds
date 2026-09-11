@@ -87,6 +87,11 @@ const res = await page.evaluate((cfg) => {
     if (/external-profile\.svg/.test(ref)) return ref.replace(/^.*external-profile\.svg(?:\?[^#]*)?/, "../../ui/assets/icons/external-profile.svg");
     if (/user_avatar_2\.svg/.test(ref)) return "../../ui/assets/images/user_avatar_2.svg";
     if (/avatars\/logo\.svg/.test(ref)) return "../../ui/assets/images/logo.svg";
+    // Ассеты продукта, которые лежат в пакете (тот же список, что у
+    // gen-specs.mjs, DIRECT). Первая редакция отдавала значок «Партнёр Хабра»
+    // в заглушку 160×160, и в рейтинге она раздувала строки таблицы.
+    if (/icons\/green-partner-icon\.svg/.test(ref)) return "../../ui/assets/icons/green-partner-icon.svg";
+    if (/courses\/code_2\.svg/.test(ref)) return "../../ui/assets/images/code_2.svg";
     return "../../ui/assets/images/content-placeholder.svg";
   };
   for (const el of app.querySelectorAll("*")) {

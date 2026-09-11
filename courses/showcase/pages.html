@@ -29,7 +29,7 @@
 <nav class="doc-nav" aria-label="Разделы витрины страниц">
   <p class="doc-nav__brand">Хабр Курсы</p>
   <p class="doc-nav__title">Страницы</p>
-  <p class="doc-nav__state">шаг R6 · 2 из 5</p>
+  <p class="doc-nav__state">шаг R6 · 3 из 5</p>
 
   <ul class="doc-nav__list">
     <li><a class="doc-nav__link doc-nav__link--top" href="#doc-about">О странице витрины</a></li>
@@ -38,6 +38,7 @@
       <ul class="doc-nav__list doc-nav__list--sub">
         <li><a class="doc-nav__link" href="#p-courses-listing">Витрина курсов · листинг</a></li>
         <li><a class="doc-nav__link" href="#p-education-centers-listing">Витрина организаций · листинг</a></li>
+        <li><a class="doc-nav__link" href="#p-rating">Рейтинг школ · таблица</a></li>
       </ul>
     </li>
   </ul>
@@ -87,7 +88,7 @@
   <div class="doc-section__head">
     <span class="doc-section__num">2</span>
     <h2>Страницы</h2>
-    <p>По одной на семейство; у листинга — два представителя. Остальные три — шаги R6-03…R6-05.</p>
+    <p>По одной на семейство; у листинга — два представителя. Остальные две — шаги R6-04 и R6-05.</p>
   </div>
 
   <section class="doc-section" id="p-courses-listing">
@@ -249,6 +250,75 @@
       шапка не липкая и без поиска, колонка начинается с 40, а не 24, промежуток после
       баннеров — полные 48. Карточка выдачи — <code>SchoolCard</code>. Три карусели
       Swiper — баннеры, популярные курсы, журнал — показаны заглушкой.
+    </p>
+  </section>
+
+  <section class="doc-section" id="p-rating">
+    <div class="doc-section__head">
+      <h4>Рейтинг школ · таблица</h4>
+      <p>
+        <code>/education_centers/rating</code> — hero с формой поиска, таблица 20 школ
+        с догрузкой кнопкой «Показать еще 20» и одна лента. Статья —
+        <a href="../pages/rating.md">pages/rating.md</a>, снимки продакшена —
+        <code>evidence/source/production/pages/rating/</code>.
+      </p>
+    </div>
+
+    <div class="doc-frames">
+      <div class="doc-frame">
+        <span class="doc-frame__label">375 · phone</span>
+        <div class="doc-frame__box" style="--doc-frame-w:375;--doc-frame-s:1">
+          <iframe src="pages/rating.html" title="Рейтинг школ на 375" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="doc-frame">
+        <span class="doc-frame__label">768 · tablet-only</span>
+        <div class="doc-frame__box" style="--doc-frame-w:768;--doc-frame-s:0.5">
+          <iframe src="pages/rating.html" title="Рейтинг школ на 768" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="doc-frame">
+        <span class="doc-frame__label">1024 · desktop</span>
+        <div class="doc-frame__box" style="--doc-frame-w:1024;--doc-frame-s:0.375">
+          <iframe src="pages/rating.html" title="Рейтинг школ на 1024" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="doc-frame">
+        <span class="doc-frame__label">1440 · desktop</span>
+        <div class="doc-frame__box" style="--doc-frame-w:1440;--doc-frame-s:0.2667">
+          <iframe src="pages/rating.html" title="Рейтинг школ на 1440" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="doc-frame doc-frame--live">
+      <span class="doc-frame__label">во всю ширину окна — <a href="pages/rating.html">открыть отдельно</a></span>
+      <div class="doc-frame__box">
+        <iframe src="pages/rating.html" title="Рейтинг школ во всю ширину" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div class="doc-scroll">
+    <table class="doc-table">
+      <thead><tr><th>область</th><th>1440</th><th>1024</th><th>768</th><th>375</th></tr></thead>
+      <tbody>
+        <tr><td>hero <code>PageHero</code></td><td>352</td><td>352</td><td>352</td><td>462</td></tr>
+        <tr><td>таблица <code>RatingTable</code></td><td>1076×1418</td><td>976×1418</td><td>720×1426</td><td class="doc-table__wrap">375×1418, в край экрана</td></tr>
+        <tr><td>строка школы</td><td class="doc-table__wrap">64; колонки 1fr · 120 · 120 · 120</td><td>64</td><td>64</td><td class="doc-table__wrap">64; 232 · 112 · 68 · 68, прокрутка внутри рамки</td></tr>
+        <tr><td>отступ колонки · промежуток</td><td colspan="4">40 · 48</td></tr>
+        <tr><td>высота страницы</td><td>2 682</td><td>2 682</td><td>2 754</td><td>3 076</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="doc-note">
+      Высота совпадает со скриншотами продакшена точно на 1440, 375 и 320, на 1024 и 768 —
+      в пределах 1,6%. Таблица не сокращена. Сверка с продуктом — 0 расхождений на пяти ширинах.
+    </p>
+    <p class="doc-note">
+      <strong>Чем отличается от листинга.</strong> Одна таблица вместо сетки карточек, без
+      баннеров и листания: таблицу догружает кнопка внутри <code>RatingTable</code>. На
+      телефоне таблица выходит в край экрана и прокручивается по горизонтали внутри рамки —
+      страница остаётся без прокрутки.
     </p>
   </section>
 </section>

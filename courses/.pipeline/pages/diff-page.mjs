@@ -5,8 +5,10 @@
 // пути от .app-container (индексы детей); у продукта заранее убираются те
 // же script/style/link/iframe/template, что убирает gen-page.mjs, поэтому
 // пути совпадают у всех узлов, которые витрина не сократила и не заменила
-// заглушкой. Картинки и узлы внутри заглушек не сравниваются, высота — тоже
-// (картинки продукта без сети не грузятся, у витрины — локальные заглушки).
+// заглушкой. Узлы внутри заглушек не сравниваются, высота — тоже (картинки
+// продукта без сети не грузятся, у витрины — локальные заглушки). У картинок
+// проверяется одно — не отрисована ли заглушка витрины в натуральную
+// величину (см. ниже).
 //
 // Запуск: node .pipeline/pages/diff-page.mjs <id> [ширины через запятую]
 // Сервер витрины должен быть поднят: node tools/serve.mjs (порт 4179).
@@ -47,7 +49,9 @@ const collect = ({ PROPS, strip, hydrated }) => {
     [...el.children].forEach((c, i) => walk(c, p + "/" + i));
   };
   walk(app, "");
-  return out;
+  // Картинки — отдельно: размер и то, заглушка ли это витрины.
+  const imgs = [...app.querySelectorAll("img")].map((img) => { const r = img.getBoundingClientRect(); return { w: r.width, h: r.height, cls: img.getAttribute("class") || "", placeholder: /content-placeholder\.svg/.test(img.getAttribute("src") || "") }; }).filter((x) => x.w || x.h);
+  return { out, imgs };
 };
 
 const browser = await chromium.launch({ executablePath: process.env.CHROME_SHELL || undefined });
@@ -72,8 +76,24 @@ for (const w of widths.split(",").map(Number)) {
   const show = await p2.evaluate(collect, { PROPS, strip: false, hydrated: [] });
   const diffs = new Map();
   let compared = 0;
-  for (const [k, s] of Object.entries(show)) {
-    const pr = prod[k];
+  // Картинки. С отрисовкой продукта их не сравнить — без сети она их не
+  // грузит, — а пути живого снимка computed.json не совпадают со снятым DOM
+  // (у строки рейтинга там лишний div перед логотипом), и по пути находится
+  // одна картинка из десятков. Поэтому ловится сам дефект: заглушка
+  // content-placeholder.svg, отрисованная в натуральную величину (160×160),
+  // значит, CSS размер не задаёт и в продукте его задавала сама картинка —
+  // такой ассет надо локализовать, а не заменять. Так в рейтинге значок
+  // «Партнёр Хабра» (18×18) раздувал строки таблицы.
+  let imgCompared = 0;
+  for (const s of Object.values(show.imgs)) {
+    imgCompared++;
+    if (s.placeholder && Math.round(s.w) === 160 && Math.round(s.h) === 160) {
+      const key = `img.${s.cls.split(" ").slice(0, 3).join(".") || "(без класса)"} · заглушка в натуральную величину 160×160: размер задавала сама картинка`;
+      diffs.set(key, (diffs.get(key) || 0) + 1);
+    }
+  }
+  for (const [k, s] of Object.entries(show.out)) {
+    const pr = prod.out[k];
     if (!pr || pr.cls !== s.cls) continue;
     compared++;
     for (const prop of PROPS) {
@@ -86,7 +106,7 @@ for (const w of widths.split(",").map(Number)) {
   }
   const list = [...diffs.entries()].sort((a, b) => b[1] - a[1]);
   bad += list.length;
-  console.log(`\n== ${w}: сравнено узлов ${compared}, расхождений ${list.length}`);
+  console.log(`\n== ${w}: сравнено узлов ${compared}, картинок ${imgCompared}, расхождений ${list.length}`);
   for (const [k, n] of list.slice(0, 25)) console.log(`  ×${n} ${k}`);
   await ctx.close(); await ctx2.close();
 }

@@ -119,7 +119,8 @@ courses/
                             pages.html — страницы в рамках 375–1440 (R6),
                             pages/<id>.html — сами страницы, только ui/
   pages/                    по файлу на ключевую страницу — R6; есть
-                            courses-listing.md, education-centers-listing.md
+                            courses-listing.md, education-centers-listing.md,
+                            rating.md
   docs/guide/               tokens.md — разбор переменных продукта;
                             typography.md — шкала, база документа, шрифт,
                             фокус; layout.md — оболочка, контейнер, сетка

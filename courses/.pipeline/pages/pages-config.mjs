@@ -47,4 +47,16 @@ export const PAGES = {
     ],
     hydrated: [],
   },
+  // Таблица не сокращается: 20 строк и кнопка догрузки — это и есть
+  // содержание страницы. hydration-diff.mjs на 1440 и 375 — 0 узлов.
+  rating: {
+    source: "rating",
+    title: "Рейтинг школ",
+    url: "https://career.habr.com/education_centers/rating",
+    trim: [],
+    stubs: [
+      { sel: "section.flex.flex-col.gap-4 > div.relative:has(.swiper)", mod: "courses", name: "Carousel · CourseCard", text: "«Может быть интересно», 8 слайдов CourseCard" },
+    ],
+    hydrated: [],
+  },
 };
