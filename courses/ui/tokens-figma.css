@@ -13,7 +13,7 @@
    выбрать одно из двух молча. Слитый :root такой разбор делает невозможным:
    после слияния уже не видно, чьё значение победило.
 
-   Поэтому здесь 192 переменных с префиксом --fig-, и ни одна
+   Поэтому здесь 196 переменных с префиксом --fig-, и ни одна
    из них не участвует в вёрстке компонентов. Компоненты собраны из
    продакшена и ссылаются на --color-ui-* из ui/tokens.css. Слой Figma
    существует, чтобы контракт дизайна был виден рядом и сверяем.
@@ -41,8 +41,8 @@
    Единицы. Figma хранит числа без единиц. Размеры выписаны в px,
    безразмерными оставлены насыщенность шрифта, трекинг Text и нули.
 
-   Сверка с продакшеном: из 79 цветов макета
-   54 совпали по значению с продуктовым токеном ui/tokens.css,
+   Сверка с продакшеном: из 80 цветов макета
+   55 совпали по значению с продуктовым токеном ui/tokens.css,
    25 — своего продуктового двойника не имеют. Таблица
    совпадений — в конце файла комментарием.
    ========================================================================= */
@@ -61,6 +61,7 @@
   --fig-color-style-effect-overlay: #0000004d;
   --fig-color-style-effect-overlay-light: #0000001f;
   --fig-color-style-font-light: #ffffff;
+  --fig-color-style-font-link: #346ef4;
   --fig-color-style-font-primary: #2c2e34;
   --fig-color-style-font-secondary: #909194;
   --fig-color-style-graph-accent-2: #ff7e47;
@@ -150,10 +151,12 @@
   --fig-elements-modal-border-radius: 24px;
   --fig-elements-modal-fill: #ffffff;
   --fig-elements-modal-gap-body: 16px;
+  --fig-elements-modal-gap-content: 4px;
   --fig-elements-modal-gap-footer: 8px;
   --fig-elements-modal-gap-header: 12px;
   --fig-elements-modal-padding-footer-body: 24px;
   --fig-elements-modal-padding-footer-mobile-top-bottom: 16px;
+  --fig-elements-modal-padding-header-bottom: 24px;
   --fig-elements-modal-padding-header-left-right-top: 24px;
   --fig-elements-modal-spacing-0: 0;
   --fig-elements-modal-text: #2c2e34;
@@ -248,6 +251,7 @@
   --fig-size-radius-l: 24px;
   --fig-size-radius-m: 16px;
   --fig-size-radius-no: 0;
+  --fig-size-radius-s: 12px;
   --fig-size-radius-xs: 8px;
   --fig-size-radius-xxs: 6px;
   --fig-size-spacing-x0: 0;
@@ -269,11 +273,12 @@
 /* -------------------------------------------------------------------------
    Сверка цветов макета с продуктовыми токенами
    -------------------------------------------------------------------------
-   Совпало по значению (54) — то же число в макете и в проде:
+   Совпало по значению (55) — то же число в макете и в проде:
 
      --fig-blue-400-solid                       #6bacfd    = --color-ui-blue-400
      --fig-blue-50-solid                        #eff5ff    = --color-ui-blue-50
      --fig-blue-500-solid                       #346ef4    = --color-ui-blue-500
+     --fig-color-style-font-link                #346ef4    = --color-ui-blue-500
      --fig-color-style-font-primary             #2c2e34    = --color-ui-black-850
      --fig-color-style-font-secondary           #909194    = --color-ui-black-500
      --fig-color-style-graph-accent-2           #ff7e47    = --color-ui-orange-500

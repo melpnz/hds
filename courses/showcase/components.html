@@ -1692,6 +1692,8 @@
 
 
 
+
+
   <section class="doc-category" id="f-figma">
     <div class="doc-category__head">
       <h3>Токены макета</h3>
@@ -1714,7 +1716,7 @@
             <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
           </span>
         </div>
-        <p class="doc-note">Из 79 цветов макета 54 совпали по значению с переменной <code>ui/tokens.css</code> — под плашкой стоит имя продуктового двойника. У остальных 25 двойника нет: часть — фирменные цвета внешних сервисов (<code>--fig-logo-*</code>), часть — состояния, до которых вёрстка ещё не дошла. Сверка идёт по значению и пересчитывается из самих слоёв при каждой пересборке раздела.</p>
+        <p class="doc-note">Из 80 цветов макета 55 совпали по значению с переменной <code>ui/tokens.css</code> — под плашкой стоит имя продуктового двойника. У остальных 25 двойника нет: часть — фирменные цвета внешних сервисов (<code>--fig-logo-*</code>), часть — состояния, до которых вёрстка ещё не дошла. Сверка идёт по значению и пересчитывается из самих слоёв при каждой пересборке раздела.</p>
         <div class="doc-stage doc-stage--rows">
     <div class="doc-variant">
       <span class="doc-variant__label">Группа кнопок — цвета макета</span>
@@ -2184,6 +2186,14 @@
         </div>
       </div>
       <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: #346ef4"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--fig-color-style-font-link</p>
+          <p class="doc-swatch__value">#346ef4</p>
+          <span class="doc-mark doc-mark--live">= --color-ui-blue-500</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
         <div class="doc-swatch__chip" style="background: #2c2e34"></div>
         <div class="doc-swatch__body">
           <p class="doc-swatch__name">--fig-color-style-font-primary</p>
@@ -2542,10 +2552,12 @@
             <tbody>
               <tr><td><code>--fig-elements-modal-border-radius</code></td><td><code>24px</code></td></tr>
               <tr><td><code>--fig-elements-modal-gap-body</code></td><td><code>16px</code></td></tr>
+              <tr><td><code>--fig-elements-modal-gap-content</code></td><td><code>4px</code></td></tr>
               <tr><td><code>--fig-elements-modal-gap-footer</code></td><td><code>8px</code></td></tr>
               <tr><td><code>--fig-elements-modal-gap-header</code></td><td><code>12px</code></td></tr>
               <tr><td><code>--fig-elements-modal-padding-footer-body</code></td><td><code>24px</code></td></tr>
               <tr><td><code>--fig-elements-modal-padding-footer-mobile-top-bottom</code></td><td><code>16px</code></td></tr>
+              <tr><td><code>--fig-elements-modal-padding-header-bottom</code></td><td><code>24px</code></td></tr>
               <tr><td><code>--fig-elements-modal-padding-header-left-right-top</code></td><td><code>24px</code></td></tr>
               <tr><td><code>--fig-elements-modal-spacing-0</code></td><td><code>0</code></td></tr>
             </tbody>
@@ -2620,6 +2632,7 @@
               <tr><td><code>--fig-size-radius-l</code></td><td><code>24px</code></td></tr>
               <tr><td><code>--fig-size-radius-m</code></td><td><code>16px</code></td></tr>
               <tr><td><code>--fig-size-radius-no</code></td><td><code>0</code></td></tr>
+              <tr><td><code>--fig-size-radius-s</code></td><td><code>12px</code></td></tr>
               <tr><td><code>--fig-size-radius-xs</code></td><td><code>8px</code></td></tr>
               <tr><td><code>--fig-size-radius-xxs</code></td><td><code>6px</code></td></tr>
             </tbody>
@@ -4019,6 +4032,68 @@
         </dl>
         <p class="doc-note"><strong>Тексты.</strong> Подписи — дословно из узла, включая наполнитель «Сфера 1» и «Сфера 2». Длины полос в макете заданы правым падингом дорожки в пикселях (0, 20, 60, 90, 98, 105, 105, 105 при ширине 170); здесь переведены в доли той же ширины и округлены до сотых. Ширина 315 — узел макета.</p>
         <p class="doc-note"><strong>Ассеты.</strong> Ассетов нет. Полный разбор — <a href="../components/data-display/demand-chart.md">спецификация</a>.</p>
+      </div>
+    </section>
+
+    <section class="doc-section" id="c-faq-block">
+      <div class="doc-section__head">
+        <h4>FaqBlock</h4>
+        <p>figma-only: секция «Часто задаваемые вопросы» из SEO-блоков — заголовок H2 и список FaqItem. В снятой разметке продукта FAQ нет. Заведена 11 сентября 2026 решением владельца: компоненты макета, которых нет в продукте, входят в пакет как figma-only.</p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>default</h5>
+          <code>.crs-faq-block</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
+          </span>
+          <span class="doc-tag">figma-only</span>
+        </div>
+        <p class="doc-note"><strong>Эта разметка написана по макету, а не снята с продукта.</strong>
+          Единственный такой случай на витрине: компонента в продакшене нет вовсе.
+          Узел — <code>02_Education-NEW</code> <code>12193:79324</code>
+          «СЕО-блок / FAQ, Мобилка=no». Корень <code>crs-faq-block</code> введён пакетом:
+          настоящего имени взять неоткуда.</p>
+        <div class="doc-stage">
+          <div class="doc-variant">
+            <span class="doc-variant__label">по узлу макета <code>12193:79324</code></span>
+            <div class="doc-variant__row">
+              <section class="crs-faq-block">
+                <p class="crs-faq-block__title">Часто задаваемые вопросы</p>
+                <div class="crs-faq-block__list">
+                  <div class="crs-faq-item">
+                    <button type="button" class="crs-faq-item__question" aria-expanded="false">
+                      <span class="crs-faq-item__title">Текст вопроса</span>
+                      <span class="crs-faq-item__chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span>
+                    </button>
+                  </div>
+                  <div class="crs-faq-item">
+                    <button type="button" class="crs-faq-item__question" aria-expanded="false">
+                      <span class="crs-faq-item__title">Текст вопроса</span>
+                      <span class="crs-faq-item__chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span>
+                    </button>
+                  </div>
+                  <div class="crs-faq-item">
+                    <button type="button" class="crs-faq-item__question" aria-expanded="false">
+                      <span class="crs-faq-item__title">Текст вопроса</span>
+                      <span class="crs-faq-item__chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span>
+                    </button>
+                  </div>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+        <dl class="doc-spec">
+          <div><dt>блок</dt><dd>до 1124 в ширину, падинг 24 по бокам, промежуток 16</dd></div>
+          <div><dt>заголовок</dt><dd>стилем <code>Header/H2</code> — 24 / 28, 600, −0.5</dd></div>
+          <div><dt>список</dt><dd><code>FaqItem</code> в свёрнутом виде через 12</dd></div>
+          <div><dt>вхождений в проде</dt><dd>нет — компонента в продукте не существует</dd></div>
+        </dl>
+        <p class="doc-note"><strong>Тексты.</strong> «Часто задаваемые вопросы» и «Текст вопроса» — дословно из компонента: в библиотечном варианте вопросы — заглушки. Вопросов в макете десять, здесь три. Живые вопросы с ответом — у записи <code>FaqItem</code> на странице профессии.</p>
+        <p class="doc-note"><strong>Ассеты.</strong> Шевроны — символ <code>arrow-small</code> спрайта, как у <code>FaqItem</code>. У варианта Мобилка=yes (<code>12195:100236</code>, 320) раскладка та же, отличаются ширина и падинги — отдельно не свёрстан. Полный разбор — <a href="../components/data-display/faq-block.md">спецификация</a>.</p>
       </div>
     </section>
 
@@ -5492,6 +5567,55 @@
       </div>
     </section>
 
+    <section class="doc-section" id="c-page-toc">
+      <div class="doc-section__head">
+        <h4>PageToc</h4>
+        <p>figma-only: оглавление SEO-статьи «На странице» — заголовок и синие ссылки на разделы. В снятой разметке продукта оглавлений нет. Заведена 11 сентября 2026 решением владельца: компоненты макета, которых нет в продукте, входят в пакет как figma-only.</p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>default</h5>
+          <code>.crs-page-toc</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
+          </span>
+          <span class="doc-tag">figma-only</span>
+        </div>
+        <p class="doc-note"><strong>Эта разметка написана по макету, а не снята с продукта.</strong>
+          Единственный такой случай на витрине: компонента в продакшене нет вовсе.
+          Узел — <code>02_Education-NEW</code> <code>12958:143535</code>
+          «меню-оглавление». Корень <code>crs-page-toc</code> введён пакетом:
+          настоящего имени взять неоткуда.</p>
+        <div class="doc-stage">
+          <div class="doc-variant">
+            <span class="doc-variant__label">по узлу макета <code>12958:143535</code></span>
+            <div class="doc-variant__row">
+              <nav class="crs-page-toc" aria-label="На странице">
+                <p class="crs-page-toc__title">На странице</p>
+                <div class="crs-page-toc__list">
+                  <a href="#c-page-toc" class="crs-page-toc__link">Как выбрать и купить обучение?</a>
+                  <a href="#c-page-toc" class="crs-page-toc__link">Когда лучше покупать онлайн-курс?</a>
+                  <a href="#c-page-toc" class="crs-page-toc__link">Часто задаваемые вопросы</a>
+                  <a href="#c-page-toc" class="crs-page-toc__link">Как мы отбираем лучшие курсы<br>и онлайн-школы</a>
+                  <a href="#c-page-toc" class="crs-page-toc__link">Ответственная информация</a>
+                </div>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <dl class="doc-spec">
+          <div><dt>заголовок</dt><dd>«На странице» стилем <code>Header/H4</code> — 18 / 22, 600, −0.5</dd></div>
+          <div><dt>ссылки</dt><dd>14 / 20, <code>#346ef4</code> — <code>color style/font/link</code>, через 12</dd></div>
+          <div><dt>до списка</dt><dd>24; ширина колонки в макете — 299 из 976</dd></div>
+          <div><dt>вхождений в проде</dt><dd>нет — компонента в продукте не существует</dd></div>
+        </dl>
+        <p class="doc-note"><strong>Тексты.</strong> Пять пунктов — дословно из узла, включая ручной перенос «лучшие курсы / и онлайн-школы». Пункты ведут на разделы SEO-статьи «СЕО-блок / оглавление» (<code>12958:143599</code>), у которой три кадра — 976, 712 и 320.</p>
+        <p class="doc-note"><strong>Ассеты.</strong> Ассетов нет. Полный разбор — <a href="../components/navigation/page-toc.md">спецификация</a>.</p>
+      </div>
+    </section>
+
   </section>
 
   <section class="doc-category" id="doc-cat-collections">
@@ -6255,66 +6379,6 @@
     </section>
 
 
-    <section class="doc-section" id="c-filter-modal">
-      <div class="doc-section__head">
-        <h4>FilterModal</h4>
-        <p>figma-only с 11 сентября 2026 (было storybook-only). Решение владельца: открытая модалка верстается по макету. Storybook снял обе реализации — BaseFilterModal и BaseFilterModalNew — закрытыми, одной кнопкой-триггером; открытого состояния нет ни в Storybook, ни в снятом продукте (гостем оно не видно). Источник вёрстки — макет, узел modal-filter 14613:211399, поэтому и sourceScope — по источнику вёрстки. Свёрстан каркас: шапка «Поиск обучения», группа «Тип обучения» с синими чипами Tab, подвал «Очистить всё / Показать N курсов»; остальные девять групп макета собраны из записей, которые уже стоят на витрине (BaseFilterWithImage, Tab). Какую из двух реализаций Storybook описывает макет — не установлено, это по-прежнему вопрос шага R4-12. Прежняя заметка: «две реализации в Storybook: BaseFilterModalNew актуальна, BaseFilterModal уходит в legacyAliases и отдельной спецификации не получает (BRIEF §9 п. 5 — разложено по строкам в implementations). Открытая разметка есть только в Figma: обе story сняты закрытыми»</p>
-      </div>
-
-      <div class="doc-specimen">
-        <div class="doc-specimen__head">
-          <h5>default</h5>
-          <code>.crs-filter-modal</code>
-          <span class="doc-specimen__spacer"></span>
-          <span class="doc-src-group">
-            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
-          </span>
-          <span class="doc-tag">figma-only</span>
-        </div>
-        <p class="doc-note"><strong>Эта разметка написана по макету, а не снята с продукта.</strong>
-          Единственный такой случай на витрине: компонента в продакшене нет вовсе.
-          Узел — <code>02_Education-NEW</code> <code>14613:211399</code>
-          «modal-filter». Корень <code>crs-filter-modal</code> введён пакетом:
-          настоящего имени взять неоткуда.</p>
-        <div class="doc-stage">
-          <div class="doc-variant">
-            <span class="doc-variant__label">по узлу макета <code>14613:211399</code></span>
-            <div class="doc-variant__row">
-              <div class="crs-filter-modal" role="dialog" aria-label="Поиск обучения">
-                <div class="crs-filter-modal__header">
-                  <p class="crs-filter-modal__title">Поиск обучения</p>
-                  <button type="button" class="crs-filter-modal__close" aria-label="Закрыть"><img src="../ui/assets/icons/modal-close.svg" alt="" width="24" height="24"></button>
-                </div>
-                <div class="crs-filter-modal__body">
-                  <div class="crs-filter-modal__group">
-                    <p class="crs-filter-modal__group-title">Тип обучения</p>
-                    <div class="crs-filter-modal__options">
-                      <button type="button" class="crs-tab crs-tab--plain"><span class="crs-tab__label">Курс</span></button>
-                      <button type="button" class="crs-tab crs-tab--plain crs-tab--selected"><span class="crs-tab__label">Вебинар</span></button>
-                      <button type="button" class="crs-tab crs-tab--plain"><span class="crs-tab__label">Симулятор</span></button>
-                    </div>
-                  </div>
-                </div>
-                <div class="crs-filter-modal__footer">
-                  <button type="button" class="crs-filter-modal__button crs-filter-modal__button--secondary">Очистить всё</button>
-                  <button type="button" class="crs-filter-modal__button crs-filter-modal__button--main">Показать 30 560 курсов</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <dl class="doc-spec">
-          <div><dt>модалка</dt><dd>до 568 в ширину, белая, рамка <code>#e9e9ea</code>, радиус 24 — <code>elements/modal/*</code></dd></div>
-          <div><dt>шапка</dt><dd>падинг 24, заголовок стилем <code>Header/H3</code> (20 / 24, 600, −0.5), крестик 24 × 24</dd></div>
-          <div><dt>тело</dt><dd>группы с отступом 24 от краёв, промежуток между группами 32 — по координатам выгрузки</dd></div>
-          <div><dt>группа</dt><dd>заголовок 16 / 22, 600; под ним чипы <code>Tab</code> в синем варианте, промежуток 4</dd></div>
-          <div><dt>подвал</dt><dd>падинг 24, кнопки L высотой 48: вторичная <code>#f1f1f1</code>, основная <code>#2c2e34</code></dd></div>
-          <div><dt>вхождений в проде</dt><dd>нет — компонента в продукте не существует</dd></div>
-        </dl>
-        <p class="doc-note"><strong>Тексты.</strong> Тексты — содержимое узла макета: заголовок «Поиск обучения», группа «Тип обучения» с вариантами «Курс», «Вебинар» (выбран), «Симулятор», кнопки «Очистить всё» и «Показать 30 560 курсов». Число курсов в кнопке — пример из макета, в продукте его подставляет выдача. Свёрстана одна группа из десяти: остальные собраны из записей, которые уже стоят на витрине, — плиток <code>BaseFilterWithImage</code> и тех же чипов <code>Tab</code>.</p>
-        <p class="doc-note"><strong>Ассеты.</strong> Крестик — экспорт узла макета <code>ui/assets/icons/modal-close.svg</code>, а не символ общего спрайта: у символа <code>sprite.svg#cross-large</code> тот же глиф, но плечи короче на 1 px с каждой стороны, это не тот же символ. Цвет <code>#A6A7A9</code> зашит в экспорт. Затемнение фона под модалкой (слой <code>overlay</code> макета) не воспроизводится: на витрине модалка стоит на странице, а не поверх неё. Полный разбор — <a href="../components/overlays/filter-modal.md">спецификация</a>.</p>
-      </div>
-    </section>
 
 
 
@@ -6582,6 +6646,227 @@
         <p class="doc-note"><strong>Тексты.</strong> Тексты — дословно из узла: «Цена», «От», «До», «₽», «Сбросить», «Готово». Валюта — выбор (<code>select_level3</code> со стрелкой), здесь показан закрытым.</p>
         <p class="doc-note"><strong>Ассеты.</strong> Стрелка валюты — символ <code>arrow-small</code> общего спрайта (глиф <code>icon/arrow-down</code> макета). Кнопки — продуктовый <code>Button</code> M: main и secondary, классы дословно из снятой разметки. Полный разбор — <a href="../components/overlays/price-sheet.md">спецификация</a>.</p>
         <p class="doc-note"><strong>Состояния.</strong> Нарисована открытая шторка (<code>open</code>). Закрытая (<code>closed</code>) — чип «Цена» в ряду быстрых фильтров; отдельной вёрстки у записи для него нет.</p>
+      </div>
+    </section>
+
+    <section class="doc-section" id="c-filter-modal">
+      <div class="doc-section__head">
+        <h4>FilterModal</h4>
+        <p>figma-only с 11 сентября 2026 (было storybook-only). Решение владельца: открытая модалка верстается по макету. Storybook снял обе реализации — BaseFilterModal и BaseFilterModalNew — закрытыми, одной кнопкой-триггером; открытого состояния нет ни в Storybook, ни в снятом продукте (гостем оно не видно). Источник вёрстки — макет, узел modal-filter 14613:211399, поэтому и sourceScope — по источнику вёрстки. Свёрстан каркас: шапка «Поиск обучения», группа «Тип обучения» с синими чипами Tab, подвал «Очистить всё / Показать N курсов»; остальные девять групп макета собраны из записей, которые уже стоят на витрине (BaseFilterWithImage, Tab). Какую из двух реализаций Storybook описывает макет — не установлено, это по-прежнему вопрос шага R4-12. Прежняя заметка: «две реализации в Storybook: BaseFilterModalNew актуальна, BaseFilterModal уходит в legacyAliases и отдельной спецификации не получает (BRIEF §9 п. 5 — разложено по строкам в implementations). Открытая разметка есть только в Figma: обе story сняты закрытыми»</p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>default</h5>
+          <code>.crs-filter-modal</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
+          </span>
+          <span class="doc-tag">figma-only</span>
+        </div>
+        <p class="doc-note"><strong>Эта разметка написана по макету, а не снята с продукта.</strong>
+          Единственный такой случай на витрине: компонента в продакшене нет вовсе.
+          Узел — <code>02_Education-NEW</code> <code>14613:211399</code>
+          «modal-filter». Корень <code>crs-filter-modal</code> введён пакетом:
+          настоящего имени взять неоткуда.</p>
+        <div class="doc-stage">
+          <div class="doc-variant">
+            <span class="doc-variant__label">по узлу макета <code>14613:211399</code></span>
+            <div class="doc-variant__row">
+              <div class="crs-filter-modal" role="dialog" aria-label="Поиск обучения">
+                <div class="crs-filter-modal__header">
+                  <p class="crs-filter-modal__title">Поиск обучения</p>
+                  <button type="button" class="crs-filter-modal__close" aria-label="Закрыть"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;"><use xlink:href="../ui/assets/icons/sprite.svg#menu-close"></use></svg></button>
+                </div>
+                <div class="crs-filter-modal__body">
+                  <div class="crs-filter-modal__group">
+                    <p class="crs-filter-modal__group-title">Тип обучения</p>
+                    <div class="crs-filter-modal__options">
+                      <button type="button" class="crs-tab crs-tab--plain"><span class="crs-tab__label">Курс</span></button>
+                      <button type="button" class="crs-tab crs-tab--plain crs-tab--selected"><span class="crs-tab__label">Вебинар</span></button>
+                      <button type="button" class="crs-tab crs-tab--plain"><span class="crs-tab__label">Симулятор</span></button>
+                    </div>
+                  </div>
+                </div>
+                <div class="crs-filter-modal__footer">
+                  <button type="button" class="crs-filter-modal__button crs-filter-modal__button--secondary">Очистить всё</button>
+                  <button type="button" class="crs-filter-modal__button crs-filter-modal__button--main">Показать 30 560 курсов</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <dl class="doc-spec">
+          <div><dt>модалка</dt><dd>до 568 в ширину, белая, рамка <code>#e9e9ea</code>, радиус 24 — <code>elements/modal/*</code></dd></div>
+          <div><dt>шапка</dt><dd>падинг 24, заголовок стилем <code>Header/H3</code> (20 / 24, 600, −0.5), крестик 24 × 24</dd></div>
+          <div><dt>тело</dt><dd>группы с отступом 24 от краёв, промежуток между группами 32 — по координатам выгрузки</dd></div>
+          <div><dt>группа</dt><dd>заголовок 16 / 22, 600; под ним чипы <code>Tab</code> в синем варианте, промежуток 4</dd></div>
+          <div><dt>подвал</dt><dd>падинг 24, кнопки L высотой 48: вторичная <code>#f1f1f1</code>, основная <code>#2c2e34</code></dd></div>
+          <div><dt>вхождений в проде</dt><dd>нет — компонента в продукте не существует</dd></div>
+        </dl>
+        <p class="doc-note"><strong>Тексты.</strong> Тексты — содержимое узла макета: заголовок «Поиск обучения», группа «Тип обучения» с вариантами «Курс», «Вебинар» (выбран), «Симулятор», кнопки «Очистить всё» и «Показать 30 560 курсов». Число курсов в кнопке — пример из макета, в продукте его подставляет выдача. Свёрстана одна группа из десяти: остальные собраны из записей, которые уже стоят на витрине, — плиток <code>BaseFilterWithImage</code> и тех же чипов <code>Tab</code>.</p>
+        <p class="doc-note"><strong>Ассеты.</strong> Крестик — символ <code>menu-close</code> общего спрайта, цвет <code>#A6A7A9</code> — <code>--fig-color-style-neutral-neutral-heavy</code>. Первая редакция брала экспорт узла макета: с символом <code>cross-large</code> он не совпадал (плечи короче на 1 px с каждой стороны), а с <code>menu-close</code> сверен не был. На мобильном меню выяснилось, что экспорт — это <code>menu-close</code> точка в точку; копия удалена. Затемнение фона под модалкой (слой <code>overlay</code> макета) не воспроизводится: на витрине модалка стоит на странице, а не поверх неё. Полный разбор — <a href="../components/overlays/filter-modal.md">спецификация</a>.</p>
+        <p class="doc-note"><strong>Состояния.</strong> Свёрстано одно состояние — открытое (<code>open</code>): узел макета и есть раскрытая модалка. <code>default</code> и <code>closed</code> — это кнопка-триггер, которую Storybook снял у обеих реализаций; отдельной вёрстки у записи для них нет.</p>
+      </div>
+    </section>
+
+
+    <section class="doc-section" id="c-mobile-menu">
+      <div class="doc-section__head">
+        <h4>MobileMenu</h4>
+        <p>figma-only: полноэкранное меню мобильной шапки — «Все курсы», «Школы и Вузы», «Все сервисы Хабра». В продукте мобильная шапка устроена иначе (снимок courses-listing на 320): бургера и такого меню нет. Заведена 11 сентября 2026 решением владельца: компоненты макета, которых нет в продукте, входят в пакет как figma-only.</p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>default</h5>
+          <code>.crs-mobile-menu</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
+          </span>
+          <span class="doc-tag">figma-only</span>
+        </div>
+        <p class="doc-note"><strong>Эта разметка написана по макету, а не снята с продукта.</strong>
+          Единственный такой случай на витрине: компонента в продакшене нет вовсе.
+          Узел — <code>02_Education-NEW</code> <code>9084:14961</code>
+          «Меню — кадр 320 «Первый экран»». Корень <code>crs-mobile-menu</code> введён пакетом:
+          настоящего имени взять неоткуда.</p>
+        <div class="doc-stage">
+          <div class="doc-variant">
+            <span class="doc-variant__label">по узлу макета <code>9084:14961</code></span>
+            <div class="doc-variant__row">
+              <div class="crs-mobile-menu">
+                <div class="crs-mobile-menu__header">
+                  <p class="crs-mobile-menu__title">Меню</p>
+                  <button type="button" class="crs-mobile-menu__icon-button" aria-label="Закрыть меню"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;"><use xlink:href="../ui/assets/icons/sprite.svg#menu-close"></use></svg></button>
+                </div>
+                <div class="crs-mobile-menu__group">
+                  <div class="crs-mobile-menu__group-head">
+                    <p class="crs-mobile-menu__group-title">Все курсы</p>
+                    <button type="button" class="crs-mobile-menu__icon-button" aria-expanded="true" aria-label="Свернуть"><svg class="svg-icon" width="24" height="24" style="transform:rotate(180deg);width:24px;height:24px;"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></button>
+                  </div>
+                  <a href="#c-mobile-menu" class="crs-mobile-menu__item">Популярные курсы</a>
+                  <a href="#c-mobile-menu" class="crs-mobile-menu__item">Программирование и IT</a>
+                  <a href="#c-mobile-menu" class="crs-mobile-menu__item">Аналитика и Data Science</a>
+                  <a href="#c-mobile-menu" class="crs-mobile-menu__item">Дизайн и контент</a>
+                  <a href="#c-mobile-menu" class="crs-mobile-menu__item">Маркетинг и продажи</a>
+                  <a href="#c-mobile-menu" class="crs-mobile-menu__item">Финансы и бухгалтерия</a>
+                  <a href="#c-mobile-menu" class="crs-mobile-menu__item crs-mobile-menu__item--more">Посмотреть все</a>
+                </div>
+                <div class="crs-mobile-menu__group">
+                  <div class="crs-mobile-menu__group-head">
+                    <p class="crs-mobile-menu__group-title">Школы и Вузы</p>
+                    <button type="button" class="crs-mobile-menu__icon-button" aria-expanded="true" aria-label="Свернуть"><svg class="svg-icon" width="24" height="24" style="transform:rotate(180deg);width:24px;height:24px;"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></button>
+                  </div>
+                  <a href="#c-mobile-menu" class="crs-mobile-menu__item">Все школы и вузы</a>
+                  <a href="#c-mobile-menu" class="crs-mobile-menu__item">Рейтинг школ и вузов</a>
+                  <a href="#c-mobile-menu" class="crs-mobile-menu__item">Отзывы о курсах и программах</a>
+                  <a href="#c-mobile-menu" class="crs-mobile-menu__item">Промокоды и акции 2026</a>
+                </div>
+                <div class="crs-mobile-menu__group">
+                  <div class="crs-mobile-menu__group-head">
+                    <p class="crs-mobile-menu__group-title">Все сервисы Хабра</p>
+                  </div>
+                  <a href="#c-mobile-menu" class="crs-mobile-menu__item"><span class="align-center inline-flex h-6 w-6 rounded-md" style="background-color:#629FBC;"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M15 3h-1.5v1.5H12V6H9V4.5H7.5V3H6v1.5h1.5v3H6V6H4.5v1.5H6V9H4.5v1.5H6v3H4.5V15H6v-1.5h1.5v3H9v3H7.5V21H9v-1.5h1.5v-3H12V18h3v1.5h1.5V18H15v-3h1.5v1.5H18V15h1.5v-1.5H21V12h-1.5v1.5H18V12h-1.5v-1.5h3V9H18V7.5h-1.5V6H18V4.5h1.5V3H18v1.5h-3V3Zm0 1.5V6h-1.5V4.5H15Z" fill="#fff"></path></svg></span>Хабр</a>
+                  <a href="#c-mobile-menu" class="crs-mobile-menu__item"><span class="align-center inline-flex h-6 w-6 rounded-md" style="background-color:#434B60;"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M15 3h-1.5v1.5H12V6H9V4.5H7.5V3H6v1.5h1.5v3H6V6H4.5v1.5H6V9H4.5v1.5H6v3H4.5V15H6v-1.5h1.5v3H9v3H7.5V21H9v-1.5h1.5v-3H12V18h3v1.5h1.5V18H15v-3h1.5v1.5H18V15h1.5v-1.5H21V12h-1.5v1.5H18V12h-1.5v-1.5h3V9H18V7.5h-1.5V6H18V4.5h1.5V3H18v1.5h-3V3Zm0 1.5V6h-1.5V4.5H15Z" fill="#fff"></path></svg></span>Q&amp;A</a>
+                  <a href="#c-mobile-menu" class="crs-mobile-menu__item"><span class="align-center inline-flex h-6 w-6 rounded-md" style="background-color:#6274BC;"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M15 3h-1.5v1.5H12V6H9V4.5H7.5V3H6v1.5h1.5v3H6V6H4.5v1.5H6V9H4.5v1.5H6v3H4.5V15H6v-1.5h1.5v3H9v3H7.5V21H9v-1.5h1.5v-3H12V18h3v1.5h1.5V18H15v-3h1.5v1.5H18V15h1.5v-1.5H21V12h-1.5v1.5H18V12h-1.5v-1.5h3V9H18V7.5h-1.5V6H18V4.5h1.5V3H18v1.5h-3V3Zm0 1.5V6h-1.5V4.5H15Z" fill="#fff"></path></svg></span>Карьера</a>
+                  <a href="#c-mobile-menu" class="crs-mobile-menu__item"><span class="align-center inline-flex h-6 w-6 rounded-md" style="background-color:#346EF4;"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M15 3h-1.5v1.5H12V6H9V4.5H7.5V3H6v1.5h1.5v3H6V6H4.5v1.5H6V9H4.5v1.5H6v3H4.5V15H6v-1.5h1.5v3H9v3H7.5V21H9v-1.5h1.5v-3H12V18h3v1.5h1.5V18H15v-3h1.5v1.5H18V15h1.5v-1.5H21V12h-1.5v1.5H18V12h-1.5v-1.5h3V9H18V7.5h-1.5V6H18V4.5h1.5V3H18v1.5h-3V3Zm0 1.5V6h-1.5V4.5H15Z" fill="#fff"></path></svg></span>Курсы</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <dl class="doc-spec">
+          <div><dt>шапка</dt><dd>«Меню» стилем <code>Header/H3</code>, крестик 24 <code>#a6a7a9</code>; падинг 20 / 24, линия <code>#e9e9ea</code> снизу</dd></div>
+          <div><dt>группа</dt><dd>падинг 8 сверху и снизу, разделитель <code>#e9e9ea</code>; заголовок 16 / 22 600, строка 40</dd></div>
+          <div><dt>пункт</dt><dd>14 / 20, падинг 10 / 24; при наведении <code>#f1f1f1</code> — живое</dd></div>
+          <div><dt>«Посмотреть все»</dt><dd><code>#346ef4</code> — <code>color style/primary/primary</code></dd></div>
+          <div><dt>сервисы</dt><dd>продуктовый <code>ProjectIcon</code> 24 и подпись через 12</dd></div>
+          <div><dt>вхождений в проде</dt><dd>нет — компонента в продукте не существует</dd></div>
+        </dl>
+        <p class="doc-note"><strong>Тексты.</strong> Все пункты — дословно из кадра. В группе «Все сервисы Хабра» — те же четыре проекта и в том же порядке, что у продуктового <code>ProjectIcon</code> (Хабр, Q&amp;A, Карьера, Курсы), цвета подложек совпали с продуктом.</p>
+        <p class="doc-note"><strong>Ассеты.</strong> Крестик — символ <code>menu-close</code> спрайта (глиф <code>icon/menu open=yes</code> макета, контур совпал точка в точку), шевроны — <code>arrow-small</code>, иконки сервисов — продуктовая разметка <code>ProjectIcon</code>. Своих ассетов у записи нет. Полный разбор — <a href="../components/overlays/mobile-menu.md">спецификация</a>.</p>
+        <p class="doc-note"><strong>Состояния.</strong> Нарисовано открытое меню (<code>open</code>) с обеими раскрываемыми группами развёрнутыми. Закрытое (<code>closed</code>) — кнопка меню в мобильной шапке; в продукте её нет — мобильная шапка устроена иначе.</p>
+      </div>
+    </section>
+
+
+    <section class="doc-section" id="c-promo-code-modal">
+      <div class="doc-section__head">
+        <h4>PromoCodeModal</h4>
+        <p>figma-only: модалка промокода — открытое состояние PromoCard: условие, срок, плашка кода с кнопкой, «Закрыть». Кнопка «Открыть код» в продукте есть (16 узлов на странице промокодов), сама модалка гидрируется и не снята. Заведена 11 сентября 2026 решением владельца: компоненты макета, которых нет в продукте, входят в пакет как figma-only.</p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>default</h5>
+          <code>.crs-promo-code-modal</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
+          </span>
+          <span class="doc-tag">figma-only</span>
+        </div>
+        <p class="doc-note"><strong>Эта разметка написана по макету, а не снята с продукта.</strong>
+          Единственный такой случай на витрине: компонента в продакшене нет вовсе.
+          Узел — <code>02_Education-NEW</code> <code>11061:82849</code>
+          «modal — «Модалка промокода» 1024». Корень <code>crs-promo-code-modal</code> введён пакетом:
+          настоящего имени взять неоткуда.</p>
+        <div class="doc-stage">
+          <div class="doc-variant">
+            <span class="doc-variant__label">по узлу макета <code>11061:82849</code></span>
+            <div class="doc-variant__row">
+              <div style="display:flex;gap:16px;flex-wrap:wrap;align-items:flex-start;background:var(--fig-color-style-effect-overlay);padding:24px">
+                <div class="crs-promo-code-modal" role="dialog" aria-label="Skillbox">
+                  <p class="crs-promo-code-modal__title">Skillbox</p>
+                  <div class="crs-promo-code-modal__body">
+                    <div class="crs-promo-code-modal__offer">
+                      <p class="crs-promo-code-modal__offer-title">Скидка 35% на курсы по дизайну</p>
+                      <p class="crs-promo-code-modal__offer-text">Введите промокод на сайте школы или назовите менеджеру при покупке</p>
+                    </div>
+                    <div class="crs-promo-code-modal__meta"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;"><use xlink:href="../ui/assets/icons/sprite.svg#datepicker"></use></svg><span>Действует до 30 октября 2025</span></div>
+                    <div class="crs-promo-code-modal__code">
+                      <p class="crs-promo-code-modal__code-value">PROMOCODE</p>
+                      <button type="button" class="inline-flex cursor-pointer select-none items-center justify-center rounded-xl font-semibold hover:no-underline focus:outline-none focus-visible:outline focus-visible:outline-ui-black-400 disabled:pointer-events-none w-full h-12 min-h-12 px-4 py-2 text-default border border-ui-black-850 bg-ui-black-850 text-ui-white hover:opacity-90 disabled:border-ui-black-150 disabled:bg-ui-black-150 disabled:text-ui-white">Скопировать и перейти</button>
+                    </div>
+                  </div>
+                  <div class="crs-promo-code-modal__footer">
+                    <button type="button" class="inline-flex cursor-pointer select-none items-center justify-center rounded-xl font-semibold hover:no-underline focus:outline-none focus-visible:outline focus-visible:outline-ui-black-400 disabled:pointer-events-none h-10 px-4 py-2 text-small border border-ui-black-50 bg-ui-black-50 text-ui-black-850 hover:bg-ui-black-100 disabled:text-ui-black-300">Закрыть</button>
+                  </div>
+                </div>
+                <div class="crs-promo-code-modal" role="dialog" aria-label="Skillbox">
+                  <p class="crs-promo-code-modal__title">Skillbox</p>
+                  <div class="crs-promo-code-modal__body">
+                    <div class="crs-promo-code-modal__offer">
+                      <p class="crs-promo-code-modal__offer-title">Скидка 35% на курсы по дизайну</p>
+                      <p class="crs-promo-code-modal__offer-text">Введите промокод на сайте школы или назовите менеджеру при покупке</p>
+                    </div>
+                    <div class="crs-promo-code-modal__meta"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;"><use xlink:href="../ui/assets/icons/sprite.svg#datepicker"></use></svg><span>Действует до 30 октября 2025</span></div>
+                    <div class="crs-promo-code-modal__code">
+                      <button type="button" class="inline-flex cursor-pointer select-none items-center justify-center rounded-xl font-semibold hover:no-underline focus:outline-none focus-visible:outline focus-visible:outline-ui-black-400 disabled:pointer-events-none w-full h-12 min-h-12 px-4 py-2 text-default border border-ui-black-850 bg-ui-black-850 text-ui-white hover:opacity-90 disabled:border-ui-black-150 disabled:bg-ui-black-150 disabled:text-ui-white">Перейти на сайт</button>
+                    </div>
+                  </div>
+                  <div class="crs-promo-code-modal__footer">
+                    <button type="button" class="inline-flex cursor-pointer select-none items-center justify-center rounded-xl font-semibold hover:no-underline focus:outline-none focus-visible:outline focus-visible:outline-ui-black-400 disabled:pointer-events-none h-10 px-4 py-2 text-small border border-ui-black-50 bg-ui-black-50 text-ui-black-850 hover:bg-ui-black-100 disabled:text-ui-black-300">Закрыть</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <dl class="doc-spec">
+          <div><dt>модалка</dt><dd>320, белая, радиус 24, не выше 800</dd></div>
+          <div><dt>шапка</dt><dd>название школы стилем <code>Header/H3</code> — 20 / 24; падинг 24 со всех сторон</dd></div>
+          <div><dt>тело</dt><dd>падинг 0 / 24, промежуток 16: условие (16 / 22 600 и 14 / 20 через 4), строка срока с календарём 24 <code>#a6a7a9</code></dd></div>
+          <div><dt>плашка кода</dt><dd><code>#eff5ff</code>, радиус 12; код 20 / 24 600 <code>#346ef4</code> по центру, падинг 16; под ним кнопка L во всю ширину</dd></div>
+          <div><dt>подвал</dt><dd>падинг 24, кнопка M secondary «Закрыть»</dd></div>
+          <div><dt>вхождений в проде</dt><dd>нет — компонента в продукте не существует</dd></div>
+        </dl>
+        <p class="doc-note"><strong>Тексты.</strong> Тексты — дословно из узла: «Skillbox», «Скидка 35% на курсы по дизайну», условие, «Действует до 30 октября 2025», «PROMOCODE». Две модалки — два вида плашки кода (компонент <code>10991:111878</code>): «промокод» и «акция»; во второй кнопка «Перейти на сайт» и кода нет. Обёртка ряда с затемнением <code>color style/effect/overlay</code> — оформление витрины: в макете модалка лежит на таком же слое, без него белые края модалки не видны.</p>
+        <p class="doc-note"><strong>Ассеты.</strong> Календарь — символ <code>datepicker</code> спрайта: <code>icon/calendar</code> макета — тот же глиф (контур <code>M19 11H5v8…</code>). Кнопки — продуктовый <code>Button</code>: M secondary снят как есть, а L main в снятой разметке не встречается (есть L secondary и XL main) — собран из матрицы Button, размер L и тон main. У макета L падинг 12 / 20, у продуктового L — 8 / 16 при той же высоте 48. Полный разбор — <a href="../components/overlays/promo-code-modal.md">спецификация</a>.</p>
+        <p class="doc-note"><strong>Состояния.</strong> Нарисована открытая модалка (<code>open</code>). Закрытая (<code>closed</code>) — это кнопка «Открыть код» на <code>PromoCard</code>, в продукте она есть (16 на странице промокодов).</p>
       </div>
     </section>
 

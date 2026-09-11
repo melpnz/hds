@@ -264,3 +264,38 @@
     0 var(--fig-effect-drop-shadow-2-y) var(--fig-effect-drop-shadow-2-blur) var(--fig-effect-drop-shadow-2-spread) var(--fig-effect-drop-shadow-2-color),
     0 var(--fig-effect-drop-shadow-1-y) var(--fig-effect-drop-shadow-1-blur) var(--fig-effect-drop-shadow-1-spread) var(--fig-effect-drop-shadow-1-color);
 }
+
+/* -------------------------------------------------------------------------
+   PageToc (R2-bulk, figma-only) — «меню-оглавление», 12958:143535
+   -------------------------------------------------------------------------
+   Оглавление SEO-статьи в левой колонке: заголовок «На странице» стилем
+   Header/H4 и ссылки 14/20 цветом color style/font/link (#346ef4) через 12,
+   промежуток до списка 24. В снятой разметке продукта оглавлений нет.
+   ------------------------------------------------------------------------- */
+.crs-page-toc {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x6);
+  max-width: 315px;
+  width: 100%;
+}
+.crs-page-toc__title {
+  color: var(--fig-color-style-font-primary);
+  font-size: var(--fig-font-size-display-s);
+  font-weight: var(--fig-font-weight-semibold);
+  letter-spacing: var(--fig-font-letter-spacing-headers);
+  line-height: var(--fig-font-line-height-display-s);
+  margin: 0;
+}
+.crs-page-toc__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x3);
+}
+.crs-page-toc__link {
+  color: var(--fig-color-style-font-link);
+  font-size: var(--fig-font-size-body-m);
+  line-height: var(--fig-font-line-height-body-l);
+  text-decoration: none;
+}
+.crs-page-toc__link:hover { text-decoration: underline; }

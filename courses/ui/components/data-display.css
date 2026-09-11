@@ -254,3 +254,30 @@
   height: 12px;
   width: calc(var(--crs-value, 1) * 100%);
 }
+
+/* FaqBlock — «СЕО-блок / FAQ», 12195:100235 (вариант Мобилка=no,
+   12193:79324). Заголовок стилем Header/H2 и список FaqItem в свёрнутом
+   виде через 12; промежуток до списка 16. Боковой падинг 24 — у самого
+   блока, как в макете (до 1124 в ширину, то есть на месте контейнера). */
+.crs-faq-block {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x4);
+  max-width: 1124px;
+  padding: 0 var(--fig-size-spacing-x6);
+  width: 100%;
+}
+.crs-faq-block__title {
+  color: var(--fig-color-style-font-primary);
+  font-size: var(--fig-font-size-display-l);
+  font-weight: var(--fig-font-weight-semibold);
+  letter-spacing: var(--fig-font-letter-spacing-headers);
+  line-height: var(--fig-font-line-height-display-l);
+  margin: 0;
+}
+.crs-faq-block__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x3);
+}
