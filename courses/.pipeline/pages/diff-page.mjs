@@ -39,13 +39,17 @@ const collect = ({ PROPS, strip, hydrated }) => {
     app.querySelectorAll("script, noscript, style, link, iframe, template").forEach((n) => n.remove());
     for (const sel of hydrated) app.querySelectorAll(sel).forEach((n) => n.remove());
   }
+  // Собираются все узлы — и скрытые, и картинки: у каждого класс и видимость,
+  // у видимых не-картинок ещё и стили. Первая редакция брала только видимые
+  // и молча пропускала узел, видимый с одной стороны и скрытый с другой, —
+  // ревью проверило это внесением ошибки (снятый phone:hidden у иллюстрации
+  // раздела экспертов) и получило «0 расхождений».
   const out = {};
   const walk = (el, p) => {
     if (el.classList.contains("doc-page-stub")) return;
+    const visible = el.checkVisibility({ visibilityProperty: true });
     const cs = getComputedStyle(el);
-    if (el.tagName !== "IMG" && cs.display !== "none") {
-      out[p] = { cls: el.tagName.toLowerCase() + "." + [...el.classList].slice(0, 4).join("."), v: Object.fromEntries(PROPS.map((k) => [k, cs.getPropertyValue(k)])) };
-    }
+    out[p] = { cls: el.tagName.toLowerCase() + "." + [...el.classList].join("."), visible, v: visible && el.tagName !== "IMG" ? Object.fromEntries(PROPS.map((k) => [k, cs.getPropertyValue(k)])) : null };
     [...el.children].forEach((c, i) => walk(c, p + "/" + i));
   };
   walk(app, "");
@@ -92,10 +96,18 @@ for (const w of widths.split(",").map(Number)) {
       diffs.set(key, (diffs.get(key) || 0) + 1);
     }
   }
+  const note = (key) => diffs.set(key, (diffs.get(key) || 0) + 1);
+  const short = (c) => c.split(".").slice(0, 5).join(".");
   for (const [k, s] of Object.entries(show.out)) {
     const pr = prod.out[k];
-    if (!pr || pr.cls !== s.cls) continue;
+    // Узел витрины обязан иметь пару в продукте: сокращения убирают узлы
+    // только с витрины, заглушки не обходятся, так что пропавший путь или
+    // другой класс — это расхождение разметки, а не шум.
+    if (!pr) { note(`${short(s.cls)} · узел витрины без пары в продукте`); continue; }
+    if (pr.cls !== s.cls) { note(`${short(s.cls)} · классы не совпали с продуктом: ${short(pr.cls)}`); continue; }
     compared++;
+    if (pr.visible !== s.visible) { note(`${short(s.cls)} · видимость: продукт ${pr.visible ? "виден" : "скрыт"} ≠ витрина ${s.visible ? "виден" : "скрыт"}`); continue; }
+    if (!pr.v || !s.v) continue;
     for (const prop of PROPS) {
       const a = pr.v[prop], b = s.v[prop];
       if (a === b) continue;
