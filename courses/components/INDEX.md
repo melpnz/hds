@@ -5,9 +5,9 @@
 [`SPEC-TEMPLATE.md`](SPEC-TEMPLATE.md); порядок работ — [`../ROADMAP.md`](../ROADMAP.md).
 
 Реестр собран из [`.pipeline/inventory.json`](../.pipeline/inventory.json) на шаге
-R0-05. Записей — 55. Написано **54** спецификации: одна доведённая до `complete` —
+R0-05. Записей — 55. Написано **55** спецификаций, по одной на каждую: одна доведённая до `complete` —
 `SpriteIcon` (R2-01, первый шаг вёрстки волны R2), 48 в статусе `partial`
-и пять в терминальном `figma-only` (`Breadcrumbs`, `EmptyState`, `Tab`, `Pagination`, `FilterModal`) — их разметка
+и шесть в терминальном `figma-only` (`Breadcrumbs`, `EmptyState`, `Tab`, `Pagination`, `FilterModal`, `CatalogMenu`) — их разметка
 единственная в пакете написана по узлу макета, а не снята с продукта, потому
 что в продукте этих компонентов нет вовсе. Всё собрано bulk-проходом R2-bulk.
 
@@ -265,84 +265,83 @@ AdSlot). Оболочка страницы — контейнер 1124 + 24 и �
 
 ## Элементы
 
-Порядок — рабочий: волна и шаг роадмапа. Спецификация есть пока у одной
-записи (SpriteIcon, R2-01) — ниже она дана ссылкой; у остальных ссылка
-появится вместе с их спецификацией.
+Порядок — рабочий: волна и шаг роадмапа. Спецификация написана у каждой
+записи — имя элемента ведёт на неё. «Где найден» — `sourceScope` записи.
 
 ### R2 — примитивы, 12
 
 | Шаг | Элемент | id | Вид | Категория | Где найден | Зависит от |
 |---|---|---|---|---|---|---|
 | R2-01 | [SpriteIcon](data-display/sprite-icon.md) | `sprite-icon` | примитив | `data-display` | прод | — |
-| R2-02 | SocialIcon | `social-icon` | примитив | `data-display` | прод | — |
-| R2-03 | ProjectIcon | `project-icon` | примитив | `data-display` | прод | — |
-| R2-04 | Avatar | `avatar` | примитив | `data-display` | прод | — |
-| R2-05 | EntityLogo | `entity-logo` | примитив | `data-display` | прод | — |
-| R2-06 | Chip | `chip` | примитив | `data-display` | прод | — |
-| R2-07 | Badge | `badge` | примитив | `data-display` | прод | — |
-| R2-08 | RatingBadge | `rating-badge` | примитив | `data-display` | прод | `sprite-icon` |
-| R2-09 | MetaPill | `meta-pill` | примитив | `data-display` | прод | — |
-| R2-10 | CounterPill | `counter-pill` | примитив | `data-display` | прод | — |
-| R2-11 | AvatarStack | `avatar-stack` | компонент | `collections` | прод | `avatar`, `counter-pill` |
-| R2-12 | Prose | `prose` | компонент | `data-display` | прод | — |
+| R2-02 | [SocialIcon](data-display/social-icon.md) | `social-icon` | примитив | `data-display` | прод | — |
+| R2-03 | [ProjectIcon](data-display/project-icon.md) | `project-icon` | примитив | `data-display` | прод | — |
+| R2-04 | [Avatar](data-display/avatar.md) | `avatar` | примитив | `data-display` | прод | — |
+| R2-05 | [EntityLogo](data-display/entity-logo.md) | `entity-logo` | примитив | `data-display` | прод | — |
+| R2-06 | [Chip](data-display/chip.md) | `chip` | примитив | `data-display` | прод | — |
+| R2-07 | [Badge](data-display/badge.md) | `badge` | примитив | `data-display` | прод | — |
+| R2-08 | [RatingBadge](data-display/rating-badge.md) | `rating-badge` | примитив | `data-display` | прод | `sprite-icon` |
+| R2-09 | [MetaPill](data-display/meta-pill.md) | `meta-pill` | примитив | `data-display` | прод | — |
+| R2-10 | [CounterPill](data-display/counter-pill.md) | `counter-pill` | примитив | `data-display` | прод | — |
+| R2-11 | [AvatarStack](collections/avatar-stack.md) | `avatar-stack` | компонент | `collections` | прод | `avatar`, `counter-pill` |
+| R2-12 | [Prose](data-display/prose.md) | `prose` | компонент | `data-display` | прод | — |
 
 ### R3 — базовые компоненты, 15 · Core Gate
 
 | Шаг | Элемент | id | Вид | Категория | Где найден | Зависит от |
 |---|---|---|---|---|---|---|
-| R3-01 | Button | `button` | компонент | `actions` | прод | `sprite-icon` |
-| R3-02 | IconButton | `icon-button` | компонент | `actions` | прод | `sprite-icon` |
-| R3-03 | Link | `link` | примитив | `navigation` | прод | — |
-| R3-04 | FilterChip | `filter-chip` | компонент | `forms` | прод | `sprite-icon` |
-| R3-05 | SegmentedControl | `segmented-control` | компонент | `navigation` | прод | — |
-| R3-06 | Select | `select` | компонент | `forms` | прод | `sprite-icon` |
-| R3-07 | MultiSelect | `multi-select` | компонент | `forms` | **storybook-only** | `sprite-icon`, `select` |
-| R3-08 | SearchInput | `search-input` | компонент | `forms` | прод | `sprite-icon` |
-| R3-09 | TextInput | `text-input` | компонент | `forms` | **figma-only** | — |
-| R3-10 | Checkbox | `checkbox` | компонент | `forms` | **storybook-only** | — |
-| R3-11 | Switch | `switch` | компонент | `forms` | **storybook-only** | — |
-| R3-12 | TileFilter | `tile-filter` | компонент | `forms` | **storybook-only** | — |
-| R3-13 | Tab | `tab` | компонент | `navigation` | **figma-only** | — |
-| R3-14 | Pagination | `pagination` | компонент | `navigation` | **figma-only** | `icon-button` |
-| R3-15 | Breadcrumbs | `breadcrumbs` | компонент | `navigation` | **figma-only** | — |
+| R3-01 | [Button](actions/button.md) | `button` | компонент | `actions` | прод | `sprite-icon` |
+| R3-02 | [IconButton](actions/icon-button.md) | `icon-button` | компонент | `actions` | прод | `sprite-icon` |
+| R3-03 | [Link](navigation/link.md) | `link` | примитив | `navigation` | прод | — |
+| R3-04 | [FilterChip](forms/filter-chip.md) | `filter-chip` | компонент | `forms` | прод | `sprite-icon` |
+| R3-05 | [SegmentedControl](navigation/segmented-control.md) | `segmented-control` | компонент | `navigation` | прод | — |
+| R3-06 | [Select](forms/select.md) | `select` | компонент | `forms` | прод | `sprite-icon` |
+| R3-07 | [MultiSelect](forms/multi-select.md) | `multi-select` | компонент | `forms` | **storybook-only** | `sprite-icon`, `select` |
+| R3-08 | [SearchInput](forms/search-input.md) | `search-input` | компонент | `forms` | прод | `sprite-icon` |
+| R3-09 | [TextInput](forms/text-input.md) | `text-input` | компонент | `forms` | прод | — |
+| R3-10 | [Checkbox](forms/checkbox.md) | `checkbox` | компонент | `forms` | **storybook-only** | — |
+| R3-11 | [Switch](forms/switch.md) | `switch` | компонент | `forms` | **storybook-only** | — |
+| R3-12 | [TileFilter](forms/tile-filter.md) | `tile-filter` | компонент | `forms` | **storybook-only** | — |
+| R3-13 | [Tab](navigation/tab.md) | `tab` | компонент | `navigation` | **figma-only** | — |
+| R3-14 | [Pagination](navigation/pagination.md) | `pagination` | компонент | `navigation` | **figma-only** | `icon-button` |
+| R3-15 | [Breadcrumbs](navigation/breadcrumbs.md) | `breadcrumbs` | компонент | `navigation` | **figma-only** | — |
 
 ### R4 — каркасные модули, 14 · R4 Gate
 
 | Шаг | Элемент | id | Вид | Категория | Где найден | Зависит от |
 |---|---|---|---|---|---|---|
-| R4-01 | SiteHeader | `site-header` | модуль | `frame-modules` | прод | `header-dropdown`, `search-input`, `sprite-icon` |
-| R4-02 | HeaderDropdown | `header-dropdown` | модуль | `overlays` | прод | `project-icon` |
-| R4-03 | RubricationBar | `rubrication-bar` | модуль | `navigation` | прод | `link` |
-| R4-04 | SiteFooter | `site-footer` | модуль | `frame-modules` | прод | `project-icon`, `social-icon`, `link` |
-| R4-05 | PageHero | `page-hero` | модуль | `frame-modules` | прод | `segmented-control`, `search-form`, `button` |
-| R4-06 | SearchForm | `search-form` | модуль | `forms` | прод | `select`, `button` |
-| R4-07 | Section | `section` | модуль | `layout` | прод | — |
-| R4-08 | CardGrid | `card-grid` | модуль | `layout` | прод | — |
-| R4-09 | Carousel | `carousel` | модуль | `collections` | прод | `icon-button` |
-| R4-10 | LinkGrid | `link-grid` | модуль | `collections` | прод | `link` |
-| R4-11 | FilterBar | `filter-bar` | модуль | `navigation` | прод | `filter-chip` |
-| R4-12 | FilterModal | `filter-modal` | модуль | `overlays` | **storybook-only** | `button`, `checkbox`, `select` |
-| R4-13 | CatalogMenu | `catalog-menu` | модуль | `overlays` | **figma-only** | `link`, `sprite-icon` |
-| R4-14 | EmptyState | `empty-state` | модуль | `feedback` | **figma-only** | `button` |
+| R4-01 | [SiteHeader](frame-modules/site-header.md) | `site-header` | модуль | `frame-modules` | прод | `header-dropdown`, `search-input`, `sprite-icon` |
+| R4-02 | [HeaderDropdown](overlays/header-dropdown.md) | `header-dropdown` | модуль | `overlays` | прод | `project-icon` |
+| R4-03 | [RubricationBar](navigation/rubrication-bar.md) | `rubrication-bar` | модуль | `navigation` | прод | `link` |
+| R4-04 | [SiteFooter](frame-modules/site-footer.md) | `site-footer` | модуль | `frame-modules` | прод | `project-icon`, `social-icon`, `link` |
+| R4-05 | [PageHero](frame-modules/page-hero.md) | `page-hero` | модуль | `frame-modules` | прод | `segmented-control`, `search-form`, `button` |
+| R4-06 | [SearchForm](forms/search-form.md) | `search-form` | модуль | `forms` | прод | `select`, `button` |
+| R4-07 | [Section](layout/section.md) | `section` | модуль | `layout` | прод | — |
+| R4-08 | [CardGrid](layout/card-grid.md) | `card-grid` | модуль | `layout` | прод | — |
+| R4-09 | [Carousel](collections/carousel.md) | `carousel` | модуль | `collections` | прод | `icon-button` |
+| R4-10 | [LinkGrid](collections/link-grid.md) | `link-grid` | модуль | `collections` | прод | `link` |
+| R4-11 | [FilterBar](navigation/filter-bar.md) | `filter-bar` | модуль | `navigation` | прод | `filter-chip` |
+| R4-12 | [FilterModal](overlays/filter-modal.md) | `filter-modal` | модуль | `overlays` | **figma-only** | `button`, `checkbox`, `select` |
+| R4-13 | [CatalogMenu](overlays/catalog-menu.md) | `catalog-menu` | модуль | `overlays` | **figma-only** | `link`, `sprite-icon` |
+| R4-14 | [EmptyState](feedback/empty-state.md) | `empty-state` | модуль | `feedback` | **figma-only** | `button` |
 
 ### R5 — entity-модули, 14
 
 | Шаг | Элемент | id | Вид | Категория | Где найден | Зависит от |
 |---|---|---|---|---|---|---|
-| R5-01 | CourseCard | `course-card` | модуль | `entities` | прод | `rating-badge`, `meta-pill`, `badge`, `chip`, `button`, `entity-logo` |
-| R5-02 | SchoolCard | `school-card` | модуль | `entities` | прод | `entity-logo`, `rating-badge`, `avatar-stack`, `counter-pill`, `button` |
-| R5-03 | PromoCard | `promo-card` | модуль | `entities` | прод | `entity-logo`, `button` |
-| R5-04 | ReviewCard | `review-card` | модуль | `entities` | прод | `avatar`, `rating-badge`, `prose` |
-| R5-05 | ArticleCard | `article-card` | модуль | `entities` | прод | `chip` |
-| R5-06 | PersonCard | `person-card` | модуль | `entities` | прод | `avatar`, `social-icon`, `prose` |
-| R5-07 | StepCard | `step-card` | модуль | `entities` | прод | — |
-| R5-08 | RatingTable | `rating-table` | модуль | `collections` | прод | `entity-logo`, `link` |
-| R5-09 | NumberedCourseItem | `numbered-course-item` | модуль | `entities` | прод | `prose`, `link` |
-| R5-10 | EntityHeader | `entity-header` | модуль | `entities` | прод | `entity-logo`, `rating-badge`, `button`, `prose` |
-| R5-11 | PersonHeader | `person-header` | модуль | `entities` | прод | `avatar`, `social-icon` |
-| R5-12 | InfoTable | `info-table` | модуль | `data-display` | прод | — |
-| R5-13 | AdCard | `ad-card` | модуль | `entities` | прод | `icon-button` |
-| R5-14 | AdSlot | `ad-slot` | модуль | `layout` | прод | `carousel`, `ad-card` |
+| R5-01 | [CourseCard](entities/course-card.md) | `course-card` | модуль | `entities` | прод | `rating-badge`, `meta-pill`, `badge`, `chip`, `button`, `entity-logo` |
+| R5-02 | [SchoolCard](entities/school-card.md) | `school-card` | модуль | `entities` | прод | `entity-logo`, `rating-badge`, `avatar-stack`, `counter-pill`, `button` |
+| R5-03 | [PromoCard](entities/promo-card.md) | `promo-card` | модуль | `entities` | прод | `entity-logo`, `button` |
+| R5-04 | [ReviewCard](entities/review-card.md) | `review-card` | модуль | `entities` | прод | `avatar`, `rating-badge`, `prose` |
+| R5-05 | [ArticleCard](entities/article-card.md) | `article-card` | модуль | `entities` | прод | `chip` |
+| R5-06 | [PersonCard](entities/person-card.md) | `person-card` | модуль | `entities` | прод | `avatar`, `social-icon`, `prose` |
+| R5-07 | [StepCard](entities/step-card.md) | `step-card` | модуль | `entities` | прод | — |
+| R5-08 | [RatingTable](collections/rating-table.md) | `rating-table` | модуль | `collections` | прод | `entity-logo`, `link` |
+| R5-09 | [NumberedCourseItem](entities/numbered-course-item.md) | `numbered-course-item` | модуль | `entities` | прод | `prose`, `link` |
+| R5-10 | [EntityHeader](entities/entity-header.md) | `entity-header` | модуль | `entities` | прод | `entity-logo`, `rating-badge`, `button`, `prose` |
+| R5-11 | [PersonHeader](entities/person-header.md) | `person-header` | модуль | `entities` | прод | `avatar`, `social-icon` |
+| R5-12 | [InfoTable](data-display/info-table.md) | `info-table` | модуль | `data-display` | прод | — |
+| R5-13 | [AdCard](entities/ad-card.md) | `ad-card` | модуль | `entities` | прод | `icon-button` |
+| R5-14 | [AdSlot](layout/ad-slot.md) | `ad-slot` | модуль | `layout` | прод | `carousel`, `ad-card` |
 
 ---
 

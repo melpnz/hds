@@ -13,7 +13,7 @@
    выбрать одно из двух молча. Слитый :root такой разбор делает невозможным:
    после слияния уже не видно, чьё значение победило.
 
-   Поэтому здесь 159 переменных с префиксом --fig-, и ни одна
+   Поэтому здесь 169 переменных с префиксом --fig-, и ни одна
    из них не участвует в вёрстке компонентов. Компоненты собраны из
    продакшена и ссылаются на --color-ui-* из ui/tokens.css. Слой Figma
    существует, чтобы контракт дизайна был виден рядом и сверяем.
@@ -41,9 +41,9 @@
    Единицы. Figma хранит числа без единиц. Размеры выписаны в px,
    безразмерными оставлены насыщенность шрифта, трекинг Text и нули.
 
-   Сверка с продакшеном: из 64 цветов макета
-   42 совпали по значению с продуктовым токеном ui/tokens.css,
-   22 — своего продуктового двойника не имеют. Таблица
+   Сверка с продакшеном: из 68 цветов макета
+   45 совпали по значению с продуктовым токеном ui/tokens.css,
+   23 — своего продуктового двойника не имеют. Таблица
    совпадений — в конце файла комментарием.
    ========================================================================= */
 
@@ -82,6 +82,14 @@
 
   /* Элементы: кнопка, поле, вкладка, чип, тег, контрол, модалка, дропдаун */
   --fig-elements-button-border-radius: 12px;
+  --fig-elements-button-group-onpage-border-radius: 12px;
+  --fig-elements-button-group-onpage-border-radius-group: 16px;
+  --fig-elements-button-group-onpage-fill: #f1f1f1;
+  --fig-elements-button-group-onpage-fill-select: #ffffff;
+  --fig-elements-button-group-onpage-padding-group: 4px;
+  --fig-elements-button-group-onpage-padding-left-right: 16px;
+  --fig-elements-button-group-onpage-padding-top-bottom: 8px;
+  --fig-elements-button-group-onpage-text: #2c2e34;
   --fig-elements-button-icon-border: #e9e9ea;
   --fig-elements-button-icon-border-disable: #f1f1f1;
   --fig-elements-button-icon-button-border-radius: 200px;
@@ -110,6 +118,7 @@
   --fig-elements-dropdown-fill: #ffffff;
   --fig-elements-dropdown-padding-left-right: 0;
   --fig-elements-dropdown-padding-top-bottom: 8px;
+  --fig-elements-dropdown-row-fill-hover: #f1f1f1;
   --fig-elements-dropdown-row-gap: 12px;
   --fig-elements-dropdown-row-gap-small: 8px;
   --fig-elements-dropdown-row-margin-text-avatar: 2px;
@@ -197,6 +206,9 @@
   --fig-font-header-page-line-height: 34px;
   --fig-font-header-page-size: 30px;
 
+  /* iconsize */
+  --fig-iconsize-x1: 24px;
+
   /* Фирменные цвета внешних сервисов */
   --fig-logo-black: #000000;
   --fig-logo-career: #6274bc;
@@ -230,7 +242,7 @@
 /* -------------------------------------------------------------------------
    Сверка цветов макета с продуктовыми токенами
    -------------------------------------------------------------------------
-   Совпало по значению (42) — то же число в макете и в проде:
+   Совпало по значению (45) — то же число в макете и в проде:
 
      --fig-blue-400-solid                       #6bacfd    = --color-ui-blue-400
      --fig-blue-500-solid                       #346ef4    = --color-ui-blue-500
@@ -243,6 +255,8 @@
      --fig-color-style-primary-primary-light    #eff5ff    = --color-ui-blue-50
      --fig-color-style-primary-primary-medium   #6bacfd    = --color-ui-blue-400
      --fig-color-style-warning-warning          #ff960c    = --color-ui-yellow-500
+     --fig-elements-button-group-onpage-fill    #f1f1f1    = --color-ui-black-50
+     --fig-elements-button-group-onpage-text    #2c2e34    = --color-ui-black-850
      --fig-elements-button-icon-border          #e9e9ea    = --color-ui-black-100
      --fig-elements-button-icon-border-disable  #f1f1f1    = --color-ui-black-50
      --fig-elements-button-icon-disable         #d3d3d4    = --color-ui-black-200
@@ -251,6 +265,7 @@
      --fig-elements-button-secondary-fill       #f1f1f1    = --color-ui-black-50
      --fig-elements-button-secondary-fill-hover #e9e9ea    = --color-ui-black-100
      --fig-elements-control-unchecked-fill      #dededf    = --color-ui-black-150
+     --fig-elements-dropdown-row-fill-hover     #f1f1f1    = --color-ui-black-50
      --fig-elements-dropdown-row-text           #2c2e34    = --color-ui-black-850
      --fig-elements-input-border                #e9e9ea    = --color-ui-black-100
      --fig-elements-input-icon                  #a6a7a9    = --color-ui-black-400
@@ -275,7 +290,7 @@
      --fig-elements-tag-text-text               #2c2e34    = --color-ui-black-850
      --fig-logo-career                          #6274bc    = --color-career
 
-   Продуктового двойника нет (22) — цвет объявлен в макете,
+   Продуктового двойника нет (23) — цвет объявлен в макете,
    а среди 51 переменной ui/tokens.css значения нет ни у одной. Это не
    ошибка ни той, ни другой стороны: часть из них — фирменные цвета внешних
    сервисов (logo/*), часть — состояния, до которых вёрстка ещё не дошла.
@@ -287,6 +302,7 @@
      --fig-color-style-white-light              #ffffff
      --fig-effect-drop-shadow-1-color           #0000000d
      --fig-effect-drop-shadow-2-color           #0000000d
+     --fig-elements-button-group-onpage-fill-select #ffffff
      --fig-elements-button-icon-fill            #ffffff
      --fig-elements-button-main-text            #ffffff
      --fig-elements-dropdown-fill               #ffffff

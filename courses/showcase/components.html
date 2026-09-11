@@ -1688,6 +1688,8 @@
 
 
 
+
+
   <section class="doc-category" id="f-figma">
     <div class="doc-category__head">
       <h3>Токены макета</h3>
@@ -1710,8 +1712,37 @@
             <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
           </span>
         </div>
-        <p class="doc-note">Из 64 цветов макета 42 совпали по значению с переменной <code>ui/tokens.css</code> — под плашкой стоит имя продуктового двойника. У остальных 22 двойника нет: часть — фирменные цвета внешних сервисов (<code>--fig-logo-*</code>), часть — состояния, до которых вёрстка ещё не дошла. Сверка идёт по значению и пересчитывается из самих слоёв при каждой пересборке раздела.</p>
+        <p class="doc-note">Из 68 цветов макета 45 совпали по значению с переменной <code>ui/tokens.css</code> — под плашкой стоит имя продуктового двойника. У остальных 23 двойника нет: часть — фирменные цвета внешних сервисов (<code>--fig-logo-*</code>), часть — состояния, до которых вёрстка ещё не дошла. Сверка идёт по значению и пересчитывается из самих слоёв при каждой пересборке раздела.</p>
         <div class="doc-stage doc-stage--rows">
+    <div class="doc-variant">
+      <span class="doc-variant__label">Группа кнопок — цвета макета</span>
+    </div>
+    <div class="doc-swatches">
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: #f1f1f1"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--fig-elements-button-group-onpage-fill</p>
+          <p class="doc-swatch__value">#f1f1f1</p>
+          <span class="doc-mark doc-mark--live">= --color-ui-black-50</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: #ffffff"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--fig-elements-button-group-onpage-fill-select</p>
+          <p class="doc-swatch__value">#ffffff</p>
+          <span class="doc-mark">двойника в ui/tokens.css нет</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: #2c2e34"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--fig-elements-button-group-onpage-text</p>
+          <p class="doc-swatch__value">#2c2e34</p>
+          <span class="doc-mark doc-mark--live">= --color-ui-black-850</span>
+        </div>
+      </div>
+    </div>
     <div class="doc-variant">
       <span class="doc-variant__label">Кнопка — цвета макета</span>
     </div>
@@ -1992,6 +2023,14 @@
           <p class="doc-swatch__name">--fig-elements-dropdown-fill</p>
           <p class="doc-swatch__value">#ffffff</p>
           <span class="doc-mark">двойника в ui/tokens.css нет</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: #f1f1f1"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--fig-elements-dropdown-row-fill-hover</p>
+          <p class="doc-swatch__value">#f1f1f1</p>
+          <span class="doc-mark doc-mark--live">= --color-ui-black-50</span>
         </div>
       </div>
       <div class="doc-swatch">
@@ -2307,6 +2346,17 @@
             <span class="doc-src doc-src--figma" title="figma" aria-label="figma">F</span>
           </span>
         </div>
+          <p class="doc-note"><strong>Группа кнопок</strong></p>
+          <table class="doc-table">
+            <thead><tr><th>переменная</th><th>значение</th></tr></thead>
+            <tbody>
+              <tr><td><code>--fig-elements-button-group-onpage-border-radius</code></td><td><code>12px</code></td></tr>
+              <tr><td><code>--fig-elements-button-group-onpage-border-radius-group</code></td><td><code>16px</code></td></tr>
+              <tr><td><code>--fig-elements-button-group-onpage-padding-group</code></td><td><code>4px</code></td></tr>
+              <tr><td><code>--fig-elements-button-group-onpage-padding-left-right</code></td><td><code>16px</code></td></tr>
+              <tr><td><code>--fig-elements-button-group-onpage-padding-top-bottom</code></td><td><code>8px</code></td></tr>
+            </tbody>
+          </table>
           <p class="doc-note"><strong>Кнопка</strong></p>
           <table class="doc-table">
             <thead><tr><th>переменная</th><th>значение</th></tr></thead>
@@ -2490,6 +2540,13 @@
               <tr><td><code>--fig-effect-drop-shadow-2-blur</code></td><td><code>6px</code></td></tr>
               <tr><td><code>--fig-effect-drop-shadow-2-spread</code></td><td><code>-1px</code></td></tr>
               <tr><td><code>--fig-effect-drop-shadow-2-y</code></td><td><code>4px</code></td></tr>
+            </tbody>
+          </table>
+          <p class="doc-note"><strong>Прочее</strong></p>
+          <table class="doc-table">
+            <thead><tr><th>переменная</th><th>значение</th></tr></thead>
+            <tbody>
+              <tr><td><code>--fig-iconsize-x1</code></td><td><code>24px</code></td></tr>
             </tbody>
           </table>
         <p class="doc-note"><strong>Чего в слое нет.</strong> Композитные переменные Figma — типографические стили и эффекты — одной переменной CSS не разворачиваются: это наборы. Их составляющие выше есть по отдельности, а сборка — дело компонента. Библиотека <code>education-lib</code> не читается вовсе: узлы её страниц компонентов недоступны, есть только <code>componentKey</code>.</p>
@@ -5762,6 +5819,116 @@
         </dl>
         <p class="doc-note"><strong>Тексты.</strong> Тексты — содержимое узла макета: заголовок «Поиск обучения», группа «Тип обучения» с вариантами «Курс», «Вебинар» (выбран), «Симулятор», кнопки «Очистить всё» и «Показать 30 560 курсов». Число курсов в кнопке — пример из макета, в продукте его подставляет выдача. Свёрстана одна группа из десяти: остальные собраны из записей, которые уже стоят на витрине, — плиток <code>BaseFilterWithImage</code> и тех же чипов <code>Tab</code>.</p>
         <p class="doc-note"><strong>Ассеты.</strong> Крестик — экспорт узла макета <code>ui/assets/icons/modal-close.svg</code>, а не символ общего спрайта: у символа <code>sprite.svg#cross-large</code> тот же глиф, но плечи короче на 1 px с каждой стороны, это не тот же символ. Цвет <code>#A6A7A9</code> зашит в экспорт. Затемнение фона под модалкой (слой <code>overlay</code> макета) не воспроизводится: на витрине модалка стоит на странице, а не поверх неё. Полный разбор — <a href="../components/overlays/filter-modal.md">спецификация</a>.</p>
+      </div>
+    </section>
+
+    <section class="doc-section" id="c-catalog-menu">
+      <div class="doc-section__head">
+        <h4>CatalogMenu</h4>
+        <p>figma-only: выпадающий каталог направлений из шапки, отдельные версии для взрослых и детей</p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>default</h5>
+          <code>.crs-catalog-menu</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
+          </span>
+          <span class="doc-tag">figma-only</span>
+        </div>
+        <p class="doc-note"><strong>Эта разметка написана по макету, а не снята с продукта.</strong>
+          Единственный такой случай на витрине: компонента в продакшене нет вовсе.
+          Узел — <code>02_Education-NEW</code> <code>14644:221760</code>
+          «Карточки — панель каталога для взрослых». Корень <code>crs-catalog-menu</code> введён пакетом:
+          настоящего имени взять неоткуда.</p>
+        <div class="doc-stage">
+          <div class="doc-variant">
+            <span class="doc-variant__label">по узлу макета <code>14644:221760</code></span>
+            <div class="doc-variant__row">
+              <div class="crs-catalog-menu">
+                <div class="crs-catalog-menu__side">
+                  <div class="crs-catalog-menu__switch">
+                    <button type="button" class="crs-catalog-menu__switch-item crs-catalog-menu__switch-item--selected" aria-pressed="true">Для взрослых</button>
+                    <button type="button" class="crs-catalog-menu__switch-item" aria-pressed="false">Для детей</button>
+                  </div>
+                  <nav class="crs-catalog-menu__list" aria-label="Направления">
+                    <a href="#c-catalog-menu" class="crs-catalog-menu__row crs-catalog-menu__row--current" aria-current="true"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/code.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Программирование и IT</span></a>
+                    <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/analytics.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Аналитика и Data Science</span></a>
+                    <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/design.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Дизайн и контент</span></a>
+                    <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/business.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Бизнес и менеджмент</span></a>
+                    <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/marketing.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Маркетинг и продажи</span></a>
+                    <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/finance.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Финансы и бухгалтерия</span></a>
+                    <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/hr.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">HR и рекрутинг</span></a>
+                    <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/hobby.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Хобби и творчество</span></a>
+                    <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/wellness.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Красота и здоровье</span></a>
+                    <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/cooking.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Кулинария</span></a>
+                    <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/psychology.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Психология</span></a>
+                    <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/growth.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Саморазвитие и soft skills</span></a>
+                    <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/software.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Прикладные программы</span></a>
+                    <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/pedagogy.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Педагогика</span></a>
+                    <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/languages.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Языки</span></a>
+                  </nav>
+                </div>
+                <div class="crs-catalog-menu__divider" aria-hidden="true"></div>
+                <div class="crs-catalog-menu__column">
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">1C-Программирование</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">1С Битрикс</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Администрирование Windows</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Алгоритмы и структуры данных</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Архитектор ПО</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Автоматизация тестирования</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Автоматизация тестирования на Python</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Backend-разработка</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Bootstrap</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">CentOS</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">CI/CD</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Composer</a>
+                </div>
+                <div class="crs-catalog-menu__column">
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Groovy</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Haskell</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">IntelliJ IDEA</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">IOS-разработка</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Java Middle</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Java-разработка</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">JavaScript-разработка</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Jenkins</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Jira</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Joomla</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Junior Python-разработка</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Junior QA-тестировщик</a>
+                </div>
+                <div class="crs-catalog-menu__column">
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Haskell</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">IntelliJ IDEA</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">IOS-разработка</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Java Middle</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Java-разработка</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">JavaScript-разработка</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Jenkins</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Jira</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Joomla</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Junior Python-разработка</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Junior QA-тестировщик</a>
+                  <a href="#c-catalog-menu" class="crs-catalog-menu__course">Kubernetes</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <dl class="doc-spec">
+          <div><dt>панель</dt><dd>сетка: колонка 270, разделитель 1, три колонки курсов поровну; промежуток 24, падинг 24 / 40 / 24 / 24</dd></div>
+          <div><dt>переключатель</dt><dd>высота 48, фон <code>#f1f1f1</code>, падинг 4, радиус 16; выбранный сегмент белый, радиус 12, тень <code>Dropdown</code> — <code>elements/button group/onpage/*</code></dd></div>
+          <div><dt>строка направления</dt><dd>иконка 24, промежуток 12, падинг 8 / 8 / 8 / 16, радиус 8, высота 40; текущая и при наведении — <code>#f1f1f1</code> — <code>elements/dropdown/row/*</code></dd></div>
+          <div><dt>разделитель</dt><dd>1px <code>#e9e9ea</code> — <code>--fig-color-style-neutral-neutral-hover</code></dd></div>
+          <div><dt>колонка курсов</dt><dd>промежуток 12, сверху 12, текст 14 / 20 <code>#2c2e34</code>; при наведении подчёркнут — живое</dd></div>
+          <div><dt>вхождений в проде</dt><dd>нет — компонента в продукте не существует</dd></div>
+        </dl>
+        <p class="doc-note"><strong>Тексты.</strong> Подписи — дословно из узла макета: пятнадцать направлений и начало трёх колонок курсов, по двенадцать строк из 27, 30 и 30. Колонки два и три в макете — наполнитель: «Haskell», «Microsoft Access» и «Middle Frontend-разработка» в них повторяются, а третья почти целиком повторяет вторую со сдвигом на строку. Настоящий список курсов по направлению даёт выдача. Свёрстан кадр 1024 для взрослых; в секции макета «меню каталога» (<code>14639:226536</code>) рядом лежат кадры 744 и 320 и те же три для детей (<code>14657:224732</code> — 1024), их вёрстка — шаг R4-13. Шапка <code>header / courses</code> над панелью — своя запись, здесь не повторяется.</p>
+        <p class="doc-note"><strong>Ассеты.</strong> Иконки направлений — пятнадцать экспортов узла макета в <code>ui/assets/icons/catalog/</code>, а не символы общего спрайта: в спрайте продукта (22 символа) иконок направлений нет вовсе. Цвет <code>#A6A7A9</code> зашит в экспорт. Разделитель — не картинка, как вектор в макете, а полоса фона 1px того же цвета. Полный разбор — <a href="../components/overlays/catalog-menu.md">спецификация</a>.</p>
+        <p class="doc-note"><strong>Состояния.</strong> Свёрстано одно состояние — открытое (<code>open</code>): узел макета и есть раскрытый каталог. <code>default</code> и <code>closed</code> — свёрнутый каталог, то есть кнопка в шапке; отдельной вёрстки у записи для них нет. Текущее направление («Программирование и IT») нарисовано в макете серым — на витрине оно помечено модификатором <code>--current</code>, наведение остальных строк живое.</p>
       </div>
     </section>
 

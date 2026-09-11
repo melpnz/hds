@@ -13,8 +13,9 @@
    литерал стоит в самом продукте, и тогда это отмечается в спецификации
    (METHOD §6.4).
 
-   Компоненты верстаются на шагах R4. Исключение — FilterModal ниже: открытое
-   состояние свёрстано по макету bulk-проходом R2-bulk (запись figma-only).
+   Компоненты верстаются на шагах R4. Исключения — FilterModal и CatalogMenu
+   ниже: их открытое состояние свёрстано по макету bulk-проходом R2-bulk
+   (записи figma-only).
    ========================================================================= */
 
 /* -------------------------------------------------------------------------
@@ -128,4 +129,165 @@
 .crs-filter-modal__button--main {
   background: var(--fig-elements-button-main-fill);
   color: var(--fig-elements-button-main-text);
+}
+
+/* -------------------------------------------------------------------------
+   CatalogMenu (R2-bulk, figma-only) — раскрытый каталог, каркас по частям
+   -------------------------------------------------------------------------
+   Узел макета — «каталог для взрослых 😏» 14644:221758 файла 02_Education-NEW,
+   1024×1024: шапка header / courses (64) и под ней панель «Карточки»
+   14644:221760 (1024×960). Решением владельца 11 сентября 2026 каталог
+   верстается каркасом по частям: панель без шапки — шапка своя запись.
+
+   Панель — сетка из пяти колонок: левая колонка 270 (переключатель
+   «Для взрослых / Для детей» и список направлений), разделитель 1px и три
+   колонки курсов поровну. Промежуток 24, падинг 24 / 40 / 24 / 24 — в макете
+   это литералы на самом фрейме, а не переменные; здесь они записаны шагами
+   шкалы --fig-size-spacing-*, которым равны.
+
+   Переключатель — компонент макета button group / onpage (13496:153002),
+   список — Left Menu List на переменных elements/dropdown/*. У строки
+   списка правый падинг привязан в макете к elements/dropdown/row/
+   padding_top_bottom (8), а не к row/padding_right (24): так нарисовано,
+   так и сверстано.
+
+   Иконки направлений — пятнадцать экспортов макета в ui/assets/icons/
+   catalog/: в общем спрайте продукта таких символов нет. Цвет #A6A7A9
+   зашит в экспорт — равен --fig-color-style-neutral-neutral-heavy.
+   ------------------------------------------------------------------------- */
+.crs-catalog-menu {
+  background: var(--fig-elements-dropdown-fill);
+  box-sizing: border-box;
+  column-gap: var(--fig-size-spacing-x6);
+  display: grid;
+  grid-template-columns: 270px 1px repeat(3, minmax(0, 1fr));
+  padding: var(--fig-size-spacing-x6) var(--fig-size-spacing-x10) var(--fig-size-spacing-x6) var(--fig-size-spacing-x6);
+  width: 100%;
+}
+.crs-catalog-menu__side {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x3);
+  min-width: 0;
+}
+.crs-catalog-menu__switch {
+  background: var(--fig-elements-button-group-onpage-fill);
+  border-radius: var(--fig-elements-button-group-onpage-border-radius-group);
+  box-sizing: border-box;
+  display: flex;
+  /* 48 в макете; min-, а не height: в коробке уже кадра 320 подпись
+     сегмента переносится, и группа растёт, а не выпускает текст наружу. */
+  min-height: 48px;
+  padding: var(--fig-elements-button-group-onpage-padding-group);
+}
+.crs-catalog-menu__switch-item {
+  background: transparent;
+  border: 0;
+  border-radius: var(--fig-elements-button-group-onpage-border-radius);
+  color: var(--fig-elements-button-group-onpage-text);
+  cursor: pointer;
+  flex: 1 0 0;
+  font: inherit;
+  font-size: var(--fig-font-size-body-m);
+  font-weight: var(--fig-font-weight-regular);
+  letter-spacing: var(--fig-font-letter-spacing-text);
+  line-height: var(--fig-font-line-height-body-l);
+  min-width: 0;
+  padding: var(--fig-elements-button-group-onpage-padding-top-bottom) var(--fig-elements-button-group-onpage-padding-left-right);
+  text-align: center;
+}
+.crs-catalog-menu__switch-item--selected {
+  background: var(--fig-elements-button-group-onpage-fill-select);
+  /* Эффект Dropdown макета — две тени; составляющие есть в слое по
+     отдельности, композит собирается здесь. */
+  box-shadow:
+    0 var(--fig-effect-drop-shadow-2-y) var(--fig-effect-drop-shadow-2-blur) var(--fig-effect-drop-shadow-2-spread) var(--fig-effect-drop-shadow-2-color),
+    0 var(--fig-effect-drop-shadow-1-y) var(--fig-effect-drop-shadow-1-blur) var(--fig-effect-drop-shadow-1-spread) var(--fig-effect-drop-shadow-1-color);
+}
+.crs-catalog-menu__list {
+  background: var(--fig-elements-dropdown-fill);
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  margin: 0;
+  padding: var(--fig-elements-dropdown-padding-top-bottom) var(--fig-elements-dropdown-padding-left-right);
+}
+.crs-catalog-menu__row {
+  align-items: center;
+  border-radius: var(--fig-size-radius-xs);
+  color: var(--fig-elements-dropdown-row-text);
+  display: flex;
+  gap: var(--fig-elements-dropdown-row-gap);
+  padding: var(--fig-elements-dropdown-row-padding-top-bottom) var(--fig-elements-dropdown-row-padding-top-bottom) var(--fig-elements-dropdown-row-padding-top-bottom) var(--fig-elements-dropdown-row-padding-left);
+  text-decoration: none;
+}
+.crs-catalog-menu__row:hover,
+.crs-catalog-menu__row--current {
+  background: var(--fig-elements-dropdown-row-fill-hover);
+}
+.crs-catalog-menu__row-icon {
+  display: block;
+  flex: none;
+  height: var(--fig-iconsize-x1);
+  width: var(--fig-iconsize-x1);
+}
+.crs-catalog-menu__row-label {
+  flex: 1 0 0;
+  font-size: var(--fig-font-size-body-m);
+  font-weight: var(--fig-font-weight-regular);
+  letter-spacing: var(--fig-font-letter-spacing-text);
+  line-height: var(--fig-font-line-height-body-l);
+  min-width: 0;
+  padding: var(--fig-elements-dropdown-row-margin-text-avatar) 0;
+}
+.crs-catalog-menu__divider {
+  background: var(--fig-color-style-neutral-neutral-hover);
+  width: 1px;
+}
+.crs-catalog-menu__column {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x3);
+  list-style: none;
+  margin: 0;
+  min-width: 0;
+  overflow-wrap: break-word;
+  padding: var(--fig-size-spacing-x3) 0 0;
+}
+.crs-catalog-menu__course {
+  color: var(--fig-color-style-font-primary);
+  display: block;
+  font-size: var(--fig-font-size-body-m);
+  font-weight: var(--fig-font-weight-regular);
+  letter-spacing: var(--fig-font-letter-spacing-text);
+  line-height: var(--fig-font-line-height-body-l);
+  text-decoration: none;
+}
+.crs-catalog-menu__course:hover {
+  text-decoration: underline;
+  text-underline-position: from-font;
+}
+/* Перестройка — по кадрам той же секции макета «меню каталога» 14639:226536,
+   на брейкпоинтах макета (744 / 1024), а не продукта (768 / 1024): записи
+   в продукте нет, брать брейкпоинт продукта не у чего. Кадр 744
+   (14657:223784) оставляет одну колонку курсов, кадр 320 (14657:224296) —
+   только левую колонку во всю ширину. Шеврон перехода у строки и поиск над
+   списком из кадра 320 не свёрстаны — шаг R4-13. */
+@media (max-width: 1023px) {
+  .crs-catalog-menu {
+    grid-template-columns: 270px 1px minmax(0, 1fr);
+  }
+  .crs-catalog-menu__column ~ .crs-catalog-menu__column {
+    display: none;
+  }
+}
+@media (max-width: 743px) {
+  .crs-catalog-menu {
+    grid-template-columns: minmax(0, 1fr);
+    padding: var(--fig-size-spacing-x6);
+  }
+  .crs-catalog-menu__divider,
+  .crs-catalog-menu__column {
+    display: none;
+  }
 }
