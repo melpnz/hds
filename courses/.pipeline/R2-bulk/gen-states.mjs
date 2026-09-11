@@ -139,7 +139,7 @@ for (const r of manifest.components) {
     blocks.push(variantBlock(
       `<code>${esc(row.state)}</code> — своя разметка, ${v.total} узл${v.total === 1 ? "ёл" : v.total < 5 ? "а" : "ов"} на ${v.seen}/10 страниц (страница <code>${esc(v.page)}</code>)`,
       markup,
-      `STATE-CAPTURE.md §3 говорит: «${mdInline(v.why)}».${added}`,
+      `STATE-CAPTURE.md §${row.section} говорит: «${mdInline(v.why)}».${added}`,
     ));
     samples++;
   }

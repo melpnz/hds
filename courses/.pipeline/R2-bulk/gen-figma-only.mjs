@@ -587,33 +587,6 @@ const ITEMS = {
     copyNote: "Подпись «Школа» — собственный текст инстанса макета. Три образца: иконочный невыбранный (узел …15089:302651), текстовый невыбранный и текстовый выбранный (узел …15089:302655). Текстовый невыбранный собран из переменных невыбранного состояния того же компонента — <code>elements/tab/fill</code>, <code>border</code>, <code>text</code>, — отдельного инстанса с этим сочетанием на прочитанных узлах не встретилось. Обёртка ряда — оформление витрины, а не часть компонента.",
     assetNote: "Шеврон и значок сортировки — символы <code>arrow-small</code> и <code>sort</code> общего спрайта продукта, а не экспорт макета. Контуры сверены: у макета это <code>icon/arrow-down</code> и значок с двумя стрелками, те же глифы. Цвет берут через <code>currentColor</code>, поэтому у выбранного варианта шеврон синий вместе с текстом, как в макете.",
   },
-  pagination: {
-    node: "9909:29791",
-    nodeName: "pagination",
-    readDate: "11 сентября 2026",
-    cssFile: "ui/components/navigation.css",
-    root: "crs-pagination",
-    markup: `<nav class="crs-pagination" aria-label="Страницы">
-  <button type="button" class="crs-pagination__arrow crs-pagination__arrow--prev" disabled aria-label="Предыдущая"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></button>
-  <div class="crs-pagination__pages">
-    <a href="#c-pagination" class="crs-pagination__page crs-pagination__page--current" aria-current="page">1</a>
-    <a href="#c-pagination" class="crs-pagination__page">2</a>
-    <a href="#c-pagination" class="crs-pagination__page">3</a>
-    <span class="crs-pagination__page crs-pagination__page--gap" aria-hidden="true">…</span>
-  </div>
-  <button type="button" class="crs-pagination__arrow crs-pagination__arrow--next" aria-label="Следующая"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></button>
-</nav>`,
-    geometry: [
-      ["контейнер", "белый, рамка <code>#e9e9ea</code>, радиус 24, падинг 12 — <code>elements/pagination/*_outer</code>"],
-      ["страница", "36 × не меньше 36, пилюля, текст 16 / 22"],
-      ["текущая", "заливка <code>#eff5ff</code>, рамка <code>#94bdfc</code>, текст <code>#346ef4</code>"],
-      ["наведение", "заливка <code>#f1f1f1</code> — живое, наведите на страницу"],
-      ["отключённая стрелка", "<code>#d3d3d4</code> — <code>elements/button/icon_disable</code>"],
-      ["промежуток между страницами", "6"],
-    ],
-    copyNote: "Номера страниц и многоточие — содержимое инстанса макета. В макете страница «2» нарисована в состоянии наведения (серая заливка); на витрине наведение живое, поэтому в покое она белая, как «3». Левая стрелка отключена: это первая страница, листать назад некуда, — ровно так она бледнее правой на скриншоте узла.",
-    assetNote: "Шевроны — символ <code>arrow-small</code> общего спрайта продукта, повёрнутый на ±90°, а не экспорт макета: у макета это тот же <code>icon/arrow-down</code>, что у хлебных крошек, контуры сверены. Тень иконочной кнопки из макета (эффект <code>Dropdown</code>) не воспроизводится: это композитный эффект, в слой токенов он не разворачивается, и на прозрачной стрелке внутри контейнера его не видно.",
-  },
   "filter-modal": {
     node: "14613:211399",
     nodeName: "modal-filter",

@@ -134,89 +134,10 @@
   width: 20px;
 }
 
-/* -------------------------------------------------------------------------
-   Pagination (R2-bulk, figma-only)
-   -------------------------------------------------------------------------
-   Узел макета — инстанс 9909:29791 на странице «Дизайн» файла 02_Education-NEW.
-   Сам компонент живёт в библиотеке education-lib (componentKey bcc6d796…,
-   совпадает с записью реестра), страницы которой через MCP не открываются;
-   инстанс в рабочем файле найден поиском по выгрузке страницы — их там 96.
-   В продукте листания нет: вместо него кнопка «Показать ещё 20» — поэтому
-   статус терминальный figma-only, корень введён пакетом: crs-pagination.
-
-   Значения — переменные elements/pagination/* и elements/button/icon/*,
-   добавленные в ui/tokens-figma.css этим узлом. Отключённая стрелка берёт
-   цвет из elements/button/icon_disable (#d3d3d4): на скриншоте узла левая
-   стрелка бледнее правой — это она, первая страница, назад листать некуда.
-   Шеврон — символ arrow-small общего спрайта продукта, повёрнутый на ±90°.
-   ------------------------------------------------------------------------- */
-.crs-pagination {
-  align-items: center;
-  background: var(--fig-elements-pagination-fill);
-  border: 1px solid var(--fig-elements-pagination-border);
-  border-radius: var(--fig-elements-pagination-border-radius-outer);
-  box-sizing: border-box;
-  display: flex;
-  justify-content: space-between;
-  padding: var(--fig-elements-pagination-padding-outer);
-  /* В макете узел size-full — занимает всю ширину контейнера, стрелки у краёв. */
-  width: 100%;
-}
-.crs-pagination__pages {
-  align-items: center;
-  display: flex;
-  gap: var(--fig-elements-pagination-gap);
-}
-.crs-pagination__page {
-  align-items: center;
-  background: var(--fig-elements-pagination-fill);
-  border: 1px solid transparent;
-  border-radius: var(--fig-elements-pagination-border-radius);
-  box-sizing: border-box;
-  color: var(--fig-elements-pagination-text);
-  cursor: pointer;
-  display: inline-flex;
-  font-size: var(--fig-font-size-body-l);
-  height: 36px;
-  justify-content: center;
-  line-height: var(--fig-font-line-height-display-s);
-  min-width: 36px;
-  padding: 0 4px;
-}
-.crs-pagination__page:hover {
-  background: var(--fig-elements-pagination-fill-hover);
-}
-.crs-pagination__page--current {
-  background: var(--fig-elements-pagination-fill-select);
-  border-color: var(--fig-elements-pagination-border-select);
-  color: var(--fig-elements-pagination-text-select);
-}
-.crs-pagination__page--gap {
-  background: transparent;
-  cursor: default;
-}
-.crs-pagination__arrow {
-  align-items: center;
-  background: transparent;
-  border: 0;
-  border-radius: 200px;
-  color: var(--fig-elements-pagination-text);
-  cursor: pointer;
-  display: inline-flex;
-  height: 36px;
-  justify-content: center;
-  padding: var(--fig-elements-button-icon-padding);
-  width: 36px;
-}
-.crs-pagination__arrow:hover {
-  color: var(--fig-elements-button-icon-icon-hover);
-}
-.crs-pagination__arrow:disabled {
-  color: var(--fig-elements-button-icon-disable);
-  cursor: default;
-}
-.crs-pagination__arrow--prev .svg-icon { transform: rotate(90deg); }
-.crs-pagination__arrow--next .svg-icon { transform: rotate(-90deg); }
+/* Pagination — запись переклассифицирована 11 сентября 2026 в production:
+   продуктовая разметка собрана из утилит ui/utilities-components.css,
+   собственного блока здесь больше нет (прежний figma-only корень
+   crs-pagination убран). Разбор — components/navigation/pagination.md. */
 
 /* -------------------------------------------------------------------------
    ButtonGroup (R2-bulk, figma-only) — button group / onpage, 13496:153002

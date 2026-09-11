@@ -42,10 +42,10 @@ const users = new Map();
 // забыла, и восемь классов отключённой стрелки карусели и текущего сегмента
 // оказались на витрине без правила; поймал validate-classes.
 const stateClasses = new Map();
-// Продуктовые классы внутри figma-only разметки (Button L main у модалки
-// промокода собран из матрицы Button, и классов размера L на витрине до
-// него не было) — тот же случай: классы витрины, слой обязан их нести.
-for (const [file, tag] of [["states-markup.json", ""], ["storybook-only.json", "storybook-only"], ["figma-only-classes.json", "figma-only"]]) {
+// Классы разметки, собранной вне bulk-выдачи (Button L main у модалки
+// промокода, продуктовая пагинация после переклассификации), — их на витрине
+// до этого не было; тот же случай: классы витрины, слой обязан их нести.
+for (const [file, tag] of [["states-markup.json", ""], ["storybook-only.json", "storybook-only"], ["extra-classes.json", "extra"]]) {
   const fp = path.join(d, file);
   if (!fs.existsSync(fp)) continue;
   for (const [key, v] of Object.entries(JSON.parse(fs.readFileSync(fp, "utf8")))) {

@@ -118,11 +118,23 @@
   "total": 172,
   "seen": 7
  },
- "icon-button/disabled": {
-  "id": "icon-button",
+ "entity-logo/empty": {
+  "id": "entity-logo",
+  "state": "empty",
+  "selector": "img[src*='avatars/logo.svg'], img[src*='empty-edu-center_2.svg']",
+  "why": "STATE-CAPTURE §3: fallback avatars/logo.svg ×10 + empty-edu-center_2.svg ×4",
+  "html": "<img src=\"/courses-web/images/avatars/logo.svg\" alt=\"Хабр Курсы\" width=\"97\" height=\"32\">",
+  "count": 1,
+  "classes": [],
+  "page": "author",
+  "total": 14,
+  "seen": 10
+ },
+ "pagination/disabled": {
+  "id": "pagination",
   "state": "disabled",
   "selector": "button[disabled][rel='prev']",
-  "why": "STATE-CAPTURE §3: буквальный атрибут disabled=\"\" ×4 (стрелка rel=\"prev\" карусели) + !text-ui-black-200 !hover:text-ui-black-200",
+  "why": "STATE-CAPTURE §8: буквальный атрибут disabled=\"\" ×4 на стрелке «назад» пагинации (rel=\"prev\") на первой странице + !text-ui-black-200",
   "html": "<button disabled=\"\" rel=\"prev\" class=\"flex h-9 w-9 rotate-90 appearance-none items-center justify-center border-none bg-ui-white p-0 text-ui-black-400 hover:text-ui-black-850 !hover:text-ui-black-200 !text-ui-black-200\"><svg class=\"svg-icon\" style=\"width:24px;height:24px;\" width=\"24\" height=\"24\"><use xlink:href=\"/courses-web/images/sprites/sprite.svg?v=1.29.0#arrow-small\"></use></svg></button>",
   "count": 1,
   "classes": [
@@ -145,17 +157,5 @@
   "page": "courses-listing",
   "total": 4,
   "seen": 4
- },
- "entity-logo/empty": {
-  "id": "entity-logo",
-  "state": "empty",
-  "selector": "img[src*='avatars/logo.svg'], img[src*='empty-edu-center_2.svg']",
-  "why": "STATE-CAPTURE §3: fallback avatars/logo.svg ×10 + empty-edu-center_2.svg ×4",
-  "html": "<img src=\"/courses-web/images/avatars/logo.svg\" alt=\"Хабр Курсы\" width=\"97\" height=\"32\">",
-  "count": 1,
-  "classes": [],
-  "page": "author",
-  "total": 14,
-  "seen": 10
  }
 }

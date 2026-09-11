@@ -966,12 +966,12 @@
       "capturedStates": [
         "default",
         "hover",
-        "focus-visible",
-        "disabled"
+        "focus-visible"
       ],
       "normativeStates": [],
       "uncapturedStates": [
-        "pressed"
+        "pressed",
+        "disabled"
       ],
       "sourceScope": "production",
       "wave": "R3",
@@ -1748,7 +1748,11 @@
       "kind": "component",
       "specPath": "navigation/pagination.md",
       "cssRoots": [
-        "crs-pagination"
+        "rounded-3xl",
+        "border",
+        "border-ui-black-100",
+        "bg-ui-white",
+        "p-3"
       ],
       "showcaseAnchor": "c-pagination",
       "figmaEvidence": [
@@ -1763,7 +1767,7 @@
           "note": "pagination + pagination/page; elements/pagination/border #e9e9ea"
         }
       ],
-      "status": "figma-only",
+      "status": "partial",
       "requiredStates": [
         "default",
         "hover",
@@ -1774,24 +1778,35 @@
       "capturedStates": [
         "default",
         "hover",
+        "focus-visible",
         "current",
         "disabled"
       ],
       "normativeStates": [],
-      "uncapturedStates": [
-        "focus-visible"
-      ],
-      "sourceScope": "figma-only",
+      "uncapturedStates": [],
+      "sourceScope": "production",
       "wave": "R3",
       "step": "R3-14",
       "dependsOn": [
-        "icon-button"
+        "sprite-icon",
+        "link"
       ],
-      "occurrences": 0,
-      "seenOn": [],
-      "productionEvidence": [],
+      "occurrences": 4,
+      "seenOn": [
+        "courses-listing",
+        "education-centers-listing",
+        "promocodes",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses",
+          "selector": "div.rounded-3xl.border.border-ui-black-100.bg-ui-white.p-3:has(> [rel=\"prev\"])",
+          "note": "Переклассифицировано 11 сентября 2026 из figma-only в production. Запись утверждала «в проде листания нет: вместо него кнопка «Показать еще 20»», но текста «Показать ещё» нет ни на одной из десяти снятых страниц, а листание есть — под сеткой выдачи на четырёх листингах (курсы, организации, промокоды, детская витрина). Нашлось при сборке страницы /courses из записей реестра (R6-01). Разметка: контейнер div.flex.rounded-3xl.border.border-ui-black-100.bg-ui-white.p-3 (1076×62, падинг 12, радиус 24), стрелка «назад» — button[rel=prev] с disabled на первой странице, номера — a.h-9.w-9.rounded-full (текущая — border-ui-blue-300 bg-ui-blue-50, остальные — text-ui-black-850 hover:bg-ui-black-50), многоточие, стрелка «вперёд» — a[rel=next]. Класс color-ui-blue-500 у текущей страницы в корпусе прод-CSS не объявлен: синий цвет номера даёт базовое правило ссылки a{color:var(--color-links-main)}. С макетом (pagination, elements/pagination/*) совпадает контейнер, размер страницы 36, пилюля и цвета текущей."
+        }
+      ],
       "storybookEvidence": [],
-      "notes": "figma-only. В проде листания нет: вместо него кнопка «Показать еще 20». §9.6 исследования описывает пагинацию как факт продакшена — не подтверждено"
+      "notes": "Листание выдачи под сеткой карточек: стрелки и номера страниц, текущая — синяя пилюля. Есть в продукте на четырёх листингах (см. productionEvidence[0].note — переклассификация из figma-only 11 сентября 2026)."
     },
     {
       "id": "breadcrumbs",

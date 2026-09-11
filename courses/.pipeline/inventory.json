@@ -447,13 +447,14 @@
       "kind": "component",
       "wave": "R3",
       "status": "planned",
-      "occurrences": 0,
-      "seenOn": [],
+      "occurrences": 4,
+      "seenOn": ["courses-listing", "education-centers-listing", "promocodes", "schools-for-children"],
       "sources": [
+        { "type": "production", "url": "https://career.habr.com/courses", "selector": "div.rounded-3xl.border.border-ui-black-100.bg-ui-white.p-3:has(> [rel=\"prev\"])", "note": "переклассификация 11 сентября 2026" },
         { "type": "figma", "componentKey": "bcc6d796a333c21c6349582d2c0bc382fa9c34bb", "note": "pagination + pagination/page; elements/pagination/border #e9e9ea" }
       ],
       "dependsOn": ["icon-button"],
-      "notes": "figma-only. В проде листания нет: вместо него кнопка «Показать еще 20». §9.6 исследования описывает пагинацию как факт продакшена — не подтверждено"
+      "notes": "Листание выдачи под сеткой карточек: стрелки и номера страниц, текущая — синяя пилюля. Есть в продукте на четырёх листингах (см. productionEvidence[0].note — переклассификация из figma-only 11 сентября 2026)."
     },
     {
       "id": "breadcrumbs",
