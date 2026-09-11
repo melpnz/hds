@@ -9085,15 +9085,17 @@
       к не имеющим продуктового двойника 25 позиций слоя. Почти все оказались артефактом
       сверки: она сравнивала запись, а не значение. После приведения к одной записи
       из 80 цветов макета 73 совпали по значению с переменной <code>ui/tokens.css</code>.</p>
-    <table class="doc-table">
+    <div style="overflow-x:auto">
+    <table class="doc-table" style="width:100%">
       <thead><tr><th>что было «без двойника»</th><th>сколько</th><th>что это на деле</th><th>вердикт</th></tr></thead>
       <tbody>
-        <tr><td>белый <code>#ffffff</code> в заливках и тексте элементов</td><td>15</td><td>продуктовый <code>--color-ui-white: #fff</code> — тот же цвет короткой записью</td><td>совпадает</td></tr>
-        <tr><td>затемнение <code>#0000004d</code> и <code>#0000001f</code>, цвет теней <code>#0000000d</code></td><td>4</td><td><code>--color-ui-black-transparent-300</code>, <code>-120</code>, <code>-50</code> — те же значения в записи <code>rgba(0,0,0,…)</code></td><td>совпадает</td></tr>
-        <tr><td>фирменные цвета сервисов <code>--fig-logo-*</code></td><td>6</td><td>в токенах их нет, но они лежат заливками в спрайтах продукта <code>social-v3.1.svg</code> и <code>external-profile.svg</code>; у VK там <code>#07f</code> — короткая запись <code>#0077ff</code></td><td>совпадает с ассетом</td></tr>
-        <tr><td><code>color/icon-gray</code> <code>#929ca5</code></td><td>1</td><td>шеврон рядом с логотипом в шапке <code>header / courses</code> (узел 15065:244073): в макете сплошной <code>#929ca5</code>, 24px. В продукте тот же шеврон — <code>text-ui-white opacity-70</code>, символ <code>arrow-large</code>, 20px: белый на 70% поверх синего градиента. Значения <code>#929ca5</code> в продукте нет ни в токенах, ни в CSS сборки, ни в разметке</td><td><strong>расхождение</strong></td></tr>
+        <tr><td style="white-space:normal">белый <code>#ffffff</code> в заливках и тексте элементов</td><td style="white-space:normal">15</td><td style="white-space:normal">продуктовый <code>--color-ui-white: #fff</code> — тот же цвет короткой записью</td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">затемнение <code>#0000004d</code> и <code>#0000001f</code>, цвет теней <code>#0000000d</code></td><td style="white-space:normal">4</td><td style="white-space:normal"><code>--color-ui-black-transparent-300</code>, <code>-120</code>, <code>-50</code> — те же значения в записи <code>rgba(0,0,0,…)</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">фирменные цвета сервисов <code>--fig-logo-*</code></td><td style="white-space:normal">6</td><td style="white-space:normal">в токенах их нет, но они лежат заливками в спрайтах продукта <code>social-v3.1.svg</code> и <code>external-profile.svg</code>; у VK там <code>#07f</code> — короткая запись <code>#0077ff</code></td><td style="white-space:normal">совпадает с ассетом</td></tr>
+        <tr><td style="white-space:normal"><code>color/icon-gray</code> <code>#929ca5</code></td><td style="white-space:normal">1</td><td style="white-space:normal">шеврон рядом с логотипом в шапке <code>header / courses</code> (узел 15065:244073): в макете сплошной <code>#929ca5</code>, 24px. В продукте тот же шеврон — <code>text-ui-white opacity-70</code>, символ <code>arrow-large</code>, 20px: белый на 70% поверх синего градиента. Значения <code>#929ca5</code> в продукте нет ни в токенах, ни в CSS сборки, ни в разметке</td><td style="white-space:normal"><strong>расхождение</strong></td></tr>
       </tbody>
     </table>
+    </div>
     <p class="doc-note"><strong>Что с расхождением.</strong> Пакет описывает продукт, поэтому
       в вёрстке шапки остаётся продуктовый белый шеврон с прозрачностью. Макетный
       <code>#929ca5</code> — единственный цвет слоя, у которого в продукте нет
@@ -9108,6 +9110,81 @@
       две новые пробы гейта держат и приведение, и строгость: разные цвета
       совпадением не становятся.</p>
   </div>
+<!-- nonchroma:start -->
+  <div class="doc-specimen">
+    <div class="doc-specimen__head">
+      <h5>Размеры, радиусы, шрифт и тени макета против продукта</h5>
+      <code>--fig-* против утилит ui/</code>
+      <span class="doc-specimen__spacer"></span>
+      <span class="doc-src-group">
+        <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+        <span class="doc-src doc-src--figma" title="figma" aria-label="figma">F</span>
+      </span>
+    </div>
+    <p class="doc-note"><strong>Разбор 11 сентября 2026.</strong> В продукте размеры живут не в
+      токенах, а в утилитах, поэтому сверка идёт с правилами классов, поднятыми
+      дословно из корпуса прод-CSS. Соответствие «переменная макета → класс
+      продукта» задано в генераторе <code>.pipeline/R2-bulk/gen-nonchroma.mjs</code>,
+      числа читаются из обоих слоёв при сборке. Сверено позиций — 41;
+      совпали 38, разошлись 3.</p>
+    <p class="doc-note"><strong>Что это значит.</strong> Шкала отступов макета —
+      это шкала Tailwind продукта шаг в шаг (x1 = 4px = <code>*-1</code>), радиусы
+      xxs…l — ступени <code>rounded-md</code>…<code>rounded-3xl</code>, типографская
+      шкала совпадает класс в класс, тень <code>Dropdown</code> — продуктовая
+      <code>shadow-context-menu-dropdown</code> до пикселя. Макет и продукт
+      построены на одной системе; расхождения — точечные, в размерах двух элементов
+      и в заголовке страницы на десктопе.</p>
+    <div style="overflow-x:auto">
+    <table class="doc-table" style="width:100%">
+      <thead><tr><th>семейство</th><th>что</th><th>макет</th><th>продукт</th><th>вердикт</th></tr></thead>
+      <tbody>
+        <tr><td rowspan="10">Шкала отступов</td><td style="white-space:normal">шаг 0.5</td><td style="white-space:normal"><code>2px</code></td><td style="white-space:normal"><code>gap-0.5</code> <code>2px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">шаг 1</td><td style="white-space:normal"><code>4px</code></td><td style="white-space:normal"><code>gap-1</code> <code>4px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">шаг 1.5</td><td style="white-space:normal"><code>6px</code></td><td style="white-space:normal"><code>gap-1.5</code> <code>6px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">шаг 2</td><td style="white-space:normal"><code>8px</code></td><td style="white-space:normal"><code>gap-2</code> <code>8px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">шаг 3</td><td style="white-space:normal"><code>12px</code></td><td style="white-space:normal"><code>gap-3</code> <code>12px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">шаг 4</td><td style="white-space:normal"><code>16px</code></td><td style="white-space:normal"><code>gap-4</code> <code>16px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">шаг 5</td><td style="white-space:normal"><code>20px</code></td><td style="white-space:normal"><code>gap-5</code> <code>20px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">шаг 6</td><td style="white-space:normal"><code>24px</code></td><td style="white-space:normal"><code>px-6</code> <code>24px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">шаг 8</td><td style="white-space:normal"><code>32px</code></td><td style="white-space:normal"><code>pt-8</code> <code>32px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">шаг 10</td><td style="white-space:normal"><code>40px</code></td><td style="white-space:normal"><code>pt-10</code> <code>40px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td rowspan="6">Радиусы</td><td style="white-space:normal">xxs</td><td style="white-space:normal"><code>6px</code></td><td style="white-space:normal"><code>rounded-md</code> <code>6px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">xs</td><td style="white-space:normal"><code>8px</code></td><td style="white-space:normal"><code>rounded-lg</code> <code>8px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">s</td><td style="white-space:normal"><code>12px</code></td><td style="white-space:normal"><code>rounded-xl</code> <code>12px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">m</td><td style="white-space:normal"><code>16px</code></td><td style="white-space:normal"><code>rounded-2xl</code> <code>16px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">l</td><td style="white-space:normal"><code>24px</code></td><td style="white-space:normal"><code>rounded-3xl</code> <code>24px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">full</td><td style="white-space:normal"><code>200px</code></td><td style="white-space:normal"><code>rounded-full</code> <code>9999px</code></td><td style="white-space:normal">совпадает<br><small>оба больше половины любой высоты — пилюля</small></td></tr>
+        <tr><td rowspan="9">Шрифт</td><td style="white-space:normal">body-s</td><td style="white-space:normal"><code>12 / 16</code></td><td style="white-space:normal"><code>text-micro</code> <code>12 / 16</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">body-m</td><td style="white-space:normal"><code>14 / 20</code></td><td style="white-space:normal"><code>text-small</code> <code>14 / 20</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">body-l</td><td style="white-space:normal"><code>16 / 22</code></td><td style="white-space:normal"><code>text-default</code> <code>16 / 22</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">display-s</td><td style="white-space:normal"><code>18 / 22</code></td><td style="white-space:normal"><code>text-h4</code> <code>18 / 22</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">display-m</td><td style="white-space:normal"><code>20 / 24</code></td><td style="white-space:normal"><code>text-h3</code> <code>20 / 24</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">display-l</td><td style="white-space:normal"><code>24 / 28</code></td><td style="white-space:normal"><code>text-h2</code> <code>24 / 28</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">заголовок страницы</td><td style="white-space:normal"><code>30 / 34</code></td><td style="white-space:normal"><code>text-h1-mobile</code> <code>30 / 34</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">заголовок страницы, десктоп</td><td style="white-space:normal"><code>30 / 34</code></td><td style="white-space:normal"><code>text-h1</code> <code>44 / 48</code></td><td style="white-space:normal"><strong>расходится</strong><br><small>известно: docs/guide/typography.md — макет держит 30 / 34 и на десктопе, продукт на десктопе даёт 44 / 48</small></td></tr>
+        <tr><td style="white-space:normal">трекинг заголовков</td><td style="white-space:normal"><code>-0.5px</code></td><td style="white-space:normal"><code>text-h1…text-h4</code> <code>-0.5px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td rowspan="5">Кнопка M</td><td style="white-space:normal">падинг сверху и снизу</td><td style="white-space:normal"><code>8px</code></td><td style="white-space:normal"><code>py-2</code> <code>8px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">падинг слева и справа</td><td style="white-space:normal"><code>16px</code></td><td style="white-space:normal"><code>px-4</code> <code>16px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">падинг слева с иконкой</td><td style="white-space:normal"><code>8px</code></td><td style="white-space:normal"><code>pl-2</code> <code>8px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">промежуток</td><td style="white-space:normal"><code>4px</code></td><td style="white-space:normal"><code>gap-1</code> <code>4px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">радиус</td><td style="white-space:normal"><code>12px</code></td><td style="white-space:normal"><code>rounded-xl</code> <code>12px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td rowspan="2">Кнопка L</td><td style="white-space:normal">падинг слева и справа</td><td style="white-space:normal"><code>20px</code></td><td style="white-space:normal"><code>px-4</code> <code>16px</code></td><td style="white-space:normal"><strong>расходится</strong></td></tr>
+        <tr><td style="white-space:normal">высота (24 + падинги макета)</td><td style="white-space:normal"><code>48px</code></td><td style="white-space:normal"><code>h-12</code> <code>48px</code></td><td style="white-space:normal">совпадает<br><small>высота одна; у продукта L падинг 8 / 16 при фиксированной высоте, у макета 12 / 20</small></td></tr>
+        <tr><td rowspan="4">Поле</td><td style="white-space:normal">падинг слева и справа</td><td style="white-space:normal"><code>12px</code></td><td style="white-space:normal"><code>px-3</code> <code>12px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">промежуток</td><td style="white-space:normal"><code>4px</code></td><td style="white-space:normal"><code>gap-x-1</code> <code>4px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">радиус</td><td style="white-space:normal"><code>12px</code></td><td style="white-space:normal"><code>rounded-xl</code> <code>12px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">высота (24 + падинги макета)</td><td style="white-space:normal"><code>40px</code></td><td style="white-space:normal"><code>h-[38px]</code> <code>38px</code></td><td style="white-space:normal"><strong>расходится</strong><br><small>в продукте поле 38 в шапке и 54 в форме поиска (запись TextInput)</small></td></tr>
+        <tr><td rowspan="2">Чип фильтра</td><td style="white-space:normal">падинг слева и справа</td><td style="white-space:normal"><code>12px</code></td><td style="white-space:normal"><code>px-3</code> <code>12px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">падинг сверху и снизу</td><td style="white-space:normal"><code>8px</code></td><td style="white-space:normal"><code>py-2</code> <code>8px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td rowspan="2">Тег</td><td style="white-space:normal">падинг сверху и снизу</td><td style="white-space:normal"><code>4px</code></td><td style="white-space:normal"><code>py-1</code> <code>4px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td style="white-space:normal">падинг слева и справа (тег + текстовый блок)</td><td style="white-space:normal"><code>8px</code></td><td style="white-space:normal"><code>px-2</code> <code>8px</code></td><td style="white-space:normal">совпадает</td></tr>
+        <tr><td rowspan="1">Тень</td><td style="white-space:normal">эффект Dropdown, геометрия</td><td style="white-space:normal"><code>0 4px 6px -1px, 0 2px 4px -2px</code></td><td style="white-space:normal"><code>shadow-context-menu-dropdown</code> <code>0 4px 6px -1px, 0 2px 4px -2px</code></td><td style="white-space:normal">совпадает<br><small>цвет обеих теней — rgba(0,0,0,.05), совпал в сверке цветов</small></td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="doc-note"><strong>Расхождения и что с ними.</strong> Шрифт, заголовок страницы, десктоп: макет <code>30 / 34</code>, продукт <code>44 / 48</code>; Кнопка L, падинг слева и справа: макет <code>20px</code>, продукт <code>16px</code>; Поле, высота (24 + падинги макета): макет <code>40px</code>, продукт <code>38px</code>. Пакет описывает продукт: в вёрстке продуктовых записей стоят продуктовые значения, макетные — справочно в <code>ui/tokens-figma.css</code>. Figma-only записи свёрстаны по макету, и у них действуют макетные значения — например, поля шторки цены высотой 40, а не 38.</p>
+  </div>
+<!-- nonchroma:end -->
 
 
   <div class="doc-specimen">
