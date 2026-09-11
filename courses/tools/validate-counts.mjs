@@ -109,9 +109,12 @@ const claims = [
   ['components/INDEX.md', /\*\*(\d+)\*\* спецификаци/, 'specs'],
   ['components/INDEX.md', /Записей — (\d+)\./, 'manifest'],
   // 44 / 5 / 6 — прозой и таблицей, оба места.
-  ['components/INDEX.md', /(\d+) элемента сняты с продакшена, \d+ есть только в Storybook, \d+ —\s*\nтолько в макете/, 'scopeProduction'],
-  ['components/INDEX.md', /\d+ элемента сняты с продакшена, (\d+) есть только в Storybook, \d+ —\s*\nтолько в макете/, 'scopeStorybookOnly'],
-  ['components/INDEX.md', /\d+ элемента сняты с продакшена, \d+ есть только в Storybook, (\d+) —\s*\nтолько в макете/, 'scopeFigmaOnly'],
+  // Форма слова зависит от числа («44 элемента», «45 элементов»), поэтому
+  // правило принимает все три: иначе смена числа ломала бы проверку, а
+  // не утверждение, и гейт требовал бы писать неграмотно (R2-bulk).
+  ['components/INDEX.md', /(\d+) элемент(?:а|ов)? сняты с продакшена, \d+ есть только в Storybook, \d+ —\s*\nтолько в макете/, 'scopeProduction'],
+  ['components/INDEX.md', /\d+ элемент(?:а|ов)? сняты с продакшена, (\d+) есть только в Storybook, \d+ —\s*\nтолько в макете/, 'scopeStorybookOnly'],
+  ['components/INDEX.md', /\d+ элемент(?:а|ов)? сняты с продакшена, \d+ есть только в Storybook, (\d+) —\s*\nтолько в макете/, 'scopeFigmaOnly'],
   ['components/INDEX.md', /\| `production` \| (\d+) \|/, 'scopeProduction'],
   ['components/INDEX.md', /\| `storybook-only` \| (\d+) \|/, 'scopeStorybookOnly'],
   ['components/INDEX.md', /\| `figma-only` \| (\d+) \|/, 'scopeFigmaOnly'],

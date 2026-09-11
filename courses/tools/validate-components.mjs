@@ -1025,8 +1025,15 @@ for (const component of manifest.components ?? []) {
     if (evidence.fileKey && figmaFileKeys.size && !figmaFileKeys.has(evidence.fileKey)) {
       errors.push(issue(target, `Figma fileKey is not declared in sources.figma: ${evidence.fileKey}`));
     }
-    if (evidence.nodeId != null && !/^\d+[:-]\d+$/.test(evidence.nodeId)) {
-      errors.push(issue(target, `Figma nodeId must look like 9902:39188, got ${JSON.stringify(evidence.nodeId)}`));
+    // Две формы id, обе — настоящие адреса узла, и обе принимает сама Figma
+    // (тот же шаблон у её инструмента get_design_context). Простая — узел
+    // верхнего уровня: 9902:39188. Составная — узел внутри инстанса:
+    // I15089:302657;15065:242802;…, где каждое звено — шаг вглубь по дереву
+    // инстансов. Прежде гейт принимал только простую, и узлы, до которых иначе
+    // не дойти — варианты компонента, стоящие только внутри страниц макета, —
+    // нельзя было записать в реестр вовсе (R2-bulk, запись tab).
+    if (evidence.nodeId != null && !/^(?:\d+[:-]\d+|[IT]\d+[:-]\d+(?:;\d+[:-]\d+)*)$/.test(evidence.nodeId)) {
+      errors.push(issue(target, `Figma nodeId must look like 9902:39188 or I15089:302657;15065:242802, got ${JSON.stringify(evidence.nodeId)}`));
     }
   }
 
@@ -1212,6 +1219,20 @@ for (const id of dependencies.keys()) findCycle(id, []);
 const declaredKeyCollisions = new Set(
   Object.keys(manifest.knownComponentKeyCollisions ?? {}),
 );
+// Разобранные совпадения ключа. Общий componentKey у двух записей — не всегда
+// ошибка переноса: бывает, что это один набор компонентов в макете, а записи
+// реестра описывают его разные варианты. Такое совпадение, когда оно доказано,
+// переезжает сюда: ошибкой оно не считается, а в блоке «Объявлено — не закрыто»
+// больше не печатается, потому что закрыто. Заведено на R2-bulk для ключа
+// 9668fb89… (FilterChip = вариант categories компонента tab макета).
+const resolvedKeyCollisions = new Set(
+  Object.keys(manifest.resolvedComponentKeyCollisions ?? {}),
+);
+for (const key of resolvedKeyCollisions) {
+  if (declaredKeyCollisions.has(key)) {
+    errors.push(`componentKey ${key} объявлен и открытым (knownComponentKeyCollisions), и разобранным (resolvedComponentKeyCollisions) — оставьте одно`);
+  }
+}
 const keyOwners = new Map();
 for (const component of manifest.components ?? []) {
   for (const evidence of component.figmaEvidence ?? []) {
@@ -1222,7 +1243,7 @@ for (const component of manifest.components ?? []) {
 }
 const collidingKeys = [...keyOwners].filter(([, owners]) => owners.size > 1);
 for (const [key, owners] of collidingKeys) {
-  if (!declaredKeyCollisions.has(key)) {
+  if (!declaredKeyCollisions.has(key) && !resolvedKeyCollisions.has(key)) {
     errors.push(
       issue([...owners].join(" / "), `componentKey is shared by several records: ${key}`),
     );

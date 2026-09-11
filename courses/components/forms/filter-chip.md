@@ -12,7 +12,7 @@
 
 Компонент стоит в продукте на **107 узлах**, страниц — **5 из 10**: education-center, education-centers-listing, promocodes, reviews, schools-for-children.
 
-прод: default bg #fff border #e9e9ea, selected bg #2c2e34 text #fff, h36 px12 py8 radius 9999. Figma и токены --color-chip-inactive #ebf3ff / --color-chip-press #b8d5ff описывают СИНЕЕ выбранное состояние, которого в снятом проде нет. Конфликт источников → завести GAP
+прод: default bg #fff border #e9e9ea text #2c2e34, selected bg #2c2e34 text #fff, h36 px12 py8 radius 9999. Выбранный — всегда «Все» (5/5), невыбранные — названия категорий: это ряд категорий, а не фильтры. С макетом совпадает полностью, если сравнивать с его вариантом `tab categories` (tab-panel / 2-lvl, выбранный тёмный). Прежняя запись о конфликте цвета («Figma описывает синее выбранное состояние») сравнивала прод с другим вариантом — фильтром-выпадашкой `tab` + elements/tab/filter/*, которого в снятом продукте нет. Разобрано 11 сентября 2026, см. resolvedComponentKeyCollisions и раздел «Расхождения источников» витрины. Переменные --color-chip-inactive / --color-chip-press синего варианта помечены NO MARKUP — с этим сходится.
 
 > Правило применения призывом («используйте …, если …») здесь не выведено.
 > Оно требует разбора контекстов по корпусу, а не пересказа числа вхождений,

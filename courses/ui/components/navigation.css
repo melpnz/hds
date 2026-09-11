@@ -73,3 +73,60 @@
   color: var(--fig-color-style-font-secondary);
   transform: rotate(-90deg);
 }
+
+/* -------------------------------------------------------------------------
+   Tab (R2-bulk, figma-only) — только вариант-выпадашка
+   -------------------------------------------------------------------------
+   Компонент `tab` макета — общий набор с продуктовым FilterChip (разобрано
+   11 сентября 2026, manifest.json → resolvedComponentKeyCollisions). Вариант
+   `tab categories` продукт уже рисует — как FilterChip, и повторять его здесь
+   значило бы завести второй носитель тех же значений. Поэтому в этой записи —
+   только то, чего в продукте нет: фильтр-выпадашка с шевроном, переменные
+   `elements/tab/filter/*`.
+
+   Узлы макета: невыбранный иконочный — I15089:302657;15065:242802;4843:2736;
+   15089:302651, выбранный «Школа ▾» — …;15089:302655 (страница «Нулевая
+   выдача», полоса фильтров). Корень введён пакетом — `crs-tab`, METHOD §6.5:
+   снятой разметки, из которой взять настоящее имя, нет.
+
+   Высота задана явно — 36px, как у инстанса в макете и как у продуктового
+   FilterChip (h-9). Внутренний контейнер макета заявляет 24px при вертикальном
+   падинге 8, что в сумме перекрывает коробку 36; макет решает это фиксированной
+   высотой инстанса, и здесь сделано так же — иначе выпадашка вышла бы выше
+   соседнего чипа на 6px. Шеврон и иконка — символы общего спрайта продукта
+   (`arrow-small`, `sort`), сверены с экспортом макета по контуру.
+   ------------------------------------------------------------------------- */
+.crs-tab {
+  align-items: center;
+  background: var(--fig-elements-tab-fill);
+  border: 1px solid var(--fig-elements-tab-border);
+  border-radius: var(--fig-elements-tab-border-radius);
+  box-sizing: border-box;
+  color: var(--fig-elements-tab-text);
+  cursor: pointer;
+  display: inline-flex;
+  font-size: var(--fig-font-size-body-m);
+  height: 36px;
+  line-height: var(--fig-font-line-height-body-l);
+  padding: 0 var(--fig-size-spacing-x2) 0 var(--fig-elements-tab-filter-padding-left-right);
+  white-space: nowrap;
+}
+.crs-tab:hover {
+  border-color: var(--fig-elements-tab-border-hover);
+}
+.crs-tab--icon {
+  padding: 0 var(--fig-elements-tab-filter-padding-left-right);
+}
+.crs-tab--selected {
+  background: var(--fig-elements-tab-filter-fill-select);
+  border-color: var(--fig-elements-tab-filter-border-select);
+  color: var(--fig-elements-tab-filter-text-icon-select);
+}
+.crs-tab__label {
+  padding: 0 2px;
+}
+.crs-tab__icon {
+  flex: none;
+  height: 20px;
+  width: 20px;
+}

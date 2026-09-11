@@ -140,8 +140,9 @@
     "select",
     "inactive"
   ],
-  "knownComponentKeyCollisions": {
-    "9668fb89eb4a58bc781b568ec83d9ce0e492e70e": "инвентаризация записала один ключ и FilterChip, и Tab: либо это один component set, либо ошибка переноса. Разводится на R3-04 и R3-13"
+  "knownComponentKeyCollisions": {},
+  "resolvedComponentKeyCollisions": {
+    "9668fb89eb4a58bc781b568ec83d9ce0e492e70e": "Разобрано 11 сентября 2026: общий набор компонентов, а не ошибка переноса. В макете 02_Education-NEW это один компонент `tab` с вариантами. Вариант `tab categories` (узел tab-panel / 2-lvl 15089:303941) — ряд категорий «Все / Разработка / …» с тёмным выбранным состоянием #2c2e34 и белым текстом; вариант с переменными elements/tab/filter/* (инстанс в полосе фильтров …15089:302655) — фильтр-выпадашка «Школа ▾» с синим выбранным состоянием. Продуктовый FilterChip — вариант categories: в снятой разметке все 5 выбранных чипов подписаны «Все», невыбранные — названия категорий, фильтров-выпадашек нет ни одного; цвет, рамка, высота 36, падинг 12/8 и скругление совпадают полностью. Запись tab описывает то, чего в продукте нет: вариант-выпадашку. Прежняя формулировка вопроса: «инвентаризация записала один ключ и FilterChip, и Tab: либо это один component set, либо ошибка переноса. Разводится на R3-04 и R3-13»"
   },
   "knownStepInversions": [
     "site-header (R4-01) → header-dropdown (R4-02)",
@@ -1133,7 +1134,7 @@
           "note": null
         }
       ],
-      "notes": "прод: default bg #fff border #e9e9ea, selected bg #2c2e34 text #fff, h36 px12 py8 radius 9999. Figma и токены --color-chip-inactive #ebf3ff / --color-chip-press #b8d5ff описывают СИНЕЕ выбранное состояние, которого в снятом проде нет. Конфликт источников → завести GAP",
+      "notes": "прод: default bg #fff border #e9e9ea text #2c2e34, selected bg #2c2e34 text #fff, h36 px12 py8 radius 9999. Выбранный — всегда «Все» (5/5), невыбранные — названия категорий: это ряд категорий, а не фильтры. С макетом совпадает полностью, если сравнивать с его вариантом `tab categories` (tab-panel / 2-lvl, выбранный тёмный). Прежняя запись о конфликте цвета («Figma описывает синее выбранное состояние») сравнивала прод с другим вариантом — фильтром-выпадашкой `tab` + elements/tab/filter/*, которого в снятом продукте нет. Разобрано 11 сентября 2026, см. resolvedComponentKeyCollisions и раздел «Расхождения источников» витрины. Переменные --color-chip-inactive / --color-chip-press синего варианта помечены NO MARKUP — с этим сходится.",
       "sourceConflicts": [
         {
           "ref": "BRIEF §5, конфликт 1",
@@ -1211,22 +1212,44 @@
       "legacyAliases": [],
       "category": "navigation",
       "kind": "component",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "navigation/tab.md",
+      "cssRoots": [
+        "crs-tab"
+      ],
+      "showcaseAnchor": "c-tab",
       "figmaEvidence": [
         {
-          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
-          "fileName": "education-lib",
-          "sourceName": "tab + tab-panel/2-lvl",
-          "layerName": "tab + tab-panel/2-lvl",
-          "nodeId": null,
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "sourceName": "tab (фильтр, невыбранный)",
+          "layerName": "tab",
+          "nodeId": "I15089:302657;15065:242802;4843:2736;15089:302651",
           "componentKey": "9668fb89eb4a58bc781b568ec83d9ce0e492e70e",
           "url": null,
-          "note": "594 инстанса в макете; tab + tab-panel/2-lvl"
+          "note": "инстанс в полосе фильтров страницы «Нулевая выдача»; иконочный вариант, 44×36"
+        },
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "sourceName": "tab (фильтр, выбранный)",
+          "layerName": "tab",
+          "nodeId": "I15089:302657;15065:242802;4843:2736;15089:302655",
+          "componentKey": "9668fb89eb4a58bc781b568ec83d9ce0e492e70e",
+          "url": null,
+          "note": "«Школа ▾»: заливка #eff5ff, рамка #94bdfc, текст #346ef4, падинг 12/8/8, шеврон 20×20"
+        },
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "sourceName": "tab-panel / 2-lvl",
+          "layerName": "tab categories",
+          "nodeId": "15089:303941",
+          "componentKey": "9668fb89eb4a58bc781b568ec83d9ce0e492e70e",
+          "url": null,
+          "note": "вариант categories — его продукт рисует как FilterChip; в этой записи не верстается, чтобы не дублировать FilterChip"
         }
       ],
-      "status": "planned",
+      "status": "figma-only",
       "requiredStates": [
         "default",
         "hover",
@@ -1252,7 +1275,7 @@
       "seenOn": [],
       "productionEvidence": [],
       "storybookEvidence": [],
-      "notes": "figma-only: в снятой публичной части табов нет — на странице центра роль вкладок играет ряд FilterChip. Помечать figma-only, не выдавать за паттерн продакшена",
+      "notes": "figma-only. Компонент `tab` макета — общий набор с FilterChip (см. resolvedComponentKeyCollisions). Его вариант categories продукт рисует как FilterChip, поэтому figma-only в этой записи — только то, чего в продукте нет: фильтр-выпадашка с шевроном (elements/tab/filter/*), невыбранная и выбранная синяя. Помечать figma-only, не выдавать за паттерн продакшена.",
       "buildNotes": "componentKey 9668fb89… указан инвентаризацией и у FilterChip, и у Tab. Один ключ на два элемента — либо это один component set, либо ошибка переноса; развести на R3-04 и R3-13."
     },
     {
@@ -1461,9 +1484,14 @@
       "legacyAliases": [],
       "category": "forms",
       "kind": "component",
-      "specPath": null,
-      "cssRoots": [],
-      "showcaseAnchor": null,
+      "specPath": "forms/text-input.md",
+      "cssRoots": [
+        "bg-ui-white",
+        "border",
+        "border-ui-black-100",
+        "px-3"
+      ],
+      "showcaseAnchor": "c-text-input",
       "figmaEvidence": [
         {
           "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
@@ -1474,9 +1502,19 @@
           "componentKey": "18357b7464b5e158dfb71e014fa9d259e3a929cb",
           "url": null,
           "note": "elements/input/*: fill #fff, border #e9e9ea, radius 12, padding 12/8, placeholder #909194, icon #a6a7a9"
+        },
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "sourceName": "select_level3 / select (Search Bar в шапке)",
+          "layerName": "select",
+          "nodeId": "I15089:302657;15065:243728",
+          "componentKey": null,
+          "url": null,
+          "note": "поле поиска в шапке страницы «Нулевая выдача»: белый, рамка #e9e9ea, радиус 12, падинг 12/8, плейсхолдер 16/22 #909194, лупа 24×24 справа"
         }
       ],
-      "status": "planned",
+      "status": "partial",
       "requiredStates": [
         "default",
         "hover",
@@ -1496,15 +1534,28 @@
         "readOnly",
         "invalid"
       ],
-      "sourceScope": "figma-only",
+      "sourceScope": "production",
       "wave": "R3",
       "step": "R3-09",
       "dependsOn": [],
-      "occurrences": 0,
-      "seenOn": [],
-      "productionEvidence": [],
+      "occurrences": 29,
+      "seenOn": [
+        "courses-listing",
+        "education-centers-listing",
+        "promocodes",
+        "rating",
+        "reviews",
+        "schools-for-children"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses",
+          "selector": "span.bg-ui-white.border.border-ui-black-100.px-3:has(> input)",
+          "note": "Переклассифицировано 11 сентября 2026 из figma-only в production. Прежняя запись утверждала «в публичной части продукта форм ввода нет — ни одного label, form, select, textarea», и это верно про перечисленные теги, но инвентаризация не посчитала сам <input>: видимых полей в снятой разметке 29 на 6/10 страницах. Все 29 — одно поле: коробка span.bg-ui-white.border.border-ui-black-100.px-3 с <input> внутри, плейсхолдер placeholder:text-small placeholder:text-ui-black-500, фокус focus-within:border-ui-black-850. Различаются высота (h-[38px] — поиск в шапке, 1; h-[54px] — поля формы поиска, 28) и скругление по месту в слитной группе: rounded-xl у одиночного, rounded-l-xl/r-xl у крайних на десктопе, rounded-t-xl/b-xl у крайних на мобильном, rounded-none у среднего."
+        }
+      ],
       "storybookEvidence": [],
-      "notes": "figma-only: в публичной части продукта форм ввода нет — в снятой разметке десяти страниц ни одного label, form, select, textarea"
+      "notes": "Поле ввода. Макетный компонент elements/input/* в продукте есть — 29 полей на 6 страницах: поиск в шапке и поля формы поиска («Что изучить?», «Организация», «Тип» и др.). С макетом совпадает фон, рамка #e9e9ea, радиус 12, отступ 12, цвет плейсхолдера #909194; расходится размер плейсхолдера — в макете 16/22 (к тому же вписан числом, а не переменной), в продукте 14/20 (text-small). Пересекается с записями search-input (поле в шапке, 1 из 29) и search-form (поля формы, 28 из 29) — те описывают место, эта — само поле."
     },
     {
       "id": "checkbox",

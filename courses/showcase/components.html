@@ -4333,6 +4333,55 @@
       </div>
     </section>
 
+
+    <section class="doc-section" id="c-text-input">
+      <div class="doc-section__head">
+        <h4>TextInput</h4>
+        <p>Поле ввода.</p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>default</h5>
+          <code>span.bg-ui-white.border.border-ui-black-100.px-3:has(&gt; input)</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+          </span>
+          <span class="doc-tag doc-tag--partial">partial</span>
+        </div>
+        <div class="doc-stage">
+          <div class="doc-variant">
+            <span class="doc-variant__label">разметка со страницы <code>courses-listing</code>, 1 узла внутри корня, 23 классов в поддереве</span>
+            <div class="doc-variant__row">
+              <span class="align-center flex gap-x-1 border bg-ui-white px-3 focus-within:border-ui-black-850 focus-within:bg-ui-white border-ui-black-100 rounded-xl"><input class="cursor-pointer min-h-[38px] w-full flex-1 appearance-none truncate border-0 bg-transparent text-ui-black-850 placeholder:text-small placeholder:text-ui-black-500 focus:outline-none h-[38px]" data-allow-mismatch="" placeholder="Искать на Хабр Курсах"><!----></span>
+            </div>
+          </div>
+        </div>
+        <dl class="doc-spec">
+          <div><dt>коробка</dt><dd>536×40 на 1440</dd></div>
+          <div><dt>фон</dt><dd>rgb(255, 255, 255)</dd></div>
+          <div><dt>радиус</dt><dd>12px</dd></div>
+          <div><dt>падинг</dt><dd>0px 12px</dd></div>
+          <div><dt>gap</dt><dd>normal 4px</dd></div>
+          <div><dt>вхождений</dt><dd>29 на 6/10 страниц</dd></div>
+          <div><dt>корневые классы</dt><dd>bg-ui-white border border-ui-black-100 px-3</dd></div>
+        </dl>
+        
+        <p class="doc-note">
+          <strong>Что здесь есть и чего нет.</strong> Разметка и числа сняты:
+          селектор измерен браузером по десяти <code>dom.html</code>
+          (<code>components/selector-census.json</code>), вычисленные значения
+          взяты из снимка живого прода (<code>computed.json</code>, узел <code>iv[1] &gt; div[0] &gt; div[0] &gt; div[0] &gt; div[0] &gt; div[0] &gt; span[0]</code>),
+          правила класса подняты из корпуса прод-CSS парсером в
+          <code>ui/utilities-components.css</code>. Прозаический разбор —
+          поведение, клавиатура, правила — не написан: запись стоит в статусе
+          <code>partial</code>, дописывает шаг <code>R3-09</code>.
+          Полностью — <a href="../components/forms/text-input.md">спецификация</a>.
+        </p>
+      </div>
+    </section>
+
   </section>
 
   <section class="doc-category" id="doc-cat-navigation">
@@ -4735,6 +4784,52 @@
             <tr><td><code>default</code></td><td>снято</td><td>STATE-CAPTURE.md §3 говорит: «разметки по этой паре в STATE-CAPTURE.md §3 нет; исход взят из полей записи реестра»</td></tr>
           </tbody>
         </table>
+      </div>
+    </section>
+
+    <section class="doc-section" id="c-tab">
+      <div class="doc-section__head">
+        <h4>Tab</h4>
+        <p>figma-only. Компонент `tab` макета — общий набор с FilterChip (см. resolvedComponentKeyCollisions). Его вариант categories продукт рисует как FilterChip, поэтому figma-only в этой записи — только то, чего в продукте нет: фильтр-выпадашка с шевроном (elements/tab/filter/*), невыбранная и выбранная синяя. Помечать figma-only, не выдавать за паттерн продакшена.</p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>default</h5>
+          <code>.crs-tab</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
+          </span>
+          <span class="doc-tag">figma-only</span>
+        </div>
+        <p class="doc-note"><strong>Эта разметка написана по макету, а не снята с продукта.</strong>
+          Единственный такой случай на витрине: компонента в продакшене нет вовсе.
+          Узел — <code>02_Education-NEW</code> <code>I15089:302657;15065:242802;4843:2736;15089:302655</code>
+          «tab — фильтр-выпадашка «Школа»». Корень <code>crs-tab</code> введён пакетом:
+          настоящего имени взять неоткуда.</p>
+        <div class="doc-stage">
+          <div class="doc-variant">
+            <span class="doc-variant__label">по узлу макета <code>I15089:302657;15065:242802;4843:2736;15089:302655</code></span>
+            <div class="doc-variant__row">
+              <div style="display:flex;gap:4px;flex-wrap:wrap;align-items:center">
+                <button type="button" class="crs-tab crs-tab--icon" aria-label="Сортировка"><svg class="svg-icon crs-tab__icon" width="20" height="20" style="width:20px;height:20px;"><use xlink:href="../ui/assets/icons/sprite.svg#sort"></use></svg></button>
+                <button type="button" class="crs-tab"><span class="crs-tab__label">Школа</span><svg class="svg-icon crs-tab__icon" width="20" height="20" style="width:20px;height:20px;"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></button>
+                <button type="button" class="crs-tab crs-tab--selected"><span class="crs-tab__label">Школа</span><svg class="svg-icon crs-tab__icon" width="20" height="20" style="width:20px;height:20px;"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <dl class="doc-spec">
+          <div><dt>высота</dt><dd>36 — как у инстанса макета и у продуктового <code>FilterChip</code></dd></div>
+          <div><dt>падинг</dt><dd>12 слева, 8 справа (под шеврон) — <code>--fig-elements-tab-filter-padding-left-right</code>, <code>--fig-size-spacing-x2</code></dd></div>
+          <div><dt>невыбранный</dt><dd>белый, рамка <code>#e9e9ea</code>, текст <code>#2c2e34</code>; при наведении рамка <code>#dededf</code></dd></div>
+          <div><dt>выбранный</dt><dd>заливка <code>#eff5ff</code>, рамка <code>#94bdfc</code>, текст и шеврон <code>#346ef4</code></dd></div>
+          <div><dt>промежуток в ряду</dt><dd>4 — <code>elements/chips/filter/gap</code></dd></div>
+          <div><dt>вхождений в проде</dt><dd>нет — компонента в продукте не существует</dd></div>
+        </dl>
+        <p class="doc-note"><strong>Тексты.</strong> Подпись «Школа» — собственный текст инстанса макета. Три образца: иконочный невыбранный (узел …15089:302651), текстовый невыбранный и текстовый выбранный (узел …15089:302655). Текстовый невыбранный собран из переменных невыбранного состояния того же компонента — <code>elements/tab/fill</code>, <code>border</code>, <code>text</code>, — отдельного инстанса с этим сочетанием на прочитанных узлах не встретилось. Обёртка ряда — оформление витрины, а не часть компонента.</p>
+        <p class="doc-note"><strong>Ассеты.</strong> Шеврон и значок сортировки — символы <code>arrow-small</code> и <code>sort</code> общего спрайта продукта, а не экспорт макета. Контуры сверены: у макета это <code>icon/arrow-down</code> и значок с двумя стрелками, те же глифы. Цвет берут через <code>currentColor</code>, поэтому у выбранного варианта шеврон синий вместе с текстом, как в макете. Полный разбор — <a href="../components/navigation/tab.md">спецификация</a>.</p>
       </div>
     </section>
 
@@ -6689,7 +6784,7 @@
 
   <div class="doc-specimen">
     <div class="doc-specimen__head">
-      <h5>Выбранный фильтр-чип: цвет расходится, геометрия сходится</h5>
+      <h5>Выбранный фильтр-чип: расхождения нет — прод сравнивали не с тем вариантом</h5>
       <code>BRIEF §5, пункт 1</code>
       <span class="doc-specimen__spacer"></span>
       <span class="doc-src-group">
@@ -6697,25 +6792,49 @@
         <span class="doc-src doc-src--figma" title="figma" aria-label="figma">F</span>
       </span>
     </div>
-    <p class="doc-note">Расхождение <strong>подтверждено и оказалось точнее записанного</strong>: сторон не две, а три, и одна из них в продукте мертва.</p>
+    <p class="doc-note"><strong>Пункт закрыт 11 сентября 2026, и закрыт обратно тому, как
+      был записан.</strong> Инвентаризация и первая редакция этого раздела видели
+      конфликт «прод тёмный, макет синий». Он возник из сравнения с неверным
+      вариантом компонента. У компонента <code>tab</code> в макете два варианта
+      выбранного состояния, и они разного цвета:</p>
     <table class="doc-table">
-      <thead><tr><th>сторона</th><th>что говорит</th><th>чем доказано</th></tr></thead>
+      <thead><tr><th>вариант макета</th><th>где стоит</th><th>выбранное состояние</th><th>узел</th></tr></thead>
       <tbody>
-        <tr><td>разметка продукта</td><td>тёмный: <code>bg-ui-black-850 text-ui-white border-ui-black-850</code></td><td>5 узлов на 5/10 страниц</td></tr>
-        <tr><td>макет</td><td>синий: заливка <code>#eff5ff</code>, рамка <code>#94bdfc</code>, текст <code>#346ef4</code></td><td><code>ui/tokens-figma.css</code></td></tr>
-        <tr><td>токены продукта</td><td>синий: <code>--color-chip-inactive</code> <code>#ebf3ff</code>, <code>--color-chip-press</code> <code>#b8d5ff</code></td><td>оба помечены <strong>NO MARKUP</strong> — в разметке десяти страниц не встречаются</td></tr>
+        <tr><td><code>tab categories</code></td><td>ряд категорий «Все / Разработка / Тестирование / …»</td><td><strong>тёмный</strong>: заливка <code>#2c2e34</code>, текст белый</td><td><code>tab-panel / 2-lvl</code> 15089:303941</td></tr>
+        <tr><td><code>tab</code> + <code>elements/tab/filter/*</code></td><td>фильтр-выпадашка с шевроном, «Школа ▾»</td><td><strong>синий</strong>: заливка <code>#eff5ff</code>, рамка <code>#94bdfc</code>, текст <code>#346ef4</code></td><td>инстанс в полосе фильтров, …15089:302655</td></tr>
       </tbody>
     </table>
-    <p class="doc-note"><strong>Две подробности, которых на инвентаризации не было.</strong>
-      Первая: заливка макета <code>#eff5ff</code> —
-      это ровно <code>--color-ui-blue-50</code> продукта
-      (<code>#eff5ff</code>). То есть синий макета в продукте
-      существует живым токеном, просто на это состояние не поставлен.
-      Вторая: <strong>геометрия сходится до пикселя</strong> — макет задаёт падинг фильтра
-      <code>12px</code> /
-      <code>8px</code>,
-      и разметка продукта несёт <code>px-3 py-2</code> — те же 12 и 8. Расходится
-      только цвет выбранного состояния, а не форма.</p>
+    <p class="doc-note"><strong>С каким из них совпадает продукт — измерено.</strong>
+      В снятой разметке выбранных чипов пять, по одному на пяти страницах, и у всех
+      пяти подпись «Все». Невыбранные рядом — названия категорий: «HR и рекрутинг»,
+      «Аналитика и Data Science», «Бизнес и менеджмент» и далее. Это ряд категорий,
+      то есть вариант <code>tab categories</code>. Фильтров-выпадашек вида «Школа ▾»
+      среди снятых чипов нет ни одного.</p>
+    <table class="doc-table">
+      <thead><tr><th>свойство</th><th><code>tab categories</code> в макете</th><th>разметка продукта</th><th>итог</th></tr></thead>
+      <tbody>
+        <tr><td>выбранный: заливка / текст</td><td><code>#2c2e34</code> / белый</td><td><code>bg-ui-black-850</code> / <code>text-ui-white</code></td><td>совпадает</td></tr>
+        <tr><td>невыбранный: заливка / рамка / текст</td><td>белый / <code>#e9e9ea</code> / <code>#2c2e34</code></td><td><code>bg-ui-white</code> / <code>border-ui-black-100</code> / <code>text-ui-black-850</code></td><td>совпадает</td></tr>
+        <tr><td>высота · падинг · радиус</td><td>36 · 12 / 8 · пилюля</td><td><code>h-9</code> · <code>px-3 py-2</code> · <code>rounded-full</code></td><td>совпадает</td></tr>
+      </tbody>
+    </table>
+    <p class="doc-note"><strong>Что это решает и что остаётся.</strong> Цвет и геометрия
+      выбранного чипа продукта совпадают с макетом полностью — при сравнении с тем
+      вариантом, который продукт на самом деле рисует. Синий вариант принадлежит
+      фильтрам-выпадашкам, которых в снятой публичной части нет; с ним продукт не
+      сравним, а не расходится. Две продуктовые переменные синего выбранного
+      состояния — <code>--color-chip-inactive</code> и <code>--color-chip-press</code> —
+      помечены в слое <strong>NO MARKUP</strong>, и это с картиной сходится: синий
+      вариант в разметке не стоит, поэтому и его переменные не используются.
+      Заливка синего варианта <code>#eff5ff</code> при этом равна живому
+      <code>--color-ui-blue-50</code> продукта — так что если выпадашки появятся,
+      токен для них уже есть.</p>
+    <p class="doc-note"><strong>Попутно закрыт объявленный вопрос реестра.</strong>
+      Инвентаризация записала один <code>componentKey</code> <code>9668fb89…</code>
+      и у <code>FilterChip</code>, и у <code>Tab</code> и не решила, общий это набор
+      компонентов или ошибка переноса. Общий: в макете это один компонент
+      <code>tab</code> с вариантами, и продуктовый <code>FilterChip</code> —
+      его вариант <code>categories</code>.</p>
   </div>
 
   <div class="doc-specimen">
@@ -6775,13 +6894,60 @@
       измерением подтверждены.</p>
   </div>
 
+  <div class="doc-specimen">
+    <div class="doc-specimen__head">
+      <h5>Шкала заголовков: макет сходится с живой утилитой, мёртвый токен — ни с чем</h5>
+      <code>Header/H* · .text-h* · --font-size-h* / --line-height-h*</code>
+      <span class="doc-specimen__spacer"></span>
+      <span class="doc-src-group">
+        <span class="doc-src doc-src--figma" title="figma" aria-label="figma">F</span>
+        <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+      </span>
+    </div>
+    <p class="doc-note"><strong>Пункт 5 BRIEF закрыт — и закрыт давно.</strong> Его решил
+      шаг R0-03 8 сентября 2026: разбор лежит в
+      <a href="../docs/guide/typography.md">docs/guide/typography.md</a>, раздел о
+      соответствии Figma. Значения стилей брались не из библиотеки
+      <code>education-lib</code>, которая действительно не открывается, а из рабочего
+      файла макета <code>02_Education-NEW</code>: стиль там применён на узлах, и
+      запрос переменных узла отдаёт его вместе с составляющими. Прежняя редакция
+      этого раздела утверждала, что значения не сняты, — это противоречило
+      принятому документу пакета.</p>
+    <p class="doc-note">11 сентября 2026 значения перезапрошены независимо, по четырём
+      узлам макета: <code>Header/H1-page</code> — шапка 15065:242774,
+      <code>Header/H2</code> — пустая выдача 12135:122618, <code>Header/H3</code> —
+      модалка фильтров 14613:211399, <code>Header/H4</code> — карточка курса 9785:45731.
+      Все четыре — Inter, насыщенность 600, трекинг <code>font/letter-spacing/Headers</code>
+      = −0.5. Сверка с продуктом:</p>
+    <table class="doc-table">
+      <thead><tr><th>ступень</th><th>макет</th><th>живая утилита продукта</th><th>мёртвая переменная</th><th>итог</th></tr></thead>
+      <tbody>
+        <tr><td>H2</td><td><code>Header/H2</code> 24 / 28</td><td><code>.text-h2</code> 24 / 28</td><td><code>--font-size-h2</code> 24 · <code>--line-height-h2</code> 27</td><td>макет = утилита, переменная расходится в интерлиньяже</td></tr>
+        <tr><td>H3</td><td><code>Header/H3</code> 20 / 24</td><td><code>.text-h3</code> 20 / 24</td><td><code>--font-size-h3</code> 21 · <code>--line-height-h3</code> 27</td><td>макет = утилита, переменная расходится в обоих числах</td></tr>
+        <tr><td>H4</td><td><code>Header/H4</code> 18 / 22</td><td><code>.text-h4</code> 18 / 22</td><td><code>--font-size-h4</code> 18 · <code>--line-height-h4</code> 22</td><td>сходятся все три</td></tr>
+        <tr><td>H1</td><td><code>Header/H1-page</code> 30 / 34</td><td><code>.text-h1-mobile</code> 30 / 34 · <code>.text-h1</code> 44 / 48</td><td>—</td><td>стиль макета совпал с мобильной ступенью; десктопная 44 / 48 среди прочитанных стилей пары не имеет</td></tr>
+      </tbody>
+    </table>
+    <p class="doc-note"><strong>Что это решает.</strong> У пункта 5 было три стороны,
+      и две живые сошлись до пикселя — макет и утилита, которой пользуется разметка.
+      Третья, мёртвая переменная <code>:root</code>, не совпадает ни с одной: это след
+      прошлой шкалы, и пометка <code>[UNREFERENCED]</code> на ней верна. Трекинг
+      сходится у всех ступеней: в продукте −0.5 стоит одним правилом на все
+      утилиты заголовков, в макете — одной переменной на все стили
+      <code>Header/*</code>.</p>
+    <p class="doc-note"><strong>Чего сверка не говорит.</strong> Насыщенность шрифта
+      утилиты продукта не задают — её приносит место (класс насыщенности на узле),
+      поэтому 600 макета здесь сравнивать не с чем. И про десктопную ступень 44 / 48:
+      четыре прочитанных стиля макета её не содержат, но это не значит, что пары
+      у неё в макете нет вовсе — <code>typography.md</code> называет ещё
+      <code>Header/H1-hero</code>, который на этих узлах не встретился.</p>
+  </div>
+
   <p class="doc-text"><strong>Чего здесь нет.</strong> Пункт 2 (<code>--header-height</code>) —
     расхождение объявления и рантайма, разобрано на R0-02 и решено в пользу поведения
     продакшена; его место — <a href="../docs/guide/tokens.md">docs/guide/tokens.md</a>, GAP-4.
     Пункт 6 (брейкпоинты) показан в разделе «Основания» отдельным подразделом.
-    Значения стиля <code>Header/H3</code> из макета по-прежнему не сняты: страницы
-    компонентов библиотеки <code>education-lib</code> через MCP не открываются, и это
-    не изменилось — подтверждено при попытке дочитать их на этом проходе.</p>
+    Из шести пунктов BRIEF §5 открытых больше нет.</p>
 </section>
 
 </main>
