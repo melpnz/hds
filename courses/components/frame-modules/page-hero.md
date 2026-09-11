@@ -10,11 +10,11 @@
 
 ## Когда использовать
 
-Компонент стоит в продукте на **9 узлах**, страниц — **8 из 10**: authors, courses-listing, editors, education-centers-listing, promocodes, rating, reviews, schools-for-children.
+Компонент стоит в продукте на **7 узлах**, страниц — **7 из 10**, по одному на страницу: authors, editors, education-centers-listing, promocodes, rating, reviews, schools-for-children.
 
 тот же градиент, что у RubricationBar, но как крупный блок 288–388px: H1 44/48 semibold ls −0.5 белым, max-w 652, по центру, pt 64 (phone 40, text-h1-mobile). Три состава: SegmentedControl + SearchForm (4 страницы), только SearchForm (1), лид + два CTA (2). На /courses и страницах сущностей hero отсутствует
 
-**Правило.** Используйте для первого экрана листинга и промо-раздела: заголовок раздела и главный инструмент — поиск или переключатель аудитории. В продукте 9 узлов на 8 страницах, три состава.
+**Правило.** Используйте для первого экрана листинга и промо-раздела: заголовок раздела и главный инструмент — поиск или переключатель аудитории. В продукте 7 узлов на 7 страницах — по одному на страницу, три состава.
 
 ## Когда не использовать
 
@@ -27,13 +27,13 @@
 
 ## Управление клавиатурой
 
-Корень (`<div>`) в фокус не попадает. На один экземпляр по Tab проходят: 1 кнопка, 6 полей `input type=text` и 2 ссылки — у 3 из 9; 2 ссылки — у 2 из 9; 4 ссылки — у 1 из 9; у остальных 3 — другой состав. По корпусу (49 узлов): `Link` — 12, `Button` — 9, внутри `TextInput` — 28. Фокус внутреннего поля показывает рамка обёртки `focus-within:border-ui-black-850`. 14 из 49 фокусируемых узлов на 1440 скрыты и в порядок табуляции не входят, пока их не покажут.
+Корень (`<div>`) в фокус не попадает. На один экземпляр по Tab проходят: 1 кнопка, 3 поля `input type=text` и 2 ссылки — у 3 из 7; 2 ссылки — у 2 из 7; 1 кнопка и 3 поля `input type=text` — у 1 из 7; 1 кнопка, 2 поля `input type=text` и 2 ссылки — у 1 из 7. По корпусу (45 узлов): `Button` — 9, `Link` — 8, внутри `TextInput` — 28. Фокус внутреннего поля показывает рамка обёртки `focus-within:border-ui-black-850`. 14 из 45 фокусируемых узлов на 1440 скрыты и в порядок табуляции не входят, пока их не покажут.
 
 ## Анимация
 
 Переходы вычислены по страницам, отрисованным с CSS корпуса на 1440:
 
-- `transform` за 0,15 с, кривая `cubic-bezier(0.4, 0, 0.2, 1)`: `svg.svg-icon.mr-1.shrink-0` — 28 узлов, у 5 экземпляров из 9.
+- `transform` за 0,15 с, кривая `cubic-bezier(0.4, 0, 0.2, 1)`: `svg.svg-icon.mr-1.shrink-0` — 28 узлов, у 5 экземпляров из 7.
 
 Остальные узлы переходов не объявляют: наведение на них сменяется мгновенно.
 
@@ -54,7 +54,7 @@
 
 - узлов внутри корня: **7**
 - классов в поддереве: **49**
-- селектор переписи: `div.w-full.bg-main-gradient-second`
+- селектор переписи: `div.w-full.bg-main-gradient-second:has(h1)` — без `:has(h1)` он находил ещё два узла на `/courses`: обёртку `RubricationBar` и пустую обёртку с тем же градиентом (сужен 11 сентября 2026)
 
 Вычисленные значения корня — из снимка живого продакшена
 (`evidence/source/production/pages/authors/computed.json`, ширина 1440,
@@ -88,7 +88,7 @@
 
 ## Responsive
 
-Классы с префиксом ширины в поддереве записи: `phone:pt-[40px]`, `phone:text-h1-mobile`, `phone:grid-cols-[1fr]`, `phone:gap-4`, `phone:pb-6`, `phone:pt-6`, `phone:hidden`, `phone:grid`, `small-phone:w-full`, `small-phone:text-center` и другие. Условия префиксов: `small-phone:` — до 479, `phone:` — до 767, `tablet-only:` — 768–1023, `tablet:` — до 1023 (`docs/guide/layout.md`).
+Классы с префиксом ширины в поддереве записи: `phone:pt-[40px]`, `phone:text-h1-mobile`, `phone:grid-cols-[1fr]`, `phone:gap-4`, `phone:pb-6`, `phone:pt-6`, `phone:hidden`, `phone:grid`, `small-phone:w-full`, `small-phone:text-center` и другие. Условия префиксов: `small-phone:` — до 479, `phone:` — до 767 (`docs/guide/layout.md`).
 
 ## Ограничения
 
@@ -96,7 +96,7 @@
 
 ## Источники
 
-**Production.** [authors](https://career.habr.com/courses/authors) · [courses-listing](https://career.habr.com/courses) · [editors](https://career.habr.com/courses/editors) · [education-centers-listing](https://career.habr.com/education_centers) · [promocodes](https://career.habr.com/education/promocodes) · [rating](https://career.habr.com/education_centers/rating) · [reviews](https://career.habr.com/education_centers/otzyvy) · [schools-for-children](https://career.habr.com/education_centers/shkoly-dlya-detej)
+**Production.** [authors](https://career.habr.com/courses/authors) · [editors](https://career.habr.com/courses/editors) · [education-centers-listing](https://career.habr.com/education_centers) · [promocodes](https://career.habr.com/education/promocodes) · [rating](https://career.habr.com/education_centers/rating) · [reviews](https://career.habr.com/education_centers/otzyvy) · [schools-for-children](https://career.habr.com/education_centers/shkoly-dlya-detej)
 
 Снятые файлы — `evidence/source/production/pages/<страница>/dom.html` и
 `computed.json`; правила класса — корпус `evidence/source/production/css`

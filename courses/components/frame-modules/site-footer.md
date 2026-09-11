@@ -26,7 +26,7 @@ bg #f1f1f1, padding 32/0/40 (phone 24/0), grid-cols-4 gap 16 → tablet-only 3 �
 
 ## Управление клавиатурой
 
-Корень (`<footer>`) в фокус не попадает. На один экземпляр по Tab проходят: 23 ссылки — так у всех 10. По корпусу (230 узлов): `Link` — 170, `SocialIcon` — 60. 60 из 230 фокусируемых узлов на 1440 скрыты и в порядок табуляции не входят, пока их не покажут.
+Корень (`<footer>`) в фокус не попадает. На один экземпляр по Tab проходят: 17 ссылок — так у всех 10. По корпусу (230 узлов): `Link` — 170, `SocialIcon` — 60. 60 из 230 фокусируемых узлов на 1440 скрыты и в порядок табуляции не входят, пока их не покажут.
 
 ## Анимация
 
@@ -84,7 +84,7 @@ bg #f1f1f1, padding 32/0/40 (phone 24/0), grid-cols-4 gap 16 → tablet-only 3 �
 
 ## Responsive
 
-Классы с префиксом ширины в поддереве записи: `tablet:px-6`, `phone:grid-cols-1`, `phone:gap-6`, `tablet-only:grid-cols-3`, `phone:gap-3`, `phone:py-0`, `tablet:hidden`, `tablet:flex`, `desktop:hidden`, `phone:items-start` и другие. Условия префиксов: `small-phone:` — до 479, `phone:` — до 767, `tablet-only:` — 768–1023, `tablet:` — до 1023 (`docs/guide/layout.md`).
+Классы с префиксом ширины в поддереве записи: `tablet:px-6`, `phone:grid-cols-1`, `phone:gap-6`, `tablet-only:grid-cols-3`, `phone:gap-3`, `phone:py-0`, `tablet:hidden`, `tablet:flex`, `desktop:hidden`, `phone:items-start` и другие. Условия префиксов: `phone:` — до 767, `tablet-only:` — 768–1023, `tablet:` — до 1023, `desktop:` — от 1024 (`docs/guide/layout.md`).
 
 ## Ограничения
 

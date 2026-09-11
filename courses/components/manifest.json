@@ -1802,7 +1802,7 @@
         {
           "url": "https://career.habr.com/courses",
           "selector": "div.rounded-3xl.border.border-ui-black-100.bg-ui-white.p-3:has(> [rel=\"prev\"])",
-          "note": "Переклассифицировано 11 сентября 2026 из figma-only в production. Запись утверждала «в проде листания нет: вместо него кнопка «Показать еще 20»», но текста «Показать ещё» нет ни на одной из десяти снятых страниц, а листание есть — под сеткой выдачи на четырёх листингах (курсы, организации, промокоды, детская витрина). Нашлось при сборке страницы /courses из записей реестра (R6-01). Разметка: контейнер div.flex.rounded-3xl.border.border-ui-black-100.bg-ui-white.p-3 (1076×62, падинг 12, радиус 24), стрелка «назад» — button[rel=prev] с disabled на первой странице, номера — a.h-9.w-9.rounded-full (текущая — border-ui-blue-300 bg-ui-blue-50, остальные — text-ui-black-850 hover:bg-ui-black-50), многоточие, стрелка «вперёд» — a[rel=next]. Класс color-ui-blue-500 у текущей страницы в корпусе прод-CSS не объявлен: синий цвет номера даёт базовое правило ссылки a{color:var(--color-links-main)}. С макетом (pagination, elements/pagination/*) совпадает контейнер, размер страницы 36, пилюля и цвета текущей."
+          "note": "Переклассифицировано 11 сентября 2026 из figma-only в production. Запись утверждала «в проде листания нет: вместо него кнопка «Показать еще 20»», а формулировка верна только для рейтинга школ (RatingTable догружается кнопкой «Показать еще 20»); листание есть — под сеткой выдачи на четырёх листингах (курсы, организации, промокоды, детская витрина). Нашлось при сборке страницы /courses из записей реестра (R6-01). Разметка: контейнер div.flex.rounded-3xl.border.border-ui-black-100.bg-ui-white.p-3 (1076×62, падинг 12, радиус 24), стрелка «назад» — button[rel=prev] с disabled на первой странице, номера — a.h-9.w-9.rounded-full (текущая — border-ui-blue-300 bg-ui-blue-50, остальные — text-ui-black-850 hover:bg-ui-black-50), многоточие, стрелка «вперёд» — a[rel=next]. Класс color-ui-blue-500 у текущей страницы в корпусе прод-CSS не объявлен: синий цвет номера даёт базовое правило ссылки a{color:var(--color-links-main)}. С макетом (pagination, elements/pagination/*) совпадает контейнер, размер страницы 36, пилюля и цвета текущей."
         }
       ],
       "storybookEvidence": [],
@@ -2159,10 +2159,9 @@
         "search-form",
         "button"
       ],
-      "occurrences": 9,
+      "occurrences": 7,
       "seenOn": [
         "authors",
-        "courses-listing",
         "editors",
         "education-centers-listing",
         "promocodes",
@@ -2173,8 +2172,8 @@
       "productionEvidence": [
         {
           "url": "https://career.habr.com/education_centers",
-          "selector": "div.w-full.bg-main-gradient-second",
-          "note": "селектор шире элемента на два узла, и оба на /courses: 9 = 7 настоящих PageHero (по одному на страницу) + обёртка с тем же классом bg-main-gradient-second, внутри которой лежит RubricationBar, + вторая такая же обёртка, пустая (внутри только заглушки Vue, ни hero, ни бара). Прежняя оговорка называла из этих двух только первый."
+          "selector": "div.w-full.bg-main-gradient-second:has(h1)",
+          "note": "селектор сужен 11 сентября 2026 до обёртки с h1: без :has(h1) он находил 9 узлов — 7 настоящих PageHero (по одному на страницу) и два узла на /courses с тем же градиентом, обёртку RubricationBar и пустую обёртку. Лишние два попадали в перепись корпуса и в прозу спецификации (4 ссылки рубрикатора в клавиатурном счёте); нашло повторное ревью прозы."
         }
       ],
       "storybookEvidence": [],

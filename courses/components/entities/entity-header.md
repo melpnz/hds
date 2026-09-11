@@ -84,7 +84,7 @@
 
 ## Responsive
 
-Классы с префиксом ширины в поддереве записи: `phone:h-[150px]`, `phone:pb-0`, `phone:pt-10`, `phone:absolute`, `phone:-top-[46px]`, `phone:!h-[70px]`, `phone:!w-[70px]`, `phone:rounded-2xl`, `phone:border-2`, `phone:border-solid` и другие. Условия префиксов: `small-phone:` — до 479, `phone:` — до 767, `tablet-only:` — 768–1023, `tablet:` — до 1023 (`docs/guide/layout.md`).
+Классы с префиксом ширины в поддереве записи: `phone:h-[150px]`, `phone:pb-0`, `phone:pt-10`, `phone:absolute`, `phone:-top-[46px]`, `phone:!h-[70px]`, `phone:!w-[70px]`, `phone:rounded-2xl`, `phone:border-2`, `phone:border-solid` и другие. Условия префиксов: `phone:` — до 767 (`docs/guide/layout.md`).
 
 ## Ограничения
 

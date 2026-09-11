@@ -22,7 +22,7 @@
 
 ## Как работает
 
-Не `<table>`, а сетка: строки — ссылки `a.grid` с колонками `[1fr 120px 120px 120px]` и `hover:bg-ui-black-50`; внутри `overflow-x-auto` с `min-w-[496px]`.
+Не `<table>`, а сетка: строки — ссылки `a.grid` с колонками `[1fr 120px 120px 120px]` и `hover:bg-ui-black-50`; внутри `overflow-x-auto` с `min-w-[496px]`. На странице рейтинга под строками — `Button` «Показать еще 20» во всю ширину: таблица догружается им, листания `Pagination` у неё нет; на `/courses` — 10 строк без кнопки.
 
 ## Управление клавиатурой
 
@@ -87,7 +87,7 @@
 
 ## Responsive
 
-Классы с префиксом ширины в поддереве записи: `phone:grid-cols-[minmax(232px,1fr)_112px_68px_68px]`, `phone:hover:bg-none`, `phone:line-clamp-1`, `phone:-mx-6`, `phone:rounded-none`. Условия префиксов: `small-phone:` — до 479, `phone:` — до 767, `tablet-only:` — 768–1023, `tablet:` — до 1023 (`docs/guide/layout.md`).
+Классы с префиксом ширины в поддереве записи: `phone:grid-cols-[minmax(232px,1fr)_112px_68px_68px]`, `phone:hover:bg-none`, `phone:line-clamp-1`, `phone:-mx-6`, `phone:rounded-none`. Условия префиксов: `phone:` — до 767 (`docs/guide/layout.md`).
 
 ## Ограничения
 

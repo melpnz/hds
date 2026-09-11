@@ -69,7 +69,7 @@ function keyboard(id, f) {
   // Состав на один экземпляр: самые частые подписи, остальное — одной фразой.
   const sigs = Object.entries(f.focusSignatures).sort((a, b) => b[1] - a[1]);
   const shown = sigs.length <= 4 ? sigs : sigs.slice(0, 3);
-  const rest = sigs.slice(3).reduce((a, [, n]) => a + n, 0);
+  const rest = sigs.slice(shown.length).reduce((a, [, n]) => a + n, 0);
   const one = f.nodes === 1;
   const sigLine = (s) => (s === "—" ? "ничего" : sigText(s));
   if (one) lines.push(`Корень (${root}) в фокус не попадает. По Tab проходят: ${sigLine(shown[0][0])}.`);
@@ -103,7 +103,10 @@ function animation(f) {
     g.nodes += n; g.inst = Math.max(g.inst, inst); g.els.add(node);
     groups.set(val, g);
   }
-  const hasHover = Object.keys(f.classes).some((c) => /(^|:)hover:/.test(c));
+  // Наведение, которое что-то меняет: `hover:no-underline` на узле без
+  // подчёркивания ничего не делает, и фраза «наведение сменяется мгновенно»
+  // у такой записи вводила бы в заблуждение (повторное ревью, note 1).
+  const hasHover = Object.keys(f.classes).some((c) => /(^|:)hover:/.test(c) && !/hover:no-underline$/.test(c));
   const out = [];
   let runtime = false;
   for (const g of [...groups.values()].sort((a, b) => b.nodes - a.nodes)) {
@@ -128,11 +131,19 @@ function animation(f) {
   return `Переходы вычислены по страницам, отрисованным с CSS корпуса на 1440:\n\n${out.map((x) => `- ${x};`).join("\n").replace(/;$/, ".")}\n\n${tail.join(" ")}`.trim();
 }
 
+// Шесть префиксов сборки и их условия — docs/guide/layout.md. В легенде
+// называются только те, что стоят у записи: первая редакция печатала одну
+// легенду на всех и не называла `desktop:` у подвала (повторное ревью).
+const PREFIX = [
+  ["small-phone", "до 479"], ["phone", "до 767"], ["phablet-and-tablet", "480–1023"],
+  ["tablet-only", "768–1023"], ["tablet", "до 1023"], ["desktop", "от 1024"],
+];
 function responsive(f) {
-  const cls = Object.keys(f.classes).filter((c) => /^(phone|tablet|desktop|small-phone|tablet-only|laptop|phablet-and-tablet):/.test(c));
+  const cls = Object.keys(f.classes).filter((c) => PREFIX.some(([p]) => c.startsWith(p + ":")));
   if (!cls.length) return "Адаптивных классов в разметке нет: запись одинакова на всех ширинах, раскладку меняет контейнер вокруг неё.";
   const shown = cls.slice(0, 10).map((c) => `\`${c}\``).join(", ");
-  return `Классы с префиксом ширины в поддереве записи: ${shown}${cls.length > 10 ? " и другие" : ""}. Условия префиксов: \`small-phone:\` — до 479, \`phone:\` — до 767, \`tablet-only:\` — 768–1023, \`tablet:\` — до 1023 (\`docs/guide/layout.md\`).`;
+  const used = PREFIX.filter(([p]) => cls.some((c) => c.startsWith(p + ":"))).map(([p, w]) => `\`${p}:\` — ${w}`);
+  return `Классы с префиксом ширины в поддереве записи: ${shown}${cls.length > 10 ? " и другие" : ""}. Условия префиксов: ${used.join(", ")} (\`docs/guide/layout.md\`).`;
 }
 
 // Заглушки прошлых редакций: «Правило применения призывом … не выведено»
@@ -185,7 +196,9 @@ for (const c of targets) {
   // 2. Разделы после «Когда использовать» — по порядку шаблона.
   s = setSection(s, "Когда не использовать", pr.avoid.map((x) => `- ${x}`).join("\n"), "Когда использовать");
   s = setSection(s, "Как работает", pr.how, "Когда не использовать");
-  const kb = pr.keyboard || (f && keyboard(c.id, f));
+  // keyboardExtra — факт, которого перепись не видит (фокус на узле,
+  // обрезанном свёрткой), дописывается к выведенному тексту.
+  const kb = [pr.keyboard || (f && keyboard(c.id, f)), pr.keyboardExtra].filter(Boolean).join(" ");
   if (kb) s = setSection(s, "Управление клавиатурой", kb, "Как работает");
   const an = pr.animation || (f && animation(f));
   if (an) s = setSection(s, "Анимация", an, "Управление клавиатурой");

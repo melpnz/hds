@@ -103,7 +103,7 @@ Swiper: `swiper`, `swiper-horizontal`, `swiper-slide`, `swiper-wrapper`. У ос
 
 ## Responsive
 
-Классы с префиксом ширины в поддереве записи: `phone:!h-auto`, `phone:!w-full`, `phone:aspect-[272/280]`, `phone:w-full`, `phone:hidden`, `phone:!block`, `phone:pl-0`, `phone:max-h-[326px]`. Условия префиксов: `small-phone:` — до 479, `phone:` — до 767, `tablet-only:` — 768–1023, `tablet:` — до 1023 (`docs/guide/layout.md`).
+Классы с префиксом ширины в поддереве записи: `phone:!h-auto`, `phone:!w-full`, `phone:aspect-[272/280]`, `phone:w-full`, `phone:hidden`, `phone:!block`, `phone:pl-0`, `phone:max-h-[326px]`. Условия префиксов: `phone:` — до 767 (`docs/guide/layout.md`).
 
 ## Ограничения
 

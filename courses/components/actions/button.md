@@ -95,7 +95,7 @@
 
 ## Responsive
 
-Классы с префиксом ширины в поддереве записи: `phone:-mr-2`, `phone:hidden`. Условия префиксов: `small-phone:` — до 479, `phone:` — до 767, `tablet-only:` — 768–1023, `tablet:` — до 1023 (`docs/guide/layout.md`).
+Классы с префиксом ширины в поддереве записи: `phone:-mr-2`, `phone:hidden`. Условия префиксов: `phone:` — до 767 (`docs/guide/layout.md`).
 
 ## Ограничения
 

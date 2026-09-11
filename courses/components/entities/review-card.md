@@ -22,7 +22,7 @@ p24, шапка grid [50px 1fr 164px] (на phone [50px 1fr]) gap 12/16: ава�
 
 ## Как работает
 
-`div` с сеткой шапки `[50px 1fr 164px]` (на `phone:` — `[50px 1fr]`); ссылка на курс — плашка `hover:bg-ui-black-100`.
+`div` с шапкой-сеткой: автор с `Avatar`, имя и дата, оценка. В карусели (16 карточек) шапка — `grid-cols-[50px_1fr]`; в секции на странице отзывов (4 карточки) — `[50px_1fr_164px]`, на `phone:` — `[50px_1fr]`. Ссылка на курс — плашка `hover:bg-ui-black-100`.
 
 ## Управление клавиатурой
 
@@ -85,7 +85,7 @@ p24, шапка grid [50px 1fr 164px] (на phone [50px 1fr]) gap 12/16: ава�
 
 ## Responsive
 
-Классы с префиксом ширины в поддереве записи: `phone:pl-0`, `phone:max-h-[326px]`, `phone:grid-cols-[50px_1fr]`, `phone:col-span-2`, `phone:flex`, `phone:items-center`, `phone:gap-2`. Условия префиксов: `small-phone:` — до 479, `phone:` — до 767, `tablet-only:` — 768–1023, `tablet:` — до 1023 (`docs/guide/layout.md`).
+Классы с префиксом ширины в поддереве записи: `phone:pl-0`, `phone:max-h-[326px]`, `phone:grid-cols-[50px_1fr]`, `phone:col-span-2`, `phone:flex`, `phone:items-center`, `phone:gap-2`. Условия префиксов: `phone:` — до 767 (`docs/guide/layout.md`).
 
 ## Ограничения
 

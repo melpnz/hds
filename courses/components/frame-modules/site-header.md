@@ -26,7 +26,7 @@
 
 ## Управление клавиатурой
 
-Корень (`<header>`) в фокус не попадает. На один экземпляр по Tab проходят: 1 кнопка и 8 ссылок — у 9 из 10; 2 кнопки, 1 поле `input type=text` и 8 ссылок — у 1 из 10. По корпусу (92 узла): `Link` — 80, `Button` — 1, внутри `TextInput` — 1; вне записей реестра — `button.font-inherit.inline-flex.h-6.cursor-pointer` — 10. Фокус внутреннего поля показывает рамка обёртки `focus-within:border-ui-black-850`. 40 из 92 фокусируемых узлов на 1440 скрыты и в порядок табуляции не входят, пока их не покажут.
+Корень (`<header>`) в фокус не попадает. На один экземпляр по Tab проходят: 1 кнопка и 4 ссылки — у 9 из 10; 2 кнопки, 1 поле `input type=text` и 4 ссылки — у 1 из 10. По корпусу (92 узла): `Link` — 80, `Button` — 1, внутри `TextInput` — 1; вне записей реестра — `button.font-inherit.inline-flex.h-6.cursor-pointer` — 10. Фокус внутреннего поля показывает рамка обёртки `focus-within:border-ui-black-850`. 40 из 92 фокусируемых узлов на 1440 скрыты и в порядок табуляции не входят, пока их не покажут.
 
 ## Анимация
 
@@ -88,7 +88,7 @@
 
 ## Responsive
 
-Классы с префиксом ширины в поддереве записи: `tablet:px-6`, `phone:h-auto`, `phone:min-h-[64px]`, `phone:flex-wrap`, `phone:gap-y-3`, `phone:py-3`, `phone:order-last`, `phone:flex-none`, `phone:basis-full`, `phone:empty:hidden` и другие. Условия префиксов: `small-phone:` — до 479, `phone:` — до 767, `tablet-only:` — 768–1023, `tablet:` — до 1023 (`docs/guide/layout.md`).
+Классы с префиксом ширины в поддереве записи: `tablet:px-6`, `phone:h-auto`, `phone:min-h-[64px]`, `phone:flex-wrap`, `phone:gap-y-3`, `phone:py-3`, `phone:order-last`, `phone:flex-none`, `phone:basis-full`, `phone:empty:hidden` и другие. Условия префиксов: `phone:` — до 767, `tablet:` — до 1023 (`docs/guide/layout.md`).
 
 ## Ограничения
 

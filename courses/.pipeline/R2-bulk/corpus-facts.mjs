@@ -94,8 +94,13 @@ for (const p of pages) {
         const foc = all.filter((n) => n.matches(FOCUS));
         const sig = {};
         for (const n of foc) {
-          inc(sig, kindOf(n)); inc(r.focusKinds, kindOf(n));
-          if (!visible(n)) r.focusHidden++;
+          // В подпись «по Tab проходят» — только видимые на 1440: скрытый
+          // узел в порядок табуляции не входит. Повторное ревью нашло, что
+          // первая редакция считала и скрытые (у подвала «23 ссылки» при 17).
+          const shown = visible(n);
+          if (shown) inc(sig, kindOf(n));
+          inc(r.focusKinds, kindOf(n));
+          if (!shown) r.focusHidden++;
           if (n === el) continue;
           let owner = null;
           for (let a = n; a && a !== el; a = a.parentElement) { const ks = recOf(a).filter((k) => k !== id); if (ks.length) { owner = ks[0]; break; } }

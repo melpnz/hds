@@ -85,7 +85,7 @@
 
 ## Responsive
 
-Классы с префиксом ширины в поддереве записи: `tablet-only:grid-cols-3`, `phone:grid-cols-1`, `phone:grid-cols-[minmax(0,1fr)]`, `tablet-only:grid-cols-2`. Условия префиксов: `small-phone:` — до 479, `phone:` — до 767, `tablet-only:` — 768–1023, `tablet:` — до 1023 (`docs/guide/layout.md`).
+Классы с префиксом ширины в поддереве записи: `tablet-only:grid-cols-3`, `phone:grid-cols-1`, `phone:grid-cols-[minmax(0,1fr)]`, `tablet-only:grid-cols-2`. Условия префиксов: `phone:` — до 767, `tablet-only:` — 768–1023 (`docs/guide/layout.md`).
 
 ## Ограничения
 

@@ -546,7 +546,7 @@
       "occurrences": 7,
       "seenOn": ["education-centers-listing", "reviews", "promocodes", "schools-for-children", "rating", "authors", "editors"],
       "sources": [
-        { "type": "production", "url": "https://career.habr.com/education_centers", "selector": "div.w-full.bg-main-gradient-second" }
+        { "type": "production", "url": "https://career.habr.com/education_centers", "selector": "div.w-full.bg-main-gradient-second:has(h1)" }
       ],
       "dependsOn": ["segmented-control", "search-form", "button"],
       "notes": "тот же градиент, что у RubricationBar, но как крупный блок 288–388px: H1 44/48 semibold ls −0.5 белым, max-w 652, по центру, pt 64 (phone 40, text-h1-mobile). Три состава: SegmentedControl + SearchForm (4 страницы), только SearchForm (1), лид + два CTA (2). На /courses и страницах сущностей hero отсутствует"
@@ -1200,7 +1200,7 @@
       "wave": "R6",
       "composedOf": ["site-header", "page-hero", "segmented-control", "search-form", "section", "review-card", "card-grid", "course-card", "school-card", "filter-bar", "button", "site-footer"],
       "states": ["default"],
-      "notes": "лента отзывов в одну колонку с кнопкой «Показать еще 20» вместо пагинации"
+      "notes": "лента отзывов в одну колонку. Кнопки «Показать еще 20» в снятой разметке этой страницы нет (11 сентября 2026): она стоит на странице рейтинга, внутри RatingTable"
     },
     {
       "id": "rating",

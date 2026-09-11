@@ -111,7 +111,7 @@ a:hover{text-decoration:underline}
 
 ## Responsive
 
-Классы с префиксом ширины в поддереве записи: `phone:py-0`, `tablet:hidden`, `phone:line-clamp-1`, `phone:grid-cols-[minmax(232px,1fr)_112px_68px_68px]`, `phone:hover:bg-none`, `small-phone:w-full`, `small-phone:text-center`. Условия префиксов: `small-phone:` — до 479, `phone:` — до 767, `tablet-only:` — 768–1023, `tablet:` — до 1023 (`docs/guide/layout.md`).
+Классы с префиксом ширины в поддереве записи: `phone:py-0`, `tablet:hidden`, `phone:line-clamp-1`, `phone:grid-cols-[minmax(232px,1fr)_112px_68px_68px]`, `phone:hover:bg-none`, `small-phone:w-full`, `small-phone:text-center`. Условия префиксов: `small-phone:` — до 479, `phone:` — до 767, `tablet:` — до 1023 (`docs/guide/layout.md`).
 
 ## Ограничения
 

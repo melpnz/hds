@@ -23,7 +23,7 @@ section + h2 24/28 semibold ls −0.5 + слот; внутренний gap 16 у
 
 ## Как работает
 
-`<section>` с `h2` 24 / 28, 600, −0.5 и слотом, промежуток 16. Между секциями 48.
+`<section>` с `h2` 24 / 28, 600, −0.5 и слотом, промежуток 16. Между соседними секциями 48 — так в 6 парах из 7; на странице школы одна пара разнесена на 96.
 
 ## Управление клавиатурой
 
@@ -89,7 +89,7 @@ section + h2 24/28 semibold ls −0.5 + слот; внутренний gap 16 у
 
 ## Responsive
 
-Классы с префиксом ширины в поддереве записи: `phone:pl-0`, `phone:max-h-[326px]`, `phone:-mx-6`, `phone:rounded-none`, `phone:grid-cols-[minmax(232px,1fr)_112px_68px_68px]`, `phone:hover:bg-none`, `phone:line-clamp-1`, `phone:grid-cols-1`, `tablet-only:grid-cols-3`, `phone:[&>*:nth-child(n+5)]:hidden` и другие. Условия префиксов: `small-phone:` — до 479, `phone:` — до 767, `tablet-only:` — 768–1023, `tablet:` — до 1023 (`docs/guide/layout.md`).
+Классы с префиксом ширины в поддереве записи: `phone:pl-0`, `phone:max-h-[326px]`, `phone:-mx-6`, `phone:rounded-none`, `phone:grid-cols-[minmax(232px,1fr)_112px_68px_68px]`, `phone:hover:bg-none`, `phone:line-clamp-1`, `phone:grid-cols-1`, `tablet-only:grid-cols-3`, `phone:[&>*:nth-child(n+5)]:hidden` и другие. Условия префиксов: `phone:` — до 767, `tablet-only:` — 768–1023 (`docs/guide/layout.md`).
 
 ## Ограничения
 
