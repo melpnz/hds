@@ -709,7 +709,7 @@ R2 и компонентов R3, без собственных значений 
 
 | Шаг | Страница | Семейство | Источник | Зависит от | Статус |
 |---|---|---|---|---|---|
-| R6-01 | Витрина курсов | листинг | [`/courses`](https://career.habr.com/courses) | R5 | planned |
+| R6-01 | Витрина курсов | листинг | [`/courses`](https://career.habr.com/courses) | R5 | собрана 11 сентября 2026 без приёмки: `pages/courses-listing.md`, `showcase/pages.html#p-courses-listing`; модули «Больше об авторах» и «Промокоды и акции» вне реестра |
 | R6-02 | Витрина организаций | листинг | [`/education_centers`](https://career.habr.com/education_centers) | R5 | planned |
 | R6-03 | Рейтинг школ | таблица | [`/education_centers/rating`](https://career.habr.com/education_centers/rating) | R5-08 | planned |
 | R6-04 | Страница школы | сущность | [`/education_centers/35-yandeks-praktikum`](https://career.habr.com/education_centers/35-yandeks-praktikum) | R5-10 | planned |

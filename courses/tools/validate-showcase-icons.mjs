@@ -60,7 +60,12 @@
 import fs from 'node:fs';
 import path from 'node:path';
 
-const showcaseFiles = ['showcase/components.html', 'showcase/pages.html'];
+// Страницы шага R6 — отдельные файлы showcase/pages/<id>.html; путь к ассету
+// в них разрешается от их собственной папки (../../ui/assets/…).
+const pageFiles = fs.existsSync('showcase/pages')
+  ? fs.readdirSync('showcase/pages').filter((f) => f.endsWith('.html')).sort().map((f) => `showcase/pages/${f}`)
+  : [];
+const showcaseFiles = ['showcase/components.html', 'showcase/pages.html', ...pageFiles];
 const existing = showcaseFiles.filter((file) => fs.existsSync(file));
 
 if (!existing.length) {

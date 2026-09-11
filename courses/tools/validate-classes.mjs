@@ -107,7 +107,13 @@ import selectorParser from 'postcss-selector-parser';
 
 const args = process.argv.slice(2);
 const own = args.length > 0;
-const showcaseFiles = ['showcase/components.html', 'showcase/pages.html'];
+// Страницы шага R6 лежат отдельными файлами showcase/pages/<id>.html: каждая
+// подключает только ui/courses.css, и pages.html показывает их в рамках
+// разной ширины. Классы в них — такие же классы витрины.
+const pageFiles = fs.existsSync('showcase/pages')
+  ? fs.readdirSync('showcase/pages').filter(f => f.endsWith('.html')).sort().map(f => `showcase/pages/${f}`)
+  : [];
+const showcaseFiles = ['showcase/components.html', 'showcase/pages.html', ...pageFiles];
 const showcaseSteps = { 'showcase/components.html': 'R0-06', 'showcase/pages.html': 'R6' };
 
 const htmlFiles = own ? args : showcaseFiles.filter(file => fs.existsSync(file));

@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Хабр Курсы — страницы</title>
+<meta name="description" content="Ключевые страницы Хабр Курсов, собранные из разметки продукта и слоя ui/: по одной на семейство, на ширинах 375, 768, 1024 и 1440.">
+<link rel="icon" href="data:,">
+<!--
+  ../ui/courses.css   продуктовый слой — как у витрины компонентов.
+  components.css      документационная оболочка (doc-*).
+  pages.css           рамки ширины и заглушки каруселей (doc-*).
+
+  Сами страницы лежат отдельными файлами showcase/pages/<id>.html: каждая
+  подключает только ui/courses.css (и заглушки из pages.css), здесь они
+  показаны в iframe настоящей ширины — внутри работают те же @media, что
+  в продукте. Файлы страниц собирает .pipeline/pages/gen-page.mjs.
+-->
+<link rel="stylesheet" href="../ui/courses.css">
+<link rel="stylesheet" href="components.css">
+<link rel="stylesheet" href="pages.css">
+</head>
+<body class="doc-body">
+
+<a class="doc-skip" href="#doc-main">К содержанию</a>
+
+<div class="doc-layout">
+
+<nav class="doc-nav" aria-label="Разделы витрины страниц">
+  <p class="doc-nav__brand">Хабр Курсы</p>
+  <p class="doc-nav__title">Страницы</p>
+  <p class="doc-nav__state">шаг R6 · 1 из 5</p>
+
+  <ul class="doc-nav__list">
+    <li><a class="doc-nav__link doc-nav__link--top" href="#doc-about">О странице витрины</a></li>
+    <li>
+      <a class="doc-nav__link doc-nav__link--top" href="#doc-pages">Страницы</a>
+      <ul class="doc-nav__list doc-nav__list--sub">
+        <li><a class="doc-nav__link" href="#p-courses-listing">Витрина курсов · листинг</a></li>
+      </ul>
+    </li>
+  </ul>
+
+  <p class="doc-nav__foot">
+    Компоненты — <a href="components.html">components.html</a>.
+    Статьи страниц — <code>pages/&lt;id&gt;.md</code>.
+  </p>
+</nav>
+
+<main class="doc-main" id="doc-main">
+
+<section class="doc-section" id="doc-about">
+  <div class="doc-section__head">
+    <span class="doc-section__num">1</span>
+    <h2>О странице витрины</h2>
+    <p>Как из записей реестра собирается экран — по одной странице на семейство.</p>
+  </div>
+
+  <p class="doc-text">
+    Страница продукта — уже композиция записей реестра: карточки, сетка,
+    секции, шапка и подвал на ней — те самые узлы, которые измерены переписью
+    селекторов. Поэтому страница здесь не свёрстана заново, а собрана из
+    снятой разметки: порядок областей, обёртки раскладки и классы — продукта,
+    вид — только из <code>ui/courses.css</code>. Классы обёрток, которых нет ни
+    в одной записи, подняты из корпуса прод-CSS тем же генератором, что и
+    классы компонентов.
+  </p>
+  <p class="doc-text">
+    Что поменяно при сборке: картинки — локальные заглушки, адреса ссылок —
+    «#», длинные списки сокращены (сколько оставлено — в подписи страницы),
+    карусели Swiper — заглушка их размера. Числа каркаса в статье страницы
+    сняты по полной странице, а не по сокращённой.
+  </p>
+
+  <div class="doc-callout doc-callout--warn">
+    <h3>Открывать по HTTP</h3>
+    <p>
+      Иконки страниц собраны элементом <code>&lt;use&gt;</code> со ссылкой
+      в <code>sprite.svg</code>, как в продукте, и с <code>file://</code> не
+      рисуются. Витрина поднимается командой <code>npm run serve</code>.
+    </p>
+  </div>
+</section>
+
+<section class="doc-section" id="doc-pages">
+  <div class="doc-section__head">
+    <span class="doc-section__num">2</span>
+    <h2>Страницы</h2>
+    <p>По одной на семейство. Остальные четыре — шаги R6-02…R6-05.</p>
+  </div>
+
+  <section class="doc-section" id="p-courses-listing">
+    <div class="doc-section__head">
+      <h4>Витрина курсов · листинг</h4>
+      <p>
+        <code>/courses</code> — выдача курсов: баннеры, сетка карточек в четыре
+        колонки, листание, редакционные блоки и SEO-хвост. Статья —
+        <a href="../pages/courses-listing.md">pages/courses-listing.md</a>,
+        снимки продакшена — <code>evidence/source/production/pages/courses-listing/</code>.
+      </p>
+    </div>
+
+    <div class="doc-frames">
+      <div class="doc-frame">
+        <span class="doc-frame__label">375 · phone</span>
+        <div class="doc-frame__box" style="--doc-frame-w:375;--doc-frame-s:1">
+          <iframe src="pages/courses-listing.html" title="Витрина курсов на 375" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="doc-frame">
+        <span class="doc-frame__label">768 · tablet-only</span>
+        <div class="doc-frame__box" style="--doc-frame-w:768;--doc-frame-s:0.5">
+          <iframe src="pages/courses-listing.html" title="Витрина курсов на 768" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="doc-frame">
+        <span class="doc-frame__label">1024 · desktop</span>
+        <div class="doc-frame__box" style="--doc-frame-w:1024;--doc-frame-s:0.375">
+          <iframe src="pages/courses-listing.html" title="Витрина курсов на 1024" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="doc-frame">
+        <span class="doc-frame__label">1440 · desktop</span>
+        <div class="doc-frame__box" style="--doc-frame-w:1440;--doc-frame-s:0.2667">
+          <iframe src="pages/courses-listing.html" title="Витрина курсов на 1440" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="doc-frame doc-frame--live">
+      <span class="doc-frame__label">во всю ширину окна — <a href="pages/courses-listing.html">открыть отдельно</a></span>
+      <div class="doc-frame__box">
+        <iframe src="pages/courses-listing.html" title="Витрина курсов во всю ширину" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div class="doc-scroll">
+    <table class="doc-table">
+      <thead><tr><th>область</th><th>1440</th><th>1024</th><th>768</th><th>375</th></tr></thead>
+      <tbody>
+        <tr><td>шапка <code>SiteHeader</code>, липкая</td><td>64</td><td>64</td><td>64</td><td>108 — поиск уходит второй строкой</td></tr>
+        <tr><td>полоса рубрик <code>RubricationBar</code></td><td>40</td><td>40</td><td>40</td><td>40, в край экрана</td></tr>
+        <tr><td>колонка содержимого</td><td>1076 (1124 − 2 × 24)</td><td>976</td><td>720</td><td>327</td></tr>
+        <tr><td>баннеры <code>AdSlot</code></td><td>232</td><td>232</td><td>232</td><td>327×337</td></tr>
+        <tr><td>сетка <code>CardGrid</code> × <code>CourseCard</code></td><td class="doc-table__wrap">4 × 260, промежуток 12</td><td class="doc-table__wrap">4 × 235</td><td class="doc-table__wrap">3 × 232</td><td>1 × 327</td></tr>
+        <tr><td>листание <code>Pagination</code></td><td>62</td><td>62</td><td>62</td><td>62</td></tr>
+        <tr><td>промежуток между блоками</td><td colspan="4" class="doc-table__wrap">48 (<code>gap-12</code>); после баннеров — 24 (<code>-mb-6</code>)</td></tr>
+        <tr><td>подвал <code>SiteFooter</code></td><td>4 колонки, 192</td><td>4 колонки</td><td>3 колонки</td><td>1 колонка, 476</td></tr>
+        <tr><td>высота страницы</td><td>10 396</td><td>10 506</td><td>12 926</td><td>28 175</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="doc-note">
+      Числа — отрисовка снятого <code>dom.html</code> с CSS корпуса
+      (<code>evidence/source/production/css/</code>) на каждой ширине, без
+      скрипта; высота страницы сходится со скриншотами продакшена в пределах
+      2%. На витрине страница короче: 8 карточек из 48, 3 пункта ТОП-списка
+      из 10, 5 строк рейтинга из 10.
+    </p>
+
+    <p class="doc-note">
+      <strong>Чего в снимке нет.</strong> Пустой выдачи, ошибки и загрузки:
+      гость видит только заполненную страницу. Чанк сборки называется
+      <code>course-card-skeleton</code>, но правил скелетона в нём нет —
+      только градиенты и шрифт Swiper, так что как выглядит загрузка, не
+      видно ни в разметке, ни в CSS. Нет открытых оверлеев — каталога, панели сервисов, модалки
+      фильтров — и второй и дальше страниц выдачи. Две карусели показаны
+      заглушкой: живую ленту без библиотечного слоя Swiper не собрать.
+    </p>
+    <p class="doc-note">
+      <strong>Модули вне реестра.</strong> Блок «Больше об авторах» (автор,
+      редактор, аудитор с аватаром, биографией и регалиями) и список
+      «Промокоды и акции» (школа и ссылка на скидку) стоят только на
+      <code>/courses</code> и записей в реестре не имеют. Их разметка на
+      странице — продуктовая, классы подняты из корпуса; как записи они не
+      описаны.
+    </p>
+  </section>
+</section>
+
+</main>
+</div>
+</body>
+</html>

@@ -67,13 +67,26 @@ for (const f of fs.readdirSync(path.join(d, "resolved"))) {
   }
 }
 
+// Порядок корпуса: позиция первого появления каждого правила и каждого
+// условия @media при обходе всех файлов корпуса (инлайновые, затем внешние,
+// по имени). По ней слой выстраивает группы и правила внутри групп. Первая
+// редакция сортировала правила по имени класса, а группы — по ширине, и
+// каскад разошёлся с продуктом дважды: `phone:flex-none` встал после
+// `phone:basis-full` и сбросил ему flex-basis (поиск в шапке вылез за край
+// на 320), а группа `tablet-only:` встала раньше базовых правил, и
+// `grid-cols-4` перебил `tablet-only:grid-cols-3` (сетка на 768 — четыре
+// колонки вместо трёх). Оба дефекта нашла сборка страницы /courses (R6-01).
+const rulePos = new Map();
+const mediaPos = new Map();
+let posCounter = 0;
+
 // Правила для классов образцов состояний берутся из того же корпуса.
 {
   const index = new Map();
   for (const sub of ["inline", "external"]) {
     const dir = path.join(pkg, "evidence/source/production/css", sub);
     if (!fs.existsSync(dir)) continue;
-    for (const f of fs.readdirSync(dir).filter((x) => x.endsWith(".css"))) {
+    for (const f of fs.readdirSync(dir).filter((x) => x.endsWith(".css")).sort()) {
       const file = path.join(dir, f);
       postcss.parse(fs.readFileSync(file, "utf8"), { from: file }).walkRules((rule) => {
         if (rule.parent?.type === "atrule" && /keyframes/.test(rule.parent.name)) return;
@@ -84,6 +97,10 @@ for (const f of fs.readdirSync(path.join(d, "resolved"))) {
         const decls = rule.nodes.filter((n) => n.type === "decl")
           .map((x) => `${x.prop}:${x.value}${x.important ? " !important" : ""}`).join(";");
         if (!decls) return;
+        posCounter++;
+        const rk = media + "|" + rule.selector;
+        if (!rulePos.has(rk)) rulePos.set(rk, posCounter);
+        if (!mediaPos.has(media)) mediaPos.set(media, posCounter);
         const classes = new Set();
         try { selectorParser((sel) => sel.walkClasses((c) => classes.add(c.value))).processSync(rule.selector); } catch { return; }
         for (const c of classes) {
@@ -111,11 +128,11 @@ for (const [cls, variants] of byClass) {
     groups.get(key).push({ cls, ...rec });
   }
 }
-const mediaOrder = (m) => {
-  if (!m) return 0;
-  const n = /max-width:\s*(\d+)/.exec(m);
-  return n ? 1000 - Number(n[1]) : 500;
-};
+// Базовые правила — первыми, условия @media — в порядке первого появления в
+// корпусе; правила внутри группы — в порядке корпуса. Правило, которого в
+// обходе нет (не должно случаться), встаёт в конец группы по имени класса.
+const mediaOrder = (m) => (!m ? -1 : mediaPos.get(m) ?? Infinity);
+const posOf = (r) => rulePos.get((r.media || "") + "|" + r.selector) ?? Infinity;
 
 const total = byClass.size;
 const mediaKeys = [...groups.keys()].sort((a, b) => mediaOrder(a) - mediaOrder(b));
@@ -146,7 +163,7 @@ let out = `/* ==================================================================
 `;
 
 for (const mk of mediaKeys) {
-  const rules = groups.get(mk).sort((a, b) => a.cls.localeCompare(b.cls));
+  const rules = groups.get(mk).sort((a, b) => posOf(a) - posOf(b) || a.cls.localeCompare(b.cls));
   if (mk) out += `\n${mk.split(" / ")[0]} {\n`;
   const ind = mk ? "  " : "";
   let lastCls = null;
