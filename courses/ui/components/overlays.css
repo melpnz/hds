@@ -259,6 +259,113 @@
   }
 }
 
+/* CatalogMenu, дополнение 11 сентября: детский каталог и кадр 320.
+
+   Детский каталог («каталог детей 🎀», 14657:224732) слева тот же — список
+   направлений со своими иконками, — а справа не три колонки курсов, а
+   группы: заголовок стилем Header/H4 и три колонки коротких списков
+   (15170:145636 «По предметам», 15170:145653 «По возрасту»). Группы — через
+   32, внутри группы — 16, у первой сверху 12, как у колонок взрослого.
+
+   Кадр 320 (14657:224294) добавляет полосу поиска над панелью — кнопку
+   «назад» (символ arrow-large спрайта, повёрнут на 90°) и поле с лупой
+   (символ search) — и шеврон перехода у каждой строки направления (символ
+   arrow-small, повёрнут на −90°); строки там без левого отступа. Поле
+   поиска свёрстано здесь же: продуктовый SearchInput в снятой разметке —
+   SSR-заглушка без поля. На ширинах от 744 полоса и шевроны скрыты. */
+.crs-catalog-menu__search,
+.crs-catalog-menu__row-chevron {
+  display: none;
+}
+.crs-catalog-menu__groups {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x8);
+  grid-column: 3 / -1;
+  min-width: 0;
+  padding-top: var(--fig-size-spacing-x3);
+}
+.crs-catalog-menu__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x4);
+}
+.crs-catalog-menu__group-title {
+  color: var(--fig-color-style-font-primary);
+  font-size: var(--fig-font-size-display-s);
+  font-weight: var(--fig-font-weight-semibold);
+  letter-spacing: var(--fig-font-letter-spacing-headers);
+  line-height: var(--fig-font-line-height-display-s);
+  margin: 0;
+}
+.crs-catalog-menu__group-columns {
+  display: grid;
+  gap: var(--fig-size-spacing-x6);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.crs-catalog-menu__group-columns .crs-catalog-menu__column {
+  display: flex;
+  padding-top: 0;
+}
+@media (max-width: 1023px) {
+  .crs-catalog-menu__groups { grid-column: 3; }
+}
+@media (max-width: 743px) {
+  .crs-catalog-menu--with-search { padding: 0; }
+  .crs-catalog-menu--with-search .crs-catalog-menu__side { padding: var(--fig-size-spacing-x6); }
+  .crs-catalog-menu__search {
+    align-items: center;
+    border-bottom: 1px solid var(--fig-color-style-neutral-neutral-hover);
+    display: flex;
+    gap: 10px;
+    padding: var(--fig-size-spacing-x3) var(--fig-size-spacing-x6);
+  }
+  .crs-catalog-menu__back {
+    align-items: center;
+    background: transparent;
+    border: 0;
+    color: var(--fig-elements-button-icon-icon);
+    cursor: pointer;
+    display: flex;
+    flex: none;
+    padding: 0;
+  }
+  .crs-catalog-menu__search-field {
+    align-items: center;
+    background: var(--fig-elements-input-fill);
+    border: 1px solid var(--fig-elements-input-border);
+    border-radius: var(--fig-elements-input-border-radius);
+    box-sizing: border-box;
+    display: flex;
+    flex: 1 0 0;
+    gap: var(--fig-elements-input-gap);
+    height: 40px;
+    min-width: 0;
+    padding: var(--fig-elements-input-padding-top-bottom) var(--fig-elements-input-padding-left-right);
+  }
+  .crs-catalog-menu__search-input {
+    background: transparent;
+    border: 0;
+    color: var(--fig-elements-input-text);
+    flex: 1 0 0;
+    font: inherit;
+    font-size: var(--fig-font-size-body-m);
+    line-height: var(--fig-font-line-height-body-l);
+    min-width: 0;
+    outline: none;
+    padding: 0;
+  }
+  .crs-catalog-menu__search-input::placeholder { color: var(--fig-elements-input-placeholder); }
+  .crs-catalog-menu__search-field .svg-icon { color: var(--fig-elements-input-icon); flex: none; }
+  .crs-catalog-menu__row { padding: var(--fig-elements-dropdown-row-padding-top-bottom) 0; }
+  .crs-catalog-menu__row-chevron {
+    color: var(--fig-elements-input-icon);
+    display: block;
+    flex: none;
+  }
+  .crs-catalog-menu__groups { display: none; }
+}
+
 /* -------------------------------------------------------------------------
    Tooltip (R2-bulk, figma-only) — 11025:93606, рейтинг школ
    -------------------------------------------------------------------------

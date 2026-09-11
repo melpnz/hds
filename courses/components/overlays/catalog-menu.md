@@ -25,28 +25,33 @@
 `ui/courses.css` и выглядит так же, как на витрине (инвариант METHOD §6.1).
 
 ```html
-<div class="crs-catalog-menu">
+<div style="display:flex;flex-direction:column;gap:24px;width:100%">
+<div class="crs-catalog-menu crs-catalog-menu--with-search">
+  <div class="crs-catalog-menu__search">
+    <button type="button" class="crs-catalog-menu__back" aria-label="Назад"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-large"></use></svg></button>
+    <label class="crs-catalog-menu__search-field"><input class="crs-catalog-menu__search-input" type="search" placeholder="Искать на Хабр Курсах" aria-label="Поиск"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;"><use xlink:href="../ui/assets/icons/sprite.svg#search"></use></svg></label>
+  </div>
   <div class="crs-catalog-menu__side">
     <div class="crs-button-group">
       <button type="button" class="crs-button-group__item crs-button-group__item--selected" aria-pressed="true">Для взрослых</button>
       <button type="button" class="crs-button-group__item" aria-pressed="false">Для детей</button>
     </div>
     <nav class="crs-catalog-menu__list" aria-label="Направления">
-      <a href="#c-catalog-menu" class="crs-catalog-menu__row crs-catalog-menu__row--current" aria-current="true"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/code.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Программирование и IT</span></a>
-      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/analytics.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Аналитика и Data Science</span></a>
-      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/design.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Дизайн и контент</span></a>
-      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/business.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Бизнес и менеджмент</span></a>
-      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/marketing.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Маркетинг и продажи</span></a>
-      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/finance.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Финансы и бухгалтерия</span></a>
-      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/hr.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">HR и рекрутинг</span></a>
-      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/hobby.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Хобби и творчество</span></a>
-      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/wellness.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Красота и здоровье</span></a>
-      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/cooking.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Кулинария</span></a>
-      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/psychology.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Психология</span></a>
-      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/growth.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Саморазвитие и soft skills</span></a>
-      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/software.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Прикладные программы</span></a>
-      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/pedagogy.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Педагогика</span></a>
-      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/languages.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Языки</span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row crs-catalog-menu__row--current" aria-current="true"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/code.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Программирование и IT</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/analytics.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Аналитика и Data Science</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/design.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Дизайн и контент</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/business.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Бизнес и менеджмент</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/marketing.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Маркетинг и продажи</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/finance.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Финансы и бухгалтерия</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/hr.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">HR и рекрутинг</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/hobby.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Хобби и творчество</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/wellness.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Красота и здоровье</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/cooking.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Кулинария</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/psychology.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Психология</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/growth.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Саморазвитие и soft skills</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/software.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Прикладные программы</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/pedagogy.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Педагогика</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/languages.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Языки</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
     </nav>
   </div>
   <div class="crs-catalog-menu__divider" aria-hidden="true"></div>
@@ -93,6 +98,80 @@
     <a href="#c-catalog-menu" class="crs-catalog-menu__course">Kubernetes</a>
   </div>
 </div>
+<div class="crs-catalog-menu crs-catalog-menu--with-search">
+  <div class="crs-catalog-menu__search">
+    <button type="button" class="crs-catalog-menu__back" aria-label="Назад"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-large"></use></svg></button>
+    <label class="crs-catalog-menu__search-field"><input class="crs-catalog-menu__search-input" type="search" placeholder="Искать на Хабр Курсах" aria-label="Поиск"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;"><use xlink:href="../ui/assets/icons/sprite.svg#search"></use></svg></label>
+  </div>
+  <div class="crs-catalog-menu__side">
+    <div class="crs-button-group">
+      <button type="button" class="crs-button-group__item" aria-pressed="false">Для взрослых</button>
+      <button type="button" class="crs-button-group__item crs-button-group__item--selected" aria-pressed="true">Для детей</button>
+    </div>
+    <nav class="crs-catalog-menu__list" aria-label="Направления">
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/ege.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Подготовка к ЕГЭ</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/oge.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Подготовка к ОГЭ</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/dvi.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Подготовка к ДВИ</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/vpr.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Подготовиться к ВПР</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row crs-catalog-menu__row--current" aria-current="true"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/trophy.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Подготовка к олимпиадам</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/backpack.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Подготовка к школе</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/growth.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Улучшить оценки</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/home.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Домашнее обучение</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/hobby.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Найти хобби</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/code.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Научиться программировать</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/languages.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Выучить иностранный язык</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/globe.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Расширить кругозор</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+      <a href="#c-catalog-menu" class="crs-catalog-menu__row"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/college.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Поступить в колледж</span><span class="crs-catalog-menu__row-chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;transform:rotate(-90deg);"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></a>
+    </nav>
+  </div>
+  <div class="crs-catalog-menu__divider" aria-hidden="true"></div>
+  <div class="crs-catalog-menu__groups">
+    <div class="crs-catalog-menu__group">
+      <p class="crs-catalog-menu__group-title">По предметам</p>
+      <div class="crs-catalog-menu__group-columns">
+        <div class="crs-catalog-menu__column">
+          <a href="#c-catalog-menu" class="crs-catalog-menu__course">Матемитика</a>
+          <a href="#c-catalog-menu" class="crs-catalog-menu__course">Русский язык</a>
+          <a href="#c-catalog-menu" class="crs-catalog-menu__course">Обществознание</a>
+          <a href="#c-catalog-menu" class="crs-catalog-menu__course">Информатика</a>
+        </div>
+        <div class="crs-catalog-menu__column">
+          <a href="#c-catalog-menu" class="crs-catalog-menu__course">Биология</a>
+          <a href="#c-catalog-menu" class="crs-catalog-menu__course">Физика</a>
+          <a href="#c-catalog-menu" class="crs-catalog-menu__course">История</a>
+        </div>
+        <div class="crs-catalog-menu__column">
+          <a href="#c-catalog-menu" class="crs-catalog-menu__course">Английския язык</a>
+          <a href="#c-catalog-menu" class="crs-catalog-menu__course">Химия</a>
+          <a href="#c-catalog-menu" class="crs-catalog-menu__course">Литература</a>
+        </div>
+      </div>
+    </div>
+    <div class="crs-catalog-menu__group">
+      <p class="crs-catalog-menu__group-title">По возрасту</p>
+      <div class="crs-catalog-menu__group-columns">
+        <div class="crs-catalog-menu__column">
+          <a href="#c-catalog-menu" class="crs-catalog-menu__course">1 класс</a>
+          <a href="#c-catalog-menu" class="crs-catalog-menu__course">2 класс</a>
+          <a href="#c-catalog-menu" class="crs-catalog-menu__course">3 класс</a>
+          <a href="#c-catalog-menu" class="crs-catalog-menu__course">4 класс</a>
+        </div>
+        <div class="crs-catalog-menu__column">
+          <a href="#c-catalog-menu" class="crs-catalog-menu__course">5 класс</a>
+          <a href="#c-catalog-menu" class="crs-catalog-menu__course">6 класс</a>
+          <a href="#c-catalog-menu" class="crs-catalog-menu__course">7 класс</a>
+          <a href="#c-catalog-menu" class="crs-catalog-menu__course">8 класс</a>
+        </div>
+        <div class="crs-catalog-menu__column">
+          <a href="#c-catalog-menu" class="crs-catalog-menu__course">9 класс</a>
+          <a href="#c-catalog-menu" class="crs-catalog-menu__course">10 класс</a>
+          <a href="#c-catalog-menu" class="crs-catalog-menu__course">11 класс</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
 ```
 
 ## Внешний вид
@@ -116,8 +195,8 @@
   допускает корень вида `crs-<id>` ровно для этого случая: снятой разметки,
   из которой можно взять настоящее имя, не существует. Префикс `crs-` нужен,
   чтобы имя пакета нельзя было принять за класс продукта.
-- **Тексты.** Подписи — дословно из узла макета: пятнадцать направлений и начало трёх колонок курсов, по двенадцать строк из 27, 30 и 30. Колонки два и три в макете — наполнитель: «Haskell», «Microsoft Access» и «Middle Frontend-разработка» в них повторяются, а третья почти целиком повторяет вторую со сдвигом на строку. Настоящий список курсов по направлению даёт выдача. Свёрстан кадр 1024 для взрослых; в секции макета «меню каталога» (`14639:226536`) рядом лежат кадры 744 и 320 и те же три для детей (`14657:224732` — 1024), их вёрстка — шаг R4-13. Шапка `header / courses` над панелью — своя запись, здесь не повторяется.
-- **Ассеты.** Иконки направлений — пятнадцать экспортов узла макета в `ui/assets/icons/catalog/`, а не символы общего спрайта: в спрайте продукта (22 символа) иконок направлений нет вовсе. Цвет `#A6A7A9` зашит в экспорт. Разделитель — не картинка, как вектор в макете, а полоса фона 1px того же цвета.
+- **Тексты.** Подписи — дословно из узлов макета. Взрослый каталог: пятнадцать направлений и начало трёх колонок курсов, по двенадцать строк из 27, 30 и 30; колонки два и три в макете — наполнитель («Haskell», «Microsoft Access», «Middle Frontend-разработка» повторяются, третья почти целиком повторяет вторую со сдвигом на строку). Детский каталог (`14657:224732`): тринадцать направлений, текущее — «Подготовка к олимпиадам», справа группы «По предметам» и «По возрасту»; «Матемитика» и «Английския язык» — опечатки макета, перенесены как есть. Полоса поиска и шевроны строк — из кадра 320 (`14657:224294`), видны на ширинах до 744; кадр 744 оставляет одну колонку курсов. Шапка `header / courses` над панелью — своя запись, здесь не повторяется. Обёртка из двух каталогов — оформление витрины.
+- **Ассеты.** Иконки направлений — экспорты узлов макета в `ui/assets/icons/catalog/`: пятнадцать взрослых и девять детских, ещё четыре детские строки берут взрослые иконки (`growth`, `hobby`, `code`, `languages` — те же компоненты макета, контуры совпали). В спрайте продукта (22 символа) иконок направлений нет. Цвет `#A6A7A9` зашит в экспорт. Кнопка «назад», лупа и шевроны строк — символы спрайта `arrow-large`, `search` и `arrow-small`, глифы сверены. Разделитель — полоса фона 1px, а не картинка, как вектор в макете.
 - **Состояния.** Свёрстано одно состояние — открытое (`open`): узел макета и есть раскрытый каталог. `default` и `closed` — свёрнутый каталог, то есть кнопка в шапке; отдельной вёрстки у записи для них нет. Текущее направление («Программирование и IT») нарисовано в макете серым — на витрине оно помечено модификатором `--current`, наведение остальных строк живое. Разбор — [`components/STATE-CAPTURE.md`](../STATE-CAPTURE.md).
 - **Статус терминальный.** Правило манифеста: `sourceScope: figma-only` не доходит до `complete`/`partial`. Пока компонент не найден в продукте, запись остаётся `figma-only`, сколько бы вёрстки к ней ни прибавилось.
 
