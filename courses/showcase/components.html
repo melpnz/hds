@@ -1587,6 +1587,107 @@
 
 
 
+  <section class="doc-category" id="f-geometry">
+    <div class="doc-category__head">
+      <h3>Геометрия</h3>
+      <code>border-radius · border</code>
+      <p>Правила уровня системы, а не отдельной записи: сколько значений принимает радиус во всём продукте и какая рамка у блока. Голоса считаются по корневым узлам 39 записей — вычисленные значения из снимка живого прода, не из разметки.</p>
+    </div>
+
+    <section class="doc-section" id="f-geometry-radius">
+      <div class="doc-section__head">
+        <h4>Радиус</h4>
+        <p>Из 39 корневых узлов ненулевой радиус у 25. Разных значений среди них — 4.</p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>Ступени</h5>
+          <code>border-radius</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+          </span>
+        </div>
+        <table class="doc-table">
+          <thead><tr><th>значение</th><th>записей</th><th>какие</th></tr></thead>
+          <tbody>
+            <tr><td><code>24px</code></td><td>12</td><td><code>rating-badge meta-pill course-card school-card promo-card review-card person-card step-card ad-card rating-table entity-header person-header</code></td></tr>
+            <tr><td><code>9999px</code></td><td>7</td><td><code>social-icon avatar chip badge counter-pill icon-button filter-chip</code></td></tr>
+            <tr><td><code>12px</code></td><td>4</td><td><code>entity-logo button segmented-control header-dropdown</code></td></tr>
+            <tr><td><code>6px</code></td><td>2</td><td><code>project-icon search-form</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+
+    <div class="doc-rule" data-rule="radius-four-steps">
+      <div class="doc-rule__head">
+        <h3>Правило</h3>
+        <span class="doc-rule__votes">25 / 25</span>
+      </div>
+      <p><strong>Радиус в продукте принимает ровно 4 значения.</strong> <code>24px</code> (12), <code>9999px</code> (7), <code>12px</code> (4), <code>6px</code> (2) — и больше никаких.
+      Промежуточных значений нет: блок в продукте либо крупный (24), либо
+      управляющий (12), либо пилюля, либо мелкий значок (6). Это шкала,
+      а не набор случайных чисел.</p>
+      <p class="doc-rule__exception">Исключений в выборке нет: все 25 узлов с ненулевым радиусом попадают
+      в 4 перечисленных значения. Выборка — корневые узлы записей;
+      про вложенные элементы правило ничего не говорит.</p>
+    </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>Сверка со шкалой макета</h5>
+          <code>--fig-size-radius-* · --fig-elements-*-border-radius</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma" aria-label="figma">F</span>
+            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+          </span>
+        </div>
+        <p class="doc-note"><strong>Совпадают (6).</strong>
+          <code>--fig-elements-button-border-radius</code> = 12px, <code>--fig-elements-control-border-radius</code> = 6px, <code>--fig-elements-input-border-radius</code> = 12px, <code>--fig-elements-modal-border-radius</code> = 24px, <code>--fig-size-radius-l</code> = 24px, <code>--fig-size-radius-xxs</code> = 6px — эти ступени
+          макета продукт использует на корнях как есть.</p>
+        <p class="doc-note"><strong>Есть в макете, на корнях не встречены (7).</strong>
+          <code>--fig-elements-button-icon-button-border-radius</code> = 200px, <code>--fig-elements-tab-border-radius</code> = 200px, <code>--fig-elements-tag-chip-border-radius</code> = 8px, <code>--fig-elements-tag-text-border-radius</code> = 200px, <code>--fig-size-radius-full</code> = 200px, <code>--fig-size-radius-m</code> = 16px, <code>--fig-size-radius-xs</code> = 8px. Это не значит,
+          что их нет в продукте вовсе: выборка — только корневые узлы записей.</p>
+        <p class="doc-note"><strong>Есть в продукте, в макете нет (1).</strong>
+          <code>9999px</code> — и это настоящее расхождение,
+          а не пробел выборки. Полную скруглённость макет задаёт числом
+          <code>200px</code>
+          (<code>--fig-size-radius-full</code>), продукт пишет <code>9999px</code>.
+          Оба значения дают одно и то же — пилюлю: любое число больше половины
+          высоты скругляет торцы полностью. Расхождение безвредное, но оно есть,
+          и здесь оно названо, а не сглажено выбором «одного из двух».</p>
+      </div>
+    </section>
+
+    <section class="doc-section" id="f-geometry-border">
+      <div class="doc-section__head">
+        <h4>Рамка</h4>
+        <p>Ненулевая рамка у 15 корневых узлов из 39.</p>
+      </div>
+
+    <div class="doc-rule" data-rule="border-one-hairline">
+      <div class="doc-rule__head">
+        <h3>Правило</h3>
+        <span class="doc-rule__votes">12 / 15</span>
+      </div>
+      <p><strong>Рамка блока — всегда волосяная и всегда одного цвета.</strong> <code>1px solid rgb(233, 233, 234)</code> — рамка карточек, таблицы рейтинга, шапок сущности
+      и персоны, иконочной кнопки, фильтра и дропдауна. Толще одного пикселя
+      рамка не бывает нигде, кроме одного названного случая.</p>
+      <p class="doc-rule__exception">Исключений 3 из 15:
+      <code>2px solid rgb(255, 255, 255)</code> — <code>entity-logo</code>; <code>1px solid rgb(255, 255, 255)</code> — <code>counter-pill</code>; <code>1px solid rgb(44, 46, 52)</code> — <code>button</code>.
+      Первые два — белая рамка-разделитель поверх изображения и поверх соседа
+      в стопке: она не очерчивает блок, а отделяет его от того, на чём лежит.
+      Третий — тёмная кнопка, у которой рамка совпадает с заливкой.</p>
+    </div>
+
+    </section>
+  </section>
+
+
+
+
   <section class="doc-category" id="f-figma">
     <div class="doc-category__head">
       <h3>Токены макета</h3>
@@ -1609,7 +1710,7 @@
             <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
           </span>
         </div>
-        <p class="doc-note">Из 54 цветов макета 33 совпали по значению с переменной <code>ui/tokens.css</code> — под плашкой стоит имя продуктового двойника. У остальных 21 двойника нет: часть — фирменные цвета внешних сервисов (<code>--fig-logo-*</code>), часть — состояния, до которых вёрстка ещё не дошла. Сверка идёт по значению и пересчитывается из самих слоёв при каждой пересборке раздела.</p>
+        <p class="doc-note">Из 64 цветов макета 42 совпали по значению с переменной <code>ui/tokens.css</code> — под плашкой стоит имя продуктового двойника. У остальных 22 двойника нет: часть — фирменные цвета внешних сервисов (<code>--fig-logo-*</code>), часть — состояния, до которых вёрстка ещё не дошла. Сверка идёт по значению и пересчитывается из самих слоёв при каждой пересборке раздела.</p>
         <div class="doc-stage doc-stage--rows">
     <div class="doc-variant">
       <span class="doc-variant__label">Кнопка — цвета макета</span>
@@ -1624,11 +1725,35 @@
         </div>
       </div>
       <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: #f1f1f1"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--fig-elements-button-icon-border-disable</p>
+          <p class="doc-swatch__value">#f1f1f1</p>
+          <span class="doc-mark doc-mark--live">= --color-ui-black-50</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: #d3d3d4"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--fig-elements-button-icon-disable</p>
+          <p class="doc-swatch__value">#d3d3d4</p>
+          <span class="doc-mark doc-mark--live">= --color-ui-black-200</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
         <div class="doc-swatch__chip" style="background: #ffffff"></div>
         <div class="doc-swatch__body">
           <p class="doc-swatch__name">--fig-elements-button-icon-fill</p>
           <p class="doc-swatch__value">#ffffff</p>
           <span class="doc-mark">двойника в ui/tokens.css нет</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: #2c2e34"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--fig-elements-button-icon-icon-hover</p>
+          <p class="doc-swatch__value">#2c2e34</p>
+          <span class="doc-mark doc-mark--live">= --color-ui-black-850</span>
         </div>
       </div>
       <div class="doc-swatch">
@@ -1875,6 +2000,67 @@
           <p class="doc-swatch__name">--fig-elements-dropdown-row-text</p>
           <p class="doc-swatch__value">#2c2e34</p>
           <span class="doc-mark doc-mark--live">= --color-ui-black-850</span>
+        </div>
+      </div>
+    </div>
+    <div class="doc-variant">
+      <span class="doc-variant__label">Пагинация — цвета макета</span>
+    </div>
+    <div class="doc-swatches">
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: #e9e9ea"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--fig-elements-pagination-border</p>
+          <p class="doc-swatch__value">#e9e9ea</p>
+          <span class="doc-mark doc-mark--live">= --color-ui-black-100</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: #94bdfc"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--fig-elements-pagination-border-select</p>
+          <p class="doc-swatch__value">#94bdfc</p>
+          <span class="doc-mark doc-mark--live">= --color-ui-blue-300</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: #ffffff"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--fig-elements-pagination-fill</p>
+          <p class="doc-swatch__value">#ffffff</p>
+          <span class="doc-mark">двойника в ui/tokens.css нет</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: #f1f1f1"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--fig-elements-pagination-fill-hover</p>
+          <p class="doc-swatch__value">#f1f1f1</p>
+          <span class="doc-mark doc-mark--live">= --color-ui-black-50</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: #eff5ff"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--fig-elements-pagination-fill-select</p>
+          <p class="doc-swatch__value">#eff5ff</p>
+          <span class="doc-mark doc-mark--live">= --color-ui-blue-50</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: #2c2e34"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--fig-elements-pagination-text</p>
+          <p class="doc-swatch__value">#2c2e34</p>
+          <span class="doc-mark doc-mark--live">= --color-ui-black-850</span>
+        </div>
+      </div>
+      <div class="doc-swatch">
+        <div class="doc-swatch__chip" style="background: #346ef4"></div>
+        <div class="doc-swatch__body">
+          <p class="doc-swatch__name">--fig-elements-pagination-text-select</p>
+          <p class="doc-swatch__value">#346ef4</p>
+          <span class="doc-mark doc-mark--live">= --color-ui-blue-500</span>
         </div>
       </div>
     </div>
@@ -2220,6 +2406,17 @@
               <tr><td><code>--fig-elements-scroll-nopadding</code></td><td><code>0</code></td></tr>
             </tbody>
           </table>
+          <p class="doc-note"><strong>Пагинация</strong></p>
+          <table class="doc-table">
+            <thead><tr><th>переменная</th><th>значение</th></tr></thead>
+            <tbody>
+              <tr><td><code>--fig-elements-pagination-border-radius</code></td><td><code>200px</code></td></tr>
+              <tr><td><code>--fig-elements-pagination-border-radius-outer</code></td><td><code>24px</code></td></tr>
+              <tr><td><code>--fig-elements-pagination-gap</code></td><td><code>6px</code></td></tr>
+              <tr><td><code>--fig-elements-pagination-padding-outer</code></td><td><code>12px</code></td></tr>
+              <tr><td><code>--fig-elements-pagination-spacing-0</code></td><td><code>0</code></td></tr>
+            </tbody>
+          </table>
           <p class="doc-note"><strong>Шкала отступов</strong></p>
           <table class="doc-table">
             <thead><tr><th>переменная</th><th>значение</th></tr></thead>
@@ -2297,105 +2494,6 @@
           </table>
         <p class="doc-note"><strong>Чего в слое нет.</strong> Композитные переменные Figma — типографические стили и эффекты — одной переменной CSS не разворачиваются: это наборы. Их составляющие выше есть по отдельности, а сборка — дело компонента. Библиотека <code>education-lib</code> не читается вовсе: узлы её страниц компонентов недоступны, есть только <code>componentKey</code>.</p>
       </div>
-    </section>
-  </section>
-
-
-  <section class="doc-category" id="f-geometry">
-    <div class="doc-category__head">
-      <h3>Геометрия</h3>
-      <code>border-radius · border</code>
-      <p>Правила уровня системы, а не отдельной записи: сколько значений принимает радиус во всём продукте и какая рамка у блока. Голоса считаются по корневым узлам 39 записей — вычисленные значения из снимка живого прода, не из разметки.</p>
-    </div>
-
-    <section class="doc-section" id="f-geometry-radius">
-      <div class="doc-section__head">
-        <h4>Радиус</h4>
-        <p>Из 39 корневых узлов ненулевой радиус у 25. Разных значений среди них — 4.</p>
-      </div>
-
-      <div class="doc-specimen">
-        <div class="doc-specimen__head">
-          <h5>Ступени</h5>
-          <code>border-radius</code>
-          <span class="doc-specimen__spacer"></span>
-          <span class="doc-src-group">
-            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
-          </span>
-        </div>
-        <table class="doc-table">
-          <thead><tr><th>значение</th><th>записей</th><th>какие</th></tr></thead>
-          <tbody>
-            <tr><td><code>24px</code></td><td>12</td><td><code>rating-badge meta-pill course-card school-card promo-card review-card person-card step-card ad-card rating-table entity-header person-header</code></td></tr>
-            <tr><td><code>9999px</code></td><td>7</td><td><code>social-icon avatar chip badge counter-pill icon-button filter-chip</code></td></tr>
-            <tr><td><code>12px</code></td><td>4</td><td><code>entity-logo button segmented-control header-dropdown</code></td></tr>
-            <tr><td><code>6px</code></td><td>2</td><td><code>project-icon search-form</code></td></tr>
-          </tbody>
-        </table>
-      </div>
-
-    <div class="doc-rule" data-rule="radius-four-steps">
-      <div class="doc-rule__head">
-        <h3>Правило</h3>
-        <span class="doc-rule__votes">25 / 25</span>
-      </div>
-      <p><strong>Радиус в продукте принимает ровно 4 значения.</strong> <code>24px</code> (12), <code>9999px</code> (7), <code>12px</code> (4), <code>6px</code> (2) — и больше никаких.
-      Промежуточных значений нет: блок в продукте либо крупный (24), либо
-      управляющий (12), либо пилюля, либо мелкий значок (6). Это шкала,
-      а не набор случайных чисел.</p>
-      <p class="doc-rule__exception">Исключений в выборке нет: все 25 узлов с ненулевым радиусом попадают
-      в 4 перечисленных значения. Выборка — корневые узлы записей;
-      про вложенные элементы правило ничего не говорит.</p>
-    </div>
-
-      <div class="doc-specimen">
-        <div class="doc-specimen__head">
-          <h5>Сверка со шкалой макета</h5>
-          <code>--fig-size-radius-* · --fig-elements-*-border-radius</code>
-          <span class="doc-specimen__spacer"></span>
-          <span class="doc-src-group">
-            <span class="doc-src doc-src--figma" title="figma" aria-label="figma">F</span>
-            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
-          </span>
-        </div>
-        <p class="doc-note"><strong>Совпадают (6).</strong>
-          <code>--fig-elements-button-border-radius</code> = 12px, <code>--fig-elements-control-border-radius</code> = 6px, <code>--fig-elements-input-border-radius</code> = 12px, <code>--fig-elements-modal-border-radius</code> = 24px, <code>--fig-size-radius-l</code> = 24px, <code>--fig-size-radius-xxs</code> = 6px — эти ступени
-          макета продукт использует на корнях как есть.</p>
-        <p class="doc-note"><strong>Есть в макете, на корнях не встречены (7).</strong>
-          <code>--fig-elements-button-icon-button-border-radius</code> = 200px, <code>--fig-elements-tab-border-radius</code> = 200px, <code>--fig-elements-tag-chip-border-radius</code> = 8px, <code>--fig-elements-tag-text-border-radius</code> = 200px, <code>--fig-size-radius-full</code> = 200px, <code>--fig-size-radius-m</code> = 16px, <code>--fig-size-radius-xs</code> = 8px. Это не значит,
-          что их нет в продукте вовсе: выборка — только корневые узлы записей.</p>
-        <p class="doc-note"><strong>Есть в продукте, в макете нет (1).</strong>
-          <code>9999px</code> — и это настоящее расхождение,
-          а не пробел выборки. Полную скруглённость макет задаёт числом
-          <code>200px</code>
-          (<code>--fig-size-radius-full</code>), продукт пишет <code>9999px</code>.
-          Оба значения дают одно и то же — пилюлю: любое число больше половины
-          высоты скругляет торцы полностью. Расхождение безвредное, но оно есть,
-          и здесь оно названо, а не сглажено выбором «одного из двух».</p>
-      </div>
-    </section>
-
-    <section class="doc-section" id="f-geometry-border">
-      <div class="doc-section__head">
-        <h4>Рамка</h4>
-        <p>Ненулевая рамка у 15 корневых узлов из 39.</p>
-      </div>
-
-    <div class="doc-rule" data-rule="border-one-hairline">
-      <div class="doc-rule__head">
-        <h3>Правило</h3>
-        <span class="doc-rule__votes">12 / 15</span>
-      </div>
-      <p><strong>Рамка блока — всегда волосяная и всегда одного цвета.</strong> <code>1px solid rgb(233, 233, 234)</code> — рамка карточек, таблицы рейтинга, шапок сущности
-      и персоны, иконочной кнопки, фильтра и дропдауна. Толще одного пикселя
-      рамка не бывает нигде, кроме одного названного случая.</p>
-      <p class="doc-rule__exception">Исключений 3 из 15:
-      <code>2px solid rgb(255, 255, 255)</code> — <code>entity-logo</code>; <code>1px solid rgb(255, 255, 255)</code> — <code>counter-pill</code>; <code>1px solid rgb(44, 46, 52)</code> — <code>button</code>.
-      Первые два — белая рамка-разделитель поверх изображения и поверх соседа
-      в стопке: она не очерчивает блок, а отделяет его от того, на чём лежит.
-      Третий — тёмная кнопка, у которой рамка совпадает с заливкой.</p>
-    </div>
-
     </section>
   </section>
 
@@ -4830,6 +4928,58 @@
         </dl>
         <p class="doc-note"><strong>Тексты.</strong> Подпись «Школа» — собственный текст инстанса макета. Три образца: иконочный невыбранный (узел …15089:302651), текстовый невыбранный и текстовый выбранный (узел …15089:302655). Текстовый невыбранный собран из переменных невыбранного состояния того же компонента — <code>elements/tab/fill</code>, <code>border</code>, <code>text</code>, — отдельного инстанса с этим сочетанием на прочитанных узлах не встретилось. Обёртка ряда — оформление витрины, а не часть компонента.</p>
         <p class="doc-note"><strong>Ассеты.</strong> Шеврон и значок сортировки — символы <code>arrow-small</code> и <code>sort</code> общего спрайта продукта, а не экспорт макета. Контуры сверены: у макета это <code>icon/arrow-down</code> и значок с двумя стрелками, те же глифы. Цвет берут через <code>currentColor</code>, поэтому у выбранного варианта шеврон синий вместе с текстом, как в макете. Полный разбор — <a href="../components/navigation/tab.md">спецификация</a>.</p>
+      </div>
+    </section>
+
+    <section class="doc-section" id="c-pagination">
+      <div class="doc-section__head">
+        <h4>Pagination</h4>
+        <p>figma-only. В проде листания нет: вместо него кнопка «Показать еще 20». §9.6 исследования описывает пагинацию как факт продакшена — не подтверждено</p>
+      </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>default</h5>
+          <code>.crs-pagination</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
+          </span>
+          <span class="doc-tag">figma-only</span>
+        </div>
+        <p class="doc-note"><strong>Эта разметка написана по макету, а не снята с продукта.</strong>
+          Единственный такой случай на витрине: компонента в продакшене нет вовсе.
+          Узел — <code>02_Education-NEW</code> <code>9909:29791</code>
+          «pagination». Корень <code>crs-pagination</code> введён пакетом:
+          настоящего имени взять неоткуда.</p>
+        <div class="doc-stage">
+          <div class="doc-variant">
+            <span class="doc-variant__label">по узлу макета <code>9909:29791</code></span>
+            <div class="doc-variant__row">
+              <nav class="crs-pagination" aria-label="Страницы">
+                <button type="button" class="crs-pagination__arrow crs-pagination__arrow--prev" disabled aria-label="Предыдущая"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></button>
+                <div class="crs-pagination__pages">
+                  <a href="#c-pagination" class="crs-pagination__page crs-pagination__page--current" aria-current="page">1</a>
+                  <a href="#c-pagination" class="crs-pagination__page">2</a>
+                  <a href="#c-pagination" class="crs-pagination__page">3</a>
+                  <span class="crs-pagination__page crs-pagination__page--gap" aria-hidden="true">…</span>
+                </div>
+                <button type="button" class="crs-pagination__arrow crs-pagination__arrow--next" aria-label="Следующая"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></button>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <dl class="doc-spec">
+          <div><dt>контейнер</dt><dd>белый, рамка <code>#e9e9ea</code>, радиус 24, падинг 12 — <code>elements/pagination/*_outer</code></dd></div>
+          <div><dt>страница</dt><dd>36 × не меньше 36, пилюля, текст 16 / 22</dd></div>
+          <div><dt>текущая</dt><dd>заливка <code>#eff5ff</code>, рамка <code>#94bdfc</code>, текст <code>#346ef4</code></dd></div>
+          <div><dt>наведение</dt><dd>заливка <code>#f1f1f1</code> — живое, наведите на страницу</dd></div>
+          <div><dt>отключённая стрелка</dt><dd><code>#d3d3d4</code> — <code>elements/button/icon_disable</code></dd></div>
+          <div><dt>промежуток между страницами</dt><dd>6</dd></div>
+          <div><dt>вхождений в проде</dt><dd>нет — компонента в продукте не существует</dd></div>
+        </dl>
+        <p class="doc-note"><strong>Тексты.</strong> Номера страниц и многоточие — содержимое инстанса макета. В макете страница «2» нарисована в состоянии наведения (серая заливка); на витрине наведение живое, поэтому в покое она белая, как «3». Левая стрелка отключена: это первая страница, листать назад некуда, — ровно так она бледнее правой на скриншоте узла.</p>
+        <p class="doc-note"><strong>Ассеты.</strong> Шевроны — символ <code>arrow-small</code> общего спрайта продукта, повёрнутый на ±90°, а не экспорт макета: у макета это тот же <code>icon/arrow-down</code>, что у хлебных крошек, контуры сверены. Тень иконочной кнопки из макета (эффект <code>Dropdown</code>) не воспроизводится: это композитный эффект, в слой токенов он не разворачивается, и на прозрачной стрелке внутри контейнера его не видно. Полный разбор — <a href="../components/navigation/pagination.md">спецификация</a>.</p>
       </div>
     </section>
 

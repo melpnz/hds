@@ -13,7 +13,7 @@
    выбрать одно из двух молча. Слитый :root такой разбор делает невозможным:
    после слияния уже не видно, чьё значение победило.
 
-   Поэтому здесь 144 переменных с префиксом --fig-, и ни одна
+   Поэтому здесь 159 переменных с префиксом --fig-, и ни одна
    из них не участвует в вёрстке компонентов. Компоненты собраны из
    продакшена и ссылаются на --color-ui-* из ui/tokens.css. Слой Figma
    существует, чтобы контракт дизайна был виден рядом и сверяем.
@@ -23,7 +23,9 @@
    CourseCard 9785:45731, SiteFooter 10049:51115, FilterModal 14613:211399,
    EmptyState 12135:122618 (добавлен, когда по нему верстался figma-only
    компонент: у него нашлись три переменные, которых прежние узлы не давали —
-   font/size/display-l, font/line-height/display-l, elements/button/secondary/fill_hover).
+   font/size/display-l, font/line-height/display-l, elements/button/secondary/fill_hover),
+   Pagination 9909:29791 (добавлен так же — принёс elements/pagination/* и
+   цвета отключённой иконочной кнопки).
    get_variable_defs отдаёт переменные, использованные поддеревом узла,
    а не весь файл; узлы взяты разных семейств ради охвата. Выгрузка —
    .pipeline/R2-bulk/figma-vars.json.
@@ -39,9 +41,9 @@
    Единицы. Figma хранит числа без единиц. Размеры выписаны в px,
    безразмерными оставлены насыщенность шрифта, трекинг Text и нули.
 
-   Сверка с продакшеном: из 54 цветов макета
-   33 совпали по значению с продуктовым токеном ui/tokens.css,
-   21 — своего продуктового двойника не имеют. Таблица
+   Сверка с продакшеном: из 64 цветов макета
+   42 совпали по значению с продуктовым токеном ui/tokens.css,
+   22 — своего продуктового двойника не имеют. Таблица
    совпадений — в конце файла комментарием.
    ========================================================================= */
 
@@ -81,8 +83,11 @@
   /* Элементы: кнопка, поле, вкладка, чип, тег, контрол, модалка, дропдаун */
   --fig-elements-button-border-radius: 12px;
   --fig-elements-button-icon-border: #e9e9ea;
+  --fig-elements-button-icon-border-disable: #f1f1f1;
   --fig-elements-button-icon-button-border-radius: 200px;
+  --fig-elements-button-icon-disable: #d3d3d4;
   --fig-elements-button-icon-fill: #ffffff;
+  --fig-elements-button-icon-icon-hover: #2c2e34;
   --fig-elements-button-icon-padding: 6px;
   --fig-elements-button-l-gap: 6px;
   --fig-elements-button-l-padding-left-right: 20px;
@@ -128,6 +133,18 @@
   --fig-elements-modal-fill: #ffffff;
   --fig-elements-modal-spacing-0: 0;
   --fig-elements-modal-text: #2c2e34;
+  --fig-elements-pagination-border: #e9e9ea;
+  --fig-elements-pagination-border-radius: 200px;
+  --fig-elements-pagination-border-radius-outer: 24px;
+  --fig-elements-pagination-border-select: #94bdfc;
+  --fig-elements-pagination-fill: #ffffff;
+  --fig-elements-pagination-fill-hover: #f1f1f1;
+  --fig-elements-pagination-fill-select: #eff5ff;
+  --fig-elements-pagination-gap: 6px;
+  --fig-elements-pagination-padding-outer: 12px;
+  --fig-elements-pagination-spacing-0: 0;
+  --fig-elements-pagination-text: #2c2e34;
+  --fig-elements-pagination-text-select: #346ef4;
   --fig-elements-scroll-nopadding: 0;
   --fig-elements-tab-border: #e9e9ea;
   --fig-elements-tab-border-hover: #dededf;
@@ -213,7 +230,7 @@
 /* -------------------------------------------------------------------------
    Сверка цветов макета с продуктовыми токенами
    -------------------------------------------------------------------------
-   Совпало по значению (33) — то же число в макете и в проде:
+   Совпало по значению (42) — то же число в макете и в проде:
 
      --fig-blue-400-solid                       #6bacfd    = --color-ui-blue-400
      --fig-blue-500-solid                       #346ef4    = --color-ui-blue-500
@@ -227,6 +244,9 @@
      --fig-color-style-primary-primary-medium   #6bacfd    = --color-ui-blue-400
      --fig-color-style-warning-warning          #ff960c    = --color-ui-yellow-500
      --fig-elements-button-icon-border          #e9e9ea    = --color-ui-black-100
+     --fig-elements-button-icon-border-disable  #f1f1f1    = --color-ui-black-50
+     --fig-elements-button-icon-disable         #d3d3d4    = --color-ui-black-200
+     --fig-elements-button-icon-icon-hover      #2c2e34    = --color-ui-black-850
      --fig-elements-button-main-fill            #2c2e34    = --color-ui-black-850
      --fig-elements-button-secondary-fill       #f1f1f1    = --color-ui-black-50
      --fig-elements-button-secondary-fill-hover #e9e9ea    = --color-ui-black-100
@@ -238,6 +258,12 @@
      --fig-elements-input-text                  #2c2e34    = --color-ui-black-850
      --fig-elements-modal-border                #e9e9ea    = --color-ui-black-100
      --fig-elements-modal-text                  #2c2e34    = --color-ui-black-850
+     --fig-elements-pagination-border           #e9e9ea    = --color-ui-black-100
+     --fig-elements-pagination-border-select    #94bdfc    = --color-ui-blue-300
+     --fig-elements-pagination-fill-hover       #f1f1f1    = --color-ui-black-50
+     --fig-elements-pagination-fill-select      #eff5ff    = --color-ui-blue-50
+     --fig-elements-pagination-text             #2c2e34    = --color-ui-black-850
+     --fig-elements-pagination-text-select      #346ef4    = --color-ui-blue-500
      --fig-elements-tab-border                  #e9e9ea    = --color-ui-black-100
      --fig-elements-tab-border-hover            #dededf    = --color-ui-black-150
      --fig-elements-tab-filter-border-select    #94bdfc    = --color-ui-blue-300
@@ -249,7 +275,7 @@
      --fig-elements-tag-text-text               #2c2e34    = --color-ui-black-850
      --fig-logo-career                          #6274bc    = --color-career
 
-   Продуктового двойника нет (21) — цвет объявлен в макете,
+   Продуктового двойника нет (22) — цвет объявлен в макете,
    а среди 51 переменной ui/tokens.css значения нет ни у одной. Это не
    ошибка ни той, ни другой стороны: часть из них — фирменные цвета внешних
    сервисов (logo/*), часть — состояния, до которых вёрстка ещё не дошла.
@@ -266,6 +292,7 @@
      --fig-elements-dropdown-fill               #ffffff
      --fig-elements-input-fill                  #ffffff
      --fig-elements-modal-fill                  #ffffff
+     --fig-elements-pagination-fill             #ffffff
      --fig-elements-tab-fill                    #ffffff
      --fig-elements-tag-color-text              #ffffff
      --fig-elements-tag-icon-fill               #ffffff

@@ -5,9 +5,9 @@
 [`SPEC-TEMPLATE.md`](SPEC-TEMPLATE.md); порядок работ — [`../ROADMAP.md`](../ROADMAP.md).
 
 Реестр собран из [`.pipeline/inventory.json`](../.pipeline/inventory.json) на шаге
-R0-05. Записей — 55. Написано **52** спецификации: одна доведённая до `complete` —
+R0-05. Записей — 55. Написано **53** спецификации: одна доведённая до `complete` —
 `SpriteIcon` (R2-01, первый шаг вёрстки волны R2), 48 в статусе `partial`
-и три в терминальном `figma-only` (`Breadcrumbs`, `EmptyState`, `Tab`) — их разметка
+и четыре в терминальном `figma-only` (`Breadcrumbs`, `EmptyState`, `Tab`, `Pagination`) — их разметка
 единственная в пакете написана по узлу макета, а не снята с продукта, потому
 что в продукте этих компонентов нет вовсе. Всё собрано bulk-проходом R2-bulk.
 
