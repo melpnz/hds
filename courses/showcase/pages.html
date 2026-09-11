@@ -29,7 +29,7 @@
 <nav class="doc-nav" aria-label="Разделы витрины страниц">
   <p class="doc-nav__brand">Хабр Курсы</p>
   <p class="doc-nav__title">Страницы</p>
-  <p class="doc-nav__state">шаг R6 · 4 из 5</p>
+  <p class="doc-nav__state">шаг R6 · 5 из 5</p>
 
   <ul class="doc-nav__list">
     <li><a class="doc-nav__link doc-nav__link--top" href="#doc-about">О странице витрины</a></li>
@@ -40,6 +40,8 @@
         <li><a class="doc-nav__link" href="#p-education-centers-listing">Витрина организаций · листинг</a></li>
         <li><a class="doc-nav__link" href="#p-rating">Рейтинг школ · таблица</a></li>
         <li><a class="doc-nav__link" href="#p-education-center">Страница школы · сущность</a></li>
+        <li><a class="doc-nav__link" href="#p-authors">Эксперты · промо-раздел</a></li>
+        <li><a class="doc-nav__link" href="#p-author">Профиль автора · профиль</a></li>
       </ul>
     </li>
   </ul>
@@ -89,7 +91,7 @@
   <div class="doc-section__head">
     <span class="doc-section__num">2</span>
     <h2>Страницы</h2>
-    <p>По одной на семейство; у листинга — два представителя. Осталась одна — шаг R6-05.</p>
+    <p>По одной на семейство; у листинга — два представителя. Все пять шагов собраны; шаг R6-05 — две страницы, раздел экспертов и профиль.</p>
   </div>
 
   <section class="doc-section" id="p-courses-listing">
@@ -389,6 +391,123 @@
       шести на планшете и сверх четырёх на телефоне. Заголовок <code>h1</code> стоит в самом
       низу колонки мелким серым текстом; название в шапке школы — не заголовок.
     </p>
+  </section>
+
+  <section class="doc-section" id="p-authors">
+    <div class="doc-section__head">
+      <h4>Эксперты · промо-раздел</h4>
+      <p>
+        <code>/courses/authors</code> — hero с двумя CTA, белая панель, наезжающая на hero, шаги работы экспертов и сетка карточек людей. Статья — <a href="../pages/authors.md">pages/authors.md</a>, снимки продакшена —
+        <code>evidence/source/production/pages/authors/</code>.
+      </p>
+    </div>
+
+    <div class="doc-frames">
+      <div class="doc-frame">
+        <span class="doc-frame__label">375 · phone</span>
+        <div class="doc-frame__box" style="--doc-frame-w:375;--doc-frame-s:1">
+          <iframe src="pages/authors.html" title="Эксперты на 375" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="doc-frame">
+        <span class="doc-frame__label">768 · tablet-only</span>
+        <div class="doc-frame__box" style="--doc-frame-w:768;--doc-frame-s:0.5">
+          <iframe src="pages/authors.html" title="Эксперты на 768" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="doc-frame">
+        <span class="doc-frame__label">1024 · desktop</span>
+        <div class="doc-frame__box" style="--doc-frame-w:1024;--doc-frame-s:0.375">
+          <iframe src="pages/authors.html" title="Эксперты на 1024" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="doc-frame">
+        <span class="doc-frame__label">1440 · desktop</span>
+        <div class="doc-frame__box" style="--doc-frame-w:1440;--doc-frame-s:0.2667">
+          <iframe src="pages/authors.html" title="Эксперты на 1440" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="doc-frame doc-frame--live">
+      <span class="doc-frame__label">во всю ширину окна — <a href="pages/authors.html">открыть отдельно</a></span>
+      <div class="doc-frame__box">
+        <iframe src="pages/authors.html" title="Эксперты во всю ширину" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div class="doc-scroll">
+    <table class="doc-table">
+      <thead><tr><th>область</th><th>1440</th><th>1024</th><th>768</th><th>375</th></tr></thead>
+      <tbody>
+        <tr><td>hero <code>PageHero</code></td><td class="doc-table__wrap">388</td><td class="doc-table__wrap">388</td><td class="doc-table__wrap">408</td><td class="doc-table__wrap">484</td></tr>
+        <tr><td>панель под hero</td><td class="doc-table__wrap">1124×469, шире колонки на 24</td><td class="doc-table__wrap">1024×489</td><td class="doc-table__wrap">768×696</td><td class="doc-table__wrap">375×1029</td></tr>
+        <tr><td>сетка экспертов <code>CardGrid</code> × <code>PersonCard</code></td><td class="doc-table__wrap">4 × 260</td><td class="doc-table__wrap">4 × 235</td><td class="doc-table__wrap">3 × 232</td><td class="doc-table__wrap">1 × 327</td></tr>
+        <tr><td>промежуток между блоками</td><td class="doc-table__wrap">40</td><td class="doc-table__wrap">40</td><td class="doc-table__wrap">40</td><td class="doc-table__wrap">40</td></tr>
+        <tr><td>высота страницы</td><td class="doc-table__wrap">3 880</td><td class="doc-table__wrap">3 920</td><td class="doc-table__wrap">4 965</td><td class="doc-table__wrap">11 483</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="doc-note">Высота сходится со скриншотами продакшена в пределах 0,5%. На витрине 8 карточек экспертов из 25. Сверка с продуктом — 0 расхождений на пяти ширинах.</p>
+    <p class="doc-note"><strong>Чего не хватает.</strong> Спрайт <code>experts.svg</code>, иллюстрация значка «Эксперты в образовании» и заглушка логотипа организации не сняты инвентаризацией (ROADMAP X-102): значки вводного блока — синие круги без символа, картинки — заглушкой.</p>
+  </section>
+
+  <section class="doc-section" id="p-author">
+    <div class="doc-section__head">
+      <h4>Профиль автора · профиль</h4>
+      <p>
+        <code>/courses/authors/23-stepan-voevodin</code> — шапка профиля, биография, списки экспертизы и регалий, опыт работы и образование в две колонки. Статья — <a href="../pages/author.md">pages/author.md</a>, снимки продакшена —
+        <code>evidence/source/production/pages/author/</code>.
+      </p>
+    </div>
+
+    <div class="doc-frames">
+      <div class="doc-frame">
+        <span class="doc-frame__label">375 · phone</span>
+        <div class="doc-frame__box" style="--doc-frame-w:375;--doc-frame-s:1">
+          <iframe src="pages/author.html" title="Профиль автора на 375" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="doc-frame">
+        <span class="doc-frame__label">768 · tablet-only</span>
+        <div class="doc-frame__box" style="--doc-frame-w:768;--doc-frame-s:0.5">
+          <iframe src="pages/author.html" title="Профиль автора на 768" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="doc-frame">
+        <span class="doc-frame__label">1024 · desktop</span>
+        <div class="doc-frame__box" style="--doc-frame-w:1024;--doc-frame-s:0.375">
+          <iframe src="pages/author.html" title="Профиль автора на 1024" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="doc-frame">
+        <span class="doc-frame__label">1440 · desktop</span>
+        <div class="doc-frame__box" style="--doc-frame-w:1440;--doc-frame-s:0.2667">
+          <iframe src="pages/author.html" title="Профиль автора на 1440" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="doc-frame doc-frame--live">
+      <span class="doc-frame__label">во всю ширину окна — <a href="pages/author.html">открыть отдельно</a></span>
+      <div class="doc-frame__box">
+        <iframe src="pages/author.html" title="Профиль автора во всю ширину" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div class="doc-scroll">
+    <table class="doc-table">
+      <thead><tr><th>область</th><th>1440</th><th>1024</th><th>768</th><th>375</th></tr></thead>
+      <tbody>
+        <tr><td>шапка профиля <code>PersonHeader</code></td><td class="doc-table__wrap">1076×150, в рамке</td><td class="doc-table__wrap">976×150</td><td class="doc-table__wrap">720×150</td><td class="doc-table__wrap">327×215, без рамки</td></tr>
+        <tr><td>«Опыт работы» и «Образование»</td><td class="doc-table__wrap">2 колонки × 530</td><td class="doc-table__wrap">2 × 480</td><td class="doc-table__wrap">2 × 352</td><td class="doc-table__wrap">1 колонка, через 40</td></tr>
+        <tr><td>отступ сверху · промежуток</td><td class="doc-table__wrap">24 · 40</td><td class="doc-table__wrap">24 · 40</td><td class="doc-table__wrap">24 · 40</td><td class="doc-table__wrap">24 · 40</td></tr>
+        <tr><td>высота страницы</td><td class="doc-table__wrap">2 238</td><td class="doc-table__wrap">2 258</td><td class="doc-table__wrap">2 564</td><td class="doc-table__wrap">4 125</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="doc-note">Высота на 1024 и 768 совпадает со скриншотами точно, на остальных ширинах — в пределах 2,3%. Без сокращений. Сверка с продуктом — 0 расхождений на пяти ширинах.</p>
+    <p class="doc-note"><strong>Заголовков в разметке нет.</strong> Ни <code>h1</code>, ни <code>h2</code>: имя — <code>div</code>, заголовки разделов — <code>div.text-h2</code>, которые выглядят как <code>h2</code> остальных страниц.</p>
   </section>
 </section>
 

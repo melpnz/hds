@@ -72,4 +72,24 @@ export const PAGES = {
     ],
     hydrated: [],
   },
+  // R6-05: раздел экспертов и профиль автора. Каруселей нет, hydration-diff —
+  // 0 на обеих страницах.
+  authors: {
+    source: "authors",
+    title: "Эксперты",
+    url: "https://career.habr.com/courses/authors",
+    trim: [
+      { sel: "section:not(.flex):not(.-mx-6) > div.grid.grid-cols-4", keep: 8, tail: 0, what: "карточек экспертов из 25" },
+    ],
+    stubs: [],
+    hydrated: [],
+  },
+  author: {
+    source: "author",
+    title: "Профиль автора",
+    url: "https://career.habr.com/courses/authors/23-stepan-voevodin",
+    trim: [],
+    stubs: [],
+    hydrated: [],
+  },
 };

@@ -99,7 +99,10 @@ const res = await page.evaluate((cfg) => {
       if (/^data-/.test(a) || /^on/.test(a) || a === "srcset" || a === "sizes" || a === "loading" || a === "action") el.removeAttribute(a);
     }
     if (el.tagName === "IMG") { el.setAttribute("src", local(el.getAttribute("src") || "")); report.images++; }
-    if (el.tagName === "use") for (const a of ["xlink:href", "href"]) if (el.getAttribute(a)) el.setAttribute(a, local(el.getAttribute(a)));
+    // Символ из спрайта, которого нет в пакете (experts.svg на /courses/authors),
+    // остаётся пустым: картинка-заглушка внутри <use> выглядела бы сломанным
+    // значком, а пустой символ честно показывает «знак не снят» (ROADMAP X-102).
+    if (el.tagName === "use") for (const a of ["xlink:href", "href"]) if (el.getAttribute(a)) { const v = local(el.getAttribute(a)); el.setAttribute(a, /content-placeholder/.test(v) ? "#" : v); }
     if (el.tagName === "A" && el.hasAttribute("href")) { el.setAttribute("href", "#"); el.removeAttribute("target"); report.links++; }
     const st = el.getAttribute("style");
     if (st && /url\(/.test(st)) el.setAttribute("style", st.replace(/url\((['"]?)[^)'"]*\1\)/g, "url(../../ui/assets/images/content-placeholder.svg)"));

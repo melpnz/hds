@@ -15,7 +15,7 @@
    видимости [data-v-…] — в разметке пакета его нет (съёмка его срезает),
    и с атрибутом правило не срабатывало бы нигде.
 
-   Классов: 417. Условий @media: 5.
+   Классов: 432. Условий @media: 5.
 
    Чего здесь нет:
    - библиотечный слой Swiper (.swiper*, .banner-swiper) — он объявлен чанком
@@ -37,6 +37,9 @@
 
 /* inset-0 — 2 комп. */
 .inset-0{top:0;right:0;bottom:0;left:0}
+
+/* inset-y-0 — 1 комп. */
+.inset-y-0{bottom:0;top:0}
 
 /* -bottom-0.5 — 2 комп. */
 .-bottom-0\.5{bottom:-.125rem}
@@ -119,6 +122,9 @@
 /* m-0 — 10 комп. */
 .m-0{margin:0}
 
+/* -mx-6 — 1 комп. */
+.-mx-6{margin-left:-1.5rem;margin-right:-1.5rem}
+
 /* mx-2 — 1 комп. */
 .mx-2{margin-left:.5rem;margin-right:.5rem}
 
@@ -149,6 +155,9 @@
 /* -mt-5 — 1 комп. */
 .-mt-5{margin-top:-1.25rem}
 
+/* -mt-6 — 1 комп. */
+.-mt-6{margin-top:-1.5rem}
+
 /* mb-1 — 2 комп. */
 .mb-1{margin-bottom:.25rem}
 
@@ -160,6 +169,9 @@
 
 /* mb-4 — 3 комп. */
 .mb-4{margin-bottom:1rem}
+
+/* mb-6 — 1 комп. */
+.mb-6{margin-bottom:1.5rem}
 
 /* ml-3 — 1 комп. */
 .ml-3{margin-left:.75rem}
@@ -175,6 +187,9 @@
 
 /* mt-2 — 4 комп. */
 .mt-2{margin-top:.5rem}
+
+/* mt-3 — 1 комп. */
+.mt-3{margin-top:.75rem}
 
 /* mt-4 — 3 комп. */
 .mt-4{margin-top:1rem}
@@ -302,6 +317,9 @@
 /* max-h-[94px] — 1 комп. */
 .max-h-\[94px\]{max-height:94px}
 
+/* max-h-full — 1 комп. */
+.max-h-full{max-height:100%}
+
 /* min-h-0 — 1 комп. */
 .min-h-0{min-height:0}
 
@@ -316,6 +334,9 @@
 
 /* w-10 — 1 комп. */
 .w-10{width:2.5rem}
+
+/* w-12 — 1 комп. */
+.w-12{width:3rem}
 
 /* w-20 — 1 комп. */
 .w-20{width:5rem}
@@ -364,6 +385,9 @@
 
 /* w-[var(--dropdown-w)] — 2 комп. */
 .w-\[var\(--dropdown-w\)\]{width:var(--dropdown-w)}
+
+/* w-auto — 1 комп. */
+.w-auto{width:auto}
 
 /* w-full — 19 комп. */
 .w-full{width:100%}
@@ -469,6 +493,9 @@
 /* grid-cols-[28px_32px_1fr] — 2 комп. */
 .grid-cols-\[28px_32px_1fr\]{grid-template-columns:28px 32px 1fr}
 
+/* grid-cols-[3fr_1fr] — 1 комп. */
+.grid-cols-\[3fr_1fr\]{grid-template-columns:3fr 1fr}
+
 /* grid-cols-[40px_1fr] — 1 комп. */
 .grid-cols-\[40px_1fr\]{grid-template-columns:40px 1fr}
 
@@ -517,6 +544,9 @@
 /* gap-1.5 — 7 комп. */
 .gap-1\.5{gap:.375rem}
 
+/* gap-10 — 1 комп. */
+.gap-10{gap:2.5rem}
+
 /* gap-2 — 15 комп. */
 .gap-2{gap:.5rem}
 
@@ -550,6 +580,10 @@
 /* gap-x-4 — 2 комп. */
 .gap-x-4{column-gap:1rem}
 .gap-x-4{-moz-column-gap:1rem;column-gap:1rem}
+
+/* gap-x-6 — 1 комп. */
+.gap-x-6{column-gap:1.5rem}
+.gap-x-6{-moz-column-gap:1.5rem;column-gap:1.5rem}
 
 /* gap-y-0.5 — 1 комп. */
 .gap-y-0\.5{row-gap:.125rem}
@@ -709,6 +743,9 @@
 
 /* bg-ui-black-transparent-120 — 2 комп. */
 .bg-ui-black-transparent-120{background-color:var(--color-ui-black-transparent-120)}
+
+/* bg-ui-blue-400 — 1 комп. */
+.bg-ui-blue-400{background-color:var(--color-ui-blue-400)}
 
 /* bg-ui-blue-50 — 2 комп. */
 .bg-ui-blue-50{background-color:var(--color-ui-blue-50)}
@@ -1229,6 +1266,8 @@
   .phone\:flex-wrap{flex-wrap:wrap}
   /* phone:items-start — 1 комп. */
   .phone\:items-start{align-items:flex-start}
+  /* phone:gap-10 — 1 комп. */
+  .phone\:gap-10{gap:2.5rem}
   /* phone:gap-2 — 1 комп. */
   .phone\:gap-2{gap:.5rem}
   /* phone:gap-3 — 1 комп. */
@@ -1295,8 +1334,12 @@
   .tablet\:flex{display:flex}
   /* tablet:hidden — 2 комп. */
   .tablet\:hidden{display:none}
+  /* tablet:max-h-[168px] — 1 комп. */
+  .tablet\:max-h-\[168px\]{max-height:168px}
   /* tablet:grid-cols-1 — 2 комп. */
   .tablet\:grid-cols-1{grid-template-columns:repeat(1,minmax(0,1fr))}
+  /* tablet:flex-col — 1 комп. */
+  .tablet\:flex-col{flex-direction:column}
   /* adfox-banner — 1 комп. */
   .adfox-banner{grid-area:3/1/auto/4}
 }
