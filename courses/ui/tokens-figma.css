@@ -13,7 +13,7 @@
    выбрать одно из двух молча. Слитый :root такой разбор делает невозможным:
    после слияния уже не видно, чьё значение победило.
 
-   Поэтому здесь 169 переменных с префиксом --fig-, и ни одна
+   Поэтому здесь 192 переменных с префиксом --fig-, и ни одна
    из них не участвует в вёрстке компонентов. Компоненты собраны из
    продакшена и ссылаются на --color-ui-* из ui/tokens.css. Слой Figma
    существует, чтобы контракт дизайна был виден рядом и сверяем.
@@ -41,9 +41,9 @@
    Единицы. Figma хранит числа без единиц. Размеры выписаны в px,
    безразмерными оставлены насыщенность шрифта, трекинг Text и нули.
 
-   Сверка с продакшеном: из 68 цветов макета
-   45 совпали по значению с продуктовым токеном ui/tokens.css,
-   23 — своего продуктового двойника не имеют. Таблица
+   Сверка с продакшеном: из 79 цветов макета
+   54 совпали по значению с продуктовым токеном ui/tokens.css,
+   25 — своего продуктового двойника не имеют. Таблица
    совпадений — в конце файла комментарием.
    ========================================================================= */
 
@@ -51,20 +51,24 @@
 
   /* Синяя шкала */
   --fig-blue-400-solid: #6bacfd;
+  --fig-blue-50-solid: #eff5ff;
   --fig-blue-500-solid: #346ef4;
 
   /* Отдельные цвета */
   --fig-color-icon-gray: #929ca5;
 
   /* Цветовые стили библиотеки */
+  --fig-color-style-effect-overlay: #0000004d;
   --fig-color-style-effect-overlay-light: #0000001f;
   --fig-color-style-font-light: #ffffff;
   --fig-color-style-font-primary: #2c2e34;
   --fig-color-style-font-secondary: #909194;
+  --fig-color-style-graph-accent-2: #ff7e47;
   --fig-color-style-neutral-neutral: #d3d3d4;
   --fig-color-style-neutral-neutral-heavy: #a6a7a9;
   --fig-color-style-neutral-neutral-hover: #e9e9ea;
   --fig-color-style-neutral-neutral-light: #f1f1f1;
+  --fig-color-style-primary-primary: #346ef4;
   --fig-color-style-primary-primary-light: #eff5ff;
   --fig-color-style-primary-primary-medium: #6bacfd;
   --fig-color-style-warning-warning: #ff960c;
@@ -95,6 +99,7 @@
   --fig-elements-button-icon-button-border-radius: 200px;
   --fig-elements-button-icon-disable: #d3d3d4;
   --fig-elements-button-icon-fill: #ffffff;
+  --fig-elements-button-icon-icon: #a6a7a9;
   --fig-elements-button-icon-icon-hover: #2c2e34;
   --fig-elements-button-icon-padding: 6px;
   --fig-elements-button-l-gap: 6px;
@@ -118,15 +123,19 @@
   --fig-elements-dropdown-fill: #ffffff;
   --fig-elements-dropdown-padding-left-right: 0;
   --fig-elements-dropdown-padding-top-bottom: 8px;
+  --fig-elements-dropdown-radius: 4px;
   --fig-elements-dropdown-row-fill-hover: #f1f1f1;
   --fig-elements-dropdown-row-gap: 12px;
   --fig-elements-dropdown-row-gap-small: 8px;
   --fig-elements-dropdown-row-margin-text-avatar: 2px;
   --fig-elements-dropdown-row-padding-left: 16px;
+  --fig-elements-dropdown-row-padding-left-for-modal: 24px;
   --fig-elements-dropdown-row-padding-right: 24px;
   --fig-elements-dropdown-row-padding-top-bottom: 8px;
   --fig-elements-dropdown-row-text: #2c2e34;
   --fig-elements-dropdown-spacing-0: 0;
+  --fig-elements-informators-tost-fill-blue: #346ef4;
+  --fig-elements-informators-tost-fill-red: #e84444;
   --fig-elements-input-border: #e9e9ea;
   --fig-elements-input-border-radius: 12px;
   --fig-elements-input-fill: #ffffff;
@@ -140,6 +149,12 @@
   --fig-elements-modal-border: #e9e9ea;
   --fig-elements-modal-border-radius: 24px;
   --fig-elements-modal-fill: #ffffff;
+  --fig-elements-modal-gap-body: 16px;
+  --fig-elements-modal-gap-footer: 8px;
+  --fig-elements-modal-gap-header: 12px;
+  --fig-elements-modal-padding-footer-body: 24px;
+  --fig-elements-modal-padding-footer-mobile-top-bottom: 16px;
+  --fig-elements-modal-padding-header-left-right-top: 24px;
   --fig-elements-modal-spacing-0: 0;
   --fig-elements-modal-text: #2c2e34;
   --fig-elements-pagination-border: #e9e9ea;
@@ -179,6 +194,12 @@
   --fig-elements-tag-text-padding-left-right: 4px;
   --fig-elements-tag-text-padding-top-bottom: 4px;
   --fig-elements-tag-text-text: #2c2e34;
+  --fig-elements-tooltip-border-radius: 12px;
+  --fig-elements-tooltip-fill: #2c2e34;
+  --fig-elements-tooltip-gap: 4px;
+  --fig-elements-tooltip-padding-left-right: 12px;
+  --fig-elements-tooltip-padding-top-botton: 8px;
+  --fig-elements-tooltip-text: #ffffff;
 
   /* Шрифт: размеры, интерлиньяж, насыщенность, трекинг */
   --fig-font-font-family-headers: Inter;
@@ -219,6 +240,9 @@
   --fig-logo-vk: #0077ff;
   --fig-logo-white: #ffffff;
 
+  /* red */
+  --fig-red-50-solid: #fce9e9;
+
   /* Шкала отступов и радиусов */
   --fig-size-radius-full: 200px;
   --fig-size-radius-l: 24px;
@@ -237,21 +261,27 @@
   --fig-size-spacing-x5: 20px;
   --fig-size-spacing-x6: 24px;
   --fig-size-spacing-x8: 32px;
+
+  /* yellow */
+  --fig-yellow-50-solid: #fff2e2;
 }
 
 /* -------------------------------------------------------------------------
    Сверка цветов макета с продуктовыми токенами
    -------------------------------------------------------------------------
-   Совпало по значению (45) — то же число в макете и в проде:
+   Совпало по значению (54) — то же число в макете и в проде:
 
      --fig-blue-400-solid                       #6bacfd    = --color-ui-blue-400
+     --fig-blue-50-solid                        #eff5ff    = --color-ui-blue-50
      --fig-blue-500-solid                       #346ef4    = --color-ui-blue-500
      --fig-color-style-font-primary             #2c2e34    = --color-ui-black-850
      --fig-color-style-font-secondary           #909194    = --color-ui-black-500
+     --fig-color-style-graph-accent-2           #ff7e47    = --color-ui-orange-500
      --fig-color-style-neutral-neutral          #d3d3d4    = --color-ui-black-200
      --fig-color-style-neutral-neutral-heavy    #a6a7a9    = --color-ui-black-400
      --fig-color-style-neutral-neutral-hover    #e9e9ea    = --color-ui-black-100
      --fig-color-style-neutral-neutral-light    #f1f1f1    = --color-ui-black-50
+     --fig-color-style-primary-primary          #346ef4    = --color-ui-blue-500
      --fig-color-style-primary-primary-light    #eff5ff    = --color-ui-blue-50
      --fig-color-style-primary-primary-medium   #6bacfd    = --color-ui-blue-400
      --fig-color-style-warning-warning          #ff960c    = --color-ui-yellow-500
@@ -260,6 +290,7 @@
      --fig-elements-button-icon-border          #e9e9ea    = --color-ui-black-100
      --fig-elements-button-icon-border-disable  #f1f1f1    = --color-ui-black-50
      --fig-elements-button-icon-disable         #d3d3d4    = --color-ui-black-200
+     --fig-elements-button-icon-icon            #a6a7a9    = --color-ui-black-400
      --fig-elements-button-icon-icon-hover      #2c2e34    = --color-ui-black-850
      --fig-elements-button-main-fill            #2c2e34    = --color-ui-black-850
      --fig-elements-button-secondary-fill       #f1f1f1    = --color-ui-black-50
@@ -267,6 +298,8 @@
      --fig-elements-control-unchecked-fill      #dededf    = --color-ui-black-150
      --fig-elements-dropdown-row-fill-hover     #f1f1f1    = --color-ui-black-50
      --fig-elements-dropdown-row-text           #2c2e34    = --color-ui-black-850
+     --fig-elements-informators-tost-fill-blue  #346ef4    = --color-ui-blue-500
+     --fig-elements-informators-tost-fill-red   #e84444    = --color-ui-red-500
      --fig-elements-input-border                #e9e9ea    = --color-ui-black-100
      --fig-elements-input-icon                  #a6a7a9    = --color-ui-black-400
      --fig-elements-input-placeholder           #909194    = --color-ui-black-500
@@ -288,15 +321,19 @@
      --fig-elements-tag-color-fill              #ff7e47    = --color-ui-orange-500
      --fig-elements-tag-text-fill               #f1f1f1    = --color-ui-black-50
      --fig-elements-tag-text-text               #2c2e34    = --color-ui-black-850
+     --fig-elements-tooltip-fill                #2c2e34    = --color-ui-black-850
      --fig-logo-career                          #6274bc    = --color-career
+     --fig-red-50-solid                         #fce9e9    = --color-ui-red-50
+     --fig-yellow-50-solid                      #fff2e2    = --color-ui-yellow-50
 
-   Продуктового двойника нет (23) — цвет объявлен в макете,
+   Продуктового двойника нет (25) — цвет объявлен в макете,
    а среди 51 переменной ui/tokens.css значения нет ни у одной. Это не
    ошибка ни той, ни другой стороны: часть из них — фирменные цвета внешних
    сервисов (logo/*), часть — состояния, до которых вёрстка ещё не дошла.
    Разбирается по мере появления соответствующих компонентов.
 
      --fig-color-icon-gray                      #929ca5
+     --fig-color-style-effect-overlay           #0000004d
      --fig-color-style-effect-overlay-light     #0000001f
      --fig-color-style-font-light               #ffffff
      --fig-color-style-white-light              #ffffff
@@ -312,6 +349,7 @@
      --fig-elements-tab-fill                    #ffffff
      --fig-elements-tag-color-text              #ffffff
      --fig-elements-tag-icon-fill               #ffffff
+     --fig-elements-tooltip-text                #ffffff
      --fig-logo-black                           #000000
      --fig-logo-career-bot                      #d1a8fa
      --fig-logo-facebook                        #1877f2

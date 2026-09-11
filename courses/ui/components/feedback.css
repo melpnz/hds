@@ -90,3 +90,36 @@
 .crs-empty-state__chip:hover {
   background: var(--fig-elements-button-secondary-fill-hover);
 }
+
+/* -------------------------------------------------------------------------
+   Loader (R2-bulk, figma-only) — loader, 12162:84499, нулевая выдача
+   -------------------------------------------------------------------------
+   Блок 976×112: спиннер 48 по центру, падинг 32 по бокам. BRIEF §4 заранее
+   назвал загрузку figma-only: гостем она не воспроизводится.
+
+   Спиннер — символ loader общего спрайта, а не экспорт: контуры сверены,
+   экспорт макета — тот же глиф в поле 48 (координаты ровно вдвое больше,
+   M9.399 13.42 против M4.7 6.71). Цвет — color style/primary/primary
+   (#346ef4) через currentColor.
+
+   Кадр макета статичный, и вращения здесь нет. В продукте есть и символ
+   loader, и утилита .animate-spin (animation: spin 1s linear infinite),
+   но вместе они в снятой разметке не встречаются ни разу: символ loader
+   не использован ни на одной из десяти страниц. Связать их — догадка,
+   решение — шаг R4-15.
+   ------------------------------------------------------------------------- */
+.crs-loader {
+  align-items: center;
+  box-sizing: border-box;
+  color: var(--fig-color-style-primary-primary);
+  display: flex;
+  justify-content: center;
+  min-height: 112px;
+  padding: 0 var(--fig-size-spacing-x8);
+  width: 100%;
+}
+.crs-loader__icon {
+  display: block;
+  height: 48px;
+  width: 48px;
+}

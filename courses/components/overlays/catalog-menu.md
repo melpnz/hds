@@ -27,9 +27,9 @@
 ```html
 <div class="crs-catalog-menu">
   <div class="crs-catalog-menu__side">
-    <div class="crs-catalog-menu__switch">
-      <button type="button" class="crs-catalog-menu__switch-item crs-catalog-menu__switch-item--selected" aria-pressed="true">Для взрослых</button>
-      <button type="button" class="crs-catalog-menu__switch-item" aria-pressed="false">Для детей</button>
+    <div class="crs-button-group">
+      <button type="button" class="crs-button-group__item crs-button-group__item--selected" aria-pressed="true">Для взрослых</button>
+      <button type="button" class="crs-button-group__item" aria-pressed="false">Для детей</button>
     </div>
     <nav class="crs-catalog-menu__list" aria-label="Направления">
       <a href="#c-catalog-menu" class="crs-catalog-menu__row crs-catalog-menu__row--current" aria-current="true"><img class="crs-catalog-menu__row-icon" src="../ui/assets/icons/catalog/code.svg" alt="" width="24" height="24"><span class="crs-catalog-menu__row-label">Программирование и IT</span></a>
@@ -100,7 +100,7 @@
 | что | значение |
 |---|---|
 | панель | сетка: колонка 270, разделитель 1, три колонки курсов поровну; промежуток 24, падинг 24 / 40 / 24 / 24 |
-| переключатель | высота 48, фон `#f1f1f1`, падинг 4, радиус 16; выбранный сегмент белый, радиус 12, тень `Dropdown` — `elements/button group/onpage/*` |
+| переключатель | запись `ButtonGroup` (`button group / onpage`) — её спецификация |
 | строка направления | иконка 24, промежуток 12, падинг 8 / 8 / 8 / 16, радиус 8, высота 40; текущая и при наведении — `#f1f1f1` — `elements/dropdown/row/*` |
 | разделитель | 1px `#e9e9ea` — `--fig-color-style-neutral-neutral-hover` |
 | колонка курсов | промежуток 12, сверху 12, текст 14 / 20 `#2c2e34`; при наведении подчёркнут — живое |

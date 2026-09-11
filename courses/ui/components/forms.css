@@ -16,3 +16,102 @@
 
    Пока пусто: компоненты верстаются на шагах R3, SearchForm — на R4-06.
    ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   FeedbackForm (R2-bulk, figma-only) — «обратная связь», 13496:153645
+   (инстанс на детской витрине I10123:48314;13496:153645)
+   -------------------------------------------------------------------------
+   Решением владельца 11 сентября 2026 заведена вопреки прежней границе
+   BRIEF §4 «форм ввода не будет»: та граница описывала продукт (в снятой
+   разметке нет ни одного <form>), а не макет. Рамка 1px #e9e9ea, радиус 24,
+   падинг 24; сетка в три колонки с промежутком 16: текст слева в одной,
+   форма справа в двух. Рамка в макете привязана к elements/pagination/
+   border, а не к общему neutral hover — значение то же, #e9e9ea.
+
+   Переключатель способа связи — ButtonGroup; кнопка — продуктовый Button
+   main во всю ширину. Поле с иконкой — по макету (input_level2): высота
+   40, плейсхолдер 16/22. Иконки telegram и mail — экспорты макета
+   (ui/assets/icons/contact-*.svg): в спрайте продукта их нет.
+   ------------------------------------------------------------------------- */
+.crs-feedback-form {
+  border: 1px solid var(--fig-elements-pagination-border);
+  border-radius: var(--fig-size-radius-l);
+  box-sizing: border-box;
+  color: var(--fig-color-style-font-primary);
+  display: grid;
+  gap: var(--fig-size-spacing-x4);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: var(--fig-size-spacing-x6);
+}
+.crs-feedback-form__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x6);
+}
+.crs-feedback-form__title {
+  font-size: var(--fig-font-size-display-l);
+  font-weight: var(--fig-font-weight-semibold);
+  letter-spacing: var(--fig-font-letter-spacing-headers);
+  line-height: var(--fig-font-line-height-display-l);
+  margin: 0;
+}
+.crs-feedback-form__text {
+  font-size: var(--fig-font-size-body-m);
+  line-height: var(--fig-font-line-height-body-l);
+  margin: 0;
+}
+.crs-feedback-form__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x6);
+  grid-column: 2 / span 2;
+}
+.crs-feedback-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x3);
+}
+.crs-feedback-form__field {
+  align-items: center;
+  background: var(--fig-elements-input-fill);
+  border: 1px solid var(--fig-elements-input-border);
+  border-radius: var(--fig-elements-input-border-radius);
+  box-sizing: border-box;
+  display: flex;
+  gap: var(--fig-elements-input-gap);
+  height: 40px;
+  padding: var(--fig-elements-input-padding-top-bottom) var(--fig-elements-input-padding-left-right);
+}
+.crs-feedback-form__field img { display: block; flex: none; height: 24px; width: 24px; }
+.crs-feedback-form__input {
+  background: transparent;
+  border: 0;
+  color: var(--fig-elements-input-text);
+  flex: 1 0 0;
+  font: inherit;
+  font-size: var(--fig-font-size-body-l);
+  line-height: var(--fig-font-line-height-display-s);
+  min-width: 0;
+  outline: none;
+  padding: 0;
+}
+.crs-feedback-form__input::placeholder { color: var(--fig-elements-input-placeholder); }
+.crs-feedback-form__submit {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x2);
+}
+.crs-feedback-form__consent {
+  color: var(--fig-color-style-font-secondary);
+  font-size: var(--fig-font-size-body-s);
+  line-height: var(--fig-font-line-height-body-m);
+  margin: 0;
+}
+.crs-feedback-form__consent a { color: var(--fig-blue-500-solid); text-decoration: none; }
+/* Кадр 320 той же секции макета здесь не читался; складывание в одну
+   колонку — на брейкпоинте макета 744, чтобы сетка не ломалась в узкой
+   коробке. Раскладка узкого кадра — шаг R4-16. */
+@media (max-width: 743px) {
+  .crs-feedback-form { grid-template-columns: minmax(0, 1fr); }
+  .crs-feedback-form__form { grid-column: auto; }
+}

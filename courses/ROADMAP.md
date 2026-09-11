@@ -17,17 +17,17 @@
 | | |
 |---|---|
 | Режим | новый пакет, инвентаризация закрыта |
-| Элементов в реестре | **55** — R2 12 · R3 15 · R4 14 · R5 14 |
+| Элементов в реестре | **67** — R2 13 · R3 18 · R4 20 · R5 16. 55 — инвентаризация 7 сентября; 12 figma-only добавлены 11 сентября 2026 решением владельца (раздел «Решения пользователя, 2026-09-11») |
 | Страниц снято | **10** на восьми ширинах (320 · 375 · 479 · 480 · 744 · 768 · 1024 · 1440), гостем; 6 отмечены ключевыми примерами. Полный набор (dom · computed · tokens · meta · png) — на шести из восьми: 320 · 375 · 479 · 480 · 744 · 768; для 1024 и 1440 только PNG и общий computed, снятый на 1440 (X-09) |
 | Семейств страниц | 5: листинг, таблица, сущность, промо-раздел, профиль |
-| Шагов в роадмапе | **78** |
-| Принято шагов | 10 из 78 — R0-00…R0-06 (волна R0 была закрыта 8 сентября 2026 и **переоткрыта 9 сентября** добавленными R0-07 и R0-08, 7/9; R0-07 после двух приёмок стоит `blocked`, снимается гейтом R0-08 — причина и решение владельца под таблицей R0) + R1-01, R1-02 (**волна R1 закрыта**, 9 сентября 2026) + R2-01 (первый шаг волны R2, 1/12, 9 сентября 2026) |
+| Шагов в роадмапе | **90** |
+| Принято шагов | 10 из 90 — R0-00…R0-06 (волна R0 была закрыта 8 сентября 2026 и **переоткрыта 9 сентября** добавленными R0-07 и R0-08, 7/9; R0-07 после двух приёмок стоит `blocked`, снимается гейтом R0-08 — причина и решение владельца под таблицей R0) + R1-01, R1-02 (**волна R1 закрыта**, 9 сентября 2026) + R2-01 (первый шаг волны R2, 1/12, 9 сентября 2026) |
 | Порядок работ | пересобран под видимый результат 9 сентября 2026 — раздел «Решения пользователя, 2026-09-09». Ближайшее: R0-07 «Витрина оснований» — **стоит `blocked` после второй приёмки, ждёт решения владельца**, затем срез «подвал» R2-02 → R2-03 → R3-03 → R4-04 вперёд Core Gate |
 | Слой токенов | `ui/tokens.css` — **51** переменная продукта, принято 8 сентября 2026 (R0-02). `--swiper-theme-color` за слоем: её объявляет чанк Swiper, а не продукт, и она есть на 7/10 страниц. Живость размечена: 26 без пометки · 15 `[NO MARKUP]` · 9 `[UNREFERENCED]` · 1 `[RUNTIME]`. Разбор — `docs/guide/tokens.md` |
 | Слой типографики и шрифта | `ui/foundations.css` — девять живых утилит шкалы, база документа, фокус; токены шкалы (`--font-size-h3`, `--line-height-h2/h3`) мертвы, задокументировано. `ui/fonts.css` — 14 `@font-face` переменного Inter локальными файлами (711 КБ), закрывает X-03. Принято 8 сентября 2026 (R0-03). Разбор и границы всех шести брейкпоинт-префиксов сборки — `docs/guide/typography.md` |
 | Слой раскладки и утилит | `ui/layout.css` — оболочка `app-container`/`app-content` (X-61 закрыт), контейнер `mx-auto max-w-[1124px] px-6` (1124 + 24, зона содержимого 1076px), сетка секций `grid gap-12` (победитель `pt-10 pb-10`, 5/7). `ui/utilities.css` — десять утилит переноса/обрезки/выравнивания текста из GAP-9 typography.md (X-66 закрыт). Принято 8 сентября 2026 (R0-04). Разбор — `docs/guide/layout.md` |
-| Компонентов в manifest | **55** записей — 1 `complete` (`sprite-icon`, R2-01), **36 `partial`** (bulk-проход R2-bulk, 10 сентября 2026), 18 `planned`; разбивка по источникам — в [`components/INDEX.md`](components/INDEX.md). Спецификаций **37**. `SpriteIcon` (`data-display/sprite-icon.md`, принята 9 сентября 2026) — единственная доведённая: живой пример на витрине, локальный `ui/assets/icons/sprite.svg`. Остальные 36 собраны bulk-проходом из уже снятых доказательств: разметка со страниц, числа из переписи, правила из корпуса прод-CSS парсером, живой пример на витрине, таблица состояний. Прозаические разделы в них не написаны и названы GAP в каждой — что именно значит `partial`, разобрано в [`components/INDEX.md`](components/INDEX.md). Числа `occurrences` и `seenOn` измерены `tools/measure-selectors.mjs` по десяти `dom.html` и сверяются гейтом. `requiredStates` заполнены у всех 55 записей по словарю и матрице `components/STATES.md` (R1-01, 9 сентября 2026), `requiredStatesMatrix.status: "done"`. Снятость всех 147 пар «запись × состояние» разобрана в `components/STATE-CAPTURE.md` (R1-02, 9 сентября 2026): 109 сняты, 2 дописаны нормативом в `ui/state-contract.css`, 36 — явный GAP с адресом; `stateCaptureMatrix.status: "done"` |
-| Проверки | `validate-components` · `validate-classes` · `validate-counts` · `measure-selectors` · `validate-showcase-icons` (новый, R2-01) заведены и запускаются. `validate-counts` сторожит **28** чисел, включая число токенов в семи местах (X-19, R0-02) и число записей реестра с разбивкой по `sourceScope` (R0-05); `measure-selectors` измеряет селекторы браузером и пишет `components/selector-census.json`, `validate-components` сверяет реестр с этим измерением; `validate-classes` переписан на настоящий CSS-парсер (`postcss` + `postcss-selector-parser`, R0-06) — пять исторических обходов инварианта METHOD §6.2 (инлайн-`<style>`, составной селектор, белый список at-rules, CSS-экранирование, нестабильный кеш) закрыты, плюс на R2-01 дефолтный прогон стал читать ```html-фрагменты `components/**/*.md` (X-75, закрыта), всё держится регрессией из **36** проб (`tools/validate-classes.selftest.mjs`); X-79 закрыта. `validate-showcase-icons` (X-06) проверяет локальность ссылок на `ui/assets/` в витрине под архитектуру общего спрайта Курсов, держится `validate-showcase-icons.selftest.mjs` (6/6) |
+| Компонентов в manifest | **67** записей — 1 `complete` (`sprite-icon`, R2-01), **48 `partial`** и **18 `figma-only`** (bulk-проход R2-bulk, 10–11 сентября 2026), `planned` не осталось; разбивка по источникам — в [`components/INDEX.md`](components/INDEX.md). Спецификация и живой пример на витрине есть у каждой из 67 записей. `SpriteIcon` (`data-display/sprite-icon.md`, принята 9 сентября 2026) — единственная доведённая по полному циклу. Записи `partial` собраны bulk-проходом из уже снятых доказательств: разметка со страниц, числа из переписи, правила из корпуса прод-CSS парсером; прозаические разделы в них не написаны и названы GAP в каждой. Записи `figma-only` свёрстаны по узлам макета — в продукте этих компонентов нет. Числа `occurrences` и `seenOn` измерены `tools/measure-selectors.mjs` по десяти `dom.html` и сверяются гейтом. `requiredStates` заполнены у всех 67 записей по матрице `components/STATES.md`; снятость всех 176 пар «запись × состояние» разобрана в `components/STATE-CAPTURE.md`: 121 сняты, 2 дописаны нормативом в `ui/state-contract.css`, 53 — явный GAP с адресом (147 пар R1-02 и 29 пар двенадцати записей 11 сентября, §7) |
+| Проверки | `validate-components` · `validate-classes` · `validate-counts` · `measure-selectors` · `validate-showcase-icons` (новый, R2-01) заведены и запускаются. `validate-counts` сторожит **25** чисел (26 правил; два правила о `CHANGELOG.md` сняты 11 сентября 2026 — запись журнала историческая и не обязана следовать за текущим реестром), включая число токенов в семи местах (X-19, R0-02) и число записей реестра с разбивкой по `sourceScope` (R0-05); `measure-selectors` измеряет селекторы браузером и пишет `components/selector-census.json`, `validate-components` сверяет реестр с этим измерением; `validate-classes` переписан на настоящий CSS-парсер (`postcss` + `postcss-selector-parser`, R0-06) — пять исторических обходов инварианта METHOD §6.2 (инлайн-`<style>`, составной селектор, белый список at-rules, CSS-экранирование, нестабильный кеш) закрыты, плюс на R2-01 дефолтный прогон стал читать ```html-фрагменты `components/**/*.md` (X-75, закрыта), всё держится регрессией из **36** проб (`tools/validate-classes.selftest.mjs`); X-79 закрыта. `validate-showcase-icons` (X-06) проверяет локальность ссылок на `ui/assets/` в витрине под архитектуру общего спрайта Курсов, держится `validate-showcase-icons.selftest.mjs` (6/6) |
 
 ---
 
@@ -73,10 +73,10 @@ node tools/validate-components.mjs --strict
 |---|---|---|---|
 | **R0** | каркас пакета: структура, токены, foundations, manifest, проверки, витрина | 9 | in-progress · 7/9, R0-07 blocked |
 | **R1** | словарь состояний и матрица обязательных | 2 | done |
-| **R2** | примитивы: иконки, аватары, чипы, бейджи, текстовый блок | 12 | in-progress · 1/12 |
-| **R3** | базовые компоненты: кнопки, поля, фильтры, навигация — **Core Gate** | 15 | planned |
-| **R4** | каркасные модули: шапка, футер, hero, секции, сетки, фильтры — **R4 Gate** | 14 | planned |
-| **R5** | entity-модули: карточки сущностей продукта | 14 | planned |
+| **R2** | примитивы: иконки, аватары, чипы, бейджи, текстовый блок | 13 | in-progress · 1/13 |
+| **R3** | базовые компоненты: кнопки, поля, фильтры, навигация — **Core Gate** | 18 | planned |
+| **R4** | каркасные модули: шапка, футер, hero, секции, сетки, фильтры — **R4 Gate** | 20 | planned |
+| **R5** | entity-модули: карточки сущностей продукта | 16 | planned |
 | **R6** | ключевые страницы: по одной на семейство | 5 | planned |
 | **R7** | принципы: правила композиции и Decision Guides | 3 | planned |
 | **R8** | машинный слой и контракт для модели-потребителя | 4 | planned |
@@ -550,6 +550,7 @@ CSS компонентов. Пакетом как источником гото�
 | R2-10 | `CounterPill` | `/education_centers`, `/education_centers/otzyvy`, 28 вхождений | — | planned |
 | R2-11 | `AvatarStack` | `/education_centers` ×60, `/otzyvy` ×24 | R2-04, R2-10 | planned |
 | R2-12 | `Prose` (`.style-ugc`) | 5 страниц | R0-03 | planned |
+| R2-13 | `SpecializationTag` — **figma-only** | [Figma `14089:190182`](https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=14089-190182) · страница профессии | — | planned |
 
 **Результат R2-01** (принят 9 сентября 2026, первый шаг волны R2). Первая
 настоящая спецификация пакета: `components/data-display/sprite-icon.md`,
@@ -624,6 +625,9 @@ Tailwind-утилит в `ui/` (**X-84**) — почти наверняка по
 | R3-13 | `Tab` — **figma-only** | Figma `tab` + `tab-panel/2-lvl`, 594 инстанса | — | planned |
 | R3-14 | `Pagination` — **figma-only** | Figma `pagination` | R3-02 | planned |
 | R3-15 | `Breadcrumbs` | `/education_centers/35-yandeks-praktikum` · Figma `9902:39188` | R3-03 | planned |
+| R3-16 | `ButtonGroup` — **figma-only**, `button group / onpage` | [Figma `14644:221762`](https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=14644-221762) · каталог, форма обратной связи | — | planned |
+| R3-17 | `DemandChart` — **figma-only** | [Figma `14469:196385`](https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=14469-196385) · страница профессии | — | planned |
+| R3-18 | `Tooltip` — **figma-only** | [Figma `11025:93606`](https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=11025-93606) · триггер `v-popper--has-tooltip` в проде есть, плашка не снята | — | planned |
 
 **Core Gate.** Все базовые компоненты `complete` или явно помечены
 `figma-only` / `storybook-only`. Каждый элемент, снятый только из макета,
@@ -652,6 +656,12 @@ METHOD §3, либо GAP. Strict-валидатор и браузерные пр
 | R4-12 | `FilterModal` — решить, `BaseFilterModal` или `New` | Storybook (закрыта) · [Figma `14613:211399`](https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=14613-211399) | R3-01, R3-06, R3-10 | planned |
 | R4-13 | `CatalogMenu` — **figma-only** | [Figma `14644:221758`](https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=14644-221758) | R3-03 | planned |
 | R4-14 | `EmptyState` — **figma-only** | [Figma `12135:122610`](https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=12135-122610) · `no_content/*` | R3-01 | planned |
+| R4-15 | `Loader` — **figma-only** | [Figma `12162:84499`](https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=12162-84499) · нулевая выдача | R2-01 | planned |
+| R4-16 | `FeedbackForm` — **figma-only** | Figma `I10123:48314;13496:153645` · детская витрина | R3-16, R3-01, R3-09 | planned |
+| R4-17 | `SortSheet` — **figma-only** | [Figma `9356:50311`](https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=9356-50311) · быстрые фильтры, 320 | — | planned |
+| R4-18 | `PriceSheet` — **figma-only** | [Figma `9356:52508`](https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=9356-52508) · быстрые фильтры, 320 | R3-01 | planned |
+| R4-19 | `FaqItem` — **figma-only** | [Figma `14394:193667`](https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=14394-193667) · страница профессии | R2-01 | planned |
+| R4-20 | `LearningStep` — **figma-only** | [Figma `14475:194581`](https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=14475-194581) · страница профессии | R2-06, R2-01 | planned |
 
 **R4 Gate.** Оболочка воспроизводится целиком: шапка, футер, контейнер, секция,
 сетка — на четырёх ширинах и без зависимостей от витрины. Зафиксировано
@@ -678,6 +688,8 @@ METHOD §3, либо GAP. Strict-валидатор и браузерные пр
 | R5-12 | `InfoTable` | `/education_centers/35-yandeks-praktikum` | R0-03 | planned |
 | R5-13 | `AdCard` | 4 страницы, 52 вхождения | R3-02 | planned |
 | R5-14 | `AdSlot` | 4 страницы | R5-13, R4-09 | planned |
+| R5-15 | `ProfessionCard` — **figma-only** | [Figma `14089:190237`](https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=14089-190237) · список профессий, 96 инстансов | R2-13 | planned |
+| R5-16 | `VacancyCard` — **figma-only** | [Figma `14394:193314`](https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=14394-193314) · страница профессии | R2-05, R2-13, R2-06, R3-01 | planned |
 
 **Exit criteria R5.** Каждая карточка собирается только из закрытых примитивов
 R2 и компонентов R3, без собственных значений цвета и радиуса. У каждой описано
@@ -811,6 +823,34 @@ hero-градиент (`7/10`).
 **Что не меняется.** Цикл «вёрстка → независимое ревью → правки → приёмка»
 и все гейты — прежние. Срез сокращает путь до видимого результата, а не
 требования к доказанности: догадка вместо факта остаётся провалом шага.
+
+## Решения пользователя, 2026-09-11
+
+**Реестр расширен компонентами макета, которых нет в продукте.** Все 55 записей
+инвентаризации вышли на витрину; по вопросу «куда дальше» владелец выбрал
+искать новое в макете `02_Education-NEW`. Перепись инстансов страницы
+(153 разных имени) показала, что большая часть макетных компонентов уже
+покрыта реестром (карточка промокода — `PromoCard`, SEO-блоки — `Section`,
+`NumberedCourseItem`, `RatingTable`, `InfoTable`), а новых — двенадцать.
+
+Три группы из четырёх противоречили BRIEF §4, и владелец взял все четыре:
+
+1. **Загрузка** — `Loader` (R4-15). BRIEF её и так обещал как figma-only.
+2. **Страница профессии** — `SpecializationTag` (R2-13), `DemandChart`
+   (R3-17), `FaqItem` (R4-19), `LearningStep` (R4-20), `ProfessionCard`
+   (R5-15), `VacancyCard` (R5-16). BRIEF §4 исключал её: «макеты есть,
+   в продакшене раздела нет».
+3. **Форма обратной связи** — `FeedbackForm` (R4-16) и её переключатель
+   `ButtonGroup` (R3-16). BRIEF §4 исключал формы ввода.
+4. **Оверлеи быстрых фильтров** — `SortSheet` (R4-17), `PriceSheet`
+   (R4-18), `Tooltip` (R3-18). BRIEF §4 исключал открытые оверлеи.
+
+**Что это меняет.** Все двенадцать — `sourceScope: figma-only` с
+терминальным статусом: пакет по-прежнему описывает текущий прод, а эти записи
+— контракт макета рядом с ним, помеченный значком F. Границы BRIEF §4
+переписаны: исключение теперь касается правил уровня страницы, а не наличия
+компонента в реестре. Модули, снятые только из Figma, как и прежде не
+участвуют в правилах уровня страницы (R4 Gate).
 
 ## R0-00 — досъёмка на канонических ширинах
 

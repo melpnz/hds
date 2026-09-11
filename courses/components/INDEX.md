@@ -5,9 +5,9 @@
 [`SPEC-TEMPLATE.md`](SPEC-TEMPLATE.md); порядок работ — [`../ROADMAP.md`](../ROADMAP.md).
 
 Реестр собран из [`.pipeline/inventory.json`](../.pipeline/inventory.json) на шаге
-R0-05. Записей — 55. Написано **55** спецификаций, по одной на каждую: одна доведённая до `complete` —
+R0-05 и дополнен 11 сентября 2026. Записей — 67. Написано **67** спецификаций, по одной на каждую: одна доведённая до `complete` —
 `SpriteIcon` (R2-01, первый шаг вёрстки волны R2), 48 в статусе `partial`
-и шесть в терминальном `figma-only` (`Breadcrumbs`, `EmptyState`, `Tab`, `Pagination`, `FilterModal`, `CatalogMenu`) — их разметка
+и 18 в терминальном `figma-only` (`Breadcrumbs`, `EmptyState`, `Tab`, `Pagination`, `FilterModal`, `CatalogMenu` и двенадцать записей, заведённых 11 сентября: страница профессии, форма обратной связи, оверлеи быстрых фильтров, загрузка — `ROADMAP.md`, «Решения пользователя, 2026-09-11») — их разметка
 единственная в пакете написана по узлу макета, а не снята с продукта, потому
 что в продукте этих компонентов нет вовсе. Всё собрано bulk-проходом R2-bulk.
 
@@ -57,7 +57,7 @@ METHOD §6.5 требует существующего CSS-корня, а у т�
 словаря по одному вопросу. Список сверяется с METHOD валидатором.
 
 **`sourceScope` — где элемент найден.** Это факт инвентаризации, и он известен
-уже сейчас: 45 элементов сняты с продакшена, 4 есть только в Storybook, 6 —
+уже сейчас: 45 элементов сняты с продакшена, 4 есть только в Storybook, 18 —
 только в макете.
 
 Инвентаризация записала 44 / 5 / 6. Одна запись переехала 11 сентября 2026:
@@ -68,12 +68,14 @@ METHOD §6.5 требует существующего CSS-корня, а у т�
 Вторая переехала в тот же день решением владельца: `filter-modal` из
 `storybook-only` в `figma-only` — Storybook снял модалку только закрытой,
 и открытое состояние свёрстано по макету, а источник вёрстки определяет scope.
+В тот же день решением владельца добавлены двенадцать новых записей, все
+`figma-only`: разбивка стала 45 / 4 / 18.
 
 | `sourceScope` | Элементов | Что значит |
 |---|---|---|
 | `production` | 45 | найден в снятой разметке продакшена |
 | `storybook-only` | 4 | в снятой разметке продакшена не найден; описывается по Storybook |
-| `figma-only` | 6 | в снятой разметке продакшена не найден; описывается по макету |
+| `figma-only` | 18 | в снятой разметке продакшена не найден; описывается по макету |
 
 Значение `production` держится не на слове записи: у каждой такой записи есть
 селектор, и её `occurrences` и `seenOn` — измерение этого селектора по снятому
@@ -187,7 +189,7 @@ DOM, записанное в [`selector-census.json`](selector-census.json). Р�
 Поэтому пакет вводит свой класс `crs-<id>` и помечает его в спецификации как
 новую реализацию имени: в продукте такого класса нет. Решение принято на R0-05
 и записано одной строкой в `manifest.json` → `conventions.cssRoot` — менять его
-нужно там, а не в 55 спецификациях.
+нужно там, а не в 67 спецификациях.
 
 Правило держится механически, а не вниманием автора: значение `cssRoots` обязано
 либо равняться `crs-<id>`, либо стоять в `class="…"` снятого DOM, и в обоих
@@ -246,16 +248,16 @@ DOM, записанное в [`selector-census.json`](selector-census.json). Р�
 
 | Категория | CSS | Элементов | Что там лежит |
 |---|---|---|---|
-| `data-display` | `ui/components/data-display.css` | 12 | SpriteIcon · SocialIcon · ProjectIcon · Avatar · EntityLogo · Chip · Badge · RatingBadge · MetaPill · CounterPill · Prose · InfoTable |
-| `entities` | `ui/components/entities.css` | 11 | CourseCard · SchoolCard · PromoCard · ReviewCard · ArticleCard · PersonCard · StepCard · AdCard · NumberedCourseItem · EntityHeader · PersonHeader |
-| `forms` | `ui/components/forms.css` | 9 | FilterChip · Select · MultiSelect · SearchInput · TextInput · Checkbox · Switch · TileFilter · SearchForm |
-| `navigation` | `ui/components/navigation.css` | 7 | Link · SegmentedControl · Tab · Pagination · Breadcrumbs · RubricationBar · FilterBar |
+| `data-display` | `ui/components/data-display.css` | 16 | SpriteIcon · SocialIcon · ProjectIcon · Avatar · EntityLogo · Chip · Badge · RatingBadge · MetaPill · CounterPill · Prose · InfoTable · SpecializationTag · DemandChart · FaqItem · LearningStep |
+| `entities` | `ui/components/entities.css` | 13 | CourseCard · SchoolCard · PromoCard · ReviewCard · ArticleCard · PersonCard · StepCard · AdCard · NumberedCourseItem · EntityHeader · PersonHeader · ProfessionCard · VacancyCard |
+| `forms` | `ui/components/forms.css` | 10 | FilterChip · Select · MultiSelect · SearchInput · TextInput · Checkbox · Switch · TileFilter · SearchForm · FeedbackForm |
+| `navigation` | `ui/components/navigation.css` | 8 | Link · SegmentedControl · Tab · Pagination · Breadcrumbs · RubricationBar · FilterBar · ButtonGroup |
 | `collections` | `ui/components/collections.css` | 4 | AvatarStack · Carousel · LinkGrid · RatingTable |
 | `frame-modules` | `ui/components/frame-modules.css` | 3 | SiteHeader · SiteFooter · PageHero |
 | `layout` | `ui/components/layout.css` | 3 | Section · CardGrid · AdSlot |
-| `overlays` | `ui/components/overlays.css` | 3 | HeaderDropdown · FilterModal · CatalogMenu |
+| `overlays` | `ui/components/overlays.css` | 6 | HeaderDropdown · FilterModal · CatalogMenu · Tooltip · SortSheet · PriceSheet |
 | `actions` | `ui/components/actions.css` | 2 | Button · IconButton |
-| `feedback` | `ui/components/feedback.css` | 1 | EmptyState |
+| `feedback` | `ui/components/feedback.css` | 2 | EmptyState · Loader |
 
 `layout` в этой таблице — модули раскладки внутри страницы (Section, CardGrid,
 AdSlot). Оболочка страницы — контейнер 1124 + 24 и брейкпоинты — живёт
@@ -268,7 +270,7 @@ AdSlot). Оболочка страницы — контейнер 1124 + 24 и �
 Порядок — рабочий: волна и шаг роадмапа. Спецификация написана у каждой
 записи — имя элемента ведёт на неё. «Где найден» — `sourceScope` записи.
 
-### R2 — примитивы, 12
+### R2 — примитивы, 13
 
 | Шаг | Элемент | id | Вид | Категория | Где найден | Зависит от |
 |---|---|---|---|---|---|---|
@@ -284,8 +286,9 @@ AdSlot). Оболочка страницы — контейнер 1124 + 24 и �
 | R2-10 | [CounterPill](data-display/counter-pill.md) | `counter-pill` | примитив | `data-display` | прод | — |
 | R2-11 | [AvatarStack](collections/avatar-stack.md) | `avatar-stack` | компонент | `collections` | прод | `avatar`, `counter-pill` |
 | R2-12 | [Prose](data-display/prose.md) | `prose` | компонент | `data-display` | прод | — |
+| R2-13 | [SpecializationTag](data-display/specialization-tag.md) | `specialization-tag` | примитив | `data-display` | **figma-only** | — |
 
-### R3 — базовые компоненты, 15 · Core Gate
+### R3 — базовые компоненты, 18 · Core Gate
 
 | Шаг | Элемент | id | Вид | Категория | Где найден | Зависит от |
 |---|---|---|---|---|---|---|
@@ -304,8 +307,11 @@ AdSlot). Оболочка страницы — контейнер 1124 + 24 и �
 | R3-13 | [Tab](navigation/tab.md) | `tab` | компонент | `navigation` | **figma-only** | — |
 | R3-14 | [Pagination](navigation/pagination.md) | `pagination` | компонент | `navigation` | **figma-only** | `icon-button` |
 | R3-15 | [Breadcrumbs](navigation/breadcrumbs.md) | `breadcrumbs` | компонент | `navigation` | **figma-only** | — |
+| R3-16 | [ButtonGroup](navigation/button-group.md) | `button-group` | компонент | `navigation` | **figma-only** | — |
+| R3-17 | [DemandChart](data-display/demand-chart.md) | `demand-chart` | компонент | `data-display` | **figma-only** | — |
+| R3-18 | [Tooltip](overlays/tooltip.md) | `tooltip` | компонент | `overlays` | **figma-only** | — |
 
-### R4 — каркасные модули, 14 · R4 Gate
+### R4 — каркасные модули, 20 · R4 Gate
 
 | Шаг | Элемент | id | Вид | Категория | Где найден | Зависит от |
 |---|---|---|---|---|---|---|
@@ -323,8 +329,14 @@ AdSlot). Оболочка страницы — контейнер 1124 + 24 и �
 | R4-12 | [FilterModal](overlays/filter-modal.md) | `filter-modal` | модуль | `overlays` | **figma-only** | `button`, `checkbox`, `select` |
 | R4-13 | [CatalogMenu](overlays/catalog-menu.md) | `catalog-menu` | модуль | `overlays` | **figma-only** | `link`, `sprite-icon` |
 | R4-14 | [EmptyState](feedback/empty-state.md) | `empty-state` | модуль | `feedback` | **figma-only** | `button` |
+| R4-15 | [Loader](feedback/loader.md) | `loader` | компонент | `feedback` | **figma-only** | `sprite-icon` |
+| R4-16 | [FeedbackForm](forms/feedback-form.md) | `feedback-form` | модуль | `forms` | **figma-only** | `button-group`, `button`, `text-input` |
+| R4-17 | [SortSheet](overlays/sort-sheet.md) | `sort-sheet` | модуль | `overlays` | **figma-only** | — |
+| R4-18 | [PriceSheet](overlays/price-sheet.md) | `price-sheet` | модуль | `overlays` | **figma-only** | `button` |
+| R4-19 | [FaqItem](data-display/faq-item.md) | `faq-item` | модуль | `data-display` | **figma-only** | `sprite-icon` |
+| R4-20 | [LearningStep](data-display/learning-step.md) | `learning-step` | модуль | `data-display` | **figma-only** | `chip`, `sprite-icon` |
 
-### R5 — entity-модули, 14
+### R5 — entity-модули, 16
 
 | Шаг | Элемент | id | Вид | Категория | Где найден | Зависит от |
 |---|---|---|---|---|---|---|
@@ -342,6 +354,8 @@ AdSlot). Оболочка страницы — контейнер 1124 + 24 и �
 | R5-12 | [InfoTable](data-display/info-table.md) | `info-table` | модуль | `data-display` | прод | — |
 | R5-13 | [AdCard](entities/ad-card.md) | `ad-card` | модуль | `entities` | прод | `icon-button` |
 | R5-14 | [AdSlot](layout/ad-slot.md) | `ad-slot` | модуль | `layout` | прод | `carousel`, `ad-card` |
+| R5-15 | [ProfessionCard](entities/profession-card.md) | `profession-card` | модуль | `entities` | **figma-only** | `specialization-tag` |
+| R5-16 | [VacancyCard](entities/vacancy-card.md) | `vacancy-card` | модуль | `entities` | **figma-only** | `entity-logo`, `specialization-tag`, `chip`, `button` |
 
 ---
 
@@ -516,9 +530,9 @@ node tools/validate-components.mjs --strict
 
 Половина этой дыры закрыта: числа, выводимые из манифеста одной строкой, ушли
 в `node tools/validate-counts.mjs` — число записей и разбивка по `sourceScope`
-(45 / 4 / 6) сверяются в обоих местах, где написаны, прозой и таблицей.
+(45 / 4 / 18) сверяются в обоих местах, где написаны, прозой и таблицей.
 Остаётся то, что требует разбора таблиц: имя, шаг, категория и вид у каждой
-из 55 строк.
+из 67 строк.
 
 **Копируемость до R0-06.** Шаблон спецификации велит прогнать
 `node tools/validate-classes.mjs .pipeline/<id>/copy-check.html`, но ни один

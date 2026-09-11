@@ -17,3 +17,163 @@
 
    Пока пусто: компоненты верстаются на шагах R5.
    ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   ProfessionCard (R2-bulk, figma-only) — «Карточка специальности»,
+   14089:190237, список профессий
+   -------------------------------------------------------------------------
+   Решением владельца 11 сентября 2026 страница профессии вошла в пакет
+   вопреки прежней границе BRIEF §4 — как figma-only: раздела в продукте нет.
+   Обложка 148 и белое тело, наезжающее на неё на 20 (mb −20 у обложки)
+   со скруглением 24 сверху; тело — падинг 24, промежуток 16: название
+   16/22 600 и теги SpecializationTag, внизу подпись и вилка зарплаты
+   стилем Header/H4. Иллюстрация профессии — содержимое, не системный
+   ассет: на её месте заглушка витрины content-placeholder.svg.
+   ------------------------------------------------------------------------- */
+.crs-profession-card {
+  border: 1px solid var(--fig-color-style-neutral-neutral-hover);
+  border-radius: var(--fig-size-radius-l);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  max-width: 235px;
+  min-height: 342px;
+  overflow: hidden;
+  width: 100%;
+}
+.crs-profession-card__cover {
+  display: block;
+  flex: none;
+  height: 148px;
+  margin-bottom: -20px;
+  object-fit: cover;
+  width: 100%;
+}
+.crs-profession-card__body {
+  background: var(--fig-color-style-white-light);
+  border-radius: var(--fig-size-radius-l) var(--fig-size-radius-l) 0 0;
+  color: var(--fig-color-style-font-primary);
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x4);
+  padding: var(--fig-size-spacing-x6);
+  position: relative;
+}
+.crs-profession-card__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x2);
+}
+.crs-profession-card__title {
+  font-size: var(--fig-font-size-body-l);
+  font-weight: var(--fig-font-weight-semibold);
+  line-height: var(--fig-font-line-height-display-s);
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.crs-profession-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fig-elements-tag-gap);
+}
+.crs-profession-card__salary {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x1);
+  justify-content: flex-end;
+}
+.crs-profession-card__salary-label {
+  color: var(--fig-color-style-font-secondary);
+  font-size: var(--fig-font-size-body-m);
+  line-height: var(--fig-font-line-height-body-l);
+  margin: 0;
+}
+.crs-profession-card__salary-value {
+  font-size: var(--fig-font-size-display-s);
+  font-weight: var(--fig-font-weight-semibold);
+  letter-spacing: var(--fig-font-letter-spacing-headers);
+  line-height: var(--fig-font-line-height-display-s);
+  margin: 0;
+}
+
+/* -------------------------------------------------------------------------
+   VacancyCard (R2-bulk, figma-only) — «вакансия», 14394:193314,
+   страница профессии
+   -------------------------------------------------------------------------
+   Рамка 1px, радиус 24, падинг 24, промежуток 16. Шапка — логотип школы
+   32 (радиус 8) и название 14/20 600 в одну строку; должность 16/22;
+   теги — SpecializationTag и продуктовый Chip; внизу зарплата стилем
+   Header/H4 (в макете — «Зарплата не указана» цветом secondary) и
+   продуктовый Button main во всю ширину. Логотип — содержимое: на его
+   месте заглушка витрины content-placeholder.svg.
+   ------------------------------------------------------------------------- */
+.crs-vacancy-card {
+  background: var(--fig-color-style-white-light);
+  border: 1px solid var(--fig-color-style-neutral-neutral-hover);
+  border-radius: var(--fig-size-radius-l);
+  box-sizing: border-box;
+  color: var(--fig-color-style-font-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x4);
+  max-width: 207px;
+  min-height: 354px;
+  padding: var(--fig-size-spacing-x6);
+  width: 100%;
+}
+.crs-vacancy-card__main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x3);
+}
+.crs-vacancy-card__school {
+  align-items: center;
+  display: flex;
+  gap: var(--fig-size-spacing-x2);
+}
+.crs-vacancy-card__logo {
+  border-radius: var(--fig-size-radius-xs);
+  display: block;
+  flex: none;
+  height: 32px;
+  object-fit: cover;
+  width: 32px;
+}
+.crs-vacancy-card__school-name {
+  flex: 1 0 0;
+  font-size: var(--fig-font-size-body-m);
+  font-weight: var(--fig-font-weight-semibold);
+  line-height: var(--fig-font-line-height-body-l);
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.crs-vacancy-card__position {
+  font-size: var(--fig-font-size-body-l);
+  line-height: var(--fig-font-line-height-display-s);
+  margin: 0;
+}
+.crs-vacancy-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fig-elements-tag-gap);
+}
+.crs-vacancy-card__salary {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-top: var(--fig-size-spacing-x1);
+}
+.crs-vacancy-card__salary-value {
+  font-size: var(--fig-font-size-display-s);
+  font-weight: var(--fig-font-weight-semibold);
+  letter-spacing: var(--fig-font-letter-spacing-headers);
+  line-height: var(--fig-font-line-height-display-s);
+  margin: 0;
+}
+.crs-vacancy-card__salary-value--empty { color: var(--fig-color-style-font-secondary); }

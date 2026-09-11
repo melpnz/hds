@@ -217,3 +217,50 @@
 }
 .crs-pagination__arrow--prev .svg-icon { transform: rotate(90deg); }
 .crs-pagination__arrow--next .svg-icon { transform: rotate(-90deg); }
+
+/* -------------------------------------------------------------------------
+   ButtonGroup (R2-bulk, figma-only) — button group / onpage, 13496:153002
+   -------------------------------------------------------------------------
+   Переключатель на странице: серая подложка, выбранный сегмент белый
+   с тенью Dropdown. Родственник продуктового SegmentedControl (в макете —
+   button group / onheader: подложка rgba(0,0,0,.12) на цветном hero,
+   активный сегмент тёмный), но в продукте вариант onpage не встречается:
+   запись отдельная. Живёт в CatalogMenu («Для взрослых / Для детей») и в
+   FeedbackForm («Телеграм / Телефон»).
+
+   48 в макете; min-, а не height: в узкой коробке подпись сегмента
+   переносится, и группа растёт, а не выпускает текст наружу.
+   ------------------------------------------------------------------------- */
+.crs-button-group {
+  background: var(--fig-elements-button-group-onpage-fill);
+  border-radius: var(--fig-elements-button-group-onpage-border-radius-group);
+  box-sizing: border-box;
+  display: flex;
+  min-height: 48px;
+  padding: var(--fig-elements-button-group-onpage-padding-group);
+  width: 100%;
+}
+.crs-button-group__item {
+  background: transparent;
+  border: 0;
+  border-radius: var(--fig-elements-button-group-onpage-border-radius);
+  color: var(--fig-elements-button-group-onpage-text);
+  cursor: pointer;
+  flex: 1 0 0;
+  font: inherit;
+  font-size: var(--fig-font-size-body-m);
+  font-weight: var(--fig-font-weight-regular);
+  letter-spacing: var(--fig-font-letter-spacing-text);
+  line-height: var(--fig-font-line-height-body-l);
+  min-width: 0;
+  padding: var(--fig-elements-button-group-onpage-padding-top-bottom) var(--fig-elements-button-group-onpage-padding-left-right);
+  text-align: center;
+}
+.crs-button-group__item--selected {
+  background: var(--fig-elements-button-group-onpage-fill-select);
+  /* Эффект Dropdown макета — две тени; составляющие есть в слое по
+     отдельности, композит собирается здесь. */
+  box-shadow:
+    0 var(--fig-effect-drop-shadow-2-y) var(--fig-effect-drop-shadow-2-blur) var(--fig-effect-drop-shadow-2-spread) var(--fig-effect-drop-shadow-2-color),
+    0 var(--fig-effect-drop-shadow-1-y) var(--fig-effect-drop-shadow-1-blur) var(--fig-effect-drop-shadow-1-spread) var(--fig-effect-drop-shadow-1-color);
+}

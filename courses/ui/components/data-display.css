@@ -54,3 +54,203 @@
    в manifest.json).
    ------------------------------------------------------------------------- */
 .svg-icon{fill:currentColor}
+
+/* -------------------------------------------------------------------------
+   Figma-only записи R2-bulk (11 сентября 2026). Решением владельца в реестр
+   заведены компоненты макета, которых в продукте нет: страница профессии,
+   форма обратной связи, оверлеи быстрых фильтров, загрузка. Значения — слой
+   ui/tokens-figma.css; разбор — спецификации записей.
+   ------------------------------------------------------------------------- */
+
+/* SpecializationTag — tag-specialization, 14089:190182 и два соседних
+   варианта. Свойства макета «спрос / вход» × «сложно / средне / чил»
+   дают три окраски; модификатор назван по второму свойству: --hard —
+   красный «Конкуренция», --medium — жёлтый «Умеренный вход», --easy —
+   синий «Высокий спрос» (им же в вакансии помечен грейд «Middle»).
+   Нейтральный тег макета (tag/text) — это продуктовый Chip, отдельного
+   варианта здесь нет. */
+.crs-specialization-tag {
+  align-items: center;
+  border-radius: var(--fig-elements-tag-text-border-radius);
+  box-sizing: border-box;
+  display: inline-flex;
+  font-size: var(--fig-font-size-body-s);
+  font-weight: var(--fig-font-weight-regular);
+  height: 24px;
+  letter-spacing: var(--fig-font-letter-spacing-text);
+  line-height: var(--fig-font-line-height-body-m);
+  /* 4 падинга тега + 4 отступа текстового блока — два слоя макета */
+  padding: var(--fig-elements-tag-text-padding-top-bottom) calc(var(--fig-elements-tag-text-padding-left-right) + var(--fig-elements-tag-text-margin-text));
+  white-space: nowrap;
+}
+.crs-specialization-tag--hard { background: var(--fig-red-50-solid); color: var(--fig-elements-informators-tost-fill-red); }
+.crs-specialization-tag--medium { background: var(--fig-yellow-50-solid); color: var(--fig-color-style-graph-accent-2); }
+.crs-specialization-tag--easy { background: var(--fig-blue-50-solid); color: var(--fig-elements-informators-tost-fill-blue); }
+
+/* FaqItem — «Вопрос», 14394:193667, страница профессии. Раскрывается
+   в потоке: вопрос — кнопка, ответ под ней. Шеврон — символ arrow-small
+   общего спрайта (глиф icon/arrow-down макета), в раскрытом виде
+   повёрнут на 180°, как в макете. */
+.crs-faq-item {
+  background: var(--fig-color-style-white-light);
+  border: 1px solid var(--fig-color-style-neutral-neutral-hover);
+  border-radius: var(--fig-size-radius-l);
+  box-sizing: border-box;
+  color: var(--fig-color-style-font-primary);
+  display: flex;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x3);
+  padding: var(--fig-size-spacing-x6);
+  width: 100%;
+}
+.crs-faq-item__question {
+  align-items: flex-start;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  font: inherit;
+  gap: var(--fig-size-spacing-x4);
+  padding: 0;
+  text-align: left;
+  width: 100%;
+}
+.crs-faq-item__title {
+  flex: 1 0 0;
+  font-size: var(--fig-font-size-display-s);
+  font-weight: var(--fig-font-weight-semibold);
+  letter-spacing: var(--fig-font-letter-spacing-headers);
+  line-height: var(--fig-font-line-height-display-s);
+  min-width: 0;
+}
+.crs-faq-item__chevron {
+  color: var(--fig-elements-button-icon-icon);
+  flex: none;
+  height: 22px;
+  display: flex;
+  align-items: center;
+}
+.crs-faq-item--expanded .crs-faq-item__chevron { transform: rotate(180deg); }
+.crs-faq-item__answer {
+  font-size: var(--fig-font-size-body-m);
+  line-height: var(--fig-font-line-height-body-l);
+}
+.crs-faq-item__answer p { margin: 0 0 var(--fig-font-paragraph-spacing-s); }
+.crs-faq-item__answer p:last-child { margin-bottom: 0; }
+
+/* LearningStep — «шаги», 14475:194581, страница профессии. Номер в круге
+   32, заголовок с тегом срока (продуктовый Chip), описание; шеврон
+   раскрытия абсолютом в правом верхнем углу, как в макете. */
+.crs-learning-step {
+  background: var(--fig-color-style-white-light);
+  border: 1px solid var(--fig-color-style-neutral-neutral-hover);
+  border-radius: var(--fig-size-radius-l);
+  box-sizing: border-box;
+  color: var(--fig-color-style-font-primary);
+  display: flex;
+  gap: var(--fig-size-spacing-x3);
+  padding: var(--fig-size-spacing-x6);
+  width: 100%;
+}
+.crs-learning-step__number {
+  align-items: center;
+  background: var(--fig-color-style-primary-primary-medium);
+  border-radius: var(--fig-size-radius-full);
+  color: var(--fig-color-style-font-light);
+  display: flex;
+  flex: none;
+  font-size: var(--fig-font-size-body-l);
+  font-weight: var(--fig-font-weight-semibold);
+  height: 32px;
+  justify-content: center;
+  line-height: var(--fig-font-line-height-display-s);
+  width: 32px;
+}
+.crs-learning-step__body {
+  display: flex;
+  flex: 1 0 0;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x1);
+  min-width: 0;
+  padding-top: var(--fig-size-spacing-x1);
+  position: relative;
+}
+.crs-learning-step__header {
+  align-items: flex-start;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--fig-size-spacing-x1);
+  padding-right: var(--fig-size-spacing-x8);
+}
+.crs-learning-step__title {
+  flex: 1 0 0;
+  font-size: var(--fig-font-size-body-l);
+  font-weight: var(--fig-font-weight-semibold);
+  line-height: var(--fig-font-line-height-display-s);
+  margin: 0;
+  min-width: 0;
+}
+.crs-learning-step__text {
+  font-size: var(--fig-font-size-body-m);
+  line-height: var(--fig-font-line-height-body-l);
+  margin: 0;
+}
+.crs-learning-step__toggle {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  color: var(--fig-elements-button-icon-icon);
+  cursor: pointer;
+  display: flex;
+  height: 22px;
+  padding: 0;
+  position: absolute;
+  right: 0;
+  top: 5px;
+}
+
+/* DemandChart — slot-modal/simple «Спрос по областям», 14469:196385,
+   страница профессии. Сетка «подпись → полоса»: колонка подписей по
+   содержимому, промежутки 12 × 8. Полоса — дорожка #f1f1f1 во всю ширину
+   и заливка 12px #6bacfd; в макете длина заливки задана правым падингом
+   дорожки (0, 20, 60, 90, 98, 105 px), здесь — долей через --crs-value. */
+.crs-demand-chart {
+  border: 1px solid var(--fig-color-style-neutral-neutral-hover);
+  border-radius: var(--fig-size-radius-l);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x3);
+  padding: var(--fig-size-spacing-x6);
+  width: 100%;
+}
+.crs-demand-chart__title {
+  color: var(--fig-elements-modal-text);
+  font-size: var(--fig-font-size-body-l);
+  font-weight: var(--fig-font-weight-semibold);
+  line-height: var(--fig-font-line-height-display-s);
+  margin: 0;
+}
+.crs-demand-chart__rows {
+  display: grid;
+  gap: var(--fig-size-spacing-x2) var(--fig-size-spacing-x3);
+  grid-template-columns: fit-content(100%) minmax(0, 1fr);
+}
+.crs-demand-chart__label {
+  color: var(--fig-color-style-font-primary);
+  font-size: var(--fig-font-size-body-m);
+  line-height: var(--fig-font-line-height-body-l);
+  white-space: nowrap;
+}
+.crs-demand-chart__track {
+  align-self: center;
+  background: var(--fig-color-style-neutral-neutral-light);
+  border-radius: var(--fig-size-radius-full);
+}
+.crs-demand-chart__bar {
+  background: var(--fig-color-style-primary-primary-medium);
+  border-radius: var(--fig-size-radius-xxs);
+  height: 12px;
+  width: calc(var(--crs-value, 1) * 100%);
+}

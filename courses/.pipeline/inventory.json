@@ -671,7 +671,7 @@
       "sources": [
         { "type": "figma", "node": "14644:221758", "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=14644-221758" }
       ],
-      "dependsOn": ["link", "sprite-icon"],
+      "dependsOn": ["link", "sprite-icon", "button-group"],
       "notes": "figma-only: выпадающий каталог направлений из шапки, отдельные версии для взрослых и детей"
     },
     {
@@ -908,6 +908,186 @@
       ],
       "dependsOn": [],
       "notes": "«Общая информация»: пары «лейбл → значение» (лицензия, телефоны, офис). Наблюдение на одной странице"
+    },
+    {
+      "id": "specialization-tag",
+      "canonicalName": "SpecializationTag",
+      "category": "data-display",
+      "kind": "primitive",
+      "wave": "R2",
+      "status": "planned",
+      "occurrences": 0,
+      "seenOn": [],
+      "sources": [
+        { "type": "figma", "node": "14089:190182", "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=14089-190182", "note": "три окраски по свойствам «спрос / вход» × «сложно / средне / чил»" }
+      ],
+      "dependsOn": [],
+      "notes": "figma-only: цветной тег специализации со страницы профессии и из вакансии — «Конкуренция» (красный), «Умеренный вход» (жёлтый), «Высокий спрос» (синий). В продукте раздела профессий нет. Нейтральный тег макета — это продуктовый Chip. Заведена 11 сентября 2026 решением владельца: компоненты макета, которых нет в продукте, входят в пакет как figma-only."
+    },
+    {
+      "id": "button-group",
+      "canonicalName": "ButtonGroup",
+      "category": "navigation",
+      "kind": "component",
+      "wave": "R3",
+      "status": "planned",
+      "occurrences": 0,
+      "seenOn": [],
+      "sources": [
+        { "type": "figma", "node": "14644:221762", "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=14644-221762", "note": "инстанс button group / onpage (компонент 13496:153002) в каталоге" }
+      ],
+      "dependsOn": [],
+      "notes": "figma-only: переключатель на странице — button group / onpage, серая подложка и белый выбранный сегмент с тенью. Родственник SegmentedControl (button group / onheader на цветном hero), но вариант onpage в продукте не встречается. Живёт в CatalogMenu и FeedbackForm. Заведена 11 сентября 2026 решением владельца: компоненты макета, которых нет в продукте, входят в пакет как figma-only."
+    },
+    {
+      "id": "demand-chart",
+      "canonicalName": "DemandChart",
+      "category": "data-display",
+      "kind": "component",
+      "wave": "R3",
+      "status": "planned",
+      "occurrences": 0,
+      "seenOn": [],
+      "sources": [
+        { "type": "figma", "node": "14469:196385", "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=14469-196385", "note": "«Спрос по областям», страница профессии" }
+      ],
+      "dependsOn": [],
+      "notes": "figma-only: горизонтальная столбчатая диаграмма «подпись → полоса» со страницы профессии. Раздела профессий в продукте нет. Заведена 11 сентября 2026 решением владельца: компоненты макета, которых нет в продукте, входят в пакет как figma-only."
+    },
+    {
+      "id": "tooltip",
+      "canonicalName": "Tooltip",
+      "category": "overlays",
+      "kind": "component",
+      "wave": "R3",
+      "status": "planned",
+      "occurrences": 0,
+      "seenOn": [],
+      "sources": [
+        { "type": "figma", "node": "11025:93606", "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=11025-93606", "note": "«Партнер Хабра», рейтинг школ" }
+      ],
+      "dependsOn": [],
+      "notes": "figma-only: тёмная подсказка с уголком. Триггер в продукте есть — значок партнёра с v-popper--has-tooltip на рейтинге и в листинге, — но всплывающая плашка гидрируется и в снятой разметке отсутствует. Заведена 11 сентября 2026 решением владельца: компоненты макета, которых нет в продукте, входят в пакет как figma-only."
+    },
+    {
+      "id": "loader",
+      "canonicalName": "Loader",
+      "category": "feedback",
+      "kind": "component",
+      "wave": "R4",
+      "status": "planned",
+      "occurrences": 0,
+      "seenOn": [],
+      "sources": [
+        { "type": "figma", "node": "12162:84499", "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=12162-84499", "note": "блок 976×112 в кадре «Нулевая выдача»" }
+      ],
+      "dependsOn": ["sprite-icon"],
+      "notes": "figma-only: блок загрузки со спиннером 48. BRIEF §4 заранее назвал загрузку figma-only — гостем она не воспроизводится. Спиннер — символ loader спрайта; в снятой разметке символ не использован ни разу. Заведена 11 сентября 2026 решением владельца: компоненты макета, которых нет в продукте, входят в пакет как figma-only."
+    },
+    {
+      "id": "feedback-form",
+      "canonicalName": "FeedbackForm",
+      "category": "forms",
+      "kind": "module",
+      "wave": "R4",
+      "status": "planned",
+      "occurrences": 0,
+      "seenOn": [],
+      "sources": [
+        { "type": "figma", "node": "I10123:48314;13496:153645", "note": "инстанс на детской витрине, компонент 13496:153645" }
+      ],
+      "dependsOn": ["button-group", "button", "text-input"],
+      "notes": "figma-only: форма «Не нашли, что хотели?» — выбор способа связи, поля, кнопка и согласие. В снятой разметке продукта нет ни одного <form>; прежняя граница BRIEF §4 «форм ввода не будет» пересмотрена владельцем для макетных форм. Заведена 11 сентября 2026 решением владельца: компоненты макета, которых нет в продукте, входят в пакет как figma-only."
+    },
+    {
+      "id": "sort-sheet",
+      "canonicalName": "SortSheet",
+      "category": "overlays",
+      "kind": "module",
+      "wave": "R4",
+      "status": "planned",
+      "occurrences": 0,
+      "seenOn": [],
+      "sources": [
+        { "type": "figma", "node": "9356:50311", "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=9356-50311", "note": "шторка «Сортировка», кадр 320 «Быстрые фильтры»" }
+      ],
+      "dependsOn": [],
+      "notes": "figma-only: мобильная шторка снизу с вариантами сортировки. Открытые оверлеи в продукте гидрируются JS и не сняты. Заведена 11 сентября 2026 решением владельца: компоненты макета, которых нет в продукте, входят в пакет как figma-only."
+    },
+    {
+      "id": "price-sheet",
+      "canonicalName": "PriceSheet",
+      "category": "overlays",
+      "kind": "module",
+      "wave": "R4",
+      "status": "planned",
+      "occurrences": 0,
+      "seenOn": [],
+      "sources": [
+        { "type": "figma", "node": "9356:52508", "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=9356-52508", "note": "шторка «Цена», кадр 320 «Быстрые фильтры»" }
+      ],
+      "dependsOn": ["button"],
+      "notes": "figma-only: мобильная шторка быстрого фильтра по цене — поля «От / До», валюта, «Сбросить / Готово». Открытые оверлеи в продукте гидрируются JS и не сняты. Заведена 11 сентября 2026 решением владельца: компоненты макета, которых нет в продукте, входят в пакет как figma-only."
+    },
+    {
+      "id": "faq-item",
+      "canonicalName": "FaqItem",
+      "category": "data-display",
+      "kind": "module",
+      "wave": "R4",
+      "status": "planned",
+      "occurrences": 0,
+      "seenOn": [],
+      "sources": [
+        { "type": "figma", "node": "14394:193667", "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=14394-193667", "note": "страница профессии" }
+      ],
+      "dependsOn": ["sprite-icon"],
+      "notes": "figma-only: вопрос с раскрывающимся ответом со страницы профессии. Раздела профессий в продукте нет; в снятой разметке ни одного FAQ. Заведена 11 сентября 2026 решением владельца: компоненты макета, которых нет в продукте, входят в пакет как figma-only."
+    },
+    {
+      "id": "learning-step",
+      "canonicalName": "LearningStep",
+      "category": "data-display",
+      "kind": "module",
+      "wave": "R4",
+      "status": "planned",
+      "occurrences": 0,
+      "seenOn": [],
+      "sources": [
+        { "type": "figma", "node": "14475:194581", "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=14475-194581", "note": "страница профессии" }
+      ],
+      "dependsOn": ["chip", "sprite-icon"],
+      "notes": "figma-only: шаг программы обучения — номер, заголовок со сроком, описание, шеврон раскрытия. Со страницы профессии; не путать с продуктовым StepCard (шаги процесса на /authors и /editors). Заведена 11 сентября 2026 решением владельца: компоненты макета, которых нет в продукте, входят в пакет как figma-only."
+    },
+    {
+      "id": "profession-card",
+      "canonicalName": "ProfessionCard",
+      "category": "entities",
+      "kind": "module",
+      "wave": "R5",
+      "status": "planned",
+      "occurrences": 0,
+      "seenOn": [],
+      "sources": [
+        { "type": "figma", "node": "14089:190237", "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=14089-190237", "note": "список профессий, 96 инстансов" }
+      ],
+      "dependsOn": ["specialization-tag"],
+      "notes": "figma-only: карточка профессии — обложка, название, теги специализации, вилка зарплаты. Раздела профессий в продукте нет. Заведена 11 сентября 2026 решением владельца: компоненты макета, которых нет в продукте, входят в пакет как figma-only."
+    },
+    {
+      "id": "vacancy-card",
+      "canonicalName": "VacancyCard",
+      "category": "entities",
+      "kind": "module",
+      "wave": "R5",
+      "status": "planned",
+      "occurrences": 0,
+      "seenOn": [],
+      "sources": [
+        { "type": "figma", "node": "14394:193314", "url": "https://www.figma.com/design/oNyNRRob2y0ZSgPHOdH65X/02_Education-NEW?node-id=14394-193314", "note": "страница профессии" }
+      ],
+      "dependsOn": ["entity-logo", "specialization-tag", "chip", "button"],
+      "notes": "figma-only: карточка вакансии — школа, должность, теги, зарплата, кнопка «Далее». Со страницы профессии; раздела в продукте нет. Заведена 11 сентября 2026 решением владельца: компоненты макета, которых нет в продукте, входят в пакет как figma-only."
     }
   ],
   "pages": [

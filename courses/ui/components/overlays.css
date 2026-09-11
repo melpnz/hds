@@ -145,8 +145,9 @@
    это литералы на самом фрейме, а не переменные; здесь они записаны шагами
    шкалы --fig-size-spacing-*, которым равны.
 
-   Переключатель — компонент макета button group / onpage (13496:153002),
-   список — Left Menu List на переменных elements/dropdown/*. У строки
+   Переключатель — отдельная запись ButtonGroup (button group / onpage,
+   13496:153002, navigation.css); список — Left Menu List на переменных
+   elements/dropdown/*. У строки
    списка правый падинг привязан в макете к elements/dropdown/row/
    padding_top_bottom (8), а не к row/padding_right (24): так нарисовано,
    так и сверстано.
@@ -169,40 +170,6 @@
   flex-direction: column;
   gap: var(--fig-size-spacing-x3);
   min-width: 0;
-}
-.crs-catalog-menu__switch {
-  background: var(--fig-elements-button-group-onpage-fill);
-  border-radius: var(--fig-elements-button-group-onpage-border-radius-group);
-  box-sizing: border-box;
-  display: flex;
-  /* 48 в макете; min-, а не height: в коробке уже кадра 320 подпись
-     сегмента переносится, и группа растёт, а не выпускает текст наружу. */
-  min-height: 48px;
-  padding: var(--fig-elements-button-group-onpage-padding-group);
-}
-.crs-catalog-menu__switch-item {
-  background: transparent;
-  border: 0;
-  border-radius: var(--fig-elements-button-group-onpage-border-radius);
-  color: var(--fig-elements-button-group-onpage-text);
-  cursor: pointer;
-  flex: 1 0 0;
-  font: inherit;
-  font-size: var(--fig-font-size-body-m);
-  font-weight: var(--fig-font-weight-regular);
-  letter-spacing: var(--fig-font-letter-spacing-text);
-  line-height: var(--fig-font-line-height-body-l);
-  min-width: 0;
-  padding: var(--fig-elements-button-group-onpage-padding-top-bottom) var(--fig-elements-button-group-onpage-padding-left-right);
-  text-align: center;
-}
-.crs-catalog-menu__switch-item--selected {
-  background: var(--fig-elements-button-group-onpage-fill-select);
-  /* Эффект Dropdown макета — две тени; составляющие есть в слое по
-     отдельности, композит собирается здесь. */
-  box-shadow:
-    0 var(--fig-effect-drop-shadow-2-y) var(--fig-effect-drop-shadow-2-blur) var(--fig-effect-drop-shadow-2-spread) var(--fig-effect-drop-shadow-2-color),
-    0 var(--fig-effect-drop-shadow-1-y) var(--fig-effect-drop-shadow-1-blur) var(--fig-effect-drop-shadow-1-spread) var(--fig-effect-drop-shadow-1-color);
 }
 .crs-catalog-menu__list {
   background: var(--fig-elements-dropdown-fill);
@@ -290,4 +257,183 @@
   .crs-catalog-menu__column {
     display: none;
   }
+}
+
+/* -------------------------------------------------------------------------
+   Tooltip (R2-bulk, figma-only) — 11025:93606, рейтинг школ
+   -------------------------------------------------------------------------
+   Подсказка «Партнер Хабра»: тёмная плашка, текст 14/20 белый, радиус 12,
+   падинг 8 / 12, уголок 16×7 слева по центру высоты. Триггер в продукте
+   есть — значок партнёра с классом v-popper--has-tooltip (8 узлов на
+   странице рейтинга, 6 в листинге), — но всплывающая плашка гидрируется
+   и в снятой разметке отсутствует. Курсор-указатель рядом с уголком —
+   иллюстрация макета, не часть компонента. Уголок нарисован clip-path,
+   а не экспортом: это треугольник M8 0 16 7H0, геометрия без глифа.
+   ------------------------------------------------------------------------- */
+.crs-tooltip {
+  background: var(--fig-elements-tooltip-fill);
+  border-radius: var(--fig-elements-tooltip-border-radius);
+  box-sizing: border-box;
+  color: var(--fig-elements-tooltip-text);
+  display: flex;
+  flex-direction: column;
+  font-size: var(--fig-font-size-body-m);
+  gap: var(--fig-elements-tooltip-gap);
+  line-height: var(--fig-font-line-height-body-l);
+  max-width: 300px;
+  padding: var(--fig-elements-tooltip-padding-top-botton) var(--fig-elements-tooltip-padding-left-right);
+  position: relative;
+}
+.crs-tooltip::before {
+  background: var(--fig-elements-tooltip-fill);
+  clip-path: polygon(100% 0, 100% 100%, 0 50%);
+  content: "";
+  height: 16px;
+  left: -7px;
+  position: absolute;
+  top: calc(50% - 8px);
+  width: 7px;
+}
+.crs-tooltip p { margin: 0; }
+
+/* -------------------------------------------------------------------------
+   SortSheet (R2-bulk, figma-only) — dropdown/context-menu «Сортировка»,
+   9356:50311, кадр 320 «Быстрые фильтры»
+   -------------------------------------------------------------------------
+   Мобильная шторка снизу: затемнение, полоска-захват 64×4 над панелью,
+   белая панель со скруглением 24 сверху и списком вариантов. Затемнение
+   (color style/effect/overlay, rgba(0,0,0,.3)) входит в узел макета, поэтому
+   и в разметку — как фон корня; высота над панелью задана падингом и в
+   продукте была бы высотой экрана. Правый падинг строки — row/padding_right
+   (24), левый — row/padding_left_for_modal (24): у строки шторки они свои,
+   не как в выпадающем списке каталога (16 / 8).
+   ------------------------------------------------------------------------- */
+.crs-sort-sheet {
+  background: var(--fig-color-style-effect-overlay);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  max-width: 320px;
+  padding-top: var(--fig-size-spacing-x10);
+  width: 100%;
+}
+.crs-sort-sheet__panel {
+  background: var(--fig-elements-dropdown-fill);
+  border-radius: var(--fig-size-radius-l) var(--fig-size-radius-l) 0 0;
+  display: flex;
+  flex-direction: column;
+  padding: var(--fig-size-spacing-x3) 0;
+  position: relative;
+}
+.crs-sort-sheet__handle {
+  background: var(--fig-elements-dropdown-fill);
+  border-radius: var(--fig-elements-dropdown-radius);
+  height: 4px;
+  left: calc(50% - 32px);
+  position: absolute;
+  top: -12px;
+  width: 64px;
+}
+.crs-sort-sheet__option {
+  background: transparent;
+  border: 0;
+  color: var(--fig-elements-dropdown-row-text);
+  cursor: pointer;
+  font: inherit;
+  font-size: var(--fig-font-size-body-m);
+  line-height: var(--fig-font-line-height-body-l);
+  padding: calc(var(--fig-elements-dropdown-row-padding-top-bottom) + var(--fig-elements-dropdown-row-margin-text-avatar)) var(--fig-elements-dropdown-row-padding-right) calc(var(--fig-elements-dropdown-row-padding-top-bottom) + var(--fig-elements-dropdown-row-margin-text-avatar)) var(--fig-elements-dropdown-row-padding-left-for-modal);
+  text-align: left;
+}
+
+/* -------------------------------------------------------------------------
+   PriceSheet (R2-bulk, figma-only) — modal «Цена», 9356:52508,
+   кадр 320 «Быстрые фильтры»
+   -------------------------------------------------------------------------
+   Та же шторка, но модалкой: шапка с заголовком стилем Header/H3, тело —
+   два поля «От / До» и выбор валюты 66px, подвал из двух кнопок M поровну.
+   Кнопки — продуктовый Button (main и secondary), поля — по макету:
+   плейсхолдер 16/22, а не 14/20 продуктового TextInput (расхождение
+   записано в TextInput). Полоска-захват у модалки скруглена литералом 2,
+   а не elements/dropdown/radius (4), как у SortSheet: так в макете.
+   ------------------------------------------------------------------------- */
+.crs-price-sheet {
+  background: var(--fig-color-style-effect-overlay);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  max-width: 320px;
+  padding-top: var(--fig-size-spacing-x10);
+  width: 100%;
+}
+.crs-price-sheet__panel {
+  background: var(--fig-elements-modal-fill);
+  border-radius: var(--fig-elements-modal-border-radius) var(--fig-elements-modal-border-radius) 0 0;
+  color: var(--fig-elements-modal-text);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.crs-price-sheet__handle {
+  background: var(--fig-color-style-white-light);
+  border-radius: 2px;
+  height: 4px;
+  left: calc(50% - 32px);
+  position: absolute;
+  top: -12px;
+  width: 64px;
+}
+.crs-price-sheet__title {
+  font-size: var(--fig-font-size-display-m);
+  font-weight: var(--fig-font-weight-semibold);
+  letter-spacing: var(--fig-font-letter-spacing-headers);
+  line-height: var(--fig-font-line-height-display-m);
+  margin: 0;
+  padding: var(--fig-elements-modal-padding-header-left-right-top) var(--fig-elements-modal-padding-header-left-right-top) var(--fig-size-spacing-x4);
+}
+.crs-price-sheet__body {
+  display: flex;
+  gap: var(--fig-size-spacing-x2);
+  padding: 0 var(--fig-elements-modal-padding-footer-body);
+}
+.crs-price-sheet__field {
+  align-items: center;
+  background: var(--fig-elements-input-fill);
+  border: 1px solid var(--fig-elements-input-border);
+  border-radius: var(--fig-elements-input-border-radius);
+  box-sizing: border-box;
+  display: flex;
+  gap: var(--fig-elements-input-gap);
+  height: 40px;
+  min-width: 0;
+  padding: var(--fig-elements-input-padding-top-bottom) var(--fig-elements-input-padding-left-right);
+}
+.crs-price-sheet__field--grow { flex: 1 0 0; }
+.crs-price-sheet__field--currency { flex: none; width: 66px; }
+.crs-price-sheet__input {
+  background: transparent;
+  border: 0;
+  color: var(--fig-elements-input-text);
+  flex: 1 0 0;
+  font: inherit;
+  font-size: var(--fig-font-size-body-l);
+  line-height: var(--fig-font-line-height-display-s);
+  min-width: 0;
+  outline: none;
+  padding: 0;
+}
+.crs-price-sheet__input::placeholder { color: var(--fig-elements-input-placeholder); }
+.crs-price-sheet__currency {
+  color: var(--fig-elements-input-text);
+  flex: 1 0 0;
+  font-size: var(--fig-font-size-body-l);
+  line-height: var(--fig-font-line-height-display-s);
+}
+.crs-price-sheet__chevron { color: var(--fig-elements-input-icon); display: flex; flex: none; }
+.crs-price-sheet__footer {
+  display: flex;
+  gap: var(--fig-elements-modal-gap-footer);
+  padding: var(--fig-elements-modal-padding-footer-mobile-top-bottom) var(--fig-elements-modal-padding-footer-body);
 }
