@@ -6,7 +6,7 @@
 | **Адрес** | [`career.habr.com/education_centers`](https://career.habr.com/education_centers) |
 | **Живой пример** | [`showcase/pages.html#p-education-centers-listing`](../showcase/pages.html#p-education-centers-listing), отдельно — [`showcase/pages/education-centers-listing.html`](../showcase/pages/education-centers-listing.html) |
 | **Снимки продакшена** | `evidence/source/production/pages/education-centers-listing/` — `dom*.html`, `computed*.json`, скриншоты 320 · 375 · 480 · 744 · 768 · 1024 · 1440, сняты 7 сентября 2026 |
-| **Шаг** | R6-02 |
+| **Шаг** | R6-02 — принят 11 сентября 2026 решением владельца на записях bulk-прохода |
 
 ## Что за семейство
 

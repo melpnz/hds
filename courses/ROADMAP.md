@@ -21,7 +21,7 @@
 | Страниц снято | **10** на восьми ширинах (320 · 375 · 479 · 480 · 744 · 768 · 1024 · 1440), гостем; 6 отмечены ключевыми примерами. Полный набор (dom · computed · tokens · meta · png) — на шести из восьми: 320 · 375 · 479 · 480 · 744 · 768; для 1024 и 1440 только PNG и общий computed, снятый на 1440 (X-09) |
 | Семейств страниц | 5: листинг, таблица, сущность, промо-раздел, профиль |
 | Шагов в роадмапе | **95** |
-| Принято шагов | 10 из 95 — R0-00…R0-06 (волна R0 была закрыта 8 сентября 2026 и **переоткрыта 9 сентября** добавленными R0-07 и R0-08, 7/9; R0-07 после двух приёмок стоит `blocked`, снимается гейтом R0-08 — причина и решение владельца под таблицей R0) + R1-01, R1-02 (**волна R1 закрыта**, 9 сентября 2026) + R2-01 (первый шаг волны R2, 1/12, 9 сентября 2026) |
+| Принято шагов | 15 из 95 — R0-00…R0-06 (волна R0 была закрыта 8 сентября 2026 и **переоткрыта 9 сентября** добавленными R0-07 и R0-08, 7/9; R0-07 после двух приёмок стоит `blocked`, снимается гейтом R0-08 — причина и решение владельца под таблицей R0) + R1-01, R1-02 (**волна R1 закрыта**, 9 сентября 2026) + R2-01 (первый шаг волны R2, 1/12, 9 сентября 2026) + R6-01…R6-05 (**волна R6 принята решением владельца** 11 сентября 2026 на записях bulk-прохода — раздел «Решения пользователя, 2026-09-11») |
 | Порядок работ | пересобран под видимый результат 9 сентября 2026 — раздел «Решения пользователя, 2026-09-09». Ближайшее: R0-07 «Витрина оснований» — **стоит `blocked` после второй приёмки, ждёт решения владельца**, затем срез «подвал» R2-02 → R2-03 → R3-03 → R4-04 вперёд Core Gate |
 | Слой токенов | `ui/tokens.css` — **51** переменная продукта, принято 8 сентября 2026 (R0-02). `--swiper-theme-color` за слоем: её объявляет чанк Swiper, а не продукт, и она есть на 7/10 страниц. Живость размечена: 26 без пометки · 15 `[NO MARKUP]` · 9 `[UNREFERENCED]` · 1 `[RUNTIME]`. Разбор — `docs/guide/tokens.md` |
 | Слой типографики и шрифта | `ui/foundations.css` — девять живых утилит шкалы, база документа, фокус; токены шкалы (`--font-size-h3`, `--line-height-h2/h3`) мертвы, задокументировано. `ui/fonts.css` — 14 `@font-face` переменного Inter локальными файлами (711 КБ), закрывает X-03. Принято 8 сентября 2026 (R0-03). Разбор и границы всех шести брейкпоинт-префиксов сборки — `docs/guide/typography.md` |
@@ -77,7 +77,7 @@ node tools/validate-components.mjs --strict
 | **R3** | базовые компоненты: кнопки, поля, фильтры, навигация — **Core Gate** | 19 | planned |
 | **R4** | каркасные модули: шапка, футер, hero, секции, сетки, фильтры — **R4 Gate** | 22 | planned |
 | **R5** | entity-модули: карточки сущностей продукта | 18 | planned |
-| **R6** | ключевые страницы: по одной на семейство | 5 | собраны 5/5 (шесть страниц) 11 сентября 2026 без приёмки; `showcase/pages.html`, `pages/*.md` |
+| **R6** | ключевые страницы: по одной на семейство | 5 | done · 5/5 (шесть страниц), принята 11 сентября 2026 решением владельца на записях bulk-прохода; `showcase/pages.html`, `pages/*.md` |
 | **R7** | принципы: правила композиции и Decision Guides | 3 | planned |
 | **R8** | машинный слой и контракт для модели-потребителя | 4 | planned |
 
@@ -710,11 +710,11 @@ R2 и компонентов R3, без собственных значений 
 
 | Шаг | Страница | Семейство | Источник | Зависит от | Статус |
 |---|---|---|---|---|---|
-| R6-01 | Витрина курсов | листинг | [`/courses`](https://career.habr.com/courses) | R5 | собрана 11 сентября 2026 без приёмки: `pages/courses-listing.md`, `showcase/pages.html#p-courses-listing`; модули страницы заведены: `AuthorsBlock` (R5-18) и вариант `LinkGrid` «Промокоды и акции» |
-| R6-02 | Витрина организаций | листинг | [`/education_centers`](https://career.habr.com/education_centers) | R5 | собрана 11 сентября 2026 без приёмки: `pages/education-centers-listing.md`, `showcase/pages.html#p-education-centers-listing` |
-| R6-03 | Рейтинг школ | таблица | [`/education_centers/rating`](https://career.habr.com/education_centers/rating) | R5-08 | собрана 11 сентября 2026 без приёмки: `pages/rating.md`, `showcase/pages.html#p-rating` |
-| R6-04 | Страница школы | сущность | [`/education_centers/35-yandeks-praktikum`](https://career.habr.com/education_centers/35-yandeks-praktikum) | R5-10 | собрана 11 сентября 2026 без приёмки: `pages/education-center.md`, `showcase/pages.html#p-education-center` |
-| R6-05 | Эксперты и профиль автора | промо-раздел + профиль | [`/courses/authors`](https://career.habr.com/courses/authors) · [`/courses/authors/23-stepan-voevodin`](https://career.habr.com/courses/authors/23-stepan-voevodin) | R5-06, R5-11 | собрана 11 сентября 2026 без приёмки: `pages/authors.md`, `pages/author.md`, `showcase/pages.html#p-authors` и `#p-author`; ассеты раздела экспертов — X-102 |
+| R6-01 | Витрина курсов | листинг | [`/courses`](https://career.habr.com/courses) | R5 | done — принята 11 сентября 2026 решением владельца: `pages/courses-listing.md`, `showcase/pages.html#p-courses-listing`; модули страницы заведены: `AuthorsBlock` (R5-18) и вариант `LinkGrid` «Промокоды и акции» |
+| R6-02 | Витрина организаций | листинг | [`/education_centers`](https://career.habr.com/education_centers) | R5 | done — принята 11 сентября 2026 решением владельца: `pages/education-centers-listing.md`, `showcase/pages.html#p-education-centers-listing` |
+| R6-03 | Рейтинг школ | таблица | [`/education_centers/rating`](https://career.habr.com/education_centers/rating) | R5-08 | done — принята 11 сентября 2026 решением владельца: `pages/rating.md`, `showcase/pages.html#p-rating` |
+| R6-04 | Страница школы | сущность | [`/education_centers/35-yandeks-praktikum`](https://career.habr.com/education_centers/35-yandeks-praktikum) | R5-10 | done — принята 11 сентября 2026 решением владельца: `pages/education-center.md`, `showcase/pages.html#p-education-center` |
+| R6-05 | Эксперты и профиль автора | промо-раздел + профиль | [`/courses/authors`](https://career.habr.com/courses/authors) · [`/courses/authors/23-stepan-voevodin`](https://career.habr.com/courses/authors/23-stepan-voevodin) | R5-06, R5-11 | done — принята 11 сентября 2026 решением владельца: `pages/authors.md`, `pages/author.md`, `showcase/pages.html#p-authors` и `#p-author`; ассеты раздела экспертов — X-102 |
 
 Не разбираются отдельно: `/courses/editors` (клон `/courses/authors`),
 `/education_centers/shkoly-dlya-detej` (вкладка «Детям» витрины организаций),
@@ -868,9 +868,13 @@ hero-градиент (`7/10`).
 2026-09-09 («страница листинга вперёд не вытаскивается») и с условием
 skill `guide-pages` «страница собирается только из закрытых компонентов»:
 страницы собраны из записей bulk-прохода, у 39 из которых после трёх кругов
-ревью прозы статус `complete`, у 12 — `partial`. Поэтому шаги R6 стоят как
-«собрана без приёмки»: сборка и сверка с продуктом сделаны, приёмка волны —
-отдельное решение (ревью R6, `.pipeline/pages/review-1.md`).
+ревью прозы статус `complete`, у 12 — `partial`. Ревью R6 (`.pipeline/pages/review-1.md`) остановило приёмку ровно на этом —
+blocker процесса, правками не снимается. Решение владельца: **R6 принята**
+на записях bulk-прохода. Условие: когда R3–R5 закрываются по полному циклу и
+записи на страницах меняются, страницы пересобираются генератором
+(`.pipeline/pages/gen-page.mjs`) и сверяются заново (`diff-page.mjs`); это
+дёшево и не требует нового разбора. Правки первого круга ревью вторым
+кругом не проверялись.
 
 **Модули страниц заводятся записями.** Решение владельца при сборке
 `/courses`: модуль страницы, которого нет в реестре, получает запись. Так

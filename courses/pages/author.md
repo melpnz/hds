@@ -6,7 +6,7 @@
 | **Адрес** | [`career.habr.com/courses/authors/23-stepan-voevodin`](https://career.habr.com/courses/authors/23-stepan-voevodin) |
 | **Живой пример** | [`showcase/pages.html#p-author`](../showcase/pages.html#p-author), отдельно — [`showcase/pages/author.html`](../showcase/pages/author.html) |
 | **Снимки продакшена** | `evidence/source/production/pages/author/` — `dom*.html`, `computed*.json`, скриншоты 320 · 375 · 480 · 744 · 768 · 1024 · 1440, сняты 7 сентября 2026 |
-| **Шаг** | R6-05 (вместе с разделом экспертов — `pages/authors.md`) |
+| **Шаг** | R6-05 (вместе с разделом экспертов — `pages/authors.md`) — принят 11 сентября 2026 решением владельца |
 
 ## Что за семейство
 

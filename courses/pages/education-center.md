@@ -6,7 +6,7 @@
 | **Адрес** | [`career.habr.com/education_centers/35-yandeks-praktikum`](https://career.habr.com/education_centers/35-yandeks-praktikum) |
 | **Живой пример** | [`showcase/pages.html#p-education-center`](../showcase/pages.html#p-education-center), отдельно — [`showcase/pages/education-center.html`](../showcase/pages/education-center.html) |
 | **Снимки продакшена** | `evidence/source/production/pages/education-center/` — `dom*.html`, `computed*.json`, скриншоты 320 · 375 · 480 · 744 · 768 · 1024 · 1440, сняты 7 сентября 2026 |
-| **Шаг** | R6-04 |
+| **Шаг** | R6-04 — принят 11 сентября 2026 решением владельца на записях bulk-прохода |
 
 ## Что за семейство
 

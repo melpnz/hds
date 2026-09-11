@@ -6,7 +6,7 @@
 | **Адрес** | [`career.habr.com/education_centers/rating`](https://career.habr.com/education_centers/rating) |
 | **Живой пример** | [`showcase/pages.html#p-rating`](../showcase/pages.html#p-rating), отдельно — [`showcase/pages/rating.html`](../showcase/pages/rating.html) |
 | **Снимки продакшена** | `evidence/source/production/pages/rating/` — `dom*.html`, `computed*.json`, скриншоты 320 · 375 · 480 · 744 · 768 · 1024 · 1440, сняты 7 сентября 2026 |
-| **Шаг** | R6-03 |
+| **Шаг** | R6-03 — принят 11 сентября 2026 решением владельца на записях bulk-прохода |
 
 ## Что за семейство
 

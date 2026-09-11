@@ -6,7 +6,7 @@
 | **Адрес** | [`career.habr.com/courses`](https://career.habr.com/courses) |
 | **Живой пример** | [`showcase/pages.html#p-courses-listing`](../showcase/pages.html#p-courses-listing), отдельно — [`showcase/pages/courses-listing.html`](../showcase/pages/courses-listing.html) |
 | **Снимки продакшена** | `evidence/source/production/pages/courses-listing/` — `dom*.html`, `computed*.json`, скриншоты 320 · 375 · 480 · 744 · 768 · 1024 · 1440, сняты 7 сентября 2026 |
-| **Шаг** | R6-01 |
+| **Шаг** | R6-01 — принят 11 сентября 2026 решением владельца на записях bulk-прохода |
 
 ## Что за семейство
 

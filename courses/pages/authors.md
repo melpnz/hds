@@ -6,7 +6,7 @@
 | **Адрес** | [`career.habr.com/courses/authors`](https://career.habr.com/courses/authors) |
 | **Живой пример** | [`showcase/pages.html#p-authors`](../showcase/pages.html#p-authors), отдельно — [`showcase/pages/authors.html`](../showcase/pages/authors.html) |
 | **Снимки продакшена** | `evidence/source/production/pages/authors/` — `dom*.html`, `computed*.json`, скриншоты 320 · 375 · 480 · 744 · 768 · 1024 · 1440, сняты 7 сентября 2026 |
-| **Шаг** | R6-05 (вместе с профилем автора — `pages/author.md`) |
+| **Шаг** | R6-05 (вместе с профилем автора — `pages/author.md`) — принят 11 сентября 2026 решением владельца |
 
 ## Что за семейство
 
