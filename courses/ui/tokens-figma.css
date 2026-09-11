@@ -42,8 +42,8 @@
    безразмерными оставлены насыщенность шрифта, трекинг Text и нули.
 
    Сверка с продакшеном: из 80 цветов макета
-   55 совпали по значению с продуктовым токеном ui/tokens.css,
-   25 — своего продуктового двойника не имеют. Таблица
+   73 совпали по значению с продуктовым токеном ui/tokens.css,
+   7 — своего продуктового двойника не имеют. Таблица
    совпадений — в конце файла комментарием.
    ========================================================================= */
 
@@ -273,11 +273,14 @@
 /* -------------------------------------------------------------------------
    Сверка цветов макета с продуктовыми токенами
    -------------------------------------------------------------------------
-   Совпало по значению (55) — то же число в макете и в проде:
+   Совпало по значению (73) — то же число в макете и в проде:
 
      --fig-blue-400-solid                       #6bacfd    = --color-ui-blue-400
      --fig-blue-50-solid                        #eff5ff    = --color-ui-blue-50
      --fig-blue-500-solid                       #346ef4    = --color-ui-blue-500
+     --fig-color-style-effect-overlay           #0000004d  = --color-ui-black-transparent-300
+     --fig-color-style-effect-overlay-light     #0000001f  = --color-ui-black-transparent-120
+     --fig-color-style-font-light               #ffffff    = --color-ui-white
      --fig-color-style-font-link                #346ef4    = --color-ui-blue-500
      --fig-color-style-font-primary             #2c2e34    = --color-ui-black-850
      --fig-color-style-font-secondary           #909194    = --color-ui-black-500
@@ -290,76 +293,73 @@
      --fig-color-style-primary-primary-light    #eff5ff    = --color-ui-blue-50
      --fig-color-style-primary-primary-medium   #6bacfd    = --color-ui-blue-400
      --fig-color-style-warning-warning          #ff960c    = --color-ui-yellow-500
+     --fig-color-style-white-light              #ffffff    = --color-ui-white
+     --fig-effect-drop-shadow-1-color           #0000000d  = --color-ui-black-transparent-50
+     --fig-effect-drop-shadow-2-color           #0000000d  = --color-ui-black-transparent-50
      --fig-elements-button-group-onpage-fill    #f1f1f1    = --color-ui-black-50
+     --fig-elements-button-group-onpage-fill-select #ffffff    = --color-ui-white
      --fig-elements-button-group-onpage-text    #2c2e34    = --color-ui-black-850
      --fig-elements-button-icon-border          #e9e9ea    = --color-ui-black-100
      --fig-elements-button-icon-border-disable  #f1f1f1    = --color-ui-black-50
      --fig-elements-button-icon-disable         #d3d3d4    = --color-ui-black-200
+     --fig-elements-button-icon-fill            #ffffff    = --color-ui-white
      --fig-elements-button-icon-icon            #a6a7a9    = --color-ui-black-400
      --fig-elements-button-icon-icon-hover      #2c2e34    = --color-ui-black-850
      --fig-elements-button-main-fill            #2c2e34    = --color-ui-black-850
+     --fig-elements-button-main-text            #ffffff    = --color-ui-white
      --fig-elements-button-secondary-fill       #f1f1f1    = --color-ui-black-50
      --fig-elements-button-secondary-fill-hover #e9e9ea    = --color-ui-black-100
      --fig-elements-control-unchecked-fill      #dededf    = --color-ui-black-150
+     --fig-elements-dropdown-fill               #ffffff    = --color-ui-white
      --fig-elements-dropdown-row-fill-hover     #f1f1f1    = --color-ui-black-50
      --fig-elements-dropdown-row-text           #2c2e34    = --color-ui-black-850
      --fig-elements-informators-tost-fill-blue  #346ef4    = --color-ui-blue-500
      --fig-elements-informators-tost-fill-red   #e84444    = --color-ui-red-500
      --fig-elements-input-border                #e9e9ea    = --color-ui-black-100
+     --fig-elements-input-fill                  #ffffff    = --color-ui-white
      --fig-elements-input-icon                  #a6a7a9    = --color-ui-black-400
      --fig-elements-input-placeholder           #909194    = --color-ui-black-500
      --fig-elements-input-text                  #2c2e34    = --color-ui-black-850
      --fig-elements-modal-border                #e9e9ea    = --color-ui-black-100
+     --fig-elements-modal-fill                  #ffffff    = --color-ui-white
      --fig-elements-modal-text                  #2c2e34    = --color-ui-black-850
      --fig-elements-pagination-border           #e9e9ea    = --color-ui-black-100
      --fig-elements-pagination-border-select    #94bdfc    = --color-ui-blue-300
+     --fig-elements-pagination-fill             #ffffff    = --color-ui-white
      --fig-elements-pagination-fill-hover       #f1f1f1    = --color-ui-black-50
      --fig-elements-pagination-fill-select      #eff5ff    = --color-ui-blue-50
      --fig-elements-pagination-text             #2c2e34    = --color-ui-black-850
      --fig-elements-pagination-text-select      #346ef4    = --color-ui-blue-500
      --fig-elements-tab-border                  #e9e9ea    = --color-ui-black-100
      --fig-elements-tab-border-hover            #dededf    = --color-ui-black-150
+     --fig-elements-tab-fill                    #ffffff    = --color-ui-white
      --fig-elements-tab-filter-border-select    #94bdfc    = --color-ui-blue-300
      --fig-elements-tab-filter-fill-select      #eff5ff    = --color-ui-blue-50
      --fig-elements-tab-filter-text-icon-select #346ef4    = --color-ui-blue-500
      --fig-elements-tab-text                    #2c2e34    = --color-ui-black-850
      --fig-elements-tag-color-fill              #ff7e47    = --color-ui-orange-500
+     --fig-elements-tag-color-text              #ffffff    = --color-ui-white
+     --fig-elements-tag-icon-fill               #ffffff    = --color-ui-white
      --fig-elements-tag-text-fill               #f1f1f1    = --color-ui-black-50
      --fig-elements-tag-text-text               #2c2e34    = --color-ui-black-850
      --fig-elements-tooltip-fill                #2c2e34    = --color-ui-black-850
+     --fig-elements-tooltip-text                #ffffff    = --color-ui-white
      --fig-logo-career                          #6274bc    = --color-career
+     --fig-logo-white                           #ffffff    = --color-ui-white
      --fig-red-50-solid                         #fce9e9    = --color-ui-red-50
      --fig-yellow-50-solid                      #fff2e2    = --color-ui-yellow-50
 
-   Продуктового двойника нет (25) — цвет объявлен в макете,
+   Продуктового двойника нет (7) — цвет объявлен в макете,
    а среди 51 переменной ui/tokens.css значения нет ни у одной. Это не
    ошибка ни той, ни другой стороны: часть из них — фирменные цвета внешних
    сервисов (logo/*), часть — состояния, до которых вёрстка ещё не дошла.
    Разбирается по мере появления соответствующих компонентов.
 
      --fig-color-icon-gray                      #929ca5
-     --fig-color-style-effect-overlay           #0000004d
-     --fig-color-style-effect-overlay-light     #0000001f
-     --fig-color-style-font-light               #ffffff
-     --fig-color-style-white-light              #ffffff
-     --fig-effect-drop-shadow-1-color           #0000000d
-     --fig-effect-drop-shadow-2-color           #0000000d
-     --fig-elements-button-group-onpage-fill-select #ffffff
-     --fig-elements-button-icon-fill            #ffffff
-     --fig-elements-button-main-text            #ffffff
-     --fig-elements-dropdown-fill               #ffffff
-     --fig-elements-input-fill                  #ffffff
-     --fig-elements-modal-fill                  #ffffff
-     --fig-elements-pagination-fill             #ffffff
-     --fig-elements-tab-fill                    #ffffff
-     --fig-elements-tag-color-text              #ffffff
-     --fig-elements-tag-icon-fill               #ffffff
-     --fig-elements-tooltip-text                #ffffff
      --fig-logo-black                           #000000
      --fig-logo-career-bot                      #d1a8fa
      --fig-logo-facebook                        #1877f2
      --fig-logo-grey                            #b8c1c7
      --fig-logo-telegram                        #2aabee
      --fig-logo-vk                              #0077ff
-     --fig-logo-white                           #ffffff
    ------------------------------------------------------------------------- */

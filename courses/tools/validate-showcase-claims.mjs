@@ -184,6 +184,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import postcss from 'postcss';
 import selectorParser from 'postcss-selector-parser';
+import { normColor } from './color-value.mjs';
 
 // В JavaScript `\w` и `\b` — про ASCII, и кириллица для них «не буква»:
 // /\bтолько\b/ не находит слово «только» вовсе, а /раскрыва\w*/ обрывается
@@ -540,11 +541,12 @@ const DERIVED = {
   // на странице стало бы вторым носителем — тем самым, ради которого этот
   // гейт и заведён.
   'vars.figma.color': figmaVars.filter(([, v]) => HEX_RE.test(v.value || '')).length,
+  // Совпадение — по приведённому значению (tools/color-value.mjs): #fff
+  // и #ffffff — один цвет, rgba(0,0,0,.3) и #0000004d — тоже. Сверка
+  // строкой не узнавала 18 продуктовых двойников из 80 (R2-bulk).
   'vars.figma.matched': (() => {
-    const prodValues = new Set(vars
-      .map(([, v]) => (v.value || '').toLowerCase())
-      .filter((x) => HEX_RE.test(x)));
-    return figmaVars.filter(([, v]) => HEX_RE.test(v.value || '') && prodValues.has((v.value || '').toLowerCase())).length;
+    const prodValues = new Set(vars.map(([, v]) => normColor(v.value || '')).filter(Boolean));
+    return figmaVars.filter(([, v]) => HEX_RE.test(v.value || '') && prodValues.has(normColor(v.value))).length;
   })(),
   'vars.color': vars.filter(([n]) => n.startsWith('--color-')).length,
   'vars.noncolor': vars.filter(([n]) => !n.startsWith('--color-')).length,

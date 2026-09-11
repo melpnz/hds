@@ -541,6 +541,31 @@ probe('R2-bulk (контроль): счёт продуктовых переме�
   expectContains: ['vars.total', 'заявлено 7', 'разбор ui/ даёт 4'],
 });
 
+probe('R2-bulk: цвет макета совпадает с продуктовым по значению, а не по записи', {
+  // Сверка строкой считала #000 и #000000 разными цветами и не узнавала
+  // rgba(0,0,0,.3) в #0000004d: из 80 цветов макета «без двойника» числились
+  // 25 при одном настоящем. Здесь из трёх цветов макета два — те же, что
+  // в продукте, только записаны иначе.
+  fixtureOpts: {
+    ui: { ...UI_THREE, 'tokens.css': ':root{--color-w: rgba(0,0,0,.3)}\n', 'tokens-figma.css': ':root{--fig-x:#000000;--fig-y:#0000004d;--fig-z:#123456}\n' },
+    html: page('<p>Из 3 цветов макета 2 совпали по значению с переменной tokens-figma.css.</p>'),
+    css: '.doc-x{color:#000}\n',
+  },
+  expectCode: 0,
+});
+
+probe('R2-bulk (контроль): приведение записи не делает совпадением разные цвета', {
+  // #123456 в продукте нет ни в какой записи — заявить три совпадения
+  // из трёх по-прежнему ошибка.
+  fixtureOpts: {
+    ui: { ...UI_THREE, 'tokens.css': ':root{--color-w: rgba(0,0,0,.3)}\n', 'tokens-figma.css': ':root{--fig-x:#000000;--fig-y:#0000004d;--fig-z:#123456}\n' },
+    html: page('<p>Из 3 цветов макета 3 совпали по значению с переменной tokens-figma.css.</p>'),
+    css: '.doc-x{color:#000}\n',
+  },
+  expectCode: 1,
+  expectContains: ['vars.figma.matched', 'заявлено 3', 'разбор ui/ даёт 2'],
+});
+
 probe('claim-quantity: пометки переменных ([NO MARKUP] / [UNREFERENCED] / [RUNTIME])', {
   fixtureOpts: {
     html: page(`<dl><div><dt>unreferenced</dt><dd>7</dd></div>
