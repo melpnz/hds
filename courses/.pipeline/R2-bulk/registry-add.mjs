@@ -96,7 +96,13 @@ const figmaOnly = scope("figma-only");
   s = s.replace(/\| Элементов в реестре \| \*\*\d+\*\* — R2 \d+ · R3 \d+ · R4 \d+ · R5 \d+\. 55 — инвентаризация 7 сентября; \d+ figma-only добавлены/, `| Элементов в реестре | **${N}** — R2 ${byWave("R2")} · R3 ${byWave("R3")} · R4 ${byWave("R4")} · R5 ${byWave("R5")}. 55 — инвентаризация 7 сентября; ${N - 55} figma-only добавлены`);
   s = s.replace(/\| Шагов в роадмапе \| \*\*\d+\*\* \|/, `| Шагов в роадмапе | **${steps}** |`);
   s = s.replace(/\| Принято шагов \| 10 из \d+ —/, `| Принято шагов | 10 из ${steps} —`);
-  s = s.replace(/\| Компонентов в manifest \| \*\*\d+\*\* записей — 1 `complete` \(`sprite-icon`, R2-01\), \*\*\d+ `partial`\*\* и \*\*\d+ `figma-only`\*\*/, `| Компонентов в manifest | **${N}** записей — 1 \`complete\` (\`sprite-icon\`, R2-01), **${status("partial")} \`partial\`** и **${status("figma-only")} \`figma-only\`**`);
+  // Число complete не вшито: после ревью прозы их стало больше одной
+  // (set-status.mjs пишет ту же строку в той же форме).
+  s = s.replace(/\| Компонентов в manifest \| \*\*\d+\*\* записей — [^|]*?\*\*\d+ `partial`\*\* и \*\*\d+ `figma-only`\*\*/, () => {
+    const c = status("complete");
+    const cw = c === 1 ? "1 `complete` (`sprite-icon`, R2-01)" : `${c} \`complete\``;
+    return `| Компонентов в manifest | **${N}** записей — **${cw}**, **${status("partial")} \`partial\`** и **${status("figma-only")} \`figma-only\`**`;
+  });
   s = s.replace(/Спецификация и живой пример на витрине есть у каждой из \d+ записей/, `Спецификация и живой пример на витрине есть у каждой из ${N} записей`);
   s = s.replace(/`requiredStates` заполнены у всех \d+ записей по матрице `components\/STATES\.md`; снятость всех \d+ пар «запись × состояние» разобрана в `components\/STATE-CAPTURE\.md`: \d+ сняты, \d+ дописаны нормативом в `ui\/state-contract\.css`, \d+ — явный GAP с адресом \(147 пар R1-02 и \d+ пар/,
     `\`requiredStates\` заполнены у всех ${N} записей по матрице \`components/STATES.md\`; снятость всех ${pairs} пар «запись × состояние» разобрана в \`components/STATE-CAPTURE.md\`: ${cap} сняты, ${norm} дописаны нормативом в \`ui/state-contract.css\`, ${unc} — явный GAP с адресом (147 пар R1-02 и ${pairs - 147} пар`);
