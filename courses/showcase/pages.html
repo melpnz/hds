@@ -29,7 +29,7 @@
 <nav class="doc-nav" aria-label="Разделы витрины страниц">
   <p class="doc-nav__brand">Хабр Курсы</p>
   <p class="doc-nav__title">Страницы</p>
-  <p class="doc-nav__state">шаг R6 · 1 из 5</p>
+  <p class="doc-nav__state">шаг R6 · 2 из 5</p>
 
   <ul class="doc-nav__list">
     <li><a class="doc-nav__link doc-nav__link--top" href="#doc-about">О странице витрины</a></li>
@@ -37,6 +37,7 @@
       <a class="doc-nav__link doc-nav__link--top" href="#doc-pages">Страницы</a>
       <ul class="doc-nav__list doc-nav__list--sub">
         <li><a class="doc-nav__link" href="#p-courses-listing">Витрина курсов · листинг</a></li>
+        <li><a class="doc-nav__link" href="#p-education-centers-listing">Витрина организаций · листинг</a></li>
       </ul>
     </li>
   </ul>
@@ -86,7 +87,7 @@
   <div class="doc-section__head">
     <span class="doc-section__num">2</span>
     <h2>Страницы</h2>
-    <p>По одной на семейство. Остальные четыре — шаги R6-02…R6-05.</p>
+    <p>По одной на семейство; у листинга — два представителя. Остальные три — шаги R6-03…R6-05.</p>
   </div>
 
   <section class="doc-section" id="p-courses-listing">
@@ -174,6 +175,80 @@
       <a href="components.html#c-link-grid"><code>LinkGrid</code></a> — с окном
       свёртки 182 и двухстрочным пунктом. Оба стоят только на
       <code>/courses</code>: наблюдения, не правила.
+    </p>
+  </section>
+
+  <section class="doc-section" id="p-education-centers-listing">
+    <div class="doc-section__head">
+      <h4>Витрина организаций · листинг</h4>
+      <p>
+        <code>/education_centers</code> — выдача школ: hero с заголовком, переключателем
+        «Взрослым / Детям» и формой поиска, баннеры, сетка карточек школ, листание, две
+        ленты и списки ссылок. Статья —
+        <a href="../pages/education-centers-listing.md">pages/education-centers-listing.md</a>,
+        снимки продакшена — <code>evidence/source/production/pages/education-centers-listing/</code>.
+      </p>
+    </div>
+
+    <div class="doc-frames">
+      <div class="doc-frame">
+        <span class="doc-frame__label">375 · phone</span>
+        <div class="doc-frame__box" style="--doc-frame-w:375;--doc-frame-s:1">
+          <iframe src="pages/education-centers-listing.html" title="Витрина организаций на 375" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="doc-frame">
+        <span class="doc-frame__label">768 · tablet-only</span>
+        <div class="doc-frame__box" style="--doc-frame-w:768;--doc-frame-s:0.5">
+          <iframe src="pages/education-centers-listing.html" title="Витрина организаций на 768" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="doc-frame">
+        <span class="doc-frame__label">1024 · desktop</span>
+        <div class="doc-frame__box" style="--doc-frame-w:1024;--doc-frame-s:0.375">
+          <iframe src="pages/education-centers-listing.html" title="Витрина организаций на 1024" loading="lazy"></iframe>
+        </div>
+      </div>
+      <div class="doc-frame">
+        <span class="doc-frame__label">1440 · desktop</span>
+        <div class="doc-frame__box" style="--doc-frame-w:1440;--doc-frame-s:0.2667">
+          <iframe src="pages/education-centers-listing.html" title="Витрина организаций на 1440" loading="lazy"></iframe>
+        </div>
+      </div>
+    </div>
+
+    <div class="doc-frame doc-frame--live">
+      <span class="doc-frame__label">во всю ширину окна — <a href="pages/education-centers-listing.html">открыть отдельно</a></span>
+      <div class="doc-frame__box">
+        <iframe src="pages/education-centers-listing.html" title="Витрина организаций во всю ширину" loading="lazy"></iframe>
+      </div>
+    </div>
+
+    <div class="doc-scroll">
+    <table class="doc-table">
+      <thead><tr><th>область</th><th>1440</th><th>1024</th><th>768</th><th>375</th></tr></thead>
+      <tbody>
+        <tr><td>шапка <code>SiteHeader</code></td><td>64</td><td>64</td><td>64</td><td>64</td></tr>
+        <tr><td>hero <code>PageHero</code></td><td>352</td><td>352</td><td>352</td><td>462</td></tr>
+        <tr><td>форма поиска <code>SearchForm</code></td><td class="doc-table__wrap">1076×128, в ряд</td><td>976×128</td><td>720×128</td><td class="doc-table__wrap">327×290, в столбец</td></tr>
+        <tr><td>колонка содержимого</td><td>1076</td><td>976</td><td>720</td><td>327</td></tr>
+        <tr><td>сетка <code>CardGrid</code> × <code>SchoolCard</code></td><td class="doc-table__wrap">4 × 260, промежуток 12</td><td class="doc-table__wrap">4 × 235</td><td class="doc-table__wrap">3 × 232</td><td>1 × 327</td></tr>
+        <tr><td>листание <code>Pagination</code></td><td>62</td><td>62</td><td>62</td><td>62</td></tr>
+        <tr><td>отступ колонки · промежуток</td><td colspan="4" class="doc-table__wrap">40 сверху и снизу (<code>pt-10 pb-10</code>) · 48 между блоками (<code>gap-12</code>); после сетки — 40 (<code>-mb-2</code>)</td></tr>
+        <tr><td>высота страницы</td><td>4 216</td><td>4 216</td><td>4 955</td><td>9 576</td></tr>
+      </tbody>
+    </table>
+    </div>
+    <p class="doc-note">
+      Числа — отрисовка снятого <code>dom.html</code> с CSS корпуса на каждой ширине;
+      высота сходится со скриншотами продакшена в пределах 0,7%. На витрине страница
+      короче: 8 карточек школ из 20. Сверка с продуктом — 0 расхождений на пяти ширинах.
+    </p>
+    <p class="doc-note">
+      <strong>Чем отличается от витрины курсов.</strong> Есть hero с <code>h1</code>,
+      шапка не липкая и без поиска, колонка начинается с 40, а не 24, промежуток после
+      баннеров — полные 48. Карточка выдачи — <code>SchoolCard</code>. Три карусели
+      Swiper — баннеры, популярные курсы, журнал — показаны заглушкой.
     </p>
   </section>
 </section>

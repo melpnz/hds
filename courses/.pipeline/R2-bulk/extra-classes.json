@@ -52,5 +52,22 @@
    "text-ui-violet-500",
    "z-20"
   ]
+ },
+ "page-education-centers-listing": {
+  "note": "классы обёрток страницы /education_centers (шаг R6-02), которых нет ни в одной записи реестра; bg-gradient-* и scrollbar-button объявлены scoped-правилами Vue и поднимаются без атрибута области видимости",
+  "classes": [
+   "-mb-2",
+   "bg-gradient-blue",
+   "bg-gradient-pink",
+   "bg-gradient-violet",
+   "scale-125",
+   "scrollbar-button"
+  ]
+ },
+ "cascade": {
+  "note": "классы, уже объявленные в раннем файле ui/, которые продукт ставит в корпусе после утилиты из utilities-components.css с тем же свойством; объявляются здесь ещё раз, на месте из корпуса. mx-auto: у заголовка hero классы m-0 mx-auto, в продукте побеждает mx-auto (в корпусе .mx-auto после .m-0), а в пакете .mx-auto лежит в ui/layout.css, раньше utilities-components.css. Нашла сверка страницы /education_centers (diff-page.mjs)",
+  "classes": [
+   "mx-auto"
+  ]
  }
 }

@@ -22,8 +22,13 @@ const [, , id = "courses-listing", widths = "1440,1024,768,375,320"] = process.a
 const PROPS = ["display", "position", "width", "margin", "padding", "font-size", "line-height", "font-weight", "color", "background-color", "grid-template-columns", "flex-basis", "flex-direction", "gap", "border-radius", "border-top-width", "order", "overflow-x", "text-align"];
 
 const cssDir = path.join(pkg, "evidence/source/production/css");
-const ext = fs.readdirSync(path.join(cssDir, "external")).sort().map((f) => fs.readFileSync(path.join(cssDir, "external", f), "utf8")).join("\n");
-const css = fs.readFileSync(path.join(cssDir, "inline", `${id}.css`), "utf8");
+// Область видимости Vue снимается с селекторов корпуса — так же, как это
+// делает слой ui/ (gen-utilities.mjs, unscope): съёмка срезала атрибуты
+// data-v-* с разметки, и без этого продукт в отрисовке терял бы правила,
+// которые в живом продукте работают (заглушка поиска, градиенты обложек).
+const unscope = (s) => s.replace(/\[data-v-[0-9a-f]+\]/g, "");
+const ext = unscope(fs.readdirSync(path.join(cssDir, "external")).sort().map((f) => fs.readFileSync(path.join(cssDir, "external", f), "utf8")).join("\n"));
+const css = unscope(fs.readFileSync(path.join(cssDir, "inline", `${id}.css`), "utf8"));
 const body = fs.readFileSync(path.join(pkg, "evidence/source/production/pages", id, "dom.html"), "utf8");
 
 const collect = ({ PROPS, strip, hydrated }) => {

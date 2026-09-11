@@ -24,11 +24,27 @@ export const PAGES = {
       { sel: "div.banner-swiper", mod: "banner", name: "Carousel · AdSlot", text: "баннеры рекламы, 12 слайдов AdCard" },
       { sel: "section.flex.flex-col.gap-4 > div.relative:has(.swiper)", mod: "reviews", name: "Carousel · ReviewCard", text: "отзывы, 8 слайдов ReviewCard" },
     ],
-    hydrated: [
-      {
-        sel: "header .courses-filter-search-top-panel-placeholder:not(:only-child)",
-        why: "заглушка поиска SSR: в computed-375.json и computed.json 0×0, прячет её .courses-filter-search-top-panel-placeholder[data-v-2fa9d797]:not(:only-child){display:none}",
-      },
+    // Заглушку поиска SSR живой продукт прячет scoped-правилом
+    // `.courses-filter-search-top-panel-placeholder[data-v-2fa9d797]:not(:only-child)`
+    // (в computed.json и computed-375.json она 0×0). Первая сборка убирала её
+    // из разметки; теперь слой ui/ поднимает правило без атрибута области
+    // видимости, и заглушка прячется так же, как в продукте, — разметка
+    // остаётся продуктовой, а hydration-diff.mjs её больше не находит.
+    hydrated: [],
+  },
+  // hydration-diff.mjs на 1440 и 375 скрытых гидрацией узлов не нашёл.
+  "education-centers-listing": {
+    source: "education-centers-listing",
+    title: "Витрина организаций",
+    url: "https://career.habr.com/education_centers",
+    trim: [
+      { sel: "div.grid.grid-cols-4.gap-3.pb-4", keep: 8, tail: 0, what: "карточек школ из 20" },
     ],
+    stubs: [
+      { sel: "div.banner-swiper", mod: "banner", name: "Carousel · AdSlot", text: "баннеры рекламы, 16 слайдов AdCard" },
+      { sel: "section.flex.flex-col.gap-4 > div.relative:has(.swiper)", index: 0, mod: "courses", name: "Carousel · CourseCard", text: "популярные курсы, 8 слайдов CourseCard" },
+      { sel: "section.flex.flex-col.gap-4 > div.relative:has(.swiper)", index: 1, mod: "journal", name: "Carousel · ArticleCard", text: "журнал, 8 слайдов ArticleCard" },
+    ],
+    hydrated: [],
   },
 };

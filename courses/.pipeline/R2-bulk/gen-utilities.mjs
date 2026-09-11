@@ -45,6 +45,17 @@ const stateClasses = new Map();
 // Классы разметки, собранной вне bulk-выдачи (Button L main у модалки
 // промокода, продуктовая пагинация после переклассификации), — их на витрине
 // до этого не было; тот же случай: классы витрины, слой обязан их нести.
+// Повторное объявление ради каскада: класс уже есть в раннем файле ui/, но
+// в продукте он идёт после утилиты этого файла с тем же свойством и на общем
+// узле обязан побеждать её. Между файлами порядок задаёт ui/courses.css,
+// поэтому класс ставится сюда ещё раз, на своё место в корпусе. Список —
+// ключ "cascade" в extra-classes.json; такие пары находит
+// .pipeline/pages/cascade-check.mjs.
+const redeclare = new Set();
+{
+  const fp = path.join(d, "extra-classes.json");
+  if (fs.existsSync(fp)) for (const c of JSON.parse(fs.readFileSync(fp, "utf8")).cascade?.classes || []) redeclare.add(c);
+}
 for (const [file, tag] of [["states-markup.json", ""], ["storybook-only.json", "storybook-only"], ["extra-classes.json", "extra"]]) {
   const fp = path.join(d, file);
   if (!fs.existsSync(fp)) continue;
@@ -111,7 +122,7 @@ let posCounter = 0;
     }
   }
   for (const [c, keys] of stateClasses) {
-    if (SWIPER.test(c) || declared.has(c)) continue;
+    if (SWIPER.test(c) || (declared.has(c) && !redeclare.has(c))) continue;
     const hit = index.get(c);
     if (!hit) continue;
     if (!byClass.has(c)) { byClass.set(c, new Map()); users.set(c, new Set()); }
@@ -134,6 +145,18 @@ for (const [cls, variants] of byClass) {
 const mediaOrder = (m) => (!m ? -1 : mediaPos.get(m) ?? Infinity);
 const posOf = (r) => rulePos.get((r.media || "") + "|" + r.selector) ?? Infinity;
 
+// Область видимости Vue снимается с селектора. В продукте атрибут
+// `data-v-<хеш>` стоит на каждом узле компонента, и правило вида
+// `.x[data-v-…]` на нём срабатывает; съёмка же срезает эти атрибуты
+// (tools/capture.mjs, cleanAttrs), и в разметке пакета их нет. Поднятое
+// дословно, такое правило не срабатывает нигде: в слое так лежали 13 правил —
+// заглушка поиска в шапке, отступ поля ввода, скрытие полос прокрутки,
+// градиенты обложек. Решение уже было записано для `swiper-button-shadow`
+// (ui/components/actions.css) — генератор его не выполнял. Нашла сборка
+// страниц R6. Хеш принадлежит сборке и меняется от билда к билду, так что
+// в слое он всё равно был бы ложной точностью.
+const unscope = (sel) => sel.replace(/\[data-v-[0-9a-f]+\]/g, "").replace(/^\s+/, "").replace(/,\s+/g, ",");
+
 const total = byClass.size;
 const mediaKeys = [...groups.keys()].sort((a, b) => mediaOrder(a) - mediaOrder(b));
 let out = `/* =========================================================================
@@ -149,6 +172,9 @@ let out = `/* ==================================================================
    (.pipeline/R2-bulk/gen-utilities.mjs). Ни одно объявление здесь не написано
    от руки: если класс объявлен в продукте несколько раз, ниже стоят все его
    объявления в порядке корпуса, включая вендорные дубли и @media.
+   Одно отличие от корпуса: у scoped-правил Vue снят атрибут области
+   видимости [data-v-…] — в разметке пакета его нет (съёмка его срезает),
+   и с атрибутом правило не срабатывало бы нигде.
 
    Классов: ${total}. Условий @media: ${mediaKeys.filter(Boolean).length}.
 
@@ -172,7 +198,7 @@ for (const mk of mediaKeys) {
       out += `${mk ? "" : "\n"}${ind}/* ${r.cls} — ${users.get(r.cls).size} комп. */\n`;
       lastCls = r.cls;
     }
-    out += `${ind}${r.selector}{${r.decls}}\n`;
+    out += `${ind}${unscope(r.selector)}{${r.decls}}\n`;
   }
   if (mk) out += `}\n`;
 }

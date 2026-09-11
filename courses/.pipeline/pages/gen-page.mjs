@@ -67,9 +67,11 @@ const res = await page.evaluate((cfg) => {
     kids.forEach((k, i) => { if (i >= t.keep && i < kids.length - t.tail) k.remove(); });
     report.trimmed.push({ sel: t.sel, before: kids.length, after: box.children.length, what: t.what });
   }
-  for (const s of cfg.stubs) {
-    const el = app.querySelector(s.sel);
-    if (!el) throw new Error("stub: нет " + s.sel);
+  for (const s of [...cfg.stubs].sort((a, b) => (b.index || 0) - (a.index || 0))) {
+    // Заглушки ставятся с конца: иначе после первой замены индекс второго
+    // совпадения того же селектора сдвинется.
+    const el = app.querySelectorAll(s.sel)[s.index || 0];
+    if (!el) throw new Error("stub: нет " + s.sel + " #" + (s.index || 0));
     const stub = document.createElement("div");
     stub.className = `doc-page-stub doc-page-stub--${s.mod}`;
     stub.setAttribute("role", "img");
