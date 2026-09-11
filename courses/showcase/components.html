@@ -3919,6 +3919,48 @@
         <p class="doc-note"><strong>Ассеты.</strong> Шеврон — символ <code>arrow-small</code> общего спрайта, а не экспорт: <code>icon/arrow-down</code> макета — тот же глиф (контур <code>M6.229 9.237…</code> совпадает с символом до третьего знака). Полный разбор — <a href="../components/data-display/faq-item.md">спецификация</a>.</p>
         <p class="doc-note"><strong>Состояния.</strong> Нарисовано и свёрстано раскрытое состояние (<code>expanded</code>) — в макете шеврон повёрнут вверх и ответ виден. Свёрнутое (<code>collapsed</code>) — без блока ответа и с шевроном вниз; модификатор <code>--expanded</code> переключает только шеврон, прятать ответ — дело разметки. <code>hover</code> и <code>focus-visible</code> требуются у кнопки вопроса по конвенции раскрывающегося блока, но в макете не нарисованы и здесь не свёрстаны.</p>
       </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>состояния</h5>
+          <code>2 снято · 2 без снятия</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
+          </span>
+          <span class="doc-tag">figma-only</span>
+        </div>
+        <p class="doc-note">Разметка пар «запись × состояние» — из
+          <a href="../components/STATE-CAPTURE.md">STATE-CAPTURE.md</a>: §3 (шаг R1-02,
+          принят 9 сентября 2026), §7 (записи, добавленные 11 сентября) и §8
+          (пересмотр по макету 11 сентября; по паре действует последняя строка).
+          Таблица ниже — та же разметка, сведённая к этой записи; словарь и
+          требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>
+        <p class="doc-note"><strong>Снятым у figma-only записи считается нарисованное в макете.</strong>
+          METHOD §4 называет узел Figma источником факта наравне с DOM и CSS
+          сборки. Состояние, которое макет не рисует и переменной не задаёт,
+          остаётся «без снятия», даже если вёрстка показывает его по конвенции.</p>
+        <div class="doc-stage doc-stage--grid">
+          <div class="doc-variant">
+            <span class="doc-variant__label"><code>collapsed</code> — узел макета 12194:79328, вопрос в «СЕО-блок / FAQ»</span>
+            <div class="doc-variant__row">
+              <div class="crs-faq-item" style="max-width:645px"><button type="button" class="crs-faq-item__question" aria-expanded="false"><span class="crs-faq-item__title">Текст вопроса</span><span class="crs-faq-item__chevron"><svg class="svg-icon" width="24" height="24" style="width:24px;height:24px;"><use xlink:href="../ui/assets/icons/sprite.svg#arrow-small"></use></svg></span></button></div>
+            </div>
+            <span class="doc-variant__label">Без блока ответа и с шевроном вниз: модификатор <code>--expanded</code> снят. Подпись «Текст вопроса» — заглушка библиотечного варианта.</span>
+          </div>
+        </div>
+        
+        <table class="doc-table">
+          <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
+          <tbody>
+            <tr><td><code>hover</code></td><td>GAP</td><td>STATE-CAPTURE.md §8 говорит: «макет наведение не рисует. Шаг R4-19»</td></tr>
+            <tr><td><code>focus-visible</code></td><td>GAP</td><td>STATE-CAPTURE.md §8 говорит: «макет фокус не рисует. Шаг R4-19»</td></tr>
+            <tr><td><code>expanded</code></td><td>снято</td><td>STATE-CAPTURE.md §8 говорит: «14394:193667 — раскрытый вопрос с ответом, шеврон вверх; свёрстан в блоке default выше»</td></tr>
+            <tr><td><code>collapsed</code></td><td>снято</td><td>STATE-CAPTURE.md §8 говорит: «12194:79328 — свёрнутый вопрос в «СЕО-блок / FAQ», шеврон вниз; образец ниже»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
     </section>
 
     <section class="doc-section" id="c-learning-step">
@@ -3972,6 +4014,39 @@
         <p class="doc-note"><strong>Ассеты.</strong> Шеврон — символ <code>arrow-small</code> общего спрайта: в узле он повёрнут дважды на 180°, то есть смотрит вниз — свёрнутый шаг. Полный разбор — <a href="../components/data-display/learning-step.md">спецификация</a>.</p>
         <p class="doc-note"><strong>Состояния.</strong> Нарисовано свёрнутое состояние (<code>collapsed</code>): шеврон вниз, раскрываемого содержимого в узле нет. Раскрытое (<code>expanded</code>) в макете не найдено — что появляется под шагом, неизвестно. <code>hover</code> и <code>focus-visible</code> требуются у кнопки-шеврона по конвенции, но в макете не нарисованы и здесь не свёрстаны.</p>
       </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>состояния</h5>
+          <code>1 снято · 3 без снятия</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
+          </span>
+          <span class="doc-tag">figma-only</span>
+        </div>
+        <p class="doc-note">Разметка пар «запись × состояние» — из
+          <a href="../components/STATE-CAPTURE.md">STATE-CAPTURE.md</a>: §3 (шаг R1-02,
+          принят 9 сентября 2026), §7 (записи, добавленные 11 сентября) и §8
+          (пересмотр по макету 11 сентября; по паре действует последняя строка).
+          Таблица ниже — та же разметка, сведённая к этой записи; словарь и
+          требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>
+        <p class="doc-note"><strong>Снятым у figma-only записи считается нарисованное в макете.</strong>
+          METHOD §4 называет узел Figma источником факта наравне с DOM и CSS
+          сборки. Состояние, которое макет не рисует и переменной не задаёт,
+          остаётся «без снятия», даже если вёрстка показывает его по конвенции.</p>
+        
+        <table class="doc-table">
+          <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
+          <tbody>
+            <tr><td><code>hover</code></td><td>GAP</td><td>STATE-CAPTURE.md §8 говорит: «макет наведение не рисует. Шаг R4-20»</td></tr>
+            <tr><td><code>focus-visible</code></td><td>GAP</td><td>STATE-CAPTURE.md §8 говорит: «макет фокус не рисует. Шаг R4-20»</td></tr>
+            <tr><td><code>expanded</code></td><td>GAP</td><td>STATE-CAPTURE.md §8 говорит: «раскрытого шага в макете нет. Шаг R4-20»</td></tr>
+            <tr><td><code>collapsed</code></td><td>снято</td><td>STATE-CAPTURE.md §8 говорит: «14475:194581 — свёрнутый шаг, шеврон вниз; свёрстан в блоке default выше»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
     </section>
 
     <section class="doc-section" id="c-demand-chart">
@@ -4773,6 +4848,43 @@
           прод-CSS. То есть <code>storybook-only</code> здесь значит «нет в снятой
           разметке», а не «нет в продукте вовсе». Разбор — <a href="../components/forms/checkbox.md">спецификация</a>.</p>
       </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>состояния</h5>
+          <code>3 снято · 2 без снятия</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--storybook" title="storybook-only" aria-label="storybook-only">S</span>
+          </span>
+          <span class="doc-tag doc-tag--partial">partial</span>
+        </div>
+        <p class="doc-note">Разметка пар «запись × состояние» — из
+          <a href="../components/STATE-CAPTURE.md">STATE-CAPTURE.md</a>: §3 (шаг R1-02,
+          принят 9 сентября 2026), §7 (записи, добавленные 11 сентября) и §8
+          (пересмотр по макету 11 сентября; по паре действует последняя строка).
+          Таблица ниже — та же разметка, сведённая к этой записи; словарь и
+          требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>
+        <p class="doc-note"><strong><code>focus-visible</code> смотрятся на живом элементе.</strong>
+          Отдельного образца у них нет намеренно: классы состояний стоят на самой
+          разметке блока «default» выше и подняты в
+          <code>ui/utilities-components.css</code> — наведите указатель или дойдите
+          до элемента клавишей Tab, и состояние сработает по-настоящему. Копия ради
+          скриншота была бы вторым носителем тех же значений, а расходящиеся
+          носители — ровно тот класс дефектов, из-за которого заведён гейт
+          <code>tools/validate-showcase-claims.mjs</code>.</p>
+        <table class="doc-table">
+          <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
+          <tbody>
+            <tr><td><code>hover</code></td><td>GAP</td><td>STATE-CAPTURE.md §3 говорит: «**storybook-only**: <code>common-basecheckbox--base-checkbox-story.html</code> (437 байт) рендерит только <code>&lt;span base-checkbox__button&gt;</code> без единой utility-модификации, а CSS-чанк, найденный для остальных состояний ниже (<code>similar-courses.DqXT-MW0.css</code>), не содержит ни одного правила <code>.base-checkbox*:hover</code>. Досъёмка — предмет шага R3-10, не этого»</td></tr>
+            <tr><td><code>focus-visible</code></td><td>снято</td><td>STATE-CAPTURE.md §3 говорит: «*(исправлено по находке 1 review-1.md; ранее ошибочно значилось «не снято, чанка нет в evidence»)* <code>evidence/source/production/css/external/similar-courses.DqXT-MW0.css</code> → <code>.base-checkbox__input:focus+.base-checkbox__button{border-color:var(--color-ui-black-400)}</code> — реальный <code>:focus</code> (не <code>:focus-visible</code>), но визуальное изменение есть (смена цвета рамки на тот же токен, что несёт норматив <code>HeaderDropdown</code>); тот же приём смягчения, что принят для <code>select</code>/<code>multi-select</code>/<code>search-input</code> через <code>focus-within</code> (§3.1 выше), только здесь компенсация через соседний <code>:focus</code> на скрытом <code>&lt;input&gt;</code>, а не через <code>focus-within</code> на обёртке»</td></tr>
+            <tr><td><code>checked</code></td><td>снято</td><td>STATE-CAPTURE.md §3 говорит: «*(исправлено по находке 1 review-1.md)* тот же чанк → <code>.base-checkbox__input:checked+.base-checkbox__button{background-color:var(--color-ui-black-850);background-image:url(…svg-галочка…);border-color:var(--color-ui-black-850)}</code> — явный класс состояния с собственным фоном, иконкой и цветом рамки»</td></tr>
+            <tr><td><code>indeterminate</code></td><td>GAP</td><td>STATE-CAPTURE.md §3 говорит: «ни в этом чанке, ни в остальном корпусе <code>evidence/source/production/css/</code> нет правила для <code>:indeterminate</code>/<code>[aria-checked="mixed"]</code> у <code>.base-checkbox*</code>; Storybook-story тоже не рендерит этот вариант. Досъёмка — предмет шага R3-10»</td></tr>
+            <tr><td><code>disabled</code></td><td>снято</td><td>STATE-CAPTURE.md §3 говорит: «*(исправлено по находке 1 review-1.md)* тот же чанк → <code>.base-checkbox--disabled{opacity:.5}</code> и <code>.base-checkbox__wrapper--disabled{cursor:not-allowed}</code> — два явных модификатора состояния»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
     </section>
 
     <section class="doc-section" id="c-switch">
@@ -4817,6 +4929,42 @@
           прод-CSS. То есть <code>storybook-only</code> здесь значит «нет в снятой
           разметке», а не «нет в продукте вовсе». Разбор — <a href="../components/forms/switch.md">спецификация</a>.</p>
       </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>состояния</h5>
+          <code>3 снято · 1 без снятия</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--storybook" title="storybook-only" aria-label="storybook-only">S</span>
+          </span>
+          <span class="doc-tag doc-tag--partial">partial</span>
+        </div>
+        <p class="doc-note">Разметка пар «запись × состояние» — из
+          <a href="../components/STATE-CAPTURE.md">STATE-CAPTURE.md</a>: §3 (шаг R1-02,
+          принят 9 сентября 2026), §7 (записи, добавленные 11 сентября) и §8
+          (пересмотр по макету 11 сентября; по паре действует последняя строка).
+          Таблица ниже — та же разметка, сведённая к этой записи; словарь и
+          требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>
+        <p class="doc-note"><strong><code>hover</code> и <code>focus-visible</code> смотрятся на живом элементе.</strong>
+          Отдельного образца у них нет намеренно: классы состояний стоят на самой
+          разметке блока «default» выше и подняты в
+          <code>ui/utilities-components.css</code> — наведите указатель или дойдите
+          до элемента клавишей Tab, и состояние сработает по-настоящему. Копия ради
+          скриншота была бы вторым носителем тех же значений, а расходящиеся
+          носители — ровно тот класс дефектов, из-за которого заведён гейт
+          <code>tools/validate-showcase-claims.mjs</code>.</p>
+        <table class="doc-table">
+          <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
+          <tbody>
+            <tr><td><code>hover</code></td><td>снято</td><td>STATE-CAPTURE.md §3 говорит: «<code>common-baseswitch--base-switch-story.html</code>: <code>enabled:group-hover:bg-ui-black-50</code> на кастомном треке»</td></tr>
+            <tr><td><code>focus-visible</code></td><td>снято</td><td>STATE-CAPTURE.md §3 говорит: «тот же файл: <code>peer-focus-visible:outline</code> на треке (управляется скрытым нативным <code>&lt;input type="checkbox"&gt;</code> через <code>peer</code>); цвет не переопределён — рисуется дефолтным <code>outline-color</code>, это не то же самое, что <code>outline-none</code> без замены, поэтому не норматив»</td></tr>
+            <tr><td><code>checked</code></td><td>снято</td><td>STATE-CAPTURE.md §3 говорит: «тот же файл: <code>peer-checked:bg-ui-black-850 peer-checked:after:bg-ui-white peer-checked:after:translate-x-4</code>, буквально в разметке обоих вариантов лейбла»</td></tr>
+            <tr><td><code>disabled</code></td><td>GAP</td><td>STATE-CAPTURE.md §3 говорит: «в отрендеренной story нет <code>disabled:*</code>/<code>peer-disabled:*</code> вовсе — GAP шага R3-11»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
     </section>
 
     <section class="doc-section" id="c-tile-filter">
@@ -4861,6 +5009,36 @@
           прод-CSS. То есть <code>storybook-only</code> здесь значит «нет в снятой
           разметке», а не «нет в продукте вовсе». Разбор — <a href="../components/forms/tile-filter.md">спецификация</a>.</p>
       </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>состояния</h5>
+          <code>1 снято · 4 без снятия</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--storybook" title="storybook-only" aria-label="storybook-only">S</span>
+          </span>
+          <span class="doc-tag doc-tag--partial">partial</span>
+        </div>
+        <p class="doc-note">Разметка пар «запись × состояние» — из
+          <a href="../components/STATE-CAPTURE.md">STATE-CAPTURE.md</a>: §3 (шаг R1-02,
+          принят 9 сентября 2026), §7 (записи, добавленные 11 сентября) и §8
+          (пересмотр по макету 11 сентября; по паре действует последняя строка).
+          Таблица ниже — та же разметка, сведённая к этой записи; словарь и
+          требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>
+        
+        <table class="doc-table">
+          <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
+          <tbody>
+            <tr><td><code>hover</code></td><td>GAP</td><td>STATE-CAPTURE.md §3 говорит: «ни в <code>common-basefilterwithimage--default.html</code>, ни в <code>--active.html</code> нет <code>hover:*</code>/<code>focus-visible:*</code>; узел — обычная <code>&lt;button&gt;</code> без сброса дефолтного фокуса, но требуемое <code>hover</code> тоже не находит продуктового стиля в этих двух story — GAP шага R3-12»</td></tr>
+            <tr><td><code>focus-visible</code></td><td>GAP</td><td>STATE-CAPTURE.md §3 говорит: «ни в <code>common-basefilterwithimage--default.html</code>, ни в <code>--active.html</code> нет <code>hover:*</code>/<code>focus-visible:*</code>; узел — обычная <code>&lt;button&gt;</code> без сброса дефолтного фокуса, но требуемое <code>hover</code> тоже не находит продуктового стиля в этих двух story — GAP шага R3-12»</td></tr>
+            <tr><td><code>pressed</code></td><td>GAP</td><td>STATE-CAPTURE.md §3 говорит: «нет <code>active:*</code>; GAP, не норматив (§1)»</td></tr>
+            <tr><td><code>selected</code></td><td>снято</td><td>STATE-CAPTURE.md §3 говорит: «сравнение двух story: default <code>bg-ui-white border-ui-black-100 text-ui-black-850</code>, story <code>--active</code> (по словарю задания — <code>selected</code>, не <code>active</code>) <code>bg-ui-blue-50 border-ui-blue-300 text-ui-blue-500</code>»</td></tr>
+            <tr><td><code>disabled</code></td><td>GAP</td><td>STATE-CAPTURE.md §3 говорит: «ни в одной из двух story нет <code>disabled</code>-варианта; GAP шага R3-12»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
     </section>
 
     <section class="doc-section" id="c-multi-select">
@@ -4905,6 +5083,45 @@
           прод-CSS. То есть <code>storybook-only</code> здесь значит «нет в снятой
           разметке», а не «нет в продукте вовсе». Разбор — <a href="../components/forms/multi-select.md">спецификация</a>.</p>
       </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>состояния</h5>
+          <code>3 снято · 4 без снятия</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--storybook" title="storybook-only" aria-label="storybook-only">S</span>
+          </span>
+          <span class="doc-tag doc-tag--partial">partial</span>
+        </div>
+        <p class="doc-note">Разметка пар «запись × состояние» — из
+          <a href="../components/STATE-CAPTURE.md">STATE-CAPTURE.md</a>: §3 (шаг R1-02,
+          принят 9 сентября 2026), §7 (записи, добавленные 11 сентября) и §8
+          (пересмотр по макету 11 сентября; по паре действует последняя строка).
+          Таблица ниже — та же разметка, сведённая к этой записи; словарь и
+          требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>
+        <p class="doc-note"><strong><code>hover</code> и <code>focus-visible</code> смотрятся на живом элементе.</strong>
+          Отдельного образца у них нет намеренно: классы состояний стоят на самой
+          разметке блока «default» выше и подняты в
+          <code>ui/utilities-components.css</code> — наведите указатель или дойдите
+          до элемента клавишей Tab, и состояние сработает по-настоящему. Копия ради
+          скриншота была бы вторым носителем тех же значений, а расходящиеся
+          носители — ровно тот класс дефектов, из-за которого заведён гейт
+          <code>tools/validate-showcase-claims.mjs</code>.</p>
+        <table class="doc-table">
+          <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
+          <tbody>
+            <tr><td><code>hover</code></td><td>снято</td><td>STATE-CAPTURE.md §3 говорит: «<code>forms-multiselect--base-story.html</code>: <code>&lt;input cursor-pointer … focus:outline-none …&gt;</code> без <code>hover:*</code>»</td></tr>
+            <tr><td><code>focus-visible</code></td><td>снято</td><td>STATE-CAPTURE.md §3 говорит: «тот же файл: <code>focus-within:border-ui-black-850 focus-within:bg-ui-white</code> на обёртке <code>&lt;span&gt;</code>, тот же приём, что у Select/SearchInput»</td></tr>
+            <tr><td><code>checked</code></td><td>GAP</td><td>STATE-CAPTURE.md §3 говорит: «story рендерит только строку поиска, список опций с чекбоксами не раскрыт ни разу — GAP шага R3-07»</td></tr>
+            <tr><td><code>open</code></td><td>GAP</td><td>STATE-CAPTURE.md §3 говорит: «тот же аргумент, что у Select; GAP решения 5 / X-14, шаг R3-07»</td></tr>
+            <tr><td><code>closed</code></td><td>снято</td><td>STATE-CAPTURE.md §3 говорит: «список не отрисован — структурное отсутствие (N5), тот же аргумент, что у Select»</td></tr>
+            <tr><td><code>disabled</code></td><td>GAP</td><td>STATE-CAPTURE.md §3 говорит: «в story нет <code>disabled</code>-варианта (в отличие от Select, где Storybook его показал) — асимметрия с Select зафиксирована явно, не додумана по аналогии; GAP шага R3-07»</td></tr>
+            <tr><td><code>invalid</code></td><td>GAP</td><td>STATE-CAPTURE.md §3 говорит: «тот же аргумент, что у Select»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
     </section>
 
 
@@ -4954,6 +5171,43 @@
           Полностью — <a href="../components/forms/text-input.md">спецификация</a>.
         </p>
       </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>состояния</h5>
+          <code>2 снято · 3 без снятия</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+          </span>
+          <span class="doc-tag doc-tag--partial">partial</span>
+        </div>
+        <p class="doc-note">Разметка пар «запись × состояние» — из
+          <a href="../components/STATE-CAPTURE.md">STATE-CAPTURE.md</a>: §3 (шаг R1-02,
+          принят 9 сентября 2026), §7 (записи, добавленные 11 сентября) и §8
+          (пересмотр по макету 11 сентября; по паре действует последняя строка).
+          Таблица ниже — та же разметка, сведённая к этой записи; словарь и
+          требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>
+        <p class="doc-note"><strong><code>hover</code> и <code>focus-visible</code> смотрятся на живом элементе.</strong>
+          Отдельного образца у них нет намеренно: классы состояний стоят на самой
+          разметке блока «default» выше и подняты в
+          <code>ui/utilities-components.css</code> — наведите указатель или дойдите
+          до элемента клавишей Tab, и состояние сработает по-настоящему. Копия ради
+          скриншота была бы вторым носителем тех же значений, а расходящиеся
+          носители — ровно тот класс дефектов, из-за которого заведён гейт
+          <code>tools/validate-showcase-claims.mjs</code>.</p>
+        <table class="doc-table">
+          <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
+          <tbody>
+            <tr><td><code>hover</code></td><td>снято</td><td>STATE-CAPTURE.md §8 говорит: «класса <code>hover:*</code> на поле нет — нативный hover ничего не меняет и ничем не сломан (правило §1)»</td></tr>
+            <tr><td><code>focus-visible</code></td><td>снято</td><td>STATE-CAPTURE.md §8 говорит: «<code>focus-within:border-ui-black-850</code> на обёртке при <code>focus:outline-none</code> на самом поле — тот же механизм, что у <code>Select</code> и <code>SearchInput</code>»</td></tr>
+            <tr><td><code>disabled</code></td><td>GAP</td><td>STATE-CAPTURE.md §8 говорит: «ни одного отключённого поля в снятой разметке. Шаг R3-09»</td></tr>
+            <tr><td><code>readOnly</code></td><td>GAP</td><td>STATE-CAPTURE.md §8 говорит: «ни одного поля только для чтения в снятой разметке. Шаг R3-09»</td></tr>
+            <tr><td><code>invalid</code></td><td>GAP</td><td>STATE-CAPTURE.md §8 говорит: «ни одного невалидного поля в снятой разметке. Шаг R3-09»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
     </section>
 
 
@@ -5329,6 +5583,38 @@
         <p class="doc-note"><strong>Тексты.</strong> Подписи <code>Text 1</code>…<code>Text 4</code> — собственные значения узла макета (свойства <code>text1</code>…<code>text4</code>), а не придуманные примеры. Настоящих подписей у компонента нет: их даёт страница, а страниц с крошками в продукте не снято.</p>
         <p class="doc-note"><strong>Ассеты.</strong> Разделитель взят из общего спрайта продукта, а не из экспорта макета. В макете на его месте <code>icon/arrow-down</code> 20×20; глиф тот же шеврон — контуры сверены: у обоих это два отрезка, сходящиеся в точке, различается только <code>viewBox</code> (20 против 24). Своя копия иконки не заводится: у продукта символ уже есть, и вторая копия разошлась бы с первой при следующей правке спрайта. Полный разбор — <a href="../components/navigation/breadcrumbs.md">спецификация</a>.</p>
       </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>состояния</h5>
+          <code>0 снято · 3 без снятия</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
+          </span>
+          <span class="doc-tag">figma-only</span>
+        </div>
+        <p class="doc-note">Разметка пар «запись × состояние» — из
+          <a href="../components/STATE-CAPTURE.md">STATE-CAPTURE.md</a>: §3 (шаг R1-02,
+          принят 9 сентября 2026), §7 (записи, добавленные 11 сентября) и §8
+          (пересмотр по макету 11 сентября; по паре действует последняя строка).
+          Таблица ниже — та же разметка, сведённая к этой записи; словарь и
+          требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>
+        <p class="doc-note"><strong>Снятым у figma-only записи считается нарисованное в макете.</strong>
+          METHOD §4 называет узел Figma источником факта наравне с DOM и CSS
+          сборки. Состояние, которое макет не рисует и переменной не задаёт,
+          остаётся «без снятия», даже если вёрстка показывает его по конвенции.</p>
+        
+        <table class="doc-table">
+          <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
+          <tbody>
+            <tr><td><code>hover</code></td><td>GAP</td><td>STATE-CAPTURE.md §8 говорит: «макет наведение не рисует. Шаг R3-15»</td></tr>
+            <tr><td><code>focus-visible</code></td><td>GAP</td><td>STATE-CAPTURE.md §8 говорит: «макет фокус не рисует. Шаг R3-15»</td></tr>
+            <tr><td><code>current</code></td><td>GAP</td><td>STATE-CAPTURE.md §8 говорит: «в узле 9902:39188 все четыре крошки одного цвета <code>#909194</code> — текущая не выделена ничем. Шаг R3-15»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
     </section>
 
 
@@ -5467,6 +5753,44 @@
         <p class="doc-note"><strong>Тексты.</strong> Подпись «Школа» — собственный текст инстанса макета. Три образца: иконочный невыбранный (узел …15089:302651), текстовый невыбранный и текстовый выбранный (узел …15089:302655). Текстовый невыбранный собран из переменных невыбранного состояния того же компонента — <code>elements/tab/fill</code>, <code>border</code>, <code>text</code>, — отдельного инстанса с этим сочетанием на прочитанных узлах не встретилось. Обёртка ряда — оформление витрины, а не часть компонента.</p>
         <p class="doc-note"><strong>Ассеты.</strong> Шеврон и значок сортировки — символы <code>arrow-small</code> и <code>sort</code> общего спрайта продукта, а не экспорт макета. Контуры сверены: у макета это <code>icon/arrow-down</code> и значок с двумя стрелками, те же глифы. Цвет берут через <code>currentColor</code>, поэтому у выбранного варианта шеврон синий вместе с текстом, как в макете. Полный разбор — <a href="../components/navigation/tab.md">спецификация</a>.</p>
       </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>состояния</h5>
+          <code>2 снято · 2 без снятия</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
+          </span>
+          <span class="doc-tag">figma-only</span>
+        </div>
+        <p class="doc-note">Разметка пар «запись × состояние» — из
+          <a href="../components/STATE-CAPTURE.md">STATE-CAPTURE.md</a>: §3 (шаг R1-02,
+          принят 9 сентября 2026), §7 (записи, добавленные 11 сентября) и §8
+          (пересмотр по макету 11 сентября; по паре действует последняя строка).
+          Таблица ниже — та же разметка, сведённая к этой записи; словарь и
+          требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>
+        <p class="doc-note"><strong>Снятым у figma-only записи считается нарисованное в макете.</strong>
+          METHOD §4 называет узел Figma источником факта наравне с DOM и CSS
+          сборки. Состояние, которое макет не рисует и переменной не задаёт,
+          остаётся «без снятия», даже если вёрстка показывает его по конвенции.</p>
+        <p class="doc-note"><strong><code>hover</code> смотрятся на живом элементе.</strong>
+          Правило состояния объявлено в CSS записи по переменной или узлу макета
+          (или действует базовое правило слоя <code>ui/foundations.css</code>, если так
+          сказано в таблице) — наведите указатель или дойдите до элемента клавишей
+          Tab в блоке «default» выше. Отдельный образец был бы вторым носителем
+          тех же значений.</p>
+        <table class="doc-table">
+          <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
+          <tbody>
+            <tr><td><code>hover</code></td><td>снято</td><td>STATE-CAPTURE.md §8 говорит: «переменная <code>elements/tab/border_hover</code> = <code>#dededf</code> (узел …15089:302655) — рамка при наведении; на витрине живое»</td></tr>
+            <tr><td><code>focus-visible</code></td><td>GAP</td><td>STATE-CAPTURE.md §8 говорит: «макет фокус не рисует и переменной фокуса у вкладки нет. Шаг R3-13»</td></tr>
+            <tr><td><code>selected</code></td><td>снято</td><td>STATE-CAPTURE.md §8 говорит: «…15089:302655 — выбранный вариант-выпадашка: <code>#eff5ff</code>, рамка <code>#94bdfc</code>, текст <code>#346ef4</code>; свёрстан в блоке default выше»</td></tr>
+            <tr><td><code>disabled</code></td><td>GAP</td><td>STATE-CAPTURE.md §8 говорит: «отключённой вкладки в макете нет, переменной тоже. Шаг R3-13»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
     </section>
 
     <section class="doc-section" id="c-pagination">
@@ -5519,6 +5843,44 @@
         <p class="doc-note"><strong>Тексты.</strong> Номера страниц и многоточие — содержимое инстанса макета. В макете страница «2» нарисована в состоянии наведения (серая заливка); на витрине наведение живое, поэтому в покое она белая, как «3». Левая стрелка отключена: это первая страница, листать назад некуда, — ровно так она бледнее правой на скриншоте узла.</p>
         <p class="doc-note"><strong>Ассеты.</strong> Шевроны — символ <code>arrow-small</code> общего спрайта продукта, повёрнутый на ±90°, а не экспорт макета: у макета это тот же <code>icon/arrow-down</code>, что у хлебных крошек, контуры сверены. Тень иконочной кнопки из макета (эффект <code>Dropdown</code>) не воспроизводится: это композитный эффект, в слой токенов он не разворачивается, и на прозрачной стрелке внутри контейнера его не видно. Полный разбор — <a href="../components/navigation/pagination.md">спецификация</a>.</p>
       </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>состояния</h5>
+          <code>3 снято · 1 без снятия</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
+          </span>
+          <span class="doc-tag">figma-only</span>
+        </div>
+        <p class="doc-note">Разметка пар «запись × состояние» — из
+          <a href="../components/STATE-CAPTURE.md">STATE-CAPTURE.md</a>: §3 (шаг R1-02,
+          принят 9 сентября 2026), §7 (записи, добавленные 11 сентября) и §8
+          (пересмотр по макету 11 сентября; по паре действует последняя строка).
+          Таблица ниже — та же разметка, сведённая к этой записи; словарь и
+          требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>
+        <p class="doc-note"><strong>Снятым у figma-only записи считается нарисованное в макете.</strong>
+          METHOD §4 называет узел Figma источником факта наравне с DOM и CSS
+          сборки. Состояние, которое макет не рисует и переменной не задаёт,
+          остаётся «без снятия», даже если вёрстка показывает его по конвенции.</p>
+        <p class="doc-note"><strong><code>hover</code> смотрятся на живом элементе.</strong>
+          Правило состояния объявлено в CSS записи по переменной или узлу макета
+          (или действует базовое правило слоя <code>ui/foundations.css</code>, если так
+          сказано в таблице) — наведите указатель или дойдите до элемента клавишей
+          Tab в блоке «default» выше. Отдельный образец был бы вторым носителем
+          тех же значений.</p>
+        <table class="doc-table">
+          <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
+          <tbody>
+            <tr><td><code>hover</code></td><td>снято</td><td>STATE-CAPTURE.md §8 говорит: «9909:29791 — страница «2» нарисована в наведении, <code>elements/pagination/fill_hover</code> = <code>#f1f1f1</code>; на витрине живое»</td></tr>
+            <tr><td><code>focus-visible</code></td><td>GAP</td><td>STATE-CAPTURE.md §8 говорит: «макет фокус не рисует. Шаг R3-14»</td></tr>
+            <tr><td><code>current</code></td><td>снято</td><td>STATE-CAPTURE.md §8 говорит: «9909:29791 — страница «1» выделена: <code>#eff5ff</code>, рамка <code>#94bdfc</code>, текст <code>#346ef4</code>; свёрстана в блоке default выше»</td></tr>
+            <tr><td><code>disabled</code></td><td>снято</td><td>STATE-CAPTURE.md §8 говорит: «9909:29791 — левая стрелка бледнее правой, <code>elements/button/icon_disable</code> = <code>#d3d3d4</code>; свёрстана в блоке default выше»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
     </section>
 
 
@@ -5565,6 +5927,38 @@
         <p class="doc-note"><strong>Тексты.</strong> Подписи — из инстанса в каталоге: «Для взрослых» (выбран) и «Для детей». Тот же компонент стоит в форме обратной связи с подписями «Телеграм» и «Телефон». Обёртка шириной 270 — ширина левой колонки каталога, оформление витрины.</p>
         <p class="doc-note"><strong>Ассеты.</strong> Ассетов нет. Тень собрана из четырёх переменных <code>effect/drop shadow 1|2/*</code> слоя — композитный эффект <code>Dropdown</code> одной переменной не разворачивается. Полный разбор — <a href="../components/navigation/button-group.md">спецификация</a>.</p>
       </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>состояния</h5>
+          <code>1 снято · 2 без снятия</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
+          </span>
+          <span class="doc-tag">figma-only</span>
+        </div>
+        <p class="doc-note">Разметка пар «запись × состояние» — из
+          <a href="../components/STATE-CAPTURE.md">STATE-CAPTURE.md</a>: §3 (шаг R1-02,
+          принят 9 сентября 2026), §7 (записи, добавленные 11 сентября) и §8
+          (пересмотр по макету 11 сентября; по паре действует последняя строка).
+          Таблица ниже — та же разметка, сведённая к этой записи; словарь и
+          требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>
+        <p class="doc-note"><strong>Снятым у figma-only записи считается нарисованное в макете.</strong>
+          METHOD §4 называет узел Figma источником факта наравне с DOM и CSS
+          сборки. Состояние, которое макет не рисует и переменной не задаёт,
+          остаётся «без снятия», даже если вёрстка показывает его по конвенции.</p>
+        
+        <table class="doc-table">
+          <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
+          <tbody>
+            <tr><td><code>hover</code></td><td>GAP</td><td>STATE-CAPTURE.md §8 говорит: «макет наведение не рисует. Шаг R3-16»</td></tr>
+            <tr><td><code>focus-visible</code></td><td>GAP</td><td>STATE-CAPTURE.md §8 говорит: «макет фокус не рисует. Шаг R3-16»</td></tr>
+            <tr><td><code>selected</code></td><td>снято</td><td>STATE-CAPTURE.md §8 говорит: «14644:221762 — выбранный сегмент белый с тенью <code>Dropdown</code>; свёрстан в блоке default выше»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
     </section>
 
     <section class="doc-section" id="c-page-toc">
@@ -5614,6 +6008,42 @@
         <p class="doc-note"><strong>Тексты.</strong> Пять пунктов — дословно из узла, включая ручной перенос «лучшие курсы / и онлайн-школы». Пункты ведут на разделы SEO-статьи «СЕО-блок / оглавление» (<code>12958:143599</code>), у которой три кадра — 976, 712 и 320.</p>
         <p class="doc-note"><strong>Ассеты.</strong> Ассетов нет. Полный разбор — <a href="../components/navigation/page-toc.md">спецификация</a>.</p>
       </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>состояния</h5>
+          <code>2 снято · 0 без снятия</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
+          </span>
+          <span class="doc-tag">figma-only</span>
+        </div>
+        <p class="doc-note">Разметка пар «запись × состояние» — из
+          <a href="../components/STATE-CAPTURE.md">STATE-CAPTURE.md</a>: §3 (шаг R1-02,
+          принят 9 сентября 2026), §7 (записи, добавленные 11 сентября) и §8
+          (пересмотр по макету 11 сентября; по паре действует последняя строка).
+          Таблица ниже — та же разметка, сведённая к этой записи; словарь и
+          требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>
+        <p class="doc-note"><strong>Снятым у figma-only записи считается нарисованное в макете.</strong>
+          METHOD §4 называет узел Figma источником факта наравне с DOM и CSS
+          сборки. Состояние, которое макет не рисует и переменной не задаёт,
+          остаётся «без снятия», даже если вёрстка показывает его по конвенции.</p>
+        <p class="doc-note"><strong><code>hover</code> и <code>focus-visible</code> смотрятся на живом элементе.</strong>
+          Правило состояния объявлено в CSS записи по переменной или узлу макета
+          (или действует базовое правило слоя <code>ui/foundations.css</code>, если так
+          сказано в таблице) — наведите указатель или дойдите до элемента клавишей
+          Tab в блоке «default» выше. Отдельный образец был бы вторым носителем
+          тех же значений.</p>
+        <table class="doc-table">
+          <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
+          <tbody>
+            <tr><td><code>hover</code></td><td>снято</td><td>STATE-CAPTURE.md §8 говорит: «базовое правило <code>a:hover{text-decoration:underline}</code> слоя <code>ui/foundations.css</code> (R0-03) действует на ссылки оглавления — своего правила у записи нет»</td></tr>
+            <tr><td><code>focus-visible</code></td><td>снято</td><td>STATE-CAPTURE.md §8 говорит: «ссылка без <code>outline-none</code>, базовый слой фокус не объявляет и не сбрасывает — работает фокус браузера»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
     </section>
 
   </section>
@@ -5939,6 +6369,32 @@
           библиотека проставляет их рантаймом как признаки состояния. Пакет их только называет — менять и описывать их поведение
           он не берётся. Разбор — <a href="../components/collections/carousel.md">спецификация</a>.</p>
       </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>состояния</h5>
+          <code>1 снято · 0 без снятия</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+          </span>
+          <span class="doc-tag doc-tag--partial">partial</span>
+        </div>
+        <p class="doc-note">Разметка пар «запись × состояние» — из
+          <a href="../components/STATE-CAPTURE.md">STATE-CAPTURE.md</a>: §3 (шаг R1-02,
+          принят 9 сентября 2026), §7 (записи, добавленные 11 сентября) и §8
+          (пересмотр по макету 11 сентября; по паре действует последняя строка).
+          Таблица ниже — та же разметка, сведённая к этой записи; словарь и
+          требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>
+        
+        <table class="doc-table">
+          <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
+          <tbody>
+            <tr><td><code>current</code></td><td>снято</td><td>STATE-CAPTURE.md §3 говорит: «<code>swiper-slide-active</code>, 16 вхождений — день в день с occurrences Carousel (STATES.md §4.1)»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
     </section>
 
   </section>
@@ -6429,6 +6885,37 @@
         <p class="doc-note"><strong>Ассеты.</strong> Уголок нарисован <code>clip-path</code>, а не экспортом: в макете это вектор-треугольник без глифа, экспорт дал бы тот же многоугольник файлом. Курсор-указатель рядом с уголком — иллюстрация макета, не часть компонента. Полный разбор — <a href="../components/overlays/tooltip.md">спецификация</a>.</p>
         <p class="doc-note"><strong>Состояния.</strong> Нарисована открытая подсказка (<code>open</code>). Закрытая (<code>closed</code>) — её отсутствие: в продукте плашка гидрируется по наведению на триггер и в снятой разметке не встречается.</p>
       </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>состояния</h5>
+          <code>2 снято · 0 без снятия</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
+          </span>
+          <span class="doc-tag">figma-only</span>
+        </div>
+        <p class="doc-note">Разметка пар «запись × состояние» — из
+          <a href="../components/STATE-CAPTURE.md">STATE-CAPTURE.md</a>: §3 (шаг R1-02,
+          принят 9 сентября 2026), §7 (записи, добавленные 11 сентября) и §8
+          (пересмотр по макету 11 сентября; по паре действует последняя строка).
+          Таблица ниже — та же разметка, сведённая к этой записи; словарь и
+          требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>
+        <p class="doc-note"><strong>Снятым у figma-only записи считается нарисованное в макете.</strong>
+          METHOD §4 называет узел Figma источником факта наравне с DOM и CSS
+          сборки. Состояние, которое макет не рисует и переменной не задаёт,
+          остаётся «без снятия», даже если вёрстка показывает его по конвенции.</p>
+        
+        <table class="doc-table">
+          <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
+          <tbody>
+            <tr><td><code>open</code></td><td>снято</td><td>STATE-CAPTURE.md §8 говорит: «11025:93606 — открытая подсказка «Партнер Хабра»; свёрстана в блоке default выше»</td></tr>
+            <tr><td><code>closed</code></td><td>снято</td><td>STATE-CAPTURE.md §8 говорит: «закрытая подсказка — это триггер без плашки: <code>img.v-popper--has-tooltip</code> «Партнер Хабра» стоит в снятой разметке, 6 узлов в листинге и 8 в рейтинге»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
     </section>
 
     <section class="doc-section" id="c-sort-sheet">
@@ -6481,6 +6968,37 @@
         <p class="doc-note"><strong>Ассеты.</strong> Ассетов нет. Полоска-захват — плашка, а не иконка. Полный разбор — <a href="../components/overlays/sort-sheet.md">спецификация</a>.</p>
         <p class="doc-note"><strong>Состояния.</strong> Нарисована открытая шторка (<code>open</code>) вместе с затемнением. Закрытая (<code>closed</code>) — это кнопка сортировки в ряду быстрых фильтров, иконочный <code>Tab</code> с символом <code>sort</code>; отдельной вёрстки у записи для неё нет.</p>
       </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>состояния</h5>
+          <code>1 снято · 1 без снятия</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
+          </span>
+          <span class="doc-tag">figma-only</span>
+        </div>
+        <p class="doc-note">Разметка пар «запись × состояние» — из
+          <a href="../components/STATE-CAPTURE.md">STATE-CAPTURE.md</a>: §3 (шаг R1-02,
+          принят 9 сентября 2026), §7 (записи, добавленные 11 сентября) и §8
+          (пересмотр по макету 11 сентября; по паре действует последняя строка).
+          Таблица ниже — та же разметка, сведённая к этой записи; словарь и
+          требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>
+        <p class="doc-note"><strong>Снятым у figma-only записи считается нарисованное в макете.</strong>
+          METHOD §4 называет узел Figma источником факта наравне с DOM и CSS
+          сборки. Состояние, которое макет не рисует и переменной не задаёт,
+          остаётся «без снятия», даже если вёрстка показывает его по конвенции.</p>
+        
+        <table class="doc-table">
+          <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
+          <tbody>
+            <tr><td><code>open</code></td><td>снято</td><td>STATE-CAPTURE.md §8 говорит: «9356:50311 — открытая шторка с затемнением; свёрстана в блоке default выше»</td></tr>
+            <tr><td><code>closed</code></td><td>GAP</td><td>STATE-CAPTURE.md §8 говорит: «кадр с закрытой шторкой не читался — кнопка сортировки на нём не сверена. Шаг R4-17»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
     </section>
 
     <section class="doc-section" id="c-price-sheet">
@@ -6538,6 +7056,37 @@
         <p class="doc-note"><strong>Ассеты.</strong> Стрелка валюты — символ <code>arrow-small</code> общего спрайта (глиф <code>icon/arrow-down</code> макета). Кнопки — продуктовый <code>Button</code> M: main и secondary, классы дословно из снятой разметки. Полный разбор — <a href="../components/overlays/price-sheet.md">спецификация</a>.</p>
         <p class="doc-note"><strong>Состояния.</strong> Нарисована открытая шторка (<code>open</code>). Закрытая (<code>closed</code>) — чип «Цена» в ряду быстрых фильтров; отдельной вёрстки у записи для него нет.</p>
       </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>состояния</h5>
+          <code>1 снято · 1 без снятия</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
+          </span>
+          <span class="doc-tag">figma-only</span>
+        </div>
+        <p class="doc-note">Разметка пар «запись × состояние» — из
+          <a href="../components/STATE-CAPTURE.md">STATE-CAPTURE.md</a>: §3 (шаг R1-02,
+          принят 9 сентября 2026), §7 (записи, добавленные 11 сентября) и §8
+          (пересмотр по макету 11 сентября; по паре действует последняя строка).
+          Таблица ниже — та же разметка, сведённая к этой записи; словарь и
+          требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>
+        <p class="doc-note"><strong>Снятым у figma-only записи считается нарисованное в макете.</strong>
+          METHOD §4 называет узел Figma источником факта наравне с DOM и CSS
+          сборки. Состояние, которое макет не рисует и переменной не задаёт,
+          остаётся «без снятия», даже если вёрстка показывает его по конвенции.</p>
+        
+        <table class="doc-table">
+          <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
+          <tbody>
+            <tr><td><code>open</code></td><td>снято</td><td>STATE-CAPTURE.md §8 говорит: «9356:52508 — открытая шторка; свёрстана в блоке default выше»</td></tr>
+            <tr><td><code>closed</code></td><td>GAP</td><td>STATE-CAPTURE.md §8 говорит: «кадр с закрытой шторкой не читался. Шаг R4-18»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
     </section>
 
     <section class="doc-section" id="c-filter-modal">
@@ -6600,6 +7149,37 @@
         <p class="doc-note"><strong>Ассеты.</strong> Крестик — символ <code>menu-close</code> общего спрайта, цвет <code>#A6A7A9</code> — <code>--fig-color-style-neutral-neutral-heavy</code>. Первая редакция брала экспорт узла макета: с символом <code>cross-large</code> он не совпадал (плечи короче на 1 px с каждой стороны), а с <code>menu-close</code> сверен не был. На мобильном меню выяснилось, что экспорт — это <code>menu-close</code> точка в точку; копия удалена. Затемнение фона под модалкой (слой <code>overlay</code> макета) не воспроизводится: на витрине модалка стоит на странице, а не поверх неё. Полный разбор — <a href="../components/overlays/filter-modal.md">спецификация</a>.</p>
         <p class="doc-note"><strong>Состояния.</strong> Свёрстано одно состояние — открытое (<code>open</code>): узел макета и есть раскрытая модалка. <code>default</code> и <code>closed</code> — это кнопка-триггер, которую Storybook снял у обеих реализаций; отдельной вёрстки у записи для них нет.</p>
       </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>состояния</h5>
+          <code>2 снято · 0 без снятия</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
+          </span>
+          <span class="doc-tag">figma-only</span>
+        </div>
+        <p class="doc-note">Разметка пар «запись × состояние» — из
+          <a href="../components/STATE-CAPTURE.md">STATE-CAPTURE.md</a>: §3 (шаг R1-02,
+          принят 9 сентября 2026), §7 (записи, добавленные 11 сентября) и §8
+          (пересмотр по макету 11 сентября; по паре действует последняя строка).
+          Таблица ниже — та же разметка, сведённая к этой записи; словарь и
+          требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>
+        <p class="doc-note"><strong>Снятым у figma-only записи считается нарисованное в макете.</strong>
+          METHOD §4 называет узел Figma источником факта наравне с DOM и CSS
+          сборки. Состояние, которое макет не рисует и переменной не задаёт,
+          остаётся «без снятия», даже если вёрстка показывает его по конвенции.</p>
+        
+        <table class="doc-table">
+          <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
+          <tbody>
+            <tr><td><code>open</code></td><td>снято</td><td>STATE-CAPTURE.md §8 говорит: «14613:211399 — открытая модалка; вся секция выше — это состояние»</td></tr>
+            <tr><td><code>closed</code></td><td>снято</td><td>STATE-CAPTURE.md §3 говорит: «тот же рендер: <code>&lt;div id="modal-target"&gt;&lt;/div&gt;</code> пуст в обеих story — структурное отсутствие узла и есть закрытое состояние»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
     </section>
 
 
@@ -6681,6 +7261,37 @@
         <p class="doc-note"><strong>Ассеты.</strong> Крестик — символ <code>menu-close</code> спрайта (глиф <code>icon/menu open=yes</code> макета, контур совпал точка в точку), шевроны — <code>arrow-small</code>, иконки сервисов — продуктовая разметка <code>ProjectIcon</code>. Своих ассетов у записи нет. Полный разбор — <a href="../components/overlays/mobile-menu.md">спецификация</a>.</p>
         <p class="doc-note"><strong>Состояния.</strong> Нарисовано открытое меню (<code>open</code>) с обеими раскрываемыми группами развёрнутыми. Закрытое (<code>closed</code>) — кнопка меню в мобильной шапке; в продукте её нет — мобильная шапка устроена иначе.</p>
       </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>состояния</h5>
+          <code>1 снято · 1 без снятия</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
+          </span>
+          <span class="doc-tag">figma-only</span>
+        </div>
+        <p class="doc-note">Разметка пар «запись × состояние» — из
+          <a href="../components/STATE-CAPTURE.md">STATE-CAPTURE.md</a>: §3 (шаг R1-02,
+          принят 9 сентября 2026), §7 (записи, добавленные 11 сентября) и §8
+          (пересмотр по макету 11 сентября; по паре действует последняя строка).
+          Таблица ниже — та же разметка, сведённая к этой записи; словарь и
+          требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>
+        <p class="doc-note"><strong>Снятым у figma-only записи считается нарисованное в макете.</strong>
+          METHOD §4 называет узел Figma источником факта наравне с DOM и CSS
+          сборки. Состояние, которое макет не рисует и переменной не задаёт,
+          остаётся «без снятия», даже если вёрстка показывает его по конвенции.</p>
+        
+        <table class="doc-table">
+          <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
+          <tbody>
+            <tr><td><code>open</code></td><td>снято</td><td>STATE-CAPTURE.md §8 говорит: «9084:14961 — открытое меню; свёрстано в блоке default выше»</td></tr>
+            <tr><td><code>closed</code></td><td>GAP</td><td>STATE-CAPTURE.md §8 говорит: «кнопки меню в мобильной шапке продукта нет, закрытого кадра в макете не найдено. Шаг R4-22»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
     </section>
 
 
@@ -6759,6 +7370,37 @@
         <p class="doc-note"><strong>Ассеты.</strong> Календарь — символ <code>datepicker</code> спрайта: <code>icon/calendar</code> макета — тот же глиф (контур <code>M19 11H5v8…</code>). Кнопки — продуктовый <code>Button</code>: M secondary снят как есть, а L main в снятой разметке не встречается (есть L secondary и XL main) — собран из матрицы Button, размер L и тон main. У макета L падинг 12 / 20, у продуктового L — 8 / 16 при той же высоте 48. Полный разбор — <a href="../components/overlays/promo-code-modal.md">спецификация</a>.</p>
         <p class="doc-note"><strong>Состояния.</strong> Нарисована открытая модалка (<code>open</code>). Закрытая (<code>closed</code>) — это кнопка «Открыть код» на <code>PromoCard</code>, в продукте она есть (16 на странице промокодов).</p>
       </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>состояния</h5>
+          <code>2 снято · 0 без снятия</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
+          </span>
+          <span class="doc-tag">figma-only</span>
+        </div>
+        <p class="doc-note">Разметка пар «запись × состояние» — из
+          <a href="../components/STATE-CAPTURE.md">STATE-CAPTURE.md</a>: §3 (шаг R1-02,
+          принят 9 сентября 2026), §7 (записи, добавленные 11 сентября) и §8
+          (пересмотр по макету 11 сентября; по паре действует последняя строка).
+          Таблица ниже — та же разметка, сведённая к этой записи; словарь и
+          требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>
+        <p class="doc-note"><strong>Снятым у figma-only записи считается нарисованное в макете.</strong>
+          METHOD §4 называет узел Figma источником факта наравне с DOM и CSS
+          сборки. Состояние, которое макет не рисует и переменной не задаёт,
+          остаётся «без снятия», даже если вёрстка показывает его по конвенции.</p>
+        
+        <table class="doc-table">
+          <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
+          <tbody>
+            <tr><td><code>open</code></td><td>снято</td><td>STATE-CAPTURE.md §8 говорит: «11061:82849 — открытая модалка; свёрстана в блоке default выше»</td></tr>
+            <tr><td><code>closed</code></td><td>снято</td><td>STATE-CAPTURE.md §8 говорит: «закрытая модалка — это кнопка «Открыть код» на <code>PromoCard</code>: 16 узлов на странице промокодов»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
     </section>
 
     <section class="doc-section" id="c-catalog-menu">
@@ -6948,6 +7590,37 @@
         <p class="doc-note"><strong>Ассеты.</strong> Иконки направлений — экспорты узлов макета в <code>ui/assets/icons/catalog/</code>: пятнадцать взрослых и девять детских, ещё четыре детские строки берут взрослые иконки (<code>growth</code>, <code>hobby</code>, <code>code</code>, <code>languages</code> — те же компоненты макета, контуры совпали). В спрайте продукта (22 символа) иконок направлений нет. Цвет <code>#A6A7A9</code> зашит в экспорт. Кнопка «назад», лупа и шевроны строк — символы спрайта <code>arrow-large</code>, <code>search</code> и <code>arrow-small</code>, глифы сверены. Разделитель — полоса фона 1px, а не картинка, как вектор в макете. Полный разбор — <a href="../components/overlays/catalog-menu.md">спецификация</a>.</p>
         <p class="doc-note"><strong>Состояния.</strong> Свёрстано одно состояние — открытое (<code>open</code>): узел макета и есть раскрытый каталог. <code>default</code> и <code>closed</code> — свёрнутый каталог, то есть кнопка в шапке; отдельной вёрстки у записи для них нет. Текущее направление («Программирование и IT») нарисовано в макете серым — на витрине оно помечено модификатором <code>--current</code>, наведение остальных строк живое.</p>
       </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>состояния</h5>
+          <code>2 снято · 0 без снятия</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--figma" title="figma-only" aria-label="figma-only">F</span>
+          </span>
+          <span class="doc-tag">figma-only</span>
+        </div>
+        <p class="doc-note">Разметка пар «запись × состояние» — из
+          <a href="../components/STATE-CAPTURE.md">STATE-CAPTURE.md</a>: §3 (шаг R1-02,
+          принят 9 сентября 2026), §7 (записи, добавленные 11 сентября) и §8
+          (пересмотр по макету 11 сентября; по паре действует последняя строка).
+          Таблица ниже — та же разметка, сведённая к этой записи; словарь и
+          требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>
+        <p class="doc-note"><strong>Снятым у figma-only записи считается нарисованное в макете.</strong>
+          METHOD §4 называет узел Figma источником факта наравне с DOM и CSS
+          сборки. Состояние, которое макет не рисует и переменной не задаёт,
+          остаётся «без снятия», даже если вёрстка показывает его по конвенции.</p>
+        
+        <table class="doc-table">
+          <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
+          <tbody>
+            <tr><td><code>open</code></td><td>снято</td><td>STATE-CAPTURE.md §8 говорит: «14644:221758, 14657:224732, 14657:224294 — раскрытый каталог для взрослых, для детей и кадр 320; вся секция выше — это состояние»</td></tr>
+            <tr><td><code>closed</code></td><td>снято</td><td>STATE-CAPTURE.md §3 говорит: «отсутствие узла в продакшене — вырожденный случай «закрыто» (компонента нет вовсе, а не «есть и скрыт», как у HeaderDropdown/FilterModal); качество факта ниже, чем у тех двух записей, отмечено явно, не уравнено с ними»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
     </section>
 
   </section>
@@ -7392,6 +8065,39 @@
           подраздел «Брейкпоинты».</p>
       </div>
 
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>состояния</h5>
+          <code>1 снято · 0 без снятия</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+          </span>
+          <span class="doc-tag doc-tag--partial">partial</span>
+        </div>
+        <p class="doc-note">Разметка пар «запись × состояние» — из
+          <a href="../components/STATE-CAPTURE.md">STATE-CAPTURE.md</a>: §3 (шаг R1-02,
+          принят 9 сентября 2026), §7 (записи, добавленные 11 сентября) и §8
+          (пересмотр по макету 11 сентября; по паре действует последняя строка).
+          Таблица ниже — та же разметка, сведённая к этой записи; словарь и
+          требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>
+        <p class="doc-note"><strong><code>hover</code> смотрятся на живом элементе.</strong>
+          Отдельного образца у них нет намеренно: классы состояний стоят на самой
+          разметке блока «default» выше и подняты в
+          <code>ui/utilities-components.css</code> — наведите указатель или дойдите
+          до элемента клавишей Tab, и состояние сработает по-настоящему. Копия ради
+          скриншота была бы вторым носителем тех же значений, а расходящиеся
+          носители — ровно тот класс дефектов, из-за которого заведён гейт
+          <code>tools/validate-showcase-claims.mjs</code>.</p>
+        <table class="doc-table">
+          <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
+          <tbody>
+            <tr><td><code>hover</code></td><td>снято</td><td>STATE-CAPTURE.md §3 говорит: «корень <code>div.cursor-pointer</code>, внутри только два <code>&lt;img&gt;</code> и вложенный <code>IconButton</code> закрытия — на корне нет ни <code>&lt;a&gt;</code>/<code>&lt;button&gt;</code>, ни <code>hover:*</code>»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
     </section>
 
     <section class="doc-section" id="c-school-card">
@@ -7595,6 +8301,39 @@
           Полностью — <a href="../components/entities/promo-card.md">спецификация</a>.
         </p>
       </div>
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>состояния</h5>
+          <code>1 снято · 0 без снятия</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+          </span>
+          <span class="doc-tag doc-tag--partial">partial</span>
+        </div>
+        <p class="doc-note">Разметка пар «запись × состояние» — из
+          <a href="../components/STATE-CAPTURE.md">STATE-CAPTURE.md</a>: §3 (шаг R1-02,
+          принят 9 сентября 2026), §7 (записи, добавленные 11 сентября) и §8
+          (пересмотр по макету 11 сентября; по паре действует последняя строка).
+          Таблица ниже — та же разметка, сведённая к этой записи; словарь и
+          требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>
+        <p class="doc-note"><strong><code>hover</code> смотрятся на живом элементе.</strong>
+          Отдельного образца у них нет намеренно: классы состояний стоят на самой
+          разметке блока «default» выше и подняты в
+          <code>ui/utilities-components.css</code> — наведите указатель или дойдите
+          до элемента клавишей Tab, и состояние сработает по-настоящему. Копия ради
+          скриншота была бы вторым носителем тех же значений, а расходящиеся
+          носители — ровно тот класс дефектов, из-за которого заведён гейт
+          <code>tools/validate-showcase-claims.mjs</code>.</p>
+        <table class="doc-table">
+          <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
+          <tbody>
+            <tr><td><code>hover</code></td><td>снято</td><td>STATE-CAPTURE.md §3 говорит: «на корне <code>div.cursor-pointer</code> нет ни <code>&lt;a&gt;</code>/<code>&lt;button&gt;</code>, ни <code>hover:*</code> — только курсор-аффорданс; видимого изменения при наведении на сам модуль нет (реальный <code>hover</code> несёт вложенная кнопка «Открыть код», это её собственное состояние, не PromoCard, см. правило «без задвоения» STATES.md §2). Названо явно как слабый факт, не приравнено к <code>course-card</code>/<code>school-card</code>»</td></tr>
+          </tbody>
+        </table>
+      </div>
+
     </section>
 
     <section class="doc-section" id="c-review-card">
@@ -7675,6 +8414,39 @@
           и внутри узкого блока при широком окне не включаются. Чтобы увидеть
           сами префиксы, сузьте окно — границы размечены в разделе «Основания»,
           подраздел «Брейкпоинты».</p>
+      </div>
+
+
+      <div class="doc-specimen">
+        <div class="doc-specimen__head">
+          <h5>состояния</h5>
+          <code>1 снято · 0 без снятия</code>
+          <span class="doc-specimen__spacer"></span>
+          <span class="doc-src-group">
+            <span class="doc-src doc-src--production" title="production" aria-label="production">П</span>
+          </span>
+          <span class="doc-tag doc-tag--partial">partial</span>
+        </div>
+        <p class="doc-note">Разметка пар «запись × состояние» — из
+          <a href="../components/STATE-CAPTURE.md">STATE-CAPTURE.md</a>: §3 (шаг R1-02,
+          принят 9 сентября 2026), §7 (записи, добавленные 11 сентября) и §8
+          (пересмотр по макету 11 сентября; по паре действует последняя строка).
+          Таблица ниже — та же разметка, сведённая к этой записи; словарь и
+          требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>
+        <p class="doc-note"><strong><code>hover</code> смотрятся на живом элементе.</strong>
+          Отдельного образца у них нет намеренно: классы состояний стоят на самой
+          разметке блока «default» выше и подняты в
+          <code>ui/utilities-components.css</code> — наведите указатель или дойдите
+          до элемента клавишей Tab, и состояние сработает по-настоящему. Копия ради
+          скриншота была бы вторым носителем тех же значений, а расходящиеся
+          носители — ровно тот класс дефектов, из-за которого заведён гейт
+          <code>tools/validate-showcase-claims.mjs</code>.</p>
+        <table class="doc-table">
+          <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
+          <tbody>
+            <tr><td><code>hover</code></td><td>снято</td><td>STATE-CAPTURE.md §3 говорит: «на корне нет <code>&lt;a&gt;</code>/<code>&lt;button&gt;</code>; настоящий <code>hover:bg-ui-black-100</code> найден на вложенном <code>&lt;div&gt;</code>-плашке (STATES.md §4.4) — состояние вложенного узла, не корня ReviewCard»</td></tr>
+          </tbody>
+        </table>
       </div>
 
     </section>
