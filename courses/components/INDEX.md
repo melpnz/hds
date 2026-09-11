@@ -5,7 +5,7 @@
 [`SPEC-TEMPLATE.md`](SPEC-TEMPLATE.md); порядок работ — [`../ROADMAP.md`](../ROADMAP.md).
 
 Реестр собран из [`.pipeline/inventory.json`](../.pipeline/inventory.json) на шаге
-R0-05 и дополнен 11 сентября 2026. Записей — 71. Написано **71** спецификаций, по одной на каждую: 39 в статусе `complete` (`SpriteIcon` — R2-01 по полному циклу, остальные —
+R0-05 и дополнен 11 сентября 2026. Записей — 72. Написано **72** спецификаций, по одной на каждую: 39 в статусе `complete` (`SpriteIcon` — R2-01 по полному циклу, остальные —
 bulk-проходом после двух кругов ревью прозы), 11 в статусе `partial`
 и 21 в терминальном `figma-only` (`Breadcrumbs`, `EmptyState`, `Tab`, `FilterModal`, `CatalogMenu` и 16 записей, заведённых 11 сентября: страница профессии, форма обратной связи, оверлеи быстрых фильтров, загрузка, модалка промокода, FAQ-блок, оглавление, мобильное меню — `ROADMAP.md`, «Решения пользователя, 2026-09-11») — их разметка
 единственная в пакете написана по узлу макета, а не снята с продукта, потому
@@ -33,9 +33,11 @@ Storybook), числа измерены браузером, правила по�
 `complete` получили записи, у которых сняты все обязательные состояния и
 проза прошла независимое ревью: 12 записей первой выборки, ещё 12 второй и
 проверка генератора целиком; найденное оба раза исправлено по всем 48.
-`partial` — у записи есть неснятое обязательное состояние: оно названо в
-таблице состояний спецификации. Таких записей 11, у всех остальных
-продуктовых и storybook-only записей статус `complete`.
+`partial` — у записи есть неснятое обязательное состояние (оно названо в
+таблице состояний спецификации) — таких 11 — или проза записи ещё не
+прошла ревью: `AuthorsBlock`, заведённый после него при сборке страницы
+`/courses`. У всех остальных продуктовых и storybook-only записей статус
+`complete`.
 
 ---
 
@@ -62,7 +64,7 @@ Storybook), числа измерены браузером, правила по�
 словаря по одному вопросу. Список сверяется с METHOD валидатором.
 
 **`sourceScope` — где элемент найден.** Это факт инвентаризации, и он известен
-уже сейчас: 46 элементов сняты с продакшена, 4 есть только в Storybook, 21 —
+уже сейчас: 47 элементов сняты с продакшена, 4 есть только в Storybook, 21 —
 только в макете.
 
 Инвентаризация записала 44 / 5 / 6. Одна запись переехала 11 сентября 2026:
@@ -74,11 +76,11 @@ Storybook), числа измерены браузером, правила по�
 `storybook-only` в `figma-only` — Storybook снял модалку только закрытой,
 и открытое состояние свёрстано по макету, а источник вёрстки определяет scope.
 В тот же день решением владельца добавлены двенадцать новых записей, все
-`figma-only`: разбивка стала 45 / 4 / 22. Ещё одна запись переехала при сборке страницы `/courses` (R6-01): `pagination` из `figma-only` в `production` — «вместо листания кнопка «Показать еще 20»» верно только для рейтинга школ, а на четырёх листингах с карточками листание есть. Разбивка — 46 / 4 / 21.
+`figma-only`: разбивка стала 45 / 4 / 22. Ещё одна запись переехала при сборке страницы `/courses` (R6-01): `pagination` из `figma-only` в `production` — «вместо листания кнопка «Показать еще 20»» верно только для рейтинга школ, а на четырёх листингах с карточками листание есть. И одна новая production-запись со страницы `/courses`: блок «Больше об авторах» — `authors-block`. Разбивка — 47 / 4 / 21.
 
 | `sourceScope` | Элементов | Что значит |
 |---|---|---|
-| `production` | 46 | найден в снятой разметке продакшена |
+| `production` | 47 | найден в снятой разметке продакшена |
 | `storybook-only` | 4 | в снятой разметке продакшена не найден; описывается по Storybook |
 | `figma-only` | 21 | в снятой разметке продакшена не найден; описывается по макету |
 
@@ -194,7 +196,7 @@ DOM, записанное в [`selector-census.json`](selector-census.json). Р�
 Поэтому пакет вводит свой класс `crs-<id>` и помечает его в спецификации как
 новую реализацию имени: в продукте такого класса нет. Решение принято на R0-05
 и записано одной строкой в `manifest.json` → `conventions.cssRoot` — менять его
-нужно там, а не в 71 спецификациях.
+нужно там, а не в 72 спецификациях.
 
 Правило держится механически, а не вниманием автора: значение `cssRoots` обязано
 либо равняться `crs-<id>`, либо стоять в `class="…"` снятого DOM, и в обоих
@@ -254,7 +256,7 @@ DOM, записанное в [`selector-census.json`](selector-census.json). Р�
 | Категория | CSS | Элементов | Что там лежит |
 |---|---|---|---|
 | `data-display` | `ui/components/data-display.css` | 17 | SpriteIcon · SocialIcon · ProjectIcon · Avatar · EntityLogo · Chip · Badge · RatingBadge · MetaPill · CounterPill · Prose · InfoTable · SpecializationTag · DemandChart · FaqItem · LearningStep · FaqBlock |
-| `entities` | `ui/components/entities.css` | 13 | CourseCard · SchoolCard · PromoCard · ReviewCard · ArticleCard · PersonCard · StepCard · AdCard · NumberedCourseItem · EntityHeader · PersonHeader · ProfessionCard · VacancyCard |
+| `entities` | `ui/components/entities.css` | 14 | CourseCard · SchoolCard · PromoCard · ReviewCard · ArticleCard · PersonCard · StepCard · AdCard · NumberedCourseItem · EntityHeader · PersonHeader · ProfessionCard · VacancyCard · AuthorsBlock |
 | `forms` | `ui/components/forms.css` | 10 | FilterChip · Select · MultiSelect · SearchInput · TextInput · Checkbox · Switch · TileFilter · SearchForm · FeedbackForm |
 | `navigation` | `ui/components/navigation.css` | 9 | Link · SegmentedControl · Tab · Pagination · Breadcrumbs · RubricationBar · FilterBar · ButtonGroup · PageToc |
 | `collections` | `ui/components/collections.css` | 4 | AvatarStack · Carousel · LinkGrid · RatingTable |
@@ -344,7 +346,7 @@ AdSlot). Оболочка страницы — контейнер 1124 + 24 и �
 | R4-21 | [FaqBlock](data-display/faq-block.md) | `faq-block` | модуль | `data-display` | **figma-only** | `faq-item` |
 | R4-22 | [MobileMenu](overlays/mobile-menu.md) | `mobile-menu` | модуль | `overlays` | **figma-only** | `project-icon`, `sprite-icon` |
 
-### R5 — entity-модули, 17
+### R5 — entity-модули, 18
 
 | Шаг | Элемент | id | Вид | Категория | Где найден | Зависит от |
 |---|---|---|---|---|---|---|
@@ -365,6 +367,7 @@ AdSlot). Оболочка страницы — контейнер 1124 + 24 и �
 | R5-15 | [ProfessionCard](entities/profession-card.md) | `profession-card` | модуль | `entities` | **figma-only** | `specialization-tag` |
 | R5-16 | [VacancyCard](entities/vacancy-card.md) | `vacancy-card` | модуль | `entities` | **figma-only** | `entity-logo`, `specialization-tag`, `chip`, `button` |
 | R5-17 | [PromoCodeModal](overlays/promo-code-modal.md) | `promo-code-modal` | модуль | `overlays` | **figma-only** | `promo-card`, `button`, `sprite-icon` |
+| R5-18 | [AuthorsBlock](entities/authors-block.md) | `authors-block` | модуль | `entities` | прод | `avatar`, `prose`, `button`, `link`, `sprite-icon` |
 
 ---
 
@@ -539,9 +542,9 @@ node tools/validate-components.mjs --strict
 
 Половина этой дыры закрыта: числа, выводимые из манифеста одной строкой, ушли
 в `node tools/validate-counts.mjs` — число записей и разбивка по `sourceScope`
-(46 / 4 / 21) сверяются в обоих местах, где написаны, прозой и таблицей.
+(47 / 4 / 21) сверяются в обоих местах, где написаны, прозой и таблицей.
 Остаётся то, что требует разбора таблиц: имя, шаг, категория и вид у каждой
-из 71 строк.
+из 72 строк.
 
 **Копируемость до R0-06.** Шаблон спецификации велит прогнать
 `node tools/validate-classes.mjs .pipeline/<id>/copy-check.html`, но ни один

@@ -30,7 +30,7 @@ Swiper в `ui/` не поднимается, решение R0-02) и какие
 `TextInput`, `RubricationBar`, `AdSlot`, `Carousel`, `AdCard`, `CardGrid`,
 `CourseCard` (с `MetaPill`, `RatingBadge`, `Badge`, `Chip`, `Button`, `Link`),
 `Pagination`, `Avatar`, `Prose`, `Section`, `ReviewCard`, `LinkGrid`,
-`NumberedCourseItem`, `RatingTable`, `SiteFooter`, `ProjectIcon`, `SocialIcon`,
+`NumberedCourseItem`, `RatingTable`, `AuthorsBlock`, `SiteFooter`, `ProjectIcon`, `SocialIcon`,
 `SpriteIcon`.
 
 16 классов обёрток страницы, которых нет ни в одной записи, подняты из
@@ -77,7 +77,10 @@ Swiper в `ui/` не поднимается, решение R0-02) и какие
 3. **Pagination существует в продукте** — запись стояла `figma-only`
    (переклассифицирована, `capture.md` §3.19 партии R2-bulk).
 4. **Два модуля вне реестра** — «Больше об авторах» и «Промокоды и акции»,
-   оба только на `/courses`.
+   оба только на `/courses`. Решением владельца заведены: первый — новой
+   production-записью `AuthorsBlock` (R5-18), второй оказался вариантом
+   `LinkGrid` (та же обёртка `overflow-hidden` и та же сетка, окно 182 вместо
+   94, двухстрочный пункт) — селектор `LinkGrid` расширен, 6 узлов вместо 5.
 5. **Счётчик `NumberedCourseItem` неполный**: пунктов 10, селектор держится
    за нижнюю линию и не видит последний.
 6. **На `/courses` нет `h1`.**
@@ -87,7 +90,6 @@ Swiper в `ui/` не поднимается, решение R0-02) и какие
 - Живой ленты Swiper — по решению R0-02; две карусели заглушкой.
 - Состояний, меняющих композицию: пустой выдачи, ошибки, загрузки, второй и
   дальше страниц — в снимке их нет.
-- Записей для двух модулей страницы.
 - Разбора десяти остальных scoped-правил `[data-v-…]` корпуса: какие узлы
   пакета они должны были задеть.
 - Машинной проекции — `machine/patterns.json` заводит R8.

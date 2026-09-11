@@ -119,6 +119,9 @@ console.log(`Секций вставлено: ${inserted}`);
 let touched = 0;
 for (const r of results) {
   const c = byId.get(r.id);
+  // Только новые записи. Прежде цикл переписывал всем status: partial — после
+  // перевода записей в complete повторный прогон молча откатил бы их.
+  if (c.status !== "planned") continue;
   c.status = "partial";
   c.specPath = r.specRel;
   c.showcaseAnchor = `c-${r.id}`;

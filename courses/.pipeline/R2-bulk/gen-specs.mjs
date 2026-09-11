@@ -76,8 +76,14 @@ const CATEGORY_TITLE = {
   entities: "Сущности",
 };
 
+// node gen-specs.mjs [id …] — только эти записи. Без аргументов проход
+// переписывает спецификации всех production-записей не в complete, и прозу
+// (gen-prose.mjs) у них пришлось бы собирать заново; с аргументами
+// results.json дополняется, а не переписывается.
+const only = process.argv.slice(2);
 const results = [];
 for (const c of components) {
+  if (only.length && !only.includes(c.id)) continue;
   if (SKIP.has(c.id) || c.status === "complete" || c.sourceScope !== "production") continue;
   const exPath = path.join(d, "extracted", `${c.id}.json`);
   const rsPath = path.join(d, "resolved", `${c.id}.json`);
@@ -134,7 +140,7 @@ for (const r of results) {
 
 ## Когда использовать
 
-Компонент стоит в продукте на **${censusEntry.found} узлах**, страниц — **${censusEntry.pages.length} из 10**: ${censusEntry.pages.join(", ")}.
+Компонент стоит в продукте на **${censusEntry.found} ${censusEntry.found % 10 === 1 && censusEntry.found % 100 !== 11 ? "узле" : "узлах"}**, страниц — **${censusEntry.pages.length} из 10**: ${censusEntry.pages.join(", ")}.
 
 ${c.notes ? c.notes : "_Заметки инвентаризации по этой записи нет._"}
 
@@ -217,9 +223,12 @@ _Собрано bulk-проходом \`.pipeline/R2-bulk/gen-specs.mjs\` из �
   written++;
 }
 console.log(`Спецификаций записано: ${written}`);
-fs.writeFileSync(path.join(d, "results.json"), JSON.stringify(results.map((r) => r.skipped ? r : ({
+const prevResults = only.length && fs.existsSync(path.join(d, "results.json"))
+  ? JSON.parse(fs.readFileSync(path.join(d, "results.json"), "utf8")).filter((r) => !only.includes(r.id))
+  : [];
+fs.writeFileSync(path.join(d, "results.json"), JSON.stringify([...prevResults, ...results.map((r) => r.skipped ? r : ({
   id: r.c.id, category: r.c.category, name: r.c.canonicalName, specRel: r.specRel,
   cssRoots: r.cssRoots, showcaseHtml: r.showcaseHtml, placeheld: r.placeheld,
   found: r.censusEntry.found, pages: r.censusEntry.pages, selector: r.censusEntry.selector,
   notes: first(r.c.notes), descendants: r.ex.descendants, classes: r.ex.classes.length,
-})), null, 1), "utf8");
+}))], null, 1), "utf8");

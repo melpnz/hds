@@ -2399,8 +2399,7 @@
       "cssRoots": [
         "grid",
         "grid-cols-3",
-        "gap-x-4",
-        "gap-y-2"
+        "gap-x-4"
       ],
       "showcaseAnchor": "c-link-grid",
       "figmaEvidence": [],
@@ -2424,7 +2423,7 @@
       "dependsOn": [
         "link"
       ],
-      "occurrences": 5,
+      "occurrences": 6,
       "seenOn": [
         "courses-listing",
         "education-centers-listing",
@@ -2433,12 +2432,12 @@
       "productionEvidence": [
         {
           "url": "https://career.habr.com/education/promocodes",
-          "selector": "div.overflow-hidden.max-h-\\[94px\\] > div.grid.grid-cols-3.gap-x-4.gap-y-2",
-          "note": null
+          "selector": "div.overflow-hidden > div.mt-4.grid.grid-cols-3.gap-x-4",
+          "note": "селектор расширен 11 сентября 2026 (R6-01): прежний держался за max-h-[94px] и gap-y-2 и не видел вариант «Промокоды и акции» на /courses — та же обёртка overflow-hidden и та же сетка, но окно 182, шаг строк 16 (gap-y-4) и двухстрочный пункт: школа и ссылка «Скидка N%» цветом text-ui-violet-500. 6 узлов на 3/10 страниц: 5 списков ссылок и 1 список промокодов"
         }
       ],
       "storybookEvidence": [],
-      "notes": "три колонки ссылок со счётчиком, свёрнутые до max-h 94 с раскрытием по кнопке. Это и есть «Популярные направления» — плиток с иллюстрациями в проде нет"
+      "notes": "три колонки ссылок, свёрнутые до окна с раскрытием по кнопке: у пяти списков окно max-h 94 (счётчик рядом со ссылкой — только в «Популярных направлениях»), у варианта «Промокоды и акции» на /courses — окно 182 и двухстрочный пункт со скидкой (добавлен 11 сентября 2026). Это и есть «Популярные направления» — плиток с иллюстрациями в проде нет"
     },
     {
       "id": "filter-bar",
@@ -4325,6 +4324,56 @@
       "productionEvidence": [],
       "storybookEvidence": [],
       "notes": "figma-only: модалка промокода — открытое состояние PromoCard: условие, срок, плашка кода с кнопкой, «Закрыть». Кнопка «Открыть код» в продукте есть (16 узлов на странице промокодов), сама модалка гидрируется и не снята. Заведена 11 сентября 2026 решением владельца: компоненты макета, которых нет в продукте, входят в пакет как figma-only."
+    },
+    {
+      "id": "authors-block",
+      "canonicalName": "AuthorsBlock",
+      "storybookNames": [],
+      "legacyAliases": [],
+      "category": "entities",
+      "kind": "module",
+      "specPath": "entities/authors-block.md",
+      "cssRoots": [
+        "flex",
+        "flex-col",
+        "gap-6",
+        "text-small",
+        "text-ui-black-850"
+      ],
+      "showcaseAnchor": "c-authors-block",
+      "figmaEvidence": [],
+      "status": "partial",
+      "requiredStates": [
+        "default"
+      ],
+      "capturedStates": [
+        "default"
+      ],
+      "normativeStates": [],
+      "uncapturedStates": [],
+      "sourceScope": "production",
+      "wave": "R5",
+      "step": "R5-18",
+      "dependsOn": [
+        "avatar",
+        "prose",
+        "button",
+        "link",
+        "sprite-icon"
+      ],
+      "occurrences": 1,
+      "seenOn": [
+        "courses-listing"
+      ],
+      "productionEvidence": [
+        {
+          "url": "https://career.habr.com/courses",
+          "selector": "section.flex.flex-col.gap-6.text-small.text-ui-black-850",
+          "note": "секция с якорем id=\"more-about\"; селектор по классам, потому что корень записи обязан быть классом продукта (METHOD §6.5). 1 узел на 1/10 страниц"
+        }
+      ],
+      "storybookEvidence": [],
+      "notes": "«Больше об авторах» на /courses: автор, редактор и аудитор подборки — Avatar 100 (у автора) и 48 (у редактора и аудитора), подпись роли, имя, должность, ссылка на профиль во внешней сети, Button «Больше об эксперте», биография Prose, регалии и экспертиза двумя списками, внизу Button «Посмотреть всех экспертов». Наблюдение на одной странице, не правило. Заведена 11 сентября 2026 при сборке страницы /courses (R6-01) решением владельца: модули страницы, которых нет в реестре, заводятся записями."
     }
   ]
 }

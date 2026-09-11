@@ -76,6 +76,13 @@ const kind = (k) => C.filter((c) => c.kind === k).length;
 let pairs = 0, cap = 0, norm = 0, unc = 0;
 for (const c of C) { pairs += c.requiredStates.length; cap += c.capturedStates.length; norm += c.normativeStates.length; unc += c.uncapturedStates.length; }
 const figmaOnly = scope("figma-only");
+// После инвентаризации (55) реестр пополнялся дважды: 16 figma-only записей
+// решением владельца и модули страниц, найденные при сборке R6 (production).
+// Первая редакция считала всю прибавку figma-only — с AuthorsBlock это стало
+// неправдой.
+const addedFigma = C.filter((c) => c.sourceScope === "figma-only" && (c.notes || "").includes(DECISION)).length;
+const addedPages = N - 55 - addedFigma;
+const added = (tail) => `${addedFigma} figma-only${addedPages ? ` и ${addedPages} модул${addedPages === 1 ? "ь" : "я"} страниц R6` : ""}${tail}`;
 
 // --- ROADMAP --------------------------------------------------------------
 {
@@ -93,7 +100,7 @@ const figmaOnly = scope("figma-only");
   const steps = (s.match(/^\| R\d-\d{2} \|/gm) || []).length;
   s = s.replace(/(\| \*\*R2\*\* \|[^|]*\| )\d+( \| in-progress · 1\/)\d+( \|)/, `$1${byWave("R2")}$2${byWave("R2")}$3`);
   for (const w of ["R3", "R4", "R5"]) s = s.replace(new RegExp(`(\\| \\*\\*${w}\\*\\* \\|[^|]*\\| )\\d+( \\|)`), `$1${byWave(w)}$2`);
-  s = s.replace(/\| Элементов в реестре \| \*\*\d+\*\* — R2 \d+ · R3 \d+ · R4 \d+ · R5 \d+\. 55 — инвентаризация 7 сентября; \d+ figma-only добавлены/, `| Элементов в реестре | **${N}** — R2 ${byWave("R2")} · R3 ${byWave("R3")} · R4 ${byWave("R4")} · R5 ${byWave("R5")}. 55 — инвентаризация 7 сентября; ${N - 55} figma-only добавлены`);
+  s = s.replace(/\| Элементов в реестре \| \*\*\d+\*\* — R2 \d+ · R3 \d+ · R4 \d+ · R5 \d+\. 55 — инвентаризация 7 сентября; \d+ figma-only(?: и \d+ модул\S* страниц R6)? добавлены/, `| Элементов в реестре | **${N}** — R2 ${byWave("R2")} · R3 ${byWave("R3")} · R4 ${byWave("R4")} · R5 ${byWave("R5")}. 55 — инвентаризация 7 сентября; ${added(" добавлены")}`);
   s = s.replace(/\| Шагов в роадмапе \| \*\*\d+\*\* \|/, `| Шагов в роадмапе | **${steps}** |`);
   s = s.replace(/\| Принято шагов \| 10 из \d+ —/, `| Принято шагов | 10 из ${steps} —`);
   // Число complete не вшито: после ревью прозы их стало больше одной
@@ -113,7 +120,7 @@ const figmaOnly = scope("figma-only");
 {
   let s = read("README.md");
   const steps = (read("ROADMAP.md").match(/^\| R\d-\d{2} \|/gm) || []).length;
-  s = s.replace(/собран реестр из \d+ элементов \(55 — инвентаризация, \d+ figma-only/, `собран реестр из ${N} элементов (55 — инвентаризация, ${N - 55} figma-only`);
+  s = s.replace(/собран реестр из \d+ элементов \(55 — инвентаризация, \d+ figma-only(?: и \d+ модул\S* страниц R6)?/, `собран реестр из ${N} элементов (55 — инвентаризация, ${added("")}`);
   s = s.replace(/составлен роадмап на \d+ шагов/, `составлен роадмап на ${steps} шагов`);
   s = s.replace(/\*\*Спецификация и живой пример на витрине есть у всех \d+ записей\*\*/, `**Спецификация и живой пример на витрине есть у всех ${N} записей**`);
   s = s.replace(/в них не написаны; \d+ — `figma-only`/, `в них не написаны; ${figmaOnly} — \`figma-only\``);
@@ -128,12 +135,14 @@ const figmaOnly = scope("figma-only");
   let s = read("components/INDEX.md"); const nl = nlOf(s);
   s = s.replace(/Записей — \d+\. Написано \*\*\d+\*\* спецификаций/, `Записей — ${N}. Написано **${N}** спецификаций`);
   s = s.replace(/и \d+ в терминальном `figma-only`/, `и ${figmaOnly} в терминальном \`figma-only\``);
-  s = s.replace(/и [^\s]+ записей, заведённых 11 сентября:[^—]*—/, `и ${N - 55} записей, заведённых 11 сентября: страница профессии, форма обратной связи, оверлеи быстрых фильтров, загрузка, модалка промокода, FAQ-блок, оглавление, мобильное меню —`);
+  s = s.replace(/и [^\s]+ записей, заведённых 11 сентября:[^—]*—/, `и ${addedFigma} записей, заведённых 11 сентября: страница профессии, форма обратной связи, оверлеи быстрых фильтров, загрузка, модалка промокода, FAQ-блок, оглавление, мобильное меню —`);
   s = s.replace(/(\d+) —(\r?\n)только в макете\./, `${figmaOnly} —$2только в макете.`);
-  s = s.replace(/`figma-only`: разбивка стала 45 \/ 4 \/ \d+\./, `\`figma-only\`: разбивка стала 45 / 4 / ${figmaOnly}.`);
+  // «разбивка стала 45 / 4 / 22» — историческая запись (после двенадцати
+  // figma-only), текущая разбивка названа ниже отдельно; прежнее правило
+  // переписывало историю текущим числом.
   s = s.replace(/\| `figma-only` \| \d+ \|/, `| \`figma-only\` | ${figmaOnly} |`);
   s = s.replace(/нужно там, а не в \d+ спецификациях\./, `нужно там, а не в ${N} спецификациях.`);
-  s = s.replace(/\(45 \/ 4 \/ \d+\) сверяются/, `(45 / 4 / ${figmaOnly}) сверяются`);
+  s = s.replace(/\(\d+ \/ \d+ \/ \d+\) сверяются/, `(${scope("production")} / ${scope("storybook-only")} / ${figmaOnly}) сверяются`);
   s = s.replace(/из \d+ строк\./, `из ${N} строк.`);
   const cats = {};
   for (const c of C) (cats[c.category] = cats[c.category] || []).push(c.canonicalName);
@@ -180,7 +189,7 @@ const figmaOnly = scope("figma-only");
   s = s.replace(/## 4\. Разметка \d+ записей реестра/, `## 4. Разметка ${N} записей реестра`);
   s = s.replace(/## 5\. Слова словаря, не встретившиеся ни у одной из \d+ записей/, `## 5. Слова словаря, не встретившиеся ни у одной из ${N} записей`);
   s = s.replace(/по составу самого реестра \(\d+ записей;/, `по составу самого реестра (${N} записей;`);
-  s = s.replace(/- Виды и реестр \d+ записей — `components\/manifest\.json` \(55 приняты коммитом(\r?\n)  `4fe1bf5`, \d+ figma-only добавлены/, `- Виды и реестр ${N} записей — \`components/manifest.json\` (55 приняты коммитом$1  \`4fe1bf5\`, ${N - 55} figma-only добавлены`);
+  s = s.replace(/- Виды и реестр \d+ записей — `components\/manifest\.json` \(55 приняты коммитом(\r?\n)  `4fe1bf5`, \d+ figma-only(?: и \d+ модул\S* страниц R6)? добавлены/, `- Виды и реестр ${N} записей — \`components/manifest.json\` (55 приняты коммитом$1  \`4fe1bf5\`, ${added(" добавлены")}`);
   fs.writeFileSync(P("components/STATES.md"), s, "utf8");
 }
 
