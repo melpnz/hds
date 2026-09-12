@@ -128,8 +128,8 @@ courses/
                             секций, брейкпоинты; composition.md — правила
                             уровня страницы (заменяет RULES.md из METHOD §2,
                             решение владельца 12 сентября 2026),
-                            decisions.md — Decision Guides (R7);
-                            coverage — R7-03
+                            decisions.md — Decision Guides,
+                            coverage.md — границы, источники, реестр GAP (R7)
   docs/development/         заметки по работе с пакетом
   machine/                  пусто; машиночитаемая проекция — R8
   tests/                    пусто; первый спек витрины — R0-06
