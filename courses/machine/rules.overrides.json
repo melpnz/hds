@@ -5,143 +5,620 @@
     "manual": "Правило без исполнимого предиката помечается type: manual и печатается отдельным списком — это честный факт, а не дефект."
   },
   "SH-1": {
-    "appliesTo": ["all"],
-    "predicate": { "type": "containerBounds", "viewports": [1440, 1024, 768, 375], "maxWidth": 1124, "columnAt1440": 1076, "note": "ни один узел колонки не выходит за контейнер; ширина колонки на 1440 — 1076" }
+    "appliesTo": [
+      "all"
+    ],
+    "predicate": {
+      "type": "containerBounds",
+      "viewports": [
+        1440,
+        1024,
+        768,
+        375
+      ],
+      "maxWidth": 1124,
+      "columnAt1440": 1076,
+      "note": "ни один узел колонки не выходит за контейнер; ширина колонки на 1440 — 1076"
+    }
   },
   "SH-2": {
-    "appliesTo": ["all"],
-    "predicate": { "type": "style", "viewports": [1440, 1024, 768], "selector": "header", "match": "all", "expect": { "height": "64px" } }
+    "appliesTo": [
+      "all"
+    ],
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440,
+        1024,
+        768
+      ],
+      "selector": "header",
+      "match": "all",
+      "expect": {
+        "height": "64px"
+      }
+    }
   },
   "SH-3": {
-    "appliesTo": ["education-centers-listing", "rating", "education-center", "authors", "author"],
-    "predicate": { "type": "style", "viewports": [1440], "selector": "header", "match": "all", "expect": { "position": "static" } }
+    "appliesTo": [
+      "education-centers-listing",
+      "rating",
+      "education-center",
+      "authors",
+      "author"
+    ],
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440
+      ],
+      "selector": "header",
+      "match": "all",
+      "expect": {
+        "position": "static"
+      }
+    }
   },
   "SH-4": {
-    "appliesTo": ["all"],
-    "predicate": { "type": "style", "viewports": [1440, 1024, 768, 375], "selector": "footer", "match": "all", "expect": { "background-color": "rgb(241, 241, 241)" }, "expectByViewport": { "1440": { "height": "192px" }, "1024": { "height": "192px" }, "768": { "height": "256px" }, "375": { "height": "476px" } } }
+    "appliesTo": [
+      "all"
+    ],
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440,
+        1024,
+        768,
+        375
+      ],
+      "selector": "footer",
+      "match": "all",
+      "expect": {
+        "background-color": "rgb(241, 241, 241)"
+      },
+      "expectByViewport": {
+        "375": {
+          "height": "476px"
+        },
+        "768": {
+          "height": "256px"
+        },
+        "1024": {
+          "height": "192px"
+        },
+        "1440": {
+          "height": "192px"
+        }
+      }
+    }
   },
   "SH-5": {
-    "appliesTo": ["all"],
-    "predicate": { "type": "style", "viewports": [1440], "selector": "body", "match": "all", "expect": { "background-color": "rgb(255, 255, 255)" } }
+    "appliesTo": [
+      "all"
+    ],
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440
+      ],
+      "selector": "body",
+      "match": "all",
+      "expect": {
+        "background-color": "rgb(255, 255, 255)"
+      }
+    }
   },
   "SH-6": {
-    "appliesTo": ["education-centers-listing", "rating", "authors"],
-    "predicate": { "type": "heroHeading", "viewports": [1440, 375], "expect": { "1440": { "fontSize": 44, "lineHeight": 48 }, "375": { "fontSize": 30, "lineHeight": 34 } }, "note": "h1 44/48 по центру внутри hero; вне hero заголовка такого кегля нет" }
+    "appliesTo": [
+      "education-centers-listing",
+      "rating",
+      "authors"
+    ],
+    "predicate": {
+      "type": "heroHeading",
+      "viewports": [
+        1440,
+        375
+      ],
+      "expect": {
+        "375": {
+          "fontSize": 30,
+          "lineHeight": 34
+        },
+        "1440": {
+          "fontSize": 44,
+          "lineHeight": 48
+        }
+      },
+      "note": "h1 44/48 по центру внутри hero; вне hero заголовка такого кегля нет"
+    }
   },
   "L-1": {
-    "appliesTo": ["all"],
-    "predicate": { "type": "singleColumn", "viewports": [1440, 768], "note": "главная колонка одна и занимает всю ширину контейнера: соседнего блока той же высоты рядом нет" }
+    "appliesTo": [
+      "all"
+    ],
+    "predicate": {
+      "type": "singleColumn",
+      "viewports": [
+        1440,
+        768
+      ],
+      "note": "главная колонка одна и занимает всю ширину контейнера: соседнего блока той же высоты рядом нет"
+    }
   },
   "L-2": {
-    "appliesTo": ["courses-listing", "education-centers-listing"],
-    "predicate": { "type": "cardGrid", "viewports": [1440], "columns": 4, "columnWidth": [255, 265], "columnGap": 12 }
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing"
+    ],
+    "predicate": {
+      "type": "cardGrid",
+      "viewports": [
+        1440
+      ],
+      "columns": 4,
+      "columnWidth": [
+        255,
+        265
+      ],
+      "columnGap": 12
+    }
   },
   "L-3a": {
-    "appliesTo": ["courses-listing", "education-centers-listing", "rating", "education-center"],
-    "predicate": { "type": "columnRhythm", "viewports": [1440], "gap": 48 }
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing",
+      "rating",
+      "education-center"
+    ],
+    "predicate": {
+      "type": "columnRhythm",
+      "viewports": [
+        1440
+      ],
+      "gap": 48
+    }
   },
   "L-3b": {
-    "appliesTo": ["authors"],
-    "predicate": { "type": "columnRhythm", "viewports": [1440], "gap": 40 }
+    "appliesTo": [
+      "authors"
+    ],
+    "predicate": {
+      "type": "columnRhythm",
+      "viewports": [
+        1440
+      ],
+      "gap": 40
+    }
   },
   "L-4": {
-    "appliesTo": ["education-centers-listing", "rating", "education-center", "author"],
-    "predicate": { "type": "columnPadTop", "viewports": [1440], "withHero": 40, "withoutHero": 24 }
+    "appliesTo": [
+      "education-centers-listing",
+      "rating",
+      "education-center",
+      "author"
+    ],
+    "predicate": {
+      "type": "columnPadTop",
+      "viewports": [
+        1440
+      ],
+      "withHero": 40,
+      "withoutHero": 24
+    }
   },
   "L-5a": {
-    "appliesTo": ["education-centers-listing", "education-center", "rating", "courses-listing"],
-    "predicate": { "type": "headingGap", "viewports": [1440], "gap": 16, "tolerance": 1, "allowExceptions": 1, "note": "видимое расстояние от низа h2 до первого видимого содержимого; исключение — «Больше об авторах» на витрине курсов" }
+    "appliesTo": [
+      "education-centers-listing",
+      "education-center",
+      "rating",
+      "courses-listing"
+    ],
+    "predicate": {
+      "type": "headingGap",
+      "viewports": [
+        1440
+      ],
+      "gap": 16,
+      "tolerance": 1,
+      "note": "видимое расстояние от низа h2 до первого видимого содержимого; исключение — «Больше об авторах» на витрине курсов",
+      "allowHeadings": [
+        "Больше об авторах"
+      ]
+    }
   },
   "L-5b": {
-    "appliesTo": ["authors"],
-    "predicate": { "type": "headingGap", "viewports": [1440], "gap": 24, "tolerance": 1, "allowExceptions": 1, "note": "исключение — секция с подзаголовком под h2" }
+    "appliesTo": [
+      "authors"
+    ],
+    "predicate": {
+      "type": "headingGap",
+      "viewports": [
+        1440
+      ],
+      "gap": 24,
+      "tolerance": 1,
+      "note": "исключение — секция с подзаголовком под h2",
+      "allowHeadings": [
+        "Крутые ребята"
+      ]
+    }
   },
   "C-1": {
-    "appliesTo": ["courses-listing", "education-centers-listing", "education-center", "authors"],
-    "predicate": { "type": "planeSurface", "viewports": [1440], "minWidth": 200, "minHeight": 60, "radius": 24, "note": "у плоскостей от 200×60 нет тени; те, что отделены рамкой, скруглены на 24 и не залиты цветом" }
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing",
+      "education-center",
+      "authors"
+    ],
+    "predicate": {
+      "type": "planeSurface",
+      "viewports": [
+        1440
+      ],
+      "minWidth": 200,
+      "minHeight": 60,
+      "radius": 24,
+      "note": "у плоскостей от 200×60 нет тени; те, что отделены рамкой, скруглены на 24 и не залиты цветом"
+    }
   },
   "C-2": {
-    "appliesTo": ["all"],
-    "predicate": { "type": "shadowScope", "viewports": [1440], "allowedClass": "swiper-button-shadow" }
+    "appliesTo": [
+      "all"
+    ],
+    "predicate": {
+      "type": "shadowScope",
+      "viewports": [
+        1440
+      ],
+      "allowedClass": "swiper-button-shadow"
+    }
   },
   "C-3a": {
-    "appliesTo": ["courses-listing", "education-centers-listing", "education-center"],
-    "predicate": { "type": "radiusByForm", "viewports": [1440], "form": "control", "heightRange": [40, 56], "radius": 12, "exceptSelector": "span.align-center.flex.gap-x-1.border, input" }
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing",
+      "education-center"
+    ],
+    "predicate": {
+      "type": "radiusByForm",
+      "viewports": [
+        1440
+      ],
+      "form": "control",
+      "heightRange": [
+        40,
+        56
+      ],
+      "radius": 12,
+      "exceptSelector": "span.align-center.flex.gap-x-1.border, input"
+    }
   },
   "C-3b": {
-    "appliesTo": ["courses-listing", "education-center", "education-centers-listing"],
-    "predicate": { "type": "radiusByForm", "viewports": [1440], "form": "pill", "maxHeight": 36, "exceptSelector": "div.mb-4.grid, .swiper-pagination-bullet" }
+    "appliesTo": [
+      "courses-listing",
+      "education-center",
+      "education-centers-listing"
+    ],
+    "predicate": {
+      "type": "radiusByForm",
+      "viewports": [
+        1440
+      ],
+      "form": "pill",
+      "maxHeight": 36,
+      "exceptSelector": "div.mb-4.grid, .swiper-pagination-bullet"
+    }
   },
   "C-3c": {
-    "appliesTo": ["courses-listing", "authors", "author", "education-centers-listing"],
-    "predicate": { "type": "radiusByForm", "viewports": [1440], "form": "square", "maxSide": 100, "ratio": [0.2, 0.35] }
+    "appliesTo": [
+      "courses-listing",
+      "authors",
+      "author",
+      "education-centers-listing"
+    ],
+    "predicate": {
+      "type": "radiusByForm",
+      "viewports": [
+        1440
+      ],
+      "form": "square",
+      "maxSide": 100,
+      "ratio": [
+        0.2,
+        0.35
+      ]
+    }
   },
   "A-1": {
-    "appliesTo": ["courses-listing", "education-centers-listing", "education-center", "authors"],
-    "predicate": { "type": "style", "viewports": [1440], "selector": "button.inline-flex.rounded-xl.font-semibold, a.inline-flex.rounded-xl.font-semibold", "match": "all", "expect": { "background-color": ["rgb(44, 46, 52)", "rgb(241, 241, 241)"] }, "note": "отбор по форме кнопки, проверяется цвет — из класса формы он не следует" }
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing",
+      "education-center",
+      "authors"
+    ],
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440
+      ],
+      "selector": "button.inline-flex.rounded-xl.font-semibold, a.inline-flex.rounded-xl.font-semibold",
+      "match": "all",
+      "expect": {
+        "background-color": [
+          "rgb(44, 46, 52)",
+          "rgb(241, 241, 241)"
+        ]
+      },
+      "note": "отбор по форме кнопки, проверяется цвет — из класса формы он не следует"
+    }
   },
   "A-2": {
-    "appliesTo": ["courses-listing", "education-centers-listing", "education-center", "rating"],
-    "predicate": { "type": "colorScope", "viewports": [1440], "color": "rgb(255, 126, 71)", "maxHeight": 24, "textAllowed": false, "note": "оранжевый фон встречается только у бейджа высотой до 24; оранжевого текста нет ни одного" }
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing",
+      "education-center",
+      "rating"
+    ],
+    "predicate": {
+      "type": "colorScope",
+      "viewports": [
+        1440
+      ],
+      "color": "rgb(255, 126, 71)",
+      "maxHeight": 24,
+      "textAllowed": false,
+      "note": "оранжевый фон встречается только у бейджа высотой до 24; оранжевого текста нет ни одного"
+    }
   },
   "A-3": {
-    "appliesTo": ["all"],
-    "predicate": { "type": "style", "viewports": [1440], "selector": "h2, div.text-h2", "match": "all", "expect": { "font-size": "24px", "line-height": "28px", "font-weight": "600" } }
+    "appliesTo": [
+      "all"
+    ],
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440
+      ],
+      "selector": "h2, div.text-h2",
+      "match": "all",
+      "expect": {
+        "font-size": "24px",
+        "line-height": "28px",
+        "font-weight": "600"
+      }
+    }
   },
   "A-5": {
-    "appliesTo": ["education-centers-listing", "rating", "education-center", "author"],
-    "predicate": { "type": "fontScale", "viewports": [1440], "min": 19, "allowed": ["24px", "30px", "44px"] }
+    "appliesTo": [
+      "education-centers-listing",
+      "rating",
+      "education-center",
+      "author"
+    ],
+    "predicate": {
+      "type": "fontScale",
+      "viewports": [
+        1440
+      ],
+      "min": 19,
+      "allowed": [
+        "24px",
+        "30px",
+        "44px"
+      ]
+    }
   },
   "C-4": {
-    "appliesTo": ["courses-listing", "education-centers-listing", "education-center", "authors"],
-    "predicate": { "type": "hoverScope", "viewports": [1440], "minWidth": 200, "minHeight": 60, "note": "у плоскости-карточки нет ни hover-класса, ни правила :hover в ui/" }
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing",
+      "education-center",
+      "authors"
+    ],
+    "predicate": {
+      "type": "hoverScope",
+      "viewports": [
+        1440
+      ],
+      "minWidth": 200,
+      "minHeight": 60,
+      "note": "у плоскости-карточки нет ни hover-класса, ни правила :hover в ui/"
+    }
   },
   "C-5": {
-    "appliesTo": ["courses-listing", "education-centers-listing"],
-    "predicate": { "type": "cssRule", "selector": ".hover\\:opacity-90:hover", "expect": { "opacity": ".9" } }
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing"
+    ],
+    "predicate": {
+      "type": "cssRule",
+      "selector": ".hover\\:opacity-90:hover",
+      "expect": {
+        "opacity": ".9"
+      }
+    }
   },
   "C-6": {
-    "appliesTo": ["rating", "courses-listing"],
-    "predicate": { "type": "cssRule", "selector": ".hover\\:bg-ui-black-50:hover", "expect": { "background-color": "var(--color-ui-black-50)" } }
+    "appliesTo": [
+      "rating",
+      "courses-listing"
+    ],
+    "predicate": {
+      "type": "cssRule",
+      "selector": ".hover\\:bg-ui-black-50:hover",
+      "expect": {
+        "background-color": "var(--color-ui-black-50)"
+      }
+    }
   },
   "R-1": {
-    "appliesTo": ["courses-listing", "education-centers-listing", "education-center", "authors"],
-    "predicate": { "type": "cardGrid", "viewports": [375], "columns": 1 }
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing",
+      "education-center",
+      "authors"
+    ],
+    "predicate": {
+      "type": "cardGrid",
+      "viewports": [
+        375
+      ],
+      "columns": 1
+    }
   },
   "R-2": {
-    "appliesTo": ["courses-listing", "education-centers-listing", "education-center"],
-    "predicate": { "type": "cardGrid", "viewports": [768], "columns": 3 }
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing",
+      "education-center"
+    ],
+    "predicate": {
+      "type": "cardGrid",
+      "viewports": [
+        768
+      ],
+      "columns": 3
+    }
   },
   "R-3": {
-    "appliesTo": ["all"],
-    "predicate": { "type": "columns", "viewports": [1440, 1024, 768, 375], "selector": "footer div.grid", "columns": { "1440": 4, "1024": 4, "768": 3, "375": 1 } }
+    "appliesTo": [
+      "all"
+    ],
+    "predicate": {
+      "type": "columns",
+      "viewports": [
+        1440,
+        1024,
+        768,
+        375
+      ],
+      "selector": "footer div.grid",
+      "columns": {
+        "375": 1,
+        "768": 3,
+        "1024": 4,
+        "1440": 4
+      }
+    }
   },
   "R-4": {
-    "appliesTo": ["all"],
-    "predicate": { "type": "order", "viewports": [1440, 1024, 768, 375] }
+    "appliesTo": [
+      "all"
+    ],
+    "predicate": {
+      "type": "order",
+      "viewports": [
+        1440,
+        1024,
+        768,
+        375
+      ]
+    }
   },
   "R-5": {
-    "appliesTo": ["education-centers-listing", "rating"],
-    "predicate": { "type": "searchFormPhone", "viewports": [375], "note": "на телефоне ряд полей скрыт, а видимый дубль стоит в одну колонку" }
+    "appliesTo": [
+      "education-centers-listing",
+      "rating"
+    ],
+    "predicate": {
+      "type": "searchFormPhone",
+      "viewports": [
+        375
+      ],
+      "note": "на телефоне ряд полей скрыт, а видимый дубль стоит в одну колонку"
+    }
   },
   "CT-1": {
-    "appliesTo": ["rating", "courses-listing", "education-center"],
-    "predicate": { "type": "text", "viewports": [1440], "forbid": "\\d,\\d{1,2}(?!\\d)", "note": "дробь через запятую" }
+    "appliesTo": [
+      "rating",
+      "courses-listing",
+      "education-center"
+    ],
+    "predicate": {
+      "type": "text",
+      "viewports": [
+        1440
+      ],
+      "forbid": "\\d,\\d{1,2}(?!\\d)",
+      "note": "дробь через запятую"
+    }
   },
   "CT-2a": {
-    "appliesTo": ["courses-listing", "education-centers-listing", "rating", "education-center", "promocodes"],
-    "predicate": { "type": "numberFormat", "viewports": [1440], "kind": "price", "note": "каждое число перед знаком ₽ от тысячи разделено пробелом" }
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing",
+      "rating",
+      "education-center",
+      "promocodes"
+    ],
+    "predicate": {
+      "type": "numberFormat",
+      "viewports": [
+        1440
+      ],
+      "kind": "price",
+      "note": "каждое число перед знаком ₽ от тысячи разделено пробелом"
+    }
   },
   "CT-2b": {
-    "appliesTo": ["education-centers-listing", "education-center", "reviews"],
-    "predicate": { "type": "numberFormat", "viewports": [1440], "kind": "counter", "words": ["отзыв", "выпускник", "курс"], "note": "счётчик от тысячи пишется слитно" }
+    "appliesTo": [
+      "education-centers-listing",
+      "education-center",
+      "reviews"
+    ],
+    "predicate": {
+      "type": "numberFormat",
+      "viewports": [
+        1440
+      ],
+      "kind": "counter",
+      "words": [
+        "отзыв",
+        "выпускник",
+        "курс"
+      ],
+      "note": "счётчик от тысячи пишется слитно"
+    }
   },
   "CT-3a": {
-    "appliesTo": ["courses-listing", "education-centers-listing"],
-    "predicate": { "type": "buttonLabels", "viewports": [1440], "scope": "card", "allowed": ["Далее", "Подробнее", "Открыть код", "Посмотреть"] }
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing"
+    ],
+    "predicate": {
+      "type": "buttonLabels",
+      "viewports": [
+        1440
+      ],
+      "scope": "card",
+      "allowed": [
+        "Далее",
+        "Подробнее",
+        "Открыть код",
+        "Посмотреть"
+      ]
+    }
   },
   "CT-3b": {
-    "appliesTo": ["courses-listing", "education-centers-listing", "education-center", "rating"],
-    "predicate": { "type": "buttonLabels", "viewports": [1440], "scope": "outside", "infinitive": true, "allowed": ["Каталог", "Больше об эксперте"], "note": "подпись начинается с глагола в инфинитиве: -ть, -ти, -чь; исключения названы" }
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing",
+      "education-center",
+      "rating"
+    ],
+    "predicate": {
+      "type": "buttonLabels",
+      "viewports": [
+        1440
+      ],
+      "scope": "outside",
+      "infinitive": true,
+      "allowed": [
+        "Каталог",
+        "Больше об эксперте"
+      ],
+      "note": "подпись начинается с глагола в инфинитиве: -ть, -ти, -чь; исключения названы"
+    }
   }
 }

@@ -233,7 +233,8 @@ if (errors.length) {
   console.error("\nПроекция — тот же пакет в другом виде. Расхождение значит, что\nкто-то правил JSON руками или источник изменился без пересборки:\nзапустите node tools/build-machine.mjs и проверьте снова.");
   process.exit(1);
 }
-console.log(`Проекция сходится с источниками: правил ${stats.rules}, из них с исполнимым предикатом ${stats.checked}; записей ${stats.components}, разметок отрисовано ${stats.markup}; токенов ${stats.tokens}.`);
+const ruleCount = rules.filter((r) => r.kind === "rule").length;
+console.log(`Проекция сходится с источниками: правил ${ruleCount} и решений ${stats.rules - ruleCount}, предикатов исполнено ${stats.checked}; записей ${stats.components}, разметок отрисовано ${stats.markup}; токенов ${stats.tokens}.`);
 if (manual.length) {
   console.log(`\nПроверяет человек (${manual.length}):`);
   for (const m of manual) console.log("  " + m);

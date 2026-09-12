@@ -19,13 +19,14 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
+import { PAGES } from "../.pipeline/pages/pages-config.mjs";
 
 const pkg = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (p) => fs.readFileSync(path.join(pkg, p), "utf8");
 const readJson = (p) => JSON.parse(read(p));
 const readIf = (p) => (fs.existsSync(path.join(pkg, p)) ? readJson(p) : {});
 const outDir = path.join(pkg, "machine");
-const TODAY = "2026-09-12";
+const TODAY = new Date().toISOString().slice(0, 10);
 const write = (name, data) => {
   fs.writeFileSync(path.join(outDir, name), JSON.stringify(data, null, 2) + "\n", "utf8");
   return `${name}: ${Array.isArray(data) ? data.length : Object.keys(data).length}`;
@@ -61,14 +62,15 @@ const log = [];
     return mark ? `/*MARK:${mark[1]}*/` : "";
   });
   const groupOf = (name) =>
-    /^--color-/.test(name) ? "color"
-      : /gradient/.test(name) ? "gradient"
+    /gradient/.test(name) ? "gradient"
+      : /^--color-/.test(name) ? "color"
         : /^--font-size-/.test(name) ? "fontSize"
           : /^--line-height-/.test(name) ? "lineHeight"
-            : /^--font-family|^--font-weight/.test(name) ? "font"
-              : /shadow/.test(name) ? "shadow"
-                : "size";
-  const typeOf = (g) => ({ color: "color", gradient: "gradient", fontSize: "dimension", lineHeight: "dimension", size: "dimension", shadow: "shadow", font: "fontFamily" }[g] || "other");
+            : /font-weight/.test(name) ? "fontWeight"
+              : /font-family/.test(name) ? "font"
+                : /shadow/.test(name) ? "shadow"
+                  : "size";
+  const typeOf = (g) => ({ color: "color", gradient: "gradient", fontSize: "dimension", lineHeight: "dimension", size: "dimension", shadow: "shadow", font: "fontFamily", fontWeight: "fontWeight" }[g] || "other");
   const tokens = {};
   let group = null;
   for (const line of body.split("\n")) {
@@ -83,11 +85,11 @@ const log = [];
     (tokens[gKey] = tokens[gKey] || {})[short] = {
       $type: typeOf(gKey),
       $value: value,
-      $description: group || undefined,
       $extensions: {
         guide: {
           cssVar: name,
-          source: "инлайновый :root ответа career.habr.com, снято 8 сентября 2026",
+          group: group || undefined,
+          source: "инлайновый <style> ответа career.habr.com, снято 8 сентября 2026: два блока :root на страницу, 48 переменных в основном и 3 в позднем",
           liveness: /NO MARKUP/.test(mark || "") ? "утилита есть, разметки нет" : /UNREFERENCED/.test(mark || "") ? "объявлена, ссылок var() нет" : /RUNTIME/.test(mark || "") ? "значение переписывает скрипт" : "живая",
           humanDoc: "docs/guide/tokens.md",
         },
@@ -105,24 +107,75 @@ const browser = await chromium.launch({ executablePath: process.env.CHROME_SHELL
 const page = await (await browser.newContext({ javaScriptEnabled: false })).newPage();
 {
   await page.setContent(read("showcase/components.html").replace(/\.\.\/ui\//g, "ui/"));
-  const markup = await page.evaluate(() => {
+  // Корень образца — узел самой записи, а не стенд витрины: у шести записей
+  // первый узел стенда был обёрткой с инлайновыми стилями и несколькими
+  // вариантами внутри (ревью R8, minor 1). Сначала ищем по селектору
+  // переписи, и только если его нет — берём первый узел.
+  const anchorSel = Object.fromEntries(recs.filter((r) => r.showcaseAnchor).map((r) => {
+    const v = census[r.id];
+    const full = v ? (Array.isArray(v) ? v[0] : v).selector : null;
+    return [r.showcaseAnchor, full ? full.split(",").map((s) => s.trim().split(/\s*>\s*|\s+/).pop()).filter(Boolean).join(", ") : null];
+  }));
+  const markup = await page.evaluate((anchorSel) => {
     const out = {};
     for (const s of document.querySelectorAll("section.doc-section[id^='c-']")) {
-      const n = s.querySelector(".doc-variant__row > *, .doc-stage > *:not(.doc-variant)");
+      const sel = anchorSel[s.id];
+      let n = null;
+      if (sel) { try { n = s.querySelector(sel); } catch { n = null; } }
+      if (!n) n = s.querySelector(".doc-variant__row > *, .doc-stage > *:not(.doc-variant)");
       if (n) out[s.id] = n.outerHTML.replace(/\s+/g, " ").trim();
     }
     return out;
-  });
+  }, anchorSel);
+  const decisionsMd = read("docs/guide/decisions.md");
   const ruleIdsFor = (name) => {
     const ids = new Set();
     for (const line of composition.split("\n")) {
       const id = line.match(/^\|\s*\*\*([A-Z]+-[0-9a-z]+)\*\*/);
       if (id && new RegExp(`\`${name}\``).test(line)) ids.add(id[1]);
     }
+    // решения тоже называют записи: DG-4 про карточку, DG-5 про кнопку
+    let dg = null;
+    for (const line of decisionsMd.split("\n")) {
+      const h = line.match(/^### (DG-\d+)/);
+      if (h) dg = h[1];
+      if (dg && new RegExp(`\`${name}\``).test(line)) ids.add(dg);
+    }
     return [...ids];
+  };
+  // Разделы спецификации: то, что человек уже написал, — назначение записи,
+  // когда она не подходит, клавиатура и ограничения (ревью R8, M4).
+  const parseSpec = (md) => {
+    // Разделы режутся по заголовкам построчно: регулярное выражение с
+    // флагом m обрывало раздел на первом конце строки.
+    const sections = {};
+    let cur = null;
+    for (const line of md.split("\n")) {
+      const h = /^## (.+?)\s*$/.exec(line);
+      if (h) { cur = h[1]; sections[cur] = []; continue; }
+      if (cur) sections[cur].push(line);
+    }
+    const section = (title) => (sections[title] ? sections[title].join("\n").trim() || null : null);
+    const oneLine = (t) => (t ? t.replace(/\s+/g, " ").trim() : null);
+    const bullets = (t) => (t ? t.split("\n").filter((l) => /^[-*] /.test(l)).map((l) => oneLine(l.replace(/^[-*] /, ""))) : []);
+    const when = section("Когда использовать");
+    const whenNot = section("Когда не использовать");
+    const keyboard = section("Управление клавиатурой");
+    const limits = section("Ограничения");
+    const rule = when && /\*\*Правило\.\*\*\s*([\s\S]*?)(?=\n\n|$)/.exec(when);
+    return {
+      usage: {
+        when: oneLine(rule ? rule[1] : when ? when.split("\n\n")[0] : null),
+        whenNot: bullets(whenNot),
+        insteadUse: [...new Set([...(whenNot || "").matchAll(/`([A-Z][A-Za-z]+)`/g)].map((m) => m[1]))],
+      },
+      a11y: keyboard ? { keyboard: oneLine(keyboard) } : null,
+      limits: bullets(limits).length ? bullets(limits) : limits ? [oneLine(limits)] : [],
+    };
   };
   const components = recs.map((r) => {
     const sel = census[r.id];
+    const spec = fs.existsSync(path.join(pkg, "components", r.specPath)) ? parseSpec(read(`components/${r.specPath}`)) : { usage: {}, a11y: null, limits: [] };
     const c = {
       id: r.id,
       name: r.canonicalName,
@@ -134,6 +187,9 @@ const page = await (await browser.newContext({ javaScriptEnabled: false })).newP
       step: r.step,
       cssRoots: [...new Set(r.cssRoots || [])],
       dependsOn: r.dependsOn || [],
+      usage: spec.usage,
+      a11y: spec.a11y,
+      limits: spec.limits,
       anchor: r.showcaseAnchor ? `showcase/components.html#${r.showcaseAnchor}` : null,
       states: {
         required: r.requiredStates || [],
@@ -148,7 +204,10 @@ const page = await (await browser.newContext({ javaScriptEnabled: false })).newP
         storybook: (r.storybookEvidence || []).length ? r.storybookEvidence : null,
       },
       sourceConflicts: r.sourceConflicts || [],
-      markup: r.showcaseAnchor && markup[r.showcaseAnchor] ? { html: markup[r.showcaseAnchor], requires: ["ui/courses.css"] } : null,
+      markup: r.showcaseAnchor && markup[r.showcaseAnchor]
+        ? { html: markup[r.showcaseAnchor], requires: ["ui/courses.css"] }
+        : null,
+      markupNote: r.showcaseAnchor && markup[r.showcaseAnchor] ? undefined : "разметки нет: запись — обёртка вокруг библиотеки (см. spec)",
     };
     return { ...c, ...(over.components[r.id] || {}) };
   });
@@ -245,13 +304,21 @@ const page = await (await browser.newContext({ javaScriptEnabled: false })).newP
         }
         return found.sort((a, b) => b.count - a.count);
       };
-      return [...main.children].map((k) => ({
-        tag: k.tagName.toLowerCase(),
-        heading: (k.querySelector("h2, h3") || {}).textContent?.trim().slice(0, 40) || null,
-        modules: idOf(k).filter((x) => SEL[x.id] && MODULES.includes(x.id)).slice(0, 6),
-      }));
+      return [...main.children].map((k) => {
+        const found = idOf(k).filter((x) => SEL[x.id]);
+        const modules = found.filter((x) => MODULES.includes(x.id)).slice(0, 6);
+        // Профиль собран не из модулей, а из компонентов (`prose`), и
+        // заголовки разделов у него — div.text-h2, а не h2 (ревью R8, M3).
+        const heading = (k.querySelector("h2, h3, div.text-h2") || {}).textContent?.trim().slice(0, 40) || null;
+        return {
+          tag: k.tagName.toLowerCase(),
+          heading,
+          modules,
+          components: modules.length ? [] : found.filter((x) => !MODULES.includes(x.id)).slice(0, 4),
+        };
+      });
     }, { SEL, MODULES });
-    const a = axes[id.replace("courses-listing", "courses-listing")] || axes[id];
+    const a = axes[id];
     const frame = a
       ? {
         container: `${a[1440].shell.containerMax} + ${a[1440].shell.containerPad}`,
@@ -281,10 +348,22 @@ const page = await (await browser.newContext({ javaScriptEnabled: false })).newP
       standalone: `showcase/pages/${id}.html`,
       frame,
       sequence,
+      sequenceSource: {
+        page: `showcase/pages/${id}.html`,
+        note: "состав и счётчики сняты с собранной страницы витрины; длинные списки на ней сокращены, полные числа — в pages/*.md",
+        trimmed: (PAGES[id] && PAGES[id].trim ? PAGES[id].trim : []).map((t) => t.what),
+        stubs: (PAGES[id] && PAGES[id].stubs ? PAGES[id].stubs : []).map((s) => s.text),
+      },
       responsive,
-      rules: (over.patterns[id] && over.patterns[id].rules) || [],
+      // правила паттерна — обратная сторона appliesTo правил: список не
+      // пишется руками и не может разойтись с rules.json (ревью R8, M6)
+      rules: [],
       ...(over.patterns[id] || {}),
     });
+  }
+  {
+    const ruleList = JSON.parse(fs.readFileSync(path.join(outDir, "rules.json"), "utf8")).filter((r) => r.kind === "rule");
+    for (const pt of patterns) pt.rules = ruleList.filter((r) => (r.appliesTo || []).includes("all") || (r.appliesTo || []).includes(pt.id)).map((r) => r.id);
   }
   log.push(write("patterns.json", patterns));
 }
@@ -316,10 +395,23 @@ await browser.close();
 // --- index.json ----------------------------------------------------------
 {
   const complete = recs.filter((r) => r.status === "complete").length;
+  // Версии у пакета нет: он собирается волнами, и честная отметка зрелости —
+  // принятые шаги роадмапа, а не выдуманный номер (ревью R8, minor 6).
+  const roadmap = read("ROADMAP.md");
+  const accepted = /\|\s*Принято шагов\s*\|\s*(\d+) из (\d+)/.exec(roadmap);
+  // граница покрытия — таблица «Чего в пакете нет» человеческого документа
+  const coverageMd = read("docs/guide/coverage.md");
+  const notCovered = coverageMd
+    .slice(coverageMd.indexOf("## Чего в пакете нет"))
+    .split("\n## ")[0]
+    .split("\n")
+    .filter((l) => l.startsWith("| ") && !l.startsWith("| Не покрыто") && !l.startsWith("|---"))
+    .map((l) => l.split("|")[1].trim())
+    .filter(Boolean);
   const index = {
     product: "courses",
     title: "Хабр Курсы",
-    version: "0.8.0",
+    stage: accepted ? `принято шагов ${accepted[1]} из ${accepted[2]} (ROADMAP.md)` : null,
     kind: "product-interface",
     language: "ru",
     css: "ui/courses.css",
@@ -330,7 +422,7 @@ await browser.close();
       patterns: "machine/patterns.json",
       content: "machine/content.json",
     },
-    humanDocs: ["README.md", "docs/guide/coverage.md", "docs/guide/composition.md", "docs/guide/decisions.md", "docs/guide/tokens.md", "docs/guide/typography.md", "docs/guide/layout.md"],
+    humanDocs: ["README.md", "docs/guide/coverage.md", "docs/guide/composition.md", "docs/guide/decisions.md", "docs/guide/tokens.md", "docs/guide/typography.md", "docs/guide/layout.md", "components/INDEX.md"],
     checks: [
       "node tools/validate-components.mjs --strict",
       "node tools/validate-classes.mjs",
@@ -341,7 +433,9 @@ await browser.close();
       pagesCaptured: Object.keys(axes).length,
       pagesAssembled: fs.readdirSync(path.join(pkg, "pages")).filter((f) => f.endsWith(".md")).length,
       components: { total: recs.length, complete, partial: recs.filter((r) => r.status === "partial").length, figmaOnly: recs.filter((r) => r.status === "figma-only").length },
-      boundary: "публичная часть Курсов, снятая гостем на десяти страницах; личный кабинет, формы ввода, пустые состояния и открытые оверлеи не покрыты — docs/guide/coverage.md",
+      boundary: "публичная часть Курсов, снятая гостем на десяти страницах",
+      notCovered,
+      boundaryDoc: "docs/guide/coverage.md",
     },
     generatedAt: TODAY,
     generatedBy: "tools/build-machine.mjs",

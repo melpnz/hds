@@ -1,7 +1,7 @@
 {
   "product": "courses",
   "title": "Хабр Курсы",
-  "version": "0.8.0",
+  "stage": "принято шагов 18 из 95 (ROADMAP.md)",
   "kind": "product-interface",
   "language": "ru",
   "css": "ui/courses.css",
@@ -19,7 +19,8 @@
     "docs/guide/decisions.md",
     "docs/guide/tokens.md",
     "docs/guide/typography.md",
-    "docs/guide/layout.md"
+    "docs/guide/layout.md",
+    "components/INDEX.md"
   ],
   "checks": [
     "node tools/validate-components.mjs --strict",
@@ -36,7 +37,19 @@
       "partial": 12,
       "figmaOnly": 21
     },
-    "boundary": "публичная часть Курсов, снятая гостем на десяти страницах; личный кабинет, формы ввода, пустые состояния и открытые оверлеи не покрыты — docs/guide/coverage.md"
+    "boundary": "публичная часть Курсов, снятая гостем на десяти страницах",
+    "notCovered": [
+      "Страница отдельного курса",
+      "Формы ввода продукта",
+      "Пустая выдача, ошибка, загрузка",
+      "Открытые оверлеи",
+      "Личный кабинет, избранное, сравнение",
+      "Доступность как система",
+      "Тёмная тема",
+      "Раскладка карусели",
+      "Состояния сверх снятых"
+    ],
+    "boundaryDoc": "docs/guide/coverage.md"
   },
   "generatedAt": "2026-09-12",
   "generatedBy": "tools/build-machine.mjs"

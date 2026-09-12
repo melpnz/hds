@@ -156,8 +156,11 @@ export function runPredicate({ p, CARDS, SEARCH }) {
         rows.push({ text: h.textContent.trim().slice(0, 32), gap: Math.round(top - h.getBoundingClientRect().bottom) });
       }
       if (!rows.length) return { skip: "секций с h2 нет" };
-      const bad = rows.filter((r) => Math.abs(r.gap - p.gap) > (p.tolerance || 0));
-      return bad.length > (p.allowExceptions || 0)
+      // Исключение называется заголовком секции, а не числом: числовой допуск
+      // «одно исключение» прощает любую испорченную секцию (мутация A).
+      const excused = (t) => (p.allowHeadings || []).some((h) => t.startsWith(h));
+      const bad = rows.filter((r) => Math.abs(r.gap - p.gap) > (p.tolerance || 0) && !excused(r.text));
+      return bad.length
         ? { bad: `${bad.length} секций из ${rows.length} не держат ${p.gap}: ${bad.slice(0, 3).map((b) => `«${b.text}» ${b.gap}`).join("; ")}` }
         : { ok: true, n: rows.length };
     }
