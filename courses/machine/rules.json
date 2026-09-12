@@ -1,0 +1,1013 @@
+[
+  {
+    "id": "SH-1",
+    "kind": "rule",
+    "area": "Оболочка",
+    "statement": "Всё между hero и подвалом лежит в контейнере 1124 с полями 24 (`mx-auto max-w-[1124px] px-6`); колонка на 1440 — 1076. За контейнер не выходит ни один узел",
+    "coverage": "10/10 на четырёх ширинах; узлов за контейнером — 0",
+    "exception": "В поле 24 за колонку выходят: панель экспертов (`-mx-6`, эксперты и редакция, все ширины); до 767 — таблица рейтинга (витрина курсов, рейтинг) и шапка школы (`phone:-mx-6 phone:rounded-none`); стрелки карусели — половиной, 7 страниц",
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440,
+        1024,
+        768,
+        375
+      ],
+      "selector": "div[class*='max-w-[1124px]']",
+      "match": "all",
+      "expect": {
+        "max-width": "1124px",
+        "padding-left": "24px",
+        "padding-right": "24px"
+      }
+    },
+    "appliesTo": [
+      "all"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-SH-1"
+  },
+  {
+    "id": "SH-2",
+    "kind": "rule",
+    "area": "Оболочка",
+    "statement": "Шапка — 64 в высоту на градиенте `bg-main-gradient-first` (`ui-blue-500 → ui-blue-400`)",
+    "coverage": "10/10 на 1440, 1024 и 768; на 375 — 9/10",
+    "exception": "Витрина курсов на 375 — 108: поле поиска уходит второй строкой (`phone:order-last phone:basis-full`)",
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440,
+        1024,
+        768
+      ],
+      "selector": "header",
+      "match": "all",
+      "expect": {
+        "height": "64px"
+      }
+    },
+    "appliesTo": [
+      "all"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-SH-2"
+  },
+  {
+    "id": "SH-3",
+    "kind": "rule",
+    "area": "Оболочка",
+    "statement": "Шапка не липкая: `position: static`",
+    "coverage": "9/10",
+    "exception": "Нарушитель — витрина курсов: `sticky top-0`",
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440
+      ],
+      "selector": "header",
+      "match": "all",
+      "expect": {
+        "position": "static"
+      }
+    },
+    "appliesTo": [
+      "education-centers-listing",
+      "rating",
+      "education-center",
+      "authors",
+      "author"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-SH-3"
+  },
+  {
+    "id": "SH-4",
+    "kind": "rule",
+    "area": "Оболочка",
+    "statement": "Подвал на `#f1f1f1` (`bg-ui-black-50`): 192 в высоту на 1440 и 1024, 256 на 768, 476 на 375",
+    "coverage": "10/10 на четырёх ширинах",
+    "exception": "В корпусе нет. Нарушит подвал на белом фоне страницы",
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440,
+        1024
+      ],
+      "selector": "footer",
+      "match": "all",
+      "expect": {
+        "background-color": "rgb(241, 241, 241)",
+        "height": "192px"
+      }
+    },
+    "appliesTo": [
+      "all"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-SH-4"
+  },
+  {
+    "id": "SH-5",
+    "kind": "rule",
+    "area": "Оболочка",
+    "statement": "Фон страницы белый `#fff`",
+    "coverage": "10/10",
+    "exception": "В корпусе нет. Нарушит тонированный фон под колонкой",
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440
+      ],
+      "selector": "body",
+      "match": "all",
+      "expect": {
+        "background-color": "rgb(255, 255, 255)"
+      }
+    },
+    "appliesTo": [
+      "all"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-SH-5"
+  },
+  {
+    "id": "SH-6",
+    "kind": "rule",
+    "area": "Оболочка",
+    "statement": "Раздел с выдачей или страница сервиса открывается hero `bg-main-gradient-second` во всю ширину экрана с `h1` 44/48, 600 по центру (на телефоне 30/34). `h1` 44/48 вне hero не бывает",
+    "coverage": "7/10; `h1` 44/48 — 7 из 7 hero, вне hero — 0",
+    "exception": "Нарушитель — витрина курсов: выдача без hero и без `h1` (полоса рубрик и баннеры). Вне области правила: страница школы (шапка сущности, `h1` 14 серым внизу колонки) и профиль (шапка профиля, заголовков `h*` нет)",
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440
+      ],
+      "selector": "div.w-full.bg-main-gradient-second h1",
+      "match": "all",
+      "expect": {
+        "font-size": "44px",
+        "line-height": "48px",
+        "font-weight": "600",
+        "text-align": "center"
+      }
+    },
+    "appliesTo": [
+      "education-centers-listing",
+      "rating",
+      "authors"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-SH-6"
+  },
+  {
+    "id": "L-1",
+    "kind": "rule",
+    "area": "Сетка и ритм",
+    "statement": "Главная колонка одна, во всю ширину контейнера: сайдбара и боковых колонок нет",
+    "coverage": "10/10 на четырёх ширинах",
+    "exception": "В корпусе нет. Нарушит сайдбар с фильтрами рядом с выдачей",
+    "predicate": {
+      "type": "absent",
+      "viewports": [
+        1440,
+        768
+      ],
+      "selector": "aside, div[class*='max-w-[1124px]'] > div.grid.grid-cols-2"
+    },
+    "appliesTo": [
+      "all"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-L-1"
+  },
+  {
+    "id": "L-2",
+    "kind": "rule",
+    "area": "Сетка и ритм",
+    "statement": "Сетка карточек — 4 колонки по 260 с промежутком 12 на 1440 (`grid grid-cols-4 gap-3`)",
+    "coverage": "8 сеток из 9, на 6 страницах",
+    "exception": "Нарушитель — сетка курсов страницы школы: 4 × 257, промежуток 16 (`gap-4`); она же прячет карточки сверх шести и четырёх (ROADMAP X-103)",
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440
+      ],
+      "selector": "div.grid.grid-cols-4.gap-3",
+      "match": "all",
+      "expect": {
+        "column-gap": "12px"
+      }
+    },
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-L-2"
+  },
+  {
+    "id": "L-3a",
+    "kind": "rule",
+    "area": "Сетка и ритм",
+    "statement": "Блоки главной колонки идут через 48 (`grid gap-12`)",
+    "coverage": "7/10: листинг 5/5, таблица, сущность",
+    "exception": "Нарушитель — профиль автора: 40 (`flex flex-col gap-10`). Промо-раздел — по L-3b",
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440
+      ],
+      "selector": "div[class*='max-w-[1124px]'] > div.grid.gap-12",
+      "match": "all",
+      "expect": {
+        "row-gap": "48px"
+      }
+    },
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing",
+      "rating",
+      "education-center"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-L-3a"
+  },
+  {
+    "id": "L-3b",
+    "kind": "rule",
+    "area": "Сетка и ритм",
+    "statement": "Промо-раздел: блоки главной колонки идут через 40 (`flex flex-col gap-10`)",
+    "coverage": "2/2 — эксперты и редакция; редакция — клон экспертов, независимое свидетельство одно",
+    "exception": "В корпусе нет. Нарушит страница промо-раздела с `gap-12`",
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440
+      ],
+      "selector": "div[class*='max-w-[1124px]'] > div.flex.flex-col.gap-10",
+      "match": "all",
+      "expect": {
+        "row-gap": "40px"
+      }
+    },
+    "appliesTo": [
+      "authors"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-L-3b"
+  },
+  {
+    "id": "L-4",
+    "kind": "rule",
+    "area": "Сетка и ритм",
+    "statement": "Отступ главной колонки сверху — 40 под hero (`pt-10`), 24 без hero (`pt-6`)",
+    "coverage": "8/10",
+    "exception": "Эксперты и редакция — 0: первая секция — панель, наезжающая на hero (`-mt-6`)",
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440
+      ],
+      "selector": "div[class*='max-w-[1124px]'] > div.pt-10, div[class*='max-w-[1124px]'] > div.pt-6",
+      "match": "all",
+      "expect": {
+        "padding-top": [
+          "40px",
+          "24px"
+        ]
+      }
+    },
+    "appliesTo": [
+      "education-centers-listing",
+      "rating",
+      "education-center"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-L-4"
+  },
+  {
+    "id": "L-5a",
+    "kind": "rule",
+    "area": "Сетка и ритм",
+    "statement": "Содержимое секции начинается в 16 под заголовком `h2` — видимое расстояние (±1 на округление: у одной секции 17), промежутком `gap-4` или полем `mt-4` содержимого",
+    "coverage": "23 из 24 секций с `h2` вне промо-раздела, 7 страниц",
+    "exception": "Нарушитель — «Больше об авторах» на витрине курсов (`AuthorsBlock`): 24, как в промо-разделе, куда блок ведёт",
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440
+      ],
+      "selector": "section.flex.flex-col.gap-4",
+      "match": "all",
+      "expect": {
+        "row-gap": "16px"
+      }
+    },
+    "appliesTo": [
+      "education-centers-listing",
+      "education-center",
+      "rating"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-L-5a"
+  },
+  {
+    "id": "L-5b",
+    "kind": "rule",
+    "area": "Сетка и ритм",
+    "statement": "Промо-раздел: содержимое секции начинается в 24 под `h2` (`gap-6`)",
+    "coverage": "3 из 4 секций, эксперты и редакция",
+    "exception": "Эксперты, «Крутые ребята, которые оценивают»: под `h2` — подзаголовок через 12 (`mt-3`), затем содержимое",
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440
+      ],
+      "selector": "section.flex.flex-col.gap-6",
+      "match": "all",
+      "expect": {
+        "row-gap": "24px"
+      }
+    },
+    "appliesTo": [
+      "authors"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-L-5b"
+  },
+  {
+    "id": "C-1",
+    "kind": "rule",
+    "area": "Поверхности и форма",
+    "statement": "Карточка отделяется от фона рамкой 1px `border-ui-black-100` и радиусом 24; заливки у корня карточки нет, тени нет",
+    "coverage": "254 из 306 корней карточек, 7 типов. Проверка по всем узлам: из 690 плоскостей от 200×60 тени нет ни у одной, цветная заливка — только у hero и у обложек внутри карточек (134)",
+    "exception": "`AdCard` (52, 4 страницы) — без рамки: картинка во всю карточку, скруглена обрезкой 24. `NumberedCourseItem` (9) — не карточка, пункты разделены линией снизу",
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440
+      ],
+      "selector": "div.relative.box-border.rounded-3xl.border, div.relative.box-border.overflow-hidden.rounded-3xl.border",
+      "match": "all",
+      "expect": {
+        "border-top-width": "1px",
+        "border-top-left-radius": "24px",
+        "box-shadow": "none",
+        "background-color": [
+          "rgba(0, 0, 0, 0)",
+          "rgb(255, 255, 255)"
+        ]
+      }
+    },
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing",
+      "education-center",
+      "authors"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-C-1"
+  },
+  {
+    "id": "C-2",
+    "kind": "rule",
+    "area": "Поверхности и форма",
+    "statement": "Тени у плоскостей страницы нет; тень есть только у стрелок карусели и у всплывающих слоёв",
+    "coverage": "32 из 32 узлов с тенью — `swiper-button-shadow`, 7 страниц",
+    "exception": "В корпусе нет. Нарушит карточка или плашка с `shadow-*`",
+    "predicate": {
+      "type": "absent",
+      "viewports": [
+        1440
+      ],
+      "selector": "div[class*='shadow-']:not(.swiper-button-shadow)"
+    },
+    "appliesTo": [
+      "all"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-C-2"
+  },
+  {
+    "id": "C-3a",
+    "kind": "rule",
+    "area": "Поверхности и форма",
+    "statement": "Кнопка и поле высотой 40–56 скругляются на 12 (`rounded-xl`)",
+    "coverage": "223 из 232 узлов: кнопки и ссылки-кнопки, поля, переключатель аудитории hero, плашка промокода; 9 страниц. Знаменатель — только управляющие элементы: растушёвка текста, картинки и шапка таблицы той же высоты в него не входят",
+    "exception": "Поля формы поиска — радиус 0 (9 узлов, 5 страниц): стыкуются через 1px в общей обёртке со скруглением. У самих 14 `input` формы своего края нет — ни рамки, ни заливки, — и в замерах они не показаны: видимый край даёт обёртка `span`",
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440
+      ],
+      "selector": "button.inline-flex.rounded-xl.font-semibold, a.inline-flex.rounded-xl.font-semibold",
+      "match": "all",
+      "expect": {
+        "border-top-left-radius": "12px"
+      }
+    },
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing",
+      "education-center"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-C-3a"
+  },
+  {
+    "id": "C-3b",
+    "kind": "rule",
+    "area": "Поверхности и форма",
+    "statement": "Элемент до 36 в высоту — метка, чип, фильтр, бейдж, стрелка, аватар — пилюля или круг: радиус не меньше половины высоты",
+    "coverage": "787 из 807 элементов высотой до 36 с видимым краем, кроме квадратных логотипов (C-3c); 7 страниц",
+    "exception": "Плашка школы в `ReviewCard` — 32 в высоту, радиус 6 (20 узлов, 3 страницы)",
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440
+      ],
+      "selector": "div.bg-ui-black-50.flex.items-center.px-2.py-1.rounded-full, button.h-9.rounded-full, div.bg-ui-orange-500.rounded-full",
+      "match": "all",
+      "expect": {
+        "border-top-left-radius": "9999px"
+      }
+    },
+    "appliesTo": [
+      "courses-listing",
+      "education-center"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-C-3b"
+  },
+  {
+    "id": "C-3c",
+    "kind": "rule",
+    "area": "Поверхности и форма",
+    "statement": "Фото человека — круг; квадратный логотип организации скругляется на четверть стороны: 24 → 6, 32 → 8, 48 → 12, 100 → 24; логотип в белой рамке 40 → 12, 28 → 8",
+    "coverage": "Круг — 138 фото из 138 (54 `Avatar`, 84 в стопке аватаров `SchoolCard`); четверть стороны (±0,05) — 267 логотипов из 268 (все квадраты §4 замеров, 299, минус 31 без своего радиуса: 30 картинок внутри значка 28 и одна внутри значка 40 — их углы режет предок)",
+    "exception": "Значок школы на аватаре профиля: 40 → 14 (1 узел, профиль)",
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440
+      ],
+      "selector": "img[class*='rounded-full']",
+      "match": "all",
+      "expect": {
+        "border-top-left-radius": "9999px"
+      }
+    },
+    "appliesTo": [
+      "courses-listing",
+      "authors",
+      "author"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-C-3c"
+  },
+  {
+    "id": "A-1",
+    "kind": "rule",
+    "area": "Акценты и иерархия текста",
+    "statement": "Кнопка `Button` бывает двух цветов: тёмная `#2c2e34` (`bg-ui-black-850`) и светлая `#f1f1f1` (`bg-ui-black-50`); синего, оранжевого и других фонов у `Button` нет",
+    "coverage": "191 из 191: 173 тёмных, 18 светлых",
+    "exception": "В корпусе нет. Нарушит синяя `Button`. Вне области правила: остальные `<button>` белые или прозрачные (`FilterChip` 107, стрелки 32, прочие 52); выбранный `FilterChip` «Все» тёмный (5 страниц) — это состояние выбора, а не `Button`",
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440
+      ],
+      "selector": "button.inline-flex.rounded-xl.font-semibold, a.inline-flex.rounded-xl.font-semibold",
+      "match": "all",
+      "expect": {
+        "background-color": [
+          "rgb(44, 46, 52)",
+          "rgb(241, 241, 241)"
+        ]
+      }
+    },
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing",
+      "education-center",
+      "authors"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-A-1"
+  },
+  {
+    "id": "A-2",
+    "kind": "rule",
+    "area": "Акценты и иерархия текста",
+    "statement": "Оранжевый `ui-orange-500` (#ff7e47) стоит только на фоне бейджа скидки `Badge`; оранжевого текста нет",
+    "coverage": "87 узлов оранжевого фона из 87 — `Badge`; текста — 0",
+    "exception": "В корпусе нет. Нарушит оранжевая цена или кнопка. Звёзды рейтинга — другой токен, `ui-yellow-500` (#ff960c)",
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440
+      ],
+      "selector": "div.bg-ui-orange-500",
+      "match": "all",
+      "expect": {
+        "background-color": "rgb(255, 126, 71)",
+        "border-top-left-radius": "9999px"
+      }
+    },
+    "appliesTo": [
+      "courses-listing",
+      "education-center"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-A-2"
+  },
+  {
+    "id": "A-3",
+    "kind": "rule",
+    "area": "Акценты и иерархия текста",
+    "statement": "Основной текст — 14/400; заголовок секции `h2` — 24/28, 600",
+    "coverage": "14/400 — 10/10; `h2` 24/28, 600 — 28 из 28",
+    "exception": "Профиль: заголовки разделов — `div.text-h2` того же размера (4), `h2` нет",
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        1440
+      ],
+      "selector": "h2, div.text-h2",
+      "match": "all",
+      "expect": {
+        "font-size": "24px",
+        "line-height": "28px",
+        "font-weight": "600"
+      }
+    },
+    "appliesTo": [
+      "all"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-A-3"
+  },
+  {
+    "id": "A-5",
+    "kind": "rule",
+    "area": "Акценты и иерархия текста",
+    "statement": "Крупнее 18 в колонке стоят только заголовки: `h1` 44 в hero, заголовок раздела 24, имя сущности или человека 30 в шапке",
+    "coverage": "41 из 42 текстовых узлов крупнее 18, 10/10 страниц",
+    "exception": "Нарушитель — имя эксперта в «Больше об авторах» на витрине курсов: 20/600 (`text-h3`)",
+    "predicate": {
+      "type": "fontScale",
+      "viewports": [
+        1440
+      ],
+      "min": 19,
+      "allowed": [
+        "24px",
+        "30px",
+        "44px"
+      ],
+      "note": "узлы с собственным текстом крупнее 18 бывают только заголовками и именем сущности"
+    },
+    "appliesTo": [
+      "education-centers-listing",
+      "rating",
+      "education-center",
+      "author"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-A-5"
+  },
+  {
+    "id": "C-4",
+    "kind": "rule",
+    "area": "Реакция на курсор",
+    "statement": "Корень карточки на наведение не реагирует; реагируют кнопка и ссылки внутри",
+    "coverage": "0 из 254 карточек с рамкой; 0 из 315 корней вместе с `AdCard` и `NumberedCourseItem`; `group-hover` и `:hover` во внешнем CSS — нет",
+    "exception": "В корпусе нет. Нарушит карточка с `hover:shadow-*` или `hover:-translate-y-*`",
+    "predicate": {
+      "type": "absent",
+      "viewports": [
+        1440
+      ],
+      "selector": "div.relative.box-border.rounded-3xl.border[class*='hover:'], div.relative.box-border.overflow-hidden.rounded-3xl.border[class*='hover:']"
+    },
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing",
+      "education-center",
+      "authors"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-C-4"
+  },
+  {
+    "id": "C-5",
+    "kind": "rule",
+    "area": "Реакция на курсор",
+    "statement": "Тёмная кнопка при наведении — `opacity-90`, светлая — фон `bg-ui-black-100`",
+    "coverage": "173 из 173 и 18 из 18",
+    "exception": "В корпусе нет. Нарушит тёмная кнопка, светлеющая до другого цвета",
+    "predicate": {
+      "type": "cssRule",
+      "selector": ".hover\\:opacity-90:hover",
+      "expect": {
+        "opacity": ".9"
+      }
+    },
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-C-5"
+  },
+  {
+    "id": "C-6",
+    "kind": "rule",
+    "area": "Реакция на курсор",
+    "statement": "Строка таблицы и номер листания при наведении получают фон `bg-ui-black-50`",
+    "coverage": "37 из 37: 30 строк таблицы и 7 номеров листания на 5 страницах",
+    "exception": "В корпусе нет. Нарушит строка, которая при наведении подчёркивается вместо фона. Класс `phone:hover:bg-none` у 30 строк таблицы (2 страницы) скомпилирован — `@media (max-width:767px){.phone:hover:bg-none:hover{background-image:none}}`, — но отменяет он картинку фона, а фон строке даёт `background-color`: до 767 фон остаётся",
+    "predicate": {
+      "type": "cssRule",
+      "selector": ".hover\\:bg-ui-black-50:hover",
+      "expect": {
+        "background-color": "var(--color-ui-black-50)"
+      }
+    },
+    "appliesTo": [
+      "rating",
+      "courses-listing"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-C-6"
+  },
+  {
+    "id": "R-1",
+    "kind": "rule",
+    "area": "Адаптив",
+    "statement": "До 767 каждая сетка карточек — одна колонка",
+    "coverage": "9 сеток из 9",
+    "exception": "В корпусе нет. Нарушит сетка в две колонки на телефоне",
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        375
+      ],
+      "selector": "div.grid.grid-cols-4.gap-3",
+      "match": "all",
+      "expect": {
+        "grid-template-columns": "one-column"
+      }
+    },
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-R-1"
+  },
+  {
+    "id": "R-2",
+    "kind": "rule",
+    "area": "Адаптив",
+    "statement": "На 768–1023 сетка карточек — 3 колонки (`tablet-only:grid-cols-3`); на 1024 — уже 4",
+    "coverage": "На 768 — 7 сеток из 9; на 1024 — 4 колонки у 9 из 9",
+    "exception": "Нарушитель — сетка шагов экспертов и редакции: 2 колонки (`tablet-only:grid-cols-2`)",
+    "predicate": {
+      "type": "columns",
+      "viewports": [
+        768
+      ],
+      "selector": "div.grid.grid-cols-4.gap-3",
+      "columns": 3
+    },
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-R-2"
+  },
+  {
+    "id": "R-3",
+    "kind": "rule",
+    "area": "Адаптив",
+    "statement": "Подвал — 4 колонки от 1024, 3 на 768–1023, 1 до 767",
+    "coverage": "10/10 на четырёх ширинах",
+    "exception": "В корпусе нет. Нарушит подвал в две колонки на планшете",
+    "predicate": {
+      "type": "columns",
+      "viewports": [
+        1440,
+        1024,
+        768,
+        375
+      ],
+      "selector": "footer div.grid",
+      "columns": {
+        "375": 1,
+        "768": 3,
+        "1024": 4,
+        "1440": 4
+      }
+    },
+    "appliesTo": [
+      "all"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-R-3"
+  },
+  {
+    "id": "R-4",
+    "kind": "rule",
+    "area": "Адаптив",
+    "statement": "Порядок блоков главной колонки на всех ширинах один: сужение складывает колонки, но не переставляет блоки",
+    "coverage": "10/10 на четырёх ширинах",
+    "exception": "Внутри шапки витрины курсов поиск уходит последним (`phone:order-last`) — перестановка внутри блока, не блоков",
+    "predicate": {
+      "type": "order",
+      "viewports": [
+        1440,
+        1024,
+        768,
+        375
+      ],
+      "note": "порядок детей главной колонки одинаков на всех ширинах"
+    },
+    "appliesTo": [
+      "all"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-R-4"
+  },
+  {
+    "id": "R-5",
+    "kind": "rule",
+    "area": "Адаптив",
+    "statement": "Форма поиска на телефоне не перестраивает свой ряд полей, а прячет его (`phone:hidden`) и показывает дубль в одну колонку (`hidden … phone:grid`)",
+    "coverage": "5 из 5 страниц с `SearchForm`",
+    "exception": "В корпусе нет. Нарушит ряд полей с `phone:flex-col`",
+    "predicate": {
+      "type": "style",
+      "viewports": [
+        375
+      ],
+      "selector": "div.hidden.phone\\:grid",
+      "match": "any",
+      "expect": {
+        "display": "grid"
+      }
+    },
+    "appliesTo": [
+      "education-centers-listing",
+      "rating"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-R-5"
+  },
+  {
+    "id": "CT-1",
+    "kind": "rule",
+    "area": "Тексты",
+    "statement": "Дробная часть отделяется точкой: «4.55»",
+    "coverage": "7 из 7 страниц с оценками; дробей через запятую — 0",
+    "exception": "В корпусе нет. «3,500+» в описании эксперта — разряды в тексте автора, не дробь",
+    "predicate": {
+      "type": "text",
+      "viewports": [
+        1440
+      ],
+      "forbid": "\\b\\d,\\d{1,2}\\b",
+      "note": "дробь через запятую в интерфейсе не встречается"
+    },
+    "appliesTo": [
+      "rating",
+      "courses-listing",
+      "education-center"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-CT-1"
+  },
+  {
+    "id": "CT-2a",
+    "kind": "rule",
+    "area": "Тексты",
+    "statement": "Цена: разряды через пробел, знак рубля после числа: «от 4 223 ₽/мес», «или сразу 129 200 ₽»",
+    "coverage": "209 из 210 цен от тысячи, 7 страниц",
+    "exception": "Нарушитель — «Скидка 1000 ₽» в `PromoCard` (промокоды)",
+    "predicate": {
+      "type": "text",
+      "viewports": [
+        1440
+      ],
+      "forbid": "(?<![\\d\\s])\\d{4,}\\s?₽",
+      "note": "цена от тысячи пишется с пробелом в разрядах"
+    },
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing",
+      "rating",
+      "education-center"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-CT-2a"
+  },
+  {
+    "id": "CT-2b",
+    "kind": "rule",
+    "area": "Тексты",
+    "statement": "Счётчик — отзывы, выпускники, «+N» за год, число в ячейке таблицы — пишется слитно: «1419 отзывов», «+18070»",
+    "coverage": "23 из 23 счётчиков от тысячи на 4 страницах: «+N» 16 (витрина организаций, отзывы), «1419» в карточке школы 2, ячейки таблицы рейтинга 3, «1419 отзывов» и «18073 выпускника» в шапке школы",
+    "exception": "В корпусе нет. Нарушит «1 419 отзывов». Слитных подписей от тысячи в замерах 25: две — номер лицензии школы, он не счётчик. Телефон «8 800 700-93-29» пишется с пробелами, но это не разряды. Числа внутри текста автора и редакции идут вразнобой (6 с пробелом, 4 слитно) — правило их не задаёт",
+    "predicate": {
+      "type": "text",
+      "viewports": [
+        1440
+      ],
+      "forbid": "\\d\\s\\d{3}\\s(отзыв|выпускник)",
+      "note": "счётчик пишется слитно"
+    },
+    "appliesTo": [
+      "education-centers-listing",
+      "education-center"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-CT-2b"
+  },
+  {
+    "id": "CT-3a",
+    "kind": "rule",
+    "area": "Тексты",
+    "statement": "Кнопка перехода в карточке курса и школы — наречие: «Далее» (`CourseCard`), «Подробнее» (`SchoolCard`)",
+    "coverage": "144 кнопки из 144",
+    "exception": "Нарушитель — `PromoCard` (промокоды): «Посмотреть» (4) и действие «Открыть код» (16) — инфинитив",
+    "predicate": {
+      "type": "buttonLabels",
+      "viewports": [
+        1440
+      ],
+      "scope": "card",
+      "allowed": [
+        "Далее",
+        "Подробнее",
+        "Открыть код",
+        "Посмотреть"
+      ]
+    },
+    "appliesTo": [
+      "courses-listing",
+      "education-centers-listing"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-CT-3a"
+  },
+  {
+    "id": "CT-3b",
+    "kind": "rule",
+    "area": "Тексты",
+    "statement": "Кнопка вне карточки начинается с глагола в инфинитиве: переход («Перейти ко всем курсам»), поиск («Найти школы»), догрузка («Показать еще 20»), CTA hero («Познакомиться с редакцией»)",
+    "coverage": "25 из 27 кнопок, 9 страниц",
+    "exception": "«Каталог» в шапке — существительное; «Больше об эксперте» — без глагола",
+    "predicate": {
+      "type": "manual",
+      "check": "подпись кнопки вне карточки начинается с глагола в инфинитиве; исключения — «Каталог» и «Больше об эксперте»"
+    },
+    "appliesTo": [
+      "education-centers-listing",
+      "education-center"
+    ],
+    "humanDoc": "docs/guide/composition.md",
+    "showcase": "showcase/pages.html#rule-CT-3b"
+  },
+  {
+    "id": "DG-1",
+    "kind": "decision-guide",
+    "title": "Каркас новой страницы",
+    "observed": "Контейнер 1124 с полями 24 и одна колонка без сайдбара — на 10 из 10 страниц на четырёх ширинах; за контейнер не выходит ни один узел. Блоки колонки идут через 48 на семи страницах (листинги, таблица, сущность) и через 40 на трёх (эксперты, их клон-редакция и профиль). Отступ колонки сверху — 40 под hero, 24 без hero.",
+    "when": "Любая новая страница публичной части Курсов.",
+    "prefer": "`mx-auto max-w-[1124px] px-6`, внутри — `grid grid-cols-[minmax(0,1fr)] gap-12`. `flex flex-col gap-10` — только для страницы промо-раздела. `pt-10` под hero, `pt-6` без него.",
+    "avoid": "Второй колонки и сайдбара с фильтрами — в продукте их нет ни на одной ширине. Двух разных шагов между блоками на одной странице. Блока шире контейнера: панели, которой нужен край, хватает поля 24 (`-mx-6`).",
+    "evidence": "`SH-1`, `L-1`, `L-3a`, `L-3b`, `L-4` · 10 страниц × 4 ширины · **Confidence: HIGH** для контейнера и шага 48; шаг 40 держится на одной странице и её клоне.",
+    "confidence": "HIGH",
+    "rules": [
+      "SH-1",
+      "L-1",
+      "L-3a",
+      "L-3b",
+      "L-4"
+    ],
+    "gap": "Страница с фильтрами сбоку или с формой в несколько шагов не снималась: как продукт разложил бы такую страницу, неизвестно.",
+    "humanDoc": "docs/guide/decisions.md"
+  },
+  {
+    "id": "DG-2",
+    "kind": "decision-guide",
+    "title": "Первый экран",
+    "observed": "Семь страниц открываются hero на градиенте `bg-main-gradient-second` с `h1` 44/48 по центру; высота hero — 288…388 по составу (заголовок, переключатель аудитории, форма поиска или CTA). Без hero — витрина курсов (полоса рубрик и сразу баннеры), страница школы (шапка сущности с обложкой) и профиль (шапка профиля в рамке). `h1` 44/48 вне hero нет ни на одной странице.",
+    "when": "Проектируется первый экран новой страницы: раздела с выдачей, страницы, которая объясняет сервис, или страницы одной сущности либо человека.",
+    "prefer": "Hero с `h1` для раздела и страницы сервиса; `EntityHeader` или `PersonHeader` для одной сущности.",
+    "avoid": "Hero над страницей одной сущности — в продукте такого нет. Второго `h1` вне hero.",
+    "evidence": "`SH-6` · 7/10 · **Confidence: MEDIUM** — у трёх страниц `h1` устроен иначе (нет вовсе, мелкий внизу, заменён `div`), и какое из этих решений продукт считает нормой для страницы сущности, по одной странице не определить.",
+    "confidence": "MEDIUM",
+    "rules": [
+      "SH-6"
+    ],
+    "gap": "Правило для `h1` страницы сущности и профиля не выводится: две страницы — два разных решения. Витрина курсов — единственная выдача без hero; почему, по снимку не видно.",
+    "humanDoc": "docs/guide/decisions.md"
+  },
+  {
+    "id": "DG-3",
+    "kind": "decision-guide",
+    "title": "Сетка карточек и её перестройка",
+    "observed": "8 сеток карточек из 9 — 4 колонки по 260 с промежутком 12; на 1024 — 4 колонки у 9 из 9, на 768 — 3 колонки у 7 из 9, на 375 — одна колонка у 9 из 9. Рядом с сетками — ленты-карусели: 148 из 315 корней карточек на 7 страницах лежат в Swiper.",
+    "when": "Выдача однотипных карточек в главной колонке, которую проектируют сеткой.",
+    "prefer": "`grid grid-cols-4 gap-3 tablet-only:grid-cols-3 phone:grid-cols-[minmax(0,1fr)]` — запись `CardGrid`.",
+    "avoid": "Шага 16 между карточками; двух колонок на телефоне.",
+    "evidence": "`L-2`, `R-1`, `R-2` · 9 сеток на 7 страницах × 4 ширины · **Confidence: HIGH** для раскладки сетки.",
+    "confidence": "HIGH",
+    "rules": [
+      "L-2",
+      "R-1",
+      "R-2"
+    ],
+    "gap": "Выбор между сеткой и каруселью не выведен: курсы идут и лентой («Популярные курсы» на пяти листингах), и сеткой («ТОП онлайн-курсов», курсы школы). Раскладку ленты задаёт скрипт, а замеры шли без него — ширина слайда, число видимых карточек и поведение ленты на телефоне не измерены. Сетка из карточек разной высоты и сетка с широкой карточкой на две колонки не снимались.",
+    "humanDoc": "docs/guide/decisions.md"
+  },
+  {
+    "id": "DG-4",
+    "kind": "decision-guide",
+    "title": "Поверхность и радиус",
+    "observed": "254 карточки семи типов отделены рамкой 1px и радиусом 24 без заливки и без тени; `AdCard` (52) — без рамки, картинка во всю карточку скруглена обрезкой 24. Тень на странице есть только у стрелок карусели. По всем 2 142 видимым узлам с краем радиус задаётся формой: все 360 плоскостей от 200×60 со своим радиусом — 24; кнопки и поля высотой 40–56 — 12 (223 из 232); элементы ниже 36 — пилюля или круг (787 из 807); фото человека — круг; логотип организации — квадрат, скруглённый на четверть стороны (32 → 8, 48 → 12). Радиуса 16 нет ни у одного узла.",
+    "when": "Любая новая карточка, плоскость, кнопка, метка или логотип.",
+    "prefer": "`rounded-3xl border border-ui-black-100` на белом фоне для карточки и плоскости; `rounded-xl` для кнопки и поля; `rounded-full` для метки, чипа, фильтра и фото человека; четверть стороны для логотипа.",
+    "avoid": "Тени у карточки; тонированной подложки вместо рамки; радиуса 16 — его нет ни у одного узла. Радиус 8 у плоскости тоже не нужен: 188 его узлов — логотипы 32, значок 28 и обложка статьи, у которой углы всё равно обрезает карточка на 24.",
+    "evidence": "`C-1`, `C-2`, `C-3a`, `C-3b`, `C-3c` · 306 корней карточек, 2 142 узла с краем на 1440 · **Confidence: HIGH**",
+    "confidence": "HIGH",
+    "rules": [
+      "C-1",
+      "C-2",
+      "C-3a",
+      "C-3b",
+      "C-3c"
+    ],
+    "gap": "Выделенная или выбранная карточка не снималась — как продукт отмечает выбор на уровне карточки, неизвестно. Как ведёт себя плоскость, которая на телефоне уходит в край (`phone:rounded-none`), снято только у таблицы рейтинга и шапки школы.",
+    "humanDoc": "docs/guide/decisions.md"
+  },
+  {
+    "id": "DG-5",
+    "kind": "decision-guide",
+    "title": "Главное действие и цвет кнопки",
+    "observed": "`Button` бывает двух цветов. Тёмная `#2c2e34` — 173 из 191: 164 в карточках, 5 — отправка формы поиска, 4 — прочие (главное CTA hero у экспертов и у редакции, «Каталог» в шапке, «Больше об эксперте» в секции). Светлая `#f1f1f1` — 18: переход ко всему разделу в конце секции и второе CTA hero. Остальные `<button>` — белые или прозрачные (`FilterChip`, стрелки карусели); выбранный `FilterChip` «Все» тёмный. Синий `ui-blue-500` — градиент шапки (10/10) и hero (7/7), текст ссылок и текстовых кнопок «Показать ещё», метка промокода на `bg-ui-blue-50`; фоном `Button` он не бывает. Оранжевый — только бейдж скидки.",
+    "when": "Любая новая кнопка.",
+    "prefer": "Тёмную `Button` для одного главного действия блока — действия в карточке, отправки формы, главного CTA hero; светлую — для перехода «ко всем» и второстепенного CTA.",
+    "avoid": "Синей или оранжевой `Button`; двух `Button` в одной карточке — в корпусе у карточки не больше одной.",
+    "evidence": "`A-1`, `A-2` · 191 `Button` на 9 страницах, все `<button>` и все узлы синего и оранжевого цвета на 1440 · **Confidence: HIGH**",
+    "confidence": "HIGH",
+    "rules": [
+      "A-1",
+      "A-2"
+    ],
+    "gap": "Отключённая, загружающаяся и опасная кнопки в снятых страницах не встречаются; форм с отправкой, кроме поиска, нет.",
+    "humanDoc": "docs/guide/decisions.md"
+  },
+  {
+    "id": "DG-6",
+    "kind": "decision-guide",
+    "title": "Реакция на курсор",
+    "observed": "Корень карточки на наведение не реагирует ни у одной из 315 карточек; реагирует кнопка — тёмная тускнеет до 90%, светлая получает фон `bg-ui-black-100`; строка таблицы и номер листания получают фон `bg-ui-black-50`.",
+    "when": "Любой интерактивный элемент.",
+    "prefer": "Реакцию на самом управляющем элементе; фон `bg-ui-black-50` для строки списка.",
+    "avoid": "Подъёма, тени и смены фона у всей карточки.",
+    "evidence": "`C-4`, `C-5`, `C-6` · все страницы · **Confidence: HIGH**",
+    "confidence": "HIGH",
+    "rules": [
+      "C-4",
+      "C-5",
+      "C-6"
+    ],
+    "gap": "Нажатое состояние (`active:`) в продукте не задано ни у одного элемента — реакции на нажатие нет. У 30 строк таблицы стоит `phone:hover:bg-none`; правило скомпилировано, но убирает оно `background-image`, а фон строки — `background-color`, поэтому до 767 фон остаётся. Хотел ли продукт его убрать, по снимку не установить.",
+    "humanDoc": "docs/guide/decisions.md"
+  },
+  {
+    "id": "DG-7",
+    "kind": "decision-guide",
+    "title": "Числа и подписи",
+    "observed": "Дробная часть через точку («4.55») на 7 страницах с оценками, запятой — ни разу. В цене разряды через пробел, рубль после числа («от 4 223 ₽/мес») — 209 из 210 цен; счётчики пишутся слитно («1419 отзывов», «+18070») — 23 из 23. Кнопка перехода в карточке курса и школы — наречие «Далее» или «Подробнее» (144 из 144); кнопка вне карточки начинается с инфинитива («Найти школы», «Перейти ко всем курсам») — 25 из 27. Повелительного наклонения нет ни в одной подписи.",
+    "when": "Любой новый текст интерфейса с числами или действием.",
+    "prefer": "«4.55», «4 223 ₽», «1419 отзывов»; «Далее» в карточке, инфинитив в остальных кнопках.",
+    "avoid": "Повелительного наклонения («Найдите», «Посмотрите») и запятой в оценке — в продукте их нет.",
+    "evidence": "`CT-1`, `CT-2a`, `CT-2b`, `CT-3a`, `CT-3b` · 7 страниц с числами, 191 подпись `Button` · **Confidence: MEDIUM** — точка в дробной части и слитный счётчик расходятся с русской типографской нормой (запятая, пробел в разрядах); перенос их в новый текст — решение, а не измерение.",
+    "confidence": "MEDIUM",
+    "rules": [
+      "CT-1",
+      "CT-2a",
+      "CT-2b",
+      "CT-3a",
+      "CT-3b"
+    ],
+    "gap": "Даты в интерфейсе встречаются в двух видах («28 августа», «Август 2025 — По настоящее время») на разных страницах; правила формата даты нет. Числа в тексте автора и редакции идут вразнобой («10 000+ часов», «1000+ часов») — их пишет не интерфейс.",
+    "humanDoc": "docs/guide/decisions.md"
+  }
+]

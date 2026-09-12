@@ -1,0 +1,43 @@
+{
+  "product": "courses",
+  "title": "Хабр Курсы",
+  "version": "0.8.0",
+  "kind": "product-interface",
+  "language": "ru",
+  "css": "ui/courses.css",
+  "files": {
+    "tokens": "machine/tokens.json",
+    "components": "machine/components.json",
+    "rules": "machine/rules.json",
+    "patterns": "machine/patterns.json",
+    "content": "machine/content.json"
+  },
+  "humanDocs": [
+    "README.md",
+    "docs/guide/coverage.md",
+    "docs/guide/composition.md",
+    "docs/guide/decisions.md",
+    "docs/guide/tokens.md",
+    "docs/guide/typography.md",
+    "docs/guide/layout.md"
+  ],
+  "checks": [
+    "node tools/validate-components.mjs --strict",
+    "node tools/validate-classes.mjs",
+    "node tools/validate-showcase-claims.mjs",
+    "node tools/validate-machine.mjs"
+  ],
+  "coverage": {
+    "pagesCaptured": 10,
+    "pagesAssembled": 6,
+    "components": {
+      "total": 72,
+      "complete": 39,
+      "partial": 12,
+      "figmaOnly": 21
+    },
+    "boundary": "публичная часть Курсов, снятая гостем на десяти страницах; личный кабинет, формы ввода, пустые состояния и открытые оверлеи не покрыты — docs/guide/coverage.md"
+  },
+  "generatedAt": "2026-09-12",
+  "generatedBy": "tools/build-machine.mjs"
+}
