@@ -66,6 +66,7 @@ const componentsHtml = read("showcase/components.html");
   // на меньшем числе страниц, чем обещает (ревью R8, M10).
   const patternIds = new Set(patterns.map((p) => p.id));
   for (const r of rules.filter((x) => x.kind === "rule")) {
+    if (!r.appliesTo || !r.appliesTo.length) fail(`rules.json ${r.id}`, "appliesTo пуст: область правила не названа");
     for (const id of r.appliesTo || []) if (id !== "all" && !patternIds.has(id)) fail(`rules.json ${r.id}`, `appliesTo называет паттерн ${id}, которого нет`);
   }
   for (const f of Object.values(index.files)) if (!fs.existsSync(path.join(pkg, f))) fail("index.json", `файла ${f} нет`);
@@ -93,11 +94,28 @@ const componentsHtml = read("showcase/components.html");
       const expected = raw.replace(/var\((--[\w-]+)\)/g, "").trim();
       if (!/^\{/.test(t.$value) && !raw.includes("var(") && String(t.$value) !== raw) fail(`tokens.json ${group}.${name}`, `значение ${t.$value} против ${raw} в ui/tokens.css`);
       if (expected === "" && !/\{/.test(String(t.$value))) fail(`tokens.json ${group}.${name}`, "ссылка var() потеряна при переносе");
-      // Ссылка {группа.имя} обязана указывать на существующий токен: без
-      // этого «{color.takogo-net}» проходил молча (ревью R8, M13).
-      for (const m2 of String(t.$value).matchAll(/\{([\w-]+)\.([\w-]+)\}/g)) {
-        if (!tokens[m2[1]] || !tokens[m2[1]][m2[2]]) fail(`tokens.json ${group}.${name}`, `ссылка {${m2[1]}.${m2[2]}} никуда не ведёт`);
-      }
+      // Ссылка {группа.имя} обязана вести к существующему токену, к тому
+      // же адресату, что var() в CSS, и не зацикливаться: иначе подмена
+      // одного токена другим проходила молча (ревью R8, M13 и M19).
+      const varsInCss = [...raw.matchAll(/var\((--[\w-]+)\)/g)].map((x) => x[1]);
+      const refs = [...String(t.$value).matchAll(/\{([\w-]+)\.([\w-]+)\}/g)];
+      refs.forEach((m2, i) => {
+        const target = tokens[m2[1]] && tokens[m2[1]][m2[2]];
+        if (!target) { fail(`tokens.json ${group}.${name}`, `ссылка {${m2[1]}.${m2[2]}} никуда не ведёт`); return; }
+        const wantVar = varsInCss[i];
+        if (wantVar && target.$extensions.guide.cssVar !== wantVar) fail(`tokens.json ${group}.${name}`, `ссылка {${m2[1]}.${m2[2]}} ведёт к ${target.$extensions.guide.cssVar}, а в CSS стоит ${wantVar}`);
+        // цикл: идём по ссылкам не глубже числа токенов
+        const seen = new Set([`${group}.${name}`]);
+        let cur = target, key = `${m2[1]}.${m2[2]}`;
+        while (cur && /^\{/.test(String(cur.$value))) {
+          if (seen.has(key)) { fail(`tokens.json ${group}.${name}`, `ссылки зациклены на ${key}`); break; }
+          seen.add(key);
+          const nx = /\{([\w-]+)\.([\w-]+)\}/.exec(String(cur.$value));
+          if (!nx) break;
+          key = `${nx[1]}.${nx[2]}`;
+          cur = tokens[nx[1]] && tokens[nx[1]][nx[2]];
+        }
+      });
     }
   }
 }
@@ -146,7 +164,7 @@ const rx = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 const declared = (cls) => knownGaps.has(cls) || new RegExp("\\." + rx(escapeClass(cls)) + "(?![A-Za-z0-9_-])").test(uiCss);
 
 // Текст образцов на самой витрине: с ним сверяется текст разметки проекции.
-const showcaseText = await (async () => {
+const showcaseHtml = await (async () => {
   await page.goto("file:///" + path.join(pkg, "showcase/components.html").replace(/\\/g, "/"), { waitUntil: "networkidle" });
   return page.evaluate((anchorSel) => {
     const out = {};
@@ -155,7 +173,7 @@ const showcaseText = await (async () => {
       let n = null;
       if (sel) { try { n = s.querySelector(sel); } catch { n = null; } }
       if (!n) n = s.querySelector(".doc-variant__row > *, .doc-stage > *:not(.doc-variant)");
-      if (n) out[s.id] = (n.innerText || n.textContent || "").replace(/\s+/g, " ").trim();
+      if (n) out[s.id] = n.outerHTML;
     }
     return out;
   }, Object.fromEntries(components.filter((c) => c.anchor).map((c) => {
@@ -199,12 +217,19 @@ for (const c of components.filter((x) => x.markup)) {
   const unknown = [...new Set(ok.classes)].filter((cl) => !declared(cl));
   if (unknown.length) fail(`components.json ${c.id}`, `в markup классы, которых нет в ui/: ${unknown.slice(0, 4).join(", ")}`);
   if (sel && ok.rootMatches === false) fail(`components.json ${c.id}`, `корень markup не совпадает с селектором записи ${sel.slice(0, 60)}`);
-  // Текст образца: выброс подписи из разметки иначе проходил молча
-  // (ревью R8, M12). Сверяется с тем же узлом на витрине.
+  // Разметка сверяется с образцом витрины целиком: подменённый src, чужой
+  // alt, лишний узел внутри и выброшенная подпись иначе проходили молча
+  // (ревью R8, M12, M20, M21). Пробелы нормализуются — перенос строки в
+  // разметке контрактом не считается.
   const anchorId = c.anchor && c.anchor.split("#")[1];
-  const wantText = anchorId && showcaseText[anchorId];
-  if (wantText != null && ok.text != null && wantText !== ok.text) {
-    fail(`components.json ${c.id}`, `текст markup разошёлся с витриной: «${ok.text.slice(0, 40)}» против «${wantText.slice(0, 40)}»`);
+  const wantHtml = anchorId && showcaseHtml[anchorId];
+  // Путь к ассету приводится к корню пакета: витрина ссылается на «../ui/…»
+  // из своей папки, проекция — на «ui/…» от корня, и это одно и то же.
+  const norm = (h) => String(h).replace(/\s+/g, " ").replace(/>\s+</g, "><").replace(/(\.\.\/)+ui\//g, "ui/").trim();
+  if (wantHtml && norm(wantHtml) !== norm(c.markup.html)) {
+    const a = norm(c.markup.html), b = norm(wantHtml);
+    let i = 0; while (i < a.length && a[i] === b[i]) i++;
+    fail(`components.json ${c.id}`, `markup разошёлся с образцом витрины на знаке ${i}: «${a.slice(Math.max(0, i - 20), i + 30)}» против «${b.slice(Math.max(0, i - 20), i + 30)}»`);
   }
 }
 
@@ -233,7 +258,11 @@ const ROLES = {
   card: { selector: "div.relative.box-border.rounded-3xl.border, div.relative.box-border.overflow-hidden.rounded-3xl.border" },
   "table-row": { selector: "a.grid.w-full.items-center" },
 };
-const HOVER_PROPS = ["opacity", "background-color", "box-shadow", "transform", "border-top-color", "color"];
+// Свойства, которыми в вебе показывают реакцию на курсор. Список закрытый,
+// поэтому в нём и отдельные свойства трансформации (scale, rotate,
+// translate), и подчёркивание с обводкой: без них мутации «карточка
+// подрастает» и «текст подчёркивается» проходили (ревью R8, M16).
+const HOVER_PROPS = ["opacity", "background-color", "background-image", "box-shadow", "transform", "scale", "rotate", "translate", "filter", "border-top-color", "border-top-width", "color", "text-decoration-line", "outline-width", "outline-color"];
 async function hoverCheck(r, pageId, w) {
   const p = r.predicate;
   await page.setViewportSize({ width: w, height: 900 });
@@ -242,29 +271,69 @@ async function hoverCheck(r, pageId, w) {
     const role = ROLES[target.role];
     if (!role) { fail(`${r.id} · ${pageId}`, `роль ${target.role} не описана`); continue; }
     const handles = await page.$$(role.selector);
-    let picked = null;
+    const picked = [];
     for (const h of handles) {
       const okNode = await h.evaluate((n, bg) => {
         const s = getComputedStyle(n);
         const box = n.getBoundingClientRect();
         if (box.width === 0 || box.height === 0) return false;
+        if (n.closest("[class*='doc-']")) return false;
         return bg ? s.backgroundColor === bg : true;
       }, role.bg || null);
-      if (okNode) { picked = h; break; }
+      if (okNode) picked.push(h);
     }
-    if (!picked) { fail(`${r.id} · ${pageId} · ${w}`, `узлов роли ${target.role} на странице нет`); continue; }
-    const before = await picked.evaluate((n, props) => Object.fromEntries(props.map((x) => [x, getComputedStyle(n).getPropertyValue(x).trim()])), HOVER_PROPS);
-    await picked.hover({ force: true });
-    await page.waitForTimeout(120);
-    const after = await picked.evaluate((n, props) => Object.fromEntries(props.map((x) => [x, getComputedStyle(n).getPropertyValue(x).trim()])), HOVER_PROPS);
-    await page.mouse.move(0, 0);
-    const changed = HOVER_PROPS.filter((x) => before[x] !== after[x]);
-    if (target.expectUnchanged) {
-      if (changed.length) fail(`${r.id} · ${pageId} · ${w}`, `${target.role} реагирует на наведение: ${changed.map((x) => `${x} ${before[x]} → ${after[x]}`).join("; ")}`);
-      continue;
+    if (!picked.length) { fail(`${r.id} · ${pageId} · ${w}`, `узлов роли ${target.role} на странице нет`); continue; }
+    // Кнопка внутри карточки накрыта сквозной ссылкой карточки
+    // (`a.z-2.absolute.inset-0`): курсор до неё не доходит, и её `hover`
+    // не срабатывает. Это факт о продукте, записанный в самом правиле C-5,
+    // поэтому наведением проверяются только достижимые узлы.
+    if (target.reachableOnly) {
+      const reachable = [];
+      for (const h of picked) {
+        await h.scrollIntoViewIfNeeded();
+        const open = await h.evaluate((n) => {
+          const box = n.getBoundingClientRect();
+          const top = document.elementFromPoint(box.left + box.width / 2, box.top + box.height / 2);
+          return !!top && (top === n || n.contains(top));
+        });
+        if (open) reachable.push(h);
+      }
+      if (!reachable.length) { fail(`${r.id} · ${pageId} · ${w}`, `ни одного узла роли ${target.role}, до которого доходит курсор`); continue; }
+      picked.length = 0;
+      picked.push(...reachable);
     }
-    for (const [prop, val] of Object.entries(target.expect || {})) {
-      if (after[prop] !== val) fail(`${r.id} · ${pageId} · ${w}`, `${target.role} при наведении ${prop} ${after[prop]}, ожидалось ${val}`);
+    // Снимок берётся у самого узла и у каждого его потомка: правило C-4
+    // запрещает и group-hover, который меняет не корень, а внутренность
+    // (ревью R8, B3). Проверяются все узлы роли, а не первый (M15).
+    // rootOnly — правило про сам узел: реакция ссылки или кнопки внутри
+    // карточки правилом C-4 не запрещена, запрещена реакция корня.
+    const snap = (h) => h.evaluate((n, { props, rootOnly }) => [n, ...(rootOnly ? [] : n.querySelectorAll("*"))].map((x) => {
+      const s = getComputedStyle(x);
+      return props.map((pr) => s.getPropertyValue(pr).trim()).join("|");
+    }), { props: HOVER_PROPS, rootOnly: !!target.rootOnly });
+    for (const node of picked) {
+      const before = await snap(node);
+      await node.hover({ force: true });
+      await page.waitForTimeout(90);
+      const after = await snap(node);
+      await page.mouse.move(0, 0);
+      if (target.forbidClass) {
+        const has = await node.evaluate((n, cls) => [n, ...n.querySelectorAll("*")].some((x) => [...x.classList].some((c) => c.includes(cls))), target.forbidClass);
+        if (has) { fail(`${r.id} · ${pageId} · ${w}`, `в карточке есть класс ${target.forbidClass}`); break; }
+      }
+      if (target.expectUnchanged) {
+        const idx = before.findIndex((x, i) => x !== after[i]);
+        if (idx >= 0) {
+          const diff = HOVER_PROPS.filter((_, j) => before[idx].split("|")[j] !== after[idx].split("|")[j]);
+          fail(`${r.id} · ${pageId} · ${w}`, `${target.role} реагирует на наведение ${idx === 0 ? "корнем" : "потомком"}: ${diff.join(", ")}`);
+          break;
+        }
+        continue;
+      }
+      const rootAfter = Object.fromEntries(HOVER_PROPS.map((x, j) => [x, after[0].split("|")[j]]));
+      let bad = null;
+      for (const [prop, val] of Object.entries(target.expect || {})) if (rootAfter[prop] !== val) bad = `${prop} ${rootAfter[prop]}, ожидалось ${val}`;
+      if (bad) { fail(`${r.id} · ${pageId} · ${w}`, `${target.role} при наведении ${bad}`); break; }
     }
   }
 }

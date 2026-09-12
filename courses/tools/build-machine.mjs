@@ -227,8 +227,11 @@ const page = await (await browser.newContext({ javaScriptEnabled: false })).newP
       usage: {
         when: spec.usage.when,
         whenNot: spec.usage.whenNot,
-        // только записи реестра и только не сам себя
-        insteadUse: (spec.usage.names || []).map((n) => idByName[n]).filter((x) => x && x !== r.id),
+        // Записи, названные в разделе «Когда не использовать». Это не всегда
+        // замена: там же упоминают соседей по конструкции («это `Carousel`
+        // со стрелками `IconButton`»), поэтому поле называется «related»
+        // (ревью R8, minor 3).
+        related: (spec.usage.names || []).map((n) => idByName[n]).filter((x) => x && x !== r.id),
       },
       a11y: spec.a11y,
       limits: spec.limits,
@@ -361,7 +364,7 @@ const page = await (await browser.newContext({ javaScriptEnabled: false })).newP
           components: modules.length ? [] : found.filter((x) => !MODULES.includes(x.id)).slice(0, 4),
           // на витрине карусель и рекламный слот стоят заглушкой: вставлять
           // из такого блока нечего, и об этом сказано прямо
-          stub: stub ? (stub.textContent || "").replace(/s+/g, " ").trim().slice(0, 60) : undefined,
+          stub: stub ? [...stub.childNodes].map((x) => (x.textContent || "").trim()).filter(Boolean).join(" · ").replace(/\s+/g, " ").slice(0, 80) : undefined,
         };
       });
     }, { SEL, MODULES });

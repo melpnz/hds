@@ -238,7 +238,10 @@ export function runPredicate({ p, CARDS, SEARCH }) {
         const bad = squares.filter(({ e, s, r }) => {
           const rad = px(s.borderTopLeftRadius);
           if (rad >= r.width / 2 - 0.5) return false; // круг — фото человека
-          if (rad === 0) return clipRadius(e) === 0; // нулевой радиус законен, только если угол режет предок
+          // Нулевой радиус законен, только если предок режет угол не грубее,
+          // чем требует само правило: обёртка с радиусом 1 больше не алиби
+          // (третья итерация ревью R8, M17).
+          if (rad === 0) return clipRadius(e) < r.width * p.ratio[0];
           const ratio = rad / r.width;
           return ratio < p.ratio[0] || ratio > p.ratio[1];
         });
@@ -259,12 +262,6 @@ export function runPredicate({ p, CARDS, SEARCH }) {
       }
       if (bgBad.length) return { bad: `цвет на узле выше ${p.maxHeight}: ${bgBad.slice(0, 2).join(", ")}` };
       return textBad.length ? { bad: `цветной текст: ${textBad.slice(0, 2).join(", ")}` } : { ok: true, n: 1 };
-    }
-    case "hoverScope": {
-      const planes = edgeNodes().filter(({ r, bordered }) => bordered && r.width >= p.minWidth && r.height >= p.minHeight);
-      if (!planes.length) return { skip: "плоскостей с рамкой нет" };
-      const bad = planes.filter(({ e }) => [...e.classList].some((c) => c.includes("hover:")));
-      return bad.length ? { bad: `${bad.length} карточек реагируют на наведение` } : { ok: true, n: planes.length };
     }
     // --- адаптив ---------------------------------------------------------
     case "columns": {
@@ -287,7 +284,7 @@ export function runPredicate({ p, CARDS, SEARCH }) {
       // обход DOM не видит (ревью R8, B2).
       const kids = [...col.children]
         .filter(vis)
-        .map((k) => ({ id: k.tagName + "." + String(k.className).split(" ").slice(0, 2).join("."), r: k.getBoundingClientRect() }))
+        .map((k) => ({ id: k.tagName + "." + String(k.className).split(" ").slice(0, 2).join(".") + "·" + (k.textContent || "").replace(/s+/g, " ").trim().slice(0, 24), r: k.getBoundingClientRect() }))
         .sort((a, b) => a.r.top - b.r.top || a.r.left - b.r.left);
       return { ok: true, value: kids.map((k) => k.id).join(" | ") };
     }
