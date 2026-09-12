@@ -126,8 +126,10 @@ courses/
                             typography.md — шкала, база документа, шрифт,
                             фокус; layout.md — оболочка, контейнер, сетка
                             секций, брейкпоинты; composition.md — правила
-                            уровня страницы, decisions.md — Decision Guides
-                            (R7); coverage — R7-03
+                            уровня страницы (заменяет RULES.md из METHOD §2,
+                            решение владельца 12 сентября 2026),
+                            decisions.md — Decision Guides (R7);
+                            coverage — R7-03
   docs/development/         заметки по работе с пакетом
   machine/                  пусто; машиночитаемая проекция — R8
   tests/                    пусто; первый спек витрины — R0-06
