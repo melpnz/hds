@@ -1,4 +1,5 @@
-// Таблицы «страница → значение» по 17 осям principles-axes.md из axes.json.
+// Таблицы «страница → значение» по 17 осям метода
+// (.claude/guide/principles-axes.md, вне пакета) из axes.json.
 // Выход: .pipeline/principles-evidence.md. Числа не пишутся руками — только
 // отсюда; правила docs/guide/composition.md ссылаются на эти таблицы.
 import fs from "node:fs";

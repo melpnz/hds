@@ -10,7 +10,8 @@ const d = path.dirname(fileURLToPath(import.meta.url));
 const pkg = path.resolve(d, "../..");
 const ev = path.join(pkg, "evidence");
 const walk = (p) => fs.readdirSync(p, { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? walk(path.join(p, e.name)) : [path.join(p, e.name)]));
-const size = (files) => { const b = files.reduce((n, f) => n + fs.statSync(f).size, 0); return b > 10 * 1024 * 1024 ? `${(b / 1024 / 1024).toFixed(1)} МБ` : `${Math.round(b / 1024)} КБ`; };
+const size = (files) => { const b = files.reduce((n, f) => n + fs.statSync(f).size, 0); return b >= 1024 * 1024 ? `${(b / 1024 / 1024).toFixed(1)} МБ` : `${Math.round(b / 1024)} КБ`; };
+const service = (f) => /\.gitkeep$|README\.md$|inventory\.md$|coverage\.md$/.test(f);
 const plural = (n, one, few, many) => `${n} ${n % 10 === 1 && n % 100 !== 11 ? one : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20) ? few : many}`;
 const table = (head, rows) => `| ${head.join(" | ")} |\n|${head.map(() => "---").join("|")}|\n${rows.map((r) => `| ${r.join(" | ")} |`).join("\n")}\n`;
 
@@ -34,7 +35,7 @@ let md = `# Опись доказательной базы · Курсы
 \`components/manifest.json\` — числа не пишутся руками. Что пакет из этого
 выводит и где знание кончается — [\`docs/guide/coverage.md\`](../docs/guide/coverage.md).
 
-Всего файлов доказательной базы: **${all.length}**, ${size(all)}, из них ${plural(all.filter((f) => f.endsWith(".png")).length, "скриншот", "скриншота", "скриншотов")}.
+Всего файлов доказательной базы: **${all.length}**, ${size(all)}, из них ${plural(all.filter((f) => f.endsWith(".png")).length, "скриншот", "скриншота", "скриншотов")}. Служебных файлов — ${all.filter(service).length}: \`.gitkeep\` пустых папок, описи и этот файл; снятых артефактов ${all.filter((f) => !service(f)).length}.
 
 ## Продакшен — снято гостем
 
@@ -63,7 +64,7 @@ ${plural(sbCss.length, "файл", "файла", "файлов")} CSS сборк
 
 ## Figma — файлов нет
 
-Папка \`evidence/source/figma\` пуста: макет читается через MCP, а не выгружается. Адрес каждого узла лежит в записи реестра, поле \`figmaEvidence\`: файл, имя слоя, \`nodeId\` или \`componentKey\`. Записей с адресом в Figma — ${recs.filter((x) => has(x, "figmaEvidence")).length} из ${recs.length}. Страницы компонентов библиотеки \`education-lib\` через MCP не открываются (\`docs/guide/tokens.md\`, GAP-6), поэтому часть узлов адресуется только ключом компонента.
+Снимков нет: в папке \`evidence/source/figma\` лежит только \`.gitkeep\`, потому что макет читается через MCP, а не выгружается. Адрес каждого узла лежит в записи реестра, поле \`figmaEvidence\`: файл, имя слоя, \`nodeId\` или \`componentKey\`. Записей с адресом в Figma — ${recs.filter((x) => has(x, "figmaEvidence")).length} из ${recs.length}. Страницы компонентов библиотеки \`education-lib\` через MCP не открываются (\`docs/guide/tokens.md\`, GAP-6), поэтому часть узлов адресуется только ключом компонента.
 
 ## Записи реестра
 
@@ -78,8 +79,9 @@ md += table(["разрез", "значения"], [
   ["с записанным конфликтом источников", recs.filter((x) => has(x, "sourceConflicts")).length],
 ]);
 
-const st = recs.reduce((o, x) => ({ req: o.req + (x.requiredStates || []).length, cap: o.cap + (x.capturedStates || []).length, unc: o.unc + (x.uncapturedStates || []).length }), { req: 0, cap: 0, unc: 0 });
-md += `\nСостояния: требуется ${st.req}, снято ${st.cap}, не снято ${st.unc}. Какие именно не сняты — в поле \`uncapturedStates\` каждой записи.\n`;
+const st = recs.reduce((o, x) => ({ req: o.req + (x.requiredStates || []).length, cap: o.cap + (x.capturedStates || []).length, norm: o.norm + (x.normativeStates || []).length, unc: o.unc + (x.uncapturedStates || []).length }), { req: 0, cap: 0, norm: 0, unc: 0 });
+const stateOk = recs.filter((x) => (x.requiredStates || []).length === (x.capturedStates || []).length + (x.normativeStates || []).length + (x.uncapturedStates || []).length).length;
+md += `\nСостояния: требуется ${st.req} — снято ${st.cap}, дописано нормативом в \`ui/state-contract.css\` ${st.norm}, не снято ${st.unc}. Тождество «требуется = снято + норматив + не снято» держится у ${stateOk} записей из ${recs.length}. Какие состояния не сняты, сказано у каждой записи в \`uncapturedStates\`.\n`;
 
 const conf = recs.filter((x) => has(x, "sourceConflicts"));
 md += `\nЗаписи с конфликтом источников:\n\n` + table(["запись", "ссылка", "о чём"], conf.flatMap((x) => x.sourceConflicts.map((c) => [`\`${x.id}\``, c.ref || "—", c.summary || "—"])));
@@ -92,7 +94,7 @@ if (fs.existsSync(axes)) {
   const W = Object.keys(A[P[0]]);
   md += `\n## Замеры принципов (R7)
 
-Правила уровня страницы стоят на \`.pipeline/principles/axes.json\`: ${plural(P.length, "страница", "страницы", "страниц")} × ${plural(W.length, "ширина", "ширины", "ширин")} (${W.join(", ")}), по 17 осям. Файл пересобирается одним запуском \`measure-axes.mjs\`, таблицы — \`gen-evidence.mjs\` → \`.pipeline/principles-evidence.md\`. Страницы рисуются из того же \`dom*.html\` и корпуса CSS, что описаны выше, со шрифтом Inter из \`ui/assets/fonts\` и без скрипта.
+Правила уровня страницы стоят на \`.pipeline/principles/axes.json\`: ${plural(P.length, "страница", "страницы", "страниц")} × ${plural(W.length, "ширина", "ширины", "ширин")} (${W.join(", ")}), по 17 осям метода (их список — \`.claude/guide/principles-axes.md\`, файл метода вне пакета). Файл пересобирается одним запуском \`measure-axes.mjs\`, таблицы — \`gen-evidence.mjs\` → \`.pipeline/principles-evidence.md\`. Страницы рисуются из того же \`dom*.html\` и корпуса CSS, что описаны выше, со шрифтом Inter из \`ui/assets/fonts\` и без скрипта.
 `;
 }
 
