@@ -353,11 +353,15 @@ const page = await (await browser.newContext({ javaScriptEnabled: false })).newP
         // Профиль собран не из модулей, а из компонентов (`prose`), и
         // заголовки разделов у него — div.text-h2, а не h2 (ревью R8, M3).
         const heading = (k.querySelector("h2, h3, div.text-h2") || {}).textContent?.trim().slice(0, 40) || null;
+        const stub = k.querySelector("[class*=\"doc-page-stub\"]") || (String(k.className).includes("doc-page-stub") ? k : null);
         return {
           tag: k.tagName.toLowerCase(),
           heading,
           modules,
           components: modules.length ? [] : found.filter((x) => !MODULES.includes(x.id)).slice(0, 4),
+          // на витрине карусель и рекламный слот стоят заглушкой: вставлять
+          // из такого блока нечего, и об этом сказано прямо
+          stub: stub ? (stub.textContent || "").replace(/s+/g, " ").trim().slice(0, 60) : undefined,
         };
       });
     }, { SEL, MODULES });

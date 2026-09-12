@@ -217,7 +217,24 @@ export function runPredicate({ p, CARDS, SEARCH }) {
         if (!squares.length) return { skip: "квадратных узлов нет" };
         // Предок, который обрезает угол своим скруглением: только он
         // оправдывает нулевой радиус у квадрата (ревью R8, M9).
-        const clipRadius = (e) => { for (let a = e.parentElement; a && a !== document.body; a = a.parentElement) { const as = cs(a); if (as.overflow !== "visible" && px(as.borderTopLeftRadius) > 0) return px(as.borderTopLeftRadius); } return 0; };
+        // Оправдание работает только для узла, который сам стоит в углу
+        // обрезающего предка: логотип в середине карточки этим не прикрыт
+        // (вторая итерация ревью R8).
+        const clipRadius = (e) => {
+          const r = e.getBoundingClientRect();
+          for (let a = e.parentElement; a && a !== document.body; a = a.parentElement) {
+            const as = cs(a);
+            if (as.overflow === "visible" || px(as.borderTopLeftRadius) === 0) continue;
+            const ar = a.getBoundingClientRect();
+            // предок обнимает узел со всех сторон: его скругление и есть
+            // видимая форма (логотип в плашке 28×28), — либо узел стоит в
+            // его углу (обложка карточки)
+            const hugs = Math.abs(r.left - ar.left) <= 4 && Math.abs(r.right - ar.right) <= 4 && Math.abs(r.top - ar.top) <= 4 && Math.abs(r.bottom - ar.bottom) <= 4;
+            const atCorner = (Math.abs(r.left - ar.left) < 2 || Math.abs(r.right - ar.right) < 2) && (Math.abs(r.top - ar.top) < 2 || Math.abs(r.bottom - ar.bottom) < 2);
+            if (hugs || atCorner) return px(as.borderTopLeftRadius);
+          }
+          return 0;
+        };
         const bad = squares.filter(({ e, s, r }) => {
           const rad = px(s.borderTopLeftRadius);
           if (rad >= r.width / 2 - 0.5) return false; // круг — фото человека
