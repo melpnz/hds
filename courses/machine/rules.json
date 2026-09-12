@@ -42,6 +42,9 @@
       "match": "all",
       "expect": {
         "height": "64px"
+      },
+      "expectMatch": {
+        "background-image": "linear-gradient"
       }
     },
     "appliesTo": [
@@ -159,11 +162,13 @@
       "expect": {
         "375": {
           "fontSize": 30,
-          "lineHeight": 34
+          "lineHeight": 34,
+          "fontWeight": 600
         },
         "1440": {
           "fontSize": 44,
-          "lineHeight": 48
+          "lineHeight": 48,
+          "fontWeight": 600
         }
       },
       "note": "h1 44/48 по центру внутри hero; вне hero заголовка такого кегля нет"
@@ -358,7 +363,8 @@
       "minWidth": 200,
       "minHeight": 60,
       "radius": 24,
-      "note": "у плоскостей от 200×60 нет тени; те, что отделены рамкой, скруглены на 24 и не залиты цветом"
+      "note": "у плоскостей от 200×60 нет тени; те, что отделены рамкой, скруглены на 24 и не залиты цветом",
+      "borderColor": "rgb(233, 233, 234)"
     },
     "appliesTo": [
       "courses-listing",
@@ -531,20 +537,18 @@
     "kind": "rule",
     "area": "Акценты и иерархия текста",
     "statement": "Основной текст — 14/400; заголовок секции `h2` — 24/28, 600",
-    "coverage": "14/400 — 10/10; `h2` 24/28, 600 — 28 из 28",
+    "coverage": "14/400 стоит на 10/10 страниц и ведёт по числу узлов на 8 из 10 (на профиле делит первое место с 16/600, на отзывах уступает 12/400); `h2` 24/28, 600 — 28 из 28",
     "exception": "Профиль: заголовки разделов — `div.text-h2` того же размера (4), `h2` нет",
     "predicate": {
-      "type": "style",
+      "type": "textScale",
       "viewports": [
         1440
       ],
-      "selector": "h2, div.text-h2",
-      "match": "all",
-      "expect": {
-        "font-size": "24px",
-        "line-height": "28px",
-        "font-weight": "600"
-      }
+      "body": "14px/400",
+      "heading": "24px/28px/600",
+      "headingSelector": "h2, div.text-h2",
+      "note": "14/400 — одна из двух самых частых ступеней текста колонки (в корпусе ведущая на 8 страницах из 10); заголовок секции — 24/28, 600",
+      "bodyInTop": 2
     },
     "appliesTo": [
       "all"
@@ -564,7 +568,7 @@
       "viewports": [
         1440
       ],
-      "min": 19,
+      "min": 18,
       "allowed": [
         "24px",
         "30px",
@@ -588,13 +592,17 @@
     "coverage": "0 из 254 карточек с рамкой; 0 из 315 корней вместе с `AdCard` и `NumberedCourseItem`; `group-hover` и `:hover` во внешнем CSS — нет",
     "exception": "В корпусе нет. Нарушит карточка с `hover:shadow-*` или `hover:-translate-y-*`",
     "predicate": {
-      "type": "hoverScope",
+      "type": "hoverEffect",
       "viewports": [
         1440
       ],
-      "minWidth": 200,
-      "minHeight": 60,
-      "note": "у плоскости-карточки нет ни hover-класса, ни правила :hover в ui/"
+      "targets": [
+        {
+          "role": "card",
+          "expectUnchanged": true
+        }
+      ],
+      "note": "курсор наводится на корень карточки: ни один вычисленный стиль не меняется"
     },
     "appliesTo": [
       "courses-listing",
@@ -613,11 +621,25 @@
     "coverage": "173 из 173 и 18 из 18",
     "exception": "В корпусе нет. Нарушит тёмная кнопка, светлеющая до другого цвета",
     "predicate": {
-      "type": "cssRule",
-      "selector": ".hover\\:opacity-90:hover",
-      "expect": {
-        "opacity": ".9"
-      }
+      "type": "hoverEffect",
+      "viewports": [
+        1440
+      ],
+      "targets": [
+        {
+          "role": "button-dark",
+          "expect": {
+            "opacity": "0.9"
+          }
+        },
+        {
+          "role": "button-light",
+          "expect": {
+            "background-color": "rgb(233, 233, 234)"
+          }
+        }
+      ],
+      "note": "тёмная кнопка тускнеет до 90%, светлая получает фон bg-ui-black-100"
     },
     "appliesTo": [
       "courses-listing",
@@ -634,15 +656,22 @@
     "coverage": "37 из 37: 30 строк таблицы и 7 номеров листания на 5 страницах",
     "exception": "В корпусе нет. Нарушит строка, которая при наведении подчёркивается вместо фона. Класс `phone:hover:bg-none` у 30 строк таблицы (2 страницы) скомпилирован — `@media (max-width:767px){.phone:hover:bg-none:hover{background-image:none}}`, — но отменяет он картинку фона, а фон строке даёт `background-color`: до 767 фон остаётся",
     "predicate": {
-      "type": "cssRule",
-      "selector": ".hover\\:bg-ui-black-50:hover",
-      "expect": {
-        "background-color": "var(--color-ui-black-50)"
-      }
+      "type": "hoverEffect",
+      "viewports": [
+        1440
+      ],
+      "targets": [
+        {
+          "role": "table-row",
+          "expect": {
+            "background-color": "rgb(241, 241, 241)"
+          }
+        }
+      ],
+      "note": "строка таблицы получает фон bg-ui-black-50"
     },
     "appliesTo": [
-      "rating",
-      "courses-listing"
+      "rating"
     ],
     "humanDoc": "docs/guide/composition.md",
     "showcase": "showcase/pages.html#rule-C-6"
@@ -680,9 +709,13 @@
     "predicate": {
       "type": "cardGrid",
       "viewports": [
-        768
+        768,
+        1024
       ],
-      "columns": 3
+      "columnsByViewport": {
+        "768": 3,
+        "1024": 4
+      }
     },
     "appliesTo": [
       "courses-listing",
@@ -806,8 +839,7 @@
       "courses-listing",
       "education-centers-listing",
       "rating",
-      "education-center",
-      "promocodes"
+      "education-center"
     ],
     "humanDoc": "docs/guide/composition.md",
     "showcase": "showcase/pages.html#rule-CT-2a"
@@ -828,14 +860,15 @@
       "words": [
         "отзыв",
         "выпускник",
-        "курс"
+        "курс",
+        "студент",
+        "ученик"
       ],
       "note": "счётчик от тысячи пишется слитно"
     },
     "appliesTo": [
       "education-centers-listing",
-      "education-center",
-      "reviews"
+      "education-center"
     ],
     "humanDoc": "docs/guide/composition.md",
     "showcase": "showcase/pages.html#rule-CT-2b"
@@ -855,14 +888,13 @@
       "scope": "card",
       "allowed": [
         "Далее",
-        "Подробнее",
-        "Открыть код",
-        "Посмотреть"
+        "Подробнее"
       ]
     },
     "appliesTo": [
       "courses-listing",
-      "education-centers-listing"
+      "education-centers-listing",
+      "education-center"
     ],
     "humanDoc": "docs/guide/composition.md",
     "showcase": "showcase/pages.html#rule-CT-3a"

@@ -36,6 +36,9 @@
       "match": "all",
       "expect": {
         "height": "64px"
+      },
+      "expectMatch": {
+        "background-image": "linear-gradient"
       }
     }
   },
@@ -123,11 +126,13 @@
       "expect": {
         "375": {
           "fontSize": 30,
-          "lineHeight": 34
+          "lineHeight": 34,
+          "fontWeight": 600
         },
         "1440": {
           "fontSize": 44,
-          "lineHeight": 48
+          "lineHeight": 48,
+          "fontWeight": 600
         }
       },
       "note": "h1 44/48 по центру внутри hero; вне hero заголовка такого кегля нет"
@@ -259,7 +264,8 @@
       "minWidth": 200,
       "minHeight": 60,
       "radius": 24,
-      "note": "у плоскостей от 200×60 нет тени; те, что отделены рамкой, скруглены на 24 и не залиты цветом"
+      "note": "у плоскостей от 200×60 нет тени; те, что отделены рамкой, скруглены на 24 и не залиты цветом",
+      "borderColor": "rgb(233, 233, 234)"
     }
   },
   "C-2": {
@@ -376,17 +382,15 @@
       "all"
     ],
     "predicate": {
-      "type": "style",
+      "type": "textScale",
       "viewports": [
         1440
       ],
-      "selector": "h2, div.text-h2",
-      "match": "all",
-      "expect": {
-        "font-size": "24px",
-        "line-height": "28px",
-        "font-weight": "600"
-      }
+      "body": "14px/400",
+      "heading": "24px/28px/600",
+      "headingSelector": "h2, div.text-h2",
+      "note": "14/400 — одна из двух самых частых ступеней текста колонки (в корпусе ведущая на 8 страницах из 10); заголовок секции — 24/28, 600",
+      "bodyInTop": 2
     }
   },
   "A-5": {
@@ -401,7 +405,7 @@
       "viewports": [
         1440
       ],
-      "min": 19,
+      "min": 18,
       "allowed": [
         "24px",
         "30px",
@@ -417,13 +421,17 @@
       "authors"
     ],
     "predicate": {
-      "type": "hoverScope",
+      "type": "hoverEffect",
       "viewports": [
         1440
       ],
-      "minWidth": 200,
-      "minHeight": 60,
-      "note": "у плоскости-карточки нет ни hover-класса, ни правила :hover в ui/"
+      "targets": [
+        {
+          "role": "card",
+          "expectUnchanged": true
+        }
+      ],
+      "note": "курсор наводится на корень карточки: ни один вычисленный стиль не меняется"
     }
   },
   "C-5": {
@@ -432,24 +440,45 @@
       "education-centers-listing"
     ],
     "predicate": {
-      "type": "cssRule",
-      "selector": ".hover\\:opacity-90:hover",
-      "expect": {
-        "opacity": ".9"
-      }
+      "type": "hoverEffect",
+      "viewports": [
+        1440
+      ],
+      "targets": [
+        {
+          "role": "button-dark",
+          "expect": {
+            "opacity": "0.9"
+          }
+        },
+        {
+          "role": "button-light",
+          "expect": {
+            "background-color": "rgb(233, 233, 234)"
+          }
+        }
+      ],
+      "note": "тёмная кнопка тускнеет до 90%, светлая получает фон bg-ui-black-100"
     }
   },
   "C-6": {
     "appliesTo": [
-      "rating",
-      "courses-listing"
+      "rating"
     ],
     "predicate": {
-      "type": "cssRule",
-      "selector": ".hover\\:bg-ui-black-50:hover",
-      "expect": {
-        "background-color": "var(--color-ui-black-50)"
-      }
+      "type": "hoverEffect",
+      "viewports": [
+        1440
+      ],
+      "targets": [
+        {
+          "role": "table-row",
+          "expect": {
+            "background-color": "rgb(241, 241, 241)"
+          }
+        }
+      ],
+      "note": "строка таблицы получает фон bg-ui-black-50"
     }
   },
   "R-1": {
@@ -476,9 +505,13 @@
     "predicate": {
       "type": "cardGrid",
       "viewports": [
-        768
+        768,
+        1024
       ],
-      "columns": 3
+      "columnsByViewport": {
+        "768": 3,
+        "1024": 4
+      }
     }
   },
   "R-3": {
@@ -549,8 +582,7 @@
       "courses-listing",
       "education-centers-listing",
       "rating",
-      "education-center",
-      "promocodes"
+      "education-center"
     ],
     "predicate": {
       "type": "numberFormat",
@@ -564,8 +596,7 @@
   "CT-2b": {
     "appliesTo": [
       "education-centers-listing",
-      "education-center",
-      "reviews"
+      "education-center"
     ],
     "predicate": {
       "type": "numberFormat",
@@ -576,7 +607,9 @@
       "words": [
         "отзыв",
         "выпускник",
-        "курс"
+        "курс",
+        "студент",
+        "ученик"
       ],
       "note": "счётчик от тысячи пишется слитно"
     }
@@ -584,7 +617,8 @@
   "CT-3a": {
     "appliesTo": [
       "courses-listing",
-      "education-centers-listing"
+      "education-centers-listing",
+      "education-center"
     ],
     "predicate": {
       "type": "buttonLabels",
@@ -594,9 +628,7 @@
       "scope": "card",
       "allowed": [
         "Далее",
-        "Подробнее",
-        "Открыть код",
-        "Посмотреть"
+        "Подробнее"
       ]
     }
   },

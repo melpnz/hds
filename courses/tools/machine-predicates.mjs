@@ -35,10 +35,14 @@ export function runPredicate({ p, CARDS, SEARCH }) {
     return t;
   };
   const isCard = (n) => CARDS.some((sel) => { try { return n.matches(sel); } catch { return false; } });
+  // Обвязка витрины — не разметка продукта: заглушки каруселей и рамки
+  // кадров несут классы с приставкой doc- (METHOD §6.2) и в замеры правил
+  // не входят.
+  const isChrome = (e) => !!(e.closest && e.closest("[class*='doc-']"));
   const edgeNodes = () => {
     const out = [];
     for (const e of document.querySelectorAll("body *")) {
-      if (!vis(e) || e.closest("header") || e.closest("footer")) continue;
+      if (!vis(e) || e.closest("header") || e.closest("footer") || isChrome(e)) continue;
       const s = cs(e);
       const r = e.getBoundingClientRect();
       const bordered = px(s.borderTopWidth) > 0 && s.borderTopStyle !== "none";
@@ -78,6 +82,7 @@ export function runPredicate({ p, CARDS, SEARCH }) {
       const s = cs(h1);
       if (Math.round(px(s.fontSize)) !== want.fontSize) return { bad: `кегль h1 ${s.fontSize}, ожидался ${want.fontSize}` };
       if (Math.round(px(s.lineHeight)) !== want.lineHeight) return { bad: `интерлиньяж h1 ${s.lineHeight}, ожидался ${want.lineHeight}` };
+      if (want.fontWeight && Math.round(px(s.fontWeight)) !== want.fontWeight) return { bad: `насыщенность h1 ${s.fontWeight}, ожидалась ${want.fontWeight}` };
       if (W === 1440 && s.textAlign !== "center") return { bad: `выравнивание h1 ${s.textAlign}` };
       const outside = [...document.querySelectorAll("h1")].filter((h) => vis(h) && !hero.contains(h) && Math.round(px(cs(h).fontSize)) === p.expect["1440"].fontSize);
       return outside.length ? { bad: `вне hero есть h1 того же кегля: ${outside.length}` } : { ok: true, n: 1 };
@@ -106,10 +111,11 @@ export function runPredicate({ p, CARDS, SEARCH }) {
       });
       if (!grids.length) return { skip: "сеток карточек на странице нет" };
       const bad = [];
+      const wantCols = p.columnsByViewport ? p.columnsByViewport[String(W)] : p.columns;
       for (const g of grids) {
         const s = cs(g);
         const cols = s.gridTemplateColumns.split(" ").filter(Boolean);
-        if (p.columns != null && cols.length !== p.columns) { bad.push(`${cols.length} колонок вместо ${p.columns}`); continue; }
+        if (wantCols != null && cols.length !== wantCols) { bad.push(`${cols.length} колонок вместо ${wantCols}`); continue; }
         if (p.columnWidth) { const w = px(cols[0]); if (w < p.columnWidth[0] || w > p.columnWidth[1]) bad.push(`колонка ${Math.round(w)} вне ${p.columnWidth.join("…")}`); }
         if (p.columnGap != null && Math.round(px(s.columnGap)) !== p.columnGap) bad.push(`промежуток ${s.columnGap} вместо ${p.columnGap}`);
       }
@@ -171,6 +177,8 @@ export function runPredicate({ p, CARDS, SEARCH }) {
       const shadow = planes.filter(({ s, e }) => s.boxShadow !== "none" && !String(e.className).includes("swiper-button-shadow"));
       if (shadow.length) return { bad: `плоскость с тенью: ${shadow.length}` };
       const bordered = planes.filter((x) => x.bordered);
+      const wrongBorder = bordered.filter(({ s }) => Math.round(px(s.borderTopWidth)) !== 1 || (p.borderColor && s.borderTopColor !== p.borderColor));
+      if (wrongBorder.length) return { bad: `${wrongBorder.length} плоскостей с рамкой не 1px ${p.borderColor || ""}: ${wrongBorder.slice(0, 2).map((x) => `${x.s.borderTopWidth} ${x.s.borderTopColor}`).join(", ")}` };
       const wrongRadius = bordered.filter(({ s }) => Math.round(px(s.borderTopLeftRadius)) !== p.radius);
       if (wrongRadius.length) return { bad: `${wrongRadius.length} плоскостей с рамкой скруглены не на ${p.radius}: ${wrongRadius.slice(0, 2).map((x) => x.s.borderTopLeftRadius).join(", ")}` };
       const tinted = bordered.filter(({ s }) => s.backgroundColor !== "rgba(0, 0, 0, 0)" && s.backgroundColor !== "rgb(255, 255, 255)");
@@ -179,7 +187,7 @@ export function runPredicate({ p, CARDS, SEARCH }) {
     case "shadowScope": {
       const bad = [];
       for (const e of document.querySelectorAll("body *")) {
-        if (!vis(e)) continue;
+        if (!vis(e) || isChrome(e)) continue;
         const s = cs(e);
         if (s.boxShadow === "none") continue;
         if (String(e.className).includes(p.allowedClass)) continue;
@@ -193,8 +201,9 @@ export function runPredicate({ p, CARDS, SEARCH }) {
       if (p.form === "control") {
         const controls = nodes.filter(({ e, r }) => ["BUTTON", "A", "INPUT"].includes(e.tagName) && r.height >= p.heightRange[0] && r.height <= p.heightRange[1] && !skip(e));
         if (!controls.length) return { skip: "управляющих элементов нужной высоты нет" };
-        const pill = ({ s, r }) => px(s.borderTopLeftRadius) >= Math.min(r.width, r.height) / 2 - 0.5;
-        const bad = controls.filter((x) => !pill(x) && Math.round(px(x.s.borderTopLeftRadius)) !== p.radius);
+        // Пилюля больше не прощается: правило говорит «скругляется на 12»,
+        // и кнопка-пилюля — ровно то нарушение (ревью R8, M9).
+        const bad = controls.filter((x) => Math.round(px(x.s.borderTopLeftRadius)) !== p.radius);
         return bad.length ? { bad: `${bad.length} кнопок и полей из ${controls.length} скруглены не на ${p.radius}: ${bad.slice(0, 2).map((x) => `${x.e.tagName} ${x.s.borderTopLeftRadius} h${Math.round(x.r.height)}`).join(", ")}` } : { ok: true, n: controls.length };
       }
       if (p.form === "pill") {
@@ -206,10 +215,13 @@ export function runPredicate({ p, CARDS, SEARCH }) {
       if (p.form === "square") {
         const squares = nodes.filter(({ e, r }) => Math.abs(r.width - r.height) < 1 && r.width <= p.maxSide && r.width >= 16 && (e.tagName === "IMG" || px(cs(e).borderTopWidth) > 0) && !skip(e));
         if (!squares.length) return { skip: "квадратных узлов нет" };
-        const bad = squares.filter(({ s, r }) => {
+        // Предок, который обрезает угол своим скруглением: только он
+        // оправдывает нулевой радиус у квадрата (ревью R8, M9).
+        const clipRadius = (e) => { for (let a = e.parentElement; a && a !== document.body; a = a.parentElement) { const as = cs(a); if (as.overflow !== "visible" && px(as.borderTopLeftRadius) > 0) return px(as.borderTopLeftRadius); } return 0; };
+        const bad = squares.filter(({ e, s, r }) => {
           const rad = px(s.borderTopLeftRadius);
           if (rad >= r.width / 2 - 0.5) return false; // круг — фото человека
-          if (rad === 0) return false; // угол режет предок
+          if (rad === 0) return clipRadius(e) === 0; // нулевой радиус законен, только если угол режет предок
           const ratio = rad / r.width;
           return ratio < p.ratio[0] || ratio > p.ratio[1];
         });
@@ -221,7 +233,7 @@ export function runPredicate({ p, CARDS, SEARCH }) {
       const bgBad = [];
       const textBad = [];
       for (const e of document.querySelectorAll("body *")) {
-        if (!vis(e)) continue;
+        if (!vis(e) || isChrome(e)) continue;
         const s = cs(e);
         const r = e.getBoundingClientRect();
         if (s.backgroundColor === p.color && r.height > p.maxHeight) bgBad.push(`${e.tagName}.${String(e.className).slice(0, 24)} h${Math.round(r.height)}`);
@@ -253,7 +265,14 @@ export function runPredicate({ p, CARDS, SEARCH }) {
     case "order": {
       const col = columnOf();
       if (!col) return { skip: "колонка не найдена" };
-      return { ok: true, value: [...col.children].map((k) => k.tagName + "." + String(k.className).split(" ").slice(0, 2).join(".")).join(" | ") };
+      // Порядок берётся видимый, а не по дереву: правило запрещает
+      // перестановку при сужении, а её делает `order` в CSS, которого
+      // обход DOM не видит (ревью R8, B2).
+      const kids = [...col.children]
+        .filter(vis)
+        .map((k) => ({ id: k.tagName + "." + String(k.className).split(" ").slice(0, 2).join("."), r: k.getBoundingClientRect() }))
+        .sort((a, b) => a.r.top - b.r.top || a.r.left - b.r.left);
+      return { ok: true, value: kids.map((k) => k.id).join(" | ") };
     }
     case "searchFormPhone": {
       // Форма одна, а рядов полей внутри два: ряд для широкого экрана и
@@ -272,7 +291,9 @@ export function runPredicate({ p, CARDS, SEARCH }) {
           if (cols > 1) return { bad: `на телефоне видим ряд полей в ${cols} колонки` };
         }
       }
-      return hiddenRows ? { ok: true, n: hiddenRows } : { bad: "спрятанного ряда полей на телефоне нет" };
+      if (!hiddenRows) return { bad: "спрятанного ряда полей на телефоне нет" };
+      const oneColumn = forms.some((f) => [...f.querySelectorAll("div")].some((g) => vis(g) && cs(g).display === "grid" && cs(g).gridTemplateColumns.split(" ").filter(Boolean).length === 1));
+      return oneColumn ? { ok: true, n: hiddenRows } : { bad: "видимого дубля полей в одну колонку нет" };
     }
     // --- тексты ----------------------------------------------------------
     case "text": {
@@ -284,7 +305,7 @@ export function runPredicate({ p, CARDS, SEARCH }) {
       const bad = [];
       if (p.kind === "price") {
         // число перед знаком рубля: от тысячи оно обязано быть с пробелом
-        for (const m of t.matchAll(/([\d  ]{4,})\s?₽/g)) {
+        for (const m of t.matchAll(/([\d  .,]{4,})\s?₽/g)) {
           const digits = m[1].replace(/[^\d]/g, "");
           if (digits.length >= 4 && !/[  ]/.test(m[1].trim())) bad.push(m[0].trim().slice(0, 20));
         }
@@ -292,6 +313,9 @@ export function runPredicate({ p, CARDS, SEARCH }) {
         const words = (p.words || []).join("|");
         for (const m of t.matchAll(new RegExp(`([\\d   ]{4,})\\s(${words})`, "g"))) {
           if (/[  ]/.test(m[1].trim())) bad.push(m[0].trim().slice(0, 24));
+        }
+        for (const m of t.matchAll(/\+([\d   ]{4,})/g)) {
+          if (/[  ]/.test(m[1].trim())) bad.push("+" + m[1].trim().slice(0, 20));
         }
       }
       return bad.length ? { bad: `${bad.length} чисел не в формате: ${[...new Set(bad)].slice(0, 3).join(", ")}` } : { ok: true, n: 1 };
@@ -305,7 +329,7 @@ export function runPredicate({ p, CARDS, SEARCH }) {
       if (!list.length) return { skip: `кнопок в области ${p.scope} нет` };
       const labels = [...new Set(list.map((b) => b.textContent.replace(/\s+/g, " ").trim()).filter(Boolean))];
       const bad = labels.filter((l) => {
-        if ((p.allowed || []).some((a) => l === a || l.startsWith(a))) return false;
+        if ((p.allowed || []).includes(l)) return false;
         // \b в JS не видит кириллицу, поэтому окончание проверяется концом слова
         if (p.infinitive) return !/(ть|ти|чь)$/i.test(l.split(" ")[0]);
         return true;
@@ -324,6 +348,10 @@ export function runPredicate({ p, CARDS, SEARCH }) {
           const actual = s.getPropertyValue(prop).trim();
           if (!eq(actual, val)) return `${prop}: ${actual}, ожидалось ${Array.isArray(val) ? val.join(" или ") : val}`;
         }
+        for (const [prop, part] of Object.entries(p.expectMatch || {})) {
+          const actual = s.getPropertyValue(prop).trim();
+          if (!actual.includes(part)) return `${prop}: ${actual.slice(0, 40)}, ожидалось со словом ${part}`;
+        }
         return null;
       };
       if (p.match === "any") return nodes.some((n) => !check(n)) ? { ok: true, n: nodes.length } : { bad: check(nodes[0]) };
@@ -335,10 +363,39 @@ export function runPredicate({ p, CARDS, SEARCH }) {
       if (nodes.error) return { bad: `селектор не разобран: ${nodes.error}` };
       return nodes.length ? { bad: `найдено ${nodes.length} узлов` } : { ok: true, n: 0 };
     }
+    case "textScale": {
+      // Ведущая ступень текста колонки: правило говорит «основной текст —
+      // 14/400», и это проверяется большинством, а не наличием h2.
+      const count = {};
+      for (const e of document.querySelectorAll("body *")) {
+        if (!vis(e) || e.closest("header") || e.closest("footer") || isChrome(e)) continue;
+        const own = [...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
+        if (!own) continue;
+        const s = cs(e);
+        const key = `${s.fontSize}/${s.fontWeight}`;
+        count[key] = (count[key] || 0) + 1;
+      }
+      const sorted = Object.entries(count).sort((a, b) => b[1] - a[1]);
+      if (!sorted.length) return { skip: "текста нет" };
+      // Ведущая ступень корпуса — 14/400 на восьми страницах из десяти, на
+      // двух других она вторая. Проверяется поэтому вхождение в две самые
+      // частые ступени, а не первое место: так предикат повторяет замер.
+      const topN = sorted.slice(0, p.bodyInTop || 1).map((x) => x[0]);
+      if (!topN.includes(p.body)) return { bad: `ступени текста ${sorted.slice(0, 3).map((x) => x.join(" ")).join(", ")}; ${p.body} не в первых ${p.bodyInTop || 1}` };
+      const heads = q(p.headingSelector);
+      if (heads.error) return { bad: `селектор заголовков не разобран: ${heads.error}` };
+      if (!heads.length) return { skip: "заголовков секций нет" };
+      for (const h of heads) {
+        const s = cs(h);
+        const key = `${s.fontSize}/${s.lineHeight}/${s.fontWeight}`;
+        if (key !== p.heading) return { bad: `заголовок секции ${key}, ожидался ${p.heading}` };
+      }
+      return { ok: true, n: heads.length };
+    }
     case "fontScale": {
       const bad = [];
       for (const e of document.querySelectorAll("body *")) {
-        if (!vis(e) || e.closest("header") || e.closest("footer")) continue;
+        if (!vis(e) || e.closest("header") || e.closest("footer") || isChrome(e)) continue;
         const own = [...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
         if (!own) continue;
         const size = cs(e).fontSize;

@@ -82,9 +82,20 @@ const log = [];
     const gKey = groupOf(name);
     const short = name.replace(/^--(color-|font-size-|line-height-)?/, "");
     const value = rawValue.trim().replace(/var\((--[\w-]+)\)/g, (_, v) => `{${groupOf(v)}.${v.replace(/^--(color-|font-size-|line-height-)?/, "")}}`);
+    // DTCG: вес — число, тень — объект, градиент композитным типом не
+    // выражается без разбора остановок, поэтому остаётся строкой CSS с
+    // прямой пометкой об этом (ревью R8, M14).
+    let $type = typeOf(gKey);
+    let $value = value;
+    if (gKey === "fontWeight" && /^\d+$/.test(value)) $value = Number(value);
+    if (gKey === "shadow") {
+      const m2 = /^(-?[\d.]+px)\s+(-?[\d.]+px)\s+(-?[\d.]+px)\s+(-?[\d.]+px)\s+(.+)$/.exec(value);
+      if (m2) $value = { offsetX: m2[1], offsetY: m2[2], blur: m2[3], spread: m2[4], color: m2[5] };
+    }
+    if (gKey === "gradient") $type = "other";
     (tokens[gKey] = tokens[gKey] || {})[short] = {
-      $type: typeOf(gKey),
-      $value: value,
+      $type,
+      $value,
       $extensions: {
         guide: {
           cssVar: name,
@@ -92,6 +103,8 @@ const log = [];
           source: "инлайновый <style> ответа career.habr.com, снято 8 сентября 2026: два блока :root на страницу, 48 переменных в основном и 3 в позднем",
           liveness: /NO MARKUP/.test(mark || "") ? "утилита есть, разметки нет" : /UNREFERENCED/.test(mark || "") ? "объявлена, ссылок var() нет" : /RUNTIME/.test(mark || "") ? "значение переписывает скрипт" : "живая",
           humanDoc: "docs/guide/tokens.md",
+          references: [...String(value).matchAll(/\{([\w-]+)\.([\w-]+)\}/g)].map((x) => `${x[1]}.${x[2]}`),
+          rawCss: gKey === "gradient" || gKey === "shadow" ? value : undefined,
         },
       },
     };
@@ -157,22 +170,46 @@ const page = await (await browser.newContext({ javaScriptEnabled: false })).newP
     }
     const section = (title) => (sections[title] ? sections[title].join("\n").trim() || null : null);
     const oneLine = (t) => (t ? t.replace(/\s+/g, " ").trim() : null);
-    const bullets = (t) => (t ? t.split("\n").filter((l) => /^[-*] /.test(l)).map((l) => oneLine(l.replace(/^[-*] /, ""))) : []);
+    // Пункт списка бывает многострочным: продолжение идёт с отступом.
+    // Первая редакция выбрасывала продолжения, и одно ограничение
+    // перевернулось по смыслу — «закрыты bulk-проходом» обрывалось на
+    // «…красят» (ревью R8, M7).
+    const bullets = (t) => {
+      if (!t) return [];
+      const out = [];
+      for (const line of t.split("\n")) {
+        if (/^[-*] /.test(line)) out.push(line.replace(/^[-*] /, ""));
+        else if (out.length && /^\s+\S/.test(line)) out[out.length - 1] += " " + line.trim();
+        else if (out.length && line.trim() === "") continue;
+      }
+      return out.map(oneLine);
+    };
     const when = section("Когда использовать");
     const whenNot = section("Когда не использовать");
     const keyboard = section("Управление клавиатурой");
+    const a11ySection = section("Доступность");
     const limits = section("Ограничения");
     const rule = when && /\*\*Правило\.\*\*\s*([\s\S]*?)(?=\n\n|$)/.exec(when);
+    const a11y = {};
+    if (keyboard) a11y.keyboard = oneLine(keyboard);
+    if (a11ySection) a11y.notes = oneLine(a11ySection);
+    // Провенансный абзац «Проза выведена из переписи корпуса…» стоит у всех
+    // записей и говорит о происхождении текста, а не об ограничении записи.
+    const limitList = bullets(limits).length ? bullets(limits) : limits ? [oneLine(limits)] : [];
     return {
       usage: {
         when: oneLine(rule ? rule[1] : when ? when.split("\n\n")[0] : null),
         whenNot: bullets(whenNot),
-        insteadUse: [...new Set([...(whenNot || "").matchAll(/`([A-Z][A-Za-z]+)`/g)].map((m) => m[1]))],
+        names: [...new Set([...(whenNot || "").matchAll(/`([A-Z][A-Za-z]+)`/g)].map((m) => m[1]))],
       },
-      a11y: keyboard ? { keyboard: oneLine(keyboard) } : null,
-      limits: bullets(limits).length ? bullets(limits) : limits ? [oneLine(limits)] : [],
+      a11y: Object.keys(a11y).length ? a11y : null,
+      limits: limitList.filter((l) => !/^\*\*Проза выведена из переписи корпуса/.test(l)),
+      provenance: limitList.find((l) => /^\*\*Проза выведена из переписи корпуса/.test(l)) || null,
     };
   };
+  // Имя записи в тексте → id реестра: поле insteadUse должно быть ссылкой,
+  // а не строкой из бэктиков (ревью R8, M8).
+  const idByName = Object.fromEntries(recs.map((r) => [r.canonicalName, r.id]));
   const components = recs.map((r) => {
     const sel = census[r.id];
     const spec = fs.existsSync(path.join(pkg, "components", r.specPath)) ? parseSpec(read(`components/${r.specPath}`)) : { usage: {}, a11y: null, limits: [] };
@@ -187,9 +224,15 @@ const page = await (await browser.newContext({ javaScriptEnabled: false })).newP
       step: r.step,
       cssRoots: [...new Set(r.cssRoots || [])],
       dependsOn: r.dependsOn || [],
-      usage: spec.usage,
+      usage: {
+        when: spec.usage.when,
+        whenNot: spec.usage.whenNot,
+        // только записи реестра и только не сам себя
+        insteadUse: (spec.usage.names || []).map((n) => idByName[n]).filter((x) => x && x !== r.id),
+      },
       a11y: spec.a11y,
       limits: spec.limits,
+      provenance: spec.provenance,
       anchor: r.showcaseAnchor ? `showcase/components.html#${r.showcaseAnchor}` : null,
       states: {
         required: r.requiredStates || [],
@@ -406,8 +449,8 @@ await browser.close();
     .split("\n## ")[0]
     .split("\n")
     .filter((l) => l.startsWith("| ") && !l.startsWith("| Не покрыто") && !l.startsWith("|---"))
-    .map((l) => l.split("|")[1].trim())
-    .filter(Boolean);
+    .map((l) => ({ what: l.split("|")[1].trim(), why: (l.split("|")[2] || "").trim() }))
+    .filter((x) => x.what);
   const index = {
     product: "courses",
     title: "Хабр Курсы",
