@@ -14,6 +14,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { chromium } from "playwright";
+import { runPredicate } from "./machine-predicates.mjs";
 
 const pkg = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const read = (p) => fs.readFileSync(path.join(pkg, p), "utf8");
@@ -70,6 +71,12 @@ const componentsHtml = read("showcase/components.html");
   // Комментарии снимаются: в разборе ui/tokens.css цитируются объявления
   // сборки Storybook, и они не значения слоя.
   const css = read("ui/tokens.css").replace(/\/\*[\s\S]*?\*\//g, "");
+  // Паритет в обе стороны: переменная, выпавшая из проекции, иначе прошла бы
+  // молча — в сводке просто стало бы меньше токенов (ревью R8, M2).
+  const inCss = [...css.matchAll(/^\s*(--[\w-]+)\s*:/gm)].map((m) => m[1]);
+  const inJson = new Set(Object.values(tokens).flatMap((g) => Object.values(g).map((t) => t.$extensions.guide.cssVar)));
+  for (const v of inCss) if (!inJson.has(v)) fail("tokens.json", `переменная ${v} объявлена в ui/tokens.css и потеряна в проекции`);
+  if (inCss.length !== inJson.size) fail("tokens.json", `переменных в ui/tokens.css ${inCss.length}, в проекции ${inJson.size}`);
   for (const [group, items] of Object.entries(tokens)) {
     for (const [name, t] of Object.entries(items)) {
       stats.tokens++;
@@ -108,6 +115,22 @@ const page = await ctx.newPage();
 const probe = path.join(pkg, ".markup-probe.html");
 const probeUrl = "file:///" + probe.replace(/\\/g, "/");
 
+// Сначала снимаем вычисленные стили образцов на самой витрине: разметка
+// проекции обязана давать те же значения на пустой странице. Проверка
+// отрисовки «узел не нулевой» ловит только пустоту, а подменённый или
+// сломанный класс — нет (ревью R8, M1).
+// Сверять вычисленные стили с витриной нельзя: её собственный CSS делает
+// образец флекс-элементом (`.doc-variant__row{display:flex}`), и значения
+// display и min-height у одного и того же узла на витрине и на пустой
+// странице законно разные. Поэтому содержание разметки проверяется иначе:
+// каждый её класс обязан быть объявлен в ui/, а корень — совпадать с
+// селектором записи из переписи.
+const uiFiles = (dir) => fs.readdirSync(path.join(pkg, dir), { withFileTypes: true }).flatMap((e) => (e.isDirectory() ? uiFiles(`${dir}/${e.name}`) : e.name.endsWith(".css") ? [`${dir}/${e.name}`] : []));
+const uiCss = uiFiles("ui").map((f) => read(f)).join("\n");
+const knownGaps = new Set(Object.keys(readJson("tools/known-missing-classes.json").classes || readJson("tools/known-missing-classes.json")));
+const escapeClass = (c) => c.replace(/[^A-Za-z0-9_-]/g, (ch) => "\\" + ch);
+const declared = (cls) => uiCss.includes("." + escapeClass(cls)) || knownGaps.has(cls);
+
 for (const c of components.filter((x) => x.markup)) {
   stats.markup++;
   // Страница пишется файлом в сам пакет и открывается по file://: при
@@ -118,21 +141,41 @@ for (const c of components.filter((x) => x.markup)) {
   // markupState: hidden — запись, у которой состояние по умолчанию скрытое
   // (панель сервисов приходит с классом hidden). Такой случай объявляется
   // в components.overrides.json с причиной, а не молча пропускается.
-  const ok = await page.evaluate((expectHidden) => {
+  // Селектор переписи бывает контекстным («footer a.block.rounded-full»,
+  // «.swiper-slide > div.relative»): образец стоит вне этого контекста,
+  // поэтому корень сверяется с последней частью селектора — той, что
+  // описывает саму запись.
+  const fullSel = c.evidence && c.evidence.production ? c.evidence.production.selector : null;
+  const sel = fullSel ? fullSel.split(",").map((s) => s.trim().split(/\s*>\s*|\s+/).pop()).filter(Boolean).join(", ") : null;
+  const ok = await page.evaluate(({ expectHidden, sel }) => {
     const n = document.body.firstElementChild;
     if (!n) return { ok: false, why: "разметка пуста" };
     const r = n.getBoundingClientRect();
     const s = getComputedStyle(n);
     const hidden = s.display === "none" || s.visibility === "hidden";
-    if (expectHidden) return hidden ? { ok: true } : { ok: false, why: "объявлена скрытой, а отрисовалась" };
+    const classes = [...document.querySelectorAll("*")].flatMap((e) => [...e.classList]);
+    let rootMatches = null;
+    if (sel) { try { rootMatches = n.matches(sel) || !!n.querySelector(sel); } catch { rootMatches = null; } }
+    if (expectHidden) return hidden ? { ok: true, classes, rootMatches } : { ok: false, why: "объявлена скрытой, а отрисовалась" };
     if (hidden) return { ok: false, why: "узел скрыт" };
     if (r.width === 0 && r.height === 0) return { ok: false, why: "узел нулевого размера" };
-    return { ok: true };
-  }, c.markupState === "hidden");
-  if (!ok.ok) fail(`components.json ${c.id}`, `markup не отрисовывается: ${ok.why}`);
+    return { ok: true, classes, rootMatches, paints: s.backgroundColor !== "rgba(0, 0, 0, 0)" || parseFloat(s.borderTopWidth) > 0 || s.fontSize !== "16px" };
+  }, { expectHidden: c.markupState === "hidden", sel });
+  if (!ok.ok) { fail(`components.json ${c.id}`, `markup не отрисовывается: ${ok.why}`); continue; }
+  // содержание: классы разметки объявлены в ui/, корень — это запись
+  const unknown = [...new Set(ok.classes)].filter((cl) => !declared(cl));
+  if (unknown.length) fail(`components.json ${c.id}`, `в markup классы, которых нет в ui/: ${unknown.slice(0, 4).join(", ")}`);
+  if (sel && ok.rootMatches === false) fail(`components.json ${c.id}`, `корень markup не совпадает с селектором записи ${sel.slice(0, 60)}`);
 }
 
 if (fs.existsSync(probe)) fs.unlinkSync(probe);
+
+// Селекторы записей нужны предикатам, которые отбирают узлы по роли:
+// «корень карточки» и «форма поиска» — это записи реестра, а не классы.
+const census = readJson("components/selector-census.json").selectors;
+const selOf = (id) => { const v = census[id]; return v ? (Array.isArray(v) ? v[0] : v).selector : null; };
+const CARDS = ["course-card", "school-card", "person-card", "review-card", "article-card", "promo-card", "step-card", "ad-card"].map(selOf).filter(Boolean);
+const SEARCH = selOf("search-form") || "form";
 
 const pageFile = (id) => "file:///" + path.join(pkg, "showcase/pages", `${id}.html`).replace(/\\/g, "/");
 const scope = (r) => {
@@ -149,76 +192,7 @@ for (const r of rules.filter((x) => x.kind === "rule")) {
     for (const w of p.viewports || [1440]) {
       await page.setViewportSize({ width: w, height: 900 });
       await page.goto(pageFile(pageId), { waitUntil: "networkidle" });
-      const res = await page.evaluate(({ p }) => {
-        const vis = (e) => e.checkVisibility && e.checkVisibility({ visibilityProperty: true }) && e.getBoundingClientRect().width > 0;
-        const q = (sel) => { try { return [...document.querySelectorAll(sel)].filter(vis); } catch (e) { return { error: String(e.message || e) }; } };
-        const eq = (actual, expected) => (Array.isArray(expected) ? expected.includes(actual) : actual === expected);
-        if (p.type === "style") {
-          const nodes = q(p.selector);
-          if (nodes.error) return { bad: `селектор не разобран: ${nodes.error}` };
-          if (!nodes.length) return { skip: "узлов нет" };
-          const check = (n) => {
-            const s = getComputedStyle(n);
-            for (const [prop, val] of Object.entries(p.expect)) {
-              let actual = s.getPropertyValue(prop).trim();
-              if (val === "one-column") { if (actual.split(" ").length !== 1) return `${prop}: ${actual}`; continue; }
-              if (prop === "border-top-left-radius" && val === "9999px") { const r = parseFloat(actual); const h = n.getBoundingClientRect().height; if (r < Math.min(h, n.getBoundingClientRect().width) / 2 - 0.5) return `${prop}: ${actual} при высоте ${Math.round(h)}`; continue; }
-              if (!eq(actual, val)) return `${prop}: ${actual}, ожидалось ${Array.isArray(val) ? val.join(" или ") : val}`;
-            }
-            return null;
-          };
-          if (p.match === "any") return nodes.some((n) => !check(n)) ? { ok: true } : { bad: check(nodes[0]) };
-          for (const n of nodes) { const why = check(n); if (why) return { bad: `${why} (узлов ${nodes.length})` }; }
-          return { ok: true, n: nodes.length };
-        }
-        if (p.type === "absent") {
-          const nodes = q(p.selector);
-          if (nodes.error) return { bad: `селектор не разобран: ${nodes.error}` };
-          return nodes.length ? { bad: `найдено ${nodes.length} узлов` } : { ok: true };
-        }
-        if (p.type === "columns") {
-          const nodes = q(p.selector);
-          if (!nodes.length) return { skip: "узлов нет" };
-          const want = typeof p.columns === "object" ? p.columns[String(innerWidth)] : p.columns;
-          if (want == null) return { skip: "ширина не задана" };
-          for (const n of nodes) {
-            const cols = getComputedStyle(n).gridTemplateColumns.split(" ").length;
-            if (cols !== want) return { bad: `колонок ${cols}, ожидалось ${want}` };
-          }
-          return { ok: true, n: nodes.length };
-        }
-        if (p.type === "order") {
-          const cands = [...document.querySelectorAll("div")].filter((d) => String(d.className).includes("max-w-[1124px]") && !d.closest("header") && !d.closest("footer"));
-          const main = cands.flatMap((c) => [...c.children]).filter((e) => e.tagName === "DIV").sort((a, b) => b.getBoundingClientRect().height - a.getBoundingClientRect().height)[0];
-          if (!main) return { skip: "колонка не найдена" };
-          return { ok: true, value: [...main.children].map((k) => k.tagName + "." + String(k.className).split(" ").slice(0, 2).join(".")).join(" | ") };
-        }
-        if (p.type === "text") {
-          const t = document.body.innerText;
-          const re = new RegExp(p.forbid, "g");
-          const hit = t.match(re);
-          return hit ? { bad: `запрещённая форма: ${[...new Set(hit)].slice(0, 3).join(", ")}` } : { ok: true };
-        }
-        if (p.type === "fontScale") {
-          const bad = [];
-          for (const e of document.querySelectorAll("body *")) {
-            if (!vis(e) || e.closest("header") || e.closest("footer")) continue;
-            const own = [...e.childNodes].some((n) => n.nodeType === 3 && n.textContent.trim());
-            if (!own) continue;
-            const fs = getComputedStyle(e).fontSize;
-            if (parseFloat(fs) > p.min && !p.allowed.includes(fs)) bad.push(`${fs} «${e.textContent.trim().slice(0, 20)}»`);
-          }
-          return bad.length ? { bad: `кегль вне шкалы: ${[...new Set(bad)].slice(0, 3).join("; ")}` } : { ok: true };
-        }
-        if (p.type === "buttonLabels") {
-          const cards = [...document.querySelectorAll("div.relative.box-border.rounded-3xl.border, div.relative.box-border.overflow-hidden.rounded-3xl.border")];
-          const labels = new Set();
-          for (const c of cards) for (const b of c.querySelectorAll("button.inline-flex.rounded-xl.font-semibold, a.inline-flex.rounded-xl.font-semibold")) labels.add(b.textContent.replace(/\s+/g, " ").trim().replace(/^Открыть код.*/, "Открыть код"));
-          const bad = [...labels].filter((l) => l && !p.allowed.includes(l));
-          return bad.length ? { bad: `подписи вне списка: ${bad.slice(0, 3).join(", ")}` } : { ok: true, n: labels.size };
-        }
-        return { skip: `тип ${p.type} не исполняется` };
-      }, { p });
+      const res = await page.evaluate(runPredicate, { p, CARDS, SEARCH });
       if (res.bad) fail(`${r.id} · ${pageId} · ${w}`, res.bad);
       if (res.skip && p.type !== "cssRule") fail(`${r.id} · ${pageId} · ${w}`, `предикат не проверен: ${res.skip}`);
       if (p.type === "order" && res.value) {
