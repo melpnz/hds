@@ -673,7 +673,7 @@
   <div class="doc-rule" data-rule="C-2" id="rule-C-2">
     <div class="doc-rule__head">
       <h3>C-2</h3>
-      <span class="doc-rule__votes">32 / 32 узла</span>
+      <span class="doc-rule__votes">32 / 32 узла с тенью</span>
     </div>
     <p><strong>Тень есть только у стрелок карусели и всплывающих слоёв.</strong> Все 32 узла с тенью — <code>swiper-button-shadow</code>.</p>
     <p class="doc-rule__exception">В корпусе нарушителей нет.</p>
@@ -686,7 +686,7 @@
       <span class="doc-rule__votes">223 / 232</span>
     </div>
     <p><strong>Кнопка и поле высотой 40–56 — радиус 12.</strong></p>
-    <p class="doc-rule__exception">Поля формы поиска — 0: стыкуются в общей обёртке.</p>
+    <p class="doc-rule__exception">Поля формы поиска — 0: стыкуются в общей обёртке; у самих <code>input</code> своего края нет.</p>
     <div class="doc-stage doc-stage--grid">
       <div class="doc-variant"><div class="doc-variant__row" style="max-width:320px;display:block"><button class="mt-4 inline-flex cursor-pointer select-none items-center justify-center rounded-xl font-semibold hover:no-underline focus:outline-none focus-visible:outline focus-visible:outline-ui-black-400 disabled:pointer-events-none w-full h-10 px-4 py-2 text-small border border-ui-black-850 bg-ui-black-850 text-ui-white hover:opacity-90 disabled:border-ui-black-150 disabled:bg-ui-black-150 disabled:text-ui-white mt-4" rel="nofollow noreferrer" target="_self"> Далее </button></div></div>
       <div class="doc-variant"><div class="doc-variant__row" style="max-width:320px;display:block"><a href="#" class="inline-flex cursor-pointer select-none items-center justify-center rounded-xl font-semibold hover:no-underline focus:outline-none focus-visible:outline focus-visible:outline-ui-black-400 disabled:pointer-events-none w-full h-12 min-h-12 px-4 py-2 text-default border border-ui-black-50 bg-ui-black-50 text-ui-black-850 hover:bg-ui-black-100 disabled:text-ui-black-300"> Перейти ко всем курсам </a></div></div>
@@ -714,7 +714,7 @@
       <h3>C-3c</h3>
       <span class="doc-rule__votes">138 / 138 · 267 / 268</span>
     </div>
-    <p><strong>Фото человека — круг; логотип организации — квадрат со скруглением в четверть стороны.</strong> 24 → 6, 32 → 8, 48 → 12, 100 → 24.</p>
+    <p><strong>Фото человека — круг; логотип организации — квадрат со скруглением в четверть стороны.</strong> 24 → 6, 32 → 8, 48 → 12, 100 → 24. Знаменатель — все 299 квадратов замеров минус 31 без своего радиуса: их углы режет предок.</p>
     <p class="doc-rule__exception">Значок школы на аватаре профиля: 40 → 14.</p>
     <div class="doc-stage doc-stage--grid">
       <div class="doc-variant"><div class="doc-variant__row" style="max-width:320px;display:block"><div class="flex items-center gap-2 whitespace-nowrap"><img src="../ui/assets/images/content-placeholder.svg" alt="Логотип Нетология" style="--avatar-size:32px;" class="h-[var(--avatar-size)] w-[var(--avatar-size)] object-cover rounded-lg"><span class="max-w-full overflow-hidden text-ellipsis text-small font-semibold">Нетология</span></div></div></div>
@@ -804,10 +804,10 @@
   <div class="doc-rule" data-rule="C-6" id="rule-C-6">
     <div class="doc-rule__head">
       <h3>C-6</h3>
-      <span class="doc-rule__votes">37 ссылок</span>
+      <span class="doc-rule__votes">37 / 37</span>
     </div>
     <p><strong>Строка таблицы и номер листания — фон <code>bg-ui-black-50</code>.</strong></p>
-    <p class="doc-rule__exception">В корпусе нарушителей нет; класс <code>phone:hover:bg-none</code> у строк таблицы в CSS не скомпилирован.</p>
+    <p class="doc-rule__exception">В корпусе нарушителей нет. Класс <code>phone:hover:bg-none</code> у строк таблицы скомпилирован, но убирает он картинку фона, а фон строке даёт <code>background-color</code>: до 767 фон остаётся.</p>
     <p class="doc-note">Видно на страницах: <a href="#p-rating">рейтинг</a>, <a href="#p-courses-listing">витрина курсов</a>.</p>
   </div>
 
@@ -891,7 +891,7 @@
       <span class="doc-rule__votes">23 / 23</span>
     </div>
     <p><strong>Счётчик пишется слитно: «1419 отзывов», «+18070».</strong></p>
-    <p class="doc-rule__exception">В корпусе нарушителей нет; числа в тексте автора идут вразнобой — правило их не задаёт.</p>
+    <p class="doc-rule__exception">В корпусе нарушителей нет. Ещё две слитные подписи от тысячи — номер лицензии школы, это не счётчик; телефон «8 800 700-93-29» пишется с пробелами, но это не разряды.</p>
     <p class="doc-note">Видно на страницах: <a href="#p-education-centers-listing">витрина организаций</a>, <a href="#p-education-center">страница школы</a>.</p>
   </div>
 
