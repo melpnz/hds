@@ -477,6 +477,7 @@ await browser.close();
       "node tools/validate-components.mjs --strict",
       "node tools/validate-classes.mjs",
       "node tools/validate-showcase-claims.mjs",
+      "node tools/validate-showcase-docs.mjs",
       "node tools/validate-machine.mjs",
     ],
     coverage: {
