@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="ru" data-theme="company">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="../../ui/hds.css">
+  <link rel="stylesheet" href="../example.css">
+  <title>Типографика</title>
+  <style>
+    .type-list { display: grid; gap: 48px; }
+    .type-row { display: grid; grid-template-columns: minmax(150px, 220px) minmax(0, 1fr); gap: 32px; align-items: start; padding-bottom: 32px; border-bottom: 1px solid var(--hds-color-control); }
+    .type-meta { color: var(--hds-color-text-muted); font-size: 14px; line-height: 1.45; }
+    .type-sample { margin: 0; }
+    @media (max-width: 767px) { .type-list { gap: 32px; } .type-row { grid-template-columns: 1fr; gap: 12px; } }
+  </style>
+</head>
+<body>
+  <main class="hds-container hds-stack">
+    <div><p class="hds-small hds-muted">Тема «О компании» · Inter из Google Fonts</p><h1>Типографика</h1></div>
+    <div class="type-list">
+      <section class="type-row"><div class="type-meta">H1<br>88 / 72 / 46 px<br>600 · line-height 1</div><h1 class="type-sample">Люди создают технологии</h1></section>
+      <section class="type-row"><div class="type-meta">H2<br>72 / 58 / 36 px<br>600 · line-height 1</div><h2 class="type-sample">Открытый обмен знаниями</h2></section>
+      <section class="type-row"><div class="type-meta">H3<br>32 / 28 / 24 px<br>600 · line-height 1.2</div><h3 class="type-sample">Профессиональное сообщество</h3></section>
+      <section class="type-row"><div class="type-meta">H4<br>24 / 20 px<br>500 · line-height 1.2</div><h4 class="type-sample">Заголовок небольшого блока</h4></section>
+      <section class="type-row"><div class="type-meta">Основной текст<br>18 / 16 px<br>500 · line-height 1.4</div><p class="type-sample">Объединяем IT-специалистов, компании и знания, чтобы технологии развивались быстрее.</p></section>
+      <section class="type-row"><div class="type-meta">Малый текст<br>14 px<br>500</div><p class="type-sample hds-small hds-muted">Описание, служебная информация и подписи элементов.</p></section>
+    </div>
+  </main>
+</body>
+</html>

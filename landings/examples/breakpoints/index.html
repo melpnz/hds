@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ru" data-theme="company">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="../../ui/hds.css">
+  <link rel="stylesheet" href="../example.css">
+  <title>Брейкпоинты</title>
+  <style>
+    .viewport { color: var(--hds-color-link); }
+    .ranges { display: grid; gap: 10px; }
+    .range { display: grid; grid-template-columns: minmax(150px, 1fr) minmax(120px, .6fr) 2fr auto; gap: 20px; align-items: center; padding: 18px 20px; border-radius: 12px; background: var(--hds-color-surface); }
+    .range code { width: fit-content; padding: 4px 7px; border-radius: 6px; background: var(--hds-color-control); color: var(--hds-color-text-muted); }
+    .status { min-width: 92px; color: var(--hds-color-text-muted); text-align: right; }
+    .status::after { content: ""; }
+    @media (max-width:479px) { .bp-portrait .status::after { content: "Текущий"; } }
+    @media (min-width:480px) and (max-width:767px) { .bp-mobile .status::after { content: "Текущий"; } }
+    @media (min-width:768px) and (max-width:991px) { .bp-tablet .status::after { content: "Текущий"; } }
+    @media (min-width:992px) and (max-width:1279px) { .bp-desktop .status::after { content: "Текущий"; } }
+    @media (min-width:1280px) and (max-width:1439px) { .bp-wide .status::after { content: "Текущий"; } }
+    @media (min-width:1440px) { .bp-large .status::after { content: "Текущий"; } }
+    @media (max-width:767px) { .range { grid-template-columns: 1fr auto; gap: 7px 14px; } .range code, .range p { grid-column: 1 / -1; } .status { grid-column: 2; grid-row: 1; } }
+  </style>
+</head>
+<body>
+  <main class="hds-container hds-stack">
+    <div><p class="hds-small hds-muted">Ширина окна: <strong class="viewport">—</strong></p><h1>Брейкпоинты</h1></div>
+    <div class="ranges">
+      <article class="range bp-portrait"><strong>Mobile portrait</strong><code>0–479 px</code><p class="hds-small hds-muted">Самые узкие экраны</p><span class="status"></span></article>
+      <article class="range bp-mobile"><strong>Mobile landscape</strong><code>480–767 px</code><p class="hds-small hds-muted">Мобильная композиция</p><span class="status"></span></article>
+      <article class="range bp-tablet"><strong>Tablet</strong><code>768–991 px</code><p class="hds-small hds-muted">Планшетная композиция</p><span class="status"></span></article>
+      <article class="range bp-desktop"><strong>Desktop</strong><code>992–1279 px</code><p class="hds-small hds-muted">Базовые стили</p><span class="status"></span></article>
+      <article class="range bp-wide"><strong>Wide</strong><code>1280–1439 px</code><p class="hds-small hds-muted">Улучшения большого экрана</p><span class="status"></span></article>
+      <article class="range bp-large"><strong>Large</strong><code>1440+ px</code><p class="hds-small hds-muted">Самый большой диапазон</p><span class="status"></span></article>
+    </div>
+  </main>
+  <script>function showWidth(){document.querySelector('.viewport').textContent=window.innerWidth+' px'}showWidth();addEventListener('resize',showWidth)</script>
+</body>
+</html>

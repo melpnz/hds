@@ -1,16 +1,17 @@
 {
-  "name": "landings",
+  "name": "@hds/landings-guide",
+  "version": "0.2.0",
   "private": true,
+  "description": "Static HDS landing guide and file:// showcase",
   "scripts": {
-    "validate": "node tools/validate-blocks.mjs --strict",
-    "validate:counts": "node tools/validate-counts.mjs",
-    "validate:classes": "node tools/validate-classes.mjs",
-    "validate:normative": "node tools/validate-normative.mjs",
-    "validate:tokens": "node tools/validate-tokens.mjs",
-    "serve": "node tools/serve.mjs",
-    "capture": "node tools/capture.mjs"
+    "build:library": "node tools/build-library.mjs",
+    "validate": "node validate.mjs",
+    "capture:review": "node tools/capture-review.mjs",
+    "test:file": "node tools/validate-file-viewer.mjs",
+    "test": "npm run validate && npm run test:file"
   },
   "devDependencies": {
-    "@playwright/test": "1.63.0"
+    "ajv": "8.20.0",
+    "playwright": "1.63.0"
   }
 }

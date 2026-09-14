@@ -1,0 +1,255 @@
+window.HDS_CATALOG = [
+  {
+    "id": "typography",
+    "title": "Типографика",
+    "kind": "atom",
+    "category": "foundation",
+    "maturity": "candidate",
+    "spec": "specs/typography.json",
+    "example": "../examples/typography/index.html"
+  },
+  {
+    "id": "colors",
+    "title": "Цвета",
+    "kind": "atom",
+    "category": "foundation",
+    "maturity": "candidate",
+    "spec": "specs/colors.json",
+    "example": "../examples/colors/index.html"
+  },
+  {
+    "id": "spacing",
+    "title": "Отступы",
+    "kind": "atom",
+    "category": "foundation",
+    "maturity": "candidate",
+    "spec": "specs/spacing.json",
+    "example": "../examples/spacing/index.html"
+  },
+  {
+    "id": "radii",
+    "title": "Скругления",
+    "kind": "atom",
+    "category": "foundation",
+    "maturity": "candidate",
+    "spec": "specs/radii.json",
+    "example": "../examples/radii/index.html"
+  },
+  {
+    "id": "breakpoints",
+    "title": "Брейкпоинты",
+    "kind": "atom",
+    "category": "foundation",
+    "maturity": "candidate",
+    "spec": "specs/breakpoints.json",
+    "example": "../examples/breakpoints/index.html"
+  },
+  {
+    "id": "buttons",
+    "title": "Кнопки",
+    "kind": "element",
+    "category": "controls",
+    "maturity": "candidate",
+    "spec": "specs/buttons.json",
+    "example": "../examples/collections/buttons/index.html",
+    "summary": "Основная · компактная · иконочная · текстовая ссылка"
+  },
+  {
+    "id": "input-fields",
+    "title": "Поля ввода",
+    "kind": "element",
+    "category": "forms",
+    "maturity": "candidate",
+    "spec": "specs/input-fields.json",
+    "example": "../examples/collections/input-fields/index.html",
+    "summary": "Текстовое · многострочное"
+  },
+  {
+    "id": "choice-controls",
+    "title": "Выбор",
+    "kind": "element",
+    "category": "forms",
+    "maturity": "candidate",
+    "spec": "specs/choice-controls.json",
+    "example": "../examples/collections/choice-controls/index.html",
+    "summary": "Чекбокс · радиокнопка · селект"
+  },
+  {
+    "id": "accordion",
+    "title": "Аккордеон FAQ",
+    "kind": "organism",
+    "category": "disclosure",
+    "maturity": "draft",
+    "spec": "specs/accordion.json",
+    "example": "../examples/organisms/accordion/index.html"
+  },
+  {
+    "id": "cards",
+    "title": "Карточки",
+    "kind": "organism",
+    "category": "content",
+    "maturity": "draft",
+    "spec": "specs/cards.json",
+    "example": "../examples/collections/cards/index.html",
+    "summary": "19 Webflow-вариантов: контент · сервис · форматы · курсы · предложения · этапы · кейсы · проекты"
+  },
+  {
+    "id": "contact-section",
+    "title": "Секция контактов",
+    "kind": "block",
+    "category": "content",
+    "maturity": "draft",
+    "spec": "specs/contact-section.json",
+    "example": "../examples/blocks/contact-section/index.html",
+    "change": "new"
+  },
+  {
+    "id": "forms",
+    "title": "Формы",
+    "kind": "block",
+    "category": "forms",
+    "maturity": "draft",
+    "spec": "specs/forms.json",
+    "example": "../examples/collections/forms/index.html",
+    "summary": "Лид-форма · подписка · секция заявки"
+  },
+  {
+    "id": "navigation",
+    "title": "Навигация",
+    "kind": "block",
+    "category": "navigation",
+    "maturity": "draft",
+    "spec": "specs/navigation.json",
+    "example": "../examples/collections/navigation/index.html",
+    "summary": "Шапка · подвал"
+  },
+  {
+    "id": "intro",
+    "title": "Первый экран",
+    "kind": "block",
+    "category": "marketing",
+    "maturity": "draft",
+    "spec": "specs/intro.json",
+    "example": "../examples/collections/intro/index.html",
+    "summary": "Hero · banner · statement"
+  },
+  {
+    "id": "content-layouts",
+    "title": "Контентные раскладки",
+    "kind": "block",
+    "category": "content",
+    "maturity": "draft",
+    "spec": "specs/content-layouts.json",
+    "example": "../examples/collections/content-layouts/index.html",
+    "summary": "Заголовок · сетка · метрики · feature · case · этапы"
+  },
+  {
+    "id": "landing-content",
+    "title": "Контент лендинга",
+    "kind": "block",
+    "category": "content",
+    "maturity": "draft",
+    "spec": "specs/landing-content.json",
+    "example": "../examples/collections/landing-content/index.html",
+    "summary": "Задачи · форматы · процесс · команда · FAQ · тарифы"
+  },
+  {
+    "id": "company-page",
+    "title": "О компании",
+    "kind": "page",
+    "category": "company",
+    "maturity": "draft",
+    "spec": "specs/company-page.json",
+    "example": "../examples/pages/company/index.html"
+  },
+  {
+    "id": "advertising-page",
+    "title": "Медийная реклама",
+    "kind": "page",
+    "category": "company",
+    "maturity": "draft",
+    "spec": "specs/advertising-page.json",
+    "example": "../examples/pages/advertising/index.html"
+  },
+  {
+    "id": "agency-page",
+    "title": "Партнёрская программа",
+    "kind": "page",
+    "category": "company",
+    "maturity": "draft",
+    "spec": "specs/agency-page.json",
+    "example": "../examples/pages/agency/index.html"
+  },
+  {
+    "id": "career-special-page",
+    "title": "Спецпроекты Хабр Карьеры",
+    "kind": "page",
+    "category": "company",
+    "maturity": "draft",
+    "spec": "specs/career-special-page.json",
+    "example": "../examples/pages/career-special/index.html"
+  },
+  {
+    "id": "corporate-blogs-page",
+    "title": "Корпоративные блоги",
+    "kind": "page",
+    "category": "company",
+    "maturity": "draft",
+    "spec": "specs/corporate-blogs-page.json",
+    "example": "../examples/pages/corporate-blogs/index.html"
+  },
+  {
+    "id": "education-programs-page",
+    "title": "Образовательные программы",
+    "kind": "page",
+    "category": "company",
+    "maturity": "draft",
+    "spec": "specs/education-programs-page.json",
+    "example": "../examples/pages/education-programs/index.html"
+  },
+  {
+    "id": "hello-startup-page",
+    "title": "Стартапам",
+    "kind": "page",
+    "category": "company",
+    "maturity": "draft",
+    "spec": "specs/hello-startup-page.json",
+    "example": "../examples/pages/hello-startup/index.html"
+  },
+  {
+    "id": "native-special-page",
+    "title": "Нативные спецпроекты",
+    "kind": "page",
+    "category": "company",
+    "maturity": "draft",
+    "spec": "specs/native-special-page.json",
+    "example": "../examples/pages/native-special/index.html"
+  },
+  {
+    "id": "newsletter-page",
+    "title": "Хабр для бизнеса",
+    "kind": "page",
+    "category": "company",
+    "maturity": "draft",
+    "spec": "specs/newsletter-page.json",
+    "example": "../examples/pages/newsletter/index.html"
+  },
+  {
+    "id": "portfolio-page",
+    "title": "Портфолио спецпроектов",
+    "kind": "page",
+    "category": "company",
+    "maturity": "draft",
+    "spec": "specs/portfolio-page.json",
+    "example": "../examples/pages/portfolio/index.html"
+  },
+  {
+    "id": "promo-page",
+    "title": "Тариф «Промо»",
+    "kind": "page",
+    "category": "company",
+    "maturity": "draft",
+    "spec": "specs/promo-page.json",
+    "example": "../examples/pages/promo/index.html"
+  }
+];

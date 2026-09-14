@@ -1,0 +1,22 @@
+{
+  "strategy": "desktop-first-compatible",
+  "source": "temp/from-webflow/css/company-99e5b3-b48104ac6cac2144f2d45059.css",
+  "ranges": [
+    { "id": "mobile-portrait", "min": 0, "max": 479, "sourceQuery": "(max-width: 479px)", "sourceBlocks": 2 },
+    { "id": "mobile-landscape", "min": 480, "max": 767, "sourceQuery": "(max-width: 767px)", "sourceBlocks": 3 },
+    { "id": "tablet", "min": 768, "max": 991, "sourceQuery": "(max-width: 991px)", "sourceBlocks": 3 },
+    { "id": "desktop", "min": 992, "max": 1279, "sourceQuery": "base styles", "sourceBlocks": 0 },
+    { "id": "wide", "min": 1280, "max": 1439, "sourceQuery": "(min-width: 1280px)", "sourceBlocks": 1 },
+    { "id": "large", "min": 1440, "max": null, "sourceQuery": "(min-width: 1440px)", "sourceBlocks": 1 }
+  ],
+  "sourceOnlyQueries": [
+    { "value": 1920, "query": "(min-width: 1920px)", "sourceBlocks": 1, "handling": "Не является отдельным HDS-диапазоном; правила переносятся в Large или локальную композицию компонента." }
+  ],
+  "policy": {
+    "core": [479, 767, 991],
+    "largeScreenEnhancements": [1280, 1440],
+    "container": { "fluidThrough": 1439, "maxWidth": 1440, "desktopGutter": 50, "maxContentWidth": 1340 },
+    "rule": "Core breakpoints may change structure. Large-screen breakpoints enhance spacing, scale or composition and must not gate essential content.",
+    "css": "Use the literal pixel values in media queries; CSS custom properties cannot be used reliably in media-query conditions without a build step."
+  }
+}

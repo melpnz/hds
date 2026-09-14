@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="ru" data-theme="company">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="../../ui/hds.css">
+  <link rel="stylesheet" href="../example.css">
+  <title>Цвета</title>
+  <style>
+    .palette { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 20px; }
+    .color-card { min-height: 210px; margin: 0; padding: 16px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid var(--hds-color-control); border-radius: 20px; background: var(--sample); color: var(--label, var(--hds-color-text)); }
+    .color-card code { width: fit-content; padding: 4px 7px; border-radius: 6px; background: rgb(0 0 0 / 32%); color: inherit; }
+    .color-card p { margin: 0; font-size: 14px; }
+  </style>
+</head>
+<body>
+  <main class="hds-container hds-stack">
+    <div><p class="hds-small hds-muted">Семантическая палитра</p><h1>Цвета</h1></div>
+    <div class="palette">
+      <article class="color-card" style="--sample:#171c1b"><div><strong>Фон</strong><p>Основной фон страницы</p></div><code>#171c1b</code></article>
+      <article class="color-card" style="--sample:#0c0e0e"><div><strong>Поверхность</strong><p>Карточки и контрастные секции</p></div><code>#0c0e0e</code></article>
+      <article class="color-card" style="--sample:#ecf5e7;--label:#171c1b"><div><strong>Основной текст</strong><p>Заголовки и важный контент</p></div><code style="background:rgb(0 0 0 / 10%)">#ecf5e7</code></article>
+      <article class="color-card" style="--sample:rgb(219 233 240 / 62%)"><div><strong>Приглушённый текст</strong><p>Описания и метаданные</p></div><code>62% от #dbe9f0</code></article>
+      <article class="color-card" style="--sample:#07d0f9;--label:#0c0e0e"><div><strong>Ссылка и фокус</strong><p>Ссылки и клавиатурный контур</p></div><code style="background:rgb(0 0 0 / 10%)">#07d0f9</code></article>
+      <article class="color-card" style="--sample:#008fcc"><div><strong>Действие</strong><p>Основные кнопки</p></div><code>#008fcc</code></article>
+      <article class="color-card" style="--sample:#00a5e0;--label:#0c0e0e"><div><strong>Action hover</strong><p>Наведение на действие</p></div><code style="background:rgb(0 0 0 / 10%)">#00a5e0</code></article>
+      <article class="color-card" style="--sample:rgb(230 240 244 / 10%)"><div><strong>Контрол</strong><p>Поля и вторичные кнопки</p></div><code>10% от #e6f0f4</code></article>
+      <article class="color-card" style="--sample:rgb(230 240 244 / 15%)"><div><strong>Control hover</strong><p>Наведение на контрол</p></div><code>15% от #e6f0f4</code></article>
+      <article class="color-card" style="--sample:#ff6b6b;--label:#0c0e0e"><div><strong>Ошибка</strong><p>Невалидное состояние</p></div><code style="background:rgb(0 0 0 / 10%)">#ff6b6b</code></article>
+      <article class="color-card" style="--sample:#73d39c;--label:#0c0e0e"><div><strong>Успех</strong><p>Подтверждение действия</p></div><code style="background:rgb(0 0 0 / 10%)">#73d39c</code></article>
+    </div>
+  </main>
+</body>
+</html>

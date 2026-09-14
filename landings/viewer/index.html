@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>HDS Landings — витрина</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside class="viewer-sidebar">
+    <header><strong>HDS Landings</strong><span>v0.2 · в разработке</span></header>
+    <label>Фильтр<input id="search" type="search" placeholder="Кнопка, форма…"></label>
+    <nav id="catalog" aria-label="Каталог"></nav>
+    <footer><a href="../README.md">README</a> · <a href="../machine/catalog.json">JSON-каталог</a></footer>
+  </aside>
+  <main class="viewer-main">
+    <header class="viewer-toolbar">
+      <div><strong id="current-title">О компании</strong><span id="current-meta">Страницы · draft</span></div>
+      <div class="viewer-widths" aria-label="Ширина просмотра">
+        <button type="button" data-width="320">320</button><button type="button" data-width="480">480</button><button type="button" data-width="768">768</button><button type="button" data-width="992">992</button><button type="button" data-width="1280">1280</button><button type="button" data-width="1440">1440</button><button type="button" data-width="auto" class="is-active">Auto</button>
+      </div>
+      <a id="open-example" href="../examples/pages/company/index.html" target="_blank">Открыть отдельно</a>
+    </header>
+    <div class="viewer-stage"><iframe id="preview" title="Предпросмотр" src="../examples/pages/company/index.html"></iframe></div>
+  </main>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

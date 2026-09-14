@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/melpnz/hds/landings/machine/schema.json",
+  "title": "HDS landing guide entity",
+  "type": "object",
+  "required": ["id", "title", "kind", "category", "maturity", "knowledge", "purpose", "implementation", "states", "examples", "evidence", "unknowns"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "title": { "type": "string" },
+    "kind": { "enum": ["atom", "element", "organism", "block", "page"] },
+    "category": { "type": "string" },
+    "maturity": { "enum": ["draft", "candidate", "stable"] },
+    "knowledge": { "enum": ["normative", "snapshot", "assumption"] },
+    "purpose": { "type": "string" },
+    "implementation": { "type": "object", "required": ["css", "markup"], "properties": { "css": { "type": "array", "items": { "type": "string" } }, "markup": { "type": "string" } } },
+    "states": { "type": "array", "items": { "type": "string" } },
+    "examples": { "type": "array", "minItems": 1, "items": { "type": "string" } },
+    "evidence": { "type": "array", "items": { "type": "string" } },
+    "unknowns": { "type": "array", "items": { "type": "string" } }
+  },
+  "additionalProperties": true
+}
