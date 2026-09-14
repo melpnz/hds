@@ -171,8 +171,10 @@ const showcaseHtml = await (async () => {
     for (const s of document.querySelectorAll("section.doc-section[id^='c-']")) {
       const sel = anchorSel[s.id];
       let n = null;
-      if (sel) { try { n = s.querySelector(sel); } catch { n = null; } }
-      if (!n) n = s.querySelector(".doc-variant__row > *, .doc-stage > *:not(.doc-variant)");
+      // та же область поиска, что у генератора: первая сцена секции
+      const stage = s.querySelector(".doc-stage") || s;
+      if (sel) { try { n = stage.querySelector(sel); } catch { n = null; } }
+      if (!n) n = stage.querySelector(".doc-variant__row > *, .doc-stage > *:not(.doc-variant)") || s.querySelector(".doc-variant__row > *, .doc-stage > *:not(.doc-variant)");
       if (n) out[s.id] = n.outerHTML;
     }
     return out;

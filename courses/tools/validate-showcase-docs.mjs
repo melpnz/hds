@@ -13,7 +13,7 @@
 // документе нет.
 import fs from "node:fs";
 import path from "node:path";
-import { PKG, inline, parseComposition, parseDecisions, parseCoverage, ruleParts, decisionParts, coverageRowHtml } from "./showcase-docs.mjs";
+import { PKG, inline, parseComposition, parseDecisions, parseCoverage, ruleParts, decisionParts, coverageRowHtml, parseHowItWorks, howBlockHtml } from "./showcase-docs.mjs";
 
 const html = fs.readFileSync(path.join(PKG, "showcase/pages.html"), "utf8").replace(/\r\n/g, "\n");
 const errors = [];
@@ -84,6 +84,18 @@ if (coverage.showcaseCaveat) {
   checked++;
   if (!cov.includes(inline(coverage.showcaseCaveat))) fail("coverage.md", "абзац «Витрина — не продукт» на витрине разошёлся с документом");
 }
+
+// --- Витрина компонентов: «Как работает» из спецификаций ---
+const components = fs.readFileSync(path.join(PKG, "showcase/components.html"), "utf8").replace(/\r\n/g, "\n");
+const how = parseHowItWorks();
+const howIds = new Set(how.map((h) => h.id));
+for (const h of how) {
+  checked++;
+  const m = components.match(new RegExp(`<!-- how:${h.id}:start[^>]*-->\\n        ([\\s\\S]*?)\\n        <!-- how:${h.id}:end -->`));
+  if (!m) { fail(`components.html ${h.id}`, `нет блока «Как работает» из ${h.file}`); continue; }
+  if (m[1] !== howBlockHtml(h)) fail(`components.html ${h.id}`, `блок «Как работает» разошёлся с ${h.file}`);
+}
+for (const m of components.matchAll(/<!-- how:([a-z0-9-]+):start/g)) if (!howIds.has(m[1])) fail(`components.html ${m[1]}`, "блок «Как работает» есть, а раздела в спецификации нет");
 
 if (errors.length) {
   console.error(`Витрина разошлась с документами (${errors.length}):\n`);

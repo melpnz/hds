@@ -105,14 +105,29 @@ const FIGMA_NOTE = `
 let added = 0, samples = 0;
 let html = fs.readFileSync(showcasePath, "utf8");
 
+// Записи, чей блок «состояния» пишет свой генератор, а не этот шаблон.
+// Link собирает .pipeline/R2-bulk/gen-link.mjs: у ссылки реакция приходит от
+// правила на теге, а не от классов разметки, и строка default в её таблице
+// своя. Первая пересборка на месте заменила этот блок общим шаблоном и
+// потеряла и то, и другое.
+const OWNED_ELSEWHERE = new Set(["link"]);
+
 for (const r of manifest.components) {
+  if (OWNED_ELSEWHERE.has(r.id)) continue;
   const rows = table.get(r.id);
   if (!rows || !rows.length) continue;
   const c = byId.get(r.id);
   const start = html.indexOf(`id="c-${r.id}"`);
   if (start < 0) continue;
   const secEnd = html.indexOf("\n    </section>", start);
-  if (html.slice(start, secEnd).includes(">состояния<")) { continue; }
+  // Блок пересобирается на месте. Первая редакция вставляла его один раз и
+  // дальше пропускала секцию, поэтому исправление шаблона до витрины не
+  // доходило: общая фраза про живой hover осталась у записей, у которых
+  // hover снят как отсутствие реакции.
+  // Хвостовой перевод строки необязателен: у последнего блока секции за
+  // «</div>» сразу идёт «</section>», а срез секции обрезан перед ним. Без
+  // этого блок Link не находился, и прогон вставлял ему второй блок.
+  const existing = /\n\n      <div class="doc-specimen">\n        <div class="doc-specimen__head">\n          <h5>состояния<\/h5>[\s\S]*?\n        <\/table>\n      <\/div>(?:\n|$)/.exec(html.slice(start, secEnd));
 
   const blocks = [];
 
@@ -164,24 +179,41 @@ for (const r of manifest.components) {
 
   const captured = rows.filter((x) => CAPTURED(x.outcome)).length;
   const gaps = rows.length - captured;
-  const liveStates = rows.filter((x) => CAPTURED(x.outcome) && ["hover", "focus-visible"].includes(x.state)).map((x) => x.state);
+  // «Снято» у hover бывает находкой «реакции нет»: «без hover:*», «не несёт
+  // hover:*», «ничего не меняет». Обещать для такой записи «наведите
+  // указатель, и состояние сработает» — неправда витрины: замер 14 сентября
+  // 2026 навёл курсор на образцы 24 записей с этой фразой, и видимая реакция
+  // нашлась у шести. Признак берётся из самой строки STATE-CAPTURE, а не из
+  // замера: центр образца попадает и в промежуток между номерами листания.
+  const noReaction = (source) => {
+    const s = source.replace(/`/g, "");
+    const absent = /без hover:\*|не несёт hover:\*|нет hover:\*|ни [^;]*hover:\*|hover:\* на поле нет|ничего не меняет|видимого изменения при наведении[^;]*нет/.test(s);
+    const named = /hover:(?!\*|no-underline)[a-z]|group-hover:|:hover\{/.test(s.replace(/реальный hover несёт[^)]*\)/g, ""));
+    return absent && !named;
+  };
+  const liveStates = rows.filter((x) => CAPTURED(x.outcome) && ["hover", "focus-visible"].includes(x.state) && !(x.state === "hover" && noReaction(x.source))).map((x) => x.state);
+  const silentHover = rows.some((x) => CAPTURED(x.outcome) && x.state === "hover" && noReaction(x.source));
 
+  // Действие в пометке называется по тем состояниям, что остались живыми:
+  // если hover снят как отсутствие реакции, звать «наведите указатель» нельзя.
+  const one = liveStates.length === 1;
+  const seen = one ? "смотрится" : "смотрятся";
+  const them = one ? "него" : "них";
+  const action = [liveStates.includes("hover") ? "наведите указатель" : null, liveStates.includes("focus-visible") ? "дойдите до элемента клавишей Tab" : null].filter(Boolean).join(" или ");
   const live = liveStates.length && c.sourceScope === "figma-only"
-    ? `<p class="doc-note"><strong>${liveStates.map((s) => `<code>${s}</code>`).join(" и ")} смотрятся на живом элементе.</strong>
+    ? `<p class="doc-note"><strong>${liveStates.map((s) => `<code>${s}</code>`).join(" и ")} ${seen} на живом элементе.</strong>
           Правило состояния объявлено в CSS записи по переменной или узлу макета
           (или действует базовое правило слоя <code>ui/foundations.css</code>, если так
-          сказано в таблице) — наведите указатель или дойдите до элемента клавишей
-          Tab в блоке «default» выше. Отдельный образец был бы вторым носителем
-          тех же значений.</p>`
+          сказано в таблице) — ${action} в блоке «default» выше. Отдельный образец
+          был бы вторым носителем тех же значений.</p>`
     : liveStates.length
-    ? `<p class="doc-note"><strong>${liveStates.map((s) => `<code>${s}</code>`).join(" и ")} смотрятся на живом элементе.</strong>
-          Отдельного образца у них нет намеренно: классы состояний стоят на самой
+    ? `<p class="doc-note"><strong>${liveStates.map((s) => `<code>${s}</code>`).join(" и ")} ${seen} на живом элементе.</strong>
+          Отдельного образца у ${them} нет намеренно: классы состояний стоят на самой
           разметке блока «default» выше и подняты в
-          <code>ui/utilities-components.css</code> — наведите указатель или дойдите
-          до элемента клавишей Tab, и состояние сработает по-настоящему. Копия ради
-          скриншота была бы вторым носителем тех же значений, а расходящиеся
-          носители — ровно тот класс дефектов, из-за которого заведён гейт
-          <code>tools/validate-showcase-claims.mjs</code>.</p>`
+          <code>ui/utilities-components.css</code> — ${action}, и состояние сработает
+          по-настоящему. Копия ради скриншота была бы вторым носителем тех же
+          значений, а расходящиеся носители — ровно тот класс дефектов, из-за
+          которого заведён гейт <code>tools/validate-showcase-claims.mjs</code>.</p>`
     : "";
 
   const block = `
@@ -201,7 +233,9 @@ for (const r of manifest.components) {
           (пересмотр по макету 11 сентября; по паре действует последняя строка).
           Таблица ниже — та же разметка, сведённая к этой записи; словарь и
           требуемость — <a href="../components/STATES.md">STATES.md</a>.</p>${c.sourceScope === "figma-only" ? FIGMA_NOTE : ""}
-${blocks.length ? `        <div class="doc-stage doc-stage--grid">\n${blocks.join("\n")}\n        </div>\n` : ""}        ${live}
+${blocks.length ? `        <div class="doc-stage doc-stage--grid">\n${blocks.join("\n")}\n        </div>\n` : ""}        ${live}${silentHover ? `<p class="doc-note"><strong><code>hover</code> снят как отсутствие реакции.</strong>
+          Наведение на эту запись ничего не меняет — так в продукте, а не пробел
+          витрины: основание в строке таблицы ниже.</p>` : ""}
         <table class="doc-table">
           <thead><tr><th>состояние</th><th>снято?</th><th>чем именно</th></tr></thead>
           <tbody>
@@ -210,7 +244,12 @@ ${trs}
         </table>
       </div>
 `;
-  html = html.slice(0, secEnd) + "\n" + block + html.slice(secEnd);
+  if (existing) {
+    const at = start + existing.index;
+    html = html.slice(0, at) + "\n" + block + html.slice(at + existing[0].length);
+  } else {
+    html = html.slice(0, secEnd) + "\n" + block + html.slice(secEnd);
+  }
   added++;
 }
 

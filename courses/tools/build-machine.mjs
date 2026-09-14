@@ -134,8 +134,12 @@ const page = await (await browser.newContext({ javaScriptEnabled: false })).newP
     for (const s of document.querySelectorAll("section.doc-section[id^='c-']")) {
       const sel = anchorSel[s.id];
       let n = null;
-      if (sel) { try { n = s.querySelector(sel); } catch { n = null; } }
-      if (!n) n = s.querySelector(".doc-variant__row > *, .doc-stage > *:not(.doc-variant)");
+      // Образец ищется в первой сцене секции — у блока «default». Над ней
+      // теперь стоит «Как работает» со ссылкой на спецификацию, и поиск по
+      // всей секции находил её вместо образца Link.
+      const stage = s.querySelector(".doc-stage") || s;
+      if (sel) { try { n = stage.querySelector(sel); } catch { n = null; } }
+      if (!n) n = stage.querySelector(".doc-variant__row > *, .doc-stage > *:not(.doc-variant)") || s.querySelector(".doc-variant__row > *, .doc-stage > *:not(.doc-variant)");
       if (n) out[s.id] = n.outerHTML.replace(/\s+/g, " ").trim();
     }
     return out;
