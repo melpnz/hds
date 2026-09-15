@@ -1,0 +1,129 @@
+{
+  "$schema": "../../schema.json",
+  "id": "link",
+  "title": "Link",
+  "kind": "component",
+  "category": "navigation",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Используйте для перехода по адресу. В продукте 867 узлов на 10/10 страниц: подвал (230), `LinkGrid` (129), сквозные ссылки карточек (`CourseCard` 96, `PersonCard` 88), шапка (80).",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "element:a"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/link/index.html",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "fit-content"
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/navigation/link.md."
+    }
+  ],
+  "accessibility": [
+    "Корень — ссылка `<a href>`: фокус по Tab, переход — Enter. Кольцо `focus-visible:outline` стоит у 19 узлов из 867; у остальных своего кольца и сброса нет — работает фокус браузера. 224 из 867 открываются в новой вкладке (`target=\"_blank\"`). 100 из 867 экземпляров на 1440 скрыты (`display:none` у предка) и в порядок табуляции не входят."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "a",
+        "found": 867,
+        "pages": [
+          "author",
+          "authors",
+          "courses-listing",
+          "editors",
+          "education-center",
+          "education-centers-listing",
+          "promocodes",
+          "rating",
+          "reviews",
+          "schools-for-children"
+        ]
+      }
+    }
+  ],
+  "unknowns": [
+    "**Роли не разведены.** 867 узлов — это и ссылка в тексте, и пункт подвала, и оверлей поверх карточки, и элемент каталога. Одна запись описывает их все, потому что общего у них ровно одно — тег. Развести по контекстам — работа шага R3-03, и она требует разбора корпуса, а не переписи."
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/navigation/link.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R3-03",
+    "anchor": "showcase/components.html#c-link",
+    "originalKind": "primitive",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для перехода по адресу. В продукте 867 узлов на 10/10 страниц: подвал (230), `LinkGrid` (129), сквозные ссылки карточек (`CourseCard` 96, `PersonCard` 88), шапка (80).",
+    "whenNot": [
+      "Для действия без адреса — `Button`.",
+      "Для выбора варианта — `FilterChip`."
+    ],
+    "related": [
+      "button",
+      "filter-chip"
+    ]
+  },
+  "dependencies": [],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "hover",
+      "focus-visible"
+    ],
+    "captured": [
+      "default",
+      "hover",
+      "focus-visible"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

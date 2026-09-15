@@ -1,0 +1,152 @@
+{
+  "$schema": "../../schema.json",
+  "id": "person-card",
+  "title": "PersonCard",
+  "kind": "module",
+  "category": "entities",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Используйте для эксперта или редактора: `Avatar`, имя, роль, биография в `Prose` со свёрткой. В продукте 30 узлов на 2 страницах, в `CardGrid`.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "relative",
+      "box-border",
+      "flex",
+      "max-h-[365px]",
+      "flex-col",
+      "gap-4",
+      "overflow-hidden",
+      "rounded-3xl",
+      "border",
+      "border-ui-black-100",
+      "p-6"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/person-card/index.html",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 640
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/entities/person-card.md."
+    }
+  ],
+  "accessibility": [
+    "Корень (`<div>`) в фокус не попадает. На один экземпляр по Tab проходят: 2 ссылки — у 12 из 30; 3 ссылки — у 11 из 30; 4 ссылки — у 4 из 30; 5 ссылок — у 3 из 30. По корпусу (88 узлов): `Link` — 88."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "div.relative.box-border.flex.max-h-\\[365px\\].flex-col.gap-4.overflow-hidden.rounded-3xl.border.border-ui-black-100.p-6",
+        "found": 30,
+        "pages": [
+          "authors",
+          "editors"
+        ]
+      }
+    },
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "карточка эксперта",
+          "nodeId": "13221:152104",
+          "componentKey": null
+        }
+      ]
+    }
+  ],
+  "unknowns": [
+    "**Классы без правила.** В разметке продукта стоят классы, у которых нет объявления ни в одном из 22 файлов корпуса: `z-2`. Это не пробел пакета, а находка о продукте: класс написан, правило отсутствует. В `ui/` они не заводятся.",
+    "**Заглушки содержимого.** 2 ссылок на пользовательское и партнёрское содержимое (`habrastorage.org`, баннеры `assets.habr.com`) на витрине заменены локальной заглушкой `ui/assets/images/content-placeholder.svg`. Чужое содержимое в пакет не копируется; геометрия компонента от этого не меняется — размер задаёт он сам. В «Анатомии» ниже продовые пути сохранены как есть."
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/entities/person-card.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R5-06",
+    "anchor": "showcase/components.html#c-person-card",
+    "originalKind": "module",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для эксперта или редактора: `Avatar`, имя, роль, биография в `Prose` со свёрткой. В продукте 30 узлов на 2 страницах, в `CardGrid`.",
+    "whenNot": [
+      "Для автора отзыва — `ReviewCard`.",
+      "Для шапки профиля — `PersonHeader`."
+    ],
+    "related": [
+      "review-card",
+      "person-header"
+    ]
+  },
+  "dependencies": [
+    "avatar",
+    "social-icon",
+    "prose"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "hover",
+      "focus-visible"
+    ],
+    "captured": [
+      "default",
+      "hover",
+      "focus-visible"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

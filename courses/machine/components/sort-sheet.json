@@ -1,0 +1,174 @@
+{
+  "$schema": "../../schema.json",
+  "id": "sort-sheet",
+  "title": "SortSheet",
+  "kind": "module",
+  "category": "overlays",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma"
+    ],
+    "confidence": "medium",
+    "scope": "design-source-only"
+  },
+  "purpose": "**В продукте этого компонента нет.** Он существует только в макете, и это не пробел съёмки, а установленный факт — разбор в `notes` записи реестра:",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "crs-sort-sheet"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "open",
+      "closed"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "mobile-flow",
+      "title": "SortSheet · мобильный сценарий",
+      "file": "examples/components/sort-sheet/index.html",
+      "covers": [
+        "default",
+        "open",
+        "closed",
+        "selected"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "context",
+        "width": 320,
+        "height": 568
+      },
+      "authority": [
+        "figma"
+      ],
+      "scope": "design-source-only"
+    }
+  ],
+  "layoutRules": [
+    {
+      "id": "mobile-only",
+      "context": "Быстрые фильтры",
+      "behavior": "Bottom sheet используется только в мобильном режиме.",
+      "implementation": "Эталонный viewport 320×568; на tablet/desktop применяется inline control, dropdown или popover."
+    },
+    {
+      "id": "bottom-anchor",
+      "context": "Open",
+      "behavior": "Полноэкранный overlay затемняет страницу, панель закреплена у нижней границы.",
+      "implementation": "position:absolute; inset:0; display:flex; flex-direction:column; justify-content:flex-end."
+    },
+    {
+      "id": "dismiss",
+      "context": "Interaction",
+      "behavior": "Sheet закрывается после выбора/подтверждения, по клику на overlay и по Escape.",
+      "implementation": "Trigger восстанавливает фокус после закрытия."
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/overlays/sort-sheet.md."
+    },
+    {
+      "type": "guidance",
+      "text": "SortSheet — mobile-only bottom sheet по сценарию быстрых фильтров Education Figma node 9094:48333. Viewer намеренно показывает один экран 320×568 без desktop/tablet-переключателей."
+    },
+    {
+      "type": "guidance",
+      "text": "При выборе варианта сортировки значение переносится в trigger, sheet закрывается и возвращает фокус. Геометрия открытой панели 320×264 взята из node 9356:50311."
+    },
+    {
+      "type": "coverage-warning",
+      "text": "Источник figma-only: компонент не подтверждён в продакшене."
+    }
+  ],
+  "accessibility": [
+    "Панель сортировки использует `role=\"listbox\"`, варианты — `role=\"option\"` и `aria-selected`.",
+    "Escape и клик по затемнению закрывают sheet; после закрытия фокус возвращается на trigger."
+  ],
+  "evidence": [
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "dropdown/context-menu",
+          "nodeId": "9356:50311",
+          "componentKey": null
+        }
+      ]
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+        "nodeId": "9094:48333",
+        "layerName": "Быстрые фильтры · responsive behavior"
+      }
+    }
+  ],
+  "unknowns": [
+    "**Корень введён пакетом.** `crs-sort-sheet` — не класс продукта. METHOD §6.5 допускает корень вида `crs-<id>` ровно для этого случая: снятой разметки, из которой можно взять настоящее имя, не существует. Префикс `crs-` нужен, чтобы имя пакета нельзя было принять за класс продукта.",
+    "**Тексты.** Шесть вариантов сортировки — дословно из узла, включая «Сначала дешевые» без «ё». Выбранного варианта в макете не отмечено. Высота затемнения над панелью здесь 40: в продукте это высота экрана.",
+    "**Ассеты.** Ассетов нет. Полоска-захват — плашка, а не иконка.",
+    "**Состояния.** Нарисована открытая шторка (`open`) вместе с затемнением. Закрытая (`closed`) — это кнопка сортировки в ряду быстрых фильтров, иконочный `Tab` с символом `sort`; отдельной вёрстки у записи для неё нет. Разбор — [`components/STATE-CAPTURE.md`](../STATE-CAPTURE.md).",
+    "**Статус терминальный.** Правило манифеста: `sourceScope: figma-only` не доходит до `complete`/`partial`. Пока компонент не найден в продукте, запись остаётся `figma-only`, сколько бы вёрстки к ней ни прибавилось.",
+    "Не снятые состояния: closed."
+  ],
+  "source": {
+    "version": "v0.2",
+    "spec": "guide/components/overlays/sort-sheet.md",
+    "status": "figma-only",
+    "scope": "figma-only",
+    "step": "R4-17",
+    "anchor": "showcase/components.html#c-sort-sheet",
+    "originalKind": "module",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Только мобильный ряд быстрых фильтров: открывать поверх текущей страницы из соответствующего chip/trigger.",
+    "whenNot": [
+      "Не растягивать bottom sheet на tablet и desktop.",
+      "На широком экране используйте обычный control/menu сортировки."
+    ],
+    "related": [
+      "filter-chip"
+    ]
+  },
+  "dependencies": [],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "open",
+      "closed"
+    ],
+    "captured": [
+      "default",
+      "open",
+      "closed"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": null,
+  "sourceConflicts": []
+}

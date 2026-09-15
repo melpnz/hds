@@ -1,0 +1,134 @@
+{
+  "$schema": "../../schema.json",
+  "id": "project-icon",
+  "title": "ProjectIcon",
+  "kind": "component",
+  "category": "data-display",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Используйте как метку проекта Хабра рядом с его названием — Хабр, Q&A, Карьера, Курсы. В продукте 80 узлов: 40 в панели «Все сервисы Хабра» шапки и 40 в колонке сервисов подвала.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "inline-flex",
+      "h-6",
+      "w-6",
+      "rounded-md"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/project-icon/index.html",
+      "covers": [
+        "default"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "fit-content"
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/data-display/project-icon.md."
+    }
+  ],
+  "accessibility": [
+    "Элемент не интерактивен: ни корень `<span>`, ни что-либо внутри в порядок табуляции не входит — ссылок, кнопок, полей и `tabindex` нет ни в одном из 80 экземпляров."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "span.align-center.inline-flex.h-6.w-6.rounded-md",
+        "found": 80,
+        "pages": [
+          "author",
+          "authors",
+          "courses-listing",
+          "editors",
+          "education-center",
+          "education-centers-listing",
+          "promocodes",
+          "rating",
+          "reviews",
+          "schools-for-children"
+        ]
+      }
+    },
+    {
+      "type": "storybook",
+      "data": [
+        {
+          "story": "icons-projecticon--all-variants",
+          "file": null,
+          "renders": true,
+          "note": null
+        }
+      ]
+    }
+  ],
+  "unknowns": [
+    "**Классы без правила.** В разметке продукта стоят классы, у которых нет объявления ни в одном из 22 файлов корпуса: `align-center`. Это не пробел пакета, а находка о продукте: класс написан, правило отсутствует. В `ui/` они не заводятся."
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/data-display/project-icon.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R2-03",
+    "anchor": "showcase/components.html#c-project-icon",
+    "originalKind": "primitive",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте как метку проекта Хабра рядом с его названием — Хабр, Q&A, Карьера, Курсы. В продукте 80 узлов: 40 в панели «Все сервисы Хабра» шапки и 40 в колонке сервисов подвала.",
+    "whenNot": [
+      "Как самостоятельную ссылку: переход несёт соседняя ссылка — в панели сервисов метка лежит внутри неё, в подвале стоит рядом с ней в одном `li`.",
+      "Для сервисов вне Хабра — это `SocialIcon`."
+    ],
+    "related": [
+      "social-icon"
+    ]
+  },
+  "dependencies": [],
+  "stateCoverage": {
+    "required": [
+      "default"
+    ],
+    "captured": [
+      "default"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

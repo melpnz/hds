@@ -1,0 +1,21 @@
+{
+  "id": "R-5",
+  "kind": "rule",
+  "area": "Адаптив",
+  "statement": "Форма поиска на телефоне не перестраивает свой ряд полей, а прячет его (`phone:hidden`) и показывает дубль в одну колонку (`hidden … phone:grid`)",
+  "coverage": "5 из 5 страниц с `SearchForm`",
+  "exception": "В корпусе нет. Нарушит ряд полей с `phone:flex-col`",
+  "predicate": {
+    "type": "searchFormPhone",
+    "viewports": [
+      375
+    ],
+    "note": "на телефоне ряд полей скрыт, а видимый дубль стоит в одну колонку"
+  },
+  "appliesTo": [
+    "education-centers-listing",
+    "rating"
+  ],
+  "humanDoc": "docs/guide/composition.md",
+  "showcase": "showcase/pages.html#rule-R-5"
+}

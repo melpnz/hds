@@ -1,0 +1,205 @@
+{
+  "$schema": "../../schema.json",
+  "id": "filter-modal",
+  "title": "FilterModal",
+  "kind": "module",
+  "category": "overlays",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma"
+    ],
+    "confidence": "medium",
+    "scope": "design-source-only"
+  },
+  "purpose": "**В продукте этого компонента нет.** Он существует только в макете, и это не пробел съёмки, а установленный факт — разбор в `notes` записи реестра:",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "crs-filter-modal"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "open",
+      "closed"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "responsive",
+      "title": "Responsive и скролл содержимого",
+      "file": "examples/components/filter-modal/index.html",
+      "covers": [
+        "default",
+        "open",
+        "closed",
+        "body-scroll",
+        "mobile",
+        "desktop"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 620
+      },
+      "authority": [
+        "figma"
+      ],
+      "scope": "design-source-only"
+    }
+  ],
+  "layoutRules": [
+    {
+      "id": "viewport-shell",
+      "context": "FilterModal",
+      "behavior": "Шапка и футер остаются на месте, тело занимает всё оставшееся пространство.",
+      "implementation": "display:grid; grid-template-rows:72px minmax(0,1fr) 96px; height:min(620px,100dvh)."
+    },
+    {
+      "id": "body-scroll",
+      "context": "Длинный список фильтров",
+      "behavior": "Вертикально прокручивается только тело модалки.",
+      "implementation": "min-height:0; overflow-y:auto; overflow-x:hidden; overscroll-behavior:contain."
+    },
+    {
+      "id": "mobile",
+      "context": "Mobile 320 px",
+      "behavior": "Контент имеет боковые отступы 24 px, а две кнопки футера занимают всю ширину и стоят друг под другом.",
+      "implementation": "@media(max-width:479px): footer 136px; flex-direction:column; padding:16px 24px; main action first."
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/overlays/filter-modal.md."
+    },
+    {
+      "type": "guidance",
+      "text": "Механика FilterModal сверена с Education Figma node 14627:233015; точная мобильная геометрия — modal-filter / mobile node 14627:228239."
+    },
+    {
+      "type": "guidance",
+      "text": "Шапка 72 px и футер остаются фиксированными внутри оболочки; прокручивается только центральное тело с десятью группами фильтров. На mobile футер 136 px и primary-кнопка расположена первой."
+    },
+    {
+      "type": "coverage-warning",
+      "text": "Источник figma-only: компонент не подтверждён в продакшене."
+    }
+  ],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": null,
+          "nodeId": "14613:211399",
+          "componentKey": null
+        },
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "layerName": "modal-filter",
+          "nodeId": null,
+          "componentKey": "6dc70fb1987356373a806b850b9c9303ce0ecd77"
+        }
+      ]
+    },
+    {
+      "type": "storybook",
+      "data": [
+        {
+          "story": "common-basefiltermodal--default",
+          "file": null,
+          "renders": true,
+          "note": "снято только закрытое состояние: кнопка-триггер и пустой #modal-target"
+        },
+        {
+          "story": "common-basefiltermodalnew--default",
+          "file": null,
+          "renders": true,
+          "note": null
+        }
+      ]
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+        "nodeId": "14627:233015",
+        "layerName": "FilterModal page behavior"
+      }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+        "nodeId": "14627:228239",
+        "layerName": "modal-filter / mobile"
+      }
+    }
+  ],
+  "unknowns": [
+    "**Корень введён пакетом.** `crs-filter-modal` — не класс продукта. METHOD §6.5 допускает корень вида `crs-<id>` ровно для этого случая: снятой разметки, из которой можно взять настоящее имя, не существует. Префикс `crs-` нужен, чтобы имя пакета нельзя было принять за класс продукта.",
+    "**Тексты.** Тексты — содержимое узла макета: заголовок «Поиск обучения», группа «Тип обучения» с вариантами «Курс», «Вебинар» (выбран), «Симулятор», кнопки «Очистить всё» и «Показать 30 560 курсов». Число курсов в кнопке — пример из макета, в продукте его подставляет выдача. Свёрстана одна группа из десяти: остальные собраны из записей, которые уже стоят на витрине, — плиток `BaseFilterWithImage` и тех же чипов `Tab`.",
+    "**Ассеты.** Крестик — символ `menu-close` общего спрайта, цвет `#A6A7A9` — `--fig-color-style-neutral-neutral-heavy`. Первая редакция брала экспорт узла макета: с символом `cross-large` он не совпадал (плечи короче на 1 px с каждой стороны), а с `menu-close` сверен не был. На мобильном меню выяснилось, что экспорт — это `menu-close` точка в точку; копия удалена. Затемнение фона под модалкой (слой `overlay` макета) не воспроизводится: на витрине модалка стоит на странице, а не поверх неё.",
+    "**Состояния.** Свёрстано одно состояние — открытое (`open`): узел макета и есть раскрытая модалка. `default` и `closed` — это кнопка-триггер, которую Storybook снял у обеих реализаций; отдельной вёрстки у записи для них нет. Разбор — [`components/STATE-CAPTURE.md`](../STATE-CAPTURE.md).",
+    "**Статус терминальный.** Правило манифеста: `sourceScope: figma-only` не доходит до `complete`/`partial`. Пока компонент не найден в продукте, запись остаётся `figma-only`, сколько бы вёрстки к ней ни прибавилось."
+  ],
+  "source": {
+    "version": "v0.2",
+    "spec": "guide/components/overlays/filter-modal.md",
+    "status": "figma-only",
+    "scope": "figma-only",
+    "step": "R4-12",
+    "anchor": "showcase/components.html#c-filter-modal",
+    "originalKind": "module",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "**В продукте этого компонента нет.** Он существует только в макете, и это не пробел съёмки, а установленный факт — разбор в `notes` записи реестра:",
+    "whenNot": [],
+    "related": []
+  },
+  "dependencies": [
+    "button",
+    "checkbox",
+    "select"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "open",
+      "closed"
+    ],
+    "captured": [
+      "default",
+      "open",
+      "closed"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": null,
+  "sourceConflicts": []
+}

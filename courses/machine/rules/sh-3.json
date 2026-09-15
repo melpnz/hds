@@ -1,0 +1,28 @@
+{
+  "id": "SH-3",
+  "kind": "rule",
+  "area": "Оболочка",
+  "statement": "Шапка не липкая: `position: static`",
+  "coverage": "9/10",
+  "exception": "Нарушитель — витрина курсов: `sticky top-0`",
+  "predicate": {
+    "type": "style",
+    "viewports": [
+      1440
+    ],
+    "selector": "header",
+    "match": "all",
+    "expect": {
+      "position": "static"
+    }
+  },
+  "appliesTo": [
+    "education-centers-listing",
+    "rating",
+    "education-center",
+    "authors",
+    "author"
+  ],
+  "humanDoc": "docs/guide/composition.md",
+  "showcase": "showcase/pages.html#rule-SH-3"
+}

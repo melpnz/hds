@@ -1,84 +1,151 @@
 {
-  "product": "courses",
-  "title": "Хабр Курсы",
-  "stage": "принято шагов 18 из 95 (ROADMAP.md)",
-  "kind": "product-interface",
-  "language": "ru",
-  "css": "ui/courses.css",
+  "schemaVersion": 2,
+  "product": {
+    "id": "courses",
+    "title": "Хабр Курсы",
+    "guideVersion": "0.2",
+    "status": "in-development"
+  },
+  "readOrder": [
+    "machine/catalog.json",
+    "только выбранный file из catalog",
+    "ссылки rules, implementation и evidence — только при необходимости"
+  ],
   "files": {
+    "catalog": "machine/catalog.json",
+    "states": "machine/states.json",
     "tokens": "machine/tokens.json",
-    "components": "machine/components.json",
-    "rules": "machine/rules.json",
-    "patterns": "machine/patterns.json",
-    "content": "machine/content.json"
+    "content": "machine/content.json",
+    "migrationMap": "machine/migration-map.json",
+    "schema": "schema.json",
+    "migrationGuide": "MIGRATION.md"
   },
-  "humanDocs": [
-    "README.md",
-    "docs/guide/coverage.md",
-    "docs/guide/composition.md",
-    "docs/guide/decisions.md",
-    "docs/guide/tokens.md",
-    "docs/guide/typography.md",
-    "docs/guide/layout.md",
-    "components/INDEX.md"
-  ],
-  "checks": [
-    "node tools/validate-components.mjs --strict",
-    "node tools/validate-classes.mjs",
-    "node tools/validate-showcase-claims.mjs",
-    "node tools/validate-showcase-docs.mjs",
-    "node tools/validate-machine.mjs"
-  ],
   "coverage": {
-    "pagesCaptured": 10,
-    "pagesAssembled": 6,
-    "components": {
-      "total": 72,
-      "complete": 39,
-      "partial": 12,
-      "figmaOnly": 21
-    },
-    "boundary": "публичная часть Курсов, снятая гостем на десяти страницах",
-    "notCovered": [
-      {
-        "what": "Страница отдельного курса",
-        "why": "её в продукте нет: карточка ведёт на страницу школы или наружу"
-      },
-      {
-        "what": "Формы ввода продукта",
-        "why": "в разметке десяти страниц нет ни одного `<form>`, `<label>`, `<select>`, `<textarea>`; форма поиска собрана из `input` и кнопки. Макетная форма обратной связи — `FeedbackForm`, figma-only"
-      },
-      {
-        "what": "Пустая выдача, ошибка, загрузка",
-        "why": "гостем не воспроизводятся; из макета заведены `EmptyState` и `Loader`, ошибки в макете нет"
-      },
-      {
-        "what": "Открытые оверлеи",
-        "why": "каталог, панель сервисов, список `Select`, модалка фильтров в снимке закрыты; по макету свёрстаны семь figma-only записей"
-      },
-      {
-        "what": "Личный кабинет, избранное, сравнение",
-        "why": "требуют логина, макетов нет"
-      },
-      {
-        "what": "Доступность как система",
-        "why": "в разметке только `aria-hidden` (31) и `aria-current` (4), ни одного `role`; пакет фиксирует это и не выдумывает ARIA"
-      },
-      {
-        "what": "Тёмная тема",
-        "why": "второго набора `:root` в продукте нет"
-      },
-      {
-        "what": "Раскладка карусели",
-        "why": "её задаёт скрипт, а замеры идут без скрипта: ширина слайда и число видимых карточек не измерены (148 из 315 карточек лежат в лентах)"
-      },
-      {
-        "what": "Состояния сверх снятых",
-        "why": "требуется 187 состояний записей: 148 снято, 2 дописаны нормативом в `ui/state-contract.css` (`normativeStates`), 37 не сняты — список у каждой записи в `uncapturedStates`"
-      }
+    "boundary": "Публичная часть Хабр Курсов, снятая гостем на десяти страницах; шесть страниц собраны в examples.",
+    "known": [
+      "colors",
+      "typography",
+      "spacing-grid",
+      "radii-borders",
+      "iconography",
+      "responsive-layout",
+      "sprite-icon",
+      "social-icon",
+      "project-icon",
+      "avatar",
+      "entity-logo",
+      "chip",
+      "badge",
+      "rating-badge",
+      "meta-pill",
+      "counter-pill",
+      "avatar-stack",
+      "prose",
+      "button",
+      "icon-button",
+      "link",
+      "filter-chip",
+      "segmented-control",
+      "tab",
+      "select",
+      "multi-select",
+      "search-input",
+      "text-input",
+      "textarea",
+      "checkbox",
+      "radio-button",
+      "switch",
+      "tile-filter",
+      "pagination",
+      "breadcrumbs",
+      "site-header",
+      "header-dropdown",
+      "rubrication-bar",
+      "site-footer",
+      "page-hero",
+      "search-form",
+      "section",
+      "card-grid",
+      "carousel",
+      "link-grid",
+      "filter-bar",
+      "filter-modal",
+      "catalog-menu",
+      "ad-slot",
+      "empty-state",
+      "course-card",
+      "school-card",
+      "promo-card",
+      "review-card",
+      "article-card",
+      "person-card",
+      "step-card",
+      "ad-card",
+      "rating-table",
+      "numbered-course-item",
+      "entity-header",
+      "person-header",
+      "info-table",
+      "specialization-tag",
+      "button-group",
+      "demand-chart",
+      "tooltip",
+      "loader",
+      "feedback-form",
+      "sort-sheet",
+      "price-sheet",
+      "faq-item",
+      "learning-step",
+      "profession-card",
+      "vacancy-card",
+      "page-toc",
+      "faq-block",
+      "mobile-menu",
+      "modal",
+      "promo-code-modal",
+      "authors-block",
+      "author",
+      "authors",
+      "courses-listing",
+      "education-center",
+      "education-centers-listing",
+      "rating"
     ],
-    "boundaryDoc": "docs/guide/coverage.md"
+    "unknown": [
+      "личный кабинет, избранное и сравнение",
+      "тёмная тема",
+      "раскладка карусели без Swiper",
+      "не снятые состояния, перечисленные у отдельных сущностей"
+    ],
+    "onUnknown": {
+      "action": "disclose-gap-and-use-nearest-measured-pattern",
+      "doc": "docs/decisions/unknowns.md"
+    }
   },
-  "generatedAt": "2026-09-14",
-  "generatedBy": "tools/build-machine.mjs"
+  "viewerContract": {
+    "intrinsic": "простые компоненты без toolbar; iframe растёт по содержимому",
+    "viewport": "модули и страницы с контролами 320/480/768/1024/Auto",
+    "pageBreakpoints": [
+      320,
+      768,
+      1024
+    ],
+    "fluidCheckpoints": [
+      480
+    ],
+    "notes": "пояснения к превью хранятся в previewNotes и выводятся вне iframe"
+  },
+  "checks": [
+    "node validate.mjs",
+    "node tools/validate-viewer.mjs"
+  ],
+  "metrics": {
+    "catalogItems": 87,
+    "foundations": 6,
+    "components": 35,
+    "modules": 40,
+    "patterns": 6,
+    "rules": 42,
+    "examples": 89
+  }
 }

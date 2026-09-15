@@ -1,0 +1,28 @@
+{
+  "id": "L-5a",
+  "kind": "rule",
+  "area": "Сетка и ритм",
+  "statement": "Содержимое секции начинается в 16 под заголовком `h2` — видимое расстояние (±1 на округление: у одной секции 17), промежутком `gap-4` или полем `mt-4` содержимого",
+  "coverage": "23 из 24 секций с `h2` вне промо-раздела, 7 страниц",
+  "exception": "Нарушитель — «Больше об авторах» на витрине курсов (`AuthorsBlock`): 24, как в промо-разделе, куда блок ведёт",
+  "predicate": {
+    "type": "headingGap",
+    "viewports": [
+      1440
+    ],
+    "gap": 16,
+    "tolerance": 1,
+    "note": "видимое расстояние от низа h2 до первого видимого содержимого; исключение — «Больше об авторах» на витрине курсов",
+    "allowHeadings": [
+      "Больше об авторах"
+    ]
+  },
+  "appliesTo": [
+    "education-centers-listing",
+    "education-center",
+    "rating",
+    "courses-listing"
+  ],
+  "humanDoc": "docs/guide/composition.md",
+  "showcase": "showcase/pages.html#rule-L-5a"
+}

@@ -1,0 +1,117 @@
+{
+  "$schema": "../../schema.json",
+  "id": "loader",
+  "title": "Loader",
+  "kind": "component",
+  "category": "feedback",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma"
+    ],
+    "confidence": "medium",
+    "scope": "design-source-only"
+  },
+  "purpose": "**В продукте этого компонента нет.** Он существует только в макете, и это не пробел съёмки, а установленный факт — разбор в `notes` записи реестра:",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "crs-loader"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/loader/index.html",
+      "covers": [
+        "default"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "canvas",
+        "width": 360
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/feedback/loader.md."
+    },
+    {
+      "type": "coverage-warning",
+      "text": "Источник figma-only: компонент не подтверждён в продакшене."
+    }
+  ],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "loader",
+          "nodeId": "12162:84499",
+          "componentKey": null
+        }
+      ]
+    }
+  ],
+  "unknowns": [
+    "**Корень введён пакетом.** `crs-loader` — не класс продукта. METHOD §6.5 допускает корень вида `crs-<id>` ровно для этого случая: снятой разметки, из которой можно взять настоящее имя, не существует. Префикс `crs-` нужен, чтобы имя пакета нельзя было принять за класс продукта.",
+    "**Тексты.** Текста у компонента нет. В макете блок стоит в кадре «Нулевая выдача» над пустой выдачей шириной 976 — во всю колонку контента.",
+    "**Ассеты.** Спиннер — символ `loader` общего спрайта, а не экспорт: глиф тот же, координаты экспорта ровно вдвое больше (поле 48 против 24). Вращения нет: кадр макета статичный, а связка символа `loader` с продуктовой утилитой `.animate-spin` в снятой разметке не встречается ни разу — символ не использован ни на одной из десяти страниц.",
+    "**Состояния.** Требуемые состояния записи (`default`) в макете отдельными вариантами не нарисованы, а измерить их негде. Разбор — [`components/STATE-CAPTURE.md`](../STATE-CAPTURE.md).",
+    "**Статус терминальный.** Правило манифеста: `sourceScope: figma-only` не доходит до `complete`/`partial`. Пока компонент не найден в продукте, запись остаётся `figma-only`, сколько бы вёрстки к ней ни прибавилось."
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/feedback/loader.md",
+    "status": "figma-only",
+    "scope": "figma-only",
+    "step": "R4-15",
+    "anchor": "showcase/components.html#c-loader",
+    "originalKind": "component",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "**В продукте этого компонента нет.** Он существует только в макете, и это не пробел съёмки, а установленный факт — разбор в `notes` записи реестра:",
+    "whenNot": [],
+    "related": []
+  },
+  "dependencies": [
+    "sprite-icon"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default"
+    ],
+    "captured": [
+      "default"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": null,
+  "sourceConflicts": []
+}

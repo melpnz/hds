@@ -1,0 +1,26 @@
+{
+  "id": "R-2",
+  "kind": "rule",
+  "area": "Адаптив",
+  "statement": "На 768–1023 сетка карточек — 3 колонки (`tablet-only:grid-cols-3`); на 1024 — уже 4",
+  "coverage": "На 768 — 7 сеток из 9; на 1024 — 4 колонки у 9 из 9",
+  "exception": "Нарушитель — сетка шагов экспертов и редакции: 2 колонки (`tablet-only:grid-cols-2`)",
+  "predicate": {
+    "type": "cardGrid",
+    "viewports": [
+      768,
+      1024
+    ],
+    "columnsByViewport": {
+      "768": 3,
+      "1024": 4
+    }
+  },
+  "appliesTo": [
+    "courses-listing",
+    "education-centers-listing",
+    "education-center"
+  ],
+  "humanDoc": "docs/guide/composition.md",
+  "showcase": "showcase/pages.html#rule-R-2"
+}

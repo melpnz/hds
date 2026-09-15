@@ -1,0 +1,124 @@
+{
+  "$schema": "../../schema.json",
+  "id": "page-hero",
+  "title": "PageHero",
+  "kind": "module",
+  "category": "frame-modules",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Используйте для первого экрана листинга и промо-раздела: заголовок раздела и главный инструмент — поиск или переключатель аудитории. В продукте 7 узлов на 7 страницах — по одному на страницу, три состава.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "w-full",
+      "bg-main-gradient-second"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/page-hero/index.html",
+      "covers": [
+        "default"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 640
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/frame-modules/page-hero.md."
+    }
+  ],
+  "accessibility": [
+    "Корень (`<div>`) в фокус не попадает. На один экземпляр по Tab проходят: 1 кнопка, 3 поля `input type=text` и 2 ссылки — у 3 из 7; 2 ссылки — у 2 из 7; 1 кнопка и 3 поля `input type=text` — у 1 из 7; 1 кнопка, 2 поля `input type=text` и 2 ссылки — у 1 из 7. По корпусу (45 узлов): `Button` — 9, `Link` — 8, внутри `TextInput` — 28. Фокус внутреннего поля показывает рамка обёртки `focus-within:border-ui-black-850`. 14 из 45 фокусируемых узлов на 1440 скрыты и в порядок табуляции не входят, пока их не покажут."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "div.w-full.bg-main-gradient-second:has(h1)",
+        "found": 7,
+        "pages": [
+          "authors",
+          "editors",
+          "education-centers-listing",
+          "promocodes",
+          "rating",
+          "reviews",
+          "schools-for-children"
+        ]
+      }
+    }
+  ],
+  "unknowns": [],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/frame-modules/page-hero.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R4-05",
+    "anchor": "showcase/components.html#c-page-hero",
+    "originalKind": "module",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для первого экрана листинга и промо-раздела: заголовок раздела и главный инструмент — поиск или переключатель аудитории. В продукте 7 узлов на 7 страницах — по одному на страницу, три состава.",
+    "whenNot": [
+      "На странице сущности и на `/courses` — там hero нет.",
+      "Для второстепенных блоков страницы — `Section`."
+    ],
+    "related": [
+      "section"
+    ]
+  },
+  "dependencies": [
+    "segmented-control",
+    "search-form",
+    "button"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default"
+    ],
+    "captured": [
+      "default"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

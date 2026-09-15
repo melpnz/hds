@@ -1,0 +1,28 @@
+{
+  "id": "C-6",
+  "kind": "rule",
+  "area": "Реакция на курсор",
+  "statement": "Строка таблицы и номер листания при наведении получают фон `bg-ui-black-50`",
+  "coverage": "37 из 37: 30 строк таблицы и 7 номеров листания на 5 страницах",
+  "exception": "В корпусе нет. Нарушит строка, которая при наведении подчёркивается вместо фона. Класс `phone:hover:bg-none` у 30 строк таблицы (2 страницы) скомпилирован — `@media (max-width:767px){.phone:hover:bg-none:hover{background-image:none}}`, — но отменяет он картинку фона, а фон строке даёт `background-color`: до 767 фон остаётся",
+  "predicate": {
+    "type": "hoverEffect",
+    "viewports": [
+      1440
+    ],
+    "targets": [
+      {
+        "role": "table-row",
+        "expect": {
+          "background-color": "rgb(241, 241, 241)"
+        }
+      }
+    ],
+    "note": "строка таблицы получает фон bg-ui-black-50"
+  },
+  "appliesTo": [
+    "rating"
+  ],
+  "humanDoc": "docs/guide/composition.md",
+  "showcase": "showcase/pages.html#rule-C-6"
+}

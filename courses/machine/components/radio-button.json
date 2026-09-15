@@ -1,0 +1,206 @@
+{
+  "$schema": "../../schema.json",
+  "id": "radio-button",
+  "title": "RadioButton",
+  "kind": "component",
+  "category": "forms",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma"
+    ],
+    "confidence": "high",
+    "scope": "design-source-only"
+  },
+  "purpose": "Выбор одного значения из взаимоисключающей группы.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "crs-control",
+      "crs-control--radio"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "checked",
+      "disabled",
+      "loading"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "states",
+      "title": "RadioButton · состояния и группы",
+      "file": "examples/components/radio-button/index.html",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "checked",
+        "disabled",
+        "loading",
+        "vertical-list",
+        "horizontal-list"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "constrained",
+        "width": 720
+      },
+      "authority": [
+        "figma"
+      ],
+      "scope": "design-source-only"
+    }
+  ],
+  "variants": [
+    {
+      "id": "value",
+      "use": "off / on; нативное состояние checked."
+    },
+    {
+      "id": "state",
+      "use": "default, hover, focus-visible, disabled и loading по Courses Figma."
+    }
+  ],
+  "layoutRules": [
+    {
+      "id": "control-label",
+      "context": "Контрол с подписью",
+      "behavior": "Между визуальным контролом и текстом используется gap 8 px; текст опущен на 1 px.",
+      "implementation": "inline-flex; align-items:flex-start; gap:8px; label padding-top:1px."
+    },
+    {
+      "id": "vertical-list",
+      "context": "Вертикальная группа вариантов",
+      "behavior": "Между соседними элементами 16 px.",
+      "implementation": "flex-direction:column; gap:16px.",
+      "evidence": "Courses Figma control-list node 717:191."
+    },
+    {
+      "id": "horizontal-list",
+      "context": "Горизонтальная группа вариантов",
+      "behavior": "Между соседними элементами 24 px.",
+      "implementation": "flex-direction:row; gap:24px.",
+      "evidence": "Courses Figma control-list node 717:191."
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/forms/radio-button.md."
+    },
+    {
+      "type": "guidance",
+      "text": "Полная матрица off/on взята из Courses Figma: education-lib, radiobutton node 693:1585."
+    },
+    {
+      "type": "guidance",
+      "text": "Подпись выровнена через padding-top: 1 px; gap между визуальным контролом и текстом — 8 px."
+    },
+    {
+      "type": "guidance",
+      "text": "Группы контролов: gap 16 px по вертикали и 24 px по горизонтали, control-list node 717:191."
+    },
+    {
+      "type": "coverage-warning",
+      "text": "Источник figma-only: компонент не подтверждён в продакшене."
+    }
+  ],
+  "accessibility": [
+    "Используйте нативные `<input type=\"radio\">` с общим `name` внутри одной группы.",
+    "`focus-visible` показывает внешний контур; `disabled` задаётся нативно, `loading` — через `aria-busy=\"true\"` на контейнере."
+  ],
+  "evidence": [
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "layerName": "radiobutton",
+          "nodeId": "693:1585",
+          "componentKey": null
+        }
+      ]
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "693:1585",
+        "layerName": "radio-button"
+      }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "717:191",
+        "layerName": "control-list"
+      }
+    }
+  ],
+  "unknowns": [
+    "Production- и Storybook-вхождения RadioButton в снятом корпусе не найдены."
+  ],
+  "source": {
+    "version": "v0.2",
+    "spec": "guide/components/forms/radio-button.md",
+    "status": "complete",
+    "scope": "figma-only",
+    "step": "v0.2-control-family",
+    "anchor": "viewer/index.html#radio-button",
+    "originalKind": "component",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Выбор одного значения из взаимоисключающей группы.",
+    "whenNot": [
+      "Для независимого выбора нескольких значений — `Checkbox`; для немедленного включения настройки — `Switch`."
+    ],
+    "related": [
+      "checkbox",
+      "switch"
+    ]
+  },
+  "dependencies": [],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "hover",
+      "focus-visible",
+      "checked",
+      "disabled",
+      "loading"
+    ],
+    "captured": [
+      "default",
+      "hover",
+      "focus-visible",
+      "checked",
+      "disabled",
+      "loading"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "Добавлен в v0.2 по Courses Figma `education-lib`, radiobutton, node `693:1585`.",
+  "sourceConflicts": []
+}

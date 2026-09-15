@@ -1,0 +1,133 @@
+{
+  "$schema": "../../schema.json",
+  "id": "ad-card",
+  "title": "AdCard",
+  "kind": "module",
+  "category": "entities",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Рекламный слайд в `AdSlot`: картинки для десктопа и мобильного. У 20 слайдов из 52 — метка «РЕКЛАМА» и кнопка «ещё» с плашкой маркировки, у остальных 32 — только картинки. В продукте 52 узла на 4 страницах, все в `Carousel`.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "relative",
+      "block",
+      "h-full",
+      "w-full",
+      "cursor-pointer",
+      "overflow-hidden",
+      "rounded-3xl"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "hover"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [
+    "machine/rules/c-1.json",
+    "machine/rules/c-4.json",
+    "machine/rules/dg-4.json"
+  ],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/ad-card/index.html",
+      "covers": [
+        "default",
+        "hover"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 640
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/entities/ad-card.md."
+    }
+  ],
+  "accessibility": [
+    "Корень (`<div>`) в фокус не попадает. На один экземпляр по Tab проходят: ничего — у 31 из 52; 1 кнопка — у 17 из 52; 1 кнопка и 1 ссылка — у 3 из 52; 1 ссылка — у 1 из 52. По корпусу (24 узла): `Link` — 4; вне записей реестра — `button.absolute.right-3.top-3.z-10` — 20."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "div.relative.block.h-full.w-full.cursor-pointer.overflow-hidden.rounded-3xl",
+        "found": 52,
+        "pages": [
+          "courses-listing",
+          "education-centers-listing",
+          "promocodes",
+          "schools-for-children"
+        ]
+      }
+    }
+  ],
+  "unknowns": [
+    "**Заглушки содержимого.** 2 ссылок на пользовательское и партнёрское содержимое (`habrastorage.org`, баннеры `assets.habr.com`) на витрине заменены локальной заглушкой `ui/assets/images/content-placeholder.svg`. Чужое содержимое в пакет не копируется; геометрия компонента от этого не меняется — размер задаёт он сам. В «Анатомии» ниже продовые пути сохранены как есть."
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/entities/ad-card.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R5-13",
+    "anchor": "showcase/components.html#c-ad-card",
+    "originalKind": "module",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Рекламный слайд в `AdSlot`: картинки для десктопа и мобильного. У 20 слайдов из 52 — метка «РЕКЛАМА» и кнопка «ещё» с плашкой маркировки, у остальных 32 — только картинки. В продукте 52 узла на 4 страницах, все в `Carousel`.",
+    "whenNot": [
+      "Для собственных промо продукта — `PromoCard`."
+    ],
+    "related": [
+      "promo-card"
+    ]
+  },
+  "dependencies": [
+    "icon-button"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "hover"
+    ],
+    "captured": [
+      "default",
+      "hover"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

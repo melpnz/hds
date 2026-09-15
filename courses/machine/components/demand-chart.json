@@ -1,0 +1,115 @@
+{
+  "$schema": "../../schema.json",
+  "id": "demand-chart",
+  "title": "DemandChart",
+  "kind": "component",
+  "category": "data-display",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma"
+    ],
+    "confidence": "medium",
+    "scope": "design-source-only"
+  },
+  "purpose": "**В продукте этого компонента нет.** Он существует только в макете, и это не пробел съёмки, а установленный факт — разбор в `notes` записи реестра:",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "crs-demand-chart"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/demand-chart/index.html",
+      "covers": [
+        "default"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "constrained",
+        "width": 315
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/data-display/demand-chart.md."
+    },
+    {
+      "type": "coverage-warning",
+      "text": "Источник figma-only: компонент не подтверждён в продакшене."
+    }
+  ],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "slot-modal/simple",
+          "nodeId": "14469:196385",
+          "componentKey": null
+        }
+      ]
+    }
+  ],
+  "unknowns": [
+    "**Корень введён пакетом.** `crs-demand-chart` — не класс продукта. METHOD §6.5 допускает корень вида `crs-<id>` ровно для этого случая: снятой разметки, из которой можно взять настоящее имя, не существует. Префикс `crs-` нужен, чтобы имя пакета нельзя было принять за класс продукта.",
+    "**Тексты.** Подписи — дословно из узла, включая наполнитель «Сфера 1» и «Сфера 2». Длины полос в макете заданы правым падингом дорожки в пикселях (0, 20, 60, 90, 98, 105, 105, 105 при ширине 170); здесь переведены в доли той же ширины и округлены до сотых. Ширина 315 — узел макета.",
+    "**Ассеты.** Ассетов нет.",
+    "**Состояния.** Требуемые состояния записи (`default`) в макете отдельными вариантами не нарисованы, а измерить их негде. Разбор — [`components/STATE-CAPTURE.md`](../STATE-CAPTURE.md).",
+    "**Статус терминальный.** Правило манифеста: `sourceScope: figma-only` не доходит до `complete`/`partial`. Пока компонент не найден в продукте, запись остаётся `figma-only`, сколько бы вёрстки к ней ни прибавилось."
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/data-display/demand-chart.md",
+    "status": "figma-only",
+    "scope": "figma-only",
+    "step": "R3-17",
+    "anchor": "showcase/components.html#c-demand-chart",
+    "originalKind": "component",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "**В продукте этого компонента нет.** Он существует только в макете, и это не пробел съёмки, а установленный факт — разбор в `notes` записи реестра:",
+    "whenNot": [],
+    "related": []
+  },
+  "dependencies": [],
+  "stateCoverage": {
+    "required": [
+      "default"
+    ],
+    "captured": [
+      "default"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": null,
+  "sourceConflicts": []
+}

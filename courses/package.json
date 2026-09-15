@@ -1,18 +1,14 @@
 {
-  "name": "courses",
+  "name": "@hds/courses-guide",
+  "version": "0.2.0",
   "private": true,
+  "description": "Machine-first HDS guide for Habr Courses",
   "scripts": {
-    "validate": "node tools/validate-components.mjs --strict",
-    "validate:counts": "node tools/validate-counts.mjs",
-    "validate:classes": "node tools/validate-classes.mjs",
-    "validate:showcase-docs": "node tools/validate-showcase-docs.mjs",
-    "serve": "node tools/serve.mjs",
-    "capture": "node tools/capture.mjs",
-    "measure:selectors": "node tools/measure-selectors.mjs"
+    "validate": "node validate.mjs",
+    "validate:viewer": "node tools/validate-viewer.mjs",
+    "serve": "node serve.mjs"
   },
   "devDependencies": {
-    "@playwright/test": "1.63.0",
-    "postcss": "^8.5.28",
-    "postcss-selector-parser": "^7.1.6"
+    "playwright": "^1.63.0"
   }
 }

@@ -1,0 +1,117 @@
+{
+  "$schema": "../../schema.json",
+  "id": "avatar-stack",
+  "title": "AvatarStack",
+  "kind": "component",
+  "category": "collections",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Используйте для стопки выпускников с хвостом-счётчиком в карточке школы. В продукте 28 узлов, все в `SchoolCard`: листинг организаций (20) и блок «Популярные онлайн-школы» на странице отзывов (8). На детской витрине карточки школ идут без стопки.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "flex",
+      "-space-x-1.5"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/avatar-stack/index.html",
+      "covers": [
+        "default"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "fit-content"
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/collections/avatar-stack.md."
+    }
+  ],
+  "accessibility": [
+    "Элемент не интерактивен: ни корень `<div>`, ни что-либо внутри в порядок табуляции не входит — ссылок, кнопок, полей и `tabindex` нет ни в одном из 28 экземпляров."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "div.flex.-space-x-1\\.5",
+        "found": 28,
+        "pages": [
+          "education-centers-listing",
+          "reviews"
+        ]
+      }
+    }
+  ],
+  "unknowns": [
+    "**Заглушки содержимого.** 1 ссылка на пользовательское и партнёрское содержимое (`habrastorage.org`, баннеры `assets.habr.com`) на витрине заменены локальной заглушкой `ui/assets/images/content-placeholder.svg`. Чужое содержимое в пакет не копируется; геометрия компонента от этого не меняется — размер задаёт он сам. В «Анатомии» ниже продовые пути сохранены как есть."
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/collections/avatar-stack.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R2-11",
+    "anchor": "showcase/components.html#c-avatar-stack",
+    "originalKind": "component",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для стопки выпускников с хвостом-счётчиком в карточке школы. В продукте 28 узлов, все в `SchoolCard`: листинг организаций (20) и блок «Популярные онлайн-школы» на странице отзывов (8). На детской витрине карточки школ идут без стопки.",
+    "whenNot": [
+      "Для одного человека — `Avatar`.",
+      "Для списка людей с подписями — `PersonCard`."
+    ],
+    "related": [
+      "avatar",
+      "person-card"
+    ]
+  },
+  "dependencies": [
+    "avatar",
+    "counter-pill"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default"
+    ],
+    "captured": [
+      "default"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

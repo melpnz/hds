@@ -1,0 +1,111 @@
+{
+  "$schema": "../../schema.json",
+  "id": "prose",
+  "title": "Prose",
+  "kind": "component",
+  "category": "data-display",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Используйте для редакционного текста из абзацев и списков: биографии эксперта в `PersonCard` (30) и описания курса в пункте ТОП-списка `NumberedCourseItem` (9). В продукте 46 узлов на 4 страницах.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "style-ugc"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/prose/index.html",
+      "covers": [
+        "default"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "constrained",
+        "width": 640
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/data-display/prose.md."
+    }
+  ],
+  "accessibility": [
+    "Элемент не интерактивен: ни корень `<div>`, ни что-либо внутри в порядок табуляции не входит — ссылок, кнопок, полей и `tabindex` нет ни в одном из 46 экземпляров."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": ".style-ugc",
+        "found": 46,
+        "pages": [
+          "author",
+          "authors",
+          "courses-listing",
+          "editors"
+        ]
+      }
+    }
+  ],
+  "unknowns": [],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/data-display/prose.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R2-12",
+    "anchor": "showcase/components.html#c-prose",
+    "originalKind": "component",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для редакционного текста из абзацев и списков: биографии эксперта в `PersonCard` (30) и описания курса в пункте ТОП-списка `NumberedCourseItem` (9). В продукте 46 узлов на 4 страницах.",
+    "whenNot": [
+      "Для интерфейсных подписей и заголовков — у них свои утилиты шкалы (`text-small`, `text-h4`).",
+      "Для длинных статей: в снятых страницах их нет, и ритм `Prose` на них не проверен."
+    ],
+    "related": []
+  },
+  "dependencies": [],
+  "stateCoverage": {
+    "required": [
+      "default"
+    ],
+    "captured": [
+      "default"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

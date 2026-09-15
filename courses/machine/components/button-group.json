@@ -1,0 +1,172 @@
+{
+  "$schema": "../../schema.json",
+  "id": "button-group",
+  "title": "PageTabs",
+  "kind": "component",
+  "category": "navigation",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma"
+    ],
+    "confidence": "medium",
+    "scope": "design-source-only"
+  },
+  "purpose": "PageTabs: переключение между вкладками на светлом фоне страницы, карточки или формы.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "crs-button-group"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "selected",
+      "loading",
+      "disabled"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "page-tabs",
+      "title": "PageTabs · состояния",
+      "file": "examples/components/button-group/index.html",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "selected",
+        "disabled",
+        "loading"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "constrained",
+        "width": 720
+      },
+      "authority": [
+        "figma"
+      ],
+      "scope": "design-source-only"
+    }
+  ],
+  "variants": [
+    {
+      "id": "context",
+      "use": "PageTabs на светлом фоне страницы."
+    },
+    {
+      "id": "state",
+      "use": "default, hover, focus-visible, selected, disabled и loading."
+    }
+  ],
+  "componentFamily": {
+    "id": "tabs",
+    "name": "Tabs",
+    "member": "PageTabs",
+    "legacyId": "button-group"
+  },
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/navigation/button-group.md."
+    },
+    {
+      "type": "guidance",
+      "text": "Пользовательское имя: PageTabs; `button-group` оставлен как legacy id. Состояния взяты из Courses Figma node 4813:238; единая подложка группы #F1F1F1, padding 4 px, radius 16 px — из node 4813:288."
+    },
+    {
+      "type": "coverage-warning",
+      "text": "Источник figma-only: компонент не подтверждён в продакшене."
+    }
+  ],
+  "accessibility": [
+    "Контейнер вкладок использует `role=\"tablist\"`, элементы — `role=\"tab\"` и `aria-selected`.",
+    "Перемещение по группе реализуется стрелками; `disabled` задаётся нативно, `loading` — через `aria-busy=\"true\"`."
+  ],
+  "evidence": [
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "Tab Button Group",
+          "nodeId": "14644:221762",
+          "componentKey": null
+        }
+      ]
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "4813:238",
+        "layerName": "PageTabs states"
+      }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "4813:288",
+        "layerName": "button group / onpage"
+      }
+    }
+  ],
+  "unknowns": [
+    "**Статус терминальный.** Правило манифеста: `sourceScope: figma-only` не доходит до `complete`/`partial`. Пока компонент не найден в продукте, запись остаётся `figma-only`, сколько бы вёрстки к ней ни прибавилось."
+  ],
+  "source": {
+    "version": "v0.2",
+    "spec": "guide/components/navigation/button-group.md",
+    "status": "figma-only",
+    "scope": "figma-only",
+    "step": "R3-16",
+    "anchor": "showcase/components.html#c-button-group",
+    "originalKind": "component",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "**В продукте этого компонента нет.** Он существует только в макете, и это не пробел съёмки, а установленный факт — разбор в `notes` записи реестра:",
+    "whenNot": [],
+    "related": []
+  },
+  "dependencies": [],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "hover",
+      "focus-visible",
+      "selected"
+    ],
+    "captured": [
+      "default",
+      "selected",
+      "hover",
+      "focus-visible",
+      "disabled",
+      "loading"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": null,
+  "sourceConflicts": []
+}

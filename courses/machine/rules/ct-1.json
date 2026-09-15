@@ -1,0 +1,23 @@
+{
+  "id": "CT-1",
+  "kind": "rule",
+  "area": "Тексты",
+  "statement": "Дробная часть отделяется точкой: «4.55»",
+  "coverage": "7 из 7 страниц с оценками; дробей через запятую — 0",
+  "exception": "В корпусе нет. «3,500+» в описании эксперта — разряды в тексте автора, не дробь",
+  "predicate": {
+    "type": "text",
+    "viewports": [
+      1440
+    ],
+    "forbid": "\\d,\\d{1,2}(?!\\d)",
+    "note": "дробь через запятую"
+  },
+  "appliesTo": [
+    "rating",
+    "courses-listing",
+    "education-center"
+  ],
+  "humanDoc": "docs/guide/composition.md",
+  "showcase": "showcase/pages.html#rule-CT-1"
+}

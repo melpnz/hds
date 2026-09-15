@@ -1,0 +1,134 @@
+{
+  "$schema": "../../schema.json",
+  "id": "section",
+  "title": "Section",
+  "kind": "module",
+  "category": "layout",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Используйте для смыслового блока страницы с заголовком H2 — «Популярные курсы», «Журнал», «Отзывы». В продукте 15 узлов на 7 страницах.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "flex",
+      "flex-col",
+      "gap-4"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "anatomy",
+      "title": "Анатомия Section",
+      "file": "examples/components/section/index.html",
+      "covers": [
+        "default"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "constrained",
+        "width": 720
+      },
+      "authority": [
+        "production"
+      ],
+      "scope": "public-guest"
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/layout/section.md."
+    }
+  ],
+  "accessibility": [
+    "Корень (`<section>`) в фокус не попадает. На один экземпляр по Tab проходят: 2 кнопки и 9 ссылок — у 4 из 15; 28 кнопок и 9 ссылок — у 3 из 15; 10 кнопок и 9 ссылок — у 2 из 15; у остальных 6 — другой состав. По корпусу (355 узлов): `Link` — 138, `FilterChip` — 107, `Button` — 70, `IconButton` — 24, внутри `ReviewCard` — 6, внутри `FilterBar` — 5; вне записей реестра — `button.scrollbar-button.right-0.text-ui-black-400.hover:text-ui-black-850` — 5."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "section.flex.flex-col.gap-4",
+        "found": 15,
+        "pages": [
+          "courses-listing",
+          "education-center",
+          "education-centers-listing",
+          "promocodes",
+          "rating",
+          "reviews",
+          "schools-for-children"
+        ]
+      }
+    },
+    {
+      "type": "storybook",
+      "data": [
+        {
+          "story": "common-basesection--base-section-story",
+          "file": null,
+          "renders": true,
+          "note": null
+        }
+      ]
+    }
+  ],
+  "unknowns": [
+    "**Классы без правила.** В разметке продукта стоят классы, у которых нет объявления ни в одном из 22 файлов корпуса: `v-popper--has-tooltip`. Это не пробел пакета, а находка о продукте: класс написан, правило отсутствует. В `ui/` они не заводятся.",
+    "**Заглушки содержимого.** 10 ссылок на пользовательское и партнёрское содержимое (`habrastorage.org`, баннеры `assets.habr.com`) на витрине заменены локальной заглушкой `ui/assets/images/content-placeholder.svg`. Чужое содержимое в пакет не копируется; геометрия компонента от этого не меняется — размер задаёт он сам. В «Анатомии» ниже продовые пути сохранены как есть."
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/layout/section.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R4-07",
+    "anchor": "showcase/components.html#c-section",
+    "originalKind": "module",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для смыслового блока страницы с заголовком H2 — «Популярные курсы», «Журнал», «Отзывы». В продукте 15 узлов на 7 страницах.",
+    "whenNot": [
+      "Для оболочки страницы — контейнер `ui/layout.css`.",
+      "Для подзаголовков внутри блока."
+    ],
+    "related": []
+  },
+  "dependencies": [],
+  "stateCoverage": {
+    "required": [
+      "default"
+    ],
+    "captured": [
+      "default"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

@@ -1,0 +1,159 @@
+{
+  "$schema": "../../schema.json",
+  "id": "textarea",
+  "title": "Textarea",
+  "kind": "component",
+  "category": "forms",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma"
+    ],
+    "confidence": "high",
+    "scope": "design-source-only"
+  },
+  "purpose": "Используйте для многострочного свободного текста: комментария, описания или сообщения.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "crs-field",
+      "crs-field--textarea"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "disabled",
+      "invalid",
+      "error"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "field-family",
+      "title": "Textarea · размеры и состояния",
+      "file": "examples/components/textarea/index.html",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "disabled",
+        "invalid"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "constrained",
+        "width": 720
+      },
+      "authority": [
+        "figma"
+      ],
+      "scope": "design-source-only"
+    }
+  ],
+  "variants": [
+    {
+      "id": "size",
+      "use": "M: высота 82 px, отступы 12×8 px."
+    },
+    {
+      "id": "content",
+      "use": "Пустое с placeholder или заполненное."
+    },
+    {
+      "id": "state",
+      "use": "default, hover, focus-visible, disabled и invalid/error."
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/forms/textarea.md."
+    },
+    {
+      "type": "guidance",
+      "text": "Оболочка и состояния взяты из Courses Figma: education-lib, textarea, node 4058:4529."
+    },
+    {
+      "type": "coverage-warning",
+      "text": "Источник figma-only: компонент не подтверждён в продакшене."
+    }
+  ],
+  "accessibility": [
+    "Нативный `<textarea>` получает фокус по Tab и имеет доступное имя.",
+    "`disabled` задаётся нативно; ошибка — `aria-invalid=\"true\"` и связанный текст ошибки."
+  ],
+  "evidence": [
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "layerName": "textarea",
+          "nodeId": "4058:4529",
+          "componentKey": null
+        }
+      ]
+    }
+  ],
+  "unknowns": [
+    "Production-вхождения Textarea в снятом публичном корпусе не найдены."
+  ],
+  "source": {
+    "version": "v0.2",
+    "spec": "guide/components/forms/textarea.md",
+    "status": "complete",
+    "scope": "figma-only",
+    "step": "v0.2-field-family",
+    "anchor": "viewer/index.html#textarea",
+    "originalKind": "component",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для многострочного свободного текста: комментария, описания или сообщения.",
+    "whenNot": [
+      "Для короткого однострочного значения — `TextInput`."
+    ],
+    "related": [
+      "text-input"
+    ]
+  },
+  "dependencies": [],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "hover",
+      "focus-visible",
+      "disabled",
+      "invalid"
+    ],
+    "captured": [
+      "default",
+      "hover",
+      "focus-visible",
+      "disabled",
+      "invalid",
+      "error"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "Добавлен в v0.2 по Courses Figma `education-lib`, textarea, node `4058:4529`.",
+  "sourceConflicts": []
+}

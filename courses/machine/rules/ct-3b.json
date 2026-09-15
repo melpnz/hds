@@ -1,0 +1,29 @@
+{
+  "id": "CT-3b",
+  "kind": "rule",
+  "area": "Тексты",
+  "statement": "Кнопка вне карточки начинается с глагола в инфинитиве: переход («Перейти ко всем курсам»), поиск («Найти школы»), догрузка («Показать еще 20»), CTA hero («Познакомиться с редакцией»)",
+  "coverage": "25 из 27 кнопок, 9 страниц",
+  "exception": "«Каталог» в шапке — существительное; «Больше об эксперте» — без глагола",
+  "predicate": {
+    "type": "buttonLabels",
+    "viewports": [
+      1440
+    ],
+    "scope": "outside",
+    "infinitive": true,
+    "allowed": [
+      "Каталог",
+      "Больше об эксперте"
+    ],
+    "note": "подпись начинается с глагола в инфинитиве: -ть, -ти, -чь; исключения названы"
+  },
+  "appliesTo": [
+    "courses-listing",
+    "education-centers-listing",
+    "education-center",
+    "rating"
+  ],
+  "humanDoc": "docs/guide/composition.md",
+  "showcase": "showcase/pages.html#rule-CT-3b"
+}

@@ -1,0 +1,176 @@
+{
+  "$schema": "../../schema.json",
+  "id": "icon-button",
+  "title": "IconButton",
+  "kind": "component",
+  "category": "actions",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "figma"
+    ],
+    "confidence": "medium",
+    "scope": "mixed-evidence"
+  },
+  "purpose": "Используйте для действия без подписи, когда иконка его однозначно называет: стрелки карусели — 24 в контентных секциях и 8 в баннерных каруселях `AdSlot`. В продукте 32 узла на 7 страницах, все — стрелки.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "swiper-button-shadow",
+      "h-9",
+      "w-9",
+      "rounded-full"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "disabled",
+      "loading"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "states",
+      "title": "Состояния IconButton",
+      "file": "examples/components/icon-button/index.html",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "disabled",
+        "loading"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "constrained",
+        "width": 620
+      },
+      "authority": [
+        "production",
+        "figma"
+      ],
+      "scope": "mixed-evidence"
+    }
+  ],
+  "variants": [
+    {
+      "id": "state",
+      "use": "default, hover, focus-visible, disabled и loading по Courses Figma."
+    },
+    {
+      "id": "icon",
+      "use": "Иконка 24×24 с viewBox 0 0 24 24; доступное имя задаётся на кнопке."
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/actions/icon-button.md."
+    },
+    {
+      "type": "guidance",
+      "text": "Пять состояний и геометрия взяты из Courses Figma: education-lib, button / M / icon, node 653:664. Production-пример карусельной стрелки сохранён в исходной спецификации."
+    },
+    {
+      "type": "guidance",
+      "text": "Кнопка 36×36, иконка 24×24; focus показывает внешний контур 2 px с зазором 2 px."
+    }
+  ],
+  "accessibility": [
+    "Корень — `<button>` с доступным именем: фокус по Tab, действие — Enter или Space.",
+    "`focus-visible` показывает внешний контур; `disabled` использует нативный атрибут, `loading` — `aria-busy=\"true\"`."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "button.swiper-button-shadow.h-9.w-9.rounded-full",
+        "found": 32,
+        "pages": [
+          "courses-listing",
+          "education-center",
+          "education-centers-listing",
+          "promocodes",
+          "rating",
+          "reviews",
+          "schools-for-children"
+        ]
+      }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "653:664",
+        "layerName": "button / M / icon"
+      }
+    }
+  ],
+  "unknowns": [
+    "**Не снятые состояния.** `pressed` — разбор в [`components/STATE-CAPTURE.md`](../STATE-CAPTURE.md).",
+    "Не снятые состояния: pressed."
+  ],
+  "source": {
+    "version": "v0.2",
+    "spec": "guide/components/actions/icon-button.md",
+    "status": "partial",
+    "scope": "production",
+    "step": "R3-02",
+    "anchor": "showcase/components.html#c-icon-button",
+    "originalKind": "component",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для действия без подписи, когда иконка его однозначно называет: стрелки карусели — 24 в контентных секциях и 8 в баннерных каруселях `AdSlot`. В продукте 32 узла на 7 страницах, все — стрелки.",
+    "whenNot": [
+      "Когда действию нужно слово — `Button`.",
+      "Для перехода между адресами: стрелки листают карусель на месте."
+    ],
+    "related": [
+      "button"
+    ]
+  },
+  "dependencies": [
+    "sprite-icon"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "disabled"
+    ],
+    "captured": [
+      "default",
+      "hover",
+      "focus-visible",
+      "disabled",
+      "loading"
+    ],
+    "normative": [],
+    "uncaptured": [
+      "pressed"
+    ]
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

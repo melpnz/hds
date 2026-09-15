@@ -1,0 +1,227 @@
+{
+  "$schema": "../../schema.json",
+  "id": "checkbox",
+  "title": "Checkbox",
+  "kind": "component",
+  "category": "forms",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "storybook",
+      "figma"
+    ],
+    "confidence": "medium",
+    "scope": "design-source-only"
+  },
+  "purpose": "Двоичный выбор с подписью: отмечено или нет. В разметке снятых страниц не встречается, но продуктовый CSS-чанк `similar-courses` несёт его стили — отмеченное, отключённое и фокус; story `BaseCheckbox` рисует один чекбокс с подписью.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "base-checkbox"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "checked",
+      "indeterminate",
+      "disabled",
+      "loading"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "states",
+      "title": "Checkbox · состояния и группы",
+      "file": "examples/components/checkbox/index.html",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "checked",
+        "disabled",
+        "loading",
+        "vertical-list",
+        "horizontal-list"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "constrained",
+        "width": 720
+      },
+      "authority": [
+        "storybook",
+        "figma"
+      ],
+      "scope": "design-source-only"
+    }
+  ],
+  "variants": [
+    {
+      "id": "value",
+      "use": "off / on; нативное состояние checked."
+    },
+    {
+      "id": "state",
+      "use": "default, hover, focus-visible, disabled и loading по Courses Figma."
+    }
+  ],
+  "layoutRules": [
+    {
+      "id": "control-label",
+      "context": "Контрол с подписью",
+      "behavior": "Между визуальным контролом и текстом используется gap 8 px; текст опущен на 1 px.",
+      "implementation": "inline-flex; align-items:flex-start; gap:8px; label padding-top:1px."
+    },
+    {
+      "id": "vertical-list",
+      "context": "Вертикальная группа вариантов",
+      "behavior": "Между соседними элементами 16 px.",
+      "implementation": "flex-direction:column; gap:16px.",
+      "evidence": "Courses Figma control-list node 717:191."
+    },
+    {
+      "id": "horizontal-list",
+      "context": "Горизонтальная группа вариантов",
+      "behavior": "Между соседними элементами 24 px.",
+      "implementation": "flex-direction:row; gap:24px.",
+      "evidence": "Courses Figma control-list node 717:191."
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/forms/checkbox.md."
+    },
+    {
+      "type": "guidance",
+      "text": "Полная матрица off/on взята из Courses Figma: education-lib, checkbox node 687:1279."
+    },
+    {
+      "type": "guidance",
+      "text": "Подпись выровнена через padding-top: 1 px; gap между визуальным контролом и текстом — 8 px."
+    },
+    {
+      "type": "guidance",
+      "text": "Группы контролов: gap 16 px по вертикали и 24 px по горизонтали, control-list node 717:191."
+    },
+    {
+      "type": "coverage-warning",
+      "text": "Indeterminate отсутствует в указанном Figma component set и остаётся непроверенным."
+    },
+    {
+      "type": "coverage-warning",
+      "text": "Источник storybook-only: компонент не подтверждён в продакшене."
+    }
+  ],
+  "accessibility": [
+    "Используйте нативный `<input type=\"checkbox\">`; переключение — Space.",
+    "`focus-visible` показывает внешний контур; `disabled` задаётся нативно, `loading` — через `aria-busy=\"true\"` на контейнере."
+  ],
+  "evidence": [
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "layerName": "elements/control",
+          "nodeId": null,
+          "componentKey": "b4c4a5af7abfec77ad18216f103e1dbd9cd5476b"
+        }
+      ]
+    },
+    {
+      "type": "storybook",
+      "data": [
+        {
+          "story": "common-basecheckbox--base-checkbox-story",
+          "file": null,
+          "renders": true,
+          "note": "единственный BEM-компонент: .base-checkbox__wrapper/__icon-wrapper/__input/__button/__content"
+        }
+      ]
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "687:1279",
+        "layerName": "checkbox"
+      }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "717:191",
+        "layerName": "control-list"
+      }
+    }
+  ],
+  "unknowns": [
+    "**Классы без правила.** `base-checkbox__content` — объявления нет ни в 22 файлах прод-корпуса, ни в 13 файлах CSS снимка Storybook. См. раздел «Находки» витрины.",
+    "**Прод-адреса нет.** Пока компонент не найден в продукте, ни `occurrences`, ни `seenOn` у записи не заполняются: измерять нечего. Числа в реестре остаются нулями осознанно.",
+    "**Проза выведена из story и CSS Storybook.** Записи нет в разметке снятых страниц, и в переписи корпуса её нет. Правило применения, «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по снятой story и CSS Storybook (`evidence/source/storybook/`); «Когда не использовать» — по тому, чем снятые страницы решают ту же задачу. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их нечем.",
+    "Не снятые состояния: indeterminate."
+  ],
+  "source": {
+    "version": "v0.2",
+    "spec": "guide/components/forms/checkbox.md",
+    "status": "partial",
+    "scope": "storybook-only",
+    "step": "R3-10",
+    "anchor": "showcase/components.html#c-checkbox",
+    "originalKind": "component",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Двоичный выбор с подписью: отмечено или нет. В разметке снятых страниц не встречается, но продуктовый CSS-чанк `similar-courses` несёт его стили — отмеченное, отключённое и фокус; story `BaseCheckbox` рисует один чекбокс с подписью.",
+    "whenNot": [
+      "Для фильтрации выдачи на месте: на снятых страницах направление выбирают `FilterChip`, чекбоксов на них нет."
+    ],
+    "related": [
+      "filter-chip"
+    ]
+  },
+  "dependencies": [],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "hover",
+      "focus-visible",
+      "checked",
+      "indeterminate",
+      "disabled"
+    ],
+    "captured": [
+      "default",
+      "focus-visible",
+      "checked",
+      "disabled",
+      "hover",
+      "loading"
+    ],
+    "normative": [],
+    "uncaptured": [
+      "indeterminate"
+    ]
+  },
+  "provenance": null,
+  "sourceConflicts": []
+}

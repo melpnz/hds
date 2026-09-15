@@ -1,0 +1,37 @@
+{
+  "id": "C-5",
+  "kind": "rule",
+  "area": "Реакция на курсор",
+  "statement": "Тёмная кнопка при наведении тускнеет до 90% (`hover:opacity-90`), светлая получает фон `bg-ui-black-100`",
+  "coverage": "Объявлено у 173 из 173 и 18 из 18. Проверено курсором на кнопках, до которых он доходит",
+  "exception": "Кнопка внутри карточки курса и школы накрыта сквозной ссылкой карточки (`a.z-2.absolute.inset-0`): курсор попадает на ссылку, и затемнение кнопки не срабатывает. Проверено курсором на собранных страницах — 24 кнопки из 24; в корпусе таких кнопок 144 («Далее» в `CourseCard` 96, «Подробнее» в `SchoolCard` 48). У `PromoCard` сквозная ссылка не проверялась: страница промокодов в собранные не входит",
+  "predicate": {
+    "type": "hoverEffect",
+    "viewports": [
+      1440
+    ],
+    "targets": [
+      {
+        "role": "button-dark",
+        "reachableOnly": true,
+        "expect": {
+          "opacity": "0.9"
+        }
+      },
+      {
+        "role": "button-light",
+        "reachableOnly": true,
+        "expect": {
+          "background-color": "rgb(233, 233, 234)"
+        }
+      }
+    ],
+    "note": "проверяются кнопки, до которых доходит курсор: кнопка внутри карточки накрыта сквозной ссылкой карточки, и её реакция не срабатывает — это сказано в самом правиле"
+  },
+  "appliesTo": [
+    "courses-listing",
+    "education-centers-listing"
+  ],
+  "humanDoc": "docs/guide/composition.md",
+  "showcase": "showcase/pages.html#rule-C-5"
+}

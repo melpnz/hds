@@ -1,0 +1,150 @@
+{
+  "$schema": "../../schema.json",
+  "id": "promo-card",
+  "title": "PromoCard",
+  "kind": "module",
+  "category": "entities",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Используйте для промокода школы: логотип, плашка кода, условие, кнопка «Открыть код» (на 4 карточках из 20 — «Посмотреть»). В продукте 20 узлов — только на странице промокодов.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "cursor-pointer",
+      "relative",
+      "flex",
+      "h-full",
+      "flex-col",
+      "overflow-hidden",
+      "rounded-3xl",
+      "border",
+      "border-ui-black-100",
+      "p-6"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "hover"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [
+    "machine/rules/c-5.json",
+    "machine/rules/ct-2a.json",
+    "machine/rules/ct-3a.json"
+  ],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/promo-card/index.html",
+      "covers": [
+        "default",
+        "hover"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 640
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/entities/promo-card.md."
+    }
+  ],
+  "accessibility": [
+    "Корень (`<div>`) в фокус не попадает. На один экземпляр по Tab проходят: 1 кнопка — так у всех 20. По корпусу (20 узлов): `Button` — 20."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "div.cursor-pointer.relative.flex.h-full.flex-col.overflow-hidden.rounded-3xl.border.border-ui-black-100.p-6",
+        "found": 20,
+        "pages": [
+          "promocodes"
+        ]
+      }
+    },
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": null,
+          "nodeId": "10991:111811",
+          "componentKey": null
+        }
+      ]
+    }
+  ],
+  "unknowns": [
+    "**Классы без правила.** В разметке продукта стоят классы, у которых нет объявления ни в одном из 22 файлов корпуса: `height-[40px]`. Это не пробел пакета, а находка о продукте: класс написан, правило отсутствует. В `ui/` они не заводятся.",
+    "**Заглушки содержимого.** 1 ссылка на пользовательское и партнёрское содержимое (`habrastorage.org`, баннеры `assets.habr.com`) на витрине заменены локальной заглушкой `ui/assets/images/content-placeholder.svg`. Чужое содержимое в пакет не копируется; геометрия компонента от этого не меняется — размер задаёт он сам. В «Анатомии» ниже продовые пути сохранены как есть."
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/entities/promo-card.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R5-03",
+    "anchor": "showcase/components.html#c-promo-card",
+    "originalKind": "module",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для промокода школы: логотип, плашка кода, условие, кнопка «Открыть код» (на 4 карточках из 20 — «Посмотреть»). В продукте 20 узлов — только на странице промокодов.",
+    "whenNot": [
+      "Для рекламы — `AdCard`.",
+      "Для курса со скидкой — `CourseCard` с `Badge`."
+    ],
+    "related": [
+      "ad-card",
+      "course-card",
+      "badge"
+    ]
+  },
+  "dependencies": [
+    "entity-logo",
+    "button"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "hover"
+    ],
+    "captured": [
+      "default",
+      "hover"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

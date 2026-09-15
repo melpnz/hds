@@ -1,0 +1,293 @@
+{
+  "$schema": "../../schema.json",
+  "id": "button",
+  "title": "Button",
+  "kind": "component",
+  "category": "actions",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "figma"
+    ],
+    "confidence": "medium",
+    "scope": "mixed-evidence"
+  },
+  "purpose": "Используйте для действия с подписью: перехода к подробностям в карточке («Далее» ×96 в `CourseCard`, «Подробнее» ×48 в `SchoolCard`, «Открыть код» ×16 и «Посмотреть» ×4 в `PromoCard`), отправки формы поиска («Найти организации») и перехода ко всему разделу в конце секции («Перейти ко всем курсам»). В продукте 191 узел на 9 страницах.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "inline-flex",
+      "rounded-xl",
+      "font-semibold"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "disabled",
+      "loading"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [
+    "machine/rules/a-1.json",
+    "machine/rules/dg-5.json",
+    "machine/rules/dg-7.json"
+  ],
+  "examples": [
+    {
+      "id": "playground",
+      "title": "Интерактивный Button",
+      "file": "examples/components/button/index.html",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "disabled",
+        "loading"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "constrained",
+        "width": 720
+      },
+      "authority": [
+        "production",
+        "figma"
+      ],
+      "scope": "mixed-evidence"
+    }
+  ],
+  "variantMatrix": {
+    "sizes": {
+      "m": {
+        "tones": [
+          "main",
+          "secondary",
+          "danger",
+          "danger-outline",
+          "success",
+          "success-outline"
+        ]
+      },
+      "l": {
+        "tones": [
+          "main",
+          "secondary",
+          "danger",
+          "danger-outline",
+          "success",
+          "success-outline"
+        ]
+      },
+      "xl": {
+        "tones": [
+          "main",
+          "secondary"
+        ]
+      }
+    },
+    "states": [
+      "default",
+      "hover",
+      "focus-visible",
+      "disabled",
+      "loading"
+    ],
+    "icon": [
+      false,
+      true
+    ],
+    "combinations": 140
+  },
+  "variants": [
+    {
+      "id": "size",
+      "use": "M и L — шесть видимых тонов; XL — main и secondary."
+    },
+    {
+      "id": "tone",
+      "use": "main, secondary, danger, danger-outline, success, success-outline; статусные тона — Figma-only."
+    },
+    {
+      "id": "icon",
+      "use": "Без ведущей иконки или с ведущей иконкой."
+    },
+    {
+      "id": "state",
+      "use": "default, hover, focus, disabled и loading; pressed не подтверждён."
+    }
+  ],
+  "layoutRules": [
+    {
+      "id": "default",
+      "context": "Обычное действие в контенте",
+      "behavior": "Ширина по содержимому.",
+      "implementation": "inline-flex без width: 100%."
+    },
+    {
+      "id": "course-card",
+      "context": "CTA внутри карточки курса",
+      "behavior": "Растягивается на ширину карточки на всех разрешениях.",
+      "implementation": "w-full на кнопке или stretch action-slot контейнера.",
+      "evidence": "164 M/main production-вхождения с w-full."
+    },
+    {
+      "id": "mobile-form",
+      "context": "Единственная кнопка формы на мобильном",
+      "behavior": "Занимает всю ширину формы.",
+      "implementation": "Одноколоночный grid растягивает кнопку; отдельный Button-вариант не нужен.",
+      "evidence": "SearchForm: phone:grid-cols-[1fr]."
+    },
+    {
+      "id": "section-action",
+      "context": "Одиночное действие секции или блока",
+      "behavior": "Растягивается на ширину action-slot.",
+      "implementation": "w-full или stretch у контейнера.",
+      "evidence": "15 L/secondary production-вхождений с w-full."
+    },
+    {
+      "id": "semantics",
+      "context": "Действие или переход",
+      "behavior": "Внешний вид одинаковый.",
+      "implementation": "button для действия, a для навигации."
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/actions/button.md."
+    },
+    {
+      "type": "coverage-warning",
+      "text": "Статусные тона и loading доступны в интерактивном playground по Figma-референсу и не подтверждены в снятом production DOM."
+    },
+    {
+      "type": "assumption",
+      "text": "Инвентаризация v0.1 упоминает 15 component set, но на доступном референсе видны 14: шесть для M, шесть для L и два для XL. Невидимое пятнадцатое семейство не восстановлено."
+    },
+    {
+      "type": "guidance",
+      "text": "Растяжение по ширине управляется контейнером и описано в layoutRules; это не отдельный вариант Button."
+    }
+  ],
+  "accessibility": [
+    "Корень — ссылка `<a href>` (19 из 191): фокус по Tab, переход — Enter. Корень — `<button>` (172 из 191): фокус по Tab, действие — Enter или Space. Кольцо фокуса — `focus-visible:outline` цветом `outline-ui-black-400`; обводка по клику погашена `focus:outline-none`. 11 из 191 открываются в новой вкладке (`target=\"_blank\"`)."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "button.inline-flex.rounded-xl.font-semibold, a.inline-flex.rounded-xl.font-semibold",
+        "found": 191,
+        "pages": [
+          "authors",
+          "courses-listing",
+          "editors",
+          "education-center",
+          "education-centers-listing",
+          "promocodes",
+          "rating",
+          "reviews",
+          "schools-for-children"
+        ]
+      }
+    },
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "layerName": "button/M/main",
+          "nodeId": null,
+          "componentKey": "ce9e337badd3ae0d854bcbf55754e7c67da966c0"
+        }
+      ]
+    },
+    {
+      "type": "storybook",
+      "data": [
+        {
+          "story": "common-basebutton--primary-button",
+          "file": null,
+          "renders": false,
+          "note": "[nuxt] instance unavailable — разметки нет"
+        }
+      ]
+    }
+  ],
+  "unknowns": [
+    "**Не снятые состояния.** `pressed` — разбор в [`components/STATE-CAPTURE.md`](../STATE-CAPTURE.md).",
+    "BRIEF §5, конфликт 4: padding размеров L и XL: прод 16/8 и 24/12; Figma elements/button/ 20/12 и 24/16",
+    "Не снятые состояния: pressed."
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/actions/button.md",
+    "status": "partial",
+    "scope": "production",
+    "step": "R3-01",
+    "anchor": "showcase/components.html#c-button",
+    "originalKind": "component",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для действия с подписью: перехода к подробностям в карточке («Далее» ×96 в `CourseCard`, «Подробнее» ×48 в `SchoolCard`, «Открыть код» ×16 и «Посмотреть» ×4 в `PromoCard`), отправки формы поиска («Найти организации») и перехода ко всему разделу в конце секции («Перейти ко всем курсам»). В продукте 191 узел на 9 страницах.",
+    "whenNot": [
+      "Для перехода внутри текста или списка ссылок — это `Link`.",
+      "Без подписи — для стрелок карусели есть `IconButton`.",
+      "Для выбора из набора — `FilterChip` или `SegmentedControl`."
+    ],
+    "related": [
+      "link",
+      "icon-button",
+      "filter-chip",
+      "segmented-control"
+    ]
+  },
+  "dependencies": [
+    "sprite-icon"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "disabled"
+    ],
+    "captured": [
+      "default",
+      "hover",
+      "focus-visible",
+      "disabled"
+    ],
+    "normative": [],
+    "uncaptured": [
+      "pressed"
+    ]
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": [
+    {
+      "ref": "BRIEF §5, конфликт 4",
+      "summary": "padding размеров L и XL: прод 16/8 и 24/12; Figma elements/button/ 20/12 и 24/16"
+    }
+  ]
+}

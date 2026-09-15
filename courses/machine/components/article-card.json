@@ -1,0 +1,144 @@
+{
+  "$schema": "../../schema.json",
+  "id": "article-card",
+  "title": "ArticleCard",
+  "kind": "module",
+  "category": "entities",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Используйте для статьи журнала в ленте: тип и дата («Статья • 28 августа»), заголовок. В продукте 32 узла на 4 страницах, все внутри `Carousel` («Журнал», «Истории успеха»).",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "relative",
+      "box-border",
+      "h-full",
+      "overflow-hidden",
+      "rounded-3xl",
+      "border",
+      "border-ui-black-100",
+      "flex"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/article-card/index.html",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 640
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/entities/article-card.md."
+    }
+  ],
+  "accessibility": [
+    "Корень (`<div>`) в фокус не попадает. На один экземпляр по Tab проходят: 1 ссылка — так у всех 32. По корпусу (32 узла): `Link` — 32."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": ".swiper-slide > div.relative.box-border.h-full.overflow-hidden.rounded-3xl.border.border-ui-black-100:not(.flex):not(.cursor-pointer)",
+        "found": 32,
+        "pages": [
+          "education-center",
+          "education-centers-listing",
+          "promocodes",
+          "schools-for-children"
+        ]
+      }
+    },
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "Статья",
+          "nodeId": "10947:108334",
+          "componentKey": null
+        }
+      ]
+    }
+  ],
+  "unknowns": [
+    "**Классы без правила.** В разметке продукта стоят классы, у которых нет объявления ни в одном из 22 файлов корпуса: `z-2`. Это не пробел пакета, а находка о продукте: класс написан, правило отсутствует. В `ui/` они не заводятся."
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/entities/article-card.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R5-05",
+    "anchor": "showcase/components.html#c-article-card",
+    "originalKind": "module",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для статьи журнала в ленте: тип и дата («Статья • 28 августа»), заголовок. В продукте 32 узла на 4 страницах, все внутри `Carousel` («Журнал», «Истории успеха»).",
+    "whenNot": [
+      "Вне ленты — в снятых страницах карточки статьи в сетке нет."
+    ],
+    "related": []
+  },
+  "dependencies": [
+    "chip"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "hover",
+      "focus-visible"
+    ],
+    "captured": [
+      "default",
+      "hover",
+      "focus-visible"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

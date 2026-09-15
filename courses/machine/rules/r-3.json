@@ -1,0 +1,29 @@
+{
+  "id": "R-3",
+  "kind": "rule",
+  "area": "Адаптив",
+  "statement": "Подвал — 4 колонки от 1024, 3 на 768–1023, 1 до 767",
+  "coverage": "10/10 на четырёх ширинах",
+  "exception": "В корпусе нет. Нарушит подвал в две колонки на планшете",
+  "predicate": {
+    "type": "columns",
+    "viewports": [
+      1440,
+      1024,
+      768,
+      375
+    ],
+    "selector": "footer div.grid",
+    "columns": {
+      "375": 1,
+      "768": 3,
+      "1024": 4,
+      "1440": 4
+    }
+  },
+  "appliesTo": [
+    "all"
+  ],
+  "humanDoc": "docs/guide/composition.md",
+  "showcase": "showcase/pages.html#rule-R-3"
+}

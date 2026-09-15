@@ -1,0 +1,183 @@
+{
+  "$schema": "../../schema.json",
+  "id": "header-dropdown",
+  "title": "HeaderDropdown",
+  "kind": "module",
+  "category": "overlays",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "medium",
+    "scope": "public-guest"
+  },
+  "purpose": "Панель «Все сервисы Хабра» из шапки — одна на страницу, 10/10: четыре проекта с `ProjectIcon`.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "absolute",
+      "-right-10",
+      "rounded-xl",
+      "shadow-context-menu-dropdown"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "open",
+      "closed"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "states",
+      "title": "Открытие и закрытие",
+      "file": "examples/components/header-dropdown/index.html",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "open",
+        "closed"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "constrained",
+        "width": 320
+      },
+      "authority": [
+        "production"
+      ],
+      "scope": "public-guest"
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/overlays/header-dropdown.md."
+    },
+    {
+      "type": "assumption",
+      "text": "Production snapshot содержит только `hidden`. Открытый вид получен из той же разметки удалением `hidden`; переключение aria-expanded/hidden в viewer — документирующая реконструкция."
+    }
+  ],
+  "accessibility": [
+    "Пока панель скрыта (`hidden` на всех 10 страницах), её четыре ссылки в порядок табуляции не входят. Открывающая кнопка стоит в шапке, вне записи: `<button>` с `outline-none` и без своего кольца — фокус на ней не виден. Как панель открывается с клавиатуры и куда уходит фокус, в снятой разметке не видно."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "header div.absolute.-right-10.rounded-xl.shadow-context-menu-dropdown",
+        "found": 10,
+        "pages": [
+          "author",
+          "authors",
+          "courses-listing",
+          "editors",
+          "education-center",
+          "education-centers-listing",
+          "promocodes",
+          "rating",
+          "reviews",
+          "schools-for-children"
+        ]
+      }
+    },
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": null,
+          "nodeId": "15065:244076",
+          "componentKey": null
+        }
+      ]
+    },
+    {
+      "type": "storybook",
+      "data": [
+        {
+          "story": "header-headerdropdown--header-dropdown-story",
+          "file": null,
+          "renders": true,
+          "note": null
+        },
+        {
+          "story": "header-headersection--header-section-story",
+          "file": "_sources/courses/rendered/header-headersection--header-section-story.html",
+          "renders": true,
+          "note": "секция панели, снята пустой. Добавлено на R0-05 из _sources/courses/inventory.json — инвентаризация эту story не записала"
+        }
+      ]
+    }
+  ],
+  "unknowns": [
+    "**Классы без правила.** В разметке продукта стоят классы, у которых нет объявления ни в одном из 22 файлов корпуса: `align-center`. Это не пробел пакета, а находка о продукте: класс написан, правило отсутствует. В `ui/` они не заводятся.",
+    "**Не снятые состояния.** `open` — разбор в [`components/STATE-CAPTURE.md`](../STATE-CAPTURE.md).",
+    "Не снятые состояния: open."
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/overlays/header-dropdown.md",
+    "status": "partial",
+    "scope": "production",
+    "step": "R4-02",
+    "anchor": "showcase/components.html#c-header-dropdown",
+    "originalKind": "module",
+    "markupNote": "Панель сервисов приходит из SSR с классом hidden: закрытое состояние — её состояние по умолчанию, открытое в продукте и в Storybook не снято (GAP записи). Гейт проекции проверяет её как скрытую и это единственный такой случай.",
+    "markupState": "hidden"
+  },
+  "usage": {
+    "when": "Панель «Все сервисы Хабра» из шапки — одна на страницу, 10/10: четыре проекта с `ProjectIcon`.",
+    "whenNot": [
+      "Для каталога курсов — это `CatalogMenu`.",
+      "Как постоянно видимое меню: панель открывается по кнопке."
+    ],
+    "related": [
+      "catalog-menu"
+    ]
+  },
+  "dependencies": [
+    "project-icon"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "hover",
+      "focus-visible",
+      "open",
+      "closed"
+    ],
+    "captured": [
+      "default",
+      "hover",
+      "closed"
+    ],
+    "normative": [
+      "focus-visible"
+    ],
+    "uncaptured": [
+      "open"
+    ]
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

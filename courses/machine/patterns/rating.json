@@ -1,0 +1,181 @@
+{
+  "$schema": "../../schema.json",
+  "id": "rating",
+  "title": "rating",
+  "kind": "pattern",
+  "category": "pages",
+  "family": "таблица",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Композиция страницы семейства «таблица», снятая по адресу career.habr.com/education_centers/rating.",
+  "areas": [
+    "section-1",
+    "section-2"
+  ],
+  "modules": [
+    "rating-table",
+    "section"
+  ],
+  "components": [],
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "app-container"
+    ],
+    "styles": [
+      "ui/courses.css",
+      "ui/page-examples.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [
+      "assembled"
+    ],
+    "domain": []
+  },
+  "rules": [
+    "machine/rules/sh-1.json",
+    "machine/rules/sh-2.json",
+    "machine/rules/sh-3.json",
+    "machine/rules/sh-4.json",
+    "machine/rules/sh-5.json",
+    "machine/rules/sh-6.json",
+    "machine/rules/l-1.json",
+    "machine/rules/l-3a.json",
+    "machine/rules/l-4.json",
+    "machine/rules/l-5a.json",
+    "machine/rules/c-2.json",
+    "machine/rules/a-2.json",
+    "machine/rules/a-3.json",
+    "machine/rules/a-5.json",
+    "machine/rules/c-6.json",
+    "machine/rules/r-3.json",
+    "machine/rules/r-4.json",
+    "machine/rules/r-5.json",
+    "machine/rules/ct-1.json",
+    "machine/rules/ct-2a.json",
+    "machine/rules/ct-3b.json"
+  ],
+  "responsive": [
+    {
+      "width": 1024,
+      "grids": [],
+      "footerColumns": 4,
+      "header": 64,
+      "sameOrder": true
+    },
+    {
+      "width": 768,
+      "grids": [],
+      "footerColumns": 3,
+      "header": 64,
+      "sameOrder": true
+    },
+    {
+      "width": 375,
+      "grids": [],
+      "footerColumns": 1,
+      "header": 64,
+      "sameOrder": true
+    }
+  ],
+  "examples": [
+    {
+      "id": "assembled",
+      "title": "Собранная страница",
+      "file": "examples/pages/rating/index.html",
+      "covers": [
+        "production-composition"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 760
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Спецификация страницы: guide/pages/rating.md."
+    },
+    {
+      "type": "coverage-warning",
+      "text": "Карусели и рекламные слоты показаны честными заглушками: библиотека Swiper не входит в пакет."
+    }
+  ],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "production",
+      "ref": "career.habr.com/education_centers/rating"
+    }
+  ],
+  "unknowns": [
+    "Carousel · CourseCard · «Может быть интересно», 8 слайдов CourseCard. Лента Swip"
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/pages/rating.md",
+    "standalone": "showcase/pages/rating.html",
+    "showcase": "showcase/pages.html#p-rating"
+  },
+  "frame": {
+    "container": "1124px + 24px",
+    "column": 1076,
+    "columnGap": "48px",
+    "columnPadTop": "40px",
+    "header": 64,
+    "hero": 352,
+    "footer": 192
+  },
+  "sequence": [
+    {
+      "tag": "div",
+      "heading": null,
+      "modules": [
+        {
+          "id": "rating-table",
+          "count": 1
+        }
+      ],
+      "components": []
+    },
+    {
+      "tag": "section",
+      "heading": "Может быть интересно",
+      "modules": [
+        {
+          "id": "section",
+          "count": 1
+        }
+      ],
+      "components": [],
+      "stub": "Carousel · CourseCard · «Может быть интересно», 8 слайдов CourseCard. Лента Swip"
+    }
+  ],
+  "sequenceSource": {
+    "page": "showcase/pages/rating.html",
+    "note": "состав и счётчики сняты с собранной страницы витрины; длинные списки на ней сокращены, полные числа — в pages/*.md",
+    "trimmed": [],
+    "stubs": [
+      "«Может быть интересно», 8 слайдов CourseCard"
+    ]
+  }
+}

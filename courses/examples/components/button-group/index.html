@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PageTabs — Хабр Курсы</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../../../ui/courses.css">
+  <style>html,body{margin:0;background:#fff}body{box-sizing:border-box;padding:24px}.example-root{width:min(720px,100%)}.example-root>:first-child{margin:0!important}
+.crs-tabs-guide{display:grid;gap:24px;font-family:Inter,sans-serif}
+.crs-tabs-context{box-sizing:border-box;width:100%;padding:24px;border-radius:20px}
+.crs-tabs-context--hero{background:#346ef4;color:#fff}
+.crs-tabs-context--page{border:1px solid #e9e9ea;background:#fff;color:#2c2e34}
+.crs-tabs-section{display:grid;gap:12px}
+.crs-tabs-title{margin:0;font-size:14px;line-height:20px}
+.crs-tabs-context--hero .crs-tabs-title{color:#fff}
+.crs-tabs-group{display:inline-flex;width:max-content;max-width:100%;gap:0}
+.crs-tabs-context--hero .crs-tabs-group{border-radius:12px;background:rgba(0,0,0,.12)}
+.crs-tabs-context--page .crs-tabs-group{padding:4px;border-radius:16px;background:#f1f1f1}
+.crs-tabs-states{display:flex;flex-wrap:wrap;gap:20px}
+.crs-tabs-sample{display:grid;justify-items:center;gap:6px}
+.crs-tabs-caption{font-size:11px;line-height:16px;opacity:.72}
+.crs-context-tab{position:relative;box-sizing:border-box;display:inline-flex;height:40px;align-items:center;justify-content:center;padding:8px 16px;border:0;border-radius:12px;background:transparent;color:inherit;font:400 14px/20px Inter,sans-serif;white-space:nowrap;cursor:pointer}
+.crs-context-tab:hover,.crs-context-tab[data-state=hover],.crs-context-tab[data-state=focus]{background:var(--tab-hover)}
+.crs-context-tab:focus-visible,.crs-context-tab[data-state=focus]{outline:2px solid var(--tab-focus);outline-offset:1px}
+.crs-context-tab[data-state=selected]{background:var(--tab-selected);box-shadow:var(--tab-shadow,none)}
+.crs-context-tab:disabled,.crs-context-tab[data-state=disabled]{opacity:.7;cursor:not-allowed}
+.crs-context-tab[data-state=loading]{width:56px;color:transparent;cursor:wait}
+.crs-context-tab svg{position:absolute;top:8px;left:16px;width:24px;height:24px;color:var(--tab-loader)}
+.crs-tabs-context--hero{--tab-hover:rgba(0,0,0,.12);--tab-focus:#fff;--tab-selected:#2c2e34;--tab-loader:#fff}
+.crs-tabs-context--page{--tab-hover:#e9e9ea;--tab-focus:#2c2e34;--tab-selected:#fff;--tab-loader:#a6a7a9;--tab-shadow:0 4px 3px rgba(0,0,0,.05),0 2px 2px rgba(0,0,0,.05)}
+</style>
+</head>
+<body data-preview-layout="constrained"><div class="example-root"><div class="crs-tabs-guide"><div class="crs-tabs-context crs-tabs-context--page"><section class="crs-tabs-section"><h2 class="crs-tabs-title">В группе</h2><div class="crs-tabs-group" role="tablist" aria-label="Раздел"><button type="button" role="tab" class="crs-context-tab" data-state="selected" aria-selected="true">Tab</button><button type="button" role="tab" class="crs-context-tab" data-state="default" aria-selected="false">Tab</button><button type="button" role="tab" class="crs-context-tab" data-state="default" aria-selected="false">Tab</button></div></section></div><div class="crs-tabs-context crs-tabs-context--page"><section class="crs-tabs-section"><h2 class="crs-tabs-title">Состояния</h2><div class="crs-tabs-states" role="tablist" aria-label="Состояния вкладки"><span class="crs-tabs-sample"><button type="button" role="tab" class="crs-context-tab" data-state="default" aria-selected="false">Tab</button><span class="crs-tabs-caption">Inactive</span></span><span class="crs-tabs-sample"><button type="button" role="tab" class="crs-context-tab" data-state="hover" aria-selected="false">Tab</button><span class="crs-tabs-caption">Hover</span></span><span class="crs-tabs-sample"><button type="button" role="tab" class="crs-context-tab" data-state="focus" aria-selected="false">Tab</button><span class="crs-tabs-caption">Focus</span></span><span class="crs-tabs-sample"><button type="button" role="tab" class="crs-context-tab" data-state="selected" aria-selected="true">Tab</button><span class="crs-tabs-caption">Selected</span></span><span class="crs-tabs-sample"><button type="button" role="tab" class="crs-context-tab" data-state="disabled" aria-selected="false" disabled>Tab</button><span class="crs-tabs-caption">Disabled</span></span><span class="crs-tabs-sample"><button type="button" role="tab" class="crs-context-tab" data-state="loading" aria-selected="false" aria-busy="true" disabled><span>Tab</span><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="../../../ui/assets/icons/sprite.svg#loader"></use></svg></button><span class="crs-tabs-caption">Loading</span></span></div></section></div></div></div></body>
+</html>

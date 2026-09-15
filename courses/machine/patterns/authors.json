@@ -1,0 +1,193 @@
+{
+  "$schema": "../../schema.json",
+  "id": "authors",
+  "title": "authors",
+  "kind": "pattern",
+  "category": "pages",
+  "family": "промо-раздел",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Композиция страницы семейства «промо-раздел», снятая по адресу career.habr.com/courses/authors.",
+  "areas": [
+    "section-1",
+    "section-2"
+  ],
+  "modules": [
+    "step-card",
+    "card-grid",
+    "person-card"
+  ],
+  "components": [],
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "app-container"
+    ],
+    "styles": [
+      "ui/courses.css",
+      "ui/page-examples.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [
+      "assembled"
+    ],
+    "domain": []
+  },
+  "rules": [
+    "machine/rules/sh-1.json",
+    "machine/rules/sh-2.json",
+    "machine/rules/sh-3.json",
+    "machine/rules/sh-4.json",
+    "machine/rules/sh-5.json",
+    "machine/rules/sh-6.json",
+    "machine/rules/l-1.json",
+    "machine/rules/l-3b.json",
+    "machine/rules/l-5b.json",
+    "machine/rules/c-1.json",
+    "machine/rules/c-2.json",
+    "machine/rules/c-3c.json",
+    "machine/rules/a-1.json",
+    "machine/rules/a-3.json",
+    "machine/rules/c-4.json",
+    "machine/rules/r-1.json",
+    "machine/rules/r-3.json",
+    "machine/rules/r-4.json"
+  ],
+  "responsive": [
+    {
+      "width": 1024,
+      "grids": [
+        "4 × 235",
+        "4 × 235"
+      ],
+      "footerColumns": 4,
+      "header": 64,
+      "sameOrder": true
+    },
+    {
+      "width": 768,
+      "grids": [
+        "2 × 354",
+        "3 × 232"
+      ],
+      "footerColumns": 3,
+      "header": 64,
+      "sameOrder": true
+    },
+    {
+      "width": 375,
+      "grids": [
+        "1 × 327",
+        "1 × 327"
+      ],
+      "footerColumns": 1,
+      "header": 64,
+      "sameOrder": true
+    }
+  ],
+  "examples": [
+    {
+      "id": "assembled",
+      "title": "Собранная страница",
+      "file": "examples/pages/authors/index.html",
+      "covers": [
+        "production-composition"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 760
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Спецификация страницы: guide/pages/authors.md."
+    },
+    {
+      "type": "coverage-warning",
+      "text": "Карусели и рекламные слоты показаны честными заглушками: библиотека Swiper не входит в пакет."
+    }
+  ],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "production",
+      "ref": "career.habr.com/courses/authors"
+    }
+  ],
+  "unknowns": [],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/pages/authors.md",
+    "standalone": "showcase/pages/authors.html",
+    "showcase": "showcase/pages.html#p-authors"
+  },
+  "frame": {
+    "container": "1124px + 24px",
+    "column": 1076,
+    "columnGap": "40px",
+    "columnPadTop": "0px",
+    "header": 64,
+    "hero": 388,
+    "footer": 192
+  },
+  "sequence": [
+    {
+      "tag": "section",
+      "heading": "Как работают эксперты",
+      "modules": [
+        {
+          "id": "step-card",
+          "count": 4
+        },
+        {
+          "id": "card-grid",
+          "count": 1
+        }
+      ],
+      "components": []
+    },
+    {
+      "tag": "section",
+      "heading": "Крутые ребята, которые оценивают обучени",
+      "modules": [
+        {
+          "id": "person-card",
+          "count": 8
+        },
+        {
+          "id": "card-grid",
+          "count": 1
+        }
+      ],
+      "components": []
+    }
+  ],
+  "sequenceSource": {
+    "page": "showcase/pages/authors.html",
+    "note": "состав и счётчики сняты с собранной страницы витрины; длинные списки на ней сокращены, полные числа — в pages/*.md",
+    "trimmed": [
+      "карточек экспертов из 25"
+    ],
+    "stubs": []
+  }
+}

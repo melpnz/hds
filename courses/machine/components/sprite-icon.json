@@ -1,0 +1,165 @@
+{
+  "$schema": "../../schema.json",
+  "id": "sprite-icon",
+  "title": "SpriteIcon",
+  "kind": "component",
+  "category": "data-display",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Используйте SpriteIcon, если нужна монохромная пиктограмма из общего набора продукта — рейтинг, счётчик комментариев/отзывов, метка организации, скидка в процентах, «показать ещё», навигационная стрелка, лупа поиска, крестик закрытия, значок каталога, отметка аккредитации. Все 13 подтверждённых случаев в снятой разметке — декоративные или сопроводительные значки рядом с текстом или внутри кнопки, никогда не самостоятельный интерактивный элемент (`components/STATES.md`: `<svg>` не является ни `<a>`, ни `<button>` — N1 не выполнен).",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "svg-icon"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/sprite-icon/index.html",
+      "covers": [
+        "default"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "fit-content"
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/data-display/sprite-icon.md."
+    }
+  ],
+  "accessibility": [
+    "- `aria-hidden=\"true\"` — на 29 из 487 узлов `sprite.svg` (6%): `search` (1 из 1, декоративная лупа внутри текстового поля) и `arrow-small` (28 из 36, чаще пагинация/дропдаун рядом с видимым текстом или самостоятельной меткой кнопки). У остальных 11 символов `aria-hidden` не встречен ни разу (0 из 451). - `role` нет ни на одном из 487 узлов. - Доступное имя SVG (`<title>`, `aria-label`) нигде не задано — там, где иконка единственное содержимое интерактивного элемента (кнопка «показать ещё», кнопка-каталог), доступное имя, если оно есть, идёт на сам `<button>`, не проверялось этим шагом отдельно. Дописывать ARIA не по снятому запрещено (BRIEF §9 п. 4) — расстановка `aria-hidden` продуктом непоследовательна (13 символов делят решение всего на два паттерна из 14, без видимого правила для остальных одиннадцати), и это фиксируется как факт, а не «исправляется» правилом от пакета."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "svg.svg-icon",
+        "found": 611,
+        "pages": [
+          "author",
+          "authors",
+          "courses-listing",
+          "editors",
+          "education-center",
+          "education-centers-listing",
+          "promocodes",
+          "rating",
+          "reviews",
+          "schools-for-children"
+        ]
+      }
+    },
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "layerName": "icon/*",
+          "nodeId": null,
+          "componentKey": "74adfe6b"
+        },
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "layerName": "icon/search",
+          "nodeId": null,
+          "componentKey": "cd8ad75ae4fe81f35ce1c71d7283f9a85f9c6003"
+        },
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "layerName": "icon/catalog",
+          "nodeId": null,
+          "componentKey": "117b08b047bdad224da76813f004280af2699500"
+        }
+      ]
+    },
+    {
+      "type": "storybook",
+      "data": [
+        {
+          "story": "icons-spriteicon--all-variants",
+          "file": "_sources/courses/rendered/icons-spriteicon--all-variants.html",
+          "renders": true,
+          "note": "argTypes.icon перечисляет 22 значения (весь набор символов sprite.svg); в снятой разметке 10 страниц подтверждено 13 из них — остальные девять storybook-only относительно этой выборки"
+        }
+      ]
+    }
+  ],
+  "unknowns": [
+    "Селектор реестра (`svg.svg-icon`, 611 вхождений) шире предмета этой записи: 487 узлов ведут на `sprite.svg` (13 символов, описаны здесь), 124 — на три других файла-спрайта тем же DOM-паттерном (`<svg class=\"svg-icon\"><use xlink:href=\"…file.svg#id\">`). Сузить селектор атрибутным условием (`use[xlink:href*='sprite.svg']`) не получилось — браузер такой селектор не разбирает (`productionEvidence[0].note` записи `sprite-icon`); поэтому число в манифесте и переписи (611) считает все четыре спрайта, а эта спецификация описывает только один из них. Разбивка: `social-v3.1.svg` (60) — материал соседней записи `social-icon` (R2-02, `dependsOn: sprite-icon`); `external-profile.svg` (61) и `experts.svg` (3) — в реестре пока не заведены отдельными записями (находка шага, не решается здесь).",
+    "11 из 21 узлов `star-empty` несут битый `xlink:href` (символ + прилипший класс через пробел) — пустая звезда рейтинга не рендерится на этих узлах. Факт снятого DOM, не гипотеза; разбор — «Анатомия» выше и `.pipeline/R2-01/capture.md` §3. Не исправляется этим шагом.",
+    "Управление клавиатурой и валидация не описываются: компонент неинтерактивен (`components/STATES.md`, N1 не выполнен), собственных недопустимых состояний у него нет.",
+    "Именного кропа с прода (`evidence/source/production/sprite-icon/ <Name>.<width>.png`) для `SpriteIcon` не сделано — только полностраничные снимки 10 страниц и `dom.html`/`computed.json`. Тройка «прод ↔ Figma ↔ наш пример» по чеклисту A.3 в результате нечем закрыть для конкретных символов: сравнение цвета (например, реального жёлтого `star-rounded` в проде) сегодня идёт через значение токена в `ui/tokens.css` (снятое на R0-02) и подсчёт классов в DOM, не через прямое визуальное сравнение пикселей. Явное решение шага: для точечного 16–24px монохромного символа на общем спрайте это компромисс, не пробел процесса — крупных визуальных деталей, которые страдают без кропа (форма, антиалиасинг, субпиксельная геометрия), у примитива с единственным CSS-правилом (`fill:currentColor`) нет. Решение зафиксировано здесь явно, не подразумевается умолчанием.",
+    "Цветовые утилиты `text-*`/`fill-*`, которыми 383 из 487 узлов красят символ (таблица «Внешний вид»), **закрыты после этой спецификации** bulk-проходом R2-bulk: шесть из семи (`text-ui-yellow-500`, `text-ui-black-400`, `text-ui-black-850`, `text-ui-green-500`, `text-ui-white`, `rotate-90`) подняты из корпуса в `ui/utilities-components.css` — правила взяты дословно, парсером, из тех же 10 инлайновых файлов, где они и были найдены на R2-01. Живой пример на витрине теперь красит рейтинговую звезду жёлтым, счётчик отзывов серым, а значки на тёмном фоне белым — как в продакшене; описанное здесь прежде «всё тёмное унаследованное» больше не соответствует витрине. Остаётся один — `fill-ui-black-850`: `text`-версия в корпусе есть, а `fill`-версии рядом не нашлось. Запись о нём осталась в `tools/known-missing-classes.json`, и `node tools/validate-classes.mjs` по-прежнему называет его известным пробелом. Копируемость (METHOD §6.1) для окрашенных примеров с этого момента выполняется, кроме этого класса.",
+    "Storybook (`Icons/CatalogIcon`, `./src/components/icons/catalog-icon.vue`) — отдельный от `SpriteIcon` (`sprite-icon.vue`) компонент с тем же именем, что символ `catalog`; обе его story падают с ошибкой `[nuxt] instance unavailable`, разметки и argTypes нет (сопоставимо с X-60). Решение: не сопоставлять с `SpriteIcon` как алиас — источники разные файлы, и без снятой разметки `CatalogIcon` доказать идентичность вывода нечем. Символ `catalog` как часть `sprite.svg` уже покрыт этой записью через прод (`/courses`, кнопка каталога, «Анатомия»/«Примеры»). `CatalogIcon` вне реестра остаётся до появления собственного evidence.",
+    "Figma (`education-lib`, `icon/*`): страницы компонентов библиотеки не читаются `get_metadata` (доступна только страница `33:15585 «colors»» — подтверждено этим шагом независимо от `BRIEF.md` §8.2), поэтому обход велся через `search_design_system` с `includeLibraryKeys`. Библиотека не соответствует именам `sprite.svg` один-в-один: из 13 подтверждённых символов прямое совпадение имени нашлось у двух — `icon/search` (`cd8ad75ae4fe81f35ce1c71d7283f9a85f9c6003`) и `icon/catalog` (`117b08b047bdad224da76813f004280af2699500`). Для «accreditation», «arrow-large» и «comment» точных совпадений не нашлось (проверено индивидуальным запросом на каждое имя) — ближайшие по смыслу `icon/verified`, `icon/star` (component set) и `icon/review` не подтверждены как тот же символ и здесь не используются как факт. Оставшиеся восемь символов (`arrow-small`, `building`, `cross-large`, `more`, `percents`, `star-rounded`, `star-rounded-small`, `star-empty`) индивидуальным запросом не проверялись — GAP, а не «не найдено». `componentKey` `74adfe6b`, записанный в реестре ранее как заметка инвентаризации, при уточнении резолвится в `icon/check` (`74adfe6b0594c14463bc47de9226555d3c21458c`) — компонент, которого нет среди 13 подтверждённых символов прода; это не факт о `SpriteIcon`, а адрес одного конкретного узла библиотеки, ошибочно принятый инвентаризацией за представителя всего `icon/*`. Ни узла, ни `nodeId` для визуального сравнения символов с прод-версией получить не удалось (задокументированное ограничение MCP на этом файле, не только этой записи) — Figma не даёт анатомии, состава вариантов и responsive-намерения для `SpriteIcon`, только атрибуцию по имени и `componentKey` там, где имя совпало."
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/data-display/sprite-icon.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R2-01",
+    "anchor": "showcase/components.html#c-sprite-icon",
+    "originalKind": "primitive",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте SpriteIcon, если нужна монохромная пиктограмма из общего набора продукта — рейтинг, счётчик комментариев/отзывов, метка организации, скидка в процентах, «показать ещё», навигационная стрелка, лупа поиска, крестик закрытия, значок каталога, отметка аккредитации. Все 13 подтверждённых случаев в снятой разметке — декоративные или сопроводительные значки рядом с текстом или внутри кнопки, никогда не самостоятельный интерактивный элемент (`components/STATES.md`: `<svg>` не является ни `<a>`, ни `<button>` — N1 не выполнен).",
+    "whenNot": [
+      "Иконка соцсети (домен `vk.com`, `t.me`, значок Telegram/VK/Facebook и т.п.) — свой файл `social-v3.1.svg` на сеть, отдельная запись `social-icon` (R2-02), ещё не свёрстана.",
+      "Доменный бейдж внешнего сервиса профиля (LinkedIn, email, «career.habr.com», «другое») — свой файл `external-profile.svg`, в реестре записи пока нет (раздел «Ограничения»).",
+      "Фотография пользователя или логотип школы — `Avatar`/`EntityLogo` (R2-04, R2-05), растровое или векторное изображение, а не символ спрайта."
+    ],
+    "related": [
+      "avatar",
+      "entity-logo"
+    ]
+  },
+  "dependencies": [],
+  "stateCoverage": {
+    "required": [
+      "default"
+    ],
+    "captured": [
+      "default"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": null,
+  "sourceConflicts": []
+}

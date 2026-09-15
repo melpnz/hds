@@ -1,0 +1,122 @@
+{
+  "$schema": "../../schema.json",
+  "id": "numbered-course-item",
+  "title": "NumberedCourseItem",
+  "kind": "module",
+  "category": "entities",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Используйте для пункта нумерованного SEO-списка «ТОП онлайн-курсов»: заголовок-ссылка с номером, описание в `Prose`, сетка характеристик. В продукте 9 узлов — только на `/courses`.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "pt-6",
+      "border-b",
+      "border-solid",
+      "border-b-ui-black-100",
+      "pb-6"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [
+    "machine/rules/c-1.json",
+    "machine/rules/c-4.json"
+  ],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/numbered-course-item/index.html",
+      "covers": [
+        "default"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 640
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/entities/numbered-course-item.md."
+    }
+  ],
+  "accessibility": [
+    "Корень (`<div>`) в фокус не попадает. На один экземпляр по Tab проходят: 2 ссылки — так у всех 9. По корпусу (18 узлов): `Link` — 18."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "div.pt-6.border-b.border-solid.border-b-ui-black-100.pb-6",
+        "found": 9,
+        "pages": [
+          "courses-listing"
+        ]
+      }
+    }
+  ],
+  "unknowns": [],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/entities/numbered-course-item.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R5-09",
+    "anchor": "showcase/components.html#c-numbered-course-item",
+    "originalKind": "module",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для пункта нумерованного SEO-списка «ТОП онлайн-курсов»: заголовок-ссылка с номером, описание в `Prose`, сетка характеристик. В продукте 9 узлов — только на `/courses`.",
+    "whenNot": [
+      "Для курса в выдаче — `CourseCard`."
+    ],
+    "related": [
+      "course-card"
+    ]
+  },
+  "dependencies": [
+    "prose",
+    "link"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default"
+    ],
+    "captured": [
+      "default"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

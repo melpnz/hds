@@ -1,0 +1,116 @@
+{
+  "$schema": "../../schema.json",
+  "id": "info-table",
+  "title": "InfoTable",
+  "kind": "module",
+  "category": "data-display",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Пары «лейбл → значение» в блоке «Общая информация» школы: лицензия, телефоны, офис. В продукте 1 узел — наблюдение на одной странице, не правило.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "grid",
+      "grid-cols-2",
+      "gap-x-4",
+      "gap-y-3",
+      "text-small"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/info-table/index.html",
+      "covers": [
+        "default"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 640
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/data-display/info-table.md."
+    }
+  ],
+  "accessibility": [
+    "Корень (`<div>`) в фокус не попадает. По Tab проходят: 1 ссылка. По корпусу (1 узел): `Link` — 1."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "div.grid.grid-cols-2.gap-x-4.gap-y-3.text-small",
+        "found": 1,
+        "pages": [
+          "education-center"
+        ]
+      }
+    }
+  ],
+  "unknowns": [],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/data-display/info-table.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R5-12",
+    "anchor": "showcase/components.html#c-info-table",
+    "originalKind": "module",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Пары «лейбл → значение» в блоке «Общая информация» школы: лицензия, телефоны, офис. В продукте 1 узел — наблюдение на одной странице, не правило.",
+    "whenNot": [
+      "Для сравнительных таблиц — `RatingTable`."
+    ],
+    "related": [
+      "rating-table"
+    ]
+  },
+  "dependencies": [],
+  "stateCoverage": {
+    "required": [
+      "default"
+    ],
+    "captured": [
+      "default"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

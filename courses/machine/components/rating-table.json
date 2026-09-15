@@ -1,0 +1,143 @@
+{
+  "$schema": "../../schema.json",
+  "id": "rating-table",
+  "title": "RatingTable",
+  "kind": "module",
+  "category": "collections",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Используйте для рейтинга школ: строка — номер, логотип, название, оценка, число курсов и отзывов. В продукте 2 узла на 2 страницах.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "overflow-hidden",
+      "rounded-3xl",
+      "border",
+      "border-ui-black-100",
+      "pb-1"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/rating-table/index.html",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 640
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/collections/rating-table.md."
+    }
+  ],
+  "accessibility": [
+    "Корень (`<div>`) в фокус не попадает. На один экземпляр по Tab проходят: 10 ссылок — у 1 из 2; 1 кнопка и 20 ссылок — у 1 из 2. По корпусу (31 узел): `Link` — 30, `Button` — 1."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "div.overflow-hidden.rounded-3xl.border.border-ui-black-100.pb-1",
+        "found": 2,
+        "pages": [
+          "courses-listing",
+          "rating"
+        ]
+      }
+    },
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "Строка (рейтинг)",
+          "nodeId": "9987:36309",
+          "componentKey": null
+        }
+      ]
+    }
+  ],
+  "unknowns": [
+    "**Классы без правила.** В разметке продукта стоят классы, у которых нет объявления ни в одном из 22 файлов корпуса: `v-popper--has-tooltip`. Это не пробел пакета, а находка о продукте: класс написан, правило отсутствует. В `ui/` они не заводятся.",
+    "**Заглушки содержимого.** 10 ссылок на пользовательское и партнёрское содержимое (`habrastorage.org`, баннеры `assets.habr.com`) на витрине заменены локальной заглушкой `ui/assets/images/content-placeholder.svg`. Чужое содержимое в пакет не копируется; геометрия компонента от этого не меняется — размер задаёт он сам. В «Анатомии» ниже продовые пути сохранены как есть."
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/collections/rating-table.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R5-08",
+    "anchor": "showcase/components.html#c-rating-table",
+    "originalKind": "module",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для рейтинга школ: строка — номер, логотип, название, оценка, число курсов и отзывов. В продукте 2 узла на 2 страницах.",
+    "whenNot": [
+      "Для карточной выдачи школ — `SchoolCard`."
+    ],
+    "related": [
+      "school-card"
+    ]
+  },
+  "dependencies": [
+    "entity-logo",
+    "link"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "hover",
+      "focus-visible"
+    ],
+    "captured": [
+      "default",
+      "hover",
+      "focus-visible"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

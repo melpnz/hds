@@ -1,0 +1,122 @@
+{
+  "$schema": "../../schema.json",
+  "id": "feedback-form",
+  "title": "FeedbackForm",
+  "kind": "module",
+  "category": "forms",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma"
+    ],
+    "confidence": "medium",
+    "scope": "design-source-only"
+  },
+  "purpose": "**В продукте этого компонента нет.** Он существует только в макете, и это не пробел съёмки, а установленный факт — разбор в `notes` записи реестра:",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "crs-feedback-form"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/feedback-form/index.html",
+      "covers": [
+        "default"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 640
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/forms/feedback-form.md."
+    },
+    {
+      "type": "coverage-warning",
+      "text": "Источник figma-only: компонент не подтверждён в продакшене."
+    }
+  ],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "обратная связь",
+          "nodeId": "I10123:48314;13496:153645",
+          "componentKey": null
+        }
+      ]
+    }
+  ],
+  "unknowns": [
+    "**Корень введён пакетом.** `crs-feedback-form` — не класс продукта. METHOD §6.5 допускает корень вида `crs-<id>` ровно для этого случая: снятой разметки, из которой можно взять настоящее имя, не существует. Префикс `crs-` нужен, чтобы имя пакета нельзя было принять за класс продукта.",
+    "**Тексты.** Все тексты — дословно из инстанса на детской витрине. Сегмент «Телеграм» выбран, поэтому поля — Username и Почта; что показывается при «Телефоне», в узле не нарисовано. Ссылки согласия ведут на якорь витрины — адресов документов в макете нет.",
+    "**Ассеты.** Иконки полей — экспорты макета `ui/assets/icons/contact-telegram.svg` и `contact-mail.svg`: в спрайте продукта их нет. Цвет `#A6A7A9` зашит в экспорт.",
+    "**Состояния.** Требуемые состояния записи (`default`) в макете отдельными вариантами не нарисованы, а измерить их негде. Разбор — [`components/STATE-CAPTURE.md`](../STATE-CAPTURE.md).",
+    "**Статус терминальный.** Правило манифеста: `sourceScope: figma-only` не доходит до `complete`/`partial`. Пока компонент не найден в продукте, запись остаётся `figma-only`, сколько бы вёрстки к ней ни прибавилось."
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/forms/feedback-form.md",
+    "status": "figma-only",
+    "scope": "figma-only",
+    "step": "R4-16",
+    "anchor": "showcase/components.html#c-feedback-form",
+    "originalKind": "module",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "**В продукте этого компонента нет.** Он существует только в макете, и это не пробел съёмки, а установленный факт — разбор в `notes` записи реестра:",
+    "whenNot": [],
+    "related": []
+  },
+  "dependencies": [
+    "button-group",
+    "button",
+    "text-input"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default"
+    ],
+    "captured": [
+      "default"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": null,
+  "sourceConflicts": []
+}

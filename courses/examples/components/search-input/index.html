@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SearchInput — Хабр Курсы</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../../../ui/courses.css">
+  <style>html,body{margin:0;background:#fff}body{box-sizing:border-box;padding:24px}.example-root{width:min(720px,100%)}.example-root>:first-child{margin:0!important}
+.crs-field-guide{display:grid;gap:24px;color:#2c2e34;font-family:Inter,sans-serif}
+.crs-field-section{display:grid;gap:10px}
+.crs-field-section__title{margin:0;font-size:14px;line-height:20px}
+.crs-field-sizes{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+.crs-field-sample{display:grid;gap:6px;min-width:0}
+.crs-field-sample__label{color:#697386;font-size:11px;line-height:16px}
+.crs-field-matrix{display:grid;gap:8px}
+.crs-field-matrix__head,.crs-field-matrix__row{display:grid;grid-template-columns:72px repeat(2,minmax(0,1fr));gap:10px;align-items:center}
+.crs-field-matrix__head{color:#697386;font-size:11px;line-height:16px}
+.crs-field-state-name{color:#697386;font-size:11px;line-height:16px}
+.crs-field{position:relative;box-sizing:border-box;display:flex;width:100%;min-width:0;align-items:center;gap:4px;height:40px;padding:8px 12px;border:1px solid #e9e9ea;border-radius:12px;background:#fff;color:#2c2e34;font:400 16px/22px Inter,sans-serif;text-align:left;transition:border-color .15s ease}
+.crs-field[data-size=xl]{height:56px;padding-left:16px;padding-right:12px}
+.crs-field:hover,.crs-field[data-state=hover]{border-color:#dededf}
+.crs-field:focus,.crs-field:focus-within,.crs-field[data-state=focus]{border-color:#2c2e34;outline:0}
+.crs-field[data-state=error]{border-color:#e84444}
+.crs-field[data-state=disabled]{border-color:#e9e9ea;color:#d3d3d4;cursor:not-allowed}
+.crs-field input,.crs-field textarea{box-sizing:border-box;min-width:0;flex:1;margin:0;padding:0;border:0;outline:0;background:transparent;color:inherit;font:inherit;line-height:22px}
+.crs-field input::placeholder,.crs-field textarea::placeholder{color:#909194;opacity:1}
+.crs-field[data-state=disabled] input::placeholder,.crs-field[data-state=disabled] textarea::placeholder{color:#d3d3d4}
+.crs-field svg{display:block;width:24px;height:24px;flex:0 0 24px;color:#909194}
+.crs-field[data-state=disabled] svg{color:#d3d3d4}
+.crs-field--select{appearance:none;cursor:pointer}
+.crs-field--select .crs-field__text{min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#909194}
+.crs-field--select[data-filled=true] .crs-field__text{color:#2c2e34}
+.crs-field--select[data-open=true] svg{transform:rotate(180deg)}
+.crs-field--multiselect{height:40px;min-height:40px;align-content:flex-start;flex-wrap:wrap;padding:3px 4px}
+.crs-field--multiselect[data-size=xl]{height:56px;min-height:56px;padding:11px 4px 11px 8px}
+.crs-field--multiselect input{min-width:84px;height:32px;padding:0 8px}
+.crs-field-chip{box-sizing:border-box;display:inline-flex;height:32px;align-items:center;gap:4px;padding:4px 4px 4px 8px;border-radius:8px;background:#f1f1f1;color:#2c2e34;font-size:14px;line-height:20px;white-space:nowrap}
+.crs-field-chip svg{width:20px;height:20px;flex-basis:20px;color:#909194}
+.crs-field--textarea{height:82px;align-items:flex-start;padding:8px 12px}
+.crs-field--textarea textarea{height:64px;padding-top:2px;resize:none}
+.crs-field-dropdown-demo{width:min(360px,100%)}
+.crs-field-dropdown{position:relative;box-sizing:border-box;height:216px;margin-top:4px;overflow:hidden;border:1px solid #e9e9ea;border-radius:12px;background:#fff;box-shadow:0 4px 6px -1px rgba(0,0,0,.05),0 2px 4px -2px rgba(0,0,0,.05)}
+.crs-field-dropdown__list{box-sizing:border-box;width:calc(100% - 16px);height:100%;padding:8px 0;overflow:hidden}
+.crs-field-dropdown__row{box-sizing:border-box;display:flex;width:100%;height:40px;align-items:center;padding:8px 24px 8px 16px;border:0;background:transparent;color:#2c2e34;font:400 14px/20px Inter,sans-serif;text-align:left;cursor:pointer}
+.crs-field-dropdown__row:hover,.crs-field-dropdown__row:focus-visible{background:#f1f1f1;outline:0}
+.crs-field-dropdown__scroll{position:absolute;z-index:2;top:-1px;right:-1px;bottom:-1px;box-sizing:border-box;width:16px;padding:8px 6px}
+.crs-field-dropdown__track{display:block;width:4px;height:100%;overflow:hidden;border-radius:200px;background:#e9e9ea}
+.crs-field-dropdown__thumb{display:block;width:4px;height:50px;border-radius:200px;background:#909194}
+@media(max-width:600px){.crs-field-matrix__head{display:none}.crs-field-matrix__row{grid-template-columns:1fr}.crs-field-state-name{margin-top:6px}.crs-field-sizes{grid-template-columns:1fr}}
+</style>
+</head>
+<body data-preview-layout="constrained"><div class="example-root"><div class="crs-field-guide"><section class="crs-field-section"><h2 class="crs-field-section__title">Размеры</h2><div class="crs-field-sizes"><span class="crs-field-sample"><span class="crs-field-sample__label">M · 40 px</span><label class="crs-field crs-field--search-input" data-size="m" data-state="default" data-filled="false" data-open="false"><input type="search" aria-label="Поиск по курсам" placeholder="Искать на Хабр Курсах" value=""><svg class="" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="../../../ui/assets/icons/sprite.svg#search"></use></svg></label></span><span class="crs-field-sample"><span class="crs-field-sample__label">XL · 56 px · SearchForm</span><label class="crs-field crs-field--search-input" data-size="xl" data-state="default" data-filled="false" data-open="false"><input type="search" aria-label="Поиск по курсам" placeholder="Искать на Хабр Курсах" value=""><svg class="" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="../../../ui/assets/icons/sprite.svg#search"></use></svg></label></span></div></section><section class="crs-field-section"><h2 class="crs-field-section__title">Состояния · M</h2><div class="crs-field-matrix"><div class="crs-field-matrix__head"><span></span><span>Пустое</span><span>Заполненное</span></div><div class="crs-field-matrix__row"><span class="crs-field-state-name">Default</span><label class="crs-field crs-field--search-input" data-size="m" data-state="default" data-filled="false" data-open="false"><input type="search" aria-label="Поиск по курсам" placeholder="Искать на Хабр Курсах" value=""><svg class="" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="../../../ui/assets/icons/sprite.svg#search"></use></svg></label><label class="crs-field crs-field--search-input" data-size="m" data-state="default" data-filled="true" data-open="false"><input type="search" aria-label="Поиск по курсам" placeholder="Искать на Хабр Курсах" value="Аналитика"><svg class="" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="../../../ui/assets/icons/sprite.svg#search"></use></svg></label></div><div class="crs-field-matrix__row"><span class="crs-field-state-name">Hover</span><label class="crs-field crs-field--search-input" data-size="m" data-state="hover" data-filled="false" data-open="false"><input type="search" aria-label="Поиск по курсам" placeholder="Искать на Хабр Курсах" value=""><svg class="" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="../../../ui/assets/icons/sprite.svg#search"></use></svg></label><label class="crs-field crs-field--search-input" data-size="m" data-state="hover" data-filled="true" data-open="false"><input type="search" aria-label="Поиск по курсам" placeholder="Искать на Хабр Курсах" value="Аналитика"><svg class="" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="../../../ui/assets/icons/sprite.svg#search"></use></svg></label></div><div class="crs-field-matrix__row"><span class="crs-field-state-name">Focus</span><label class="crs-field crs-field--search-input" data-size="m" data-state="focus" data-filled="false" data-open="false"><input type="search" aria-label="Поиск по курсам" placeholder="Искать на Хабр Курсах" value=""><svg class="" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="../../../ui/assets/icons/sprite.svg#search"></use></svg></label><label class="crs-field crs-field--search-input" data-size="m" data-state="focus" data-filled="true" data-open="false"><input type="search" aria-label="Поиск по курсам" placeholder="Искать на Хабр Курсах" value="Аналитика"><svg class="" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="../../../ui/assets/icons/sprite.svg#search"></use></svg></label></div><div class="crs-field-matrix__row"><span class="crs-field-state-name">Disabled</span><label class="crs-field crs-field--search-input" data-size="m" data-state="disabled" data-filled="false" data-open="false"><input type="search" aria-label="Поиск по курсам" placeholder="Искать на Хабр Курсах" value="" disabled><svg class="" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="../../../ui/assets/icons/sprite.svg#search"></use></svg></label><label class="crs-field crs-field--search-input" data-size="m" data-state="disabled" data-filled="true" data-open="false"><input type="search" aria-label="Поиск по курсам" placeholder="Искать на Хабр Курсах" value="Аналитика" disabled><svg class="" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="../../../ui/assets/icons/sprite.svg#search"></use></svg></label></div><div class="crs-field-matrix__row"><span class="crs-field-state-name">Error</span><label class="crs-field crs-field--search-input" data-size="m" data-state="error" data-filled="false" data-open="false"><input type="search" aria-label="Поиск по курсам" placeholder="Искать на Хабр Курсах" value="" aria-invalid="true"><svg class="" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="../../../ui/assets/icons/sprite.svg#search"></use></svg></label><label class="crs-field crs-field--search-input" data-size="m" data-state="error" data-filled="true" data-open="false"><input type="search" aria-label="Поиск по курсам" placeholder="Искать на Хабр Курсах" value="Аналитика" aria-invalid="true"><svg class="" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><use xlink:href="../../../ui/assets/icons/sprite.svg#search"></use></svg></label></div></div></section></div></div></body>
+</html>

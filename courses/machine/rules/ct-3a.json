@@ -1,0 +1,26 @@
+{
+  "id": "CT-3a",
+  "kind": "rule",
+  "area": "Тексты",
+  "statement": "Кнопка перехода в карточке курса и школы — наречие: «Далее» (`CourseCard`), «Подробнее» (`SchoolCard`)",
+  "coverage": "144 кнопки из 144",
+  "exception": "Нарушитель — `PromoCard` (промокоды): «Посмотреть» (4) и действие «Открыть код» (16) — инфинитив",
+  "predicate": {
+    "type": "buttonLabels",
+    "viewports": [
+      1440
+    ],
+    "scope": "card",
+    "allowed": [
+      "Далее",
+      "Подробнее"
+    ]
+  },
+  "appliesTo": [
+    "courses-listing",
+    "education-centers-listing",
+    "education-center"
+  ],
+  "humanDoc": "docs/guide/composition.md",
+  "showcase": "showcase/pages.html#rule-CT-3a"
+}

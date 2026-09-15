@@ -1,0 +1,252 @@
+{
+  "$schema": "../../schema.json",
+  "id": "modal",
+  "title": "Modal",
+  "kind": "module",
+  "category": "overlays",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma"
+    ],
+    "confidence": "high",
+    "scope": "design-source-only"
+  },
+  "purpose": "Базовая диалоговая оболочка для содержимого, требующего отдельного контекста, подтверждения или отмены.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "crs-modal"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "open",
+      "closed",
+      "scroll"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "playground",
+      "title": "Modal · варианты и поведение",
+      "file": "examples/components/modal/index.html",
+      "covers": [
+        "default",
+        "open",
+        "closed",
+        "scroll",
+        "desktop",
+        "tablet",
+        "mobile",
+        "image",
+        "header-actions",
+        "pinned-header",
+        "pinned-footer",
+        "primary",
+        "secondary"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "constrained",
+        "width": 720
+      },
+      "authority": [
+        "figma"
+      ],
+      "scope": "design-source-only"
+    }
+  ],
+  "variantMatrix": {
+    "devices": [
+      "desktop",
+      "tablet",
+      "mobile"
+    ],
+    "optional": [
+      "image",
+      "iconBack",
+      "iconRight",
+      "buttonMain",
+      "buttonSecondary",
+      "pinHeader",
+      "pinFooter",
+      "scroll"
+    ],
+    "slots": 12
+  },
+  "variants": [
+    {
+      "id": "device",
+      "use": "desktop и tablet: centered dialog с radius 24; mobile: bottom sheet с radius 24 только сверху и handle 64×4."
+    },
+    {
+      "id": "media",
+      "use": "Optional image slot высотой 140 px."
+    },
+    {
+      "id": "header",
+      "use": "Title, optional back/right icons; pinHeader добавляет разделитель над scroll body."
+    },
+    {
+      "id": "content",
+      "use": "От 1 до 12 независимых slots; body прокручивается отдельно."
+    },
+    {
+      "id": "footer",
+      "use": "Optional secondary/main Button M; pinFooter добавляет разделитель."
+    }
+  ],
+  "componentFamily": {
+    "id": "modal",
+    "name": "Modal",
+    "member": "Modal",
+    "legacyId": null
+  },
+  "layoutRules": [
+    {
+      "id": "device",
+      "context": "Modal",
+      "behavior": "Desktop/tablet центрируют диалог; mobile закрепляет его у нижней границы viewport.",
+      "implementation": "320px shell; full radius 24px или 24px 24px 0 0; max-height 800/700px."
+    },
+    {
+      "id": "scroll-body",
+      "context": "Переполнение",
+      "behavior": "Header и footer остаются на месте, прокручивается только body.",
+      "implementation": "grid-template-rows:auto auto minmax(0,1fr) auto; body min-height:0; overflow-y:auto."
+    },
+    {
+      "id": "slots",
+      "context": "Состав",
+      "behavior": "Изображение, иконки header, до 12 content slots и обе кнопки footer включаются независимо.",
+      "implementation": "Опциональные DOM slots; gap body 16px, внутренние отступы 24px."
+    },
+    {
+      "id": "dismiss",
+      "context": "Interaction",
+      "behavior": "Overlay, Escape и подтверждение закрывают Modal с возвратом фокуса.",
+      "implementation": "role=dialog, aria-modal=true, focus return to trigger."
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/overlays/modal.md."
+    },
+    {
+      "type": "guidance",
+      "text": "Базовый Modal и его property matrix взяты из Courses Figma education-lib node 1144:25049. В playground параметры переключаются без размножения iframe."
+    },
+    {
+      "type": "guidance",
+      "text": "PromoCodeModal — не отдельная оболочка, а доменный content-вариант Modal; существующий id сохранён для обратной совместимости."
+    },
+    {
+      "type": "coverage-warning",
+      "text": "Источник figma-only: компонент не подтверждён в продакшене."
+    }
+  ],
+  "accessibility": [
+    "Корень использует role=\"dialog\" и aria-modal=\"true\"; Escape закрывает диалог, после закрытия фокус возвращается в trigger."
+  ],
+  "evidence": [
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "layerName": "Modal",
+          "nodeId": "1144:25049",
+          "componentKey": null
+        }
+      ]
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "1144:29417",
+        "layerName": "Modal · desktop"
+      }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "4726:1139",
+        "layerName": "Modal · tablet"
+      }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "1144:31171",
+        "layerName": "Modal · mobile"
+      }
+    }
+  ],
+  "unknowns": [
+    "Production-вхождения базовой оболочки в снятом публичном корпусе не подтверждены; спецификация собрана по Courses Figma."
+  ],
+  "source": {
+    "version": "v0.2",
+    "spec": "guide/components/overlays/modal.md",
+    "status": "complete",
+    "scope": "figma-only",
+    "step": "v0.2-modal-family",
+    "anchor": "viewer/index.html#modal",
+    "originalKind": "module",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Базовая диалоговая оболочка для содержимого, требующего отдельного контекста, подтверждения или отмены.",
+    "whenNot": [
+      "Для быстрого мобильного выбора используйте специализированный bottom sheet.",
+      "Не создавайте новую модальную оболочку для каждого доменного сценария — наполняйте слоты Modal."
+    ],
+    "related": [
+      "promo-code-modal",
+      "filter-modal",
+      "button"
+    ]
+  },
+  "dependencies": [
+    "button",
+    "sprite-icon"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "open",
+      "closed",
+      "scroll"
+    ],
+    "captured": [
+      "default",
+      "open",
+      "closed",
+      "scroll"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "Добавлен в v0.2 по Courses Figma education-lib, Modal component set node 1144:25049.",
+  "sourceConflicts": []
+}

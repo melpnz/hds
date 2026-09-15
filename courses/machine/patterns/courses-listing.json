@@ -1,0 +1,286 @@
+{
+  "$schema": "../../schema.json",
+  "id": "courses-listing",
+  "title": "courses listing",
+  "kind": "pattern",
+  "category": "pages",
+  "family": "листинг",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Композиция страницы семейства «листинг», снятая по адресу career.habr.com/courses.",
+  "areas": [
+    "section-1",
+    "section-2",
+    "section-3",
+    "section-4",
+    "section-5",
+    "section-6",
+    "section-7",
+    "section-8",
+    "section-9"
+  ],
+  "modules": [
+    "course-card",
+    "card-grid",
+    "authors-block",
+    "section",
+    "link-grid",
+    "numbered-course-item",
+    "rating-table"
+  ],
+  "components": [],
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "app-container"
+    ],
+    "styles": [
+      "ui/courses.css",
+      "ui/page-examples.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [],
+    "feature": [
+      "assembled"
+    ],
+    "domain": []
+  },
+  "rules": [
+    "machine/rules/sh-1.json",
+    "machine/rules/sh-2.json",
+    "machine/rules/sh-4.json",
+    "machine/rules/sh-5.json",
+    "machine/rules/l-1.json",
+    "machine/rules/l-2.json",
+    "machine/rules/l-3a.json",
+    "machine/rules/l-5a.json",
+    "machine/rules/c-1.json",
+    "machine/rules/c-2.json",
+    "machine/rules/c-3a.json",
+    "machine/rules/c-3b.json",
+    "machine/rules/c-3c.json",
+    "machine/rules/a-1.json",
+    "machine/rules/a-2.json",
+    "machine/rules/a-3.json",
+    "machine/rules/c-4.json",
+    "machine/rules/c-5.json",
+    "machine/rules/r-1.json",
+    "machine/rules/r-2.json",
+    "machine/rules/r-3.json",
+    "machine/rules/r-4.json",
+    "machine/rules/ct-1.json",
+    "machine/rules/ct-2a.json",
+    "machine/rules/ct-3a.json",
+    "machine/rules/ct-3b.json"
+  ],
+  "responsive": [
+    {
+      "width": 1024,
+      "grids": [
+        "4 × 235"
+      ],
+      "footerColumns": 4,
+      "header": 64,
+      "sameOrder": true
+    },
+    {
+      "width": 768,
+      "grids": [
+        "3 × 232"
+      ],
+      "footerColumns": 3,
+      "header": 64,
+      "sameOrder": true
+    },
+    {
+      "width": 375,
+      "grids": [
+        "1 × 327"
+      ],
+      "footerColumns": 1,
+      "header": 108,
+      "sameOrder": true
+    }
+  ],
+  "examples": [
+    {
+      "id": "assembled",
+      "title": "Собранная страница",
+      "file": "examples/pages/courses-listing/index.html",
+      "covers": [
+        "production-composition"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 760
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Спецификация страницы: guide/pages/courses-listing.md."
+    },
+    {
+      "type": "coverage-warning",
+      "text": "Карусели и рекламные слоты показаны честными заглушками: библиотека Swiper не входит в пакет."
+    }
+  ],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "production",
+      "ref": "career.habr.com/courses"
+    }
+  ],
+  "unknowns": [
+    "Carousel · AdSlot · баннеры рекламы, 12 слайдов AdCard. Лента Swiper держится на",
+    "Carousel · ReviewCard · отзывы, 8 слайдов ReviewCard. Лента Swiper держится на б"
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/pages/courses-listing.md",
+    "standalone": "showcase/pages/courses-listing.html",
+    "showcase": "showcase/pages.html#p-courses-listing"
+  },
+  "frame": {
+    "container": "1124px + 24px",
+    "column": 1076,
+    "columnGap": "48px",
+    "columnPadTop": "24px",
+    "header": 64,
+    "hero": null,
+    "footer": 192
+  },
+  "sequence": [
+    {
+      "tag": "section",
+      "heading": null,
+      "modules": [],
+      "components": [],
+      "stub": "Carousel · AdSlot · баннеры рекламы, 12 слайдов AdCard. Лента Swiper держится на"
+    },
+    {
+      "tag": "div",
+      "heading": null,
+      "modules": [
+        {
+          "id": "course-card",
+          "count": 8
+        },
+        {
+          "id": "card-grid",
+          "count": 1
+        }
+      ],
+      "components": []
+    },
+    {
+      "tag": "section",
+      "heading": "Больше об авторах",
+      "modules": [
+        {
+          "id": "authors-block",
+          "count": 1
+        }
+      ],
+      "components": []
+    },
+    {
+      "tag": "hr",
+      "heading": null,
+      "modules": [],
+      "components": []
+    },
+    {
+      "tag": "section",
+      "heading": "Отзывы об онлайн-школах",
+      "modules": [
+        {
+          "id": "section",
+          "count": 1
+        }
+      ],
+      "components": [],
+      "stub": "Carousel · ReviewCard · отзывы, 8 слайдов ReviewCard. Лента Swiper держится на б"
+    },
+    {
+      "tag": "section",
+      "heading": "Промокоды и акции",
+      "modules": [
+        {
+          "id": "link-grid",
+          "count": 1
+        }
+      ],
+      "components": []
+    },
+    {
+      "tag": "section",
+      "heading": "Популярные направления",
+      "modules": [
+        {
+          "id": "link-grid",
+          "count": 1
+        }
+      ],
+      "components": []
+    },
+    {
+      "tag": "section",
+      "heading": "ТОП онлайн-курсов",
+      "modules": [
+        {
+          "id": "numbered-course-item",
+          "count": 3
+        }
+      ],
+      "components": []
+    },
+    {
+      "tag": "section",
+      "heading": "Рейтинг лучших школ 2026",
+      "modules": [
+        {
+          "id": "section",
+          "count": 1
+        },
+        {
+          "id": "rating-table",
+          "count": 1
+        }
+      ],
+      "components": []
+    }
+  ],
+  "sequenceSource": {
+    "page": "showcase/pages/courses-listing.html",
+    "note": "состав и счётчики сняты с собранной страницы витрины; длинные списки на ней сокращены, полные числа — в pages/*.md",
+    "trimmed": [
+      "карточек курсов из 48",
+      "пунктов ТОП-списка из 10",
+      "строк рейтинга из 10"
+    ],
+    "stubs": [
+      "баннеры рекламы, 12 слайдов AdCard",
+      "отзывы, 8 слайдов ReviewCard"
+    ]
+  }
+}

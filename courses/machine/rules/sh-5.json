@@ -1,0 +1,24 @@
+{
+  "id": "SH-5",
+  "kind": "rule",
+  "area": "Оболочка",
+  "statement": "Фон страницы белый `#fff`",
+  "coverage": "10/10",
+  "exception": "В корпусе нет. Нарушит тонированный фон под колонкой",
+  "predicate": {
+    "type": "style",
+    "viewports": [
+      1440
+    ],
+    "selector": "body",
+    "match": "all",
+    "expect": {
+      "background-color": "rgb(255, 255, 255)"
+    }
+  },
+  "appliesTo": [
+    "all"
+  ],
+  "humanDoc": "docs/guide/composition.md",
+  "showcase": "showcase/pages.html#rule-SH-5"
+}

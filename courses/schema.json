@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Хабр Курсы — machine-first showcase item",
+  "type": "object",
+  "required": ["id", "title", "kind", "category", "maturity", "knowledge", "purpose", "implementation", "states", "examples", "evidence", "unknowns"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9-]+$" },
+    "title": { "type": "string" },
+    "kind": { "enum": ["foundation", "component", "module", "pattern"] },
+    "category": { "type": "string" },
+    "maturity": {
+      "type": "object",
+      "required": ["spec", "markup"],
+      "properties": {
+        "spec": { "enum": ["complete", "partial", "missing"] },
+        "markup": { "enum": ["available", "partial", "missing"] }
+      },
+      "additionalProperties": false
+    },
+    "knowledge": { "type": "object", "required": ["authority", "confidence", "scope"] },
+    "purpose": { "type": "string" },
+    "implementation": { "type": "object", "required": ["markup", "styles"] },
+    "states": { "type": "object", "required": ["ui", "feature", "domain"] },
+    "examples": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "file", "preview"],
+        "properties": {
+          "presentation": {
+            "type": "object",
+            "required": ["layout"],
+            "properties": {
+              "layout": { "enum": ["fit-content", "constrained", "canvas", "context"] },
+              "width": { "type": "integer", "minimum": 1 },
+              "height": { "type": "integer", "minimum": 1 }
+            },
+            "additionalProperties": false
+          },
+          "preview": {
+            "oneOf": [
+              {
+                "type": "object",
+                "required": ["mode"],
+                "properties": { "mode": { "const": "intrinsic" } },
+                "additionalProperties": false
+              },
+              {
+                "type": "object",
+                "required": ["mode", "widths", "height"],
+                "properties": {
+                  "mode": { "const": "viewport" },
+                  "widths": { "type": "array", "const": [320, 480, 768, 1024] },
+                  "height": { "type": "integer", "minimum": 1 }
+                },
+                "additionalProperties": false
+              }
+            ]
+          }
+        }
+      }
+    },
+    "previewNotes": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["type", "text"],
+        "properties": {
+          "type": { "enum": ["guidance", "assumption", "coverage-warning"] },
+          "text": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "evidence": { "type": "array" },
+    "unknowns": { "type": "array", "items": { "type": "string" } },
+    "rules": { "type": "array", "items": { "type": "string" } },
+    "variants": { "type": "array" },
+    "variantMatrix": { "type": "object" },
+    "layoutRules": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["id", "context", "behavior", "implementation"],
+        "properties": {
+          "id": { "type": "string" },
+          "context": { "type": "string" },
+          "behavior": { "type": "string" },
+          "implementation": { "type": "string" },
+          "evidence": { "type": "string" }
+        },
+        "additionalProperties": false
+      }
+    },
+    "accessibility": { "type": "array", "items": { "type": "string" } },
+    "responsive": { "type": "array" },
+    "family": { "type": "string" },
+    "areas": { "type": ["array", "null"] },
+    "modules": { "type": "array" },
+    "components": { "type": "array" }
+  }
+}

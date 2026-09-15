@@ -1,0 +1,179 @@
+{
+  "$schema": "../../schema.json",
+  "id": "avatar",
+  "title": "Avatar",
+  "kind": "component",
+  "category": "data-display",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "figma"
+    ],
+    "confidence": "high",
+    "scope": "mixed-evidence"
+  },
+  "purpose": "Используйте для фото человека — эксперта, редактора, автора отзыва. В продукте 54 узла на 6 страницах: в `PersonCard` (30), `ReviewCard` (20), шапке профиля (1) и блоке «Больше об авторах» на `/courses` (3). Аватар всегда круглый.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "rounded-full"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "empty"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [
+    "machine/rules/c-3c.json"
+  ],
+  "examples": [
+    {
+      "id": "sizes",
+      "title": "Дефолт · все размеры",
+      "file": "examples/components/avatar/sizes.html",
+      "covers": [
+        "empty",
+        "size-scale"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "constrained",
+        "width": 720
+      },
+      "authority": [
+        "figma"
+      ]
+    },
+    {
+      "id": "production-context",
+      "title": "Production-контекст",
+      "file": "examples/components/avatar/index.html",
+      "covers": [
+        "default",
+        "empty"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "fit-content"
+      },
+      "authority": [
+        "production"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "size",
+      "use": "24, 32, 36, 40, 48, 56, 68 и 100 px по Courses Figma."
+    },
+    {
+      "id": "content",
+      "use": "Пользовательское изображение или дефолтный Courses placeholder."
+    },
+    {
+      "id": "shape",
+      "use": "Круг на всех размерах, radius/full = 200 px."
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/data-display/avatar.md."
+    },
+    {
+      "type": "guidance",
+      "text": "Размеры и круглая форма взяты из Courses Figma: education-lib, avatar/user, node 722:1599; форма SVG переиспользована из Career v1.2, цвета адаптированы к Courses: #F1F1F1 и #D3D3D4."
+    },
+    {
+      "type": "guidance",
+      "text": "Второй пример сохраняет ранее зафиксированный production-контекст и его позиционирование."
+    }
+  ],
+  "accessibility": [
+    "Элемент не интерактивен: ни корень `<img>`, ни что-либо внутри в порядок табуляции не входит — ссылок, кнопок, полей и `tabindex` нет ни в одном из 54 экземпляров."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "img.rounded-full[class*='--avatar-size']",
+        "found": 54,
+        "pages": [
+          "author",
+          "authors",
+          "courses-listing",
+          "editors",
+          "education-center",
+          "reviews"
+        ]
+      }
+    },
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "layerName": "avatar/user",
+          "nodeId": null,
+          "componentKey": "02b81a653484ef71026c5fbf331dc40aaaa1a220"
+        }
+      ]
+    }
+  ],
+  "unknowns": [
+    "**Заглушки содержимого.** 1 ссылка на пользовательское и партнёрское содержимое (`habrastorage.org`, баннеры `assets.habr.com`) на витрине заменены локальной заглушкой `ui/assets/images/content-placeholder.svg`. Чужое содержимое в пакет не копируется; геометрия компонента от этого не меняется — размер задаёт он сам. В «Анатомии» ниже продовые пути сохранены как есть."
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/data-display/avatar.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R2-04",
+    "anchor": "showcase/components.html#c-avatar",
+    "originalKind": "primitive",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для фото человека — эксперта, редактора, автора отзыва. В продукте 54 узла на 6 страницах: в `PersonCard` (30), `ReviewCard` (20), шапке профиля (1) и блоке «Больше об авторах» на `/courses` (3). Аватар всегда круглый.",
+    "whenNot": [
+      "Для организаций — логотип школы это `EntityLogo`: скругление 12 и белая рамка.",
+      "Как ссылку сам по себе: кликабельна карточка или шапка вокруг него."
+    ],
+    "related": [
+      "entity-logo"
+    ]
+  },
+  "dependencies": [],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "empty"
+    ],
+    "captured": [
+      "default",
+      "empty"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

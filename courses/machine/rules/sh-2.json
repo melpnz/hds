@@ -1,0 +1,29 @@
+{
+  "id": "SH-2",
+  "kind": "rule",
+  "area": "Оболочка",
+  "statement": "Шапка — 64 в высоту на градиенте `bg-main-gradient-first` (`ui-blue-500 → ui-blue-400`)",
+  "coverage": "10/10 на 1440, 1024 и 768; на 375 — 9/10",
+  "exception": "Витрина курсов на 375 — 108: поле поиска уходит второй строкой (`phone:order-last phone:basis-full`)",
+  "predicate": {
+    "type": "style",
+    "viewports": [
+      1440,
+      1024,
+      768
+    ],
+    "selector": "header",
+    "match": "all",
+    "expect": {
+      "height": "64px"
+    },
+    "expectMatch": {
+      "background-image": "linear-gradient"
+    }
+  },
+  "appliesTo": [
+    "all"
+  ],
+  "humanDoc": "docs/guide/composition.md",
+  "showcase": "showcase/pages.html#rule-SH-2"
+}

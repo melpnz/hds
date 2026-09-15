@@ -1,0 +1,22 @@
+{
+  "id": "R-4",
+  "kind": "rule",
+  "area": "Адаптив",
+  "statement": "Порядок блоков главной колонки на всех ширинах один: сужение складывает колонки, но не переставляет блоки",
+  "coverage": "10/10 на четырёх ширинах",
+  "exception": "Внутри шапки витрины курсов поиск уходит последним (`phone:order-last`) — перестановка внутри блока, не блоков",
+  "predicate": {
+    "type": "order",
+    "viewports": [
+      1440,
+      1024,
+      768,
+      375
+    ]
+  },
+  "appliesTo": [
+    "all"
+  ],
+  "humanDoc": "docs/guide/composition.md",
+  "showcase": "showcase/pages.html#rule-R-4"
+}

@@ -1,0 +1,212 @@
+{
+  "$schema": "../../schema.json",
+  "id": "multi-select",
+  "title": "MultiSelect",
+  "kind": "component",
+  "category": "forms",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "figma"
+    ],
+    "confidence": "medium",
+    "scope": "mixed-evidence"
+  },
+  "purpose": "Выбор нескольких значений из списка с поиском. В продукте не встречается; снят как `MultiSelect` в Storybook.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "wrapper"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "checked",
+      "open",
+      "closed",
+      "disabled",
+      "invalid",
+      "error"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "field-family",
+      "title": "MultiSelect · размеры и состояния",
+      "file": "examples/components/multi-select/index.html",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "disabled",
+        "invalid",
+        "open",
+        "size-m",
+        "size-xl"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "constrained",
+        "width": 720
+      },
+      "authority": [
+        "production",
+        "figma"
+      ],
+      "scope": "mixed-evidence"
+    }
+  ],
+  "variants": [
+    {
+      "id": "size",
+      "use": "M: 40 px; XL / SearchForm: 56 px. В XL слева 16 px, справа 12 px."
+    },
+    {
+      "id": "content",
+      "use": "Пустое поле или выбранные значения в чипах."
+    },
+    {
+      "id": "state",
+      "use": "default, hover, focus-visible, disabled и invalid/error."
+    },
+    {
+      "id": "dropdown",
+      "use": "Открытая панель: gap 4 px, высота 216 px, строки 40 px и прокрутка."
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/forms/multi-select.md."
+    },
+    {
+      "type": "guidance",
+      "text": "Общая оболочка и состояния взяты из Courses Figma: education-lib, canvas 670:8259; XL 56 px — из SearchForm, node 15074:233173."
+    },
+    {
+      "type": "guidance",
+      "text": "В M и XL используется один текстовый стиль 16/22 regular и SVG-иконки 24×24."
+    },
+    {
+      "type": "guidance",
+      "text": "Открытый dropdown сверён с Courses Figma: Select node 4850:2101, MultiSelect dropdown node 4393:6213. Панель общая для обоих компонентов; различается содержимое триггера."
+    },
+    {
+      "type": "coverage-warning",
+      "text": "Источник storybook-only: компонент не подтверждён в продакшене."
+    }
+  ],
+  "accessibility": [
+    "Нативный `<input>` получает фокус по Tab и имеет доступное имя.",
+    "`disabled` задаётся нативно; ошибка — `aria-invalid=\"true\"` и связанный текст ошибки."
+  ],
+  "evidence": [
+    {
+      "type": "storybook",
+      "data": [
+        {
+          "story": "forms-multiselect--base-story",
+          "file": null,
+          "renders": true,
+          "note": "поле с поиском, input min-h 38, иконка #search справа; список закрыт"
+        }
+      ]
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "670:8259",
+        "layerName": "input (textfields, selects)"
+      }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+        "nodeId": "15074:233173",
+        "layerName": "SearchForm fields · XL"
+      }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "4393:6213",
+        "layerName": "MultiSelect · open dropdown"
+      }
+    }
+  ],
+  "unknowns": [
+    "**Классы без правила.** `align-center` — объявления нет ни в 22 файлах прод-корпуса, ни в 13 файлах CSS снимка Storybook. См. раздел «Находки» витрины.",
+    "**Прод-адреса нет.** Пока компонент не найден в продукте, ни `occurrences`, ни `seenOn` у записи не заполняются: измерять нечего. Числа в реестре остаются нулями осознанно.",
+    "**Проза выведена из story и CSS Storybook.** Записи нет в разметке снятых страниц, и в переписи корпуса её нет. Правило применения, «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по снятой story и CSS Storybook (`evidence/source/storybook/`); «Когда не использовать» — по тому, чем снятые страницы решают ту же задачу. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их нечем."
+  ],
+  "source": {
+    "version": "v0.2",
+    "spec": "guide/components/forms/multi-select.md",
+    "status": "partial",
+    "scope": "storybook-only",
+    "step": "R3-07",
+    "anchor": "showcase/components.html#c-multi-select",
+    "originalKind": "component",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Выбор нескольких значений из списка с поиском. В продукте не встречается; снят как `MultiSelect` в Storybook.",
+    "whenNot": [
+      "Для одного значения — `Select`."
+    ],
+    "related": [
+      "select"
+    ]
+  },
+  "dependencies": [
+    "sprite-icon",
+    "select"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "hover",
+      "focus-visible",
+      "checked",
+      "open",
+      "closed",
+      "disabled",
+      "invalid"
+    ],
+    "captured": [
+      "default",
+      "hover",
+      "focus-visible",
+      "closed",
+      "checked",
+      "open",
+      "disabled",
+      "invalid",
+      "error"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": null,
+  "sourceConflicts": []
+}

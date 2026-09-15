@@ -1,0 +1,31 @@
+{
+  "id": "A-1",
+  "kind": "rule",
+  "area": "Акценты и иерархия текста",
+  "statement": "Кнопка `Button` бывает двух цветов: тёмная `#2c2e34` (`bg-ui-black-850`) и светлая `#f1f1f1` (`bg-ui-black-50`); синего, оранжевого и других фонов у `Button` нет",
+  "coverage": "191 из 191: 173 тёмных, 18 светлых",
+  "exception": "В корпусе нет. Нарушит синяя `Button`. Вне области правила: остальные `<button>` белые или прозрачные (`FilterChip` 107, стрелки 32, прочие 52); выбранный `FilterChip` «Все» тёмный (5 страниц) — это состояние выбора, а не `Button`",
+  "predicate": {
+    "type": "style",
+    "viewports": [
+      1440
+    ],
+    "selector": "button.inline-flex.rounded-xl.font-semibold, a.inline-flex.rounded-xl.font-semibold",
+    "match": "all",
+    "expect": {
+      "background-color": [
+        "rgb(44, 46, 52)",
+        "rgb(241, 241, 241)"
+      ]
+    },
+    "note": "отбор по форме кнопки, проверяется цвет — из класса формы он не следует"
+  },
+  "appliesTo": [
+    "courses-listing",
+    "education-centers-listing",
+    "education-center",
+    "authors"
+  ],
+  "humanDoc": "docs/guide/composition.md",
+  "showcase": "showcase/pages.html#rule-A-1"
+}

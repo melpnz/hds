@@ -1,0 +1,135 @@
+{
+  "$schema": "../../schema.json",
+  "id": "chip",
+  "title": "Chip",
+  "kind": "component",
+  "category": "data-display",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Используйте для нейтральной метки темы в карточке курса — навыка или направления («Python», «Git»). В продукте 239 узлов, все внутри `CourseCard`, до четырёх в ряд; последняя метка ряда — счётчик переполнения («+18»): на 1440 так во всех 96 рядах.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "bg-ui-black-50",
+      "flex",
+      "items-center",
+      "px-2",
+      "py-1",
+      "rounded-full"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/chip/index.html",
+      "covers": [
+        "default"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "fit-content"
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/data-display/chip.md."
+    }
+  ],
+  "accessibility": [
+    "Элемент не интерактивен: ни корень `<div>`, ни что-либо внутри в порядок табуляции не входит — ссылок, кнопок, полей и `tabindex` нет ни в одном из 239 экземпляров."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "div.bg-ui-black-50.flex.items-center.px-2.py-1.rounded-full",
+        "found": 239,
+        "pages": [
+          "courses-listing",
+          "education-center",
+          "education-centers-listing",
+          "promocodes",
+          "rating",
+          "reviews",
+          "schools-for-children"
+        ]
+      }
+    },
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "layerName": "tag/text/*",
+          "nodeId": null,
+          "componentKey": "e636266b29599856efba14bfea791e254746381f"
+        }
+      ]
+    }
+  ],
+  "unknowns": [],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/data-display/chip.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R2-06",
+    "anchor": "showcase/components.html#c-chip",
+    "originalKind": "primitive",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для нейтральной метки темы в карточке курса — навыка или направления («Python», «Git»). В продукте 239 узлов, все внутри `CourseCard`, до четырёх в ряд; последняя метка ряда — счётчик переполнения («+18»): на 1440 так во всех 96 рядах.",
+    "whenNot": [
+      "Для выбора — это `FilterChip`, кнопка.",
+      "Для скидки — `Badge`.",
+      "Для длительности на обложке — `MetaPill`."
+    ],
+    "related": [
+      "filter-chip",
+      "badge",
+      "meta-pill"
+    ]
+  },
+  "dependencies": [],
+  "stateCoverage": {
+    "required": [
+      "default"
+    ],
+    "captured": [
+      "default"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

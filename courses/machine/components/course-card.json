@@ -1,0 +1,162 @@
+{
+  "$schema": "../../schema.json",
+  "id": "course-card",
+  "title": "CourseCard",
+  "kind": "module",
+  "category": "entities",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Используйте для курса в выдаче и подборках: обложка с `MetaPill` и `RatingBadge`, `Badge` скидки, название, метки `Chip`, кнопка «Далее». В продукте 96 узлов на 7 страницах — в `CardGrid` (48), `Carousel` (40) и секциях.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "relative",
+      "box-border",
+      "flex",
+      "h-full",
+      "min-w-0",
+      "flex-col",
+      "overflow-hidden",
+      "rounded-3xl",
+      "border",
+      "border-ui-black-100"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [
+    "machine/rules/c-5.json",
+    "machine/rules/ct-3a.json"
+  ],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/course-card/index.html",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 640
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/entities/course-card.md."
+    }
+  ],
+  "accessibility": [
+    "Корень (`<div>`) в фокус не попадает. На один экземпляр по Tab проходят: 1 кнопка и 1 ссылка — так у всех 96. По корпусу (192 узла): `Button` — 96, `Link` — 96."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "div.relative.box-border.flex.h-full.min-w-0.flex-col.overflow-hidden.rounded-3xl.border.border-ui-black-100",
+        "found": 96,
+        "pages": [
+          "courses-listing",
+          "education-center",
+          "education-centers-listing",
+          "promocodes",
+          "rating",
+          "reviews",
+          "schools-for-children"
+        ]
+      }
+    },
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": null,
+          "nodeId": "9785:45731",
+          "componentKey": null
+        }
+      ]
+    }
+  ],
+  "unknowns": [
+    "**Классы без правила.** В разметке продукта стоят классы, у которых нет объявления ни в одном из 22 файлов корпуса: `text-semibold`, `z-2`. Это не пробел пакета, а находка о продукте: класс написан, правило отсутствует. В `ui/` они не заводятся.",
+    "**Заглушки содержимого.** 2 ссылок на пользовательское и партнёрское содержимое (`habrastorage.org`, баннеры `assets.habr.com`) на витрине заменены локальной заглушкой `ui/assets/images/content-placeholder.svg`. Чужое содержимое в пакет не копируется; геометрия компонента от этого не меняется — размер задаёт он сам. В «Анатомии» ниже продовые пути сохранены как есть."
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/entities/course-card.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R5-01",
+    "anchor": "showcase/components.html#c-course-card",
+    "originalKind": "module",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для курса в выдаче и подборках: обложка с `MetaPill` и `RatingBadge`, `Badge` скидки, название, метки `Chip`, кнопка «Далее». В продукте 96 узлов на 7 страницах — в `CardGrid` (48), `Carousel` (40) и секциях.",
+    "whenNot": [
+      "Для школы — `SchoolCard`.",
+      "Для пункта нумерованного ТОП-списка — `NumberedCourseItem`."
+    ],
+    "related": [
+      "school-card",
+      "numbered-course-item"
+    ]
+  },
+  "dependencies": [
+    "rating-badge",
+    "meta-pill",
+    "badge",
+    "chip",
+    "button",
+    "entity-logo"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "hover",
+      "focus-visible"
+    ],
+    "captured": [
+      "default",
+      "hover",
+      "focus-visible"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

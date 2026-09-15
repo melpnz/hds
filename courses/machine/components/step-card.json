@@ -1,0 +1,120 @@
+{
+  "$schema": "../../schema.json",
+  "id": "step-card",
+  "title": "StepCard",
+  "kind": "module",
+  "category": "entities",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Используйте для шага процесса: заголовок и короткий текст, рядом из четырёх. В продукте 8 узлов на 2 страницах («Как работают эксперты», «Как работает редакция»).",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "flex",
+      "flex-col",
+      "gap-1",
+      "rounded-3xl",
+      "border",
+      "border-solid",
+      "border-ui-black-100",
+      "p-6"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/step-card/index.html",
+      "covers": [
+        "default"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 640
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/entities/step-card.md."
+    }
+  ],
+  "accessibility": [
+    "Элемент не интерактивен: ни корень `<div>`, ни что-либо внутри в порядок табуляции не входит — ссылок, кнопок, полей и `tabindex` нет ни в одном из 8 экземпляров."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "div.flex.flex-col.gap-1.rounded-3xl.border.border-solid.border-ui-black-100.p-6",
+        "found": 8,
+        "pages": [
+          "authors",
+          "editors"
+        ]
+      }
+    }
+  ],
+  "unknowns": [],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/entities/step-card.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R5-07",
+    "anchor": "showcase/components.html#c-step-card",
+    "originalKind": "module",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для шага процесса: заголовок и короткий текст, рядом из четырёх. В продукте 8 узлов на 2 страницах («Как работают эксперты», «Как работает редакция»).",
+    "whenNot": [
+      "Для шага программы обучения — `LearningStep` (figma-only)."
+    ],
+    "related": [
+      "learning-step"
+    ]
+  },
+  "dependencies": [],
+  "stateCoverage": {
+    "required": [
+      "default"
+    ],
+    "captured": [
+      "default"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IconButton — Хабр Курсы</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../../../ui/courses.css">
+  <style>html,body{margin:0;background:#fff}body{box-sizing:border-box;padding:24px}.example-root{width:min(620px,100%)}.example-root>:first-child{margin:0!important}
+.crs-icon-button-states{display:flex;align-items:flex-start;flex-wrap:wrap;gap:24px;padding:8px 4px 4px;font-family:Inter,sans-serif;color:#2c2e34}
+.crs-icon-button-state{display:grid;justify-items:center;gap:10px;min-width:64px;color:#697386;font-size:11px;line-height:16px}
+.crs-icon-button{position:relative;box-sizing:border-box;display:inline-flex;width:36px;height:36px;align-items:center;justify-content:center;padding:5px;border:1px solid #e9e9ea;border-radius:200px;background:#fff;color:#a6a7a9;box-shadow:0 4px 3px rgba(0,0,0,.05),0 2px 2px rgba(0,0,0,.05);cursor:pointer;transition:color .15s ease,border-color .15s ease,box-shadow .15s ease}
+.crs-icon-button svg{display:block;width:24px;height:24px;flex:0 0 24px;transform:rotate(-90deg)}
+.crs-icon-button[data-state=default]:hover,.crs-icon-button[data-state=hover]{color:#2c2e34}
+.crs-icon-button[data-state=focus],.crs-icon-button:focus,.crs-icon-button:focus-visible{color:#2c2e34;outline:0;box-shadow:0 0 0 2px #fff,0 0 0 4px #a6a7a9,0 4px 3px rgba(0,0,0,.05),0 2px 2px rgba(0,0,0,.05)}
+.crs-icon-button:disabled{border-color:#f1f1f1;color:#d3d3d4;cursor:not-allowed}
+.crs-icon-button[data-state=loading]{color:#bcbdbf;cursor:wait}
+.crs-icon-button[data-state=loading] svg{transform:none;animation:crs-icon-button-spin .8s linear infinite}
+@keyframes crs-icon-button-spin{to{transform:rotate(360deg)}}
+@media(prefers-reduced-motion:reduce){.crs-icon-button[data-state=loading] svg{animation:none}}
+</style>
+</head>
+<body data-preview-layout="constrained"><div class="example-root"><div class="crs-icon-button-states"><span class="crs-icon-button-state">
+    <button type="button" class="crs-icon-button" data-state="default" aria-label="Default"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><use xlink:href="../../../ui/assets/icons/sprite.svg#arrow-down-figma"></use></svg></button>
+    <span>Default</span>
+  </span><span class="crs-icon-button-state">
+    <button type="button" class="crs-icon-button" data-state="hover" aria-label="Hover"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><use xlink:href="../../../ui/assets/icons/sprite.svg#arrow-down-figma"></use></svg></button>
+    <span>Hover</span>
+  </span><span class="crs-icon-button-state">
+    <button type="button" class="crs-icon-button" data-state="focus" aria-label="Focus"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><use xlink:href="../../../ui/assets/icons/sprite.svg#arrow-down-figma"></use></svg></button>
+    <span>Focus</span>
+  </span><span class="crs-icon-button-state">
+    <button type="button" class="crs-icon-button" data-state="disabled" aria-label="Disabled" disabled><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><use xlink:href="../../../ui/assets/icons/sprite.svg#arrow-down-figma"></use></svg></button>
+    <span>Disabled</span>
+  </span><span class="crs-icon-button-state">
+    <button type="button" class="crs-icon-button" data-state="loading" aria-label="Loading" aria-busy="true"><svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><use xlink:href="../../../ui/assets/icons/sprite.svg#loader"></use></svg></button>
+    <span>Loading</span>
+  </span></div></div></body>
+</html>

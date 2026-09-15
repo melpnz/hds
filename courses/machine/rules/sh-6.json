@@ -1,0 +1,35 @@
+{
+  "id": "SH-6",
+  "kind": "rule",
+  "area": "Оболочка",
+  "statement": "Раздел с выдачей или страница сервиса открывается hero `bg-main-gradient-second` во всю ширину экрана с `h1` 44/48, 600 по центру (на телефоне 30/34). `h1` 44/48 вне hero не бывает",
+  "coverage": "7/10; `h1` 44/48 — 7 из 7 hero, вне hero — 0",
+  "exception": "Нарушитель — витрина курсов: выдача без hero и без `h1` (полоса рубрик и баннеры). Вне области правила: страница школы (шапка сущности, `h1` 14 серым внизу колонки) и профиль (шапка профиля, заголовков `h*` нет)",
+  "predicate": {
+    "type": "heroHeading",
+    "viewports": [
+      1440,
+      375
+    ],
+    "expect": {
+      "375": {
+        "fontSize": 30,
+        "lineHeight": 34,
+        "fontWeight": 600
+      },
+      "1440": {
+        "fontSize": 44,
+        "lineHeight": 48,
+        "fontWeight": 600
+      }
+    },
+    "note": "h1 44/48 по центру внутри hero; вне hero заголовка такого кегля нет"
+  },
+  "appliesTo": [
+    "education-centers-listing",
+    "rating",
+    "authors"
+  ],
+  "humanDoc": "docs/guide/composition.md",
+  "showcase": "showcase/pages.html#rule-SH-6"
+}

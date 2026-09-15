@@ -1,0 +1,200 @@
+{
+  "$schema": "../../schema.json",
+  "id": "search-input",
+  "title": "SearchInput",
+  "kind": "component",
+  "category": "forms",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "figma"
+    ],
+    "confidence": "high",
+    "scope": "mixed-evidence"
+  },
+  "purpose": "Используйте для поиска по всему сервису — одно поле в шапке на страницу, плейсхолдер «Искать на Хабр Курсах».",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "wrapper",
+      "wrapper--with-search"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "disabled",
+      "error"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "field-family",
+      "title": "SearchInput · размеры и состояния",
+      "file": "examples/components/search-input/index.html",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "disabled",
+        "invalid",
+        "size-m",
+        "size-xl"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "constrained",
+        "width": 720
+      },
+      "authority": [
+        "production",
+        "figma"
+      ],
+      "scope": "mixed-evidence"
+    }
+  ],
+  "variants": [
+    {
+      "id": "size",
+      "use": "M: 40 px; XL / SearchForm: 56 px. В XL слева 16 px, справа 12 px."
+    },
+    {
+      "id": "content",
+      "use": "Пустое с placeholder или заполненное."
+    },
+    {
+      "id": "state",
+      "use": "default, hover, focus-visible, disabled и invalid/error."
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/forms/search-input.md."
+    },
+    {
+      "type": "guidance",
+      "text": "Живой пример использует настоящее поле из production DOM. Тёмный прямоугольник v0.1 был частью SSR-заглушки шапки, а не SearchInput."
+    },
+    {
+      "type": "guidance",
+      "text": "Общая оболочка и состояния взяты из Courses Figma: education-lib, canvas 670:8259; XL 56 px — из SearchForm, node 15074:233173."
+    },
+    {
+      "type": "guidance",
+      "text": "В M и XL используется один текстовый стиль 16/22 regular и SVG-иконки 24×24."
+    }
+  ],
+  "accessibility": [
+    "Нативный `<input>` получает фокус по Tab и имеет доступное имя.",
+    "`disabled` задаётся нативно; ошибка — `aria-invalid=\"true\"` и связанный текст ошибки."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": ".courses-filter-search-top-panel-placeholder",
+        "found": 1,
+        "pages": [
+          "courses-listing"
+        ]
+      }
+    },
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": null,
+          "nodeId": "15074:258344",
+          "componentKey": null
+        }
+      ]
+    },
+    {
+      "type": "production",
+      "data": {
+        "selector": "input[placeholder=\"Искать на Хабр Курсах\"]",
+        "context": "#courses-filter-search-top-panel",
+        "page": "courses-listing"
+      }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "670:8259",
+        "layerName": "input (textfields, selects)"
+      }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+        "nodeId": "15074:233173",
+        "layerName": "SearchForm fields · XL"
+      }
+    }
+  ],
+  "unknowns": [],
+  "source": {
+    "version": "v0.2",
+    "spec": "guide/components/forms/search-input.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R3-08",
+    "anchor": "showcase/components.html#c-search-input",
+    "originalKind": "component",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для поиска по всему сервису — одно поле в шапке на страницу, плейсхолдер «Искать на Хабр Курсах».",
+    "whenNot": [
+      "Для поля формы с конкретным значением — `TextInput` или `Select`."
+    ],
+    "related": [
+      "text-input",
+      "select"
+    ]
+  },
+  "dependencies": [
+    "sprite-icon"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "hover",
+      "focus-visible",
+      "disabled"
+    ],
+    "captured": [
+      "default",
+      "hover",
+      "focus-visible",
+      "disabled",
+      "invalid",
+      "error"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

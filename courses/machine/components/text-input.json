@@ -1,0 +1,208 @@
+{
+  "$schema": "../../schema.json",
+  "id": "text-input",
+  "title": "TextInput",
+  "kind": "component",
+  "category": "forms",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "figma"
+    ],
+    "confidence": "medium",
+    "scope": "mixed-evidence"
+  },
+  "purpose": "Используйте для однострочного ввода. В продукте поле встречается в двух ролях: триггер `Select` в форме поиска (28, из них 14 — мобильный дубль формы, на 1440 скрытый) и поле поиска в шапке (1) — 29 узлов на 6 страницах.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "bg-ui-white",
+      "border",
+      "border-ui-black-100",
+      "px-3"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "disabled",
+      "readOnly",
+      "invalid",
+      "error"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "field-family",
+      "title": "TextInput · размеры и состояния",
+      "file": "examples/components/text-input/index.html",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "disabled",
+        "invalid",
+        "size-m",
+        "size-xl"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "constrained",
+        "width": 720
+      },
+      "authority": [
+        "production",
+        "figma"
+      ],
+      "scope": "mixed-evidence"
+    }
+  ],
+  "variants": [
+    {
+      "id": "size",
+      "use": "M: 40 px; XL / SearchForm: 56 px. В XL слева 16 px, справа 12 px."
+    },
+    {
+      "id": "content",
+      "use": "Пустое с placeholder или заполненное."
+    },
+    {
+      "id": "state",
+      "use": "default, hover, focus-visible, disabled и invalid/error."
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/forms/text-input.md."
+    },
+    {
+      "type": "guidance",
+      "text": "Общая оболочка и состояния взяты из Courses Figma: education-lib, canvas 670:8259; XL 56 px — из SearchForm, node 15074:233173."
+    },
+    {
+      "type": "guidance",
+      "text": "В M и XL используется один текстовый стиль 16/22 regular и SVG-иконки 24×24."
+    }
+  ],
+  "accessibility": [
+    "Нативный `<input>` получает фокус по Tab и имеет доступное имя.",
+    "`disabled` задаётся нативно; ошибка — `aria-invalid=\"true\"` и связанный текст ошибки."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "span.bg-ui-white.border.border-ui-black-100.px-3:has(> input)",
+        "found": 29,
+        "pages": [
+          "courses-listing",
+          "education-centers-listing",
+          "promocodes",
+          "rating",
+          "reviews",
+          "schools-for-children"
+        ]
+      }
+    },
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "layerName": "elements/input/*",
+          "nodeId": null,
+          "componentKey": "18357b7464b5e158dfb71e014fa9d259e3a929cb"
+        },
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "select",
+          "nodeId": "I15089:302657;15065:243728",
+          "componentKey": null
+        }
+      ]
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "670:8259",
+        "layerName": "input (textfields, selects)"
+      }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+        "nodeId": "15074:233173",
+        "layerName": "SearchForm fields · XL"
+      }
+    }
+  ],
+  "unknowns": [
+    "**Классы без правила.** В разметке продукта стоят классы, у которых нет объявления ни в одном из 22 файлов корпуса: `align-center`. Это не пробел пакета, а находка о продукте: класс написан, правило отсутствует. В `ui/` они не заводятся.",
+    "Не снятые состояния: readOnly."
+  ],
+  "source": {
+    "version": "v0.2",
+    "spec": "guide/components/forms/text-input.md",
+    "status": "partial",
+    "scope": "production",
+    "step": "R3-09",
+    "anchor": "showcase/components.html#c-text-input",
+    "originalKind": "component",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для однострочного ввода. В продукте поле встречается в двух ролях: триггер `Select` в форме поиска (28, из них 14 — мобильный дубль формы, на 1440 скрытый) и поле поиска в шапке (1) — 29 узлов на 6 страницах.",
+    "whenNot": [
+      "Для выбора из заданного списка — `Select`: поле тогда только его триггер."
+    ],
+    "related": [
+      "select"
+    ]
+  },
+  "dependencies": [],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "hover",
+      "focus-visible",
+      "disabled",
+      "readOnly",
+      "invalid"
+    ],
+    "captured": [
+      "default",
+      "hover",
+      "focus-visible",
+      "disabled",
+      "invalid",
+      "error"
+    ],
+    "normative": [],
+    "uncaptured": [
+      "readOnly"
+    ]
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

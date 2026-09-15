@@ -1,0 +1,31 @@
+{
+  "id": "C-4",
+  "kind": "rule",
+  "area": "Реакция на курсор",
+  "statement": "Корень карточки на наведение не реагирует: ни фон, ни тень, ни размер. Отзывается то, на чём стоит курсор, — сквозная ссылка карточки и ссылки текста",
+  "coverage": "0 из 254 карточек с рамкой; 0 из 315 корней вместе с `AdCard` и `NumberedCourseItem`; `group-hover` в разметке нет, наведение курсором на каждую карточку собранных страниц корень не меняет",
+  "exception": "В корпусе нет. Нарушит карточка с `hover:shadow-*` или `hover:-translate-y-*`",
+  "predicate": {
+    "type": "hoverEffect",
+    "viewports": [
+      1440
+    ],
+    "targets": [
+      {
+        "role": "card",
+        "expectUnchanged": true,
+        "rootOnly": true,
+        "forbidClass": "group-hover"
+      }
+    ],
+    "note": "курсор наводится на каждую карточку: ни одно вычисленное свойство корня не меняется, классов group-hover внутри нет. Реакция ссылки или кнопки внутри карточки правилом не запрещена"
+  },
+  "appliesTo": [
+    "courses-listing",
+    "education-centers-listing",
+    "education-center",
+    "authors"
+  ],
+  "humanDoc": "docs/guide/composition.md",
+  "showcase": "showcase/pages.html#rule-C-4"
+}

@@ -1,0 +1,131 @@
+{
+  "$schema": "../../schema.json",
+  "id": "filter-bar",
+  "title": "FilterBar",
+  "kind": "module",
+  "category": "navigation",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Используйте для ряда `FilterChip` над сеткой курсов в секции. В продукте 5 узлов на 5 страницах.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "flex",
+      "gap-1",
+      "overflow-x-auto",
+      "whitespace-nowrap"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/filter-bar/index.html",
+      "covers": [
+        "default"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 640
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/navigation/filter-bar.md."
+    }
+  ],
+  "accessibility": [
+    "Корень (`<div>`) в фокус не попадает. На один экземпляр по Tab проходят: 17 кнопок — у 3 из 5; 10 кнопок — у 1 из 5; 51 кнопка — у 1 из 5. По корпусу (112 узлов): `FilterChip` — 107; вне записей реестра — `button.bg-ui-black-850.text-ui-white.border-ui-black-850.py-2` — 5."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "div.flex.gap-1.overflow-x-auto.whitespace-nowrap",
+        "found": 5,
+        "pages": [
+          "education-center",
+          "education-centers-listing",
+          "promocodes",
+          "reviews",
+          "schools-for-children"
+        ]
+      }
+    },
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": null,
+          "nodeId": "9187:92170",
+          "componentKey": null
+        }
+      ]
+    }
+  ],
+  "unknowns": [],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/navigation/filter-bar.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R4-11",
+    "anchor": "showcase/components.html#c-filter-bar",
+    "originalKind": "module",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для ряда `FilterChip` над сеткой курсов в секции. В продукте 5 узлов на 5 страницах.",
+    "whenNot": [
+      "Для фильтров с несколькими значениями — в ряду выбран один чип."
+    ],
+    "related": []
+  },
+  "dependencies": [
+    "filter-chip"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default"
+    ],
+    "captured": [
+      "default"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

@@ -1,0 +1,26 @@
+{
+  "id": "L-2",
+  "kind": "rule",
+  "area": "Сетка и ритм",
+  "statement": "Сетка карточек — 4 колонки по 260 с промежутком 12 на 1440 (`grid grid-cols-4 gap-3`)",
+  "coverage": "8 сеток из 9, на 6 страницах",
+  "exception": "Нарушитель — сетка курсов страницы школы: 4 × 257, промежуток 16 (`gap-4`); она же прячет карточки сверх шести и четырёх (ROADMAP X-103)",
+  "predicate": {
+    "type": "cardGrid",
+    "viewports": [
+      1440
+    ],
+    "columns": 4,
+    "columnWidth": [
+      255,
+      265
+    ],
+    "columnGap": 12
+  },
+  "appliesTo": [
+    "courses-listing",
+    "education-centers-listing"
+  ],
+  "humanDoc": "docs/guide/composition.md",
+  "showcase": "showcase/pages.html#rule-L-2"
+}

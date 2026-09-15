@@ -1,0 +1,130 @@
+{
+  "$schema": "../../schema.json",
+  "id": "authors-block",
+  "title": "AuthorsBlock",
+  "kind": "module",
+  "category": "entities",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "medium",
+    "scope": "public-guest"
+  },
+  "purpose": "Используйте, чтобы показать, кто собрал и проверил подборку: автор — с фото 100, должностью, ссылкой на профиль и биографией, ниже строкой — редактор и аудитор с фото 48. В продукте 1 узел — на `/courses`, после выдачи; это наблюдение одной страницы, не правило.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "flex",
+      "flex-col",
+      "gap-6",
+      "text-small",
+      "text-ui-black-850"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [
+    "machine/rules/l-5a.json"
+  ],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/authors-block/index.html",
+      "covers": [
+        "default"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 640
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/entities/authors-block.md."
+    }
+  ],
+  "accessibility": [
+    "Корень (`<section>`) в фокус не попадает. По Tab проходят: 5 ссылок. По корпусу (5 узлов): `Link` — 3, `Button` — 2."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "section.flex.flex-col.gap-6.text-small.text-ui-black-850",
+        "found": 1,
+        "pages": [
+          "courses-listing"
+        ]
+      }
+    }
+  ],
+  "unknowns": [
+    "**Заглушки содержимого.** 3 ссылок на пользовательское и партнёрское содержимое (`habrastorage.org`, баннеры `assets.habr.com`) на витрине заменены локальной заглушкой `ui/assets/images/content-placeholder.svg`. Чужое содержимое в пакет не копируется; геометрия компонента от этого не меняется — размер задаёт он сам. В «Анатомии» ниже продовые пути сохранены как есть.",
+    "**Проза не проходила ревью.** Запись заведена 11 сентября 2026 при сборке страницы `/courses` (R6-01), после двух кругов ревью прозы; её разделы написаны тем же генератором и тем же способом, но независимо не проверены — отсюда `partial` при снятом `default`."
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/entities/authors-block.md",
+    "status": "partial",
+    "scope": "production",
+    "step": "R5-18",
+    "anchor": "showcase/components.html#c-authors-block",
+    "originalKind": "module",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте, чтобы показать, кто собрал и проверил подборку: автор — с фото 100, должностью, ссылкой на профиль и биографией, ниже строкой — редактор и аудитор с фото 48. В продукте 1 узел — на `/courses`, после выдачи; это наблюдение одной страницы, не правило.",
+    "whenNot": [
+      "Для списка экспертов раздела — `PersonCard` в `CardGrid` (`/courses/authors`).",
+      "Для шапки профиля человека — `PersonHeader`."
+    ],
+    "related": [
+      "person-card",
+      "card-grid",
+      "person-header"
+    ]
+  },
+  "dependencies": [
+    "avatar",
+    "prose",
+    "button",
+    "link",
+    "sprite-icon"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default"
+    ],
+    "captured": [
+      "default"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

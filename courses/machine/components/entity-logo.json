@@ -1,0 +1,180 @@
+{
+  "$schema": "../../schema.json",
+  "id": "entity-logo",
+  "title": "EntityLogo",
+  "kind": "component",
+  "category": "data-display",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "figma"
+    ],
+    "confidence": "high",
+    "scope": "mixed-evidence"
+  },
+  "purpose": "Используйте для логотипа школы на её карточке. В продукте 48 узлов из 48 — в `SchoolCard`: логотип лежит абсолютом поверх обложки, с белой рамкой 2px.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "rounded-xl",
+      "border-2",
+      "border-ui-white"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "empty"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "sizes",
+      "title": "Дефолт · все размеры",
+      "file": "examples/components/entity-logo/sizes.html",
+      "covers": [
+        "empty",
+        "size-scale"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "constrained",
+        "width": 720
+      },
+      "authority": [
+        "figma"
+      ]
+    },
+    {
+      "id": "production-context",
+      "title": "Production-контекст",
+      "file": "examples/components/entity-logo/index.html",
+      "covers": [
+        "default",
+        "empty"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "context",
+        "width": 80,
+        "height": 60
+      },
+      "authority": [
+        "production"
+      ]
+    }
+  ],
+  "variants": [
+    {
+      "id": "size",
+      "use": "24, 32, 36, 40, 48, 56, 68 и 100 px по Courses Figma."
+    },
+    {
+      "id": "content",
+      "use": "Логотип организации или дефолтная иллюстрация компании из Career."
+    },
+    {
+      "id": "shape",
+      "use": "Радиусы по размеру: 24→6, 32→8, 36–56→12, 68→16, 100→24 px."
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/data-display/entity-logo.md."
+    },
+    {
+      "type": "guidance",
+      "text": "Размеры и скругления взяты из Courses Figma: education-lib, avatar/school, node 722:1639; форма SVG переиспользована из Career v1.2, цвета адаптированы к Courses: #F1F1F1 и #D3D3D4."
+    },
+    {
+      "type": "guidance",
+      "text": "Второй пример сохраняет ранее зафиксированный production-контекст и его позиционирование."
+    }
+  ],
+  "accessibility": [
+    "Элемент не интерактивен: ни корень `<img>`, ни что-либо внутри в порядок табуляции не входит — ссылок, кнопок, полей и `tabindex` нет ни в одном из 48 экземпляров."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "img.rounded-xl.border-2.border-ui-white",
+        "found": 48,
+        "pages": [
+          "education-centers-listing",
+          "reviews",
+          "schools-for-children"
+        ]
+      }
+    },
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "layerName": "avatar/school",
+          "nodeId": null,
+          "componentKey": "84414d2f"
+        }
+      ]
+    }
+  ],
+  "unknowns": [
+    "**Классы без правила.** В разметке продукта стоят классы, у которых нет объявления ни в одном из 22 файлов корпуса: `z-2`. Это не пробел пакета, а находка о продукте: класс написан, правило отсутствует. В `ui/` они не заводятся.",
+    "**Заглушки содержимого.** 1 ссылка на пользовательское и партнёрское содержимое (`habrastorage.org`, баннеры `assets.habr.com`) на витрине заменены локальной заглушкой `ui/assets/images/content-placeholder.svg`. Чужое содержимое в пакет не копируется; геометрия компонента от этого не меняется — размер задаёт он сам. В «Анатомии» ниже продовые пути сохранены как есть."
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/data-display/entity-logo.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R2-05",
+    "anchor": "showcase/components.html#c-entity-logo",
+    "originalKind": "primitive",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для логотипа школы на её карточке. В продукте 48 узлов из 48 — в `SchoolCard`: логотип лежит абсолютом поверх обложки, с белой рамкой 2px.",
+    "whenNot": [
+      "Для людей — `Avatar`.",
+      "Для сервисов Хабра — `ProjectIcon`."
+    ],
+    "related": [
+      "avatar",
+      "project-icon"
+    ]
+  },
+  "dependencies": [],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "empty"
+    ],
+    "captured": [
+      "default",
+      "empty"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

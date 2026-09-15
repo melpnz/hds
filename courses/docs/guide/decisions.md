@@ -5,7 +5,7 @@
 предпочесть, чего избегать, на чём стоит и насколько рекомендация
 переносится (Confidence), и где кончается знание (GAP). Правила с `id` —
 [`composition.md`](composition.md), замеры —
-[`.pipeline/principles-evidence.md`](../../.pipeline/principles-evidence.md).
+[`.pipeline/principles-evidence.md`](../reference/principles-evidence-v0.1.md).
 
 `Confidence` относится к рекомендации, а не к факту: точно измеренное число
 может плохо переноситься на экран, которого в продукте нет.

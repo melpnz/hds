@@ -5,10 +5,10 @@
 дробью. У каждого в таблице есть колонка «Исключение или нарушитель»: адрес
 в корпусе, а если в корпусе правило не нарушает никто, — так и сказано и
 названа конструкция, которая бы его нарушила. Замеры —
-[`.pipeline/principles-evidence.md`](../../.pipeline/principles-evidence.md)
+[`.pipeline/principles-evidence.md`](../reference/principles-evidence-v0.1.md)
 (скрипт `.pipeline/principles/measure-axes.mjs`: каждая страница нарисована
 из снятого `dom.html` с CSS корпуса и шрифтом Inter на 1440, 1024, 768 и
-375). Живые примеры — [`showcase/pages.html`](../../showcase/pages.html),
+375). Живые примеры — [`viewer/index.html`](../../viewer/index.html),
 раздел «Правила уровня страницы»: у каждого правила там свой `data-rule`.
 
 Пороги — метод пакета: одно вхождение — наблюдение; лидер на двух страницах

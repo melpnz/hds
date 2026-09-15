@@ -1,0 +1,125 @@
+{
+  "$schema": "../../schema.json",
+  "id": "link-grid",
+  "title": "LinkGrid",
+  "kind": "module",
+  "category": "collections",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Используйте для длинного списка ссылок, свёрнутого до трёх строк с раскрытием: направления, города, школы («Популярные направления», «Ещё онлайн-школы»). Счётчик рядом со ссылкой — только в одном списке из шести, «Популярные направления» на `/courses`. Вариант «Промокоды и акции» на `/courses` свёрнут до окна 182 и несёт двухстрочный пункт: школа и ссылка «Скидка N%». В продукте 6 узлов на 3 страницах.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "grid",
+      "grid-cols-3",
+      "gap-x-4"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "expanded",
+      "collapsed"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/link-grid/index.html",
+      "covers": [
+        "default",
+        "collapsed"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 640
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/collections/link-grid.md."
+    }
+  ],
+  "accessibility": [
+    "Корень (`<div>`) в фокус не попадает. На один экземпляр по Tab проходят: 18 ссылок — у 2 из 6; 16 ссылок — у 1 из 6; 33 ссылки — у 1 из 6; у остальных 2 — другой состав. По корпусу (147 узлов): `Link` — 147. Свёртка прячет, но не выключает: из 147 ссылок 93 лежат за окном свёртки и всё равно входят в порядок табуляции. При фокусе на такой ссылке браузер сам прокручивает свёрнутый список внутри окна свёртки (94 или 182), и ссылка оказывается видна; после этого список так и остаётся сдвинутым."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "div.overflow-hidden > div.mt-4.grid.grid-cols-3.gap-x-4",
+        "found": 6,
+        "pages": [
+          "courses-listing",
+          "education-centers-listing",
+          "promocodes"
+        ]
+      }
+    }
+  ],
+  "unknowns": [],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/collections/link-grid.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R4-10",
+    "anchor": "showcase/components.html#c-link-grid",
+    "originalKind": "module",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для длинного списка ссылок, свёрнутого до трёх строк с раскрытием: направления, города, школы («Популярные направления», «Ещё онлайн-школы»). Счётчик рядом со ссылкой — только в одном списке из шести, «Популярные направления» на `/courses`. Вариант «Промокоды и акции» на `/courses` свёрнут до окна 182 и несёт двухстрочный пункт: школа и ссылка «Скидка N%». В продукте 6 узлов на 3 страницах.",
+    "whenNot": [
+      "Для иллюстрированных плиток — в продукте их нет, «Популярные направления» текстовые.",
+      "Для коротких списков, которым свёртка не нужна."
+    ],
+    "related": []
+  },
+  "dependencies": [
+    "link"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "expanded",
+      "collapsed"
+    ],
+    "captured": [
+      "default",
+      "collapsed"
+    ],
+    "normative": [
+      "expanded"
+    ],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

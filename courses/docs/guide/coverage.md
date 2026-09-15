@@ -13,7 +13,7 @@
 | Типографика | [`typography.md`](typography.md), `ui/foundations.css` | шкала утилит, база документа, шрифт, фокус |
 | Оболочка и сетка | [`layout.md`](layout.md), `ui/layout.css` | контейнер, шапка, подвал, сетка секций, шесть префиксов брейкпоинтов |
 | Записи | `components/**/*.md` — 72 спецификации и четыре служебных файла (`INDEX`, `SPEC-TEMPLATE`, `STATE-CAPTURE`, `STATES`), `components/manifest.json` | 72 записи: 47 из продакшена, 4 только из Storybook, 21 только из Figma |
-| Страницы | `pages/*.md`, `showcase/pages.html` | шесть страниц пяти семейств: листинг, таблица, сущность, промо-раздел, профиль |
+| Страницы | `pages/*.md`, `viewer/index.html` | шесть страниц пяти семейств: листинг, таблица, сущность, промо-раздел, профиль |
 | Правила уровня страницы | [`composition.md`](composition.md) | 35 правил в семи областях, у каждого покрытие дробью и исключение или нарушитель |
 | Решения | [`decisions.md`](decisions.md) | 7 Decision Guides с Confidence и GAP |
 

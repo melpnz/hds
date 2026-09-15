@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SortSheet — Хабр Курсы</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="../../../ui/courses.css">
+  <style>html,body{margin:0;background:#fff}body{box-sizing:border-box;padding:24px}.example-root{position:relative;width:320px;height:568px;margin-left:auto;margin-right:auto}.example-root>:first-child{margin:0!important}
+.crs-sheet-demo{position:relative;width:320px;height:568px;overflow:hidden;background:#fff;color:#2c2e34;font-family:Inter,sans-serif}
+.crs-sheet-demo__page{height:100%;background:#f6f7f9}
+.crs-sheet-demo__header{height:64px;background:#346ef4}
+.crs-sheet-demo__search{height:104px;padding:16px 24px;box-sizing:border-box;background:linear-gradient(#346ef4 0 16px,#fff 16px)}
+.crs-sheet-demo__search::before{content:'Поиск курсов';display:flex;align-items:center;height:56px;padding:0 16px;border-radius:12px;background:#fff;color:#909194;font:400 16px/22px Inter,sans-serif}
+.crs-sheet-demo__filters{display:flex;height:60px;align-items:center;gap:4px;padding:0 24px;overflow:hidden;background:#fff;border-top:1px solid #e9e9ea}
+.crs-sheet-demo__trigger{flex:none;height:36px;padding:8px 12px;border:1px solid #e9e9ea;border-radius:200px;background:#fff;color:#2c2e34;font:400 14px/20px Inter,sans-serif}
+.crs-sheet-demo__content{display:grid;gap:12px;padding:24px}
+.crs-sheet-demo__line{height:16px;border-radius:8px;background:#e9e9ea}
+.crs-sheet-demo__line:nth-child(2){width:72%}
+.crs-sort-sheet,.crs-price-sheet{position:absolute;inset:0;z-index:2;height:100%;max-width:none;padding-top:0}
+.crs-sort-sheet[hidden],.crs-price-sheet[hidden]{display:none}
+.crs-sort-sheet__option:hover{background:#f6f7f9}
+.crs-sort-sheet__option:focus-visible,.crs-sheet-demo button:focus-visible,.crs-price-sheet input:focus-visible{outline:2px solid #a6a7a9;outline-offset:-2px}
+.crs-price-sheet__panel{flex:none;height:176px}
+.crs-price-sheet__footer button{height:40px;min-width:0;padding:8px 16px;border-radius:12px;border:0;font:600 14px/20px Inter,sans-serif}
+.crs-price-sheet__reset{flex:1;background:#f1f1f1;color:#2c2e34}
+.crs-price-sheet__done{flex:1;background:#2c2e34;color:#fff}
+</style>
+</head>
+<body data-preview-layout="context"><div class="example-root"><div class="crs-sheet-demo"><div class="crs-sheet-demo__page"><div class="crs-sheet-demo__header" aria-hidden="true"></div><div class="crs-sheet-demo__search" aria-hidden="true"></div><div class="crs-sheet-demo__filters"><button class="crs-sheet-demo__trigger" id="sort-sheet-open" type="button">Сортировка</button><button class="crs-sheet-demo__trigger" type="button" tabindex="-1">Школа</button><button class="crs-sheet-demo__trigger" type="button" tabindex="-1">Длительность</button></div><div class="crs-sheet-demo__content" aria-hidden="true"><span class="crs-sheet-demo__line"></span><span class="crs-sheet-demo__line"></span></div></div><div class="crs-sort-sheet" id="sort-sheet-target"><div class="crs-sort-sheet__panel" role="listbox" aria-label="Сортировка"> <span class="crs-sort-sheet__handle" aria-hidden="true"></span><button type="button" class="crs-sort-sheet__option" role="option" aria-selected="true">По популярности</button><button type="button" class="crs-sort-sheet__option" role="option" aria-selected="false">Сначала дорогие</button><button type="button" class="crs-sort-sheet__option" role="option" aria-selected="false">Сначала дешевые</button><button type="button" class="crs-sort-sheet__option" role="option" aria-selected="false">По дате начала</button><button type="button" class="crs-sort-sheet__option" role="option" aria-selected="false">Сначала короткие</button><button type="button" class="crs-sort-sheet__option" role="option" aria-selected="false">Сначала длинные</button></div></div></div></div><script>
+const sortSheet=document.querySelector('#sort-sheet-target');
+const sortSheetTrigger=document.querySelector('#sort-sheet-open');
+const openSortSheet=()=>{sortSheet.hidden=false;sortSheet.querySelector('[aria-selected=true]')?.focus();};
+const closeSortSheet=()=>{sortSheet.hidden=true;sortSheetTrigger.focus();};
+sortSheetTrigger.addEventListener('click',openSortSheet);
+sortSheet.addEventListener('click',event=>{if(event.target===sortSheet)closeSortSheet();});
+sortSheet.querySelectorAll('[role=option]').forEach(option=>option.addEventListener('click',()=>{sortSheet.querySelectorAll('[role=option]').forEach(item=>item.setAttribute('aria-selected','false'));option.setAttribute('aria-selected','true');sortSheetTrigger.textContent=option.textContent;closeSortSheet();}));
+document.addEventListener('keydown',event=>{if(event.key==='Escape'&&!sortSheet.hidden)closeSortSheet();});
+</script></body>
+</html>

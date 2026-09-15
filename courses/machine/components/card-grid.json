@@ -1,0 +1,128 @@
+{
+  "$schema": "../../schema.json",
+  "id": "card-grid",
+  "title": "CardGrid",
+  "kind": "module",
+  "category": "layout",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "medium",
+    "scope": "public-guest"
+  },
+  "purpose": "Используйте для сетки однотипных карточек в секции, когда видны все: 4 колонки на десктопе, 3 (иногда 2) на `tablet-only:`, 1 на `phone:`. В продукте 8 узлов на 6 страницах.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "grid",
+      "grid-cols-4",
+      "gap-3"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "empty"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [
+    "machine/rules/dg-3.json"
+  ],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/card-grid/index.html",
+      "covers": [
+        "default"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 640
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/layout/card-grid.md."
+    }
+  ],
+  "accessibility": [
+    "Корень (`<div>`) в фокус не попадает. На один экземпляр по Tab проходят: ничего — у 2 из 8; 20 кнопок и 20 ссылок — у 2 из 8; 72 ссылки — у 1 из 8; у остальных 3 — другой состав. По корпусу (284 узла): `Link` — 176, `Button` — 108."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "div.grid.grid-cols-4.gap-3",
+        "found": 8,
+        "pages": [
+          "authors",
+          "courses-listing",
+          "editors",
+          "education-centers-listing",
+          "promocodes",
+          "schools-for-children"
+        ]
+      }
+    }
+  ],
+  "unknowns": [
+    "**Не снятые состояния.** `empty` — разбор в [`components/STATE-CAPTURE.md`](../STATE-CAPTURE.md).",
+    "Не снятые состояния: empty."
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/layout/card-grid.md",
+    "status": "partial",
+    "scope": "production",
+    "step": "R4-08",
+    "anchor": "showcase/components.html#c-card-grid",
+    "originalKind": "module",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для сетки однотипных карточек в секции, когда видны все: 4 колонки на десктопе, 3 (иногда 2) на `tablet-only:`, 1 на `phone:`. В продукте 8 узлов на 6 страницах.",
+    "whenNot": [
+      "Когда карточки листают — `Carousel`."
+    ],
+    "related": [
+      "carousel"
+    ]
+  },
+  "dependencies": [],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "empty"
+    ],
+    "captured": [
+      "default"
+    ],
+    "normative": [],
+    "uncaptured": [
+      "empty"
+    ]
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

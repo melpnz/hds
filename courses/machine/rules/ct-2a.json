@@ -1,0 +1,24 @@
+{
+  "id": "CT-2a",
+  "kind": "rule",
+  "area": "Тексты",
+  "statement": "Цена: разряды через пробел, знак рубля после числа: «от 4 223 ₽/мес», «или сразу 129 200 ₽»",
+  "coverage": "209 из 210 цен от тысячи, 7 страниц",
+  "exception": "Нарушитель — «Скидка 1000 ₽» в `PromoCard` (промокоды)",
+  "predicate": {
+    "type": "numberFormat",
+    "viewports": [
+      1440
+    ],
+    "kind": "price",
+    "note": "каждое число перед знаком ₽ от тысячи разделено пробелом"
+  },
+  "appliesTo": [
+    "courses-listing",
+    "education-centers-listing",
+    "rating",
+    "education-center"
+  ],
+  "humanDoc": "docs/guide/composition.md",
+  "showcase": "showcase/pages.html#rule-CT-2a"
+}

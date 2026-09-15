@@ -1,0 +1,177 @@
+{
+  "$schema": "../../schema.json",
+  "id": "search-form",
+  "title": "SearchForm",
+  "kind": "module",
+  "category": "forms",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "figma"
+    ],
+    "confidence": "high",
+    "scope": "mixed-evidence"
+  },
+  "purpose": "Используйте для поиска с параметрами в hero: поля `Select` и кнопка «Найти …» с именем раздела. В продукте 5 узлов на 5 страницах.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "grid",
+      "grid-cols-[1fr_max-content]",
+      "gap-2",
+      "rounded-md"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [
+    "machine/rules/r-5.json"
+  ],
+  "examples": [
+    {
+      "id": "select-xl-group",
+      "title": "SearchForm · группа Select XL",
+      "file": "examples/components/search-form/index.html",
+      "covers": [
+        "default",
+        "desktop",
+        "mobile",
+        "select-xl",
+        "joined-fields",
+        "full-width-action"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 300
+      },
+      "authority": [
+        "production",
+        "figma"
+      ],
+      "scope": "mixed-evidence"
+    }
+  ],
+  "variants": [
+    {
+      "id": "fields",
+      "use": "Три Select XL высотой 56 px внутри одной общей оболочки."
+    },
+    {
+      "id": "layout",
+      "use": "Desktop: горизонтальная группа; mobile: вертикальная группа."
+    },
+    {
+      "id": "action",
+      "use": "Button XL отделена от полей на 8 px; на mobile — на 16 px и во всю ширину."
+    }
+  ],
+  "layoutRules": [
+    {
+      "id": "joined-fields",
+      "context": "Select XL group",
+      "behavior": "Поля воспринимаются как один составной элемент с разделителями 1 px.",
+      "implementation": "Child borders overlap by 1px; only the first and last controls keep the outer 12px radii."
+    },
+    {
+      "id": "mobile-stack",
+      "context": "Mobile ≤479 px",
+      "behavior": "Поля складываются вертикально без промежутков; кнопка занимает всю ширину.",
+      "implementation": "Single-column grid; vertical separators become horizontal; action gap 16px."
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/forms/search-form.md."
+    },
+    {
+      "type": "guidance",
+      "text": "SearchForm использует Select XL как единый составной контрол: между полями нет gap, видны только разделители 1 px."
+    }
+  ],
+  "accessibility": [
+    "Корень (`<div>`) в фокус не попадает. На один экземпляр по Tab проходят: 1 кнопка и 3 поля `input type=text` — у 4 из 5; 1 кнопка и 2 поля `input type=text` — у 1 из 5. По корпусу (33 узла): `Button` — 5, внутри `TextInput` — 28. Фокус внутреннего поля показывает рамка обёртки `focus-within:border-ui-black-850`. 14 из 33 фокусируемых узлов на 1440 скрыты и в порядок табуляции не входят, пока их не покажут."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "div.grid.grid-cols-\\[1fr_max-content\\].gap-2.rounded-md",
+        "found": 5,
+        "pages": [
+          "education-centers-listing",
+          "promocodes",
+          "rating",
+          "reviews",
+          "schools-for-children"
+        ]
+      }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+        "nodeId": "15074:233173",
+        "layerName": "SearchForm · Select XL group"
+      }
+    }
+  ],
+  "unknowns": [
+    "**Классы без правила.** В разметке продукта стоят классы, у которых нет объявления ни в одном из 22 файлов корпуса: `align-center`. Это не пробел пакета, а находка о продукте: класс написан, правило отсутствует. В `ui/` они не заводятся."
+  ],
+  "source": {
+    "version": "v0.2",
+    "spec": "guide/components/forms/search-form.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R4-06",
+    "anchor": "showcase/components.html#c-search-form",
+    "originalKind": "module",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для поиска с параметрами в hero: поля `Select` и кнопка «Найти …» с именем раздела. В продукте 5 узлов на 5 страницах.",
+    "whenNot": [
+      "Для глобального поиска — `SearchInput` в шапке."
+    ],
+    "related": [
+      "search-input"
+    ]
+  },
+  "dependencies": [
+    "select",
+    "button"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default"
+    ],
+    "captured": [
+      "default"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

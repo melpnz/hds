@@ -1,0 +1,29 @@
+{
+  "id": "C-3a",
+  "kind": "rule",
+  "area": "Поверхности и форма",
+  "statement": "Кнопка и поле высотой 40–56 скругляются на 12 (`rounded-xl`)",
+  "coverage": "223 из 232 узлов: кнопки и ссылки-кнопки, поля, переключатель аудитории hero, плашка промокода; 9 страниц. Знаменатель — только управляющие элементы: растушёвка текста, картинки и шапка таблицы той же высоты в него не входят",
+  "exception": "Поля формы поиска — радиус 0 (9 узлов, 5 страниц): стыкуются через 1px в общей обёртке со скруглением. У самих 14 `input` формы своего края нет — ни рамки, ни заливки, — и в замерах они не показаны: видимый край даёт обёртка `span`",
+  "predicate": {
+    "type": "radiusByForm",
+    "viewports": [
+      1440
+    ],
+    "form": "control",
+    "heightRange": [
+      40,
+      56
+    ],
+    "radius": 12,
+    "exceptSelector": "span.align-center.flex.gap-x-1.border",
+    "note": "поля формы поиска стыкуются в общей обёртке и радиуса не несут — они и есть исключение правила"
+  },
+  "appliesTo": [
+    "courses-listing",
+    "education-centers-listing",
+    "education-center"
+  ],
+  "humanDoc": "docs/guide/composition.md",
+  "showcase": "showcase/pages.html#rule-C-3a"
+}

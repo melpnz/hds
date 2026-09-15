@@ -1,0 +1,146 @@
+{
+  "$schema": "../../schema.json",
+  "id": "tile-filter",
+  "title": "TileFilter",
+  "kind": "component",
+  "category": "forms",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "storybook"
+    ],
+    "confidence": "medium",
+    "scope": "design-source-only"
+  },
+  "purpose": "Иллюстрированная плитка варианта фильтра. В продукте её нет — «Популярные направления» на `/courses` текстовые (`LinkGrid`); снята в Storybook как `BaseFilterWithImage`, в макете стоит в модалке фильтров.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "m-0"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "selected",
+      "disabled"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/tile-filter/index.html",
+      "covers": [
+        "default",
+        "selected"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "fit-content"
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/forms/tile-filter.md."
+    },
+    {
+      "type": "coverage-warning",
+      "text": "Источник storybook-only: компонент не подтверждён в продакшене."
+    }
+  ],
+  "accessibility": [
+    "Нативная `<button>`: фокус по Tab, выбор — Enter или Space."
+  ],
+  "evidence": [
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": null,
+          "nodeId": "10540:60335",
+          "componentKey": null
+        }
+      ]
+    },
+    {
+      "type": "storybook",
+      "data": [
+        {
+          "story": "common-basefilterwithimage--default",
+          "file": null,
+          "renders": true,
+          "note": "button 122 шириной, плитка rounded-2xl p-5, img 80×80, подпись text-micro"
+        }
+      ]
+    }
+  ],
+  "unknowns": [
+    "**Прод-адреса нет.** Пока компонент не найден в продукте, ни `occurrences`, ни `seenOn` у записи не заполняются: измерять нечего. Числа в реестре остаются нулями осознанно.",
+    "**Проза выведена из story и CSS Storybook.** Записи нет в разметке снятых страниц, и в переписи корпуса её нет. Правило применения, «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по снятой story и CSS Storybook (`evidence/source/storybook/`); «Когда не использовать» — по тому, чем снятые страницы решают ту же задачу. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их нечем.",
+    "Не снятые состояния: hover, focus-visible, pressed, disabled."
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/forms/tile-filter.md",
+    "status": "partial",
+    "scope": "storybook-only",
+    "step": "R3-12",
+    "anchor": "showcase/components.html#c-tile-filter",
+    "originalKind": "component",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Иллюстрированная плитка варианта фильтра. В продукте её нет — «Популярные направления» на `/courses` текстовые (`LinkGrid`); снята в Storybook как `BaseFilterWithImage`, в макете стоит в модалке фильтров.",
+    "whenNot": [
+      "Для текстового ряда фильтров — `FilterChip`."
+    ],
+    "related": [
+      "filter-chip"
+    ]
+  },
+  "dependencies": [],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "hover",
+      "focus-visible",
+      "pressed",
+      "selected",
+      "disabled"
+    ],
+    "captured": [
+      "default",
+      "selected"
+    ],
+    "normative": [],
+    "uncaptured": [
+      "hover",
+      "focus-visible",
+      "pressed",
+      "disabled"
+    ]
+  },
+  "provenance": null,
+  "sourceConflicts": []
+}

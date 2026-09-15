@@ -1,0 +1,42 @@
+{
+  "id": "SH-4",
+  "kind": "rule",
+  "area": "Оболочка",
+  "statement": "Подвал на `#f1f1f1` (`bg-ui-black-50`): 192 в высоту на 1440 и 1024, 256 на 768, 476 на 375",
+  "coverage": "10/10 на четырёх ширинах",
+  "exception": "В корпусе нет. Нарушит подвал на белом фоне страницы",
+  "predicate": {
+    "type": "style",
+    "viewports": [
+      1440,
+      1024,
+      768,
+      375
+    ],
+    "selector": "footer",
+    "match": "all",
+    "expect": {
+      "background-color": "rgb(241, 241, 241)"
+    },
+    "expectByViewport": {
+      "375": {
+        "height": "476px"
+      },
+      "768": {
+        "height": "256px"
+      },
+      "1024": {
+        "height": "192px"
+      },
+      "1440": {
+        "height": "192px"
+      }
+    },
+    "note": "высота подвала меряется на четырёх ширинах"
+  },
+  "appliesTo": [
+    "all"
+  ],
+  "humanDoc": "docs/guide/composition.md",
+  "showcase": "showcase/pages.html#rule-SH-4"
+}

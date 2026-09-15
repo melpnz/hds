@@ -1,0 +1,151 @@
+{
+  "$schema": "../../schema.json",
+  "id": "catalog-menu",
+  "title": "CatalogMenu",
+  "kind": "module",
+  "category": "overlays",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "figma"
+    ],
+    "confidence": "medium",
+    "scope": "design-source-only"
+  },
+  "purpose": "**В продукте этого компонента нет.** Он существует только в макете, и это не пробел съёмки, а установленный факт — разбор в `notes` записи реестра:",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "crs-catalog-menu"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "open",
+      "closed"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Зафиксированный вариант",
+      "file": "examples/components/catalog-menu/index.html",
+      "covers": [
+        "default",
+        "open",
+        "closed"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 640
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/overlays/catalog-menu.md."
+    },
+    {
+      "type": "coverage-warning",
+      "text": "Источник figma-only: компонент не подтверждён в продакшене."
+    }
+  ],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": null,
+          "nodeId": "14644:221758",
+          "componentKey": null
+        },
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "Карточки",
+          "nodeId": "14644:221760",
+          "componentKey": null
+        },
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "каталог детей 🎀",
+          "nodeId": "14657:224732",
+          "componentKey": null
+        },
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "каталог для взрослых 😏",
+          "nodeId": "14657:224294",
+          "componentKey": null
+        }
+      ]
+    }
+  ],
+  "unknowns": [
+    "**Корень введён пакетом.** `crs-catalog-menu` — не класс продукта. METHOD §6.5 допускает корень вида `crs-<id>` ровно для этого случая: снятой разметки, из которой можно взять настоящее имя, не существует. Префикс `crs-` нужен, чтобы имя пакета нельзя было принять за класс продукта.",
+    "**Тексты.** Подписи — дословно из узлов макета. Взрослый каталог: пятнадцать направлений и начало трёх колонок курсов, по двенадцать строк из 27, 30 и 30; колонки два и три в макете — наполнитель («Haskell», «Microsoft Access», «Middle Frontend-разработка» повторяются, третья почти целиком повторяет вторую со сдвигом на строку). Детский каталог (`14657:224732`): тринадцать направлений, текущее — «Подготовка к олимпиадам», справа группы «По предметам» и «По возрасту»; «Матемитика» и «Английския язык» — опечатки макета, перенесены как есть. Полоса поиска и шевроны строк — из кадра 320 (`14657:224294`), видны на ширинах до 744; кадр 744 оставляет одну колонку курсов. Шапка `header / courses` над панелью — своя запись, здесь не повторяется. Обёртка из двух каталогов — оформление витрины.",
+    "**Ассеты.** Иконки направлений — экспорты узлов макета в `ui/assets/icons/catalog/`: пятнадцать взрослых и девять детских, ещё четыре детские строки берут взрослые иконки (`growth`, `hobby`, `code`, `languages` — те же компоненты макета, контуры совпали). В спрайте продукта (22 символа) иконок направлений нет. Цвет `#A6A7A9` зашит в экспорт. Кнопка «назад», лупа и шевроны строк — символы спрайта `arrow-large`, `search` и `arrow-small`, глифы сверены. Разделитель — полоса фона 1px, а не картинка, как вектор в макете.",
+    "**Состояния.** Свёрстано одно состояние — открытое (`open`): узел макета и есть раскрытый каталог. `default` и `closed` — свёрнутый каталог, то есть кнопка в шапке; отдельной вёрстки у записи для них нет. Текущее направление («Программирование и IT») нарисовано в макете серым — на витрине оно помечено модификатором `--current`, наведение остальных строк живое. Разбор — [`components/STATE-CAPTURE.md`](../STATE-CAPTURE.md).",
+    "**Статус терминальный.** Правило манифеста: `sourceScope: figma-only` не доходит до `complete`/`partial`. Пока компонент не найден в продукте, запись остаётся `figma-only`, сколько бы вёрстки к ней ни прибавилось."
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/overlays/catalog-menu.md",
+    "status": "figma-only",
+    "scope": "figma-only",
+    "step": "R4-13",
+    "anchor": "showcase/components.html#c-catalog-menu",
+    "originalKind": "module",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "**В продукте этого компонента нет.** Он существует только в макете, и это не пробел съёмки, а установленный факт — разбор в `notes` записи реестра:",
+    "whenNot": [],
+    "related": []
+  },
+  "dependencies": [
+    "link",
+    "sprite-icon",
+    "button-group"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "open",
+      "closed"
+    ],
+    "captured": [
+      "default",
+      "open",
+      "closed"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": null,
+  "sourceConflicts": []
+}

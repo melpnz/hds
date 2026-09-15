@@ -1,0 +1,110 @@
+{
+  "$schema": "../../schema.json",
+  "id": "carousel",
+  "title": "Carousel",
+  "kind": "module",
+  "category": "collections",
+  "maturity": {
+    "spec": "complete",
+    "markup": "missing"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Используйте для ленты карточек, которую листают: курсы, отзывы, статьи журнала, реклама. В продукте 16 узлов на 7 страницах.",
+  "implementation": {
+    "markup": null,
+    "missingReason": "разметки нет: запись — обёртка вокруг библиотеки (см. spec)",
+    "fallback": "Использовать спецификацию guide/components/collections/carousel.md; не восстанавливать DOM по внешнему виду.",
+    "cssRoots": [
+      "vendor:swiper"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "current"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/collections/carousel.md."
+    }
+  ],
+  "accessibility": [
+    "Корень (`<div>`) в фокус не попадает. На один экземпляр по Tab проходят: 8 кнопок и 8 ссылок — у 6 из 16; 8 ссылок — у 4 из 16; 4 кнопки и 1 ссылка — у 2 из 16; у остальных 4 — другой состав. По корпусу (190 узлов): `Link` — 116, `Button` — 48, внутри `AdCard` — 20, внутри `ReviewCard` — 6."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": ".swiper.swiper-initialized.swiper-horizontal",
+        "found": 16,
+        "pages": [
+          "courses-listing",
+          "education-center",
+          "education-centers-listing",
+          "promocodes",
+          "rating",
+          "reviews",
+          "schools-for-children"
+        ]
+      }
+    }
+  ],
+  "unknowns": [
+    "**Копируемость (METHOD §6.1) для этой записи не выполняется, и это решение, а не пробел.** Разметку нельзя вставить на пустую страницу с одним `ui/courses.css` и получить карусель: нужен слой Swiper, которого в пакете нет намеренно.",
+    "**Состояния каруселью не описываются.** `swiper-slide-active`, `swiper-slide-prev`, `swiper-slide-next` — признаки библиотеки, и меняет их она сама. Пакет их только называет.",
+    "разметки нет: запись — обёртка вокруг библиотеки (см. spec)"
+  ],
+  "source": {
+    "version": "v0.1",
+    "spec": "guide/components/collections/carousel.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R4-09",
+    "anchor": "showcase/components.html#c-carousel",
+    "originalKind": "module",
+    "markupNote": "разметки нет: запись — обёртка вокруг библиотеки (см. spec)",
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для ленты карточек, которую листают: курсы, отзывы, статьи журнала, реклама. В продукте 16 узлов на 7 страницах.",
+    "whenNot": [
+      "Когда все карточки должны быть видны сразу — `CardGrid`."
+    ],
+    "related": [
+      "card-grid"
+    ]
+  },
+  "dependencies": [
+    "icon-button"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "current"
+    ],
+    "captured": [
+      "default",
+      "current"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}

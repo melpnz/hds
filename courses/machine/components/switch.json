@@ -1,0 +1,178 @@
+{
+  "$schema": "../../schema.json",
+  "id": "switch",
+  "title": "Switch",
+  "kind": "component",
+  "category": "forms",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "storybook",
+      "figma"
+    ],
+    "confidence": "medium",
+    "scope": "design-source-only"
+  },
+  "purpose": "Включение и выключение опции с подписью рядом. В продукте не встречается; снят в Storybook как `BaseSwitch` (story `common-baseswitch--base-switch-story`).",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "group"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "checked",
+      "disabled",
+      "loading"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "states",
+      "title": "Switch · состояния и группы",
+      "file": "examples/components/switch/index.html",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "checked",
+        "disabled",
+        "loading"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "constrained",
+        "width": 720
+      },
+      "authority": [
+        "storybook",
+        "figma"
+      ],
+      "scope": "design-source-only"
+    }
+  ],
+  "variants": [
+    {
+      "id": "value",
+      "use": "off / on; нативное состояние checked."
+    },
+    {
+      "id": "state",
+      "use": "default, hover, focus-visible, disabled и loading по Courses Figma."
+    }
+  ],
+  "layoutRules": [
+    {
+      "id": "control-label",
+      "context": "Контрол с подписью",
+      "behavior": "Между визуальным контролом и текстом используется gap 8 px; текст опущен на 1 px.",
+      "implementation": "inline-flex; align-items:flex-start; gap:8px; label padding-top:1px."
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/forms/switch.md."
+    },
+    {
+      "type": "guidance",
+      "text": "Полная матрица off/on взята из Courses Figma: education-lib, switch node 693:1718."
+    },
+    {
+      "type": "guidance",
+      "text": "Подпись выровнена через padding-top: 1 px; gap между визуальным контролом и текстом — 8 px."
+    },
+    {
+      "type": "coverage-warning",
+      "text": "Источник storybook-only: компонент не подтверждён в продакшене."
+    }
+  ],
+  "accessibility": [
+    "Используйте нативный `<input type=\"checkbox\" role=\"switch\">`; переключение — Space.",
+    "`focus-visible` показывает внешний контур; `disabled` задаётся нативно, `loading` — через `aria-busy=\"true\"` на контейнере."
+  ],
+  "evidence": [
+    {
+      "type": "storybook",
+      "data": [
+        {
+          "story": "common-baseswitch--base-switch-story",
+          "file": null,
+          "renders": true,
+          "note": "трек 38×22 внутри бокса 40×24, appearance default|edu"
+        }
+      ]
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "693:1718",
+        "layerName": "switch"
+      }
+    }
+  ],
+  "unknowns": [
+    "**Классы без правила.** `leading-md` — объявления нет ни в 22 файлах прод-корпуса, ни в 13 файлах CSS снимка Storybook. См. раздел «Находки» витрины.",
+    "**Прод-адреса нет.** Пока компонент не найден в продукте, ни `occurrences`, ни `seenOn` у записи не заполняются: измерять нечего. Числа в реестре остаются нулями осознанно.",
+    "**Проза выведена из story и CSS Storybook.** Записи нет в разметке снятых страниц, и в переписи корпуса её нет. Правило применения, «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по снятой story и CSS Storybook (`evidence/source/storybook/`); «Когда не использовать» — по тому, чем снятые страницы решают ту же задачу. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их нечем."
+  ],
+  "source": {
+    "version": "v0.2",
+    "spec": "guide/components/forms/switch.md",
+    "status": "partial",
+    "scope": "storybook-only",
+    "step": "R3-11",
+    "anchor": "showcase/components.html#c-switch",
+    "originalKind": "component",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Включение и выключение опции с подписью рядом. В продукте не встречается; снят в Storybook как `BaseSwitch` (story `common-baseswitch--base-switch-story`).",
+    "whenNot": [
+      "Для фильтрации выдачи на месте: на снятых страницах направление выбирают `FilterChip`, переключателей на них нет."
+    ],
+    "related": [
+      "filter-chip"
+    ]
+  },
+  "dependencies": [],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "hover",
+      "focus-visible",
+      "checked",
+      "disabled"
+    ],
+    "captured": [
+      "default",
+      "hover",
+      "focus-visible",
+      "checked",
+      "disabled",
+      "loading"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": null,
+  "sourceConflicts": []
+}

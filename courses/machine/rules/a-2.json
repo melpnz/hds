@@ -1,0 +1,26 @@
+{
+  "id": "A-2",
+  "kind": "rule",
+  "area": "Акценты и иерархия текста",
+  "statement": "Оранжевый `ui-orange-500` (#ff7e47) стоит только на фоне бейджа скидки `Badge`; оранжевого текста нет",
+  "coverage": "87 узлов оранжевого фона из 87 — `Badge`; текста — 0",
+  "exception": "В корпусе нет. Нарушит оранжевая цена или кнопка. Звёзды рейтинга — другой токен, `ui-yellow-500` (#ff960c)",
+  "predicate": {
+    "type": "colorScope",
+    "viewports": [
+      1440
+    ],
+    "color": "rgb(255, 126, 71)",
+    "maxHeight": 24,
+    "textAllowed": false,
+    "note": "оранжевый фон встречается только у бейджа высотой до 24; оранжевого текста нет ни одного"
+  },
+  "appliesTo": [
+    "courses-listing",
+    "education-centers-listing",
+    "education-center",
+    "rating"
+  ],
+  "humanDoc": "docs/guide/composition.md",
+  "showcase": "showcase/pages.html#rule-A-2"
+}

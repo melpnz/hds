@@ -1,0 +1,313 @@
+{
+  "$schema": "../../schema.json",
+  "id": "site-header",
+  "title": "SiteHeader",
+  "kind": "module",
+  "category": "frame-modules",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "figma"
+    ],
+    "confidence": "high",
+    "scope": "mixed-evidence"
+  },
+  "purpose": "Responsive-семейство шапок: ListingHeader для листингов, CoursesHeader для страниц курсов и SimplePageHeader для низкоуровневых страниц.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "bg-main-gradient-first"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "figma-variants",
+      "title": "Все варианты SiteHeader",
+      "file": "examples/components/site-header/index.html",
+      "covers": [
+        "listing-hero",
+        "listing-page",
+        "listing-page-sticky",
+        "courses-hero",
+        "courses-page",
+        "courses-page-sticky",
+        "simple-page",
+        "mobile",
+        "tablet",
+        "desktop"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 960
+      },
+      "authority": [
+        "figma"
+      ],
+      "scope": "design-source-only"
+    },
+    {
+      "id": "production-current",
+      "title": "Production · текущая шапка",
+      "file": "examples/components/site-header/production.html",
+      "covers": [
+        "default"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 640
+      },
+      "authority": [
+        "production"
+      ],
+      "scope": "public-guest"
+    }
+  ],
+  "variantMatrix": {
+    "families": {
+      "listing": {
+        "name": "ListingHeader",
+        "levels": [
+          "hero",
+          "page"
+        ],
+        "sticky": [
+          "page"
+        ]
+      },
+      "courses": {
+        "name": "CoursesHeader",
+        "levels": [
+          "hero",
+          "page"
+        ],
+        "sticky": [
+          "page"
+        ]
+      },
+      "simple": {
+        "name": "SimplePageHeader",
+        "levels": [
+          "simple"
+        ],
+        "sticky": []
+      }
+    },
+    "devices": {
+      "mobile": "≤479",
+      "tablet": "480–1023",
+      "desktop": "≥1024"
+    },
+    "figmaFrames": {
+      "mobile": 320,
+      "tablet": 744,
+      "desktop": 1024
+    },
+    "combinations": 21
+  },
+  "variants": [
+    {
+      "id": "family",
+      "use": "ListingHeader, CoursesHeader или SimplePageHeader."
+    },
+    {
+      "id": "level",
+      "use": "Hero для верхнего уровня; Page для второго уровня; Simple для низкоуровневых страниц."
+    },
+    {
+      "id": "sticky",
+      "use": "Только Page: обычная или сокращённая sticky-версия."
+    },
+    {
+      "id": "device",
+      "use": "Responsive, не prop: mobile ≤479, tablet 480–1023, desktop ≥1024."
+    }
+  ],
+  "layoutRules": [
+    {
+      "id": "breakpoints",
+      "context": "SiteHeader",
+      "behavior": "Три Figma-режима без горизонтального переполнения.",
+      "implementation": "@media max-width:479px; 480–1023px; min-width:1024px."
+    },
+    {
+      "id": "sticky",
+      "context": "Page второго уровня",
+      "behavior": "При прокрутке заменяется сокращённой шапкой с тенью.",
+      "implementation": "position:sticky; top:0; только level=page."
+    },
+    {
+      "id": "mobile-overflow",
+      "context": "Mobile",
+      "behavior": "Фильтры и верхнее меню остаются однострочными и прокручиваются горизонтально.",
+      "implementation": "overflow-x:auto; элементы flex:none."
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/frame-modules/site-header.md."
+    },
+    {
+      "type": "guidance",
+      "text": "SiteHeader разделён по контексту на ListingHeader, CoursesHeader и SimplePageHeader; все 21 Figma-комбинации доступны в одном responsive-playground."
+    },
+    {
+      "type": "guidance",
+      "text": "Подсказки Figma: Hero — верхний уровень без sticky; Page — второй уровень; PageSticky — сокращение при прокрутке; SimplePageHeader — низкоуровневые страницы."
+    },
+    {
+      "type": "guidance",
+      "text": "Responsive-шкала компонента: mobile ≤479, tablet 480–1023, desktop ≥1024. Она намеренно устраняет конфликт Figma tablet 744 со старым utility phone ≤767."
+    }
+  ],
+  "accessibility": [
+    "Корень (`<header>`) в фокус не попадает. На один экземпляр по Tab проходят: 1 кнопка и 4 ссылки — у 9 из 10; 2 кнопки, 1 поле `input type=text` и 4 ссылки — у 1 из 10. По корпусу (92 узла): `Link` — 80, `Button` — 1, внутри `TextInput` — 1; вне записей реестра — `button.font-inherit.inline-flex.h-6.cursor-pointer` — 10. Фокус внутреннего поля показывает рамка обёртки `focus-within:border-ui-black-850`. 40 из 92 фокусируемых узлов на 1440 скрыты и в порядок табуляции не входят, пока их не покажут."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "header.bg-main-gradient-first",
+        "found": 10,
+        "pages": [
+          "author",
+          "authors",
+          "courses-listing",
+          "editors",
+          "education-center",
+          "education-centers-listing",
+          "promocodes",
+          "rating",
+          "reviews",
+          "schools-for-children"
+        ]
+      }
+    },
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "header/courses",
+          "nodeId": "15065:242662",
+          "componentKey": null
+        }
+      ]
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+        "nodeId": "15071:230717",
+        "layerName": "SiteHeader variants and usage annotations"
+      }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+        "nodeId": "15058:236426",
+        "layerName": "header / list pages"
+      }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+        "nodeId": "15065:242662",
+        "layerName": "header / courses"
+      }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+        "nodeId": "15065:245602",
+        "layerName": "header / simple pages"
+      }
+    }
+  ],
+  "unknowns": [
+    "**Классы без правила.** В разметке продукта стоят классы, у которых нет объявления ни в одном из 22 файлов корпуса: `font-inherit`, `align-center`. Это не пробел пакета, а находка о продукте: класс написан, правило отсутствует. В `ui/` они не заводятся.",
+    "BRIEF §5, конфликт 2: --header-height: прод 64, сборка Storybook 112 (мобильный 144) — расхождение сборок"
+  ],
+  "source": {
+    "version": "v0.2",
+    "spec": "guide/components/frame-modules/site-header.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "R4-01",
+    "anchor": "showcase/components.html#c-site-header",
+    "originalKind": "module",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Выберите семейство по контексту страницы, затем уровень Hero/Page; sticky существует только как сокращение Page.",
+    "whenNot": [
+      "Не используйте ListingHeader внутри страниц курсов.",
+      "Не используйте sticky-вариант для Hero или SimplePageHeader."
+    ],
+    "related": [
+      "header-dropdown",
+      "search-input",
+      "filter-chip",
+      "segmented-control",
+      "button"
+    ]
+  },
+  "dependencies": [
+    "header-dropdown",
+    "search-input",
+    "sprite-icon",
+    "filter-chip",
+    "segmented-control",
+    "button"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default"
+    ],
+    "captured": [
+      "default"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": [
+    {
+      "ref": "BRIEF §5, конфликт 2",
+      "summary": "--header-height: прод 64, сборка Storybook 112 (мобильный 144) — расхождение сборок"
+    }
+  ]
+}

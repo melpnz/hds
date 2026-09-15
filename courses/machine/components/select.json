@@ -1,0 +1,230 @@
+{
+  "$schema": "../../schema.json",
+  "id": "select",
+  "title": "Select",
+  "kind": "component",
+  "category": "forms",
+  "maturity": {
+    "spec": "partial",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production",
+      "figma"
+    ],
+    "confidence": "medium",
+    "scope": "mixed-evidence"
+  },
+  "purpose": "Используйте для выбора значения в форме поиска — города, организации, типа. В продукте 28 узлов на 5 страницах, все внутри `SearchForm` в hero. Половина из них, 14, — мобильный дубль формы (`div.hidden … phone:grid`): на 1440 он скрыт.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "w-full"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default",
+      "hover",
+      "focus-visible",
+      "open",
+      "closed",
+      "disabled",
+      "invalid",
+      "error"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "field-family",
+      "title": "Select · размеры и состояния",
+      "file": "examples/components/select/index.html",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "disabled",
+        "invalid",
+        "open",
+        "size-m",
+        "size-xl"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "constrained",
+        "width": 720
+      },
+      "authority": [
+        "production",
+        "figma"
+      ],
+      "scope": "mixed-evidence"
+    }
+  ],
+  "variants": [
+    {
+      "id": "size",
+      "use": "M: 40 px; XL / SearchForm: 56 px. В XL слева 16 px, справа 12 px."
+    },
+    {
+      "id": "content",
+      "use": "Пустое с placeholder или заполненное."
+    },
+    {
+      "id": "state",
+      "use": "default, hover, focus-visible, disabled и invalid/error."
+    },
+    {
+      "id": "dropdown",
+      "use": "Открытая панель: gap 4 px, высота 216 px, строки 40 px и прокрутка."
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/forms/select.md."
+    },
+    {
+      "type": "guidance",
+      "text": "Общая оболочка и состояния взяты из Courses Figma: education-lib, canvas 670:8259; XL 56 px — из SearchForm, node 15074:233173."
+    },
+    {
+      "type": "guidance",
+      "text": "В M и XL используется один текстовый стиль 16/22 regular и SVG-иконки 24×24."
+    },
+    {
+      "type": "guidance",
+      "text": "Открытый dropdown сверён с Courses Figma: Select node 4850:2101, MultiSelect dropdown node 4393:6213. Панель общая для обоих компонентов; различается содержимое триггера."
+    }
+  ],
+  "accessibility": [
+    "Триггер — `<button role=\"combobox\">` с `aria-expanded`; управляет связанным `listbox`.",
+    "`disabled` задаётся нативно; ошибка — `aria-invalid=\"true\"` и связанный текст ошибки."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": ".gap-\\[1px\\] > div.w-full",
+        "found": 28,
+        "pages": [
+          "education-centers-listing",
+          "promocodes",
+          "rating",
+          "reviews",
+          "schools-for-children"
+        ]
+      }
+    },
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "layerName": "dropdown/select",
+          "nodeId": null,
+          "componentKey": "8c0e7325b3403282694429fb3e2c196ddf62c9b6"
+        }
+      ]
+    },
+    {
+      "type": "storybook",
+      "data": [
+        {
+          "story": "forms-basecustomselect--base-story",
+          "file": null,
+          "renders": true,
+          "note": "снято только закрытое состояние: button[role=combobox][aria-expanded=false], min-h 40, radius 12, border #e9e9ea"
+        }
+      ]
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "670:8259",
+        "layerName": "input (textfields, selects)"
+      }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+        "nodeId": "15074:233173",
+        "layerName": "SearchForm fields · XL"
+      }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "4850:2101",
+        "layerName": "Select · open"
+      }
+    }
+  ],
+  "unknowns": [
+    "**Классы без правила.** В разметке продукта стоят классы, у которых нет объявления ни в одном из 22 файлов корпуса: `align-center`. Это не пробел пакета, а находка о продукте: класс написан, правило отсутствует. В `ui/` они не заводятся."
+  ],
+  "source": {
+    "version": "v0.2",
+    "spec": "guide/components/forms/select.md",
+    "status": "partial",
+    "scope": "production",
+    "step": "R3-06",
+    "anchor": "showcase/components.html#c-select",
+    "originalKind": "component",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Используйте для выбора значения в форме поиска — города, организации, типа. В продукте 28 узлов на 5 страницах, все внутри `SearchForm` в hero. Половина из них, 14, — мобильный дубль формы (`div.hidden … phone:grid`): на 1440 он скрыт.",
+    "whenNot": [
+      "Для выбора в ряду над выдачей — `FilterChip`.",
+      "Для свободного текста — `TextInput`."
+    ],
+    "related": [
+      "filter-chip",
+      "text-input"
+    ]
+  },
+  "dependencies": [
+    "sprite-icon"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default",
+      "hover",
+      "focus-visible",
+      "open",
+      "closed",
+      "disabled",
+      "invalid"
+    ],
+    "captured": [
+      "default",
+      "hover",
+      "focus-visible",
+      "closed",
+      "disabled",
+      "open",
+      "invalid",
+      "error"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
+  "sourceConflicts": []
+}
