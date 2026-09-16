@@ -1,4 +1,6 @@
 const navigation = document.querySelector('#navigation');
+const sidebar = document.querySelector('.sidebar');
+const catalogToggle = document.querySelector('.catalog-toggle');
 const searchInput = document.querySelector('#guide-search');
 const searchMeta = document.querySelector('#search-meta');
 const title = document.querySelector('#item-title');
@@ -455,6 +457,10 @@ function renderGuide(item) {
     <section class="spec-section full-document">
       <h2>Полный исходный документ</h2>
       <div class="markdown-body">${renderMarkdown(item.markdown, item.sourcePath)}</div>
+    </section>` : item.documentation?.ref ? `
+    <section class="spec-section">
+      <h2>Исходная документация</h2>
+      <p><code>${escapeHtml(item.documentation.ref)}</code></p>
     </section>` : sections?.length ? `
     <section class="spec-section">
       <h2>Документация</h2>
@@ -467,7 +473,7 @@ function renderGuide(item) {
       <h2>Исходные данные</h2>
       <details class="source-data" data-source-file="${escapeHtml(item.sourceDataFile)}">
         <summary>Показать полный JSON</summary>
-        <pre>Данные загрузятся при открытии.</pre>
+        <div class="json-source-table">Данные загрузятся при открытии.</div>
       </details>
     </section>` : '';
   const evidenceItems = Array.isArray(item.evidence)
@@ -528,11 +534,20 @@ function renderGuide(item) {
   guide.querySelectorAll('.source-data').forEach(details => {
     details.addEventListener('toggle', async () => {
       if (!details.open || details.dataset.loaded) return;
-      const target = details.querySelector('pre');
+      const target = details.querySelector('.json-source-table');
       try {
         const response = await fetch(`../${details.dataset.sourceFile}`);
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        target.textContent = await response.text();
+        const data = await response.json();
+        const entries = Array.isArray(data) ? data.map((value, index) => [index, value]) : Object.entries(data);
+        const limit = 200;
+        target.innerHTML = entries.slice(0, limit).map(([key, value]) => {
+          const complex = value !== null && typeof value === 'object';
+          const rendered = complex
+            ? `<details><summary>${Array.isArray(value) ? `Массив · ${value.length}` : `Объект · ${Object.keys(value).length}`}</summary><pre>${escapeHtml(JSON.stringify(value, null, 2))}</pre></details>`
+            : `<code>${escapeHtml(JSON.stringify(value))}</code>`;
+          return `<div class="json-source-row"><b>${escapeHtml(String(key))}</b><div>${rendered}</div></div>`;
+        }).join('') + (entries.length > limit ? `<p class="json-source-limit">Показаны первые ${limit} из ${entries.length} записей.</p>` : '');
         details.dataset.loaded = 'true';
       } catch (error) {
         target.textContent = `Не удалось загрузить данные: ${error.message}`;
@@ -602,6 +617,13 @@ Promise.all([
 
 window.addEventListener('hashchange', () => renderItem().catch(console.error));
 
+function setCatalogOpen(open) {
+  sidebar.dataset.catalogOpen = String(open);
+  catalogToggle.setAttribute('aria-expanded', String(open));
+}
+catalogToggle.addEventListener('click', () => setCatalogOpen(catalogToggle.getAttribute('aria-expanded') !== 'true'));
+navigation.addEventListener('click', event => { if (event.target.closest('.nav-link') && matchMedia('(max-width: 800px)').matches) setCatalogOpen(false); });
+
 searchInput.addEventListener('input', () => renderNavigation(searchInput.value));
 searchInput.addEventListener('keydown', event => {
   if (event.key === 'Escape' && searchInput.value) clearSearch();
@@ -609,6 +631,7 @@ searchInput.addEventListener('keydown', event => {
 document.addEventListener('keydown', event => {
   if ((event.ctrlKey || event.metaKey) && event.key.toLocaleLowerCase() === 'k') {
     event.preventDefault();
+    setCatalogOpen(true);
     searchInput.focus();
     searchInput.select();
   }

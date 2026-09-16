@@ -10,10 +10,13 @@ if (!specPath || !specPath.startsWith('machine/components/')) {
       if (!response.ok) throw new Error(`HTTP ${response.status}`);
       return response.json();
     })
-    .then(item => {
-      if (!item.markup?.html) throw new Error('Copy-safe разметка отсутствует.');
+    .then(async item => {
+      if (!item.implementation?.markup || !item.implementation.markup.includes('/')) throw new Error('Copy-safe разметка отсутствует.');
+      const response = await fetch(`../${item.implementation.markup}`);
+      if (!response.ok) throw new Error(`Markup HTTP ${response.status}`);
+      const markup = await response.text();
       document.title = item.title;
-      target.innerHTML = item.markup.html
+      target.innerHTML = markup
         .replaceAll('../../ui/', '../ui/')
         .replaceAll('/career-web/images/sprites/', '../ui/assets/icons/');
     })

@@ -253,12 +253,12 @@ ${fragment}
 
 const existingButton = JSON.parse(readFileSync(resolve(root, 'machine/components/button.json'), 'utf8'));
 const sourceButton = sourceComponents.find(item => item.id === 'button');
-const buttonMarkdown = readText(normalizePath(sourceButton.spec));
-existingButton.legacySource = sourceButton;
-existingButton.markup = sourceButton.markup;
-existingButton.implementation.markup = 'markup.html';
-existingButton.markdown = buttonMarkdown;
 existingButton.sourcePath = `${legacyPrefix}${normalizePath(sourceButton.spec)}`;
+existingButton.documentation = { ref: existingButton.sourcePath };
+existingButton.provenance = {
+  registry: `${legacyPrefix}machine/components.json#button`,
+  markup: `${legacyPrefix}machine/components.json#button/markup/html`
+};
 const existingColors = JSON.parse(readFileSync(resolve(root, 'machine/foundations/colors.json'), 'utf8'));
 const existingTypography = JSON.parse(readFileSync(resolve(root, 'machine/foundations/typography.json'), 'utf8'));
 
@@ -549,6 +549,15 @@ for (const anchor of showcaseSectionIds) {
   addCatalog(item, file, [anchor, title, 'showcase', 'visual-reference']);
 }
 
+function legacyEvidence(items) {
+  const normalize = evidence => {
+    if (!evidence || typeof evidence.ref !== 'string') return evidence;
+    if (/^(?:archive:|local:|https?:\/\/)/.test(evidence.ref)) return evidence;
+    return { ...evidence, ref: `${legacyPrefix}${evidence.ref}` };
+  };
+  return Array.isArray(items) ? items.map(normalize) : normalize(items);
+}
+
 for (const source of sourceRules) {
   const isDecision = source.kind === 'decision-guide';
   const file = `machine/${isDecision ? 'decisions' : 'rules'}/${fileSlug(source.id)}.json`;
@@ -570,7 +579,7 @@ for (const source of sourceRules) {
     stateGroups: { ui: [], feature: [], domain: [] },
     examples: [],
     accessibility: [],
-    evidence: source.evidence || [{ type: 'decision-guide', ref: source.humanDoc }],
+    evidence: legacyEvidence(source.evidence || [{ type: 'decision-guide', ref: source.humanDoc }]),
     unknowns: isDecision && source.gap ? [source.gap] : [],
     previewMode: 'none'
   };
@@ -712,7 +721,7 @@ ${fragment}
       preview: { mode: 'viewport', widths: previewWidths, height: 720 }
     }],
     accessibility: [],
-    evidence: [{ type: 'showcase', ref: source.example.showcase }, { type: 'rules', ref: source.rules }],
+    evidence: [{ type: 'showcase', ref: `${legacyPrefix}${source.example.showcase}` }, { type: 'rules', ref: source.rules }],
     unknowns: source.areas === null ? ['Последовательность areas пока не извлечена из ad-hoc showcase composition.'] : []
   };
   write(file, item);
@@ -779,7 +788,7 @@ const contentItem = {
   stateGroups: { ui: [], feature: [], domain: [] },
   examples: [],
   accessibility: [],
-  evidence: [{ type: 'guide', ref: sourceContent.source }],
+  evidence: [{ type: 'guide', ref: `${legacyPrefix}${sourceContent.source}` }],
   unknowns: sourceContent.unknown,
   content: sourceContent,
   previewMode: 'none'
@@ -915,8 +924,10 @@ write('viewer/search-index.json', searchableDocuments);
 
 const markdownMappings = catalog.flatMap(entry => {
   const item = JSON.parse(readFileSync(resolve(root, entry.file), 'utf8'));
-  if (!item.markdown) return [];
-  if (item.sourcePath?.startsWith(legacyPrefix)) return [{ source: item.sourcePath.replace(legacyPrefix, ''), item: entry.id, file: entry.file }];
+  const documentationRef = item.documentation?.ref;
+  if (!item.markdown && !documentationRef) return [];
+  const sourceRef = documentationRef || item.sourcePath;
+  if (sourceRef?.startsWith(legacyPrefix)) return [{ source: sourceRef.replace(legacyPrefix, ''), item: entry.id, file: entry.file }];
   if (item.sourcePath === 'ROADMAP.md') return [{ source: 'ROADMAP.md', item: entry.id, file: entry.file }];
   return [];
 });
@@ -972,16 +983,35 @@ const categoryTitles = {
   assets: 'Ассеты',
   tooling: 'Инструменты'
 };
-const byCategory = entries => {
+const ruleCategoryIds = {
+  'адаптив': 'responsive',
+  'дашборд': 'dashboard',
+  'карточки': 'cards',
+  'контент': 'content',
+  'модули': 'modules',
+  'оболочка': 'shell',
+  'профиль': 'profile',
+  'сетка-и-листинг': 'grid-listing',
+  'состояния': 'states',
+  'страница-сущности': 'entity-page',
+  'формы': 'forms'
+};
+const byCategory = (entries, options = {}) => {
   const groups = entries.reduce((result, entry) => {
     (result[entry.category] ||= []).push(entry);
     return result;
   }, {});
-  return Object.entries(groups).sort(([a], [b]) => a.localeCompare(b, 'ru')).map(([category, items]) => ({
-    id: category,
-    title: categoryTitles[category] || category.replaceAll('-', ' '),
-    ...writeLeaf(`machine/catalog/${category}.json`, items)
-  }));
+  return Object.entries(groups).sort(([a], [b]) => a.localeCompare(b, 'ru')).map(([category, items]) => {
+    const baseId = options.ids?.[category] || category;
+    const id = options.idPrefix ? `${options.idPrefix}-${baseId}` : baseId;
+    const file = options.prefix ? `machine/catalog/${options.prefix}-${baseId}.json` : `machine/catalog/${baseId}.json`;
+    if (options.keepLegacyAliases && baseId !== category) writeLeaf(`machine/catalog/${category}.json`, items);
+    return {
+      id,
+      title: categoryTitles[category] || category.replaceAll('-', ' '),
+      ...writeLeaf(file, items)
+    };
+  });
 };
 const componentKinds = new Set(['primitive', 'component', 'adapter', 'module']);
 const foundationEntries = catalog.filter(entry => entry.kind === 'foundation');
@@ -999,7 +1029,7 @@ const catalogIndex = {
     { id: 'components', title: 'Компоненты', count: componentEntries.length, groups: byCategory(componentEntries) },
     { id: 'patterns', title: 'Паттерны', ...writeLeaf('machine/catalog/patterns.json', patternEntries) },
     { id: 'decisions', title: 'Decision Guides', ...writeLeaf('machine/catalog/decisions.json', decisionEntries) },
-    { id: 'rules', title: 'Правила', count: ruleEntries.length, groups: byCategory(ruleEntries) },
+    { id: 'rules', title: 'Правила', count: ruleEntries.length, groups: byCategory(ruleEntries, { ids: ruleCategoryIds, idPrefix: 'rule', prefix: 'rules', keepLegacyAliases: true }) },
     { id: 'content', title: 'Контент', ...writeLeaf('machine/catalog/content.json', contentEntries) },
     { id: 'guides', title: 'Документы', count: guideEntries.length, groups: byCategory(guideEntries) }
   ]

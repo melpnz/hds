@@ -71,6 +71,7 @@ try {
         await details.evaluate(element => { element.open = true; element.dispatchEvent(new Event('toggle')); });
         try { await page.waitForFunction(() => document.querySelector('.source-data')?.dataset.loaded === 'true', null, { timeout: 5000 }); }
         catch { failures.push(`${entry.id}: source data did not load`); }
+        if (await details.locator('.json-source-row').count() === 0) failures.push(`${entry.id}: source JSON is not rendered as a table`);
       }
     }
 
@@ -232,6 +233,12 @@ try {
   if (assetFailures.length) failures.push(...assetFailures.map(path => `asset did not decode: ${path}`));
 
   await page.setViewportSize({ width: 375, height: 812 });
+  if (!(await page.locator('.catalog-toggle').isVisible())) failures.push('mobile catalog toggle is hidden');
+  if (await page.locator('#navigation').isVisible()) failures.push('mobile catalog must be collapsed initially');
+  const mobileHeadingTop = await page.locator('#item-title').evaluate(element => element.getBoundingClientRect().top);
+  if (mobileHeadingTop > 240) failures.push(`mobile content starts too low at ${mobileHeadingTop}px`);
+  const mobileOverflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
+  if (mobileOverflow) failures.push('viewer has horizontal overflow at 375px');
   const mobileSamples = ['colors', 'hh-import-banner', 'listing', 'guide-research-system-audit', 'data-machine-index'];
   for (const id of mobileSamples) {
     await page.evaluate(value => { location.hash = value; }, id);

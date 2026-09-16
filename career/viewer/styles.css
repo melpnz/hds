@@ -30,6 +30,8 @@ button { font: inherit; }
 }
 
 .brand { display: flex; gap: 11px; align-items: center; margin-bottom: 34px; text-decoration: none; }
+.sidebar__top { display: contents; }
+.catalog-toggle { display: none; }
 .brand__mark { display: grid; width: 36px; height: 36px; place-items: center; border-radius: 9px; color: white; background: var(--accent); font-weight: 800; }
 .brand strong, .brand small { display: block; }
 .brand small { margin-top: 2px; color: var(--muted); font-size: 12px; }
@@ -148,7 +150,7 @@ h1 { margin: 0; font-size: clamp(28px, 4vw, 42px); letter-spacing: -.035em; }
 .md-code { margin: 14px 0; padding: 14px; overflow: auto; border: 1px solid var(--line); border-radius: 10px; background: #f8fbfc; white-space: pre; font: 12px/1.55 ui-monospace, "Cascadia Mono", monospace; }
 .md-table-wrap { max-width: 100%; margin: 14px 0; overflow: auto; border: 1px solid var(--line); border-radius: 10px; }
 .markdown-body table { width: 100%; border-collapse: collapse; background: white; }.markdown-body th, .markdown-body td { padding: 9px 11px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }.markdown-body th { color: var(--ink); background: #f8fbfc; font-size: 13px; }
-.source-data { border: 1px solid var(--line); border-radius: 10px; background: white; }.source-data summary { padding: 12px 14px; cursor: pointer; font-weight: 650; }.source-data pre { max-height: 650px; margin: 0; padding: 14px; overflow: auto; border-top: 1px solid var(--line); white-space: pre; font: 12px/1.5 ui-monospace, "Cascadia Mono", monospace; }
+.source-data { border: 1px solid var(--line); border-radius: 10px; background: white; }.source-data > summary { padding: 12px 14px; cursor: pointer; font-weight: 650; }.json-source-table { border-top: 1px solid var(--line); }.json-source-row { display: grid; grid-template-columns: minmax(120px, 220px) minmax(0, 1fr); gap: 12px; padding: 10px 14px; align-items: start; }.json-source-row + .json-source-row { border-top: 1px solid var(--line); }.json-source-row > b { overflow-wrap: anywhere; font-size: 12px; }.json-source-row details summary { padding: 0; color: var(--accent); cursor: pointer; }.json-source-row pre { max-height: 420px; margin: 9px 0 0; padding: 12px; overflow: auto; border-radius: 7px; background: #f8fbfc; white-space: pre; font: 12px/1.5 ui-monospace, "Cascadia Mono", monospace; }.json-source-limit { margin: 0; padding: 12px 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
 .raw-data { max-width: 74ch; margin-top: 32px; border: 1px solid var(--line); border-radius: 9px; background: white; }
 .raw-data summary { padding: 12px 14px; color: #455166; cursor: pointer; font-weight: 650; }
 .raw-data pre { max-height: 460px; margin: 0; padding: 16px; overflow: auto; border-top: 1px solid var(--line); color: #273552; background: #f8fafc; font: 12px/1.55 ui-monospace, "Cascadia Mono", monospace; }
@@ -158,7 +160,15 @@ h1 { margin: 0; font-size: clamp(28px, 4vw, 42px); letter-spacing: -.035em; }
 @media (max-width: 800px) {
   .shell { grid-template-columns: 1fr; }
   .sidebar { position: static; height: auto; padding: 16px; border-right: 0; border-bottom: 1px solid var(--line); }
-  .brand { margin-bottom: 16px; }
+  .sidebar__top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .brand { min-width: 0; margin-bottom: 0; }
+  .catalog-toggle { display: inline-flex; flex: 0 0 auto; padding: 8px 12px; border: 1px solid var(--line); border-radius: 8px; color: var(--ink); background: white; cursor: pointer; }
+  .catalog-toggle::after { content: '⌄'; margin-left: 7px; }
+  .catalog-toggle[aria-expanded="true"]::after { transform: rotate(180deg); }
+  .sidebar:not([data-catalog-open="true"]) > .search,
+  .sidebar:not([data-catalog-open="true"]) > .sidebar__label,
+  .sidebar:not([data-catalog-open="true"]) > #navigation { display: none; }
+  .sidebar[data-catalog-open="true"] .sidebar__top { margin-bottom: 16px; }
   .search { width: min(100%, 420px); margin-bottom: 12px; }
   #navigation { max-height: min(55vh, 440px); }
   .sidebar__foot { display: none; }

@@ -15,6 +15,9 @@ const write = (path, value) => {
 const sourceTokens = read('machine/tokens.json');
 const sourceComponents = read('machine/components.json');
 const sourceButton = sourceComponents.find(item => item.id === 'button');
+const buttonMarkupPath = 'examples/button/markup.html';
+mkdirSync(dirname(resolve(root, buttonMarkupPath)), { recursive: true });
+writeFileSync(resolve(root, buttonMarkupPath), `${sourceButton.markup.html.trim()}\n`, 'utf8');
 
 const colorGroups = [
   { id: 'neutral', title: 'Нейтральная шкала', match: key => /^(ui-(white|black|gray|checkbox|asphalt|chevron)|header-gray)/.test(key) },
@@ -116,7 +119,7 @@ write('machine/components/button.json', {
   knowledge: { authority: ['storybook', 'production-css', 'normative'], confidence: 'high', scope: 'public-and-shared' },
   purpose: 'Основное действие Career. При href или to рендерится ссылка, иначе button.',
   anatomy: ['base-button', 'base-button__inner', 'base-button__before?', 'base-button__content', 'base-button__after?', 'base-button__loader?'],
-  implementation: { markup: sourceButton.markup.html, cssRoots: sourceButton.cssRoots, styles: ['ui/tokens.css', 'ui/foundations.css', 'ui/components/buttons.css', 'ui/state-contract.css'], scripts: ['examples/button/toggle-loading.js'], component: sourceButton.code },
+  implementation: { markup: buttonMarkupPath, cssRoots: sourceButton.cssRoots, styles: ['ui/tokens.css', 'ui/foundations.css', 'ui/components/buttons.css', 'ui/state-contract.css'], scripts: ['examples/button/toggle-loading.js'], component: sourceButton.code },
   variants: [
     ['main', 'основное действие'], ['main-border', 'контурное основное действие'], ['passive', 'нейтральное действие'],
     ['danger', 'опасное действие'], ['danger-border', 'контурное опасное действие'], ['success', 'успешное действие'],

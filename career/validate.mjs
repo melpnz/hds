@@ -40,8 +40,27 @@ function pathExists(path, owner) {
   if (!existsSync(resolve(root, path))) errors.push(`${owner}: missing ${path}`);
 }
 
+function evidenceRefExists(ref, owner) {
+  if (typeof ref !== 'string') return;
+  if (!ref.trim()) return errors.push(`${owner}: empty evidence ref`);
+  if (/^https?:\/\//.test(ref)) return;
+  const clean = ref.split('#')[0];
+  const target = clean.startsWith(legacyPrefix)
+    ? resolve(root, '..', 'archive', clean.slice('archive:'.length))
+    : clean.startsWith('local:')
+      ? resolve(root, clean.slice('local:'.length))
+      : resolve(root, clean);
+  if (!existsSync(target)) errors.push(`${owner}: missing evidence ${ref}`);
+}
+
 for (const path of Object.values(index.files)) pathExists(path, 'index');
 for (const path of catalogLeafFiles) pathExists(path, 'catalog');
+for (const section of catalogIndex.sections) {
+  for (const group of section.groups || []) {
+    if (!/^[a-z0-9-]+$/.test(group.id)) errors.push(`catalog: non-portable group id ${group.id}`);
+    if (!/^machine\/catalog\/[a-z0-9-]+\.json$/.test(group.file)) errors.push(`catalog: non-portable group file ${group.file}`);
+  }
+}
 
 for (const entry of catalog) {
   pathExists(entry.file, entry.id);
@@ -52,9 +71,12 @@ for (const entry of catalog) {
   if (item.id !== entry.id) errors.push(`${entry.id}: catalog/spec id mismatch`);
   for (const path of item.implementation.styles || []) pathExists(path, entry.id);
   for (const path of item.implementation.scripts || []) pathExists(path, entry.id);
+  if (typeof item.implementation.markup === 'string' && item.implementation.markup.includes('/')) pathExists(item.implementation.markup, entry.id);
   for (const path of item.ruleFiles || item.rules || []) {
     if (path.includes('/')) pathExists(path, entry.id);
   }
+  const evidenceItems = Array.isArray(item.evidence) ? item.evidence : (item.evidence ? [item.evidence] : []);
+  for (const evidence of evidenceItems) if (evidence?.ref) evidenceRefExists(evidence.ref, entry.id);
   for (const example of item.examples || []) {
     pathExists(example.file, `${entry.id}/${example.id}`);
     if (/^showcase\/(components|pages)\.html$/.test(example.file)) {
@@ -102,15 +124,16 @@ if (JSON.stringify(layoutResponsive.breakpoints.map(item => item.value)) !== JSO
 if (layoutResponsive.container.maxWidth !== 1100) errors.push('layout: page container cap must be 1100');
 if (JSON.stringify(layoutResponsive.fluidRanges) !== JSON.stringify([[320, 767], [768, 1023], [1024, 1100]])) errors.push('layout: fluid ranges are stale');
 if (!layoutResponsive.nonBreakpoints.includes(480) || !layoutResponsive.nonBreakpoints.includes(1100)) errors.push('layout: 480 and 1100 must be marked as non-breakpoints');
-if (button.implementation.markup !== 'markup.html') errors.push('button: canonical markup file is missing');
+if (button.implementation.markup !== 'examples/button/markup.html') errors.push('button: canonical markup file is missing');
+if (button.markup || button.legacySource || button.markdown) errors.push('button: duplicated legacy payload must stay outside the active entity');
+if (button.documentation?.ref !== 'archive:career/v1/components/actions/button.md') errors.push('button: documentation reference is missing');
 if (hasArchive) {
   const oldColorKeys = Object.keys(oldTokens.color);
   if (
     Object.keys(migratedColors).length !== oldColorKeys.length ||
     oldColorKeys.some(key => JSON.stringify(migratedColors[key]) !== JSON.stringify(oldTokens.color[key]))
   ) errors.push('colors: migrated values differ from archived machine tokens');
-  if (button.markup.html !== oldButton.markup.html) errors.push('button: canonical markup differs from archived machine data');
-  if (JSON.stringify(button.legacySource) !== JSON.stringify(oldButton)) errors.push('button: source object was not preserved');
+  if (readFileSync(resolve(root, button.implementation.markup), 'utf8').trim() !== oldButton.markup.html.trim()) errors.push('button: canonical markup differs from archived machine data');
 }
 const iconFiles = iconInventory.assets.filter(item => item.path.endsWith('.svg'));
 const actualIconPaths = walkSvg(resolve(root, 'ui/assets/icons')).map(path => `ui/assets/icons/${path}`);
@@ -133,17 +156,18 @@ const oldPageShowcase = readFileSync(resolve(oldRoot, 'showcase/pages.html'), 'u
 const oldContent = readArchive('machine/content.json');
 const oldFiles = walkAll(oldRoot);
 const oldMarkdownPaths = oldFiles.filter(path => path.endsWith('.md'));
-const markdownItems = catalog.map(entry => migratedById.get(entry.id)).filter(item => item?.markdown);
-const mappedMarkdownPaths = markdownItems.map(item => item.sourcePath?.replace(legacyPrefix, '')).filter(Boolean);
+const markdownItems = catalog.map(entry => migratedById.get(entry.id)).filter(item => item?.markdown || item?.documentation?.ref);
+const itemSourcePath = item => item.documentation?.ref || item.sourcePath;
+const mappedMarkdownPaths = markdownItems.map(item => itemSourcePath(item)?.replace(legacyPrefix, '')).filter(Boolean);
 for (const sourcePath of oldMarkdownPaths) {
   const matches = sourcePath === 'ROADMAP.md'
-    ? markdownItems.filter(item => item.sourcePath === 'ROADMAP.md')
-    : markdownItems.filter(item => item.sourcePath === `${legacyPrefix}${sourcePath}`);
+    ? markdownItems.filter(item => itemSourcePath(item) === 'ROADMAP.md')
+    : markdownItems.filter(item => itemSourcePath(item) === `${legacyPrefix}${sourcePath}`);
   if (matches.length !== 1) errors.push(`markdown ${sourcePath}: expected one catalog item, found ${matches.length}`);
   else if (sourcePath === 'ROADMAP.md') {
     if (matches[0].markdown !== readFileSync(resolve(root, 'ROADMAP.md'), 'utf8')) errors.push('roadmap: current content differs');
     if (matches[0].legacyMarkdown !== readFileSync(resolve(oldRoot, sourcePath), 'utf8')) errors.push('roadmap: archived content was not preserved');
-  } else if (matches[0].markdown !== readFileSync(resolve(oldRoot, sourcePath), 'utf8')) errors.push(`markdown ${sourcePath}: content differs`);
+  } else if (matches[0].markdown && matches[0].markdown !== readFileSync(resolve(oldRoot, sourcePath), 'utf8')) errors.push(`markdown ${sourcePath}: content differs`);
 }
 for (const sourcePath of mappedMarkdownPaths) if (!oldMarkdownPaths.includes(sourcePath)) errors.push(`markdown ${sourcePath}: source file is missing`);
 
