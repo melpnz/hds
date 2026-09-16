@@ -32,7 +32,7 @@ export function buildTokens() {
     status: "generated",
     source: ["ui/foundations.css", "ui/themes/company.css"],
     base: firstRootBlock(foundations),
-    themes: { company: firstRootBlock(theme) },
+    themes: { company: declarations(theme) },
     responsive: responsiveOverrides(foundations)
   };
 }

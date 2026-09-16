@@ -1,7 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { writeTokens } from "./build-tokens.mjs";
+import { buildTokens, writeTokens } from "./build-tokens.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const rows = [
@@ -126,6 +126,33 @@ function purposeFor(entity) {
   return `${entity.title}: самостоятельный блок страницы с адаптивной раскладкой.`;
 }
 
+const tokens = buildTokens();
+function visualFor(entity) {
+  const base = tokens.base;
+  const theme = tokens.themes.company;
+  if (entity.id === "typography") return {
+    family: { text: base["--hds-font-text"], heading: base["--hds-font-heading"] },
+    weights: { medium: base["--hds-weight-medium"], semibold: base["--hds-weight-semibold"] },
+    scale: Object.fromEntries(Object.entries(base).filter(([name]) => name.startsWith("--hds-text-"))),
+    responsive: tokens.responsive
+  };
+  if (entity.id === "colors") return { theme: "company", roles: theme };
+  if (entity.id === "buttons") return {
+    radius: base["--hds-radius-control"],
+    font: base["--hds-font-text"],
+    weight: base["--hds-weight-semibold"],
+    colors: { action: theme["--hds-color-action"], hover: theme["--hds-color-action-hover"], focus: theme["--hds-color-focus"] },
+    motion: { duration: base["--hds-duration"], easing: base["--hds-ease"] }
+  };
+  if (entity.id === "intro") return {
+    heading: { h1: base["--hds-text-h1"], h2: base["--hds-text-h2"], family: base["--hds-font-heading"] },
+    layout: { container: base["--hds-container"], gutter: base["--hds-page-gutter"], sectionSpace: base["--hds-section-space"] },
+    colors: { background: theme["--hds-color-bg"], text: theme["--hds-color-text"], accent: theme["--hds-color-link"] },
+    responsive: tokens.responsive
+  };
+  return null;
+}
+
 // Navigation markers cover the meaningful changes made in the current v0.2 cycle.
 const changeMarkers = Object.freeze({
   "subscription-form": "updated",
@@ -174,6 +201,7 @@ for (const entity of specEntities) {
     id: entity.id, title: entity.title, kind: entity.kind, category: entity.category, maturity: entity.maturity,
     knowledge: entity.kind === "atom" || entity.kind === "element" ? "snapshot" : "assumption",
     purpose: purposeFor(entity),
+    ...(visualFor(entity) ? { visual: visualFor(entity) } : {}),
     ...(collectionMembers[entity.id] ? { members: collectionMembers[entity.id] } : {}),
     implementation: { css: ["ui/hds.css"], markup: example },
     states: entity.kind === "element" ? ["default", "hover", "focus", "filled", "disabled", "error-when-applicable"] : ["responsive"],

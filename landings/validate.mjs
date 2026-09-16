@@ -73,6 +73,11 @@ for (const id of memberOwners.keys()) {
 
 const tokens = readJson("machine/tokens.json");
 if (JSON.stringify(tokens) !== JSON.stringify(buildTokens())) errors.push("machine/tokens.json расходится с CSS-источниками; запустите npm run build:tokens");
+if (Object.keys(tokens.themes.company || {}).length < 10) errors.push("tokens: тема company потеряла семантические цвета");
+for (const id of ["typography", "colors", "buttons", "intro"]) {
+  const spec = readJson(`machine/specs/${id}.json`);
+  if (!spec.visual || JSON.stringify(spec.visual).includes("undefined")) errors.push(`${id}: отсутствует машинное описание visual`);
+}
 
 const sandbox = { window: {} };
 vm.runInNewContext(fs.readFileSync(path.join(root, "viewer/data.js"), "utf8"), sandbox);
