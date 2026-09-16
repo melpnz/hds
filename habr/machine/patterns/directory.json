@@ -60,9 +60,70 @@
   ],
   "sourceStatus": "confirmed",
   "family": "DIRECTORY",
-  "areas": [],
-  "modules": [],
-  "components": [],
+  "areas": [
+    "directory-navigation",
+    "entity-list",
+    "directory-sidebar",
+    "pagination"
+  ],
+  "modules": [
+    "page-bound-entity-list",
+    "page-bound-sidebar-filter"
+  ],
+  "components": [
+    "tabs",
+    "pagination"
+  ],
+  "sequence": [
+    {
+      "id": "directory-navigation",
+      "tag": "nav",
+      "heading": null,
+      "modules": [],
+      "components": [
+        {
+          "id": "tabs",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "entity-list",
+      "tag": "section",
+      "heading": null,
+      "modules": [
+        {
+          "id": "page-bound-entity-list",
+          "count": 1
+        }
+      ],
+      "components": []
+    },
+    {
+      "id": "directory-sidebar",
+      "tag": "aside",
+      "heading": null,
+      "modules": [
+        {
+          "id": "page-bound-sidebar-filter",
+          "count": 1
+        }
+      ],
+      "components": []
+    },
+    {
+      "id": "pagination",
+      "tag": "nav",
+      "heading": null,
+      "modules": [],
+      "components": [
+        {
+          "id": "pagination",
+          "count": 1
+        }
+      ]
+    }
+  ],
   "previewNotes": [
     {
       "type": "guidance",

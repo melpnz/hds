@@ -56,14 +56,82 @@
     }
   ],
   "unknowns": [
-    "Reusable modules. Header (не специфицирован отдельно — GAP, см. §7),",
-    "Footer (не специфицирован — GAP), ui/layout.css."
+    "Reusable modules. Header (не специфицирован отдельно — GAP, см. §7), Footer (не специфицирован — GAP), ui/layout.css."
   ],
   "sourceStatus": "confirmed",
   "family": "SHELL",
-  "areas": [],
-  "modules": [],
-  "components": [],
+  "areas": [
+    "header",
+    "page-container",
+    "main",
+    "sidebar",
+    "footer"
+  ],
+  "modules": [
+    "header",
+    "page-wrapper",
+    "footer"
+  ],
+  "components": [
+    "icon-button"
+  ],
+  "sequence": [
+    {
+      "id": "header",
+      "tag": "header",
+      "heading": null,
+      "modules": [
+        {
+          "id": "header",
+          "count": 1
+        }
+      ],
+      "components": [
+        {
+          "id": "icon-button",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "page-container",
+      "tag": "main",
+      "heading": null,
+      "modules": [
+        {
+          "id": "page-wrapper",
+          "count": 1
+        }
+      ],
+      "components": []
+    },
+    {
+      "id": "main",
+      "tag": "section",
+      "heading": null,
+      "modules": [],
+      "components": []
+    },
+    {
+      "id": "sidebar",
+      "tag": "aside",
+      "heading": null,
+      "modules": [],
+      "components": []
+    },
+    {
+      "id": "footer",
+      "tag": "footer",
+      "heading": null,
+      "modules": [
+        {
+          "id": "footer",
+          "count": 1
+        }
+      ],
+      "components": []
+    }
+  ],
   "previewNotes": [
     {
       "type": "guidance",

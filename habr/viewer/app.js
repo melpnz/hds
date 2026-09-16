@@ -1,4 +1,6 @@
 const navigation = document.querySelector('#navigation');
+const sidebar = document.querySelector('.sidebar');
+const catalogToggle = document.querySelector('.catalog-toggle');
 const searchInput = document.querySelector('#guide-search');
 const searchMeta = document.querySelector('#search-meta');
 const title = document.querySelector('#item-title');
@@ -459,6 +461,13 @@ Promise.all([
 
 window.addEventListener('hashchange', () => renderItem().catch(console.error));
 
+function setCatalogOpen(open) {
+  sidebar.dataset.catalogOpen = String(open);
+  catalogToggle.setAttribute('aria-expanded', String(open));
+}
+catalogToggle.addEventListener('click', () => setCatalogOpen(catalogToggle.getAttribute('aria-expanded') !== 'true'));
+navigation.addEventListener('click', event => { if (event.target.closest('.nav-link') && matchMedia('(max-width: 800px)').matches) setCatalogOpen(false); });
+
 searchInput.addEventListener('input', () => renderNavigation(searchInput.value));
 searchInput.addEventListener('keydown', event => {
   if (event.key === 'Escape' && searchInput.value) clearSearch();
@@ -466,6 +475,7 @@ searchInput.addEventListener('keydown', event => {
 document.addEventListener('keydown', event => {
   if ((event.ctrlKey || event.metaKey) && event.key.toLocaleLowerCase() === 'k') {
     event.preventDefault();
+    setCatalogOpen(true);
     searchInput.focus();
     searchInput.select();
   }

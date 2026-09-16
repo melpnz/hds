@@ -28,6 +28,18 @@ function pathExists(path, owner) {
   if (!existsSync(resolve(root, path))) errors.push(`${owner}: missing ${path}`);
 }
 
+function evidenceRefExists(ref, owner) {
+  if (typeof ref !== 'string' || !ref.trim()) return errors.push(`${owner}: empty evidence ref`);
+  if (/^https?:\/\//.test(ref)) return;
+  const clean = ref.split('#')[0];
+  const target = clean.startsWith('archive:')
+    ? resolve(root, '..', 'archive', clean.slice('archive:'.length))
+    : clean.startsWith('local:')
+      ? resolve(root, clean.slice('local:'.length))
+      : resolve(root, clean);
+  if (!existsSync(target)) errors.push(`${owner}: missing evidence ${ref}`);
+}
+
 for (const path of Object.values(index.files)) pathExists(path, 'index');
 
 for (const entry of catalog) {
@@ -44,6 +56,7 @@ for (const entry of catalog) {
   for (const path of item.implementation.styles || []) pathExists(path, entry.id);
   for (const path of item.implementation.scripts || []) pathExists(path, entry.id);
   for (const path of item.rules || []) pathExists(path, entry.id);
+  for (const evidence of item.evidence || []) if (evidence?.ref) evidenceRefExists(evidence.ref, entry.id);
   for (const example of item.examples || []) {
     pathExists(example.file, `${entry.id}/${example.id}`);
     if (!['intrinsic', 'viewport'].includes(example.preview?.mode)) errors.push(`${entry.id}/${example.id}: invalid preview mode`);
@@ -64,6 +77,26 @@ for (const entry of catalog) {
   }
   for (const dependency of item.components || []) {
     if (!ids.has(dependency)) errors.push(`${entry.id}: unknown component ${dependency}`);
+  }
+  if (entry.kind === 'pattern' && item.sourceStatus === 'confirmed') {
+    for (const key of ['areas', 'modules']) {
+      if (!Array.isArray(item[key]) || item[key].length === 0) errors.push(`${entry.id}: confirmed pattern needs non-empty ${key}`);
+    }
+    if (!Array.isArray(item.sequence) || item.sequence.length === 0) errors.push(`${entry.id}: confirmed pattern needs a structured sequence`);
+    if (item.sequence?.length && JSON.stringify(item.sequence.map(step => step.id)) !== JSON.stringify(item.areas)) {
+      errors.push(`${entry.id}: sequence ids must match areas in order`);
+    }
+    for (const step of item.sequence || []) {
+      for (const dependency of step.components || []) {
+        if (!ids.has(dependency.id)) errors.push(`${entry.id}/${step.id}: unknown component ${dependency.id}`);
+      }
+    }
+  }
+  if (entry.id === 'button') {
+    const sizes = item.visual?.sizes;
+    if (!sizes || sizes.small?.height !== '32px' || sizes.middle?.height !== '36px' || sizes.large?.height !== '40px') {
+      errors.push('button: structured visual size contract is missing or stale');
+    }
   }
 }
 

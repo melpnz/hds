@@ -56,8 +56,8 @@
     }
   ],
   "unknowns": [
-    "GAP на разметке: снимок Storybook (rendered/hintsbasehintdefault.html)",
-    "GAP — ширина. informerhintwidth — inline CSS var, задаётся"
+    "GAP на разметке: снимок Storybook (rendered/hints-basehint--default.html) показывает только состояние ДО открытия (.activator-wrapper + триггер) — сама всплывающая панель телепортируется в DOM по клику и не попала в статический snapshot. Markup внутренней панели восстановлен из структуры классов CSS (.inner, .close, .arrow-), а не скопирован из живого DOM — это единственная спецификация в пакете, где разметка не copy-safe в строгом смысле. Проверить при первом реальном использовании.",
+    "GAP — ширина. --informer-hint-width — inline CSS var, задаётся потребителем. Ни в одном найденном snapshot нет значения по умолчанию — не подставлять число на глаз (см. комментарий в ui/components/hint.css)."
   ],
   "previewNotes": [
     {

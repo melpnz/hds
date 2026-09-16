@@ -56,13 +56,74 @@
     }
   ],
   "unknowns": [
-    "(везде были статьи). GAP."
+    "States. Не наблюдалось пустого результата ни на одной из 7 страниц (везде были статьи). GAP."
   ],
   "sourceStatus": "confirmed",
   "family": "FEED",
-  "areas": [],
-  "modules": [],
-  "components": [],
+  "areas": [
+    "feed-navigation",
+    "article-list",
+    "pagination",
+    "sidebar"
+  ],
+  "modules": [
+    "article-list"
+  ],
+  "components": [
+    "tabs",
+    "article-card",
+    "pagination"
+  ],
+  "sequence": [
+    {
+      "id": "feed-navigation",
+      "tag": "nav",
+      "heading": null,
+      "modules": [],
+      "components": [
+        {
+          "id": "tabs",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "article-list",
+      "tag": "section",
+      "heading": null,
+      "modules": [
+        {
+          "id": "article-list",
+          "count": 1
+        }
+      ],
+      "components": [
+        {
+          "id": "article-card",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "pagination",
+      "tag": "nav",
+      "heading": null,
+      "modules": [],
+      "components": [
+        {
+          "id": "pagination",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "sidebar",
+      "tag": "aside",
+      "heading": null,
+      "modules": [],
+      "components": []
+    }
+  ],
   "previewNotes": [
     {
       "type": "guidance",

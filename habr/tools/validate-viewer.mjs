@@ -106,6 +106,11 @@ try {
   });
   if (assetFailures.length) failures.push(...assetFailures.map(path => `asset did not decode: ${path}`));
   await page.setViewportSize({ width: 375, height: 812 });
+  if (!(await page.locator('.catalog-toggle').isVisible())) failures.push('mobile catalog toggle is hidden');
+  if (await page.locator('#navigation').isVisible()) failures.push('mobile catalog must be collapsed initially');
+  const mobileHeadingTop = await page.locator('#item-title').evaluate(element => element.getBoundingClientRect().top);
+  if (mobileHeadingTop > 240) failures.push(`mobile content starts too low at ${mobileHeadingTop}px`);
+  await page.locator('.catalog-toggle').click();
   await page.locator('#guide-search').fill('');
   if (await page.locator('.nav-section').count() < 2) failures.push('mobile navigation lost sections');
   const mobileOverflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);

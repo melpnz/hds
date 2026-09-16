@@ -56,9 +56,8 @@
     }
   ],
   "unknowns": [
-    "| .tmtitlelink | 20px/1.3, Fira Sans, :hover/:visited → акцентный цвет — тоже базовое, реально варьируется, см. GAP |",
-    "GAP исправлен после Visual Foundations pass. Базовые 24px .tmtitleh1",
-    "не является заголовком полноразмерной статьи — GAP, конкретное место"
+    "| Класс | Кегль | |---|---| | .tm-titleh1 | 24px/1.3, Fira Sans, основной цвет — базовое значение | | .tm-titleh2 | наследует кегль, line-height:1 | | .tm-titlelink | 20px/1.3, Fira Sans, :hover/:visited → акцентный цвет — тоже базовое, реально варьируется, см. GAP |",
+    "GAP исправлен после Visual Foundations pass. Базовые 24px .tm-titleh1 — НЕ то, что видит пользователь на реальной странице статьи: заголовок детальной страницы — 32px/40px, через модификатор .article-snippet.full-article .tm-titleh1 (см. components/content/article-card.md). Подтверждено дважды: CSS-правилом и getComputedStyle на живом habr.com/ru/articles/…. Базовые 24px .tm-titleh1 без модификатора, судя по всему, применяются там, где H1 не является заголовком полноразмерной статьи — GAP, конкретное место использования не установлено."
   ],
   "previewNotes": [
     {

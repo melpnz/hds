@@ -56,14 +56,82 @@
     }
   ],
   "unknowns": [
-    "(Figmaподтверждён, radio не заведён отдельно от checkbox — GAP, нужен",
-    "Responsive / States. Не подтверждено — Figma не давала альтернативных"
+    "Reusable modules. Button (ghost + success), Checkbox/RadioButton (Figma-подтверждён, radio не заведён отдельно от checkbox — GAP, нужен отдельный RadioButton), text input (не специфицирован — тот же tm-input-text-decorated, что найден в production поиска).",
+    "Responsive / States. Не подтверждено — Figma не давала альтернативных состояний этого экрана."
   ],
   "sourceStatus": "confirmed",
   "family": "ADMIN_FORM",
-  "areas": [],
-  "modules": [],
-  "components": [],
+  "areas": [
+    "task-title",
+    "form-card",
+    "progress-stepper"
+  ],
+  "modules": [
+    "admin-form-card",
+    "progress-stepper"
+  ],
+  "components": [
+    "title",
+    "radio",
+    "field",
+    "hint",
+    "button"
+  ],
+  "sequence": [
+    {
+      "id": "task-title",
+      "tag": "header",
+      "heading": "Заявка на корпоративный блог",
+      "modules": [],
+      "components": [
+        {
+          "id": "title",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "form-card",
+      "tag": "form",
+      "heading": "Реквизиты компании",
+      "modules": [
+        {
+          "id": "admin-form-card",
+          "count": 1
+        }
+      ],
+      "components": [
+        {
+          "id": "radio",
+          "count": 1
+        },
+        {
+          "id": "field",
+          "count": 2
+        },
+        {
+          "id": "hint",
+          "count": 1
+        },
+        {
+          "id": "button",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "progress-stepper",
+      "tag": "aside",
+      "heading": null,
+      "modules": [
+        {
+          "id": "progress-stepper",
+          "count": 1
+        }
+      ],
+      "components": []
+    }
+  ],
   "previewNotes": [
     {
       "type": "guidance",

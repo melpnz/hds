@@ -76,6 +76,84 @@ PATTERNS = [
     ("service-error", "Service / Error", "missing", "low", "none"),
 ]
 
+PATTERN_COMPOSITION = {
+    "shell": {
+        "areas": ["header", "page-container", "main", "sidebar", "footer"],
+        "modules": ["header", "page-wrapper", "footer"],
+        "components": ["icon-button"],
+        "sequence": [
+            {"id": "header", "tag": "header", "heading": None, "modules": [{"id": "header", "count": 1}], "components": [{"id": "icon-button", "count": 2}]},
+            {"id": "page-container", "tag": "main", "heading": None, "modules": [{"id": "page-wrapper", "count": 1}], "components": []},
+            {"id": "main", "tag": "section", "heading": None, "modules": [], "components": []},
+            {"id": "sidebar", "tag": "aside", "heading": None, "modules": [], "components": []},
+            {"id": "footer", "tag": "footer", "heading": None, "modules": [{"id": "footer", "count": 1}], "components": []},
+        ],
+    },
+    "feed": {
+        "areas": ["feed-navigation", "article-list", "pagination", "sidebar"],
+        "modules": ["article-list"],
+        "components": ["tabs", "article-card", "pagination"],
+        "sequence": [
+            {"id": "feed-navigation", "tag": "nav", "heading": None, "modules": [], "components": [{"id": "tabs", "count": 1}]},
+            {"id": "article-list", "tag": "section", "heading": None, "modules": [{"id": "article-list", "count": 1}], "components": [{"id": "article-card", "count": 2}]},
+            {"id": "pagination", "tag": "nav", "heading": None, "modules": [], "components": [{"id": "pagination", "count": 1}]},
+            {"id": "sidebar", "tag": "aside", "heading": None, "modules": [], "components": []},
+        ],
+    },
+    "directory": {
+        "areas": ["directory-navigation", "entity-list", "directory-sidebar", "pagination"],
+        "modules": ["page-bound-entity-list", "page-bound-sidebar-filter"],
+        "components": ["tabs", "pagination"],
+        "sequence": [
+            {"id": "directory-navigation", "tag": "nav", "heading": None, "modules": [], "components": [{"id": "tabs", "count": 1}]},
+            {"id": "entity-list", "tag": "section", "heading": None, "modules": [{"id": "page-bound-entity-list", "count": 1}], "components": []},
+            {"id": "directory-sidebar", "tag": "aside", "heading": None, "modules": [{"id": "page-bound-sidebar-filter", "count": 1}], "components": []},
+            {"id": "pagination", "tag": "nav", "heading": None, "modules": [], "components": [{"id": "pagination", "count": 1}]},
+        ],
+    },
+    "entity": {
+        "areas": ["identity-card", "entity-navigation", "entity-content", "entity-facts"],
+        "modules": ["entity-identity-card", "entity-content", "entity-facts"],
+        "components": ["avatar", "button-follow", "tabs", "block"],
+        "sequence": [
+            {"id": "identity-card", "tag": "section", "heading": None, "modules": [{"id": "entity-identity-card", "count": 1}], "components": [{"id": "avatar", "count": 1}, {"id": "button-follow", "count": 1}]},
+            {"id": "entity-navigation", "tag": "nav", "heading": None, "modules": [], "components": [{"id": "tabs", "count": 1}]},
+            {"id": "entity-content", "tag": "main", "heading": None, "modules": [{"id": "entity-content", "count": 1}], "components": [{"id": "block", "count": 1}]},
+            {"id": "entity-facts", "tag": "aside", "heading": None, "modules": [{"id": "entity-facts", "count": 1}], "components": []},
+        ],
+    },
+    "admin-section": {
+        "areas": ["company-identity", "admin-navigation", "section-content", "section-navigation", "news-widget"],
+        "modules": ["company-identity-card", "admin-section-content", "admin-section-navigation", "news-widget"],
+        "components": ["tabs", "block", "notice", "button"],
+        "sequence": [
+            {"id": "company-identity", "tag": "section", "heading": None, "modules": [{"id": "company-identity-card", "count": 1}], "components": []},
+            {"id": "admin-navigation", "tag": "nav", "heading": None, "modules": [], "components": [{"id": "tabs", "count": 1}]},
+            {"id": "section-content", "tag": "main", "heading": None, "modules": [{"id": "admin-section-content", "count": 1}], "components": [{"id": "block", "count": 1}, {"id": "notice", "count": 1}, {"id": "button", "count": 1}]},
+            {"id": "section-navigation", "tag": "aside", "heading": None, "modules": [{"id": "admin-section-navigation", "count": 1}], "components": []},
+            {"id": "news-widget", "tag": "aside", "heading": "Новости Хабра", "modules": [{"id": "news-widget", "count": 1}], "components": []},
+        ],
+    },
+    "admin-form": {
+        "areas": ["task-title", "form-card", "progress-stepper"],
+        "modules": ["admin-form-card", "progress-stepper"],
+        "components": ["title", "radio", "field", "hint", "button"],
+        "sequence": [
+            {"id": "task-title", "tag": "header", "heading": "Заявка на корпоративный блог", "modules": [], "components": [{"id": "title", "count": 1}]},
+            {"id": "form-card", "tag": "form", "heading": "Реквизиты компании", "modules": [{"id": "admin-form-card", "count": 1}], "components": [{"id": "radio", "count": 1}, {"id": "field", "count": 2}, {"id": "hint", "count": 1}, {"id": "button", "count": 2}]},
+            {"id": "progress-stepper", "tag": "aside", "heading": None, "modules": [{"id": "progress-stepper", "count": 1}], "components": []},
+        ],
+    },
+    "admin-list": {
+        "areas": ["management-list"],
+        "modules": ["management-row"],
+        "components": ["icon-button", "chip"],
+        "sequence": [
+            {"id": "management-list", "tag": "section", "heading": None, "modules": [{"id": "management-row", "count": 4}], "components": [{"id": "icon-button", "count": 2}, {"id": "chip", "count": 2}]},
+        ],
+    },
+}
+
 DOCUMENTS = [
     ("guide-overview", "Обзор и границы знаний", "README.md", "Обзор"),
     ("v1-overview", "Исходный обзор v1", "docs/source/v1-overview.md", "Обзор"),
@@ -128,11 +206,15 @@ def gaps_from_markdown(path: Path | None) -> list[str]:
     if not path or not path.exists():
         return []
     results = []
-    for line in path.read_text(encoding="utf-8").splitlines():
-        if re.search(r"\b(GAP|не покрыт|не подтвержден|не исследован)", line, re.I):
-            text = re.sub(r"[*_`#>-]", "", line).strip()
+    blocks = re.split(r"\n\s*\n", path.read_text(encoding="utf-8"))
+    for block in blocks:
+        if re.search(r"\b(GAP|не покрыт|не подтвержден|не исследован)", block, re.I):
+            text = re.sub(r"\[([^]]+)\]\([^)]+\)", r"\1", block)
+            text = re.sub(r"[*_`#>]", "", text)
+            text = re.sub(r"^\s*[-+]\s+", "", text, flags=re.M)
+            text = re.sub(r"\s+", " ", text).strip()
             if text and text not in results:
-                results.append(text[:280])
+                results.append(text)
     return results[:6]
 
 
@@ -168,7 +250,18 @@ def rewrite_fragment(fragment: BeautifulSoup, page: bool = False, section_id: st
             value = tag.get(attr)
             if value and value.startswith("#"):
                 tag[attr] = "../../../../ui/assets/icons/megazord.svg" + value
-    return fragment.decode_contents()
+    body = fragment.decode_contents()
+    if section_id == "feed":
+        body = f'''<div class="tm-header" style="position:static">
+<div class="tm-header__container tm-page-width">
+<div class="example-header-brand"><svg class="tm-svg-img" height="24" width="24"><use xlink:href="../../../../ui/assets/icons/megazord.svg#header-burger"></use></svg><strong>Хабр</strong></div>
+<div class="example-header-actions"><svg class="tm-svg-img" height="20" width="20"><use xlink:href="../../../../ui/assets/icons/megazord.svg#search"></use></svg><svg class="tm-svg-img" height="20" width="20"><use xlink:href="../../../../ui/assets/icons/megazord.svg#write"></use></svg></div>
+</div></div>
+<div class="example-page-shell"><div class="tm-page-width"><div class="tm-page__wrapper">
+<main class="tm-page__main tm-page__main_has-sidebar">{body}</main>
+<aside class="tm-page__sidebar" aria-label="Боковая колонка"></aside>
+</div></div></div>'''
+    return body
 
 
 def example_document(title: str, body: str, page: bool = False, section_id: str = "") -> str:
@@ -399,6 +492,17 @@ def main() -> None:
             item["markdown"] = doc_path.relative_to(ROOT).as_posix()
             item["evidence"].append({"type": "component-spec", "ref": item["markdown"]})
         item["unknowns"] = gaps_from_markdown(doc_path)
+        if item_id == "button":
+            item["visual"] = {
+                "source": "ui/components/button.css and components/actions/button.md",
+                "radius": "3px",
+                "sizes": {
+                    "small": {"height": "32px", "padding": "8px 14px"},
+                    "middle": {"height": "36px", "padding": "10px 14px"},
+                    "large": {"height": "40px", "padding": "12px 16px"},
+                },
+                "responsive": "Размеры не зависят от ширины вьюпорта.",
+            }
         path = Path("machine/components") / f"{item_id}.json"
         write_json(ROOT / path, item)
         entry = {"id": item_id, "title": title, "kind": "component", "category": category, "navSection": "components", "navSectionTitle": "Компоненты", "navGroup": category, "navGroupTitle": group_title, "file": path.as_posix(), "tags": [item_id, title.lower(), category]}
@@ -416,9 +520,12 @@ def main() -> None:
         item["sourceStatus"] = source_status
         item["knowledge"]["authority"] = [] if authority == "none" else [authority]
         item["family"] = item_id.upper().replace("-", "_")
-        item["areas"] = []
-        item["modules"] = []
-        item["components"] = []
+        composition = PATTERN_COMPOSITION.get(item_id, {})
+        item["areas"] = composition.get("areas", [])
+        item["modules"] = composition.get("modules", [])
+        item["components"] = composition.get("components", [])
+        if composition.get("sequence"):
+            item["sequence"] = composition["sequence"]
         item["examples"] = examples
         item["previewNotes"] = notes
         if doc_relative:

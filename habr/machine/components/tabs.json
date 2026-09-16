@@ -78,12 +78,10 @@
     }
   ],
   "unknowns": [
-    "нет — GAP~~ — GAP снят. .tablink это и есть Large: совпало по",
-    "— назначение и разметка не подтверждены отдельно, вероятно оборачивает",
-    "| loading | спиннер вместо текста | нет; не реконструирован — нужна разметка, которой в production не наблюдалось (GAP) |",
-    "~~GAP по Medium: в Figma эти табы лежат в серой скруглённой подложке,",
-    "но её цвет не выведен отдельной переменной~~ — GAP снят, он был",
-    "| зазор между табами | elements/tab/medium/gaptabs = 0 | marginright: 0 |"
+    "~~Figma показывает Small/Medium/Large, соответствия реальным классам нет — GAP~~ — GAP снят. .tab-link это и есть Large: совпало по четырём независимым признакам — шрифт (headers/Tab = Fira Sans Medium 14), uppercase, цвет счётчика (large/counter 548eaa = .tab-counter) и цвет счётчика новых (large/counternewpublication 7aa600 = .tab-counter-new). Сверх того совпали высоты tab-panel: Figma даёт 22 / 42 / 44 px, отрисованные Small / Medium / Large дают ровно столько же. Small и Medium в production отсутствуют — добавлены в tabs.css как FIGMA-RECONSTRUCTED. .slim (38px) — не четвёртый размер, а отдельная production-ная высота того же Large; .tabs-dropdown (класс существует в CSS, position:relative;bottom:1px) — назначение и разметка не подтверждены отдельно, вероятно оборачивает overflow-меню «ещё», аналог more=yes в Figma.",
+    "| Состояние | Figma | Production | |---|---|---| | inactive / hover / select / disable | есть | есть (:hover, .active, .disabled) | | focus | кольцо, радиус 6 | своего правила нет — добавлено как FIGMA TARGET | | loading | спиннер вместо текста | нет; не реконструирован — нужна разметка, которой в production не наблюдалось (GAP) |",
+    "~~GAP по Medium: в Figma эти табы лежат в серой скруглённой подложке, но её цвет не выведен отдельной переменной~~ — GAP снят, он был ошибочным. Поставлен по обзорному скриншоту, где рамка на 40% альфы читалась как заливка. В самом символе tab-panel type=Medium (902:10981) это не фон, а обводка, и токен у неё есть:",
+    "| Свойство | Figma | Реализация | |---|---|---| | рамка | elements/tab/border = rgba(146,156,165,.4) | 1px solid hsl(from var(--icon-primary) h s l / 40%) | | радиус | elements/tab/medium/radius = 4 | border-radius: 4px | | внутренний отступ | elements/tab/nopadding = 0 | padding: 0 | | зазор между табами | elements/tab/medium/gaptabs = 0 | margin-right: 0 |"
   ],
   "previewNotes": [
     {
