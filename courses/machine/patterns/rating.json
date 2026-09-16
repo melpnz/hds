@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema.json",
   "id": "rating",
-  "title": "rating",
+  "title": "Рейтинг школ",
   "kind": "pattern",
   "category": "pages",
   "family": "таблица",
@@ -18,8 +18,8 @@
   },
   "purpose": "Композиция страницы семейства «таблица», снятая по адресу career.habr.com/education_centers/rating.",
   "areas": [
-    "section-1",
-    "section-2"
+    "school-rating",
+    "recommendations"
   ],
   "modules": [
     "rating-table",
@@ -118,13 +118,17 @@
     {
       "type": "coverage-warning",
       "text": "Карусели и рекламные слоты показаны честными заглушками: библиотека Swiper не входит в пакет."
+    },
+    {
+      "type": "coverage-warning",
+      "text": "Пользовательские изображения, логотипы и обложки в preview заменены нейтральными локальными заглушками; это ограничение примера, а не правило компонента."
     }
   ],
   "accessibility": [],
   "evidence": [
     {
       "type": "production",
-      "ref": "career.habr.com/education_centers/rating"
+      "ref": "https://career.habr.com/education_centers/rating"
     }
   ],
   "unknowns": [
@@ -155,7 +159,8 @@
           "count": 1
         }
       ],
-      "components": []
+      "components": [],
+      "id": "school-rating"
     },
     {
       "tag": "section",
@@ -167,7 +172,8 @@
         }
       ],
       "components": [],
-      "stub": "Carousel · CourseCard · «Может быть интересно», 8 слайдов CourseCard. Лента Swip"
+      "stub": "Carousel · CourseCard · «Может быть интересно», 8 слайдов CourseCard. Лента Swiper держится на библиотечном слое, которого в ui/ нет, — живой пример был бы неправдой. Разметка — components/collections/carousel.md",
+      "id": "recommendations"
     }
   ],
   "sequenceSource": {

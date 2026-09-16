@@ -20,6 +20,18 @@ function pathExists(path, owner) {
   if (!existsSync(resolve(root, path))) errors.push(`${owner}: missing ${path}`);
 }
 
+function evidenceRefExists(ref, owner) {
+  if (typeof ref !== 'string' || !ref.trim()) return errors.push(`${owner}: empty evidence ref`);
+  if (/^https?:\/\//.test(ref)) return;
+  const clean = ref.split('#')[0];
+  const target = clean.startsWith('archive:')
+    ? resolve(root, '..', 'archive', clean.slice('archive:'.length))
+    : clean.startsWith('local:')
+      ? resolve(root, clean.slice('local:'.length))
+      : resolve(root, clean);
+  if (!existsSync(target)) errors.push(`${owner}: missing evidence ${ref}`);
+}
+
 for (const path of Object.values(index.files)) pathExists(path, 'index');
 
 if (ids.size !== catalog.length) errors.push('catalog: duplicate ids');
@@ -47,6 +59,7 @@ for (const entry of catalog) {
   for (const path of item.implementation.styles || []) pathExists(path, entry.id);
   for (const path of item.implementation.scripts || []) pathExists(path, entry.id);
   for (const path of item.rules || []) pathExists(path, entry.id);
+  for (const evidence of item.evidence || []) if (evidence?.ref) evidenceRefExists(evidence.ref, entry.id);
   for (const example of item.examples || []) {
     pathExists(example.file, `${entry.id}/${example.id}`);
     if (!['intrinsic', 'viewport'].includes(example.preview?.mode)) errors.push(`${entry.id}/${example.id}: invalid preview mode`);
@@ -82,6 +95,15 @@ for (const entry of catalog) {
   }
   for (const note of item.previewNotes || []) {
     if (!['guidance', 'assumption', 'coverage-warning'].includes(note.type) || !note.text) errors.push(`${entry.id}: invalid preview note`);
+  }
+  if (item.kind === 'pattern') {
+    if (item.title === item.id) errors.push(`${entry.id}: pattern title must be human-readable`);
+    if ((item.areas || []).some(area => /^section-\d+$/.test(area))) errors.push(`${entry.id}: pattern areas must be semantic`);
+    if ((item.sequence || []).length !== (item.areas || []).length) errors.push(`${entry.id}: sequence/areas length mismatch`);
+    for (const [index, area] of (item.sequence || []).entries()) {
+      if (area.id !== item.areas[index]) errors.push(`${entry.id}: sequence area ${index + 1} does not match areas`);
+      if (area.stub && (area.stub.length <= 80 || !area.stub.endsWith('components/collections/carousel.md'))) errors.push(`${entry.id}: truncated or incomplete stub in ${area.id}`);
+    }
   }
   if (entry.id === 'button') {
     if (item.examples.length !== 1 || item.examples[0].id !== 'playground') errors.push('button: expected one optimized playground example');

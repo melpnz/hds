@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema.json",
   "id": "author",
-  "title": "author",
+  "title": "Профиль автора",
   "kind": "pattern",
   "category": "pages",
   "family": "профиль",
@@ -18,11 +18,11 @@
   },
   "purpose": "Композиция страницы семейства «профиль», снятая по адресу career.habr.com/courses/authors/23-stepan-voevodin.",
   "areas": [
-    "section-1",
-    "section-2",
-    "section-3",
-    "section-4",
-    "section-5"
+    "profile-header",
+    "biography",
+    "expertise",
+    "qualifications",
+    "experience-education"
   ],
   "modules": [
     "person-header"
@@ -114,13 +114,17 @@
     {
       "type": "coverage-warning",
       "text": "Карусели и рекламные слоты показаны честными заглушками: библиотека Swiper не входит в пакет."
+    },
+    {
+      "type": "coverage-warning",
+      "text": "Пользовательские изображения, логотипы и обложки в preview заменены нейтральными локальными заглушками; это ограничение примера, а не правило компонента."
     }
   ],
   "accessibility": [],
   "evidence": [
     {
       "type": "production",
-      "ref": "career.habr.com/courses/authors/23-stepan-voevodin"
+      "ref": "https://career.habr.com/courses/authors/23-stepan-voevodin"
     }
   ],
   "unknowns": [],
@@ -149,7 +153,8 @@
           "count": 1
         }
       ],
-      "components": []
+      "components": [],
+      "id": "profile-header"
     },
     {
       "tag": "div",
@@ -160,7 +165,8 @@
           "id": "prose",
           "count": 1
         }
-      ]
+      ],
+      "id": "biography"
     },
     {
       "tag": "div",
@@ -171,7 +177,8 @@
           "id": "prose",
           "count": 1
         }
-      ]
+      ],
+      "id": "expertise"
     },
     {
       "tag": "div",
@@ -182,13 +189,15 @@
           "id": "prose",
           "count": 1
         }
-      ]
+      ],
+      "id": "qualifications"
     },
     {
       "tag": "div",
       "heading": "Опыт работы",
       "modules": [],
-      "components": []
+      "components": [],
+      "id": "experience-education"
     }
   ],
   "sequenceSource": {

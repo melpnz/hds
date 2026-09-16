@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema.json",
   "id": "courses-listing",
-  "title": "courses listing",
+  "title": "Витрина курсов",
   "kind": "pattern",
   "category": "pages",
   "family": "листинг",
@@ -18,15 +18,15 @@
   },
   "purpose": "Композиция страницы семейства «листинг», снятая по адресу career.habr.com/courses.",
   "areas": [
-    "section-1",
-    "section-2",
-    "section-3",
-    "section-4",
-    "section-5",
-    "section-6",
-    "section-7",
-    "section-8",
-    "section-9"
+    "advertising",
+    "course-grid",
+    "authors",
+    "separator",
+    "reviews",
+    "promocodes",
+    "popular-directions",
+    "top-courses",
+    "school-rating"
   ],
   "modules": [
     "course-card",
@@ -141,13 +141,17 @@
     {
       "type": "coverage-warning",
       "text": "Карусели и рекламные слоты показаны честными заглушками: библиотека Swiper не входит в пакет."
+    },
+    {
+      "type": "coverage-warning",
+      "text": "Пользовательские изображения, логотипы и обложки в preview заменены нейтральными локальными заглушками; это ограничение примера, а не правило компонента."
     }
   ],
   "accessibility": [],
   "evidence": [
     {
       "type": "production",
-      "ref": "career.habr.com/courses"
+      "ref": "https://career.habr.com/courses"
     }
   ],
   "unknowns": [
@@ -175,7 +179,8 @@
       "heading": null,
       "modules": [],
       "components": [],
-      "stub": "Carousel · AdSlot · баннеры рекламы, 12 слайдов AdCard. Лента Swiper держится на"
+      "stub": "Carousel · AdSlot · баннеры рекламы, 12 слайдов AdCard. Лента Swiper держится на библиотечном слое, которого в ui/ нет, — живой пример был бы неправдой. Разметка — components/collections/carousel.md",
+      "id": "advertising"
     },
     {
       "tag": "div",
@@ -190,7 +195,8 @@
           "count": 1
         }
       ],
-      "components": []
+      "components": [],
+      "id": "course-grid"
     },
     {
       "tag": "section",
@@ -201,13 +207,15 @@
           "count": 1
         }
       ],
-      "components": []
+      "components": [],
+      "id": "authors"
     },
     {
       "tag": "hr",
       "heading": null,
       "modules": [],
-      "components": []
+      "components": [],
+      "id": "separator"
     },
     {
       "tag": "section",
@@ -219,7 +227,8 @@
         }
       ],
       "components": [],
-      "stub": "Carousel · ReviewCard · отзывы, 8 слайдов ReviewCard. Лента Swiper держится на б"
+      "stub": "Carousel · ReviewCard · отзывы, 8 слайдов ReviewCard. Лента Swiper держится на библиотечном слое, которого в ui/ нет, — живой пример был бы неправдой. Разметка — components/collections/carousel.md",
+      "id": "reviews"
     },
     {
       "tag": "section",
@@ -230,7 +239,8 @@
           "count": 1
         }
       ],
-      "components": []
+      "components": [],
+      "id": "promocodes"
     },
     {
       "tag": "section",
@@ -241,7 +251,8 @@
           "count": 1
         }
       ],
-      "components": []
+      "components": [],
+      "id": "popular-directions"
     },
     {
       "tag": "section",
@@ -252,7 +263,8 @@
           "count": 3
         }
       ],
-      "components": []
+      "components": [],
+      "id": "top-courses"
     },
     {
       "tag": "section",
@@ -267,7 +279,8 @@
           "count": 1
         }
       ],
-      "components": []
+      "components": [],
+      "id": "school-rating"
     }
   ],
   "sequenceSource": {
