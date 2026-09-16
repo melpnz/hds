@@ -1,6 +1,7 @@
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { buildStyleProfile } from './tools/build-style-profile.mjs';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 const read = path => JSON.parse(readFileSync(resolve(root, path), 'utf8'));
@@ -12,11 +13,15 @@ const requiredItemKeys = ['id', 'title', 'kind', 'category', 'maturity', 'knowle
 const viewportWidths = [320, 480, 768, 1024];
 const errors = [];
 const index = read('machine/index.json');
+const styleProfile = read(index.files.styleProfile);
+if (JSON.stringify(styleProfile) !== JSON.stringify(buildStyleProfile())) errors.push('style-profile: generated profile is stale');
 const catalogIndex = read(index.files.catalog);
 const catalogLeafFiles = catalogIndex.sections.flatMap(section =>
   section.file ? [section.file] : (section.groups || []).map(group => group.file)
 );
 const catalog = catalogLeafFiles.flatMap(path => read(path));
+const provenance = read(index.files.provenance);
+const allCatalog = [...catalog, ...provenance.entries];
 const ids = new Set(catalog.map(item => item.id));
 const oldTokens = hasArchive ? readArchive('machine/tokens.json') : null;
 const oldComponents = hasArchive ? readArchive('machine/components.json') : [];
@@ -35,6 +40,9 @@ function walkAll(directory, prefix = '') {
   });
 }
 if (ids.size !== catalog.length) errors.push('catalog: duplicate ids');
+if (provenance.count !== provenance.entries.length || provenance.entries.some(entry => entry.kind !== 'guide')) errors.push('provenance: invalid index');
+if (provenance.entries.some(entry => !['research', 'showcase-reference', 'source-data'].includes(entry.category))) errors.push('provenance: active knowledge leaked into audit index');
+if (new Set(allCatalog.map(entry => entry.id)).size !== allCatalog.length) errors.push('catalog/provenance: duplicate ids');
 
 function pathExists(path, owner) {
   if (!existsSync(resolve(root, path))) errors.push(`${owner}: missing ${path}`);
@@ -55,6 +63,7 @@ function evidenceRefExists(ref, owner) {
 
 for (const path of Object.values(index.files)) pathExists(path, 'index');
 for (const path of catalogLeafFiles) pathExists(path, 'catalog');
+for (const entry of provenance.entries) pathExists(entry.file, `provenance/${entry.id}`);
 for (const section of catalogIndex.sections) {
   for (const group of section.groups || []) {
     if (!/^[a-z0-9-]+$/.test(group.id)) errors.push(`catalog: non-portable group id ${group.id}`);
@@ -144,7 +153,7 @@ if (actualIconPaths.length !== iconFiles.length || actualIconPaths.some(path => 
 if (iconInventory.totals.spriteSheets !== 5 || iconInventory.totals.spriteSymbols !== 146) errors.push('icons: sprite coverage differs from source checkpoint');
 if (read('machine/foundations/icons.json').inventoryFile !== 'machine/foundations/icons-inventory.json') errors.push('icons: foundation is not linked to inventory');
 
-const migratedById = new Map(catalog.map(entry => [entry.id, read(entry.file)]));
+const migratedById = new Map(allCatalog.map(entry => [entry.id, read(entry.file)]));
 const searchIndex = read('viewer/search-index.json');
 if (searchIndex.length !== catalog.length || catalog.some(entry => !searchIndex.some(document => document.id === entry.id && document.text))) errors.push('viewer search index does not cover the full catalog');
 
@@ -156,7 +165,7 @@ const oldPageShowcase = readFileSync(resolve(oldRoot, 'showcase/pages.html'), 'u
 const oldContent = readArchive('machine/content.json');
 const oldFiles = walkAll(oldRoot);
 const oldMarkdownPaths = oldFiles.filter(path => path.endsWith('.md'));
-const markdownItems = catalog.map(entry => migratedById.get(entry.id)).filter(item => item?.markdown || item?.documentation?.ref);
+const markdownItems = allCatalog.map(entry => migratedById.get(entry.id)).filter(item => item?.markdown || item?.documentation?.ref);
 const itemSourcePath = item => item.documentation?.ref || item.sourcePath;
 const mappedMarkdownPaths = markdownItems.map(item => itemSourcePath(item)?.replace(legacyPrefix, '')).filter(Boolean);
 for (const sourcePath of oldMarkdownPaths) {
@@ -172,7 +181,7 @@ for (const sourcePath of oldMarkdownPaths) {
 for (const sourcePath of mappedMarkdownPaths) if (!oldMarkdownPaths.includes(sourcePath)) errors.push(`markdown ${sourcePath}: source file is missing`);
 
 const oldJsonPaths = oldFiles.filter(path => path.endsWith('.json'));
-const sourceDataItems = catalog.map(entry => migratedById.get(entry.id)).filter(item => item?.sourceDataFile);
+const sourceDataItems = allCatalog.map(entry => migratedById.get(entry.id)).filter(item => item?.sourceDataFile);
 for (const sourcePath of oldJsonPaths) {
   const item = sourceDataItems.find(candidate => candidate.sourcePath === `${legacyPrefix}${sourcePath}`);
   if (!item) errors.push(`json ${sourcePath}: source-data item is missing`);
@@ -274,7 +283,7 @@ for (const [name, source] of Object.entries(oldTokens)) {
   if (name === 'color') continue;
   if (JSON.stringify(read(`machine/tokens/${name}.json`).tokens) !== JSON.stringify(source)) errors.push(`tokens ${name}: source values differ`);
 }
-for (const entry of catalog.filter(entry => entry.kind === 'guide')) {
+for (const entry of allCatalog.filter(entry => entry.kind === 'guide')) {
   const item = migratedById.get(entry.id);
   if (!item.markdown) continue;
   if (item.sourcePath === 'ROADMAP.md') continue;

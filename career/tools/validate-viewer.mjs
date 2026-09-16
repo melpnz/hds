@@ -239,7 +239,7 @@ try {
   if (mobileHeadingTop > 240) failures.push(`mobile content starts too low at ${mobileHeadingTop}px`);
   const mobileOverflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
   if (mobileOverflow) failures.push('viewer has horizontal overflow at 375px');
-  const mobileSamples = ['colors', 'hh-import-banner', 'listing', 'guide-research-system-audit', 'data-machine-index'];
+  const mobileSamples = ['colors', 'hh-import-banner', 'listing', 'product-copy', 'button'];
   for (const id of mobileSamples) {
     await page.evaluate(value => { location.hash = value; }, id);
     try { await page.waitForFunction(value => document.querySelector('#raw-json')?.textContent.includes(`"id": "${value}"`), id, { timeout: 5000 }); }

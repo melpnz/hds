@@ -1,0 +1,219 @@
+{
+  "schemaVersion": 1,
+  "product": {
+    "id": "career",
+    "title": "Хабр Карьера",
+    "guideVersion": "1.2",
+    "status": "active-with-coverage-limits"
+  },
+  "scope": {
+    "confidence": "high",
+    "boundary": "Опубликованный публичный гостевой срез Career v1.2; авторизованные сценарии не покрыты."
+  },
+  "typography": {
+    "families": {
+      "interface": "Inter, -apple-system, \"Segoe UI\", Roboto, sans-serif"
+    },
+    "weights": [
+      {
+        "value": 400,
+        "role": "regular"
+      },
+      {
+        "value": 600,
+        "role": "semibold"
+      }
+    ],
+    "roles": [
+      {
+        "id": "text-display-xl",
+        "size": 28,
+        "lineHeight": 32
+      },
+      {
+        "id": "text-display-l",
+        "size": 24,
+        "lineHeight": 28
+      },
+      {
+        "id": "text-display-m",
+        "size": 20,
+        "lineHeight": 24
+      },
+      {
+        "id": "text-display-s",
+        "size": 18,
+        "lineHeight": 24
+      },
+      {
+        "id": "text-body-l",
+        "size": 16,
+        "lineHeight": 24
+      },
+      {
+        "id": "text-body-m",
+        "size": 14,
+        "lineHeight": 20
+      },
+      {
+        "id": "text-body-s",
+        "size": 12,
+        "lineHeight": 16
+      },
+      {
+        "id": "text-body-xs",
+        "size": 11,
+        "lineHeight": 16
+      }
+    ],
+    "responsive": [
+      {
+        "maxWidth": 767,
+        "change": "Шкала не уменьшается; display-xl остаётся 28/32."
+      }
+    ]
+  },
+  "colors": {
+    "roles": {
+      "action": {
+        "token": "--color-ui-primary",
+        "value": "#8164f7"
+      },
+      "link": {
+        "token": "--color-ui-blue-accent",
+        "value": "#0464d2"
+      },
+      "content-text": {
+        "token": "--color-ui-gray-1",
+        "value": "#1b272c"
+      },
+      "supporting-text": {
+        "token": "--color-ui-gray-2",
+        "value": "#55798b"
+      },
+      "metadata": {
+        "token": "--color-ui-gray-3",
+        "value": "#7996a5"
+      }
+    }
+  },
+  "shape": {
+    "radii": [
+      {
+        "value": 8,
+        "use": "кнопка M/SM, чип"
+      },
+      {
+        "value": 12,
+        "use": "кнопка L/XL, поле"
+      },
+      {
+        "value": 24,
+        "use": "карточка"
+      },
+      {
+        "value": 9999,
+        "use": "круглые контролы и аватар человека",
+        "alias": "full"
+      }
+    ],
+    "shadows": {
+      "dropdown": "0 1px 20px 0 rgba(0,0,0,.2)"
+    },
+    "borders": {
+      "default": "{color.ui-gray-5}",
+      "hover": "{color.ui-gray-4}"
+    }
+  },
+  "layout": {
+    "container": {
+      "maxWidth": 1100,
+      "padding": "0 12px"
+    },
+    "breakpoints": [
+      {
+        "value": 320,
+        "role": "minimum-supported-width",
+        "names": [
+          "mobile"
+        ]
+      },
+      {
+        "value": 768,
+        "role": "mobile-to-tablet",
+        "names": [
+          "tablet"
+        ]
+      },
+      {
+        "value": 1024,
+        "role": "tablet-to-desktop",
+        "names": [
+          "desktop"
+        ]
+      }
+    ],
+    "fluidRanges": [
+      [
+        320,
+        767
+      ],
+      [
+        768,
+        1023
+      ],
+      [
+        1024,
+        1100
+      ]
+    ],
+    "spacing": {
+      "primary": [
+        4,
+        8,
+        12,
+        16,
+        24
+      ],
+      "secondary": [
+        2,
+        32,
+        48
+      ],
+      "localOnly": [
+        6,
+        10,
+        20,
+        44
+      ]
+    },
+    "density": "4 встречается чаще всего; 12 между карточками; 24 внутри карточки."
+  },
+  "signaturePatterns": [
+    {
+      "id": "violet-actions-blue-links",
+      "rule": "Фиолетовый обозначает действие, синий — переход.",
+      "evidence": "machine/foundations/colors.json"
+    },
+    {
+      "id": "dense-four-pixel-rhythm",
+      "rule": "Плотный продуктовый интерфейс использует основной шаг 4px.",
+      "evidence": "machine/foundations/spacing.json"
+    },
+    {
+      "id": "cards-stay-flat",
+      "rule": "Карточки сохраняют геометрию; интерактивность не выражается подъёмом всей поверхности.",
+      "evidence": "machine/patterns/listing.json"
+    }
+  ],
+  "sources": [
+    "machine/foundations/colors.json",
+    "machine/foundations/typography.json",
+    "machine/foundations/layout-responsive.json",
+    "machine/foundations/spacing.json",
+    "machine/foundations/radii.json"
+  ],
+  "unknowns": [
+    "Личный кабинет, живые формы, модальные потоки и авторизованные состояния не входят в подтверждённый срез."
+  ]
+}

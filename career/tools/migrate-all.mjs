@@ -1,6 +1,7 @@
 import { copyFileSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
 import { basename, dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { writeStyleProfile } from './build-style-profile.mjs';
 
 const root = fileURLToPath(new URL('..', import.meta.url));
 const oldRoot = resolve(root, '..', 'archive', 'career', 'v1');
@@ -907,7 +908,11 @@ catalog.sort((a, b) => {
   return order.indexOf(a.kind) - order.indexOf(b.kind) || a.category.localeCompare(b.category, 'ru') || a.title.localeCompare(b.title, 'ru');
 });
 
-const searchableDocuments = catalog.map(entry => {
+const provenanceCategories = new Set(['research', 'showcase-reference', 'source-data']);
+const provenanceEntries = catalog.filter(entry => entry.kind === 'guide' && provenanceCategories.has(entry.category));
+const activeCatalog = catalog.filter(entry => !provenanceEntries.includes(entry));
+
+const searchableDocuments = activeCatalog.map(entry => {
   const item = JSON.parse(readFileSync(resolve(root, entry.file), 'utf8'));
   const compactItem = { ...item };
   delete compactItem.markup;
@@ -1020,7 +1025,14 @@ const patternEntries = catalog.filter(entry => entry.kind === 'pattern');
 const decisionEntries = catalog.filter(entry => entry.kind === 'decision-guide');
 const ruleEntries = catalog.filter(entry => entry.kind === 'rule');
 const contentEntries = catalog.filter(entry => entry.kind === 'content');
-const guideEntries = catalog.filter(entry => entry.kind === 'guide');
+const guideEntries = activeCatalog.filter(entry => entry.kind === 'guide');
+write('machine/provenance/index.json', {
+  schemaVersion: 1,
+  purpose: 'Служебные источники миграции; не входят в основной readOrder и пользовательскую витрину.',
+  categories: [...provenanceCategories],
+  count: provenanceEntries.length,
+  entries: provenanceEntries
+});
 const catalogIndex = {
   schemaVersion: 2,
   readOrder: 'Выбрать section, затем один file или один groups[].file. Не загружать остальные каталоги.',
@@ -1037,18 +1049,21 @@ const catalogIndex = {
 write('machine/catalog.json', catalogIndex);
 
 const countedKinds = ['foundation', 'primitive', 'component', 'adapter', 'module', 'pattern', 'decision-guide', 'rule', 'content', 'guide'];
-const counts = Object.fromEntries(countedKinds.map(kind => [`${kind}s`, catalog.filter(entry => entry.kind === kind).length]));
-const examples = catalog.reduce((sum, entry) => {
+const counts = Object.fromEntries(countedKinds.map(kind => [`${kind}s`, activeCatalog.filter(entry => entry.kind === kind).length]));
+const examples = activeCatalog.reduce((sum, entry) => {
   const item = JSON.parse(readFileSync(resolve(root, entry.file), 'utf8'));
   return sum + (item.examples?.length || 0);
 }, 0);
+writeStyleProfile();
 write('machine/index.json', {
   schemaVersion: 3,
   product: { id: 'career', title: 'Хабр Карьера', guideVersion: '1.2', status: 'active' },
-  readOrder: ['machine/catalog.json', 'один section.file или groups[].file', 'только выбранный item.file', 'ruleFiles, groups, implementation и examples — только при необходимости'],
+  readOrder: ['machine/style-profile.json для задач уровня продукта или нового экрана', 'machine/catalog.json', 'один section.file или groups[].file', 'только выбранный item.file', 'ruleFiles, groups, implementation и examples — только при необходимости'],
   files: {
     catalog: 'machine/catalog.json',
     states: 'machine/states.json',
+    styleProfile: 'machine/style-profile.json',
+    provenance: 'machine/provenance/index.json',
     schema: 'schema.json',
     roadmap: 'ROADMAP.md',
     audit: 'machine/migration-audit.json',
@@ -1067,7 +1082,7 @@ write('machine/index.json', {
   },
   checks: ['npm run validate', 'npm run validate:viewer'],
   metrics: {
-    catalogItems: catalog.length,
+    catalogItems: activeCatalog.length,
     ...counts,
     sourceComponents: sourceComponents.length,
     sourceRules: sourceRules.filter(item => item.kind === 'rule').length,
@@ -1084,7 +1099,8 @@ write('machine/index.json', {
     variables: Object.values(sourceTokens).reduce((sum, group) => sum + Object.keys(group).length, 0),
     colorTokens: Object.keys(sourceTokens.color).length,
     typeStyles: existingTypography.typeScale.length,
-    examples
+    examples,
+    provenanceItems: provenanceEntries.length
   },
   generatedAt: new Date().toISOString().slice(0, 10),
   generatedBy: 'tools/migrate-all.mjs'
