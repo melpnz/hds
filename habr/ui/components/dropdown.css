@@ -24,11 +24,11 @@
   background: var(--background-primary);
   box-shadow: 0 0 12px hsl(from var(--other-overlay-shadows) h s l / 16%);
   color: var(--text-main);
-  margin-top: var(--tm-dropdown-body-margin-top, 12px);
-  padding-bottom: var(--tm-dropdown-body-padding-bottom, 12px);
+  margin-top: var(--tm-dropdown-body-margin-top, var(--habr-space-12));
+  padding-bottom: var(--tm-dropdown-body-padding-bottom, var(--habr-space-12));
   white-space: normal;
-  min-width: var(--tm-dropdown-body-min-width, 300px);
-  border-radius: 4px;
+  min-width: var(--tm-dropdown-body-min-width, var(--habr-size-300));
+  border-radius: var(--habr-radius-4);
   display: inline-flex;
   position: absolute;
   overflow: hidden;
@@ -73,20 +73,20 @@
   cursor: pointer;
   color: var(--text-main);
   align-items: flex-start;
-  gap: 8px;
-  padding: 8px 16px;
+  gap: var(--habr-space-8);
+  padding: var(--habr-space-8) var(--habr-space-16);
   font-size: .875rem;
   line-height: 1.125rem;
   display: flex;
 }
 /* Figma elements/dropdown/row/list/icon = #929ca5 = --icon-primary.
    Раньше стоял --icon-secondary (#bcced7) — неверное сопоставление hex. */
-.dropdown-row__icon { color: var(--icon-primary); flex: none; width: 24px; height: 24px; }
+.dropdown-row__icon { color: var(--icon-primary); flex: none; width: var(--habr-size-24); height: var(--habr-size-24); }
 /* list/padding_txt = 2 сверху и снизу, gap_vertical = 4 между строкой и описанием */
 .dropdown-row__text {
   flex-direction: column;
   flex: 1;
-  gap: 4px;
+  gap: var(--habr-space-4);
   min-width: 0;
   padding: 2px 0;
   display: flex;
@@ -109,20 +109,20 @@
   font-size: .875rem;
   font-weight: 700;
   line-height: 1.125rem;
-  padding: 16px 16px 8px;
+  padding: var(--habr-space-16) var(--habr-space-16) var(--habr-space-8);
 }
-.dropdown-row_separator { border-top: 1px solid hsl(from var(--icon-primary) h s l / 40%); margin: 8px 0; }
+.dropdown-row_separator { border-top: 1px solid hsl(from var(--icon-primary) h s l / 40%); margin: var(--habr-space-8) 0; }
 .dropdown-row_not-found,
 .dropdown-row_loading {
   cursor: default;
   color: var(--text-secondary);
   justify-content: center;
-  padding: 8px 16px;
+  padding: var(--habr-space-8) var(--habr-space-16);
   display: flex;
 }
 /* Figma показывает в loading спиннер; вращение — наше, картинкой его не
    выразить. Сам глиф — refresh из production-спрайта. */
-.dropdown-row_loading svg { fill: currentColor; width: 24px; height: 24px; animation: 1s linear infinite tm-dropdown-spin; }
+.dropdown-row_loading svg { fill: currentColor; width: var(--habr-size-24); height: var(--habr-size-24); animation: 1s linear infinite tm-dropdown-spin; }
 @keyframes tm-dropdown-spin { to { transform: rotate(-360deg); } }
 
 .dropdown .menu-row {
@@ -130,8 +130,8 @@
   color: var(--text-main);
   border-left: 2px solid #0000;
   justify-content: space-between;
-  gap: 8px;
-  padding: 8px 20px;
+  gap: var(--habr-space-8);
+  padding: var(--habr-space-8) var(--habr-space-20);
   font-size: .875rem;
   line-height: 1.125rem;
   text-decoration: none;
@@ -156,19 +156,19 @@
   box-sizing: border-box;
   background: var(--background-primary);
   color: var(--text-main);
-  border-radius: 4px 4px 0 0;
+  border-radius: var(--habr-radius-4) var(--habr-radius-4) 0 0;
   width: 100%;
-  padding: 12px 0;
+  padding: var(--habr-space-12) 0;
   position: relative;
 }
 .dropdown-sheet:before {
   content: "";
   background: var(--background-primary);
-  border-radius: 4px;
-  width: 64px;
-  height: 4px;
+  border-radius: var(--habr-radius-4);
+  width: var(--habr-size-64);
+  height: var(--habr-size-4);
   position: absolute;
-  top: -12px;
+  top: var(--habr-size-negative-12);
   left: 50%;
   transform: translate(-50%);
 }

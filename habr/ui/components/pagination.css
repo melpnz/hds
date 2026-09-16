@@ -12,7 +12,7 @@
   box-sizing: border-box;
   justify-content: space-between;
   height: 49px;
-  margin-top: 12px;
+  margin-top: var(--habr-space-12);
   padding: 0 2px;
   display: flex;
 }
@@ -31,9 +31,9 @@
   flex: none;
   justify-content: center;
   align-items: center;
-  min-width: 24px;
-  height: 32px;
-  padding: 0 4px;
+  min-width: var(--habr-size-24);
+  height: var(--habr-size-32);
+  padding: 0 var(--habr-space-4);
   font-size: .9375rem;
   font-weight: 500;
   line-height: 1.125rem;
@@ -67,14 +67,14 @@
    с Figma: elements/pagination/arrow/icon = #548eaa. */
 .tm-pagination__arrow {
   fill: currentColor;
-  padding: 8px 0 8px 8px;
+  padding: var(--habr-space-8) 0 var(--habr-space-8) var(--habr-space-8);
 }
 .tm-pagination__arrow_next {
-  padding: 8px;
+  padding: var(--habr-space-8);
   transform: scaleX(-1);
 }
 @media (min-width: 1024px) {
-  .tm-pagination__arrow { padding: 8px; }
+  .tm-pagination__arrow { padding: var(--habr-space-8); }
 }
 
 /* --- PaginationButton (prev/next) — отдельный компонент внутри Pagination */
@@ -97,7 +97,7 @@
 .tm-pagination__navigation-link:last-child:before {
   content: "";
   pointer-events: none;
-  width: 8px;
+  width: var(--habr-size-8);
   height: 100%;
   position: absolute;
   top: 0;
@@ -108,11 +108,11 @@
    получается чистым. Раньше здесь стоял `transparent` — исправлено. */
 .tm-pagination__navigation-link:first-child:after {
   background-image: linear-gradient(to right, var(--background-primary), hsl(from var(--background-primary) h s l / 0%));
-  right: -8px;
+  right: var(--habr-size-negative-8);
 }
 .tm-pagination__navigation-link:last-child:before {
   background-image: linear-gradient(to left, var(--background-primary), hsl(from var(--background-primary) h s l / 0%));
-  left: -8px;
+  left: var(--habr-size-negative-8);
 }
 .tm-pagination__navigation-link_active,
 .tm-pagination__navigation-link_active:hover {

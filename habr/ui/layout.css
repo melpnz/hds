@@ -13,15 +13,15 @@
 /* --- контейнер: 320 → 768 (16) → 1096 (24) --------------------------- */
 
 .tm-page-width {
-  min-width: 320px;
+  min-width: var(--habr-size-320);
   margin: 0 auto;
   position: relative;
 }
 @media (min-width: 768px) and (max-width: 1023px) {
-  .tm-page-width { max-width: 768px; padding: 0 16px; }
+  .tm-page-width { max-width: var(--habr-size-768); padding: 0 var(--habr-space-16); }
 }
 @media (min-width: 1024px) {
-  .tm-page-width { max-width: 1096px; padding: 0 24px; }
+  .tm-page-width { max-width: var(--habr-size-1096); padding: 0 var(--habr-space-24); }
 }
 .tm-page-width_no-padding { padding: 0; }
 .tm-page-width_full-width { max-width: 100%; }
@@ -32,24 +32,24 @@
   background-color: var(--header-background);
   color: var(--header-text);
   z-index: 1001;
-  height: 56px;
+  height: var(--habr-size-56);
   transition: top .3s;
   position: sticky;
   top: 0;
 }
 @media (max-width: 767px) {
-  .tm-header { height: 48px; }
+  .tm-header { height: var(--habr-size-48); }
 }
 .tm-header__container {
   align-items: center;
-  gap: 16px;
-  height: 32px;
+  gap: var(--habr-space-16);
+  height: var(--habr-size-32);
   margin: 0 auto;
-  padding: 12px 0;
+  padding: var(--habr-space-12) 0;
   display: flex;
 }
 @media (max-width: 767px) {
-  .tm-header__container { padding: 8px 16px; }
+  .tm-header__container { padding: var(--habr-space-8) var(--habr-space-16); }
 }
 
 /* --- внутренности шапки -------------------------------------------------
@@ -77,8 +77,8 @@
   border: 0;
   justify-content: center;
   align-items: center;
-  width: 40px;
-  height: 40px;
+  width: var(--habr-size-40);
+  height: var(--habr-size-40);
   margin: 0;
   padding: 0;
   line-height: 0;
@@ -92,21 +92,21 @@
 .tm-header__logo_hl-ru { width: 62px; }
 .tm-header__logo_hl-en { width: 57px; }
 @media (min-width: 1024px) {
-  .tm-header__logo:not(.tm-header__logo_twentieth-anniversary) { height: 24px; }
+  .tm-header__logo:not(.tm-header__logo_twentieth-anniversary) { height: var(--habr-size-24); }
 }
 @media (max-width: 767px) {
-  .tm-header__logo-wrap { max-width: 52px; }
-  .tm-header__logo:not(.tm-header__logo_twentieth-anniversary) { width: 52px; }
-  .tm-header__logo_hl-ru { width: 52px; }
+  .tm-header__logo-wrap { max-width: var(--habr-size-52); }
+  .tm-header__logo:not(.tm-header__logo_twentieth-anniversary) { width: var(--habr-size-52); }
+  .tm-header__logo_hl-ru { width: var(--habr-size-52); }
 }
 
 /* Разделитель и «Все потоки» — единственные элементы, которые адаптив
    именно ПРЯЧЕТ, а не ужимает. */
-.tm-header__divider { background: var(--icon-primary); min-width: 1px; min-height: 16px; }
+.tm-header__divider { background: var(--icon-primary); min-width: 1px; min-height: var(--habr-size-16); }
 .tm-header__all-flows {
-  min-height: 12px;
+  min-height: var(--habr-size-12);
   color: var(--header-text);
-  padding: 8px 0;
+  padding: var(--habr-space-8) 0;
   font-size: .875rem;
   line-height: 1.125rem;
   text-decoration: none;
@@ -124,7 +124,7 @@
 /* --- бургер: три полоски -------------------------------------------------
    `.line` — общее слово, в production изолировано data-v-806e3326.
    Заскоуплено под .burger-button. */
-.tm-header .burger-button { cursor: pointer; width: 24px; height: 24px; display: block; position: relative; }
+.tm-header .burger-button { cursor: pointer; width: var(--habr-size-24); height: var(--habr-size-24); display: block; position: relative; }
 .tm-header .burger-button .line {
   background-color: var(--header-text);
   width: 18px;
@@ -133,7 +133,7 @@
   position: absolute;
 }
 .tm-header .burger-button .line.top    { transform-origin: 0 0;     top: 6px;  left: 3px; }
-.tm-header .burger-button .line.middle { transform-origin: 0 100%;  top: 12px; left: 3px; }
+.tm-header .burger-button .line.middle { transform-origin: 0 100%;  top: var(--habr-size-12); left: 3px; }
 .tm-header .burger-button .line.bottom { transform-origin: 0 0;     top: 18px; left: 3px; }
 /* «крестик» только на десктопе: на мобильном меню открывается шторкой,
    а не подменяет бургер — медиазапрос в production именно такой */
@@ -145,15 +145,15 @@
 
 /* --- правое меню --------------------------------------------------------- */
 
-.tm-header-user-menu { align-items: center; gap: 16px; display: flex; }
-@media (max-width: 767px) { .tm-header-user-menu { gap: 12px; } }
+.tm-header-user-menu { align-items: center; gap: var(--habr-space-16); display: flex; }
+@media (max-width: 767px) { .tm-header-user-menu { gap: var(--habr-space-12); } }
 .tm-header-user-menu__icon { color: var(--header-text); vertical-align: top; }
 .tm-header-user-menu__icon:hover { color: var(--header-megapost-anakiwa); }
 .tm-header-user-menu__search,
 .tm-header-user-menu__write,
 .tm-header-user-menu__login { cursor: pointer; }
-.tm-header-user-menu__avatar { max-height: 32px; }
-@media (max-width: 767px) { .tm-header-user-menu__avatar { max-height: 24px; } }
+.tm-header-user-menu__avatar { max-height: var(--habr-size-32); }
+@media (max-width: 767px) { .tm-header-user-menu__avatar { max-height: var(--habr-size-24); } }
 
 /* Кнопка «Войти» — не .btn, а собственный класс, но с ровно тем же набором
    объявлений, что у .btn_solid.btn_small (см. button.css). В production это
@@ -168,7 +168,7 @@
   border-radius: 3px;
   align-self: self-start;
   height: 2rem;
-  padding: 8px 14px;
+  padding: var(--habr-space-8) 14px;
   font-size: .8125rem;
   text-decoration: none;
   transition: all .3s;
@@ -193,8 +193,8 @@
   flex: 1;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  height: 36px;
+  gap: var(--habr-space-8);
+  height: var(--habr-size-36);
   display: flex;
 }
 @media (max-width: 767px) {
@@ -202,8 +202,8 @@
     border-bottom: 1px solid hsl(from var(--icon-primary) h s l / 40%);
     flex: 0 0 auto;
     width: 100%;
-    height: 32px;
-    padding: 4px 16px;
+    height: var(--habr-size-32);
+    padding: var(--habr-space-4) var(--habr-space-16);
   }
 }
 .tm-header .header-feature .link {
@@ -219,7 +219,7 @@
   display: flex;
 }
 .tm-header .header-feature .link:hover { color: var(--header-megapost-anakiwa); }
-.tm-header .header-feature .icon { margin-right: 8px; position: relative; top: -1px; }
+.tm-header .header-feature .icon { margin-right: var(--habr-space-8); position: relative; top: -1px; }
 .tm-header .header-feature .adv {
   color: var(--icon-primary);
   letter-spacing: 0;
@@ -238,7 +238,7 @@
    Подтверждено на 7 типах страниц: везде одно и то же значение.
    Здесь — обычная переменная с человекочитаемым именем. */
 :root {
-  --sidebar-width: 300px;
+  --sidebar-width: var(--habr-size-300);
 }
 
 .tm-page__wrapper {
@@ -249,9 +249,9 @@
   position: relative;
 }
 .tm-page__main_has-sidebar {
-  max-width: calc(100% - (var(--sidebar-width) + 16px));
+  max-width: calc(100% - (var(--sidebar-width) + var(--habr-size-16)));
   flex: 1;
-  margin-right: 16px;
+  margin-right: var(--habr-space-16);
 }
 .tm-page__sidebar {
   width: var(--sidebar-width);
@@ -263,8 +263,8 @@
 /* --- отступ страницы сверху/снизу -------------------------------------- */
 
 .tm-page {
-  padding-bottom: 60px;
+  padding-bottom: var(--habr-space-60);
 }
 @media (min-width: 1024px) {
-  .tm-page { padding: 12px 0 60px; }
+  .tm-page { padding: var(--habr-space-12) 0 var(--habr-space-60); }
 }

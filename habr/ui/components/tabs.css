@@ -21,7 +21,7 @@
 .tabs:before, .tabs:after {
   content: "";
   pointer-events: none;
-  width: 16px;
+  width: var(--habr-size-16);
   position: absolute;
   top: 1px;
   bottom: 1px;
@@ -42,10 +42,10 @@
 .tabs-scroll-area:before, .tabs-scroll-area:after {
   content: "";
   flex: none;
-  width: 16px;
+  width: var(--habr-size-16);
 }
 .tabs-padding-area {
-  padding-left: 16px;
+  padding-left: var(--habr-space-16);
   padding-right: 2px;
 }
 
@@ -53,7 +53,7 @@
   box-sizing: border-box;
   color: var(--text-inactive);
   text-transform: uppercase;
-  margin-right: 24px;
+  margin-right: var(--habr-space-24);
   display: inline-block;
   position: relative;
 }
@@ -62,7 +62,7 @@
 .tab-link {
   color: inherit;
   letter-spacing: .05rem;
-  height: 44px;
+  height: var(--habr-size-44);
   text-transform: inherit;
   cursor: pointer;
   background-color: transparent;
@@ -99,16 +99,16 @@
 }
 .tab-link:hover { color: var(--accent-primary); }
 
-.tab-counter { color: var(--accent-primary); margin-left: 4px; }
-.tab-counter-new { color: var(--accent-positive); margin-left: 4px; }
+.tab-counter { color: var(--accent-primary); margin-left: var(--habr-space-4); }
+.tab-counter-new { color: var(--accent-positive); margin-left: var(--habr-space-4); }
 
 .tabs-dropdown { position: relative; bottom: 1px; }
 
 @media (min-width: 1024px) {
   .tabs { overflow-x: visible; }
   .tabs:before, .tabs:after,
-  .tabs-scroll-area:before, .tabs-scroll-area:after { width: 20px; }
-  .tabs-padding-area { padding-left: 20px; }
+  .tabs-scroll-area:before, .tabs-scroll-area:after { width: var(--habr-size-20); }
+  .tabs-padding-area { padding-left: var(--habr-space-20); }
   .tab-item:first-child { padding-left: 0; }
 }
 
@@ -156,14 +156,14 @@
   height: 0;
   bottom: 0;
 }
-.tab-item.size-small { text-transform: none; margin-right: 16px; }
+.tab-item.size-small { text-transform: none; margin-right: var(--habr-space-16); }
 
 /* Medium — таб-«таблетка»: системный шрифт обычного начертания, радиус 4 */
 .tab-link.size-medium {
   height: auto;
   margin: 0;          /* то же: без сброса символ выходит 46 вместо 42 */
-  padding: 12px 16px;
-  border-radius: 4px;
+  padding: var(--habr-space-12) var(--habr-space-16);
+  border-radius: var(--habr-radius-4);
   color: var(--text-secondary);
   font-family: inherit;
   font-size: .875rem;
@@ -204,7 +204,7 @@
      одной высоты 42 — значит обводка не добавляет габарит, а лежит поверх.
      border дал бы 44. Тот же приём, что у выбранного таба ниже. */
   box-shadow: inset 0 0 0 1px hsl(from var(--icon-primary) h s l / 40%);
-  border-radius: 4px;
+  border-radius: var(--habr-radius-4);
   overflow: hidden;                       /* скругляет крайние табы по панели */
 }
 /* внутри панели не нужны ни краевые градиенты, ни отступы прокрутки:

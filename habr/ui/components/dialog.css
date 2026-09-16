@@ -29,7 +29,7 @@
 }
 .scrollbar-wrap::-webkit-scrollbar { opacity: 0; }
 .scrollbar-track-container {
-  width: 12px;
+  width: var(--habr-size-12);
   position: absolute;
   top: 0; bottom: 0; right: 0;
 }
@@ -38,18 +38,18 @@
   background-color: var(--other-disabled-elements);
   opacity: .6;
   user-select: none;
-  border-radius: 4px;
-  width: 4px;
+  border-radius: var(--habr-radius-4);
+  width: var(--habr-size-4);
   transition: width 50ms ease-out;
   position: absolute;
-  top: 4px; bottom: 4px; right: 4px;
+  top: var(--habr-size-4); bottom: var(--habr-size-4); right: var(--habr-size-4);
 }
 .scrollbar-thumb {
   cursor: pointer;
   border-radius: inherit;
   background-color: var(--text-main);
   user-select: none;
-  width: 4px;
+  width: var(--habr-size-4);
   height: 0;
   transition: background-color 50ms, width 50ms ease-out, border-radius 50ms ease-out;
   position: absolute;
@@ -58,8 +58,8 @@
 .scrollbar-track-container:hover .scrollbar-thumb,
 .scrollbar-track.dragging,
 .scrollbar-thumb.dragging {
-  border-radius: 8px;
-  width: 8px;
+  border-radius: var(--habr-radius-8);
+  width: var(--habr-size-8);
 }
 
 /* --- мобильная раскладка: нижняя шторка --------------------------------- */
@@ -78,11 +78,11 @@
 .bottom-drawer-inner .overlay { z-index: -1; position: absolute; inset: 0; }
 
 .bottom-drawer-inner .header {
-  padding: var(--bottom-drawer-header-padding, 16px 20px);
+  padding: var(--bottom-drawer-header-padding, var(--habr-space-16) var(--habr-space-20));
   background-color: var(--background-primary);
   color: var(--text-main);
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-top-left-radius: var(--habr-radius-8);
+  border-top-right-radius: var(--habr-radius-8);
   flex-shrink: 0;
   align-items: center;
   font-weight: 700;
@@ -96,7 +96,7 @@
 .bottom-drawer-inner .sheet {
   box-sizing: border-box;
   pointer-events: all;
-  border-radius: 16px 16px 0 0;
+  border-radius: var(--habr-radius-16) var(--habr-radius-16) 0 0;
   flex-direction: column;
   width: 100%;
   display: flex;
@@ -110,12 +110,12 @@
 .bottom-drawer-inner .sheet.is-fullscreen { border-radius: 0; }
 .bottom-drawer-inner .sheet:not(.is-dragging) { transition: all .5s ease-in-out; }
 
-.bottom-drawer-inner .drag-area { cursor: grab; touch-action: unset; width: 100%; margin: auto; padding: 8px 16px; }
+.bottom-drawer-inner .drag-area { cursor: grab; touch-action: unset; width: 100%; margin: auto; padding: var(--habr-space-8) var(--habr-space-16); }
 .bottom-drawer-inner .drag-handle {
   background: var(--background-primary);
-  border-radius: 8px;
-  width: 64px;
-  height: 4px;
+  border-radius: var(--habr-radius-8);
+  width: var(--habr-size-64);
+  height: var(--habr-size-4);
   margin: 0 auto;
 }
 
@@ -136,21 +136,21 @@
    Скопировано дословно из BaseDialog-CrJ9tGzP.css. Обратить внимание на
    приём: thumb по умолчанию с альфой 0% (невидим, но место занимает),
    а при наведении на .main проявляется — прокрутка не дёргает раскладку. */
-.bottom-drawer-inner .main::-webkit-scrollbar { width: 8px; height: 8px; }
+.bottom-drawer-inner .main::-webkit-scrollbar { width: var(--habr-size-8); height: var(--habr-size-8); }
 .bottom-drawer-inner .main::-webkit-scrollbar-corner { display: none; }
 .bottom-drawer-inner .main::-webkit-scrollbar-thumb {
   background-color: hsl(from var(--other-overlay-shadows) h s l / 0%);
 }
 .bottom-drawer-inner .main:hover::-webkit-scrollbar-thumb {
   background-color: hsl(from var(--other-overlay-shadows, #4d4d4d) h s l / 20%);
-  border-radius: 8px;
+  border-radius: var(--habr-radius-8);
 }
 
 .bottom-drawer-inner .main-inner {
-  padding: var(--bottom-drawer-main-inner-padding, 0 20px 20px);
+  padding: var(--bottom-drawer-main-inner-padding, 0 var(--habr-space-20) var(--habr-space-20));
 }
 .bottom-drawer-inner .footer {
-  padding: var(--bottom-drawer-footer-padding, 16px 20px);
+  padding: var(--bottom-drawer-footer-padding, var(--habr-space-16) var(--habr-space-20));
   background: var(--background-primary);
   flex-shrink: 0;
 }
@@ -164,8 +164,8 @@
   border: none;
   justify-content: center;
   align-items: center;
-  width: 24px;
-  height: 24px;
+  width: var(--habr-size-24);
+  height: var(--habr-size-24);
   margin-left: auto;
   padding: 0;
   display: flex;
@@ -175,8 +175,8 @@
 .bottom-drawer-inner .close-button:after {
   content: "";
   cursor: pointer;
-  width: 40px;
-  height: 40px;
+  width: var(--habr-size-40);
+  height: var(--habr-size-40);
   position: absolute;
   top: 50%; left: 50%;
   transform: translate(-50%, -50%);
@@ -221,7 +221,7 @@
 .modal-window-wrapper { margin: auto; position: relative; }
 .modal-window {
   background-color: var(--background-primary);
-  max-height: 600px;
+  max-height: var(--habr-size-600);
   /* Ширину задаёт ПОТРЕБИТЕЛЬ, инлайновой CSS-переменной — фолбэка нет,
      ровно как в проде: `width: var(--v52269707)` без второго аргумента.
      Имя переменной у нас читаемое: production-имя генерирует Vue, оно
@@ -234,7 +234,7 @@
   width: var(--modal-window-width);
   max-width: var(--modal-window-width);
   box-sizing: border-box;
-  border-radius: 8px;
+  border-radius: var(--habr-radius-8);
   flex-direction: column;
   display: flex;
 }
@@ -248,28 +248,28 @@
 .bottom-drawer-inner .cover-image {
   background-position: 50%;
   background-size: cover;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-top-left-radius: var(--habr-radius-8);
+  border-top-right-radius: var(--habr-radius-8);
   min-width: 100%;
-  height: 140px;
+  height: var(--habr-size-140);
 }
 .dialog-header { flex-direction: column; width: 100%; min-width: 0; display: flex; }
 .dialog-title {
   color: var(--text-main);
   font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-  padding: 18px 20px 16px;
+  padding: 18px var(--habr-space-20) var(--habr-space-16);
   font-size: .9375rem;
   font-weight: 700;
   line-height: 1.25rem;
 }
-.dialog-title.no-body { padding: 18px 20px 0; }
+.dialog-title.no-body { padding: 18px var(--habr-space-20) 0; }
 .dialog-body {
   color: var(--text-main);
   font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-  padding: 0 20px;
+  padding: 0 var(--habr-space-20);
   font-size: .875rem;
   font-weight: 500;
 }
-.dialog-body p { margin-top: 12px; }
+.dialog-body p { margin-top: var(--habr-space-12); }
 .dialog-body p:first-child { margin-top: 0; }
-.dialog-footer { gap: 8px; margin-top: 20px; padding: 0 20px 20px; display: flex; }
+.dialog-footer { gap: var(--habr-space-8); margin-top: var(--habr-space-20); padding: 0 var(--habr-space-20) var(--habr-space-20); display: flex; }

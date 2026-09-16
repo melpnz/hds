@@ -22,15 +22,15 @@
 .base-hint {
   color: var(--text-main);
   box-sizing: border-box;
-  border-radius: 8px;
-  max-width: 220px;
-  padding: 8px 12px;
+  border-radius: var(--habr-radius-8);
+  max-width: var(--habr-size-220);
+  padding: var(--habr-space-8) var(--habr-space-12);
   font-size: .8125rem;
   font-weight: 400;
   line-height: 1rem;
 }
 .base-hint .base-popover { z-index: 80; }
-.base-hint .inner { z-index: 2; padding-right: 16px; position: relative; }
+.base-hint .inner { z-index: 2; padding-right: var(--habr-space-16); position: relative; }
 .base-hint p { margin: 0; }
 .base-hint a { color: var(--accent-primary); text-decoration: none; }
 .base-hint a:hover { color: var(--accent-primary); text-decoration: underline; }
@@ -68,16 +68,16 @@
 .base-hint .arrow {
   z-index: 4;
   pointer-events: none;
-  width: 16px;
-  height: 8px;
+  width: var(--habr-size-16);
+  height: var(--habr-size-8);
   position: absolute;
   overflow: hidden;
 }
 .base-hint .arrow:before, .base-hint .arrow:after {
   content: "";
   transform-origin: 0;
-  width: 20px;
-  height: 20px;
+  width: var(--habr-size-20);
+  height: var(--habr-size-20);
   display: block;
   position: absolute;
   top: 0;
@@ -89,19 +89,19 @@
   background-color: hsl(from var(--complexity-medium) h s l / 20%);
   border: 1px solid var(--complexity-medium);
 }
-.base-hint .arrow-top    { bottom: -8px; left: 50%; transform: translate(-50%); }
+.base-hint .arrow-top    { bottom: var(--habr-size-negative-8); left: 50%; transform: translate(-50%); }
 .base-hint .arrow-top:after, .base-hint .arrow-top:before { top: -23px; left: 1px; }
 .base-hint .arrow-bottom { top: -6px; left: 50%; transform: translate(-50%); }
-.base-hint .arrow-left   { top: 50%; left: auto; right: -12px; transform: translateY(-50%) rotate(-90deg); }
+.base-hint .arrow-left   { top: 50%; left: auto; right: var(--habr-size-negative-12); transform: translateY(-50%) rotate(-90deg); }
 .base-hint .arrow-left:after, .base-hint .arrow-left:before { top: -23px; left: 1px; }
-.base-hint .arrow-right  { top: 50%; left: -12px; transform: translateY(-50%) rotate(90deg); }
+.base-hint .arrow-right  { top: 50%; left: var(--habr-size-negative-12); transform: translateY(-50%) rotate(90deg); }
 .base-hint .arrow-right:after, .base-hint .arrow-right:before { top: -23px; left: 1px; }
-.base-hint .arrow-top.arrow-start, .base-hint .arrow-bottom.arrow-start { left: 12px; transform: translate(0); }
-.base-hint .arrow-top.arrow-end, .base-hint .arrow-bottom.arrow-end { left: auto; right: 12px; transform: translate(0); }
-.base-hint .arrow-left.arrow-start { top: 12px; transform: rotate(-90deg); }
-.base-hint .arrow-left.arrow-end { top: auto; bottom: 12px; transform: rotate(-90deg); }
-.base-hint .arrow-right.arrow-start { top: 12px; transform: rotate(90deg); }
-.base-hint .arrow-right.arrow-end { top: auto; bottom: 12px; transform: rotate(90deg); }
+.base-hint .arrow-top.arrow-start, .base-hint .arrow-bottom.arrow-start { left: var(--habr-size-12); transform: translate(0); }
+.base-hint .arrow-top.arrow-end, .base-hint .arrow-bottom.arrow-end { left: auto; right: var(--habr-size-12); transform: translate(0); }
+.base-hint .arrow-left.arrow-start { top: var(--habr-size-12); transform: rotate(-90deg); }
+.base-hint .arrow-left.arrow-end { top: auto; bottom: var(--habr-size-12); transform: rotate(-90deg); }
+.base-hint .arrow-right.arrow-start { top: var(--habr-size-12); transform: rotate(90deg); }
+.base-hint .arrow-right.arrow-end { top: auto; bottom: var(--habr-size-12); transform: rotate(90deg); }
 
 .base-hint .close {
   cursor: pointer;
@@ -112,10 +112,10 @@
   z-index: 2;
   line-height: 0;
   position: absolute;
-  top: 4px; right: 4px;
+  top: var(--habr-size-4); right: var(--habr-size-4);
 }
 .base-hint .close:not(:focus-visible) { outline: none; }
-.base-hint .link-wrapper { margin-top: 4px; }
+.base-hint .link-wrapper { margin-top: var(--habr-space-4); }
 
 /* --- InformerHint ---------------------------------------------------------
    Ширина — inline CSS var (v-bind), задаётся потребителем компонента.
@@ -133,8 +133,8 @@
   padding: 0;
   border: 6px solid var(--label-dodger-blue);
   border-radius: 100%;
-  width: 16px;
-  height: 16px;
+  width: var(--habr-size-16);
+  height: var(--habr-size-16);
   position: absolute;
 }
 .hint-trigger-button:not(:focus-visible) { outline: none; }
@@ -143,8 +143,8 @@
   border: 4px solid var(--label-dodger-blue);
   pointer-events: none;
   border-radius: 9999px;
-  width: 16px;
-  height: 16px;
+  width: var(--habr-size-16);
+  height: var(--habr-size-16);
   animation: 1s ease-out infinite hot-point-pulsate;
   position: absolute;
   top: 50%; left: 50%;
@@ -153,7 +153,7 @@
 @keyframes hot-point-pulsate {
   0%  { opacity: 0; }
   50% { opacity: 1; }
-  100% { opacity: 0; width: 32px; height: 32px; }
+  100% { opacity: 0; width: var(--habr-size-32); height: var(--habr-size-32); }
 }
 
 .informer-hint {
@@ -166,8 +166,8 @@
   color: var(--text-main);
   box-sizing: border-box;
   background-color: var(--background-primary);
-  border-radius: 4px;
-  padding: 14px 44px 14px 16px;
+  border-radius: var(--habr-radius-4);
+  padding: 14px var(--habr-space-44) 14px var(--habr-space-16);
   /* ДОБАВЛЕНО, не в исходном informer-hint-Bf4XvRzJ.css: без position
      дети .informer-hint:before (position:absolute;inset:0) и
      .close-informer-hint (position:absolute;top:12px;right:12px)
@@ -176,7 +176,7 @@
      компонент, вероятно, задаёт его в другом, не захваченном style-блоке. */
   position: relative;
 }
-.informer-hint h3 { margin: 0 0 4px; font-size: .9375rem; font-weight: 700; line-height: 1.25rem; }
+.informer-hint h3 { margin: 0 0 var(--habr-space-4); font-size: .9375rem; font-weight: 700; line-height: 1.25rem; }
 .informer-hint p { margin: 0; font-size: .9375rem; font-weight: 400; line-height: 1.25rem; }
 .informer-hint:before {
   content: "";
@@ -192,7 +192,7 @@
   padding: 0;
   color: var(--icon-primary);
   position: absolute;
-  top: 12px; right: 12px;
+  top: var(--habr-size-12); right: var(--habr-size-12);
 }
 .close-informer-hint:not(:focus-visible) { outline: none; }
 .close-informer-hint > svg { display: block; }
@@ -202,7 +202,7 @@
 .restriction-hint {
   color: var(--text-secondary);
   max-width: 289px;
-  padding: 12px 16px;
+  padding: var(--habr-space-12) var(--habr-space-16);
   font-size: .875rem;
   line-height: 1.25rem;
 }
@@ -231,7 +231,7 @@
 
 .informer-hint__row {
   display: flex;
-  gap: 8px;
+  gap: var(--habr-space-8);
   align-items: flex-start;
   position: relative;
   z-index: 1;

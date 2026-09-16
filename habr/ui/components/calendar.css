@@ -39,11 +39,11 @@
   box-sizing: border-box;
   flex: none;
   color: var(--text-main);
-  border-radius: 4px;
+  border-radius: var(--habr-radius-4);
   justify-content: center;
   align-items: center;
-  width: 28px;
-  height: 28px;
+  width: var(--habr-size-28);
+  height: var(--habr-size-28);
   font-size: .8125rem;
   line-height: 1rem;
   display: flex;
@@ -85,11 +85,11 @@
   padding: 0;
   justify-content: center;
   align-items: center;
-  width: 28px;
-  height: 28px;
+  width: var(--habr-size-28);
+  height: var(--habr-size-28);
   display: flex;
 }
-.tm-calendar-arrow svg { fill: currentColor; width: 24px; height: 24px; }
+.tm-calendar-arrow svg { fill: currentColor; width: var(--habr-size-24); height: var(--habr-size-24); }
 .tm-calendar-arrow:hover { color: var(--accent-primary); }
 .tm-calendar-arrow_disabled,
 .tm-calendar-arrow_disabled:hover { cursor: default; color: var(--other-disabled-elements); }
@@ -104,19 +104,19 @@
 .tm-calendar {
   box-sizing: border-box;
   background: var(--background-primary);
-  border-radius: 4px;
+  border-radius: var(--habr-radius-4);
   box-shadow: 0 2px 12px hsl(from var(--other-overlay-shadows) h s l / 20%);
   flex-direction: column;
-  gap: 4px;
-  padding: 20px;
+  gap: var(--habr-space-4);
+  padding: var(--habr-space-20);
   display: inline-flex;
 }
 .tm-calendar *, .tm-calendar *:before, .tm-calendar *:after { box-sizing: border-box; }
 
 /* два поля сверху — это Input, а не часть календаря; зазор padding_out = 8 */
-.tm-calendar__fields { gap: 8px; display: flex; }
+.tm-calendar__fields { gap: var(--habr-space-8); display: flex; }
 .tm-calendar__fields .tm-input-text-decorated { flex: 1; }
-.tm-calendar__fields .tm-input-text-decorated_time { flex: none; width: 76px; }
+.tm-calendar__fields .tm-input-text-decorated_time { flex: none; width: var(--habr-size-76); }
 .tm-calendar__fields .tm-input-text-decorated__input { text-align: center; }
 
 /* месяц и стрелки */
@@ -131,40 +131,40 @@
 }
 
 /* календарь и время рядом, между ними — вертикальный разделитель */
-.tm-calendar__panes { gap: 12px; display: flex; }
+.tm-calendar__panes { gap: var(--habr-space-12); display: flex; }
 .tm-calendar__panes .tm-calendar__time {
   border-left: 1px solid hsl(from var(--icon-primary) h s l / 40%);
-  padding-left: 12px;
+  padding-left: var(--habr-space-12);
 }
 
 /* сетка дат: 7 колонок по 28, без зазоров — отключённые дни должны
    сливаться в одну плашку */
 .tm-calendar__grid {
   grid-template-columns: repeat(7, 28px);
-  width: 196px;
+  width: var(--habr-size-196);
   display: grid;
 }
 
 /* колонка времени: та же высота, что и сетка (6 рядов по 28 + шапка) */
 .tm-calendar__time {
   flex-direction: column;
-  max-height: 196px;
+  max-height: var(--habr-size-196);
   display: flex;
   overflow-y: auto;
 }
 /* elements/scroll: бокс 12, padding 4 → видимая полоса 4px, radius 200 */
-.tm-calendar__time::-webkit-scrollbar { width: 12px; }
+.tm-calendar__time::-webkit-scrollbar { width: var(--habr-size-12); }
 .tm-calendar__time::-webkit-scrollbar-track {
   background: hsl(from var(--other-disabled-elements) h s l / 60%);
   background-clip: content-box;
   border: 4px solid #0000;
-  border-radius: 200px;
+  border-radius: var(--habr-radius-200);
 }
 .tm-calendar__time::-webkit-scrollbar-thumb {
   background: var(--text-main);
   background-clip: content-box;
   border: 4px solid #0000;
-  border-radius: 200px;
+  border-radius: var(--habr-radius-200);
 }
 
 /* «Сегодня» — ссылка под сеткой */
@@ -172,7 +172,7 @@
   color: var(--accent-primary);
   text-align: center;
   cursor: pointer;
-  padding-top: 4px;
+  padding-top: var(--habr-space-4);
   font-size: .8125rem;
   line-height: 1rem;
   text-decoration: none;

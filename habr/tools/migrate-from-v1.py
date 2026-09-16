@@ -221,10 +221,20 @@ def gaps_from_markdown(path: Path | None) -> list[str]:
 def visual_from_css(paths: list[Path]) -> dict | None:
     tracked = ("width", "height", "min-width", "min-height", "max-width", "padding", "gap", "border", "border-radius", "background", "background-color", "color", "object-fit", "font-size", "line-height", "font-weight", "box-shadow")
     values: dict[str, list[str]] = {}
+    dimension_values = {}
+    dimension_path = ROOT / "machine" / "dimension-tokens.json"
+    if dimension_path.exists():
+        dimension_document = json.loads(dimension_path.read_text(encoding="utf-8"))
+        dimension_values = {
+            token["cssVariable"]: token["$value"]
+            for group in dimension_document.get("tokens", {}).values()
+            for token in group.values()
+        }
     for path in paths:
         if not path.exists():
             continue
         source = re.sub(r"/\*[\s\S]*?\*/", "", path.read_text(encoding="utf-8"))
+        source = re.sub(r"var\((--habr-[^)]+)\)", lambda match: dimension_values.get(match.group(1), match.group(0)), source)
         for prop, value in re.findall(r"([a-z-]+)\s*:\s*([^;}]+)", source):
             if prop not in tracked:
                 continue
@@ -606,6 +616,7 @@ def main() -> None:
     write_json(ROOT / "machine/tokens.json", {"source": ["ui/themes/light-v2.css", "ui/themes/dark-v2.css"], "themes": {"light-v2": light_tokens, "dark-v2": dark_tokens}, "counts": {"light": len(light_tokens), "dark": len(dark_tokens)}})
     write_json(ROOT / "machine/style-profile.json", {
         "schemaVersion": 1,
+        "dimensionTokens": {"baseUnit": "4px", "source": "machine/dimension-tokens.json", "css": "ui/dimension-tokens.css", "exceptions": "machine/reports/dimension-exceptions.json"},
         "product": {"id": "habr", "title": "Хабр", "guideVersion": "1.0", "status": "active-with-coverage-limits"},
         "scope": {"confidence": "mixed", "boundary": "Публичный гостевой production-срез и подтверждённые экраны company admin."},
         "typography": {
@@ -630,7 +641,7 @@ def main() -> None:
             {"id": "flat-dense-controls", "rule": "Компактные контролы используют малый радиус 3px.", "evidence": "ui/components/button.css"},
             {"id": "theme-pair", "rule": "Семантические роли поддерживают светлую и тёмную темы.", "evidence": "machine/tokens.json"}
         ],
-        "sources": ["machine/tokens.json", "ui/foundations.css", "ui/layout.css", "ui/components/title.css", "ui/components/primitives.css"],
+        "sources": ["machine/dimension-tokens.json", "machine/tokens.json", "ui/foundations.css", "ui/layout.css", "ui/components/title.css", "ui/components/primitives.css"],
         "unknowns": ["Редактор, настройки, сервисные ошибки и авторизованный production не подтверждены полными экранами."]
     })
     foundation_visuals = {
@@ -658,8 +669,8 @@ def main() -> None:
     index = {
         "schemaVersion": 3,
         "product": {"id": "habr", "title": "Хабр", "guideVersion": "1.0", "status": "active", "productionRelease": "2.346.1", "lastVerified": "2026-09-07"},
-        "readOrder": ["machine/style-profile.json для задач уровня продукта или нового экрана", "machine/catalog.json", "только выбранный file из catalog", "markdown, rules, implementation и examples — только при необходимости"],
-        "files": {"catalog": "machine/catalog.json", "states": "machine/states.json", "tokens": "machine/tokens.json", "styleProfile": "machine/style-profile.json", "assets": "machine/assets.json", "migrationMap": "machine/migration-map.json", "schema": "schema.json", "roadmap": "ROADMAP.md"},
+        "readOrder": ["machine/style-profile.json для задач уровня продукта или нового экрана", "machine/dimension-tokens.json для геометрии", "machine/catalog.json", "только выбранный file из catalog", "markdown, rules, implementation и examples — только при необходимости"],
+        "files": {"catalog": "machine/catalog.json", "states": "machine/states.json", "tokens": "machine/tokens.json", "dimensionTokens": "machine/dimension-tokens.json", "dimensionExceptions": "machine/reports/dimension-exceptions.json", "styleProfile": "machine/style-profile.json", "assets": "machine/assets.json", "migrationMap": "machine/migration-map.json", "schema": "schema.json", "roadmap": "ROADMAP.md"},
         "coverage": {"boundary": "public guest production + company admin Figma", "known": ["public shell", "content feed", "directory", "entity", "company admin"], "unknown": ["editor screen", "settings outside admin", "service/error", "authenticated production"], "onUnknown": {"action": "use-nearest-confirmed-pattern-and-disclose-assumption", "doc": "ROADMAP.md"}},
         "viewerContract": {"intrinsic": "components and foundations, stacked without viewport toolbar", "viewport": "modules and pages at 320/480/768/1024/Auto", "pageBreakpoints": [320, 768, 1024], "fluidCheckpoints": [480], "notes": "previewNotes are rendered outside iframe"},
         "provenance": {"legacyPrefix": "archive:habr/v1/", "archivePublished": False, "note": "Структура пакета мигрирована без объявления нового релиза; все доступные для использования знания находятся в habr/."},

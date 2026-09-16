@@ -52,12 +52,12 @@
   color: var(--tm-chip-color);
   background: hsl(from var(--tm-chip-color) h s l / 12%);
   border: 0;
-  border-radius: 8px;
+  border-radius: var(--habr-radius-8);
   align-items: center;
   justify-content: center;
   gap: 0;
   height: 30px;
-  padding: 4px 12px;
+  padding: var(--habr-space-4) var(--habr-space-12);
   font-family: inherit;
   font-size: .875rem;
   line-height: 1.125rem;
@@ -65,16 +65,16 @@
 }
 /* внутренний отступ текстового блока (padding_txt_ver): 4 + 2 + 18 + 2 + 4 = 30 */
 .tm-chip__text { padding: 2px 0; }
-.tm-chip__body { align-items: center; gap: 8px; display: flex; }
-.tm-chip__icon { fill: currentColor; flex: none; width: 24px; height: 24px; }
+.tm-chip__body { align-items: center; gap: var(--habr-space-8); display: flex; }
+.tm-chip__icon { fill: currentColor; flex: none; width: var(--habr-size-24); height: var(--habr-size-24); }
 /* Заполнение плитки на время, пока картинки хаба нет, — .avatar-default
    в avatar.css; здесь только геометрия. */
-.tm-chip__avatar { object-fit: cover; border-radius: 6px; flex: none; width: 24px; height: 24px; }
+.tm-chip__avatar { object-fit: cover; border-radius: 6px; flex: none; width: var(--habr-size-24); height: var(--habr-size-24); }
 
 /* Поля зависят от того, что стоит по краям — в Figma это отдельные
    значения токенов, здесь выведены из состава чипа. */
-.tm-chip:has(> .tm-chip__icon:first-child) { padding-left: 4px; }
-.tm-chip:has(> .tm-chip__icon:last-child) { padding-right: 4px; }
+.tm-chip:has(> .tm-chip__icon:first-child) { padding-left: var(--habr-space-4); }
+.tm-chip:has(> .tm-chip__icon:last-child) { padding-right: var(--habr-space-4); }
 .tm-chip:has(.tm-chip__avatar) { padding-left: 3px; }
 
 /* Пустой — рамка 40% вместо заливки. Объявлен до цветовых модификаторов,
@@ -137,12 +137,12 @@ button.tm-chip__icon {
   color: var(--article-label-color);
   background: hsl(from var(--article-label-color) h s l / 12%);
   border: 0;
-  border-radius: 8px;
+  border-radius: var(--habr-radius-8);
   align-items: center;
   justify-content: center;
-  gap: 4px;
+  gap: var(--habr-space-4);
   height: 30px;
-  padding: 6px 12px;
+  padding: 6px var(--habr-space-12);
   font-family: inherit;
   font-size: .75rem;
   font-weight: 700;
