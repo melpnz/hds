@@ -4,6 +4,7 @@ import vm from "node:vm";
 import { fileURLToPath } from "node:url";
 import Ajv2020 from "ajv/dist/2020.js";
 import { buildTokens } from "./tools/build-tokens.mjs";
+import { buildStyleProfile } from "./tools/build-style-profile.mjs";
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const readJson = (relative) => JSON.parse(fs.readFileSync(path.join(root, relative), "utf8"));
@@ -78,6 +79,12 @@ for (const id of ["typography", "colors", "buttons", "intro"]) {
   const spec = readJson(`machine/specs/${id}.json`);
   if (!spec.visual || JSON.stringify(spec.visual).includes("undefined")) errors.push(`${id}: отсутствует машинное описание visual`);
 }
+for (const id of specIds) {
+  const spec = readJson(`machine/specs/${id}.json`);
+  if (["atom", "element"].includes(spec.kind) && !spec.visual) errors.push(`${id}: atom/element visual contract is missing`);
+}
+const styleProfile = readJson("machine/style-profile.json");
+if (JSON.stringify(styleProfile) !== JSON.stringify(buildStyleProfile())) errors.push("machine/style-profile.json расходится с источниками");
 
 const sandbox = { window: {} };
 vm.runInNewContext(fs.readFileSync(path.join(root, "viewer/data.js"), "utf8"), sandbox);

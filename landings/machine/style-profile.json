@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "product": {
+    "id": "landings",
+    "title": "Лендинги HDS",
+    "guideVersion": "0.1",
+    "packageVersion": "0.2.0",
+    "status": "in-development"
+  },
+  "scope": {
+    "confidence": "snapshot",
+    "boundary": "Российские Webflow-страницы company.habr.com; новый пакет активно разрабатывается."
+  },
+  "typography": {
+    "families": {
+      "text": "Inter, Arial, sans-serif",
+      "heading": "Inter, Arial, sans-serif"
+    },
+    "weights": {
+      "medium": "500",
+      "semibold": "600"
+    },
+    "roles": {
+      "--hds-text-body": "18px",
+      "--hds-text-small": "14px",
+      "--hds-text-h4": "24px",
+      "--hds-text-h3": "32px",
+      "--hds-text-h2": "72px",
+      "--hds-text-h1": "88px"
+    }
+  },
+  "colors": {
+    "theme": "company",
+    "roles": {
+      "--hds-color-bg": "#171c1b",
+      "--hds-color-surface": "#0c0e0e",
+      "--hds-color-surface-glass": "rgb(12 14 14 / 40%)",
+      "--hds-color-text": "#ecf5e7",
+      "--hds-color-text-muted": "rgb(219 233 240 / 62%)",
+      "--hds-color-link": "#07d0f9",
+      "--hds-color-action": "#008fcc",
+      "--hds-color-action-hover": "#00a5e0",
+      "--hds-color-control": "rgb(230 240 244 / 10%)",
+      "--hds-color-control-hover": "rgb(230 240 244 / 15%)",
+      "--hds-color-popover": "#292e2d",
+      "--hds-color-focus": "#07d0f9",
+      "--hds-color-danger": "#ff6b6b",
+      "--hds-color-success": "#73d39c"
+    }
+  },
+  "shape": {
+    "radii": {
+      "control": "999px",
+      "field": "12px",
+      "card": "20px"
+    }
+  },
+  "layout": {
+    "container": "1440px",
+    "gutter": "50px",
+    "sectionSpace": "150px",
+    "spacing": {
+      "--hds-space-1": "10px",
+      "--hds-space-2": "20px",
+      "--hds-space-3": "40px",
+      "--hds-space-4": "50px",
+      "--hds-space-5": "100px"
+    },
+    "responsive": [
+      {
+        "query": "max-width: 991px",
+        "values": {
+          "--hds-page-gutter": "30px",
+          "--hds-section-space": "120px",
+          "--hds-text-body": "16px",
+          "--hds-text-h4": "20px",
+          "--hds-text-h3": "28px",
+          "--hds-text-h2": "58px",
+          "--hds-text-h1": "72px"
+        }
+      },
+      {
+        "query": "max-width: 767px",
+        "values": {
+          "--hds-page-gutter": "20px",
+          "--hds-section-space": "100px",
+          "--hds-text-h4": "20px",
+          "--hds-text-h3": "24px",
+          "--hds-text-h2": "36px",
+          "--hds-text-h1": "46px"
+        }
+      }
+    ]
+  },
+  "motion": {
+    "duration": "180ms",
+    "easing": "ease-out"
+  },
+  "signaturePatterns": [
+    {
+      "id": "dark-company-theme",
+      "rule": "Тёмная подложка с ярко-голубыми действиями и ссылками.",
+      "evidence": "ui/themes/company.css"
+    },
+    {
+      "id": "large-display-type",
+      "rule": "Крупная Inter-типографика уменьшается на 991px и 767px.",
+      "evidence": "ui/foundations.css"
+    },
+    {
+      "id": "rounded-controls",
+      "rule": "Действия капсульные, поля и карточки имеют отдельные радиусы.",
+      "evidence": "machine/tokens.json"
+    }
+  ],
+  "sources": [
+    "machine/tokens.json",
+    "ui/foundations.css",
+    "ui/themes/company.css"
+  ],
+  "unknowns": [
+    "Пакет в разработке: точность отдельных блоков ограничена source-driven реконструкцией."
+  ]
+}

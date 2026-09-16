@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { buildTokens, writeTokens } from "./build-tokens.mjs";
+import { writeStyleProfile } from "./build-style-profile.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const rows = [
@@ -137,12 +138,37 @@ function visualFor(entity) {
     responsive: tokens.responsive
   };
   if (entity.id === "colors") return { theme: "company", roles: theme };
+  if (entity.id === "spacing") return {
+    scale: Object.fromEntries(Object.entries(base).filter(([name]) => name.startsWith("--hds-space-"))),
+    pageGutter: base["--hds-page-gutter"], sectionSpace: base["--hds-section-space"], responsive: tokens.responsive
+  };
+  if (entity.id === "radii") return { control: base["--hds-radius-control"], field: base["--hds-radius-field"], card: base["--hds-radius-card"] };
+  if (entity.id === "breakpoints") return { responsive: tokens.responsive };
   if (entity.id === "buttons") return {
     radius: base["--hds-radius-control"],
     font: base["--hds-font-text"],
     weight: base["--hds-weight-semibold"],
     colors: { action: theme["--hds-color-action"], hover: theme["--hds-color-action-hover"], focus: theme["--hds-color-focus"] },
     motion: { duration: base["--hds-duration"], easing: base["--hds-ease"] }
+  };
+  if (["button", "compact-action", "icon-action", "text-link"].includes(entity.id)) return {
+    radius: base["--hds-radius-control"], font: base["--hds-font-text"], weight: base["--hds-weight-semibold"],
+    colors: { action: theme["--hds-color-action"], hover: theme["--hds-color-action-hover"], focus: theme["--hds-color-focus"] }
+  };
+  if (["form-field", "textarea", "select"].includes(entity.id)) return {
+    radius: base["--hds-radius-field"], paddingInline: base["--hds-field-padding-inline"], font: base["--hds-font-text"],
+    colors: { surface: theme["--hds-color-control"], focus: theme["--hds-color-focus"], text: theme["--hds-color-text"] }
+  };
+  if (entity.id === "input-fields") return {
+    radius: base["--hds-radius-field"], paddingInline: base["--hds-field-padding-inline"],
+    colors: { surface: theme["--hds-color-control"], focus: theme["--hds-color-focus"], text: theme["--hds-color-text"] }
+  };
+  if (["checkbox", "radio"].includes(entity.id)) return {
+    font: base["--hds-font-text"], colors: { control: theme["--hds-color-control"], action: theme["--hds-color-action"], focus: theme["--hds-color-focus"] }
+  };
+  if (entity.id === "choice-controls") return {
+    fieldRadius: base["--hds-radius-field"], font: base["--hds-font-text"],
+    colors: { control: theme["--hds-color-control"], action: theme["--hds-color-action"], focus: theme["--hds-color-focus"] }
   };
   if (entity.id === "intro") return {
     heading: { h1: base["--hds-text-h1"], h2: base["--hds-text-h2"], family: base["--hds-font-heading"] },
@@ -191,6 +217,7 @@ await import("./build-standalone-examples.mjs");
 await import("./build-faithful-pages.mjs");
 await import("./build-collections.mjs");
 writeTokens();
+writeStyleProfile();
 
 fs.writeFileSync(path.join(root, "machine", "catalog.json"), `${JSON.stringify({ version: "0.2.0", status: "in-development", taxonomy: ["atom", "element", "organism", "block", "page"], items: entities }, null, 2)}\n`, "utf8");
 fs.writeFileSync(path.join(root, "viewer", "data.js"), `window.HDS_CATALOG = ${JSON.stringify(entities, null, 2)};\n`, "utf8");
