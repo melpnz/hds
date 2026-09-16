@@ -11,6 +11,23 @@ function declarations(source) {
   );
 }
 
+function dimensionValues() {
+  const target = path.join(root, "machine", "dimension-tokens.json");
+  if (!fs.existsSync(target)) return {};
+  const document = JSON.parse(fs.readFileSync(target, "utf8"));
+  return Object.fromEntries(Object.values(document.tokens || {}).flatMap(group =>
+    Object.values(group).map(token => [token.cssVariable, token.$value])
+  ));
+}
+
+function resolveDimensions(values) {
+  const dimensions = dimensionValues();
+  return Object.fromEntries(Object.entries(values).map(([name, value]) => [
+    name,
+    value.replace(/var\((--landings-[^)]+)\)/g, (match, token) => dimensions[token] || match)
+  ]));
+}
+
 function firstRootBlock(source) {
   const match = source.match(/:root\s*{([\s\S]*?)}/);
   return match ? declarations(match[1]) : {};
@@ -31,9 +48,9 @@ export function buildTokens() {
     version: "0.2.0",
     status: "generated",
     source: ["ui/foundations.css", "ui/themes/company.css"],
-    base: firstRootBlock(foundations),
+    base: resolveDimensions(firstRootBlock(foundations)),
     themes: { company: declarations(theme) },
-    responsive: responsiveOverrides(foundations)
+    responsive: responsiveOverrides(foundations).map(entry => ({ ...entry, values: resolveDimensions(entry.values) }))
   };
 }
 

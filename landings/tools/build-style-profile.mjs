@@ -11,6 +11,7 @@ export function buildStyleProfile() {
   const colors = tokens.themes.company;
   return {
     schemaVersion: 1,
+    dimensionTokens: { baseUnit: "4px", source: "machine/dimension-tokens.json", css: "ui/dimension-tokens.css", exceptions: "machine/reports/dimension-exceptions.json" },
     product: { id: "landings", title: "Лендинги HDS", guideVersion: "0.1", packageVersion: "0.2.0", status: "in-development" },
     scope: { confidence: "snapshot", boundary: "Российские Webflow-страницы company.habr.com; новый пакет активно разрабатывается." },
     typography: {
@@ -31,7 +32,7 @@ export function buildStyleProfile() {
       { id: "large-display-type", rule: "Крупная Inter-типографика уменьшается на 991px и 767px.", evidence: "ui/foundations.css" },
       { id: "rounded-controls", rule: "Действия капсульные, поля и карточки имеют отдельные радиусы.", evidence: "machine/tokens.json" }
     ],
-    sources: ["machine/tokens.json", "ui/foundations.css", "ui/themes/company.css"],
+    sources: ["machine/dimension-tokens.json", "machine/tokens.json", "ui/foundations.css", "ui/themes/company.css"],
     unknowns: ["Пакет в разработке: точность отдельных блоков ограничена source-driven реконструкцией."]
   };
 }
