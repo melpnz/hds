@@ -1,6 +1,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { writeTokens } from "./build-tokens.mjs";
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const rows = [
@@ -88,6 +89,43 @@ const collectionRows = [
   ["landing-content", "Контент лендинга", "block", "content", "collections/landing-content/index.html", "Задачи · форматы · процесс · команда · FAQ · тарифы"]
 ];
 
+const collectionMembers = Object.freeze({
+  buttons: ["button", "compact-action", "icon-action", "text-link"],
+  "input-fields": ["form-field", "textarea"],
+  "choice-controls": ["select", "checkbox", "radio"],
+  cards: ["card", "metric-card", "offer-card", "case-card", "project-card"],
+  forms: ["contact-form", "subscription-form", "lead-section"],
+  navigation: ["site-header", "site-footer"],
+  intro: ["hero", "landing-hero", "statement"],
+  "content-layouts": ["section-heading", "content-grid", "metrics-section", "feature-layout", "case-layout", "phase-stack", "mosaic-grid"],
+  "landing-content": ["tasks-section", "formats-section", "process-section", "team-section", "partner-levels", "testimonials", "faq", "card-grid", "pricing-section"]
+});
+
+const purposeById = Object.freeze({
+  typography: "Шкала шрифта Inter для заголовков, основного и вспомогательного текста лендингов.",
+  colors: "Семантические цвета темы лендинга: фон, поверхности, текст, действия и статусы.",
+  spacing: "Базовая шкала отступов, внешние поля контейнера и вертикальный ритм секций.",
+  radii: "Радиусы интерактивных элементов, полей и контентных карточек.",
+  breakpoints: "Диапазоны адаптивной раскладки и изменения типографики и полей страницы.",
+  buttons: "Группа действий: основная, компактная и иконочная кнопки, а также текстовая ссылка.",
+  "input-fields": "Однострочное и многострочное поля с общей геометрией и состояниями ввода.",
+  "choice-controls": "Элементы выбора: select, checkbox и radio с сопоставимыми состояниями.",
+  cards: "Карточки для контента, метрик, предложений, кейсов и проектов.",
+  forms: "Формы заявки и подписки, а также секция страницы, в которую они встраиваются.",
+  navigation: "Навигационные границы страницы: шапка и подвал лендинга.",
+  intro: "Варианты первого экрана и смыслового акцента в начале лендинга.",
+  "content-layouts": "Переиспользуемые раскладки заголовков, сеток, метрик, кейсов и этапов.",
+  "landing-content": "Содержательные секции лендинга: задачи, форматы, процесс, команда, отзывы, FAQ и тарифы."
+});
+
+function purposeFor(entity) {
+  if (purposeById[entity.id]) return purposeById[entity.id];
+  if (entity.kind === "page") return `Реконструкция страницы «${entity.title}» для проверки состава блоков и адаптивного поведения.`;
+  if (entity.kind === "element") return `${entity.title}: самостоятельный элемент управления с зафиксированными состояниями.`;
+  if (entity.kind === "organism") return `${entity.title}: составной компонент для повторного использования в блоках лендинга.`;
+  return `${entity.title}: самостоятельный блок страницы с адаптивной раскладкой.`;
+}
+
 // Navigation markers cover the meaningful changes made in the current v0.2 cycle.
 const changeMarkers = Object.freeze({
   "subscription-form": "updated",
@@ -107,34 +145,39 @@ const changeMarkers = Object.freeze({
 });
 
 const kindOrder = new Map(["atom", "element", "organism", "block", "page"].map((kind, index) => [kind, index]));
-const visibleRows = [...rows.filter((row) => !groupedIds.has(row[0])), ...collectionRows]
-  .sort((left, right) => kindOrder.get(left[2]) - kindOrder.get(right[2]));
-const uniqueRows = [...new Map(visibleRows.map((row) => [row[0], row])).values()];
-const entities = uniqueRows.map(([id, title, kind, category, pathName, summary]) => ({
+const rowToEntity = ([id, title, kind, category, pathName, summary]) => ({
   id, title, kind, category,
   maturity: kind === "atom" || kind === "element" ? "candidate" : "draft",
   spec: `specs/${id}.json`,
   example: `../examples/${pathName}`,
+  ...(collectionMembers[id] ? { members: collectionMembers[id] } : {}),
   ...(summary ? { summary } : {}),
   ...(changeMarkers[id] ? { change: changeMarkers[id] } : {})
-}));
+});
+const visibleRows = [...rows.filter((row) => !groupedIds.has(row[0])), ...collectionRows]
+  .sort((left, right) => kindOrder.get(left[2]) - kindOrder.get(right[2]));
+const uniqueRows = [...new Map(visibleRows.map((row) => [row[0], row])).values()];
+const entities = uniqueRows.map(rowToEntity);
+const specEntities = [...new Map([...rows, ...collectionRows].map((row) => [row[0], row])).values()].map(rowToEntity);
 
 await import("./build-standalone-examples.mjs");
 await import("./build-faithful-pages.mjs");
 await import("./build-collections.mjs");
+writeTokens();
 
 fs.writeFileSync(path.join(root, "machine", "catalog.json"), `${JSON.stringify({ version: "0.2.0", status: "in-development", taxonomy: ["atom", "element", "organism", "block", "page"], items: entities }, null, 2)}\n`, "utf8");
 fs.writeFileSync(path.join(root, "viewer", "data.js"), `window.HDS_CATALOG = ${JSON.stringify(entities, null, 2)};\n`, "utf8");
 
-for (const entity of entities) {
+for (const entity of specEntities) {
   const example = entity.example.replace(/^\.\.\//, "");
   const spec = {
     id: entity.id, title: entity.title, kind: entity.kind, category: entity.category, maturity: entity.maturity,
     knowledge: entity.kind === "atom" || entity.kind === "element" ? "snapshot" : "assumption",
-    purpose: `${entity.title}: переиспользуемая сущность общей архитектуры лендингов.`,
+    purpose: purposeFor(entity),
+    ...(collectionMembers[entity.id] ? { members: collectionMembers[entity.id] } : {}),
     implementation: { css: ["ui/hds.css"], markup: example },
     states: entity.kind === "element" ? ["default", "hover", "focus", "filled", "disabled", "error-when-applicable"] : ["responsive"],
-    examples: [example], evidence: ["temp/from-webflow/index.html", "temp/from-webflow/ru", "docs/source-audit.md"],
+    examples: [example], evidence: ["local:../temp/from-webflow/index.html", "local:../temp/from-webflow/ru", "docs/source-audit.md"],
     unknowns: [entity.kind === "page" ? "Source-driven draft: состав блоков восстановлен, но точная визуальная сверка и часть исходных материалов ещё не завершены." : "Требуется дизайн-ревью перед переводом в stable."]
   };
   fs.writeFileSync(path.join(root, "machine", entity.spec), `${JSON.stringify(spec, null, 2)}\n`, "utf8");

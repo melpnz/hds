@@ -52,6 +52,12 @@ window.HDS_CATALOG = [
     "maturity": "candidate",
     "spec": "specs/buttons.json",
     "example": "../examples/collections/buttons/index.html",
+    "members": [
+      "button",
+      "compact-action",
+      "icon-action",
+      "text-link"
+    ],
     "summary": "Основная · компактная · иконочная · текстовая ссылка"
   },
   {
@@ -62,6 +68,10 @@ window.HDS_CATALOG = [
     "maturity": "candidate",
     "spec": "specs/input-fields.json",
     "example": "../examples/collections/input-fields/index.html",
+    "members": [
+      "form-field",
+      "textarea"
+    ],
     "summary": "Текстовое · многострочное"
   },
   {
@@ -72,6 +82,11 @@ window.HDS_CATALOG = [
     "maturity": "candidate",
     "spec": "specs/choice-controls.json",
     "example": "../examples/collections/choice-controls/index.html",
+    "members": [
+      "select",
+      "checkbox",
+      "radio"
+    ],
     "summary": "Чекбокс · радиокнопка · селект"
   },
   {
@@ -91,6 +106,13 @@ window.HDS_CATALOG = [
     "maturity": "draft",
     "spec": "specs/cards.json",
     "example": "../examples/collections/cards/index.html",
+    "members": [
+      "card",
+      "metric-card",
+      "offer-card",
+      "case-card",
+      "project-card"
+    ],
     "summary": "19 Webflow-вариантов: контент · сервис · форматы · курсы · предложения · этапы · кейсы · проекты"
   },
   {
@@ -111,6 +133,11 @@ window.HDS_CATALOG = [
     "maturity": "draft",
     "spec": "specs/forms.json",
     "example": "../examples/collections/forms/index.html",
+    "members": [
+      "contact-form",
+      "subscription-form",
+      "lead-section"
+    ],
     "summary": "Лид-форма · подписка · секция заявки"
   },
   {
@@ -121,6 +148,10 @@ window.HDS_CATALOG = [
     "maturity": "draft",
     "spec": "specs/navigation.json",
     "example": "../examples/collections/navigation/index.html",
+    "members": [
+      "site-header",
+      "site-footer"
+    ],
     "summary": "Шапка · подвал"
   },
   {
@@ -131,6 +162,11 @@ window.HDS_CATALOG = [
     "maturity": "draft",
     "spec": "specs/intro.json",
     "example": "../examples/collections/intro/index.html",
+    "members": [
+      "hero",
+      "landing-hero",
+      "statement"
+    ],
     "summary": "Hero · banner · statement"
   },
   {
@@ -141,6 +177,15 @@ window.HDS_CATALOG = [
     "maturity": "draft",
     "spec": "specs/content-layouts.json",
     "example": "../examples/collections/content-layouts/index.html",
+    "members": [
+      "section-heading",
+      "content-grid",
+      "metrics-section",
+      "feature-layout",
+      "case-layout",
+      "phase-stack",
+      "mosaic-grid"
+    ],
     "summary": "Заголовок · сетка · метрики · feature · case · этапы"
   },
   {
@@ -151,6 +196,17 @@ window.HDS_CATALOG = [
     "maturity": "draft",
     "spec": "specs/landing-content.json",
     "example": "../examples/collections/landing-content/index.html",
+    "members": [
+      "tasks-section",
+      "formats-section",
+      "process-section",
+      "team-section",
+      "partner-levels",
+      "testimonials",
+      "faq",
+      "card-grid",
+      "pricing-section"
+    ],
     "summary": "Задачи · форматы · процесс · команда · FAQ · тарифы"
   },
   {

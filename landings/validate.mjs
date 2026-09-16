@@ -3,6 +3,7 @@ import path from "node:path";
 import vm from "node:vm";
 import { fileURLToPath } from "node:url";
 import Ajv2020 from "ajv/dist/2020.js";
+import { buildTokens } from "./tools/build-tokens.mjs";
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const readJson = (relative) => JSON.parse(fs.readFileSync(path.join(root, relative), "utf8"));
@@ -12,20 +13,66 @@ const catalog = readJson("machine/catalog.json");
 const breakpoints = readJson("machine/breakpoints.json");
 const validate = new Ajv2020({ allErrors: true }).compile(schema);
 
+function resolveTypedReference(reference, owner) {
+  if (typeof reference !== "string" || !reference.trim()) {
+    errors.push(`${owner}: пустая ссылка`);
+    return null;
+  }
+  if (/^https?:\/\//.test(reference)) return null;
+  if (reference.startsWith("archive:")) return path.resolve(root, "..", "archive", reference.slice("archive:".length));
+  if (reference.startsWith("local:")) return path.resolve(root, reference.slice("local:".length));
+  return path.resolve(root, reference.split("#")[0]);
+}
+
+function requireReference(reference, owner) {
+  const target = resolveTypedReference(reference, owner);
+  if (target && !fs.existsSync(target)) errors.push(`${owner}: нет файла ${reference}`);
+}
+
 const largestBreakpoint = breakpoints.ranges.at(-1);
 if (largestBreakpoint.id !== "large" || largestBreakpoint.min !== 1440 || largestBreakpoint.max !== null) {
   errors.push("Последний HDS-диапазон должен быть Large 1440+");
+}
+
+function validateSpec(spec, specName) {
+  if (!validate(spec)) errors.push(`${specName}: ${JSON.stringify(validate.errors)}`);
+  for (const example of spec.examples) requireReference(example, `${spec.id}/example`);
+  for (const css of spec.implementation.css) requireReference(css, `${spec.id}/css`);
+  requireReference(spec.implementation.markup, `${spec.id}/markup`);
+  for (const evidence of spec.evidence) requireReference(evidence, `${spec.id}/evidence`);
 }
 
 for (const item of catalog.items) {
   const specPath = path.join(root, "machine", item.spec);
   if (!fs.existsSync(specPath)) { errors.push(`Нет спецификации: ${item.spec}`); continue; }
   const spec = JSON.parse(fs.readFileSync(specPath, "utf8"));
-  if (!validate(spec)) errors.push(`${item.spec}: ${JSON.stringify(validate.errors)}`);
   if (spec.id !== item.id) errors.push(`${item.spec}: id не совпадает с каталогом`);
-  for (const example of spec.examples) if (!fs.existsSync(path.join(root, example.split("#")[0]))) errors.push(`${item.id}: нет примера ${example}`);
-  for (const css of spec.implementation.css) if (!fs.existsSync(path.join(root, css))) errors.push(`${item.id}: нет CSS ${css}`);
 }
+
+const specIds = fs.readdirSync(path.join(root, "machine", "specs"))
+  .filter((name) => name.endsWith(".json"))
+  .map((name) => name.slice(0, -5));
+const catalogIds = new Set(catalog.items.map((item) => item.id));
+const memberOwners = new Map();
+for (const id of specIds) validateSpec(readJson(`machine/specs/${id}.json`), `specs/${id}.json`);
+for (const item of catalog.items) {
+  const spec = readJson(path.join("machine", item.spec));
+  if (JSON.stringify(item.members || []) !== JSON.stringify(spec.members || [])) errors.push(`${item.id}: members расходятся между каталогом и spec`);
+  for (const member of item.members || []) {
+    if (catalogIds.has(member)) errors.push(`${item.id}: member ${member} уже является самостоятельной записью каталога`);
+    if (memberOwners.has(member)) errors.push(`${member}: входит сразу в ${memberOwners.get(member)} и ${item.id}`);
+    memberOwners.set(member, item.id);
+  }
+}
+for (const id of specIds) {
+  if (!catalogIds.has(id) && !memberOwners.has(id)) errors.push(`${id}: spec не представлен в каталоге и не входит в группу`);
+}
+for (const id of memberOwners.keys()) {
+  if (!specIds.includes(id)) errors.push(`${id}: группа ссылается на отсутствующий spec`);
+}
+
+const tokens = readJson("machine/tokens.json");
+if (JSON.stringify(tokens) !== JSON.stringify(buildTokens())) errors.push("machine/tokens.json расходится с CSS-источниками; запустите npm run build:tokens");
 
 const sandbox = { window: {} };
 vm.runInNewContext(fs.readFileSync(path.join(root, "viewer/data.js"), "utf8"), sandbox);
