@@ -1,9 +1,11 @@
 {
   "private": true,
   "scripts": {
+    "build:dimension-tokens": "node ../tools/tokenize-dimensions.mjs career --write",
+    "validate:tokens": "node ../tools/tokenize-dimensions.mjs career --check",
     "migrate:first-slice": "node tools/import-first-slice.mjs",
     "migrate": "node tools/import-first-slice.mjs && node tools/migrate-all.mjs",
-    "validate": "node validate.mjs",
+    "validate": "node validate.mjs && npm run validate:tokens",
     "validate:viewer": "node tools/validate-viewer.mjs",
     "serve": "node serve.mjs"
   },

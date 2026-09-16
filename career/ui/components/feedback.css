@@ -22,9 +22,9 @@
 .notification--padding-small{padding:.5rem .75rem}
 .notification--padding-medium{padding:10px 1rem}
 .notification--borderless{border-width:0}
-.notification__content{display:flex;flex:1 1 0%;flex-direction:column;justify-content:center;min-height:24px;min-width:0;padding-left:.25rem;padding-right:.25rem;row-gap:.25rem}
-.notification__title{color:var(--color-font-black);font-size:16px;font-weight:600;line-height:24px}
-.notification__description{color:var(--color-font-black);font-size:14px;line-height:20px}
+.notification__content{display:flex;flex:1 1 0%;flex-direction:column;justify-content:center;min-height:var(--career-size-24);min-width:0;padding-left:.25rem;padding-right:.25rem;row-gap:.25rem}
+.notification__title{color:var(--color-font-black);font-size:var(--career-font-size-16);font-weight:600;line-height:var(--career-line-height-24)}
+.notification__description{color:var(--color-font-black);font-size:14px;line-height:var(--career-line-height-20)}
 .notification__links{align-items:center;display:flex;font-size:0;gap:.5rem;padding-bottom:.25rem;padding-top:.25rem}
 .notification__description a{color:var(--notification-accent-color)}
 .notification__icon{color:var(--notification-accent-color);flex-shrink:0}
@@ -40,7 +40,7 @@
  * @license MIT licensed
  *
  * Copyright (C) 2018 Varun A P
- */.toastify{background:linear-gradient(135deg,#73a5ff,#5477f5);border-radius:2px;box-shadow:0 3px 6px -1px #0000001f,0 10px 36px -4px #4d60e84d;color:#fff;cursor:pointer;display:inline-block;max-width:calc(50% - 20px);opacity:0;padding:12px 20px;position:fixed;text-decoration:none;transition:all .4s cubic-bezier(.215,.61,.355,1);z-index:2147483647}
+ */.toastify{background:linear-gradient(135deg,#73a5ff,#5477f5);border-radius:2px;box-shadow:0 3px 6px -1px #0000001f,0 10px 36px -4px #4d60e84d;color:#fff;cursor:pointer;display:inline-block;max-width:calc(50% - var(--career-size-20));opacity:0;padding:var(--career-space-12) var(--career-space-20);position:fixed;text-decoration:none;transition:all .4s cubic-bezier(.215,.61,.355,1);z-index:2147483647}
 .toastify.on{opacity:1}
 .toast-close{background:transparent;border:0;color:#fff;cursor:pointer;font-family:inherit;font-size:1em;opacity:.4;padding:0 5px}
 .toastify-right{right:15px}
@@ -81,15 +81,15 @@
    empty-placeholder
    источник: _sources/career/source/css/empty-placeholder.DqxQlRTk.css (828 B)
    ------------------------------------------------------------------------ */
-.empty-placeholder{background:var(--color-ui-white);border:1px solid rgba(24,46,57,.1);border-radius:24px;margin:0 auto;max-width:480px;padding:48px 24px 40px;text-align:center}
+.empty-placeholder{background:var(--color-ui-white);border:1px solid rgba(24,46,57,.1);border-radius:var(--career-radius-24);margin:0 auto;max-width:var(--career-size-480);padding:var(--career-space-48) var(--career-space-24) var(--career-space-40);text-align:center}
 .empty-placeholder--noBorder{border:none}
 .empty-placeholder--fullWidth{max-width:100%;width:100%}
 .empty-placeholder--fullHeight{align-items:center;display:flex;flex-direction:column;height:100%;justify-content:center;max-height:100%}
-.empty-placeholder--embed{border-radius:0;height:auto;padding:24px}
-.empty-placeholder__image{display:block;margin:0 auto 24px}
-.empty-placeholder__title{font-size:18px;font-weight:600;line-height:23px;margin-bottom:8px}
-.empty-placeholder__description{color:var(--color-font-gray);font-size:14px;line-height:20px}
-.empty-placeholder__actions{align-items:center;display:flex;gap:8px;justify-content:center;margin-top:16px}
+.empty-placeholder--embed{border-radius:0;height:auto;padding:var(--career-space-24)}
+.empty-placeholder__image{display:block;margin:0 auto var(--career-space-24)}
+.empty-placeholder__title{font-size:18px;font-weight:600;line-height:23px;margin-bottom:var(--career-space-8)}
+.empty-placeholder__description{color:var(--color-font-gray);font-size:14px;line-height:var(--career-line-height-20)}
+.empty-placeholder__actions{align-items:center;display:flex;gap:var(--career-space-8);justify-content:center;margin-top:var(--career-space-16)}
 
 /* ------------------------------------------------------------------------
    transition-fade

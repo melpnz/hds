@@ -1,5 +1,7 @@
 # Контракт Career machine-first
 
+Размеры интерфейса берутся из `machine/dimension-tokens.json`; CSS-переменные подключаются через `ui/career.css`. Новые абсолютные размеры, кратные 4px, не записывай литералами. Некратные значения сверяй с `machine/reports/dimension-exceptions.md` и не округляй без дизайнерского решения.
+
 Это актуальный гайд Career v1.2. Начинай с
 [`machine/index.json`](machine/index.json), затем следуй его `readOrder`.
 

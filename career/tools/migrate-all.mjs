@@ -1058,11 +1058,13 @@ writeStyleProfile();
 write('machine/index.json', {
   schemaVersion: 3,
   product: { id: 'career', title: 'Хабр Карьера', guideVersion: '1.2', status: 'active' },
-  readOrder: ['machine/style-profile.json для задач уровня продукта или нового экрана', 'machine/catalog.json', 'один section.file или groups[].file', 'только выбранный item.file', 'ruleFiles, groups, implementation и examples — только при необходимости'],
+  readOrder: ['machine/style-profile.json для задач уровня продукта или нового экрана', 'machine/dimension-tokens.json для геометрии', 'machine/catalog.json', 'один section.file или groups[].file', 'только выбранный item.file', 'ruleFiles, groups, implementation и examples — только при необходимости'],
   files: {
     catalog: 'machine/catalog.json',
     states: 'machine/states.json',
     styleProfile: 'machine/style-profile.json',
+    dimensionTokens: 'machine/dimension-tokens.json',
+    dimensionExceptions: 'machine/reports/dimension-exceptions.json',
     provenance: 'machine/provenance/index.json',
     schema: 'schema.json',
     roadmap: 'ROADMAP.md',

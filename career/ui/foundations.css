@@ -13,7 +13,7 @@
 
 /* Базовое правило документа Career. Отсюда — и box-sizing: border-box,
    на который рассчитана геометрия всех компонентов, и шрифт, и кегль 16/24. */
-body,html{box-sizing:border-box;color:var(--color-text-main);font-family:Inter,sans-serif;font-size:16px;line-height:24px;margin:0;padding:0}
+body,html{box-sizing:border-box;color:var(--color-text-main);font-family:Inter,sans-serif;font-size:var(--career-font-size-16);line-height:var(--career-line-height-24);margin:0;padding:0}
 
 /* Career полагается на глобальный border-box, объявленный в базовом CSS
    приложения. В сборке Storybook он есть только на body,html, поэтому
@@ -53,15 +53,15 @@ button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:
    Расширение темы Tailwind в career-web. Используется прямо в разметке
    компонентов, поэтому входит в фундамент, а не в утилиты.
    ------------------------------------------------------------------------- */
-.text-body-l{font-size:16px;line-height:24px}
-.text-body-m{font-size:14px;line-height:20px}
-.text-body-s{font-size:12px;line-height:16px}
-.text-body-xs{font-size:11px;line-height:16px}
-.text-display-l{font-size:24px;line-height:28px}
-.text-display-m{font-size:20px;line-height:24px}
-.text-display-s{font-size:18px;line-height:24px}
-.text-display-xl{font-size:28px;line-height:32px}
-.text-title{font-size:16px;line-height:24px}
+.text-body-l{font-size:var(--career-font-size-16);line-height:var(--career-line-height-24)}
+.text-body-m{font-size:14px;line-height:var(--career-line-height-20)}
+.text-body-s{font-size:var(--career-font-size-12);line-height:var(--career-line-height-16)}
+.text-body-xs{font-size:11px;line-height:var(--career-line-height-16)}
+.text-display-l{font-size:var(--career-font-size-24);line-height:var(--career-line-height-28)}
+.text-display-m{font-size:var(--career-font-size-20);line-height:var(--career-line-height-24)}
+.text-display-s{font-size:18px;line-height:var(--career-line-height-24)}
+.text-display-xl{font-size:var(--career-font-size-28);line-height:var(--career-line-height-32)}
+.text-title{font-size:var(--career-font-size-16);line-height:var(--career-line-height-24)}
 
 /* Ссылки Career. */
 a{color:var(--color-font-link);text-decoration:none}

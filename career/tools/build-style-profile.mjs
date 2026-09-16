@@ -14,6 +14,7 @@ export function buildStyleProfile() {
   const shadow = read('machine/tokens/shadow.json').tokens;
   return {
     schemaVersion: 1,
+    dimensionTokens: { baseUnit: '4px', source: 'machine/dimension-tokens.json', css: 'ui/dimension-tokens.css', exceptions: 'machine/reports/dimension-exceptions.json' },
     product: { id: 'career', title: 'Хабр Карьера', guideVersion: '1.2', status: 'active-with-coverage-limits' },
     scope: { confidence: 'high', boundary: 'Опубликованный публичный гостевой срез Career v1.2; авторизованные сценарии не покрыты.' },
     typography: { families: { interface: typography.family.$value }, weights: typography.weights, roles: typography.typeScale, responsive: typography.responsive },
@@ -25,7 +26,7 @@ export function buildStyleProfile() {
       { id: 'dense-four-pixel-rhythm', rule: 'Плотный продуктовый интерфейс использует основной шаг 4px.', evidence: 'machine/foundations/spacing.json' },
       { id: 'cards-stay-flat', rule: 'Карточки сохраняют геометрию; интерактивность не выражается подъёмом всей поверхности.', evidence: 'machine/patterns/listing.json' }
     ],
-    sources: ['machine/foundations/colors.json', 'machine/foundations/typography.json', 'machine/foundations/layout-responsive.json', 'machine/foundations/spacing.json', 'machine/foundations/radii.json'],
+    sources: ['machine/dimension-tokens.json', 'machine/foundations/colors.json', 'machine/foundations/typography.json', 'machine/foundations/layout-responsive.json', 'machine/foundations/spacing.json', 'machine/foundations/radii.json'],
     unknowns: ['Личный кабинет, живые формы, модальные потоки и авторизованные состояния не входят в подтверждённый срез.']
   };
 }

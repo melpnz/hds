@@ -31,13 +31,13 @@
 
 /* SH-1 + SH-2: шапка 112 = 48 + 64, position static */
 .tm-panel {
-  height: 48px;
+  height: var(--career-size-48);
   background: var(--color-ui-gray-dark);   /* SH-3: единственная тёмная плоскость */
   color: var(--color-ui-white);
   display: flex;
   align-items: center;
 }
-.tm-panel__inner { display: flex; align-items: center; gap: 8px; }
+.tm-panel__inner { display: flex; align-items: center; gap: var(--career-space-8); }
 /* Бренд крупнее интерфейсного кегля: замерено по снимку шапки production. */
 .tm-panel__logo {
   font: 400 20px/24px var(--font-base);
@@ -49,18 +49,18 @@
 /* Вертикальная черта между брендом и переключателем продуктов Хабра. */
 .tm-panel__divider {
   width: 1px;
-  height: 20px;
+  height: var(--career-size-20);
   background: var(--color-ui-white);
   opacity: .3;
-  margin: 0 4px;
+  margin: 0 var(--career-space-4);
   flex: none;
 }
 .tm-panel__chevron { display: inline-flex; color: var(--color-ui-white); flex: none; }
 .tm-panel__promo {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  margin-left: 12px;
+  gap: var(--career-space-8);
+  margin-left: var(--career-space-12);
   font: 400 14px/20px var(--font-base);
   color: var(--color-ui-white);
   white-space: nowrap;
@@ -68,13 +68,13 @@
 .tm-panel__emoji { font-size: 18px; line-height: 1; }
 
 .app-header {
-  height: 64px;
+  height: var(--career-size-64);
   background: var(--color-ui-white);
   display: flex;
   align-items: center;
 }
-.app-header__inner { display: flex; align-items: center; gap: 24px; width: 100%; }
-.app-header__nav { display: flex; align-items: center; gap: 20px; flex: 1 1 auto; min-width: 0; overflow-x: auto; }
+.app-header__inner { display: flex; align-items: center; gap: var(--career-space-24); width: 100%; }
+.app-header__nav { display: flex; align-items: center; gap: var(--career-space-20); flex: 1 1 auto; min-width: 0; overflow-x: auto; }
 .app-header__link {
   font: 600 14px/20px var(--font-base);
   color: var(--color-ui-gray-2);
@@ -90,12 +90,12 @@
 /* SH-5: контейнер 1100 / padding 0 12 — самый устойчивый параметр Career */
 .page-width {
   width: 100%;
-  max-width: 1100px;
+  max-width: var(--career-size-1100);
   margin: 0 auto;
-  padding: 0 12px;
+  padding: 0 var(--career-space-12);
 }
 
-.page-body { padding: 24px 0 48px; }
+.page-body { padding: var(--career-space-24) 0 var(--career-space-48); }
 
 
 /* ---------- сетки колонок ----------------------------------------------- */
@@ -104,7 +104,7 @@
 .page-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 300px;
-  gap: 24px;
+  gap: var(--career-space-24);
   align-items: start;
 }
 
@@ -118,13 +118,13 @@
 .page-layout__sidebar { min-width: 0; }
 
 /* L-6: сайдбар фильтров залипает */
-.page-layout__sidebar--sticky { position: sticky; top: 12px; }
+.page-layout__sidebar--sticky { position: sticky; top: var(--career-size-12); }
 
 /* DB-2: рабочая область дашборда — асимметричная пара 264 + 12 + 800 */
 .dashboard-split {
   display: grid;
   grid-template-columns: 264px minmax(0, 1fr);
-  gap: 12px;
+  gap: var(--career-space-12);
   align-items: start;
 }
 
@@ -132,16 +132,16 @@
 .card-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
+  gap: var(--career-space-12);
 }
 
 
 /* ---------- вертикальный ритм -------------------------------------------- */
 
 /* L-4: шаг между карточками списка — 12 на всех вьюпортах */
-.section-group { display: grid; gap: 12px; }
-.section-group--gap-24 { gap: 24px; }   /* F-1: шаг между группами полей */
-.section-group--gap-4 { gap: 4px; }
+.section-group { display: grid; gap: var(--career-space-12); }
+.section-group--gap-24 { gap: var(--career-space-24); }   /* F-1: шаг между группами полей */
+.section-group--gap-4 { gap: var(--career-space-4); }
 
 
 /* =========================================================================
@@ -180,17 +180,17 @@
   /* R-1: шапка 112 → 144. Три яруса по 48: панель, тёмная строка, подменю.
      Бренд переезжает из тёмной панели в строку с бургером. */
   .app-header {
-    height: 48px;
+    height: var(--career-size-48);
     background: var(--color-ui-gray-dark);
     color: var(--color-ui-white);
   }
-  .app-header__inner { gap: 12px; }
+  .app-header__inner { gap: var(--career-space-12); }
   .app-header__burger {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 24px;
-    height: 24px;
+    width: var(--career-size-24);
+    height: var(--career-size-24);
     flex: none;
     color: var(--color-ui-white);
   }
@@ -213,13 +213,13 @@
   .tm-panel__promo { margin-left: 0; }
 
   /* Подвал складывается в колонку */
-  .app-footer__inner { gap: 24px; }
+  .app-footer__inner { gap: var(--career-space-24); }
 
   .app-subnav {
     display: flex;
     align-items: center;
-    gap: 20px;
-    height: 48px;
+    gap: var(--career-space-20);
+    height: var(--career-size-48);
     overflow-x: auto;              /* R-8: навигация прокручивается, не переносится */
     background: var(--color-ui-white);
   }
@@ -270,22 +270,22 @@
    ========================================================================= */
 
 /* L-3: заголовок страницы лежит ВНУТРИ карточки, вместе с поиском и сортировкой */
-.page-header-card { display: grid; gap: 16px; }
+.page-header-card { display: grid; gap: var(--career-space-16); }
 .page-header-card__top {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 16px;
+  gap: var(--career-space-16);
   flex-wrap: wrap;
 }
 .page-header-card__title { margin: 0; font: 600 28px/32px var(--font-base); color: var(--color-ui-gray-1); }
-.page-header-card__controls { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.page-header-card__controls { display: flex; gap: var(--career-space-8); align-items: center; flex-wrap: wrap; }
 .page-header-card__controls > *:first-child { flex: 1 1 320px; min-width: 0; }
 .page-header-card__count { font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-3); }
 
 /* D-2: шапка сущности */
-.entity-header { display: grid; gap: 12px; }
-.entity-header__top { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.entity-header { display: grid; gap: var(--career-space-12); }
+.entity-header__top { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--career-space-16); }
 .entity-header__title { margin: 0; font: 600 28px/32px var(--font-base); color: var(--color-ui-gray-1); }
 .entity-header__date { flex: none; font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-3); }
 /* Зарплата в шапке сущности живёт по тому же правилу, что и в карточке листинга:
@@ -303,50 +303,50 @@
 }
 
 /* D-3: группа атрибутов = микро-метка 12/16 gray-3 + строка чипов */
-.meta-group { display: grid; gap: 4px; }
+.meta-group { display: grid; gap: var(--career-space-4); }
 .meta-group__label { font: 400 12px/16px var(--font-base); color: var(--color-ui-gray-3); }
-.meta-group__row { display: flex; flex-wrap: wrap; gap: 4px; }
+.meta-group__row { display: flex; flex-wrap: wrap; gap: var(--career-space-4); }
 
 /* P-2: идентификационная карточка профиля */
-.identity { display: grid; justify-items: center; gap: 12px; text-align: center; }
+.identity { display: grid; justify-items: center; gap: var(--career-space-12); text-align: center; }
 .identity__name { margin: 0; font: 600 28px/32px var(--font-base); color: var(--color-ui-gray-1); }
 .identity__role { font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-2); }
 .identity__expect { font: 600 14px/20px var(--font-base); color: var(--color-ui-green-accent); }
 
 /* C-6: заголовок карточки сайдбара мельче, чем в главной колонке */
-.sidebar-card__title { margin: 0 0 12px; font: 600 16px/24px var(--font-base); color: var(--color-ui-gray-1); }
+.sidebar-card__title { margin: 0 0 var(--career-space-12); font: 600 16px/24px var(--font-base); color: var(--color-ui-gray-1); }
 
 /* L-7: промо-блок — единственное место продукта с градиентом */
 .promo-card {
-  border-radius: 24px;
-  padding: 16px;
+  border-radius: var(--career-radius-24);
+  padding: var(--career-space-16);
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: var(--career-space-12);
   background: linear-gradient(102deg, #efe7ff 0%, #e6d9ff 48%, #f3e4fb 100%);
   color: var(--color-ui-gray-1);
   font: 600 14px/20px var(--font-base);
 }
 .promo-card__art {
-  width: 56px; height: 56px; flex: none; border-radius: 12px;
+  width: var(--career-size-56); height: var(--career-size-56); flex: none; border-radius: var(--career-radius-12);
   background: linear-gradient(135deg, var(--color-ui-primary-light), var(--color-ui-pink));
   opacity: .55;
 }
 
 /* C-4: продвигаемая сущность — рамка 2px фирменного цвета при том же радиусе */
 .card-promoted {
-  border-radius: 24px;
+  border-radius: var(--career-radius-24);
   border: 2px solid var(--promo-color, var(--color-ui-orange-accent));
   padding: 22px;                 /* 24 − 2, чтобы контент не сдвигался */
   background: var(--promo-bg, transparent);
 }
 
 /* DB-3: крупное числовое значение */
-.metric { display: grid; gap: 4px; }
+.metric { display: grid; gap: var(--career-space-4); }
 .metric__value { font: 600 42px/48px var(--font-base); color: var(--color-ui-gray-1); }
-.metric__parts { display: flex; align-items: baseline; gap: 8px; font: 400 16px/24px var(--font-base); }
+.metric__parts { display: flex; align-items: baseline; gap: var(--career-space-8); font: 400 16px/24px var(--font-base); }
 .metric__parts small { font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-2); }
-.metric__bar { height: 24px; border-radius: 9999px; background: var(--color-ui-gray-6); overflow: hidden; }
+.metric__bar { height: var(--career-size-24); border-radius: 9999px; background: var(--color-ui-gray-6); overflow: hidden; }
 .metric__bar span {
   display: block; height: 100%;
   background: linear-gradient(90deg, var(--color-ui-primary-light), var(--color-ui-primary));
@@ -356,14 +356,14 @@
 /* DB-2: строка-разрез в узкой колонке дашборда */
 .facet-row {
   width: 100%;
-  display: flex; align-items: center; justify-content: space-between; gap: 8px;
-  height: 40px; padding: 8px 12px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: space-between; gap: var(--career-space-8);
+  height: var(--career-size-40); padding: var(--career-space-8) var(--career-space-12); border-radius: var(--career-radius-12);
   border: 1px solid var(--shadow-border-color);
   background: var(--color-ui-white);
   font: 400 16px/24px var(--font-base); color: var(--color-ui-gray-1);
   cursor: pointer;
 }
-.facet-row + .facet-row { margin-top: 4px; }
+.facet-row + .facet-row { margin-top: var(--career-space-4); }
 .facet-row.is-active {
   background: var(--color-ui-primary-10);
   border-color: var(--color-ui-primary);
@@ -371,14 +371,14 @@
 .facet-row__value { color: var(--color-ui-gray-2); }
 
 /* ST-2: пустое состояние в списке */
-.no-content { text-align: center; padding: 24px 0; }
-.no-content__title { margin: 0 0 4px; font: 600 18px/24px var(--font-base); color: var(--color-ui-gray-1); }
+.no-content { text-align: center; padding: var(--career-space-24) 0; }
+.no-content__title { margin: 0 0 var(--career-space-4); font: 600 18px/24px var(--font-base); color: var(--color-ui-gray-1); }
 .no-content__description { margin: 0; font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-3); }
 
 /* ST-3: служебный экран отменяет сетку */
-.service-screen { padding: 64px 0; }
-.service-screen__title { margin: 0 0 8px; font: 600 28px/32px var(--font-base); color: var(--color-ui-gray-1); }
-.service-screen__text { margin: 0 0 24px; font: 400 16px/24px var(--font-base); color: var(--color-ui-gray-2); }
+.service-screen { padding: var(--career-space-64) 0; }
+.service-screen__title { margin: 0 0 var(--career-space-8); font: 600 28px/32px var(--font-base); color: var(--color-ui-gray-1); }
+.service-screen__text { margin: 0 0 var(--career-space-24); font: 400 16px/24px var(--font-base); color: var(--color-ui-gray-2); }
 
 /* -------------------------------------------------------------------------
    SH-6: подвал сайта
@@ -392,7 +392,7 @@
    ------------------------------------------------------------------------- */
 .app-footer {
   background: var(--color-ui-white);
-  padding: 40px 0 48px;
+  padding: var(--career-space-40) 0 var(--career-space-48);
   font: 400 14px/20px var(--font-base);
   color: var(--color-ui-gray-2);
 }
@@ -400,26 +400,26 @@
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 24px;
+  gap: var(--career-space-24);
   flex-wrap: wrap;
 }
 .app-footer__col { min-width: 0; }
 .app-footer__title {
-  margin: 0 0 12px;
+  margin: 0 0 var(--career-space-12);
   font: 600 14px/20px var(--font-base);
   color: var(--color-ui-gray-1);
 }
-.app-footer__list { margin: 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+.app-footer__list { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--career-space-8); }
 .app-footer__list a {
   color: var(--color-ui-gray-2);
   text-decoration: none;
   font: 400 14px/20px var(--font-base);
 }
 .app-footer__list a:hover { color: var(--color-ui-gray-1); }
-.app-footer__social { display: flex; align-items: center; gap: 8px; }
+.app-footer__social { display: flex; align-items: center; gap: var(--career-space-8); }
 .app-footer__social a {
-  width: 24px;
-  height: 24px;
+  width: var(--career-size-24);
+  height: var(--career-size-24);
   display: inline-flex;
   align-items: center;
   justify-content: center;

@@ -41,17 +41,17 @@
   object-fit: cover;
 }
 .avatar--user { border-radius: 50%; }
-.avatar--entity { border-radius: 8px; background: var(--color-ui-white); box-shadow: inset 0 0 0 1px var(--color-ui-gray-shadow); }
-.avatar--20 { width: 20px; height: 20px; font-size: 9px; }
-.avatar--24 { width: 24px; height: 24px; font-size: 10px; }
-.avatar--32 { width: 32px; height: 32px; font-size: 12px; }
-.avatar--36 { width: 36px; height: 36px; font-size: 13px; }
-.avatar--40 { width: 40px; height: 40px; }
-.avatar--48 { width: 48px; height: 48px; font-size: 16px; }
-.avatar--56 { width: 56px; height: 56px; font-size: 18px; }
-.avatar--72 { width: 72px; height: 72px; font-size: 22px; }
-.avatar--96 { width: 96px; height: 96px; font-size: 28px; }
-.avatar--140 { width: 140px; height: 140px; font-size: 40px; }
+.avatar--entity { border-radius: var(--career-radius-8); background: var(--color-ui-white); box-shadow: inset 0 0 0 1px var(--color-ui-gray-shadow); }
+.avatar--20 { width: var(--career-size-20); height: var(--career-size-20); font-size: 9px; }
+.avatar--24 { width: var(--career-size-24); height: var(--career-size-24); font-size: 10px; }
+.avatar--32 { width: var(--career-size-32); height: var(--career-size-32); font-size: var(--career-font-size-12); }
+.avatar--36 { width: var(--career-size-36); height: var(--career-size-36); font-size: 13px; }
+.avatar--40 { width: var(--career-size-40); height: var(--career-size-40); }
+.avatar--48 { width: var(--career-size-48); height: var(--career-size-48); font-size: var(--career-font-size-16); }
+.avatar--56 { width: var(--career-size-56); height: var(--career-size-56); font-size: 18px; }
+.avatar--72 { width: var(--career-size-72); height: var(--career-size-72); font-size: 22px; }
+.avatar--96 { width: var(--career-size-96); height: var(--career-size-96); font-size: var(--career-font-size-28); }
+.avatar--140 { width: var(--career-size-140); height: var(--career-size-140); font-size: var(--career-font-size-40); }
 
 /* -------------------------------------------------------------------------
    Бейдж-счётчик
@@ -64,15 +64,15 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 20px;
-  height: 20px;
-  padding: 0 4px;
+  min-width: var(--career-size-20);
+  height: var(--career-size-20);
+  padding: 0 var(--career-space-4);
   border-radius: 999px;
   background: var(--color-ui-primary);
   color: var(--color-ui-white);
   font: 600 11px/16px var(--font-base);
 }
-.base-badge--dot { width: 12px; height: 12px; min-width: 12px; padding: 0; }
+.base-badge--dot { width: var(--career-size-12); height: var(--career-size-12); min-width: var(--career-size-12); padding: 0; }
 .base-badge--ring { box-shadow: 0 0 0 2px var(--color-ui-white); }
 
 /* -------------------------------------------------------------------------
@@ -81,14 +81,14 @@
    обвязка собирается утилитами.
    ------------------------------------------------------------------------- */
 .search-input { position: relative; }
-.search-input .text-input__input { padding-right: 40px; }
+.search-input .text-input__input { padding-right: var(--career-space-40); }
 .search-input > svg {
   position: absolute;
-  right: 8px;
+  right: var(--career-size-8);
   top: 50%;
   transform: translateY(-50%);
-  width: 24px;
-  height: 24px;
+  width: var(--career-size-24);
+  height: var(--career-size-24);
   color: var(--color-ui-gray-3);
   pointer-events: none;
 }
@@ -102,18 +102,18 @@
 .checkbox__wrapper {
   display: inline-flex;
   align-items: flex-start;
-  gap: 8px;
+  gap: var(--career-space-8);
   position: relative;
   cursor: pointer;
   font: 400 14px/20px var(--font-base);
   color: var(--color-ui-gray-1);
 }
 .checkbox__wrapper input { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
-.checkbox__icon-wrapper { flex: none; display: inline-flex; align-items: center; height: 20px; }
+.checkbox__icon-wrapper { flex: none; display: inline-flex; align-items: center; height: var(--career-size-20); }
 .checkbox__box {
-  width: 16px;
-  height: 16px;
-  border-radius: 4px;
+  width: var(--career-size-16);
+  height: var(--career-size-16);
+  border-radius: var(--career-radius-4);
   box-shadow: inset 0 0 0 1px var(--color-ui-gray-4);
   background: var(--color-ui-white);
   display: inline-flex;
@@ -148,8 +148,8 @@
    вариант с цветной подложкой (см. components/cards/vacancy-card.md).
    ------------------------------------------------------------------------- */
 .vacancy-card {
-  padding: 24px;
-  border-radius: 24px;
+  padding: var(--career-space-24);
+  border-radius: var(--career-radius-24);
   background: var(--color-ui-white);
   border: 1px solid var(--color-ui-gray-shadow);
   font-family: var(--font-base);
@@ -162,7 +162,7 @@
   font: 400 14px/20px var(--font-base);
   color: var(--color-ui-gray-3);
   margin-left: auto;
-  padding-left: 16px;
+  padding-left: var(--career-space-16);
   flex: none;
   white-space: nowrap;
 }
@@ -175,10 +175,10 @@
 .vacancy-card__salary--unknown { color: var(--color-ui-orange-accent); }
 .vacancy-card__icon-link {
   flex: none;
-  width: 48px;
-  height: 48px;
+  width: var(--career-size-48);
+  height: var(--career-size-48);
   margin-right: 15px;
-  border-radius: 8px;
+  border-radius: var(--career-radius-8);
   overflow: hidden;
   background: var(--color-ui-white);
   box-shadow: inset 0 0 0 1px var(--color-ui-gray-shadow);
@@ -193,16 +193,16 @@
 .vacancy-card__company {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--career-space-8);
   font: 400 14px/20px var(--font-base);
   color: var(--color-ui-gray-1);
-  margin-bottom: 4px;
+  margin-bottom: var(--career-space-4);
 }
 /* Длинное название компании обрезается, а не ломает строку: рейтинг и дата
    должны оставаться на своих местах. */
 .vacancy-card__company-name { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
 .vacancy-card__company .rating { color: var(--color-ui-green); font-weight: 600; display: inline-flex; align-items: center; gap: 2px; flex: none; }
-.vacancy-card__company .rating svg { width: 16px; height: 16px; }
+.vacancy-card__company .rating svg { width: var(--career-size-16); height: var(--career-size-16); }
 .vacancy-card__title {
   font: 600 20px/24px var(--font-base);
   color: var(--color-ui-gray-1);
@@ -214,8 +214,8 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 4px;
-  margin-top: 4px;
+  gap: var(--career-space-4);
+  margin-top: var(--career-space-4);
   font: 400 14px/20px var(--font-base);
   color: var(--color-ui-gray-2);
 }
@@ -223,12 +223,12 @@
 /* Чипы идут ДВУМЯ рядами: справочные атрибуты и свободные навыки.
    ИСТОЧНИК: полосы тёмных пикселей 433–465 и 481–509 на снимке production —
    это два ряда по 32, а не перенос одного. */
-.vacancy-card__skills { display: flex; flex-wrap: wrap; gap: 4px; padding-right: 24px; margin-top: 8px; }
-.vacancy-card__skills + .vacancy-card__skills { margin-top: 4px; }
+.vacancy-card__skills { display: flex; flex-wrap: wrap; gap: var(--career-space-4); padding-right: var(--career-space-24); margin-top: var(--career-space-8); }
+.vacancy-card__skills + .vacancy-card__skills { margin-top: var(--career-space-4); }
 /* Действия прижаты к правому краю карточки.
    ИСТОЧНИК: дамп production — кнопка «Откликнуться» 123×32 при x=727,
    правый край содержимого карточки 903. */
-.vacancy-card__footer { display: flex; align-items: center; justify-content: flex-end; gap: 8px; margin-top: 12px; min-height: 40px; }
+.vacancy-card__footer { display: flex; align-items: center; justify-content: flex-end; gap: var(--career-space-8); margin-top: var(--career-space-12); min-height: var(--career-size-40); }
 .vacancy-card__company-name { color: inherit; text-decoration: none; }
 .vacancy-card__company-name:hover { color: var(--color-ui-primary); }
 .vacancy-card__save[aria-pressed="true"] { color: var(--color-ui-primary); }
@@ -239,33 +239,33 @@
    ------------------------------------------------------------------------- */
 .rating-card {
   display: flex;
-  gap: 16px;
-  padding: 24px;
-  border-radius: 24px;
+  gap: var(--career-space-16);
+  padding: var(--career-space-24);
+  border-radius: var(--career-radius-24);
   background: var(--color-ui-white);
   border: 1px solid var(--color-ui-gray-shadow);
   font-family: var(--font-base);
 }
-.rating-card__pos { font: 600 28px/32px var(--font-base); color: var(--color-ui-gray-3); flex: none; min-width: 44px; }
-.rating-card__title { margin: 0 0 4px; font: 600 20px/24px var(--font-base); color: var(--color-ui-gray-1); }
-.rating-card__score { display: inline-flex; align-items: center; gap: 4px; font: 600 14px/20px var(--font-base); color: var(--color-ui-green); }
-.rating-card__score svg { width: 20px; height: 20px; }
-.rating-card__desc { margin: 8px 0 0; font: 400 15px/24px var(--font-base); color: var(--color-ui-gray-1); }
+.rating-card__pos { font: 600 28px/32px var(--font-base); color: var(--color-ui-gray-3); flex: none; min-width: var(--career-size-44); }
+.rating-card__title { margin: 0 0 var(--career-space-4); font: 600 20px/24px var(--font-base); color: var(--color-ui-gray-1); }
+.rating-card__score { display: inline-flex; align-items: center; gap: var(--career-space-4); font: 600 14px/20px var(--font-base); color: var(--color-ui-green); }
+.rating-card__score svg { width: var(--career-size-20); height: var(--career-size-20); }
+.rating-card__desc { margin: var(--career-space-8) 0 0; font: 400 15px/24px var(--font-base); color: var(--color-ui-gray-1); }
 
 /* -------------------------------------------------------------------------
    Плиточная карточка
    ИСТОЧНИК: замеры production, блоки «похожие вакансии» и «компании».
    ------------------------------------------------------------------------- */
-.grid-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 334px)); gap: 12px; }
+.grid-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 334px)); gap: var(--career-space-12); }
 .grid-card {
-  padding: 16px;
-  border-radius: 16px;
+  padding: var(--career-space-16);
+  border-radius: var(--career-radius-16);
   background: var(--color-ui-white);
   border: 1px solid var(--color-ui-gray-shadow);
   font-family: var(--font-base);
 }
-.grid-card__date { font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-3); margin-bottom: 8px; }
-.grid-card__company { display: flex; align-items: center; gap: 4px; font: 400 16px/20px var(--font-base); margin-bottom: 4px; }
+.grid-card__date { font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-3); margin-bottom: var(--career-space-8); }
+.grid-card__company { display: flex; align-items: center; gap: var(--career-space-4); font: 400 16px/20px var(--font-base); margin-bottom: var(--career-space-4); }
 .grid-card__title { font: 600 16px/24px var(--font-base); color: var(--color-ui-gray-1); }
 
 /* -------------------------------------------------------------------------
@@ -273,29 +273,29 @@
    ИСТОЧНИК: замеры production. Новая реализация использует
    .empty-placeholder (см. components/feedback/empty-placeholder.md).
    ------------------------------------------------------------------------- */
-.no-content { text-align: center; font-family: var(--font-base); padding: 8px 0; }
-.no-content__art { margin: 0 auto 16px; display: block; max-width: 240px; }
-.no-content__title { max-width: 560px; margin: 0 auto 8px; font: 600 20px/24px var(--font-base); color: var(--color-ui-gray-1); }
-.no-content__desc { max-width: 560px; margin: 0 auto 16px; font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-2); }
+.no-content { text-align: center; font-family: var(--font-base); padding: var(--career-space-8) 0; }
+.no-content__art { margin: 0 auto var(--career-space-16); display: block; max-width: var(--career-size-240); }
+.no-content__title { max-width: var(--career-size-560); margin: 0 auto var(--career-space-8); font: 600 20px/24px var(--font-base); color: var(--color-ui-gray-1); }
+.no-content__desc { max-width: var(--career-size-560); margin: 0 auto var(--career-space-16); font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-2); }
 
 /* -------------------------------------------------------------------------
    Онбординговая подсказка
    ИСТОЧНИК: Figma, модуль onboarding. В career-web компонента нет.
    ------------------------------------------------------------------------- */
 .onboarding-tooltip {
-  max-width: 320px;
-  padding: 16px;
-  border-radius: 16px;
+  max-width: var(--career-size-320);
+  padding: var(--career-space-16);
+  border-radius: var(--career-radius-16);
   background: var(--color-ui-gray-1);
   color: var(--color-ui-white);
   font-family: var(--font-base);
   display: grid;
-  gap: 8px;
+  gap: var(--career-space-8);
   box-shadow: var(--shadow-dropdown);
 }
 .onboarding-tooltip__title { font: 600 16px/20px var(--font-base); }
 .onboarding-tooltip__text { font: 400 14px/20px var(--font-base); }
-.onboarding-tooltip__actions { display: flex; align-items: center; gap: 12px; margin: 4px 0 0; }
+.onboarding-tooltip__actions { display: flex; align-items: center; gap: var(--career-space-12); margin: var(--career-space-4) 0 0; }
 
 /* -------------------------------------------------------------------------
    Числовой акцент
@@ -309,8 +309,8 @@
    в новой. Геометрия одинакова, поэтому старое имя просто наследует новое.
    ------------------------------------------------------------------------- */
 .basic-section {
-  padding: 24px;
-  border-radius: 24px;
+  padding: var(--career-space-24);
+  border-radius: var(--career-radius-24);
   background: var(--color-ui-white);
   border: 1px solid var(--color-ui-gray-shadow);
 }
@@ -322,7 +322,7 @@
    Класс оставлен, потому что showcase/pages.html опирается на него как
    на именованный отступ под заголовком.
    ------------------------------------------------------------------------- */
-.base-section__body { margin-top: 12px; font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-1); }
+.base-section__body { margin-top: var(--career-space-12); font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-1); }
 
 /* -------------------------------------------------------------------------
    Карточка вакансии на узком экране
@@ -348,11 +348,11 @@
     width: 100%;
     margin-left: 0;
     padding-left: 0;
-    margin-bottom: 8px;
+    margin-bottom: var(--career-space-8);
   }
   /* логотип обтекается текстом справа, а не стоит колонкой слева */
   .vacancy-card__main { display: block; }
-  .vacancy-card__icon-link { float: right; margin: 0 0 8px 12px; }
+  .vacancy-card__icon-link { float: right; margin: 0 0 var(--career-space-8) var(--career-space-12); }
   .vacancy-card__footer { padding-left: 0; }
 }
 
@@ -371,7 +371,7 @@
 .icon-instagram {
   /* у этой иконки подложки в файле нет — форму задаём здесь, тем же
      скруглением 8px, что и у остальных значков пака */
-  border-radius: 8px;
+  border-radius: var(--career-radius-8);
   overflow: hidden;
   background:
     radial-gradient(circle 19.26px at 6.59570325% 96.961876%, #ffd600 0, #ff6930 34.4%, rgba(254, 59, 54, .88) 58.4%, rgba(254, 59, 54, .63) 67%, rgba(237, 0, 192, .7) 80%, rgba(112, 23, 255, 0) 108%),
@@ -388,7 +388,7 @@
    ------------------------------------------------------------------------- */
 .menu {
   background: var(--color-ui-white);
-  border-radius: 16px;
+  border-radius: var(--career-radius-16);
   box-shadow: 0 1px 4px 1px var(--color-ui-gray-shadow), 0 4px 8px 2px var(--color-ui-gray-shadow);
   display: flex;
   flex-direction: column;
@@ -396,23 +396,23 @@
   list-style: none;
   margin: 0;
   min-width: 190px;
-  padding: 4px;
+  padding: var(--career-space-4);
 }
 .menu[hidden] { display: none; }
-.menu__separator { border: 0; border-top: 1px solid var(--color-ui-gray-bg); margin: 4px 8px; }
+.menu__separator { border: 0; border-top: 1px solid var(--color-ui-gray-bg); margin: var(--career-space-4) var(--career-space-8); }
 .menu-item {
   align-items: center;
   appearance: none;
   background: transparent;
   border: 0;
-  border-radius: 12px;
+  border-radius: var(--career-radius-12);
   color: var(--color-ui-gray-1);
   cursor: pointer;
   display: flex;
   font: 400 14px/20px var(--font-base);
-  gap: 8px;
-  min-height: 40px;
-  padding: 8px 12px;
+  gap: var(--career-space-8);
+  min-height: var(--career-size-40);
+  padding: var(--career-space-8) var(--career-space-12);
   text-align: left;
   text-decoration: none;
   width: 100%;
@@ -432,10 +432,10 @@
 .popover { position: relative; }
 .popover__surface {
   background-color: var(--color-ui-white);
-  border-radius: 16px;
+  border-radius: var(--career-radius-16);
   box-shadow: 0 1px 4px 1px var(--color-ui-gray-shadow), 0 4px 8px 2px var(--color-ui-gray-shadow);
-  max-width: min(360px, calc(100vw - 32px));
-  padding: 12px;
+  max-width: min(var(--career-size-360), calc(100vw - var(--career-size-32)));
+  padding: var(--career-space-12);
   position: absolute;
   z-index: 1000;
 }
@@ -448,8 +448,8 @@
 .popover__surface:has(> .menu) { background-color: transparent; box-shadow: none; padding: 0; }
 .popover__surface[hidden],.popover__surface[data-state="closed"] { display: none; }
 .popover__surface[data-state="open"] { display: block; }
-.popover__surface[data-placement^="bottom"] { top: calc(100% + 8px); }
-.popover__surface[data-placement^="top"] { bottom: calc(100% + 8px); }
+.popover__surface[data-placement^="bottom"] { top: calc(100% + var(--career-size-8)); }
+.popover__surface[data-placement^="top"] { bottom: calc(100% + var(--career-size-8)); }
 .popover__surface[data-placement$="start"] { left: 0; }
 .popover__surface[data-placement$="end"] { right: 0; }
 
@@ -458,7 +458,7 @@
    ------------------------------------------------------------------------- */
 .tooltip {
   background-color: var(--color-ui-gray-1);
-  border-radius: 8px;
+  border-radius: var(--career-radius-8);
   color: var(--color-ui-white);
   font: 400 12px/16px var(--font-base);
   /* Тултип абсолютный, и его containing block — обёртка .popover шириной
@@ -466,8 +466,8 @@
      текст встаёт колонкой по самому длинному слову, а max-width не достигается
      никогда. max-content даёт естественную ширину, которую max-width и режет. */
   width: max-content;
-  max-width: min(280px, calc(100vw - 24px));
-  padding: 6px 8px;
+  max-width: min(var(--career-size-280), calc(100vw - var(--career-size-24)));
+  padding: 6px var(--career-space-8);
   pointer-events: none;
   position: absolute;
   z-index: 1100;
@@ -482,15 +482,15 @@
 /* -------------------------------------------------------------------------
    R3-A · Calendar / DatePicker / TimePicker
    ------------------------------------------------------------------------- */
-.calendar { background:var(--color-ui-white);border-radius:16px;color:var(--color-ui-gray-1);padding:12px;width:296px }
-.calendar__header { align-items:center;display:flex;justify-content:space-between;margin-bottom:8px }
+.calendar { background:var(--color-ui-white);border-radius:var(--career-radius-16);color:var(--color-ui-gray-1);padding:var(--career-space-12);width:var(--career-size-296) }
+.calendar__header { align-items:center;display:flex;justify-content:space-between;margin-bottom:var(--career-space-8) }
 .calendar__title { font:600 16px/24px var(--font-base);margin:0 }
 .calendar__grid { display:grid;gap:2px;grid-template-columns:repeat(7,36px) }
 .calendar__grid > [role="row"] { display: contents; }
 .calendar__grid [role="gridcell"] { min-width: 0; }
 .calendar__day[data-selected="true"] { background:var(--color-ui-primary);color:var(--color-ui-white) }
 .calendar__weekday { color:var(--color-ui-gray-2);font:400 12px/16px var(--font-base);padding:6px 0;text-align:center }
-.calendar__day { align-items:center;appearance:none;background:transparent;border:0;border-radius:9999px;color:inherit;cursor:pointer;display:flex;font:400 14px/20px var(--font-base);height:36px;justify-content:center;padding:0;width:36px }
+.calendar__day { align-items:center;appearance:none;background:transparent;border:0;border-radius:9999px;color:inherit;cursor:pointer;display:flex;font:400 14px/20px var(--font-base);height:var(--career-size-36);justify-content:center;padding:0;width:var(--career-size-36) }
 .calendar__day:hover:not(:disabled) { background:var(--color-ui-gray-3-10) }
 .calendar__day:focus-visible { outline:2px solid var(--color-ui-primary-60);outline-offset:1px }
 .calendar__day[aria-current="date"] { box-shadow:inset 0 0 0 1px var(--color-ui-primary);color:var(--color-ui-primary-accent) }
@@ -499,22 +499,22 @@
 .calendar__day[data-outside-month="true"] { color:var(--color-ui-gray-4) }
 .calendar__day:disabled { color:var(--color-ui-gray-5);cursor:default;text-decoration:line-through }
 .date-picker,.time-picker { position:relative;width:100% }
-.date-picker__popover,.time-picker__popover { margin-top:8px }
-.time-picker__list { max-height:240px;overflow:auto }
+.date-picker__popover,.time-picker__popover { margin-top:var(--career-space-8) }
+.time-picker__list { max-height:var(--career-size-240);overflow:auto }
 
 /* -------------------------------------------------------------------------
    R3-A · FileUpload / Dropzone
    ------------------------------------------------------------------------- */
-.file-upload { display:grid;gap:8px }
+.file-upload { display:grid;gap:var(--career-space-8) }
 .file-upload__input { height:1px;overflow:hidden;position:absolute;width:1px;clip:rect(0 0 0 0);clip-path:inset(50%) }
-.file-upload__item { align-items:center;background:var(--color-ui-gray-7);border:1px solid var(--color-ui-gray-shadow);border-radius:12px;display:flex;gap:8px;min-height:44px;padding:8px 12px }
+.file-upload__item { align-items:center;background:var(--color-ui-gray-7);border:1px solid var(--color-ui-gray-shadow);border-radius:var(--career-radius-12);display:flex;gap:var(--career-space-8);min-height:var(--career-size-44);padding:var(--career-space-8) var(--career-space-12) }
 .file-upload__name { flex:1 1 auto;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap }
-.file-upload__status { color:var(--color-ui-gray-2);font-size:12px }
+.file-upload__status { color:var(--color-ui-gray-2);font-size:var(--career-font-size-12) }
 .file-upload__item[aria-busy="true"] { cursor:wait }
 .file-upload__item[data-state="error"] { border-color:var(--color-ui-red);color:var(--color-ui-red) }
 .file-upload__item[data-state="success"] { border-color:var(--color-ui-green);color:var(--color-ui-green-accent) }
 .file-upload[data-disabled="true"] { opacity:.6;pointer-events:none }
-.dropzone { align-items:center;background:var(--color-ui-gray-7);border:2px dashed var(--color-ui-gray-5);border-radius:16px;color:var(--color-ui-gray-2);cursor:pointer;display:flex;flex-direction:column;gap:8px;justify-content:center;min-height:144px;padding:24px;text-align:center }
+.dropzone { align-items:center;background:var(--color-ui-gray-7);border:2px dashed var(--color-ui-gray-5);border-radius:var(--career-radius-16);color:var(--color-ui-gray-2);cursor:pointer;display:flex;flex-direction:column;gap:var(--career-space-8);justify-content:center;min-height:var(--career-size-144);padding:var(--career-space-24);text-align:center }
 .dropzone:hover:not([aria-disabled="true"]),.dropzone[data-drag-active="true"] { background:var(--color-ui-primary-10);border-color:var(--color-ui-primary);color:var(--color-ui-primary-accent) }
 .dropzone:focus-visible { outline:2px solid var(--color-ui-primary-60);outline-offset:2px }
 .dropzone:has(input:focus-visible) { outline:2px solid var(--color-ui-primary-60);outline-offset:2px }
@@ -526,13 +526,13 @@
    ------------------------------------------------------------------------- */
 .accordion { border-bottom:1px solid var(--color-ui-gray-shadow);border-top:1px solid var(--color-ui-gray-shadow) }
 .accordion__item + .accordion__item { border-top:1px solid var(--color-ui-gray-shadow) }
-.accordion__trigger { align-items:center;appearance:none;background:transparent;border:0;color:var(--color-ui-gray-1);cursor:pointer;display:flex;font:600 16px/24px var(--font-base);justify-content:space-between;padding:16px 0;text-align:left;width:100% }
+.accordion__trigger { align-items:center;appearance:none;background:transparent;border:0;color:var(--color-ui-gray-1);cursor:pointer;display:flex;font:600 16px/24px var(--font-base);justify-content:space-between;padding:var(--career-space-16) 0;text-align:left;width:100% }
 .accordion__trigger:hover:not(:disabled) { color:var(--color-ui-primary-accent) }
-.accordion__trigger:focus-visible { border-radius:4px;outline:2px solid var(--color-ui-primary-60);outline-offset:2px }
+.accordion__trigger:focus-visible { border-radius:var(--career-radius-4);outline:2px solid var(--color-ui-primary-60);outline-offset:2px }
 .accordion__trigger:disabled { color:var(--color-ui-gray-4);cursor:default }
 .accordion__icon { flex:none;transition:transform .2s ease }
 .accordion__trigger[aria-expanded="true"] .accordion__icon { transform:rotate(180deg) }
-.accordion__panel { padding:0 0 16px }
+.accordion__panel { padding:0 0 var(--career-space-16) }
 .accordion__panel[hidden] { display:none }
 
 @media (prefers-reduced-motion: reduce) { .accordion__icon { transition:none } }
