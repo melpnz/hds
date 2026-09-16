@@ -1,0 +1,127 @@
+{
+  "schemaVersion": 1,
+  "product": {
+    "id": "habr",
+    "title": "Хабр",
+    "guideVersion": "1.0",
+    "status": "active-with-coverage-limits"
+  },
+  "scope": {
+    "confidence": "mixed",
+    "boundary": "Публичный гостевой production-срез и подтверждённые экраны company admin."
+  },
+  "typography": {
+    "families": {
+      "interface": "-apple-system, BlinkMacSystemFont, Arial, sans-serif",
+      "display": "Fira Sans, sans-serif"
+    },
+    "roles": {
+      "titleH1": "24px/1.3",
+      "titleH2": "20px/1.3",
+      "body": "15px/24px",
+      "secondary": "13px/16px"
+    }
+  },
+  "colors": {
+    "themes": [
+      "light-v2",
+      "dark-v2"
+    ],
+    "roles": {
+      "--text-main": {
+        "light": "hsl(0, 0%, 20%)",
+        "dark": "hsl(0, 0%, 87%)"
+      },
+      "--text-secondary": {
+        "light": "hsl(0, 0%, 56%)",
+        "dark": "hsl(0, 0%, 67%)"
+      },
+      "--background-primary": {
+        "light": "hsl(0, 0%, 100%)",
+        "dark": "hsl(0, 0%, 9%)"
+      },
+      "--background-secondary": {
+        "light": "hsl(0, 0%, 97%)",
+        "dark": "hsl(0, 0%, 15%)"
+      },
+      "--accent-primary": {
+        "light": "hsl(200, 34%, 50%)",
+        "dark": "hsl(200, 80%, 61%)"
+      },
+      "--accent-primary-hover": {
+        "light": "hsl(200, 43%, 39%)",
+        "dark": "hsl(199, 100%, 75%)"
+      },
+      "--accent-positive": {
+        "light": "hsl(76, 100%, 33%)",
+        "dark": "hsl(76, 100%, 35%)"
+      },
+      "--accent-danger": {
+        "light": "hsl(0, 58%, 56%)",
+        "dark": "hsl(0, 100%, 73%)"
+      },
+      "--header-background": {
+        "light": "hsl(207, 17%, 23%)",
+        "dark": "hsl(0, 0%, 5%)"
+      },
+      "--header-text": {
+        "light": "hsl(0, 0%, 100%)",
+        "dark": "hsl(0, 0%, 100%)"
+      }
+    }
+  },
+  "shape": {
+    "radii": {
+      "control": "3px"
+    },
+    "borders": {
+      "default": "1px"
+    },
+    "shadows": {
+      "default": "none"
+    }
+  },
+  "layout": {
+    "container": {
+      "desktop": "1096px with 24px padding",
+      "tablet": "768px with 16px padding",
+      "mobile": "edge-to-edge"
+    },
+    "sidebar": "300px",
+    "breakpoints": {
+      "mobile": "767px",
+      "desktop": "1024px"
+    },
+    "header": {
+      "desktop": "56px",
+      "mobile": "48px"
+    }
+  },
+  "signaturePatterns": [
+    {
+      "id": "reserved-sidebar",
+      "rule": "Сайдбар — зарезервированная колонка и может оставаться пустым.",
+      "evidence": "docs/patterns/shell.md"
+    },
+    {
+      "id": "flat-dense-controls",
+      "rule": "Компактные контролы используют малый радиус 3px.",
+      "evidence": "ui/components/button.css"
+    },
+    {
+      "id": "theme-pair",
+      "rule": "Семантические роли поддерживают светлую и тёмную темы.",
+      "evidence": "machine/tokens.json"
+    }
+  ],
+  "sources": [
+    "machine/tokens.json",
+    "ui/foundations.css",
+    "ui/layout.css",
+    "ui/components/title.css",
+    "ui/components/primitives.css"
+  ],
+  "unknowns": [
+    "Редактор, настройки, сервисные ошибки и авторизованный production не подтверждены полными экранами."
+  ]
+}

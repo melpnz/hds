@@ -8,8 +8,18 @@ const requiredItemKeys = ['id', 'title', 'kind', 'category', 'maturity', 'knowle
 const errors = [];
 const viewerWidths = [320, 480, 768, 1024];
 const index = read('machine/index.json');
+const styleProfile = read(index.files.styleProfile);
 const catalog = read(index.files.catalog);
 const ids = new Set(catalog.map(item => item.id));
+const tokens = read(index.files.tokens);
+for (const [role, values] of Object.entries(styleProfile.colors?.roles || {})) {
+  if (values.light !== tokens.themes['light-v2']?.[role] || values.dark !== tokens.themes['dark-v2']?.[role]) {
+    errors.push(`style-profile: stale color role ${role}`);
+  }
+}
+if (styleProfile.layout?.container?.desktop !== '1096px with 24px padding' || styleProfile.shape?.radii?.control !== '3px') {
+  errors.push('style-profile: layout or control geometry is stale');
+}
 const expectedMigrationMetrics = {
   files: 362,
   componentSpecs: 23,
@@ -98,6 +108,7 @@ for (const entry of catalog) {
       errors.push('button: structured visual size contract is missing or stale');
     }
   }
+  if (['foundation', 'component'].includes(entry.kind) && !item.visual) errors.push(`${entry.id}: visual contract is missing`);
 }
 
 const countedExamples = catalog.reduce((sum, entry) => sum + (existsSync(resolve(root, entry.file)) ? read(entry.file).examples.length : 0), 0);

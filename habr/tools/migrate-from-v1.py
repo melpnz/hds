@@ -218,6 +218,25 @@ def gaps_from_markdown(path: Path | None) -> list[str]:
     return results[:6]
 
 
+def visual_from_css(paths: list[Path]) -> dict | None:
+    tracked = ("width", "height", "min-width", "min-height", "max-width", "padding", "gap", "border", "border-radius", "background", "background-color", "color", "object-fit", "font-size", "line-height", "font-weight", "box-shadow")
+    values: dict[str, list[str]] = {}
+    for path in paths:
+        if not path.exists():
+            continue
+        source = re.sub(r"/\*[\s\S]*?\*/", "", path.read_text(encoding="utf-8"))
+        for prop, value in re.findall(r"([a-z-]+)\s*:\s*([^;}]+)", source):
+            if prop not in tracked:
+                continue
+            cleaned = re.sub(r"\s+", " ", value).strip()
+            bucket = values.setdefault(prop, [])
+            if cleaned not in bucket and len(bucket) < 12:
+                bucket.append(cleaned)
+    if not values:
+        return None
+    return {"source": [path.relative_to(ROOT).as_posix() for path in paths if path.exists()], "properties": values}
+
+
 def rewrite_fragment(fragment: BeautifulSoup, page: bool = False, section_id: str = "") -> str:
     for tag in fragment.select("script"):
         tag.decompose()
@@ -486,7 +505,16 @@ def main() -> None:
         css_candidates = [ROOT / "ui/components" / f"{item_id}.css"]
         if item_id == "field":
             css_candidates = [ROOT / "ui/components/input.css", ROOT / "ui/components/textarea.css"]
+        elif item_id == "user-info":
+            css_candidates = [ROOT / "ui/components/article-card.css"]
+        elif item_id == "dropdown-content":
+            css_candidates = [ROOT / "ui/components/dropdown.css"]
         item["implementation"]["styles"] = [path.relative_to(ROOT).as_posix() for path in css_candidates if path.exists()]
+        extracted_visual = visual_from_css(css_candidates)
+        if extracted_visual:
+            item["visual"] = extracted_visual
+        if item_id == "user-info":
+            item["visual"] = {"source": ["ui/components/article-card.css"], "avatar": "24px", "avatarRadius": "3px", "inlineGap": "4px", "mobileStackGap": "2px"}
         item["evidence"] = [{"type": "legacy-showcase", "ref": f"archive:habr/v1/showcase/components.html#{item_id}"}]
         if doc_path and doc_path.exists():
             item["markdown"] = doc_path.relative_to(ROOT).as_posix()
@@ -576,6 +604,49 @@ def main() -> None:
     light_tokens = dict(variable_pattern.findall(light))
     dark_tokens = dict(variable_pattern.findall(dark))
     write_json(ROOT / "machine/tokens.json", {"source": ["ui/themes/light-v2.css", "ui/themes/dark-v2.css"], "themes": {"light-v2": light_tokens, "dark-v2": dark_tokens}, "counts": {"light": len(light_tokens), "dark": len(dark_tokens)}})
+    write_json(ROOT / "machine/style-profile.json", {
+        "schemaVersion": 1,
+        "product": {"id": "habr", "title": "Хабр", "guideVersion": "1.0", "status": "active-with-coverage-limits"},
+        "scope": {"confidence": "mixed", "boundary": "Публичный гостевой production-срез и подтверждённые экраны company admin."},
+        "typography": {
+            "families": {"interface": "-apple-system, BlinkMacSystemFont, Arial, sans-serif", "display": "Fira Sans, sans-serif"},
+            "roles": {"titleH1": "24px/1.3", "titleH2": "20px/1.3", "body": "15px/24px", "secondary": "13px/16px"}
+        },
+        "colors": {
+            "themes": ["light-v2", "dark-v2"],
+            "roles": {name: {"light": light_tokens.get(name), "dark": dark_tokens.get(name)} for name in (
+                "--text-main", "--text-secondary", "--background-primary", "--background-secondary",
+                "--accent-primary", "--accent-primary-hover", "--accent-positive", "--accent-danger",
+                "--header-background", "--header-text"
+            )}
+        },
+        "shape": {"radii": {"control": "3px"}, "borders": {"default": "1px"}, "shadows": {"default": "none"}},
+        "layout": {
+            "container": {"desktop": "1096px with 24px padding", "tablet": "768px with 16px padding", "mobile": "edge-to-edge"},
+            "sidebar": "300px", "breakpoints": {"mobile": "767px", "desktop": "1024px"}, "header": {"desktop": "56px", "mobile": "48px"}
+        },
+        "signaturePatterns": [
+            {"id": "reserved-sidebar", "rule": "Сайдбар — зарезервированная колонка и может оставаться пустым.", "evidence": "docs/patterns/shell.md"},
+            {"id": "flat-dense-controls", "rule": "Компактные контролы используют малый радиус 3px.", "evidence": "ui/components/button.css"},
+            {"id": "theme-pair", "rule": "Семантические роли поддерживают светлую и тёмную темы.", "evidence": "machine/tokens.json"}
+        ],
+        "sources": ["machine/tokens.json", "ui/foundations.css", "ui/layout.css", "ui/components/title.css", "ui/components/primitives.css"],
+        "unknowns": ["Редактор, настройки, сервисные ошибки и авторизованный production не подтверждены полными экранами."]
+    })
+    foundation_visuals = {
+        "colors": {"themes": {"light-v2": light_tokens, "dark-v2": dark_tokens}},
+        "grid": {"container": {"desktop": "1096px / 24px", "tablet": "768px / 16px", "mobile": "edge-to-edge"}, "sidebar": "300px"},
+        "header": {"height": {"desktop": "56px", "mobile": "48px"}, "position": "sticky"},
+        "spacing": {"pagePadding": {"desktop": "24px", "tablet": "16px", "mobile": "0"}},
+        "surfaces": {"primary": light_tokens.get("--background-primary"), "secondary": light_tokens.get("--background-secondary"), "gray": light_tokens.get("--background-gray")},
+        "typography": {"families": {"interface": "-apple-system, BlinkMacSystemFont, Arial, sans-serif", "display": "Fira Sans, sans-serif"}, "roles": {"titleH1": "24px/1.3", "titleH2": "20px/1.3", "body": "15px/24px", "secondary": "13px/16px"}},
+        "icons": {"inventory": {"production": 109, "editor": 137, "illustrations": 20}, "format": "SVG"},
+    }
+    for foundation_id, visual in foundation_visuals.items():
+        foundation_path = ROOT / "machine" / "foundations" / f"{foundation_id}.json"
+        foundation = json.loads(foundation_path.read_text(encoding="utf-8"))
+        foundation["visual"] = visual
+        write_json(foundation_path, foundation)
     write_json(ROOT / "machine/states.json", {"ui": ["default", "hover", "focus-visible", "pressed", "disabled"], "feature": ["loading", "empty", "success", "error"], "domain": ["guest", "authenticated", "admin"], "note": "Наблюдённость конкретного состояния задаётся в спецификации сущности; список не означает полное покрытие."})
     assets = []
     for path in sorted((ROOT / "ui/assets").rglob("*")):
@@ -587,8 +658,8 @@ def main() -> None:
     index = {
         "schemaVersion": 3,
         "product": {"id": "habr", "title": "Хабр", "guideVersion": "1.0", "status": "active", "productionRelease": "2.346.1", "lastVerified": "2026-09-07"},
-        "readOrder": ["machine/catalog.json", "только выбранный file из catalog", "markdown, rules, implementation и examples — только при необходимости"],
-        "files": {"catalog": "machine/catalog.json", "states": "machine/states.json", "tokens": "machine/tokens.json", "assets": "machine/assets.json", "migrationMap": "machine/migration-map.json", "schema": "schema.json", "roadmap": "ROADMAP.md"},
+        "readOrder": ["machine/style-profile.json для задач уровня продукта или нового экрана", "machine/catalog.json", "только выбранный file из catalog", "markdown, rules, implementation и examples — только при необходимости"],
+        "files": {"catalog": "machine/catalog.json", "states": "machine/states.json", "tokens": "machine/tokens.json", "styleProfile": "machine/style-profile.json", "assets": "machine/assets.json", "migrationMap": "machine/migration-map.json", "schema": "schema.json", "roadmap": "ROADMAP.md"},
         "coverage": {"boundary": "public guest production + company admin Figma", "known": ["public shell", "content feed", "directory", "entity", "company admin"], "unknown": ["editor screen", "settings outside admin", "service/error", "authenticated production"], "onUnknown": {"action": "use-nearest-confirmed-pattern-and-disclose-assumption", "doc": "ROADMAP.md"}},
         "viewerContract": {"intrinsic": "components and foundations, stacked without viewport toolbar", "viewport": "modules and pages at 320/480/768/1024/Auto", "pageBreakpoints": [320, 768, 1024], "fluidCheckpoints": [480], "notes": "previewNotes are rendered outside iframe"},
         "provenance": {"legacyPrefix": "archive:habr/v1/", "archivePublished": False, "note": "Структура пакета мигрирована без объявления нового релиза; все доступные для использования знания находятся в habr/."},

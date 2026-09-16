@@ -11,7 +11,8 @@
 ## Как читать ИИ
 
 1. Открой только [`machine/index.json`](machine/index.json).
-2. По задаче найди сущность в [`machine/catalog.json`](machine/catalog.json) по `id`, `kind`, группе или `tags`.
+2. Для нового продукта, страницы или задачи на общий визуальный язык прочитай [`machine/style-profile.json`](machine/style-profile.json); для одного компонента пропусти этот шаг.
+3. По задаче найди сущность в [`machine/catalog.json`](machine/catalog.json) по `id`, `kind`, группе или `tags`.
 3. Открой только её поле `file`.
 4. Загружай `markdown`, `implementation`, `rules` и `examples` только если они нужны для реализации.
 5. Не читай весь каталог, все иконки, `viewer/` или архив заранее.
