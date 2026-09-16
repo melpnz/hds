@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "product": {
+    "id": "courses",
+    "title": "Хабр Курсы",
+    "guideVersion": "0.2",
+    "status": "in-development"
+  },
+  "scope": {
+    "confidence": "mixed",
+    "boundary": "Публичная гостевая часть Курсов; шесть собранных страниц и адресные спецификации."
+  },
+  "typography": {
+    "families": {
+      "interface": "Inter, sans-serif"
+    },
+    "weights": {
+      "regular": 400,
+      "semibold": 600
+    },
+    "roles": {
+      "h1": "44px/48px",
+      "h2": "24px/28px",
+      "h3": "20px/24px",
+      "h4": "18px/22px",
+      "body": "16px/22px",
+      "small": "14px/20px",
+      "micro": "12px/16px",
+      "mobileH1": "30px/34px"
+    }
+  },
+  "colors": {
+    "roles": {
+      "action": "#346ef4",
+      "actionHover": "#2755e9",
+      "text": "{color.ui-black-850}",
+      "link": "{color.ui-blue-500}",
+      "background": "{color.ui-white}",
+      "border": "#d3d3d4",
+      "success": "#34b24f",
+      "danger": "#e84444"
+    }
+  },
+  "shape": {
+    "radii": {
+      "xxs": "6px",
+      "xs": "8px",
+      "control": "12px",
+      "large": "24px",
+      "full": "200px"
+    },
+    "border": "1px"
+  },
+  "layout": {
+    "container": {
+      "maxWidth": "1124px",
+      "paddingInline": "24px",
+      "contentWidth": "1076px"
+    },
+    "breakpoints": {
+      "smallPhone": "479px",
+      "phone": "767px",
+      "tablet": "1023px"
+    },
+    "previewWidths": [
+      320,
+      480,
+      768,
+      1024
+    ]
+  },
+  "controls": {
+    "button": {
+      "source": "production CSS and confirmed Courses button decisions",
+      "radius": "12px",
+      "borderWidth": "1px",
+      "fontWeight": 600,
+      "icon": {
+        "width": "24px",
+        "height": "24px",
+        "viewBox": "0 0 24 24"
+      },
+      "sizes": {
+        "m": {
+          "height": "40px",
+          "paddingBlock": "8px",
+          "paddingInline": "16px",
+          "fontSize": "14px",
+          "lineHeight": "20px",
+          "iconPaddingLeft": "4px",
+          "iconPaddingRight": "8px"
+        },
+        "l": {
+          "height": "48px",
+          "paddingBlock": "8px",
+          "paddingInline": "16px",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "iconPaddingLeft": "6px",
+          "iconPaddingRight": "12px"
+        },
+        "xl": {
+          "height": "56px",
+          "paddingBlock": "12px",
+          "paddingInline": "24px",
+          "fontSize": "16px",
+          "lineHeight": "24px",
+          "iconPaddingLeft": "8px",
+          "iconPaddingRight": "16px"
+        }
+      }
+    }
+  },
+  "signaturePatterns": [
+    {
+      "id": "blue-hero",
+      "rule": "Синий сервисный фон объединяет верхний уровень страницы и поисковую композицию.",
+      "evidence": "machine/components/site-header.json"
+    },
+    {
+      "id": "single-content-column",
+      "rule": "Основной контент следует контейнеру 1124px без постоянного сайдбара.",
+      "evidence": "docs/guide/layout.md"
+    },
+    {
+      "id": "inter-only",
+      "rule": "Весь интерфейс и примеры используют Inter.",
+      "evidence": "docs/guide/typography.md"
+    }
+  ],
+  "sources": [
+    "machine/tokens.json",
+    "docs/guide/typography.md",
+    "docs/guide/layout.md",
+    "machine/components/button.json"
+  ],
+  "unknowns": [
+    "Гайд в разработке; непокрытые состояния и сценарии перечислены в адресных спецификациях."
+  ]
+}

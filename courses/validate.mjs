@@ -1,6 +1,7 @@
 import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { buildStyleProfile } from './tools/build-style-profile.mjs';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 const read = path => JSON.parse(readFileSync(resolve(root, path), 'utf8'));
@@ -12,6 +13,16 @@ const index = read('machine/index.json');
 const catalog = read(index.files.catalog);
 const ids = new Set(catalog.map(item => item.id));
 const migration = read(index.files.migrationMap);
+const styleProfile = read(index.files.styleProfile);
+if (JSON.stringify(styleProfile) !== JSON.stringify(buildStyleProfile())) errors.push('style-profile: generated profile is stale');
+for (const entry of catalog.filter(entry => entry.kind === 'pattern')) {
+  const item = read(entry.file);
+  for (const reference of [item.source?.spec, item.source?.standalone, item.source?.showcase, item.sequenceSource?.page].filter(Boolean)) {
+    if (!reference.startsWith('archive:')) errors.push(`${entry.id}: legacy source must use archive: prefix (${reference})`);
+    else evidenceRefExists(reference, entry.id);
+  }
+  for (const unknown of item.unknowns || []) if (unknown.length <= 80 || !unknown.endsWith('components/collections/carousel.md')) errors.push(`${entry.id}: truncated unknown text`);
+}
 const walkFiles = path => readdirSync(resolve(root, path), { recursive: true, withFileTypes: true })
   .filter(entry => entry.isFile())
   .map(entry => resolve(entry.parentPath, entry.name));
@@ -105,6 +116,7 @@ for (const entry of catalog) {
       if (area.stub && (area.stub.length <= 80 || !area.stub.endsWith('components/collections/carousel.md'))) errors.push(`${entry.id}: truncated or incomplete stub in ${area.id}`);
     }
   }
+  if (entry.kind === 'foundation' && !item.visual) errors.push(`${entry.id}: visual contract is missing`);
   if (entry.id === 'button') {
     if (item.examples.length !== 1 || item.examples[0].id !== 'playground') errors.push('button: expected one optimized playground example');
     if (!item.states.ui.includes('loading')) errors.push('button: Figma loading state is absent');
@@ -426,7 +438,7 @@ for (const entry of catalog) {
   for (const dependency of item.components || []) {
     if (!ids.has(dependency)) errors.push(`${entry.id}: unknown component ${dependency}`);
   }
-  if (item.source?.spec) pathExists(item.source.spec, `${entry.id}/source`);
+  if (item.source?.spec) evidenceRefExists(item.source.spec, `${entry.id}/source`);
 }
 
 const countedExamples = catalog.reduce((sum, entry) => sum + (existsSync(resolve(root, entry.file)) ? read(entry.file).examples.length : 0), 0);

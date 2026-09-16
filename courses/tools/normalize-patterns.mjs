@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { writeStyleProfile } from './build-style-profile.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const definitions = {
@@ -31,6 +32,14 @@ for (const [id, definition] of Object.entries(definitions)) {
     id: definition.areas[index],
     ...(area.stub ? { stub: stubs[stubIndex++] } : {})
   }));
+  item.unknowns = item.sequence.filter(area => area.stub).map(area => area.stub);
+  const archiveRef = value => value && !value.startsWith('archive:') ? `archive:courses/v0.1/${value}` : value;
+  if (item.source) {
+    item.source.spec = `archive:courses/v0.1/pages/${id}.md`;
+    item.source.standalone = archiveRef(item.source.standalone);
+    item.source.showcase = archiveRef(item.source.showcase);
+  }
+  if (item.sequenceSource?.page) item.sequenceSource.page = archiveRef(item.sequenceSource.page);
   const placeholderText = 'Пользовательские изображения, логотипы и обложки в preview заменены нейтральными локальными заглушками; это ограничение примера, а не правило компонента.';
   if (!item.previewNotes?.some(note => note.text === placeholderText)) {
     item.previewNotes = [...(item.previewNotes || []), { type: 'coverage-warning', text: placeholderText }];
@@ -39,3 +48,4 @@ for (const [id, definition] of Object.entries(definitions)) {
 }
 
 console.log(`Normalized ${Object.keys(definitions).length} page patterns.`);
+writeStyleProfile();
