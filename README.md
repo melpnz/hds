@@ -45,9 +45,9 @@
 
 | Задача | С чего начать | Что читать дальше |
 |---|---|---|
-| **Хабр** | [Гайд и границы покрытия](habr/README.md) | Machine-first маршрут: [index](habr/machine/index.json) → [catalog](habr/machine/catalog.json) → только выбранная спецификация. Для подключения CSS — [контракт рендера](habr/evidence/runtime-contract.md) |
-| **Карьера** | ИИ: [контракт для модели](career/AGENTS.md). Человек: [карта пакета](career/README.md) | ИИ следует контракту: [машинный индекс](career/machine/index.json) → адресный каталог → одна сущность. Человеку: [локальная витрина](career/viewer/index.html) и карта пакета |
-| **Курсы** | ИИ: [контракт для модели](courses/AGENTS.md). Человек: [карта пакета](courses/README.md) | Machine-first маршрут: [index](courses/machine/index.json) → [catalog](courses/machine/catalog.json) → только выбранная адресная спецификация, связанные правила и пример. [Исследование](04-habr-courses.md) — лишь дополнительный исторический контекст для явно непокрытого, а не замена пакету |
+| **Хабр** | [Гайд и границы покрытия](habr/README.md) | Machine-first маршрут: [index](habr/machine/index.json) → для задачи уровня продукта [style profile](habr/machine/style-profile.json) → [catalog](habr/machine/catalog.json) → только выбранная спецификация. Для подключения CSS — [контракт рендера](habr/evidence/runtime-contract.md) |
+| **Карьера** | ИИ: [контракт для модели](career/AGENTS.md). Человек: [карта пакета](career/README.md) | ИИ следует контракту: [машинный индекс](career/machine/index.json) → при необходимости [style profile](career/machine/style-profile.json) → адресный каталог → одна сущность. Человеку: [локальная витрина](career/viewer/index.html) и карта пакета |
+| **Курсы** | ИИ: [контракт для модели](courses/AGENTS.md). Человек: [карта пакета](courses/README.md) | Machine-first маршрут: [index](courses/machine/index.json) → при необходимости [style profile](courses/machine/style-profile.json) → [catalog](courses/machine/catalog.json) → только выбранная адресная спецификация, связанные правила и пример. [Исследование](04-habr-courses.md) — лишь дополнительный исторический контекст для явно непокрытого, а не замена пакету |
 | **Q&A** | **Гайд в планах — предупредить о приблизительности** | [Исследование](02-habr-qna.md): ограничения, «Типы правил», затем разделы под задачу. Приблизительная реализация разрешена |
 
 Не переноси стиль одного сервиса на другой. Курсы и Карьера — разные визуальные системы, несмотря на общий домен. Для Q&A не заменяй исследованный язык более современным стилем другого продукта.
