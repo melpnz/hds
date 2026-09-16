@@ -11,6 +11,7 @@ export function buildStyleProfile() {
   const button = read('machine/components/button.json');
   return {
     schemaVersion: 1,
+    dimensionTokens: { baseUnit: '4px', source: 'machine/dimension-tokens.json', css: 'ui/dimension-tokens.css', exceptions: 'machine/reports/dimension-exceptions.json' },
     product: { id: 'courses', title: 'Хабр Курсы', guideVersion: '0.2', status: 'in-development' },
     scope: { confidence: 'mixed', boundary: 'Публичная гостевая часть Курсов; шесть собранных страниц и адресные спецификации.' },
     typography: {
@@ -31,7 +32,7 @@ export function buildStyleProfile() {
       { id: 'single-content-column', rule: 'Основной контент следует контейнеру 1124px без постоянного сайдбара.', evidence: 'docs/guide/layout.md' },
       { id: 'inter-only', rule: 'Весь интерфейс и примеры используют Inter.', evidence: 'docs/guide/typography.md' }
     ],
-    sources: ['machine/tokens.json', 'docs/guide/typography.md', 'docs/guide/layout.md', 'machine/components/button.json'],
+    sources: ['machine/dimension-tokens.json', 'machine/tokens.json', 'docs/guide/typography.md', 'docs/guide/layout.md', 'machine/components/button.json'],
     unknowns: ['Гайд в разработке; непокрытые состояния и сценарии перечислены в адресных спецификациях.']
   };
 }

@@ -4,9 +4,11 @@
   "private": true,
   "description": "Machine-first HDS guide for Habr Courses",
   "scripts": {
+    "build:dimension-tokens": "node ../tools/tokenize-dimensions.mjs courses --write",
+    "validate:tokens": "node ../tools/tokenize-dimensions.mjs courses --check",
     "build:patterns": "node tools/normalize-patterns.mjs",
     "build:style-profile": "node tools/build-style-profile.mjs",
-    "validate": "node validate.mjs",
+    "validate": "node validate.mjs && npm run validate:tokens",
     "validate:viewer": "node tools/validate-viewer.mjs",
     "serve": "node serve.mjs"
   },

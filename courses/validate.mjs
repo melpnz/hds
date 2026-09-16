@@ -7,6 +7,11 @@ const root = fileURLToPath(new URL('.', import.meta.url));
 const read = path => JSON.parse(readFileSync(resolve(root, path), 'utf8'));
 const requiredItemKeys = ['id', 'title', 'kind', 'category', 'maturity', 'knowledge', 'purpose', 'implementation', 'states', 'examples', 'evidence', 'unknowns'];
 const errors = [];
+const dimensionDocument = read('machine/dimension-tokens.json');
+const dimensionValues = Object.fromEntries(Object.values(dimensionDocument.tokens || {}).flatMap(group =>
+  Object.values(group).map(token => [token.cssVariable, token.$value])
+));
+const resolveDimensions = source => source.replace(/var\((--courses-[^)]+)\)/g, (match, token) => dimensionValues[token] || match);
 const viewerWidths = [320, 480, 768, 1024];
 const presentationLayouts = ['fit-content', 'constrained', 'canvas', 'context'];
 const index = read('machine/index.json');
@@ -256,7 +261,7 @@ for (const entry of catalog) {
         if (!html.includes(fragment)) errors.push(`modal: required markup or behavior is absent (${fragment})`);
       }
     }
-    const overlays = readFileSync(resolve(root, 'ui/components/overlays.css'), 'utf8');
+    const overlays = resolveDimensions(readFileSync(resolve(root, 'ui/components/overlays.css'), 'utf8'));
     if (!overlays.includes('grid-template-rows:auto auto minmax(0,1fr) auto') || !overlays.includes('[data-image=false]{grid-template-rows:auto minmax(0,1fr) auto') || !overlays.includes('overflow-y:auto')) errors.push('modal: fixed shell or scroll body CSS is absent');
     if (!overlays.includes('border-radius:24px 24px 0 0') || !overlays.includes('max-height:700px')) errors.push('modal: mobile bottom-sheet geometry is absent');
   }
@@ -471,7 +476,7 @@ for (const document of migration.preservedDocuments || []) {
   pathExists(document.target, `migration/document/${document.source}`);
 }
 
-const generatedUiFiles = ['ui/page-examples.css', 'ui/assets/images/avatar-default-user.svg', 'ui/assets/images/avatar-default-company.svg', 'ui/assets/images/filter-modal/recommendation-career.png', 'ui/assets/images/filter-modal/recommendation-certificate.png', 'ui/assets/images/filter-modal/recommendation-free.png', 'ui/assets/images/filter-modal/recommendation-mentor.png', 'ui/assets/images/modal/example.png', 'ui/assets/icons/filter-grade-min.svg', 'ui/assets/icons/filter-grade-mid.svg', 'ui/assets/icons/filter-grade-max.svg', 'ui/assets/controls/check.svg', 'ui/assets/controls/dot.svg', 'ui/assets/controls/filter-chip-tooltip.svg', 'ui/assets/controls/filter-chip-tooltip-selected.svg', 'ui/assets/controls/filter-chip-tooltip-disabled.svg', 'ui/assets/controls/filter-chip-dot.svg'];
+const generatedUiFiles = ['ui/dimension-tokens.css', 'ui/page-examples.css', 'ui/assets/images/avatar-default-user.svg', 'ui/assets/images/avatar-default-company.svg', 'ui/assets/images/filter-modal/recommendation-career.png', 'ui/assets/images/filter-modal/recommendation-certificate.png', 'ui/assets/images/filter-modal/recommendation-free.png', 'ui/assets/images/filter-modal/recommendation-mentor.png', 'ui/assets/images/modal/example.png', 'ui/assets/icons/filter-grade-min.svg', 'ui/assets/icons/filter-grade-mid.svg', 'ui/assets/icons/filter-grade-max.svg', 'ui/assets/controls/check.svg', 'ui/assets/controls/dot.svg', 'ui/assets/controls/filter-chip-tooltip.svg', 'ui/assets/controls/filter-chip-tooltip-selected.svg', 'ui/assets/controls/filter-chip-tooltip-disabled.svg', 'ui/assets/controls/filter-chip-dot.svg'];
 for (const path of generatedUiFiles) pathExists(path, 'generated-ui');
 for (const path of generatedUiFiles.filter(path => path.includes('avatar-default') && path.endsWith('.svg'))) {
   if (!existsSync(resolve(root, path))) continue;
