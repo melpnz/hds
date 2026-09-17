@@ -75,13 +75,26 @@ for (const id of memberOwners.keys()) {
 const tokens = readJson("machine/tokens.json");
 if (JSON.stringify(tokens) !== JSON.stringify(buildTokens())) errors.push("machine/tokens.json расходится с CSS-источниками; запустите npm run build:tokens");
 if (Object.keys(tokens.themes.company || {}).length < 10) errors.push("tokens: тема company потеряла семантические цвета");
-for (const id of ["typography", "colors", "buttons", "intro"]) {
-  const spec = readJson(`machine/specs/${id}.json`);
-  if (!spec.visual || JSON.stringify(spec.visual).includes("undefined")) errors.push(`${id}: отсутствует машинное описание visual`);
+const dimensionTokens = readJson("machine/dimension-tokens.json");
+const dimensionTokenNames = new Set(Object.values(dimensionTokens.tokens)
+  .flatMap((category) => Object.values(category).map((token) => token.cssVariable)));
+function validateVisualTokenRefs(value, owner) {
+  if (Array.isArray(value)) {
+    value.forEach((item, index) => validateVisualTokenRefs(item, `${owner}[${index}]`));
+    return;
+  }
+  if (!value || typeof value !== "object") return;
+  if (typeof value.token === "string" && value.token.startsWith("--landings-") && !dimensionTokenNames.has(value.token)) {
+    errors.push(`${owner}: неизвестный размерный токен ${value.token}`);
+  }
+  for (const [key, nested] of Object.entries(value)) validateVisualTokenRefs(nested, `${owner}.${key}`);
 }
 for (const id of specIds) {
   const spec = readJson(`machine/specs/${id}.json`);
-  if (["atom", "element"].includes(spec.kind) && !spec.visual) errors.push(`${id}: atom/element visual contract is missing`);
+  if (!spec.visual || !Object.keys(spec.visual).length || JSON.stringify(spec.visual).includes("undefined")) {
+    errors.push(`${id}: visual contract is missing or invalid`);
+  }
+  validateVisualTokenRefs(spec.visual, `${id}.visual`);
 }
 const styleProfile = readJson("machine/style-profile.json");
 if (JSON.stringify(styleProfile) !== JSON.stringify(buildStyleProfile())) errors.push("machine/style-profile.json расходится с источниками");

@@ -6,6 +6,63 @@
   "maturity": "draft",
   "knowledge": "assumption",
   "purpose": "Первый экран: самостоятельный блок страницы с адаптивной раскладкой.",
+  "visual": {
+    "family": "intro",
+    "layout": {
+      "container": "90rem",
+      "pageGutter": "3.125rem",
+      "sectionSpace": "9.375rem",
+      "breakpoints": [
+        {
+          "query": "max-width: 991px",
+          "values": {
+            "--hds-page-gutter": "2rem",
+            "--hds-section-space": "7.5rem",
+            "--hds-text-body": "1rem",
+            "--hds-text-h4": "1.25rem",
+            "--hds-text-h3": "1.75rem",
+            "--hds-text-h2": "3.625rem",
+            "--hds-text-h1": "4.5rem"
+          }
+        },
+        {
+          "query": "max-width: 767px",
+          "values": {
+            "--hds-page-gutter": "1.25rem",
+            "--hds-section-space": "6.25rem",
+            "--hds-text-h4": "1.25rem",
+            "--hds-text-h3": "1.5rem",
+            "--hds-text-h2": "2.25rem",
+            "--hds-text-h1": "2.875rem"
+          }
+        }
+      ],
+      "columns": {
+        "desktop": "minmax(0, 2fr) minmax(280px, 1fr)",
+        "tablet": "1fr"
+      },
+      "gap": "3.125rem",
+      "minHeight": {
+        "token": "--landings-size-900"
+      }
+    },
+    "typography": {
+      "heading": "5.5rem",
+      "lead": "1.125rem",
+      "family": "Inter, Arial, sans-serif"
+    },
+    "shape": {
+      "mediaRadius": "1.25rem"
+    },
+    "colors": {
+      "background": "#171c1b",
+      "surface": "#0c0e0e",
+      "text": "#ecf5e7",
+      "muted": "rgb(219 233 240 / 62%)",
+      "action": "#008fcc",
+      "focus": "#07d0f9"
+    }
+  },
   "implementation": {
     "css": [
       "ui/hds.css"

@@ -128,9 +128,31 @@ function purposeFor(entity) {
 }
 
 const tokens = buildTokens();
+const tokenRef = (name) => ({ token: name });
+const cardIds = new Set(["card", "cards", "metric-card", "offer-card", "case-card", "project-card"]);
+const formIds = new Set(["contact-form", "subscription-form", "forms", "lead-section"]);
+const navigationIds = new Set(["site-header", "site-footer", "navigation"]);
+const introIds = new Set(["hero", "landing-hero", "statement"]);
+const layoutIds = new Set(["section-heading", "content-grid", "metrics-section", "feature-layout", "case-layout", "phase-stack", "mosaic-grid", "content-layouts"]);
+const contentSectionIds = new Set(["tasks-section", "formats-section", "process-section", "team-section", "partner-levels", "testimonials", "faq", "card-grid", "pricing-section", "landing-content"]);
+
 function visualFor(entity) {
   const base = tokens.base;
   const theme = tokens.themes.company;
+  const responsiveFoundation = {
+    container: base["--hds-container"],
+    pageGutter: base["--hds-page-gutter"],
+    sectionSpace: base["--hds-section-space"],
+    breakpoints: tokens.responsive
+  };
+  const themeColors = {
+    background: theme["--hds-color-bg"],
+    surface: theme["--hds-color-surface"],
+    text: theme["--hds-color-text"],
+    muted: theme["--hds-color-text-muted"],
+    action: theme["--hds-color-action"],
+    focus: theme["--hds-color-focus"]
+  };
   if (entity.id === "typography") return {
     family: { text: base["--hds-font-text"], heading: base["--hds-font-heading"] },
     weights: { medium: base["--hds-weight-medium"], semibold: base["--hds-weight-semibold"] },
@@ -176,7 +198,151 @@ function visualFor(entity) {
     colors: { background: theme["--hds-color-bg"], text: theme["--hds-color-text"], accent: theme["--hds-color-link"] },
     responsive: tokens.responsive
   };
-  return null;
+  if (entity.id === "accordion") return {
+    layout: {
+      gap: "0",
+      paddingBlock: { start: tokenRef("--landings-space-32"), end: tokenRef("--landings-space-24") },
+      contentGap: tokenRef("--landings-space-12")
+    },
+    typography: { summary: base["--hds-text-h4"], body: base["--hds-text-body"] },
+    indicator: { size: tokenRef("--landings-size-32"), stroke: "2px" },
+    colors: { text: theme["--hds-color-text"], muted: theme["--hds-color-text-muted"], accent: theme["--hds-color-link"] },
+    states: { closed: "content-collapsed", open: "content-expanded", focus: theme["--hds-color-focus"] },
+    motion: { duration: "280ms", easing: base["--hds-ease"], reducedMotion: "none" }
+  };
+  if (cardIds.has(entity.id)) {
+    const minimums = {
+      card: "--landings-size-200",
+      "metric-card": "--landings-size-220",
+      "offer-card": "--landings-size-300",
+      "case-card": "--landings-size-360",
+      "project-card": "--landings-size-420"
+    };
+    return {
+      family: "card",
+      layout: {
+        minHeight: minimums[entity.id] ? tokenRef(minimums[entity.id]) : "variant-dependent",
+        padding: base["--hds-space-3"],
+        mobilePadding: base["--hds-space-2"],
+        gap: base["--hds-space-2"]
+      },
+      shape: { radius: base["--hds-radius-card"], border: "none", shadow: "none" },
+      colors: { surface: theme["--hds-color-surface"], text: theme["--hds-color-text"], muted: theme["--hds-color-text-muted"] },
+      interaction: { duration: base["--hds-duration"], easing: base["--hds-ease"], interactiveScale: "1.02" },
+      responsive: { breakpoint: "max-width: 767px", columns: "1" }
+    };
+  }
+  if (formIds.has(entity.id)) return {
+    family: "form",
+    layout: {
+      gap: base["--hds-space-2"],
+      groupGap: base["--hds-space-1"],
+      optionColumns: { desktop: "2", mobile: "1" },
+      actionGap: base["--hds-space-2"]
+    },
+    field: { radius: base["--hds-radius-field"], paddingInline: base["--hds-field-padding-inline"] },
+    surface: entity.id === "subscription-form" ? theme["--hds-color-action"] : theme["--hds-color-surface"],
+    colors: themeColors,
+    responsive: { breakpoint: "max-width: 767px", columns: "1" }
+  };
+  if (navigationIds.has(entity.id)) return {
+    family: "page-navigation",
+    ...(entity.id !== "site-footer" ? { header: {
+      position: "sticky",
+      height: { desktop: tokenRef("--landings-size-72"), mobile: tokenRef("--landings-size-62") },
+      logoHeight: tokenRef("--landings-size-30"),
+      gap: base["--hds-space-2"],
+      backdropBlur: tokenRef("--landings-effect-24")
+    } } : {}),
+    ...(entity.id !== "site-header" ? { footer: {
+      columns: { desktop: "4", tablet: "2", mobile: "1" },
+      columnGap: base["--hds-space-4"],
+      sectionGap: base["--hds-space-5"]
+    } } : {}),
+    colors: { surface: theme["--hds-color-surface"], text: theme["--hds-color-text"], muted: theme["--hds-color-text-muted"] },
+    responsive: tokens.responsive
+  };
+  if (introIds.has(entity.id)) return {
+    family: "intro",
+    layout: {
+      ...responsiveFoundation,
+      columns: { desktop: "minmax(0, 2fr) minmax(280px, 1fr)", tablet: "1fr" },
+      gap: base["--hds-space-4"],
+      ...(entity.id === "hero" ? { minHeight: tokenRef("--landings-size-900") } : {}),
+      ...(entity.id === "landing-hero" ? { mediaMinHeight: tokenRef("--landings-size-280") } : {})
+    },
+    typography: { heading: base["--hds-text-h1"], lead: base["--hds-text-body"], family: base["--hds-font-heading"] },
+    shape: { mediaRadius: base["--hds-radius-card"] },
+    colors: themeColors
+  };
+  if (layoutIds.has(entity.id)) return {
+    family: "content-layout",
+    layout: {
+      ...responsiveFoundation,
+      columns: {
+        "section-heading": { desktop: "1.35fr .65fr", mobile: "1fr" },
+        "content-grid": { desktop: [2, 3, 4, 6], tablet: [1, 2], mobile: [1] },
+        "metrics-section": { desktop: [2, 3], mobile: [1] },
+        "feature-layout": { desktop: ".72fr 1.28fr", mobile: "1fr" },
+        "case-layout": { desktop: ".75fr 1.25fr", mobile: "1fr" },
+        "phase-stack": { desktop: "1", mobile: "1" },
+        "mosaic-grid": { desktop: "source-dependent", mobile: "1" },
+        "content-layouts": { desktop: "variant-dependent", mobile: "1" }
+      }[entity.id],
+      gap: base["--hds-space-2"],
+      majorGap: base["--hds-space-4"]
+    },
+    typography: { heading: base["--hds-text-h2"], body: base["--hds-text-body"] },
+    colors: themeColors
+  };
+  if (entity.id === "contact-section") return {
+    family: "contact-section",
+    layout: { ...responsiveFoundation, columns: { desktop: "1fr 2fr", mobile: "1fr" }, gap: base["--hds-space-5"] },
+    shape: { formRadius: base["--hds-radius-card"], fieldRadius: base["--hds-radius-field"] },
+    colors: themeColors
+  };
+  if (contentSectionIds.has(entity.id)) return {
+    family: "content-section",
+    layout: {
+      ...responsiveFoundation,
+      columns: ["faq", "testimonials"].includes(entity.id)
+        ? { desktop: "1", mobile: "1" }
+        : entity.id === "landing-content"
+          ? { desktop: "variant-dependent", mobile: "1" }
+          : { desktop: "3", tablet: "2", mobile: "1" },
+      gap: base["--hds-space-2"],
+      headingGap: base["--hds-space-4"]
+    },
+    card: { radius: base["--hds-radius-card"], padding: base["--hds-space-3"], surface: theme["--hds-color-surface"] },
+    typography: { heading: base["--hds-text-h2"], body: base["--hds-text-body"] },
+    colors: themeColors
+  };
+  if (entity.kind === "page") return {
+    family: "page",
+    theme: "company",
+    layout: responsiveFoundation,
+    typography: {
+      family: base["--hds-font-text"],
+      headingFamily: base["--hds-font-heading"],
+      heading: base["--hds-text-h1"],
+      body: base["--hds-text-body"]
+    },
+    colors: themeColors,
+    composition: { source: "machine/page-composition.json", fidelity: "source-driven-draft" }
+  };
+  if (entity.kind === "block") return {
+    family: "section",
+    layout: responsiveFoundation,
+    typography: { heading: base["--hds-text-h2"], body: base["--hds-text-body"] },
+    colors: themeColors
+  };
+  if (entity.kind === "organism") return {
+    family: "organism",
+    layout: { gap: base["--hds-space-2"], padding: base["--hds-space-3"] },
+    shape: { radius: base["--hds-radius-card"] },
+    colors: themeColors
+  };
+  return { typography: { family: base["--hds-font-text"] }, colors: themeColors };
 }
 
 // Navigation markers cover the meaningful changes made in the current v0.2 cycle.
@@ -224,11 +390,12 @@ fs.writeFileSync(path.join(root, "viewer", "data.js"), `window.HDS_CATALOG = ${J
 
 for (const entity of specEntities) {
   const example = entity.example.replace(/^\.\.\//, "");
+  const visual = visualFor(entity);
   const spec = {
     id: entity.id, title: entity.title, kind: entity.kind, category: entity.category, maturity: entity.maturity,
     knowledge: entity.kind === "atom" || entity.kind === "element" ? "snapshot" : "assumption",
     purpose: purposeFor(entity),
-    ...(visualFor(entity) ? { visual: visualFor(entity) } : {}),
+    visual,
     ...(collectionMembers[entity.id] ? { members: collectionMembers[entity.id] } : {}),
     implementation: { css: ["ui/hds.css"], markup: example },
     states: entity.kind === "element" ? ["default", "hover", "focus", "filled", "disabled", "error-when-applicable"] : ["responsive"],

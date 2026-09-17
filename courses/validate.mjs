@@ -2,6 +2,7 @@ import { existsSync, readFileSync, readdirSync, statSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { buildStyleProfile } from './tools/build-style-profile.mjs';
+import { visualContractFor } from './tools/build-visual-contracts.mjs';
 
 const root = fileURLToPath(new URL('.', import.meta.url));
 const read = path => JSON.parse(readFileSync(resolve(root, path), 'utf8'));
@@ -126,7 +127,11 @@ for (const entry of catalog) {
       if (area.stub && (area.stub.length <= 80 || !area.stub.endsWith('components/collections/carousel.md'))) errors.push(`${entry.id}: truncated or incomplete stub in ${area.id}`);
     }
   }
-  if (entry.kind === 'foundation' && !item.visual) errors.push(`${entry.id}: visual contract is missing`);
+  if (!item.visual || !Object.keys(item.visual).length) errors.push(`${entry.id}: visual contract is missing`);
+  if (!['foundation'].includes(entry.kind) && entry.id !== 'button') {
+    const expectedVisual = visualContractFor(item);
+    if (JSON.stringify(item.visual) !== JSON.stringify(expectedVisual)) errors.push(`${entry.id}: generated visual contract is stale`);
+  }
   if (entry.id === 'button') {
     if (item.examples.length !== 1 || item.examples[0].id !== 'playground') errors.push('button: expected one optimized playground example');
     if (!item.states.ui.includes('loading')) errors.push('button: Figma loading state is absent');
