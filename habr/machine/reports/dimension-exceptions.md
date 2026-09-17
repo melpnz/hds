@@ -152,7 +152,7 @@
 - `ui/components/article-card.css:299` — `token:font-size`
 - `ui/components/block.css:67` — `token:font-size`
 - `ui/components/chip.css:62` — `token:font-size`
-- `ui/components/dialog.css:270` — `token:font-size`
+- `ui/components/dialog.css:272` — `token:font-size`
 - `ui/components/dropdown.css:78` — `token:font-size`
 - `ui/components/dropdown.css:109` — `token:font-size`
 - `ui/components/dropdown.css:135` — `token:font-size`
@@ -183,13 +183,13 @@
 Всего: 11.
 
 - `ui/components/button-follow.css:46` — `token:font-size`
-- `ui/components/dialog.css:261` — `token:font-size`
+- `ui/components/dialog.css:263` — `token:font-size`
 - `ui/components/hint.css:179` — `token:font-size`
 - `ui/components/hint.css:180` — `token:font-size`
 - `ui/components/hint.css:244` — `token:font-size`
 - `ui/components/notice.css:34` — `token:font-size`
-- `ui/components/pagination.css:37` — `token:font-size`
-- `ui/components/pagination.css:88` — `token:font-size`
+- `ui/components/pagination.css:39` — `token:font-size`
+- `ui/components/pagination.css:91` — `token:font-size`
 - `ui/components/primitives.css:50` — `token:font-size`
 - `ui/components/primitives.css:121` — `token:font-size`
 - `ui/components/primitives.css:39` — `token:space`
@@ -214,8 +214,8 @@
 - `ui/layout.css:130` — `token:size`
 - `ui/layout.css:137` — `token:size`
 - `ui/components/article-card.css:237` — `token:space`
-- `ui/components/dialog.css:260` — `token:space`
-- `ui/components/dialog.css:265` — `token:space`
+- `ui/components/dialog.css:262` — `token:space`
+- `ui/components/dialog.css:267` — `token:space`
 
 ## `19.9px` · tokenized-off-grid-value
 

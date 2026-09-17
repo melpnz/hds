@@ -26,6 +26,8 @@
 .tm-pagination__page {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
+  /* Production relies on content-box: 24 + 4 + 4 = --habr-size-32. */
+  box-sizing: content-box;
   color: var(--text-main);
   border-radius: var(--habr-radius-4);
   flex: none;
@@ -66,6 +68,7 @@
    что в проде, и он больше не зависит от порядка @import. Побочно совпало
    с Figma: elements/pagination/arrow/icon = #548eaa. */
 .tm-pagination__arrow {
+  box-sizing: content-box;
   fill: currentColor;
   padding: var(--habr-space-8) 0 var(--habr-space-8) var(--habr-space-8);
 }

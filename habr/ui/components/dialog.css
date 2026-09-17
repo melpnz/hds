@@ -103,7 +103,9 @@
   position: relative;
 }
 @media (min-width: 768px) and (max-width: 1023px) {
-  .bottom-drawer-inner .sheet {
+  /* The drag area stays visually attached to the overlay; the content surface
+     below the handle is what casts the elevation shadow. */
+  .bottom-drawer-inner .header {
     box-shadow: 0 var(--habr-effect-2) var(--habr-effect-12) 0 hsl(from var(--other-overlay-shadows) h s l / 20%);
   }
 }

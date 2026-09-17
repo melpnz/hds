@@ -15,6 +15,48 @@ page.on('response', response => {
 try {
   await page.goto(`${baseUrl}/viewer/`, { waitUntil: 'networkidle' });
   const entries = await page.evaluate(() => fetch('../machine/catalog.json').then(response => response.json()));
+  await page.waitForFunction(id => document.querySelector('#raw-json')?.textContent.includes(`"id": "${id}"`), entries[0].id);
+  const themeControls = await page.locator('[data-theme-value]').evaluateAll(buttons => buttons.map(button => ({
+    theme: button.dataset.themeValue,
+    pressed: button.getAttribute('aria-pressed')
+  })));
+  if (JSON.stringify(themeControls) !== JSON.stringify([
+    { theme: 'light', pressed: 'true' },
+    { theme: 'dark', pressed: 'false' }
+  ])) failures.push('theme controls do not start in light mode');
+  await page.waitForFunction(() => {
+    const frame = document.querySelector('iframe:not([hidden])');
+    const themeLink = frame?.contentDocument
+      ? [...frame.contentDocument.querySelectorAll('link[rel="stylesheet"]')].find(link => /\/themes\/(?:light|dark)-v2\.css/.test(link.href))
+      : null;
+    return frame?.contentDocument?.documentElement?.dataset.theme === 'light'
+      && themeLink?.href.includes('/themes/light-v2.css');
+  });
+  await page.locator('[data-theme-value="dark"]').click();
+  await page.waitForFunction(() => {
+    const themeLink = document.querySelector('#habr-theme-stylesheet');
+    const frame = document.querySelector('iframe:not([hidden])');
+    const frameThemeLink = frame?.contentDocument
+      ? [...frame.contentDocument.querySelectorAll('link[rel="stylesheet"]')].find(link => /\/themes\/(?:light|dark)-v2\.css/.test(link.href))
+      : null;
+    return document.documentElement.dataset.theme === 'dark'
+      && themeLink?.href.includes('/themes/dark-v2.css')
+      && frame?.contentDocument?.documentElement?.dataset.theme === 'dark'
+      && frameThemeLink?.href.includes('/themes/dark-v2.css');
+  });
+  await page.reload({ waitUntil: 'networkidle' });
+  await page.waitForFunction(() => document.documentElement.dataset.theme === 'dark'
+    && document.querySelector('[data-theme-value="dark"]')?.getAttribute('aria-pressed') === 'true');
+  await page.evaluate(id => { location.hash = id; }, entries[1].id);
+  await page.waitForFunction(id => document.querySelector('#raw-json')?.textContent.includes(`"id": "${id}"`), entries[1].id);
+  await page.waitForFunction(() => {
+    const frame = document.querySelector('iframe:not([hidden])');
+    const themeLink = frame?.contentDocument
+      ? [...frame.contentDocument.querySelectorAll('link[rel="stylesheet"]')].find(link => /\/themes\/(?:light|dark)-v2\.css/.test(link.href))
+      : null;
+    return frame?.contentDocument?.documentElement?.dataset.theme === 'dark'
+      && themeLink?.href.includes('/themes/dark-v2.css');
+  });
   const shellRight = await page.locator('.shell').evaluate(element => element.getBoundingClientRect().right);
   const contentRight = await page.locator('.content').evaluate(element => element.getBoundingClientRect().right);
   if (Math.abs(shellRight - contentRight) > 1) failures.push('layout: content does not fill available width');
@@ -82,6 +124,183 @@ try {
     if (item.previewNotes?.length && !(await page.locator('#preview-notes').isVisible())) failures.push(`${entry.id}: preview notes are hidden`);
   }
 
+  await page.evaluate(() => { location.hash = 'icons'; });
+  await page.waitForFunction(() => document.querySelector('#raw-json')?.textContent.includes('"id": "icons"'));
+  for (const exampleId of ['production', 'editor']) {
+    const frame = page.locator(`[data-stacked-example="${exampleId}"] iframe`);
+    await frame.waitFor({ state: 'visible' });
+    try {
+      await page.waitForFunction(id => {
+        const frameDocument = document.querySelector(`[data-stacked-example="${CSS.escape(id)}"] iframe`)?.contentDocument;
+        const themeLink = frameDocument
+          ? [...frameDocument.querySelectorAll('link[rel="stylesheet"]')]
+            .find(link => /\/themes\/(?:light|dark)-v2\.css/.test(link.href))
+          : null;
+        const expectedTheme = document.documentElement.dataset.theme;
+        return frameDocument?.documentElement?.dataset.theme === expectedTheme
+          && themeLink?.href.includes(`/themes/${expectedTheme}-v2.css`)
+          && frameDocument.querySelector('.asset-card__icon_tokenized')
+          && !frameDocument.querySelector('.asset-card img[src*="/icons/"]');
+      }, exampleId, { timeout: 5000 });
+    } catch {
+      failures.push(`icons/${exampleId}: monochrome SVG previews were not tokenized`);
+      continue;
+    }
+    try {
+      await page.waitForFunction(id => {
+        const frameDocument = document.querySelector(`[data-stacked-example="${CSS.escape(id)}"] iframe`)?.contentDocument;
+        if (!frameDocument) return false;
+        const probe = frameDocument.createElement('span');
+        probe.style.cssText = 'transition:none;color:var(--icon-primary)';
+        frameDocument.body.append(probe);
+        const expected = getComputedStyle(probe).color;
+        probe.remove();
+        return [...frameDocument.querySelectorAll('.asset-card__icon_tokenized')].every(svg => {
+          if (getComputedStyle(svg).color !== expected) return false;
+          const fillsMatch = [...svg.querySelectorAll('[fill="currentColor"]')]
+            .every(node => getComputedStyle(node).fill === expected);
+          const strokesMatch = [...svg.querySelectorAll('[stroke="currentColor"]')]
+            .every(node => getComputedStyle(node).stroke === expected);
+          return fillsMatch && strokesMatch;
+        });
+      }, exampleId, { timeout: 5000 });
+    } catch {
+      failures.push(`icons/${exampleId}: token paint transition did not settle`);
+    }
+
+    const paintFailures = await frame.evaluate(element => {
+      const document = element.contentDocument;
+      const probe = document.createElement('span');
+      probe.style.color = 'var(--icon-primary)';
+      probe.style.transition = 'none';
+      document.body.append(probe);
+      const expected = getComputedStyle(probe).color;
+      probe.remove();
+
+      return [...document.querySelectorAll('.asset-card__icon_tokenized')].flatMap(svg => {
+        const mismatches = [];
+        if (getComputedStyle(svg).color !== expected
+          || (svg.getAttribute('fill') === 'currentColor' && getComputedStyle(svg).fill !== expected)) {
+          mismatches.push(svg.closest('.asset-card')?.querySelector('figcaption')?.textContent || 'unknown icon');
+        }
+        svg.querySelectorAll('[fill="currentColor"]').forEach(node => {
+          if (getComputedStyle(node).fill !== expected) {
+            mismatches.push(`${svg.closest('.asset-card')?.querySelector('figcaption')?.textContent || 'unknown icon'} fill`);
+          }
+        });
+        svg.querySelectorAll('[stroke="currentColor"]').forEach(node => {
+          if (getComputedStyle(node).stroke !== expected) {
+            mismatches.push(`${svg.closest('.asset-card')?.querySelector('figcaption')?.textContent || 'unknown icon'} stroke`);
+          }
+        });
+        return mismatches;
+      });
+    });
+    if (paintFailures.length) failures.push(...paintFailures.map(name => `icons/${exampleId}: token paint mismatch in ${name}`));
+  }
+
+  await page.evaluate(() => { location.hash = 'field'; });
+  await page.waitForFunction(() => document.querySelector('#raw-json')?.textContent.includes('"id": "field"'));
+  const fieldFrame = page.locator('iframe[src*="components/field/input-inactive.html"]').first();
+  await fieldFrame.waitFor({ state: 'visible' });
+  for (const theme of ['dark', 'light']) {
+    await page.locator(`[data-theme-value="${theme}"]`).click();
+    await page.waitForFunction(expectedTheme => {
+      const frame = document.querySelector('iframe[src*="components/field/input-inactive.html"]');
+      return document.documentElement.dataset.theme === expectedTheme
+        && frame?.contentDocument?.documentElement?.dataset.theme === expectedTheme;
+    }, theme);
+    await page.waitForTimeout(250);
+    const disabledColors = await fieldFrame.evaluate(element => {
+      const document = element.contentDocument;
+      const input = document.querySelector('.tm-input-text-decorated__input:disabled');
+      const probe = document.createElement('span');
+      probe.style.cssText = 'transition:none;background-color:var(--background-secondary);color:var(--other-disabled-elements)';
+      document.body.append(probe);
+      const expected = getComputedStyle(probe);
+      const actual = getComputedStyle(input);
+      const result = {
+        background: actual.backgroundColor,
+        expectedBackground: expected.backgroundColor,
+        color: actual.color,
+        expectedColor: expected.color
+      };
+      probe.remove();
+      return result;
+    });
+    if (disabledColors.background !== disabledColors.expectedBackground) {
+      failures.push(`field: disabled background does not use --background-secondary in ${theme} theme`);
+    }
+    if (disabledColors.color !== disabledColors.expectedColor) {
+      failures.push(`field: disabled text does not use --other-disabled-elements in ${theme} theme`);
+    }
+  }
+
+  await page.evaluate(() => { location.hash = 'pagination'; });
+  await page.waitForFunction(() => document.querySelector('#raw-json')?.textContent.includes('"id": "pagination"'));
+  const paginationFrames = page.locator('iframe[src*="components/pagination/"]');
+  if (await paginationFrames.count() !== 2) failures.push('pagination: both responsive examples are not rendered');
+  for (let index = 0; index < await paginationFrames.count(); index += 1) {
+    const frame = paginationFrames.nth(index);
+    await frame.waitFor({ state: 'visible' });
+    await page.waitForFunction(frameIndex => {
+      const element = document.querySelectorAll('iframe[src*="components/pagination/"]')[frameIndex];
+      return element?.contentDocument?.querySelector('.tm-pagination__page_current');
+    }, index);
+    const geometry = await frame.evaluate(element => {
+      const document = element.contentDocument;
+      const current = document.querySelector('.tm-pagination__page_current');
+      const arrow = document.querySelector('.tm-pagination__arrow');
+      const currentRect = current.getBoundingClientRect();
+      const arrowRect = arrow.getBoundingClientRect();
+      return {
+        current: [currentRect.width, currentRect.height],
+        currentBoxSizing: getComputedStyle(current).boxSizing,
+        arrow: [arrowRect.width, arrowRect.height],
+        arrowBoxSizing: getComputedStyle(arrow).boxSizing
+      };
+    });
+    if (geometry.current.some(value => Math.abs(value - 32) > 0.5)
+      || geometry.currentBoxSizing !== 'content-box') {
+      failures.push(`pagination: current page is not a 32px content-box square in example ${index + 1}`);
+    }
+    if (geometry.arrowBoxSizing !== 'content-box') {
+      failures.push(`pagination: arrow lost its content-box geometry in example ${index + 1}`);
+    }
+  }
+
+  await page.evaluate(() => { location.hash = 'dialog'; });
+  await page.waitForFunction(() => document.querySelector('#raw-json')?.textContent.includes('"id": "dialog"'));
+  const drawerFrame = page.locator('[data-stacked-example="telefon-niznaa-storka-bottom-drawer-inner-s-ruck"] iframe');
+  await drawerFrame.waitFor({ state: 'visible' });
+  await drawerFrame.evaluate(element => { element.style.setProperty('width', '900px', 'important'); });
+  await page.waitForFunction(() => {
+    const frame = document.querySelector('[data-stacked-example="telefon-niznaa-storka-bottom-drawer-inner-s-ruck"] iframe');
+    const header = frame?.contentDocument?.querySelector('.bottom-drawer-inner .header');
+    return frame?.contentWindow?.innerWidth === 900
+      && header
+      && getComputedStyle(header).boxShadow !== 'none';
+  });
+  const drawerShadow = await drawerFrame.evaluate(element => {
+    const document = element.contentDocument;
+    const sheet = document.querySelector('.bottom-drawer-inner .sheet');
+    const header = document.querySelector('.bottom-drawer-inner .header');
+    const dragArea = document.querySelector('.bottom-drawer-inner .drag-area');
+    return {
+      sheet: getComputedStyle(sheet).boxShadow,
+      header: getComputedStyle(header).boxShadow,
+      headerTop: header.getBoundingClientRect().top,
+      dragAreaTop: dragArea.getBoundingClientRect().top
+    };
+  });
+  if (drawerShadow.sheet !== 'none' || drawerShadow.header === 'none'
+    || drawerShadow.headerTop <= drawerShadow.dragAreaTop) {
+    failures.push('dialog: bottom-drawer shadow must start at the content surface below the drag handle');
+  }
+
+  await page.evaluate(id => { location.hash = id; }, entries[entries.length - 1].id);
+  await page.waitForFunction(id => document.querySelector('#raw-json')?.textContent.includes(`"id": "${id}"`), entries[entries.length - 1].id);
+
   await page.locator('#guide-search').fill('loading');
   if (await page.locator('[data-item]').count() === 0) failures.push('search returned no results');
   const assetFailures = await page.evaluate(async () => {
@@ -120,7 +339,7 @@ try {
     console.error(failures.join('\n'));
     process.exitCode = 1;
   } else {
-    console.log(`OK: ${entries.length} viewer pages; intrinsic, viewport, notes, search and full-width shell verified`);
+    console.log(`OK: ${entries.length} viewer pages; global light/dark theme, tokenized icon paint, disabled field themes, pagination geometry, drawer shadow, persistence, intrinsic, viewport, notes, search and full-width shell verified`);
   }
 } finally {
   await browser.close();

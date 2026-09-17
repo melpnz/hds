@@ -55,7 +55,9 @@
   box-shadow: none;
 }
 .tm-input-text-decorated__input:disabled {
-  background-color: var(--header-text);
+  /* System correction: production uses --header-text, which stays white in
+     both themes. --background-secondary is the semantic disabled-field fill. */
+  background-color: var(--background-secondary);
   border-color: var(--icon-secondary);
   color: var(--other-disabled-elements);
   cursor: not-allowed;
@@ -65,7 +67,7 @@
 .tm-input-text-decorated__input_invalid,
 .tm-input-text-decorated__input_invalid:focus {
   box-shadow: none;
-  border-color: #e47979;
+  border-color: var(--accent-danger);
 }
 
 /* Хинт/ошибка под полем: НЕТ собственного класса в `.tm-input-text-decorated`

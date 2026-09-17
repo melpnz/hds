@@ -1,9 +1,9 @@
-html { background: #fff; }
+html { background: var(--background-primary); }
 *, *::before, *::after { box-sizing: border-box; }
-body.migration-example { margin: 0; color: var(--text-color, #333); background: #fff; }
+body.migration-example { margin: 0; color: var(--text-color, var(--text-main)); background: var(--background-primary); }
 body.migration-example--intrinsic { padding: 24px; overflow: hidden; }
 body.migration-example--page { min-width: 0; padding: 0; overflow-x: hidden; }
-body.migration-example--page > .doc-frame { min-width: 0; border: 0; background: #fff; }
+body.migration-example--page > .doc-frame { min-width: 0; border: 0; background: var(--background-primary); }
 body.pattern-admin-list .doc-frame > div > div:first-child { width: 100%; }
 body.pattern-shell .tm-header__container,
 body.pattern-shell .tm-page-width { width: 100% !important; max-width: 100% !important; }
@@ -16,11 +16,13 @@ body.pattern-shell > div:not(.tm-header) > .tm-page-width { width: 100% !importa
 .example-page-shell > .tm-page-width { margin: 0 auto; }
 .example-page-shell .tm-page__main { min-width: 0; }
 .example-page-shell .tm-page__sidebar { min-height: 320px; }
-body.migration-example--intrinsic > .doc-specimen { margin: 0; padding: 0; border: 0; background: #fff; }
+body.migration-example--intrinsic > .doc-specimen { margin: 0; padding: 0; border: 0; background: var(--background-primary); }
 .asset-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(116px, 1fr)); gap: 12px; }
-.asset-card { min-width: 0; margin: 0; padding: 12px; border: 1px solid #d5ddE5; border-radius: 8px; background: #fff; }
-.asset-card img { display: block; width: 32px; height: 32px; margin-bottom: 9px; object-fit: contain; }
-.asset-card figcaption { overflow-wrap: anywhere; color: #536778; font: 12px/1.35 Arial, sans-serif; }
+.asset-card { min-width: 0; margin: 0; padding: 12px; border: 1px solid var(--icon-secondary); border-radius: 8px; background: var(--background-primary); }
+.asset-card img,
+.asset-card__icon { display: block; width: 32px; height: 32px; margin-bottom: 9px; object-fit: contain; }
+.asset-card__icon_tokenized { color: var(--icon-primary); }
+.asset-card figcaption { overflow-wrap: anywhere; color: var(--text-secondary); font: 12px/1.35 Arial, sans-serif; }
 @media (max-width: 480px) {
   body.migration-example--intrinsic { padding: 16px; }
   .asset-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }

@@ -5,6 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Machine-first гайд дизайн-системы Хабра">
   <title>Хабр · UI guide</title>
+  <script>
+    (() => {
+      let theme = 'light';
+      try {
+        const savedTheme = localStorage.getItem('habr-viewer-theme');
+        if (savedTheme === 'dark' || savedTheme === 'light') theme = savedTheme;
+      } catch {}
+      document.documentElement.dataset.theme = theme;
+      const stylesheet = document.createElement('link');
+      stylesheet.id = 'habr-theme-stylesheet';
+      stylesheet.rel = 'stylesheet';
+      stylesheet.href = `../ui/themes/${theme}-v2.css`;
+      document.head.append(stylesheet);
+    })();
+  </script>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -16,6 +31,11 @@
           <span><strong id="product-title">Хабр</strong><small>machine-first preview</small></span>
         </a>
         <button class="catalog-toggle" type="button" aria-expanded="false" aria-controls="navigation">Каталог</button>
+      </div>
+      <div class="theme-switch theme-switch_sidebar" role="group" aria-label="Тема витрины">
+        <span>Тема</span>
+        <button type="button" data-theme-value="light" aria-pressed="true">Светлая</button>
+        <button type="button" data-theme-value="dark" aria-pressed="false">Тёмная</button>
       </div>
       <div class="search">
         <label class="search__label" for="guide-search">Поиск по гайду</label>
@@ -40,7 +60,9 @@
           <p class="eyebrow">Живой пример</p>
           <h1 id="item-title">Загрузка…</h1>
         </div>
-        <div class="badges" id="item-badges"></div>
+        <div class="content__actions">
+          <div class="badges" id="item-badges"></div>
+        </div>
       </header>
 
       <section class="preview-card" aria-labelledby="preview-title">

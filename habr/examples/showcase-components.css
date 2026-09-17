@@ -7,12 +7,12 @@
    ========================================================================= */
 
 :root {
-  --doc-bg: #ffffff;
-  --doc-bg-muted: #f7f7f8;
-  --doc-border: #e2e2e6;
-  --doc-text: #1a1a1e;
-  --doc-text-muted: #6b6b74;
-  --doc-accent: #3355ee;
+  --doc-bg: var(--background-primary);
+  --doc-bg-muted: var(--background-secondary);
+  --doc-border: hsl(from var(--icon-primary) h s l / 40%);
+  --doc-text: var(--text-main);
+  --doc-text-muted: var(--text-secondary);
+  --doc-accent: var(--accent-primary);
   --doc-mono: ui-monospace, "SFMono-Regular", Consolas, monospace;
   --doc-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
@@ -141,30 +141,40 @@ html, body,
 .doc-grid-label b { color: var(--doc-text); font-size: 13px; }
 .doc-grid-track {
   position: relative; height: 64px; background: repeating-linear-gradient(
-    90deg, #eef0f4 0, #eef0f4 1px, transparent 1px, transparent 8px);
+    90deg,
+    hsl(from var(--icon-primary) h s l / 40%) 0,
+    hsl(from var(--icon-primary) h s l / 40%) 1px,
+    transparent 1px,
+    transparent 8px);
   border-radius: 4px; overflow: hidden;
 }
 .doc-grid-viewport {
   position: absolute; top: 0; bottom: 0; left: 0;
-  background: #fafbfc; border-right: 2px dashed #c7cbd4;
+  background: var(--background-secondary);
+  border-right: 2px dashed hsl(from var(--icon-primary) h s l / 60%);
 }
 .doc-grid-container {
   position: absolute; top: 8px; bottom: 8px;
-  background: #e7ecf5; border: 1px solid #b9c4dc;
+  background: var(--background-blue);
+  border: 1px solid hsl(from var(--accent-primary) h s l / 40%);
 }
 .doc-grid-main {
   position: absolute; top: 18px; bottom: 18px;
-  background: #cfe0f7; border: 1px solid #8fb4e6;
+  background: var(--comments-new);
+  border: 1px solid var(--accent-primary);
 }
 .doc-grid-sidebar {
   position: absolute; top: 18px; bottom: 18px;
-  background: #ffe4c7; border: 1px solid #e8b787;
+  background: var(--background-orange);
+  border: 1px solid var(--label-sorbus);
 }
 .doc-grid-tag {
   position: absolute; top: 50%; transform: translateY(-50%);
-  font-family: var(--doc-mono); font-size: 10px; color: #445; white-space: nowrap;
+  font-family: var(--doc-mono); font-size: 10px; color: var(--doc-text); white-space: nowrap;
   left: 4px;
 }
+.doc-grid-tag--gutter { color: var(--text-secondary); }
+.doc-grid-tag--sidebar { color: var(--label-sorbus); }
 
 /* --- typography scale ----------------------------------------------------*/
 .doc-type-row {
@@ -178,7 +188,7 @@ html, body,
 }
 .doc-type-meta b { display: block; color: var(--doc-text); font-family: var(--doc-sans); font-size: 12px; margin-bottom: 2px; }
 .doc-type-sample { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.doc-type-fix { font-family: var(--doc-mono) !important; font-size: 12px !important; color: #a24b00; }
+.doc-type-fix { font-family: var(--doc-mono) !important; font-size: 12px !important; color: var(--label-sorbus); }
 
 /* --- color swatches ------------------------------------------------------*/
 .doc-color-group { margin-bottom: 24px; }

@@ -18,12 +18,15 @@ const previewNotes = document.querySelector('#preview-notes');
 const guide = document.querySelector('#guide');
 const rawJson = document.querySelector('#raw-json');
 const specSource = document.querySelector('#spec-source');
+const themeStylesheet = document.querySelector('#habr-theme-stylesheet');
+const themeButtons = [...document.querySelectorAll('[data-theme-value]')];
 
 let catalog = [];
 let searchDocuments = new Map();
 let currentItem;
 let currentExample;
 let previewResizeObservers = [];
+let currentTheme = document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light';
 const viewportWidths = [320, 480, 768, 1024];
 
 const escapeHtml = value => String(value ?? '')
@@ -253,7 +256,38 @@ function watchIntrinsicPreview(frame = preview) {
   });
 }
 
+function applyThemeToFrame(frame) {
+  const frameDocument = frame.contentDocument;
+  if (!frameDocument) return;
+  frameDocument.documentElement.dataset.theme = currentTheme;
+  frameDocument.documentElement.style.colorScheme = currentTheme;
+  const themeLink = [...frameDocument.querySelectorAll('link[rel="stylesheet"]')]
+    .find(link => /\/themes\/(?:light|dark)-v2\.css(?:$|[?#])/.test(link.href));
+  if (!themeLink) return;
+  const nextHref = themeLink.href.replace(/\/themes\/(?:light|dark)-v2\.css/, `/themes/${currentTheme}-v2.css`);
+  if (themeLink.href === nextHref) return;
+  themeLink.addEventListener('load', () => {
+    if (frame.classList.contains('preview-frame') && frame.scrolling === 'no') fitPreviewHeight(frame);
+  }, { once: true });
+  themeLink.href = nextHref;
+}
+
+function setTheme(theme, { persist = true } = {}) {
+  currentTheme = theme === 'dark' ? 'dark' : 'light';
+  document.documentElement.dataset.theme = currentTheme;
+  document.documentElement.style.colorScheme = currentTheme;
+  if (themeStylesheet) themeStylesheet.href = `../ui/themes/${currentTheme}-v2.css`;
+  themeButtons.forEach(button => {
+    button.setAttribute('aria-pressed', String(button.dataset.themeValue === currentTheme));
+  });
+  document.querySelectorAll('iframe').forEach(applyThemeToFrame);
+  if (persist) {
+    try { localStorage.setItem('habr-viewer-theme', currentTheme); } catch {}
+  }
+}
+
 preview.addEventListener('load', () => {
+  applyThemeToFrame(preview);
   if (currentExample?.preview?.mode === 'intrinsic') watchIntrinsicPreview();
 });
 
@@ -294,7 +328,10 @@ function renderIntrinsicExampleStack(item) {
     </section>`).join('');
   item.examples.forEach(example => {
     const frame = exampleStack.querySelector(`[data-stacked-example="${CSS.escape(example.id)}"] iframe`);
-    frame.addEventListener('load', () => watchIntrinsicPreview(frame));
+    frame.addEventListener('load', () => {
+      applyThemeToFrame(frame);
+      watchIntrinsicPreview(frame);
+    });
     frame.src = `../${example.file}`;
   });
 }
@@ -467,6 +504,11 @@ function setCatalogOpen(open) {
 }
 catalogToggle.addEventListener('click', () => setCatalogOpen(catalogToggle.getAttribute('aria-expanded') !== 'true'));
 navigation.addEventListener('click', event => { if (event.target.closest('.nav-link') && matchMedia('(max-width: 800px)').matches) setCatalogOpen(false); });
+
+themeButtons.forEach(button => {
+  button.addEventListener('click', () => setTheme(button.dataset.themeValue));
+});
+setTheme(currentTheme, { persist: false });
 
 searchInput.addEventListener('input', () => renderNavigation(searchInput.value));
 searchInput.addEventListener('keydown', event => {

@@ -49,8 +49,8 @@ Textarea — та же обёртка, `<textarea class="tm-textarea-reconstruct
 |---|---|---|
 | inactive | production | рамка `--icon-secondary`, фон `--background-primary` |
 | focus | production | рамка `--accent-primary` |
-| disabled | production | фон `--header-text`, текст `--other-disabled-elements`, `cursor:not-allowed` |
-| invalid | production | рамка `#e47979` (буквальный hex источника, не токен — не переименовывать) |
+| disabled | production с системной нормализацией | фон `--background-secondary`, текст `--other-disabled-elements`, `cursor:not-allowed`; исходный Input использовал `--header-text`, остающийся белым в обеих темах |
+| invalid | production с системной нормализацией | рамка `--accent-danger`; исходный Input использовал буквальный `#e47979`, а Textarea является Figma-реконструкцией |
 | hover | **Figma-only, GAP** | Figma показывает отдельное hover-состояние поля; в production CSS `.tm-input-text-decorated__input` `:hover`-селектора нет — не реализовано, не выдумано |
 
 ## Слоты меток (реальные, production)
@@ -113,12 +113,11 @@ CFL-5), не как исправление.
 не то же самое, что замер компонента**; это стоит помнить при любой
 проверке по живой странице.
 
-**Textarea:** фон заблокированного поля переведён с `--header-text` на
-`--background-secondary` (Figma `bg_disable` = `#f7f7f7`). У Input
-`--header-text` — реальное production-значение и известный дефект
-(токен белый в обеих темах, поэтому в тёмной теме заблокированное поле
-светится), его оставили. Но Textarea в production не существует вовсе —
-тащить чужой дефект в реконструкцию незачем.
+**Input и Textarea:** фон заблокированного поля нормализован на
+`--background-secondary` (Figma `bg_disable` = `#f7f7f7`). В production
+Input использовал `--header-text`, который остаётся белым в обеих темах и
+создаёт светлое пятно в тёмной теме. В гайде это исправлено как системная
+нормализация; оба поля теперь используют единый семантический контракт.
 
 ## Коробку иконки компонент не задаёт
 

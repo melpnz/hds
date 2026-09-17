@@ -91,3 +91,70 @@
   window.addEventListener('load', layoutAll);
   window.addEventListener('resize', debounce(layoutAll, 120));
 })();
+
+/* =========================================================================
+   SVG assets in the icon gallery
+   =========================================================================
+   An SVG loaded through <img> lives in a separate document, so theme tokens
+   cannot reach its fill or stroke. Inline monochrome previews and map their
+   paint to currentColor; multicolour product assets keep their authored paint.
+   ========================================================================= */
+
+(function () {
+  'use strict';
+
+  var blackPaints = ['#000', '#000000', 'black', 'currentcolor'];
+
+  function isNeutralPaint(value) {
+    var paint = String(value || '').trim().toLowerCase();
+    return paint === '' || paint === 'none' || blackPaints.indexOf(paint) !== -1;
+  }
+
+  function isMonochrome(svg) {
+    var paintedNodes = [svg].concat(Array.prototype.slice.call(svg.querySelectorAll('[fill], [stroke]')));
+    return paintedNodes.every(function (node) {
+      return isNeutralPaint(node.getAttribute('fill')) && isNeutralPaint(node.getAttribute('stroke'));
+    });
+  }
+
+  function useTokenPaint(svg) {
+    var paintedNodes = [svg].concat(Array.prototype.slice.call(svg.querySelectorAll('[fill], [stroke]')));
+
+    paintedNodes.forEach(function (node) {
+      ['fill', 'stroke'].forEach(function (property) {
+        var value = node.getAttribute(property);
+        if (value && blackPaints.indexOf(value.trim().toLowerCase()) !== -1) {
+          node.setAttribute(property, 'currentColor');
+        }
+      });
+    });
+
+    if (!svg.hasAttribute('fill')) svg.setAttribute('fill', 'currentColor');
+    svg.classList.add('asset-card__icon', 'asset-card__icon_tokenized');
+  }
+
+  Array.prototype.forEach.call(document.querySelectorAll('.asset-card img[src*="/icons/"][src$=".svg"]'), function (img) {
+    fetch(img.src)
+      .then(function (response) {
+        if (!response.ok) throw new Error('SVG request failed');
+        return response.text();
+      })
+      .then(function (source) {
+        var documentNode = new DOMParser().parseFromString(source, 'image/svg+xml');
+        var svg = documentNode.documentElement;
+        if (!svg || svg.nodeName.toLowerCase() !== 'svg') return;
+
+        svg.removeAttribute('width');
+        svg.removeAttribute('height');
+        svg.setAttribute('aria-hidden', 'true');
+        svg.setAttribute('focusable', 'false');
+        svg.classList.add('asset-card__icon');
+
+        if (isMonochrome(svg)) useTokenPaint(svg);
+        img.replaceWith(document.importNode(svg, true));
+      })
+      .catch(function () {
+        // Keep the original image as a readable fallback if an asset cannot load.
+      });
+  });
+})();
