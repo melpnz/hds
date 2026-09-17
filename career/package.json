@@ -2,10 +2,12 @@
   "private": true,
   "scripts": {
     "build:dimension-tokens": "node ../tools/tokenize-dimensions.mjs career --write",
+    "build:maturity-report": "node ../tools/audit-maturity.mjs career --write",
+    "validate:maturity": "node ../tools/audit-maturity.mjs career --check",
     "validate:tokens": "node ../tools/tokenize-dimensions.mjs career --check",
     "migrate:first-slice": "node tools/import-first-slice.mjs",
     "migrate": "node tools/import-first-slice.mjs && node tools/migrate-all.mjs",
-    "validate": "node validate.mjs && npm run validate:tokens",
+    "validate": "node validate.mjs && npm run validate:tokens && npm run validate:maturity",
     "validate:viewer": "node tools/validate-viewer.mjs",
     "serve": "node serve.mjs"
   },

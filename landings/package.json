@@ -5,10 +5,12 @@
   "description": "Static HDS landing guide and file:// showcase",
   "scripts": {
     "build:dimension-tokens": "node ../tools/tokenize-dimensions.mjs landings --write",
+    "build:maturity-report": "node ../tools/audit-maturity.mjs landings --write",
+    "validate:maturity": "node ../tools/audit-maturity.mjs landings --check",
     "validate:tokens": "node ../tools/tokenize-dimensions.mjs landings --check",
     "build:tokens": "node tools/build-tokens.mjs",
     "build:library": "node tools/build-library.mjs",
-    "validate": "node validate.mjs && npm run validate:tokens",
+    "validate": "node validate.mjs && npm run validate:tokens && npm run validate:maturity",
     "capture:review": "node tools/capture-review.mjs",
     "test:file": "node tools/validate-file-viewer.mjs",
     "test": "npm run validate && npm run test:file"

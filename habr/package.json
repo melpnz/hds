@@ -2,9 +2,11 @@
   "private": true,
   "scripts": {
     "build:dimension-tokens": "node ../tools/tokenize-dimensions.mjs habr --write",
+    "build:maturity-report": "node ../tools/audit-maturity.mjs habr --write",
+    "validate:maturity": "node ../tools/audit-maturity.mjs habr --check",
     "validate:tokens": "node ../tools/tokenize-dimensions.mjs habr --check",
     "migrate": "python tools/migrate-from-v1.py",
-    "validate": "node validate.mjs && npm run validate:tokens",
+    "validate": "node validate.mjs && npm run validate:tokens && npm run validate:maturity",
     "validate:viewer": "node tools/validate-viewer.mjs",
     "serve": "node serve.mjs"
   },
