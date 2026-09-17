@@ -31,7 +31,7 @@
 .publication-type-label_type-voice { margin-bottom: var(--habr-space-8); }
 .publication-type-label__label {
   text-transform: uppercase;
-  font-size: .75rem;
+  font-size: var(--habr-font-size-12);
   font-weight: 700;
   line-height: var(--habr-line-height-20-on-12);
   text-decoration: none;
@@ -62,7 +62,7 @@
   vertical-align: middle;
   white-space: nowrap;
   flex: 1;
-  font-size: .8125rem;
+  font-size: var(--habr-font-size-13);
   font-weight: 700;
   line-height: var(--habr-line-height-15-on-13);
   text-decoration: none;
@@ -71,7 +71,7 @@
 }
 .tm-user-info__realauthor {
   color: var(--text-secondary);
-  font-size: .8125rem;
+  font-size: var(--habr-font-size-13);
   font-weight: 700;
   line-height: var(--habr-line-height-15-on-13);
   text-decoration: none;
@@ -95,7 +95,7 @@
   color: var(--text-secondary);
   vertical-align: middle;
   margin: 0;
-  font-size: .8125rem;
+  font-size: var(--habr-font-size-13);
   font-weight: 500;
   line-height: var(--habr-line-height-15-on-13);
   text-decoration: none;
@@ -111,12 +111,12 @@
 
 /* --- иконка-счётчик: охват, время чтения --------------------------------- */
 
-.tm-icon-counter { align-items: center; height: 1em; display: flex; }
+.tm-icon-counter { align-items: center; height: var(--habr-size-16); display: flex; }
 .tm-icon-counter__icon { color: var(--icon-secondary); width: var(--habr-size-24); height: var(--habr-size-24); }
 .tm-icon-counter__icon + .tm-icon-counter__value { margin-left: var(--habr-space-2); }
 .tm-icon-counter__value {
   color: var(--icon-primary);
-  font-size: .8125rem;
+  font-size: var(--habr-font-size-13);
   font-weight: 700;
   line-height: 1;
 }
@@ -124,7 +124,7 @@
 .tm-article-complexity {
   align-items: center;
   gap: var(--habr-space-2);
-  font-size: .8125rem;
+  font-size: var(--habr-font-size-13);
   font-weight: 700;
   line-height: var(--habr-line-height-24-on-13);
   display: flex;
@@ -138,7 +138,7 @@
   color: var(--icon-primary);
   align-items: center;
   gap: var(--habr-space-2);
-  font-size: .8125rem;
+  font-size: var(--habr-font-size-13);
   font-weight: 700;
   line-height: var(--habr-line-height-24-on-13);
   display: flex;
@@ -171,7 +171,7 @@
 }
 .tm-publication-hub__link {
   color: var(--text-inactive);
-  font-size: .8125rem;
+  font-size: var(--habr-font-size-13);
   font-weight: 500;
   line-height: var(--habr-line-height-24-on-13);
   text-decoration: none;
@@ -209,10 +209,10 @@
    habr.com (font: "Fira Sans" 32px/40px, weight 500 — наследуется от
    .tm-title{font-weight:500}). Модификатор .full-article отмечает именно
    этот, детальный режим карточки — в отличие от карточки-тизера в ленте. */
-.article-snippet.full-article .tm-title_h1 { font-size: 2rem; line-height: var(--habr-line-height-40-on-32); }
+.article-snippet.full-article .tm-title_h1 { font-size: var(--habr-font-size-32); line-height: var(--habr-line-height-40-on-32); }
 
 .article-snippet .lead { box-sizing: border-box; padding-top: var(--habr-space-16); margin-bottom: var(--habr-space-24); animation: .3s ease-out fadein; }
-.article-snippet .lead img { color: var(--background-gray); font-size: .75rem; font-style: italic; }
+.article-snippet .lead img { color: var(--background-gray); font-size: var(--habr-font-size-12); font-style: italic; }
 .article-snippet .lead img[data-blurred] { clip-path: inset(0); filter: blur(var(--habr-effect-8)); }
 .article-snippet .cover.object-fit-cover {
   object-fit: cover;
@@ -236,7 +236,7 @@
   min-height: var(--habr-size-36);
   margin-top: var(--habr-space-18);
   padding: 0 var(--habr-space-13);
-  font-size: .8125rem;
+  font-size: var(--habr-font-size-13);
   line-height: var(--habr-line-height-27-on-13);
   text-decoration: none;
   display: inline-flex;
@@ -291,12 +291,12 @@
 .article-comments-counter-link .icon--contrasted { color: var(--accent-primary); }
 .article-comments-counter-link .value {
   color: var(--icon-primary);
-  font-size: .8125rem;
+  font-size: var(--habr-font-size-13);
   font-weight: 700;
   line-height: 1;
 }
 .article-comments-counter-link .value--contrasted {
-  font-size: .875rem;
+  font-size: var(--habr-font-size-14);
   font-weight: 500;
   color: var(--accent-primary);
 }
@@ -304,7 +304,7 @@
 .article-comments-counter-link .unread-counter {
   color: var(--accent-positive);
   margin-left: var(--habr-space-4);
-  font-size: .8125rem;
+  font-size: var(--habr-font-size-13);
   font-weight: 700;
   line-height: 1;
 }
@@ -329,14 +329,14 @@
 .tm-votes-meter__value {
   color: var(--icon-primary);
   text-align: center;
-  font-size: .8125rem;
+  font-size: var(--habr-font-size-13);
   line-height: 1;
 }
 .tm-votes-meter__icon_negative, .tm-votes-meter__value_negative { color: var(--accent-danger); }
 .tm-votes-meter__icon_positive, .tm-votes-meter__value_positive { color: var(--accent-positive); }
 .tm-votes-meter__value_appearance-article { margin-left: var(--habr-space-5); font-weight: 700; }
 .tm-votes-meter__value_appearance-comment { margin-left: var(--habr-space-3); font-weight: 700; }
-.tm-votes-meter__value_appearance-karma { margin-left: var(--habr-space-2); font-size: 1.0625rem; }
+.tm-votes-meter__value_appearance-karma { margin-left: var(--habr-space-2); font-size: var(--habr-font-size-17); }
 .tm-votes-meter__value_rating { margin-left: var(--habr-space-6); }
 
 /* --- .tm-articles-list__item — обёртка карточки в ленте ------------------
@@ -401,7 +401,7 @@
 .bookmarks-button .icon.highlighted { color: var(--accent-primary); }
 .bookmarks-button .counter {
   color: var(--icon-primary);
-  font-size: .8125rem;
+  font-size: var(--habr-font-size-13);
   font-weight: 700;
   line-height: 1;
 }

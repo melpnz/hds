@@ -12,7 +12,7 @@
 
 .hds-offer { min-height: var(--landings-size-300); display: grid; align-content: space-between; gap: var(--hds-space-3); }
 .hds-offer__price { font-size: var(--hds-text-h3); }
-.hds-offer ul { margin: 0; padding-left: 1.2em; color: var(--hds-color-text-muted); }
+.hds-offer ul { margin: 0; padding-left: var(--landings-space-19_2); color: var(--hds-color-text-muted); }
 
 .hds-form { display: grid; gap: var(--hds-space-2); }
 .hds-form__group { display: grid; gap: var(--hds-space-1); min-width: 0; margin: 0; padding: 0; border: 0; }
@@ -22,7 +22,7 @@
 .hds-form__options--inline { display: flex; flex-wrap: wrap; gap: var(--hds-space-1) var(--hds-space-2); }
 .hds-form__options--inline .hds-radio { grid-template-columns: 20px auto; }
 .hds-form__actions { display: flex; justify-content: flex-start; align-items: center; flex-wrap: wrap; gap: var(--hds-space-2); }
-.hds-form__status { min-height: 1.4em; margin: 0; color: var(--hds-color-success); }
+.hds-form__status { min-height: var(--landings-size-22_4); margin: 0; color: var(--hds-color-success); }
 
 .hds-subscription { padding: var(--hds-space-3); border-radius: var(--hds-radius-card); background: var(--hds-color-action); }
 .hds-subscription form { display: grid; grid-template-columns: 1fr auto; gap: var(--hds-space-1); margin-top: var(--hds-space-2); }
@@ -47,7 +47,7 @@
 .hds-accordion summary::after { display: block; width: var(--landings-size-32); height: var(--landings-size-32); flex: none; margin: 0 0 0 auto; float: none; content: ""; background-image: linear-gradient(var(--hds-color-link) 0 0), linear-gradient(var(--hds-color-link) 0 0) !important; background-position: center !important; background-size: 2px 22px, 22px 2px !important; background-repeat: no-repeat !important; transform: translateY(var(--landings-optical-negative-3)) rotate(0deg) !important; transform-origin: 50% 50%; transition: transform var(--hds-duration) var(--hds-ease); }
 .hds-accordion[open] summary::after { transform: translateY(var(--landings-optical-negative-3)) rotate(45deg) !important; }
 .hds-accordion > p { display: block; max-height: 0; margin: 0; overflow: hidden; color: var(--hds-color-text-muted); opacity: 0; transition: max-height 280ms var(--hds-ease), margin-top 280ms var(--hds-ease), opacity 180ms var(--hds-ease); }
-.hds-accordion[open] > p { max-height: 32rem; margin-top: var(--landings-space-12); opacity: 1; }
+.hds-accordion[open] > p { max-height: var(--landings-size-512); margin-top: var(--landings-space-12); opacity: 1; }
 
 @media (prefers-reduced-motion: reduce) {
   .hds-accordion summary::after, .hds-accordion > p { transition: none; }

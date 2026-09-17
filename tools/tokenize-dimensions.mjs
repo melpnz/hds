@@ -23,6 +23,7 @@ const tokenCssPath = path.join(uiRoot, "dimension-tokens.css");
 const baseUnit = 4;
 const referenceRootPx = 16;
 const allowedOffGrid = new Set([1, 2, 6]);
+const isApprovedRelativeTokenPixels = (pixels) => Number.isInteger(pixels / baseUnit) || allowedOffGrid.has(pixels);
 const normalizationDecisions = {
   habr: [{ category: "radius", from: "3px", to: "4px", scope: "all radius declarations" }],
   career: [],
@@ -68,7 +69,7 @@ function categoryFor(property) {
     if (/space|spacing|padding|margin|gap|gutter/.test(prop)) return "space";
     return "size";
   }
-  if (/^(margin|padding)(-|$)|^(gap|row-gap|column-gap)$|^scroll-(margin|padding)/.test(prop)) return "space";
+  if (/^(margin|padding)(-|$)|^(gap|row-gap|column-gap|text-indent)$|^scroll-(margin|padding)/.test(prop)) return "space";
   if (prop === "border-radius" || prop.endsWith("-radius")) return "radius";
   if (prop === "font-size") return "font-size";
   if (prop === "line-height") return "line-height";
@@ -76,6 +77,16 @@ function categoryFor(property) {
   if (/^(outline-offset|letter-spacing|transform|background-position)$/.test(prop)) return "optical";
   if (/^(width|height|min-width|max-width|min-height|max-height|top|right|bottom|left|inset|flex-basis)$/.test(prop)) return "size";
   if (/^(border|border-(top|right|bottom|left)|outline)$/.test(prop) || /(?:border|outline).*width/.test(prop)) return "border-width";
+  return null;
+}
+
+function approvedRelativeCategory(property, category) {
+  const prop = property.toLowerCase();
+  if (category === "font-size") return "font-size";
+  if (category === "space" || category === "radius") return category;
+  if (category === "optical") return "optical";
+  if (/^(top|right|bottom|left)$/.test(prop) || prop === "--tw-translate-x") return "space";
+  if (category === "size" && /^(width|height|min-width|max-width|min-height|max-height|flex-basis)$/.test(prop)) return "size";
   return null;
 }
 
@@ -288,10 +299,30 @@ function transformCss(file, source, tokens, exceptions) {
         addException(exceptions, "line-height-needs-font-context", value.trim(), file, valueOffset, property, source);
       }
     }
-    const relativePattern = /(?<![-\w.])(-?\d*\.?\d+)(rem|em)\b/g;
-    for (const match of preparedValue.matchAll(relativePattern)) {
-      addException(exceptions, "relative-unit-needs-semantic-decision", `${match[1]}${match[2]}`, file, valueOffset + match.index, property, source);
+    if (category === "font-size") {
+      preparedValue = preparedValue.replace(/(?<![-\w.])(\d*\.?\d+)%(?![\w.])/g, (literal, rawNumber) => {
+        const referencePixels = Number(rawNumber) * referenceRootPx / 100;
+        if (!Number.isFinite(referencePixels) || referencePixels <= 0) return literal;
+        return `var(${addToken(tokens, "font-size", referencePixels, false)})`;
+      });
     }
+
+    const relativePattern = /(?<![-\w.])(-?\d*\.?\d+)(rem|em)\b/g;
+    preparedValue = preparedValue.replace(relativePattern, (literal, rawNumber, unit, localOffset) => {
+      const number = Number(rawNumber);
+      const referencePixels = number * referenceRootPx;
+      const tokenCategory = approvedRelativeCategory(property, category);
+      if (
+        number !== 0 &&
+        Number.isFinite(referencePixels) &&
+        (unit === "em" || tokenCategory === "font-size" || isApprovedRelativeTokenPixels(Math.abs(referencePixels))) &&
+        tokenCategory
+      ) {
+        return `var(${addToken(tokens, tokenCategory, Math.abs(referencePixels), referencePixels < 0)})`;
+      }
+      addException(exceptions, "relative-unit-needs-semantic-decision", literal, file, valueOffset + localOffset, property, source);
+      return literal;
+    });
 
     const pixelPattern = /(?<![-\w.])(-?\d*\.?\d+)px\b/g;
     const nextValue = preparedValue.replace(pixelPattern, (literal, rawNumber, localOffset) => {
@@ -378,6 +409,7 @@ const tokens = structuredClone(existing?.tokens ?? {});
 normalizeTokenUnits(tokens);
 addFullRadiusToken(tokens);
 if (product === "landings") addLineHeightRatioToken(tokens, 20, 16);
+if (product === "habr") addLineHeightRatioToken(tokens, 40, 16);
 if (product === "courses") addToken(tokens, "effect", 3, false);
 for (const value of allowedOffGrid) {
   addToken(tokens, "size", value, false);

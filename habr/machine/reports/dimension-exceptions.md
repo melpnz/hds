@@ -2,25 +2,13 @@
 
 Базовая сетка: **0.25rem**; утверждённые дополнительные ступени соответствуют **1px, 2px, 6px** при root 16px. Некратные значения токенизированы без округления и остаются в отчёте для дизайнерского разбора.
 
-Всего употреблений: **151**; уникальных сочетаний причины и значения: **53**.
+Всего употреблений: **129**; уникальных сочетаний причины и значения: **33**.
 
 ## `28px` · composite-or-unsupported-property
 
 Всего: 1.
 
-- `ui/components/calendar.css:73` — `grid-template-columns`
-
-## `-.5em` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/normalize.css:10` — `top`
-
-## `-.25em` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/normalize.css:10` — `bottom`
+- `ui/components/calendar.css:74` — `grid-template-columns`
 
 ## `.05rem` · relative-unit-needs-semantic-decision
 
@@ -28,224 +16,23 @@
 
 - `ui/components/tabs.css:42` — `letter-spacing`
 
-## `.35em` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/normalize.css:27` — `padding`
-
-## `.67em` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/normalize.css:3` — `margin`
-
-## `.75em` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/normalize.css:28` — `padding`
-
-## `.75rem` · relative-unit-needs-semantic-decision
-
-Всего: 4.
-
-- `ui/components/article-card.css:6` — `font-size`
-- `ui/components/article-card.css:180` — `font-size`
-- `ui/components/badges.css:12` — `font-size`
-- `ui/components/chip.css:47` — `font-size`
-
-## `.625em` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/normalize.css:28` — `padding`
-
-## `.0625rem` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/components/block.css:22` — `letter-spacing`
-
-## `.625rem` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/layout.css:158` — `font-size`
-
-## `.875rem` · relative-unit-needs-semantic-decision
-
-Всего: 17.
-
-- `ui/components/article-card.css:218` — `font-size`
-- `ui/components/block.css:37` — `font-size`
-- `ui/components/chip.css:9` — `font-size`
-- `ui/components/dialog.css:200` — `font-size`
-- `ui/components/dropdown.css:21` — `font-size`
-- `ui/components/dropdown.css:43` — `font-size`
-- `ui/components/dropdown.css:60` — `font-size`
-- `ui/components/hint.css:134` — `font-size`
-- `ui/components/input.css:11` — `font-size`
-- `ui/components/primitives.css:12` — `font-size`
-- `ui/components/tabs.css:54` — `font-size`
-- `ui/components/tabs.css:107` — `font-size`
-- `ui/components/tabs.css:122` — `font-size`
-- `ui/components/textarea.css:8` — `font-size`
-- `ui/layout.css:66` — `font-size`
-- `ui/layout.css:150` — `font-size`
-- `ui/patterns.css:18` — `font-size`
-
 ## `.01875rem` · relative-unit-needs-semantic-decision
 
 Всего: 1.
 
 - `ui/layout.css:149` — `letter-spacing`
 
-## `.8125rem` · relative-unit-needs-semantic-decision
-
-Всего: 25.
-
-- `ui/components/article-card.css:24` — `font-size`
-- `ui/components/article-card.css:31` — `font-size`
-- `ui/components/article-card.css:45` — `font-size`
-- `ui/components/article-card.css:73` — `font-size`
-- `ui/components/article-card.css:77` — `font-size`
-- `ui/components/article-card.css:97` — `font-size`
-- `ui/components/article-card.css:130` — `font-size`
-- `ui/components/article-card.css:197` — `font-size`
-- `ui/components/article-card.css:216` — `font-size`
-- `ui/components/article-card.css:225` — `font-size`
-- `ui/components/article-card.css:246` — `font-size`
-- `ui/components/article-card.css:292` — `font-size`
-- `ui/components/block.css:26` — `font-size`
-- `ui/components/button.css:4` — `font-size`
-- `ui/components/button.css:141` — `font-size`
-- `ui/components/calendar.css:5` — `font-size`
-- `ui/components/calendar.css:61` — `font-size`
-- `ui/components/calendar.css:99` — `font-size`
-- `ui/components/hint.css:5` — `font-size`
-- `ui/components/popover.css:26` — `font-size`
-- `ui/components/primitives.css:9` — `font-size`
-- `ui/components/primitives.css:37` — `font-size`
-- `ui/components/primitives.css:69` — `font-size`
-- `ui/layout.css:135` — `font-size`
-- `ui/patterns.css:14` — `font-size`
-
-## `.9375rem` · relative-unit-needs-semantic-decision
-
-Всего: 9.
-
-- `ui/components/dialog.css:192` — `font-size`
-- `ui/components/hint.css:114` — `font-size`
-- `ui/components/hint.css:117` — `font-size`
-- `ui/components/hint.css:160` — `font-size`
-- `ui/components/notice.css:28` — `font-size`
-- `ui/components/pagination.css:17` — `font-size`
-- `ui/components/pagination.css:57` — `font-size`
-- `ui/components/primitives.css:15` — `font-size`
-- `ui/components/primitives.css:87` — `font-size`
-
-## `0.75rem` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/components/button-follow.css:7` — `font-size`
-
-## `0.875rem` · relative-unit-needs-semantic-decision
-
-Всего: 2.
-
-- `ui/components/votes.css:100` — `font-size`
-- `ui/components/votes.css:116` — `font-size`
-
-## `0.8125rem` · relative-unit-needs-semantic-decision
-
-Всего: 2.
-
-- `ui/components/votes.css:7` — `font-size`
-- `ui/components/votes.css:60` — `font-size`
-
-## `0.9375rem` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/components/button-follow.css:35` — `font-size`
-
-## `1.5rem` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/components/title.css:10` — `font-size`
-
 ## `1.25rem` · relative-unit-needs-semantic-decision
 
-Всего: 3.
-
-- `ui/components/block.css:33` — `font-size`
-- `ui/components/primitives.css:49` — `line-height`
-- `ui/components/title.css:17` — `font-size`
-
-## `1.125rem` · relative-unit-needs-semantic-decision
-
 Всего: 1.
 
-- `ui/components/votes.css:73` — `font-size`
+- `ui/components/primitives.css:50` — `line-height`
 
 ## `1.375rem` · relative-unit-needs-semantic-decision
 
 Всего: 1.
 
-- `ui/components/votes.css:78` — `line-height`
-
-## `1.0625rem` · relative-unit-needs-semantic-decision
-
-Всего: 2.
-
-- `ui/components/article-card.css:256` — `font-size`
-- `ui/components/votes.css:33` — `font-size`
-
-## `1.24375rem` · relative-unit-needs-semantic-decision
-
-Всего: 2.
-
-- `ui/components/section-name.css:21` — `font-size`
-- `ui/patterns.css:11` — `font-size`
-
-## `1em` · relative-unit-needs-semantic-decision
-
-Всего: 3.
-
-- `ui/components/article-card.css:60` — `height`
-- `ui/normalize.css:5` — `font-size`
-- `ui/normalize.css:8` — `font-size`
-
-## `2.5rem` · relative-unit-needs-semantic-decision
-
-Всего: 2.
-
-- `ui/components/button.css:48` — `height`
-- `ui/components/input.css:3` — `line-height`
-
-## `2.25rem` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/components/button.css:45` — `height`
-
-## `2em` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/normalize.css:3` — `font-size`
-
-## `2rem` · relative-unit-needs-semantic-decision
-
-Всего: 4.
-
-- `ui/components/article-card.css:170` — `font-size`
-- `ui/components/button-follow.css:5` — `height`
-- `ui/components/button.css:43` — `height`
-- `ui/layout.css:133` — `height`
+- `ui/components/votes.css:79` — `line-height`
 
 ## `-10px` · tokenized-off-grid-value
 
@@ -273,6 +60,12 @@
 - `ui/components/votes.css:38` — `token:space`
 - `ui/components/votes.css:85` — `token:space`
 
+## `5.6px` · tokenized-off-grid-value
+
+Всего: 1.
+
+- `ui/normalize.css:55` — `token:space`
+
 ## `5px` · tokenized-off-grid-value
 
 Всего: 5.
@@ -295,26 +88,86 @@
 
 - `ui/components/button-follow.css:45` — `token:space`
 
+## `10.72px` · tokenized-off-grid-value
+
+Всего: 1.
+
+- `ui/normalize.css:22` — `token:space`
+
 ## `10px` · tokenized-off-grid-value
 
-Всего: 5.
+Всего: 7.
 
+- `ui/layout.css:228` — `token:font-size`
 - `ui/components/article-card.css:321` — `token:size`
 - `ui/components/checkbox.css:59` — `token:size`
 - `ui/components/button.css:81` — `token:space`
 - `ui/components/primitives.css:60` — `token:space`
 - `ui/components/textarea.css:31` — `token:space`
+- `ui/normalize.css:55` — `token:space`
 
-## `13px` · tokenized-off-grid-value
+## `12.8px` · tokenized-off-grid-value
 
 Всего: 1.
 
+- `ui/normalize.css:33` — `token:font-size`
+
+## `13px` · tokenized-off-grid-value
+
+Всего: 28.
+
+- `ui/components/article-card.css:65` — `token:font-size`
+- `ui/components/article-card.css:74` — `token:font-size`
+- `ui/components/article-card.css:98` — `token:font-size`
+- `ui/components/article-card.css:119` — `token:font-size`
+- `ui/components/article-card.css:127` — `token:font-size`
+- `ui/components/article-card.css:141` — `token:font-size`
+- `ui/components/article-card.css:174` — `token:font-size`
+- `ui/components/article-card.css:239` — `token:font-size`
+- `ui/components/article-card.css:294` — `token:font-size`
+- `ui/components/article-card.css:307` — `token:font-size`
+- `ui/components/article-card.css:332` — `token:font-size`
+- `ui/components/article-card.css:404` — `token:font-size`
+- `ui/components/block.css:49` — `token:font-size`
+- `ui/components/button.css:24` — `token:font-size`
+- `ui/components/button.css:202` — `token:font-size`
+- `ui/components/calendar.css:47` — `token:font-size`
+- `ui/components/calendar.css:129` — `token:font-size`
+- `ui/components/calendar.css:176` — `token:font-size`
+- `ui/components/hint.css:28` — `token:font-size`
+- `ui/components/popover.css:42` — `token:font-size`
+- `ui/components/primitives.css:30` — `token:font-size`
+- `ui/components/primitives.css:80` — `token:font-size`
+- `ui/components/primitives.css:103` — `token:font-size`
+- `ui/components/votes.css:26` — `token:font-size`
+- `ui/components/votes.css:78` — `token:font-size`
+- `ui/layout.css:172` — `token:font-size`
+- `ui/patterns.css:32` — `token:font-size`
 - `ui/components/article-card.css:238` — `token:space`
 
 ## `14px` · tokenized-off-grid-value
 
-Всего: 9.
+Всего: 28.
 
+- `ui/components/article-card.css:299` — `token:font-size`
+- `ui/components/block.css:67` — `token:font-size`
+- `ui/components/chip.css:62` — `token:font-size`
+- `ui/components/dialog.css:270` — `token:font-size`
+- `ui/components/dropdown.css:78` — `token:font-size`
+- `ui/components/dropdown.css:109` — `token:font-size`
+- `ui/components/dropdown.css:135` — `token:font-size`
+- `ui/components/hint.css:206` — `token:font-size`
+- `ui/components/input.css:47` — `token:font-size`
+- `ui/components/primitives.css:40` — `token:font-size`
+- `ui/components/tabs.css:74` — `token:font-size`
+- `ui/components/tabs.css:142` — `token:font-size`
+- `ui/components/tabs.css:169` — `token:font-size`
+- `ui/components/textarea.css:33` — `token:font-size`
+- `ui/components/votes.css:112` — `token:font-size`
+- `ui/components/votes.css:129` — `token:font-size`
+- `ui/layout.css:110` — `token:font-size`
+- `ui/layout.css:216` — `token:font-size`
+- `ui/patterns.css:33` — `token:font-size`
 - `ui/components/button.css:80` — `token:space`
 - `ui/components/button.css:81` — `token:space`
 - `ui/components/hint.css:170` — `token:space`
@@ -327,14 +180,32 @@
 
 ## `15px` · tokenized-off-grid-value
 
-Всего: 1.
+Всего: 11.
 
+- `ui/components/button-follow.css:46` — `token:font-size`
+- `ui/components/dialog.css:261` — `token:font-size`
+- `ui/components/hint.css:179` — `token:font-size`
+- `ui/components/hint.css:180` — `token:font-size`
+- `ui/components/hint.css:244` — `token:font-size`
+- `ui/components/notice.css:34` — `token:font-size`
+- `ui/components/pagination.css:37` — `token:font-size`
+- `ui/components/pagination.css:88` — `token:font-size`
+- `ui/components/primitives.css:50` — `token:font-size`
+- `ui/components/primitives.css:121` — `token:font-size`
 - `ui/components/primitives.css:39` — `token:space`
+
+## `17px` · tokenized-off-grid-value
+
+Всего: 2.
+
+- `ui/components/article-card.css:339` — `token:font-size`
+- `ui/components/votes.css:39` — `token:font-size`
 
 ## `18px` · tokenized-off-grid-value
 
-Всего: 10.
+Всего: 11.
 
+- `ui/components/votes.css:90` — `token:font-size`
 - `ui/components/badges.css:12` — `token:radius`
 - `ui/components/checkbox.css:33` — `token:size`
 - `ui/components/checkbox.css:34` — `token:size`
@@ -345,6 +216,13 @@
 - `ui/components/article-card.css:237` — `token:space`
 - `ui/components/dialog.css:260` — `token:space`
 - `ui/components/dialog.css:265` — `token:space`
+
+## `19.9px` · tokenized-off-grid-value
+
+Всего: 2.
+
+- `ui/components/section-name.css:31` — `token:font-size`
+- `ui/patterns.css:27` — `token:font-size`
 
 ## `21px` · tokenized-off-grid-value
 

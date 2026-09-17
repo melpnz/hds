@@ -2,7 +2,7 @@
 
 Базовая сетка: **0.25rem**; утверждённые дополнительные ступени соответствуют **1px, 2px, 6px** при root 16px. Некратные значения токенизированы без округления и остаются в отчёте для дизайнерского разбора.
 
-Всего употреблений: **314**; уникальных сочетаний причины и значения: **102**.
+Всего употреблений: **117**; уникальных сочетаний причины и значения: **73**.
 
 ## `1px` · composite-or-unsupported-property
 
@@ -156,404 +156,37 @@
 
 - `ui/tokens-figma.css:176` — `--fig-font-header-page-line-height`
 
-## `-.5em` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/foundations.css:31` — `top`
-
-## `-.5rem` · relative-unit-needs-semantic-decision
-
-Всего: 3.
-
-- `ui/utilities-components.css:57` — `margin-bottom`
-- `ui/utilities-components.css:62` — `margin-top`
-- `ui/utilities-components.css:1146` — `margin-right`
-
-## `-.8em` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/utilities-components.css:1040` — `left`
-
-## `-.25em` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/foundations.css:30` — `bottom`
-
-## `-.125rem` · relative-unit-needs-semantic-decision
-
-Всего: 2.
-
-- `ui/utilities-components.css:5` — `bottom`
-- `ui/utilities-components.css:6` — `right`
-
-## `-.375rem` · relative-unit-needs-semantic-decision
-
-Всего: 2.
-
-- `ui/utilities-components.css:496` — `margin-left`
-- `ui/utilities-components.css:497` — `margin-right`
-
-## `-1.5rem` · relative-unit-needs-semantic-decision
-
-Всего: 6.
-
-- `ui/utilities-components.css:38` — `margin-left`
-- `ui/utilities-components.css:38` — `margin-right`
-- `ui/utilities-components.css:60` — `margin-bottom`
-- `ui/utilities-components.css:70` — `margin-top`
-- `ui/utilities-components.css:1145` — `margin-left`
-- `ui/utilities-components.css:1145` — `margin-right`
-
-## `-1.25rem` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/utilities-components.css:68` — `margin-top`
-
-## `-1rem` · relative-unit-needs-semantic-decision
-
-Всего: 2.
-
-- `ui/utilities-components.css:6` — `left`
-- `ui/utilities-components.css:65` — `margin-top`
-
-## `-2.5rem` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/utilities-components.css:7` — `right`
-
-## `.2em` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/utilities-components.css:1040` — `padding-left`
-
-## `.5em` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/utilities-components.css:1025` — `margin-top`
-
-## `.5rem` · relative-unit-needs-semantic-decision
-
-Всего: 20.
-
-- `ui/utilities-components.css:41` — `margin-left`
-- `ui/utilities-components.css:41` — `margin-right`
-- `ui/utilities-components.css:90` — `margin-right`
-- `ui/utilities-components.css:93` — `margin-top`
-- `ui/utilities-components.css:462` — `gap`
-- `ui/utilities-components.css:473` — `column-gap`
-- `ui/utilities-components.css:475` — `-moz-column-gap`
-- `ui/utilities-components.css:475` — `column-gap`
-- `ui/utilities-components.css:490` — `row-gap`
-- `ui/utilities-components.css:533` — `border-radius`
-- `ui/utilities-components.css:573` — `border-top-left-radius`
-- `ui/utilities-components.css:574` — `border-top-right-radius`
-- `ui/utilities-components.css:733` — `padding-left`
-- `ui/utilities-components.css:733` — `padding-right`
-- `ui/utilities-components.css:753` — `padding-bottom`
-- `ui/utilities-components.css:754` — `padding-top`
-- `ui/utilities-components.css:769` — `padding-left`
-- `ui/utilities-components.css:772` — `padding-right`
-- `ui/utilities-components.css:773` — `padding-top`
-- `ui/utilities-components.css:1174` — `gap`
-
 ## `.7rem` · relative-unit-needs-semantic-decision
 
 Всего: 2.
 
-- `ui/utilities-components.css:581` — `border-bottom-right-radius`
-- `ui/utilities-components.css:584` — `border-top-right-radius`
-
-## `.25rem` · relative-unit-needs-semantic-decision
-
-Всего: 14.
-
-- `ui/utilities-components.css:72` — `margin-bottom`
-- `ui/utilities-components.css:87` — `margin-right`
-- `ui/utilities-components.css:456` — `gap`
-- `ui/utilities-components.css:470` — `column-gap`
-- `ui/utilities-components.css:470` — `-moz-column-gap`
-- `ui/utilities-components.css:472` — `column-gap`
-- `ui/utilities-components.css:487` — `row-gap`
-- `ui/utilities-components.css:722` — `padding`
-- `ui/utilities-components.css:729` — `padding-left`
-- `ui/utilities-components.css:729` — `padding-right`
-- `ui/utilities-components.css:751` — `padding-bottom`
-- `ui/utilities-components.css:751` — `padding-top`
-- `ui/utilities-components.css:760` — `padding-bottom`
-- `ui/utilities-components.css:773` — `padding-top`
-
-## `.35em` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/foundations.css:41` — `padding`
-
-## `.67em` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/foundations.css:22` — `margin`
-
-## `.75em` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/foundations.css:41` — `padding`
-
-## `.75rem` · relative-unit-needs-semantic-decision
-
-Всего: 35.
-
-- `ui/utilities-components.css:21` — `right`
-- `ui/utilities-components.css:75` — `margin-bottom`
-- `ui/utilities-components.css:83` — `margin-left`
-- `ui/utilities-components.css:95` — `margin-top`
-- `ui/utilities-components.css:463` — `gap`
-- `ui/utilities-components.css:476` — `column-gap`
-- `ui/utilities-components.css:478` — `-moz-column-gap`
-- `ui/utilities-components.css:479` — `column-gap`
-- `ui/utilities-components.css:491` — `row-gap`
-- `ui/utilities-components.css:541` — `border-radius`
-- `ui/utilities-components.css:545` — `border-bottom-right-radius`
-- `ui/utilities-components.css:550` — `border-bottom-left-radius`
-- `ui/utilities-components.css:556` — `border-bottom-left-radius`
-- `ui/utilities-components.css:559` — `border-top-left-radius`
-- `ui/utilities-components.css:563` — `border-bottom-right-radius`
-- `ui/utilities-components.css:566` — `border-top-right-radius`
-- `ui/utilities-components.css:576` — `border-top-left-radius`
-- `ui/utilities-components.css:578` — `border-top-right-radius`
-- `ui/utilities-components.css:723` — `padding`
-- `ui/utilities-components.css:736` — `padding-left`
-- `ui/utilities-components.css:736` — `padding-right`
-- `ui/utilities-components.css:757` — `padding-bottom`
-- `ui/utilities-components.css:759` — `padding-top`
-- `ui/utilities-components.css:773` — `padding-top`
-- `ui/utilities-components.css:880` — `height`
-- `ui/utilities-components.css:886` — `width`
-- `ui/utilities-components.css:1075` — `border-radius`
-- `ui/utilities-components.css:1175` — `gap`
-- `ui/utilities-components.css:1181` — `column-gap`
-- `ui/utilities-components.css:1181` — `-moz-column-gap`
-- `ui/utilities-components.css:1181` — `column-gap`
-- `ui/utilities-components.css:1181` — `row-gap`
-- `ui/utilities-components.css:1185` — `padding`
-- `ui/utilities-components.css:1188` — `padding-bottom`
-- `ui/utilities-components.css:1188` — `padding-top`
-
-## `.125rem` · relative-unit-needs-semantic-decision
-
-Всего: 4.
-
-- `ui/utilities-components.css:456` — `gap`
-- `ui/utilities-components.css:485` — `row-gap`
-- `ui/utilities-components.css:748` — `padding-bottom`
-- `ui/utilities-components.css:748` — `padding-top`
-
-## `.375rem` · relative-unit-needs-semantic-decision
-
-Всего: 7.
-
-- `ui/utilities-components.css:74` — `margin-bottom`
-- `ui/utilities-components.css:457` — `gap`
-- `ui/utilities-components.css:535` — `border-radius`
-- `ui/utilities-components.css:730` — `padding-left`
-- `ui/utilities-components.css:732` — `padding-right`
-- `ui/utilities-components.css:769` — `padding-left`
-- `ui/utilities-components.css:773` — `padding-top`
-
-## `.625em` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/foundations.css:41` — `padding`
+- `ui/utilities-components.css:600` — `border-bottom-right-radius`
+- `ui/utilities-components.css:604` — `border-top-right-radius`
 
 ## `.625rem` · relative-unit-needs-semantic-decision
 
 Всего: 2.
 
-- `ui/utilities-components.css:756` — `padding-bottom`
-- `ui/utilities-components.css:756` — `padding-top`
-
-## `0.02em` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/page-examples.css:60` — `letter-spacing`
-
-## `1.5rem` · relative-unit-needs-semantic-decision
-
-Всего: 37.
-
-- `ui/layout.css:5` — `padding-left`
-- `ui/layout.css:5` — `padding-right`
-- `ui/layout.css:7` — `padding-left`
-- `ui/layout.css:7` — `padding-right`
-- `ui/utilities-components.css:12` — `bottom`
-- `ui/utilities-components.css:81` — `margin-bottom`
-- `ui/utilities-components.css:102` — `margin-top`
-- `ui/utilities-components.css:143` — `height`
-- `ui/utilities-components.css:261` — `width`
-- `ui/utilities-components.css:466` — `gap`
-- `ui/utilities-components.css:484` — `column-gap`
-- `ui/utilities-components.css:484` — `-moz-column-gap`
-- `ui/utilities-components.css:485` — `column-gap`
-- `ui/utilities-components.css:520` — `border-radius`
-- `ui/utilities-components.css:569` — `border-top-left-radius`
-- `ui/utilities-components.css:570` — `border-top-right-radius`
-- `ui/utilities-components.css:725` — `padding`
-- `ui/utilities-components.css:726` — `padding-left`
-- `ui/utilities-components.css:726` — `padding-right`
-- `ui/utilities-components.css:760` — `padding-bottom`
-- `ui/utilities-components.css:760` — `padding-top`
-- `ui/utilities-components.css:766` — `padding-bottom`
-- `ui/utilities-components.css:772` — `padding-left`
-- `ui/utilities-components.css:772` — `padding-right`
-- `ui/utilities-components.css:776` — `padding-top`
-- `ui/utilities-components.css:1069` — `padding-right`
-- `ui/utilities-components.css:1070` — `padding-right`
-- `ui/utilities-components.css:1117` — `flex-basis`
-- `ui/utilities-components.css:1118` — `height`
-- `ui/utilities-components.css:1118` — `width`
-- `ui/utilities-components.css:1178` — `gap`
-- `ui/utilities-components.css:1187` — `padding-left`
-- `ui/utilities-components.css:1188` — `padding-right`
-- `ui/utilities-components.css:1188` — `padding-bottom`
-- `ui/utilities-components.css:1188` — `padding-top`
-- `ui/utilities-components.css:1189` — `padding-bottom`
-- `ui/utilities-components.css:1201` — `padding-top`
+- `ui/utilities-components.css:763` — `padding-bottom`
+- `ui/utilities-components.css:765` — `padding-top`
 
 ## `1.25rem` · relative-unit-needs-semantic-decision
 
-Всего: 11.
-
-- `ui/foundations.css:74` — `line-height`
-- `ui/utilities-components.css:47` — `margin-left`
-- `ui/utilities-components.css:48` — `margin-right`
-- `ui/utilities-components.css:101` — `margin-top`
-- `ui/utilities-components.css:140` — `height`
-- `ui/utilities-components.css:260` — `width`
-- `ui/utilities-components.css:464` — `gap`
-- `ui/utilities-components.css:723` — `padding`
-- `ui/utilities-components.css:739` — `padding-left`
-- `ui/utilities-components.css:741` — `padding-right`
-- `ui/utilities-components.css:773` — `padding-top`
-
-## `1.75rem` · relative-unit-needs-semantic-decision
-
 Всего: 1.
 
-- `ui/utilities-components.css:776` — `padding-top`
-
-## `1em` · relative-unit-needs-semantic-decision
-
-Всего: 3.
-
-- `ui/foundations.css:24` — `font-size`
-- `ui/foundations.css:29` — `font-size`
-- `ui/utilities-components.css:1040` — `margin-top`
-
-## `1rem` · relative-unit-needs-semantic-decision
-
-Всего: 20.
-
-- `ui/utilities-components.css:44` — `margin-left`
-- `ui/utilities-components.css:45` — `margin-right`
-- `ui/utilities-components.css:78` — `margin-bottom`
-- `ui/utilities-components.css:84` — `margin-left`
-- `ui/utilities-components.css:98` — `margin-top`
-- `ui/utilities-components.css:464` — `gap`
-- `ui/utilities-components.css:479` — `column-gap`
-- `ui/utilities-components.css:482` — `-moz-column-gap`
-- `ui/utilities-components.css:482` — `column-gap`
-- `ui/utilities-components.css:493` — `row-gap`
-- `ui/utilities-components.css:517` — `border-radius`
-- `ui/utilities-components.css:738` — `padding-left`
-- `ui/utilities-components.css:739` — `padding-right`
-- `ui/utilities-components.css:759` — `padding-bottom`
-- `ui/utilities-components.css:760` — `padding-top`
-- `ui/utilities-components.css:765` — `padding-bottom`
-- `ui/utilities-components.css:772` — `padding-left`
-- `ui/utilities-components.css:979` — `--tw-translate-x`
-- `ui/utilities-components.css:1177` — `gap`
-- `ui/utilities-components.css:1184` — `border-radius`
-
-## `2.5rem` · relative-unit-needs-semantic-decision
-
-Всего: 8.
-
-- `ui/layout.css:12` — `padding-top`
-- `ui/layout.css:12` — `padding-bottom`
-- `ui/utilities-components.css:132` — `height`
-- `ui/utilities-components.css:254` — `width`
-- `ui/utilities-components.css:460` — `gap`
-- `ui/utilities-components.css:1165` — `width`
-- `ui/utilities-components.css:1171` — `gap`
-- `ui/utilities-components.css:1197` — `padding-top`
-
-## `2.25rem` · relative-unit-needs-semantic-decision
-
-Всего: 2.
-
-- `ui/utilities-components.css:147` — `height`
-- `ui/utilities-components.css:264` — `width`
-
-## `2em` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/foundations.css:20` — `font-size`
-
-## `2rem` · relative-unit-needs-semantic-decision
-
-Всего: 3.
-
-- `ui/utilities-components.css:144` — `height`
-- `ui/utilities-components.css:264` — `width`
-- `ui/utilities-components.css:776` — `padding-top`
-
-## `3.5rem` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/utilities-components.css:137` — `height`
-
-## `3rem` · relative-unit-needs-semantic-decision
-
-Всего: 5.
-
-- `ui/layout.css:11` — `gap`
-- `ui/utilities-components.css:135` — `height`
-- `ui/utilities-components.css:239` — `min-height`
-- `ui/utilities-components.css:257` — `width`
-- `ui/utilities-components.css:488` — `row-gap`
-
-## `5rem` · relative-unit-needs-semantic-decision
-
-Всего: 4.
-
-- `ui/utilities-components.css:11` — `bottom`
-- `ui/utilities-components.css:138` — `height`
-- `ui/utilities-components.css:258` — `width`
-- `ui/utilities-components.css:763` — `padding-bottom`
-
-## `7rem` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/utilities-components.css:763` — `padding-bottom`
+- `ui/foundations.css:80` — `line-height`
 
 ## `-7px` · tokenized-off-grid-value
 
 Всего: 1.
 
 - `ui/components/overlays.css:399` — `token:size`
+
+## `-12.8px` · tokenized-off-grid-value
+
+Всего: 1.
+
+- `ui/utilities-components.css:1099` — `token:space`
 
 ## `-34px` · tokenized-off-grid-value
 
@@ -567,11 +200,23 @@
 
 - `ui/utilities-components.css:1205` — `token:size`
 
+## `3.2px` · tokenized-off-grid-value
+
+Всего: 1.
+
+- `ui/utilities-components.css:1098` — `token:space`
+
 ## `3px` · tokenized-off-grid-value
 
 Всего: 1.
 
 - `ui/utilities-components.css:204` — `token:space`
+
+## `5.6px` · tokenized-off-grid-value
+
+Всего: 1.
+
+- `ui/foundations.css:117` — `token:space`
 
 ## `5px` · tokenized-off-grid-value
 
@@ -588,13 +233,20 @@
 
 - `ui/components/overlays.css:402` — `token:size`
 
+## `10.72px` · tokenized-off-grid-value
+
+Всего: 1.
+
+- `ui/foundations.css:117` — `token:space`
+
 ## `10px` · tokenized-off-grid-value
 
-Всего: 4.
+Всего: 5.
 
 - `ui/foundations.css:234` — `token:font-size`
 - `ui/utilities-components.css:84` — `token:size`
 - `ui/components/overlays.css:320` — `token:space`
+- `ui/foundations.css:117` — `token:space`
 - `ui/page-examples.css:97` — `token:space`
 
 ## `11px` · tokenized-off-grid-value
@@ -602,6 +254,12 @@
 Всего: 1.
 
 - `ui/page-examples.css:63` — `token:font-size`
+
+## `12.8px` · tokenized-off-grid-value
+
+Всего: 1.
+
+- `ui/foundations.css:117` — `token:font-size`
 
 ## `13px` · tokenized-off-grid-value
 

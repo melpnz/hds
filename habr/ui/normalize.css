@@ -1,8 +1,9 @@
 /* =========================================================================
    HABR · NORMALIZE
    =========================================================================
-   Стандартный normalize.css v8.0.1, встроенный в шелл-бандл Habr БЕЗ
-   изменений — узнаётся по сигнатурным правилам (sub/sup, [type=search],
+   Стандартный normalize.css v8.0.1, встроенный в шелл-бандл Habr. Набор
+   селекторов и поведение сохранены; размерные значения направлены в rem-токены.
+   Normalize узнаётся по сигнатурным правилам (sub/sup, [type=search],
    abbr[title], summary{display:list-item} и т.д.). Извлечён из
    index-C5LRQg16.css программным проходом по всем топ-уровневым правилам
    с "голым" селектором (только теги/атрибуты, без классов и data-v)
@@ -11,16 +12,16 @@
    что normalize нет вовсе; исправлено после copy-test витрины —
    см. evidence/runtime-contract.md.
 
-   Не редактировать вручную — это сторонний, неизменённый файл. Habr-
-   специфичные добавления поверх нормализации — в ui/foundations.css.
+   Не редактировать вручную: размерные значения обслуживает общий генератор
+   токенов. Habr-специфичные добавления — в ui/foundations.css.
    ========================================================================= */
 
 html { -webkit-text-size-adjust: 100%; line-height: 1.15; }
 body { margin: 0; }
 main { display: block; }
-h1 { margin: .67em 0; font-size: 2em; }
+h1 { margin: var(--habr-space-10_72) 0; font-size: var(--habr-font-size-32); }
 hr { box-sizing: content-box; height: 0; overflow: visible; }
-pre { font-family: monospace; font-size: 1em; }
+pre { font-family: monospace; font-size: var(--habr-font-size-16); }
 a { background-color: transparent; }
 abbr[title] {
   text-decoration: underline;
@@ -28,16 +29,16 @@ abbr[title] {
   text-decoration: underline dotted;
 }
 b, strong { font-weight: bolder; }
-code, kbd, samp { font-family: monospace; font-size: 1em; }
-small { font-size: 80%; }
-sub, sup { vertical-align: baseline; font-size: 75%; line-height: 0; position: relative; }
-sub { bottom: -.25em; }
-sup { top: -.5em; }
+code, kbd, samp { font-family: monospace; font-size: var(--habr-font-size-16); }
+small { font-size: var(--habr-font-size-12_8); }
+sub, sup { vertical-align: baseline; font-size: var(--habr-font-size-12); line-height: 0; position: relative; }
+sub { bottom: var(--habr-space-negative-4); }
+sup { top: var(--habr-space-negative-8); }
 img { border-style: none; }
 button, input, optgroup, select, textarea {
   margin: 0;
   font-family: inherit;
-  font-size: 100%;
+  font-size: var(--habr-font-size-16);
   line-height: 1.15;
 }
 button, input { overflow: visible; }
@@ -51,7 +52,7 @@ button:-moz-focusring,
 [type="button"]:-moz-focusring,
 [type="reset"]:-moz-focusring,
 [type="submit"]:-moz-focusring { outline: var(--habr-border-width-1) dotted ButtonText; }
-fieldset { padding: .35em .75em .625em; }
+fieldset { padding: var(--habr-space-5_6) var(--habr-space-12) var(--habr-space-10); }
 legend {
   box-sizing: border-box;
   color: inherit;

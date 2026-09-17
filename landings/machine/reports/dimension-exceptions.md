@@ -2,7 +2,7 @@
 
 Базовая сетка: **0.25rem**; утверждённые дополнительные ступени соответствуют **1px, 2px, 6px** при root 16px. Некратные значения токенизированы без округления и остаются в отчёте для дизайнерского разбора.
 
-Всего употреблений: **69**; уникальных сочетаний причины и значения: **41**.
+Всего употреблений: **67**; уникальных сочетаний причины и значения: **39**.
 
 ## `2px` · composite-or-unsupported-property
 
@@ -84,31 +84,6 @@
 
 - `ui/page-reconstructions.css:64` — `grid-template-columns`
 
-## `1.2em` · relative-unit-needs-semantic-decision
-
-Всего: 2.
-
-- `ui/organisms.css:15` — `padding-left`
-- `ui/reset.css:14` — `padding-left`
-
-## `1.4em` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/organisms.css:25` — `min-height`
-
-## `1em` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/foundations.css:60` — `margin-block`
-
-## `32rem` · relative-unit-needs-semantic-decision
-
-Всего: 1.
-
-- `ui/organisms.css:50` — `max-height`
-
 ## `3px` · tokenized-off-grid-value
 
 Всего: 1.
@@ -158,6 +133,19 @@
 
 - `ui/foundations.css:23` — `token:size`
 - `ui/blocks.css:75` — `token:space`
+
+## `19.2px` · tokenized-off-grid-value
+
+Всего: 2.
+
+- `ui/organisms.css:15` — `token:space`
+- `ui/reset.css:15` — `token:space`
+
+## `22.4px` · tokenized-off-grid-value
+
+Всего: 1.
+
+- `ui/organisms.css:25` — `token:size`
 
 ## `25px` · tokenized-off-grid-value
 

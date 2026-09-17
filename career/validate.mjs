@@ -24,6 +24,8 @@ const dimensionValues = Object.fromEntries(Object.values(dimensionDocument.token
 const resolveDimensions = source => source
   .replace(/^@import url\(["']dimension-tokens\.css["']\);\r?\n?/m, '')
   .replace(/var\((--career-[^)]+)\)/g, (match, token) => dimensionValues[token] || match)
+  .replace(/font-size\s*:\s*(\d*\.?\d+)%(?![\w.])/g, (_, value) => `font-size:${Number(value) * 16 / 100}px`)
+  .replace(/(-?\d*\.?\d+)em\b/g, (_, value) => `${Number(value) * 16}px`)
   .replace(/(-?\d*\.?\d+)rem\b/g, (_, value) => `${Number(value) * 16}px`)
   .replace(/(-?)0?(\d*\.\d+|\d+)px\b/g, (_, sign, value) => `${sign}${Number(value)}px`)
   .replace(/border-radius\s*:\s*(\d+(?:\.\d+)?)px/g, (match, value) => Number(value) >= 100 ? 'border-radius:FULL' : match);
