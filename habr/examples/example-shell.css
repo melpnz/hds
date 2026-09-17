@@ -1,15 +1,17 @@
-html { background: var(--background-primary); }
+html { background: var(--background-gray); }
 *, *::before, *::after { box-sizing: border-box; }
 body.migration-example { margin: 0; color: var(--text-color, var(--text-main)); background: var(--background-primary); }
 body.migration-example--intrinsic { padding: 24px; overflow: hidden; }
-body.migration-example--page { min-width: 0; padding: 0; overflow-x: hidden; }
+body.migration-example--page { min-width: 0; padding: 0; overflow-x: hidden; background: var(--background-gray); }
+body.migration-example--page.has-complete-site-shell { min-height: 100vh; display: flex; flex-direction: column; }
 body.migration-example--page > .doc-frame { min-width: 0; border: 0; background: var(--background-primary); }
 body.pattern-admin-list .doc-frame > div > div:first-child { width: 100%; }
-body.pattern-shell .tm-header__container,
-body.pattern-shell .tm-page-width { width: 100% !important; max-width: 100% !important; }
-body.pattern-shell > div { box-sizing: border-box !important; max-width: 100%; }
-body.pattern-shell > div:not(.tm-header) { padding-right: 0 !important; padding-left: 0 !important; }
-body.pattern-shell > div:not(.tm-header) > .tm-page-width { width: 100% !important; }
+.shell-demo { flex: 1; width: 100%; }
+.shell-demo__surface { min-height: var(--habr-size-320); padding: var(--habr-space-20); background: var(--background-primary); }
+.shell-demo__surface strong { display: block; margin-top: var(--habr-space-8); font-size: var(--habr-font-size-20); }
+.shell-demo__surface p { max-width: 42ch; margin: var(--habr-space-8) 0 0; color: var(--text-secondary); font-size: var(--habr-font-size-14); line-height: var(--habr-line-height-20-on-14); }
+.shell-demo__label { color: var(--text-secondary); font-size: var(--habr-font-size-12); font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+.shell-demo .tm-page__sidebar { display: block; }
 .example-header-brand,
 .example-header-actions { display: flex; align-items: center; gap: 16px; color: var(--header-text); }
 .example-page-shell { padding: 16px 24px; }
@@ -32,7 +34,7 @@ body.migration-example--intrinsic > .doc-specimen { margin: 0; padding: 0; borde
   body.pattern-feed .tm-page__sidebar { display: none !important; }
   body.pattern-feed .tm-page__main { width: 100% !important; }
   body.pattern-shell .tm-page__sidebar { display: none !important; }
-  body.pattern-shell .tm-page__main { width: 100% !important; min-height: 220px; }
+  body.pattern-shell .tm-page__main { max-width: none; width: 100% !important; min-height: var(--habr-size-320); margin-right: 0; }
   body.pattern-entity > div,
   body.pattern-admin-form > div > div[style*="display:flex"] { display: grid !important; grid-template-columns: minmax(0, 1fr); }
   body.pattern-entity > div > div,
@@ -41,4 +43,10 @@ body.migration-example--intrinsic > .doc-specimen { margin: 0; padding: 0; borde
   body.pattern-admin-list > div { display: block !important; }
   body.pattern-admin-list > div > div:first-child > div { align-items: flex-start !important; flex-direction: column; gap: 10px; }
   body.pattern-admin-list > div > div:first-child > div > div:last-child { flex-wrap: wrap; }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .shell-demo .tm-page__wrapper { flex-direction: column; }
+  .shell-demo .tm-page__main_has-sidebar { max-width: none; width: 100%; margin-right: 0; }
+  .shell-demo .tm-page__sidebar { width: 100%; min-height: calc(var(--habr-size-320) / 2); margin-top: var(--habr-space-8); }
 }

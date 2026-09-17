@@ -33,8 +33,9 @@ Storybook (только для behaviour оверлеев, уже учтён в 
 **Hierarchy.** Шапка → тело страницы → подвал. Внутри тела: главная
 колонка первична, сайдбар вторичен.
 
-**Reusable modules.** Header (не специфицирован отдельно — GAP, см. §7),
-Footer (не специфицирован — GAP), `ui/layout.css`.
+**Reusable modules.** Header и Footer специфицированы отдельно в
+`machine/foundations/header.json` и `machine/foundations/footer.json`;
+реализация находится в `ui/layout.css`.
 
 **Primary actions.** Нет — это оболочка, не экран.
 

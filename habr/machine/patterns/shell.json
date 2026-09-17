@@ -22,7 +22,9 @@
     "styles": [
       "ui/habr.css"
     ],
-    "scripts": []
+    "scripts": [
+      "examples/site-shell.js"
+    ]
   },
   "states": {
     "ui": [],
@@ -139,12 +141,16 @@
     },
     {
       "type": "guidance",
-      "text": "Шапка — .tm-header , реальные размеры 56px/48px (≤767), sticky. Показана один раз здесь как универсальный элемент оболочки — идентична на всех подтверждённых семействах (см. Foundations → Header ), дальше в примерах ниже не повторяется, чтобы не раздувать разметку."
+      "text": "Все готовые примеры страниц подключают одну общую оболочку через habr-site-header и habr-site-footer из examples/site-shell.js. Разметка не дублируется: источниками геометрии и вариантов остаются Foundations → Header и Footer."
     },
     {
       "type": "guidance",
       "text": "production · 14/14 страниц"
     }
   ],
-  "markdown": "docs/patterns/shell.md"
+  "markdown": "docs/patterns/shell.md",
+  "shellDependencies": [
+    "header",
+    "footer"
+  ]
 }

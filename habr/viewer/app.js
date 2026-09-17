@@ -303,6 +303,10 @@ function selectExample(exampleId) {
   viewportControls.hidden = isIntrinsic;
   viewportMeta.hidden = isIntrinsic;
   previewStage.classList.toggle('preview-stage--intrinsic', isIntrinsic);
+  previewStage.classList.toggle(
+    'preview-stage--page',
+    currentItem.kind === 'pattern' && currentItem.category === 'page-families'
+  );
   preview.scrolling = isIntrinsic ? 'no' : 'auto';
   preview.style.width = '100%';
   preview.style.height = isIntrinsic ? '1px' : `${currentExample.preview.height}px`;

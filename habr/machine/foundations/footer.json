@@ -1,0 +1,36 @@
+{
+  "$schema": "../../schema.json",
+  "id": "footer",
+  "title": "Подвал",
+  "kind": "foundation",
+  "category": "foundations",
+  "maturity": { "spec": "complete", "markup": "available" },
+  "knowledge": { "authority": ["production"], "confidence": "high", "scope": "public guest shell" },
+  "purpose": "Адаптивный подвал публичного Хабра. На desktop состоит из четырёх колонок меню и нижней служебной полосы; на mobile/tablet меню не рендерится, а служебная часть перестраивается в вертикальную композицию с логотипом, соцсетями и крупными ссылками.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": ["tm-footer-menu", "tm-footer"],
+    "styles": ["ui/habr.css"],
+    "scripts": ["examples/site-shell.js"]
+  },
+  "states": { "ui": ["default", "link-hover", "focus-visible"], "feature": ["desktop-menu", "compact-service-footer"], "domain": ["guest"] },
+  "examples": [
+    { "id": "default", "title": "Адаптивный подвал", "file": "examples/generated/foundations/f-footer/default.html", "covers": ["tm-footer-menu", "tm-footer", "responsive-footer"], "preview": { "mode": "viewport", "widths": [320, 480, 768, 1024], "height": 520 } }
+  ],
+  "evidence": [
+    { "type": "production-page", "ref": "https://habr.com/ru/articles/" },
+    { "type": "production-css", "ref": "https://assets.habr.com/habr-web/release_2.349.1/client/css/index-BhHKOogt.css" }
+  ],
+  "unknowns": [],
+  "previewNotes": [
+    { "type": "guidance", "text": "Главный брейкпоинт — 1024px: до 1023px включительно меню из четырёх колонок не рендерится, служебная часть остаётся вертикальной; с 1024px появляются колонки, а нижняя часть становится горизонтальной полосой 48px." },
+    { "type": "guidance", "text": "Дополнительный брейкпоинт — 768px: до 767px социальные иконки имеют размер 36px и боковые поля 16px; с 768px иконки становятся 24px, а содержимое ограничивается планшетным контейнером." }
+  ],
+  "visual": {
+    "desktopServiceHeight": "var(--habr-size-48)",
+    "desktopMenuColumns": 4,
+    "menuBreakpoint": 1024,
+    "compactBreakpoint": 768,
+    "themeTokens": ["--header-background", "--header-secondary-background", "--header-text", "--icon-secondary", "--complexity-medium"]
+  }
+}

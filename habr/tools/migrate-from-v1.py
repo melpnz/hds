@@ -253,6 +253,10 @@ def rewrite_fragment(fragment: BeautifulSoup, page: bool = False, section_id: st
     for tag in fragment.select(".doc-note, .doc-meta, .doc-family__note, .doc-family__meta"):
         tag.decompose()
     if page:
+        # Page examples consume the shared shell component. Any shell copied
+        # from the legacy showcase would create a second, stale header/footer.
+        for tag in fragment.select(".tm-header, .tm-footer-menu, .tm-footer"):
+            tag.decompose()
         for text in list(fragment.find_all(string=True)):
             if isinstance(text, NavigableString) and re.match(r"^\s*\[.+\]\s*$", str(text), re.S):
                 text.extract()
@@ -280,13 +284,23 @@ def rewrite_fragment(fragment: BeautifulSoup, page: bool = False, section_id: st
             if value and value.startswith("#"):
                 tag[attr] = "../../../../ui/assets/icons/megazord.svg" + value
     body = fragment.decode_contents()
+    if section_id == "shell":
+        body = '''<main class="tm-page shell-demo">
+  <div class="tm-page-width">
+    <div class="tm-page__wrapper">
+      <section class="tm-page__main tm-page__main_has-sidebar shell-demo__surface">
+        <span class="shell-demo__label">Основная колонка</span>
+        <strong>Рабочая область</strong>
+        <p>Белая контентная поверхность располагается поверх серого фона страницы.</p>
+      </section>
+      <aside class="tm-page__sidebar shell-demo__surface" aria-label="Боковая колонка">
+        <span class="shell-demo__label">Сайдбар · 300px</span>
+      </aside>
+    </div>
+  </div>
+</main>'''
     if section_id == "feed":
-        body = f'''<div class="tm-header" style="position:static">
-<div class="tm-header__container tm-page-width">
-<div class="example-header-brand"><svg class="tm-svg-img" height="24" width="24"><use xlink:href="../../../../ui/assets/icons/megazord.svg#header-burger"></use></svg><strong>Хабр</strong></div>
-<div class="example-header-actions"><svg class="tm-svg-img" height="20" width="20"><use xlink:href="../../../../ui/assets/icons/megazord.svg#search"></use></svg><svg class="tm-svg-img" height="20" width="20"><use xlink:href="../../../../ui/assets/icons/megazord.svg#write"></use></svg></div>
-</div></div>
-<div class="example-page-shell"><div class="tm-page-width"><div class="tm-page__wrapper">
+        body = f'''<div class="example-page-shell"><div class="tm-page-width"><div class="tm-page__wrapper">
 <main class="tm-page__main tm-page__main_has-sidebar">{body}</main>
 <aside class="tm-page__sidebar" aria-label="Боковая колонка"></aside>
 </div></div></div>'''
@@ -295,6 +309,9 @@ def rewrite_fragment(fragment: BeautifulSoup, page: bool = False, section_id: st
 
 def example_document(title: str, body: str, page: bool = False, section_id: str = "") -> str:
     extra = '<link rel="stylesheet" href="../../../../examples/showcase-pages.css">' if page else '<link rel="stylesheet" href="../../../../examples/showcase-components.css">'
+    shell_script = '<script src="../../../../examples/site-shell.js" defer></script>' if page else ''
+    shell_header = '<habr-site-header></habr-site-header>' if page else ''
+    shell_footer = '<habr-site-footer></habr-site-footer>' if page else ''
     body_class = f"migration-example migration-example--page pattern-{section_id}" if page else "migration-example migration-example--intrinsic"
     return f'''<!doctype html>
 <html lang="ru">
@@ -306,9 +323,12 @@ def example_document(title: str, body: str, page: bool = False, section_id: str 
   <link rel="stylesheet" href="../../../../ui/habr.css">
   {extra}
   <link rel="stylesheet" href="../../../../examples/example-shell.css">
+  {shell_script}
 </head>
 <body class="{body_class}">
+{shell_header}
 {body}
+{shell_footer}
 <script src="../../../../examples/components.js"></script>
 </body>
 </html>
@@ -469,6 +489,21 @@ def split_pattern_documents() -> dict[str, str]:
 def main() -> None:
     if not SOURCE.exists():
         raise SystemExit(f"Archive source is missing: {SOURCE}")
+    # Header and footer are maintained from current production, not reconstructed
+    # from the legacy v1 showcase. Preserve them across the legacy migration so
+    # `npm run migrate` cannot silently replace the current shell with old demos.
+    preserved_shell_specs = {}
+    preserved_shell_examples = {}
+    for shell_id in ("header", "footer"):
+        spec_path = ROOT / "machine" / "foundations" / f"{shell_id}.json"
+        if spec_path.exists():
+            preserved_shell_specs[shell_id] = spec_path.read_text(encoding="utf-8")
+        example_root = ROOT / "examples" / "generated" / "foundations" / f"f-{shell_id}"
+        if example_root.exists():
+            preserved_shell_examples[shell_id] = {
+                path.relative_to(example_root): path.read_bytes()
+                for path in example_root.rglob("*") if path.is_file()
+            }
     for directory in GENERATED_DIRS:
         resolved = directory.resolve()
         if ROOT.resolve() not in resolved.parents:
@@ -493,6 +528,16 @@ def main() -> None:
         path = Path("machine/foundations") / f"{item_id}.json"
         write_json(ROOT / path, item)
         catalog.append({"id": item_id, "title": title, "kind": "foundation", "category": "foundations", "navSection": "foundations", "navSectionTitle": "Основы", "navGroup": "visual", "navGroupTitle": "Визуальный язык", "file": path.as_posix(), "tags": [item_id, source_id]})
+
+    for shell_id, content in preserved_shell_specs.items():
+        (ROOT / "machine" / "foundations" / f"{shell_id}.json").write_text(content, encoding="utf-8")
+        example_root = ROOT / "examples" / "generated" / "foundations" / f"f-{shell_id}"
+        for relative, payload in preserved_shell_examples.get(shell_id, {}).items():
+            target = example_root / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes(payload)
+    if "footer" in preserved_shell_specs:
+        catalog.append({"id": "footer", "title": "Подвал", "kind": "foundation", "category": "foundations", "navSection": "foundations", "navSectionTitle": "Основы", "navGroup": "visual", "navGroupTitle": "Визуальный язык", "file": "machine/foundations/footer.json", "tags": ["footer", "tm-footer", "tm-footer-menu"]})
 
     icon_item = base_item("icons", "Иконки и иллюстрации", "foundation", "assets", "Полный адресный инвентарь production-иконок, редакторских иконок и иллюстраций Habr.")
     icon_item["knowledge"]["authority"] = ["production-bundle", "figma"]
@@ -568,6 +613,9 @@ def main() -> None:
             item["sequence"] = composition["sequence"]
         item["examples"] = examples
         item["previewNotes"] = notes
+        if examples:
+            item["implementation"]["scripts"] = ["examples/site-shell.js"]
+            item["shellDependencies"] = ["header", "footer"]
         if doc_relative:
             item["markdown"] = doc_relative
             item["unknowns"] = gaps_from_markdown(doc_path)
@@ -656,6 +704,8 @@ def main() -> None:
         "icons": {"inventory": {"production": 109, "editor": 137, "illustrations": 20}, "format": "SVG"},
     }
     for foundation_id, visual in foundation_visuals.items():
+        if foundation_id in preserved_shell_specs:
+            continue
         foundation_path = ROOT / "machine" / "foundations" / f"{foundation_id}.json"
         foundation = json.loads(foundation_path.read_text(encoding="utf-8"))
         foundation["visual"] = visual
@@ -670,7 +720,7 @@ def main() -> None:
     examples_count = sum(len(json.loads((ROOT / entry["file"]).read_text(encoding="utf-8"))["examples"]) for entry in catalog)
     index = {
         "schemaVersion": 3,
-        "product": {"id": "habr", "title": "Хабр", "guideVersion": "1.0", "status": "active", "productionRelease": "2.346.1", "lastVerified": "2026-09-07"},
+        "product": {"id": "habr", "title": "Хабр", "guideVersion": "1.0", "status": "active", "productionRelease": "2.349.1", "lastVerified": "2026-09-17"},
         "readOrder": ["machine/style-profile.json для задач уровня продукта или нового экрана", "machine/dimension-tokens.json для геометрии", "machine/catalog.json", "только выбранный file из catalog", "markdown, rules, implementation и examples — только при необходимости"],
         "files": {"catalog": "machine/catalog.json", "states": "machine/states.json", "tokens": "machine/tokens.json", "dimensionTokens": "machine/dimension-tokens.json", "dimensionExceptions": "machine/reports/dimension-exceptions.json", "styleProfile": "machine/style-profile.json", "assets": "machine/assets.json", "migrationMap": "machine/migration-map.json", "schema": "schema.json", "roadmap": "ROADMAP.md"},
         "coverage": {"boundary": "public guest production + company admin Figma", "known": ["public shell", "content feed", "directory", "entity", "company admin"], "unknown": ["editor screen", "settings outside admin", "service/error", "authenticated production"], "onUnknown": {"action": "use-nearest-confirmed-pattern-and-disclose-assumption", "doc": "ROADMAP.md"}},
@@ -710,7 +760,7 @@ def main() -> None:
         "showcasePages": page_section_map,
         "componentDocuments": component_documents,
         "ruleDocuments": [entry["file"] for entry in catalog if entry["id"].startswith(("rule-", "decision-"))],
-        "catalogTargets": [{"id": entry["id"], "target": entry["file"], "status": "migrated"} for entry in catalog],
+        "catalogTargets": [{"id": entry["id"], "target": entry["file"], "status": "added-from-production" if entry["id"] == "footer" else "migrated"} for entry in catalog],
     })
     print(f"Migrated {len(catalog)} catalog items and {examples_count} isolated examples")
 

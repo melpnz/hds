@@ -69,6 +69,19 @@ for (const entry of catalog) {
   for (const evidence of item.evidence || []) if (evidence?.ref) evidenceRefExists(evidence.ref, entry.id);
   for (const example of item.examples || []) {
     pathExists(example.file, `${entry.id}/${example.id}`);
+    if (entry.kind === 'pattern' && existsSync(resolve(root, example.file))) {
+      const source = readFileSync(resolve(root, example.file), 'utf8');
+      if (!source.includes('<habr-site-header') || !source.includes('<habr-site-footer')) {
+        errors.push(`${entry.id}/${example.id}: page example must reference the shared header and footer`);
+      }
+      if (source.includes('<div class="tm-header"') || source.includes('<footer class="tm-footer"')) {
+        errors.push(`${entry.id}/${example.id}: page example duplicates shared shell markup`);
+      }
+      if (!item.implementation.scripts?.includes('examples/site-shell.js')
+        || JSON.stringify(item.shellDependencies) !== JSON.stringify(['header', 'footer'])) {
+        errors.push(`${entry.id}: shared shell contract is missing`);
+      }
+    }
     if (!['intrinsic', 'viewport'].includes(example.preview?.mode)) errors.push(`${entry.id}/${example.id}: invalid preview mode`);
     if (example.preview?.mode === 'intrinsic' && (example.preview.widths || example.preview.height)) {
       errors.push(`${entry.id}/${example.id}: intrinsic preview must not prescribe viewport dimensions`);

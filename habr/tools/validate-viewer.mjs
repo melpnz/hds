@@ -106,6 +106,42 @@ try {
       await page.locator('#viewport-controls [data-width="full"]').click();
     }
 
+    if (entry.kind === 'pattern' && item.examples.length) {
+      const pageStagePadding = await page.locator('.preview-stage').evaluate(element => getComputedStyle(element).padding);
+      if (pageStagePadding !== '0px') failures.push(`${entry.id}: page preview must be edge-to-edge`);
+      try {
+        await page.waitForFunction(() => {
+          const document = window.document.querySelector('#preview')?.contentDocument;
+          return document?.querySelector('habr-site-header .tm-header')
+            && document?.querySelector('habr-site-footer .tm-footer');
+        }, null, { timeout: 5000 });
+      } catch {
+        failures.push(`${entry.id}: shared header/footer did not render`);
+      }
+      const shellCounts = await page.locator('#preview').evaluate(frame => ({
+        headers: frame.contentDocument?.querySelectorAll('.tm-header').length || 0,
+        footers: frame.contentDocument?.querySelectorAll('.tm-footer').length || 0,
+        componentHeaders: frame.contentDocument?.querySelectorAll('habr-site-header').length || 0,
+        componentFooters: frame.contentDocument?.querySelectorAll('habr-site-footer').length || 0
+      }));
+      if (Object.values(shellCounts).some(count => count !== 1)) failures.push(`${entry.id}: shared shell must render exactly once`);
+      if (entry.id === 'shell') {
+        const surfaces = await page.locator('#preview').evaluate(frame => {
+          const document = frame.contentDocument;
+          const main = document?.querySelector('.shell-demo .tm-page__main');
+          const sidebar = document?.querySelector('.shell-demo .tm-page__sidebar');
+          return {
+            page: document ? getComputedStyle(document.body).backgroundColor : null,
+            main: main ? getComputedStyle(main).backgroundColor : null,
+            sidebar: sidebar ? getComputedStyle(sidebar).backgroundColor : null
+          };
+        });
+        if (!surfaces.page || surfaces.page === surfaces.main || surfaces.main !== surfaces.sidebar) {
+          failures.push('shell: primary work surfaces must sit on the contrasting gray page background');
+        }
+      }
+    }
+
     const compoundControlFailures = await page.locator('iframe').evaluateAll(frames => frames.flatMap(frame => {
       const document = frame.contentDocument;
       if (!document) return [];
@@ -298,6 +334,73 @@ try {
     failures.push('dialog: bottom-drawer shadow must start at the content surface below the drag handle');
   }
 
+  const shellChecks = [
+    { name: 'header 767', width: 767, path: 'examples/generated/foundations/f-header/default.html', selector: '.tm-header', height: 48 },
+    { name: 'header 768', width: 768, path: 'examples/generated/foundations/f-header/default.html', selector: '.tm-header', height: 56 },
+    { name: 'header feature 767', width: 767, path: 'examples/generated/foundations/f-header/with-feature.html', selector: '.tm-header', height: 80 },
+    { name: 'footer 320', width: 320, path: 'examples/generated/foundations/f-footer/default.html', selector: '.tm-footer', height: null },
+    { name: 'footer 767', width: 767, path: 'examples/generated/foundations/f-footer/default.html', selector: '.tm-footer', height: null },
+    { name: 'footer 768', width: 768, path: 'examples/generated/foundations/f-footer/default.html', selector: '.tm-footer', height: null },
+    { name: 'footer 1023', width: 1023, path: 'examples/generated/foundations/f-footer/default.html', selector: '.tm-footer', height: null },
+    { name: 'footer 1024', width: 1024, path: 'examples/generated/foundations/f-footer/default.html', selector: '.tm-footer', height: 48 }
+  ];
+  for (const check of shellChecks) {
+    const shellPage = await browser.newPage({ viewport: { width: check.width, height: 720 } });
+    await shellPage.goto(`${baseUrl}/${check.path}`, { waitUntil: 'networkidle' });
+    const geometry = await shellPage.locator(check.selector).evaluate((element, name) => {
+      const rect = element.getBoundingClientRect();
+      const menu = document.querySelector('.tm-footer-menu');
+      const footerContainer = document.querySelector('.tm-footer__container');
+      const allFlows = document.querySelector('.tm-header__all-flows');
+      const headerContainer = document.querySelector('.tm-header__container');
+      const login = document.querySelector('.tm-header-user-menu__login');
+      const headerContainerRect = headerContainer?.getBoundingClientRect();
+      const loginRect = login?.getBoundingClientRect();
+      return {
+        name,
+        height: rect.height,
+        overflow: document.documentElement.scrollWidth > document.documentElement.clientWidth,
+        menuDisplay: menu ? getComputedStyle(menu).display : null,
+        menuColumns: document.querySelectorAll('.tm-footer-menu__block').length,
+        footerDirection: footerContainer ? getComputedStyle(footerContainer).flexDirection : null,
+        footerPaddingTop: footerContainer ? getComputedStyle(footerContainer).paddingTop : null,
+        footerPaddingBottom: footerContainer ? getComputedStyle(footerContainer).paddingBottom : null,
+        allFlowsDisplay: allFlows ? getComputedStyle(allFlows).display : null,
+        headerContainerHeight: headerContainerRect?.height ?? null,
+        headerContainerTopOffset: headerContainerRect ? headerContainerRect.top - rect.top : null,
+        loginCenterOffset: headerContainerRect && loginRect
+          ? (loginRect.top + loginRect.height / 2) - (headerContainerRect.top + headerContainerRect.height / 2)
+          : null,
+        links: [...document.querySelectorAll('.tm-footer__link')].map(link => link.getBoundingClientRect().height),
+        socialIconSize: document.querySelector('.tm-footer__social .social-icon')?.getBoundingClientRect().width || null,
+        copyrightFontSize: document.querySelector('.tm-copyright__link') ? getComputedStyle(document.querySelector('.tm-copyright__link')).fontSize : null,
+        noticeLinkFontSize: document.querySelector('.tm-footer__notice a') ? getComputedStyle(document.querySelector('.tm-footer__notice a')).fontSize : null
+      };
+    }, check.name);
+    if (check.height !== null && Math.abs(geometry.height - check.height) > 0.5) failures.push(`${check.name}: expected ${check.height}px, got ${geometry.height}px`);
+    if (geometry.overflow) failures.push(`${check.name}: horizontal overflow`);
+    if (check.name === 'header 767' && geometry.allFlowsDisplay !== 'none') failures.push('header 767: «Все потоки» must be hidden');
+    if (check.name === 'header 768' && geometry.allFlowsDisplay === 'none') failures.push('header 768: «Все потоки» must be visible');
+    if (['header 767', 'header 768'].includes(check.name)
+      && (Math.abs(geometry.headerContainerHeight - geometry.height) > 0.5
+        || Math.abs(geometry.headerContainerTopOffset) > 0.5)) {
+      failures.push(`${check.name}: navigation row must fill and center within the header`);
+    }
+    if (check.name === 'header feature 767'
+      && (Math.abs(geometry.headerContainerHeight - 48) > 0.5
+        || Math.abs(geometry.headerContainerTopOffset - 32) > 0.5)) {
+      failures.push('header feature 767: navigation row must remain centered below the feature slot');
+    }
+    if (check.name.startsWith('header ') && Math.abs(geometry.loginCenterOffset) > 0.5) failures.push(`${check.name}: login button is not vertically centered`);
+    if (check.name.startsWith('footer ') && (geometry.links.some(height => Math.abs(height - 48) > 0.5) || geometry.copyrightFontSize !== '14px' || geometry.noticeLinkFontSize !== '13px')) failures.push(`${check.name}: footer typography or link geometry is stale`);
+    if (['footer 320', 'footer 767', 'footer 768', 'footer 1023'].includes(check.name) && (geometry.footerPaddingTop !== '36px' || geometry.footerPaddingBottom !== '32px')) failures.push(`${check.name}: compact footer must keep 36px top and 32px bottom padding`);
+    if (['footer 320', 'footer 767'].includes(check.name) && (geometry.menuDisplay !== 'none' || geometry.footerDirection !== 'column' || Math.abs(geometry.socialIconSize - 36) > 0.5)) failures.push(`${check.name}: mobile composition is stale`);
+    if (check.name === 'footer 768' && (geometry.menuDisplay !== 'none' || geometry.footerDirection !== 'column' || Math.abs(geometry.socialIconSize - 24) > 0.5)) failures.push('footer 768: tablet composition is stale');
+    if (check.name === 'footer 1023' && (geometry.menuDisplay !== 'none' || geometry.footerDirection !== 'column')) failures.push('footer 1023: compact composition is stale');
+    if (check.name === 'footer 1024' && (geometry.menuDisplay === 'none' || geometry.menuColumns !== 4 || geometry.footerDirection !== 'row-reverse')) failures.push('footer 1024: desktop composition is stale');
+    await shellPage.close();
+  }
+
   await page.evaluate(id => { location.hash = id; }, entries[entries.length - 1].id);
   await page.waitForFunction(id => document.querySelector('#raw-json')?.textContent.includes(`"id": "${id}"`), entries[entries.length - 1].id);
 
@@ -339,7 +442,7 @@ try {
     console.error(failures.join('\n'));
     process.exitCode = 1;
   } else {
-    console.log(`OK: ${entries.length} viewer pages; global light/dark theme, tokenized icon paint, disabled field themes, pagination geometry, drawer shadow, persistence, intrinsic, viewport, notes, search and full-width shell verified`);
+    console.log(`OK: ${entries.length} viewer pages; global light/dark theme, tokenized icon paint, disabled field themes, pagination geometry, drawer shadow, header/footer breakpoints, persistence, intrinsic, viewport, notes, search and full-width shell verified`);
   }
 } finally {
   await browser.close();
