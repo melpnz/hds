@@ -9,7 +9,6 @@
 | [`habr/`](habr/) | Design System Knowledge — Хабр | v1.0 | `habr-v1.0` |
 | [`courses/`](courses/) | Хабр Курсы — в разработке | v0.2 | `courses-v0.2` |
 | [`landings/`](landings/) | Гайды лендингов — в разработке | v0.2 | `landings-v0.2` |
-| [`partner-specials/`](partner-specials/) | Партнёрские спецпроекты — пилот, в разработке | Релиз не объявлен | `partner-specials-vX.Y` после релиза |
 | `0X-*.md` | Исследования и кросс-продуктовые находки | — | — |
 
 Сводка готовности направлений — в [корневом README](README.md). Хабр и Карьера

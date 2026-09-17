@@ -1065,6 +1065,7 @@ write('machine/index.json', {
     styleProfile: 'machine/style-profile.json',
     dimensionTokens: 'machine/dimension-tokens.json',
     dimensionExceptions: 'machine/reports/dimension-exceptions.json',
+    maturityDiagnostics: 'machine/reports/maturity-diagnostics.json',
     provenance: 'machine/provenance/index.json',
     schema: 'schema.json',
     roadmap: 'ROADMAP.md',
