@@ -25,6 +25,15 @@ try {
   page.on("console", (message) => { if (message.type() === "error") consoleErrors.push(message.text()); });
   await page.goto(pathToFileURL(path.join(root, "viewer", "index.html")).href);
   await page.waitForSelector(".catalog-item");
+  const viewerTheme = await page.evaluate(() => ({
+    id: document.documentElement.dataset.theme,
+    scheme: getComputedStyle(document.documentElement).colorScheme,
+    sidebar: getComputedStyle(document.querySelector(".viewer-sidebar")).backgroundColor,
+    label: document.querySelector(".viewer-theme-label")?.textContent.trim()
+  }));
+  if (viewerTheme.id !== "company" || viewerTheme.scheme !== "dark" || viewerTheme.sidebar !== "rgb(12, 14, 14)" || viewerTheme.label !== "Тема · тёмная") {
+    throw new Error(`Тёмная тема витрины подключена некорректно: ${JSON.stringify(viewerTheme)}`);
+  }
   if (await page.locator(".catalog-item").count() !== catalog.items.length) throw new Error(`В каталоге должно быть ${catalog.items.length} сущностей`);
   const widthLabels = await page.locator("[data-width]").allTextContents();
   if (widthLabels.join("|") !== "320|480|768|992|1280|1440|Auto") throw new Error(`Неверный набор ширин витрины: ${widthLabels.join(", ")}`);
