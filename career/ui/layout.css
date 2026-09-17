@@ -40,7 +40,7 @@
 .tm-panel__inner { display: flex; align-items: center; gap: var(--career-space-8); }
 /* Бренд крупнее интерфейсного кегля: замерено по снимку шапки production. */
 .tm-panel__logo {
-  font: 400 20px/24px var(--font-base);
+  font: 400 var(--career-font-size-20)/var(--career-line-height-24-on-20) var(--font-base);
   color: var(--color-ui-white);
   text-decoration: none;
   white-space: nowrap;
@@ -61,11 +61,11 @@
   align-items: center;
   gap: var(--career-space-8);
   margin-left: var(--career-space-12);
-  font: 400 14px/20px var(--font-base);
+  font: 400 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base);
   color: var(--color-ui-white);
   white-space: nowrap;
 }
-.tm-panel__emoji { font-size: 18px; line-height: 1; }
+.tm-panel__emoji { font-size: var(--career-font-size-18); line-height: 1; }
 
 .app-header {
   height: var(--career-size-64);
@@ -76,7 +76,7 @@
 .app-header__inner { display: flex; align-items: center; gap: var(--career-space-24); width: 100%; }
 .app-header__nav { display: flex; align-items: center; gap: var(--career-space-20); flex: 1 1 auto; min-width: 0; overflow-x: auto; }
 .app-header__link {
-  font: 600 14px/20px var(--font-base);
+  font: 600 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base);
   color: var(--color-ui-gray-2);
   text-decoration: none;
   white-space: nowrap;
@@ -151,7 +151,7 @@
 /* третий ярус навигации и кнопка фильтров существуют только ниже 1024 */
 .app-subnav { display: none; }
 .app-subnav__link {
-  font: 600 14px/20px var(--font-base);
+  font: 600 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base);
   color: var(--color-ui-gray-2);
   text-decoration: none;
   white-space: nowrap;
@@ -196,7 +196,7 @@
   }
   .app-header__logo {
     display: inline-block;
-    font: 400 20px/24px var(--font-base);
+    font: 400 var(--career-font-size-20)/var(--career-line-height-24-on-20) var(--font-base);
     color: var(--color-ui-white);
     text-decoration: none;
     white-space: nowrap;
@@ -278,24 +278,24 @@
   gap: var(--career-space-16);
   flex-wrap: wrap;
 }
-.page-header-card__title { margin: 0; font: 600 28px/32px var(--font-base); color: var(--color-ui-gray-1); }
+.page-header-card__title { margin: 0; font: 600 var(--career-font-size-28)/var(--career-line-height-32-on-28) var(--font-base); color: var(--color-ui-gray-1); }
 .page-header-card__controls { display: flex; gap: var(--career-space-8); align-items: center; flex-wrap: wrap; }
 .page-header-card__controls > *:first-child { flex: 1 1 320px; min-width: 0; }
-.page-header-card__count { font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-3); }
+.page-header-card__count { font: 400 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base); color: var(--color-ui-gray-3); }
 
 /* D-2: шапка сущности */
 .entity-header { display: grid; gap: var(--career-space-12); }
 .entity-header__top { display: flex; align-items: flex-start; justify-content: space-between; gap: var(--career-space-16); }
-.entity-header__title { margin: 0; font: 600 28px/32px var(--font-base); color: var(--color-ui-gray-1); }
-.entity-header__date { flex: none; font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-3); }
+.entity-header__title { margin: 0; font: 600 var(--career-font-size-28)/var(--career-line-height-32-on-28) var(--font-base); color: var(--color-ui-gray-1); }
+.entity-header__date { flex: none; font: 400 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base); color: var(--color-ui-gray-3); }
 /* Зарплата в шапке сущности живёт по тому же правилу, что и в карточке листинга:
    зелёная, когда указана; оранжевая, когда нет. Оранжевый замерен на снимке
    detail-vacancy-1440.png — rgb(253,143,13), и там же под ним идёт серая строка
    «Похожие специалисты получают…», которая появляется только в этом случае. */
-.entity-header__salary { font: 700 17px/22px var(--font-base); color: var(--color-ui-green); }
+.entity-header__salary { font: 700 var(--career-font-size-17)/var(--career-line-height-22-on-17) var(--font-base); color: var(--color-ui-green); }
 .entity-header__salary--unknown { color: var(--color-ui-orange-accent); }
 .entity-header__hint {
-  font: 400 16px/24px var(--font-base);
+  font: 400 var(--career-font-size-16)/var(--career-line-height-24-on-16) var(--font-base);
   color: var(--color-ui-gray-2);
   border-bottom: var(--career-border-width-1) dashed var(--color-ui-gray-4);
   align-self: start;
@@ -304,17 +304,17 @@
 
 /* D-3: группа атрибутов = микро-метка 12/16 gray-3 + строка чипов */
 .meta-group { display: grid; gap: var(--career-space-4); }
-.meta-group__label { font: 400 12px/16px var(--font-base); color: var(--color-ui-gray-3); }
+.meta-group__label { font: 400 var(--career-font-size-12)/var(--career-line-height-16-on-12) var(--font-base); color: var(--color-ui-gray-3); }
 .meta-group__row { display: flex; flex-wrap: wrap; gap: var(--career-space-4); }
 
 /* P-2: идентификационная карточка профиля */
 .identity { display: grid; justify-items: center; gap: var(--career-space-12); text-align: center; }
-.identity__name { margin: 0; font: 600 28px/32px var(--font-base); color: var(--color-ui-gray-1); }
-.identity__role { font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-2); }
-.identity__expect { font: 600 14px/20px var(--font-base); color: var(--color-ui-green-accent); }
+.identity__name { margin: 0; font: 600 var(--career-font-size-28)/var(--career-line-height-32-on-28) var(--font-base); color: var(--color-ui-gray-1); }
+.identity__role { font: 400 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base); color: var(--color-ui-gray-2); }
+.identity__expect { font: 600 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base); color: var(--color-ui-green-accent); }
 
 /* C-6: заголовок карточки сайдбара мельче, чем в главной колонке */
-.sidebar-card__title { margin: 0 0 var(--career-space-12); font: 600 16px/24px var(--font-base); color: var(--color-ui-gray-1); }
+.sidebar-card__title { margin: 0 0 var(--career-space-12); font: 600 var(--career-font-size-16)/var(--career-line-height-24-on-16) var(--font-base); color: var(--color-ui-gray-1); }
 
 /* L-7: промо-блок — единственное место продукта с градиентом */
 .promo-card {
@@ -325,7 +325,7 @@
   gap: var(--career-space-12);
   background: linear-gradient(102deg, #efe7ff 0%, #e6d9ff 48%, #f3e4fb 100%);
   color: var(--color-ui-gray-1);
-  font: 600 14px/20px var(--font-base);
+  font: 600 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base);
 }
 .promo-card__art {
   width: var(--career-size-56); height: var(--career-size-56); flex: none; border-radius: var(--career-radius-12);
@@ -337,21 +337,21 @@
 .card-promoted {
   border-radius: var(--career-radius-24);
   border: var(--career-border-width-2) solid var(--promo-color, var(--color-ui-orange-accent));
-  padding: 22px;                 /* 24 − 2, чтобы контент не сдвигался */
+  padding: var(--career-space-22);                 /* 24 − 2, чтобы контент не сдвигался */
   background: var(--promo-bg, transparent);
 }
 
 /* DB-3: крупное числовое значение */
 .metric { display: grid; gap: var(--career-space-4); }
-.metric__value { font: 600 42px/48px var(--font-base); color: var(--color-ui-gray-1); }
-.metric__parts { display: flex; align-items: baseline; gap: var(--career-space-8); font: 400 16px/24px var(--font-base); }
-.metric__parts small { font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-2); }
-.metric__bar { height: var(--career-size-24); border-radius: 9999px; background: var(--color-ui-gray-6); overflow: hidden; }
+.metric__value { font: 600 var(--career-font-size-42)/var(--career-line-height-48-on-42) var(--font-base); color: var(--color-ui-gray-1); }
+.metric__parts { display: flex; align-items: baseline; gap: var(--career-space-8); font: 400 var(--career-font-size-16)/var(--career-line-height-24-on-16) var(--font-base); }
+.metric__parts small { font: 400 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base); color: var(--color-ui-gray-2); }
+.metric__bar { height: var(--career-size-24); border-radius: var(--career-radius-full); background: var(--color-ui-gray-6); overflow: hidden; }
 .metric__bar span {
   display: block; height: 100%;
   background: linear-gradient(90deg, var(--color-ui-primary-light), var(--color-ui-primary));
 }
-.metric__scale { display: flex; justify-content: space-between; font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-3); }
+.metric__scale { display: flex; justify-content: space-between; font: 400 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base); color: var(--color-ui-gray-3); }
 
 /* DB-2: строка-разрез в узкой колонке дашборда */
 .facet-row {
@@ -360,7 +360,7 @@
   height: var(--career-size-40); padding: var(--career-space-8) var(--career-space-12); border-radius: var(--career-radius-12);
   border: var(--career-border-width-1) solid var(--shadow-border-color);
   background: var(--color-ui-white);
-  font: 400 16px/24px var(--font-base); color: var(--color-ui-gray-1);
+  font: 400 var(--career-font-size-16)/var(--career-line-height-24-on-16) var(--font-base); color: var(--color-ui-gray-1);
   cursor: pointer;
 }
 .facet-row + .facet-row { margin-top: var(--career-space-4); }
@@ -372,13 +372,13 @@
 
 /* ST-2: пустое состояние в списке */
 .no-content { text-align: center; padding: var(--career-space-24) 0; }
-.no-content__title { margin: 0 0 var(--career-space-4); font: 600 18px/24px var(--font-base); color: var(--color-ui-gray-1); }
-.no-content__description { margin: 0; font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-3); }
+.no-content__title { margin: 0 0 var(--career-space-4); font: 600 var(--career-font-size-18)/var(--career-line-height-24-on-18) var(--font-base); color: var(--color-ui-gray-1); }
+.no-content__description { margin: 0; font: 400 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base); color: var(--color-ui-gray-3); }
 
 /* ST-3: служебный экран отменяет сетку */
 .service-screen { padding: var(--career-space-64) 0; }
-.service-screen__title { margin: 0 0 var(--career-space-8); font: 600 28px/32px var(--font-base); color: var(--color-ui-gray-1); }
-.service-screen__text { margin: 0 0 var(--career-space-24); font: 400 16px/24px var(--font-base); color: var(--color-ui-gray-2); }
+.service-screen__title { margin: 0 0 var(--career-space-8); font: 600 var(--career-font-size-28)/var(--career-line-height-32-on-28) var(--font-base); color: var(--color-ui-gray-1); }
+.service-screen__text { margin: 0 0 var(--career-space-24); font: 400 var(--career-font-size-16)/var(--career-line-height-24-on-16) var(--font-base); color: var(--color-ui-gray-2); }
 
 /* -------------------------------------------------------------------------
    SH-6: подвал сайта
@@ -393,7 +393,7 @@
 .app-footer {
   background: var(--color-ui-white);
   padding: var(--career-space-40) 0 var(--career-space-48);
-  font: 400 14px/20px var(--font-base);
+  font: 400 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base);
   color: var(--color-ui-gray-2);
 }
 .app-footer__inner {
@@ -406,14 +406,14 @@
 .app-footer__col { min-width: 0; }
 .app-footer__title {
   margin: 0 0 var(--career-space-12);
-  font: 600 14px/20px var(--font-base);
+  font: 600 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base);
   color: var(--color-ui-gray-1);
 }
 .app-footer__list { margin: 0; padding: 0; list-style: none; display: grid; gap: var(--career-space-8); }
 .app-footer__list a {
   color: var(--color-ui-gray-2);
   text-decoration: none;
-  font: 400 14px/20px var(--font-base);
+  font: 400 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base);
 }
 .app-footer__list a:hover { color: var(--color-ui-gray-1); }
 .app-footer__social { display: flex; align-items: center; gap: var(--career-space-8); }

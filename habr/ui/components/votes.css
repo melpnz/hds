@@ -34,8 +34,8 @@
 .tm-votes-meter__value_positive {
   color: var(--accent-positive);
 }
-.tm-votes-meter__value_appearance-article { margin-left: 5px; font-weight: 700; }
-.tm-votes-meter__value_appearance-comment { margin-left: 3px; font-weight: 700; }
+.tm-votes-meter__value_appearance-article { margin-left: var(--habr-space-5); font-weight: 700; }
+.tm-votes-meter__value_appearance-comment { margin-left: var(--habr-space-3); font-weight: 700; }
 .tm-votes-meter__value_appearance-karma { margin-left: var(--habr-space-2); font-size: 1.0625rem; }
 .tm-votes-meter__value_rating { margin-left: var(--habr-space-6); }
 
@@ -78,11 +78,11 @@
   font-size: 0.8125rem;
   display: flex;
 }
-.tm-votes-lever__score_appearance-article { margin: 0 5px; font-weight: 700; }
+.tm-votes-lever__score_appearance-article { margin: 0 var(--habr-space-5); font-weight: 700; }
 .tm-votes-lever__score_appearance-comment {
   justify-content: center;
   align-items: center;
-  margin: 0 3px;
+  margin: 0 var(--habr-space-3);
   font-weight: 700;
   display: flex;
   overflow: hidden;
@@ -99,7 +99,7 @@
 .tm-votes-lever__score-counter_negative { color: var(--accent-danger); }
 .tm-votes-lever__icon_upvote,
 .tm-votes-lever__score-counter_positive { color: var(--accent-positive); }
-.tm-votes-lever__score-fallback { cursor: pointer; margin: var(--habr-space-4) 5px 0; }
+.tm-votes-lever__score-fallback { cursor: pointer; margin: var(--habr-space-4) var(--habr-space-5) 0; }
 .tm-votes-lever__score_no-margin { margin: 0; }
 
 /* --- VoteHintPopup: попап причины минуса при голосовании против --- */
@@ -110,7 +110,7 @@
   color: var(--text-secondary);
   padding: var(--habr-space-12) var(--habr-space-16);
   font-size: 0.875rem;
-  line-height: 1.25rem;
+  line-height: var(--habr-line-height-20-on-14);
   animation: 0.25s ease-in-out hint-popup-fadein;
 }
 .vote-hint-popup a { color: var(--accent-primary); text-decoration: none; }
@@ -124,8 +124,8 @@
 .tm-minus-reason .tm-checkbox__container { margin-bottom: var(--habr-space-4); }
 .tm-minus-reason__description {
   color: var(--text-secondary);
-  max-width: 338px;
+  max-width: var(--habr-size-338);
   margin-bottom: var(--habr-space-24);
   font-size: 0.875rem;
-  line-height: 1.25rem;
+  line-height: var(--habr-line-height-20-on-14);
 }

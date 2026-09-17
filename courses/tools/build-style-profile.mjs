@@ -11,7 +11,7 @@ export function buildStyleProfile() {
   const button = read('machine/components/button.json');
   return {
     schemaVersion: 1,
-    dimensionTokens: { baseUnit: '4px', source: 'machine/dimension-tokens.json', css: 'ui/dimension-tokens.css', exceptions: 'machine/reports/dimension-exceptions.json' },
+    dimensionTokens: { baseUnit: '0.25rem', referenceRootFontSize: '16px', source: 'machine/dimension-tokens.json', css: 'ui/dimension-tokens.css', exceptions: 'machine/reports/dimension-exceptions.json' },
     product: { id: 'courses', title: 'Хабр Курсы', guideVersion: '0.2', status: 'in-development' },
     scope: { confidence: 'mixed', boundary: 'Публичная гостевая часть Курсов; шесть собранных страниц и адресные спецификации.' },
     typography: {

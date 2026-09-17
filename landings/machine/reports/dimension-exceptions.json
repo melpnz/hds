@@ -1,78 +1,20 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "product": "landings",
-  "baseUnit": "4px",
+  "baseUnit": "0.25rem",
+  "referenceRootFontSize": "16px",
   "scope": "ui/**/*.css excluding token definitions and theme source files",
   "policy": {
-    "migrated": "Absolute px dimensions divisible by 4, plus approved 1px, 2px and 6px exceptions, in supported declaration properties.",
+    "migrated": "Scalable dimensions use rem with a 16px reference root; borders remain fixed px; line-height uses unitless ratios when font context is explicit.",
     "preserved": "Existing computed values, selectors, class names and DOM contracts.",
-    "exceptions": "Relative units, non-grid values and composite properties require explicit semantic review."
+    "exceptions": "Relative units, tokenized off-grid references and unsupported composite properties require explicit semantic review."
   },
   "summary": {
-    "tokenCount": 70,
-    "exceptionKinds": 47,
-    "exceptionOccurrences": 104
+    "tokenCount": 113,
+    "exceptionKinds": 41,
+    "exceptionOccurrences": 69
   },
   "exceptions": [
-    {
-      "value": "-2px",
-      "reason": "composite-or-unsupported-property",
-      "occurrences": [
-        {
-          "file": "ui/elements.css",
-          "line": 100,
-          "property": "transform"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 100,
-          "property": "transform"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 103,
-          "property": "transform"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 103,
-          "property": "transform"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 55,
-          "property": "letter-spacing"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 56,
-          "property": "letter-spacing"
-        },
-        {
-          "file": "ui/organisms.css",
-          "line": 10,
-          "property": "letter-spacing"
-        }
-      ],
-      "total": 7
-    },
-    {
-      "value": "1px",
-      "reason": "composite-or-unsupported-property",
-      "occurrences": [
-        {
-          "file": "ui/elements.css",
-          "line": 24,
-          "property": "transform"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 69,
-          "property": "transform"
-        }
-      ],
-      "total": 2
-    },
     {
       "value": "2px",
       "reason": "composite-or-unsupported-property",
@@ -91,23 +33,18 @@
           "file": "ui/organisms.css",
           "line": 47,
           "property": "background-size"
-        },
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 63,
-          "property": "text-shadow"
         }
       ],
-      "total": 4
+      "total": 3
     },
     {
-      "value": "16px",
+      "value": "3px",
       "reason": "composite-or-unsupported-property",
       "occurrences": [
         {
-          "file": "ui/page-reconstructions.css",
-          "line": 63,
-          "property": "text-shadow"
+          "file": "ui/elements.css",
+          "line": 134,
+          "property": "text-underline-offset"
         }
       ],
       "total": 1
@@ -130,28 +67,21 @@
       "total": 2
     },
     {
-      "value": "24px",
+      "value": "22px",
       "reason": "composite-or-unsupported-property",
       "occurrences": [
         {
-          "file": "ui/blocks.css",
-          "line": 6,
-          "property": "backdrop-filter"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "28px",
-      "reason": "composite-or-unsupported-property",
-      "occurrences": [
+          "file": "ui/organisms.css",
+          "line": 47,
+          "property": "background-size"
+        },
         {
-          "file": "ui/elements.css",
-          "line": 105,
-          "property": "box-shadow"
+          "file": "ui/organisms.css",
+          "line": 47,
+          "property": "background-size"
         }
       ],
-      "total": 1
+      "total": 2
     },
     {
       "value": "100px",
@@ -161,6 +91,30 @@
           "file": "ui/organisms.css",
           "line": 64,
           "property": "grid-template-columns"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "170px",
+      "reason": "composite-or-unsupported-property",
+      "occurrences": [
+        {
+          "file": "ui/page-reconstructions.css",
+          "line": 104,
+          "property": "grid-template-rows"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "190px",
+      "reason": "composite-or-unsupported-property",
+      "occurrences": [
+        {
+          "file": "ui/page-reconstructions.css",
+          "line": 101,
+          "property": "grid-template-rows"
         }
       ],
       "total": 1
@@ -246,571 +200,6 @@
       "total": 1
     },
     {
-      "value": "-.5px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/foundations.css",
-          "line": 57,
-          "property": "letter-spacing"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "-3px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/organisms.css",
-          "line": 47,
-          "property": "transform"
-        },
-        {
-          "file": "ui/organisms.css",
-          "line": 48,
-          "property": "transform"
-        }
-      ],
-      "total": 2
-    },
-    {
-      "value": "3px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/elements.css",
-          "line": 26,
-          "property": "outline"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 26,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 47,
-          "property": "outline"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 47,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 70,
-          "property": "outline"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 70,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 90,
-          "property": "outline"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 90,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 100,
-          "property": "margin-right"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 104,
-          "property": "outline"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 104,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 109,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 131,
-          "property": "outline"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 131,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 134,
-          "property": "text-underline-offset"
-        }
-      ],
-      "total": 15
-    },
-    {
-      "value": "5px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/elements.css",
-          "line": 126,
-          "property": "top"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 126,
-          "property": "right"
-        }
-      ],
-      "total": 2
-    },
-    {
-      "value": "9px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/elements.css",
-          "line": 106,
-          "property": "padding"
-        },
-        {
-          "file": "ui/organisms.css",
-          "line": 95,
-          "property": "margin-right"
-        }
-      ],
-      "total": 2
-    },
-    {
-      "value": "10px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/blocks.css",
-          "line": 13,
-          "property": "padding"
-        },
-        {
-          "file": "ui/blocks.css",
-          "line": 19,
-          "property": "inset"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 37,
-          "property": "padding"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 126,
-          "property": "width"
-        },
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 51,
-          "property": "padding"
-        }
-      ],
-      "total": 5
-    },
-    {
-      "value": "14px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/blocks.css",
-          "line": 75,
-          "property": "padding"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 105,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 24,
-          "property": "--hds-text-small"
-        }
-      ],
-      "total": 3
-    },
-    {
-      "value": "17px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/elements.css",
-          "line": 63,
-          "property": "font-size"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "18px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/blocks.css",
-          "line": 75,
-          "property": "padding"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 23,
-          "property": "--hds-text-body"
-        }
-      ],
-      "total": 2
-    },
-    {
-      "value": "22px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/organisms.css",
-          "line": 47,
-          "property": "background-size"
-        },
-        {
-          "file": "ui/organisms.css",
-          "line": 47,
-          "property": "background-size"
-        }
-      ],
-      "total": 2
-    },
-    {
-      "value": "25px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/elements.css",
-          "line": 8,
-          "property": "padding"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "30px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/blocks.css",
-          "line": 11,
-          "property": "height"
-        },
-        {
-          "file": "ui/blocks.css",
-          "line": 21,
-          "property": "padding-block"
-        },
-        {
-          "file": "ui/blocks.css",
-          "line": 102,
-          "property": "height"
-        },
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 3,
-          "property": "padding"
-        }
-      ],
-      "total": 4
-    },
-    {
-      "value": "46px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/foundations.css",
-          "line": 99,
-          "property": "--hds-text-h1"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "50px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/foundations.css",
-          "line": 12,
-          "property": "--hds-space-4"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 15,
-          "property": "--hds-page-gutter"
-        }
-      ],
-      "total": 2
-    },
-    {
-      "value": "58px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/foundations.css",
-          "line": 86,
-          "property": "--hds-text-h2"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "62px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/blocks.css",
-          "line": 101,
-          "property": "min-height"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "70px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 124,
-          "property": "--hds-section-space"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "90px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 120,
-          "property": "--hds-section-space"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "150px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/foundations.css",
-          "line": 14,
-          "property": "--hds-section-space"
-        },
-        {
-          "file": "ui/organisms.css",
-          "line": 115,
-          "property": "max-height"
-        },
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 150,
-          "property": "min-height"
-        }
-      ],
-      "total": 3
-    },
-    {
-      "value": "170px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 104,
-          "property": "grid-template-rows"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "175px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/organisms.css",
-          "line": 66,
-          "property": "max-height"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "190px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 23,
-          "property": "min-height"
-        },
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 101,
-          "property": "grid-template-rows"
-        }
-      ],
-      "total": 2
-    },
-    {
-      "value": "210px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/organisms.css",
-          "line": 92,
-          "property": "max-height"
-        },
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 147,
-          "property": "min-height"
-        }
-      ],
-      "total": 2
-    },
-    {
-      "value": "250px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/organisms.css",
-          "line": 64,
-          "property": "min-height"
-        },
-        {
-          "file": "ui/organisms.css",
-          "line": 72,
-          "property": "min-height"
-        }
-      ],
-      "total": 2
-    },
-    {
-      "value": "330px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/organisms.css",
-          "line": 98,
-          "property": "min-height"
-        },
-        {
-          "file": "ui/organisms.css",
-          "line": 104,
-          "property": "width"
-        },
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 61,
-          "property": "min-height"
-        }
-      ],
-      "total": 3
-    },
-    {
-      "value": "350px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 95,
-          "property": "min-height"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "430px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/organisms.css",
-          "line": 91,
-          "property": "min-height"
-        },
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 115,
-          "property": "min-height"
-        }
-      ],
-      "total": 2
-    },
-    {
-      "value": "610px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 71,
-          "property": "max-width"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "650px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 121,
-          "property": "max-width"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "999px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/blocks.css",
-          "line": 75,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 38,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 18,
-          "property": "--hds-radius-control"
-        },
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 51,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 60,
-          "property": "border-radius"
-        }
-      ],
-      "total": 5
-    },
-    {
       "value": "1.2em",
       "reason": "relative-unit-needs-semantic-decision",
       "occurrences": [
@@ -859,6 +248,401 @@
           "file": "ui/organisms.css",
           "line": 50,
           "property": "max-height"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "3px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/elements.css",
+          "line": 100,
+          "property": "token:space"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "5px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/elements.css",
+          "line": 126,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/elements.css",
+          "line": 126,
+          "property": "token:size"
+        }
+      ],
+      "total": 2
+    },
+    {
+      "value": "9px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/elements.css",
+          "line": 106,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/organisms.css",
+          "line": 95,
+          "property": "token:space"
+        }
+      ],
+      "total": 2
+    },
+    {
+      "value": "10px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/blocks.css",
+          "line": 19,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/elements.css",
+          "line": 126,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/blocks.css",
+          "line": 13,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/elements.css",
+          "line": 37,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/page-reconstructions.css",
+          "line": 51,
+          "property": "token:space"
+        }
+      ],
+      "total": 5
+    },
+    {
+      "value": "14px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/foundations.css",
+          "line": 24,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/blocks.css",
+          "line": 75,
+          "property": "token:space"
+        }
+      ],
+      "total": 2
+    },
+    {
+      "value": "17px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/elements.css",
+          "line": 63,
+          "property": "token:font-size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "18px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/foundations.css",
+          "line": 23,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/blocks.css",
+          "line": 75,
+          "property": "token:space"
+        }
+      ],
+      "total": 2
+    },
+    {
+      "value": "25px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/elements.css",
+          "line": 8,
+          "property": "token:space"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "30px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/blocks.css",
+          "line": 11,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/blocks.css",
+          "line": 102,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/blocks.css",
+          "line": 21,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/page-reconstructions.css",
+          "line": 3,
+          "property": "token:space"
+        }
+      ],
+      "total": 4
+    },
+    {
+      "value": "46px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/foundations.css",
+          "line": 99,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "50px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/foundations.css",
+          "line": 12,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/foundations.css",
+          "line": 15,
+          "property": "token:space"
+        }
+      ],
+      "total": 2
+    },
+    {
+      "value": "58px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/foundations.css",
+          "line": 86,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "62px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/blocks.css",
+          "line": 101,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "70px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/page-reconstructions.css",
+          "line": 124,
+          "property": "token:space"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "90px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/page-reconstructions.css",
+          "line": 120,
+          "property": "token:space"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "150px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/organisms.css",
+          "line": 116,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/page-reconstructions.css",
+          "line": 150,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/foundations.css",
+          "line": 14,
+          "property": "token:space"
+        }
+      ],
+      "total": 3
+    },
+    {
+      "value": "175px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/organisms.css",
+          "line": 66,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "190px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/page-reconstructions.css",
+          "line": 23,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "210px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/organisms.css",
+          "line": 93,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/page-reconstructions.css",
+          "line": 147,
+          "property": "token:size"
+        }
+      ],
+      "total": 2
+    },
+    {
+      "value": "250px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/organisms.css",
+          "line": 64,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/organisms.css",
+          "line": 73,
+          "property": "token:size"
+        }
+      ],
+      "total": 2
+    },
+    {
+      "value": "330px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/organisms.css",
+          "line": 99,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/organisms.css",
+          "line": 104,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/page-reconstructions.css",
+          "line": 61,
+          "property": "token:size"
+        }
+      ],
+      "total": 3
+    },
+    {
+      "value": "350px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/page-reconstructions.css",
+          "line": 95,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "430px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/organisms.css",
+          "line": 92,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/page-reconstructions.css",
+          "line": 115,
+          "property": "token:size"
+        }
+      ],
+      "total": 2
+    },
+    {
+      "value": "610px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/page-reconstructions.css",
+          "line": 71,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "650px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/page-reconstructions.css",
+          "line": 121,
+          "property": "token:size"
         }
       ],
       "total": 1

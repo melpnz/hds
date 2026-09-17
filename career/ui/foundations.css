@@ -13,7 +13,7 @@
 
 /* Базовое правило документа Career. Отсюда — и box-sizing: border-box,
    на который рассчитана геометрия всех компонентов, и шрифт, и кегль 16/24. */
-body,html{box-sizing:border-box;color:var(--color-text-main);font-family:Inter,sans-serif;font-size:var(--career-font-size-16);line-height:var(--career-line-height-24);margin:0;padding:0}
+body,html{box-sizing:border-box;color:var(--color-text-main);font-family:Inter,sans-serif;font-size:var(--career-font-size-16);line-height:var(--career-line-height-24-on-16);margin:0;padding:0}
 
 /* Career полагается на глобальный border-box, объявленный в базовом CSS
    приложения. В сборке Storybook он есть только на body,html, поэтому
@@ -53,15 +53,15 @@ button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:
    Расширение темы Tailwind в career-web. Используется прямо в разметке
    компонентов, поэтому входит в фундамент, а не в утилиты.
    ------------------------------------------------------------------------- */
-.text-body-l{font-size:var(--career-font-size-16);line-height:var(--career-line-height-24)}
-.text-body-m{font-size:14px;line-height:var(--career-line-height-20)}
-.text-body-s{font-size:var(--career-font-size-12);line-height:var(--career-line-height-16)}
-.text-body-xs{font-size:11px;line-height:var(--career-line-height-16)}
-.text-display-l{font-size:var(--career-font-size-24);line-height:var(--career-line-height-28)}
-.text-display-m{font-size:var(--career-font-size-20);line-height:var(--career-line-height-24)}
-.text-display-s{font-size:18px;line-height:var(--career-line-height-24)}
-.text-display-xl{font-size:var(--career-font-size-28);line-height:var(--career-line-height-32)}
-.text-title{font-size:var(--career-font-size-16);line-height:var(--career-line-height-24)}
+.text-body-l{font-size:var(--career-font-size-16);line-height:var(--career-line-height-24-on-16)}
+.text-body-m{font-size:var(--career-font-size-14);line-height:var(--career-line-height-20-on-14)}
+.text-body-s{font-size:var(--career-font-size-12);line-height:var(--career-line-height-16-on-12)}
+.text-body-xs{font-size:var(--career-font-size-11);line-height:var(--career-line-height-16-on-11)}
+.text-display-l{font-size:var(--career-font-size-24);line-height:var(--career-line-height-28-on-24)}
+.text-display-m{font-size:var(--career-font-size-20);line-height:var(--career-line-height-24-on-20)}
+.text-display-s{font-size:var(--career-font-size-18);line-height:var(--career-line-height-24-on-18)}
+.text-display-xl{font-size:var(--career-font-size-28);line-height:var(--career-line-height-32-on-28)}
+.text-title{font-size:var(--career-font-size-16);line-height:var(--career-line-height-24-on-16)}
 
 /* Ссылки Career. */
 a{color:var(--color-font-link);text-decoration:none}

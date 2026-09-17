@@ -8,7 +8,7 @@
 
 .tabs {
   background-color: var(--background-primary);
-  box-shadow: 0 -1px 0 0 hsl(from var(--icon-primary) h s l / 40%) inset;
+  box-shadow: 0 var(--habr-effect-negative-1) 0 0 hsl(from var(--icon-primary) h s l / 40%) inset;
   white-space: nowrap;
   align-items: center;
   display: flex;
@@ -73,11 +73,11 @@
   font-family: Fira Sans, sans-serif;
   font-size: .875rem;
   font-weight: 500;
-  line-height: 1rem;
+  line-height: var(--habr-line-height-16-on-14);
   text-decoration: none;
   display: flex;
 }
-.tab-link.slim { height: 38px; }
+.tab-link.slim { height: var(--habr-size-38); }
 .tab-link.active {
   color: var(--accent-primary);
   position: relative;
@@ -141,7 +141,7 @@
   font-family: inherit;
   font-size: .875rem;
   font-weight: 700;
-  line-height: 1.125rem;
+  line-height: var(--habr-line-height-18-on-14);
   letter-spacing: normal;
 }
 /* выбранное состояние Small — ПУНКТИРНАЯ рамка снизу 1px, а не сплошная
@@ -168,7 +168,7 @@
   font-family: inherit;
   font-size: .875rem;
   font-weight: 400;
-  line-height: 1.125rem;
+  line-height: var(--habr-line-height-18-on-14);
   letter-spacing: normal;
 }
 /* gap_tabs = 0: внутри панели табы стыкуются вплотную, это сегмент-контрол,
@@ -180,7 +180,7 @@
    состояниями и даёт тот же результат. */
 .tab-link.size-medium.active {
   color: var(--accent-primary);
-  box-shadow: inset 0 0 0 2px var(--accent-primary);
+  box-shadow: inset 0 0 0 var(--habr-effect-2) var(--accent-primary);
 }
 .tab-link.size-medium.active:after { content: none; }
 
@@ -203,7 +203,7 @@
   /* обводка внутренней тенью, а не border: в Figma фрейм tab-panel и сам таб
      одной высоты 42 — значит обводка не добавляет габарит, а лежит поверх.
      border дал бы 44. Тот же приём, что у выбранного таба ниже. */
-  box-shadow: inset 0 0 0 1px hsl(from var(--icon-primary) h s l / 40%);
+  box-shadow: inset 0 0 0 var(--habr-effect-1) hsl(from var(--icon-primary) h s l / 40%);
   border-radius: var(--habr-radius-4);
   overflow: hidden;                       /* скругляет крайние табы по панели */
 }
@@ -225,4 +225,4 @@
    содержимого). Ниже только focus — как дизайн-намерение, не как текущее
    поведение продукта. Loading не реконструирован: спиннер требует разметки,
    которой в production не наблюдалось. */
-.tab-link:focus-visible { outline: var(--habr-border-width-2) solid var(--accent-primary); outline-offset: 2px; border-radius: var(--habr-radius-6); }
+.tab-link:focus-visible { outline: var(--habr-border-width-2) solid var(--accent-primary); outline-offset: var(--habr-optical-2); border-radius: var(--habr-radius-6); }

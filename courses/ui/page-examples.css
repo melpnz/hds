@@ -26,7 +26,7 @@
   color: #6b6d74;
   display: flex;
   flex-direction: column;
-  font: 400 13px/1.45 Inter, sans-serif;
+  font: 400 var(--courses-font-size-13)/1.45 Inter, sans-serif;
   gap: var(--courses-space-6);
   justify-content: center;
   padding: var(--courses-space-24);
@@ -36,14 +36,14 @@
 .doc-page-stub__name { color: #2c2e34; font-weight: 600; }
 .doc-page-stub__text { max-width: var(--courses-size-560); }
 .doc-page-stub--banner { height: var(--courses-size-232); }
-.doc-page-stub--reviews { height: 461px; }
+.doc-page-stub--reviews { height: var(--courses-size-461); }
 /* Витрина организаций: лента популярных курсов — 420 на всех ширинах, лента
    журнала — 314 от 768, 300 на 375 (карточка статьи сжимается с шириной). */
 .doc-page-stub--courses { height: var(--courses-size-420); }
-.doc-page-stub--journal { height: 314px; }
+.doc-page-stub--journal { height: var(--courses-size-314); }
 @media (max-width: 767px) {
   .doc-page-stub--banner { aspect-ratio: 327 / 337; height: auto; }
-  .doc-page-stub--reviews { height: 529px; }
+  .doc-page-stub--reviews { height: var(--courses-size-529); }
   .doc-page-stub--journal { height: var(--courses-size-300); }
 }
 
@@ -60,7 +60,7 @@
 .doc-frame { display: flex; flex: 0 0 auto; flex-direction: column; gap: var(--courses-space-8); }
 .doc-frame__label {
   color: var(--doc-ink-3, #6b6d74);
-  font: 400 11px/1.3 Inter, sans-serif;
+  font: 400 var(--courses-font-size-11)/1.3 Inter, sans-serif;
 }
 .doc-frame__box {
   background: #fff;
@@ -92,8 +92,8 @@
    правил — doc-rule из components.css, общие с витриной компонентов. */
 .doc-subhead {
   color: var(--doc-ink-2, #4a4c52);
-  font: 600 13px/1.4 var(--doc-font, Inter, sans-serif);
+  font: 600 var(--courses-font-size-13)/1.4 var(--doc-font, Inter, sans-serif);
   letter-spacing: 0.02em;
-  margin: var(--courses-space-28) 0 10px;
+  margin: var(--courses-space-28) 0 var(--courses-space-10);
   text-transform: uppercase;
 }

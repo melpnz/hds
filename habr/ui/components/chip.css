@@ -56,11 +56,11 @@
   align-items: center;
   justify-content: center;
   gap: 0;
-  height: 30px;
+  height: var(--habr-size-30);
   padding: var(--habr-space-4) var(--habr-space-12);
   font-family: inherit;
   font-size: .875rem;
-  line-height: 1.125rem;
+  line-height: var(--habr-line-height-18-on-14);
   display: inline-flex;
 }
 /* внутренний отступ текстового блока (padding_txt_ver): 4 + 2 + 18 + 2 + 4 = 30 */
@@ -75,7 +75,7 @@
    значения токенов, здесь выведены из состава чипа. */
 .tm-chip:has(> .tm-chip__icon:first-child) { padding-left: var(--habr-space-4); }
 .tm-chip:has(> .tm-chip__icon:last-child) { padding-right: var(--habr-space-4); }
-.tm-chip:has(.tm-chip__avatar) { padding-left: 3px; }
+.tm-chip:has(.tm-chip__avatar) { padding-left: var(--habr-space-3); }
 
 /* Пустой — рамка 40% вместо заливки. Объявлен до цветовых модификаторов,
    чтобы .tm-chip_error перекрывал его цвет, а не наоборот. */
@@ -83,7 +83,7 @@
   --tm-chip-color: var(--icon-primary);
   cursor: pointer;
   background: none;
-  box-shadow: inset 0 0 0 1px hsl(from var(--tm-chip-color) h s l / 40%);
+  box-shadow: inset 0 0 0 var(--habr-effect-1) hsl(from var(--tm-chip-color) h s l / 40%);
 }
 
 .tm-chip_tag { --tm-chip-color: var(--text-secondary); }
@@ -141,12 +141,12 @@ button.tm-chip__icon {
   align-items: center;
   justify-content: center;
   gap: var(--habr-space-4);
-  height: 30px;
+  height: var(--habr-size-30);
   padding: var(--habr-space-6) var(--habr-space-12);
   font-family: inherit;
   font-size: .75rem;
   font-weight: 700;
-  line-height: .875rem;
+  line-height: var(--habr-line-height-14-on-12);
   text-transform: uppercase;
   display: inline-flex;
 }

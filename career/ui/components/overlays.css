@@ -18,15 +18,15 @@
 .base-modal__header--has-before{border-top-left-radius:0;border-top-right-radius:0}
 .base-modal__header--appearance-new{background-color:var(--color-ui-white);border-bottom:0}
 .base-modal__header--alignment-right{border-radius:0}
-.base-modal__title{flex:1 1;font-size:var(--career-font-size-20);font-weight:600;line-height:var(--career-line-height-24);margin:0;padding:var(--career-space-24)}
+.base-modal__title{flex:1 1;font-size:var(--career-font-size-20);font-weight:600;line-height:var(--career-line-height-24-on-20);margin:0;padding:var(--career-space-24)}
 .base-modal__title--titleSize-small{font-size:var(--career-font-size-16)}
-.base-modal__title--appearance-new{font-size:var(--career-font-size-20);font-weight:600;line-height:var(--career-line-height-24);padding:var(--career-space-24)}
+.base-modal__title--appearance-new{font-size:var(--career-font-size-20);font-weight:600;line-height:var(--career-line-height-24-on-20);padding:var(--career-space-24)}
 .base-modal__close{align-items:center;background-color:transparent;border:none;border-radius:0;box-sizing:content-box;cursor:pointer;display:flex;font:inherit;height:var(--career-size-72);justify-content:center;outline:0;padding:0;right:0;text-align:inherit;width:var(--career-size-72)}
 .base-modal__close svg{color:var(--color-ui-gray-2)}
 .base-modal__wrapper{align-items:flex-start;display:flex;justify-content:center;margin:var(--career-space-100) auto}
 .base-modal__wrapper--appearance-new{align-items:start;display:grid;grid-template-columns:minmax(0,590px);margin:auto}
 .base-modal__wrapper--alignment-right{background:var(--color-ui-white);height:100dvh;margin:0 0 0 auto}
-.base-modal__box{border-radius:var(--career-radius-24);box-shadow:0 1px 15px #0003;min-width:var(--career-size-600);overflow:hidden;transform:translateZ(0)}
+.base-modal__box{border-radius:var(--career-radius-24);box-shadow:0 var(--career-effect-1) var(--career-effect-15) #0003;min-width:var(--career-size-600);overflow:hidden;transform:translateZ(0)}
 .base-modal__box--appearance-new{max-width:var(--career-size-600);min-width:100%;width:100%}
 .base-modal__box--size-medium{margin:0 auto;max-width:var(--career-size-480);min-width:var(--career-size-480)}
 .base-modal__wrapper--appearance-new:has(.base-modal__box--size-medium){grid-template-columns:minmax(0,750px)}
@@ -38,11 +38,11 @@
 .base-modal__box--alignmeng-right{border-radius:0}
 .base-modal__content{background-color:var(--color-ui-white);display:flex;flex:1 1;flex-direction:column}
 .base-modal__content--appearance-new{gap:var(--career-space-24)}
-.base-modal__footer{background-color:var(--color-ui-gray-light);padding:14px}
+.base-modal__footer{background-color:var(--color-ui-gray-light);padding:var(--career-space-14)}
 .base-modal__footer--appearance-new{background-color:var(--color-ui-white);border-top:0;padding:var(--career-space-24)}
 .base-modal__sausage{align-items:center;display:none;height:var(--career-size-20);justify-content:center;position:relative}
 .base-modal__sausage:before{background-color:var(--color-ui-white);border-radius:var(--career-radius-4);content:"";height:var(--career-size-4);width:var(--career-size-64)}
-.base-modal__sausage:after{bottom:-10px;content:"";left:0;position:absolute;right:0;top:-10px}
+.base-modal__sausage:after{bottom:var(--career-size-negative-10);content:"";left:0;position:absolute;right:0;top:var(--career-size-negative-10)}
 .base-modal:has(+.base-modal .base-modal__wrapper) .base-modal__wrapper{visibility:hidden}
 @media (max-width:1023px){.base-modal__close{position:absolute;top:50%;transform:translateY(-50%)}
 .base-modal__header--appearance-default{background:var(--color-ui-white);border-radius:0;margin:0}
@@ -51,7 +51,7 @@
 .base-modal__box--appearance-default{background:var(--color-ui-white);border-radius:0;box-shadow:none;display:flex;flex-direction:column;max-height:100dvh;min-height:100%;min-width:100%;overflow:auto}
 .base-modal__content--appearance-default{background:var(--color-ui-white);display:flex;flex:1 1;flex-direction:column;gap:var(--career-space-12);padding:var(--career-space-8) var(--career-space-8) 0}
 .base-modal__header--appearance-default:has(.base-modal__title--titleSize-small){background:var(--color-ui-white);border-bottom:var(--career-border-width-1) solid var(--color-ui-gray-bg);margin:0;min-height:var(--career-size-72);padding:var(--career-space-24)}
-.base-modal__title--appearance-default.base-modal__title--titleSize-small{font-size:var(--career-font-size-20);line-height:var(--career-line-height-24);padding:0 var(--career-space-40);text-align:center}
+.base-modal__title--appearance-default.base-modal__title--titleSize-small{font-size:var(--career-font-size-20);line-height:var(--career-line-height-24-on-20);padding:0 var(--career-space-40);text-align:center}
 .base-modal__header--appearance-default:has(.base-modal__title--titleSize-small) .base-modal__close{height:var(--career-size-24);padding:0;right:var(--career-size-24);width:var(--career-size-24)}
 .base-modal__header--appearance-default:has(.base-modal__title--titleSize-small) .base-modal__close svg{fill:var(--color-ui-gray-2)}
 }
@@ -82,8 +82,8 @@
    источник: _sources/career/source/css/dropdown-modal.BNlXIunT.css (508 B)
    ------------------------------------------------------------------------ */
 .dropdown-modal-popper.v-popper--theme-dropdown .v-popper__inner{background-color:var(--color-ui-white);border-radius:1rem;border-style:none;color:inherit;overflow-y:hidden}
-.dropdown-modal-popper.v-popper--theme-dropdown .v-popper__inner [role=listbox]{box-shadow:0 1px 2px 0 var(--color-shadow-overlay-60),0 2px 6px 2px var(--color-shadow-overlay-60)}
-.v-popper__popper[aria-hidden=false] [role=listbox]{min-width:190px}
+.dropdown-modal-popper.v-popper--theme-dropdown .v-popper__inner [role=listbox]{box-shadow:0 var(--career-effect-1) var(--career-effect-2) 0 var(--color-shadow-overlay-60),0 var(--career-effect-2) var(--career-effect-6) var(--career-effect-2) var(--color-shadow-overlay-60)}
+.v-popper__popper[aria-hidden=false] [role=listbox]{min-width:var(--career-size-190)}
 .dropdown-modal-popper.v-popper--theme-dropdown .v-popper__arrow-container{display:none}
 
 /* ------------------------------------------------------------------------

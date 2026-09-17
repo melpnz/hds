@@ -170,19 +170,19 @@
      нельзя. Разбор расхождения — GAP-2 и GAP-3 в docs/guide/tokens.md,
      живая шкала — шаг R0-03. */
   --font-weight-title: 600;  /* [UNREFERENCED] */
-  --font-size-h2: 24px;  /* [UNREFERENCED] */
-  --font-size-h3: 21px;  /* [UNREFERENCED] */
-  --font-size-h4: 18px;  /* [UNREFERENCED] */
-  --line-height-h2: 27px;  /* [UNREFERENCED] */
-  --line-height-h3: 27px;  /* [UNREFERENCED] */
-  --line-height-h4: 22px;  /* [UNREFERENCED] */
-  --line-height-card-title: 32px;  /* [UNREFERENCED] */
+  --font-size-h2: var(--courses-font-size-24);  /* [UNREFERENCED] */
+  --font-size-h3: var(--courses-font-size-21);  /* [UNREFERENCED] */
+  --font-size-h4: var(--courses-font-size-18);  /* [UNREFERENCED] */
+  --line-height-h2: var(--courses-line-height-27);  /* [UNREFERENCED] */
+  --line-height-h3: var(--courses-line-height-27);  /* [UNREFERENCED] */
+  --line-height-h4: var(--courses-line-height-22);  /* [UNREFERENCED] */
+  --line-height-card-title: var(--courses-line-height-32);  /* [UNREFERENCED] */
 
   /* --- Тени ----------------------------------------------------------
      Выпадашки продукта рисуют тень утилитами
      .shadow-context-menu-dropdown через --color-ui-black-transparent-50,
      а не этой переменной. */
-  --shadow-dropdown: 0 1px 20px 0 rgba(0,0,0,.2);  /* [UNREFERENCED] */
+  --shadow-dropdown: 0 var(--courses-effect-1) var(--courses-effect-20) 0 rgba(0,0,0,.2);  /* [UNREFERENCED] */
 
   /* --- Размеры оболочки ----------------------------------------------
      Значение подставляет скрипт: во всех 70 снятых файлах вычисленное
@@ -212,7 +212,7 @@
      [RUNTIME], потому что значение переписывает скрипт, а потребитель
      у неё есть, только не в CSS (style="top: var(--header-height)"
      на /courses). См. разбор пометок в шапке файла. */
-  --header-height: 64px;  /* [RUNTIME] */
+  --header-height: var(--courses-size-64);  /* [RUNTIME] */
 
   /* --- Семантические алиасы ------------------------------------------
      Поздний блок :root. Их подставляют базовые правила документа —

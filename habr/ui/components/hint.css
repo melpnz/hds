@@ -27,7 +27,7 @@
   padding: var(--habr-space-8) var(--habr-space-12);
   font-size: .8125rem;
   font-weight: 400;
-  line-height: 1rem;
+  line-height: var(--habr-line-height-16-on-13);
 }
 .base-hint .base-popover { z-index: 80; }
 .base-hint .inner { z-index: 2; padding-right: var(--habr-space-16); position: relative; }
@@ -90,12 +90,12 @@
   border: var(--habr-border-width-1) solid var(--complexity-medium);
 }
 .base-hint .arrow-top    { bottom: var(--habr-size-negative-8); left: 50%; transform: translate(-50%); }
-.base-hint .arrow-top:after, .base-hint .arrow-top:before { top: -23px; left: var(--habr-size-1); }
+.base-hint .arrow-top:after, .base-hint .arrow-top:before { top: var(--habr-size-negative-23); left: var(--habr-size-1); }
 .base-hint .arrow-bottom { top: var(--habr-size-negative-6); left: 50%; transform: translate(-50%); }
 .base-hint .arrow-left   { top: 50%; left: auto; right: var(--habr-size-negative-12); transform: translateY(-50%) rotate(-90deg); }
-.base-hint .arrow-left:after, .base-hint .arrow-left:before { top: -23px; left: var(--habr-size-1); }
+.base-hint .arrow-left:after, .base-hint .arrow-left:before { top: var(--habr-size-negative-23); left: var(--habr-size-1); }
 .base-hint .arrow-right  { top: 50%; left: var(--habr-size-negative-12); transform: translateY(-50%) rotate(90deg); }
-.base-hint .arrow-right:after, .base-hint .arrow-right:before { top: -23px; left: var(--habr-size-1); }
+.base-hint .arrow-right:after, .base-hint .arrow-right:before { top: var(--habr-size-negative-23); left: var(--habr-size-1); }
 .base-hint .arrow-top.arrow-start, .base-hint .arrow-bottom.arrow-start { left: var(--habr-size-12); transform: translate(0); }
 .base-hint .arrow-top.arrow-end, .base-hint .arrow-bottom.arrow-end { left: auto; right: var(--habr-size-12); transform: translate(0); }
 .base-hint .arrow-left.arrow-start { top: var(--habr-size-12); transform: rotate(-90deg); }
@@ -142,7 +142,7 @@
   content: "";
   border: var(--habr-border-width-4) solid var(--label-dodger-blue);
   pointer-events: none;
-  border-radius: 9999px;
+  border-radius: var(--habr-radius-full);
   width: var(--habr-size-16);
   height: var(--habr-size-16);
   animation: 1s ease-out infinite hot-point-pulsate;
@@ -167,7 +167,7 @@
   box-sizing: border-box;
   background-color: var(--background-primary);
   border-radius: var(--habr-radius-4);
-  padding: 14px var(--habr-space-44) 14px var(--habr-space-16);
+  padding: var(--habr-space-14) var(--habr-space-44) var(--habr-space-14) var(--habr-space-16);
   /* ДОБАВЛЕНО, не в исходном informer-hint-Bf4XvRzJ.css: без position
      дети .informer-hint:before (position:absolute;inset:0) и
      .close-informer-hint (position:absolute;top:12px;right:12px)
@@ -176,8 +176,8 @@
      компонент, вероятно, задаёт его в другом, не захваченном style-блоке. */
   position: relative;
 }
-.informer-hint h3 { margin: 0 0 var(--habr-space-4); font-size: .9375rem; font-weight: 700; line-height: 1.25rem; }
-.informer-hint p { margin: 0; font-size: .9375rem; font-weight: 400; line-height: 1.25rem; }
+.informer-hint h3 { margin: 0 0 var(--habr-space-4); font-size: .9375rem; font-weight: 700; line-height: var(--habr-line-height-20-on-15); }
+.informer-hint p { margin: 0; font-size: .9375rem; font-weight: 400; line-height: var(--habr-line-height-20-on-15); }
 .informer-hint:before {
   content: "";
   background-color: hsl(from var(--informer-accent) h s l / 12%);
@@ -201,10 +201,10 @@
 
 .restriction-hint {
   color: var(--text-secondary);
-  max-width: 289px;
+  max-width: var(--habr-size-289);
   padding: var(--habr-space-12) var(--habr-space-16);
   font-size: .875rem;
-  line-height: 1.25rem;
+  line-height: var(--habr-line-height-20-on-14);
 }
 .restriction-hint a { color: var(--accent-primary); text-decoration: none; }
 
@@ -242,7 +242,7 @@
   color: var(--text-secondary);
   flex: none;
   font-size: .9375rem;
-  line-height: 1.25rem;
+  line-height: var(--habr-line-height-20-on-15);
 }
 
 /* small=yes — без подложки, рамки и внутренних отступов, одна строка */

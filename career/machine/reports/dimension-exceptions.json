@@ -1,83 +1,28 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "product": "career",
-  "baseUnit": "4px",
+  "baseUnit": "0.25rem",
+  "referenceRootFontSize": "16px",
   "scope": "ui/**/*.css excluding token definitions and theme source files",
   "policy": {
-    "migrated": "Absolute px dimensions divisible by 4, plus approved 1px, 2px and 6px exceptions, in supported declaration properties.",
+    "migrated": "Scalable dimensions use rem with a 16px reference root; borders remain fixed px; line-height uses unitless ratios when font context is explicit.",
     "preserved": "Existing computed values, selectors, class names and DOM contracts.",
-    "exceptions": "Relative units, non-grid values and composite properties require explicit semantic review."
+    "exceptions": "Relative units, tokenized off-grid references and unsupported composite properties require explicit semantic review."
   },
   "summary": {
-    "tokenCount": 111,
-    "exceptionKinds": 98,
-    "exceptionOccurrences": 797
+    "tokenCount": 206,
+    "exceptionKinds": 89,
+    "exceptionOccurrences": 535
   },
   "exceptions": [
     {
-      "value": "-1px",
+      "value": "1.3px",
       "reason": "composite-or-unsupported-property",
       "occurrences": [
-        {
-          "file": "ui/components/feedback.css",
-          "line": 26,
-          "property": "box-shadow"
-        },
         {
           "file": "ui/utilities.css",
-          "line": 458,
-          "property": "outline-offset"
-        }
-      ],
-      "total": 2
-    },
-    {
-      "value": "-2px",
-      "reason": "composite-or-unsupported-property",
-      "occurrences": [
-        {
-          "file": "ui/components/cards.css",
-          "line": 35,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 261,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 176,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/utilities.css",
-          "line": 464,
-          "property": "outline-offset"
-        }
-      ],
-      "total": 4
-    },
-    {
-      "value": "-4px",
-      "reason": "composite-or-unsupported-property",
-      "occurrences": [
-        {
-          "file": "ui/components/feedback.css",
-          "line": 26,
-          "property": "box-shadow"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "-20px",
-      "reason": "composite-or-unsupported-property",
-      "occurrences": [
-        {
-          "file": "ui/components/cards.css",
-          "line": 139,
-          "property": "transform"
+          "line": 291,
+          "property": "stroke-width"
         }
       ],
       "total": 1
@@ -88,668 +33,47 @@
       "occurrences": [
         {
           "file": "ui/components/buttons.css",
-          "line": 172,
+          "line": 173,
           "property": "background-image"
-        },
-        {
-          "file": "ui/components/content.css",
-          "line": 119,
-          "property": "filter"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 122,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 122,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 137,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/components/navigation.css",
-          "line": 5,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/navigation.css",
-          "line": 5,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/navigation.css",
-          "line": 22,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/navigation.css",
-          "line": 28,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 23,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 67,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 9,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 54,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 61,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 65,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 100,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 246,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 246,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 273,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 273,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 322,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 324,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 435,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 435,
-          "property": "box-shadow"
         }
       ],
-      "total": 24
+      "total": 1
     },
     {
-      "value": "2px",
+      "value": "3px",
       "reason": "composite-or-unsupported-property",
       "occurrences": [
         {
           "file": "ui/components/buttons.css",
-          "line": 30,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 35,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 42,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 47,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 49,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 64,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 68,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 72,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 80,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 95,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 113,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 148,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 171,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/chips.css",
-          "line": 23,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/components/chips.css",
-          "line": 32,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 86,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 95,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 122,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/navigation.css",
-          "line": 6,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/navigation.css",
-          "line": 22,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/navigation.css",
-          "line": 23,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/navigation.css",
-          "line": 23,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/navigation.css",
-          "line": 28,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/navigation.css",
-          "line": 28,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/navigation.css",
-          "line": 28,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 67,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 69,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 69,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 44,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 248,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 274,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 373,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 376,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 393,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 22,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 39,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 63,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 69,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 104,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 131,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 146,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 176,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 274,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 363,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 382,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 403,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 421,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 436,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 485,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 577,
-          "property": "outline-offset"
+          "line": 173,
+          "property": "background-image"
         }
       ],
-      "total": 57
-    },
-    {
-      "value": "4px",
-      "reason": "composite-or-unsupported-property",
-      "occurrences": [
-        {
-          "file": "ui/components/cards.css",
-          "line": 124,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 21,
-          "property": "-moz-column-gap"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 122,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 122,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/navigation.css",
-          "line": 5,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/navigation.css",
-          "line": 6,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 246,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 247,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 273,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 274,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 435,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 435,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 679,
-          "property": "box-shadow"
-        }
-      ],
-      "total": 13
-    },
-    {
-      "value": "6px",
-      "reason": "composite-or-unsupported-property",
-      "occurrences": [
-        {
-          "file": "ui/components/feedback.css",
-          "line": 26,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/navigation.css",
-          "line": 23,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/navigation.css",
-          "line": 28,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 69,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/utilities.css",
-          "line": 481,
-          "property": "box-shadow"
-        }
-      ],
-      "total": 5
-    },
-    {
-      "value": "8px",
-      "reason": "composite-or-unsupported-property",
-      "occurrences": [
-        {
-          "file": "ui/components/forms.css",
-          "line": 122,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/navigation.css",
-          "line": 6,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 247,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 274,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 436,
-          "property": "box-shadow"
-        }
-      ],
-      "total": 5
-    },
-    {
-      "value": "12px",
-      "reason": "composite-or-unsupported-property",
-      "occurrences": [
-        {
-          "file": "ui/components/forms.css",
-          "line": 69,
-          "property": "background-position"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 284,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 310,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 199,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 70,
-          "property": "font"
-        }
-      ],
-      "total": 5
+      "total": 1
     },
     {
       "value": "16px",
       "reason": "composite-or-unsupported-property",
       "occurrences": [
         {
-          "file": "ui/components/cards.css",
-          "line": 124,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 185,
-          "property": "transform"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 38,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 185,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 189,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 207,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 284,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 303,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 310,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 386,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 187,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 199,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 221,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 248,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 270,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 288,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 70,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 90,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 108,
-          "property": "font"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 217,
-          "property": "transform"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 679,
-          "property": "box-shadow"
-        },
-        {
           "file": "ui/utilities.css",
           "line": 190,
           "property": "grid-template-columns"
         }
       ],
-      "total": 22
+      "total": 1
+    },
+    {
+      "value": "19.26px",
+      "reason": "composite-or-unsupported-property",
+      "occurrences": [
+        {
+          "file": "ui/components.css",
+          "line": 249,
+          "property": "background"
+        }
+      ],
+      "total": 1
     },
     {
       "value": "20px",
@@ -764,229 +88,9 @@
           "file": "ui/components/conversations.css",
           "line": 17,
           "property": "mask"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 50,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 83,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 108,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 119,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 128,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 158,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 162,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 179,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 185,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 197,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 202,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 207,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 209,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 226,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 253,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 315,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 12,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 23,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 40,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 88,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 114,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 172,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 180,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 211,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 215,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 231,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 250,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 259,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 283,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 290,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 294,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 298,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 6,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 33,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 42,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 49,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 72,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 75,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 87,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 91,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 96,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 99,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 115,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 144,
-          "property": "font"
         }
       ],
-      "total": 46
+      "total": 2
     },
     {
       "value": "24px",
@@ -1001,116 +105,6 @@
           "file": "ui/components/forms.css",
           "line": 69,
           "property": "background-size"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 119,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 159,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 171,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 189,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 197,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 303,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 387,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 12,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 114,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 188,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 221,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 248,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 270,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 282,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 288,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 6,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 72,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 85,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 90,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 96,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 109,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 144,
-          "property": "font"
         },
         {
           "file": "ui/utilities.css",
@@ -1148,7 +142,7 @@
           "property": "grid-template-columns"
         }
       ],
-      "total": 31
+      "total": 9
     },
     {
       "value": "28px",
@@ -1158,39 +152,9 @@
           "file": "ui/components/cards.css",
           "line": 61,
           "property": "grid-template-columns"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 155,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 165,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 177,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 208,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 287,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 73,
-          "property": "font"
         }
       ],
-      "total": 7
+      "total": 1
     },
     {
       "value": "32px",
@@ -1207,59 +171,24 @@
           "property": "grid-template-columns"
         },
         {
-          "file": "ui/components.css",
-          "line": 155,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 165,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 177,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 208,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 287,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 73,
-          "property": "font"
-        },
-        {
           "file": "ui/modules.css",
           "line": 163,
           "property": "grid-template-columns"
         }
       ],
-      "total": 9
+      "total": 3
     },
     {
       "value": "36px",
       "reason": "composite-or-unsupported-property",
       "occurrences": [
         {
-          "file": "ui/components/feedback.css",
-          "line": 26,
-          "property": "box-shadow"
-        },
-        {
           "file": "ui/components.css",
-          "line": 306,
+          "line": 315,
           "property": "grid-template-columns"
         }
       ],
-      "total": 2
+      "total": 1
     },
     {
       "value": "40px",
@@ -1267,7 +196,7 @@
       "occurrences": [
         {
           "file": "ui/components/forms.css",
-          "line": 166,
+          "line": 168,
           "property": "grid-template-columns"
         },
         {
@@ -1312,7 +241,7 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 524,
+          "line": 525,
           "property": "grid-template-rows"
         },
         {
@@ -1346,18 +275,6 @@
       "total": 2
     },
     {
-      "value": "48px",
-      "reason": "composite-or-unsupported-property",
-      "occurrences": [
-        {
-          "file": "ui/layout.css",
-          "line": 245,
-          "property": "font"
-        }
-      ],
-      "total": 1
-    },
-    {
       "value": "88px",
       "reason": "composite-or-unsupported-property",
       "occurrences": [
@@ -1375,7 +292,7 @@
       "occurrences": [
         {
           "file": "ui/modules.css",
-          "line": 119,
+          "line": 120,
           "property": "flex"
         },
         {
@@ -1428,7 +345,7 @@
       "occurrences": [
         {
           "file": "ui/components.css",
-          "line": 173,
+          "line": 181,
           "property": "grid-template-columns"
         }
       ],
@@ -1440,12 +357,12 @@
       "occurrences": [
         {
           "file": "ui/layout.css",
-          "line": 58,
+          "line": 62,
           "property": "grid-template-columns"
         },
         {
           "file": "ui/layout.css",
-          "line": 62,
+          "line": 64,
           "property": "grid-template-columns"
         }
       ],
@@ -1457,1087 +374,27 @@
       "occurrences": [
         {
           "file": "ui/layout.css",
-          "line": 171,
+          "line": 172,
           "property": "flex"
         }
       ],
       "total": 1
     },
     {
-      "value": "-7px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/feedback.css",
-          "line": 33,
-          "property": "margin"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "-10px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/overlays.css",
-          "line": 37,
-          "property": "bottom"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 38,
-          "property": "top"
-        },
-        {
-          "file": "ui/utilities.css",
-          "line": 10,
-          "property": "top"
-        }
-      ],
-      "total": 3
-    },
-    {
-      "value": "-150px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/feedback.css",
-          "line": 31,
-          "property": "top"
-        },
-        {
-          "file": "ui/components/feedback.css",
-          "line": 31,
-          "property": "bottom"
-        }
-      ],
-      "total": 2
-    },
-    {
-      "value": "1.3px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/utilities.css",
-          "line": 291,
-          "property": "stroke-width"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "3px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/buttons.css",
-          "line": 54,
-          "property": "--tw-shadow"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 55,
-          "property": "--tw-shadow-colored"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 58,
-          "property": "--tw-shadow"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 58,
-          "property": "--tw-shadow-colored"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 61,
-          "property": "--tw-shadow"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 61,
-          "property": "--tw-shadow-colored"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 62,
-          "property": "--tw-shadow"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 63,
-          "property": "--tw-shadow-colored"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 173,
-          "property": "background-image"
-        },
-        {
-          "file": "ui/components/content.css",
-          "line": 22,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/content.css",
-          "line": 53,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/content.css",
-          "line": 107,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/content.css",
-          "line": 119,
-          "property": "filter"
-        },
-        {
-          "file": "ui/components/feedback.css",
-          "line": 25,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/feedback.css",
-          "line": 46,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/primitives.css",
-          "line": 12,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/utilities.css",
-          "line": 315,
-          "property": "padding-left"
-        }
-      ],
-      "total": 17
-    },
-    {
-      "value": "5px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/cards.css",
-          "line": 114,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/feedback.css",
-          "line": 30,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/feedback.css",
-          "line": 33,
-          "property": "margin"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 190,
-          "property": "left"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 191,
-          "property": "right"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 342,
-          "property": "padding"
-        },
-        {
-          "file": "ui/utilities.css",
-          "line": 300,
-          "property": "padding-left"
-        },
-        {
-          "file": "ui/utilities.css",
-          "line": 300,
-          "property": "padding-right"
-        }
-      ],
-      "total": 8
-    },
-    {
-      "value": "7px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/forms.css",
-          "line": 116,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/primitives.css",
-          "line": 57,
-          "property": "border-radius"
-        }
-      ],
-      "total": 2
-    },
-    {
-      "value": "9px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/content.css",
-          "line": 40,
-          "property": "margin-top"
-        },
-        {
-          "file": "ui/components/content.css",
-          "line": 73,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 11,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 192,
-          "property": "top"
-        }
-      ],
-      "total": 4
-    },
-    {
-      "value": "10px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/buttons.css",
-          "line": 173,
-          "property": "height"
-        },
-        {
-          "file": "ui/components/content.css",
-          "line": 84,
-          "property": "margin"
-        },
-        {
-          "file": "ui/components/feedback.css",
-          "line": 16,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/feedback.css",
-          "line": 26,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 59,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/primitives.css",
-          "line": 56,
-          "property": "min-height"
-        },
-        {
-          "file": "ui/components/primitives.css",
-          "line": 61,
-          "property": "min-width"
-        },
-        {
-          "file": "ui/components/primitives.css",
-          "line": 65,
-          "property": "margin"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 13,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 171,
-          "property": "padding"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 648,
-          "property": "padding"
-        },
-        {
-          "file": "ui/utilities.css",
-          "line": 16,
-          "property": "left"
-        },
-        {
-          "file": "ui/utilities.css",
-          "line": 308,
-          "property": "padding-bottom"
-        },
-        {
-          "file": "ui/utilities.css",
-          "line": 308,
-          "property": "padding-top"
-        }
-      ],
-      "total": 14
-    },
-    {
-      "value": "11px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/buttons.css",
-          "line": 131,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/components/primitives.css",
-          "line": 59,
-          "property": "width"
-        },
-        {
-          "file": "ui/components/primitives.css",
-          "line": 61,
-          "property": "height"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 38,
-          "property": "font"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 38,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 333,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/utilities.css",
-          "line": 334,
-          "property": "font-size"
-        }
-      ],
-      "total": 7
-    },
-    {
-      "value": "13px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/buttons.css",
-          "line": 178,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/components/content.css",
-          "line": 108,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 18,
-          "property": "font-size"
-        }
-      ],
-      "total": 3
-    },
-    {
-      "value": "14px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/buttons.css",
-          "line": 3,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 23,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 24,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 129,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 174,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/components/cards.css",
-          "line": 10,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/cards.css",
-          "line": 79,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/components/cards.css",
-          "line": 80,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/components/cards.css",
-          "line": 95,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/components/cards.css",
-          "line": 101,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/chips.css",
-          "line": 3,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/components/feedback.css",
-          "line": 20,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/components/feedback.css",
-          "line": 64,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 13,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 16,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 33,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 5,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 50,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 58,
-          "property": "width"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 59,
-          "property": "height"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 83,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 108,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 128,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 162,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 179,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 202,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 209,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 226,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 253,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 315,
-          "property": "font"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 35,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 23,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 40,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 88,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 172,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 180,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 211,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 213,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 231,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 250,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 259,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 283,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 290,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 294,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 298,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 32,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 42,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 49,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 75,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 87,
-          "property": "font"
-        }
-      ],
-      "total": 59
-    },
-    {
-      "value": "15px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/feedback.css",
-          "line": 30,
-          "property": "right"
-        },
-        {
-          "file": "ui/components/feedback.css",
-          "line": 30,
-          "property": "left"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 23,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 98,
-          "property": "margin-right"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 169,
-          "property": "font"
-        }
-      ],
-      "total": 5
-    },
-    {
-      "value": "17px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/buttons.css",
-          "line": 180,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/content.css",
-          "line": 41,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 91,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 218,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 182,
-          "property": "font"
-        }
-      ],
-      "total": 5
-    },
-    {
-      "value": "18px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/cards.css",
-          "line": 18,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/components/cards.css",
-          "line": 117,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/components/feedback.css",
-          "line": 59,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 48,
-          "property": "max-height"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 23,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 42,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 27,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 282,
-          "property": "font"
-        },
-        {
-          "file": "ui/modules.css",
-          "line": 85,
-          "property": "font"
-        },
-        {
-          "file": "ui/utilities.css",
-          "line": 339,
-          "property": "font-size"
-        }
-      ],
-      "total": 10
-    },
-    {
-      "value": "19.26px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components.css",
-          "line": 234,
-          "property": "background"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "22px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/chips.css",
-          "line": 30,
-          "property": "height"
-        },
-        {
-          "file": "ui/components/chips.css",
-          "line": 31,
-          "property": "width"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 94,
-          "property": "height"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 94,
-          "property": "width"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 131,
-          "property": "height"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 133,
-          "property": "width"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 153,
-          "property": "height"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 155,
-          "property": "width"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 25,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 91,
-          "property": "font"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 218,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 183,
-          "property": "font"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 239,
-          "property": "padding"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 332,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/utilities.css",
-          "line": 69,
-          "property": "height"
-        },
-        {
-          "file": "ui/utilities.css",
-          "line": 98,
-          "property": "width"
-        },
-        {
-          "file": "ui/utilities.css",
-          "line": 220,
-          "property": "border-radius"
-        }
-      ],
-      "total": 17
-    },
-    {
-      "value": "23px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/content.css",
-          "line": 54,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/feedback.css",
-          "line": 60,
-          "property": "line-height"
-        }
-      ],
-      "total": 2
-    },
-    {
-      "value": "25px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/cards.css",
-          "line": 114,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/content.css",
-          "line": 55,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/feedback.css",
-          "line": 31,
-          "property": "border-radius"
-        }
-      ],
-      "total": 3
-    },
-    {
-      "value": "26px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/forms.css",
-          "line": 34,
-          "property": "height"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 34,
-          "property": "min-height"
-        },
-        {
-          "file": "ui/utilities.css",
-          "line": 314,
-          "property": "padding-left"
-        }
-      ],
-      "total": 3
-    },
-    {
-      "value": "30px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/content.css",
-          "line": 101,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/utilities.css",
-          "line": 481,
-          "property": "box-shadow"
-        }
-      ],
-      "total": 2
-    },
-    {
-      "value": "42px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/layout.css",
-          "line": 245,
-          "property": "font"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "111px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/utilities.css",
-          "line": 81,
-          "property": "min-height"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "130px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/content.css",
-          "line": 63,
-          "property": "height"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "178px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/utilities.css",
-          "line": 510,
-          "property": "max-height"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "190px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/overlays.css",
-          "line": 71,
-          "property": "min-width"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 250,
-          "property": "min-width"
-        }
-      ],
-      "total": 2
-    },
-    {
-      "value": "283px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/utilities.css",
-          "line": 116,
-          "property": "max-width"
-        }
-      ],
-      "total": 1
-    },
-    {
       "value": "334px",
-      "reason": "not-on-4px-grid",
+      "reason": "composite-or-unsupported-property",
       "occurrences": [
         {
           "file": "ui/components.css",
-          "line": 173,
+          "line": 181,
           "property": "grid-template-columns"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "343px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/utilities.css",
-          "line": 122,
-          "property": "max-width"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "355px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/cards.css",
-          "line": 93,
-          "property": "max-width"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "445px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/forms.css",
-          "line": 123,
-          "property": "max-height"
         }
       ],
       "total": 1
     },
     {
       "value": "590px",
-      "reason": "not-on-4px-grid",
+      "reason": "composite-or-unsupported-property",
       "occurrences": [
         {
           "file": "ui/components/overlays.css",
@@ -2548,20 +405,8 @@
       "total": 1
     },
     {
-      "value": "702px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/utilities.css",
-          "line": 100,
-          "property": "width"
-        }
-      ],
-      "total": 1
-    },
-    {
       "value": "750px",
-      "reason": "not-on-4px-grid",
+      "reason": "composite-or-unsupported-property",
       "occurrences": [
         {
           "file": "ui/components/overlays.css",
@@ -2572,153 +417,74 @@
       "total": 1
     },
     {
-      "value": "999px",
-      "reason": "not-on-4px-grid",
+      "value": "var(--career-line-height-12)",
+      "reason": "line-height-needs-font-context",
       "occurrences": [
         {
-          "file": "ui/components.css",
-          "line": 34,
-          "property": "border-radius"
+          "file": "ui/utilities.css",
+          "line": 362,
+          "property": "line-height"
         }
       ],
       "total": 1
     },
     {
-      "value": "9999px",
-      "reason": "not-on-4px-grid",
+      "value": "var(--career-line-height-20)",
+      "reason": "line-height-needs-font-context",
       "occurrences": [
         {
-          "file": "ui/components/buttons.css",
-          "line": 74,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 75,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 91,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 93,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 119,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 121,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 129,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 137,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/buttons.css",
-          "line": 143,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/chips.css",
-          "line": 28,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 92,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 152,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 156,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 176,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 176,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 180,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components.css",
-          "line": 314,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 254,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 189,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 209,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 587,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 594,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/state-contract.css",
-          "line": 673,
-          "property": "border-radius"
-        },
-        {
           "file": "ui/utilities.css",
-          "line": 220,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/utilities.css",
-          "line": 426,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/utilities.css",
-          "line": 435,
-          "property": "border-radius"
+          "line": 360,
+          "property": "line-height"
         }
       ],
-      "total": 26
+      "total": 1
+    },
+    {
+      "value": "var(--career-line-height-24)",
+      "reason": "line-height-needs-font-context",
+      "occurrences": [
+        {
+          "file": "ui/components/cards.css",
+          "line": 107,
+          "property": "line-height"
+        },
+        {
+          "file": "ui/components/forms.css",
+          "line": 89,
+          "property": "line-height"
+        },
+        {
+          "file": "ui/utilities.css",
+          "line": 358,
+          "property": "line-height"
+        }
+      ],
+      "total": 3
+    },
+    {
+      "value": "var(--career-line-height-32)",
+      "reason": "line-height-needs-font-context",
+      "occurrences": [
+        {
+          "file": "ui/utilities.css",
+          "line": 548,
+          "property": "line-height"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "var(--career-line-height-40)",
+      "reason": "line-height-needs-font-context",
+      "occurrences": [
+        {
+          "file": "ui/utilities.css",
+          "line": 357,
+          "property": "line-height"
+        }
+      ],
+      "total": 1
     },
     {
       "value": "-.5rem",
@@ -2731,7 +497,7 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 424,
+          "line": 425,
           "property": "left"
         },
         {
@@ -2741,7 +507,7 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 425,
+          "line": 426,
           "property": "top"
         }
       ],
@@ -2758,7 +524,7 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 433,
+          "line": 434,
           "property": "top"
         },
         {
@@ -2824,7 +590,7 @@
       "occurrences": [
         {
           "file": "ui/utilities.css",
-          "line": 29,
+          "line": 31,
           "property": "margin-top"
         }
       ],
@@ -2841,7 +607,7 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 26,
+          "line": 27,
           "property": "margin-right"
         }
       ],
@@ -2873,12 +639,12 @@
         },
         {
           "file": "ui/components/buttons.css",
-          "line": 27,
+          "line": 28,
           "property": "padding"
         },
         {
           "file": "ui/components/buttons.css",
-          "line": 74,
+          "line": 75,
           "property": "padding"
         },
         {
@@ -2888,12 +654,12 @@
         },
         {
           "file": "ui/components/buttons.css",
-          "line": 120,
+          "line": 121,
           "property": "padding"
         },
         {
           "file": "ui/components/buttons.css",
-          "line": 141,
+          "line": 143,
           "property": "padding"
         },
         {
@@ -2913,7 +679,7 @@
         },
         {
           "file": "ui/components/chips.css",
-          "line": 32,
+          "line": 33,
           "property": "border-radius"
         },
         {
@@ -2923,27 +689,27 @@
         },
         {
           "file": "ui/components/feedback.css",
-          "line": 20,
+          "line": 21,
           "property": "gap"
         },
         {
           "file": "ui/components/forms.css",
-          "line": 86,
+          "line": 87,
           "property": "margin"
         },
         {
           "file": "ui/components/forms.css",
-          "line": 129,
+          "line": 130,
           "property": "margin-right"
         },
         {
           "file": "ui/components/forms.css",
-          "line": 148,
+          "line": 149,
           "property": "gap"
         },
         {
           "file": "ui/components/forms.css",
-          "line": 166,
+          "line": 168,
           "property": "gap"
         },
         {
@@ -2958,22 +724,22 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 17,
+          "line": 18,
           "property": "right"
         },
         {
           "file": "ui/utilities.css",
-          "line": 19,
+          "line": 20,
           "property": "top"
         },
         {
           "file": "ui/utilities.css",
-          "line": 28,
+          "line": 29,
           "property": "margin-bottom"
         },
         {
           "file": "ui/utilities.css",
-          "line": 28,
+          "line": 29,
           "property": "margin-top"
         },
         {
@@ -2983,7 +749,7 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 36,
+          "line": 37,
           "property": "margin-left"
         },
         {
@@ -3033,12 +799,12 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 308,
+          "line": 309,
           "property": "padding-bottom"
         },
         {
           "file": "ui/utilities.css",
-          "line": 495,
+          "line": 496,
           "property": "margin-top"
         },
         {
@@ -3063,7 +829,7 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 532,
+          "line": 533,
           "property": "padding-right"
         },
         {
@@ -3100,7 +866,7 @@
       "occurrences": [
         {
           "file": "ui/components/buttons.css",
-          "line": 10,
+          "line": 12,
           "property": "gap"
         },
         {
@@ -3130,12 +896,12 @@
         },
         {
           "file": "ui/components/buttons.css",
-          "line": 133,
+          "line": 134,
           "property": "padding-left"
         },
         {
           "file": "ui/components/buttons.css",
-          "line": 133,
+          "line": 134,
           "property": "padding-right"
         },
         {
@@ -3155,7 +921,7 @@
         },
         {
           "file": "ui/components/chips.css",
-          "line": 32,
+          "line": 33,
           "property": "padding"
         },
         {
@@ -3165,7 +931,7 @@
         },
         {
           "file": "ui/components/chips.css",
-          "line": 33,
+          "line": 34,
           "property": "padding-right"
         },
         {
@@ -3245,12 +1011,12 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 35,
+          "line": 36,
           "property": "margin-left"
         },
         {
           "file": "ui/utilities.css",
-          "line": 40,
+          "line": 41,
           "property": "margin-top"
         },
         {
@@ -3290,22 +1056,22 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 303,
+          "line": 304,
           "property": "padding-bottom"
         },
         {
           "file": "ui/utilities.css",
-          "line": 303,
+          "line": 304,
           "property": "padding-top"
         },
         {
           "file": "ui/utilities.css",
-          "line": 311,
+          "line": 313,
           "property": "padding-left"
         },
         {
           "file": "ui/utilities.css",
-          "line": 317,
+          "line": 319,
           "property": "padding-right"
         },
         {
@@ -3315,7 +1081,7 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 531,
+          "line": 532,
           "property": "padding"
         }
       ],
@@ -3327,12 +1093,12 @@
       "occurrences": [
         {
           "file": "ui/components/buttons.css",
-          "line": 24,
+          "line": 26,
           "property": "border-radius"
         },
         {
           "file": "ui/components/buttons.css",
-          "line": 27,
+          "line": 28,
           "property": "padding"
         },
         {
@@ -3342,7 +1108,7 @@
         },
         {
           "file": "ui/components/buttons.css",
-          "line": 28,
+          "line": 29,
           "property": "padding"
         },
         {
@@ -3357,7 +1123,7 @@
         },
         {
           "file": "ui/components/cards.css",
-          "line": 10,
+          "line": 12,
           "property": "padding-bottom"
         },
         {
@@ -3387,7 +1153,7 @@
         },
         {
           "file": "ui/components/forms.css",
-          "line": 85,
+          "line": 86,
           "property": "border-radius"
         },
         {
@@ -3402,7 +1168,7 @@
         },
         {
           "file": "ui/components/forms.css",
-          "line": 155,
+          "line": 156,
           "property": "height"
         },
         {
@@ -3422,7 +1188,7 @@
         },
         {
           "file": "ui/components/navigation.css",
-          "line": 34,
+          "line": 36,
           "property": "border-radius"
         },
         {
@@ -3432,7 +1198,7 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 17,
+          "line": 18,
           "property": "right"
         },
         {
@@ -3452,7 +1218,7 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 41,
+          "line": 42,
           "property": "margin-top"
         },
         {
@@ -3462,7 +1228,7 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 221,
+          "line": 222,
           "property": "border-radius"
         },
         {
@@ -3472,12 +1238,12 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 222,
+          "line": 223,
           "property": "border-bottom-right-radius"
         },
         {
           "file": "ui/utilities.css",
-          "line": 223,
+          "line": 224,
           "property": "border-top-left-radius"
         },
         {
@@ -3497,7 +1263,7 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 305,
+          "line": 306,
           "property": "padding-bottom"
         },
         {
@@ -3507,22 +1273,22 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 308,
+          "line": 309,
           "property": "padding-bottom"
         },
         {
           "file": "ui/utilities.css",
-          "line": 312,
+          "line": 314,
           "property": "padding-left"
         },
         {
           "file": "ui/utilities.css",
-          "line": 317,
+          "line": 320,
           "property": "padding-right"
         },
         {
           "file": "ui/utilities.css",
-          "line": 494,
+          "line": 495,
           "property": "margin-bottom"
         },
         {
@@ -3532,7 +1298,7 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 530,
+          "line": 531,
           "property": "gap"
         },
         {
@@ -3554,7 +1320,7 @@
       "occurrences": [
         {
           "file": "ui/components/forms.css",
-          "line": 176,
+          "line": 177,
           "property": "left"
         },
         {
@@ -3569,7 +1335,7 @@
         },
         {
           "file": "ui/state-contract.css",
-          "line": 170,
+          "line": 171,
           "property": "border-radius"
         },
         {
@@ -3579,12 +1345,12 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 34,
+          "line": 35,
           "property": "margin-left"
         },
         {
           "file": "ui/utilities.css",
-          "line": 39,
+          "line": 40,
           "property": "margin-right"
         },
         {
@@ -3594,12 +1360,12 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 302,
+          "line": 303,
           "property": "padding-bottom"
         },
         {
           "file": "ui/utilities.css",
-          "line": 302,
+          "line": 303,
           "property": "padding-top"
         }
       ],
@@ -3611,7 +1377,7 @@
       "occurrences": [
         {
           "file": "ui/components/forms.css",
-          "line": 131,
+          "line": 132,
           "property": "border-radius"
         },
         {
@@ -3633,7 +1399,7 @@
       "occurrences": [
         {
           "file": "ui/utilities.css",
-          "line": 37,
+          "line": 38,
           "property": "margin-left"
         }
       ],
@@ -3650,7 +1416,7 @@
         },
         {
           "file": "ui/components/content.css",
-          "line": 53,
+          "line": 54,
           "property": "font-size"
         },
         {
@@ -3672,7 +1438,7 @@
       "occurrences": [
         {
           "file": "ui/components/content.css",
-          "line": 57,
+          "line": 58,
           "property": "font-size"
         },
         {
@@ -3682,7 +1448,7 @@
         },
         {
           "file": "ui/components/content.css",
-          "line": 107,
+          "line": 108,
           "property": "font-size"
         }
       ],
@@ -3711,12 +1477,12 @@
         },
         {
           "file": "ui/components/feedback.css",
-          "line": 33,
+          "line": 39,
           "property": "height"
         },
         {
           "file": "ui/components/feedback.css",
-          "line": 33,
+          "line": 42,
           "property": "width"
         }
       ],
@@ -3763,27 +1529,12 @@
         },
         {
           "file": "ui/components/content.css",
-          "line": 52,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/content.css",
-          "line": 68,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/content.css",
           "line": 91,
           "property": "line-height"
         },
         {
-          "file": "ui/components/content.css",
-          "line": 104,
-          "property": "line-height"
-        },
-        {
           "file": "ui/components/forms.css",
-          "line": 17,
+          "line": 18,
           "property": "margin-bottom"
         },
         {
@@ -3793,22 +1544,22 @@
         },
         {
           "file": "ui/components/forms.css",
-          "line": 129,
+          "line": 130,
           "property": "height"
         },
         {
           "file": "ui/components/forms.css",
-          "line": 129,
+          "line": 131,
           "property": "width"
         },
         {
           "file": "ui/components/forms.css",
-          "line": 150,
+          "line": 151,
           "property": "height"
         },
         {
           "file": "ui/components/forms.css",
-          "line": 150,
+          "line": 151,
           "property": "width"
         },
         {
@@ -3829,22 +1580,17 @@
         {
           "file": "ui/components/forms.css",
           "line": 176,
-          "property": "height"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 178,
           "property": "height"
         },
         {
           "file": "ui/components/forms.css",
           "line": 179,
-          "property": "width"
+          "property": "height"
         },
         {
-          "file": "ui/components/overlays.css",
-          "line": 76,
-          "property": "padding"
+          "file": "ui/components/forms.css",
+          "line": 180,
+          "property": "width"
         },
         {
           "file": "ui/components/overlays.css",
@@ -3852,13 +1598,18 @@
           "property": "padding"
         },
         {
+          "file": "ui/components/overlays.css",
+          "line": 80,
+          "property": "padding"
+        },
+        {
           "file": "ui/utilities.css",
-          "line": 32,
+          "line": 33,
           "property": "margin-bottom"
         },
         {
           "file": "ui/utilities.css",
-          "line": 43,
+          "line": 44,
           "property": "margin-top"
         },
         {
@@ -3873,7 +1624,7 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 94,
+          "line": 95,
           "property": "width"
         },
         {
@@ -3908,26 +1659,26 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 307,
+          "line": 308,
           "property": "padding-top"
         },
         {
           "file": "ui/utilities.css",
-          "line": 309,
+          "line": 311,
           "property": "padding-bottom"
         },
         {
           "file": "ui/utilities.css",
-          "line": 313,
+          "line": 315,
           "property": "padding-left"
         },
         {
           "file": "ui/utilities.css",
-          "line": 321,
+          "line": 324,
           "property": "padding-top"
         }
       ],
-      "total": 40
+      "total": 37
     },
     {
       "value": "1.25rem",
@@ -3935,12 +1686,12 @@
       "occurrences": [
         {
           "file": "ui/components/buttons.css",
-          "line": 131,
+          "line": 134,
           "property": "height"
         },
         {
           "file": "ui/components/buttons.css",
-          "line": 132,
+          "line": 134,
           "property": "min-width"
         },
         {
@@ -3954,23 +1705,8 @@
           "property": "font-size"
         },
         {
-          "file": "ui/components/content.css",
-          "line": 6,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/content.css",
-          "line": 70,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/content.css",
-          "line": 105,
-          "property": "line-height"
-        },
-        {
           "file": "ui/components/forms.css",
-          "line": 176,
+          "line": 177,
           "property": "height"
         },
         {
@@ -3980,12 +1716,12 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 109,
+          "line": 113,
           "property": "min-width"
         },
         {
           "file": "ui/utilities.css",
-          "line": 318,
+          "line": 321,
           "property": "padding-right"
         },
         {
@@ -3994,7 +1730,7 @@
           "property": "padding-left"
         }
       ],
-      "total": 12
+      "total": 9
     },
     {
       "value": "1.75rem",
@@ -4017,7 +1753,7 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 94,
+          "line": 96,
           "property": "width"
         }
       ],
@@ -4029,59 +1765,8 @@
       "occurrences": [
         {
           "file": "ui/components/content.css",
-          "line": 4,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/components/content.css",
-          "line": 58,
-          "property": "line-height"
-        }
-      ],
-      "total": 2
-    },
-    {
-      "value": "1.625rem",
-      "reason": "relative-unit-needs-semantic-decision",
-      "occurrences": [
-        {
-          "file": "ui/components/content.css",
-          "line": 4,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/content.css",
-          "line": 84,
-          "property": "line-height"
-        }
-      ],
-      "total": 2
-    },
-    {
-      "value": "1.1875rem",
-      "reason": "relative-unit-needs-semantic-decision",
-      "occurrences": [
-        {
-          "file": "ui/components/content.css",
-          "line": 51,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/content.css",
-          "line": 78,
-          "property": "line-height"
-        }
-      ],
-      "total": 2
-    },
-    {
-      "value": "1.4375rem",
-      "reason": "relative-unit-needs-semantic-decision",
-      "occurrences": [
-        {
-          "file": "ui/components/content.css",
           "line": 5,
-          "property": "line-height"
+          "property": "font-size"
         }
       ],
       "total": 1
@@ -4102,7 +1787,7 @@
         },
         {
           "file": "ui/components/feedback.css",
-          "line": 29,
+          "line": 31,
           "property": "font-size"
         }
       ],
@@ -4114,7 +1799,7 @@
       "occurrences": [
         {
           "file": "ui/components/buttons.css",
-          "line": 28,
+          "line": 29,
           "property": "padding"
         },
         {
@@ -4129,7 +1814,7 @@
         },
         {
           "file": "ui/components/cards.css",
-          "line": 27,
+          "line": 28,
           "property": "padding"
         },
         {
@@ -4159,7 +1844,7 @@
         },
         {
           "file": "ui/components/content.css",
-          "line": 69,
+          "line": 70,
           "property": "font-size"
         },
         {
@@ -4204,7 +1889,7 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 13,
+          "line": 15,
           "property": "bottom"
         },
         {
@@ -4214,12 +1899,12 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 37,
+          "line": 38,
           "property": "margin-left"
         },
         {
           "file": "ui/utilities.css",
-          "line": 42,
+          "line": 43,
           "property": "margin-top"
         },
         {
@@ -4259,32 +1944,32 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 306,
+          "line": 307,
           "property": "padding-bottom"
         },
         {
           "file": "ui/utilities.css",
-          "line": 306,
+          "line": 307,
           "property": "padding-top"
         },
         {
           "file": "ui/utilities.css",
-          "line": 308,
+          "line": 310,
           "property": "padding-bottom"
         },
         {
           "file": "ui/utilities.css",
-          "line": 313,
+          "line": 314,
           "property": "padding-left"
         },
         {
           "file": "ui/utilities.css",
-          "line": 318,
+          "line": 321,
           "property": "padding-right"
         },
         {
           "file": "ui/utilities.css",
-          "line": 320,
+          "line": 324,
           "property": "padding-top"
         },
         {
@@ -4304,7 +1989,7 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 533,
+          "line": 534,
           "property": "padding-top"
         },
         {
@@ -4326,12 +2011,12 @@
       "occurrences": [
         {
           "file": "ui/components/buttons.css",
-          "line": 27,
+          "line": 28,
           "property": "max-height"
         },
         {
           "file": "ui/components/buttons.css",
-          "line": 27,
+          "line": 28,
           "property": "min-height"
         },
         {
@@ -4351,17 +2036,17 @@
         },
         {
           "file": "ui/components/buttons.css",
-          "line": 92,
+          "line": 93,
           "property": "width"
         },
         {
           "file": "ui/components/buttons.css",
-          "line": 138,
+          "line": 142,
           "property": "height"
         },
         {
           "file": "ui/components/buttons.css",
-          "line": 140,
+          "line": 143,
           "property": "min-width"
         },
         {
@@ -4406,17 +2091,17 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 79,
+          "line": 80,
           "property": "min-height"
         },
         {
           "file": "ui/utilities.css",
-          "line": 92,
+          "line": 94,
           "property": "width"
         },
         {
           "file": "ui/utilities.css",
-          "line": 108,
+          "line": 112,
           "property": "min-width"
         }
       ],
@@ -4427,17 +2112,12 @@
       "reason": "relative-unit-needs-semantic-decision",
       "occurrences": [
         {
-          "file": "ui/components/content.css",
-          "line": 108,
-          "property": "line-height"
-        },
-        {
           "file": "ui/components/forms.css",
           "line": 178,
           "property": "width"
         }
       ],
-      "total": 2
+      "total": 1
     },
     {
       "value": "2.75rem",
@@ -4457,12 +2137,12 @@
       "occurrences": [
         {
           "file": "ui/components/buttons.css",
-          "line": 23,
+          "line": 24,
           "property": "max-height"
         },
         {
           "file": "ui/components/buttons.css",
-          "line": 23,
+          "line": 24,
           "property": "min-height"
         },
         {
@@ -4472,7 +2152,7 @@
         },
         {
           "file": "ui/components/chips.css",
-          "line": 4,
+          "line": 5,
           "property": "min-height"
         },
         {
@@ -4482,7 +2162,7 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 80,
+          "line": 81,
           "property": "min-height"
         },
         {
@@ -4497,7 +2177,7 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 319,
+          "line": 322,
           "property": "padding-right"
         }
       ],
@@ -4509,12 +2189,12 @@
       "occurrences": [
         {
           "file": "ui/components/buttons.css",
-          "line": 28,
+          "line": 29,
           "property": "max-height"
         },
         {
           "file": "ui/components/buttons.css",
-          "line": 28,
+          "line": 29,
           "property": "min-height"
         },
         {
@@ -4524,12 +2204,12 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 93,
+          "line": 94,
           "property": "width"
         },
         {
           "file": "ui/utilities.css",
-          "line": 155,
+          "line": 157,
           "property": "--tw-translate-x"
         },
         {
@@ -4539,7 +2219,7 @@
         },
         {
           "file": "ui/utilities.css",
-          "line": 304,
+          "line": 305,
           "property": "padding-top"
         }
       ],
@@ -4551,7 +2231,7 @@
       "occurrences": [
         {
           "file": "ui/utilities.css",
-          "line": 93,
+          "line": 95,
           "property": "width"
         }
       ],
@@ -4599,8 +2279,991 @@
       "occurrences": [
         {
           "file": "ui/utilities.css",
-          "line": 74,
+          "line": 75,
           "property": "max-height"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "-7px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/feedback.css",
+          "line": 51,
+          "property": "token:space"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "-10px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/overlays.css",
+          "line": 45,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/overlays.css",
+          "line": 45,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/utilities.css",
+          "line": 40,
+          "property": "token:size"
+        }
+      ],
+      "total": 3
+    },
+    {
+      "value": "-150px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/feedback.css",
+          "line": 48,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/feedback.css",
+          "line": 49,
+          "property": "token:size"
+        }
+      ],
+      "total": 2
+    },
+    {
+      "value": "3px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/content.css",
+          "line": 58,
+          "property": "token:radius"
+        },
+        {
+          "file": "ui/components/content.css",
+          "line": 110,
+          "property": "token:radius"
+        },
+        {
+          "file": "ui/components/feedback.css",
+          "line": 78,
+          "property": "token:radius"
+        },
+        {
+          "file": "ui/components/primitives.css",
+          "line": 32,
+          "property": "token:radius"
+        },
+        {
+          "file": "ui/components/buttons.css",
+          "line": 58,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/buttons.css",
+          "line": 58,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/buttons.css",
+          "line": 61,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/buttons.css",
+          "line": 61,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/buttons.css",
+          "line": 64,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/buttons.css",
+          "line": 64,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/buttons.css",
+          "line": 66,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/buttons.css",
+          "line": 66,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/content.css",
+          "line": 24,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/utilities.css",
+          "line": 357,
+          "property": "token:space"
+        }
+      ],
+      "total": 14
+    },
+    {
+      "value": "5px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/state-contract.css",
+          "line": 222,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/state-contract.css",
+          "line": 224,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/feedback.css",
+          "line": 45,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/components/feedback.css",
+          "line": 51,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/state-contract.css",
+          "line": 406,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/utilities.css",
+          "line": 337,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/utilities.css",
+          "line": 337,
+          "property": "token:space"
+        }
+      ],
+      "total": 7
+    },
+    {
+      "value": "7px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/primitives.css",
+          "line": 72,
+          "property": "token:radius"
+        },
+        {
+          "file": "ui/components/forms.css",
+          "line": 137,
+          "property": "token:space"
+        }
+      ],
+      "total": 2
+    },
+    {
+      "value": "9px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components.css",
+          "line": 45,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/state-contract.css",
+          "line": 225,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/content.css",
+          "line": 43,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/components/content.css",
+          "line": 77,
+          "property": "token:space"
+        }
+      ],
+      "total": 4
+    },
+    {
+      "value": "10px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components.css",
+          "line": 46,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components/buttons.css",
+          "line": 203,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/primitives.css",
+          "line": 71,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/primitives.css",
+          "line": 77,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/utilities.css",
+          "line": 50,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/content.css",
+          "line": 86,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/components/feedback.css",
+          "line": 23,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/components/forms.css",
+          "line": 71,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/components/primitives.css",
+          "line": 80,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/modules.css",
+          "line": 190,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/state-contract.css",
+          "line": 763,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/utilities.css",
+          "line": 346,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/utilities.css",
+          "line": 346,
+          "property": "token:space"
+        }
+      ],
+      "total": 13
+    },
+    {
+      "value": "11px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/buttons.css",
+          "line": 153,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components.css",
+          "line": 73,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/foundations.css",
+          "line": 59,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/state-contract.css",
+          "line": 400,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/utilities.css",
+          "line": 374,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components/primitives.css",
+          "line": 74,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/primitives.css",
+          "line": 76,
+          "property": "token:size"
+        }
+      ],
+      "total": 7
+    },
+    {
+      "value": "13px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/buttons.css",
+          "line": 206,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components.css",
+          "line": 48,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components/content.css",
+          "line": 110,
+          "property": "token:space"
+        }
+      ],
+      "total": 3
+    },
+    {
+      "value": "14px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/buttons.css",
+          "line": 16,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components/buttons.css",
+          "line": 30,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components/buttons.css",
+          "line": 31,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components/buttons.css",
+          "line": 151,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components/buttons.css",
+          "line": 204,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components/cards.css",
+          "line": 95,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components/cards.css",
+          "line": 96,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components/cards.css",
+          "line": 120,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components/chips.css",
+          "line": 16,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components/feedback.css",
+          "line": 27,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components/feedback.css",
+          "line": 91,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components/forms.css",
+          "line": 20,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components/forms.css",
+          "line": 22,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components.css",
+          "line": 40,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components.css",
+          "line": 108,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components.css",
+          "line": 162,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components.css",
+          "line": 197,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components.css",
+          "line": 219,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components.css",
+          "line": 251,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components.css",
+          "line": 267,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components.css",
+          "line": 279,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components.css",
+          "line": 297,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components.css",
+          "line": 325,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components.css",
+          "line": 412,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components.css",
+          "line": 493,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/foundations.css",
+          "line": 57,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/layout.css",
+          "line": 64,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/layout.css",
+          "line": 79,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/layout.css",
+          "line": 154,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/layout.css",
+          "line": 284,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/layout.css",
+          "line": 290,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/layout.css",
+          "line": 313,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/layout.css",
+          "line": 314,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/layout.css",
+          "line": 328,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/layout.css",
+          "line": 348,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/layout.css",
+          "line": 354,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/layout.css",
+          "line": 376,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/layout.css",
+          "line": 396,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/layout.css",
+          "line": 409,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/layout.css",
+          "line": 416,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/modules.css",
+          "line": 40,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/modules.css",
+          "line": 58,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/modules.css",
+          "line": 63,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/modules.css",
+          "line": 81,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/modules.css",
+          "line": 91,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/modules.css",
+          "line": 99,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/modules.css",
+          "line": 114,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/modules.css",
+          "line": 125,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/state-contract.css",
+          "line": 370,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/state-contract.css",
+          "line": 424,
+          "property": "token:font-size"
+        }
+      ],
+      "total": 59
+    },
+    {
+      "value": "15px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components.css",
+          "line": 253,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components/feedback.css",
+          "line": 46,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/feedback.css",
+          "line": 47,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components.css",
+          "line": 180,
+          "property": "token:space"
+        }
+      ],
+      "total": 4
+    },
+    {
+      "value": "17px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components.css",
+          "line": 174,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components.css",
+          "line": 304,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/layout.css",
+          "line": 295,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components/content.css",
+          "line": 44,
+          "property": "token:space"
+        }
+      ],
+      "total": 4
+    },
+    {
+      "value": "18px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/cards.css",
+          "line": 28,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components/cards.css",
+          "line": 137,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components/feedback.css",
+          "line": 90,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components.css",
+          "line": 51,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/foundations.css",
+          "line": 62,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/layout.css",
+          "line": 68,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/layout.css",
+          "line": 375,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/modules.css",
+          "line": 90,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/utilities.css",
+          "line": 377,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/components/forms.css",
+          "line": 59,
+          "property": "token:size"
+        }
+      ],
+      "total": 10
+    },
+    {
+      "value": "22px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components.css",
+          "line": 52,
+          "property": "token:font-size"
+        },
+        {
+          "file": "ui/state-contract.css",
+          "line": 397,
+          "property": "token:radius"
+        },
+        {
+          "file": "ui/utilities.css",
+          "line": 259,
+          "property": "token:radius"
+        },
+        {
+          "file": "ui/components/chips.css",
+          "line": 41,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/chips.css",
+          "line": 41,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/forms.css",
+          "line": 122,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/forms.css",
+          "line": 122,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/forms.css",
+          "line": 156,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/forms.css",
+          "line": 156,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/forms.css",
+          "line": 175,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/forms.css",
+          "line": 175,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/utilities.css",
+          "line": 124,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/utilities.css",
+          "line": 150,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/layout.css",
+          "line": 340,
+          "property": "token:space"
+        }
+      ],
+      "total": 14
+    },
+    {
+      "value": "23px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/content.css",
+          "line": 58,
+          "property": "token:space"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "25px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/feedback.css",
+          "line": 50,
+          "property": "token:radius"
+        },
+        {
+          "file": "ui/components/content.css",
+          "line": 58,
+          "property": "token:space"
+        }
+      ],
+      "total": 2
+    },
+    {
+      "value": "26px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/forms.css",
+          "line": 42,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/forms.css",
+          "line": 42,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/utilities.css",
+          "line": 356,
+          "property": "token:space"
+        }
+      ],
+      "total": 3
+    },
+    {
+      "value": "30px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/content.css",
+          "line": 105,
+          "property": "token:radius"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "42px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/layout.css",
+          "line": 346,
+          "property": "token:font-size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "111px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/utilities.css",
+          "line": 136,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "130px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/content.css",
+          "line": 67,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "178px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/utilities.css",
+          "line": 552,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "190px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/overlays.css",
+          "line": 86,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components.css",
+          "line": 398,
+          "property": "token:size"
+        }
+      ],
+      "total": 2
+    },
+    {
+      "value": "283px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/utilities.css",
+          "line": 163,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "343px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/utilities.css",
+          "line": 166,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "355px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/cards.css",
+          "line": 117,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "445px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/forms.css",
+          "line": 142,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "702px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/utilities.css",
+          "line": 152,
+          "property": "token:size"
         }
       ],
       "total": 1

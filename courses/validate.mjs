@@ -9,7 +9,12 @@ const requiredItemKeys = ['id', 'title', 'kind', 'category', 'maturity', 'knowle
 const errors = [];
 const dimensionDocument = read('machine/dimension-tokens.json');
 const dimensionValues = Object.fromEntries(Object.values(dimensionDocument.tokens || {}).flatMap(group =>
-  Object.values(group).map(token => [token.cssVariable, token.$value])
+  Object.values(group).map(token => {
+    if (token.$extensions?.unitPolicy === 'unitless') return [token.cssVariable, `${token.$extensions.lineHeightReferencePixels}px`];
+    if (token.$extensions?.unitPolicy === 'semantic-full') return [token.cssVariable, '9999px'];
+    if (Number.isFinite(token.$extensions?.referencePixels)) return [token.cssVariable, `${token.$extensions.referencePixels}px`];
+    return [token.cssVariable, token.$value];
+  })
 ));
 const resolveDimensions = source => source.replace(/var\((--courses-[^)]+)\)/g, (match, token) => dimensionValues[token] || match);
 const viewerWidths = [320, 480, 768, 1024];

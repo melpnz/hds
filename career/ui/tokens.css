@@ -160,11 +160,11 @@
   --shadow-border-color-hover: var(--color-ui-gray-4);
   --shadow-border-color-focus: var(--color-ui-gray-4);
   --shadow-border-color-disabled: var(--color-ui-gray-shadow);
-  --shadow-dropdown: 0 1px 20px 0 rgba(0,0,0,.2);
+  --shadow-dropdown: 0 var(--career-effect-1) var(--career-effect-20) 0 rgba(0,0,0,.2);
 
   /* --- Размеры оболочки ---------------------------------------------- */
-  --header-height: 144px;  /* [AVAILABLE] */
-  --fit-screen-height: calc(100dvh - var(--header-height) - 24px);  /* [AVAILABLE] */
+  --header-height: var(--career-size-144);  /* [AVAILABLE] */
+  --fit-screen-height: calc(100dvh - var(--header-height) - var(--career-size-24));  /* [AVAILABLE] */
 
   /* --- Не из :root: наше единственное добавление -------------------- */
   /* Career задаёт шрифт в body,html{font-family:Inter,sans-serif}.
@@ -175,5 +175,5 @@
 
 /* Career переопределяет высоту шапки на телефоне. Правило из сборки 1:1. */
 @media (max-width: 767px) {
-  :root { --header-height: 144px; }
+  :root { --header-height: var(--career-size-144); }
 }

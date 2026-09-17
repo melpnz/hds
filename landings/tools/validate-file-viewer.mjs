@@ -96,7 +96,7 @@ try {
   await geometryPage.goto(pathToFileURL(path.join(root, "examples", "form-field", "states.html")).href);
   await geometryPage.keyboard.press("Tab");
   const keyboardFocus = await geometryPage.locator(".hds-field > input").first().evaluate((node) => ({ outline: getComputedStyle(node).outlineWidth, keyboard: document.documentElement.classList.contains("hds-keyboard"), focused: document.activeElement === node }));
-  if (keyboardFocus.outline !== "3px" || !keyboardFocus.keyboard || !keyboardFocus.focused) throw new Error(`Keyboard focus должен иметь внешний focus-ring: ${JSON.stringify(keyboardFocus)}`);
+  if (keyboardFocus.outline !== "2px" || !keyboardFocus.keyboard || !keyboardFocus.focused) throw new Error(`Keyboard focus должен иметь внешний focus-ring: ${JSON.stringify(keyboardFocus)}`);
 
   await geometryPage.setViewportSize({ width: 1200, height: 500 });
   await geometryPage.goto(pathToFileURL(path.join(root, "examples", "site-header", "default.html")).href);

@@ -87,10 +87,10 @@
 .tm-header__burger { top: var(--habr-size-negative-2); }
 
 .tm-header__logo-wrap { line-height: 0; position: relative; }
-.tm-header__logo { color: var(--background-primary); height: 22px; display: block; }
+.tm-header__logo { color: var(--background-primary); height: var(--habr-size-22); display: block; }
 .tm-header__logo:hover { opacity: 1; }
-.tm-header__logo_hl-ru { width: 62px; }
-.tm-header__logo_hl-en { width: 57px; }
+.tm-header__logo_hl-ru { width: var(--habr-size-62); }
+.tm-header__logo_hl-en { width: var(--habr-size-57); }
 @media (min-width: 1024px) {
   .tm-header__logo:not(.tm-header__logo_twentieth-anniversary) { height: var(--habr-size-24); }
 }
@@ -108,7 +108,7 @@
   color: var(--header-text);
   padding: var(--habr-space-8) 0;
   font-size: .875rem;
-  line-height: 1.125rem;
+  line-height: var(--habr-line-height-18-on-14);
   text-decoration: none;
 }
 .tm-header__all-flows:hover { color: var(--header-megapost-anakiwa); text-decoration: none; }
@@ -127,20 +127,20 @@
 .tm-header .burger-button { cursor: pointer; width: var(--habr-size-24); height: var(--habr-size-24); display: block; position: relative; }
 .tm-header .burger-button .line {
   background-color: var(--header-text);
-  width: 18px;
+  width: var(--habr-size-18);
   height: var(--habr-size-2);
   transition: transform .4s cubic-bezier(.68, -.6, .32, 1.6);
   position: absolute;
 }
-.tm-header .burger-button .line.top    { transform-origin: 0 0;     top: var(--habr-size-6);  left: 3px; }
-.tm-header .burger-button .line.middle { transform-origin: 0 100%;  top: var(--habr-size-12); left: 3px; }
-.tm-header .burger-button .line.bottom { transform-origin: 0 0;     top: 18px; left: 3px; }
+.tm-header .burger-button .line.top    { transform-origin: 0 0;     top: var(--habr-size-6);  left: var(--habr-size-3); }
+.tm-header .burger-button .line.middle { transform-origin: 0 100%;  top: var(--habr-size-12); left: var(--habr-size-3); }
+.tm-header .burger-button .line.bottom { transform-origin: 0 0;     top: var(--habr-size-18); left: var(--habr-size-3); }
 /* «крестик» только на десктопе: на мобильном меню открывается шторкой,
    а не подменяет бургер — медиазапрос в production именно такой */
 @media (min-width: 768px) {
-  .tm-header .burger-button.opened .top    { transform: translate(3px) rotate(45deg) scaleX(.53); }
-  .tm-header .burger-button.opened .middle { transform: translate(3px, 6px) rotate(-45deg); }
-  .tm-header .burger-button.opened .bottom { transform: translate(9px, -6px) rotate(45deg) scaleX(.53); }
+  .tm-header .burger-button.opened .top    { transform: translate(var(--habr-optical-3)) rotate(45deg) scaleX(.53); }
+  .tm-header .burger-button.opened .middle { transform: translate(var(--habr-optical-3), var(--habr-optical-6)) rotate(-45deg); }
+  .tm-header .burger-button.opened .bottom { transform: translate(var(--habr-optical-9), var(--habr-optical-negative-6)) rotate(45deg) scaleX(.53); }
 }
 
 /* --- правое меню --------------------------------------------------------- */
@@ -168,7 +168,7 @@
   border-radius: var(--habr-radius-4);
   align-self: self-start;
   height: 2rem;
-  padding: var(--habr-space-8) 14px;
+  padding: var(--habr-space-8) var(--habr-space-14);
   font-size: .8125rem;
   text-decoration: none;
   transition: all .3s;
@@ -214,7 +214,7 @@
   justify-content: center;
   align-items: center;
   font-size: .875rem;
-  line-height: 1.125rem;
+  line-height: var(--habr-line-height-18-on-14);
   text-decoration: none;
   display: flex;
 }
@@ -226,7 +226,7 @@
   text-transform: uppercase;
   cursor: pointer;
   font-size: .625rem;
-  line-height: .75rem;
+  line-height: var(--habr-line-height-12-on-10);
   position: relative;
   top: var(--habr-size-2);
 }

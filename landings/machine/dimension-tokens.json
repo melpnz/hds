@@ -1,14 +1,32 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "product": "landings",
   "namespace": "landings",
-  "baseUnit": "4px",
+  "baseUnit": "0.25rem",
+  "referenceRootFontSize": "16px",
   "allowedOffGrid": [
     "1px",
     "2px",
     "6px"
   ],
-  "naming": "--landings-<category>-<resolved-px-value>",
+  "naming": "--landings-<category>-<reference-px-value>",
+  "unitPolicy": {
+    "scalable": [
+      "space",
+      "size",
+      "radius",
+      "font-size",
+      "line-height",
+      "effect",
+      "optical"
+    ],
+    "unitless": [
+      "line-height-ratio"
+    ],
+    "fixed": [
+      "border-width"
+    ]
+  },
   "normalizationDecisions": [
     {
       "property": "--hds-space-1",
@@ -37,6 +55,9 @@
     "radius",
     "font-size",
     "line-height",
+    "line-height-ratio",
+    "effect",
+    "optical",
     "border-width"
   ],
   "tokens": {
@@ -44,362 +65,1035 @@
       "1": {
         "$type": "dimension",
         "$value": "1px",
-        "cssVariable": "--landings-border-width-1"
+        "cssVariable": "--landings-border-width-1",
+        "$extensions": {
+          "referencePixels": 1,
+          "unitPolicy": "fixed-px"
+        }
       },
       "2": {
         "$type": "dimension",
         "$value": "2px",
-        "cssVariable": "--landings-border-width-2"
+        "cssVariable": "--landings-border-width-2",
+        "$extensions": {
+          "referencePixels": 2,
+          "unitPolicy": "fixed-px"
+        }
+      }
+    },
+    "effect": {
+      "2": {
+        "$type": "dimension",
+        "$value": "0.125rem",
+        "cssVariable": "--landings-effect-2",
+        "$extensions": {
+          "referencePixels": 2,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "3": {
+        "$type": "dimension",
+        "$value": "0.1875rem",
+        "cssVariable": "--landings-effect-3",
+        "$extensions": {
+          "referencePixels": 3,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "14": {
+        "$type": "dimension",
+        "$value": "0.875rem",
+        "cssVariable": "--landings-effect-14",
+        "$extensions": {
+          "referencePixels": 14,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "16": {
+        "$type": "dimension",
+        "$value": "1rem",
+        "cssVariable": "--landings-effect-16",
+        "$extensions": {
+          "referencePixels": 16,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "24": {
+        "$type": "dimension",
+        "$value": "1.5rem",
+        "cssVariable": "--landings-effect-24",
+        "$extensions": {
+          "referencePixels": 24,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "28": {
+        "$type": "dimension",
+        "$value": "1.75rem",
+        "cssVariable": "--landings-effect-28",
+        "$extensions": {
+          "referencePixels": 28,
+          "unitPolicy": "scalable-rem"
+        }
       }
     },
     "font-size": {
+      "17": {
+        "$type": "dimension",
+        "$value": "1.0625rem",
+        "cssVariable": "--landings-font-size-17",
+        "$extensions": {
+          "referencePixels": 17,
+          "unitPolicy": "scalable-rem"
+        }
+      },
       "20": {
         "$type": "dimension",
-        "$value": "20px",
-        "cssVariable": "--landings-font-size-20"
+        "$value": "1.25rem",
+        "cssVariable": "--landings-font-size-20",
+        "$extensions": {
+          "referencePixels": 20,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "40": {
         "$type": "dimension",
-        "$value": "40px",
-        "cssVariable": "--landings-font-size-40"
+        "$value": "2.5rem",
+        "cssVariable": "--landings-font-size-40",
+        "$extensions": {
+          "referencePixels": 40,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "52": {
         "$type": "dimension",
-        "$value": "52px",
-        "cssVariable": "--landings-font-size-52"
+        "$value": "3.25rem",
+        "cssVariable": "--landings-font-size-52",
+        "$extensions": {
+          "referencePixels": 52,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "76": {
         "$type": "dimension",
-        "$value": "76px",
-        "cssVariable": "--landings-font-size-76"
+        "$value": "4.75rem",
+        "cssVariable": "--landings-font-size-76",
+        "$extensions": {
+          "referencePixels": 76,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "88": {
         "$type": "dimension",
-        "$value": "88px",
-        "cssVariable": "--landings-font-size-88"
+        "$value": "5.5rem",
+        "cssVariable": "--landings-font-size-88",
+        "$extensions": {
+          "referencePixels": 88,
+          "unitPolicy": "scalable-rem"
+        }
       }
     },
     "line-height": {
       "20": {
         "$type": "dimension",
-        "$value": "20px",
-        "cssVariable": "--landings-line-height-20"
+        "$value": "1.25rem",
+        "cssVariable": "--landings-line-height-20",
+        "$extensions": {
+          "referencePixels": 20,
+          "unitPolicy": "scalable-rem"
+        }
+      }
+    },
+    "line-height-ratio": {
+      "20-on-16": {
+        "$type": "number",
+        "$value": 1.25,
+        "cssVariable": "--landings-line-height-20-on-16",
+        "$extensions": {
+          "lineHeightReferencePixels": 20,
+          "fontSizeReferencePixels": 16,
+          "unitPolicy": "unitless"
+        }
+      }
+    },
+    "optical": {
+      "1": {
+        "$type": "dimension",
+        "$value": "0.0625rem",
+        "cssVariable": "--landings-optical-1",
+        "$extensions": {
+          "referencePixels": 1,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "3": {
+        "$type": "dimension",
+        "$value": "0.1875rem",
+        "cssVariable": "--landings-optical-3",
+        "$extensions": {
+          "referencePixels": 3,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "negative-0_5": {
+        "$type": "dimension",
+        "$value": "-0.03125rem",
+        "cssVariable": "--landings-optical-negative-0_5",
+        "$extensions": {
+          "referencePixels": -0.5,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "negative-2": {
+        "$type": "dimension",
+        "$value": "-0.125rem",
+        "cssVariable": "--landings-optical-negative-2",
+        "$extensions": {
+          "referencePixels": -2,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "negative-3": {
+        "$type": "dimension",
+        "$value": "-0.1875rem",
+        "cssVariable": "--landings-optical-negative-3",
+        "$extensions": {
+          "referencePixels": -3,
+          "unitPolicy": "scalable-rem"
+        }
       }
     },
     "radius": {
       "4": {
         "$type": "dimension",
-        "$value": "4px",
-        "cssVariable": "--landings-radius-4"
+        "$value": "0.25rem",
+        "cssVariable": "--landings-radius-4",
+        "$extensions": {
+          "referencePixels": 4,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "12": {
         "$type": "dimension",
-        "$value": "12px",
-        "cssVariable": "--landings-radius-12"
+        "$value": "0.75rem",
+        "cssVariable": "--landings-radius-12",
+        "$extensions": {
+          "referencePixels": 12,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "16": {
         "$type": "dimension",
-        "$value": "16px",
-        "cssVariable": "--landings-radius-16"
+        "$value": "1rem",
+        "cssVariable": "--landings-radius-16",
+        "$extensions": {
+          "referencePixels": 16,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "20": {
         "$type": "dimension",
-        "$value": "20px",
-        "cssVariable": "--landings-radius-20"
+        "$value": "1.25rem",
+        "cssVariable": "--landings-radius-20",
+        "$extensions": {
+          "referencePixels": 20,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "full": {
+        "$type": "dimension",
+        "$value": "999rem",
+        "cssVariable": "--landings-radius-full",
+        "$extensions": {
+          "unitPolicy": "semantic-full"
+        }
       }
     },
     "size": {
       "1": {
         "$type": "dimension",
-        "$value": "1px",
-        "cssVariable": "--landings-size-1"
+        "$value": "0.0625rem",
+        "cssVariable": "--landings-size-1",
+        "$extensions": {
+          "referencePixels": 1,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "2": {
         "$type": "dimension",
-        "$value": "2px",
-        "cssVariable": "--landings-size-2"
+        "$value": "0.125rem",
+        "cssVariable": "--landings-size-2",
+        "$extensions": {
+          "referencePixels": 2,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "5": {
+        "$type": "dimension",
+        "$value": "0.3125rem",
+        "cssVariable": "--landings-size-5",
+        "$extensions": {
+          "referencePixels": 5,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "6": {
         "$type": "dimension",
-        "$value": "6px",
-        "cssVariable": "--landings-size-6"
+        "$value": "0.375rem",
+        "cssVariable": "--landings-size-6",
+        "$extensions": {
+          "referencePixels": 6,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "8": {
         "$type": "dimension",
-        "$value": "8px",
-        "cssVariable": "--landings-size-8"
+        "$value": "0.5rem",
+        "cssVariable": "--landings-size-8",
+        "$extensions": {
+          "referencePixels": 8,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "10": {
+        "$type": "dimension",
+        "$value": "0.625rem",
+        "cssVariable": "--landings-size-10",
+        "$extensions": {
+          "referencePixels": 10,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "14": {
+        "$type": "dimension",
+        "$value": "0.875rem",
+        "cssVariable": "--landings-size-14",
+        "$extensions": {
+          "referencePixels": 14,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "16": {
         "$type": "dimension",
-        "$value": "16px",
-        "cssVariable": "--landings-size-16"
+        "$value": "1rem",
+        "cssVariable": "--landings-size-16",
+        "$extensions": {
+          "referencePixels": 16,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "18": {
+        "$type": "dimension",
+        "$value": "1.125rem",
+        "cssVariable": "--landings-size-18",
+        "$extensions": {
+          "referencePixels": 18,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "20": {
         "$type": "dimension",
-        "$value": "20px",
-        "cssVariable": "--landings-size-20"
+        "$value": "1.25rem",
+        "cssVariable": "--landings-size-20",
+        "$extensions": {
+          "referencePixels": 20,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "24": {
         "$type": "dimension",
-        "$value": "24px",
-        "cssVariable": "--landings-size-24"
+        "$value": "1.5rem",
+        "cssVariable": "--landings-size-24",
+        "$extensions": {
+          "referencePixels": 24,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "28": {
         "$type": "dimension",
-        "$value": "28px",
-        "cssVariable": "--landings-size-28"
+        "$value": "1.75rem",
+        "cssVariable": "--landings-size-28",
+        "$extensions": {
+          "referencePixels": 28,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "30": {
+        "$type": "dimension",
+        "$value": "1.875rem",
+        "cssVariable": "--landings-size-30",
+        "$extensions": {
+          "referencePixels": 30,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "32": {
         "$type": "dimension",
-        "$value": "32px",
-        "cssVariable": "--landings-size-32"
+        "$value": "2rem",
+        "cssVariable": "--landings-size-32",
+        "$extensions": {
+          "referencePixels": 32,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "36": {
         "$type": "dimension",
-        "$value": "36px",
-        "cssVariable": "--landings-size-36"
+        "$value": "2.25rem",
+        "cssVariable": "--landings-size-36",
+        "$extensions": {
+          "referencePixels": 36,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "40": {
         "$type": "dimension",
-        "$value": "40px",
-        "cssVariable": "--landings-size-40"
+        "$value": "2.5rem",
+        "cssVariable": "--landings-size-40",
+        "$extensions": {
+          "referencePixels": 40,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "46": {
+        "$type": "dimension",
+        "$value": "2.875rem",
+        "cssVariable": "--landings-size-46",
+        "$extensions": {
+          "referencePixels": 46,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "48": {
         "$type": "dimension",
-        "$value": "48px",
-        "cssVariable": "--landings-size-48"
+        "$value": "3rem",
+        "cssVariable": "--landings-size-48",
+        "$extensions": {
+          "referencePixels": 48,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "52": {
         "$type": "dimension",
-        "$value": "52px",
-        "cssVariable": "--landings-size-52"
+        "$value": "3.25rem",
+        "cssVariable": "--landings-size-52",
+        "$extensions": {
+          "referencePixels": 52,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "56": {
         "$type": "dimension",
-        "$value": "56px",
-        "cssVariable": "--landings-size-56"
+        "$value": "3.5rem",
+        "cssVariable": "--landings-size-56",
+        "$extensions": {
+          "referencePixels": 56,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "58": {
+        "$type": "dimension",
+        "$value": "3.625rem",
+        "cssVariable": "--landings-size-58",
+        "$extensions": {
+          "referencePixels": 58,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "62": {
+        "$type": "dimension",
+        "$value": "3.875rem",
+        "cssVariable": "--landings-size-62",
+        "$extensions": {
+          "referencePixels": 62,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "72": {
         "$type": "dimension",
-        "$value": "72px",
-        "cssVariable": "--landings-size-72"
+        "$value": "4.5rem",
+        "cssVariable": "--landings-size-72",
+        "$extensions": {
+          "referencePixels": 72,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "88": {
         "$type": "dimension",
-        "$value": "88px",
-        "cssVariable": "--landings-size-88"
+        "$value": "5.5rem",
+        "cssVariable": "--landings-size-88",
+        "$extensions": {
+          "referencePixels": 88,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "112": {
         "$type": "dimension",
-        "$value": "112px",
-        "cssVariable": "--landings-size-112"
+        "$value": "7rem",
+        "cssVariable": "--landings-size-112",
+        "$extensions": {
+          "referencePixels": 112,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "120": {
         "$type": "dimension",
-        "$value": "120px",
-        "cssVariable": "--landings-size-120"
+        "$value": "7.5rem",
+        "cssVariable": "--landings-size-120",
+        "$extensions": {
+          "referencePixels": 120,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "128": {
         "$type": "dimension",
-        "$value": "128px",
-        "cssVariable": "--landings-size-128"
+        "$value": "8rem",
+        "cssVariable": "--landings-size-128",
+        "$extensions": {
+          "referencePixels": 128,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "132": {
         "$type": "dimension",
-        "$value": "132px",
-        "cssVariable": "--landings-size-132"
+        "$value": "8.25rem",
+        "cssVariable": "--landings-size-132",
+        "$extensions": {
+          "referencePixels": 132,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "148": {
         "$type": "dimension",
-        "$value": "148px",
-        "cssVariable": "--landings-size-148"
+        "$value": "9.25rem",
+        "cssVariable": "--landings-size-148",
+        "$extensions": {
+          "referencePixels": 148,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "150": {
+        "$type": "dimension",
+        "$value": "9.375rem",
+        "cssVariable": "--landings-size-150",
+        "$extensions": {
+          "referencePixels": 150,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "175": {
+        "$type": "dimension",
+        "$value": "10.9375rem",
+        "cssVariable": "--landings-size-175",
+        "$extensions": {
+          "referencePixels": 175,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "180": {
         "$type": "dimension",
-        "$value": "180px",
-        "cssVariable": "--landings-size-180"
+        "$value": "11.25rem",
+        "cssVariable": "--landings-size-180",
+        "$extensions": {
+          "referencePixels": 180,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "190": {
+        "$type": "dimension",
+        "$value": "11.875rem",
+        "cssVariable": "--landings-size-190",
+        "$extensions": {
+          "referencePixels": 190,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "200": {
         "$type": "dimension",
-        "$value": "200px",
-        "cssVariable": "--landings-size-200"
+        "$value": "12.5rem",
+        "cssVariable": "--landings-size-200",
+        "$extensions": {
+          "referencePixels": 200,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "210": {
+        "$type": "dimension",
+        "$value": "13.125rem",
+        "cssVariable": "--landings-size-210",
+        "$extensions": {
+          "referencePixels": 210,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "220": {
         "$type": "dimension",
-        "$value": "220px",
-        "cssVariable": "--landings-size-220"
+        "$value": "13.75rem",
+        "cssVariable": "--landings-size-220",
+        "$extensions": {
+          "referencePixels": 220,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "250": {
+        "$type": "dimension",
+        "$value": "15.625rem",
+        "cssVariable": "--landings-size-250",
+        "$extensions": {
+          "referencePixels": 250,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "260": {
         "$type": "dimension",
-        "$value": "260px",
-        "cssVariable": "--landings-size-260"
+        "$value": "16.25rem",
+        "cssVariable": "--landings-size-260",
+        "$extensions": {
+          "referencePixels": 260,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "280": {
         "$type": "dimension",
-        "$value": "280px",
-        "cssVariable": "--landings-size-280"
+        "$value": "17.5rem",
+        "cssVariable": "--landings-size-280",
+        "$extensions": {
+          "referencePixels": 280,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "300": {
         "$type": "dimension",
-        "$value": "300px",
-        "cssVariable": "--landings-size-300"
+        "$value": "18.75rem",
+        "cssVariable": "--landings-size-300",
+        "$extensions": {
+          "referencePixels": 300,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "320": {
         "$type": "dimension",
-        "$value": "320px",
-        "cssVariable": "--landings-size-320"
+        "$value": "20rem",
+        "cssVariable": "--landings-size-320",
+        "$extensions": {
+          "referencePixels": 320,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "330": {
+        "$type": "dimension",
+        "$value": "20.625rem",
+        "cssVariable": "--landings-size-330",
+        "$extensions": {
+          "referencePixels": 330,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "340": {
         "$type": "dimension",
-        "$value": "340px",
-        "cssVariable": "--landings-size-340"
+        "$value": "21.25rem",
+        "cssVariable": "--landings-size-340",
+        "$extensions": {
+          "referencePixels": 340,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "350": {
+        "$type": "dimension",
+        "$value": "21.875rem",
+        "cssVariable": "--landings-size-350",
+        "$extensions": {
+          "referencePixels": 350,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "360": {
         "$type": "dimension",
-        "$value": "360px",
-        "cssVariable": "--landings-size-360"
+        "$value": "22.5rem",
+        "cssVariable": "--landings-size-360",
+        "$extensions": {
+          "referencePixels": 360,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "420": {
         "$type": "dimension",
-        "$value": "420px",
-        "cssVariable": "--landings-size-420"
+        "$value": "26.25rem",
+        "cssVariable": "--landings-size-420",
+        "$extensions": {
+          "referencePixels": 420,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "430": {
+        "$type": "dimension",
+        "$value": "26.875rem",
+        "cssVariable": "--landings-size-430",
+        "$extensions": {
+          "referencePixels": 430,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "460": {
         "$type": "dimension",
-        "$value": "460px",
-        "cssVariable": "--landings-size-460"
+        "$value": "28.75rem",
+        "cssVariable": "--landings-size-460",
+        "$extensions": {
+          "referencePixels": 460,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "520": {
         "$type": "dimension",
-        "$value": "520px",
-        "cssVariable": "--landings-size-520"
+        "$value": "32.5rem",
+        "cssVariable": "--landings-size-520",
+        "$extensions": {
+          "referencePixels": 520,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "600": {
         "$type": "dimension",
-        "$value": "600px",
-        "cssVariable": "--landings-size-600"
+        "$value": "37.5rem",
+        "cssVariable": "--landings-size-600",
+        "$extensions": {
+          "referencePixels": 600,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "610": {
+        "$type": "dimension",
+        "$value": "38.125rem",
+        "cssVariable": "--landings-size-610",
+        "$extensions": {
+          "referencePixels": 610,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "620": {
         "$type": "dimension",
-        "$value": "620px",
-        "cssVariable": "--landings-size-620"
+        "$value": "38.75rem",
+        "cssVariable": "--landings-size-620",
+        "$extensions": {
+          "referencePixels": 620,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "650": {
+        "$type": "dimension",
+        "$value": "40.625rem",
+        "cssVariable": "--landings-size-650",
+        "$extensions": {
+          "referencePixels": 650,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "720": {
         "$type": "dimension",
-        "$value": "720px",
-        "cssVariable": "--landings-size-720"
+        "$value": "45rem",
+        "cssVariable": "--landings-size-720",
+        "$extensions": {
+          "referencePixels": 720,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "760": {
         "$type": "dimension",
-        "$value": "760px",
-        "cssVariable": "--landings-size-760"
+        "$value": "47.5rem",
+        "cssVariable": "--landings-size-760",
+        "$extensions": {
+          "referencePixels": 760,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "820": {
         "$type": "dimension",
-        "$value": "820px",
-        "cssVariable": "--landings-size-820"
+        "$value": "51.25rem",
+        "cssVariable": "--landings-size-820",
+        "$extensions": {
+          "referencePixels": 820,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "900": {
         "$type": "dimension",
-        "$value": "900px",
-        "cssVariable": "--landings-size-900"
+        "$value": "56.25rem",
+        "cssVariable": "--landings-size-900",
+        "$extensions": {
+          "referencePixels": 900,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "920": {
         "$type": "dimension",
-        "$value": "920px",
-        "cssVariable": "--landings-size-920"
+        "$value": "57.5rem",
+        "cssVariable": "--landings-size-920",
+        "$extensions": {
+          "referencePixels": 920,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "980": {
         "$type": "dimension",
-        "$value": "980px",
-        "cssVariable": "--landings-size-980"
+        "$value": "61.25rem",
+        "cssVariable": "--landings-size-980",
+        "$extensions": {
+          "referencePixels": 980,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "1080": {
         "$type": "dimension",
-        "$value": "1080px",
-        "cssVariable": "--landings-size-1080"
+        "$value": "67.5rem",
+        "cssVariable": "--landings-size-1080",
+        "$extensions": {
+          "referencePixels": 1080,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "1440": {
         "$type": "dimension",
-        "$value": "1440px",
-        "cssVariable": "--landings-size-1440"
+        "$value": "90rem",
+        "cssVariable": "--landings-size-1440",
+        "$extensions": {
+          "referencePixels": 1440,
+          "unitPolicy": "scalable-rem"
+        }
       }
     },
     "space": {
       "1": {
         "$type": "dimension",
-        "$value": "1px",
-        "cssVariable": "--landings-space-1"
+        "$value": "0.0625rem",
+        "cssVariable": "--landings-space-1",
+        "$extensions": {
+          "referencePixels": 1,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "2": {
         "$type": "dimension",
-        "$value": "2px",
-        "cssVariable": "--landings-space-2"
+        "$value": "0.125rem",
+        "cssVariable": "--landings-space-2",
+        "$extensions": {
+          "referencePixels": 2,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "3": {
+        "$type": "dimension",
+        "$value": "0.1875rem",
+        "cssVariable": "--landings-space-3",
+        "$extensions": {
+          "referencePixels": 3,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "4": {
         "$type": "dimension",
-        "$value": "4px",
-        "cssVariable": "--landings-space-4"
+        "$value": "0.25rem",
+        "cssVariable": "--landings-space-4",
+        "$extensions": {
+          "referencePixels": 4,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "6": {
         "$type": "dimension",
-        "$value": "6px",
-        "cssVariable": "--landings-space-6"
+        "$value": "0.375rem",
+        "cssVariable": "--landings-space-6",
+        "$extensions": {
+          "referencePixels": 6,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "8": {
         "$type": "dimension",
-        "$value": "8px",
-        "cssVariable": "--landings-space-8"
+        "$value": "0.5rem",
+        "cssVariable": "--landings-space-8",
+        "$extensions": {
+          "referencePixels": 8,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "9": {
+        "$type": "dimension",
+        "$value": "0.5625rem",
+        "cssVariable": "--landings-space-9",
+        "$extensions": {
+          "referencePixels": 9,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "10": {
+        "$type": "dimension",
+        "$value": "0.625rem",
+        "cssVariable": "--landings-space-10",
+        "$extensions": {
+          "referencePixels": 10,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "12": {
         "$type": "dimension",
-        "$value": "12px",
-        "cssVariable": "--landings-space-12"
+        "$value": "0.75rem",
+        "cssVariable": "--landings-space-12",
+        "$extensions": {
+          "referencePixels": 12,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "14": {
+        "$type": "dimension",
+        "$value": "0.875rem",
+        "cssVariable": "--landings-space-14",
+        "$extensions": {
+          "referencePixels": 14,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "16": {
         "$type": "dimension",
-        "$value": "16px",
-        "cssVariable": "--landings-space-16"
+        "$value": "1rem",
+        "cssVariable": "--landings-space-16",
+        "$extensions": {
+          "referencePixels": 16,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "18": {
+        "$type": "dimension",
+        "$value": "1.125rem",
+        "cssVariable": "--landings-space-18",
+        "$extensions": {
+          "referencePixels": 18,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "20": {
         "$type": "dimension",
-        "$value": "20px",
-        "cssVariable": "--landings-space-20"
+        "$value": "1.25rem",
+        "cssVariable": "--landings-space-20",
+        "$extensions": {
+          "referencePixels": 20,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "24": {
         "$type": "dimension",
-        "$value": "24px",
-        "cssVariable": "--landings-space-24"
+        "$value": "1.5rem",
+        "cssVariable": "--landings-space-24",
+        "$extensions": {
+          "referencePixels": 24,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "25": {
+        "$type": "dimension",
+        "$value": "1.5625rem",
+        "cssVariable": "--landings-space-25",
+        "$extensions": {
+          "referencePixels": 25,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "30": {
+        "$type": "dimension",
+        "$value": "1.875rem",
+        "cssVariable": "--landings-space-30",
+        "$extensions": {
+          "referencePixels": 30,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "32": {
         "$type": "dimension",
-        "$value": "32px",
-        "cssVariable": "--landings-space-32"
+        "$value": "2rem",
+        "cssVariable": "--landings-space-32",
+        "$extensions": {
+          "referencePixels": 32,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "40": {
         "$type": "dimension",
-        "$value": "40px",
-        "cssVariable": "--landings-space-40"
+        "$value": "2.5rem",
+        "cssVariable": "--landings-space-40",
+        "$extensions": {
+          "referencePixels": 40,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "44": {
         "$type": "dimension",
-        "$value": "44px",
-        "cssVariable": "--landings-space-44"
+        "$value": "2.75rem",
+        "cssVariable": "--landings-space-44",
+        "$extensions": {
+          "referencePixels": 44,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "50": {
+        "$type": "dimension",
+        "$value": "3.125rem",
+        "cssVariable": "--landings-space-50",
+        "$extensions": {
+          "referencePixels": 50,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "70": {
+        "$type": "dimension",
+        "$value": "4.375rem",
+        "cssVariable": "--landings-space-70",
+        "$extensions": {
+          "referencePixels": 70,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "90": {
+        "$type": "dimension",
+        "$value": "5.625rem",
+        "cssVariable": "--landings-space-90",
+        "$extensions": {
+          "referencePixels": 90,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "100": {
         "$type": "dimension",
-        "$value": "100px",
-        "cssVariable": "--landings-space-100"
+        "$value": "6.25rem",
+        "cssVariable": "--landings-space-100",
+        "$extensions": {
+          "referencePixels": 100,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "120": {
         "$type": "dimension",
-        "$value": "120px",
-        "cssVariable": "--landings-space-120"
+        "$value": "7.5rem",
+        "cssVariable": "--landings-space-120",
+        "$extensions": {
+          "referencePixels": 120,
+          "unitPolicy": "scalable-rem"
+        }
+      },
+      "150": {
+        "$type": "dimension",
+        "$value": "9.375rem",
+        "cssVariable": "--landings-space-150",
+        "$extensions": {
+          "referencePixels": 150,
+          "unitPolicy": "scalable-rem"
+        }
       },
       "negative-1": {
         "$type": "dimension",
-        "$value": "-1px",
-        "cssVariable": "--landings-space-negative-1"
+        "$value": "-0.0625rem",
+        "cssVariable": "--landings-space-negative-1",
+        "$extensions": {
+          "referencePixels": -1,
+          "unitPolicy": "scalable-rem"
+        }
       }
     }
   }

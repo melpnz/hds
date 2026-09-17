@@ -7,7 +7,7 @@
 .hds-card__meta { color: var(--hds-color-text-muted); font-size: var(--hds-text-small); }
 
 .hds-stat { min-height: var(--landings-size-220); display: flex; flex-direction: column; justify-content: space-between; }
-.hds-stat__value { font-size: clamp(var(--landings-font-size-40), 6vw, var(--landings-font-size-88)); line-height: 1; letter-spacing: -2px; }
+.hds-stat__value { font-size: clamp(var(--landings-font-size-40), 6vw, var(--landings-font-size-88)); line-height: 1; letter-spacing: var(--landings-optical-negative-2); }
 .hds-stat__label { max-width: 28ch; color: var(--hds-color-text-muted); }
 
 .hds-offer { min-height: var(--landings-size-300); display: grid; align-content: space-between; gap: var(--hds-space-3); }
@@ -44,8 +44,8 @@
 .hds-accordion summary:focus, .hds-accordion summary:focus-visible { color: var(--hds-color-text) !important; }
 .hds-accordion summary::-webkit-details-marker { display: none; }
 .hds-accordion summary::marker { display: none; content: ""; }
-.hds-accordion summary::after { display: block; width: var(--landings-size-32); height: var(--landings-size-32); flex: none; margin: 0 0 0 auto; float: none; content: ""; background-image: linear-gradient(var(--hds-color-link) 0 0), linear-gradient(var(--hds-color-link) 0 0) !important; background-position: center !important; background-size: 2px 22px, 22px 2px !important; background-repeat: no-repeat !important; transform: translateY(-3px) rotate(0deg) !important; transform-origin: 50% 50%; transition: transform var(--hds-duration) var(--hds-ease); }
-.hds-accordion[open] summary::after { transform: translateY(-3px) rotate(45deg) !important; }
+.hds-accordion summary::after { display: block; width: var(--landings-size-32); height: var(--landings-size-32); flex: none; margin: 0 0 0 auto; float: none; content: ""; background-image: linear-gradient(var(--hds-color-link) 0 0), linear-gradient(var(--hds-color-link) 0 0) !important; background-position: center !important; background-size: 2px 22px, 22px 2px !important; background-repeat: no-repeat !important; transform: translateY(var(--landings-optical-negative-3)) rotate(0deg) !important; transform-origin: 50% 50%; transition: transform var(--hds-duration) var(--hds-ease); }
+.hds-accordion[open] summary::after { transform: translateY(var(--landings-optical-negative-3)) rotate(45deg) !important; }
 .hds-accordion > p { display: block; max-height: 0; margin: 0; overflow: hidden; color: var(--hds-color-text-muted); opacity: 0; transition: max-height 280ms var(--hds-ease), margin-top 280ms var(--hds-ease), opacity 180ms var(--hds-ease); }
 .hds-accordion[open] > p { max-height: 32rem; margin-top: var(--landings-space-12); opacity: 1; }
 
@@ -61,16 +61,16 @@
 .hds-service-card { display: flex; min-height: var(--landings-size-300); flex-direction: column; gap: var(--hds-space-1); overflow: hidden; color: var(--hds-color-text); text-decoration: none; }
 .hds-service-card > img { display: block; width: calc(100% + var(--hds-space-3) + var(--hds-space-3)); height: var(--landings-size-148); margin: calc(var(--hds-space-3) * -1) calc(var(--hds-space-3) * -1) var(--hds-space-2); border-radius: var(--hds-radius-card) var(--hds-radius-card) 0 0; object-fit: cover; }
 .hds-service-card .hds-button { align-self: start; margin-top: auto; }
-.hds-benefit-card { position: relative; display: grid; min-height: 250px; grid-template-columns: minmax(0, 1fr) minmax(100px, .6fr); gap: var(--hds-space-2); overflow: hidden; }
+.hds-benefit-card { position: relative; display: grid; min-height: var(--landings-size-250); grid-template-columns: minmax(0, 1fr) minmax(100px, .6fr); gap: var(--hds-space-2); overflow: hidden; }
 .hds-benefit-card p, .hds-icon-card p, .hds-process-card p, .hds-offer--media p { margin-bottom: 0; color: var(--hds-color-text-muted); }
-.hds-benefit-card > img { align-self: end; width: 100%; max-height: 175px; object-fit: contain; object-position: right bottom; }
+.hds-benefit-card > img { align-self: end; width: 100%; max-height: var(--landings-size-175); object-fit: contain; object-position: right bottom; }
 .hds-offer--media { position: relative; min-height: var(--landings-size-280); overflow: hidden; }
 .hds-offer--media > img { position: absolute; right: 0; bottom: 0; width: min(46%, var(--landings-size-220)); max-height: 70%; object-fit: contain; object-position: right bottom; }
 .hds-offer--media > div { position: relative; z-index: 1; max-width: 65%; }
 .hds-icon-card { display: grid; min-height: var(--landings-size-220); align-content: start; gap: var(--hds-space-2); }
 .hds-icon-card__mark { display: grid; width: var(--landings-size-48); height: var(--landings-size-48); place-items: center; border-radius: 50%; background: var(--hds-color-control); color: var(--hds-color-link); }
 .hds-icon-card__mark svg { width: var(--landings-size-24); height: var(--landings-size-24); fill: currentColor; }
-.hds-process-card { display: grid; min-height: 250px; align-content: start; gap: var(--hds-space-2); }
+.hds-process-card { display: grid; min-height: var(--landings-size-250); align-content: start; gap: var(--hds-space-2); }
 .hds-process-card > span { color: var(--hds-color-link); font-weight: 700; }
 .hds-showcase-card { display: grid; min-height: var(--landings-size-420); grid-template-columns: minmax(0, 1.1fr) minmax(220px, .9fr); padding: 0; overflow: hidden; }
 .hds-showcase-card > img { width: 100%; height: 100%; min-height: var(--landings-size-260); object-fit: cover; }
@@ -89,19 +89,19 @@
 .hds-price-card { display: grid; min-height: var(--landings-size-340); align-content: end; }
 .hds-price-card > div { position: relative; z-index: 1; }
 .hds-price-card h3 { margin-bottom: var(--hds-space-3); }
-.hds-format-card { display: grid; min-height: 430px; align-content: start; gap: var(--hds-space-2); }
-.hds-format-card > img { width: 100%; max-height: 210px; margin: calc(var(--hds-space-3) * -1) calc(var(--hds-space-3) * -1) var(--hds-space-2); border-radius: var(--hds-radius-card) var(--hds-radius-card) 0 0; object-fit: cover; }
+.hds-format-card { display: grid; min-height: var(--landings-size-430); align-content: start; gap: var(--hds-space-2); }
+.hds-format-card > img { width: 100%; max-height: var(--landings-size-210); margin: calc(var(--hds-space-3) * -1) calc(var(--hds-space-3) * -1) var(--hds-space-2); border-radius: var(--hds-radius-card) var(--hds-radius-card) 0 0; object-fit: cover; }
 .hds-format-card ul, .hds-course-card ul, .hds-tier-card ul { display: grid; gap: var(--landings-space-8); margin: 0; padding: 0; list-style: none; }
-.hds-format-card li::before, .hds-course-card li::before, .hds-tier-card li::before { content: "•"; margin-right: 9px; color: var(--hds-color-link); }
+.hds-format-card li::before, .hds-course-card li::before, .hds-tier-card li::before { content: "•"; margin-right: var(--landings-space-9); color: var(--hds-color-link); }
 .hds-course-card { display: grid; min-height: var(--landings-size-520); align-content: start; gap: var(--hds-space-2); }
 .hds-course-card p { color: var(--hds-color-text-muted); }
 .hds-course-card .hds-button { align-self: start; margin-top: auto; }
-.hds-action-card { display: flex; min-height: 330px; flex-direction: column; justify-content: space-between; }
+.hds-action-card { display: flex; min-height: var(--landings-size-330); flex-direction: column; justify-content: space-between; }
 .hds-action-card p { color: var(--hds-color-text-muted); }
 .hds-visual-benefit-card { display: grid; min-height: var(--landings-size-360); align-content: space-between; }
 .hds-visual-benefit-card > div { position: relative; z-index: 1; max-width: 38ch; }
 .hds-visual-benefit-card p { color: var(--hds-color-text-muted); }
-.hds-visual-benefit-card > img { position: absolute; right: -2%; bottom: -4%; width: min(62%, 330px); max-height: 65%; object-fit: contain; object-position: right bottom; }
+.hds-visual-benefit-card > img { position: absolute; right: -2%; bottom: -4%; width: min(62%, var(--landings-size-330)); max-height: 65%; object-fit: contain; object-position: right bottom; }
 .hds-partner-card { min-height: var(--landings-size-340); }
 .hds-partner-card > div { display: grid; min-height: inherit; align-content: start; max-width: 62%; }
 .hds-partner-card p, .hds-tier-card li { color: var(--hds-color-text-muted); }
@@ -113,7 +113,7 @@
   .hds-card { padding: var(--hds-space-2); }
   .hds-service-card > img { width: calc(100% + var(--hds-space-2) + var(--hds-space-2)); height: var(--landings-size-128); margin: calc(var(--hds-space-2) * -1) calc(var(--hds-space-2) * -1) var(--hds-space-2); }
   .hds-benefit-card, .hds-showcase-card { grid-template-columns: 1fr; }
-  .hds-benefit-card > img { max-height: 150px; justify-self: end; }
+  .hds-benefit-card > img { max-height: var(--landings-size-150); justify-self: end; }
   .hds-showcase-card { padding: 0; }
   .hds-showcase-card > div { padding: var(--hds-space-2); }
   .hds-format-card > img { margin: calc(var(--hds-space-2) * -1) calc(var(--hds-space-2) * -1) var(--hds-space-2); }

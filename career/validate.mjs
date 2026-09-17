@@ -14,11 +14,19 @@ const viewportWidths = [320, 480, 768, 1024];
 const errors = [];
 const dimensionDocument = read('machine/dimension-tokens.json');
 const dimensionValues = Object.fromEntries(Object.values(dimensionDocument.tokens || {}).flatMap(group =>
-  Object.values(group).map(token => [token.cssVariable, token.$value])
+  Object.values(group).map(token => {
+    if (token.$extensions?.unitPolicy === 'unitless') return [token.cssVariable, `${token.$extensions.lineHeightReferencePixels}px`];
+    if (token.$extensions?.unitPolicy === 'semantic-full') return [token.cssVariable, '9999px'];
+    if (Number.isFinite(token.$extensions?.referencePixels)) return [token.cssVariable, `${token.$extensions.referencePixels}px`];
+    return [token.cssVariable, token.$value];
+  })
 ));
 const resolveDimensions = source => source
   .replace(/^@import url\(["']dimension-tokens\.css["']\);\r?\n?/m, '')
-  .replace(/var\((--career-[^)]+)\)/g, (match, token) => dimensionValues[token] || match);
+  .replace(/var\((--career-[^)]+)\)/g, (match, token) => dimensionValues[token] || match)
+  .replace(/(-?\d*\.?\d+)rem\b/g, (_, value) => `${Number(value) * 16}px`)
+  .replace(/(-?)0?(\d*\.\d+|\d+)px\b/g, (_, sign, value) => `${sign}${Number(value)}px`)
+  .replace(/border-radius\s*:\s*(\d+(?:\.\d+)?)px/g, (match, value) => Number(value) >= 100 ? 'border-radius:FULL' : match);
 const index = read('machine/index.json');
 const styleProfile = read(index.files.styleProfile);
 if (JSON.stringify(styleProfile) !== JSON.stringify(buildStyleProfile())) errors.push('style-profile: generated profile is stale');
@@ -199,7 +207,7 @@ for (const path of walkAll(resolve(oldRoot, 'ui'))) {
   const oldFile = resolve(oldRoot, 'ui', path);
   const nextFile = resolve(root, 'ui', path);
   if (!existsSync(nextFile)) errors.push(`ui/${path}: missing from new package`);
-  else if (readFileSync(oldFile, 'utf8') !== resolveDimensions(readFileSync(nextFile, 'utf8'))) errors.push(`ui/${path}: differs from archived source after token resolution`);
+  else if (resolveDimensions(readFileSync(oldFile, 'utf8')) !== resolveDimensions(readFileSync(nextFile, 'utf8'))) errors.push(`ui/${path}: differs from archived source after token resolution`);
 }
 const evidenceImages = oldFiles.filter(path => path.startsWith('evidence/') && /\.(png|jpe?g|svg|webp|gif)$/i.test(path));
 for (const path of evidenceImages) {

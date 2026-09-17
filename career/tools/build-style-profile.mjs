@@ -14,7 +14,7 @@ export function buildStyleProfile() {
   const shadow = read('machine/tokens/shadow.json').tokens;
   return {
     schemaVersion: 1,
-    dimensionTokens: { baseUnit: '4px', source: 'machine/dimension-tokens.json', css: 'ui/dimension-tokens.css', exceptions: 'machine/reports/dimension-exceptions.json' },
+    dimensionTokens: { baseUnit: '0.25rem', referenceRootFontSize: '16px', source: 'machine/dimension-tokens.json', css: 'ui/dimension-tokens.css', exceptions: 'machine/reports/dimension-exceptions.json' },
     product: { id: 'career', title: 'Хабр Карьера', guideVersion: '1.2', status: 'active-with-coverage-limits' },
     scope: { confidence: 'high', boundary: 'Опубликованный публичный гостевой срез Career v1.2; авторизованные сценарии не покрыты.' },
     typography: { families: { interface: typography.family.$value }, weights: typography.weights, roles: typography.typeScale, responsive: typography.responsive },

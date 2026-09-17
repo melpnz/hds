@@ -1,42 +1,22 @@
 # landings · исключения размерных токенов
 
-Базовая сетка: **4px**; разрешённые исключения: **1px, 2px, 6px**. Оставшиеся значения не изменялись и требуют отдельного дизайнерского решения.
+Базовая сетка: **0.25rem**; утверждённые дополнительные ступени соответствуют **1px, 2px, 6px** при root 16px. Некратные значения токенизированы без округления и остаются в отчёте для дизайнерского разбора.
 
-Всего употреблений: **104**; уникальных сочетаний причины и значения: **47**.
-
-## `-2px` · composite-or-unsupported-property
-
-Всего: 7.
-
-- `ui/elements.css:100` — `transform`
-- `ui/elements.css:100` — `transform`
-- `ui/elements.css:103` — `transform`
-- `ui/elements.css:103` — `transform`
-- `ui/foundations.css:55` — `letter-spacing`
-- `ui/foundations.css:56` — `letter-spacing`
-- `ui/organisms.css:10` — `letter-spacing`
-
-## `1px` · composite-or-unsupported-property
-
-Всего: 2.
-
-- `ui/elements.css:24` — `transform`
-- `ui/elements.css:69` — `transform`
+Всего употреблений: **69**; уникальных сочетаний причины и значения: **41**.
 
 ## `2px` · composite-or-unsupported-property
 
-Всего: 4.
+Всего: 3.
 
 - `ui/elements.css:135` — `text-decoration-thickness`
 - `ui/organisms.css:47` — `background-size`
 - `ui/organisms.css:47` — `background-size`
-- `ui/page-reconstructions.css:63` — `text-shadow`
 
-## `16px` · composite-or-unsupported-property
+## `3px` · composite-or-unsupported-property
 
 Всего: 1.
 
-- `ui/page-reconstructions.css:63` — `text-shadow`
+- `ui/elements.css:134` — `text-underline-offset`
 
 ## `20px` · composite-or-unsupported-property
 
@@ -45,23 +25,30 @@
 - `ui/elements.css:120` — `grid-template-columns`
 - `ui/organisms.css:23` — `grid-template-columns`
 
-## `24px` · composite-or-unsupported-property
+## `22px` · composite-or-unsupported-property
 
-Всего: 1.
+Всего: 2.
 
-- `ui/blocks.css:6` — `backdrop-filter`
-
-## `28px` · composite-or-unsupported-property
-
-Всего: 1.
-
-- `ui/elements.css:105` — `box-shadow`
+- `ui/organisms.css:47` — `background-size`
+- `ui/organisms.css:47` — `background-size`
 
 ## `100px` · composite-or-unsupported-property
 
 Всего: 1.
 
 - `ui/organisms.css:64` — `grid-template-columns`
+
+## `170px` · composite-or-unsupported-property
+
+Всего: 1.
+
+- `ui/page-reconstructions.css:104` — `grid-template-rows`
+
+## `190px` · composite-or-unsupported-property
+
+Всего: 1.
+
+- `ui/page-reconstructions.css:101` — `grid-template-rows`
 
 ## `220px` · composite-or-unsupported-property
 
@@ -97,227 +84,6 @@
 
 - `ui/page-reconstructions.css:64` — `grid-template-columns`
 
-## `-.5px` · not-on-4px-grid
-
-Всего: 1.
-
-- `ui/foundations.css:57` — `letter-spacing`
-
-## `-3px` · not-on-4px-grid
-
-Всего: 2.
-
-- `ui/organisms.css:47` — `transform`
-- `ui/organisms.css:48` — `transform`
-
-## `3px` · not-on-4px-grid
-
-Всего: 15.
-
-- `ui/elements.css:26` — `outline`
-- `ui/elements.css:26` — `outline-offset`
-- `ui/elements.css:47` — `outline`
-- `ui/elements.css:47` — `outline-offset`
-- `ui/elements.css:70` — `outline`
-- `ui/elements.css:70` — `outline-offset`
-- `ui/elements.css:90` — `outline`
-- `ui/elements.css:90` — `outline-offset`
-- `ui/elements.css:100` — `margin-right`
-- `ui/elements.css:104` — `outline`
-- `ui/elements.css:104` — `outline-offset`
-- `ui/elements.css:109` — `box-shadow`
-- `ui/elements.css:131` — `outline`
-- `ui/elements.css:131` — `outline-offset`
-- `ui/elements.css:134` — `text-underline-offset`
-
-## `5px` · not-on-4px-grid
-
-Всего: 2.
-
-- `ui/elements.css:126` — `top`
-- `ui/elements.css:126` — `right`
-
-## `9px` · not-on-4px-grid
-
-Всего: 2.
-
-- `ui/elements.css:106` — `padding`
-- `ui/organisms.css:95` — `margin-right`
-
-## `10px` · not-on-4px-grid
-
-Всего: 5.
-
-- `ui/blocks.css:13` — `padding`
-- `ui/blocks.css:19` — `inset`
-- `ui/elements.css:37` — `padding`
-- `ui/elements.css:126` — `width`
-- `ui/page-reconstructions.css:51` — `padding`
-
-## `14px` · not-on-4px-grid
-
-Всего: 3.
-
-- `ui/blocks.css:75` — `padding`
-- `ui/elements.css:105` — `box-shadow`
-- `ui/foundations.css:24` — `--hds-text-small`
-
-## `17px` · not-on-4px-grid
-
-Всего: 1.
-
-- `ui/elements.css:63` — `font-size`
-
-## `18px` · not-on-4px-grid
-
-Всего: 2.
-
-- `ui/blocks.css:75` — `padding`
-- `ui/foundations.css:23` — `--hds-text-body`
-
-## `22px` · not-on-4px-grid
-
-Всего: 2.
-
-- `ui/organisms.css:47` — `background-size`
-- `ui/organisms.css:47` — `background-size`
-
-## `25px` · not-on-4px-grid
-
-Всего: 1.
-
-- `ui/elements.css:8` — `padding`
-
-## `30px` · not-on-4px-grid
-
-Всего: 4.
-
-- `ui/blocks.css:11` — `height`
-- `ui/blocks.css:21` — `padding-block`
-- `ui/blocks.css:102` — `height`
-- `ui/page-reconstructions.css:3` — `padding`
-
-## `46px` · not-on-4px-grid
-
-Всего: 1.
-
-- `ui/foundations.css:99` — `--hds-text-h1`
-
-## `50px` · not-on-4px-grid
-
-Всего: 2.
-
-- `ui/foundations.css:12` — `--hds-space-4`
-- `ui/foundations.css:15` — `--hds-page-gutter`
-
-## `58px` · not-on-4px-grid
-
-Всего: 1.
-
-- `ui/foundations.css:86` — `--hds-text-h2`
-
-## `62px` · not-on-4px-grid
-
-Всего: 1.
-
-- `ui/blocks.css:101` — `min-height`
-
-## `70px` · not-on-4px-grid
-
-Всего: 1.
-
-- `ui/page-reconstructions.css:124` — `--hds-section-space`
-
-## `90px` · not-on-4px-grid
-
-Всего: 1.
-
-- `ui/page-reconstructions.css:120` — `--hds-section-space`
-
-## `150px` · not-on-4px-grid
-
-Всего: 3.
-
-- `ui/foundations.css:14` — `--hds-section-space`
-- `ui/organisms.css:115` — `max-height`
-- `ui/page-reconstructions.css:150` — `min-height`
-
-## `170px` · not-on-4px-grid
-
-Всего: 1.
-
-- `ui/page-reconstructions.css:104` — `grid-template-rows`
-
-## `175px` · not-on-4px-grid
-
-Всего: 1.
-
-- `ui/organisms.css:66` — `max-height`
-
-## `190px` · not-on-4px-grid
-
-Всего: 2.
-
-- `ui/page-reconstructions.css:23` — `min-height`
-- `ui/page-reconstructions.css:101` — `grid-template-rows`
-
-## `210px` · not-on-4px-grid
-
-Всего: 2.
-
-- `ui/organisms.css:92` — `max-height`
-- `ui/page-reconstructions.css:147` — `min-height`
-
-## `250px` · not-on-4px-grid
-
-Всего: 2.
-
-- `ui/organisms.css:64` — `min-height`
-- `ui/organisms.css:72` — `min-height`
-
-## `330px` · not-on-4px-grid
-
-Всего: 3.
-
-- `ui/organisms.css:98` — `min-height`
-- `ui/organisms.css:104` — `width`
-- `ui/page-reconstructions.css:61` — `min-height`
-
-## `350px` · not-on-4px-grid
-
-Всего: 1.
-
-- `ui/page-reconstructions.css:95` — `min-height`
-
-## `430px` · not-on-4px-grid
-
-Всего: 2.
-
-- `ui/organisms.css:91` — `min-height`
-- `ui/page-reconstructions.css:115` — `min-height`
-
-## `610px` · not-on-4px-grid
-
-Всего: 1.
-
-- `ui/page-reconstructions.css:71` — `max-width`
-
-## `650px` · not-on-4px-grid
-
-Всего: 1.
-
-- `ui/page-reconstructions.css:121` — `max-width`
-
-## `999px` · not-on-4px-grid
-
-Всего: 5.
-
-- `ui/blocks.css:75` — `border-radius`
-- `ui/elements.css:38` — `border-radius`
-- `ui/foundations.css:18` — `--hds-radius-control`
-- `ui/page-reconstructions.css:51` — `border-radius`
-- `ui/page-reconstructions.css:60` — `border-radius`
-
 ## `1.2em` · relative-unit-needs-semantic-decision
 
 Всего: 2.
@@ -342,4 +108,173 @@
 Всего: 1.
 
 - `ui/organisms.css:50` — `max-height`
+
+## `3px` · tokenized-off-grid-value
+
+Всего: 1.
+
+- `ui/elements.css:100` — `token:space`
+
+## `5px` · tokenized-off-grid-value
+
+Всего: 2.
+
+- `ui/elements.css:126` — `token:size`
+- `ui/elements.css:126` — `token:size`
+
+## `9px` · tokenized-off-grid-value
+
+Всего: 2.
+
+- `ui/elements.css:106` — `token:space`
+- `ui/organisms.css:95` — `token:space`
+
+## `10px` · tokenized-off-grid-value
+
+Всего: 5.
+
+- `ui/blocks.css:19` — `token:size`
+- `ui/elements.css:126` — `token:size`
+- `ui/blocks.css:13` — `token:space`
+- `ui/elements.css:37` — `token:space`
+- `ui/page-reconstructions.css:51` — `token:space`
+
+## `14px` · tokenized-off-grid-value
+
+Всего: 2.
+
+- `ui/foundations.css:24` — `token:size`
+- `ui/blocks.css:75` — `token:space`
+
+## `17px` · tokenized-off-grid-value
+
+Всего: 1.
+
+- `ui/elements.css:63` — `token:font-size`
+
+## `18px` · tokenized-off-grid-value
+
+Всего: 2.
+
+- `ui/foundations.css:23` — `token:size`
+- `ui/blocks.css:75` — `token:space`
+
+## `25px` · tokenized-off-grid-value
+
+Всего: 1.
+
+- `ui/elements.css:8` — `token:space`
+
+## `30px` · tokenized-off-grid-value
+
+Всего: 4.
+
+- `ui/blocks.css:11` — `token:size`
+- `ui/blocks.css:102` — `token:size`
+- `ui/blocks.css:21` — `token:space`
+- `ui/page-reconstructions.css:3` — `token:space`
+
+## `46px` · tokenized-off-grid-value
+
+Всего: 1.
+
+- `ui/foundations.css:99` — `token:size`
+
+## `50px` · tokenized-off-grid-value
+
+Всего: 2.
+
+- `ui/foundations.css:12` — `token:space`
+- `ui/foundations.css:15` — `token:space`
+
+## `58px` · tokenized-off-grid-value
+
+Всего: 1.
+
+- `ui/foundations.css:86` — `token:size`
+
+## `62px` · tokenized-off-grid-value
+
+Всего: 1.
+
+- `ui/blocks.css:101` — `token:size`
+
+## `70px` · tokenized-off-grid-value
+
+Всего: 1.
+
+- `ui/page-reconstructions.css:124` — `token:space`
+
+## `90px` · tokenized-off-grid-value
+
+Всего: 1.
+
+- `ui/page-reconstructions.css:120` — `token:space`
+
+## `150px` · tokenized-off-grid-value
+
+Всего: 3.
+
+- `ui/organisms.css:116` — `token:size`
+- `ui/page-reconstructions.css:150` — `token:size`
+- `ui/foundations.css:14` — `token:space`
+
+## `175px` · tokenized-off-grid-value
+
+Всего: 1.
+
+- `ui/organisms.css:66` — `token:size`
+
+## `190px` · tokenized-off-grid-value
+
+Всего: 1.
+
+- `ui/page-reconstructions.css:23` — `token:size`
+
+## `210px` · tokenized-off-grid-value
+
+Всего: 2.
+
+- `ui/organisms.css:93` — `token:size`
+- `ui/page-reconstructions.css:147` — `token:size`
+
+## `250px` · tokenized-off-grid-value
+
+Всего: 2.
+
+- `ui/organisms.css:64` — `token:size`
+- `ui/organisms.css:73` — `token:size`
+
+## `330px` · tokenized-off-grid-value
+
+Всего: 3.
+
+- `ui/organisms.css:99` — `token:size`
+- `ui/organisms.css:104` — `token:size`
+- `ui/page-reconstructions.css:61` — `token:size`
+
+## `350px` · tokenized-off-grid-value
+
+Всего: 1.
+
+- `ui/page-reconstructions.css:95` — `token:size`
+
+## `430px` · tokenized-off-grid-value
+
+Всего: 2.
+
+- `ui/organisms.css:92` — `token:size`
+- `ui/page-reconstructions.css:115` — `token:size`
+
+## `610px` · tokenized-off-grid-value
+
+Всего: 1.
+
+- `ui/page-reconstructions.css:71` — `token:size`
+
+## `650px` · tokenized-off-grid-value
+
+Всего: 1.
+
+- `ui/page-reconstructions.css:121` — `token:size`
 

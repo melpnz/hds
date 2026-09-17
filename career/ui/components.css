@@ -37,19 +37,19 @@
   flex: none;
   background: var(--color-ui-gray-6);
   color: var(--color-ui-gray-2);
-  font: 600 14px/1 var(--font-base);
+  font: 600 var(--career-font-size-14)/1 var(--font-base);
   object-fit: cover;
 }
 .avatar--user { border-radius: 50%; }
-.avatar--entity { border-radius: var(--career-radius-8); background: var(--color-ui-white); box-shadow: inset 0 0 0 1px var(--color-ui-gray-shadow); }
-.avatar--20 { width: var(--career-size-20); height: var(--career-size-20); font-size: 9px; }
-.avatar--24 { width: var(--career-size-24); height: var(--career-size-24); font-size: 10px; }
+.avatar--entity { border-radius: var(--career-radius-8); background: var(--color-ui-white); box-shadow: inset 0 0 0 var(--career-effect-1) var(--color-ui-gray-shadow); }
+.avatar--20 { width: var(--career-size-20); height: var(--career-size-20); font-size: var(--career-font-size-9); }
+.avatar--24 { width: var(--career-size-24); height: var(--career-size-24); font-size: var(--career-font-size-10); }
 .avatar--32 { width: var(--career-size-32); height: var(--career-size-32); font-size: var(--career-font-size-12); }
-.avatar--36 { width: var(--career-size-36); height: var(--career-size-36); font-size: 13px; }
+.avatar--36 { width: var(--career-size-36); height: var(--career-size-36); font-size: var(--career-font-size-13); }
 .avatar--40 { width: var(--career-size-40); height: var(--career-size-40); }
 .avatar--48 { width: var(--career-size-48); height: var(--career-size-48); font-size: var(--career-font-size-16); }
-.avatar--56 { width: var(--career-size-56); height: var(--career-size-56); font-size: 18px; }
-.avatar--72 { width: var(--career-size-72); height: var(--career-size-72); font-size: 22px; }
+.avatar--56 { width: var(--career-size-56); height: var(--career-size-56); font-size: var(--career-font-size-18); }
+.avatar--72 { width: var(--career-size-72); height: var(--career-size-72); font-size: var(--career-font-size-22); }
 .avatar--96 { width: var(--career-size-96); height: var(--career-size-96); font-size: var(--career-font-size-28); }
 .avatar--140 { width: var(--career-size-140); height: var(--career-size-140); font-size: var(--career-font-size-40); }
 
@@ -67,13 +67,13 @@
   min-width: var(--career-size-20);
   height: var(--career-size-20);
   padding: 0 var(--career-space-4);
-  border-radius: 999px;
+  border-radius: var(--career-radius-full);
   background: var(--color-ui-primary);
   color: var(--color-ui-white);
-  font: 600 11px/16px var(--font-base);
+  font: 600 var(--career-font-size-11)/var(--career-line-height-16-on-11) var(--font-base);
 }
 .base-badge--dot { width: var(--career-size-12); height: var(--career-size-12); min-width: var(--career-size-12); padding: 0; }
-.base-badge--ring { box-shadow: 0 0 0 2px var(--color-ui-white); }
+.base-badge--ring { box-shadow: 0 0 0 var(--career-effect-2) var(--color-ui-white); }
 
 /* -------------------------------------------------------------------------
    Поле поиска
@@ -105,7 +105,7 @@
   gap: var(--career-space-8);
   position: relative;
   cursor: pointer;
-  font: 400 14px/20px var(--font-base);
+  font: 400 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base);
   color: var(--color-ui-gray-1);
 }
 .checkbox__wrapper input { position: absolute; width: var(--career-size-1); height: var(--career-size-1); overflow: hidden; clip: rect(0 0 0 0); }
@@ -114,21 +114,21 @@
   width: var(--career-size-16);
   height: var(--career-size-16);
   border-radius: var(--career-radius-4);
-  box-shadow: inset 0 0 0 1px var(--color-ui-gray-4);
+  box-shadow: inset 0 0 0 var(--career-effect-1) var(--color-ui-gray-4);
   background: var(--color-ui-white);
   display: inline-flex;
   align-items: center;
   justify-content: center;
   color: transparent;
 }
-.checkbox__box svg { width: 14px; height: 14px; }
+.checkbox__box svg { width: var(--career-size-14); height: var(--career-size-14); }
 .checkbox__wrapper input:checked + .checkbox__icon-wrapper .checkbox__box {
   background: var(--color-ui-primary);
-  box-shadow: inset 0 0 0 1px var(--color-ui-primary);
+  box-shadow: inset 0 0 0 var(--career-effect-1) var(--color-ui-primary);
   color: var(--color-ui-white);
 }
 .checkbox__wrapper input:disabled + .checkbox__icon-wrapper .checkbox__box {
-  box-shadow: inset 0 0 0 1px var(--color-ui-gray-5);
+  box-shadow: inset 0 0 0 var(--career-effect-1) var(--color-ui-gray-5);
   background: var(--color-ui-gray-7);
 }
 .checkbox__wrapper input:disabled ~ .checkbox__text { color: var(--color-ui-gray-4); }
@@ -159,7 +159,7 @@
    строки компании занимают полосу y 351–363, дата — ту же полосу, x 826–901,
    то есть правый край содержимого карточки. */
 .vacancy-card__date {
-  font: 400 14px/20px var(--font-base);
+  font: 400 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base);
   color: var(--color-ui-gray-3);
   margin-left: auto;
   padding-left: var(--career-space-16);
@@ -171,17 +171,17 @@
 /* Зарплата: зелёная, когда указана; оранжевая, когда нет.
    ИСТОЧНИК: пиксели того же снимка — rgb(61,194,74) и rgb(253,143,13).
    Кегль 17/22 700 замерен в дампе production (h4.predicted-salary__title). */
-.vacancy-card__salary { font: 700 17px/22px var(--font-base); color: var(--color-ui-green); }
+.vacancy-card__salary { font: 700 var(--career-font-size-17)/var(--career-line-height-22-on-17) var(--font-base); color: var(--color-ui-green); }
 .vacancy-card__salary--unknown { color: var(--color-ui-orange-accent); }
 .vacancy-card__icon-link {
   flex: none;
   width: var(--career-size-48);
   height: var(--career-size-48);
-  margin-right: 15px;
+  margin-right: var(--career-space-15);
   border-radius: var(--career-radius-8);
   overflow: hidden;
   background: var(--color-ui-white);
-  box-shadow: inset 0 0 0 1px var(--color-ui-gray-shadow);
+  box-shadow: inset 0 0 0 var(--career-effect-1) var(--color-ui-gray-shadow);
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -194,7 +194,7 @@
   display: flex;
   align-items: center;
   gap: var(--career-space-8);
-  font: 400 14px/20px var(--font-base);
+  font: 400 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base);
   color: var(--color-ui-gray-1);
   margin-bottom: var(--career-space-4);
 }
@@ -204,7 +204,7 @@
 .vacancy-card__company .rating { color: var(--color-ui-green); font-weight: 600; display: inline-flex; align-items: center; gap: var(--career-space-2); flex: none; }
 .vacancy-card__company .rating svg { width: var(--career-size-16); height: var(--career-size-16); }
 .vacancy-card__title {
-  font: 600 20px/24px var(--font-base);
+  font: 600 var(--career-font-size-20)/var(--career-line-height-24-on-20) var(--font-base);
   color: var(--color-ui-gray-1);
   text-decoration: none;
   display: inline-block;
@@ -216,7 +216,7 @@
   align-items: center;
   gap: var(--career-space-4);
   margin-top: var(--career-space-4);
-  font: 400 14px/20px var(--font-base);
+  font: 400 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base);
   color: var(--color-ui-gray-2);
 }
 .vacancy-meta__sep { color: var(--color-ui-gray-4); }
@@ -246,11 +246,11 @@
   border: var(--career-border-width-1) solid var(--color-ui-gray-shadow);
   font-family: var(--font-base);
 }
-.rating-card__pos { font: 600 28px/32px var(--font-base); color: var(--color-ui-gray-3); flex: none; min-width: var(--career-size-44); }
-.rating-card__title { margin: 0 0 var(--career-space-4); font: 600 20px/24px var(--font-base); color: var(--color-ui-gray-1); }
-.rating-card__score { display: inline-flex; align-items: center; gap: var(--career-space-4); font: 600 14px/20px var(--font-base); color: var(--color-ui-green); }
+.rating-card__pos { font: 600 var(--career-font-size-28)/var(--career-line-height-32-on-28) var(--font-base); color: var(--color-ui-gray-3); flex: none; min-width: var(--career-size-44); }
+.rating-card__title { margin: 0 0 var(--career-space-4); font: 600 var(--career-font-size-20)/var(--career-line-height-24-on-20) var(--font-base); color: var(--color-ui-gray-1); }
+.rating-card__score { display: inline-flex; align-items: center; gap: var(--career-space-4); font: 600 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base); color: var(--color-ui-green); }
 .rating-card__score svg { width: var(--career-size-20); height: var(--career-size-20); }
-.rating-card__desc { margin: var(--career-space-8) 0 0; font: 400 15px/24px var(--font-base); color: var(--color-ui-gray-1); }
+.rating-card__desc { margin: var(--career-space-8) 0 0; font: 400 var(--career-font-size-15)/var(--career-line-height-24-on-15) var(--font-base); color: var(--color-ui-gray-1); }
 
 /* -------------------------------------------------------------------------
    Плиточная карточка
@@ -264,9 +264,9 @@
   border: var(--career-border-width-1) solid var(--color-ui-gray-shadow);
   font-family: var(--font-base);
 }
-.grid-card__date { font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-3); margin-bottom: var(--career-space-8); }
-.grid-card__company { display: flex; align-items: center; gap: var(--career-space-4); font: 400 16px/20px var(--font-base); margin-bottom: var(--career-space-4); }
-.grid-card__title { font: 600 16px/24px var(--font-base); color: var(--color-ui-gray-1); }
+.grid-card__date { font: 400 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base); color: var(--color-ui-gray-3); margin-bottom: var(--career-space-8); }
+.grid-card__company { display: flex; align-items: center; gap: var(--career-space-4); font: 400 var(--career-font-size-16)/var(--career-line-height-20-on-16) var(--font-base); margin-bottom: var(--career-space-4); }
+.grid-card__title { font: 600 var(--career-font-size-16)/var(--career-line-height-24-on-16) var(--font-base); color: var(--color-ui-gray-1); }
 
 /* -------------------------------------------------------------------------
    Пустое состояние старой реализации
@@ -275,8 +275,8 @@
    ------------------------------------------------------------------------- */
 .no-content { text-align: center; font-family: var(--font-base); padding: var(--career-space-8) 0; }
 .no-content__art { margin: 0 auto var(--career-space-16); display: block; max-width: var(--career-size-240); }
-.no-content__title { max-width: var(--career-size-560); margin: 0 auto var(--career-space-8); font: 600 20px/24px var(--font-base); color: var(--color-ui-gray-1); }
-.no-content__desc { max-width: var(--career-size-560); margin: 0 auto var(--career-space-16); font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-2); }
+.no-content__title { max-width: var(--career-size-560); margin: 0 auto var(--career-space-8); font: 600 var(--career-font-size-20)/var(--career-line-height-24-on-20) var(--font-base); color: var(--color-ui-gray-1); }
+.no-content__desc { max-width: var(--career-size-560); margin: 0 auto var(--career-space-16); font: 400 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base); color: var(--color-ui-gray-2); }
 
 /* -------------------------------------------------------------------------
    Онбординговая подсказка
@@ -293,15 +293,15 @@
   gap: var(--career-space-8);
   box-shadow: var(--shadow-dropdown);
 }
-.onboarding-tooltip__title { font: 600 16px/20px var(--font-base); }
-.onboarding-tooltip__text { font: 400 14px/20px var(--font-base); }
+.onboarding-tooltip__title { font: 600 var(--career-font-size-16)/var(--career-line-height-20-on-16) var(--font-base); }
+.onboarding-tooltip__text { font: 400 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base); }
 .onboarding-tooltip__actions { display: flex; align-items: center; gap: var(--career-space-12); margin: var(--career-space-4) 0 0; }
 
 /* -------------------------------------------------------------------------
    Числовой акцент
    ИСТОЧНИК: замеры production, блоки статистики.
    ------------------------------------------------------------------------- */
-.number-accent { font: 700 17px/22px var(--font-base); color: var(--color-ui-orange-accent); }
+.number-accent { font: 700 var(--career-font-size-17)/var(--career-line-height-22-on-17) var(--font-base); color: var(--color-ui-orange-accent); }
 
 /* -------------------------------------------------------------------------
    Совместимость имён
@@ -322,7 +322,7 @@
    Класс оставлен, потому что showcase/pages.html опирается на него как
    на именованный отступ под заголовком.
    ------------------------------------------------------------------------- */
-.base-section__body { margin-top: var(--career-space-12); font: 400 14px/20px var(--font-base); color: var(--color-ui-gray-1); }
+.base-section__body { margin-top: var(--career-space-12); font: 400 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base); color: var(--color-ui-gray-1); }
 
 /* -------------------------------------------------------------------------
    Карточка вакансии на узком экране
@@ -389,13 +389,13 @@
 .menu {
   background: var(--color-ui-white);
   border-radius: var(--career-radius-16);
-  box-shadow: 0 1px 4px 1px var(--color-ui-gray-shadow), 0 4px 8px 2px var(--color-ui-gray-shadow);
+  box-shadow: 0 var(--career-effect-1) var(--career-effect-4) var(--career-effect-1) var(--color-ui-gray-shadow), 0 var(--career-effect-4) var(--career-effect-8) var(--career-effect-2) var(--color-ui-gray-shadow);
   display: flex;
   flex-direction: column;
   gap: var(--career-space-2);
   list-style: none;
   margin: 0;
-  min-width: 190px;
+  min-width: var(--career-size-190);
   padding: var(--career-space-4);
 }
 .menu[hidden] { display: none; }
@@ -409,7 +409,7 @@
   color: var(--color-ui-gray-1);
   cursor: pointer;
   display: flex;
-  font: 400 14px/20px var(--font-base);
+  font: 400 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base);
   gap: var(--career-space-8);
   min-height: var(--career-size-40);
   padding: var(--career-space-8) var(--career-space-12);
@@ -418,7 +418,7 @@
   width: 100%;
 }
 .menu-item:is(:hover, [data-active="true"]) { background-color: var(--color-ui-gray-3-10); }
-.menu-item:focus-visible { outline: var(--career-border-width-2) solid var(--color-ui-primary-60); outline-offset: -2px; }
+.menu-item:focus-visible { outline: var(--career-border-width-2) solid var(--color-ui-primary-60); outline-offset: var(--career-optical-negative-2); }
 .menu-item:active:not(:disabled):not([aria-disabled="true"]),.menu-item.is-pressed { background-color: var(--color-ui-gray-3-20); }
 .menu-item:is([aria-checked="true"], [aria-current="true"], [aria-selected="true"]) { color: var(--color-ui-primary-accent); font-weight: 600; }
 .menu-item:is(:disabled, [aria-disabled="true"]) { color: var(--color-ui-gray-4); cursor: default; pointer-events: none; }
@@ -433,7 +433,7 @@
 .popover__surface {
   background-color: var(--color-ui-white);
   border-radius: var(--career-radius-16);
-  box-shadow: 0 1px 4px 1px var(--color-ui-gray-shadow), 0 4px 8px 2px var(--color-ui-gray-shadow);
+  box-shadow: 0 var(--career-effect-1) var(--career-effect-4) var(--career-effect-1) var(--color-ui-gray-shadow), 0 var(--career-effect-4) var(--career-effect-8) var(--career-effect-2) var(--color-ui-gray-shadow);
   max-width: min(var(--career-size-360), calc(100vw - var(--career-size-32)));
   padding: var(--career-space-12);
   position: absolute;
@@ -460,7 +460,7 @@
   background-color: var(--color-ui-gray-1);
   border-radius: var(--career-radius-8);
   color: var(--color-ui-white);
-  font: 400 12px/16px var(--font-base);
+  font: 400 var(--career-font-size-12)/var(--career-line-height-16-on-12) var(--font-base);
   /* Тултип абсолютный, и его containing block — обёртка .popover шириной
      с триггер. Без width подгонка под содержимое упирается в эту ширину,
      текст встаёт колонкой по самому длинному слову, а max-width не достигается
@@ -484,16 +484,16 @@
    ------------------------------------------------------------------------- */
 .calendar { background:var(--color-ui-white);border-radius:var(--career-radius-16);color:var(--color-ui-gray-1);padding:var(--career-space-12);width:var(--career-size-296) }
 .calendar__header { align-items:center;display:flex;justify-content:space-between;margin-bottom:var(--career-space-8) }
-.calendar__title { font:600 16px/24px var(--font-base);margin:0 }
+.calendar__title { font:600 var(--career-font-size-16)/var(--career-line-height-24-on-16) var(--font-base);margin:0 }
 .calendar__grid { display:grid;gap:var(--career-space-2);grid-template-columns:repeat(7,36px) }
 .calendar__grid > [role="row"] { display: contents; }
 .calendar__grid [role="gridcell"] { min-width: 0; }
 .calendar__day[data-selected="true"] { background:var(--color-ui-primary);color:var(--color-ui-white) }
-.calendar__weekday { color:var(--color-ui-gray-2);font:400 12px/16px var(--font-base);padding:var(--career-space-6) 0;text-align:center }
-.calendar__day { align-items:center;appearance:none;background:transparent;border:0;border-radius:9999px;color:inherit;cursor:pointer;display:flex;font:400 14px/20px var(--font-base);height:var(--career-size-36);justify-content:center;padding:0;width:var(--career-size-36) }
+.calendar__weekday { color:var(--color-ui-gray-2);font:400 var(--career-font-size-12)/var(--career-line-height-16-on-12) var(--font-base);padding:var(--career-space-6) 0;text-align:center }
+.calendar__day { align-items:center;appearance:none;background:transparent;border:0;border-radius:var(--career-radius-full);color:inherit;cursor:pointer;display:flex;font:400 var(--career-font-size-14)/var(--career-line-height-20-on-14) var(--font-base);height:var(--career-size-36);justify-content:center;padding:0;width:var(--career-size-36) }
 .calendar__day:hover:not(:disabled) { background:var(--color-ui-gray-3-10) }
-.calendar__day:focus-visible { outline:var(--career-border-width-2) solid var(--color-ui-primary-60);outline-offset:1px }
-.calendar__day[aria-current="date"] { box-shadow:inset 0 0 0 1px var(--color-ui-primary);color:var(--color-ui-primary-accent) }
+.calendar__day:focus-visible { outline:var(--career-border-width-2) solid var(--color-ui-primary-60);outline-offset:var(--career-optical-1) }
+.calendar__day[aria-current="date"] { box-shadow:inset 0 0 0 var(--career-effect-1) var(--color-ui-primary);color:var(--color-ui-primary-accent) }
 .calendar__day[aria-selected="true"] { background:var(--color-ui-primary);color:var(--color-ui-white) }
 .calendar__day[data-in-range="true"] { background:var(--color-ui-primary-20);border-radius:0 }
 .calendar__day[data-outside-month="true"] { color:var(--color-ui-gray-4) }
@@ -516,8 +516,8 @@
 .file-upload[data-disabled="true"] { opacity:.6;pointer-events:none }
 .dropzone { align-items:center;background:var(--color-ui-gray-7);border:var(--career-border-width-2) dashed var(--color-ui-gray-5);border-radius:var(--career-radius-16);color:var(--color-ui-gray-2);cursor:pointer;display:flex;flex-direction:column;gap:var(--career-space-8);justify-content:center;min-height:var(--career-size-144);padding:var(--career-space-24);text-align:center }
 .dropzone:hover:not([aria-disabled="true"]),.dropzone[data-drag-active="true"] { background:var(--color-ui-primary-10);border-color:var(--color-ui-primary);color:var(--color-ui-primary-accent) }
-.dropzone:focus-visible { outline:var(--career-border-width-2) solid var(--color-ui-primary-60);outline-offset:2px }
-.dropzone:has(input:focus-visible) { outline:var(--career-border-width-2) solid var(--color-ui-primary-60);outline-offset:2px }
+.dropzone:focus-visible { outline:var(--career-border-width-2) solid var(--color-ui-primary-60);outline-offset:var(--career-optical-2) }
+.dropzone:has(input:focus-visible) { outline:var(--career-border-width-2) solid var(--color-ui-primary-60);outline-offset:var(--career-optical-2) }
 .dropzone[aria-disabled="true"] { cursor:default;opacity:.6 }
 .dropzone[aria-invalid="true"] { background:var(--color-ui-red-10);border-color:var(--color-ui-red);color:var(--color-ui-red) }
 
@@ -526,9 +526,9 @@
    ------------------------------------------------------------------------- */
 .accordion { border-bottom:var(--career-border-width-1) solid var(--color-ui-gray-shadow);border-top:var(--career-border-width-1) solid var(--color-ui-gray-shadow) }
 .accordion__item + .accordion__item { border-top:var(--career-border-width-1) solid var(--color-ui-gray-shadow) }
-.accordion__trigger { align-items:center;appearance:none;background:transparent;border:0;color:var(--color-ui-gray-1);cursor:pointer;display:flex;font:600 16px/24px var(--font-base);justify-content:space-between;padding:var(--career-space-16) 0;text-align:left;width:100% }
+.accordion__trigger { align-items:center;appearance:none;background:transparent;border:0;color:var(--color-ui-gray-1);cursor:pointer;display:flex;font:600 var(--career-font-size-16)/var(--career-line-height-24-on-16) var(--font-base);justify-content:space-between;padding:var(--career-space-16) 0;text-align:left;width:100% }
 .accordion__trigger:hover:not(:disabled) { color:var(--color-ui-primary-accent) }
-.accordion__trigger:focus-visible { border-radius:var(--career-radius-4);outline:var(--career-border-width-2) solid var(--color-ui-primary-60);outline-offset:2px }
+.accordion__trigger:focus-visible { border-radius:var(--career-radius-4);outline:var(--career-border-width-2) solid var(--color-ui-primary-60);outline-offset:var(--career-optical-2) }
 .accordion__trigger:disabled { color:var(--color-ui-gray-4);cursor:default }
 .accordion__icon { flex:none;transition:transform .2s ease }
 .accordion__trigger[aria-expanded="true"] .accordion__icon { transform:rotate(180deg) }

@@ -157,7 +157,7 @@
 .link-styled-button:focus-visible {
   border-radius: .125rem;
   outline: var(--career-border-width-2) solid var(--color-ui-primary-60);
-  outline-offset: 2px;
+  outline-offset: var(--career-optical-2);
 }
 
 .link-styled-button:active:not(:disabled),
@@ -175,7 +175,7 @@
 
 .rounded-arrow-button:focus-visible {
   outline: var(--career-border-width-2) solid var(--color-ui-primary-60);
-  outline-offset: 2px;
+  outline-offset: var(--career-optical-2);
 }
 
 .rounded-arrow-button:active:not([aria-disabled="true"]),
@@ -197,7 +197,7 @@
 .salary-head-button__companies-link:focus-visible {
   border-radius: .125rem;
   outline: var(--career-border-width-2) solid var(--color-ui-primary-60);
-  outline-offset: 2px;
+  outline-offset: var(--career-optical-2);
 }
 
 .salary-head-button__companies-link:active {
@@ -216,13 +216,13 @@
 
 .checkbox-input:indeterminate + .checkbox-button::after {
   background-color: var(--color-ui-white);
-  border-radius: 9999px;
+  border-radius: var(--career-radius-full);
   content: "";
   height: var(--career-size-2);
-  left: 5px;
+  left: var(--career-size-5);
   position: absolute;
-  right: 5px;
-  top: 9px;
+  right: var(--career-size-5);
+  top: var(--career-size-9);
 }
 
 .checkbox.is-loading,
@@ -240,7 +240,7 @@
   background-color: transparent;
   background-image: none;
   border-color: var(--color-ui-gray-5);
-  border-radius: 9999px;
+  border-radius: var(--career-radius-full);
   border-top-color: var(--color-ui-primary);
 }
 
@@ -251,7 +251,7 @@
 }
 
 .switch:has(.switch-input:checked) .switch-thumb {
-  transform: translate(16px);
+  transform: translate(var(--career-optical-16));
 }
 
 .switch:has(.switch-input:checked) .switch-dot {
@@ -312,7 +312,7 @@
 .star-rating .star-input:focus-visible + .star-icon {
   border-radius: .25rem;
   outline: var(--career-border-width-2) solid var(--color-ui-primary-60);
-  outline-offset: 2px;
+  outline-offset: var(--career-optical-2);
 }
 
 .star-rating:is(.is-disabled, .is-readonly) .star-label {
@@ -367,10 +367,10 @@
   border-radius: var(--career-radius-8);
   color: var(--color-ui-gray-1);
   display: inline-flex;
-  font-size: 14px;
-  line-height: var(--career-line-height-20);
+  font-size: var(--career-font-size-14);
+  line-height: var(--career-line-height-20-on-14);
   min-height: var(--career-size-32);
-  padding: var(--career-space-4) 14px;
+  padding: var(--career-space-4) var(--career-space-14);
   /* Базовая линия inline-flex берётся от первого flex-элемента. Когда чип
      начинается с иконки, ею становится SVG, чья базовая линия — нижний край,
      и чип уезжает вверх относительно соседей с текстом. vertical-align снимает
@@ -394,16 +394,16 @@
   align-items: center;
   background-color: var(--color-ui-primary);
   border: var(--career-border-width-2) solid var(--color-ui-white);
-  border-radius: 22px;
+  border-radius: var(--career-radius-22);
   color: var(--color-ui-white);
   display: inline-flex;
-  font-size: 11px;
+  font-size: var(--career-font-size-11);
   font-weight: 600;
   height: var(--career-size-20);
   justify-content: center;
-  line-height: var(--career-line-height-16);
+  line-height: var(--career-line-height-16-on-11);
   min-width: var(--career-size-20);
-  padding: 0 5px;
+  padding: 0 var(--career-space-5);
 }
 
 .company-rating-steps__link[aria-current="step"] {
@@ -421,8 +421,8 @@
 .base-input-label__error {
   color: var(--color-ui-red);
   display: block;
-  font-size: 14px;
-  line-height: var(--career-line-height-20);
+  font-size: var(--career-font-size-14);
+  line-height: var(--career-line-height-20-on-14);
   margin-top: var(--career-space-4);
 }
 
@@ -433,7 +433,7 @@
 .text-input:has(.text-input__input:focus-visible) {
   --shadow-border-color: var(--color-ui-gray-2);
   outline: var(--career-border-width-2) solid var(--color-ui-gray-2-60);
-  outline-offset: 2px;
+  outline-offset: var(--career-optical-2);
 }
 
 .text-input:is(.text-input--invalid, :has(.text-input__input[aria-invalid="true"])) {
@@ -459,7 +459,7 @@
 .base-textarea__textarea:focus-visible {
   border-color: var(--color-ui-gray-2);
   outline: var(--career-border-width-2) solid var(--color-ui-gray-2-60);
-  outline-offset: 2px;
+  outline-offset: var(--career-optical-2);
 }
 
 .base-textarea__textarea:is([aria-invalid="true"], .base-textarea__textarea--invalid) {
@@ -483,7 +483,7 @@
 .base-select__input:focus-visible {
   border-color: var(--color-ui-gray-2);
   outline: var(--career-border-width-2) solid var(--color-ui-gray-2-60);
-  outline-offset: 2px;
+  outline-offset: var(--career-optical-2);
 }
 
 .base-select__input[aria-invalid="true"] {
@@ -503,7 +503,7 @@
 .base-custom-select-button:focus-visible {
   border-color: var(--color-ui-gray-2);
   outline: var(--career-border-width-2) solid var(--color-ui-gray-2-60);
-  outline-offset: 2px;
+  outline-offset: var(--career-optical-2);
 }
 
 .base-custom-select-button[aria-expanded="true"] {
@@ -521,7 +521,7 @@
 .custom-select__listbox {
   background-color: var(--color-ui-white);
   border-radius: var(--career-radius-16);
-  box-shadow: 0 1px 4px 1px var(--color-ui-gray-shadow), 0 4px 8px 2px var(--color-ui-gray-shadow);
+  box-shadow: 0 var(--career-effect-1) var(--career-effect-4) var(--career-effect-1) var(--color-ui-gray-shadow), 0 var(--career-effect-4) var(--career-effect-8) var(--career-effect-2) var(--color-ui-gray-shadow);
   display: flex;
   flex-direction: column;
   gap: var(--career-space-4);
@@ -575,7 +575,7 @@
 .multi-select .suggestions-picker__wrapper--with-tags:has(.text-input__input:focus-visible) {
   border-color: var(--color-ui-gray-2);
   outline: var(--career-border-width-2) solid var(--color-ui-gray-2-60);
-  outline-offset: 2px;
+  outline-offset: var(--career-optical-2);
 }
 
 .multi-select:is(.is-invalid, :has(.text-input__input[aria-invalid="true"])) .suggestions-picker__wrapper--with-tags {
@@ -677,7 +677,7 @@
 
 .closable-chip__close:focus-visible {
   outline: var(--career-border-width-2) solid var(--color-ui-primary-60);
-  outline-offset: 2px;
+  outline-offset: var(--career-optical-2);
 }
 
 .closable-chip__close:disabled {
@@ -694,7 +694,7 @@
 .segmented-tabs {
   align-items: center;
   background-color: var(--color-ui-gray-3-10);
-  border-radius: 9999px;
+  border-radius: var(--career-radius-full);
   display: inline-flex;
   gap: 0;
   padding: var(--career-space-4);
@@ -703,7 +703,7 @@
 .segmented-tabs__item {
   background: transparent;
   border: 0;
-  border-radius: 9999px;
+  border-radius: var(--career-radius-full);
   color: var(--color-ui-gray-1);
   cursor: pointer;
   font: inherit;
@@ -718,7 +718,7 @@
 
 .segmented-tabs__item:focus-visible {
   outline: var(--career-border-width-2) solid var(--color-ui-primary-60);
-  outline-offset: 2px;
+  outline-offset: var(--career-optical-2);
 }
 
 .segmented-tabs__item:active:not(:disabled):not([aria-disabled="true"]),
@@ -751,7 +751,7 @@
 .context-menu__trigger:focus-visible,
 .context-menu__item:focus-visible {
   outline: var(--career-border-width-2) solid var(--color-ui-primary-60);
-  outline-offset: 2px;
+  outline-offset: var(--career-optical-2);
 }
 
 .context-menu__item {
@@ -760,7 +760,7 @@
   color: var(--color-ui-gray-1);
   cursor: pointer;
   display: block;
-  padding: 10px var(--career-space-16);
+  padding: var(--career-space-10) var(--career-space-16);
   text-align: left;
   width: 100%;
 }
@@ -804,14 +804,14 @@
 .notification__close:focus-visible,
 .toast-close:focus-visible,
 .base-modal__close:focus-visible {
-  border-radius: 9999px;
+  border-radius: var(--career-radius-full);
   outline: var(--career-border-width-2) solid currentColor;
-  outline-offset: 2px;
+  outline-offset: var(--career-optical-2);
 }
 
 .toast {
   border-radius: var(--career-radius-12);
-  box-shadow: 0 4px 16px var(--color-ui-gray-shadow);
+  box-shadow: 0 var(--career-effect-4) var(--career-effect-16) var(--color-ui-gray-shadow);
   color: var(--color-ui-white);
   max-width: min(var(--career-size-420), calc(100vw - var(--career-size-32)));
   padding: var(--career-space-12) var(--career-space-16);
@@ -867,7 +867,7 @@
 .pretty-scroll__viewport:focus-visible {
   border-radius: var(--career-radius-4);
   outline: var(--career-border-width-2) solid var(--color-ui-primary-60);
-  outline-offset: 2px;
+  outline-offset: var(--career-optical-2);
 }
 
 @media (prefers-reduced-motion: reduce) {

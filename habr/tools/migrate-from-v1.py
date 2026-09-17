@@ -618,7 +618,7 @@ def main() -> None:
     write_json(ROOT / "machine/tokens.json", {"source": ["ui/themes/light-v2.css", "ui/themes/dark-v2.css"], "themes": {"light-v2": light_tokens, "dark-v2": dark_tokens}, "counts": {"light": len(light_tokens), "dark": len(dark_tokens)}})
     write_json(ROOT / "machine/style-profile.json", {
         "schemaVersion": 1,
-        "dimensionTokens": {"baseUnit": "4px", "source": "machine/dimension-tokens.json", "css": "ui/dimension-tokens.css", "exceptions": "machine/reports/dimension-exceptions.json"},
+        "dimensionTokens": {"baseUnit": "0.25rem", "referenceRootFontSize": "16px", "source": "machine/dimension-tokens.json", "css": "ui/dimension-tokens.css", "exceptions": "machine/reports/dimension-exceptions.json"},
         "product": {"id": "habr", "title": "Хабр", "guideVersion": "1.0", "status": "active-with-coverage-limits"},
         "scope": {"confidence": "mixed", "boundary": "Публичный гостевой production-срез и подтверждённые экраны company admin."},
         "typography": {

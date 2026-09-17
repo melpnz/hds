@@ -45,7 +45,7 @@
   width: var(--habr-size-28);
   height: var(--habr-size-28);
   font-size: .8125rem;
-  line-height: 1rem;
+  line-height: var(--habr-line-height-16-on-13);
   display: flex;
 }
 .tm-calendar-cell:hover { color: var(--accent-primary); }
@@ -75,7 +75,7 @@
 }
 
 /* ячейка времени шире (45), в остальном та же */
-.tm-calendar-cell_time { width: 45px; }
+.tm-calendar-cell_time { width: var(--habr-size-45); }
 
 .tm-calendar-arrow {
   cursor: pointer;
@@ -105,7 +105,7 @@
   box-sizing: border-box;
   background: var(--background-primary);
   border-radius: var(--habr-radius-4);
-  box-shadow: 0 2px 12px hsl(from var(--other-overlay-shadows) h s l / 20%);
+  box-shadow: 0 var(--habr-effect-2) var(--habr-effect-12) hsl(from var(--other-overlay-shadows) h s l / 20%);
   flex-direction: column;
   gap: var(--habr-space-4);
   padding: var(--habr-space-20);
@@ -127,7 +127,7 @@
   flex: 1;
   min-width: 0;
   font-size: .8125rem;
-  line-height: 1rem;
+  line-height: var(--habr-line-height-16-on-13);
 }
 
 /* календарь и время рядом, между ними — вертикальный разделитель */
@@ -158,13 +158,13 @@
   background: hsl(from var(--other-disabled-elements) h s l / 60%);
   background-clip: content-box;
   border: var(--habr-border-width-4) solid #0000;
-  border-radius: var(--habr-radius-200);
+  border-radius: var(--habr-radius-full);
 }
 .tm-calendar__time::-webkit-scrollbar-thumb {
   background: var(--text-main);
   background-clip: content-box;
   border: var(--habr-border-width-4) solid #0000;
-  border-radius: var(--habr-radius-200);
+  border-radius: var(--habr-radius-full);
 }
 
 /* «Сегодня» — ссылка под сеткой */
@@ -174,7 +174,7 @@
   cursor: pointer;
   padding-top: var(--habr-space-4);
   font-size: .8125rem;
-  line-height: 1rem;
+  line-height: var(--habr-line-height-16-on-13);
   text-decoration: none;
   display: block;
 }

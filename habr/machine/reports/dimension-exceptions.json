@@ -1,671 +1,28 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "product": "habr",
-  "baseUnit": "4px",
+  "baseUnit": "0.25rem",
+  "referenceRootFontSize": "16px",
   "scope": "ui/**/*.css excluding token definitions and theme source files",
   "policy": {
-    "migrated": "Absolute px dimensions divisible by 4, plus approved 1px, 2px and 6px exceptions, in supported declaration properties.",
+    "migrated": "Scalable dimensions use rem with a 16px reference root; borders remain fixed px; line-height uses unitless ratios when font context is explicit.",
     "preserved": "Existing computed values, selectors, class names and DOM contracts.",
-    "exceptions": "Relative units, non-grid values and composite properties require explicit semantic review."
+    "exceptions": "Relative units, tokenized off-grid references and unsupported composite properties require explicit semantic review."
   },
   "summary": {
-    "tokenCount": 62,
-    "exceptionKinds": 66,
-    "exceptionOccurrences": 227
+    "tokenCount": 122,
+    "exceptionKinds": 53,
+    "exceptionOccurrences": 151
   },
   "exceptions": [
-    {
-      "value": "-1px",
-      "reason": "composite-or-unsupported-property",
-      "occurrences": [
-        {
-          "file": "ui/components/block.css",
-          "line": 3,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/tabs.css",
-          "line": 3,
-          "property": "box-shadow"
-        }
-      ],
-      "total": 2
-    },
-    {
-      "value": "-2px",
-      "reason": "composite-or-unsupported-property",
-      "occurrences": [
-        {
-          "file": "ui/normalize.css",
-          "line": 43,
-          "property": "outline-offset"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "-6px",
-      "reason": "composite-or-unsupported-property",
-      "occurrences": [
-        {
-          "file": "ui/layout.css",
-          "line": 105,
-          "property": "transform"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "1px",
-      "reason": "composite-or-unsupported-property",
-      "occurrences": [
-        {
-          "file": "ui/components/chip.css",
-          "line": 27,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/icon-button.css",
-          "line": 9,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/icon-button.css",
-          "line": 12,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/icon-button.css",
-          "line": 13,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/pagination.css",
-          "line": 27,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/tabs.css",
-          "line": 131,
-          "property": "box-shadow"
-        }
-      ],
-      "total": 6
-    },
-    {
-      "value": "2px",
-      "reason": "composite-or-unsupported-property",
-      "occurrences": [
-        {
-          "file": "ui/components/calendar.css",
-          "line": 36,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/checkbox.css",
-          "line": 9,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/dialog.css",
-          "line": 67,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/tabs.css",
-          "line": 126,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/tabs.css",
-          "line": 145,
-          "property": "outline-offset"
-        }
-      ],
-      "total": 5
-    },
-    {
-      "value": "6px",
-      "reason": "composite-or-unsupported-property",
-      "occurrences": [
-        {
-          "file": "ui/layout.css",
-          "line": 103,
-          "property": "transform"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "8px",
-      "reason": "composite-or-unsupported-property",
-      "occurrences": [
-        {
-          "file": "ui/components/article-card.css",
-          "line": 181,
-          "property": "filter"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "12px",
-      "reason": "composite-or-unsupported-property",
-      "occurrences": [
-        {
-          "file": "ui/components/calendar.css",
-          "line": 36,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/dialog.css",
-          "line": 67,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/dropdown.css",
-          "line": 5,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/popover.css",
-          "line": 7,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/popover.css",
-          "line": 14,
-          "property": "box-shadow"
-        }
-      ],
-      "total": 5
-    },
     {
       "value": "28px",
       "reason": "composite-or-unsupported-property",
       "occurrences": [
         {
           "file": "ui/components/calendar.css",
-          "line": 72,
+          "line": 73,
           "property": "grid-template-columns"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "-10px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/section-name.css",
-          "line": 12,
-          "property": "margin-left"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "-23px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/hint.css",
-          "line": 49,
-          "property": "top"
-        },
-        {
-          "file": "ui/components/hint.css",
-          "line": 61,
-          "property": "top"
-        },
-        {
-          "file": "ui/components/hint.css",
-          "line": 64,
-          "property": "top"
-        }
-      ],
-      "total": 3
-    },
-    {
-      "value": "3px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/article-card.css",
-          "line": 254,
-          "property": "margin-left"
-        },
-        {
-          "file": "ui/components/chip.css",
-          "line": 24,
-          "property": "padding-left"
-        },
-        {
-          "file": "ui/components/votes.css",
-          "line": 26,
-          "property": "margin-left"
-        },
-        {
-          "file": "ui/components/votes.css",
-          "line": 69,
-          "property": "margin"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 94,
-          "property": "left"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 95,
-          "property": "left"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 98,
-          "property": "left"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 100,
-          "property": "transform"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 103,
-          "property": "transform"
-        }
-      ],
-      "total": 9
-    },
-    {
-      "value": "5px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/article-card.css",
-          "line": 155,
-          "property": "margin"
-        },
-        {
-          "file": "ui/components/article-card.css",
-          "line": 252,
-          "property": "margin-left"
-        },
-        {
-          "file": "ui/components/votes.css",
-          "line": 22,
-          "property": "margin-left"
-        },
-        {
-          "file": "ui/components/votes.css",
-          "line": 63,
-          "property": "margin"
-        },
-        {
-          "file": "ui/components/votes.css",
-          "line": 91,
-          "property": "margin"
-        }
-      ],
-      "total": 5
-    },
-    {
-      "value": "7px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/checkbox.css",
-          "line": 36,
-          "property": "top"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "9px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/button-follow.css",
-          "line": 32,
-          "property": "padding"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 105,
-          "property": "transform"
-        }
-      ],
-      "total": 2
-    },
-    {
-      "value": "10px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/article-card.css",
-          "line": 233,
-          "property": "top"
-        },
-        {
-          "file": "ui/components/button.css",
-          "line": 45,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/checkbox.css",
-          "line": 25,
-          "property": "width"
-        },
-        {
-          "file": "ui/components/primitives.css",
-          "line": 19,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/textarea.css",
-          "line": 6,
-          "property": "padding"
-        }
-      ],
-      "total": 5
-    },
-    {
-      "value": "13px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/article-card.css",
-          "line": 195,
-          "property": "padding"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "14px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/button.css",
-          "line": 44,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/button.css",
-          "line": 45,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/hint.css",
-          "line": 104,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/hint.css",
-          "line": 106,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/input.css",
-          "line": 11,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/section-name.css",
-          "line": 4,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/section-name.css",
-          "line": 8,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/textarea.css",
-          "line": 6,
-          "property": "padding"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 130,
-          "property": "padding"
-        }
-      ],
-      "total": 9
-    },
-    {
-      "value": "15px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/primitives.css",
-          "line": 11,
-          "property": "margin"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "18px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/article-card.css",
-          "line": 195,
-          "property": "margin-top"
-        },
-        {
-          "file": "ui/components/badges.css",
-          "line": 7,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/checkbox.css",
-          "line": 6,
-          "property": "width"
-        },
-        {
-          "file": "ui/components/checkbox.css",
-          "line": 6,
-          "property": "height"
-        },
-        {
-          "file": "ui/components/dialog.css",
-          "line": 190,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/dialog.css",
-          "line": 193,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/radio.css",
-          "line": 5,
-          "property": "width"
-        },
-        {
-          "file": "ui/components/radio.css",
-          "line": 5,
-          "property": "height"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 89,
-          "property": "width"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 98,
-          "property": "top"
-        }
-      ],
-      "total": 10
-    },
-    {
-      "value": "21px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/badges.css",
-          "line": 1,
-          "property": "margin-bottom"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "22px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/layout.css",
-          "line": 47,
-          "property": "height"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "26px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/button-follow.css",
-          "line": 22,
-          "property": "width"
-        },
-        {
-          "file": "ui/components/button-follow.css",
-          "line": 31,
-          "property": "width"
-        }
-      ],
-      "total": 2
-    },
-    {
-      "value": "30px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/chip.css",
-          "line": 6,
-          "property": "height"
-        },
-        {
-          "file": "ui/components/chip.css",
-          "line": 43,
-          "property": "height"
-        }
-      ],
-      "total": 2
-    },
-    {
-      "value": "38px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/tabs.css",
-          "line": 58,
-          "property": "height"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "45px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/calendar.css",
-          "line": 20,
-          "property": "width"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "49px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/pagination.css",
-          "line": 3,
-          "property": "height"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "57px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/layout.css",
-          "line": 52,
-          "property": "width"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "62px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/layout.css",
-          "line": 51,
-          "property": "width"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "150px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/primitives.css",
-          "line": 86,
-          "property": "width"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "289px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/hint.css",
-          "line": 126,
-          "property": "max-width"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "338px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/votes.css",
-          "line": 114,
-          "property": "max-width"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "9999px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/hint.css",
-          "line": 98,
-          "property": "border-radius"
         }
       ],
       "total": 1
@@ -758,21 +115,16 @@
         },
         {
           "file": "ui/components/badges.css",
-          "line": 11,
+          "line": 12,
           "property": "font-size"
         },
         {
           "file": "ui/components/chip.css",
-          "line": 45,
+          "line": 47,
           "property": "font-size"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 158,
-          "property": "line-height"
         }
       ],
-      "total": 5
+      "total": 4
     },
     {
       "value": ".625em",
@@ -816,12 +168,12 @@
       "occurrences": [
         {
           "file": "ui/components/article-card.css",
-          "line": 216,
+          "line": 218,
           "property": "font-size"
         },
         {
           "file": "ui/components/block.css",
-          "line": 35,
+          "line": 37,
           "property": "font-size"
         },
         {
@@ -830,18 +182,13 @@
           "property": "font-size"
         },
         {
-          "file": "ui/components/chip.css",
-          "line": 45,
-          "property": "line-height"
-        },
-        {
           "file": "ui/components/dialog.css",
           "line": 200,
           "property": "font-size"
         },
         {
           "file": "ui/components/dropdown.css",
-          "line": 20,
+          "line": 21,
           "property": "font-size"
         },
         {
@@ -851,12 +198,12 @@
         },
         {
           "file": "ui/components/dropdown.css",
-          "line": 59,
+          "line": 60,
           "property": "font-size"
         },
         {
           "file": "ui/components/hint.css",
-          "line": 129,
+          "line": 134,
           "property": "font-size"
         },
         {
@@ -866,7 +213,7 @@
         },
         {
           "file": "ui/components/primitives.css",
-          "line": 11,
+          "line": 12,
           "property": "font-size"
         },
         {
@@ -881,17 +228,17 @@
         },
         {
           "file": "ui/components/tabs.css",
-          "line": 121,
+          "line": 122,
           "property": "font-size"
         },
         {
           "file": "ui/components/textarea.css",
-          "line": 7,
+          "line": 8,
           "property": "font-size"
         },
         {
           "file": "ui/layout.css",
-          "line": 65,
+          "line": 66,
           "property": "font-size"
         },
         {
@@ -901,11 +248,11 @@
         },
         {
           "file": "ui/patterns.css",
-          "line": 17,
+          "line": 18,
           "property": "font-size"
         }
       ],
-      "total": 18
+      "total": 17
     },
     {
       "value": ".01875rem",
@@ -925,47 +272,47 @@
       "occurrences": [
         {
           "file": "ui/components/article-card.css",
-          "line": 22,
+          "line": 24,
           "property": "font-size"
         },
         {
           "file": "ui/components/article-card.css",
-          "line": 29,
+          "line": 31,
           "property": "font-size"
         },
         {
           "file": "ui/components/article-card.css",
-          "line": 44,
+          "line": 45,
           "property": "font-size"
         },
         {
           "file": "ui/components/article-card.css",
-          "line": 70,
+          "line": 73,
           "property": "font-size"
         },
         {
           "file": "ui/components/article-card.css",
-          "line": 76,
+          "line": 77,
           "property": "font-size"
         },
         {
           "file": "ui/components/article-card.css",
-          "line": 95,
+          "line": 97,
           "property": "font-size"
         },
         {
           "file": "ui/components/article-card.css",
-          "line": 128,
+          "line": 130,
           "property": "font-size"
         },
         {
           "file": "ui/components/article-card.css",
-          "line": 196,
+          "line": 197,
           "property": "font-size"
         },
         {
           "file": "ui/components/article-card.css",
-          "line": 215,
+          "line": 216,
           "property": "font-size"
         },
         {
@@ -980,7 +327,7 @@
         },
         {
           "file": "ui/components/article-card.css",
-          "line": 291,
+          "line": 292,
           "property": "font-size"
         },
         {
@@ -1010,7 +357,7 @@
         },
         {
           "file": "ui/components/calendar.css",
-          "line": 98,
+          "line": 99,
           "property": "font-size"
         },
         {
@@ -1020,7 +367,7 @@
         },
         {
           "file": "ui/components/popover.css",
-          "line": 25,
+          "line": 26,
           "property": "font-size"
         },
         {
@@ -1030,7 +377,7 @@
         },
         {
           "file": "ui/components/primitives.css",
-          "line": 35,
+          "line": 37,
           "property": "font-size"
         },
         {
@@ -1040,12 +387,12 @@
         },
         {
           "file": "ui/layout.css",
-          "line": 131,
+          "line": 135,
           "property": "font-size"
         },
         {
           "file": "ui/patterns.css",
-          "line": 13,
+          "line": 14,
           "property": "font-size"
         }
       ],
@@ -1056,38 +403,23 @@
       "reason": "relative-unit-needs-semantic-decision",
       "occurrences": [
         {
-          "file": "ui/components/article-card.css",
-          "line": 24,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/article-card.css",
-          "line": 31,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/article-card.css",
-          "line": 45,
-          "property": "line-height"
-        },
-        {
           "file": "ui/components/dialog.css",
           "line": 192,
           "property": "font-size"
         },
         {
           "file": "ui/components/hint.css",
-          "line": 111,
+          "line": 114,
           "property": "font-size"
         },
         {
           "file": "ui/components/hint.css",
-          "line": 115,
+          "line": 117,
           "property": "font-size"
         },
         {
           "file": "ui/components/hint.css",
-          "line": 156,
+          "line": 160,
           "property": "font-size"
         },
         {
@@ -1107,12 +439,7 @@
         },
         {
           "file": "ui/components/primitives.css",
-          "line": 9,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/primitives.css",
-          "line": 14,
+          "line": 15,
           "property": "font-size"
         },
         {
@@ -1121,7 +448,7 @@
           "property": "font-size"
         }
       ],
-      "total": 13
+      "total": 9
     },
     {
       "value": "0.75rem",
@@ -1175,7 +502,7 @@
       "occurrences": [
         {
           "file": "ui/components/button-follow.css",
-          "line": 33,
+          "line": 35,
           "property": "font-size"
         }
       ],
@@ -1186,133 +513,31 @@
       "reason": "relative-unit-needs-semantic-decision",
       "occurrences": [
         {
-          "file": "ui/components/article-card.css",
-          "line": 79,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/article-card.css",
-          "line": 97,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/article-card.css",
-          "line": 132,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/primitives.css",
-          "line": 15,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/primitives.css",
-          "line": 87,
-          "property": "line-height"
-        },
-        {
           "file": "ui/components/title.css",
           "line": 10,
           "property": "font-size"
         }
       ],
-      "total": 6
+      "total": 1
     },
     {
       "value": "1.25rem",
       "reason": "relative-unit-needs-semantic-decision",
       "occurrences": [
         {
-          "file": "ui/components/article-card.css",
-          "line": 6,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/block.css",
-          "line": 28,
-          "property": "line-height"
-        },
-        {
           "file": "ui/components/block.css",
           "line": 33,
           "property": "font-size"
         },
         {
-          "file": "ui/components/dialog.css",
-          "line": 192,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/hint.css",
-          "line": 114,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/hint.css",
-          "line": 117,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/hint.css",
-          "line": 131,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/hint.css",
-          "line": 156,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/pagination.css",
-          "line": 58,
-          "property": "line-height"
-        },
-        {
           "file": "ui/components/primitives.css",
-          "line": 47,
+          "line": 49,
           "property": "line-height"
         },
         {
           "file": "ui/components/title.css",
           "line": 17,
           "property": "font-size"
-        },
-        {
-          "file": "ui/components/votes.css",
-          "line": 101,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/votes.css",
-          "line": 116,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/patterns.css",
-          "line": 17,
-          "property": "line-height"
-        }
-      ],
-      "total": 14
-    },
-    {
-      "value": "1.75rem",
-      "reason": "relative-unit-needs-semantic-decision",
-      "occurrences": [
-        {
-          "file": "ui/components/block.css",
-          "line": 34,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/section-name.css",
-          "line": 23,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/patterns.css",
-          "line": 11,
-          "property": "line-height"
         }
       ],
       "total": 3
@@ -1322,79 +547,24 @@
       "reason": "relative-unit-needs-semantic-decision",
       "occurrences": [
         {
-          "file": "ui/components/chip.css",
-          "line": 9,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/dropdown.css",
-          "line": 21,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/dropdown.css",
-          "line": 43,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/dropdown.css",
-          "line": 59,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/pagination.css",
-          "line": 20,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/tabs.css",
-          "line": 109,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/tabs.css",
-          "line": 122,
-          "property": "line-height"
-        },
-        {
           "file": "ui/components/votes.css",
-          "line": 72,
+          "line": 73,
           "property": "font-size"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 65,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 150,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/patterns.css",
-          "line": 14,
-          "property": "line-height"
         }
       ],
-      "total": 11
+      "total": 1
     },
     {
       "value": "1.375rem",
       "reason": "relative-unit-needs-semantic-decision",
       "occurrences": [
         {
-          "file": "ui/components/notice.css",
-          "line": 28,
-          "property": "line-height"
-        },
-        {
           "file": "ui/components/votes.css",
-          "line": 77,
+          "line": 78,
           "property": "line-height"
         }
       ],
-      "total": 2
+      "total": 1
     },
     {
       "value": "1.0625rem",
@@ -1407,35 +577,11 @@
         },
         {
           "file": "ui/components/votes.css",
-          "line": 31,
+          "line": 33,
           "property": "font-size"
         }
       ],
       "total": 2
-    },
-    {
-      "value": "1.6875rem",
-      "reason": "relative-unit-needs-semantic-decision",
-      "occurrences": [
-        {
-          "file": "ui/components/article-card.css",
-          "line": 196,
-          "property": "line-height"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "1.8125rem",
-      "reason": "relative-unit-needs-semantic-decision",
-      "occurrences": [
-        {
-          "file": "ui/components/button-follow.css",
-          "line": 35,
-          "property": "line-height"
-        }
-      ],
-      "total": 1
     },
     {
       "value": "1.24375rem",
@@ -1443,7 +589,7 @@
       "occurrences": [
         {
           "file": "ui/components/section-name.css",
-          "line": 20,
+          "line": 21,
           "property": "font-size"
         },
         {
@@ -1460,7 +606,7 @@
       "occurrences": [
         {
           "file": "ui/components/article-card.css",
-          "line": 56,
+          "line": 60,
           "property": "height"
         },
         {
@@ -1477,79 +623,12 @@
       "total": 3
     },
     {
-      "value": "1rem",
-      "reason": "relative-unit-needs-semantic-decision",
-      "occurrences": [
-        {
-          "file": "ui/components/badges.css",
-          "line": 12,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/button-follow.css",
-          "line": 7,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/button.css",
-          "line": 141,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/calendar.css",
-          "line": 5,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/calendar.css",
-          "line": 61,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/calendar.css",
-          "line": 99,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/hint.css",
-          "line": 6,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/popover.css",
-          "line": 26,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/primitives.css",
-          "line": 36,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/primitives.css",
-          "line": 69,
-          "property": "line-height"
-        },
-        {
-          "file": "ui/components/tabs.css",
-          "line": 55,
-          "property": "line-height"
-        }
-      ],
-      "total": 11
-    },
-    {
       "value": "2.5rem",
       "reason": "relative-unit-needs-semantic-decision",
       "occurrences": [
         {
-          "file": "ui/components/article-card.css",
-          "line": 170,
-          "property": "line-height"
-        },
-        {
           "file": "ui/components/button.css",
-          "line": 45,
+          "line": 48,
           "property": "height"
         },
         {
@@ -1558,7 +637,7 @@
           "property": "line-height"
         }
       ],
-      "total": 3
+      "total": 2
     },
     {
       "value": "2.25rem",
@@ -1566,7 +645,7 @@
       "occurrences": [
         {
           "file": "ui/components/button.css",
-          "line": 44,
+          "line": 45,
           "property": "height"
         }
       ],
@@ -1605,11 +684,462 @@
         },
         {
           "file": "ui/layout.css",
-          "line": 129,
+          "line": 133,
           "property": "height"
         }
       ],
       "total": 4
+    },
+    {
+      "value": "-10px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/section-name.css",
+          "line": 23,
+          "property": "token:space"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "-23px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/hint.css",
+          "line": 93,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/hint.css",
+          "line": 96,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/hint.css",
+          "line": 98,
+          "property": "token:size"
+        }
+      ],
+      "total": 3
+    },
+    {
+      "value": "3px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/layout.css",
+          "line": 135,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/layout.css",
+          "line": 136,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/layout.css",
+          "line": 137,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/article-card.css",
+          "line": 338,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/components/chip.css",
+          "line": 78,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/components/votes.css",
+          "line": 38,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/components/votes.css",
+          "line": 85,
+          "property": "token:space"
+        }
+      ],
+      "total": 7
+    },
+    {
+      "value": "5px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/article-card.css",
+          "line": 196,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/components/article-card.css",
+          "line": 337,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/components/votes.css",
+          "line": 37,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/components/votes.css",
+          "line": 81,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/components/votes.css",
+          "line": 102,
+          "property": "token:space"
+        }
+      ],
+      "total": 5
+    },
+    {
+      "value": "7px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/checkbox.css",
+          "line": 74,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "9px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/button-follow.css",
+          "line": 45,
+          "property": "token:space"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "10px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/article-card.css",
+          "line": 321,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/checkbox.css",
+          "line": 59,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/button.css",
+          "line": 81,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/components/primitives.css",
+          "line": 60,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/components/textarea.css",
+          "line": 31,
+          "property": "token:space"
+        }
+      ],
+      "total": 5
+    },
+    {
+      "value": "13px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/article-card.css",
+          "line": 238,
+          "property": "token:space"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "14px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/button.css",
+          "line": 80,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/components/button.css",
+          "line": 81,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/components/hint.css",
+          "line": 170,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/components/hint.css",
+          "line": 170,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/components/input.css",
+          "line": 46,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/components/section-name.css",
+          "line": 12,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/components/section-name.css",
+          "line": 17,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/components/textarea.css",
+          "line": 31,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/layout.css",
+          "line": 171,
+          "property": "token:space"
+        }
+      ],
+      "total": 9
+    },
+    {
+      "value": "15px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/primitives.css",
+          "line": 39,
+          "property": "token:space"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "18px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/badges.css",
+          "line": 12,
+          "property": "token:radius"
+        },
+        {
+          "file": "ui/components/checkbox.css",
+          "line": 33,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/checkbox.css",
+          "line": 34,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/radio.css",
+          "line": 27,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/radio.css",
+          "line": 28,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/layout.css",
+          "line": 130,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/layout.css",
+          "line": 137,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/article-card.css",
+          "line": 237,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/components/dialog.css",
+          "line": 260,
+          "property": "token:space"
+        },
+        {
+          "file": "ui/components/dialog.css",
+          "line": 265,
+          "property": "token:space"
+        }
+      ],
+      "total": 10
+    },
+    {
+      "value": "21px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/badges.css",
+          "line": 3,
+          "property": "token:space"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "22px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/layout.css",
+          "line": 90,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "26px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/button-follow.css",
+          "line": 33,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/button-follow.css",
+          "line": 41,
+          "property": "token:size"
+        }
+      ],
+      "total": 2
+    },
+    {
+      "value": "30px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/chip.css",
+          "line": 59,
+          "property": "token:size"
+        },
+        {
+          "file": "ui/components/chip.css",
+          "line": 144,
+          "property": "token:size"
+        }
+      ],
+      "total": 2
+    },
+    {
+      "value": "38px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/tabs.css",
+          "line": 80,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "45px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/calendar.css",
+          "line": 78,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "49px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/pagination.css",
+          "line": 14,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "57px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/layout.css",
+          "line": 93,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "62px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/layout.css",
+          "line": 92,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "150px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/primitives.css",
+          "line": 118,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "289px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/hint.css",
+          "line": 204,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "338px",
+      "reason": "tokenized-off-grid-value",
+      "occurrences": [
+        {
+          "file": "ui/components/votes.css",
+          "line": 127,
+          "property": "token:size"
+        }
+      ],
+      "total": 1
     }
   ]
 }
