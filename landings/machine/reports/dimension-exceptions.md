@@ -1,8 +1,36 @@
 # landings · исключения размерных токенов
 
-Базовая сетка: **4px**. Значения не изменялись и требуют отдельного дизайнерского решения.
+Базовая сетка: **4px**; разрешённые исключения: **1px, 2px, 6px**. Оставшиеся значения не изменялись и требуют отдельного дизайнерского решения.
 
-Всего употреблений: **138**; уникальных сочетаний причины и значения: **51**.
+Всего употреблений: **104**; уникальных сочетаний причины и значения: **47**.
+
+## `-2px` · composite-or-unsupported-property
+
+Всего: 7.
+
+- `ui/elements.css:100` — `transform`
+- `ui/elements.css:100` — `transform`
+- `ui/elements.css:103` — `transform`
+- `ui/elements.css:103` — `transform`
+- `ui/foundations.css:55` — `letter-spacing`
+- `ui/foundations.css:56` — `letter-spacing`
+- `ui/organisms.css:10` — `letter-spacing`
+
+## `1px` · composite-or-unsupported-property
+
+Всего: 2.
+
+- `ui/elements.css:24` — `transform`
+- `ui/elements.css:69` — `transform`
+
+## `2px` · composite-or-unsupported-property
+
+Всего: 4.
+
+- `ui/elements.css:135` — `text-decoration-thickness`
+- `ui/organisms.css:47` — `background-size`
+- `ui/organisms.css:47` — `background-size`
+- `ui/page-reconstructions.css:63` — `text-shadow`
 
 ## `16px` · composite-or-unsupported-property
 
@@ -75,62 +103,12 @@
 
 - `ui/foundations.css:57` — `letter-spacing`
 
-## `-1px` · not-on-4px-grid
-
-Всего: 1.
-
-- `ui/foundations.css:77` — `margin`
-
-## `-2px` · not-on-4px-grid
-
-Всего: 7.
-
-- `ui/elements.css:100` — `transform`
-- `ui/elements.css:100` — `transform`
-- `ui/elements.css:103` — `transform`
-- `ui/elements.css:103` — `transform`
-- `ui/foundations.css:55` — `letter-spacing`
-- `ui/foundations.css:56` — `letter-spacing`
-- `ui/organisms.css:10` — `letter-spacing`
-
 ## `-3px` · not-on-4px-grid
 
 Всего: 2.
 
 - `ui/organisms.css:47` — `transform`
 - `ui/organisms.css:48` — `transform`
-
-## `1px` · not-on-4px-grid
-
-Всего: 14.
-
-- `ui/elements.css:24` — `transform`
-- `ui/elements.css:69` — `transform`
-- `ui/elements.css:80` — `border`
-- `ui/elements.css:97` — `border`
-- `ui/elements.css:105` — `top`
-- `ui/elements.css:105` — `border`
-- `ui/foundations.css:77` — `width`
-- `ui/foundations.css:77` — `height`
-- `ui/organisms.css:42` — `border-bottom`
-- `ui/organisms.css:87` — `border`
-- `ui/organisms.css:110` — `border`
-- `ui/page-reconstructions.css:51` — `border`
-- `ui/page-reconstructions.css:60` — `border`
-- `ui/page-reconstructions.css:88` — `border`
-
-## `2px` · not-on-4px-grid
-
-Всего: 8.
-
-- `ui/elements.css:100` — `border-right`
-- `ui/elements.css:100` — `border-bottom`
-- `ui/elements.css:126` — `border-width`
-- `ui/elements.css:126` — `border-width`
-- `ui/elements.css:135` — `text-decoration-thickness`
-- `ui/organisms.css:47` — `background-size`
-- `ui/organisms.css:47` — `background-size`
-- `ui/page-reconstructions.css:63` — `text-shadow`
 
 ## `3px` · not-on-4px-grid
 
@@ -159,18 +137,6 @@
 - `ui/elements.css:126` — `top`
 - `ui/elements.css:126` — `right`
 
-## `6px` · not-on-4px-grid
-
-Всего: 7.
-
-- `ui/elements.css:37` — `padding`
-- `ui/elements.css:126` — `height`
-- `ui/elements.css:127` — `top`
-- `ui/elements.css:127` — `right`
-- `ui/page-reconstructions.css:37` — `margin-right`
-- `ui/page-reconstructions.css:51` — `padding`
-- `ui/page-reconstructions.css:60` — `padding`
-
 ## `9px` · not-on-4px-grid
 
 Всего: 2.
@@ -180,13 +146,12 @@
 
 ## `10px` · not-on-4px-grid
 
-Всего: 6.
+Всего: 5.
 
 - `ui/blocks.css:13` — `padding`
 - `ui/blocks.css:19` — `inset`
 - `ui/elements.css:37` — `padding`
 - `ui/elements.css:126` — `width`
-- `ui/foundations.css:9` — `--hds-space-1`
 - `ui/page-reconstructions.css:51` — `padding`
 
 ## `14px` · not-on-4px-grid
@@ -223,33 +188,14 @@
 
 - `ui/elements.css:8` — `padding`
 
-## `26px` · not-on-4px-grid
-
-Всего: 2.
-
-- `ui/organisms.css:87` — `width`
-- `ui/organisms.css:88` — `height`
-
 ## `30px` · not-on-4px-grid
 
-Всего: 5.
+Всего: 4.
 
 - `ui/blocks.css:11` — `height`
 - `ui/blocks.css:21` — `padding-block`
 - `ui/blocks.css:102` — `height`
-- `ui/foundations.css:81` — `--hds-page-gutter`
 - `ui/page-reconstructions.css:3` — `padding`
-
-## `42px` · not-on-4px-grid
-
-Всего: 6.
-
-- `ui/elements.css:106` — `min-height`
-- `ui/organisms.css:10` — `font-size`
-- `ui/organisms.css:109` — `width`
-- `ui/organisms.css:110` — `height`
-- `ui/page-reconstructions.css:42` — `font-size`
-- `ui/page-reconstructions.css:89` — `max-height`
 
 ## `46px` · not-on-4px-grid
 

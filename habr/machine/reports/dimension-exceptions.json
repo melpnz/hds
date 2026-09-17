@@ -4,37 +4,137 @@
   "baseUnit": "4px",
   "scope": "ui/**/*.css excluding token definitions and theme source files",
   "policy": {
-    "migrated": "Absolute px dimensions divisible by 4 in supported declaration properties.",
+    "migrated": "Absolute px dimensions divisible by 4, plus approved 1px, 2px and 6px exceptions, in supported declaration properties.",
     "preserved": "Existing computed values, selectors, class names and DOM contracts.",
     "exceptions": "Relative units, non-grid values and composite properties require explicit semantic review."
   },
   "summary": {
-    "tokenCount": 47,
-    "exceptionKinds": 67,
-    "exceptionOccurrences": 334
+    "tokenCount": 62,
+    "exceptionKinds": 66,
+    "exceptionOccurrences": 227
   },
   "exceptions": [
     {
-      "value": "4px",
+      "value": "-1px",
+      "reason": "composite-or-unsupported-property",
+      "occurrences": [
+        {
+          "file": "ui/components/block.css",
+          "line": 3,
+          "property": "box-shadow"
+        },
+        {
+          "file": "ui/components/tabs.css",
+          "line": 3,
+          "property": "box-shadow"
+        }
+      ],
+      "total": 2
+    },
+    {
+      "value": "-2px",
+      "reason": "composite-or-unsupported-property",
+      "occurrences": [
+        {
+          "file": "ui/normalize.css",
+          "line": 43,
+          "property": "outline-offset"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "-6px",
+      "reason": "composite-or-unsupported-property",
+      "occurrences": [
+        {
+          "file": "ui/layout.css",
+          "line": 105,
+          "property": "transform"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "1px",
+      "reason": "composite-or-unsupported-property",
+      "occurrences": [
+        {
+          "file": "ui/components/chip.css",
+          "line": 27,
+          "property": "box-shadow"
+        },
+        {
+          "file": "ui/components/icon-button.css",
+          "line": 9,
+          "property": "box-shadow"
+        },
+        {
+          "file": "ui/components/icon-button.css",
+          "line": 12,
+          "property": "box-shadow"
+        },
+        {
+          "file": "ui/components/icon-button.css",
+          "line": 13,
+          "property": "box-shadow"
+        },
+        {
+          "file": "ui/components/pagination.css",
+          "line": 27,
+          "property": "box-shadow"
+        },
+        {
+          "file": "ui/components/tabs.css",
+          "line": 131,
+          "property": "box-shadow"
+        }
+      ],
+      "total": 6
+    },
+    {
+      "value": "2px",
       "reason": "composite-or-unsupported-property",
       "occurrences": [
         {
           "file": "ui/components/calendar.css",
-          "line": 89,
-          "property": "border"
+          "line": 36,
+          "property": "box-shadow"
         },
         {
-          "file": "ui/components/calendar.css",
-          "line": 93,
-          "property": "border"
+          "file": "ui/components/checkbox.css",
+          "line": 9,
+          "property": "box-shadow"
         },
         {
-          "file": "ui/components/hint.css",
-          "line": 96,
-          "property": "border"
+          "file": "ui/components/dialog.css",
+          "line": 67,
+          "property": "box-shadow"
+        },
+        {
+          "file": "ui/components/tabs.css",
+          "line": 126,
+          "property": "box-shadow"
+        },
+        {
+          "file": "ui/components/tabs.css",
+          "line": 145,
+          "property": "outline-offset"
         }
       ],
-      "total": 3
+      "total": 5
+    },
+    {
+      "value": "6px",
+      "reason": "composite-or-unsupported-property",
+      "occurrences": [
+        {
+          "file": "ui/layout.css",
+          "line": 103,
+          "property": "transform"
+        }
+      ],
+      "total": 1
     },
     {
       "value": "8px",
@@ -59,7 +159,7 @@
         },
         {
           "file": "ui/components/dialog.css",
-          "line": 65,
+          "line": 67,
           "property": "box-shadow"
         },
         {
@@ -69,12 +169,12 @@
         },
         {
           "file": "ui/components/popover.css",
-          "line": 6,
+          "line": 7,
           "property": "box-shadow"
         },
         {
           "file": "ui/components/popover.css",
-          "line": 11,
+          "line": 14,
           "property": "box-shadow"
         }
       ],
@@ -86,87 +186,11 @@
       "occurrences": [
         {
           "file": "ui/components/calendar.css",
-          "line": 70,
+          "line": 72,
           "property": "grid-template-columns"
         }
       ],
       "total": 1
-    },
-    {
-      "value": "-1px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/block.css",
-          "line": 3,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/notice.css",
-          "line": 11,
-          "property": "top"
-        },
-        {
-          "file": "ui/components/notice.css",
-          "line": 11,
-          "property": "bottom"
-        },
-        {
-          "file": "ui/components/tabs.css",
-          "line": 3,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 153,
-          "property": "top"
-        },
-        {
-          "file": "ui/patterns.css",
-          "line": 33,
-          "property": "bottom"
-        }
-      ],
-      "total": 6
-    },
-    {
-      "value": "-2px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/tabs.css",
-          "line": 69,
-          "property": "bottom"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 41,
-          "property": "top"
-        },
-        {
-          "file": "ui/normalize.css",
-          "line": 41,
-          "property": "outline-offset"
-        }
-      ],
-      "total": 3
-    },
-    {
-      "value": "-6px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/hint.css",
-          "line": 48,
-          "property": "top"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 105,
-          "property": "transform"
-        }
-      ],
-      "total": 2
     },
     {
       "value": "-10px",
@@ -186,445 +210,21 @@
       "occurrences": [
         {
           "file": "ui/components/hint.css",
-          "line": 47,
+          "line": 49,
           "property": "top"
         },
         {
           "file": "ui/components/hint.css",
-          "line": 59,
+          "line": 61,
           "property": "top"
         },
         {
           "file": "ui/components/hint.css",
-          "line": 62,
+          "line": 64,
           "property": "top"
         }
       ],
       "total": 3
-    },
-    {
-      "value": "1px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/article-card.css",
-          "line": 192,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/article-card.css",
-          "line": 199,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/article-card.css",
-          "line": 199,
-          "property": "border-top"
-        },
-        {
-          "file": "ui/components/avatar.css",
-          "line": 3,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/avatar.css",
-          "line": 3,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/avatar.css",
-          "line": 4,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/badges.css",
-          "line": 5,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/badges.css",
-          "line": 15,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/block.css",
-          "line": 9,
-          "property": "border-bottom"
-        },
-        {
-          "file": "ui/components/block.css",
-          "line": 73,
-          "property": "border-top"
-        },
-        {
-          "file": "ui/components/button-follow.css",
-          "line": 4,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/button.css",
-          "line": 3,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/button.css",
-          "line": 135,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/calendar.css",
-          "line": 67,
-          "property": "border-left"
-        },
-        {
-          "file": "ui/components/checkbox.css",
-          "line": 4,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/chip.css",
-          "line": 25,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/dialog.css",
-          "line": 54,
-          "property": "border-bottom"
-        },
-        {
-          "file": "ui/components/dialog.css",
-          "line": 118,
-          "property": "border-top"
-        },
-        {
-          "file": "ui/components/dialog.css",
-          "line": 174,
-          "property": "border-bottom"
-        },
-        {
-          "file": "ui/components/dialog.css",
-          "line": 179,
-          "property": "border-top"
-        },
-        {
-          "file": "ui/components/dropdown.css",
-          "line": 45,
-          "property": "border-top"
-        },
-        {
-          "file": "ui/components/hint.css",
-          "line": 16,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/hint.css",
-          "line": 18,
-          "property": "top"
-        },
-        {
-          "file": "ui/components/hint.css",
-          "line": 18,
-          "property": "left"
-        },
-        {
-          "file": "ui/components/hint.css",
-          "line": 39,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/hint.css",
-          "line": 47,
-          "property": "left"
-        },
-        {
-          "file": "ui/components/hint.css",
-          "line": 59,
-          "property": "left"
-        },
-        {
-          "file": "ui/components/hint.css",
-          "line": 63,
-          "property": "left"
-        },
-        {
-          "file": "ui/components/hint.css",
-          "line": 102,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/icon-button.css",
-          "line": 9,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/icon-button.css",
-          "line": 12,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/icon-button.css",
-          "line": 13,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/input.css",
-          "line": 6,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/notice.css",
-          "line": 40,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/pagination.css",
-          "line": 26,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/popover.css",
-          "line": 5,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/popover.css",
-          "line": 8,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/primitives.css",
-          "line": 4,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/radio.css",
-          "line": 3,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/tabs.css",
-          "line": 7,
-          "property": "top"
-        },
-        {
-          "file": "ui/components/tabs.css",
-          "line": 10,
-          "property": "bottom"
-        },
-        {
-          "file": "ui/components/tabs.css",
-          "line": 86,
-          "property": "bottom"
-        },
-        {
-          "file": "ui/components/tabs.css",
-          "line": 112,
-          "property": "border-bottom"
-        },
-        {
-          "file": "ui/components/tabs.css",
-          "line": 130,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/textarea.css",
-          "line": 3,
-          "property": "border"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 12,
-          "property": "outline"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 17,
-          "property": "width"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 17,
-          "property": "height"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 61,
-          "property": "min-width"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 125,
-          "property": "border"
-        }
-      ],
-      "total": 53
-    },
-    {
-      "value": "2px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/article-card.css",
-          "line": 34,
-          "property": "gap"
-        },
-        {
-          "file": "ui/components/article-card.css",
-          "line": 65,
-          "property": "margin-left"
-        },
-        {
-          "file": "ui/components/article-card.css",
-          "line": 73,
-          "property": "gap"
-        },
-        {
-          "file": "ui/components/article-card.css",
-          "line": 91,
-          "property": "gap"
-        },
-        {
-          "file": "ui/components/article-card.css",
-          "line": 163,
-          "property": "gap"
-        },
-        {
-          "file": "ui/components/article-card.css",
-          "line": 212,
-          "property": "margin-left"
-        },
-        {
-          "file": "ui/components/article-card.css",
-          "line": 254,
-          "property": "margin-left"
-        },
-        {
-          "file": "ui/components/calendar.css",
-          "line": 36,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/checkbox.css",
-          "line": 5,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/checkbox.css",
-          "line": 9,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/checkbox.css",
-          "line": 33,
-          "property": "height"
-        },
-        {
-          "file": "ui/components/chip.css",
-          "line": 10,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/dialog.css",
-          "line": 65,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/dropdown.css",
-          "line": 28,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/dropdown.css",
-          "line": 30,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/dropdown.css",
-          "line": 54,
-          "property": "border-left"
-        },
-        {
-          "file": "ui/components/hint.css",
-          "line": 18,
-          "property": "width"
-        },
-        {
-          "file": "ui/components/hint.css",
-          "line": 18,
-          "property": "height"
-        },
-        {
-          "file": "ui/components/hint.css",
-          "line": 35,
-          "property": "left"
-        },
-        {
-          "file": "ui/components/pagination.css",
-          "line": 4,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/tabs.css",
-          "line": 29,
-          "property": "padding-right"
-        },
-        {
-          "file": "ui/components/tabs.css",
-          "line": 48,
-          "property": "margin"
-        },
-        {
-          "file": "ui/components/tabs.css",
-          "line": 67,
-          "property": "height"
-        },
-        {
-          "file": "ui/components/tabs.css",
-          "line": 103,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/tabs.css",
-          "line": 125,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/tabs.css",
-          "line": 140,
-          "property": "outline"
-        },
-        {
-          "file": "ui/components/tabs.css",
-          "line": 143,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/components/votes.css",
-          "line": 30,
-          "property": "margin-left"
-        },
-        {
-          "file": "ui/components/votes.css",
-          "line": 72,
-          "property": "margin"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 89,
-          "property": "height"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 158,
-          "property": "top"
-        },
-        {
-          "file": "ui/patterns.css",
-          "line": 12,
-          "property": "margin"
-        }
-      ],
-      "total": 32
     },
     {
       "value": "3px",
@@ -632,58 +232,13 @@
       "occurrences": [
         {
           "file": "ui/components/article-card.css",
-          "line": 18,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/article-card.css",
-          "line": 194,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/article-card.css",
-          "line": 226,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/article-card.css",
-          "line": 252,
+          "line": 254,
           "property": "margin-left"
         },
         {
-          "file": "ui/components/button-follow.css",
-          "line": 17,
-          "property": "border-top-right-radius"
-        },
-        {
-          "file": "ui/components/button-follow.css",
-          "line": 20,
-          "property": "border-bottom-right-radius"
-        },
-        {
-          "file": "ui/components/button.css",
-          "line": 3,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/button.css",
-          "line": 136,
-          "property": "border-radius"
-        },
-        {
           "file": "ui/components/chip.css",
-          "line": 23,
+          "line": 24,
           "property": "padding-left"
-        },
-        {
-          "file": "ui/components/notice.css",
-          "line": 43,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/pagination.css",
-          "line": 10,
-          "property": "border-radius"
         },
         {
           "file": "ui/components/votes.css",
@@ -697,7 +252,7 @@
         },
         {
           "file": "ui/layout.css",
-          "line": 93,
+          "line": 94,
           "property": "left"
         },
         {
@@ -712,26 +267,16 @@
         },
         {
           "file": "ui/layout.css",
-          "line": 99,
+          "line": 100,
           "property": "transform"
         },
         {
           "file": "ui/layout.css",
           "line": 103,
           "property": "transform"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 127,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/patterns.css",
-          "line": 6,
-          "property": "border-radius"
         }
       ],
-      "total": 20
+      "total": 9
     },
     {
       "value": "5px",
@@ -744,7 +289,7 @@
         },
         {
           "file": "ui/components/article-card.css",
-          "line": 251,
+          "line": 252,
           "property": "margin-left"
         },
         {
@@ -766,84 +311,12 @@
       "total": 5
     },
     {
-      "value": "6px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/article-card.css",
-          "line": 226,
-          "property": "width"
-        },
-        {
-          "file": "ui/components/article-card.css",
-          "line": 226,
-          "property": "height"
-        },
-        {
-          "file": "ui/components/article-card.css",
-          "line": 255,
-          "property": "margin-left"
-        },
-        {
-          "file": "ui/components/badges.css",
-          "line": 21,
-          "property": "margin-left"
-        },
-        {
-          "file": "ui/components/button-follow.css",
-          "line": 5,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/chip.css",
-          "line": 17,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/chip.css",
-          "line": 43,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/hint.css",
-          "line": 94,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/tabs.css",
-          "line": 144,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/components/votes.css",
-          "line": 33,
-          "property": "margin-left"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 92,
-          "property": "top"
-        },
-        {
-          "file": "ui/layout.css",
-          "line": 103,
-          "property": "transform"
-        },
-        {
-          "file": "ui/patterns.css",
-          "line": 5,
-          "property": "margin-bottom"
-        }
-      ],
-      "total": 13
-    },
-    {
       "value": "7px",
       "reason": "not-on-4px-grid",
       "occurrences": [
         {
           "file": "ui/components/checkbox.css",
-          "line": 35,
+          "line": 36,
           "property": "top"
         }
       ],
@@ -872,7 +345,7 @@
       "occurrences": [
         {
           "file": "ui/components/article-card.css",
-          "line": 229,
+          "line": 233,
           "property": "top"
         },
         {
@@ -882,17 +355,17 @@
         },
         {
           "file": "ui/components/checkbox.css",
-          "line": 24,
+          "line": 25,
           "property": "width"
         },
         {
           "file": "ui/components/primitives.css",
-          "line": 18,
+          "line": 19,
           "property": "padding"
         },
         {
           "file": "ui/components/textarea.css",
-          "line": 5,
+          "line": 6,
           "property": "padding"
         }
       ],
@@ -931,12 +404,12 @@
         },
         {
           "file": "ui/components/hint.css",
-          "line": 104,
+          "line": 106,
           "property": "padding"
         },
         {
           "file": "ui/components/input.css",
-          "line": 10,
+          "line": 11,
           "property": "padding"
         },
         {
@@ -956,7 +429,7 @@
         },
         {
           "file": "ui/layout.css",
-          "line": 128,
+          "line": 130,
           "property": "padding"
         }
       ],
@@ -990,7 +463,7 @@
         },
         {
           "file": "ui/components/checkbox.css",
-          "line": 5,
+          "line": 6,
           "property": "width"
         },
         {
@@ -1005,12 +478,12 @@
         },
         {
           "file": "ui/components/dialog.css",
-          "line": 192,
+          "line": 193,
           "property": "padding"
         },
         {
           "file": "ui/components/radio.css",
-          "line": 4,
+          "line": 5,
           "property": "width"
         },
         {
@@ -1049,7 +522,7 @@
       "occurrences": [
         {
           "file": "ui/layout.css",
-          "line": 46,
+          "line": 47,
           "property": "height"
         }
       ],
@@ -1061,12 +534,12 @@
       "occurrences": [
         {
           "file": "ui/components/button-follow.css",
-          "line": 21,
+          "line": 22,
           "property": "width"
         },
         {
           "file": "ui/components/button-follow.css",
-          "line": 30,
+          "line": 31,
           "property": "width"
         }
       ],
@@ -1083,7 +556,7 @@
         },
         {
           "file": "ui/components/chip.css",
-          "line": 42,
+          "line": 43,
           "property": "height"
         }
       ],
@@ -1095,7 +568,7 @@
       "occurrences": [
         {
           "file": "ui/components/tabs.css",
-          "line": 57,
+          "line": 58,
           "property": "height"
         }
       ],
@@ -1167,7 +640,7 @@
       "occurrences": [
         {
           "file": "ui/components/hint.css",
-          "line": 125,
+          "line": 126,
           "property": "max-width"
         }
       ],
@@ -1191,7 +664,7 @@
       "occurrences": [
         {
           "file": "ui/components/hint.css",
-          "line": 97,
+          "line": 98,
           "property": "border-radius"
         }
       ],
@@ -1227,7 +700,7 @@
       "occurrences": [
         {
           "file": "ui/components/tabs.css",
-          "line": 40,
+          "line": 42,
           "property": "letter-spacing"
         }
       ],
@@ -1239,7 +712,7 @@
       "occurrences": [
         {
           "file": "ui/normalize.css",
-          "line": 26,
+          "line": 27,
           "property": "padding"
         }
       ],
@@ -1263,7 +736,7 @@
       "occurrences": [
         {
           "file": "ui/normalize.css",
-          "line": 27,
+          "line": 28,
           "property": "padding"
         }
       ],
@@ -1290,12 +763,12 @@
         },
         {
           "file": "ui/components/chip.css",
-          "line": 43,
+          "line": 45,
           "property": "font-size"
         },
         {
           "file": "ui/layout.css",
-          "line": 156,
+          "line": 158,
           "property": "line-height"
         }
       ],
@@ -1307,7 +780,7 @@
       "occurrences": [
         {
           "file": "ui/normalize.css",
-          "line": 27,
+          "line": 28,
           "property": "padding"
         }
       ],
@@ -1331,7 +804,7 @@
       "occurrences": [
         {
           "file": "ui/layout.css",
-          "line": 156,
+          "line": 158,
           "property": "font-size"
         }
       ],
@@ -1343,7 +816,7 @@
       "occurrences": [
         {
           "file": "ui/components/article-card.css",
-          "line": 215,
+          "line": 216,
           "property": "font-size"
         },
         {
@@ -1363,7 +836,7 @@
         },
         {
           "file": "ui/components/dialog.css",
-          "line": 197,
+          "line": 200,
           "property": "font-size"
         },
         {
@@ -1373,17 +846,17 @@
         },
         {
           "file": "ui/components/dropdown.css",
-          "line": 42,
+          "line": 43,
           "property": "font-size"
         },
         {
           "file": "ui/components/dropdown.css",
-          "line": 56,
+          "line": 59,
           "property": "font-size"
         },
         {
           "file": "ui/components/hint.css",
-          "line": 126,
+          "line": 129,
           "property": "font-size"
         },
         {
@@ -1398,7 +871,7 @@
         },
         {
           "file": "ui/components/tabs.css",
-          "line": 53,
+          "line": 54,
           "property": "font-size"
         },
         {
@@ -1413,7 +886,7 @@
         },
         {
           "file": "ui/components/textarea.css",
-          "line": 6,
+          "line": 7,
           "property": "font-size"
         },
         {
@@ -1423,12 +896,12 @@
         },
         {
           "file": "ui/layout.css",
-          "line": 149,
+          "line": 150,
           "property": "font-size"
         },
         {
           "file": "ui/patterns.css",
-          "line": 14,
+          "line": 17,
           "property": "font-size"
         }
       ],
@@ -1440,7 +913,7 @@
       "occurrences": [
         {
           "file": "ui/layout.css",
-          "line": 148,
+          "line": 149,
           "property": "letter-spacing"
         }
       ],
@@ -1457,7 +930,7 @@
         },
         {
           "file": "ui/components/article-card.css",
-          "line": 28,
+          "line": 29,
           "property": "font-size"
         },
         {
@@ -1467,17 +940,17 @@
         },
         {
           "file": "ui/components/article-card.css",
-          "line": 68,
+          "line": 70,
           "property": "font-size"
         },
         {
           "file": "ui/components/article-card.css",
-          "line": 74,
+          "line": 76,
           "property": "font-size"
         },
         {
           "file": "ui/components/article-card.css",
-          "line": 94,
+          "line": 95,
           "property": "font-size"
         },
         {
@@ -1487,27 +960,27 @@
         },
         {
           "file": "ui/components/article-card.css",
-          "line": 195,
+          "line": 196,
           "property": "font-size"
         },
         {
           "file": "ui/components/article-card.css",
-          "line": 214,
+          "line": 215,
           "property": "font-size"
         },
         {
           "file": "ui/components/article-card.css",
-          "line": 220,
+          "line": 225,
           "property": "font-size"
         },
         {
           "file": "ui/components/article-card.css",
-          "line": 242,
+          "line": 246,
           "property": "font-size"
         },
         {
           "file": "ui/components/article-card.css",
-          "line": 290,
+          "line": 291,
           "property": "font-size"
         },
         {
@@ -1522,7 +995,7 @@
         },
         {
           "file": "ui/components/button.css",
-          "line": 140,
+          "line": 141,
           "property": "font-size"
         },
         {
@@ -1537,7 +1010,7 @@
         },
         {
           "file": "ui/components/calendar.css",
-          "line": 97,
+          "line": 98,
           "property": "font-size"
         },
         {
@@ -1552,7 +1025,7 @@
         },
         {
           "file": "ui/components/primitives.css",
-          "line": 7,
+          "line": 9,
           "property": "font-size"
         },
         {
@@ -1567,7 +1040,7 @@
         },
         {
           "file": "ui/layout.css",
-          "line": 128,
+          "line": 131,
           "property": "font-size"
         },
         {
@@ -1589,7 +1062,7 @@
         },
         {
           "file": "ui/components/article-card.css",
-          "line": 30,
+          "line": 31,
           "property": "line-height"
         },
         {
@@ -1599,22 +1072,22 @@
         },
         {
           "file": "ui/components/dialog.css",
-          "line": 190,
+          "line": 192,
           "property": "font-size"
         },
         {
           "file": "ui/components/hint.css",
-          "line": 109,
+          "line": 111,
           "property": "font-size"
         },
         {
           "file": "ui/components/hint.css",
-          "line": 113,
+          "line": 115,
           "property": "font-size"
         },
         {
           "file": "ui/components/hint.css",
-          "line": 155,
+          "line": 156,
           "property": "font-size"
         },
         {
@@ -1624,7 +1097,7 @@
         },
         {
           "file": "ui/components/pagination.css",
-          "line": 16,
+          "line": 17,
           "property": "font-size"
         },
         {
@@ -1656,7 +1129,7 @@
       "occurrences": [
         {
           "file": "ui/components/button-follow.css",
-          "line": 5,
+          "line": 7,
           "property": "font-size"
         }
       ],
@@ -1714,22 +1187,22 @@
       "occurrences": [
         {
           "file": "ui/components/article-card.css",
-          "line": 76,
+          "line": 79,
           "property": "line-height"
         },
         {
           "file": "ui/components/article-card.css",
-          "line": 95,
+          "line": 97,
           "property": "line-height"
         },
         {
           "file": "ui/components/article-card.css",
-          "line": 130,
+          "line": 132,
           "property": "line-height"
         },
         {
           "file": "ui/components/primitives.css",
-          "line": 14,
+          "line": 15,
           "property": "line-height"
         },
         {
@@ -1771,17 +1244,17 @@
         },
         {
           "file": "ui/components/hint.css",
-          "line": 111,
+          "line": 114,
           "property": "line-height"
         },
         {
           "file": "ui/components/hint.css",
-          "line": 115,
+          "line": 117,
           "property": "line-height"
         },
         {
           "file": "ui/components/hint.css",
-          "line": 127,
+          "line": 131,
           "property": "line-height"
         },
         {
@@ -1816,7 +1289,7 @@
         },
         {
           "file": "ui/patterns.css",
-          "line": 16,
+          "line": 17,
           "property": "line-height"
         }
       ],
@@ -1865,17 +1338,17 @@
         },
         {
           "file": "ui/components/dropdown.css",
-          "line": 57,
+          "line": 59,
           "property": "line-height"
         },
         {
           "file": "ui/components/pagination.css",
-          "line": 19,
+          "line": 20,
           "property": "line-height"
         },
         {
           "file": "ui/components/tabs.css",
-          "line": 108,
+          "line": 109,
           "property": "line-height"
         },
         {
@@ -1895,12 +1368,12 @@
         },
         {
           "file": "ui/layout.css",
-          "line": 149,
+          "line": 150,
           "property": "line-height"
         },
         {
           "file": "ui/patterns.css",
-          "line": 13,
+          "line": 14,
           "property": "line-height"
         }
       ],
@@ -1917,7 +1390,7 @@
         },
         {
           "file": "ui/components/votes.css",
-          "line": 76,
+          "line": 77,
           "property": "line-height"
         }
       ],
@@ -1929,12 +1402,12 @@
       "occurrences": [
         {
           "file": "ui/components/article-card.css",
-          "line": 254,
+          "line": 256,
           "property": "font-size"
         },
         {
           "file": "ui/components/votes.css",
-          "line": 30,
+          "line": 31,
           "property": "font-size"
         }
       ],
@@ -1946,7 +1419,7 @@
       "occurrences": [
         {
           "file": "ui/components/article-card.css",
-          "line": 195,
+          "line": 196,
           "property": "line-height"
         }
       ],
@@ -1975,7 +1448,7 @@
         },
         {
           "file": "ui/patterns.css",
-          "line": 10,
+          "line": 11,
           "property": "font-size"
         }
       ],
@@ -1987,7 +1460,7 @@
       "occurrences": [
         {
           "file": "ui/components/article-card.css",
-          "line": 55,
+          "line": 56,
           "property": "height"
         },
         {
@@ -2014,12 +1487,12 @@
         },
         {
           "file": "ui/components/button-follow.css",
-          "line": 6,
+          "line": 7,
           "property": "line-height"
         },
         {
           "file": "ui/components/button.css",
-          "line": 140,
+          "line": 141,
           "property": "line-height"
         },
         {
@@ -2034,7 +1507,7 @@
         },
         {
           "file": "ui/components/calendar.css",
-          "line": 97,
+          "line": 99,
           "property": "line-height"
         },
         {
@@ -2044,7 +1517,7 @@
         },
         {
           "file": "ui/components/popover.css",
-          "line": 25,
+          "line": 26,
           "property": "line-height"
         },
         {
@@ -2122,7 +1595,7 @@
         },
         {
           "file": "ui/components/button-follow.css",
-          "line": 4,
+          "line": 5,
           "property": "height"
         },
         {
@@ -2132,7 +1605,7 @@
         },
         {
           "file": "ui/layout.css",
-          "line": 127,
+          "line": 129,
           "property": "height"
         }
       ],

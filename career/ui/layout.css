@@ -48,7 +48,7 @@
 .tm-panel__logo b { font-weight: 700; }
 /* Вертикальная черта между брендом и переключателем продуктов Хабра. */
 .tm-panel__divider {
-  width: 1px;
+  width: var(--career-size-1);
   height: var(--career-size-20);
   background: var(--color-ui-white);
   opacity: .3;
@@ -297,7 +297,7 @@
 .entity-header__hint {
   font: 400 16px/24px var(--font-base);
   color: var(--color-ui-gray-2);
-  border-bottom: 1px dashed var(--color-ui-gray-4);
+  border-bottom: var(--career-border-width-1) dashed var(--color-ui-gray-4);
   align-self: start;
   justify-self: start;
 }
@@ -336,7 +336,7 @@
 /* C-4: продвигаемая сущность — рамка 2px фирменного цвета при том же радиусе */
 .card-promoted {
   border-radius: var(--career-radius-24);
-  border: 2px solid var(--promo-color, var(--color-ui-orange-accent));
+  border: var(--career-border-width-2) solid var(--promo-color, var(--color-ui-orange-accent));
   padding: 22px;                 /* 24 − 2, чтобы контент не сдвигался */
   background: var(--promo-bg, transparent);
 }
@@ -358,7 +358,7 @@
   width: 100%;
   display: flex; align-items: center; justify-content: space-between; gap: var(--career-space-8);
   height: var(--career-size-40); padding: var(--career-space-8) var(--career-space-12); border-radius: var(--career-radius-12);
-  border: 1px solid var(--shadow-border-color);
+  border: var(--career-border-width-1) solid var(--shadow-border-color);
   background: var(--color-ui-white);
   font: 400 16px/24px var(--font-base); color: var(--color-ui-gray-1);
   cursor: pointer;

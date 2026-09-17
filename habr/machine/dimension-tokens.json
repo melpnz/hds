@@ -3,7 +3,20 @@
   "product": "habr",
   "namespace": "habr",
   "baseUnit": "4px",
+  "allowedOffGrid": [
+    "1px",
+    "2px",
+    "6px"
+  ],
   "naming": "--habr-<category>-<resolved-px-value>",
+  "normalizationDecisions": [
+    {
+      "category": "radius",
+      "from": "3px",
+      "to": "4px",
+      "scope": "all radius declarations"
+    }
+  ],
   "categories": [
     "space",
     "size",
@@ -13,11 +26,43 @@
     "border-width"
   ],
   "tokens": {
+    "border-width": {
+      "1": {
+        "$type": "dimension",
+        "$value": "1px",
+        "cssVariable": "--habr-border-width-1"
+      },
+      "2": {
+        "$type": "dimension",
+        "$value": "2px",
+        "cssVariable": "--habr-border-width-2"
+      },
+      "4": {
+        "$type": "dimension",
+        "$value": "4px",
+        "cssVariable": "--habr-border-width-4"
+      },
+      "6": {
+        "$type": "dimension",
+        "$value": "6px",
+        "cssVariable": "--habr-border-width-6"
+      }
+    },
     "radius": {
+      "2": {
+        "$type": "dimension",
+        "$value": "2px",
+        "cssVariable": "--habr-radius-2"
+      },
       "4": {
         "$type": "dimension",
         "$value": "4px",
         "cssVariable": "--habr-radius-4"
+      },
+      "6": {
+        "$type": "dimension",
+        "$value": "6px",
+        "cssVariable": "--habr-radius-6"
       },
       "8": {
         "$type": "dimension",
@@ -36,10 +81,25 @@
       }
     },
     "size": {
+      "1": {
+        "$type": "dimension",
+        "$value": "1px",
+        "cssVariable": "--habr-size-1"
+      },
+      "2": {
+        "$type": "dimension",
+        "$value": "2px",
+        "cssVariable": "--habr-size-2"
+      },
       "4": {
         "$type": "dimension",
         "$value": "4px",
         "cssVariable": "--habr-size-4"
+      },
+      "6": {
+        "$type": "dimension",
+        "$value": "6px",
+        "cssVariable": "--habr-size-6"
       },
       "8": {
         "$type": "dimension",
@@ -176,10 +236,25 @@
         "$value": "1096px",
         "cssVariable": "--habr-size-1096"
       },
+      "negative-1": {
+        "$type": "dimension",
+        "$value": "-1px",
+        "cssVariable": "--habr-size-negative-1"
+      },
+      "negative-2": {
+        "$type": "dimension",
+        "$value": "-2px",
+        "cssVariable": "--habr-size-negative-2"
+      },
       "negative-4": {
         "$type": "dimension",
         "$value": "-4px",
         "cssVariable": "--habr-size-negative-4"
+      },
+      "negative-6": {
+        "$type": "dimension",
+        "$value": "-6px",
+        "cssVariable": "--habr-size-negative-6"
       },
       "negative-8": {
         "$type": "dimension",
@@ -193,10 +268,25 @@
       }
     },
     "space": {
+      "1": {
+        "$type": "dimension",
+        "$value": "1px",
+        "cssVariable": "--habr-space-1"
+      },
+      "2": {
+        "$type": "dimension",
+        "$value": "2px",
+        "cssVariable": "--habr-space-2"
+      },
       "4": {
         "$type": "dimension",
         "$value": "4px",
         "cssVariable": "--habr-space-4"
+      },
+      "6": {
+        "$type": "dimension",
+        "$value": "6px",
+        "cssVariable": "--habr-space-6"
       },
       "8": {
         "$type": "dimension",

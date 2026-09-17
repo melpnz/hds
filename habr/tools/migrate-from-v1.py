@@ -524,7 +524,9 @@ def main() -> None:
         if extracted_visual:
             item["visual"] = extracted_visual
         if item_id == "user-info":
-            item["visual"] = {"source": ["ui/components/article-card.css"], "avatar": "24px", "avatarRadius": "3px", "inlineGap": "4px", "mobileStackGap": "2px"}
+            item["visual"] = {"source": ["ui/components/article-card.css"], "avatar": "24px", "avatarRadius": "4px", "inlineGap": "4px", "mobileStackGap": "2px"}
+        if item_id == "avatar":
+            item["purpose"] += " Нормативный гайд округляет production-radius 3px до токена --habr-radius-4."
         item["evidence"] = [{"type": "legacy-showcase", "ref": f"archive:habr/v1/showcase/components.html#{item_id}"}]
         if doc_path and doc_path.exists():
             item["markdown"] = doc_path.relative_to(ROOT).as_posix()
@@ -533,7 +535,7 @@ def main() -> None:
         if item_id == "button":
             item["visual"] = {
                 "source": "ui/components/button.css and components/actions/button.md",
-                "radius": "3px",
+                "radius": "4px",
                 "sizes": {
                     "small": {"height": "32px", "padding": "8px 14px"},
                     "middle": {"height": "36px", "padding": "10px 14px"},
@@ -631,14 +633,14 @@ def main() -> None:
                 "--header-background", "--header-text"
             )}
         },
-        "shape": {"radii": {"control": "3px"}, "borders": {"default": "1px"}, "shadows": {"default": "none"}},
+        "shape": {"radii": {"control": "4px"}, "borders": {"default": "1px"}, "shadows": {"default": "none"}},
         "layout": {
             "container": {"desktop": "1096px with 24px padding", "tablet": "768px with 16px padding", "mobile": "edge-to-edge"},
             "sidebar": "300px", "breakpoints": {"mobile": "767px", "desktop": "1024px"}, "header": {"desktop": "56px", "mobile": "48px"}
         },
         "signaturePatterns": [
             {"id": "reserved-sidebar", "rule": "Сайдбар — зарезервированная колонка и может оставаться пустым.", "evidence": "docs/patterns/shell.md"},
-            {"id": "flat-dense-controls", "rule": "Компактные контролы используют малый радиус 3px.", "evidence": "ui/components/button.css"},
+            {"id": "flat-dense-controls", "rule": "Компактные контролы используют токен радиуса 4px; production-значение 3px нормализовано дизайнерским решением.", "evidence": "ui/components/button.css"},
             {"id": "theme-pair", "rule": "Семантические роли поддерживают светлую и тёмную темы.", "evidence": "machine/tokens.json"}
         ],
         "sources": ["machine/dimension-tokens.json", "machine/tokens.json", "ui/foundations.css", "ui/layout.css", "ui/components/title.css", "ui/components/primitives.css"],

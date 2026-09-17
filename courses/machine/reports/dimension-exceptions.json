@@ -4,16 +4,104 @@
   "baseUnit": "4px",
   "scope": "ui/**/*.css excluding token definitions and theme source files",
   "policy": {
-    "migrated": "Absolute px dimensions divisible by 4 in supported declaration properties.",
+    "migrated": "Absolute px dimensions divisible by 4, plus approved 1px, 2px and 6px exceptions, in supported declaration properties.",
     "preserved": "Existing computed values, selectors, class names and DOM contracts.",
     "exceptions": "Relative units, non-grid values and composite properties require explicit semantic review."
   },
   "summary": {
-    "tokenCount": 67,
-    "exceptionKinds": 102,
-    "exceptionOccurrences": 391
+    "tokenCount": 82,
+    "exceptionKinds": 101,
+    "exceptionOccurrences": 328
   },
   "exceptions": [
+    {
+      "value": "-1px",
+      "reason": "composite-or-unsupported-property",
+      "occurrences": [
+        {
+          "file": "ui/components/actions.css",
+          "line": 2,
+          "property": "box-shadow"
+        },
+        {
+          "file": "ui/utilities-components.css",
+          "line": 1075,
+          "property": "box-shadow"
+        }
+      ],
+      "total": 2
+    },
+    {
+      "value": "-2px",
+      "reason": "composite-or-unsupported-property",
+      "occurrences": [
+        {
+          "file": "ui/foundations.css",
+          "line": 46,
+          "property": "outline-offset"
+        }
+      ],
+      "total": 1
+    },
+    {
+      "value": "1px",
+      "reason": "composite-or-unsupported-property",
+      "occurrences": [
+        {
+          "file": "ui/components/overlays.css",
+          "line": 55,
+          "property": "grid-template-columns"
+        },
+        {
+          "file": "ui/components/overlays.css",
+          "line": 131,
+          "property": "grid-template-columns"
+        },
+        {
+          "file": "ui/foundations.css",
+          "line": 91,
+          "property": "outline-offset"
+        }
+      ],
+      "total": 3
+    },
+    {
+      "value": "2px",
+      "reason": "composite-or-unsupported-property",
+      "occurrences": [
+        {
+          "file": "ui/components/actions.css",
+          "line": 3,
+          "property": "box-shadow"
+        },
+        {
+          "file": "ui/components/actions.css",
+          "line": 3,
+          "property": "box-shadow"
+        },
+        {
+          "file": "ui/foundations.css",
+          "line": 86,
+          "property": "outline-offset"
+        },
+        {
+          "file": "ui/foundations.css",
+          "line": 91,
+          "property": "outline-offset"
+        },
+        {
+          "file": "ui/utilities-components.css",
+          "line": 1076,
+          "property": "box-shadow"
+        },
+        {
+          "file": "ui/utilities-components.css",
+          "line": 1076,
+          "property": "box-shadow"
+        }
+      ],
+      "total": 6
+    },
     {
       "value": "4px",
       "reason": "composite-or-unsupported-property",
@@ -30,16 +118,38 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 1073,
+          "line": 1075,
           "property": "box-shadow"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 1073,
+          "line": 1076,
           "property": "box-shadow"
         }
       ],
       "total": 4
+    },
+    {
+      "value": "6px",
+      "reason": "composite-or-unsupported-property",
+      "occurrences": [
+        {
+          "file": "ui/components/actions.css",
+          "line": 2,
+          "property": "box-shadow"
+        },
+        {
+          "file": "ui/utilities-components.css",
+          "line": 1000,
+          "property": "box-shadow"
+        },
+        {
+          "file": "ui/utilities-components.css",
+          "line": 1075,
+          "property": "box-shadow"
+        }
+      ],
+      "total": 3
     },
     {
       "value": "16px",
@@ -47,7 +157,7 @@
       "occurrences": [
         {
           "file": "ui/components/overlays.css",
-          "line": 560,
+          "line": 562,
           "property": "font"
         }
       ],
@@ -59,17 +169,17 @@
       "occurrences": [
         {
           "file": "ui/components/overlays.css",
-          "line": 542,
+          "line": 545,
           "property": "font"
         },
         {
           "file": "ui/components/overlays.css",
-          "line": 559,
+          "line": 562,
           "property": "font"
         },
         {
           "file": "ui/components/overlays.css",
-          "line": 572,
+          "line": 578,
           "property": "font"
         }
       ],
@@ -81,7 +191,7 @@
       "occurrences": [
         {
           "file": "ui/components/overlays.css",
-          "line": 542,
+          "line": 545,
           "property": "font"
         },
         {
@@ -163,12 +273,12 @@
       "occurrences": [
         {
           "file": "ui/components/overlays.css",
-          "line": 479,
+          "line": 480,
           "property": "grid-template-rows"
         },
         {
           "file": "ui/components/overlays.css",
-          "line": 501,
+          "line": 506,
           "property": "grid-template-rows"
         }
       ],
@@ -180,7 +290,7 @@
       "occurrences": [
         {
           "file": "ui/components/overlays.css",
-          "line": 479,
+          "line": 480,
           "property": "grid-template-rows"
         }
       ],
@@ -226,7 +336,7 @@
       "occurrences": [
         {
           "file": "ui/components/overlays.css",
-          "line": 503,
+          "line": 508,
           "property": "grid-template-rows"
         }
       ],
@@ -250,7 +360,7 @@
       "occurrences": [
         {
           "file": "ui/components/overlays.css",
-          "line": 544,
+          "line": 545,
           "property": "letter-spacing"
         },
         {
@@ -260,87 +370,11 @@
         },
         {
           "file": "ui/foundations.css",
-          "line": 84,
+          "line": 85,
           "property": "letter-spacing"
         }
       ],
       "total": 3
-    },
-    {
-      "value": "-1px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/actions.css",
-          "line": 2,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 91,
-          "property": "margin"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 15,
-          "property": "left"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 823,
-          "property": "--tw-shadow"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 829,
-          "property": "--tw-shadow-colored"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 1073,
-          "property": "box-shadow"
-        }
-      ],
-      "total": 6
-    },
-    {
-      "value": "-2px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/foundations.css",
-          "line": 46,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 824,
-          "property": "--tw-shadow"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 832,
-          "property": "--tw-shadow-colored"
-        }
-      ],
-      "total": 3
-    },
-    {
-      "value": "-6px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/utilities-components.css",
-          "line": 12,
-          "property": "bottom"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 21,
-          "property": "right"
-        }
-      ],
-      "total": 2
     },
     {
       "value": "-7px",
@@ -348,7 +382,7 @@
       "occurrences": [
         {
           "file": "ui/components/overlays.css",
-          "line": 233,
+          "line": 235,
           "property": "left"
         }
       ],
@@ -372,300 +406,11 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 1139,
+          "line": 1142,
           "property": "top"
         }
       ],
       "total": 1
-    },
-    {
-      "value": "1px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/data-display.css",
-          "line": 24,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/data-display.css",
-          "line": 47,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/data-display.css",
-          "line": 81,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/entities.css",
-          "line": 1,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/entities.css",
-          "line": 44,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 1,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/forms.css",
-          "line": 25,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/navigation.css",
-          "line": 18,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 3,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 9,
-          "property": "border-bottom"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 32,
-          "property": "border-top"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 55,
-          "property": "grid-template-columns"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 111,
-          "property": "width"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 131,
-          "property": "grid-template-columns"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 160,
-          "property": "border-bottom"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 176,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 318,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 421,
-          "property": "border-bottom"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 443,
-          "property": "border-bottom"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 539,
-          "property": "border-bottom"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 562,
-          "property": "border-top"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 40,
-          "property": "outline"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 91,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 91,
-          "property": "height"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 91,
-          "property": "width"
-        },
-        {
-          "file": "ui/page-examples.css",
-          "line": 8,
-          "property": "border"
-        },
-        {
-          "file": "ui/page-examples.css",
-          "line": 38,
-          "property": "border"
-        },
-        {
-          "file": "ui/page-examples.css",
-          "line": 42,
-          "property": "width"
-        },
-        {
-          "file": "ui/page-examples.css",
-          "line": 47,
-          "property": "width"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 161,
-          "property": "height"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 469,
-          "property": "gap"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 584,
-          "property": "border-width"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 591,
-          "property": "border-bottom-width"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 595,
-          "property": "border-left-width"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 745,
-          "property": "padding-left"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 745,
-          "property": "padding-right"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 998,
-          "property": "border"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 1070,
-          "property": "border-width"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 1081,
-          "property": "border"
-        }
-      ],
-      "total": 39
-    },
-    {
-      "value": "2px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/actions.css",
-          "line": 3,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/actions.css",
-          "line": 3,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/navigation.css",
-          "line": 33,
-          "property": "padding"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 294,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 85,
-          "property": "outline"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 86,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 89,
-          "property": "outline"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 90,
-          "property": "outline-offset"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 90,
-          "property": "outline-width"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 588,
-          "property": "border-width"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 776,
-          "property": "padding-top"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 824,
-          "property": "--tw-shadow"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 830,
-          "property": "--tw-shadow-colored"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 1073,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 1075,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 1184,
-          "property": "border-width"
-        }
-      ],
-      "total": 16
     },
     {
       "value": "3px",
@@ -685,7 +430,7 @@
       "occurrences": [
         {
           "file": "ui/components/data-display.css",
-          "line": 80,
+          "line": 81,
           "property": "top"
         },
         {
@@ -707,73 +452,6 @@
       "total": 4
     },
     {
-      "value": "6px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/components/actions.css",
-          "line": 2,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 496,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 498,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 555,
-          "property": "border"
-        },
-        {
-          "file": "ui/components/overlays.css",
-          "line": 557,
-          "property": "border"
-        },
-        {
-          "file": "ui/page-examples.css",
-          "line": 13,
-          "property": "gap"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 821,
-          "property": "--tw-shadow"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 829,
-          "property": "--tw-shadow-colored"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 998,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 998,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 1073,
-          "property": "box-shadow"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 1081,
-          "property": "border-radius"
-        }
-      ],
-      "total": 12
-    },
-    {
       "value": "7px",
       "reason": "not-on-4px-grid",
       "occurrences": [
@@ -791,7 +469,7 @@
       "occurrences": [
         {
           "file": "ui/components/overlays.css",
-          "line": 163,
+          "line": 164,
           "property": "gap"
         },
         {
@@ -801,12 +479,12 @@
         },
         {
           "file": "ui/page-examples.css",
-          "line": 58,
+          "line": 60,
           "property": "margin"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 15,
+          "line": 16,
           "property": "left"
         }
       ],
@@ -830,12 +508,12 @@
       "occurrences": [
         {
           "file": "ui/page-examples.css",
-          "line": 12,
+          "line": 13,
           "property": "font"
         },
         {
           "file": "ui/page-examples.css",
-          "line": 54,
+          "line": 57,
           "property": "font"
         }
       ],
@@ -847,17 +525,17 @@
       "occurrences": [
         {
           "file": "ui/components/overlays.css",
-          "line": 559,
+          "line": 561,
           "property": "font"
         },
         {
           "file": "ui/components/overlays.css",
-          "line": 571,
+          "line": 578,
           "property": "font"
         },
         {
           "file": "ui/foundations.css",
-          "line": 63,
+          "line": 64,
           "property": "font-size"
         },
         {
@@ -867,27 +545,27 @@
         },
         {
           "file": "ui/foundations.css",
-          "line": 77,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/foundations.css",
           "line": 78,
           "property": "font-size"
         },
         {
-          "file": "ui/utilities-components.css",
-          "line": 521,
-          "property": "border-radius"
-        },
-        {
-          "file": "ui/utilities-components.css",
-          "line": 784,
+          "file": "ui/foundations.css",
+          "line": 80,
           "property": "font-size"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 1054,
+          "line": 523,
+          "property": "border-radius"
+        },
+        {
+          "file": "ui/utilities-components.css",
+          "line": 787,
+          "property": "font-size"
+        },
+        {
+          "file": "ui/utilities-components.css",
+          "line": 1056,
           "property": "font-size"
         }
       ],
@@ -904,7 +582,7 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 1021,
+          "line": 1022,
           "property": "margin-top"
         },
         {
@@ -931,7 +609,7 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 1006,
+          "line": 1007,
           "property": "background"
         }
       ],
@@ -948,12 +626,12 @@
         },
         {
           "file": "ui/components/data-display.css",
-          "line": 78,
+          "line": 79,
           "property": "height"
         },
         {
           "file": "ui/components/overlays.css",
-          "line": 560,
+          "line": 562,
           "property": "font"
         },
         {
@@ -995,7 +673,7 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 998,
+          "line": 1000,
           "property": "box-shadow"
         }
       ],
@@ -1029,7 +707,7 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 233,
+          "line": 234,
           "property": "min-height"
         },
         {
@@ -1046,7 +724,7 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 1061,
+          "line": 1063,
           "property": "height"
         }
       ],
@@ -1070,7 +748,7 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 185,
+          "line": 186,
           "property": "height"
         }
       ],
@@ -1082,7 +760,7 @@
       "occurrences": [
         {
           "file": "ui/components/overlays.css",
-          "line": 335,
+          "line": 336,
           "property": "width"
         }
       ],
@@ -1111,7 +789,7 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 224,
+          "line": 225,
           "property": "max-height"
         }
       ],
@@ -1123,7 +801,7 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 266,
+          "line": 267,
           "property": "width"
         }
       ],
@@ -1135,7 +813,7 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 1156,
+          "line": 1159,
           "property": "height"
         }
       ],
@@ -1147,7 +825,7 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 213,
+          "line": 215,
           "property": "max-height"
         }
       ],
@@ -1171,7 +849,7 @@
       "occurrences": [
         {
           "file": "ui/components/entities.css",
-          "line": 4,
+          "line": 6,
           "property": "max-width"
         }
       ],
@@ -1183,7 +861,7 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 217,
+          "line": 218,
           "property": "max-height"
         }
       ],
@@ -1195,7 +873,7 @@
       "occurrences": [
         {
           "file": "ui/components/overlays.css",
-          "line": 54,
+          "line": 55,
           "property": "grid-template-columns"
         },
         {
@@ -1212,7 +890,7 @@
       "occurrences": [
         {
           "file": "ui/components/overlays.css",
-          "line": 528,
+          "line": 533,
           "property": "height"
         },
         {
@@ -1229,7 +907,7 @@
       "occurrences": [
         {
           "file": "ui/components/navigation.css",
-          "line": 71,
+          "line": 73,
           "property": "max-width"
         }
       ],
@@ -1253,7 +931,7 @@
       "occurrences": [
         {
           "file": "ui/components/overlays.css",
-          "line": 526,
+          "line": 529,
           "property": "height"
         }
       ],
@@ -1289,7 +967,7 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 221,
+          "line": 222,
           "property": "max-height"
         }
       ],
@@ -1301,7 +979,7 @@
       "occurrences": [
         {
           "file": "ui/components/overlays.css",
-          "line": 520,
+          "line": 523,
           "property": "height"
         }
       ],
@@ -1313,7 +991,7 @@
       "occurrences": [
         {
           "file": "ui/page-examples.css",
-          "line": 17,
+          "line": 19,
           "property": "height"
         }
       ],
@@ -1325,7 +1003,7 @@
       "occurrences": [
         {
           "file": "ui/components/overlays.css",
-          "line": 516,
+          "line": 518,
           "property": "height"
         }
       ],
@@ -1373,12 +1051,12 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 527,
+          "line": 529,
           "property": "border-radius"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 877,
+          "line": 887,
           "property": "border-radius"
         }
       ],
@@ -1402,12 +1080,12 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 51,
+          "line": 56,
           "property": "margin-bottom"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 57,
+          "line": 60,
           "property": "margin-top"
         },
         {
@@ -1424,7 +1102,7 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 1037,
+          "line": 1039,
           "property": "left"
         }
       ],
@@ -1465,7 +1143,7 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 494,
+          "line": 496,
           "property": "margin-left"
         },
         {
@@ -1482,27 +1160,27 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 30,
+          "line": 35,
           "property": "margin-left"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 32,
+          "line": 36,
           "property": "margin-right"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 54,
+          "line": 57,
           "property": "margin-bottom"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 65,
+          "line": 69,
           "property": "margin-top"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 1144,
+          "line": 1145,
           "property": "margin-left"
         },
         {
@@ -1519,7 +1197,7 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 62,
+          "line": 66,
           "property": "margin-top"
         }
       ],
@@ -1536,7 +1214,7 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 59,
+          "line": 63,
           "property": "margin-top"
         }
       ],
@@ -1560,7 +1238,7 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 1036,
+          "line": 1037,
           "property": "padding-left"
         }
       ],
@@ -1572,7 +1250,7 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 1022,
+          "line": 1024,
           "property": "margin-top"
         }
       ],
@@ -1584,22 +1262,22 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 33,
+          "line": 39,
           "property": "margin-left"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 35,
+          "line": 39,
           "property": "margin-right"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 89,
+          "line": 90,
           "property": "margin-right"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 92,
+          "line": 93,
           "property": "margin-top"
         },
         {
@@ -1614,7 +1292,7 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 473,
+          "line": 475,
           "property": "-moz-column-gap"
         },
         {
@@ -1624,12 +1302,12 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 488,
+          "line": 490,
           "property": "row-gap"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 530,
+          "line": 532,
           "property": "border-radius"
         },
         {
@@ -1659,12 +1337,12 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 751,
+          "line": 753,
           "property": "padding-top"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 768,
+          "line": 769,
           "property": "padding-left"
         },
         {
@@ -1708,12 +1386,12 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 68,
+          "line": 72,
           "property": "margin-bottom"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 86,
+          "line": 87,
           "property": "margin-right"
         },
         {
@@ -1733,7 +1411,7 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 470,
+          "line": 472,
           "property": "column-gap"
         },
         {
@@ -1758,12 +1436,12 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 748,
+          "line": 750,
           "property": "padding-bottom"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 748,
+          "line": 750,
           "property": "padding-top"
         },
         {
@@ -1785,7 +1463,7 @@
       "occurrences": [
         {
           "file": "ui/foundations.css",
-          "line": 40,
+          "line": 41,
           "property": "padding"
         }
       ],
@@ -1809,7 +1487,7 @@
       "occurrences": [
         {
           "file": "ui/foundations.css",
-          "line": 40,
+          "line": 41,
           "property": "padding"
         }
       ],
@@ -1821,17 +1499,17 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 18,
+          "line": 21,
           "property": "right"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 72,
+          "line": 75,
           "property": "margin-bottom"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 80,
+          "line": 81,
           "property": "margin-left"
         },
         {
@@ -1851,52 +1529,52 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 476,
+          "line": 478,
           "property": "-moz-column-gap"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 478,
+          "line": 479,
           "property": "column-gap"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 490,
+          "line": 491,
           "property": "row-gap"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 536,
+          "line": 538,
           "property": "border-radius"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 541,
+          "line": 542,
           "property": "border-bottom-right-radius"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 545,
+          "line": 547,
           "property": "border-bottom-left-radius"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 551,
+          "line": 553,
           "property": "border-bottom-left-radius"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 554,
+          "line": 556,
           "property": "border-top-left-radius"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 560,
+          "line": 562,
           "property": "border-bottom-right-radius"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 562,
+          "line": 563,
           "property": "border-top-right-radius"
         },
         {
@@ -1926,12 +1604,12 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 754,
+          "line": 757,
           "property": "padding-bottom"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 756,
+          "line": 757,
           "property": "padding-top"
         },
         {
@@ -1941,17 +1619,17 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 867,
+          "line": 878,
           "property": "height"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 872,
+          "line": 884,
           "property": "width"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 1069,
+          "line": 1070,
           "property": "border-radius"
         },
         {
@@ -2013,12 +1691,12 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 745,
+          "line": 747,
           "property": "padding-bottom"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 747,
+          "line": 748,
           "property": "padding-top"
         }
       ],
@@ -2030,7 +1708,7 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 71,
+          "line": 72,
           "property": "margin-bottom"
         },
         {
@@ -2055,12 +1733,12 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 766,
+          "line": 768,
           "property": "padding-left"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 772,
+          "line": 773,
           "property": "padding-top"
         }
       ],
@@ -2072,7 +1750,7 @@
       "occurrences": [
         {
           "file": "ui/foundations.css",
-          "line": 40,
+          "line": 41,
           "property": "padding"
         }
       ],
@@ -2084,7 +1762,7 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 753,
+          "line": 754,
           "property": "padding-bottom"
         },
         {
@@ -2101,7 +1779,7 @@
       "occurrences": [
         {
           "file": "ui/page-examples.css",
-          "line": 57,
+          "line": 58,
           "property": "letter-spacing"
         }
       ],
@@ -2138,7 +1816,7 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 77,
+          "line": 81,
           "property": "margin-bottom"
         },
         {
@@ -2153,7 +1831,7 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 254,
+          "line": 255,
           "property": "width"
         },
         {
@@ -2163,7 +1841,7 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 482,
+          "line": 484,
           "property": "column-gap"
         },
         {
@@ -2173,12 +1851,12 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 484,
+          "line": 485,
           "property": "column-gap"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 518,
+          "line": 520,
           "property": "border-radius"
         },
         {
@@ -2208,22 +1886,22 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 759,
+          "line": 760,
           "property": "padding-bottom"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 759,
+          "line": 760,
           "property": "padding-top"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 763,
+          "line": 765,
           "property": "padding-bottom"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 771,
+          "line": 772,
           "property": "padding-left"
         },
         {
@@ -2233,7 +1911,7 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 773,
+          "line": 775,
           "property": "padding-top"
         },
         {
@@ -2243,22 +1921,22 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 1064,
+          "line": 1067,
           "property": "padding-right"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 1109,
+          "line": 1112,
           "property": "flex-basis"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 1111,
+          "line": 1112,
           "property": "height"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 1112,
+          "line": 1114,
           "property": "width"
         },
         {
@@ -2288,12 +1966,12 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 1188,
+          "line": 1189,
           "property": "padding-bottom"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 1193,
+          "line": 1196,
           "property": "padding-top"
         }
       ],
@@ -2310,12 +1988,12 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 41,
+          "line": 45,
           "property": "margin-left"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 42,
+          "line": 46,
           "property": "margin-right"
         },
         {
@@ -2330,7 +2008,7 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 251,
+          "line": 252,
           "property": "width"
         },
         {
@@ -2367,7 +2045,7 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 775,
+          "line": 776,
           "property": "padding-top"
         }
       ],
@@ -2401,22 +2079,22 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 38,
+          "line": 42,
           "property": "margin-left"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 39,
+          "line": 42,
           "property": "margin-right"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 75,
+          "line": 77,
           "property": "margin-bottom"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 83,
+          "line": 84,
           "property": "margin-left"
         },
         {
@@ -2436,17 +2114,17 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 481,
+          "line": 482,
           "property": "-moz-column-gap"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 481,
+          "line": 482,
           "property": "column-gap"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 491,
+          "line": 493,
           "property": "row-gap"
         },
         {
@@ -2466,7 +2144,7 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 757,
+          "line": 759,
           "property": "padding-bottom"
         },
         {
@@ -2481,7 +2159,7 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 769,
+          "line": 771,
           "property": "padding-left"
         },
         {
@@ -2523,7 +2201,7 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 242,
+          "line": 243,
           "property": "width"
         },
         {
@@ -2589,7 +2267,7 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 257,
+          "line": 258,
           "property": "width"
         },
         {
@@ -2633,7 +2311,7 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 245,
+          "line": 246,
           "property": "width"
         },
         {
@@ -2660,12 +2338,12 @@
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 248,
+          "line": 249,
           "property": "width"
         },
         {
           "file": "ui/utilities-components.css",
-          "line": 760,
+          "line": 762,
           "property": "padding-bottom"
         }
       ],
@@ -2677,7 +2355,7 @@
       "occurrences": [
         {
           "file": "ui/utilities-components.css",
-          "line": 762,
+          "line": 763,
           "property": "padding-bottom"
         }
       ],

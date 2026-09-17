@@ -23,8 +23,8 @@
   pointer-events: none;
   width: var(--habr-size-16);
   position: absolute;
-  top: 1px;
-  bottom: 1px;
+  top: var(--habr-size-1);
+  bottom: var(--habr-size-1);
 }
 .tabs:after {
   background: linear-gradient(to left, var(--background-primary) 30%, transparent 100%);
@@ -46,7 +46,7 @@
 }
 .tabs-padding-area {
   padding-left: var(--habr-space-16);
-  padding-right: 2px;
+  padding-right: var(--habr-space-2);
 }
 
 .tab-item {
@@ -68,7 +68,7 @@
   background-color: transparent;
   border: none;
   align-items: center;
-  margin: 2px 0;
+  margin: var(--habr-space-2) 0;
   padding: 0;
   font-family: Fira Sans, sans-serif;
   font-size: .875rem;
@@ -86,10 +86,10 @@
   background-color: var(--accent-primary);
   content: "";
   width: 100%;
-  height: 2px;
+  height: var(--habr-size-2);
   display: block;
   position: absolute;
-  bottom: -2px;
+  bottom: var(--habr-size-negative-2);
   left: 0;
 }
 .tab-link.disabled {
@@ -102,7 +102,7 @@
 .tab-counter { color: var(--accent-primary); margin-left: var(--habr-space-4); }
 .tab-counter-new { color: var(--accent-positive); margin-left: var(--habr-space-4); }
 
-.tabs-dropdown { position: relative; bottom: 1px; }
+.tabs-dropdown { position: relative; bottom: var(--habr-size-1); }
 
 @media (min-width: 1024px) {
   .tabs { overflow-x: visible; }
@@ -136,7 +136,7 @@
   height: auto;
   margin: 0;          /* базовый .tab-link ставит 2px сверху/снизу — это высота
                          Large (44); у Small в Figma символ ровно 22 = 2+18+2 */
-  padding: 2px 0;
+  padding: var(--habr-space-2) 0;
   color: var(--text-secondary);
   font-family: inherit;
   font-size: .875rem;
@@ -152,7 +152,7 @@
 .tab-link.size-small.active { color: var(--accent-primary); }
 .tab-link.size-small.active:after {
   background-color: transparent;
-  border-bottom: 1px dashed var(--accent-primary);
+  border-bottom: var(--habr-border-width-1) dashed var(--accent-primary);
   height: 0;
   bottom: 0;
 }
@@ -225,4 +225,4 @@
    содержимого). Ниже только focus — как дизайн-намерение, не как текущее
    поведение продукта. Loading не реконструирован: спиннер требует разметки,
    которой в production не наблюдалось. */
-.tab-link:focus-visible { outline: 2px solid var(--accent-primary); outline-offset: 2px; border-radius: 6px; }
+.tab-link:focus-visible { outline: var(--habr-border-width-2) solid var(--accent-primary); outline-offset: 2px; border-radius: var(--habr-radius-6); }

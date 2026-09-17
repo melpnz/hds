@@ -3,7 +3,13 @@
   "product": "courses",
   "namespace": "courses",
   "baseUnit": "4px",
+  "allowedOffGrid": [
+    "1px",
+    "2px",
+    "6px"
+  ],
   "naming": "--courses-<category>-<resolved-px-value>",
+  "normalizationDecisions": [],
   "categories": [
     "space",
     "size",
@@ -13,6 +19,23 @@
     "border-width"
   ],
   "tokens": {
+    "border-width": {
+      "1": {
+        "$type": "dimension",
+        "$value": "1px",
+        "cssVariable": "--courses-border-width-1"
+      },
+      "2": {
+        "$type": "dimension",
+        "$value": "2px",
+        "cssVariable": "--courses-border-width-2"
+      },
+      "6": {
+        "$type": "dimension",
+        "$value": "6px",
+        "cssVariable": "--courses-border-width-6"
+      }
+    },
     "font-size": {
       "12": {
         "$type": "dimension",
@@ -68,6 +91,16 @@
       }
     },
     "radius": {
+      "2": {
+        "$type": "dimension",
+        "$value": "2px",
+        "cssVariable": "--courses-radius-2"
+      },
+      "6": {
+        "$type": "dimension",
+        "$value": "6px",
+        "cssVariable": "--courses-radius-6"
+      },
       "8": {
         "$type": "dimension",
         "$value": "8px",
@@ -90,10 +123,25 @@
       }
     },
     "size": {
+      "1": {
+        "$type": "dimension",
+        "$value": "1px",
+        "cssVariable": "--courses-size-1"
+      },
+      "2": {
+        "$type": "dimension",
+        "$value": "2px",
+        "cssVariable": "--courses-size-2"
+      },
       "4": {
         "$type": "dimension",
         "$value": "4px",
         "cssVariable": "--courses-size-4"
+      },
+      "6": {
+        "$type": "dimension",
+        "$value": "6px",
+        "cssVariable": "--courses-size-6"
       },
       "8": {
         "$type": "dimension",
@@ -295,6 +343,21 @@
         "$value": "1124px",
         "cssVariable": "--courses-size-1124"
       },
+      "negative-1": {
+        "$type": "dimension",
+        "$value": "-1px",
+        "cssVariable": "--courses-size-negative-1"
+      },
+      "negative-2": {
+        "$type": "dimension",
+        "$value": "-2px",
+        "cssVariable": "--courses-size-negative-2"
+      },
+      "negative-6": {
+        "$type": "dimension",
+        "$value": "-6px",
+        "cssVariable": "--courses-size-negative-6"
+      },
       "negative-12": {
         "$type": "dimension",
         "$value": "-12px",
@@ -307,10 +370,25 @@
       }
     },
     "space": {
+      "1": {
+        "$type": "dimension",
+        "$value": "1px",
+        "cssVariable": "--courses-space-1"
+      },
+      "2": {
+        "$type": "dimension",
+        "$value": "2px",
+        "cssVariable": "--courses-space-2"
+      },
       "4": {
         "$type": "dimension",
         "$value": "4px",
         "cssVariable": "--courses-space-4"
+      },
+      "6": {
+        "$type": "dimension",
+        "$value": "6px",
+        "cssVariable": "--courses-space-6"
       },
       "8": {
         "$type": "dimension",
@@ -351,6 +429,11 @@
         "$type": "dimension",
         "$value": "64px",
         "cssVariable": "--courses-space-64"
+      },
+      "negative-1": {
+        "$type": "dimension",
+        "$value": "-1px",
+        "cssVariable": "--courses-space-negative-1"
       },
       "negative-20": {
         "$type": "dimension",

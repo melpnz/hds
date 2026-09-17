@@ -56,7 +56,7 @@ a:hover {
    интерактивный элемент должен получать стандартный контур фокуса Habr,
    ему нужен именно этот атрибут, а не просто клавиатурная фокусируемость. */
 [data-navigatable]:focus {
-  outline: 1px solid var(--accent-primary);
+  outline: var(--habr-border-width-1) solid var(--accent-primary);
 }
 
 /* Accessibility utility required by the copy-safe Checkbox and Radio markup.
@@ -64,8 +64,8 @@ a:hover {
    examples and consumers of ui/habr.css did not receive it. */
 .visually-hidden {
   position: absolute;
-  width: 1px;
-  height: 1px;
+  width: var(--habr-size-1);
+  height: var(--habr-size-1);
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;

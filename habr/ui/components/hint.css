@@ -45,10 +45,10 @@
 }
 .base-hint:before {
   background-color: var(--background-primary);
-  border: 1px solid var(--complexity-medium);
-  width: calc(100% - 2px);
-  height: calc(100% - 2px);
-  top: 1px; left: 1px;
+  border: var(--habr-border-width-1) solid var(--complexity-medium);
+  width: calc(100% - var(--habr-size-2));
+  height: calc(100% - var(--habr-size-2));
+  top: var(--habr-size-1); left: var(--habr-size-1);
 }
 .base-hint:after {
   background-color: hsl(from var(--complexity-medium) h s l / 20%);
@@ -81,21 +81,21 @@
   display: block;
   position: absolute;
   top: 0;
-  left: 2px;
+  left: var(--habr-size-2);
   transform: rotate(45deg);
 }
 .base-hint .arrow:before { background-color: var(--background-primary); }
 .base-hint .arrow:after {
   background-color: hsl(from var(--complexity-medium) h s l / 20%);
-  border: 1px solid var(--complexity-medium);
+  border: var(--habr-border-width-1) solid var(--complexity-medium);
 }
 .base-hint .arrow-top    { bottom: var(--habr-size-negative-8); left: 50%; transform: translate(-50%); }
-.base-hint .arrow-top:after, .base-hint .arrow-top:before { top: -23px; left: 1px; }
-.base-hint .arrow-bottom { top: -6px; left: 50%; transform: translate(-50%); }
+.base-hint .arrow-top:after, .base-hint .arrow-top:before { top: -23px; left: var(--habr-size-1); }
+.base-hint .arrow-bottom { top: var(--habr-size-negative-6); left: 50%; transform: translate(-50%); }
 .base-hint .arrow-left   { top: 50%; left: auto; right: var(--habr-size-negative-12); transform: translateY(-50%) rotate(-90deg); }
-.base-hint .arrow-left:after, .base-hint .arrow-left:before { top: -23px; left: 1px; }
+.base-hint .arrow-left:after, .base-hint .arrow-left:before { top: -23px; left: var(--habr-size-1); }
 .base-hint .arrow-right  { top: 50%; left: var(--habr-size-negative-12); transform: translateY(-50%) rotate(90deg); }
-.base-hint .arrow-right:after, .base-hint .arrow-right:before { top: -23px; left: 1px; }
+.base-hint .arrow-right:after, .base-hint .arrow-right:before { top: -23px; left: var(--habr-size-1); }
 .base-hint .arrow-top.arrow-start, .base-hint .arrow-bottom.arrow-start { left: var(--habr-size-12); transform: translate(0); }
 .base-hint .arrow-top.arrow-end, .base-hint .arrow-bottom.arrow-end { left: auto; right: var(--habr-size-12); transform: translate(0); }
 .base-hint .arrow-left.arrow-start { top: var(--habr-size-12); transform: rotate(-90deg); }
@@ -131,7 +131,7 @@
   background: transparent;
   border: 0;
   padding: 0;
-  border: 6px solid var(--label-dodger-blue);
+  border: var(--habr-border-width-6) solid var(--label-dodger-blue);
   border-radius: 100%;
   width: var(--habr-size-16);
   height: var(--habr-size-16);
@@ -140,7 +140,7 @@
 .hint-trigger-button:not(:focus-visible) { outline: none; }
 .hint-trigger-button:after {
   content: "";
-  border: 4px solid var(--label-dodger-blue);
+  border: var(--habr-border-width-4) solid var(--label-dodger-blue);
   pointer-events: none;
   border-radius: 9999px;
   width: var(--habr-size-16);
@@ -162,7 +162,7 @@
      тем же, что в исходнике, — без модификатора типа рендер не изменился. */
   --informer-accent: var(--label-dodger-blue);
   width: var(--informer-hint-width);
-  border: 1px solid hsl(from var(--informer-accent) h s l / 60%);
+  border: var(--habr-border-width-1) solid hsl(from var(--informer-accent) h s l / 60%);
   color: var(--text-main);
   box-sizing: border-box;
   background-color: var(--background-primary);

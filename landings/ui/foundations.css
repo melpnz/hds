@@ -6,7 +6,7 @@
   --hds-weight-medium: 500;
   --hds-weight-semibold: 600;
 
-  --hds-space-1: 10px;
+  --hds-space-1: var(--landings-space-8);
   --hds-space-2: var(--landings-space-20);
   --hds-space-3: var(--landings-space-40);
   --hds-space-4: 50px;
@@ -74,11 +74,11 @@ img { max-width: 100%; }
 .hds-grid--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 .hds-muted { color: var(--hds-color-text-muted); }
 .hds-small { font-size: var(--hds-text-small); }
-.hds-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+.hds-sr-only { position: absolute; width: var(--landings-size-1); height: var(--landings-size-1); padding: 0; margin: var(--landings-space-negative-1); overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 
 @media (max-width: 991px) {
   :root {
-    --hds-page-gutter: 30px;
+    --hds-page-gutter: var(--landings-space-32);
     --hds-section-space: var(--landings-space-120);
     --hds-text-body: var(--landings-size-16);
     --hds-text-h4: var(--landings-size-20);

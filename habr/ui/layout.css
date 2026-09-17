@@ -84,7 +84,7 @@
   line-height: 0;
   display: flex;
 }
-.tm-header__burger { top: -2px; }
+.tm-header__burger { top: var(--habr-size-negative-2); }
 
 .tm-header__logo-wrap { line-height: 0; position: relative; }
 .tm-header__logo { color: var(--background-primary); height: 22px; display: block; }
@@ -102,7 +102,7 @@
 
 /* Разделитель и «Все потоки» — единственные элементы, которые адаптив
    именно ПРЯЧЕТ, а не ужимает. */
-.tm-header__divider { background: var(--icon-primary); min-width: 1px; min-height: var(--habr-size-16); }
+.tm-header__divider { background: var(--icon-primary); min-width: var(--habr-size-1); min-height: var(--habr-size-16); }
 .tm-header__all-flows {
   min-height: var(--habr-size-12);
   color: var(--header-text);
@@ -128,11 +128,11 @@
 .tm-header .burger-button .line {
   background-color: var(--header-text);
   width: 18px;
-  height: 2px;
+  height: var(--habr-size-2);
   transition: transform .4s cubic-bezier(.68, -.6, .32, 1.6);
   position: absolute;
 }
-.tm-header .burger-button .line.top    { transform-origin: 0 0;     top: 6px;  left: 3px; }
+.tm-header .burger-button .line.top    { transform-origin: 0 0;     top: var(--habr-size-6);  left: 3px; }
 .tm-header .burger-button .line.middle { transform-origin: 0 100%;  top: var(--habr-size-12); left: 3px; }
 .tm-header .burger-button .line.bottom { transform-origin: 0 0;     top: 18px; left: 3px; }
 /* «крестик» только на десктопе: на мобильном меню открывается шторкой,
@@ -161,11 +161,11 @@
 .tm-header-user-menu__login {
   box-sizing: border-box;
   cursor: pointer;
-  border: 1px solid transparent;
+  border: var(--habr-border-width-1) solid transparent;
   border-color: var(--accent-primary);
   background-color: var(--accent-primary);
   color: var(--background-primary);
-  border-radius: 3px;
+  border-radius: var(--habr-radius-4);
   align-self: self-start;
   height: 2rem;
   padding: var(--habr-space-8) 14px;
@@ -199,7 +199,7 @@
 }
 @media (max-width: 767px) {
   .tm-header .header-feature {
-    border-bottom: 1px solid hsl(from var(--icon-primary) h s l / 40%);
+    border-bottom: var(--habr-border-width-1) solid hsl(from var(--icon-primary) h s l / 40%);
     flex: 0 0 auto;
     width: 100%;
     height: var(--habr-size-32);
@@ -219,7 +219,7 @@
   display: flex;
 }
 .tm-header .header-feature .link:hover { color: var(--header-megapost-anakiwa); }
-.tm-header .header-feature .icon { margin-right: var(--habr-space-8); position: relative; top: -1px; }
+.tm-header .header-feature .icon { margin-right: var(--habr-space-8); position: relative; top: var(--habr-size-negative-1); }
 .tm-header .header-feature .adv {
   color: var(--icon-primary);
   letter-spacing: 0;
@@ -228,7 +228,7 @@
   font-size: .625rem;
   line-height: .75rem;
   position: relative;
-  top: 2px;
+  top: var(--habr-size-2);
 }
 
 /* --- две колонки: главная + сайдбар 300, сайдбар НЕ липкий ------------- */

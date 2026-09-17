@@ -21,6 +21,18 @@ const reportPath = path.join(productRoot, "machine", "reports", "dimension-excep
 const reportMarkdownPath = path.join(productRoot, "machine", "reports", "dimension-exceptions.md");
 const tokenCssPath = path.join(uiRoot, "dimension-tokens.css");
 const baseUnit = 4;
+const allowedOffGrid = new Set([1, 2, 6]);
+const normalizationDecisions = {
+  habr: [{ category: "radius", from: "3px", to: "4px", scope: "all radius declarations" }],
+  career: [],
+  courses: [],
+  landings: [
+    { property: "--hds-space-1", from: "10px", to: "8px" },
+    { property: "--hds-page-gutter", from: "30px", to: "32px" },
+    { from: "42px", to: "40px", scope: "all dimension and font-size declarations" },
+    { from: "26px", to: "24px", scope: "all dimension declarations" },
+  ],
+};
 
 const excludedFiles = new Set([
   "dimension-tokens.css",
@@ -59,8 +71,17 @@ function categoryFor(property) {
   if (prop === "font-size") return "font-size";
   if (prop === "line-height") return "line-height";
   if (/^(width|height|min-width|max-width|min-height|max-height|top|right|bottom|left|inset|flex-basis)$/.test(prop)) return "size";
-  if (/border.*width/.test(prop)) return "border-width";
+  if (/^(border|border-(top|right|bottom|left)|outline)$/.test(prop) || /(?:border|outline).*width/.test(prop)) return "border-width";
   return null;
+}
+
+function normalizedValue(category, property, value) {
+  const decision = normalizationDecisions[product].find(item =>
+    (!item.category || item.category === category) &&
+    (!item.property || item.property === property) &&
+    parseFloat(item.from) === value
+  );
+  return decision ? parseFloat(decision.to) : value;
 }
 
 function lineAt(text, index) {
@@ -115,7 +136,9 @@ function transformCss(file, source, tokens, exceptions) {
       const number = Number(rawNumber);
       const absolute = Math.abs(number);
       if (absolute === 0) return literal;
-      if (!Number.isInteger(absolute / baseUnit)) {
+      const normalized = normalizedValue(category, property, absolute);
+      const isSupported = Number.isInteger(normalized / baseUnit) || allowedOffGrid.has(normalized);
+      if (!isSupported) {
         addException(exceptions, "not-on-4px-grid", literal, file, valueOffset + localOffset, property, source);
         return literal;
       }
@@ -123,7 +146,7 @@ function transformCss(file, source, tokens, exceptions) {
         addException(exceptions, "composite-or-unsupported-property", literal, file, valueOffset + localOffset, property, source);
         return literal;
       }
-      const cssVariable = addToken(tokens, category, absolute, number < 0);
+      const cssVariable = addToken(tokens, category, normalized, number < 0);
       return `var(${cssVariable})`;
     });
     if (nextValue === value) return whole;
@@ -161,7 +184,7 @@ function renderReportMarkdown(report) {
   const lines = [
     `# ${product} · исключения размерных токенов`,
     "",
-    `Базовая сетка: **${report.baseUnit}**. Значения не изменялись и требуют отдельного дизайнерского решения.`,
+    `Базовая сетка: **${report.baseUnit}**; разрешённые исключения: **1px, 2px, 6px**. Оставшиеся значения не изменялись и требуют отдельного дизайнерского решения.`,
     "",
     `Всего употреблений: **${report.summary.exceptionOccurrences}**; уникальных сочетаний причины и значения: **${report.summary.exceptionKinds}**.`,
     "",
@@ -188,6 +211,11 @@ function ensureImport(source, entryFile) {
 
 const existing = fs.existsSync(tokenJsonPath) ? JSON.parse(fs.readFileSync(tokenJsonPath, "utf8")) : null;
 const tokens = structuredClone(existing?.tokens ?? {});
+for (const value of allowedOffGrid) {
+  addToken(tokens, "size", value, false);
+  addToken(tokens, "space", value, false);
+}
+addToken(tokens, "border-width", 1, false);
 const exceptions = new Map();
 const files = walk(uiRoot).filter((file) => file.endsWith(".css") && !excludedFiles.has(slash(path.relative(uiRoot, file))));
 let changedFiles = 0;
@@ -210,7 +238,7 @@ const report = {
   baseUnit: "4px",
   scope: "ui/**/*.css excluding token definitions and theme source files",
   policy: {
-    migrated: "Absolute px dimensions divisible by 4 in supported declaration properties.",
+    migrated: "Absolute px dimensions divisible by 4, plus approved 1px, 2px and 6px exceptions, in supported declaration properties.",
     preserved: "Existing computed values, selectors, class names and DOM contracts.",
     exceptions: "Relative units, non-grid values and composite properties require explicit semantic review.",
   },
@@ -226,7 +254,9 @@ const tokenDocument = {
   product,
   namespace: product,
   baseUnit: "4px",
+  allowedOffGrid: ["1px", "2px", "6px"],
   naming: `--${product}-<category>-<resolved-px-value>`,
+  normalizationDecisions: normalizationDecisions[product],
   categories: ["space", "size", "radius", "font-size", "line-height", "border-width"],
   tokens: sortedTokens,
 };

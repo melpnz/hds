@@ -17,7 +17,7 @@ for (const [role, values] of Object.entries(styleProfile.colors?.roles || {})) {
     errors.push(`style-profile: stale color role ${role}`);
   }
 }
-if (styleProfile.layout?.container?.desktop !== '1096px with 24px padding' || styleProfile.shape?.radii?.control !== '3px') {
+if (styleProfile.layout?.container?.desktop !== '1096px with 24px padding' || styleProfile.shape?.radii?.control !== '4px') {
   errors.push('style-profile: layout or control geometry is stale');
 }
 const expectedMigrationMetrics = {

@@ -17,8 +17,8 @@
   content: "";
   width: var(--habr-size-16);
   position: absolute;
-  top: -1px;
-  bottom: -1px;
+  top: var(--habr-size-negative-1);
+  bottom: var(--habr-size-negative-1);
   left: 0;
 }
 .tm-notice__inner { width: 100%; }
@@ -44,9 +44,9 @@
 }
 .tm-notice_warning:before { background: transparent; }
 .tm-notice_info {
-  border: 1px solid hsl(from var(--icon-primary) h s l / 40%);
+  border: var(--habr-border-width-1) solid hsl(from var(--icon-primary) h s l / 40%);
   box-sizing: border-box;
-  border-radius: 3px;
+  border-radius: var(--habr-radius-4);
   padding: var(--habr-space-16);
 }
 .tm-notice_info:before { content: none; }

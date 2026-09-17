@@ -64,12 +64,12 @@
   display: inline-flex;
 }
 /* внутренний отступ текстового блока (padding_txt_ver): 4 + 2 + 18 + 2 + 4 = 30 */
-.tm-chip__text { padding: 2px 0; }
+.tm-chip__text { padding: var(--habr-space-2) 0; }
 .tm-chip__body { align-items: center; gap: var(--habr-space-8); display: flex; }
 .tm-chip__icon { fill: currentColor; flex: none; width: var(--habr-size-24); height: var(--habr-size-24); }
 /* Заполнение плитки на время, пока картинки хаба нет, — .avatar-default
    в avatar.css; здесь только геометрия. */
-.tm-chip__avatar { object-fit: cover; border-radius: 6px; flex: none; width: var(--habr-size-24); height: var(--habr-size-24); }
+.tm-chip__avatar { object-fit: cover; border-radius: var(--habr-radius-6); flex: none; width: var(--habr-size-24); height: var(--habr-size-24); }
 
 /* Поля зависят от того, что стоит по краям — в Figma это отдельные
    значения токенов, здесь выведены из состава чипа. */
@@ -142,7 +142,7 @@ button.tm-chip__icon {
   justify-content: center;
   gap: var(--habr-space-4);
   height: 30px;
-  padding: 6px var(--habr-space-12);
+  padding: var(--habr-space-6) var(--habr-space-12);
   font-family: inherit;
   font-size: .75rem;
   font-weight: 700;

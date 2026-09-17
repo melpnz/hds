@@ -4,16 +4,102 @@
   "baseUnit": "4px",
   "scope": "ui/**/*.css excluding token definitions and theme source files",
   "policy": {
-    "migrated": "Absolute px dimensions divisible by 4 in supported declaration properties.",
+    "migrated": "Absolute px dimensions divisible by 4, plus approved 1px, 2px and 6px exceptions, in supported declaration properties.",
     "preserved": "Existing computed values, selectors, class names and DOM contracts.",
     "exceptions": "Relative units, non-grid values and composite properties require explicit semantic review."
   },
   "summary": {
-    "tokenCount": 60,
-    "exceptionKinds": 51,
-    "exceptionOccurrences": 138
+    "tokenCount": 70,
+    "exceptionKinds": 47,
+    "exceptionOccurrences": 104
   },
   "exceptions": [
+    {
+      "value": "-2px",
+      "reason": "composite-or-unsupported-property",
+      "occurrences": [
+        {
+          "file": "ui/elements.css",
+          "line": 100,
+          "property": "transform"
+        },
+        {
+          "file": "ui/elements.css",
+          "line": 100,
+          "property": "transform"
+        },
+        {
+          "file": "ui/elements.css",
+          "line": 103,
+          "property": "transform"
+        },
+        {
+          "file": "ui/elements.css",
+          "line": 103,
+          "property": "transform"
+        },
+        {
+          "file": "ui/foundations.css",
+          "line": 55,
+          "property": "letter-spacing"
+        },
+        {
+          "file": "ui/foundations.css",
+          "line": 56,
+          "property": "letter-spacing"
+        },
+        {
+          "file": "ui/organisms.css",
+          "line": 10,
+          "property": "letter-spacing"
+        }
+      ],
+      "total": 7
+    },
+    {
+      "value": "1px",
+      "reason": "composite-or-unsupported-property",
+      "occurrences": [
+        {
+          "file": "ui/elements.css",
+          "line": 24,
+          "property": "transform"
+        },
+        {
+          "file": "ui/elements.css",
+          "line": 69,
+          "property": "transform"
+        }
+      ],
+      "total": 2
+    },
+    {
+      "value": "2px",
+      "reason": "composite-or-unsupported-property",
+      "occurrences": [
+        {
+          "file": "ui/elements.css",
+          "line": 135,
+          "property": "text-decoration-thickness"
+        },
+        {
+          "file": "ui/organisms.css",
+          "line": 47,
+          "property": "background-size"
+        },
+        {
+          "file": "ui/organisms.css",
+          "line": 47,
+          "property": "background-size"
+        },
+        {
+          "file": "ui/page-reconstructions.css",
+          "line": 63,
+          "property": "text-shadow"
+        }
+      ],
+      "total": 4
+    },
     {
       "value": "16px",
       "reason": "composite-or-unsupported-property",
@@ -172,60 +258,6 @@
       "total": 1
     },
     {
-      "value": "-1px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/foundations.css",
-          "line": 77,
-          "property": "margin"
-        }
-      ],
-      "total": 1
-    },
-    {
-      "value": "-2px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/elements.css",
-          "line": 100,
-          "property": "transform"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 100,
-          "property": "transform"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 103,
-          "property": "transform"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 103,
-          "property": "transform"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 55,
-          "property": "letter-spacing"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 56,
-          "property": "letter-spacing"
-        },
-        {
-          "file": "ui/organisms.css",
-          "line": 10,
-          "property": "letter-spacing"
-        }
-      ],
-      "total": 7
-    },
-    {
       "value": "-3px",
       "reason": "not-on-4px-grid",
       "occurrences": [
@@ -241,130 +273,6 @@
         }
       ],
       "total": 2
-    },
-    {
-      "value": "1px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/elements.css",
-          "line": 24,
-          "property": "transform"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 69,
-          "property": "transform"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 80,
-          "property": "border"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 97,
-          "property": "border"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 105,
-          "property": "top"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 105,
-          "property": "border"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 77,
-          "property": "width"
-        },
-        {
-          "file": "ui/foundations.css",
-          "line": 77,
-          "property": "height"
-        },
-        {
-          "file": "ui/organisms.css",
-          "line": 42,
-          "property": "border-bottom"
-        },
-        {
-          "file": "ui/organisms.css",
-          "line": 87,
-          "property": "border"
-        },
-        {
-          "file": "ui/organisms.css",
-          "line": 110,
-          "property": "border"
-        },
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 51,
-          "property": "border"
-        },
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 60,
-          "property": "border"
-        },
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 88,
-          "property": "border"
-        }
-      ],
-      "total": 14
-    },
-    {
-      "value": "2px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/elements.css",
-          "line": 100,
-          "property": "border-right"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 100,
-          "property": "border-bottom"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 126,
-          "property": "border-width"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 126,
-          "property": "border-width"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 135,
-          "property": "text-decoration-thickness"
-        },
-        {
-          "file": "ui/organisms.css",
-          "line": 47,
-          "property": "background-size"
-        },
-        {
-          "file": "ui/organisms.css",
-          "line": 47,
-          "property": "background-size"
-        },
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 63,
-          "property": "text-shadow"
-        }
-      ],
-      "total": 8
     },
     {
       "value": "3px",
@@ -466,48 +374,6 @@
       "total": 2
     },
     {
-      "value": "6px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/elements.css",
-          "line": 37,
-          "property": "padding"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 126,
-          "property": "height"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 127,
-          "property": "top"
-        },
-        {
-          "file": "ui/elements.css",
-          "line": 127,
-          "property": "right"
-        },
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 37,
-          "property": "margin-right"
-        },
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 51,
-          "property": "padding"
-        },
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 60,
-          "property": "padding"
-        }
-      ],
-      "total": 7
-    },
-    {
       "value": "9px",
       "reason": "not-on-4px-grid",
       "occurrences": [
@@ -549,17 +415,12 @@
           "property": "width"
         },
         {
-          "file": "ui/foundations.css",
-          "line": 9,
-          "property": "--hds-space-1"
-        },
-        {
           "file": "ui/page-reconstructions.css",
           "line": 51,
           "property": "padding"
         }
       ],
-      "total": 6
+      "total": 5
     },
     {
       "value": "14px",
@@ -642,23 +503,6 @@
       "total": 1
     },
     {
-      "value": "26px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/organisms.css",
-          "line": 87,
-          "property": "width"
-        },
-        {
-          "file": "ui/organisms.css",
-          "line": 88,
-          "property": "height"
-        }
-      ],
-      "total": 2
-    },
-    {
       "value": "30px",
       "reason": "not-on-4px-grid",
       "occurrences": [
@@ -678,54 +522,12 @@
           "property": "height"
         },
         {
-          "file": "ui/foundations.css",
-          "line": 81,
-          "property": "--hds-page-gutter"
-        },
-        {
           "file": "ui/page-reconstructions.css",
           "line": 3,
           "property": "padding"
         }
       ],
-      "total": 5
-    },
-    {
-      "value": "42px",
-      "reason": "not-on-4px-grid",
-      "occurrences": [
-        {
-          "file": "ui/elements.css",
-          "line": 106,
-          "property": "min-height"
-        },
-        {
-          "file": "ui/organisms.css",
-          "line": 10,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/organisms.css",
-          "line": 109,
-          "property": "width"
-        },
-        {
-          "file": "ui/organisms.css",
-          "line": 110,
-          "property": "height"
-        },
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 42,
-          "property": "font-size"
-        },
-        {
-          "file": "ui/page-reconstructions.css",
-          "line": 89,
-          "property": "max-height"
-        }
-      ],
-      "total": 6
+      "total": 4
     },
     {
       "value": "46px",

@@ -20,14 +20,14 @@
   --doc-stub-bg: repeating-linear-gradient(135deg, #f6f6f7 0 var(--courses-size-12), #efeff1 var(--courses-size-12) var(--courses-size-24));
   align-items: center;
   background: var(--doc-stub-bg);
-  border: 1px dashed var(--doc-stub-line);
+  border: var(--courses-border-width-1) dashed var(--doc-stub-line);
   border-radius: var(--courses-radius-24);
   box-sizing: border-box;
   color: #6b6d74;
   display: flex;
   flex-direction: column;
   font: 400 13px/1.45 Inter, sans-serif;
-  gap: 6px;
+  gap: var(--courses-space-6);
   justify-content: center;
   padding: var(--courses-space-24);
   text-align: center;
@@ -64,12 +64,12 @@
 }
 .doc-frame__box {
   background: #fff;
-  border: 1px solid var(--doc-line, #e4e4e7);
+  border: var(--courses-border-width-1) solid var(--doc-line, #e4e4e7);
   border-radius: var(--courses-radius-8);
   height: var(--doc-frame-h, var(--courses-size-640));
   overflow: hidden;
   position: relative;
-  width: calc(var(--doc-frame-w) * var(--doc-frame-s) * 1px);
+  width: calc(var(--doc-frame-w) * var(--doc-frame-s) * var(--courses-size-1));
 }
 .doc-frame__box iframe {
   border: 0;
@@ -79,7 +79,7 @@
   top: 0;
   transform: scale(var(--doc-frame-s));
   transform-origin: 0 0;
-  width: calc(var(--doc-frame-w) * 1px);
+  width: calc(var(--doc-frame-w) * var(--courses-size-1));
 }
 .doc-frame--live .doc-frame__box {
   --doc-frame-h: var(--courses-size-860);

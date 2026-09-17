@@ -3,7 +3,34 @@
   "product": "landings",
   "namespace": "landings",
   "baseUnit": "4px",
+  "allowedOffGrid": [
+    "1px",
+    "2px",
+    "6px"
+  ],
   "naming": "--landings-<category>-<resolved-px-value>",
+  "normalizationDecisions": [
+    {
+      "property": "--hds-space-1",
+      "from": "10px",
+      "to": "8px"
+    },
+    {
+      "property": "--hds-page-gutter",
+      "from": "30px",
+      "to": "32px"
+    },
+    {
+      "from": "42px",
+      "to": "40px",
+      "scope": "all dimension and font-size declarations"
+    },
+    {
+      "from": "26px",
+      "to": "24px",
+      "scope": "all dimension declarations"
+    }
+  ],
   "categories": [
     "space",
     "size",
@@ -13,11 +40,28 @@
     "border-width"
   ],
   "tokens": {
+    "border-width": {
+      "1": {
+        "$type": "dimension",
+        "$value": "1px",
+        "cssVariable": "--landings-border-width-1"
+      },
+      "2": {
+        "$type": "dimension",
+        "$value": "2px",
+        "cssVariable": "--landings-border-width-2"
+      }
+    },
     "font-size": {
       "20": {
         "$type": "dimension",
         "$value": "20px",
         "cssVariable": "--landings-font-size-20"
+      },
+      "40": {
+        "$type": "dimension",
+        "$value": "40px",
+        "cssVariable": "--landings-font-size-40"
       },
       "52": {
         "$type": "dimension",
@@ -65,6 +109,21 @@
       }
     },
     "size": {
+      "1": {
+        "$type": "dimension",
+        "$value": "1px",
+        "cssVariable": "--landings-size-1"
+      },
+      "2": {
+        "$type": "dimension",
+        "$value": "2px",
+        "cssVariable": "--landings-size-2"
+      },
+      "6": {
+        "$type": "dimension",
+        "$value": "6px",
+        "cssVariable": "--landings-size-6"
+      },
       "8": {
         "$type": "dimension",
         "$value": "8px",
@@ -267,10 +326,25 @@
       }
     },
     "space": {
+      "1": {
+        "$type": "dimension",
+        "$value": "1px",
+        "cssVariable": "--landings-space-1"
+      },
+      "2": {
+        "$type": "dimension",
+        "$value": "2px",
+        "cssVariable": "--landings-space-2"
+      },
       "4": {
         "$type": "dimension",
         "$value": "4px",
         "cssVariable": "--landings-space-4"
+      },
+      "6": {
+        "$type": "dimension",
+        "$value": "6px",
+        "cssVariable": "--landings-space-6"
       },
       "8": {
         "$type": "dimension",
@@ -321,6 +395,11 @@
         "$type": "dimension",
         "$value": "120px",
         "cssVariable": "--landings-space-120"
+      },
+      "negative-1": {
+        "$type": "dimension",
+        "$value": "-1px",
+        "cssVariable": "--landings-space-negative-1"
       }
     }
   }

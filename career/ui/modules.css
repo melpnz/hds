@@ -32,7 +32,7 @@
 .page-header__menu-toggle:hover { background: var(--color-ui-white-10); }
 .page-header__menu-toggle:active { background: var(--color-ui-white-24); }
 .page-header__menu-toggle:focus-visible {
-  outline: 2px solid var(--color-ui-primary-light);
+  outline: var(--career-border-width-2) solid var(--color-ui-primary-light);
   outline-offset: 2px;
 }
 .page-header__user { align-items: center; display: flex; gap: var(--career-space-8); margin-left: auto; }
@@ -42,7 +42,7 @@
 .page-header__link:active { color: var(--color-ui-primary-accent); }
 .page-header__link:focus-visible {
   border-radius: var(--career-radius-4);
-  outline: 2px solid var(--color-ui-primary-60);
+  outline: var(--career-border-width-2) solid var(--color-ui-primary-60);
   outline-offset: 2px;
 }
 .page-header__link[aria-current="page"] { color: var(--color-ui-gray-1); }
@@ -65,12 +65,12 @@
 .page-footer__link { color: var(--color-ui-gray-2); text-decoration: none; }
 .page-footer__link:hover { color: var(--color-ui-gray-1); }
 .page-footer__link:active { color: var(--color-ui-primary-accent); }
-.page-footer__link:focus-visible { border-radius: var(--career-radius-4); outline: 2px solid var(--color-ui-primary-60); outline-offset: 2px; }
+.page-footer__link:focus-visible { border-radius: var(--career-radius-4); outline: var(--career-border-width-2) solid var(--color-ui-primary-60); outline-offset: 2px; }
 .page-footer__social { align-items: center; display: flex; gap: var(--career-space-8); }
-.page-footer__social-link { align-items: center; border-radius: 6px; color: var(--color-ui-gray-3); display: inline-flex; height: var(--career-size-32); justify-content: center; width: var(--career-size-32); }
+.page-footer__social-link { align-items: center; border-radius: var(--career-radius-6); color: var(--color-ui-gray-3); display: inline-flex; height: var(--career-size-32); justify-content: center; width: var(--career-size-32); }
 .page-footer__social-link:hover { color: var(--color-ui-gray-2); }
 .page-footer__social-link:active { color: var(--color-ui-primary-accent); }
-.page-footer__social-link:focus-visible { outline: 2px solid var(--color-ui-primary-60); outline-offset: 2px; }
+.page-footer__social-link:focus-visible { outline: var(--career-border-width-2) solid var(--color-ui-primary-60); outline-offset: 2px; }
 
 /* SectionHeader ---------------------------------------------------------- */
 .section-header { align-items: flex-start; display: flex; gap: var(--career-space-16); justify-content: space-between; }
@@ -84,7 +84,7 @@
 /* ContentSection / EmptySection ----------------------------------------- */
 .content-section { display: grid; gap: var(--career-space-16); }
 .content-section__body { min-width: 0; }
-.content-section__footer { align-items: center; border-top: 1px solid var(--color-ui-gray-bg); display: flex; flex-wrap: wrap; gap: var(--career-space-8); padding-top: var(--career-space-16); }
+.content-section__footer { align-items: center; border-top: var(--career-border-width-1) solid var(--color-ui-gray-bg); display: flex; flex-wrap: wrap; gap: var(--career-space-8); padding-top: var(--career-space-16); }
 .empty-section { align-items: center; display: grid; justify-items: center; min-height: var(--career-size-220); padding: var(--career-space-32) var(--career-space-24); text-align: center; }
 .empty-section__illustration { display: block; height: var(--career-size-96); margin: 0 auto var(--career-space-16); max-width: 100%; width: var(--career-size-120); }
 .empty-section__title { color: var(--color-ui-gray-1); font: 600 18px/24px var(--font-base); margin: 0; }
@@ -98,7 +98,7 @@
 .sidebar-section__title { color: var(--color-ui-gray-1); font: 600 16px/24px var(--font-base); margin: 0; }
 .sidebar-section__description { color: var(--color-ui-gray-2); font: 400 14px/20px var(--font-base); margin: 0; }
 .sidebar-section__body { min-width: 0; }
-.sidebar-section__footer { border-top: 1px solid var(--color-ui-gray-bg); padding-top: var(--career-space-12); }
+.sidebar-section__footer { border-top: var(--career-border-width-1) solid var(--color-ui-gray-bg); padding-top: var(--career-space-12); }
 
 /* FilterPanel ------------------------------------------------------------ */
 .filter-panel { display: grid; gap: var(--career-space-24); margin: 0; }
@@ -112,11 +112,11 @@
   color: var(--color-ui-primary-accent);
   cursor: pointer;
   font: 400 14px/20px var(--font-base);
-  padding: 2px 0;
+  padding: var(--career-space-2) 0;
 }
 .filter-panel__reset:hover { color: var(--color-ui-primary); }
 .filter-panel__reset:active { color: var(--color-ui-gray-1); }
-.filter-panel__reset:focus-visible { outline: 2px solid var(--color-ui-primary-60); outline-offset: 2px; }
+.filter-panel__reset:focus-visible { outline: var(--career-border-width-2) solid var(--color-ui-primary-60); outline-offset: 2px; }
 .filter-panel__reset:disabled { color: var(--color-ui-gray-4); cursor: default; }
 .filter-panel__body { display: grid; gap: var(--career-space-24); }
 .filter-panel__group { border: 0; display: grid; gap: var(--career-space-8); margin: 0; min-width: 0; padding: 0; }
@@ -157,10 +157,10 @@
   overflow: hidden;
   width: 100%;
 }
-.filter-modal__header { align-items: center; border-bottom: 1px solid var(--color-ui-gray-bg); display: flex; gap: var(--career-space-16); min-height: var(--career-size-72); padding: var(--career-space-16) var(--career-space-16) var(--career-space-16) var(--career-space-24); }
+.filter-modal__header { align-items: center; border-bottom: var(--career-border-width-1) solid var(--color-ui-gray-bg); display: flex; gap: var(--career-space-16); min-height: var(--career-size-72); padding: var(--career-space-16) var(--career-space-16) var(--career-space-16) var(--career-space-24); }
 .filter-modal__title { color: var(--color-ui-gray-1); flex: 1 1 auto; font: 600 20px/24px var(--font-base); margin: 0; }
 .filter-modal__body { min-height: 0; overflow-y: auto; padding: var(--career-space-24); }
-.filter-modal__footer { background: var(--color-ui-white); border-top: 1px solid var(--color-ui-gray-bg); display: flex; gap: var(--career-space-8); padding: var(--career-space-16) var(--career-space-24); }
+.filter-modal__footer { background: var(--color-ui-white); border-top: var(--career-border-width-1) solid var(--color-ui-gray-bg); display: flex; gap: var(--career-space-8); padding: var(--career-space-16) var(--career-space-24); }
 .filter-modal__footer > * { flex: 1 1 0; }
 
 /* Modal is a viewport overlay; its mobile layout must not depend on a container. */
@@ -180,7 +180,7 @@
   .page-header__nav {
     background: var(--color-ui-white);
     display: grid;
-    gap: 2px;
+    gap: var(--career-space-2);
     grid-column: 1 / -1;
     margin: 0 var(--career-space-negative-12);
     overflow: visible;

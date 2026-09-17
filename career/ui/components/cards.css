@@ -14,7 +14,7 @@
    источник: _sources/career/source/css/base-section.DxlTsDY3.css (2467 B)
    ------------------------------------------------------------------------ */
 .base-section{box-sizing:border-box}
-:where(.base-section){border-color:#182e391a;border-style:solid;border-width:1px;padding:1.5rem}
+:where(.base-section){border-color:#182e391a;border-style:solid;border-width:var(--career-border-width-1);padding:1.5rem}
 .base-section--background-white{background-color:var(--color-ui-white)}
 .base-section--background-opacity-white{background-color:#ffffffb3}
 :where(.base-section--padding-medium){padding:1rem}
@@ -29,7 +29,7 @@
 .base-section__title--size-title{font-size:var(--career-font-size-16);line-height:var(--career-line-height-24)}
 .base-section__title--collapsable{align-items:center;display:flex;justify-content:space-between}
 .base-section__title--collapsable.base-section__title--padding-none{padding-left:0;padding-right:0}
-.base-section__title--underlined{border-bottom-width:1px;border-color:var(--color-ui-gray-bg);margin-bottom:1.5rem;padding-bottom:.75rem}
+.base-section__title--underlined{border-bottom-width:var(--career-border-width-1);border-color:var(--color-ui-gray-bg);margin-bottom:1.5rem;padding-bottom:.75rem}
 .base-section--padding-medium .base-section__title--underlined{margin-bottom:1rem}
 .base-section__title--padding-none{padding:0}
 .base-section--padding-none .base-section__title--padding-big{padding:1rem}
@@ -44,7 +44,7 @@
    base-row
    источник: _sources/career/source/css/base-row.CqWUbReK.css (724 B)
    ------------------------------------------------------------------------ */
-.base-row{border-radius:.75rem;color:var(--color-ui-gray-1);cursor:pointer;outline-color:var(--color-ui-gray-2);outline-offset:-2px;outline-width:2px;padding:.5rem 1rem}
+.base-row{border-radius:.75rem;color:var(--color-ui-gray-1);cursor:pointer;outline-color:var(--color-ui-gray-2);outline-offset:-2px;outline-width:var(--career-border-width-2);padding:.5rem 1rem}
 .base-row:hover{background-color:var(--color-ui-gray-3-10)}
 .base-row:focus-visible{background-color:var(--color-ui-gray-3-10);outline-style:solid}
 .base-row.hover,.base-row:has(:hover){background-color:var(--color-ui-gray-3-10)}
@@ -82,8 +82,8 @@
 .promotion-modal__actions{margin-top:var(--career-space-16)}
 }
 .promotion-card{align-items:center;background:radial-gradient(120.12% 28471.04% at 104.17% 101.5%,#d1a8fa 0,#8164f7 65.06%),#fff;border-radius:var(--career-radius-8);color:var(--color-ui-white);cursor:pointer;display:grid;position:relative}
-.promotion-card--appearance-header{border-radius:var(--career-radius-4);grid-template-columns:28px 1fr 24px;padding:2px var(--career-space-4) 2px 0}
-.promotion-card--appearance-resumes{grid-template-columns:44px 1fr 32px;padding:6px var(--career-space-8) 6px 0}
+.promotion-card--appearance-header{border-radius:var(--career-radius-4);grid-template-columns:28px 1fr 24px;padding:var(--career-space-2) var(--career-space-4) var(--career-space-2) 0}
+.promotion-card--appearance-resumes{grid-template-columns:44px 1fr 32px;padding:var(--career-space-6) var(--career-space-8) var(--career-space-6) 0}
 .promotion-card__icon--appearance-header{height:var(--career-size-28);width:var(--career-size-28)}
 .promotion-card__icon--appearance-resumes{height:var(--career-size-44);width:var(--career-size-44)}
 .promotion-card__button--appearance-resumes{height:var(--career-size-32);width:var(--career-size-32)}
@@ -96,7 +96,7 @@
 .promotion-card__description{color:#ffffffb3;font-size:14px;font-weight:400;line-height:var(--career-line-height-20)}
 .promotion-card__description--appearance-header{display:none}
 .promotion-card__button--appearance-header{height:var(--career-size-24);width:var(--career-size-24)}
-@media (max-width:1023px){.promotion-card--appearance-header{grid-template-columns:44px 1fr 32px;padding:6px var(--career-space-8) 6px 0}
+@media (max-width:1023px){.promotion-card--appearance-header{grid-template-columns:44px 1fr 32px;padding:var(--career-space-6) var(--career-space-8) var(--career-space-6) 0}
 .promotion-card__icon--appearance-header{height:var(--career-size-44);width:var(--career-size-44)}
 .promotion-card__title--short.promotion-card__title--appearance-header{display:none}
 .promotion-card__title--appearance-header{display:block;font-size:var(--career-font-size-16);margin-right:0}
@@ -114,7 +114,7 @@
    salary-bar
    источник: _sources/career/source/css/salary-bar.Bb-FvRbz.css (4050 B)
    ------------------------------------------------------------------------ */
-.salary-notice{background:linear-gradient(0deg,var(--color-ui-orange-12),var(--color-ui-orange-12)),var(--color-ui-white);border:1px solid var(--color-ui-orange);border-radius:var(--career-radius-12);display:flex;gap:var(--career-space-8);margin-bottom:var(--career-space-24);margin-left:auto;max-width:355px;padding:var(--career-space-12) var(--career-space-16)}
+.salary-notice{background:linear-gradient(0deg,var(--color-ui-orange-12),var(--color-ui-orange-12)),var(--color-ui-white);border:var(--career-border-width-1) solid var(--color-ui-orange);border-radius:var(--career-radius-12);display:flex;gap:var(--career-space-8);margin-bottom:var(--career-space-24);margin-left:auto;max-width:355px;padding:var(--career-space-12) var(--career-space-16)}
 .salary-notice.salary-notice--wide{max-width:var(--career-size-500)}
 .salary-notice__icon{color:var(--color-ui-orange);flex-shrink:0}
 .salary-notice__text{color:var(--color-font-black);font-size:14px;line-height:var(--career-line-height-20)}
@@ -133,16 +133,16 @@
 .salary-bar__max.salary-bar__max--top,.salary-bar__min.salary-bar__min--top{bottom:100%;top:unset}
 .salary-bar__avatar-arrow,.salary-bar__median-arrow,.salary-bar__median-divider,.salary-bar__median-divider-value,.salary-bar__my-avatar,.salary-bar__user-salary-divider{position:absolute;transform:translate(-50%)}
 .salary-bar__median-divider{background:var(--color-ui-white);box-shadow:0 5px 25px #0000001a}
-.salary-bar__median-arrow{border-bottom:8px solid var(--color-graph-violet);border-left:8px solid transparent;border-right:8px solid transparent;top:var(--career-size-52)}
+.salary-bar__median-arrow{border-bottom:var(--career-border-width-8) solid var(--color-graph-violet);border-left:var(--career-border-width-8) solid transparent;border-right:var(--career-border-width-8) solid transparent;top:var(--career-size-52)}
 .salary-bar__median-divider-value{bottom:var(--career-size-negative-52);color:var(--color-font-black);cursor:pointer;font-size:18px;font-weight:600;line-height:var(--career-line-height-24)}
 .salary-bar__user-salary-divider{background:var(--color-ui-orange)}
-.salary-bar__median-divider,.salary-bar__user-salary-divider{border-radius:6px;height:var(--career-size-24);top:var(--career-size-4);width:var(--career-size-4)}
-.salary-bar__sub-bar{background:linear-gradient(90deg,var(--color-graph-violet-70) 0,var(--color-graph-violet) 100%);border:2px solid var(--color-ui-white);border-radius:var(--career-radius-12);box-shadow:0 4px 16px #8e7af63d;height:var(--career-size-32);position:absolute}
+.salary-bar__median-divider,.salary-bar__user-salary-divider{border-radius:var(--career-radius-6);height:var(--career-size-24);top:var(--career-size-4);width:var(--career-size-4)}
+.salary-bar__sub-bar{background:linear-gradient(90deg,var(--color-graph-violet-70) 0,var(--color-graph-violet) 100%);border:var(--career-border-width-2) solid var(--color-ui-white);border-radius:var(--career-radius-12);box-shadow:0 4px 16px #8e7af63d;height:var(--career-size-32);position:absolute}
 .salary-bar__sub-bar-values{align-items:center;color:var(--color-graph-violet);display:flex;font-size:var(--career-font-size-16);font-weight:600;justify-content:space-between;left:0;line-height:var(--career-line-height-24);min-width:100%;position:absolute;top:calc(100% + var(--career-size-12));white-space:nowrap;width:-moz-max-content;width:max-content}
 .salary-bar__sub-bar-values--align-right{left:auto;right:0}
 .salary-bar__sub-bar-max,.salary-bar__sub-bar-min{cursor:pointer;flex:none}
-.salary-bar__avatar-arrow{border-left:8px solid transparent;border-right:8px solid transparent;border-top:8px solid var(--color-ui-orange);top:var(--career-size-negative-4)}
-.salary-bar__my-avatar{align-items:center;border:2px solid var(--color-ui-orange);border-radius:50%;cursor:pointer;display:flex;height:var(--career-size-44);justify-content:center;top:var(--career-size-negative-52);width:var(--career-size-44)}
+.salary-bar__avatar-arrow{border-left:var(--career-border-width-8) solid transparent;border-right:var(--career-border-width-8) solid transparent;border-top:var(--career-border-width-8) solid var(--color-ui-orange);top:var(--career-size-negative-4)}
+.salary-bar__my-avatar{align-items:center;border:var(--career-border-width-2) solid var(--color-ui-orange);border-radius:50%;cursor:pointer;display:flex;height:var(--career-size-44);justify-content:center;top:var(--career-size-negative-52);width:var(--career-size-44)}
 .salary-bar__my-avatar-wrapper{border-radius:50%;height:var(--career-size-40);overflow:hidden;width:var(--career-size-40)}
 .salary-bar__my-avatar-image{-o-object-fit:cover;object-fit:cover}
 .salary-bar--hide-values .salary-bar__median-divider-value,.salary-bar--hide-values .salary-bar__sub-bar-max,.salary-bar--hide-values .salary-bar__sub-bar-min{display:flex;opacity:.6}
