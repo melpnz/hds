@@ -13,7 +13,7 @@
 - optional image высотой 140 px;
 - header: back icon, title и optional right action;
 - body: до 12 content slots, gap 16 px, собственный вертикальный scroll;
-- footer: optional secondary/main Button M;
+- footer: одна обязательная Button M и optional вторая; одновременно скрыть обе нельзя;
 - device: desktop, tablet и mobile;
 - pinHeader / pinFooter управляют разделителями закреплённых областей.
 
@@ -22,6 +22,8 @@ Desktop и tablet используют оболочку шириной 320 px с
 ## Поведение
 
 Header и footer остаются на месте, прокручивается только body. Overlay закрывает диалог по клику; Escape выполняет то же действие и возвращает фокус в trigger.
+
+В интерактивном примере переключатель последней оставшейся footer-кнопки блокируется. Это фиксирует обязательное действие и не оставляет пустой footer.
 
 ## Доступность
 

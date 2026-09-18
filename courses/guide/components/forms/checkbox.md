@@ -77,7 +77,7 @@ storybook и figma; в проде узел не встречается, но е�
 | `hover` | GAP | STATE-CAPTURE.md §3 говорит: «**storybook-only**: `common-basecheckbox--base-checkbox-story.html` (437 байт) рендерит только `<span base-checkbox__button>` без единой utility-модификации, а CSS-чанк, найденный для остальных состояний ниже (`similar-courses.DqXT-MW0.css`), не содержит ни одного правила `.base-checkbox*:hover`. Досъёмка — предмет шага R3-10, не этого» |
 | `focus-visible` | снято | STATE-CAPTURE.md §3 говорит: «*(исправлено по находке 1 review-1.md; ранее ошибочно значилось «не снято, чанка нет в evidence»)* `evidence/source/production/css/external/similar-courses.DqXT-MW0.css` → `.base-checkbox__input:focus+.base-checkbox__button{border-color:var(--color-ui-black-400)}` — реальный `:focus` (не `:focus-visible`), но визуальное изменение есть (смена цвета рамки на тот же токен, что несёт норматив `HeaderDropdown`); тот же приём смягчения, что принят для `select`/`multi-select`/`search-input` через `focus-within` (§3.1 выше), только здесь компенсация через соседний `:focus` на скрытом `<input>`, а не через `focus-within` на обёртке» |
 | `checked` | снято | STATE-CAPTURE.md §3 говорит: «*(исправлено по находке 1 review-1.md)* тот же чанк → `.base-checkbox__input:checked+.base-checkbox__button{background-color:var(--color-ui-black-850);background-image:url(…svg-галочка…);border-color:var(--color-ui-black-850)}` — явный класс состояния с собственным фоном, иконкой и цветом рамки» |
-| `indeterminate` | GAP | STATE-CAPTURE.md §3 говорит: «ни в этом чанке, ни в остальном корпусе `evidence/source/production/css/` нет правила для `:indeterminate`/`[aria-checked="mixed"]` у `.base-checkbox*`; Storybook-story тоже не рендерит этот вариант. Досъёмка — предмет шага R3-10» |
+| `indeterminate` | принято по Figma | Courses Figma `education-lib`, node `687:1279`; живой пример устанавливает нативное свойство `input.indeterminate` и `aria-checked="mixed"`. |
 | `disabled` | снято | STATE-CAPTURE.md §3 говорит: «*(исправлено по находке 1 review-1.md)* тот же чанк → `.base-checkbox--disabled{opacity:.5}` и `.base-checkbox__wrapper--disabled{cursor:not-allowed}` — два явных модификатора состояния» |
 | `default` | снято | STATE-CAPTURE.md §3 говорит: «разметки по этой паре в STATE-CAPTURE.md §3 нет; исход взят из полей записи реестра» |
 
@@ -120,4 +120,4 @@ Storybook и корпуса прод-CSS. Ни одно значение зде�
 
 ## Дополнение v0.2 · группы контролов
 
-Для вертикального списка Checkbox используется gap 16 px, для горизонтального — 24 px. Правило и живые примеры сверены с Courses Figma `control-list`, node `717:191`. Состояние `indeterminate` в этом узле не показано и остаётся непроверенным.
+Для вертикального списка Checkbox используется gap 16 px, для горизонтального — 24 px. Правило и живые примеры сверены с Courses Figma `control-list`, node `717:191`. `indeterminate` добавлен по обновлённому узлу `687:1279` и показан отдельной строкой.

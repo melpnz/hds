@@ -5,43 +5,169 @@
   "kind": "pattern",
   "category": "page-families",
   "maturity": {
-    "spec": "partial",
-    "markup": "missing"
+    "spec": "complete",
+    "markup": "available"
   },
   "knowledge": {
     "authority": [
       "production"
     ],
-    "confidence": "low",
+    "confidence": "high",
     "scope": "habr"
   },
-  "purpose": "Вариант §4: та же оболочка, тот же tabs переключатель, но главная колонка — не текст статьи, а .tm-article-comments (лента + форма ответа, классифицирована PAGE-BOUND как единая фича, не примитив — см. evidence/source-map.md). Дерево комментариев (вложенность, аватар, голосование) не разобрано детально в этом проходе — GAP, требует отдельного прохода при первом реальном использовании.",
+  "purpose": "Вариант §4: та же оболочка и колонка 660px, но сверху остаётся краткая .tm-article-commentsarticle-body, а основным содержимым становится .tm-article-comments → .tm-comments-wrapper → pinned comments → .tm-commentstree. Узел дерева — .tm-comment-thread; вложенность задаётся .tm-comment-threadchildren и уровнями отступа, внутри находятся user info, body, голосование и действия. На мобильном структура сохраняется, но горизонтальный отступ ветки уменьшается. На desktop справа расположен контентный сайдбар: слот 300×600 → «Читают сейчас» → stories → слот 300×250; на mobile он не участвует в потоке.",
   "implementation": {
-    "markup": null,
-    "styles": [],
-    "missingReason": "copy-safe-page-example-not-captured",
-    "fallback": "Использовать ближайший подтверждённый паттерн и явно раскрыть допущение. Не восстанавливать DOM по названию семейства."
+    "markup": "available-in-examples",
+    "cssRoots": [],
+    "styles": [
+      "ui/habr.css"
+    ],
+    "scripts": [
+      "examples/site-shell.js"
+    ]
   },
   "states": {
     "ui": [],
     "feature": [],
     "domain": []
   },
-  "examples": [],
+  "examples": [
+    {
+      "id": "production-comments",
+      "title": "Комментарии · production",
+      "file": "examples/generated/patterns/article-comments/production-comments.html",
+      "covers": [
+        "article-comments"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 760
+      }
+    }
+  ],
   "evidence": [
     {
       "type": "production",
+      "ref": "https://habr.com/ru/articles/1006666/comments/"
+    },
+    {
+      "type": "pattern-spec",
       "ref": "docs/patterns/article-comments.md"
     }
   ],
-  "unknowns": [
-    "Вариант §4: та же оболочка, тот же tabs переключатель, но главная колонка — не текст статьи, а .tm-article-comments (лента + форма ответа, классифицирована PAGE-BOUND как единая фича, не примитив — см. evidence/source-map.md). Дерево комментариев (вложенность, аватар, голосование) не разобрано детально в этом проходе — GAP, требует отдельного прохода при первом реальном использовании."
-  ],
-  "sourceStatus": "partial",
+  "unknowns": [],
+  "sourceStatus": "confirmed",
   "family": "ARTICLE_COMMENTS",
-  "areas": [],
-  "modules": [],
-  "components": [],
-  "previewNotes": [],
+  "areas": [
+    "article-summary",
+    "comments-navigation",
+    "comments-tree",
+    "sidebar"
+  ],
+  "modules": [
+    "article-summary",
+    "comment-tree"
+  ],
+  "components": [
+    "article-card",
+    "user-info",
+    "votes",
+    "icon-button",
+    "notice",
+    "checkbox",
+    "field",
+    "button"
+  ],
+  "sequence": [
+    {
+      "id": "article-summary",
+      "tag": "article",
+      "heading": "Публикация",
+      "modules": [
+        {
+          "id": "article-summary",
+          "count": 1
+        }
+      ],
+      "components": [
+        {
+          "id": "article-card",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "comments-navigation",
+      "tag": "header",
+      "heading": "Комментарии",
+      "modules": [],
+      "components": [
+        {
+          "id": "icon-button",
+          "count": 3
+        },
+        {
+          "id": "notice",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "comments-tree",
+      "tag": "section",
+      "heading": "Комментарии",
+      "modules": [
+        {
+          "id": "comment-tree",
+          "count": 1
+        }
+      ],
+      "components": [
+        {
+          "id": "user-info",
+          "count": 6
+        },
+        {
+          "id": "votes",
+          "count": 6
+        },
+        {
+          "id": "checkbox",
+          "count": 1
+        },
+        {
+          "id": "field",
+          "count": 1
+        },
+        {
+          "id": "button",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "sidebar",
+      "tag": "aside",
+      "heading": null,
+      "modules": [],
+      "components": []
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Figma: ArticleCard → banner → comments shell (header, informer, pinned tree, обычное дерево, форма) → похожие публикации. Sidebar: 300×600 ad → читают сейчас → stories → 300×250 ad. На мобильном сайдбар скрывается вместе с двухколоночной оболочкой."
+    }
+  ],
+  "shellDependencies": [
+    "header",
+    "footer"
+  ],
   "markdown": "docs/patterns/article-comments.md"
 }

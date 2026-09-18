@@ -80,7 +80,7 @@
     },
     {
       "type": "guidance",
-      "text": "Глобального сброса box-sizing на habr.com нет — замерено: 2702 элемента из 2847 — content-box , border-box расставлен точечно самими компонентами (145 штук). Пагинация на это опирается: выбранная страница — 32×32 как min-width: 24px плюс padding: 4px. На desktop стрелка 16px с отступом 8px даёт 32×32; в компактной раскладке у стрелки «назад» асимметричный padding и коробка 24×32. В компоненте content-box закреплён явно, чтобы внешний reset не схлопывал геометрию."
+      "text": "Глобального сброса box-sizing на habr.com нет — замерено: 2702 элемента из 2847 — content-box , border-box расставлен точечно самими компонентами (145 штук). Пагинация на это опирается: выбранная страница — 32×32 как min-width: 24px плюс padding: 4px , а иконка 16px с отступом 8px даёт 32px. Под навязанным * { box-sizing: border-box } обе геометрии схлопываются."
     },
     {
       "type": "guidance",
@@ -104,15 +104,15 @@
         "var(--background-primary)"
       ],
       "height": [
-        "49px",
-        "32px",
+        "3.0625rem",
+        "2rem",
         "100%"
       ],
       "padding": [
-        "0 2px",
-        "0 4px",
-        "8px 0 8px 8px",
-        "8px"
+        "0 0.125rem",
+        "0 0.25rem",
+        "0.5rem 0 0.5rem 0.5rem",
+        "0.5rem"
       ],
       "color": [
         "var(--text-main)",
@@ -121,33 +121,29 @@
         "var(--other-disabled-elements)"
       ],
       "border-radius": [
-        "4px"
+        "0.25rem"
       ],
       "min-width": [
-        "24px",
+        "1.5rem",
         "auto",
         "1024px) { .tm-pagination__navigation-link-title { display: inline",
-        "1024px) { .tm-pagination__arrow { padding: 8px"
+        "1024px) { .tm-pagination__arrow { padding: 0.5rem"
       ],
       "font-size": [
-        ".9375rem"
+        "0.9375rem"
       ],
       "font-weight": [
         "500"
       ],
       "line-height": [
-        "1.125rem",
-        "1.25rem"
+        "1.2",
+        "1.333333"
       ],
       "box-shadow": [
-        "inset 0 0 0 1px"
-      ],
-      "box-sizing": [
-        "border-box",
-        "content-box"
+        "inset 0 0 0 0.0625rem"
       ],
       "width": [
-        "8px"
+        "0.5rem"
       ]
     }
   },

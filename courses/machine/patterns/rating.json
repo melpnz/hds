@@ -25,7 +25,9 @@
     "rating-table",
     "section"
   ],
-  "components": [],
+  "components": [
+    "entity-logo"
+  ],
   "implementation": {
     "markup": "available-in-examples",
     "cssRoots": [
@@ -131,9 +133,7 @@
       "ref": "https://career.habr.com/education_centers/rating"
     }
   ],
-  "unknowns": [
-    "Carousel · CourseCard · «Может быть интересно», 8 слайдов CourseCard. Лента Swiper держится на библиотечном слое, которого в ui/ нет, — живой пример был бы неправдой. Разметка — components/collections/carousel.md"
-  ],
+  "unknowns": [],
   "source": {
     "version": "v0.1",
     "spec": "archive:courses/v0.1/pages/rating.md",
@@ -159,7 +159,12 @@
           "count": 1
         }
       ],
-      "components": [],
+      "components": [
+        {
+          "id": "entity-logo",
+          "count": 20
+        }
+      ],
       "id": "school-rating"
     },
     {
@@ -171,8 +176,12 @@
           "count": 1
         }
       ],
-      "components": [],
-      "stub": "Carousel · CourseCard · «Может быть интересно», 8 слайдов CourseCard. Лента Swiper держится на библиотечном слое, которого в ui/ нет, — живой пример был бы неправдой. Разметка — components/collections/carousel.md",
+      "components": [
+        {
+          "id": "entity-logo",
+          "count": 5
+        }
+      ],
       "id": "recommendations"
     }
   ],
@@ -267,5 +276,73 @@
       ],
       "orderPreserved": true
     }
+  },
+  "layout": {
+    "shell": {
+      "root": "app-container",
+      "content": "app-content",
+      "behavior": "sticky-footer"
+    },
+    "container": {
+      "classes": "mx-auto max-w-[1124px] px-6 py-0 tablet:px-6",
+      "maxWidth": {
+        "token": "--courses-size-1124",
+        "value": "70.25rem"
+      },
+      "paddingInline": {
+        "token": "--courses-space-24",
+        "value": "1.5rem"
+      },
+      "contentWidthAtMax": "67.25rem"
+    },
+    "surfaces": {
+      "page": {
+        "token": "--color-white-background",
+        "value": "{color.ui-white}"
+      },
+      "work": {
+        "token": "--color-ui-white",
+        "value": "#ffffff"
+      },
+      "contentBlock": {
+        "background": {
+          "token": "--color-ui-white",
+          "value": "#ffffff"
+        },
+        "border": {
+          "widthToken": "--courses-border-width-1",
+          "colorToken": "--color-ui-black-100"
+        },
+        "radius": {
+          "token": "--courses-radius-24",
+          "value": "1.5rem"
+        }
+      }
+    },
+    "breakpoints": {
+      "smallPhoneMax": 479,
+      "phoneMax": 767,
+      "tabletMax": 1023,
+      "desktopMin": 1024,
+      "previewWidths": [
+        320,
+        480,
+        768,
+        1024
+      ]
+    },
+    "sectionStack": {
+      "classes": "relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0",
+      "columns": "minmax(0,1fr)",
+      "gap": {
+        "token": "--courses-space-48",
+        "value": "3rem"
+      },
+      "exceptionToDefault": false
+    }
+  },
+  "entityLogoUsage": {
+    "school-rating": 20,
+    "recommendations": 5
   }
 }

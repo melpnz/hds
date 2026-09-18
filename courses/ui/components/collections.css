@@ -15,3 +15,53 @@
 
    Пока пусто: компоненты верстаются на шагах R2–R5.
    ========================================================================= */
+/* Live viewer adapter for production Swiper compositions. The production
+   dependency owns gesture physics; the guide keeps the same horizontal
+   geometry with native scrolling so standalone examples remain offline. */
+.crs-carousel {
+  display: grid;
+  gap: var(--courses-space-16);
+  min-width: 0;
+  width: 100%;
+}
+.crs-carousel__head { align-items: center; display: flex; gap: var(--courses-space-16); justify-content: space-between; }
+.crs-carousel__title { margin: 0; font-size: var(--courses-font-size-24); line-height: var(--courses-line-height-28-on-24); }
+.crs-carousel__body { min-width: 0; position: relative; }
+.crs-carousel__controls { align-items: center; display: flex; inset: 50% 0 auto; justify-content: space-between; pointer-events: none; position: absolute; transform: translateY(-50%); z-index: 2; }
+.crs-carousel__control { pointer-events: auto; }
+.crs-carousel__control--prev { transform: translateX(-50%); }
+.crs-carousel__control--next { transform: translateX(50%); }
+.crs-carousel__track { display: grid; grid-auto-columns: minmax(0,var(--courses-size-260)); grid-auto-flow: column; gap: var(--courses-space-16); max-width: 100%; min-width: 0; overflow-x: auto; overscroll-behavior-inline: contain; padding: var(--courses-border-width-1); scroll-behavior: smooth; scroll-snap-type: x mandatory; scrollbar-width: none; }
+.crs-carousel__track::-webkit-scrollbar { display: none; }
+.crs-carousel__slide { min-width: 0; scroll-snap-align: start; }
+.crs-carousel[data-variant="ad-slot"] .crs-carousel__track { grid-auto-columns: minmax(0,var(--courses-size-520)); }
+.crs-carousel-card { background: var(--color-ui-white); border: var(--courses-border-width-1) solid var(--color-ui-black-100); border-radius: var(--courses-radius-24); box-sizing: border-box; display: flex; min-height: var(--courses-size-260); overflow: hidden; }
+.crs-carousel-card__content { display: flex; flex: 1; flex-direction: column; gap: var(--courses-space-12); min-width: 0; padding: var(--courses-space-24); }
+.crs-carousel-card__eyebrow { color: var(--color-ui-black-500); font-size: var(--courses-font-size-12); line-height: var(--courses-line-height-16-on-12); }
+.crs-carousel-card__title { font-size: var(--courses-font-size-18); font-weight: 600; line-height: var(--courses-line-height-22-on-18); margin: 0; }
+.crs-carousel-card__text { color: var(--color-ui-black-500); font-size: var(--courses-font-size-14); line-height: var(--courses-line-height-20-on-14); margin: 0; }
+.crs-carousel-card__identity { align-items: center; display: flex; gap: var(--courses-space-8); }
+.crs-carousel-ad { align-items: center; background-image: var(--color-main-gradient-second); color: var(--color-ui-white); display: grid; min-height: var(--courses-size-220); padding: var(--courses-space-32); }
+.crs-carousel-ad .crs-carousel-card__text { color: var(--color-ui-white); opacity: .8; }
+@media(max-width:767px){.crs-carousel__track,.crs-carousel[data-variant="ad-slot"] .crs-carousel__track{grid-auto-columns:calc(100% - var(--courses-size-40))}.crs-carousel__controls{display:none}.crs-carousel-card{min-height:var(--courses-size-240)}}
+
+/* AdSlot owns the advertising-card composition; Carousel only supplies the
+   outer collection mechanics. Keeping this CSS in the product layer lets the
+   same component render in its isolated example and on assembled pages. */
+.crs-ad-slot-demo { display: grid; font-family: Inter,sans-serif; gap: var(--courses-space-12); width: 100%; }
+.crs-ad-slot-demo__viewport { overflow: hidden; }
+.crs-ad-slot-demo__track { box-sizing: border-box; display: flex; gap: var(--courses-space-12); overflow-x: auto; scroll-behavior: smooth; scrollbar-width: none; }
+.crs-ad-slot-demo__track::before,.crs-ad-slot-demo__track::after { content: ""; flex: 0 0 max(0px,calc((100% - var(--courses-size-568))/2)); }
+.crs-ad-slot-demo__track::-webkit-scrollbar { display: none; }
+.crs-ad-slot-demo__card { background: var(--color-main-gradient-second); border-radius: var(--courses-radius-24); box-sizing: border-box; color: var(--color-ui-white); display: flex; flex: 0 0 var(--courses-size-568); height: var(--courses-size-232); overflow: hidden; position: relative; scroll-snap-align: center; text-decoration: none; }
+.crs-ad-slot-demo__image { display: block; height: 100%; object-fit: cover; width: 100%; }
+.crs-ad-slot-demo__card--second { background: var(--color-ui-black-850); }
+.crs-ad-slot-demo__copy { align-content: end; color: inherit; display: grid; gap: var(--courses-space-8); max-width: var(--courses-size-330); text-decoration: none; }
+.crs-ad-slot-demo__copy strong { font-size: var(--courses-font-size-24); line-height: var(--courses-line-height-28-on-24); }
+.crs-ad-slot-demo__copy span { font-size: var(--courses-font-size-14); line-height: var(--courses-line-height-20-on-14); opacity: .86; }
+.crs-ad-slot-demo__label { background: var(--color-ui-black-transparent-300); border-radius: var(--courses-radius-full); font-size: var(--courses-font-size-10); left: var(--courses-space-20); letter-spacing: var(--courses-optical-0_64); line-height: var(--courses-line-height-14-on-10); padding: var(--courses-space-4) var(--courses-space-8); position: absolute; top: var(--courses-space-20); }
+.crs-ad-slot-demo__more { background: var(--color-ui-white); border: 0; border-radius: var(--courses-radius-full); color: var(--color-ui-black-850); display: grid; font: 700 var(--courses-font-size-14)/1 Inter,sans-serif; height: var(--courses-size-32); padding: 0; place-items: center; position: absolute; right: var(--courses-space-16); top: var(--courses-space-16); width: var(--courses-size-32); }
+.crs-ad-slot-demo__pagination { display: flex; gap: var(--courses-space-6); justify-content: center; }
+.crs-ad-slot-demo__dot { background: var(--color-ui-black-200); border-radius: var(--courses-radius-full); height: var(--courses-size-6); width: var(--courses-size-6); }
+.crs-ad-slot-demo__dot:first-child { background: var(--color-ui-blue-500); border-radius: var(--courses-radius-8); width: var(--courses-size-20); }
+@media(max-width:767px){.crs-ad-slot-demo__track::before,.crs-ad-slot-demo__track::after{flex-basis:var(--courses-space-20)}.crs-ad-slot-demo__card{aspect-ratio:272/280;flex-basis:calc(100% - var(--courses-size-40));height:auto}.crs-ad-slot-demo__copy strong{font-size:var(--courses-font-size-20);line-height:var(--courses-line-height-24-on-20)}}

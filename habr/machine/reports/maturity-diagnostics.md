@@ -3,11 +3,11 @@
 Режим: диагностический. Исходные статусы не изменяются, расхождения не блокируют валидацию.
 
 - записей: 90
-- computed complete: 59
-- computed partial: 28
-- computed missing: 3
+- computed complete: 66
+- computed partial: 24
+- computed missing: 0
 - расхождений declared/computed: 24
-- найденных пробелов: 51
+- найденных пробелов: 45
 
 ## Объявлено complete/stable, вычислено partial/missing
 
@@ -33,7 +33,7 @@
 | `votes` | `complete` | `partial` | 2 | `machine/components/votes.json` |
 | `admin-form` | `complete` | `partial` | 2 | `machine/patterns/admin-form.json` |
 | `admin-section` | `complete` | `partial` | 1 | `machine/patterns/admin-section.json` |
+| `article-detail` | `complete` | `partial` | 1 | `machine/patterns/article-detail.json` |
 | `directory` | `complete` | `partial` | 1 | `machine/patterns/directory.json` |
 | `entity` | `complete` | `partial` | 1 | `machine/patterns/entity.json` |
 | `feed` | `complete` | `partial` | 1 | `machine/patterns/feed.json` |
-| `shell` | `complete` | `partial` | 1 | `machine/patterns/shell.json` |

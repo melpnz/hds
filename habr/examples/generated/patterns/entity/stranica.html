@@ -11,11 +11,11 @@
   <script src="../../../../examples/site-shell.js" defer></script>
 </head>
 <body class="migration-example migration-example--page pattern-entity">
-
 <habr-site-header></habr-site-header>
-<div style="display:flex;gap:24px;max-width:900px">
-<div style="flex:1;min-width:0">
-<div class="tm-hub-card" style="border-radius:8px 8px 0 0">
+<main class="tm-page page-example"><div class="tm-page-width">
+<div class="tm-page__wrapper">
+<section class="tm-page__main tm-page__main_has-sidebar">
+<div class="tm-hub-card">
 <div class="tm-hub-card__header">
 <div class="tm-hub-card__data">
 <img alt="" class="tm-hub-card__avatar avatar-default avatar-default_hub" height="48" src="../../../../ui/assets/illustrations/avatars/avatar-default-hub.svg" width="48"/>
@@ -24,7 +24,7 @@
 <div class="tm-hub-card__short-info">1 240 подписчиков</div>
 </div>
 </div>
-<div style="display:flex;align-items:center;gap:4px">
+<div class="page-example__actions">
 <button class="btn btn_transparent btn_small tm-button_color-christi tm-button-follow" type="button">Подписаться</button>
 </div>
 </div>
@@ -34,16 +34,16 @@
 <span class="stat">312 статей</span>
 </div>
 </div>
-<div class="tabs" style="margin:16px 0">
+<div class="tabs page-example__entity-tabs">
 <div class="tabs-scroll-area"><div class="tabs-padding-area">
 <span class="tab-item"><button class="active tab-link" type="button">Публикации</button></span>
 <span class="tab-item"><button class="tab-link" type="button">Авторы</button></span>
 </div></div>
 </div>
-<div style="background:var(--background-primary);padding:16px;border-radius:8px;color:var(--text-secondary);font-size:.8125rem"></div>
-</div>
-<div style="width:260px;flex:none">
-<div class="tm-block" style="border-radius:8px;border:1px solid var(--icon-secondary)">
+<div class="page-example__empty"></div>
+</section>
+<aside aria-label="Информация о хабе" class="tm-page__sidebar">
+<div class="tm-block">
 <div class="tm-block__header"><div class="tm-block__header-container">
 <span class="tm-block__title">О хабе</span>
 </div></div>
@@ -58,14 +58,14 @@
 </div>
 </div>
 </div>
-<div class="badges" style="margin-top:16px">
+<div class="badges page-example__badges">
 <ul class="list">
 <li class="item"><a class="badge" href="../../../../ui/assets/icons/megazord.svg#entity" title="10 лет на Хабре">10 лет <svg class="badge-icon" height="16" width="16"></svg></a></li>
 </ul>
 </div>
+</aside>
 </div>
-</div>
-
+</div></main>
 <habr-site-footer></habr-site-footer>
 <script src="../../../../examples/components.js"></script>
 </body>

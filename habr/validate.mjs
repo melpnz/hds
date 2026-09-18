@@ -77,6 +77,15 @@ for (const entry of catalog) {
       if (source.includes('<div class="tm-header"') || source.includes('<footer class="tm-footer"')) {
         errors.push(`${entry.id}/${example.id}: page example duplicates shared shell markup`);
       }
+      if (!source.includes('<main class="tm-page') || !source.includes('class="tm-page-width')) {
+        errors.push(`${entry.id}/${example.id}: page example must use the canonical page container`);
+      }
+      if (/style="[^"]*(?:max-width:(?:620|820|900)px|width:(?:180|220|240|260)px)/.test(source)) {
+        errors.push(`${entry.id}/${example.id}: legacy showcase width overrides remain in page geometry`);
+      }
+      if (/class="[^"]*(?:page-example__(?:panel|surface|hero)|tm-articles-list__item|tm-hub-card|tm-block)[^"]*"[^>]*style="[^"]*(?:border-radius|border\s*:)/.test(source)) {
+        errors.push(`${entry.id}/${example.id}: page composition blocks must not have an outer border or radius`);
+      }
       if (!item.implementation.scripts?.includes('examples/site-shell.js')
         || JSON.stringify(item.shellDependencies) !== JSON.stringify(['header', 'footer'])) {
         errors.push(`${entry.id}: shared shell contract is missing`);
@@ -113,6 +122,87 @@ for (const entry of catalog) {
       for (const dependency of step.components || []) {
         if (!ids.has(dependency.id)) errors.push(`${entry.id}/${step.id}: unknown component ${dependency.id}`);
       }
+    }
+  }
+  if (entry.id === 'shell') {
+    const expectedLayoutContract = {
+      pageBackground: 'var(--background-gray)',
+      surfaceBackground: 'var(--background-primary)',
+      container: {
+        mobile: { maxWidth: 'none', paddingInline: '0' },
+        tablet: { maxWidth: '48rem', paddingInline: '1rem' },
+        desktop: { maxWidth: '68.5rem', paddingInline: '1.5rem' }
+      },
+      columns: {
+        through1023: 'stacked',
+        from1024: 'main + 1rem gap + 18.75rem sidebar',
+        sidebarPosition: 'relative'
+      },
+      order: ['header', 'page', 'main', 'sidebar', 'footer']
+    };
+    if (JSON.stringify(item.layoutContract) !== JSON.stringify(expectedLayoutContract)) {
+      errors.push('shell: layout contract is missing or stale');
+    }
+  }
+  if (entry.id === 'calendar') {
+    const examples = item.examples || [];
+    const sources = examples
+      .filter(example => existsSync(resolve(root, example.file)))
+      .map(example => readFileSync(resolve(root, example.file), 'utf8'));
+    const calendarCells = sources.reduce((count, source) => count + (source.match(/tm-calendar-cell/g) || []).length, 0);
+    if (!sources.some(source => source.includes('class="tm-calendar')) || calendarCells < 28) {
+      errors.push('calendar: preview must render a calendar panel and a complete date grid');
+    }
+  }
+  if (entry.id === 'feed') {
+    const examples = item.examples || [];
+    const source = examples.length && existsSync(resolve(root, examples[0].file))
+      ? readFileSync(resolve(root, examples[0].file), 'utf8')
+      : '';
+    const cards = source.match(/class="tm-articles-list__item"/g) || [];
+    const snippets = source.match(/class="article-snippet"/g) || [];
+    const footers = source.match(/class="tm-articles-list__item-footer"/g) || [];
+    const iconRows = source.match(/class="tm-data-icons"/g) || [];
+    const iconItems = source.match(/tm-data-icons__item/g) || [];
+    if (cards.length !== 2 || snippets.length !== cards.length || footers.length !== cards.length
+      || iconRows.length !== cards.length || iconItems.length < cards.length) {
+      errors.push('feed: listing must use the canonical ArticleCard anatomy for every card');
+    }
+  }
+  const pageContracts = {
+    'article-detail': ['company-profile', 'article-detail__title', 'article-sidebar'],
+    'article-comments': ['comments-page__tree', 'comment-thread_level-1', 'comments-page__header'],
+    search: ['search-page__form', 'search-page__hint', 'search-sidebar-skeleton'],
+    editor: ['editor-page__canvas', 'editor-page__cover', 'editor-page__toolbar'],
+    'admin-form': ['page-example__heading-panel', 'page-example__radio', 'tm-input-text-decorated__input'],
+    'admin-list': ['page-example__management-row', 'page-example__status'],
+    'overlay-flows': ['overlay-page__shade', 'overlay-modal__choices', 'overlay-modal__choice'],
+    'settings-forms': ['settings-page__grid', 'settings-page__avatar', 'tm-textarea-reconstructed'],
+    'service-error': ['service-error__illustration', 'service-error__code', 'service-error__message']
+  };
+  const pageComponentContracts = {
+    'article-detail': ['tm-user-info', 'tm-icon-button', 'tm-button-follow', 'tm-articles-list__item'],
+    'article-comments': ['article-snippet', 'tm-notice_info', 'checkbox', 'tm-textarea-reconstructed', 'tm-icon-button'],
+    search: ['tm-input-text-decorated__input', 'tm-icon-button_near-field', 'tabs-scroll-area', 'tm-notice_info'],
+    'overlay-flows': ['modal-window', 'dialog-title', 'tm-radio__option', 'tm-textarea-reconstructed', 'dialog-footer'],
+    'settings-forms': ['tabs-scroll-area', 'tm-input-text-decorated__input', 'tm-textarea-reconstructed', 'tm-notice_info'],
+    editor: ['tm-notice_info', 'tm-chip', 'tm-icon-button', 'tm-user-info', 'btn'],
+    'admin-form': ['tm-title_h2', 'tm-radio__option', 'tm-input-text-decorated__input', 'btn'],
+    'admin-list': ['tm-chip']
+  };
+  if (pageContracts[entry.id]) {
+    const sources = (item.examples || [])
+      .filter(example => existsSync(resolve(root, example.file)))
+      .map(example => readFileSync(resolve(root, example.file), 'utf8'));
+    const combined = sources.join('\n');
+    for (const marker of pageContracts[entry.id]) {
+      if (!combined.includes(marker)) errors.push(`${entry.id}: page example is missing ${marker}`);
+    }
+    for (const marker of pageComponentContracts[entry.id] || []) {
+      if (!combined.includes(marker)) errors.push(`${entry.id}: page example does not reuse ${marker}`);
+    }
+    if (entry.id === 'service-error' && sources.length !== 3) {
+      errors.push('service-error: 403, 404 and 500 examples are required');
     }
   }
   if (entry.id === 'button') {

@@ -28,7 +28,8 @@
     "person-header"
   ],
   "components": [
-    "prose"
+    "prose",
+    "entity-logo"
   ],
   "implementation": {
     "markup": "available-in-examples",
@@ -153,7 +154,12 @@
           "count": 1
         }
       ],
-      "components": [],
+      "components": [
+        {
+          "id": "entity-logo",
+          "count": 1
+        }
+      ],
       "id": "profile-header"
     },
     {
@@ -196,7 +202,12 @@
       "tag": "div",
       "heading": "Опыт работы",
       "modules": [],
-      "components": [],
+      "components": [
+        {
+          "id": "entity-logo",
+          "count": 22
+        }
+      ],
       "id": "experience-education"
     }
   ],
@@ -295,5 +306,72 @@
       ],
       "orderPreserved": true
     }
+  },
+  "layout": {
+    "shell": {
+      "root": "app-container",
+      "content": "app-content",
+      "behavior": "sticky-footer"
+    },
+    "container": {
+      "classes": "mx-auto max-w-[1124px] px-6 py-0 tablet:px-6",
+      "maxWidth": {
+        "token": "--courses-size-1124",
+        "value": "70.25rem"
+      },
+      "paddingInline": {
+        "token": "--courses-space-24",
+        "value": "1.5rem"
+      },
+      "contentWidthAtMax": "67.25rem"
+    },
+    "surfaces": {
+      "page": {
+        "token": "--color-white-background",
+        "value": "{color.ui-white}"
+      },
+      "work": {
+        "token": "--color-ui-white",
+        "value": "#ffffff"
+      },
+      "contentBlock": {
+        "background": {
+          "token": "--color-ui-white",
+          "value": "#ffffff"
+        },
+        "border": {
+          "widthToken": "--courses-border-width-1",
+          "colorToken": "--color-ui-black-100"
+        },
+        "radius": {
+          "token": "--courses-radius-24",
+          "value": "1.5rem"
+        }
+      }
+    },
+    "breakpoints": {
+      "smallPhoneMax": 479,
+      "phoneMax": 767,
+      "tabletMax": 1023,
+      "desktopMin": 1024,
+      "previewWidths": [
+        320,
+        480,
+        768,
+        1024
+      ]
+    },
+    "sectionStack": {
+      "classes": "flex flex-col gap-10",
+      "gap": {
+        "token": "--courses-space-40",
+        "value": "2.5rem"
+      },
+      "exceptionToDefault": true
+    }
+  },
+  "entityLogoUsage": {
+    "profile-header": 1,
+    "experience-education": 22
   }
 }

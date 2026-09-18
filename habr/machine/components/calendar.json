@@ -34,9 +34,31 @@
   },
   "examples": [
     {
-      "id": "primer-1",
-      "title": "Пример 1",
-      "file": "examples/generated/components/calendar/primer-1.html",
+      "id": "date-vybor-daty",
+      "title": "date — выбор даты",
+      "file": "examples/generated/components/calendar/date-vybor-daty.html",
+      "covers": [
+        "calendar"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "date-time-data-i-vrema-vmeste-pod-polami-vvoda",
+      "title": "date + time — дата и время вместе, под полями ввода",
+      "file": "examples/generated/components/calendar/date-time-data-i-vrema-vmeste-pod-polami-vvoda.html",
+      "covers": [
+        "calendar"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      }
+    },
+    {
+      "id": "sostoania-acejki",
+      "title": "Состояния ячейки",
+      "file": "examples/generated/components/calendar/sostoania-acejki.html",
       "covers": [
         "calendar"
       ],
@@ -58,7 +80,28 @@
   "unknowns": [
     "GAP: с какого дня начинается неделя"
   ],
-  "previewNotes": [],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Панель: белый фон, радиус 4 , поля 20 , зазор блоков 4 , тень 0 2px 12px чёрного с альфой 20%. Сетка — 7×28px без зазоров , ширина ровно 196 . Текст ячейки 13/16 ."
+    },
+    {
+      "type": "guidance",
+      "text": "Отключённый диапазон рисуется одной сплошной плашкой : скругляются только первая и последняя ячейка непрерывного ряда в порядке разметки, а не края каждой строки — в CSS это делают + и :has() , разметке ничего знать не нужно."
+    },
+    {
+      "type": "guidance",
+      "text": "С какого дня начинается неделя — неизвестно. Строки заголовка с днями недели в макете нет вовсе, а числа в нём расставлены условно (за 30 июля сразу идёт 1 августа), поэтому определить порядок колонок по макету нельзя. Здесь взят понедельник — как принято в русской локали; это разумный выбор, а не замеренное значение."
+    },
+    {
+      "type": "guidance",
+      "text": "Поля над календарём — это компонент Input , а не часть календаря: у него есть production-CSS, и он использован как есть."
+    },
+    {
+      "type": "guidance",
+      "text": ".tm-calendar · calendar.css · FIGMA-RECONSTRUCTED, редактор статьи (отложенная публикация)"
+    }
+  ],
   "visual": {
     "source": [
       "ui/components/calendar.css"
@@ -73,25 +116,25 @@
         "var(--accent-primary)"
       ],
       "border-radius": [
-        "4px",
-        "200px"
+        "0.25rem",
+        "999rem"
       ],
       "width": [
-        "28px",
-        "45px",
-        "24px",
-        "76px",
-        "196px"
+        "1.75rem",
+        "2.8125rem",
+        "1.5rem",
+        "4.75rem",
+        "12.25rem"
       ],
       "height": [
-        "28px",
-        "24px"
+        "1.75rem",
+        "1.5rem"
       ],
       "font-size": [
-        ".8125rem"
+        "0.8125rem"
       ],
       "line-height": [
-        "1rem"
+        "1.230769"
       ],
       "background": [
         "var(--background-secondary)",
@@ -104,15 +147,15 @@
       ],
       "padding": [
         "0",
-        "20px"
+        "1.25rem"
       ],
       "box-shadow": [
-        "0 2px 12px hsl(from var(--other-overlay-shadows) h s l / 20%)"
+        "0 0.125rem 0.75rem hsl(from var(--other-overlay-shadows) h s l / 20%)"
       ],
       "gap": [
-        "4px",
-        "8px",
-        "12px"
+        "0.25rem",
+        "0.5rem",
+        "0.75rem"
       ],
       "min-width": [
         "0"

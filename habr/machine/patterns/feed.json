@@ -15,7 +15,7 @@
     "confidence": "high",
     "scope": "habr"
   },
-  "purpose": "Layout regions. Shell → главная колонка: (опционально) H1 + Tabs (поток-навигация, .tabs.tm-tabspage-header) → вертикальный список article-snippet → tm-pagination. Сайдбар пуст для гостя (см. §1), кроме user-posts (facts-блок автора).",
+  "purpose": "Layout regions. Shell → главная колонка: (опционально) H1 + Tabs (поток-навигация, .tabs.tm-tabspage-header) → вертикальный список ArticleCard (.tm-articles-listitem) → tm-pagination. Сайдбар пуст для гостя (см. §1), кроме user-posts (facts-блок автора).",
   "implementation": {
     "markup": "available-in-examples",
     "cssRoots": [],
@@ -54,6 +54,10 @@
   "evidence": [
     {
       "type": "production",
+      "ref": "docs/patterns/feed.md"
+    },
+    {
+      "type": "pattern-spec",
       "ref": "docs/patterns/feed.md"
     }
   ],
@@ -136,9 +140,9 @@
       "text": "production · feed, articles-all, news, hub, company, user-posts, sandbox — 7/14"
     }
   ],
-  "markdown": "docs/patterns/feed.md",
   "shellDependencies": [
     "header",
     "footer"
-  ]
+  ],
+  "markdown": "docs/patterns/feed.md"
 }

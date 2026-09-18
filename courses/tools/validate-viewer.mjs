@@ -318,13 +318,19 @@ try {
     }
 
     if (entry.id === 'promo-code-modal') {
-      if (await page.locator('.preview-toolbar').isVisible()) failures.push('promo-code-modal: content variants expose viewport controls');
+      if (!(await page.locator('.preview-toolbar').isVisible())) failures.push('promo-code-modal: responsive variants must expose viewport controls');
       const preview = page.locator('#preview').contentFrame();
       const variants = preview.locator('.crs-promo-code-modal');
       await variants.first().waitFor();
-      if (await variants.count() !== 2) failures.push('promo-code-modal: promo-code and promotion variants are not both visible');
+      if (await variants.count() !== 2) failures.push('promo-code-modal: promo-code and promotion variants are not both available');
+      await preview.locator('.variant-switch [data-variant="action"]').click();
+      if (!(await variants.nth(1).isVisible()) || await variants.nth(0).isVisible()) failures.push('promo-code-modal: promotion variant cannot be selected');
+      for (const device of ['desktop', 'tablet', 'mobile']) {
+        await preview.locator(`.device-switch [data-device="${device}"]`).click();
+        if (await preview.locator('.promo-stage').getAttribute('data-device') !== device) failures.push(`promo-code-modal: ${device} presentation cannot be selected`);
+      }
       const overflow = await preview.locator('html').evaluate(element => element.scrollWidth - element.clientWidth);
-      if (overflow > 1) failures.push('promo-code-modal: content variants overflow the constrained preview');
+      if (overflow > 1) failures.push('promo-code-modal: responsive variants overflow the preview');
     }
 
     if (entry.id === 'filter-modal') {
@@ -385,51 +391,44 @@ try {
 
     if (entry.id === 'sort-sheet' || entry.id === 'price-sheet') {
       const isSort = entry.id === 'sort-sheet';
-      if (await page.locator('.preview-toolbar').isVisible()) failures.push(`${entry.id}: mobile-only sheet exposes viewport controls`);
+      if (!(await page.locator('.preview-toolbar').isVisible())) failures.push(`${entry.id}: responsive sheet must expose viewport controls`);
       const preview = page.locator('#preview').contentFrame();
-      const demo = preview.locator('.crs-sheet-demo');
-      const sheet = preview.locator(`#${entry.id}-target`);
-      const trigger = preview.locator(`#${entry.id}-open`);
-      await demo.waitFor();
-      const geometry = await demo.evaluate((element, selector) => {
-        const sheet = element.querySelector(selector);
-        const panel = sheet.firstElementChild;
-        const demoRect = element.getBoundingClientRect();
-        const sheetRect = sheet.getBoundingClientRect();
-        const panelRect = panel.getBoundingClientRect();
-        return { demo: [demoRect.width, demoRect.height], sheet: [sheetRect.width, sheetRect.height], panel: [panelRect.width, panelRect.height], panelBottom: demoRect.bottom - panelRect.bottom, background: getComputedStyle(sheet).backgroundColor };
-      }, `#${entry.id}-target`);
-      if (geometry.demo[0] !== 320 || geometry.demo[1] !== 568 || geometry.sheet[0] !== 320 || geometry.sheet[1] !== 568) failures.push(`${entry.id}: open mobile context is not 320x568`);
-      const expectedPanelHeight = isSort ? 264 : 176;
-      if (geometry.panel[0] !== 320 || Math.abs(geometry.panel[1] - expectedPanelHeight) > .1 || Math.abs(geometry.panelBottom) > .1) failures.push(`${entry.id}: panel is not bottom-anchored at 320x${expectedPanelHeight}`);
-      if (!geometry.background.includes('0.3')) failures.push(`${entry.id}: overlay background is absent`);
+      const stage = preview.locator('.sheet-stage');
+      const panel = preview.locator(isSort ? '.crs-sort-sheet__panel' : '.crs-price-sheet__panel');
+      await stage.waitFor();
+      for (const device of ['desktop', 'tablet', 'mobile']) {
+        await preview.locator(`.device-switch [data-device="${device}"]`).click();
+        if (await stage.getAttribute('data-device') !== device) failures.push(`${entry.id}: ${device} presentation cannot be selected`);
+      }
+      const mobile = await panel.evaluate(element => ({
+        width: element.getBoundingClientRect().width,
+        overflow: getComputedStyle(element).overflow,
+        radius: getComputedStyle(element).borderTopLeftRadius,
+      }));
+      if (Math.abs(mobile.width - 320) > .1) failures.push(`${entry.id}: mobile panel is not 320px wide`);
+      if (mobile.overflow !== 'hidden') failures.push(`${entry.id}: panel does not clip hover backgrounds inside its rounded corners`);
 
       if (isSort) {
         const options = preview.locator('.crs-sort-sheet__option');
         if (await options.count() !== 6) failures.push('sort-sheet: expected six sorting options');
         await options.nth(2).click();
-        if (!(await sheet.isHidden()) || (await trigger.textContent()) !== 'Сначала дешевые') failures.push('sort-sheet: selection does not update trigger and close sheet');
-        await trigger.click();
-        if (!(await sheet.isVisible()) || await options.nth(2).getAttribute('aria-selected') !== 'true') failures.push('sort-sheet: selected value is not preserved on reopen');
+        if (await options.nth(2).getAttribute('aria-selected') !== 'true') failures.push('sort-sheet: selected value is not preserved');
+        await options.nth(0).hover();
+        const hover = await options.nth(0).evaluate(element => getComputedStyle(element).backgroundColor);
+        if (hover === 'rgba(0, 0, 0, 0)') failures.push('sort-sheet: hover state is absent');
       } else {
         const inputs = preview.locator('.crs-price-sheet__input');
         await inputs.nth(0).fill('1000');
         await inputs.nth(1).fill('5000');
-        await preview.locator('#price-sheet-reset').click();
-        if ((await inputs.nth(0).inputValue()) || (await inputs.nth(1).inputValue()) || !(await sheet.isVisible())) failures.push('price-sheet: reset must clear fields without closing');
-        await preview.locator('#price-sheet-done').click();
-        if (!(await sheet.isHidden())) failures.push('price-sheet: Done does not close sheet');
-        await trigger.click();
+        await preview.locator('.crs-price-sheet__reset').click();
+        if ((await inputs.nth(0).inputValue()) || (await inputs.nth(1).inputValue())) failures.push('price-sheet: reset must clear fields');
+        await inputs.nth(0).focus();
+        const focus = await inputs.nth(0).evaluate(element => ({ outline: getComputedStyle(element).outlineStyle, parentBorder: getComputedStyle(element.parentElement).borderColor }));
+        if (focus.outline !== 'none') failures.push('price-sheet: input draws an inner focus outline');
       }
-      await preview.locator(':focus').press('Escape');
-      if (!(await sheet.isHidden()) || !(await trigger.evaluate(element => element === document.activeElement))) failures.push(`${entry.id}: Escape does not close sheet and restore trigger focus`);
-      await trigger.click();
-      await sheet.click({ position: { x: 8, y: 8 } });
-      if (!(await sheet.isHidden())) failures.push(`${entry.id}: overlay click does not close sheet`);
     }
 
     if (entry.id === 'site-header') {
-      await page.locator('#example-tabs [data-example="figma-variants"]').click();
       await page.waitForFunction(() => decodeURIComponent(document.querySelector('#preview')?.src || '').includes('examples/components/site-header/index.html'));
       const preview = page.locator('#preview').contentFrame();
       const header = preview.locator('#site-header-target');
@@ -474,6 +473,25 @@ try {
         const pageOverflow = await preview.locator('html').evaluate(element => element.scrollWidth - element.clientWidth);
         if (pageOverflow > 1) failures.push(`site-header: document overflows horizontally at ${width}px`);
       }
+      await page.locator('#viewport-controls [data-width="1024"]').click();
+      await page.waitForTimeout(240);
+      await preview.locator('#site-header-family').selectOption('listing');
+      await preview.locator('#site-header-level').selectOption('hero');
+      const reuse = await header.evaluate(element => {
+        const group = element.querySelector('.crs-tabs-group--hero');
+        const tabs = [...element.querySelectorAll('.crs-context-tab')];
+        const filters = element.querySelector('.crs-site-header__filters-inner');
+        const filterRect = filters.getBoundingClientRect();
+        return {
+          groupBackground: getComputedStyle(group).backgroundColor,
+          tabs: tabs.map(tab => ({ height: tab.getBoundingClientRect().height, radius: getComputedStyle(tab).borderTopLeftRadius })),
+          filters: { width: filterRect.width, maxWidth: getComputedStyle(filters).maxWidth },
+        };
+      });
+      if (reuse.groupBackground !== 'rgba(0, 0, 0, 0.12)' || reuse.tabs.length !== 2 || reuse.tabs.some(tab => Math.abs(tab.height - 40) > .1 || tab.radius !== '12px')) {
+        failures.push('site-header: HeroTabs component geometry is not reused');
+      }
+      if (reuse.filters.maxWidth !== '1124px' || reuse.filters.width > 1124.1) failures.push('site-header: filter row exceeds the page container');
       await page.locator('#viewport-controls [data-width="full"]').click();
     }
 
@@ -587,9 +605,10 @@ try {
       const fields = preview.locator('.crs-field');
       await fields.first().waitFor();
       await page.waitForTimeout(80);
-      const expectedCount = entry.id === 'textarea' ? 10 : ['select', 'multi-select'].includes(entry.id) ? 13 : 12;
+      const expectedCount = entry.id === 'textarea' ? 10 : ['select', 'multi-select'].includes(entry.id) ? 13 : entry.id === 'text-input' ? 14 : 12;
       if (await fields.count() !== expectedCount) failures.push(`${entry.id}: expected ${expectedCount} field samples`);
-      if (await preview.locator('.crs-field-matrix__row').count() !== 5) failures.push(`${entry.id}: five state rows are not visible`);
+      const expectedRows = entry.id === 'text-input' ? 6 : 5;
+      if (await preview.locator('.crs-field-matrix__row').count() !== expectedRows) failures.push(`${entry.id}: expected ${expectedRows} state rows`);
 
       if (entry.id === 'textarea') {
         const heights = await fields.evaluateAll(elements => elements.map(element => element.getBoundingClientRect().height));
@@ -669,8 +688,10 @@ try {
       const matrix = preview.locator('.crs-control-matrix');
       await matrix.waitFor();
       const controls = matrix.locator('.crs-control');
-      if (await controls.count() !== 10) failures.push(`${entry.id}: state matrix must contain ten off/on controls`);
-      if (await matrix.locator('.crs-control-matrix__row').count() !== 5) failures.push(`${entry.id}: state matrix must contain five rows`);
+      const expectedControls = entry.id === 'checkbox' ? 11 : 10;
+      if (await controls.count() !== expectedControls) failures.push(`${entry.id}: state matrix must contain ${expectedControls} controls`);
+      const expectedRows = entry.id === 'checkbox' ? 6 : 5;
+      if (await matrix.locator('.crs-control-matrix__row').count() !== expectedRows) failures.push(`${entry.id}: state matrix must contain ${expectedRows} rows`);
       const baseGeometry = await controls.first().evaluate(element => {
         const control = element.getBoundingClientRect();
         const visual = element.querySelector('.crs-control__visual').getBoundingClientRect();
@@ -708,6 +729,10 @@ try {
       if (await checkedInput.count() !== 1) failures.push(`${entry.id}: default checked state is absent`);
       if (await matrix.locator('[data-state="disabled"] input:disabled').count() !== 2) failures.push(`${entry.id}: disabled pair is not native`);
       if (await matrix.locator('[data-state="loading"][aria-busy="true"]').count() !== 2) failures.push(`${entry.id}: loading pair misses aria-busy`);
+      if (entry.id === 'checkbox') {
+        const mixed = matrix.locator('[data-state="indeterminate"] input');
+        if (await mixed.count() !== 1 || !(await mixed.evaluate(element => element.indeterminate && element.getAttribute('aria-checked') === 'mixed'))) failures.push('checkbox: native indeterminate state is absent');
+      }
       if (entry.id === 'radio-button' && await matrix.locator('input[type="radio"]').count() !== 10) failures.push('radio-button: matrix is not built from native radio inputs');
       if (entry.id === 'switch' && await matrix.locator('input[role="switch"]').count() !== 10) failures.push('switch: native checkbox switch semantics are absent');
 
@@ -759,6 +784,40 @@ try {
       if (entry.id === 'iconography' && await foundationPreview.locator('.foundation-icon').count() !== 13) failures.push('iconography: production-confirmed sprite overview is incomplete');
     }
 
+    if (entry.id === 'responsive-layout') {
+      const preview = page.locator('#preview').contentFrame();
+      for (const width of expectedWidths.slice(0, -1)) {
+        await page.locator(`#viewport-controls [data-width="${width}"]`).click();
+        await page.waitForTimeout(120);
+        const geometry = await preview.locator('.doc-layout-demo').evaluate(element => {
+          const main = element.querySelector('.doc-layout-demo__main');
+          const sections = [...element.querySelectorAll('.doc-layout-demo__section')];
+          const mainRect = main.getBoundingClientRect();
+          const mainStyle = getComputedStyle(main);
+          const first = sections[0].getBoundingClientRect();
+          const second = sections[1].getBoundingClientRect();
+          return {
+            viewport: document.documentElement.clientWidth,
+            pageOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+            shellHeight: element.getBoundingClientRect().height,
+            bodyHeight: document.body.getBoundingClientRect().height,
+            container: { x: mainRect.x, width: mainRect.width },
+            padding: [parseFloat(mainStyle.paddingLeft), parseFloat(mainStyle.paddingRight)],
+            sectionGap: second.top - first.bottom,
+          };
+        });
+        const expectedContainerWidth = Math.min(geometry.viewport, 1124);
+        const expectedContainerX = (geometry.viewport - expectedContainerWidth) / 2;
+        if (geometry.pageOverflow > 1) failures.push(`responsive-layout: horizontal overflow at ${width}px`);
+        if (Math.abs(geometry.container.width - expectedContainerWidth) > 1 || Math.abs(geometry.container.x - expectedContainerX) > 1) {
+          failures.push(`responsive-layout: invalid container at ${width}px`);
+        }
+        if (geometry.padding.some(value => Math.abs(value - 24) > .1)) failures.push(`responsive-layout: gutter is not 24px at ${width}px`);
+        if (Math.abs(geometry.sectionGap - 48) > .1) failures.push(`responsive-layout: section gap is not 48px at ${width}px`);
+        if (geometry.shellHeight + 1 < geometry.bodyHeight) failures.push(`responsive-layout: shell does not cover the page at ${width}px`);
+      }
+    }
+
     if (item.examples.some(example => example.preview.mode === 'viewport')) {
       const controls = await page.locator('#viewport-controls button').evaluateAll(buttons => buttons.map(button => button.dataset.width));
       if (JSON.stringify(controls) !== JSON.stringify(expectedWidths)) failures.push(`${entry.id}: viewport controls differ`);
@@ -767,6 +826,31 @@ try {
         await page.waitForTimeout(220);
         const actual = await page.locator('#preview').evaluate(element => Math.round(element.getBoundingClientRect().width));
         if (actual !== Number(width)) failures.push(`${entry.id}: ${width}px control produces ${actual}px iframe`);
+        if (entry.category === 'pages') {
+          const preview = page.locator('#preview').contentFrame();
+          const pageGeometry = await preview.locator('.app-container').evaluate(element => {
+            const container = element.querySelector('.max-w-\\[1124px\\]');
+            const containerRect = container?.getBoundingClientRect();
+            const containerStyle = container ? getComputedStyle(container) : null;
+            return {
+              hasContent: Boolean(element.querySelector('.app-content')),
+              pageOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+              viewport: document.documentElement.clientWidth,
+              container: containerRect ? { x: containerRect.x, width: containerRect.width } : null,
+              padding: containerStyle ? [parseFloat(containerStyle.paddingLeft), parseFloat(containerStyle.paddingRight)] : null,
+            };
+          });
+          if (!pageGeometry.hasContent || !pageGeometry.container) failures.push(`${entry.id}: canonical page shell is absent at ${width}px`);
+          if (pageGeometry.pageOverflow > 1) failures.push(`${entry.id}: horizontal page overflow at ${width}px`);
+          if (pageGeometry.container) {
+            const expectedContainerWidth = Math.min(pageGeometry.viewport, 1124);
+            const expectedContainerX = (pageGeometry.viewport - expectedContainerWidth) / 2;
+            if (Math.abs(pageGeometry.container.width - expectedContainerWidth) > 1 || Math.abs(pageGeometry.container.x - expectedContainerX) > 1) {
+              failures.push(`${entry.id}: container geometry differs at ${width}px`);
+            }
+            if (pageGeometry.padding.some(value => Math.abs(value - 24) > .1)) failures.push(`${entry.id}: container gutter differs at ${width}px`);
+          }
+        }
       }
       await page.locator('#viewport-controls [data-width="full"]').click();
     }

@@ -33,7 +33,9 @@
     "filter-bar",
     "info-table"
   ],
-  "components": [],
+  "components": [
+    "entity-logo"
+  ],
   "implementation": {
     "markup": "available-in-examples",
     "cssRoots": [
@@ -151,10 +153,7 @@
       "ref": "https://career.habr.com/education_centers/35-yandeks-praktikum"
     }
   ],
-  "unknowns": [
-    "Carousel · ArticleCard · «Истории успеха», 8 слайдов ArticleCard. Лента Swiper держится на библиотечном слое, которого в ui/ нет, — живой пример был бы неправдой. Разметка — components/collections/carousel.md",
-    "Carousel · ReviewCard · отзывы, 8 слайдов ReviewCard. Лента Swiper держится на библиотечном слое, которого в ui/ нет, — живой пример был бы неправдой. Разметка — components/collections/carousel.md"
-  ],
+  "unknowns": [],
   "source": {
     "version": "v0.1",
     "spec": "archive:courses/v0.1/pages/education-center.md",
@@ -187,7 +186,12 @@
           "count": 1
         }
       ],
-      "components": [],
+      "components": [
+        {
+          "id": "entity-logo",
+          "count": 1
+        }
+      ],
       "id": "school-header"
     },
     {
@@ -207,7 +211,12 @@
           "count": 1
         }
       ],
-      "components": [],
+      "components": [
+        {
+          "id": "entity-logo",
+          "count": 8
+        }
+      ],
       "id": "courses"
     },
     {
@@ -227,7 +236,6 @@
         }
       ],
       "components": [],
-      "stub": "Carousel · ArticleCard · «Истории успеха», 8 слайдов ArticleCard. Лента Swiper держится на библиотечном слое, которого в ui/ нет, — живой пример был бы неправдой. Разметка — components/collections/carousel.md",
       "id": "success-stories"
     },
     {
@@ -239,8 +247,12 @@
           "count": 1
         }
       ],
-      "components": [],
-      "stub": "Carousel · ReviewCard · отзывы, 8 слайдов ReviewCard. Лента Swiper держится на библиотечном слое, которого в ui/ нет, — живой пример был бы неправдой. Разметка — components/collections/carousel.md",
+      "components": [
+        {
+          "id": "entity-logo",
+          "count": 5
+        }
+      ],
       "id": "reviews"
     },
     {
@@ -358,5 +370,92 @@
       ],
       "orderPreserved": true
     }
+  },
+  "layout": {
+    "shell": {
+      "root": "app-container",
+      "content": "app-content",
+      "behavior": "sticky-footer"
+    },
+    "container": {
+      "classes": "mx-auto max-w-[1124px] px-6 py-0 tablet:px-6",
+      "maxWidth": {
+        "token": "--courses-size-1124",
+        "value": "70.25rem"
+      },
+      "paddingInline": {
+        "token": "--courses-space-24",
+        "value": "1.5rem"
+      },
+      "contentWidthAtMax": "67.25rem"
+    },
+    "surfaces": {
+      "page": {
+        "token": "--color-white-background",
+        "value": "{color.ui-white}"
+      },
+      "work": {
+        "token": "--color-ui-white",
+        "value": "#ffffff"
+      },
+      "contentBlock": {
+        "background": {
+          "token": "--color-ui-white",
+          "value": "#ffffff"
+        },
+        "border": {
+          "widthToken": "--courses-border-width-1",
+          "colorToken": "--color-ui-black-100"
+        },
+        "radius": {
+          "token": "--courses-radius-24",
+          "value": "1.5rem"
+        }
+      }
+    },
+    "breakpoints": {
+      "smallPhoneMax": 479,
+      "phoneMax": 767,
+      "tabletMax": 1023,
+      "desktopMin": 1024,
+      "previewWidths": [
+        320,
+        480,
+        768,
+        1024
+      ]
+    },
+    "sectionStack": {
+      "classes": "relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0",
+      "columns": "minmax(0,1fr)",
+      "gap": {
+        "token": "--courses-space-48",
+        "value": "3rem"
+      },
+      "exceptionToDefault": false
+    },
+    "courseGrid": {
+      "component": "card-grid",
+      "variant": "school-courses",
+      "columns": {
+        "desktop": 4,
+        "tablet": 3,
+        "phone": 1
+      },
+      "visibleCards": {
+        "desktop": "all",
+        "tablet": 6,
+        "phone": 4
+      },
+      "gap": {
+        "token": "--courses-space-16",
+        "value": "1rem"
+      }
+    }
+  },
+  "entityLogoUsage": {
+    "school-header": 1,
+    "courses": 8,
+    "reviews": 5
   }
 }

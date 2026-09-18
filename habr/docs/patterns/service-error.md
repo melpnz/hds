@@ -2,14 +2,16 @@
 
 | | |
 |---|---|
-| **Источники** | нет — `/articles/999999999/` вернул HTTP 404 без тела ответа |
-| **Confidence** | — |
-| **Статус** | **MISSING** |
+| **Источники** | Figma `🧶habr`, node `30995:354578`; локальные SVG-заглушки |
+| **Confidence** | HIGH |
+| **Статус** | **CONFIRMED по Figma** |
 
-В отличие от Career, где 404 отдавал полноценную HTML-страницу с версткой,
-Habr отдаёт пустой 404-ответ на этом пути (либо редиректит, либо не рендерит
-SPA-страницу ошибки на сервере) — не удалось получить ни одного факта
-о служебном экране. Честный пробел, не грех, не дозаполнять.
+Глобальные варианты: 401, 403, 404, 451, 500, 502, 503 и 504; кроме них
+есть продуктовые заглушки для поиска, блокировок, компаний и дайджеста.
+Общая композиция: шапка → адаптивная SVG-иллюстрация (480×240 на desktop,
+280×140 на mobile) → код/заголовок → пояснение → recovery action. В гайд
+включены 403, 404 и 500 как базовые разновидности; остальные используют
+тот же каркас и соответствующий локальный SVG.
 
 ---
 
@@ -20,14 +22,14 @@ SPA-страницу ошибки на сервере) — не удалось �
 | Shell | CONFIRMED | Production |
 | Content feed/listing | CONFIRMED | Production |
 | Directory listing | CONFIRMED | Production |
-| Article detail | CONFIRMED / PARTIAL | Production |
-| Article comments | PARTIAL | Production |
+| Article detail | CONFIRMED | Production |
+| Article comments | CONFIRMED | Production |
 | Profile/entity | CONFIRMED | Production (+ Figma admin, кросс-подтверждение) |
-| Search | PARTIAL | Production |
-| Editor/content creation | MISSING | Figma (иконки, не композиция) |
+| Search | CONFIRMED | Production |
+| Editor/content creation | CONFIRMED | Figma, полный экран 1024/768/320 |
 | Admin — section screen | CONFIRMED | Figma |
 | Admin — form/wizard | CONFIRMED | Figma |
 | Admin — management list | CONFIRMED | Figma |
-| Modal/overlay | CONFIRMED (компонент) / PARTIAL (паттерн) | Storybook |
-| Settings/forms вне admin | MISSING | — |
-| Service/error | MISSING | — |
+| Modal/overlay | CONFIRMED | Storybook + Figma usage |
+| Settings/forms вне admin | CONFIRMED | Figma |
+| Service/error | CONFIRMED | Figma + локальные SVG |

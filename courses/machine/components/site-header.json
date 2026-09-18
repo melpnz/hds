@@ -66,28 +66,6 @@
         "figma"
       ],
       "scope": "design-source-only"
-    },
-    {
-      "id": "production-current",
-      "title": "Production · текущая шапка",
-      "file": "examples/components/site-header/production.html",
-      "covers": [
-        "default"
-      ],
-      "preview": {
-        "mode": "viewport",
-        "widths": [
-          320,
-          480,
-          768,
-          1024
-        ],
-        "height": 640
-      },
-      "authority": [
-        "production"
-      ],
-      "scope": "public-guest"
     }
   ],
   "variantMatrix": {
@@ -186,6 +164,14 @@
     {
       "type": "guidance",
       "text": "Responsive-шкала компонента: mobile ≤479, tablet 480–1023, desktop ≥1024. Она намеренно устраняет конфликт Figma tablet 744 со старым utility phone ≤767."
+    },
+    {
+      "type": "guidance",
+      "text": "Высоты 64, 112 и 144 px относятся к разным вариантам и брейкпоинтам SiteHeader; это не конфликт токенов. Все три варианта сохраняются."
+    },
+    {
+      "type": "guidance",
+      "text": "Классы font-inherit и align-center встречаются в production-разметке без собственных CSS-правил и не копируются в пакет."
     }
   ],
   "accessibility": [
@@ -256,10 +242,7 @@
       }
     }
   ],
-  "unknowns": [
-    "**Классы без правила.** В разметке продукта стоят классы, у которых нет объявления ни в одном из 22 файлов корпуса: `font-inherit`, `align-center`. Это не пробел пакета, а находка о продукте: класс написан, правило отсутствует. В `ui/` они не заводятся.",
-    "BRIEF §5, конфликт 2: --header-height: прод 64, сборка Storybook 112 (мобильный 144) — расхождение сборок"
-  ],
+  "unknowns": [],
   "source": {
     "version": "v0.2",
     "spec": "guide/components/frame-modules/site-header.md",
@@ -358,8 +341,7 @@
       "machine/dimension-tokens.json",
       "machine/tokens.json",
       "ui/courses.css",
-      "examples/components/site-header/index.html",
-      "examples/components/site-header/production.html"
+      "examples/components/site-header/index.html"
     ],
     "geometry": {
       "container": {

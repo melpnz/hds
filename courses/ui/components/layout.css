@@ -16,5 +16,24 @@
    литерал стоит в самом продукте, и тогда это отмечается в спецификации
    (METHOD §6.4).
 
-   Пока пусто: компоненты верстаются на шагах R4–R5.
    ========================================================================= */
+
+/* CardGrid -----------------------------------------------------------------
+   Базовые варианты могут выбирать 2/3/4 колонки через utility-классы страницы.
+   School courses — зафиксированное production-исключение: gap 16 и ограничение
+   числа видимых карточек на tablet/phone. */
+.crs-card-grid { display: grid; }
+.crs-card-grid--school-courses {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--courses-space-16);
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .crs-card-grid--school-courses { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .crs-card-grid--school-courses > :nth-child(n + 7) { display: none; }
+}
+
+@media (max-width: 767px) {
+  .crs-card-grid--school-courses { grid-template-columns: minmax(0, 1fr); }
+  .crs-card-grid--school-courses > :nth-child(n + 5) { display: none; }
+}

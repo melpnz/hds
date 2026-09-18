@@ -161,7 +161,7 @@
   box-sizing: border-box;
   column-gap: var(--fig-size-spacing-x6);
   display: grid;
-  grid-template-columns: 270px 1px repeat(3, minmax(0, 1fr));
+  grid-template-columns: var(--courses-size-272) var(--courses-size-1) minmax(0, 1fr);
   padding: var(--fig-size-spacing-x6) var(--fig-size-spacing-x10) var(--fig-size-spacing-x6) var(--fig-size-spacing-x6);
   width: 100%;
 }
@@ -234,85 +234,83 @@
   text-decoration: underline;
   text-underline-position: from-font;
 }
-/* Перестройка — по кадрам той же секции макета «меню каталога» 14639:226536,
-   на брейкпоинтах макета (744 / 1024), а не продукта (768 / 1024): записи
-   в продукте нет, брать брейкпоинт продукта не у чего. Кадр 744
-   (14657:223784) оставляет одну колонку курсов, кадр 320 (14657:224296) —
-   только левую колонку во всю ширину. Шеврон перехода у строки и поиск над
-   списком из кадра 320 не свёрстаны — шаг R4-13. */
-@media (max-width: 1023px) {
-  .crs-catalog-menu {
-    grid-template-columns: 270px 1px minmax(0, 1fr);
-  }
-  .crs-catalog-menu__column ~ .crs-catalog-menu__column {
-    display: none;
-  }
-}
-@media (max-width: 743px) {
-  .crs-catalog-menu {
-    grid-template-columns: minmax(0, 1fr);
-    padding: var(--fig-size-spacing-x6);
-  }
-  .crs-catalog-menu__divider,
-  .crs-catalog-menu__column {
-    display: none;
-  }
-}
-
-/* CatalogMenu, дополнение 11 сентября: детский каталог и кадр 320.
-
-   Детский каталог («каталог детей 🎀», 14657:224732) слева тот же — список
-   направлений со своими иконками, — а справа не три колонки курсов, а
-   группы: заголовок стилем Header/H4 и три колонки коротких списков
-   (15170:145636 «По предметам», 15170:145653 «По возрасту»). Группы — через
-   32, внутри группы — 16, у первой сверху 12, как у колонок взрослого.
-
-   Кадр 320 (14657:224294) добавляет полосу поиска над панелью — кнопку
-   «назад» (символ arrow-large спрайта, повёрнут на 90°) и поле с лупой
-   (символ search) — и шеврон перехода у каждой строки направления (символ
-   arrow-small, повёрнут на −90°); строки там без левого отступа. Поле
-   поиска свёрстано здесь же: продуктовый SearchInput в снятой разметке —
-   SSR-заглушка без поля. На ширинах от 744 полоса и шевроны скрыты. */
+/* Обновлённое меню каталога — Figma 14639:226536, 18 сентября 2026.
+   На desktop и tablet первый уровень остаётся списком с иконками. Второй
+   уровень теперь состоит из именованных групп: три колонки на desktop и
+   одна на tablet. На mobile первый уровень становится сеткой с изображениями. */
 .crs-catalog-menu__search,
-.crs-catalog-menu__row-chevron {
+.crs-catalog-menu__tiles,
+.crs-catalog-menu__suggestions,
+.crs-catalog-menu__mobile-detail {
   display: none;
 }
 .crs-catalog-menu__groups {
-  display: flex;
-  flex-direction: column;
-  gap: var(--fig-size-spacing-x8);
-  grid-column: 3 / -1;
+  align-content: start;
+  display: grid;
+  gap: var(--fig-size-spacing-x8) var(--fig-size-spacing-x6);
+  grid-column: 3;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   min-width: 0;
   padding-top: var(--fig-size-spacing-x3);
 }
 .crs-catalog-menu__group {
   display: flex;
   flex-direction: column;
-  gap: var(--fig-size-spacing-x4);
+  gap: var(--fig-size-spacing-x3);
 }
 .crs-catalog-menu__group-title {
   color: var(--fig-color-style-font-primary);
-  font-size: var(--fig-font-size-display-s);
+  font-size: var(--fig-font-size-body-l);
   font-weight: var(--fig-font-weight-semibold);
   letter-spacing: var(--fig-font-letter-spacing-headers);
-  line-height: var(--courses-line-height-22-on-18);
+  line-height: var(--courses-line-height-22-on-16);
   margin: 0;
 }
 .crs-catalog-menu__group-columns {
-  display: grid;
-  gap: var(--fig-size-spacing-x6);
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  display: block;
 }
 .crs-catalog-menu__group-columns .crs-catalog-menu__column {
   display: flex;
   padding-top: 0;
 }
+.crs-catalog-menu__more {
+  color: var(--fig-color-style-font-link);
+  font-size: var(--fig-font-size-body-m);
+  line-height: var(--courses-line-height-20-on-14);
+  text-decoration: none;
+}
+.crs-catalog-menu__more:hover { text-decoration: underline; }
 @media (max-width: 1023px) {
-  .crs-catalog-menu__groups { grid-column: 3; }
+  .crs-catalog-menu__groups { grid-template-columns: minmax(0, 1fr); }
 }
 @media (max-width: 743px) {
-  .crs-catalog-menu--with-search { padding: 0; }
-  .crs-catalog-menu--with-search .crs-catalog-menu__side { padding: var(--fig-size-spacing-x6); }
+  .crs-catalog-menu {
+    display: block;
+    padding: 0;
+  }
+  .crs-catalog-menu__side {
+    gap: var(--fig-size-spacing-x3);
+    padding: var(--fig-size-spacing-x6);
+  }
+  .crs-catalog-menu__back { visibility: hidden; }
+  .crs-catalog-menu[data-mobile-level="detail"] .crs-catalog-menu__back { visibility: visible; }
+  .crs-catalog-menu[data-mobile-level="detail"] .crs-catalog-menu__side { display: none; }
+  .crs-catalog-menu[data-mobile-level="detail"] .crs-catalog-menu__mobile-detail {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fig-size-spacing-x6);
+    padding: var(--fig-size-spacing-x6);
+  }
+  .crs-catalog-menu__mobile-title {
+    color: var(--fig-color-style-font-primary);
+    font-size: var(--fig-font-size-body-l);
+    font-weight: var(--fig-font-weight-semibold);
+    line-height: var(--courses-line-height-22-on-16);
+    margin: 0;
+  }
+  .crs-catalog-menu__divider,
+  .crs-catalog-menu__list,
+  .crs-catalog-menu__groups { display: none; }
   .crs-catalog-menu__search {
     align-items: center;
     border-bottom: var(--courses-border-width-1) solid var(--fig-color-style-neutral-neutral-hover);
@@ -330,6 +328,12 @@
     flex: none;
     padding: 0;
   }
+  .crs-catalog-menu__back .svg-icon,
+  .crs-catalog-menu__search-field .svg-icon {
+    height: var(--fig-iconsize-x1);
+    width: var(--fig-iconsize-x1);
+  }
+  .crs-catalog-menu__back .svg-icon { transform: rotate(90deg); }
   .crs-catalog-menu__search-field {
     align-items: center;
     background: var(--fig-elements-input-fill);
@@ -357,13 +361,58 @@
   }
   .crs-catalog-menu__search-input::placeholder { color: var(--fig-elements-input-placeholder); }
   .crs-catalog-menu__search-field .svg-icon { color: var(--fig-elements-input-icon); flex: none; }
-  .crs-catalog-menu__row { padding: var(--fig-elements-dropdown-row-padding-top-bottom) 0; }
-  .crs-catalog-menu__row-chevron {
-    color: var(--fig-elements-input-icon);
-    display: block;
-    flex: none;
+  .crs-catalog-menu__tiles {
+    display: grid;
+    gap: var(--fig-size-spacing-x2);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
-  .crs-catalog-menu__groups { display: none; }
+  .crs-catalog-menu__tile {
+    aspect-ratio: 1;
+    background: var(--fig-color-style-neutral-neutral-light);
+    border-radius: var(--fig-size-radius-xs);
+    color: var(--fig-elements-dropdown-row-text);
+    border: 0;
+    cursor: pointer;
+    display: block;
+    font: inherit;
+    text-align: left;
+    overflow: hidden;
+    padding: var(--fig-elements-dropdown-row-padding-top-bottom) var(--fig-size-spacing-x3);
+    position: relative;
+    text-decoration: none;
+  }
+  .crs-catalog-menu__tile-label {
+    display: block;
+    font-size: var(--fig-font-size-body-s);
+    font-weight: var(--fig-font-weight-semibold);
+    letter-spacing: var(--fig-font-letter-spacing-text);
+    line-height: var(--courses-line-height-16-on-12);
+    position: relative;
+    z-index: 2;
+  }
+  .crs-catalog-menu__tile-image {
+    height: 100%;
+    inset: 0;
+    object-fit: cover;
+    pointer-events: none;
+    position: absolute;
+    width: 100%;
+  }
+  .crs-catalog-menu__suggestions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--fig-size-spacing-x3);
+  }
+  .crs-catalog-menu__suggestions-title {
+    color: var(--fig-color-style-font-primary);
+    font-size: var(--fig-font-size-body-l);
+    font-weight: var(--fig-font-weight-semibold);
+    line-height: var(--courses-line-height-22-on-16);
+    margin: 0;
+  }
+}
+@media (max-width: 359px) {
+  .crs-catalog-menu__tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 /* -------------------------------------------------------------------------
@@ -430,6 +479,7 @@
   border-radius: var(--fig-size-radius-l) var(--fig-size-radius-l) 0 0;
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   padding: var(--fig-size-spacing-x3) 0;
   position: relative;
 }
@@ -452,6 +502,11 @@
   line-height: var(--courses-line-height-20-on-14);
   padding: calc(var(--fig-elements-dropdown-row-padding-top-bottom) + var(--fig-elements-dropdown-row-margin-text-avatar)) var(--fig-elements-dropdown-row-padding-right) calc(var(--fig-elements-dropdown-row-padding-top-bottom) + var(--fig-elements-dropdown-row-margin-text-avatar)) var(--fig-elements-dropdown-row-padding-left-for-modal);
   text-align: left;
+}
+.crs-sort-sheet__option:hover,
+.crs-sort-sheet__option:focus-visible {
+  background: var(--fig-elements-dropdown-row-fill-hover);
+  outline: 0;
 }
 
 /* -------------------------------------------------------------------------
@@ -481,6 +536,7 @@
   color: var(--fig-elements-modal-text);
   display: flex;
   flex-direction: column;
+  overflow: hidden;
   position: relative;
 }
 .crs-price-sheet__handle {
@@ -519,6 +575,7 @@
 }
 .crs-price-sheet__field--grow { flex: 1 0 0; }
 .crs-price-sheet__field--currency { flex: none; width: var(--courses-size-66); }
+.crs-price-sheet__field:focus-within { border-color: var(--fig-color-style-font-primary); }
 .crs-price-sheet__input {
   background: transparent;
   border: 0;
@@ -657,6 +714,21 @@
   max-width: var(--courses-size-320);
   width: 100%;
 }
+.crs-mobile-menu-trigger {
+  align-items: center;
+  background: var(--color-ui-blue-500);
+  border: 0;
+  border-radius: var(--courses-radius-12);
+  color: var(--color-ui-white);
+  cursor: pointer;
+  display: inline-flex;
+  font: 600 var(--courses-font-size-14)/var(--courses-line-height-20-on-14) Inter, sans-serif;
+  gap: var(--courses-space-8);
+  height: var(--courses-size-40);
+  margin-bottom: var(--courses-space-16);
+  padding: 0 var(--courses-space-16);
+}
+.crs-mobile-menu-trigger svg { height: var(--courses-size-24); width: var(--courses-size-24); }
 .crs-mobile-menu__header {
   align-items: center;
   border-bottom: var(--courses-border-width-1) solid var(--fig-color-style-neutral-neutral-hover);

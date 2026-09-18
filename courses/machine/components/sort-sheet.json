@@ -38,22 +38,27 @@
   "rules": [],
   "examples": [
     {
-      "id": "mobile-flow",
-      "title": "SortSheet · мобильный сценарий",
+      "id": "responsive-flow",
+      "title": "SortSheet · desktop / tablet / mobile",
       "file": "examples/components/sort-sheet/index.html",
       "covers": [
         "default",
         "open",
         "closed",
-        "selected"
+        "selected",
+        "desktop",
+        "tablet",
+        "mobile"
       ],
       "preview": {
-        "mode": "intrinsic"
-      },
-      "presentation": {
-        "layout": "context",
-        "width": 320,
-        "height": 568
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 720
       },
       "authority": [
         "figma"
@@ -63,10 +68,10 @@
   ],
   "layoutRules": [
     {
-      "id": "mobile-only",
+      "id": "responsive-presentation",
       "context": "Быстрые фильтры",
-      "behavior": "Bottom sheet используется только в мобильном режиме.",
-      "implementation": "Эталонный viewport 320×568; на tablet/desktop применяется inline control, dropdown или popover."
+      "behavior": "На mobile используется bottom sheet, на tablet/desktop — компактный dropdown поверх страницы.",
+      "implementation": "Один состав контента меняет позиционирование, радиус, overlay и видимость handle по data-device."
     },
     {
       "id": "bottom-anchor",
@@ -88,7 +93,7 @@
     },
     {
       "type": "guidance",
-      "text": "SortSheet — mobile-only bottom sheet по сценарию быстрых фильтров Education Figma node 9094:48333. Viewer намеренно показывает один экран 320×568 без desktop/tablet-переключателей."
+      "text": "Viewer показывает desktop, tablet и mobile. Mobile следует bottom-sheet из Education Figma node 9094:48333; широкие режимы показывают тот же список как dropdown."
     },
     {
       "type": "guidance",

@@ -15,14 +15,18 @@
     "confidence": "high",
     "scope": "public-guest"
   },
-  "purpose": "Границы адаптивных диапазонов и базовые правила контейнера, мобильной оболочки и сеток.",
+  "purpose": "Живая оболочка страницы, контейнер, поверхности, секционная сетка и границы адаптивных диапазонов.",
   "implementation": {
     "markup": "available-in-examples",
     "cssRoots": [
-      "layout"
+      "app-container",
+      "app-content",
+      "mx-auto max-w-[1124px] px-6 py-0 tablet:px-6",
+      "relative grid grid-cols-[minmax(0,1fr)] gap-12"
     ],
     "styles": [
-      "ui/courses.css"
+      "ui/courses.css",
+      "ui/page-examples.css"
     ],
     "scripts": []
   },
@@ -35,17 +39,20 @@
   "examples": [
     {
       "id": "overview",
-      "title": "Обзор",
+      "title": "Живая оболочка страницы",
       "file": "examples/foundations/responsive-layout/index.html",
       "covers": [
         "foundation"
       ],
       "preview": {
-        "mode": "intrinsic"
-      },
-      "presentation": {
-        "layout": "constrained",
-        "width": 720
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 760
       }
     }
   ],

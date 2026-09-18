@@ -3,8 +3,8 @@
 | | |
 |---|---|
 | **Категория** | Отображение данных (`data-display`) |
-| **Корневой класс** | `rounded-xl` · `border-2` · `border-ui-white` |
-| **CSS** | утилиты `ui/utilities-components.css` |
+| **Корневой класс** | `crs-entity-logo` + `data-size="24|32|36|40|48|56|68|100"` |
+| **CSS** | `ui/components/data-display.css` |
 | **Живая реализация** | [`viewer/index.html#entity-logo`](../../../viewer/index.html#entity-logo) |
 | **Snapshot** | 2 из 2 состояний снято |
 
@@ -23,7 +23,7 @@
 
 ## Как работает
 
-`<img>` со скруглением `rounded-xl` и рамкой `border-2 border-ui-white`. Без логотипа продукт подставляет заглушку `avatars/logo.svg` или `empty-edu-center_2.svg` — состояние `empty`.
+`<img class="crs-entity-logo">`; размер и соответствующий ему радиус задаются атрибутом `data-size`. Позиционирование и рамка карточки остаются ответственностью родительского контекста. Без логотипа гайд подставляет `ui/assets/images/avatar-default-company.svg` — состояние `empty`.
 
 ## Управление клавиатурой
 
@@ -39,7 +39,7 @@
 так же, как на витрине (инвариант METHOD §6.1).
 
 ```html
-<img src="https://habrastorage.org/getpro/courses/upload_files/908/4c6/03d/9084c603d799f50ca46d9f9e19dd6815.png" alt="" style="--avatar-size:40px;" class="h-[var(--avatar-size)] w-[var(--avatar-size)] object-cover z-2 absolute -top-[20px] rounded-xl border-2 border-solid border-ui-white bg-ui-white">
+<img src="../../../ui/assets/images/avatar-default-company.svg" alt="" class="crs-entity-logo z-2 absolute -top-[20px] border-2 border-solid border-ui-white bg-ui-white" data-component="entity-logo" data-size="40">
 ```
 
 ## Анатомия

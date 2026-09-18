@@ -5,41 +5,145 @@
   "kind": "pattern",
   "category": "page-families",
   "maturity": {
-    "spec": "missing",
-    "markup": "missing"
+    "spec": "complete",
+    "markup": "available"
   },
   "knowledge": {
     "authority": [
-      "figma-fragment"
+      "figma"
     ],
-    "confidence": "low",
+    "confidence": "medium",
     "scope": "habr"
   },
-  "purpose": "Гостю недоступен ни один экран редактора. Figma даёт только набор иконок форматирования («Markdown доп.панель — форматирование текста», списки, формулы, таблицы) без композиции экрана целиком. Не реконструировать экран редактора по набору иконок — это material для будущего компонента тулбара, не для page pattern.",
+  "purpose": "Композиция: notice о резервном сохранении → рабочая поверхность создания публикации → тип/аудитория/перевод/сложность/формат → автор → заголовок → обложка → WYSIWYG → хабы и теги → дополнительные виджеты → publish/draft. На 320 toolbar закреплён внизу рабочей области, действия переносятся в несколько строк, вся форма остаётся одноколоночной.",
   "implementation": {
-    "markup": null,
-    "styles": [],
-    "missingReason": "copy-safe-page-example-not-captured",
-    "fallback": "Использовать ближайший подтверждённый паттерн и явно раскрыть допущение. Не восстанавливать DOM по названию семейства."
+    "markup": "available-in-examples",
+    "cssRoots": [],
+    "styles": [
+      "ui/habr.css"
+    ],
+    "scripts": [
+      "examples/site-shell.js"
+    ]
   },
   "states": {
     "ui": [],
     "feature": [],
     "domain": []
   },
-  "examples": [],
+  "examples": [
+    {
+      "id": "figma-editor",
+      "title": "Редактор публикации",
+      "file": "examples/generated/patterns/editor/figma-editor.html",
+      "covers": [
+        "editor"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 760
+      }
+    }
+  ],
   "evidence": [
     {
-      "type": "figma-fragment",
+      "type": "figma",
+      "ref": "https://www.figma.com/design/T6D4YRKF3qdAmGNAu4wIBo/?node-id=34497-1053810"
+    },
+    {
+      "type": "pattern-spec",
       "ref": "docs/patterns/editor.md"
     }
   ],
   "unknowns": [],
-  "sourceStatus": "missing",
+  "sourceStatus": "confirmed",
   "family": "EDITOR",
-  "areas": [],
-  "modules": [],
-  "components": [],
-  "previewNotes": [],
+  "areas": [
+    "editor-notice",
+    "publication-editor",
+    "publication-actions"
+  ],
+  "modules": [
+    "publication-editor",
+    "editor-toolbar"
+  ],
+  "components": [
+    "notice",
+    "chip",
+    "button",
+    "icon-button",
+    "user-info"
+  ],
+  "sequence": [
+    {
+      "id": "editor-notice",
+      "tag": "aside",
+      "heading": null,
+      "modules": [],
+      "components": [
+        {
+          "id": "notice",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "publication-editor",
+      "tag": "form",
+      "heading": "Создание публикации",
+      "modules": [
+        {
+          "id": "publication-editor",
+          "count": 1
+        },
+        {
+          "id": "editor-toolbar",
+          "count": 1
+        }
+      ],
+      "components": [
+        {
+          "id": "chip",
+          "count": 7
+        },
+        {
+          "id": "icon-button",
+          "count": 9
+        },
+        {
+          "id": "user-info",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "publication-actions",
+      "tag": "footer",
+      "heading": null,
+      "modules": [],
+      "components": [
+        {
+          "id": "button",
+          "count": 5
+        }
+      ]
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Figma: полный экран редактора на 1024/768/320. На мобильном инструменты переносятся вниз, контент остаётся одноколоночным."
+    }
+  ],
+  "shellDependencies": [
+    "header",
+    "footer"
+  ],
   "markdown": "docs/patterns/editor.md"
 }

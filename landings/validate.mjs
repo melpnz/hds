@@ -121,9 +121,38 @@ const sourcePages = readJson("machine/source-pages.json");
 if (sourcePages.count !== 11 || sourcePages.pages.length !== 11) errors.push("В RU-аудите и библиотеке должно быть 11 страниц");
 if (sourcePages.status !== "source-driven-draft") errors.push("Страницы должны быть честно помечены как source-driven-draft до полной визуальной сверки");
 const expectedPageBlocks = { company: 6, advertising: 7, agency: 12, "career-special": 6, "corporate-blogs": 9, "education-programs": 6, "hello-startup": 4, "native-special": 6, newsletter: 6, portfolio: 3, promo: 8 };
+const pageBlockMarkers = {
+  "brand-strip": "hds-brand-strip",
+  "case-layout": "hds-case-layout",
+  "contact-section": "hds-contact-section",
+  "content-grid": "hds-content-grid",
+  "feature-layout": "hds-feature-layout",
+  "landing-hero": "hds-landing-hero",
+  "lead-section": "hds-lead-section",
+  "metrics-section": "hds-metrics-section",
+  "phase-stack": "hds-phase-stack",
+  "portfolio-grid": "hds-portfolio-grid",
+  "section-heading": "hds-section-heading",
+  "subscription-form": "hds-subscription",
+  testimonials: "hds-quote",
+  faq: "hds-accordion",
+};
 const compositionSignatures = new Set();
 for (const page of sourcePages.pages) {
-  if (!fs.existsSync(path.join(root, page.reconstruction))) errors.push(`Нет реконструкции ${page.reconstruction}`);
+  const reconstructionPath = path.join(root, page.reconstruction);
+  if (!fs.existsSync(reconstructionPath)) {
+    errors.push(`Нет реконструкции ${page.reconstruction}`);
+  } else {
+    const reconstruction = fs.readFileSync(reconstructionPath, "utf8");
+    for (const block of new Set(page.blocks)) {
+      const marker = pageBlockMarkers[block];
+      if (!marker) errors.push(`${page.slug}: для блока ${block} не задан канонический component marker`);
+      else if (!reconstruction.includes(marker)) errors.push(`${page.slug}: страница заявляет ${block}, но не использует компонент ${marker}`);
+    }
+    for (const marker of ["hds-header", "hds-footer"]) {
+      if (!reconstruction.includes(marker)) errors.push(`${page.slug}: отсутствует общий компонент ${marker}`);
+    }
+  }
   if (!fs.existsSync(path.resolve(root, "..", page.source))) errors.push(`Нет Webflow-источника ${page.source}`);
   if (page.blocks.length !== expectedPageBlocks[page.slug]) errors.push(`${page.slug}: ожидается ${expectedPageBlocks[page.slug]} блоков по постраничной схеме, найдено ${page.blocks.length}`);
   compositionSignatures.add(page.blocks.join("|"));

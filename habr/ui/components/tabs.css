@@ -45,7 +45,9 @@
   width: var(--habr-size-16);
 }
 .tabs-padding-area {
-  padding-left: var(--habr-space-16);
+  /* Краевой отступ уже создаёт ::before у scroll-area. Не дублировать его
+     padding-ом: иначе первый таб получает двойной отступ. */
+  padding-left: 0;
   padding-right: var(--habr-space-2);
 }
 
@@ -108,7 +110,6 @@
   .tabs { overflow-x: visible; }
   .tabs:before, .tabs:after,
   .tabs-scroll-area:before, .tabs-scroll-area:after { width: var(--habr-size-20); }
-  .tabs-padding-area { padding-left: var(--habr-space-20); }
   .tab-item:first-child { padding-left: 0; }
 }
 

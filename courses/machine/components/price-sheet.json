@@ -12,8 +12,8 @@
     "authority": [
       "figma"
     ],
-    "confidence": "medium",
-    "scope": "design-source-only"
+    "confidence": "high",
+    "scope": "normative-design"
   },
   "purpose": "**В продукте этого компонента нет.** Он существует только в макете, и это не пробел съёмки, а установленный факт — разбор в `notes` записи реестра:",
   "implementation": {
@@ -38,23 +38,28 @@
   "rules": [],
   "examples": [
     {
-      "id": "mobile-flow",
-      "title": "PriceSheet · мобильный сценарий",
+      "id": "responsive-flow",
+      "title": "PriceSheet · desktop / tablet / mobile",
       "file": "examples/components/price-sheet/index.html",
       "covers": [
         "default",
         "open",
         "closed",
         "reset",
-        "submit"
+        "submit",
+        "desktop",
+        "tablet",
+        "mobile"
       ],
       "preview": {
-        "mode": "intrinsic"
-      },
-      "presentation": {
-        "layout": "context",
-        "width": 320,
-        "height": 568
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 720
       },
       "authority": [
         "figma"
@@ -64,10 +69,10 @@
   ],
   "layoutRules": [
     {
-      "id": "mobile-only",
+      "id": "responsive-presentation",
       "context": "Быстрые фильтры",
-      "behavior": "Bottom sheet используется только в мобильном режиме.",
-      "implementation": "Эталонный viewport 320×568; на tablet/desktop применяется inline control, dropdown или popover."
+      "behavior": "На mobile используется bottom sheet, на tablet/desktop — компактная modal/popover-панель поверх страницы.",
+      "implementation": "Один состав полей меняет позиционирование, радиус, overlay и видимость handle по data-device."
     },
     {
       "id": "bottom-anchor",
@@ -89,15 +94,15 @@
     },
     {
       "type": "guidance",
-      "text": "PriceSheet — mobile-only bottom sheet по сценарию быстрых фильтров Education Figma node 9094:48333. Viewer намеренно показывает один экран 320×568 без desktop/tablet-переключателей."
+      "text": "Viewer показывает desktop, tablet и mobile. Mobile следует bottom-sheet из Education Figma node 9094:48333; широкие режимы показывают тот же состав как modal/popover-панель."
     },
     {
       "type": "guidance",
       "text": "Сброс очищает оба поля без закрытия; «Готово» закрывает sheet и возвращает фокус. Геометрия открытой панели 320×176 взята из node 9356:52508."
     },
     {
-      "type": "coverage-warning",
-      "text": "Источник figma-only: компонент не подтверждён в продакшене."
+      "type": "guidance",
+      "text": "Макет принят владельцем как нормативный. Кнопки футера повторно используют общий Button M: secondary и main."
     }
   ],
   "accessibility": [
@@ -131,14 +136,13 @@
     "**Тексты.** Тексты — дословно из узла: «Цена», «От», «До», «₽», «Сбросить», «Готово». Валюта — выбор (`select_level3` со стрелкой), здесь показан закрытым.",
     "**Ассеты.** Стрелка валюты — символ `arrow-small` общего спрайта (глиф `icon/arrow-down` макета). Кнопки — продуктовый `Button` M: main и secondary, классы дословно из снятой разметки.",
     "**Состояния.** Нарисована открытая шторка (`open`). Закрытая (`closed`) — чип «Цена» в ряду быстрых фильтров; отдельной вёрстки у записи для него нет. Разбор — [`components/STATE-CAPTURE.md`](../STATE-CAPTURE.md).",
-    "**Статус терминальный.** Правило манифеста: `sourceScope: figma-only` не доходит до `complete`/`partial`. Пока компонент не найден в продукте, запись остаётся `figma-only`, сколько бы вёрстки к ней ни прибавилось.",
     "Не снятые состояния: closed."
   ],
   "source": {
     "version": "v0.2",
     "spec": "guide/components/overlays/price-sheet.md",
-    "status": "figma-only",
-    "scope": "figma-only",
+    "status": "partial",
+    "scope": "normative-design",
     "step": "R4-18",
     "anchor": "showcase/components.html#c-price-sheet",
     "originalKind": "module",

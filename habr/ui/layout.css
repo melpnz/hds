@@ -408,22 +408,41 @@
 }
 
 .tm-page__wrapper {
-  display: flex;
+  container: page / inline-size;
+  display: block;
   position: relative;
 }
 .tm-page__main {
+  min-width: 0;
   position: relative;
 }
 .tm-page__main_has-sidebar {
-  max-width: calc(100% - (var(--sidebar-width) + var(--habr-size-16)));
-  flex: 1;
-  margin-right: var(--habr-space-16);
+  max-width: none;
+  width: 100%;
+  margin-right: 0;
 }
 .tm-page__sidebar {
-  width: var(--sidebar-width);
-  flex: none;
+  width: 100%;
+  margin-top: var(--habr-space-16);
+  flex-direction: column;
   position: relative; /* НЕ sticky — отличие от Career, где фильтры залипают */
   display: flex;
+}
+@media (max-width: 1023px) {
+  .tm-page__sidebar:empty { display: none; }
+}
+@media (min-width: 1024px) {
+  .tm-page__wrapper { display: flex; }
+  .tm-page__main_has-sidebar {
+    max-width: calc(100% - (var(--sidebar-width) + var(--habr-size-16)));
+    flex: 1;
+    margin-right: var(--habr-space-16);
+  }
+  .tm-page__sidebar {
+    width: var(--sidebar-width);
+    flex: none;
+    margin-top: 0;
+  }
 }
 
 /* --- отступ страницы сверху/снизу -------------------------------------- */

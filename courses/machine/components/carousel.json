@@ -5,22 +5,22 @@
   "kind": "module",
   "category": "collections",
   "maturity": {
-    "spec": "complete",
-    "markup": "missing"
+    "spec": "partial",
+    "markup": "available"
   },
   "knowledge": {
     "authority": [
-      "production"
+      "production",
+      "figma"
     ],
     "confidence": "high",
     "scope": "public-guest"
   },
   "purpose": "Используйте для ленты карточек, которую листают: курсы, отзывы, статьи журнала, реклама. В продукте 16 узлов на 7 страницах.",
   "implementation": {
-    "markup": null,
-    "missingReason": "разметки нет: запись — обёртка вокруг библиотеки (см. spec)",
-    "fallback": "Использовать спецификацию guide/components/collections/carousel.md; не восстанавливать DOM по внешнему виду.",
+    "markup": "available-in-examples",
     "cssRoots": [
+      "crs-carousel",
       "vendor:swiper"
     ],
     "styles": [
@@ -37,8 +37,32 @@
     "domain": []
   },
   "rules": [],
-  "examples": [],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Живые варианты",
+      "file": "examples/components/carousel/index.html",
+      "covers": [
+        "default",
+        "current"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 1120
+      }
+    }
+  ],
   "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Живой пример использует нативный scroll-snap как автономный preview adapter; production-механика остаётся за Swiper."
+    },
     {
       "type": "guidance",
       "text": "Полная спецификация: guide/components/collections/carousel.md."
@@ -63,12 +87,19 @@
           "schools-for-children"
         ]
       }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+        "nodeId": "15074:257173",
+        "layerName": "Carousel · centered active slide with adjacent peeks"
+      }
     }
   ],
   "unknowns": [
-    "**Копируемость (METHOD §6.1) для этой записи не выполняется, и это решение, а не пробел.** Разметку нельзя вставить на пустую страницу с одним `ui/courses.css` и получить карусель: нужен слой Swiper, которого в пакете нет намеренно.",
     "**Состояния каруселью не описываются.** `swiper-slide-active`, `swiper-slide-prev`, `swiper-slide-next` — признаки библиотеки, и меняет их она сама. Пакет их только называет.",
-    "разметки нет: запись — обёртка вокруг библиотеки (см. spec)"
+    "Preview adapter воспроизводит геометрию и навигацию, но не заменяет механику Swiper в production."
   ],
   "source": {
     "version": "v0.1",
@@ -78,8 +109,8 @@
     "step": "R4-09",
     "anchor": "showcase/components.html#c-carousel",
     "originalKind": "module",
-    "markupNote": "разметки нет: запись — обёртка вокруг библиотеки (см. spec)",
-    "markupState": null
+    "markupNote": "Автономный живой preview adapter поверх production-геометрии; product runtime использует Swiper.",
+    "markupState": "available"
   },
   "usage": {
     "when": "Используйте для ленты карточек, которую листают: курсы, отзывы, статьи журнала, реклама. В продукте 16 узлов на 7 страницах.",
@@ -91,7 +122,11 @@
     ]
   },
   "dependencies": [
-    "icon-button"
+    "icon-button",
+    "ad-slot",
+    "course-card",
+    "article-card",
+    "review-card"
   ],
   "stateCoverage": {
     "required": [
@@ -155,7 +190,8 @@
     "sources": [
       "machine/dimension-tokens.json",
       "machine/tokens.json",
-      "ui/courses.css"
+      "ui/courses.css",
+      "examples/components/carousel/index.html"
     ],
     "geometry": {
       "gridGap": {

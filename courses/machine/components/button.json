@@ -5,7 +5,7 @@
   "kind": "component",
   "category": "actions",
   "maturity": {
-    "spec": "partial",
+    "spec": "complete",
     "markup": "available"
   },
   "knowledge": {
@@ -55,6 +55,7 @@
         "default",
         "hover",
         "focus-visible",
+        "pressed",
         "disabled",
         "loading"
       ],
@@ -105,6 +106,7 @@
       "default",
       "hover",
       "focus-visible",
+      "pressed",
       "disabled",
       "loading"
     ],
@@ -112,18 +114,46 @@
       false,
       true
     ],
-    "combinations": 140
+    "combinations": 168
   },
   "visual": {
     "source": "production CSS and confirmed Courses button decisions",
     "radius": "12px",
     "borderWidth": "1px",
     "fontWeight": 600,
-    "icon": { "width": "24px", "height": "24px", "viewBox": "0 0 24 24" },
+    "icon": {
+      "width": "24px",
+      "height": "24px",
+      "viewBox": "0 0 24 24"
+    },
     "sizes": {
-      "m": { "height": "40px", "paddingBlock": "8px", "paddingInline": "16px", "fontSize": "14px", "lineHeight": "20px", "iconPaddingLeft": "4px", "iconPaddingRight": "8px" },
-      "l": { "height": "48px", "paddingBlock": "8px", "paddingInline": "16px", "fontSize": "16px", "lineHeight": "24px", "iconPaddingLeft": "6px", "iconPaddingRight": "12px" },
-      "xl": { "height": "56px", "paddingBlock": "12px", "paddingInline": "24px", "fontSize": "16px", "lineHeight": "24px", "iconPaddingLeft": "8px", "iconPaddingRight": "16px" }
+      "m": {
+        "height": "40px",
+        "paddingBlock": "8px",
+        "paddingInline": "16px",
+        "fontSize": "14px",
+        "lineHeight": "20px",
+        "iconPaddingLeft": "4px",
+        "iconPaddingRight": "8px"
+      },
+      "l": {
+        "height": "48px",
+        "paddingBlock": "8px",
+        "paddingInline": "16px",
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "iconPaddingLeft": "6px",
+        "iconPaddingRight": "12px"
+      },
+      "xl": {
+        "height": "56px",
+        "paddingBlock": "12px",
+        "paddingInline": "24px",
+        "fontSize": "16px",
+        "lineHeight": "24px",
+        "iconPaddingLeft": "8px",
+        "iconPaddingRight": "16px"
+      }
     }
   },
   "variants": [
@@ -141,7 +171,7 @@
     },
     {
       "id": "state",
-      "use": "default, hover, focus, disabled и loading; pressed не подтверждён."
+      "use": "default, hover, focus, pressed, disabled и loading; pressed использует те же стили, что hover, по решению владельца."
     }
   ],
   "layoutRules": [
@@ -243,11 +273,7 @@
       ]
     }
   ],
-  "unknowns": [
-    "**Не снятые состояния.** `pressed` — разбор в [`components/STATE-CAPTURE.md`](../STATE-CAPTURE.md).",
-    "BRIEF §5, конфликт 4: padding размеров L и XL: прод 16/8 и 24/12; Figma elements/button/ 20/12 и 24/16",
-    "Не снятые состояния: pressed."
-  ],
+  "unknowns": [],
   "source": {
     "version": "v0.1",
     "spec": "guide/components/actions/button.md",
@@ -288,12 +314,11 @@
       "default",
       "hover",
       "focus-visible",
+      "pressed",
       "disabled"
     ],
     "normative": [],
-    "uncaptured": [
-      "pressed"
-    ]
+    "uncaptured": []
   },
   "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
   "sourceConflicts": [

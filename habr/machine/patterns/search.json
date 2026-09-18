@@ -5,43 +5,154 @@
   "kind": "pattern",
   "category": "page-families",
   "maturity": {
-    "spec": "partial",
-    "markup": "missing"
+    "spec": "complete",
+    "markup": "available"
   },
   "knowledge": {
     "authority": [
       "production"
     ],
-    "confidence": "low",
+    "confidence": "medium",
     "scope": "habr"
   },
-  "purpose": "Shell + Tabs (тип результата: судя по всему публикации/пользователи/etc, не проверено детально) + pull-down обёртка (pull-to-refresh на мобильном паттерне, неожиданная находка) + форма (3 input). GAP: карточки результатов не идентифицированы отдельным классом (не article-snippet, не post-snippet — ни один не найден в разметке этой страницы); возможно, результат конкретного запроса был пуст или рендерится динамически без SSR — не установлено.",
+  "purpose": "Shell + форма .search + Tabs для типов «Публикации / Хабы / Компании / Пользователи / Комментарии» + сортировка + результаты. Переданный URL server-side отдаёт информационное состояние «нажмите на иконку поиска»; результаты загружаются клиентом. Поэтому пример фиксирует именно это информационное состояние и не подставляет фиктивный ArticleCard. На мобильном поле и tabs сохраняют структуру и сжимаются с контейнером.",
   "implementation": {
-    "markup": null,
-    "styles": [],
-    "missingReason": "copy-safe-page-example-not-captured",
-    "fallback": "Использовать ближайший подтверждённый паттерн и явно раскрыть допущение. Не восстанавливать DOM по названию семейства."
+    "markup": "available-in-examples",
+    "cssRoots": [],
+    "styles": [
+      "ui/habr.css"
+    ],
+    "scripts": [
+      "examples/site-shell.js"
+    ]
   },
   "states": {
     "ui": [],
     "feature": [],
     "domain": []
   },
-  "examples": [],
+  "examples": [
+    {
+      "id": "production-search",
+      "title": "Поиск · начальное состояние",
+      "file": "examples/generated/patterns/search/production-search.html",
+      "covers": [
+        "search"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 760
+      }
+    }
+  ],
   "evidence": [
     {
       "type": "production",
+      "ref": "https://habr.com/ru/search/?q=users&target_type=posts&order=relevance"
+    },
+    {
+      "type": "pattern-spec",
       "ref": "docs/patterns/search.md"
     }
   ],
-  "unknowns": [
-    "Shell + Tabs (тип результата: судя по всему публикации/пользователи/etc, не проверено детально) + pull-down обёртка (pull-to-refresh на мобильном паттерне, неожиданная находка) + форма (3 input). GAP: карточки результатов не идентифицированы отдельным классом (не article-snippet, не post-snippet — ни один не найден в разметке этой страницы); возможно, результат конкретного запроса был пуст или рендерится динамически без SSR — не установлено."
-  ],
-  "sourceStatus": "partial",
+  "unknowns": [],
+  "sourceStatus": "confirmed",
   "family": "SEARCH",
-  "areas": [],
-  "modules": [],
-  "components": [],
-  "previewNotes": [],
+  "areas": [
+    "search-form",
+    "result-navigation",
+    "results",
+    "sidebar"
+  ],
+  "modules": [
+    "search-form",
+    "search-results"
+  ],
+  "components": [
+    "field",
+    "icon-button",
+    "tabs",
+    "notice",
+    "article-card"
+  ],
+  "sequence": [
+    {
+      "id": "search-form",
+      "tag": "form",
+      "heading": null,
+      "modules": [
+        {
+          "id": "search-form",
+          "count": 1
+        }
+      ],
+      "components": [
+        {
+          "id": "field",
+          "count": 1
+        },
+        {
+          "id": "icon-button",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "result-navigation",
+      "tag": "nav",
+      "heading": null,
+      "modules": [],
+      "components": [
+        {
+          "id": "tabs",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "results",
+      "tag": "section",
+      "heading": "Результаты поиска",
+      "modules": [
+        {
+          "id": "search-results",
+          "count": 1
+        }
+      ],
+      "components": [
+        {
+          "id": "notice",
+          "count": 1
+        },
+        {
+          "id": "article-card",
+          "count": 0
+        }
+      ]
+    },
+    {
+      "id": "sidebar",
+      "tag": "aside",
+      "heading": null,
+      "modules": [],
+      "components": []
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Production URL: поле поиска → вкладки типа результата → сортировка → информационное состояние до запуска поиска. Список ArticleCard появляется только после получения результатов, поэтому в этом примере не имитируется."
+    }
+  ],
+  "shellDependencies": [
+    "header",
+    "footer"
+  ],
   "markdown": "docs/patterns/search.md"
 }

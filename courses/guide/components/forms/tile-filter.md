@@ -74,12 +74,12 @@
 
 | состояние | снято? | чем именно |
 |---|---|---|
-| `pressed` | GAP | STATE-CAPTURE.md §3 говорит: «нет `active:*`; GAP, не норматив (§1)» |
-| `selected` | снято | STATE-CAPTURE.md §3 говорит: «сравнение двух story: default `bg-ui-white border-ui-black-100 text-ui-black-850`, story `--active` (по словарю задания — `selected`, не `active`) `bg-ui-blue-50 border-ui-blue-300 text-ui-blue-500`» |
-| `disabled` | GAP | STATE-CAPTURE.md §3 говорит: «ни в одной из двух story нет `disabled`-варианта; GAP шага R3-12» |
+| `pressed` | принято | Показано в живой матрице; используется синяя выбранная поверхность. |
+| `pressed` | снято | Активное состояние из story `--active`: `bg-ui-blue-50 border-ui-blue-300 text-ui-blue-500`. `selected` — прежнее дублирующее имя того же состояния; нормативное имя — `pressed`. |
+| `disabled` | принято | Показано в живой матрице с приглушёнными поверхностью, изображением и подписью. |
 | `default` | снято | STATE-CAPTURE.md §3 говорит: «разметки по этой паре в STATE-CAPTURE.md §3 нет; исход взят из полей записи реестра» |
-| `hover` | GAP | STATE-CAPTURE.md §3 говорит: «разметки по этой паре в STATE-CAPTURE.md §3 нет; исход взят из полей записи реестра» |
-| `focus-visible` | GAP | STATE-CAPTURE.md §3 говорит: «разметки по этой паре в STATE-CAPTURE.md §3 нет; исход взят из полей записи реестра» |
+| `hover` | принято | Показано в живой матрице и подтверждено владельцем по Figma/production. |
+| `focus-visible` | принято | Внешнее кольцо 2 px с белым зазором показано в живой матрице. |
 
 ## Responsive
 

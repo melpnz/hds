@@ -5,36 +5,140 @@
   "kind": "pattern",
   "category": "page-families",
   "maturity": {
-    "spec": "missing",
-    "markup": "missing"
+    "spec": "complete",
+    "markup": "available"
   },
   "knowledge": {
-    "authority": [],
-    "confidence": "low",
+    "authority": [
+      "figma"
+    ],
+    "confidence": "medium",
     "scope": "habr"
   },
-  "purpose": "Не найдено отдельно от §9.2. Единственная форма, доступная гостю — фильтр на feed (чекбоксы) и поле поиска (search) — обе не являются «формой настроек» в полном смысле. Полноценная форма настроек вне admin не подтверждена. MISSING как отдельное семейство — покрыто только через admin-контекст.",
+  "purpose": "Источник: Figma 🧶habr, node 5733:231005. Статус: CONFIRMED по Figma, confidence MEDIUM. Header «Настройки» → tabs разделов → форма профиля + отдельный avatar rail. В форме есть группы персональных данных, работы, специализации, контактов, донатов и «о себе». На мобильном avatar rail переносится перед полями, многоколоночные ряды складываются в один.",
   "implementation": {
-    "markup": null,
-    "styles": [],
-    "missingReason": "copy-safe-page-example-not-captured",
-    "fallback": "Использовать ближайший подтверждённый паттерн и явно раскрыть допущение. Не восстанавливать DOM по названию семейства."
+    "markup": "available-in-examples",
+    "cssRoots": [],
+    "styles": [
+      "ui/habr.css"
+    ],
+    "scripts": [
+      "examples/site-shell.js"
+    ]
   },
   "states": {
     "ui": [],
     "feature": [],
     "domain": []
   },
-  "examples": [],
-  "evidence": [],
-  "unknowns": [
-    "Не найдено отдельно от §9.2. Единственная форма, доступная гостю — фильтр на feed (чекбоксы) и поле поиска (search) — обе не являются «формой настроек» в полном смысле. Полноценная форма настроек вне admin не подтверждена. MISSING как отдельное семейство — покрыто только через admin-контекст."
+  "examples": [
+    {
+      "id": "figma-settings",
+      "title": "Настройки профиля",
+      "file": "examples/generated/patterns/settings-forms/figma-settings.html",
+      "covers": [
+        "settings-forms"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 760
+      }
+    }
   ],
-  "sourceStatus": "missing",
+  "evidence": [
+    {
+      "type": "figma",
+      "ref": "https://www.figma.com/design/T6D4YRKF3qdAmGNAu4wIBo/?node-id=5733-231005"
+    },
+    {
+      "type": "pattern-spec",
+      "ref": "docs/patterns/settings-forms.md"
+    }
+  ],
+  "unknowns": [],
+  "sourceStatus": "confirmed",
   "family": "SETTINGS_FORMS",
-  "areas": [],
-  "modules": [],
-  "components": [],
-  "previewNotes": [],
+  "areas": [
+    "settings-navigation",
+    "profile-form",
+    "avatar"
+  ],
+  "modules": [
+    "profile-settings-form"
+  ],
+  "components": [
+    "tabs",
+    "field",
+    "button",
+    "avatar",
+    "notice"
+  ],
+  "sequence": [
+    {
+      "id": "settings-navigation",
+      "tag": "nav",
+      "heading": "Настройки",
+      "modules": [],
+      "components": [
+        {
+          "id": "tabs",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "profile-form",
+      "tag": "form",
+      "heading": "Профиль",
+      "modules": [
+        {
+          "id": "profile-settings-form",
+          "count": 1
+        }
+      ],
+      "components": [
+        {
+          "id": "field",
+          "count": 13
+        },
+        {
+          "id": "notice",
+          "count": 1
+        },
+        {
+          "id": "button",
+          "count": 4
+        }
+      ]
+    },
+    {
+      "id": "avatar",
+      "tag": "aside",
+      "heading": "Аватар",
+      "modules": [],
+      "components": [
+        {
+          "id": "avatar",
+          "count": 1
+        }
+      ]
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Figma: tabs настроек → форма профиля + avatar rail. На мобильном rail становится первым блоком, поля складываются в одну колонку."
+    }
+  ],
+  "shellDependencies": [
+    "header",
+    "footer"
+  ],
   "markdown": "docs/patterns/settings-forms.md"
 }

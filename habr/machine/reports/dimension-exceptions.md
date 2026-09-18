@@ -2,7 +2,7 @@
 
 Базовая сетка: **0.25rem**; утверждённые дополнительные ступени соответствуют **1px, 2px, 6px** при root 16px. Некратные значения токенизированы без округления и остаются в отчёте для дизайнерского разбора.
 
-Всего употреблений: **134**; уникальных сочетаний причины и значения: **33**.
+Всего употреблений: **160**; уникальных сочетаний причины и значения: **33**.
 
 ## `28px` · composite-or-unsupported-property
 
@@ -50,7 +50,7 @@
 
 ## `3px` · tokenized-off-grid-value
 
-Всего: 7.
+Всего: 9.
 
 - `ui/layout.css:137` — `token:size`
 - `ui/layout.css:138` — `token:size`
@@ -59,6 +59,8 @@
 - `ui/components/chip.css:78` — `token:space`
 - `ui/components/votes.css:38` — `token:space`
 - `ui/components/votes.css:85` — `token:space`
+- `ui/page-patterns.css:18` — `token:space`
+- `ui/page-patterns.css:18` — `token:space`
 
 ## `5.6px` · tokenized-off-grid-value
 
@@ -96,15 +98,17 @@
 
 ## `10px` · tokenized-off-grid-value
 
-Всего: 7.
+Всего: 9.
 
 - `ui/layout.css:233` — `token:font-size`
+- `ui/page-patterns.css:47` — `token:font-size`
 - `ui/components/article-card.css:321` — `token:size`
 - `ui/components/checkbox.css:59` — `token:size`
 - `ui/components/button.css:81` — `token:space`
 - `ui/components/primitives.css:60` — `token:space`
 - `ui/components/textarea.css:31` — `token:space`
 - `ui/normalize.css:55` — `token:space`
+- `ui/page-patterns.css:18` — `token:space`
 
 ## `12.8px` · tokenized-off-grid-value
 
@@ -114,7 +118,7 @@
 
 ## `13px` · tokenized-off-grid-value
 
-Всего: 30.
+Всего: 45.
 
 - `ui/components/article-card.css:65` — `token:font-size`
 - `ui/components/article-card.css:74` — `token:font-size`
@@ -144,12 +148,27 @@
 - `ui/layout.css:177` — `token:font-size`
 - `ui/layout.css:275` — `token:font-size`
 - `ui/layout.css:347` — `token:font-size`
+- `ui/page-patterns.css:21` — `token:font-size`
+- `ui/page-patterns.css:26` — `token:font-size`
+- `ui/page-patterns.css:28` — `token:font-size`
+- `ui/page-patterns.css:33` — `token:font-size`
+- `ui/page-patterns.css:33` — `token:font-size`
+- `ui/page-patterns.css:38` — `token:font-size`
+- `ui/page-patterns.css:38` — `token:font-size`
+- `ui/page-patterns.css:40` — `token:font-size`
+- `ui/page-patterns.css:40` — `token:font-size`
+- `ui/page-patterns.css:46` — `token:font-size`
+- `ui/page-patterns.css:46` — `token:font-size`
+- `ui/page-patterns.css:46` — `token:font-size`
+- `ui/page-patterns.css:49` — `token:font-size`
+- `ui/page-patterns.css:77` — `token:font-size`
+- `ui/page-patterns.css:83` — `token:font-size`
 - `ui/patterns.css:32` — `token:font-size`
 - `ui/components/article-card.css:238` — `token:space`
 
 ## `14px` · tokenized-off-grid-value
 
-Всего: 31.
+Всего: 37.
 
 - `ui/components/article-card.css:299` — `token:font-size`
 - `ui/components/block.css:67` — `token:font-size`
@@ -161,9 +180,9 @@
 - `ui/components/hint.css:206` — `token:font-size`
 - `ui/components/input.css:47` — `token:font-size`
 - `ui/components/primitives.css:40` — `token:font-size`
-- `ui/components/tabs.css:74` — `token:font-size`
-- `ui/components/tabs.css:142` — `token:font-size`
-- `ui/components/tabs.css:169` — `token:font-size`
+- `ui/components/tabs.css:76` — `token:font-size`
+- `ui/components/tabs.css:143` — `token:font-size`
+- `ui/components/tabs.css:170` — `token:font-size`
 - `ui/components/textarea.css:33` — `token:font-size`
 - `ui/components/votes.css:112` — `token:font-size`
 - `ui/components/votes.css:129` — `token:font-size`
@@ -172,6 +191,12 @@
 - `ui/layout.css:264` — `token:font-size`
 - `ui/layout.css:333` — `token:font-size`
 - `ui/layout.css:359` — `token:font-size`
+- `ui/page-patterns.css:18` — `token:font-size`
+- `ui/page-patterns.css:18` — `token:font-size`
+- `ui/page-patterns.css:42` — `token:font-size`
+- `ui/page-patterns.css:47` — `token:font-size`
+- `ui/page-patterns.css:49` — `token:font-size`
+- `ui/page-patterns.css:70` — `token:font-size`
 - `ui/patterns.css:33` — `token:font-size`
 - `ui/components/button.css:80` — `token:space`
 - `ui/components/button.css:81` — `token:space`
@@ -208,9 +233,10 @@
 
 ## `18px` · tokenized-off-grid-value
 
-Всего: 11.
+Всего: 12.
 
 - `ui/components/votes.css:90` — `token:font-size`
+- `ui/page-patterns.css:18` — `token:font-size`
 - `ui/components/badges.css:12` — `token:radius`
 - `ui/components/checkbox.css:33` — `token:size`
 - `ui/components/checkbox.css:34` — `token:size`
@@ -259,7 +285,7 @@
 
 Всего: 1.
 
-- `ui/components/tabs.css:80` — `token:size`
+- `ui/components/tabs.css:82` — `token:size`
 
 ## `45px` · tokenized-off-grid-value
 

@@ -6,23 +6,33 @@
   <title>AdSlot — Хабр Курсы</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="../../../ui/courses.css">
-  <style>html,body{margin:0;background:#fff}body{box-sizing:border-box;padding:24px}
-.crs-ad-slot-demo{display:grid;gap:12px;width:100%;font-family:Inter,sans-serif}
-.crs-ad-slot-demo__viewport{overflow:hidden;border-radius:24px}
-.crs-ad-slot-demo__track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none}
-.crs-ad-slot-demo__track::-webkit-scrollbar{display:none}
-.crs-ad-slot-demo__card{position:relative;box-sizing:border-box;display:flex;flex:0 0 min(568px,calc(100% - 40px));height:232px;padding:28px;overflow:hidden;border-radius:24px;background:linear-gradient(135deg,#346ef4 0%,#6bacfd 62%,#eff5ff 100%);color:#fff;text-decoration:none;scroll-snap-align:start}
-.crs-ad-slot-demo__card--second{background:linear-gradient(135deg,#2c2e34 0%,#596170 62%,#e9e9ea 100%)}
-.crs-ad-slot-demo__copy{display:grid;align-content:end;gap:8px;max-width:330px;color:inherit;text-decoration:none}
-.crs-ad-slot-demo__copy strong{font-size:24px;line-height:28px}
-.crs-ad-slot-demo__copy span{font-size:14px;line-height:20px;opacity:.86}
-.crs-ad-slot-demo__label{position:absolute;top:20px;left:20px;padding:4px 8px;border-radius:60px;background:rgba(0,0,0,.3);font-size:8px;line-height:12px;letter-spacing:.04em}
-.crs-ad-slot-demo__more{position:absolute;top:16px;right:16px;display:grid;width:32px;height:32px;padding:0;border:0;border-radius:50%;background:rgba(255,255,255,.9);color:#2c2e34;font:700 14px/1 Inter,sans-serif;place-items:center}
-.crs-ad-slot-demo__pagination{display:flex;justify-content:center;gap:6px}
-.crs-ad-slot-demo__dot{width:6px;height:6px;border-radius:50%;background:var(--color-ui-black-200)}
-.crs-ad-slot-demo__dot:first-child{width:20px;border-radius:8px;background:var(--color-ui-blue-500)}
-@media(max-width:767px){.crs-ad-slot-demo__card{flex-basis:100%;height:auto;aspect-ratio:272/280;padding:24px}.crs-ad-slot-demo__copy strong{font-size:22px;line-height:26px}}
-</style>
+  <style>html,body{margin:0;background:#fff}body{box-sizing:border-box;padding:24px}</style>
 </head>
-<body data-preview-layout="viewport"><div class="example-root"><section class="crs-ad-slot-demo adfox-banner" aria-label="Рекламные предложения"><div class="crs-ad-slot-demo__viewport banner-swiper"><div class="crs-ad-slot-demo__track"><article class="crs-ad-slot-demo__card"><span class="crs-ad-slot-demo__label">РЕКЛАМА</span><button class="crs-ad-slot-demo__more" type="button" aria-label="Информация о рекламе">•••</button><a class="crs-ad-slot-demo__copy" href="#"><strong>Демонстрационный баннер</strong><span>Локальная заглушка рекламного содержимого</span></a></article><article class="crs-ad-slot-demo__card crs-ad-slot-demo__card--second"><span class="crs-ad-slot-demo__label">РЕКЛАМА</span><button class="crs-ad-slot-demo__more" type="button" aria-label="Информация о рекламе">•••</button><a class="crs-ad-slot-demo__copy" href="#"><strong>Следующий слайд</strong><span>Локальная заглушка рекламного содержимого</span></a></article></div></div><div class="crs-ad-slot-demo__pagination" aria-hidden="true"><span class="crs-ad-slot-demo__dot"></span><span class="crs-ad-slot-demo__dot"></span><span class="crs-ad-slot-demo__dot"></span></div></section></div></body>
+<body data-preview-layout="viewport">
+  <div class="example-root">
+    <section class="crs-ad-slot-demo adfox-banner" aria-label="Рекламные предложения">
+      <div class="crs-ad-slot-demo__viewport banner-swiper">
+        <div class="crs-ad-slot-demo__track">
+          <article class="crs-ad-slot-demo__card">
+            <img class="crs-ad-slot-demo__image" src="../../../ui/assets/images/carousel/ad-promo.png" alt="Скидки до 60% на обучение в онлайн-школах">
+            <span class="crs-ad-slot-demo__label">РЕКЛАМА</span>
+            <button class="crs-ad-slot-demo__more" type="button" aria-label="Информация о рекламе">•••</button>
+          </article>
+          <article class="crs-ad-slot-demo__card" data-current="true">
+            <img class="crs-ad-slot-demo__image" src="../../../ui/assets/images/carousel/ad-previous.png" alt="Курсы дешевле, чем у школ">
+            <span class="crs-ad-slot-demo__label">РЕКЛАМА</span>
+            <button class="crs-ad-slot-demo__more" type="button" aria-label="Информация о рекламе">•••</button>
+          </article>
+          <article class="crs-ad-slot-demo__card">
+            <img class="crs-ad-slot-demo__image" src="../../../ui/assets/images/carousel/ad-ai.png" alt="Обучение работе с искусственным интеллектом">
+            <span class="crs-ad-slot-demo__label">РЕКЛАМА</span>
+            <button class="crs-ad-slot-demo__more" type="button" aria-label="Информация о рекламе">•••</button>
+          </article>
+        </div>
+      </div>
+      <div class="crs-ad-slot-demo__pagination" aria-hidden="true"><span class="crs-ad-slot-demo__dot"></span><span class="crs-ad-slot-demo__dot"></span><span class="crs-ad-slot-demo__dot"></span></div>
+    </section>
+  </div>
+  <script>const track=document.querySelector('.crs-ad-slot-demo__track');const current=track.querySelector('[data-current="true"]');const centerCurrent=()=>{const trackBox=track.getBoundingClientRect();const itemBox=current.getBoundingClientRect();track.style.scrollBehavior='auto';track.scrollLeft+=(itemBox.left+itemBox.width/2)-(trackBox.left+trackBox.width/2);requestAnimationFrame(()=>track.style.removeProperty('scroll-behavior'));};requestAnimationFrame(()=>requestAnimationFrame(centerCurrent));window.addEventListener('load',centerCurrent,{once:true});</script>
+</body>
 </html>

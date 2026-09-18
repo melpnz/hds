@@ -5,44 +5,170 @@
   "kind": "pattern",
   "category": "page-families",
   "maturity": {
-    "spec": "partial",
-    "markup": "missing"
+    "spec": "complete",
+    "markup": "available"
   },
   "knowledge": {
     "authority": [
       "production"
     ],
-    "confidence": "medium",
+    "confidence": "high",
     "scope": "habr"
   },
-  "purpose": "Layout regions. Shell → главная колонка: заголовок статьи (Title) → метаданные (дата, автор — user-card-подобный блок) → тело статьи → article-poll (опционально) → tm-notice → tabs (переключатель «Комментарии/Похожие» — ведёт к §5) → related article-snippet список. Сайдбар пуст для гостя.",
+  "purpose": "Layout regions. Shell → главная колонка: company-profile-card (для материала компании) → заголовок статьи (Title) → метаданные (дата, автор) → тело статьи → article-poll (опционально) → tm-notice → отдельный блок комментариев (ведёт к §5) → отдельный блок похожих материалов с article-snippet. В зафиксированном материале RUVDS сайдбар заполнен tm-company-basic-info и ссылками компании; это частный вариант company article, а не общее правило о пустом сайдбаре.",
   "implementation": {
-    "markup": null,
-    "styles": [],
-    "missingReason": "copy-safe-page-example-not-captured",
-    "fallback": "Использовать ближайший подтверждённый паттерн и явно раскрыть допущение. Не восстанавливать DOM по названию семейства."
+    "markup": "available-in-examples",
+    "cssRoots": [],
+    "styles": [
+      "ui/habr.css"
+    ],
+    "scripts": [
+      "examples/site-shell.js"
+    ]
   },
   "states": {
     "ui": [],
     "feature": [],
     "domain": []
   },
-  "examples": [],
+  "examples": [
+    {
+      "id": "production-article",
+      "title": "Статья · production",
+      "file": "examples/generated/patterns/article-detail/production-article.html",
+      "covers": [
+        "article-detail"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 760
+      }
+    }
+  ],
   "evidence": [
     {
       "type": "production",
+      "ref": "https://habr.com/ru/companies/ruvds/articles/1078914/"
+    },
+    {
+      "type": "pattern-spec",
       "ref": "docs/patterns/article-detail.md"
     }
   ],
   "unknowns": [
-    "Primary actions. Не найдено явной CTA в захваченном срезе (гость не видит формы отклика/действий автора) — GAP.",
-    "Responsive. Не проверено детально на этой итерации — GAP."
+    "Primary actions. Не найдено явной CTA в захваченном срезе (гость не видит формы отклика/действий автора) — GAP."
   ],
-  "sourceStatus": "partial",
+  "sourceStatus": "confirmed",
   "family": "ARTICLE_DETAIL",
-  "areas": [],
-  "modules": [],
-  "components": [],
-  "previewNotes": [],
+  "areas": [
+    "article",
+    "author",
+    "article-navigation",
+    "sidebar"
+  ],
+  "modules": [
+    "article-presenter",
+    "article-author"
+  ],
+  "components": [
+    "title",
+    "user-info",
+    "votes",
+    "icon-button",
+    "button",
+    "button-follow",
+    "article-card"
+  ],
+  "sequence": [
+    {
+      "id": "article",
+      "tag": "article",
+      "heading": "Заголовок статьи",
+      "modules": [
+        {
+          "id": "article-presenter",
+          "count": 1
+        }
+      ],
+      "components": [
+        {
+          "id": "title",
+          "count": 1
+        },
+        {
+          "id": "user-info",
+          "count": 1
+        },
+        {
+          "id": "votes",
+          "count": 1
+        },
+        {
+          "id": "icon-button",
+          "count": 2
+        }
+      ]
+    },
+    {
+      "id": "author",
+      "tag": "section",
+      "heading": "Компания и автор публикации",
+      "modules": [
+        {
+          "id": "article-author",
+          "count": 1
+        }
+      ],
+      "components": [
+        {
+          "id": "button",
+          "count": 1
+        },
+        {
+          "id": "button-follow",
+          "count": 1
+        },
+        {
+          "id": "icon-button",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "article-navigation",
+      "tag": "section",
+      "heading": "Комментарии и похожие публикации",
+      "modules": [],
+      "components": [
+        {
+          "id": "article-card",
+          "count": 1
+        }
+      ]
+    },
+    {
+      "id": "sidebar",
+      "tag": "aside",
+      "heading": null,
+      "modules": [],
+      "components": []
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Production: article presenter → тело статьи → счётчики → автор → навигация к комментариям и похожим материалам."
+    }
+  ],
+  "shellDependencies": [
+    "header",
+    "footer"
+  ],
   "markdown": "docs/patterns/article-detail.md"
 }

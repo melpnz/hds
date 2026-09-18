@@ -102,6 +102,41 @@ try {
           return root ? root.scrollWidth > root.clientWidth + 1 : true;
         });
         if (rootOverflow) failures.push(`${entry.id}: page overflows horizontally at ${width}px`);
+        if (entry.kind === 'pattern') {
+          const grid = await page.locator('#preview').evaluate(element => {
+            const document = element.contentDocument;
+            const container = document?.querySelector('.page-example > .tm-page-width, .shell-demo > .tm-page-width');
+            const wrapper = container?.querySelector('.tm-page__wrapper');
+            const main = wrapper?.querySelector(':scope > .tm-page__main');
+            const sidebar = wrapper?.querySelector(':scope > .tm-page__sidebar');
+            const rect = node => node?.getBoundingClientRect().toJSON() || null;
+            return {
+              container: rect(container),
+              wrapperDisplay: wrapper ? getComputedStyle(wrapper).display : null,
+              main: rect(main),
+              sidebar: rect(sidebar),
+              sidebarDisplay: sidebar ? getComputedStyle(sidebar).display : null
+            };
+          });
+          if (!grid.container || Math.abs(grid.container.width - Number(width)) > 1) {
+            failures.push(`${entry.id}: canonical page container does not fill ${width}px viewport`);
+          }
+          if (['shell', 'feed', 'directory', 'entity'].includes(entry.id)) {
+            const expectedDisplay = Number(width) >= 1024 ? 'flex' : 'block';
+            if (grid.wrapperDisplay !== expectedDisplay) {
+              failures.push(`${entry.id}: page wrapper must be ${expectedDisplay} at ${width}px`);
+            }
+            if (grid.main && grid.sidebar && grid.sidebarDisplay !== 'none') {
+              const beside = Math.abs(grid.main.top - grid.sidebar.top) <= 1;
+              if ((Number(width) >= 1024) !== beside) {
+                failures.push(`${entry.id}: sidebar breakpoint is stale at ${width}px`);
+              }
+              if (Number(width) >= 1024 && Math.abs(grid.sidebar.width - 300) > 1) {
+                failures.push(`${entry.id}: desktop sidebar is ${grid.sidebar.width}px instead of 300px`);
+              }
+            }
+          }
+        }
       }
       await page.locator('#viewport-controls [data-width="full"]').click();
     }
@@ -139,6 +174,29 @@ try {
         if (!surfaces.page || surfaces.page === surfaces.main || surfaces.main !== surfaces.sidebar) {
           failures.push('shell: primary work surfaces must sit on the contrasting gray page background');
         }
+      }
+      const shapedPageBlocks = await page.locator('#preview').evaluate(frame => {
+        const document = frame.contentDocument;
+        if (!document) return [];
+        const selectors = [
+          '.page-example__panel',
+          '.page-example__surface',
+          '.page-example__hero',
+          '.tm-articles-list__item',
+          '.tm-hub-card',
+          '.tm-block'
+        ];
+        return [...document.querySelectorAll(selectors.join(','))].flatMap(element => {
+          const style = getComputedStyle(element);
+          const hasBorder = ['Top', 'Right', 'Bottom', 'Left']
+            .some(side => parseFloat(style[`border${side}Width`]) > 0);
+          const hasRadius = ['TopLeft', 'TopRight', 'BottomRight', 'BottomLeft']
+            .some(corner => parseFloat(style[`border${corner}Radius`]) > 0);
+          return hasBorder || hasRadius ? [element.className] : [];
+        });
+      });
+      if (shapedPageBlocks.length) {
+        failures.push(`${entry.id}: page composition blocks have an outer border or radius (${shapedPageBlocks.join(', ')})`);
       }
     }
 

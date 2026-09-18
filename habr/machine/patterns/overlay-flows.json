@@ -5,43 +5,133 @@
   "kind": "pattern",
   "category": "page-families",
   "maturity": {
-    "spec": "partial",
-    "markup": "missing"
+    "spec": "complete",
+    "markup": "available"
   },
   "knowledge": {
     "authority": [
-      "storybook"
+      "figma"
     ],
-    "confidence": "medium",
+    "confidence": "high",
     "scope": "habr"
   },
-  "purpose": "Как компоненты — полностью покрыты (§ предыдущий этап). Как паттерн использования на странице (что именно открывает модалку, в каком месте экрана, с каким содержимым) — не подтверждено ни на одной production- странице (все модалки требуют авторизации/действия, гостю недоступны). Здесь модаль документируется только на уровне компонента, не на уровне page pattern — считать эту категорию закрытой компонентами, не page family.",
+  "purpose": "В зафиксированном Figma-сценарии модалка сохраняет затемнённый контекст страницы. На 1024/768 используется центрированное окно шириной 320px; на 320 это то же окно на всю ширину экрана, привязанное к нижнему краю, с короткой зоной подложки и индикатором сверху. Это не BottomSheet. Внутри: заголовок, radio-list, textarea и две кнопки.",
   "implementation": {
-    "markup": null,
-    "styles": [],
-    "missingReason": "copy-safe-page-example-not-captured",
-    "fallback": "Использовать ближайший подтверждённый паттерн и явно раскрыть допущение. Не восстанавливать DOM по названию семейства."
+    "markup": "available-in-examples",
+    "cssRoots": [],
+    "styles": [
+      "ui/habr.css"
+    ],
+    "scripts": [
+      "examples/site-shell.js"
+    ]
   },
   "states": {
     "ui": [],
     "feature": [],
     "domain": []
   },
-  "examples": [],
+  "examples": [
+    {
+      "id": "figma-modal",
+      "title": "Модалка · причина снятия публикации",
+      "file": "examples/generated/patterns/overlay-flows/figma-modal.html",
+      "covers": [
+        "overlay-flows"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 700
+      }
+    }
+  ],
   "evidence": [
     {
-      "type": "storybook",
+      "type": "figma",
+      "ref": "https://www.figma.com/design/T6D4YRKF3qdAmGNAu4wIBo/?node-id=33113-474686"
+    },
+    {
+      "type": "pattern-spec",
       "ref": "docs/patterns/overlay-flows.md"
     }
   ],
-  "unknowns": [
-    "Как компоненты — полностью покрыты (§ предыдущий этап). Как паттерн использования на странице (что именно открывает модалку, в каком месте экрана, с каким содержимым) — не подтверждено ни на одной production- странице (все модалки требуют авторизации/действия, гостю недоступны). Здесь модаль документируется только на уровне компонента, не на уровне page pattern — считать эту категорию закрытой компонентами, не page family."
-  ],
-  "sourceStatus": "partial",
+  "unknowns": [],
+  "sourceStatus": "confirmed",
   "family": "OVERLAY_FLOWS",
-  "areas": [],
-  "modules": [],
-  "components": [],
-  "previewNotes": [],
+  "areas": [
+    "page-context",
+    "overlay",
+    "dialog"
+  ],
+  "modules": [
+    "modal-flow"
+  ],
+  "components": [
+    "dialog",
+    "radio",
+    "field",
+    "button"
+  ],
+  "sequence": [
+    {
+      "id": "page-context",
+      "tag": "article",
+      "heading": "Контекст страницы",
+      "modules": [],
+      "components": []
+    },
+    {
+      "id": "overlay",
+      "tag": "div",
+      "heading": null,
+      "modules": [
+        {
+          "id": "modal-flow",
+          "count": 1
+        }
+      ],
+      "components": []
+    },
+    {
+      "id": "dialog",
+      "tag": "section",
+      "heading": "Подтверждение",
+      "modules": [],
+      "components": [
+        {
+          "id": "dialog",
+          "count": 1
+        },
+        {
+          "id": "radio",
+          "count": 9
+        },
+        {
+          "id": "field",
+          "count": 1
+        },
+        {
+          "id": "button",
+          "count": 2
+        }
+      ]
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Figma: модалка причины снятия публикации. На desktop — окно 320 px по центру затемнённой подложки; на mobile — та же модалка шириной экрана без нижней шторки."
+    }
+  ],
+  "shellDependencies": [
+    "header",
+    "footer"
+  ],
   "markdown": "docs/patterns/overlay-flows.md"
 }

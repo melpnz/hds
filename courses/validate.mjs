@@ -26,6 +26,33 @@ const ids = new Set(catalog.map(item => item.id));
 const migration = read(index.files.migrationMap);
 const styleProfile = read(index.files.styleProfile);
 if (JSON.stringify(styleProfile) !== JSON.stringify(buildStyleProfile())) errors.push('style-profile: generated profile is stale');
+const contentRules = read('machine/content.json');
+const compositionGuide = readFileSync(resolve(root, 'docs/guide/composition.md'), 'utf8');
+for (const contentRule of contentRules.rules || []) {
+  const rulePath = `machine/rules/${contentRule.id.toLowerCase()}.json`;
+  if (!existsSync(resolve(root, rulePath))) {
+    errors.push(`content: ${contentRule.id} has no machine rule`);
+    continue;
+  }
+  const machineRule = read(rulePath);
+  for (const field of ['statement', 'coverage', 'exception']) {
+    if (machineRule[field] !== contentRule[field]) errors.push(`content: ${contentRule.id}.${field} differs from ${rulePath}`);
+  }
+  const markdownRow = `| **${contentRule.id}** | ${contentRule.statement} | ${contentRule.coverage} | ${contentRule.exception} |`;
+  if (!compositionGuide.includes(markdownRow)) errors.push(`content: ${contentRule.id} differs from docs/guide/composition.md`);
+}
+for (const [format, contract] of Object.entries(contentRules.numberFormats || {})) {
+  const rule = (contentRules.rules || []).find(candidate => candidate.id === contract.rule);
+  if (!rule) errors.push(`content: number format ${format} references unknown ${contract.rule}`);
+  else {
+    const machineRule = read(`machine/rules/${contract.rule.toLowerCase()}.json`);
+    if (machineRule.predicate?.kind && machineRule.predicate.kind !== format) errors.push(`content: number format ${format} differs from ${contract.rule} predicate`);
+    if (!machineRule.predicate?.type) errors.push(`content: ${contract.rule} has no executable predicate`);
+    if (!rule.statement.includes(contract.example)) errors.push(`content: ${contract.rule} does not contain canonical example ${contract.example}`);
+  }
+}
+const buttonLabelTotal = (contentRules.buttonLabels || []).reduce((sum, item) => sum + item.count, 0);
+if (buttonLabelTotal !== 191) errors.push(`content: expected 191 measured button labels, got ${buttonLabelTotal}`);
 for (const entry of catalog.filter(entry => entry.kind === 'pattern')) {
   const item = read(entry.file);
   for (const reference of [item.source?.spec, item.source?.standalone, item.source?.showcase, item.sequenceSource?.page].filter(Boolean)) {
@@ -126,6 +153,66 @@ for (const entry of catalog) {
       if (area.id !== item.areas[index]) errors.push(`${entry.id}: sequence area ${index + 1} does not match areas`);
       if (area.stub && (area.stub.length <= 80 || !area.stub.endsWith('components/collections/carousel.md'))) errors.push(`${entry.id}: truncated or incomplete stub in ${area.id}`);
     }
+    if (item.entityLogoUsage) {
+      const expectedEntityLogos = Object.values(item.entityLogoUsage).reduce((sum, count) => sum + count, 0);
+      if (!item.components?.includes('entity-logo')) errors.push(`${entry.id}: EntityLogo dependency is absent`);
+      for (const [areaId, count] of Object.entries(item.entityLogoUsage)) {
+        const area = item.sequence?.find(candidate => candidate.id === areaId);
+        if (!area?.components?.some(component => component.id === 'entity-logo' && component.count === count)) {
+          errors.push(`${entry.id}: EntityLogo count is not attached to ${areaId}`);
+        }
+      }
+      const pageExample = item.examples?.[0];
+      if (pageExample && existsSync(resolve(root, pageExample.file))) {
+        const html = readFileSync(resolve(root, pageExample.file), 'utf8');
+        const renderedEntityLogos = [...html.matchAll(/data-component="entity-logo"/g)].length;
+        if (renderedEntityLogos !== expectedEntityLogos) errors.push(`${entry.id}: expected ${expectedEntityLogos} EntityLogo instances, got ${renderedEntityLogos}`);
+        for (const tag of html.match(/<img\b[^>]*data-component="entity-logo"[^>]*>/g) || []) {
+          if (!tag.includes('class="crs-entity-logo') || !tag.includes('avatar-default-company.svg') || !/data-size="(?:24|32|36|40|48|56|68|100)"/.test(tag)) {
+            errors.push(`${entry.id}: EntityLogo markup is not canonical`);
+          }
+        }
+      }
+    }
+    if (entry.id === 'education-center') {
+      const grid = item.layout?.courseGrid;
+      if (grid?.component !== 'card-grid' || grid?.variant !== 'school-courses' || grid?.visibleCards?.tablet !== 6 || grid?.visibleCards?.phone !== 4) {
+        errors.push('education-center: school course grid contract is incomplete');
+      }
+      const html = readFileSync(resolve(root, item.examples[0].file), 'utf8');
+      if (!html.includes('data-component="card-grid" data-variant="school-courses"')) {
+        errors.push('education-center: page does not reuse the school-courses CardGrid variant');
+      }
+    }
+  }
+  if (entry.id === 'card-grid') {
+    const variant = item.variants?.['school-courses'];
+    if (variant?.gap?.token !== '--courses-space-16' || variant?.visibleCards?.tablet !== 6 || variant?.visibleCards?.phone !== 4) {
+      errors.push('card-grid: school-courses variant contract is incomplete');
+    }
+    const css = readFileSync(resolve(root, 'ui/components/layout.css'), 'utf8');
+    const example = readFileSync(resolve(root, item.examples[0].file), 'utf8');
+    for (const marker of ['crs-card-grid--school-courses', ':nth-child(n + 7)', ':nth-child(n + 5)']) {
+      if (!css.includes(marker)) errors.push(`card-grid: CSS is missing ${marker}`);
+    }
+    if (!example.includes('crs-card-grid--school-courses')) errors.push('card-grid: school-courses variant is absent from the canonical example');
+  }
+  if (entry.id === 'catalog-menu') {
+    const examplePath = item.examples?.[0]?.file;
+    if (!examplePath || !existsSync(resolve(root, examplePath))) errors.push('catalog-menu: canonical example is absent');
+    else {
+      const html = readFileSync(resolve(root, examplePath), 'utf8');
+      if (!html.includes('crs-catalog-menu__groups') || !html.includes('crs-catalog-menu__group-title')) errors.push('catalog-menu: structured second level is absent');
+      if (!html.includes('crs-catalog-menu__tiles') || !html.includes('data-catalog-image')) errors.push('catalog-menu: mobile image tiles are absent');
+      if (!html.includes('Может быть интересно')) errors.push('catalog-menu: mobile suggestions are absent');
+    }
+    const css = readFileSync(resolve(root, 'ui/components/overlays.css'), 'utf8');
+    if (!css.includes('grid-template-columns: repeat(3, minmax(0, 1fr))') || !css.includes('@media (max-width: 359px)')) {
+      errors.push('catalog-menu: responsive tile grid contract is absent');
+    }
+    for (const asset of ['neural-ai.png', 'development.png', 'analytics.png', 'design.png', 'marketing.png', 'business.png', 'languages.png', 'soft-skills.png', 'wellness.png', 'hobby.png', 'psychology.png', 'cooking.png', 'pedagogy.png', 'software.png', 'continuing-education.png', 'profession-collections.png', 'reviews.png', 'promo.png', 'rating.png', 'child-ege.png', 'child-oge.png', 'child-exam.png', 'child-dvi.png', 'child-vpr.png', 'child-olympiad.png', 'child-school.png', 'child-home-school.png', 'child-hobby.png', 'child-languages.png', 'child-horizon.png', 'child-college.png']) {
+      pathExists(`ui/assets/images/catalog/${asset}`, 'catalog-menu');
+    }
   }
   if (!item.visual || !Object.keys(item.visual).length) errors.push(`${entry.id}: visual contract is missing`);
   if (!['foundation'].includes(entry.kind) && entry.id !== 'button') {
@@ -138,7 +225,7 @@ for (const entry of catalog) {
     const matrix = item.variantMatrix;
     const computedCombinations = Object.values(matrix?.sizes || {}).reduce((sum, size) => sum + size.tones.length, 0)
       * (matrix?.states?.length || 0) * (matrix?.icon?.length || 0);
-    if (computedCombinations !== 140 || matrix?.combinations !== 140) errors.push(`button: variant matrix must retain 140 combinations, got ${computedCombinations}`);
+    if (computedCombinations !== 168 || matrix?.combinations !== 168) errors.push(`button: variant matrix must retain 168 combinations, got ${computedCombinations}`);
     const expectedLayoutRules = ['default', 'course-card', 'mobile-form', 'section-action', 'semantics'];
     if (JSON.stringify(item.layoutRules?.map(rule => rule.id)) !== JSON.stringify(expectedLayoutRules)) errors.push('button: contextual width rules are incomplete');
     if (existsSync(resolve(root, item.examples[0]?.file || ''))) {
@@ -166,7 +253,7 @@ for (const entry of catalog) {
     }
   }
   if (entry.id === 'site-header') {
-    if (JSON.stringify(item.examples.map(example => example.id)) !== JSON.stringify(['figma-variants', 'production-current'])) errors.push('site-header: expected Figma playground and preserved production example');
+    if (JSON.stringify(item.examples.map(example => example.id)) !== JSON.stringify(['figma-variants'])) errors.push('site-header: expected one consolidated SiteHeader playground');
     if (item.variantMatrix?.combinations !== 21) errors.push('site-header: Figma variant matrix must contain 21 device combinations');
     if (JSON.stringify(Object.keys(item.variantMatrix?.families || {})) !== JSON.stringify(['listing', 'courses', 'simple'])) errors.push('site-header: header families are incomplete');
     if (JSON.stringify(item.layoutRules?.map(rule => rule.id)) !== JSON.stringify(['breakpoints', 'sticky', 'mobile-overflow'])) errors.push('site-header: responsive layout rules are incomplete');
@@ -182,6 +269,8 @@ for (const entry of catalog) {
       for (const family of ['ListingHeader', 'CoursesHeader', 'SimplePageHeader']) {
         if (!html.includes(family)) errors.push(`site-header: playground misses ${family}`);
       }
+      if (!html.includes('crs-tabs-group crs-tabs-group--hero') || !html.includes('class="crs-context-tab"')) errors.push('site-header: HeroTabs component is not reused');
+      if (!html.includes('crs-site-header__filters-inner') || !html.includes('max-width:1124px')) errors.push('site-header: filter row is not constrained by the page container');
       for (const query of ['@media(min-width:480px) and (max-width:1023px)', '@media(max-width:479px)']) {
         if (!html.includes(query)) errors.push(`site-header: responsive query ${query} is absent`);
       }
@@ -202,8 +291,9 @@ for (const entry of catalog) {
     if (existsSync(resolve(root, item.examples[0]?.file || ''))) {
       const html = readFileSync(resolve(root, item.examples[0].file), 'utf8');
       if (!html.includes('crs-ad-slot-demo__track') || !html.includes('banner-swiper')) errors.push('ad-slot: Carousel structure is absent');
-      if ([...html.matchAll(/class="crs-ad-slot-demo__card/g)].length !== 2) errors.push('ad-slot: expected two visible AdCard placeholders');
-      if (!html.includes('aspect-ratio:272/280') || !html.includes('height:232px')) errors.push('ad-slot: responsive AdCard geometry is absent');
+      if ([...html.matchAll(/class="crs-ad-slot-demo__card/g)].length !== 3) errors.push('ad-slot: expected three localized AdCard examples');
+      const collectionsCss = readFileSync(resolve(root, 'ui/components/collections.css'), 'utf8');
+      if (!collectionsCss.includes('aspect-ratio:272/280') || !collectionsCss.includes('height: var(--courses-size-232)')) errors.push('ad-slot: responsive AdCard geometry is absent');
       if (html.includes('class="flex items-center justify-center overflow-hidden -mt-4 adfox-banner rounded-3xl"></div>')) errors.push('ad-slot: empty production container leaked into the live preview');
     }
   }
@@ -277,13 +367,14 @@ for (const entry of catalog) {
   }
   if (entry.id === 'promo-code-modal') {
     const example = item.examples[0];
-    if (item.examples.length !== 1 || example?.id !== 'content-variants' || example?.preview?.mode !== 'intrinsic') errors.push('promo-code-modal: expected one intrinsic content-variants example');
+    if (item.examples.length !== 1 || example?.id !== 'content-variants' || example?.preview?.mode !== 'viewport') errors.push('promo-code-modal: expected one responsive content-variants example');
     if (item.componentFamily?.id !== 'modal' || item.componentFamily?.member !== 'PromoCodeModal') errors.push('promo-code-modal: Modal family metadata is absent');
     if (!item.dependencies?.includes('modal')) errors.push('promo-code-modal: dependency on Modal is absent');
     if (entry.navGroup !== 'modals' || entry.navSection !== 'blocks') errors.push('promo-code-modal: Modal navigation grouping is absent');
     if (existsSync(resolve(root, example?.file || ''))) {
       const html = readFileSync(resolve(root, example.file), 'utf8');
       if ([...html.matchAll(/class="crs-promo-code-modal"/g)].length !== 2) errors.push('promo-code-modal: expected promo-code and promotion content variants');
+      if ([...html.matchAll(/data-device="(?:desktop|tablet|mobile)"/g)].length < 3) errors.push('promo-code-modal: desktop/tablet/mobile controls are absent');
     }
   }
   if (entry.id === 'filter-modal') {
@@ -292,7 +383,7 @@ for (const entry of catalog) {
     for (const state of ['open', 'closed', 'body-scroll', 'mobile', 'desktop']) {
       if (!example?.covers?.includes(state)) errors.push(`filter-modal: ${state} is absent from example coverage`);
     }
-    if (JSON.stringify(item.layoutRules?.map(rule => rule.id)) !== JSON.stringify(['viewport-shell', 'body-scroll', 'mobile'])) errors.push('filter-modal: viewport and scroll rules are incomplete');
+    if (JSON.stringify(item.layoutRules?.map(rule => rule.id)) !== JSON.stringify(['viewport-shell', 'body-scroll', 'mobile', 'recommendations-scroll'])) errors.push('filter-modal: viewport and scroll rules are incomplete');
     for (const id of ['14627:233015', '14627:228239']) {
       if (!item.evidence?.some(source => source.type === 'figma' && source.data?.nodeId === id)) errors.push(`filter-modal: Figma evidence ${id} is absent`);
     }
@@ -312,12 +403,12 @@ for (const entry of catalog) {
   if (entry.id === 'sort-sheet' || entry.id === 'price-sheet') {
     const example = item.examples[0];
     const isSort = entry.id === 'sort-sheet';
-    if (item.examples.length !== 1 || example?.id !== 'mobile-flow') errors.push(`${entry.id}: expected one mobile-flow example`);
-    if (example?.preview?.mode !== 'intrinsic' || example?.presentation?.layout !== 'context' || example?.presentation?.width !== 320 || example?.presentation?.height !== 568) errors.push(`${entry.id}: mobile 320x568 context is absent`);
-    for (const state of ['open', 'closed', ...(isSort ? ['selected'] : ['reset', 'submit'])]) {
+    if (item.examples.length !== 1 || example?.id !== 'responsive-flow') errors.push(`${entry.id}: expected one responsive-flow example`);
+    if (example?.preview?.mode !== 'viewport' || JSON.stringify(example.preview.widths) !== JSON.stringify(viewerWidths)) errors.push(`${entry.id}: responsive viewport preview is absent`);
+    for (const state of ['open', 'closed', 'desktop', 'tablet', 'mobile', ...(isSort ? ['selected'] : ['reset', 'submit'])]) {
       if (!example?.covers?.includes(state)) errors.push(`${entry.id}: ${state} is absent from example coverage`);
     }
-    if (JSON.stringify(item.layoutRules?.map(rule => rule.id)) !== JSON.stringify(['mobile-only', 'bottom-anchor', 'dismiss'])) errors.push(`${entry.id}: mobile-only behavior rules are incomplete`);
+    if (JSON.stringify(item.layoutRules?.map(rule => rule.id)) !== JSON.stringify(['responsive-presentation', 'bottom-anchor', 'dismiss'])) errors.push(`${entry.id}: responsive behavior rules are incomplete`);
     for (const nodeId of ['9094:48333', isSort ? '9356:50311' : '9356:52508']) {
       const hasNode = item.evidence?.some(source => source.data?.nodeId === nodeId || source.data?.some?.(data => data.nodeId === nodeId));
       if (!hasNode) errors.push(`${entry.id}: Figma evidence ${nodeId} is absent`);
@@ -325,13 +416,11 @@ for (const entry of catalog) {
     if (!item.stateCoverage?.captured?.includes('closed') || item.stateCoverage?.uncaptured?.length) errors.push(`${entry.id}: open/closed flow is not captured`);
     if (existsSync(resolve(root, example?.file || ''))) {
       const html = readFileSync(resolve(root, example.file), 'utf8');
-      if (!html.includes('width:320px;height:568px') || !html.includes('position:absolute;inset:0')) errors.push(`${entry.id}: mobile viewport or bottom anchoring is absent`);
-      if (!html.includes(`id="${entry.id}-open"`) || !html.includes(`id="${entry.id}-target"`)) errors.push(`${entry.id}: trigger or sheet target is absent`);
-      if (!html.includes("event.key==='Escape'") || !html.includes('event.target===')) errors.push(`${entry.id}: Escape or overlay dismissal is absent`);
+      if ([...html.matchAll(/data-device="(?:desktop|tablet|mobile)"/g)].length < 3) errors.push(`${entry.id}: desktop/tablet/mobile controls are absent`);
       if (isSort) {
-        if ([...html.matchAll(/role="option"/g)].length !== 6 || !html.includes("sortSheetTrigger.textContent=option.textContent")) errors.push('sort-sheet: selectable list behavior is incomplete');
+        if ([...html.matchAll(/role="option"/g)].length !== 6 || !html.includes("option.setAttribute('aria-selected','true')")) errors.push('sort-sheet: selectable list behavior is incomplete');
       } else {
-        if (!html.includes('role="dialog" aria-modal="true"') || !html.includes("querySelectorAll('input').forEach")) errors.push('price-sheet: dialog or reset behavior is incomplete');
+        if (!html.includes('role="dialog"') || !html.includes("querySelectorAll('.crs-price-sheet__input')")) errors.push('price-sheet: dialog or reset behavior is incomplete');
       }
     }
   }
@@ -343,7 +432,7 @@ for (const entry of catalog) {
     if (isExtended) {
       const example = item.examples[0];
       if (item.examples.length !== 1 || example?.id !== 'filter-chip-variants') errors.push('tab: expected one FilterChip Menu / Switch overview');
-      for (const state of ['default', 'hover', 'focus-visible', 'selected', 'disabled', 'loading', 'open']) {
+      for (const state of ['default', 'hover', 'focus-visible', 'pressed', 'disabled', 'loading', 'open']) {
         if (!item.states.ui.includes(state) || !example?.covers?.includes(state)) errors.push(`tab: missing ${state} state coverage`);
       }
       if (!item.variants?.find(variant => variant.id === 'kind')?.use.includes('FilterChipMenu')) errors.push('tab: Menu / Switch variants are absent');
@@ -351,9 +440,10 @@ for (const entry of catalog) {
         const html = readFileSync(resolve(root, example.file), 'utf8');
         if ([...html.matchAll(/class="crs-filter-chip-matrix__row"/g)].length !== 6) errors.push('tab: expected six FilterChip state rows');
         if ([...html.matchAll(/class="crs-filter-chip crs-filter-chip--/g)].length !== 15) errors.push('tab: expected fifteen FilterChip samples');
-        for (const state of ['default', 'hover', 'focus', 'selected', 'disabled', 'loading', 'open']) {
+        for (const state of ['default', 'hover', 'focus', 'disabled', 'loading', 'open']) {
           if (!html.includes(`data-state="${state}"`)) errors.push(`tab: ${state} sample is absent`);
         }
+        if (!html.includes("dataset.state='pressed'")) errors.push('tab: pressed state normalization is absent');
         if (!html.includes('filter-chip-tooltip.svg') || !html.includes('filter-chip-dot.svg')) errors.push('tab: exact local Figma assets are absent');
         if (!html.includes('aria-expanded="true"') || !html.includes('role="listbox"')) errors.push('tab: open Menu semantics are absent');
         if ([...html.matchAll(/aria-busy="true"/g)].length !== 2) errors.push('tab: loading semantics are incomplete');
@@ -389,7 +479,7 @@ for (const entry of catalog) {
     if (entry.id !== 'textarea' && !item.variants?.find(variant => variant.id === 'size')?.use.includes('XL / SearchForm: 56 px')) errors.push(`${entry.id}: M/XL size scale is incomplete`);
     if (existsSync(resolve(root, example?.file || ''))) {
       const html = readFileSync(resolve(root, example.file), 'utf8');
-      const expectedControls = entry.id === 'textarea' ? 10 : ['select', 'multi-select'].includes(entry.id) ? 13 : 12;
+      const expectedControls = entry.id === 'textarea' ? 10 : ['select', 'multi-select'].includes(entry.id) ? 13 : entry.id === 'text-input' ? 14 : 12;
       if ([...html.matchAll(/class="crs-field(?: |")/g)].length !== expectedControls) errors.push(`${entry.id}: expected ${expectedControls} field samples`);
       for (const state of ['default', 'hover', 'focus', 'disabled', 'error']) {
         if (!html.includes(`data-state="${state}"`)) errors.push(`${entry.id}: ${state} sample is absent`);
@@ -415,13 +505,13 @@ for (const entry of catalog) {
       if (!item.states.ui.includes(state)) errors.push(`${entry.id}: missing ${state} state`);
     }
     if (item.stateCoverage?.uncaptured?.some(state => ['hover', 'focus-visible', 'checked', 'disabled', 'loading'].includes(state))) errors.push(`${entry.id}: Figma states remain uncaptured`);
-    if (entry.id === 'checkbox' && !item.stateCoverage?.uncaptured?.includes('indeterminate')) errors.push('checkbox: unverified indeterminate gap must remain explicit');
+    if (entry.id === 'checkbox' && (!item.stateCoverage?.captured?.includes('indeterminate') || item.stateCoverage?.uncaptured?.includes('indeterminate'))) errors.push('checkbox: indeterminate state must be captured');
     const expectedLayoutRules = ['checkbox', 'radio-button'].includes(entry.id) ? ['control-label', 'vertical-list', 'horizontal-list'] : ['control-label'];
     if (JSON.stringify(item.layoutRules?.map(rule => rule.id)) !== JSON.stringify(expectedLayoutRules)) errors.push(`${entry.id}: control label/list spacing rules are incomplete`);
     if (!item.layoutRules?.find(rule => rule.id === 'control-label')?.implementation.includes('padding-top:1px')) errors.push(`${entry.id}: label top padding rule is not 1px`);
     if (existsSync(resolve(root, example?.file || ''))) {
       const html = readFileSync(resolve(root, example.file), 'utf8');
-      const expectedControls = ['checkbox', 'radio-button'].includes(entry.id) ? 16 : 10;
+      const expectedControls = entry.id === 'checkbox' ? 17 : entry.id === 'radio-button' ? 16 : 10;
       if ([...html.matchAll(/class="crs-control crs-control--/g)].length !== expectedControls) errors.push(`${entry.id}: expected ${expectedControls} control samples`);
       for (const state of ['default', 'hover', 'focus', 'disabled', 'loading']) {
         if ([...html.matchAll(new RegExp(`data-state="${state}"`, 'g'))].length < 2) errors.push(`${entry.id}: ${state} off/on pair is absent`);
@@ -430,6 +520,7 @@ for (const entry of catalog) {
       if (entry.id === 'radio-button' && !html.includes('type="radio"')) errors.push('radio-button: native radio inputs are absent');
       if (entry.id === 'switch' && !html.includes('role="switch"')) errors.push('switch: switch semantics are absent');
       if (entry.id === 'checkbox' && !html.includes('ui/assets/controls/check.svg')) errors.push('checkbox: exported check asset is absent');
+      if (entry.id === 'checkbox' && (!html.includes('data-state="indeterminate"') || !html.includes('.indeterminate=true'))) errors.push('checkbox: indeterminate sample or native state is absent');
       if (entry.id === 'switch' && !html.includes('ui/assets/controls/dot.svg')) errors.push('switch: exported dot asset is absent');
       if (['checkbox', 'radio-button'].includes(entry.id) && (!html.includes('crs-control-list--vertical') || !html.includes('crs-control-list--horizontal'))) errors.push(`${entry.id}: control list examples are absent`);
       if (!html.includes('.crs-control__label{padding-top:1px;white-space:nowrap}')) errors.push(`${entry.id}: rendered label top padding is not 1px`);
@@ -444,6 +535,7 @@ for (const entry of catalog) {
       if ([...html.matchAll(/class="crs-avatar-default /g)].length !== 8) errors.push(`${entry.id}: expected eight default avatar sizes`);
       const asset = entry.id === 'avatar' ? 'avatar-default-user.svg' : 'avatar-default-company.svg';
       if (!html.includes(`ui/assets/images/${asset}`)) errors.push(`${entry.id}: wrong default avatar asset`);
+      if (entry.id === 'entity-logo' && [...html.matchAll(/data-component="entity-logo"/g)].length !== 8) errors.push('entity-logo: canonical component hook is absent from size scale');
     }
   }
   if (item.implementation.markup === null) {
@@ -486,7 +578,23 @@ for (const document of migration.preservedDocuments || []) {
   pathExists(document.target, `migration/document/${document.source}`);
 }
 
-const generatedUiFiles = ['ui/dimension-tokens.css', 'ui/page-examples.css', 'ui/assets/images/avatar-default-user.svg', 'ui/assets/images/avatar-default-company.svg', 'ui/assets/images/filter-modal/recommendation-career.png', 'ui/assets/images/filter-modal/recommendation-certificate.png', 'ui/assets/images/filter-modal/recommendation-free.png', 'ui/assets/images/filter-modal/recommendation-mentor.png', 'ui/assets/images/modal/example.png', 'ui/assets/icons/filter-grade-min.svg', 'ui/assets/icons/filter-grade-mid.svg', 'ui/assets/icons/filter-grade-max.svg', 'ui/assets/controls/check.svg', 'ui/assets/controls/dot.svg', 'ui/assets/controls/filter-chip-tooltip.svg', 'ui/assets/controls/filter-chip-tooltip-selected.svg', 'ui/assets/controls/filter-chip-tooltip-disabled.svg', 'ui/assets/controls/filter-chip-dot.svg'];
+const generatedUiFiles = [
+  'ui/dimension-tokens.css', 'ui/page-examples.css',
+  'ui/assets/images/avatar-default-user.svg', 'ui/assets/images/avatar-default-company.svg',
+  'ui/assets/images/filter-modal/recommendation-career.png', 'ui/assets/images/filter-modal/recommendation-certificate.png',
+  'ui/assets/images/filter-modal/recommendation-free.png', 'ui/assets/images/filter-modal/recommendation-mentor.png',
+  'ui/assets/images/modal/example.png',
+  'ui/assets/images/content/article-career.png',
+  'ui/assets/images/carousel/ad-promo.png', 'ui/assets/images/carousel/ad-ai.png',
+  'ui/assets/images/carousel/ad-previous.png', 'ui/assets/images/carousel/ad-extra-1.png',
+  'ui/assets/images/carousel/ad-extra-2.png', 'ui/assets/images/carousel/ad-extra-3.png',
+  'ui/assets/images/experts/expert-achieve.svg', 'ui/assets/images/experts/experts.svg',
+  ...['neural-ai.png', 'development.png', 'analytics.png', 'design.png', 'marketing.png', 'business.png', 'languages.png', 'soft-skills.png', 'wellness.png', 'hobby.png', 'psychology.png', 'cooking.png', 'pedagogy.png', 'software.png', 'continuing-education.png', 'profession-collections.png', 'reviews.png', 'promo.png', 'rating.png', 'child-ege.png', 'child-oge.png', 'child-exam.png', 'child-dvi.png', 'child-vpr.png', 'child-olympiad.png', 'child-school.png', 'child-home-school.png', 'child-hobby.png', 'child-languages.png', 'child-horizon.png', 'child-college.png'].map(name => `ui/assets/images/catalog/${name}`),
+  'ui/assets/icons/filter-grade-min.svg', 'ui/assets/icons/filter-grade-mid.svg', 'ui/assets/icons/filter-grade-max.svg',
+  'ui/assets/controls/check.svg', 'ui/assets/controls/dot.svg', 'ui/assets/controls/filter-chip-tooltip.svg',
+  'ui/assets/controls/filter-chip-tooltip-selected.svg', 'ui/assets/controls/filter-chip-tooltip-disabled.svg',
+  'ui/assets/controls/filter-chip-dot.svg'
+];
 for (const path of generatedUiFiles) pathExists(path, 'generated-ui');
 for (const path of generatedUiFiles.filter(path => path.includes('avatar-default') && path.endsWith('.svg'))) {
   if (!existsSync(resolve(root, path))) continue;

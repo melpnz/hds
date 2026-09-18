@@ -5,34 +5,154 @@
   "kind": "pattern",
   "category": "page-families",
   "maturity": {
-    "spec": "missing",
-    "markup": "missing"
+    "spec": "complete",
+    "markup": "available"
   },
   "knowledge": {
-    "authority": [],
-    "confidence": "low",
+    "authority": [
+      "figma"
+    ],
+    "confidence": "high",
     "scope": "habr"
   },
-  "purpose": "В отличие от Career, где 404 отдавал полноценную HTML-страницу с версткой, Habr отдаёт пустой 404-ответ на этом пути (либо редиректит, либо не рендерит SPA-страницу ошибки на сервере) — не удалось получить ни одного факта о служебном экране. Честный пробел, не грех, не дозаполнять.",
+  "purpose": "Глобальные варианты: 401, 403, 404, 451, 500, 502, 503 и 504; кроме них есть продуктовые заглушки для поиска, блокировок, компаний и дайджеста. Общая композиция: шапка → адаптивная SVG-иллюстрация (480×240 на desktop, 280×140 на mobile) → код/заголовок → пояснение → recovery action. В гайд включены 403, 404 и 500 как базовые разновидности; остальные используют тот же каркас и соответствующий локальный SVG.",
   "implementation": {
-    "markup": null,
-    "styles": [],
-    "missingReason": "copy-safe-page-example-not-captured",
-    "fallback": "Использовать ближайший подтверждённый паттерн и явно раскрыть допущение. Не восстанавливать DOM по названию семейства."
+    "markup": "available-in-examples",
+    "cssRoots": [],
+    "styles": [
+      "ui/habr.css"
+    ],
+    "scripts": [
+      "examples/site-shell.js"
+    ]
   },
   "states": {
     "ui": [],
     "feature": [],
     "domain": []
   },
-  "examples": [],
-  "evidence": [],
+  "examples": [
+    {
+      "id": "figma-404",
+      "title": "Ошибка 404",
+      "file": "examples/generated/patterns/service-error/figma-404.html",
+      "covers": [
+        "service-error"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 620
+      }
+    },
+    {
+      "id": "figma-403",
+      "title": "Ошибка 403",
+      "file": "examples/generated/patterns/service-error/figma-403.html",
+      "covers": [
+        "service-error"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 620
+      }
+    },
+    {
+      "id": "figma-500",
+      "title": "Ошибка 500",
+      "file": "examples/generated/patterns/service-error/figma-500.html",
+      "covers": [
+        "service-error"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 620
+      }
+    }
+  ],
+  "evidence": [
+    {
+      "type": "figma",
+      "ref": "https://www.figma.com/design/T6D4YRKF3qdAmGNAu4wIBo/?node-id=30995-354578"
+    },
+    {
+      "type": "pattern-spec",
+      "ref": "docs/patterns/service-error.md"
+    }
+  ],
   "unknowns": [],
-  "sourceStatus": "missing",
+  "sourceStatus": "confirmed",
   "family": "SERVICE_ERROR",
-  "areas": [],
-  "modules": [],
-  "components": [],
-  "previewNotes": [],
+  "areas": [
+    "error-illustration",
+    "error-message",
+    "recovery-action"
+  ],
+  "modules": [
+    "service-error-state"
+  ],
+  "components": [
+    "button"
+  ],
+  "sequence": [
+    {
+      "id": "error-illustration",
+      "tag": "figure",
+      "heading": null,
+      "modules": [
+        {
+          "id": "service-error-state",
+          "count": 1
+        }
+      ],
+      "components": []
+    },
+    {
+      "id": "error-message",
+      "tag": "section",
+      "heading": "Код ошибки",
+      "modules": [],
+      "components": []
+    },
+    {
+      "id": "recovery-action",
+      "tag": "div",
+      "heading": null,
+      "modules": [],
+      "components": [
+        {
+          "id": "button",
+          "count": 1
+        }
+      ]
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Figma: глобальные ошибки 401/403/404/451/500/502/503/504 и продуктовые заглушки. В витрине показаны три базовых композиционных варианта; SVG берутся из локального набора."
+    }
+  ],
+  "shellDependencies": [
+    "header",
+    "footer"
+  ],
   "markdown": "docs/patterns/service-error.md"
 }

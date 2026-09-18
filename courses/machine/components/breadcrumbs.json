@@ -10,10 +10,11 @@
   },
   "knowledge": {
     "authority": [
+      "production",
       "figma"
     ],
-    "confidence": "medium",
-    "scope": "design-source-only"
+    "confidence": "high",
+    "scope": "public-guest"
   },
   "purpose": "**В продукте этого компонента нет.** Он существует только в макете, и это не пробел съёмки, а установленный факт — разбор в `notes` записи реестра:",
   "implementation": {
@@ -43,7 +44,10 @@
       "title": "Зафиксированный вариант",
       "file": "examples/components/breadcrumbs/index.html",
       "covers": [
-        "default"
+        "default",
+        "hover",
+        "focus-visible",
+        "current"
       ],
       "preview": {
         "mode": "intrinsic"
@@ -59,12 +63,22 @@
       "text": "Полная спецификация: guide/components/navigation/breadcrumbs.md."
     },
     {
-      "type": "coverage-warning",
-      "text": "Источник figma-only: компонент не подтверждён в продакшене."
+      "type": "guidance",
+      "text": "Production-вариант расположен в hero на синем фоне; текущий пункт передаётся через aria-current=page."
     }
   ],
   "accessibility": [],
   "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "ul.flex.flex-wrap.items-center a.text-ui-white + svg, ul.flex.flex-wrap.items-center [aria-current]",
+        "found": 1,
+        "pages": [
+          "https://career.habr.com/courses/dizajn/3d-modelling"
+        ]
+      }
+    },
     {
       "type": "figma",
       "data": [
@@ -80,17 +94,17 @@
   ],
   "unknowns": [
     "**Корень введён пакетом.** `crs-breadcrumbs` — не класс продукта. METHOD §6.5 допускает корень вида `crs-<id>` ровно для этого случая: снятой разметки, из которой можно взять настоящее имя, не существует. Префикс `crs-` нужен, чтобы имя пакета нельзя было принять за класс продукта.",
-    "**Тексты.** Подписи `Text 1`…`Text 4` — собственные значения узла макета (свойства `text1`…`text4`), а не придуманные примеры. Настоящих подписей у компонента нет: их даёт страница, а страниц с крошками в продукте не снято.",
+    "**Тексты.** Живой пример использует production-подписи страницы 3D-моделирования; конкретные значения всегда задаёт страница.",
     "**Ассеты.** Разделитель взят из общего спрайта продукта, а не из экспорта макета. В макете на его месте `icon/arrow-down` 20×20; глиф тот же шеврон — контуры сверены: у обоих это два отрезка, сходящиеся в точке, различается только `viewBox` (20 против 24). Своя копия иконки не заводится: у продукта символ уже есть, и вторая копия разошлась бы с первой при следующей правке спрайта.",
-    "**Состояния.** Требуемые состояния записи (`default`, `hover`, `focus-visible`, `current`) в макете отдельными вариантами не нарисованы, а измерить их негде. Разбор — [`components/STATE-CAPTURE.md`](../STATE-CAPTURE.md).",
-    "**Статус терминальный.** Правило манифеста: `sourceScope: figma-only` не доходит до `complete`/`partial`. Пока компонент не найден в продукте, запись остаётся `figma-only`, сколько бы вёрстки к ней ни прибавилось.",
-    "Не снятые состояния: hover, focus-visible, current."
+    "**Состояния.** `default`, `hover`, `focus-visible` и `current` показаны в живом production-примере на синем hero-фоне.",
+    "**Production.** Компонент найден и сверён на `/courses/dizajn/3d-modelling` 18 сентября 2026.",
+    "Production-сверка 18 сентября 2026: `/courses/dizajn/3d-modelling`, hero breadcrumbs."
   ],
   "source": {
     "version": "v0.1",
     "spec": "guide/components/navigation/breadcrumbs.md",
-    "status": "figma-only",
-    "scope": "figma-only",
+    "status": "partial",
+    "scope": "production",
     "step": "R3-15",
     "anchor": "showcase/components.html#c-breadcrumbs",
     "originalKind": "component",
@@ -111,14 +125,13 @@
       "current"
     ],
     "captured": [
-      "default"
-    ],
-    "normative": [],
-    "uncaptured": [
+      "default",
       "hover",
       "focus-visible",
       "current"
-    ]
+    ],
+    "normative": [],
+    "uncaptured": []
   },
   "provenance": null,
   "sourceConflicts": [],

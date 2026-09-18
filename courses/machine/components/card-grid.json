@@ -15,7 +15,7 @@
     "confidence": "medium",
     "scope": "public-guest"
   },
-  "purpose": "Используйте для сетки однотипных карточек в секции, когда видны все: 4 колонки на десктопе, 3 (иногда 2) на `tablet-only:`, 1 на `phone:`. В продукте 8 узлов на 6 страницах.",
+  "purpose": "Используйте для сетки однотипных карточек в секции. Default показывает все карточки с gap 12; school-courses использует gap 16 и ограничивает хвост до шести карточек на планшете и четырёх на телефоне.",
   "implementation": {
     "markup": "available-in-examples",
     "cssRoots": [
@@ -36,6 +36,30 @@
     "feature": [],
     "domain": []
   },
+  "variants": {
+    "default": {
+      "gap": "12px",
+      "visibility": "all"
+    },
+    "school-courses": {
+      "cssRoot": "crs-card-grid--school-courses",
+      "gap": {
+        "token": "--courses-space-16",
+        "value": "1rem"
+      },
+      "columns": {
+        "desktop": 4,
+        "tablet": 3,
+        "phone": 1
+      },
+      "visibleCards": {
+        "desktop": "all",
+        "tablet": 6,
+        "phone": 4
+      },
+      "authority": "production"
+    }
+  },
   "rules": [
     "machine/rules/dg-3.json"
   ],
@@ -45,7 +69,8 @@
       "title": "Зафиксированный вариант",
       "file": "examples/components/card-grid/index.html",
       "covers": [
-        "default"
+        "default",
+        "empty"
       ],
       "preview": {
         "mode": "viewport",
@@ -86,8 +111,7 @@
     }
   ],
   "unknowns": [
-    "**Не снятые состояния.** `empty` — разбор в [`components/STATE-CAPTURE.md`](../STATE-CAPTURE.md).",
-    "Не снятые состояния: empty."
+    "Empty-состояние принято по Figma владельцем 18 сентября 2026 без временной маркировки."
   ],
   "source": {
     "version": "v0.1",
@@ -101,7 +125,7 @@
     "markupState": null
   },
   "usage": {
-    "when": "Используйте для сетки однотипных карточек в секции, когда видны все: 4 колонки на десктопе, 3 (иногда 2) на `tablet-only:`, 1 на `phone:`. В продукте 8 узлов на 6 страницах.",
+    "when": "Используйте default, когда видны все карточки. Для списка курсов на странице школы используйте вариант school-courses: gap 16 и ограничение хвоста 6/4.",
     "whenNot": [
       "Когда карточки листают — `Carousel`."
     ],
@@ -116,12 +140,11 @@
       "empty"
     ],
     "captured": [
-      "default"
+      "default",
+      "empty"
     ],
     "normative": [],
-    "uncaptured": [
-      "empty"
-    ]
+    "uncaptured": []
   },
   "provenance": "**Проза выведена из переписи корпуса.** Правило применения, «Когда не использовать», «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по переписи десяти снятых страниц, отрисованных с CSS корпуса на 1440 (`.pipeline/R2-bulk/corpus-facts.json`, генератор `gen-prose.mjs`), и `notes` реестра; пересмотрены по ревью выборки из 12 записей. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их в снятом продукте нечем.",
   "sourceConflicts": [],

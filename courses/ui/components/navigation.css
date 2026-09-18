@@ -19,8 +19,18 @@
    по макету bulk-проходом R2-bulk.
    ========================================================================= */
 
+.rubrication-header,
+.scrollbar-container {
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  width: 100%;
+}
+
 /* -------------------------------------------------------------------------
-   Breadcrumbs (R2-bulk, figma-only)
+   Breadcrumbs · production hero
    -------------------------------------------------------------------------
    Единственная запись пакета, чья разметка написана не по снятому продукту,
    а по узлу макета: `02_Education-NEW`, node 9902:39188 «Хлебные крошки»
@@ -61,6 +71,25 @@
   white-space: nowrap;
   word-break: break-word;
 }
+.crs-breadcrumbs--hero .crs-breadcrumbs__item {
+  color: var(--color-ui-white);
+  text-decoration: none;
+}
+.crs-breadcrumbs__item[href]:hover,
+.crs-breadcrumbs__item[data-state="hover"] {
+  text-decoration: underline;
+}
+.crs-breadcrumbs__item[href]:focus-visible,
+.crs-breadcrumbs__item[data-state="focus"] {
+  border-radius: var(--courses-radius-4);
+  outline: var(--courses-border-width-2) solid currentColor;
+  outline-offset: var(--courses-optical-1);
+}
+.crs-breadcrumbs__item[aria-current="page"],
+.crs-breadcrumbs__item--current {
+  cursor: default;
+  text-decoration: none;
+}
 .crs-breadcrumbs__sep {
   align-items: center;
   display: flex;
@@ -72,6 +101,9 @@
 .crs-breadcrumbs__sep .svg-icon {
   color: var(--fig-color-style-font-secondary);
   transform: rotate(-90deg);
+}
+.crs-breadcrumbs--hero .crs-breadcrumbs__sep .svg-icon {
+  color: var(--color-ui-black-200);
 }
 
 /* -------------------------------------------------------------------------
@@ -184,6 +216,92 @@
   box-shadow:
     0 var(--fig-effect-drop-shadow-2-y) var(--fig-effect-drop-shadow-2-blur) var(--fig-effect-drop-shadow-2-spread) var(--fig-effect-drop-shadow-2-color),
     0 var(--fig-effect-drop-shadow-1-y) var(--fig-effect-drop-shadow-1-blur) var(--fig-effect-drop-shadow-1-spread) var(--fig-effect-drop-shadow-1-color);
+}
+
+/* -------------------------------------------------------------------------
+   HeroTabs / PageTabs — общий runtime-компонент
+   -------------------------------------------------------------------------
+   Эти классы используются и собственными примерами табов, и составными
+   модулями вроде SiteHeader. Составной модуль не должен заново рисовать
+   геометрию и состояния вкладки локальными селекторами. */
+.crs-tabs-group {
+  display: inline-flex;
+  gap: 0;
+  max-width: 100%;
+  width: max-content;
+}
+.crs-tabs-group--hero {
+  --tab-focus: var(--color-ui-white);
+  --tab-hover: var(--color-ui-black-transparent-120);
+  --tab-loader: var(--color-ui-white);
+  --tab-selected: var(--color-ui-black-850);
+  background: var(--color-ui-black-transparent-120);
+  border-radius: var(--courses-radius-12);
+  color: var(--color-ui-white);
+}
+.crs-tabs-group--page {
+  --tab-focus: var(--color-ui-black-850);
+  --tab-hover: var(--color-ui-black-100);
+  --tab-loader: var(--color-ui-black-400);
+  --tab-selected: var(--color-ui-white);
+  background: var(--color-ui-black-50);
+  border-radius: var(--courses-radius-16);
+  color: var(--color-ui-black-850);
+  padding: var(--courses-space-4);
+}
+.crs-context-tab {
+  align-items: center;
+  background: transparent;
+  border: 0;
+  border-radius: var(--courses-radius-12);
+  box-sizing: border-box;
+  color: inherit;
+  cursor: pointer;
+  display: inline-flex;
+  font: 400 var(--courses-font-size-14)/var(--courses-line-height-20-on-14) Inter, sans-serif;
+  height: var(--courses-size-40);
+  justify-content: center;
+  padding: var(--courses-space-8) var(--courses-space-16);
+  position: relative;
+  white-space: nowrap;
+}
+.crs-context-tab:hover,
+.crs-context-tab[data-state="hover"],
+.crs-context-tab[data-state="focus"] {
+  background: var(--tab-hover);
+}
+.crs-context-tab:focus-visible,
+.crs-context-tab[data-state="focus"] {
+  outline: var(--courses-border-width-2) solid var(--tab-focus);
+  outline-offset: var(--courses-optical-1);
+}
+.crs-context-tab[aria-selected="true"],
+.crs-context-tab[data-state="selected"] {
+  background: var(--tab-selected);
+}
+.crs-tabs-group--page .crs-context-tab[aria-selected="true"],
+.crs-tabs-group--page .crs-context-tab[data-state="selected"] {
+  box-shadow:
+    0 var(--fig-effect-drop-shadow-2-y) var(--fig-effect-drop-shadow-2-blur) var(--fig-effect-drop-shadow-2-spread) var(--fig-effect-drop-shadow-2-color),
+    0 var(--fig-effect-drop-shadow-1-y) var(--fig-effect-drop-shadow-1-blur) var(--fig-effect-drop-shadow-1-spread) var(--fig-effect-drop-shadow-1-color);
+}
+.crs-context-tab:disabled,
+.crs-context-tab[data-state="disabled"] {
+  cursor: not-allowed;
+  opacity: .7;
+}
+.crs-context-tab[data-state="loading"] {
+  color: transparent;
+  cursor: wait;
+  width: var(--courses-size-56);
+}
+.crs-context-tab svg {
+  color: var(--tab-loader);
+  height: var(--courses-size-24);
+  left: var(--courses-space-16);
+  position: absolute;
+  top: var(--courses-space-8);
+  width: var(--courses-size-24);
 }
 
 /* -------------------------------------------------------------------------

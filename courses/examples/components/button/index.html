@@ -29,7 +29,7 @@
 .crs-figma-button{--button-fill:#2c2e34;--button-hover:#3b3d43;--button-border:var(--button-fill);--button-text:#fff;--button-focus:#909194;position:relative;box-sizing:border-box;display:inline-flex;align-items:center;justify-content:center;gap:var(--button-gap);height:var(--button-height);padding:0 var(--button-padding);border:var(--courses-border-width-1) solid var(--button-border);border-radius:var(--courses-radius-12);background:var(--button-fill);color:var(--button-text);font:600 var(--button-font-size)/var(--button-line-height) Inter,sans-serif;white-space:nowrap;cursor:pointer;transition:background-color .15s ease,border-color .15s ease,box-shadow .15s ease}
 .crs-figma-button[data-icon=true]{padding-left:var(--button-icon-padding)}
 .crs-figma-button[data-size=m]{--button-height:var(--courses-size-40);--button-padding:var(--courses-space-16);--button-icon-padding:var(--courses-space-8);--button-gap:var(--courses-space-4);--button-font-size:var(--courses-font-size-14);--button-line-height:var(--courses-line-height-20-on-14)}
-.crs-figma-button[data-size=l]{--button-height:var(--courses-size-48);--button-padding:var(--courses-space-20);--button-icon-padding:var(--courses-space-12);--button-gap:var(--courses-space-6);--button-font-size:var(--courses-font-size-16);--button-line-height:var(--courses-line-height-24-on-16)}
+.crs-figma-button[data-size=l]{--button-height:var(--courses-size-48);--button-padding:var(--courses-space-16);--button-icon-padding:var(--courses-space-12);--button-gap:var(--courses-space-6);--button-font-size:var(--courses-font-size-16);--button-line-height:var(--courses-line-height-24-on-16)}
 .crs-figma-button[data-size=xl]{--button-height:var(--courses-size-56);--button-padding:var(--courses-space-24);--button-icon-padding:var(--courses-space-16);--button-gap:var(--courses-space-8);--button-font-size:var(--courses-font-size-16);--button-line-height:var(--courses-line-height-24-on-16)}
 .crs-figma-button[data-tone=secondary]{--button-fill:#f1f1f1;--button-hover:#e9e9ea;--button-border:var(--button-fill);--button-text:#2c2e34;--button-focus:#a6a7a9}
 .crs-figma-button[data-tone=danger]{--button-fill:#e84444;--button-hover:#f37676;--button-border:var(--button-fill);--button-text:#fff;--button-focus:#f37676}
@@ -38,6 +38,7 @@
 .crs-figma-button[data-tone=success-outline]{--button-fill:#fff;--button-hover:#e7f6ea;--button-hover-border:#5bcd72;--button-border:#5bcd72;--button-text:#34b24f;--button-focus:#5bcd72}
 .crs-figma-button[data-state=default]:not(:disabled):hover{background:var(--button-hover);border-color:var(--button-hover-border,var(--button-hover))}
 .crs-figma-button[data-state=hover]{background:var(--button-hover);border-color:var(--button-hover-border,var(--button-hover))}
+.crs-figma-button[data-state=pressed],.crs-figma-button:active{background:var(--button-hover);border-color:var(--button-hover-border,var(--button-hover))}
 .crs-figma-button[data-state=focus]{box-shadow:0 0 0 var(--courses-effect-2) #fff,0 0 0 var(--courses-effect-3) var(--button-focus)}
 .crs-figma-button:disabled{border-color:#dededf;background:#dededf;color:#fff;cursor:not-allowed}
 .crs-figma-button[data-tone$=outline]:disabled,.crs-figma-button[data-tone=secondary]:disabled{border-color:#f1f1f1;background:#fff;color:#d3d3d4}
@@ -86,7 +87,7 @@
         <select id="button-tone"><option value="main">main</option><option value="secondary">secondary</option><option value="danger">danger</option><option value="danger-outline">danger outline</option><option value="success">success</option><option value="success-outline">success outline</option></select>
       </label>
       <label class="crs-button-control">Состояние
-        <select id="button-state"><option value="default">default</option><option value="hover">hover</option><option value="focus">focus</option><option value="disabled">disabled</option><option value="loading">loading</option></select>
+        <select id="button-state"><option value="default">default</option><option value="hover">hover</option><option value="pressed">pressed</option><option value="focus">focus</option><option value="disabled">disabled</option><option value="loading">loading</option></select>
       </label>
       <label class="crs-button-control crs-button-control--check"><input id="button-icon" type="checkbox"> С ведущей иконкой</label>
       <label class="crs-button-control crs-button-control--check"><input id="button-stretch" type="checkbox"> Растянуть в контейнере</label>

@@ -15,7 +15,7 @@
     "confidence": "high",
     "scope": "habr"
   },
-  "purpose": "Layout regions. Шапка (sticky, 56/48px) → .tm-page-width контейнер (1096/24 · 768/16 · edge-to-edge) → .tm-pagewrapper (flex) → .tm-pagemainhas-sidebar (гибкая) + .tm-pagesidebar (300px, position: relative, НЕ липкий) → подвал (tm-footer-menu + tm-footer).",
+  "purpose": "Layout regions. Шапка (sticky, 56/48px) → .tm-page-width контейнер (1096/24 · 768/16 · edge-to-edge) → .tm-pagewrapper → .tm-pagemainhas-sidebar + .tm-pagesidebar → подвал (tm-footer-menu + tm-footer). До 1023px области идут вертикально; с 1024px wrapper становится flex, главная колонка занимает остаток, а сайдбар получает фиксированные 300px и отделяется промежутком 16px.",
   "implementation": {
     "markup": "available-in-examples",
     "cssRoots": [],
@@ -55,11 +55,13 @@
     {
       "type": "production",
       "ref": "docs/patterns/shell.md"
+    },
+    {
+      "type": "pattern-spec",
+      "ref": "docs/patterns/shell.md"
     }
   ],
-  "unknowns": [
-    "Reusable modules. Header (не специфицирован отдельно — GAP, см. §7), Footer (не специфицирован — GAP), ui/layout.css."
-  ],
+  "unknowns": [],
   "sourceStatus": "confirmed",
   "family": "SHELL",
   "areas": [
@@ -137,20 +139,50 @@
   "previewNotes": [
     {
       "type": "guidance",
-      "text": "Контейнер .tm-page-width (1096/24 · 768/16 · edge-to-edge) → .tm-page__wrapper flex → главная колонка + .tm-page__sidebar (300px, НЕ липкий). Сайдбар — зарезервированная колонка: на 6 из 14 страниц она физически пуста для гостя (см. заметку ниже). Ширина фрейма ограничена для показа — меняйте окно браузера, чтобы увидеть реальный брейкпоинт 1024/768."
+      "text": "До 1023px основная область и сайдбар идут вертикально; с 1024px основная колонка занимает остаток, сайдбар фиксирован на 300px, gap — 16px. Контейнер: edge-to-edge до 767px, 768/16 на планшете и 1096/24 на desktop."
     },
     {
       "type": "guidance",
-      "text": "Все готовые примеры страниц подключают одну общую оболочку через habr-site-header и habr-site-footer из examples/site-shell.js. Разметка не дублируется: источниками геометрии и вариантов остаются Foundations → Header и Footer."
+      "text": "Фон страницы использует --background-gray, рабочие поверхности — --background-primary. Шапка и подвал подключаются на всех готовых страницах через общие habr-site-header и habr-site-footer из examples/site-shell.js."
     },
     {
       "type": "guidance",
       "text": "production · 14/14 страниц"
     }
   ],
-  "markdown": "docs/patterns/shell.md",
+  "layoutContract": {
+    "pageBackground": "var(--background-gray)",
+    "surfaceBackground": "var(--background-primary)",
+    "container": {
+      "mobile": {
+        "maxWidth": "none",
+        "paddingInline": "0"
+      },
+      "tablet": {
+        "maxWidth": "48rem",
+        "paddingInline": "1rem"
+      },
+      "desktop": {
+        "maxWidth": "68.5rem",
+        "paddingInline": "1.5rem"
+      }
+    },
+    "columns": {
+      "through1023": "stacked",
+      "from1024": "main + 1rem gap + 18.75rem sidebar",
+      "sidebarPosition": "relative"
+    },
+    "order": [
+      "header",
+      "page",
+      "main",
+      "sidebar",
+      "footer"
+    ]
+  },
   "shellDependencies": [
     "header",
     "footer"
-  ]
+  ],
+  "markdown": "docs/patterns/shell.md"
 }

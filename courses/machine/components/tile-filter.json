@@ -10,10 +10,12 @@
   },
   "knowledge": {
     "authority": [
+      "production",
+      "figma",
       "storybook"
     ],
-    "confidence": "medium",
-    "scope": "design-source-only"
+    "confidence": "high",
+    "scope": "public-guest"
   },
   "purpose": "Иллюстрированная плитка варианта фильтра. В продукте её нет — «Популярные направления» на `/courses` текстовые (`LinkGrid`); снята в Storybook как `BaseFilterWithImage`, в макете стоит в модалке фильтров.",
   "implementation": {
@@ -32,7 +34,6 @@
       "hover",
       "focus-visible",
       "pressed",
-      "selected",
       "disabled"
     ],
     "feature": [],
@@ -46,7 +47,10 @@
       "file": "examples/components/tile-filter/index.html",
       "covers": [
         "default",
-        "selected"
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled"
       ],
       "preview": {
         "mode": "intrinsic"
@@ -62,14 +66,23 @@
       "text": "Полная спецификация: guide/components/forms/tile-filter.md."
     },
     {
-      "type": "coverage-warning",
-      "text": "Источник storybook-only: компонент не подтверждён в продакшене."
+      "type": "guidance",
+      "text": "Состояния подтверждены Figma и production владельцем 18 сентября 2026."
     }
   ],
   "accessibility": [
     "Нативная `<button>`: фокус по Tab, выбор — Enter или Space."
   ],
   "evidence": [
+    {
+      "type": "production",
+      "data": {
+        "selector": "BaseFilterWithImage / TileFilter",
+        "found": null,
+        "pages": [],
+        "note": "Наличие и состояния подтверждены владельцем продукта в review-квизе 18 сентября 2026; точный production-маршрут ещё не закреплён."
+      }
+    },
     {
       "type": "figma",
       "data": [
@@ -97,13 +110,13 @@
   "unknowns": [
     "**Прод-адреса нет.** Пока компонент не найден в продукте, ни `occurrences`, ни `seenOn` у записи не заполняются: измерять нечего. Числа в реестре остаются нулями осознанно.",
     "**Проза выведена из story и CSS Storybook.** Записи нет в разметке снятых страниц, и в переписи корпуса её нет. Правило применения, «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по снятой story и CSS Storybook (`evidence/source/storybook/`); «Когда не использовать» — по тому, чем снятые страницы решают ту же задачу. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их нечем.",
-    "Не снятые состояния: hover, focus-visible, pressed, disabled."
+    "Hover, focus-visible, pressed и disabled приняты по Figma и production владельцем 18 сентября 2026. Pressed и selected — одно состояние; нормативное имя — pressed."
   ],
   "source": {
     "version": "v0.1",
     "spec": "guide/components/forms/tile-filter.md",
     "status": "partial",
-    "scope": "storybook-only",
+    "scope": "production",
     "step": "R3-12",
     "anchor": "showcase/components.html#c-tile-filter",
     "originalKind": "component",
@@ -126,20 +139,17 @@
       "hover",
       "focus-visible",
       "pressed",
-      "selected",
       "disabled"
     ],
     "captured": [
       "default",
-      "selected"
-    ],
-    "normative": [],
-    "uncaptured": [
       "hover",
       "focus-visible",
       "pressed",
       "disabled"
-    ]
+    ],
+    "normative": [],
+    "uncaptured": []
   },
   "provenance": null,
   "sourceConflicts": [],
@@ -189,7 +199,6 @@
       "hover",
       "focus-visible",
       "pressed",
-      "selected",
       "disabled"
     ],
     "sources": [

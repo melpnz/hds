@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import re
 import shutil
+from html import escape
 from pathlib import Path
 
 from bs4 import BeautifulSoup, NavigableString
@@ -63,18 +64,28 @@ PATTERNS = [
     ("shell", "Оболочка", "confirmed", "high", "production"),
     ("feed", "Content Feed / Listing", "confirmed", "high", "production"),
     ("directory", "Directory Listing", "confirmed", "medium", "production"),
-    ("article-detail", "Article / Content Detail", "partial", "medium", "production"),
-    ("article-comments", "Article Comments", "partial", "low", "production"),
+    ("article-detail", "Article / Content Detail", "confirmed", "high", "production"),
+    ("article-comments", "Article Comments", "confirmed", "high", "production"),
     ("entity", "Profile / Entity", "confirmed", "high", "production"),
-    ("search", "Search", "partial", "low", "production"),
-    ("editor", "Editor / Content Creation", "missing", "low", "figma-fragment"),
+    ("search", "Search", "confirmed", "medium", "production"),
+    ("editor", "Editor / Content Creation", "confirmed", "medium", "figma"),
     ("admin-section", "Admin · Section Screen", "confirmed", "medium", "figma"),
     ("admin-form", "Admin · Form / Wizard", "confirmed", "medium", "figma"),
     ("admin-list", "Admin · Management List", "confirmed", "high", "figma"),
-    ("overlay-flows", "Modal / Overlay Flows", "partial", "medium", "storybook"),
-    ("settings-forms", "Settings / Forms", "missing", "low", "none"),
-    ("service-error", "Service / Error", "missing", "low", "none"),
+    ("overlay-flows", "Modal / Overlay Flows", "confirmed", "high", "figma"),
+    ("settings-forms", "Settings / Forms", "confirmed", "medium", "figma"),
+    ("service-error", "Service / Error", "confirmed", "high", "figma"),
 ]
+
+PATTERN_EVIDENCE = {
+    "article-detail": [{"type": "production", "ref": "https://habr.com/ru/companies/ruvds/articles/1078914/"}],
+    "article-comments": [{"type": "production", "ref": "https://habr.com/ru/articles/1006666/comments/"}],
+    "search": [{"type": "production", "ref": "https://habr.com/ru/search/?q=users&target_type=posts&order=relevance"}],
+    "editor": [{"type": "figma", "ref": "https://www.figma.com/design/T6D4YRKF3qdAmGNAu4wIBo/?node-id=34497-1053810"}],
+    "overlay-flows": [{"type": "figma", "ref": "https://www.figma.com/design/T6D4YRKF3qdAmGNAu4wIBo/?node-id=33113-474686"}],
+    "settings-forms": [{"type": "figma", "ref": "https://www.figma.com/design/T6D4YRKF3qdAmGNAu4wIBo/?node-id=5733-231005"}],
+    "service-error": [{"type": "figma", "ref": "https://www.figma.com/design/T6D4YRKF3qdAmGNAu4wIBo/?node-id=30995-354578"}],
+}
 
 PATTERN_COMPOSITION = {
     "shell": {
@@ -98,6 +109,79 @@ PATTERN_COMPOSITION = {
             {"id": "article-list", "tag": "section", "heading": None, "modules": [{"id": "article-list", "count": 1}], "components": [{"id": "article-card", "count": 2}]},
             {"id": "pagination", "tag": "nav", "heading": None, "modules": [], "components": [{"id": "pagination", "count": 1}]},
             {"id": "sidebar", "tag": "aside", "heading": None, "modules": [], "components": []},
+        ],
+    },
+    "article-detail": {
+        "areas": ["article", "author", "article-navigation", "sidebar"],
+        "modules": ["article-presenter", "article-author"],
+        "components": ["title", "user-info", "votes", "icon-button", "button", "button-follow", "article-card"],
+        "sequence": [
+            {"id": "article", "tag": "article", "heading": "Заголовок статьи", "modules": [{"id": "article-presenter", "count": 1}], "components": [{"id": "title", "count": 1}, {"id": "user-info", "count": 1}, {"id": "votes", "count": 1}, {"id": "icon-button", "count": 2}]},
+            {"id": "author", "tag": "section", "heading": "Компания и автор публикации", "modules": [{"id": "article-author", "count": 1}], "components": [{"id": "button", "count": 1}, {"id": "button-follow", "count": 1}, {"id": "icon-button", "count": 1}]},
+            {"id": "article-navigation", "tag": "section", "heading": "Комментарии и похожие публикации", "modules": [], "components": [{"id": "article-card", "count": 1}]},
+            {"id": "sidebar", "tag": "aside", "heading": None, "modules": [], "components": []},
+        ],
+    },
+    "article-comments": {
+        "areas": ["article-summary", "comments-navigation", "comments-tree", "sidebar"],
+        "modules": ["article-summary", "comment-tree"],
+        "components": ["article-card", "user-info", "votes", "icon-button", "notice", "checkbox", "field", "button"],
+        "sequence": [
+            {"id": "article-summary", "tag": "article", "heading": "Публикация", "modules": [{"id": "article-summary", "count": 1}], "components": [{"id": "article-card", "count": 1}]},
+            {"id": "comments-navigation", "tag": "header", "heading": "Комментарии", "modules": [], "components": [{"id": "icon-button", "count": 3}, {"id": "notice", "count": 1}]},
+            {"id": "comments-tree", "tag": "section", "heading": "Комментарии", "modules": [{"id": "comment-tree", "count": 1}], "components": [{"id": "user-info", "count": 6}, {"id": "votes", "count": 6}, {"id": "checkbox", "count": 1}, {"id": "field", "count": 1}, {"id": "button", "count": 1}]},
+            {"id": "sidebar", "tag": "aside", "heading": None, "modules": [], "components": []},
+        ],
+    },
+    "search": {
+        "areas": ["search-form", "result-navigation", "results", "sidebar"],
+        "modules": ["search-form", "search-results"],
+        "components": ["field", "icon-button", "tabs", "notice", "article-card"],
+        "sequence": [
+            {"id": "search-form", "tag": "form", "heading": None, "modules": [{"id": "search-form", "count": 1}], "components": [{"id": "field", "count": 1}, {"id": "icon-button", "count": 1}]},
+            {"id": "result-navigation", "tag": "nav", "heading": None, "modules": [], "components": [{"id": "tabs", "count": 1}]},
+            {"id": "results", "tag": "section", "heading": "Результаты поиска", "modules": [{"id": "search-results", "count": 1}], "components": [{"id": "notice", "count": 1}, {"id": "article-card", "count": 0}]},
+            {"id": "sidebar", "tag": "aside", "heading": None, "modules": [], "components": []},
+        ],
+    },
+    "editor": {
+        "areas": ["editor-notice", "publication-editor", "publication-actions"],
+        "modules": ["publication-editor", "editor-toolbar"],
+        "components": ["notice", "chip", "button", "icon-button", "user-info"],
+        "sequence": [
+            {"id": "editor-notice", "tag": "aside", "heading": None, "modules": [], "components": [{"id": "notice", "count": 1}]},
+            {"id": "publication-editor", "tag": "form", "heading": "Создание публикации", "modules": [{"id": "publication-editor", "count": 1}, {"id": "editor-toolbar", "count": 1}], "components": [{"id": "chip", "count": 7}, {"id": "icon-button", "count": 9}, {"id": "user-info", "count": 1}]},
+            {"id": "publication-actions", "tag": "footer", "heading": None, "modules": [], "components": [{"id": "button", "count": 5}]},
+        ],
+    },
+    "overlay-flows": {
+        "areas": ["page-context", "overlay", "dialog"],
+        "modules": ["modal-flow"],
+        "components": ["dialog", "radio", "field", "button"],
+        "sequence": [
+            {"id": "page-context", "tag": "article", "heading": "Контекст страницы", "modules": [], "components": []},
+            {"id": "overlay", "tag": "div", "heading": None, "modules": [{"id": "modal-flow", "count": 1}], "components": []},
+            {"id": "dialog", "tag": "section", "heading": "Подтверждение", "modules": [], "components": [{"id": "dialog", "count": 1}, {"id": "radio", "count": 9}, {"id": "field", "count": 1}, {"id": "button", "count": 2}]},
+        ],
+    },
+    "settings-forms": {
+        "areas": ["settings-navigation", "profile-form", "avatar"],
+        "modules": ["profile-settings-form"],
+        "components": ["tabs", "field", "button", "avatar", "notice"],
+        "sequence": [
+            {"id": "settings-navigation", "tag": "nav", "heading": "Настройки", "modules": [], "components": [{"id": "tabs", "count": 1}]},
+            {"id": "profile-form", "tag": "form", "heading": "Профиль", "modules": [{"id": "profile-settings-form", "count": 1}], "components": [{"id": "field", "count": 13}, {"id": "notice", "count": 1}, {"id": "button", "count": 4}]},
+            {"id": "avatar", "tag": "aside", "heading": "Аватар", "modules": [], "components": [{"id": "avatar", "count": 1}]},
+        ],
+    },
+    "service-error": {
+        "areas": ["error-illustration", "error-message", "recovery-action"],
+        "modules": ["service-error-state"],
+        "components": ["button"],
+        "sequence": [
+            {"id": "error-illustration", "tag": "figure", "heading": None, "modules": [{"id": "service-error-state", "count": 1}], "components": []},
+            {"id": "error-message", "tag": "section", "heading": "Код ошибки", "modules": [], "components": []},
+            {"id": "recovery-action", "tag": "div", "heading": None, "modules": [], "components": [{"id": "button", "count": 1}]},
         ],
     },
     "directory": {
@@ -137,19 +221,19 @@ PATTERN_COMPOSITION = {
     "admin-form": {
         "areas": ["task-title", "form-card", "progress-stepper"],
         "modules": ["admin-form-card", "progress-stepper"],
-        "components": ["title", "radio", "field", "hint", "button"],
+        "components": ["title", "radio", "field", "button"],
         "sequence": [
             {"id": "task-title", "tag": "header", "heading": "Заявка на корпоративный блог", "modules": [], "components": [{"id": "title", "count": 1}]},
-            {"id": "form-card", "tag": "form", "heading": "Реквизиты компании", "modules": [{"id": "admin-form-card", "count": 1}], "components": [{"id": "radio", "count": 1}, {"id": "field", "count": 2}, {"id": "hint", "count": 1}, {"id": "button", "count": 2}]},
+            {"id": "form-card", "tag": "form", "heading": "Реквизиты компании", "modules": [{"id": "admin-form-card", "count": 1}], "components": [{"id": "radio", "count": 2}, {"id": "field", "count": 1}, {"id": "button", "count": 2}]},
             {"id": "progress-stepper", "tag": "aside", "heading": None, "modules": [{"id": "progress-stepper", "count": 1}], "components": []},
         ],
     },
     "admin-list": {
         "areas": ["management-list"],
         "modules": ["management-row"],
-        "components": ["icon-button", "chip"],
+        "components": ["chip"],
         "sequence": [
-            {"id": "management-list", "tag": "section", "heading": None, "modules": [{"id": "management-row", "count": 4}], "components": [{"id": "icon-button", "count": 2}, {"id": "chip", "count": 2}]},
+            {"id": "management-list", "tag": "section", "heading": None, "modules": [{"id": "management-row", "count": 1}], "components": [{"id": "chip", "count": 1}]},
         ],
     },
 }
@@ -234,7 +318,11 @@ def visual_from_css(paths: list[Path]) -> dict | None:
         if not path.exists():
             continue
         source = re.sub(r"/\*[\s\S]*?\*/", "", path.read_text(encoding="utf-8"))
-        source = re.sub(r"var\((--habr-[^)]+)\)", lambda match: dimension_values.get(match.group(1), match.group(0)), source)
+        source = re.sub(
+            r"var\((--habr-[^)]+)\)",
+            lambda match: str(dimension_values.get(match.group(1), match.group(0))),
+            source,
+        )
         for prop, value in re.findall(r"([a-z-]+)\s*:\s*([^;}]+)", source):
             if prop not in tracked:
                 continue
@@ -248,6 +336,15 @@ def visual_from_css(paths: list[Path]) -> dict | None:
 
 
 def rewrite_fragment(fragment: BeautifulSoup, page: bool = False, section_id: str = "") -> str:
+    def restyle(node, *classes, tag_name=None):
+        if not node:
+            return None
+        if tag_name:
+            node.name = tag_name
+        node["class"] = list(classes)
+        node.attrs.pop("style", None)
+        return node
+
     for tag in fragment.select("script"):
         tag.decompose()
     for tag in fragment.select(".doc-note, .doc-meta, .doc-family__note, .doc-family__meta"):
@@ -274,6 +371,98 @@ def rewrite_fragment(fragment: BeautifulSoup, page: bool = False, section_id: st
             node = fragment.select_one(selector)
             if node:
                 node.clear()
+    if section_id == "directory":
+        wrapper = restyle(fragment.select_one('div[style*="max-width:820px"]'), "tm-page__wrapper")
+        columns = wrapper.find_all("div", recursive=False) if wrapper else []
+        if len(columns) >= 2:
+            restyle(columns[0], "tm-page__main", "tm-page__main_has-sidebar", "page-example__surface", "page-example__surface_compact", tag_name="section")
+            restyle(columns[1], "tm-page__sidebar", "page-example__surface", "page-example__surface_compact", tag_name="aside")
+            columns[1]["aria-label"] = "Фильтры каталога"
+    if section_id == "entity":
+        wrapper = restyle(fragment.select_one('div[style*="max-width:900px"]'), "tm-page__wrapper")
+        columns = wrapper.find_all("div", recursive=False) if wrapper else []
+        if len(columns) >= 2:
+            restyle(columns[0], "tm-page__main", "tm-page__main_has-sidebar", tag_name="section")
+            restyle(columns[1], "tm-page__sidebar", tag_name="aside")
+            columns[1]["aria-label"] = "Информация о хабе"
+        restyle(fragment.select_one('div[style*="align-items:center"][style*="gap:4px"]'), "page-example__actions")
+        restyle(fragment.select_one('.tabs[style*="margin:16px"]'), "tabs", "page-example__entity-tabs")
+        restyle(fragment.select_one('.badges[style*="margin-top:16px"]'), "badges", "page-example__badges")
+        # Page-level surfaces are deliberately flat. Shape belongs to controls
+        # and small semantic elements, not to composition blocks.
+        for node in fragment.select(".tm-hub-card, .tm-block"):
+            node.attrs.pop("style", None)
+        restyle(fragment.select_one('div[style*="background:var(--background-primary)"][style*="border-radius"]'), "page-example__empty")
+    if section_id == "feed":
+        restyle(fragment.select_one('div[style*="max-width:620px"][style*="justify-content"]'), "page-example__tabs")
+        tabs = fragment.select_one(".page-example__tabs .tabs")
+        if tabs:
+            tabs.attrs.pop("style", None)
+        for node in fragment.select('[style*="max-width:620px"]'):
+            node.attrs.pop("style", None)
+        # The listing consumes the same ArticleCard anatomy as the component
+        # preview. The legacy page used a hand-tuned footer whose inline gap
+        # and missing item wrappers made cards drift visually.
+        for data_icons in fragment.select(".tm-articles-list__item .tm-data-icons"):
+            data_icons.attrs.pop("style", None)
+            for child in data_icons.find_all(recursive=False):
+                classes = child.get("class", [])
+                if "tm-data-icons__item" not in classes:
+                    child["class"] = [*classes, "tm-data-icons__item"]
+        for wrapper in fragment.select(".tm-articles-list__item .bookmarks-button > .icon"):
+            classes = wrapper.get("class", [])
+            if "tm-svg-icon__wrapper" not in classes:
+                wrapper["class"] = ["tm-svg-icon__wrapper", *classes]
+            icon = wrapper.find("svg")
+            if icon:
+                icon_classes = icon.get("class", [])
+                if "tm-svg-icon" not in icon_classes:
+                    icon["class"] = [*icon_classes, "tm-svg-icon"]
+    if section_id == "admin-section":
+        outer = fragment.select_one('div[style*="max-width:900px"]')
+        if outer:
+            outer.attrs.pop("style", None)
+        restyle(fragment.select_one('.tm-hub-card[style*="margin-bottom:16px"]'), "tm-hub-card", "page-example__hero")
+        restyle(fragment.select_one('.tabs[style*="margin-bottom:16px"]'), "tabs", "page-example__tabs")
+        columns = restyle(fragment.select_one('div[style*="display:flex"][style*="gap:16px"]'), "page-example__columns")
+        children = columns.find_all("div", recursive=False) if columns else []
+        if len(children) >= 2:
+            restyle(children[0], "page-example__primary", "page-example__panel", tag_name="section")
+            restyle(children[1], "page-example__aside", tag_name="aside")
+            children[1]["aria-label"] = "Навигация и новости"
+        blocks = fragment.select(".tm-block")
+        for index, block in enumerate(blocks):
+            block.attrs.pop("style", None)
+            if index == 0:
+                block["class"] = [*block.get("class", []), "page-example__block-spaced"]
+    if section_id == "admin-form":
+        outer = fragment.select_one('div[style*="max-width:820px"]')
+        if outer:
+            outer.attrs.pop("style", None)
+        restyle(fragment.select_one('div[style*="font-weight:700"][style*="margin-bottom:16px"]'), "page-example__panel", "page-example__heading-panel", "tm-title", "tm-title_h2")
+        columns = restyle(fragment.select_one('div[style*="display:flex"][style*="gap:16px"]'), "page-example__columns")
+        children = columns.find_all("div", recursive=False) if columns else []
+        if len(children) >= 2:
+            restyle(children[0], "page-example__primary", "page-example__panel", tag_name="section")
+            restyle(children[1], "page-example__aside", "page-example__aside_narrow", "page-example__panel", tag_name="aside")
+            children[1]["aria-label"] = "Прогресс заполнения"
+        for radio in fragment.select('input[type="radio"]'):
+            radio["class"] = ["tm-radio__input", "visually-hidden"]
+            label = radio.find_parent("label")
+            if label:
+                label.attrs.pop("style", None)
+                label["class"] = ["tm-radio__option", "page-example__radio"]
+                indicator = BeautifulSoup('<span class="tm-radio__indicator"></span>', "html.parser").span
+                radio.insert_after(indicator)
+    if section_id == "admin-list":
+        outer = restyle(fragment.select_one('div[style*="max-width:900px"]'), "page-example__surface", "page-example__surface_compact", tag_name="section")
+        card = outer.find("div", recursive=False) if outer else None
+        if card:
+            card.attrs.pop("style", None)
+        restyle(fragment.select_one('div[style*="justify-content:space-between"][style*="padding-bottom:12px"]'), "page-example__management-row")
+        status = fragment.find("span", string=lambda value: value and value.strip() == "В черновиках")
+        if status:
+            restyle(status, "tm-chip", "page-example__status")
     for tag in fragment.find_all(True):
         for attr in ("src", "href"):
             value = tag.get(attr)
@@ -293,25 +482,29 @@ def rewrite_fragment(fragment: BeautifulSoup, page: bool = False, section_id: st
         <strong>Рабочая область</strong>
         <p>Белая контентная поверхность располагается поверх серого фона страницы.</p>
       </section>
-      <aside class="tm-page__sidebar shell-demo__surface" aria-label="Боковая колонка">
+      <aside class="tm-page__sidebar shell-demo__surface shell-demo__sidebar" aria-label="Боковая колонка">
         <span class="shell-demo__label">Сайдбар · 300px</span>
       </aside>
     </div>
   </div>
 </main>'''
     if section_id == "feed":
-        body = f'''<div class="example-page-shell"><div class="tm-page-width"><div class="tm-page__wrapper">
-<main class="tm-page__main tm-page__main_has-sidebar">{body}</main>
+        body = f'''<main class="tm-page page-example"><div class="tm-page-width"><div class="tm-page__wrapper">
+<section class="tm-page__main tm-page__main_has-sidebar">{body}</section>
 <aside class="tm-page__sidebar" aria-label="Боковая колонка"></aside>
-</div></div></div>'''
+</div></div></main>'''
+    elif page and section_id in {"directory", "entity"}:
+        body = f'<main class="tm-page page-example"><div class="tm-page-width">{body}</div></main>'
+    elif page and section_id in {"admin-section", "admin-form", "admin-list"}:
+        body = f'<main class="tm-page page-example"><div class="tm-page-width">{body}</div></main>'
     return body
 
 
 def example_document(title: str, body: str, page: bool = False, section_id: str = "") -> str:
     extra = '<link rel="stylesheet" href="../../../../examples/showcase-pages.css">' if page else '<link rel="stylesheet" href="../../../../examples/showcase-components.css">'
-    shell_script = '<script src="../../../../examples/site-shell.js" defer></script>' if page else ''
-    shell_header = '<habr-site-header></habr-site-header>' if page else ''
-    shell_footer = '<habr-site-footer></habr-site-footer>' if page else ''
+    shell_script = '  <script src="../../../../examples/site-shell.js" defer></script>\n' if page else ''
+    shell_header = '<habr-site-header></habr-site-header>\n' if page else ''
+    shell_footer = '<habr-site-footer></habr-site-footer>\n' if page else ''
     body_class = f"migration-example migration-example--page pattern-{section_id}" if page else "migration-example migration-example--intrinsic"
     return f'''<!doctype html>
 <html lang="ru">
@@ -323,21 +516,241 @@ def example_document(title: str, body: str, page: bool = False, section_id: str 
   <link rel="stylesheet" href="../../../../ui/habr.css">
   {extra}
   <link rel="stylesheet" href="../../../../examples/example-shell.css">
-  {shell_script}
-</head>
+{shell_script}</head>
 <body class="{body_class}">
-{shell_header}
-{body}
-{shell_footer}
-<script src="../../../../examples/components.js"></script>
+{shell_header}{body}
+{shell_footer}<script src="../../../../examples/components.js"></script>
 </body>
 </html>
 '''
 
 
+def render_icon(icon: str, symbol: str, size: int = 24, extra_class: str = "") -> str:
+    classes = " ".join(part for part in ("tm-svg-img", extra_class) if part)
+    return f'<svg class="{classes}" width="{size}" height="{size}" aria-hidden="true"><use href="{icon}#{escape(symbol)}"></use></svg>'
+
+
+def render_button(label: str, *, variant: str = "transparent", size: str = "small", extra_class: str = "", button_type: str = "button") -> str:
+    classes = " ".join(part for part in ("btn", f"btn_{variant}", f"btn_{size}", extra_class) if part)
+    return f'<button class="{classes}" type="{button_type}">{escape(label)}</button>'
+
+
+def render_icon_button(icon: str, symbol: str, label: str, *, bordered: bool = False, near_field: bool = False, extra_class: str = "") -> str:
+    modifiers = ["tm-icon-button"]
+    if bordered:
+        modifiers.append("tm-icon-button_bordered")
+    if near_field:
+        modifiers.append("tm-icon-button_near-field")
+    if extra_class:
+        modifiers.append(extra_class)
+    return f'<button class="{" ".join(modifiers)}" type="button" aria-label="{escape(label)}" title="{escape(label)}">{render_icon(icon, symbol, 24)}</button>'
+
+
+def render_avatar(avatar: str, *, size: int = 24, kind: str = "user", alt: str = "") -> str:
+    owner_class = "tm-user-info__userpic" if kind == "user" and size == 24 else ""
+    classes = " ".join(part for part in (owner_class, "avatar-default", f"avatar-default_{kind}") if part)
+    return f'<img class="{classes}" src="{avatar}" width="{size}" height="{size}" alt="{escape(alt)}">'
+
+
+def render_user_info(avatar: str, username: str, timestamp: str = "", *, extra_class: str = "") -> str:
+    time_markup = f'<a class="tm-article-datetime-published tm-article-datetime-published_link" href="#"><time>{escape(timestamp)}</time></a>' if timestamp else ""
+    classes = " ".join(part for part in ("tm-user-info", "author", extra_class) if part)
+    return f'''<span class="{classes}">{render_avatar(avatar)}<span class="tm-user-info__user tm-user-info__user_appearance-default"><a class="tm-user-info__username" href="#">{escape(username)}</a>{time_markup}</span></span>'''
+
+
+def render_field(*, value: str = "", placeholder: str = "", field_type: str = "text", label: str = "", aria_label: str = "", textarea: bool = False, extra_class: str = "", rows: int = 0) -> str:
+    label_open = f'<label class="{extra_class}">{escape(label)}' if label else ""
+    label_close = "</label>" if label else ""
+    aria_attr = f' aria-label="{escape(aria_label)}"' if aria_label else ""
+    if textarea:
+        rows_attr = f' rows="{rows}"' if rows else ""
+        control = f'<textarea class="tm-textarea-reconstructed"{rows_attr}{aria_attr} placeholder="{escape(placeholder)}">{escape(value)}</textarea>'
+    else:
+        control = f'<input class="tm-input-text-decorated__input" type="{escape(field_type)}" value="{escape(value)}"{aria_attr} placeholder="{escape(placeholder)}">'
+    return f'{label_open}{control}{label_close}'
+
+
+def render_radio(label: str, name: str, *, checked: bool = False, extra_class: str = "") -> str:
+    checked_attr = " checked" if checked else ""
+    classes = " ".join(part for part in ("tm-radio__option", extra_class) if part)
+    return f'<label class="{classes}"><input class="tm-radio__input visually-hidden" type="radio" name="{escape(name)}"{checked_attr}><span class="tm-radio__indicator"></span><span class="tm-radio__label">{escape(label)}</span></label>'
+
+
+def render_checkbox(label: str, *, extra_class: str = "") -> str:
+    classes = " ".join(part for part in ("checkbox", extra_class) if part)
+    return f'<label class="{classes}"><input class="input visually-hidden" type="checkbox"><span class="indicator"></span><span>{escape(label)}</span></label>'
+
+
+def render_chip(label: str) -> str:
+    return f'<button class="tm-chip" type="button">{escape(label)}</button>'
+
+
+def render_notice(content: str, *, variant: str = "info", extra_class: str = "") -> str:
+    classes = " ".join(part for part in ("tm-notice", f"tm-notice_{variant}" if variant else "", extra_class) if part)
+    return f'<div class="{classes}"><div class="tm-notice__inner"><div class="tm-notice__content">{content}</div></div></div>'
+
+
+def render_tabs(labels: tuple[str, ...], active: str) -> str:
+    items = "".join(f'<span class="tab-item"><button class="{"active " if label == active else ""}tab-link" type="button">{escape(label)}</button></span>' for label in labels)
+    return f'<div class="tabs"><div class="tabs-scroll-area"><div class="tabs-padding-area">{items}</div></div></div>'
+
+
+def render_article_footer(icon: str, *, rating: str, bookmarks: str = "", comments: str = "", unread: str = "", extra_class: str = "", share: bool = False) -> str:
+    rating_tone = " tm-votes-meter__icon_positive" if rating.startswith("+") else ""
+    parts = [f'<div class="tm-votes-meter tm-data-icons__item">{render_icon(icon, "counter-rating", 24, f"tm-votes-meter__icon{rating_tone}")}<span class="tm-votes-meter__value tm-votes-meter__value_rating">{escape(rating)}</span></div>']
+    if bookmarks:
+        parts.append(f'<button class="bookmarks-button tm-data-icons__item" type="button" aria-label="Закладки">{render_icon(icon, "counter-favorite")}<span class="counter">{escape(bookmarks)}</span></button>')
+    if share:
+        parts.append(render_icon_button(icon, "share", "Поделиться", extra_class="tm-data-icons__item article-share"))
+    if comments:
+        unread_markup = f'<span class="unread-counter">{escape(unread)}</span>' if unread else ""
+        parts.append(f'<div class="article-comments-counter-link-wrapper tm-data-icons__item"><a class="article-comments-counter-link" href="#comments">{render_icon(icon, "counter-comments")}<span class="value">{escape(comments)}</span>{unread_markup}</a></div>')
+    classes = " ".join(part for part in ("tm-articles-list__item-footer", extra_class) if part)
+    return f'<footer class="{classes}"><div class="tm-data-icons">{"".join(parts)}</div></footer>'
+
+
+def custom_pattern_examples(section_id: str, title: str) -> tuple[list[dict], list[dict], str]:
+    """Build source-backed page examples that did not exist in the v1 showcase."""
+    icon = "../../../../ui/assets/icons/megazord.svg"
+    avatar = "../../../../ui/assets/illustrations/avatars/avatar-default-user.svg"
+
+    def page(content: str, sidebar: bool = True, sidebar_content: str = "") -> str:
+        sidebar_markup = f'<aside class="tm-page__sidebar" aria-label="Боковая колонка">{sidebar_content}</aside>' if sidebar else ""
+        main_class = "tm-page__main tm-page__main_has-sidebar" if sidebar else "tm-page__main"
+        return f'''<main class="tm-page page-example"><div class="tm-page-width"><div class="tm-page__wrapper">
+<section class="{main_class}">{content}</section>{sidebar_markup}
+</div></div></main>'''
+
+    def article_card(headline: str, author: str, rating: str, comments: str, *, timestamp: str = "сегодня в 12:40") -> str:
+        return f'''<div class="tm-articles-list__item">
+  <div class="article-snippet">
+    <div class="meta-container"><div class="meta">{render_user_info(avatar, author, timestamp)}</div></div>
+    <h2 class="tm-title tm-title_h2"><a class="tm-title__link" href="#">{headline}</a></h2>
+    <div class="stats"><div class="tm-article-reading-time"><svg class="tm-svg-img tm-article-reading-time__icon" width="24" height="24"><use href="{icon}#clock"></use></svg><span class="tm-article-reading-time__label">8 мин</span></div></div>
+  </div>
+  {render_article_footer(icon, rating=rating, comments=comments)}
+</div>'''
+
+    examples: list[tuple[str, str, str, int]] = []
+    notes: list[dict] = []
+
+    if section_id == "article-detail":
+        article_footer = render_article_footer(icon, rating="+268", bookmarks="115", comments="61", unread="+61", extra_class="article-detail__footer", share=True)
+        company_actions = "".join((
+            render_icon_button(icon, "settings", "Настройки", bordered=True, extra_class="company-profile__settings"),
+            render_button("Я работаю здесь"),
+            '<button class="btn btn_transparent btn_small tm-button-follow company-profile__follow" type="button"><span class="button-content">Подписаться</span></button>',
+        ))
+        related_card = article_card("Как восстановить материал из старого видеоархива", "RUVDS.com", "+42", "18", timestamp="вчера")
+        content = f'''<section class="company-profile"><div class="company-profile__top"><div class="company-profile__identity"><div class="company-profile__logo">R</div><div class="company-profile__reach"><b>512K+</b><small>Охват за 30 дней</small></div></div><div class="company-profile__actions">{company_actions}</div></div><div class="company-profile__about"><strong>RUVDS.com</strong><p>Облачные и выделенные серверы</p><div class="company-profile__metrics"><span><b>4.17</b> Оценка работодателя</span><span><b>4 053,27</b> Рейтинг</span><span><b>159 142</b> Подписчики</span></div></div></section>
+<article class="article-detail"><div class="article-detail__content"><div class="article-detail__authorline">{render_user_info(avatar, "Realife", "10 сен в 10:01")}</div><h1 class="article-detail__title">Как я сделал ремастер «Том и Джерри» в 4K за два года: дубль два</h1><div class="article-detail__stats"><span>◉ Средний</span><span>◷ 9 мин</span><span>◉ 105K</span></div><p class="article-detail__hubs">Блог компании RUVDS.com, Работа с видео*, Искусственный интеллект, DIY или Сделай сам, Обработка изображений*</p><span class="article-detail__tag">Кейс</span><div class="article-detail__media">Кадр из ремастера «Том и Джерри»</div><div class="article-detail__body"><p>Два года работы — это не только восстановление изображения. Нужно было найти исходные кадры, убрать дефекты, сохранить характер оригинальной анимации и собрать материал заново.</p><h2>Итоги</h2><p>В статье остаётся широкая типографическая колонка: Fira Sans у заголовков и системный шрифт у основного текста.</p></div></div>{article_footer}</article>
+<section class="article-detail__comments" id="comments"><h2>Комментарии <b>61</b></h2><a href="#">Перейти к обсуждению</a></section><section class="article-detail__related"><h2>Похожие публикации</h2>{related_card}</section>'''
+        sidebar = '''<section class="article-sidebar"><h2>Информация</h2><dl><div><dt>Сайт</dt><dd>ruvds.com</dd></div><div><dt>Дата регистрации</dt><dd>18 марта 2016</dd></div><div><dt>Дата основания</dt><dd>27 июля 2015</dd></div><div><dt>Численность</dt><dd>11–30 человек</dd></div><div><dt>Местоположение</dt><dd>Россия</dd></div></dl></section><section class="article-sidebar"><h2>Ссылки</h2><a href="#">VPS / VDS сервер от 149 рублей в месяц</a><a href="#">Дата-центры RUVDS в Москве</a><a href="#">Помощь и вопросы</a></section>'''
+        examples.append(("production-article", "Статья · production", page(content, sidebar_content=sidebar), 760))
+        notes = [{"type": "guidance", "text": "Production: article presenter → тело статьи → счётчики → автор → навигация к комментариям и похожим материалам."}]
+
+    elif section_id == "article-comments":
+        def comment(level: int, user: str, timestamp: str, text: str, score: str, tone: str = "") -> str:
+            actions = "".join((
+                f'<div class="tm-votes-meter">{render_icon(icon, "counter-rating", 20)}<span class="tm-votes-meter__value">{escape(score)}</span></div>',
+                '<button class="comment-thread__reply" type="button">Ответить</button>',
+                render_icon_button(icon, "counter-comments", "Ответы", extra_class="comment-thread__action"),
+                render_icon_button(icon, "dots", "Ещё", extra_class="comment-thread__action"),
+            ))
+            return f'''<article class="comment-thread comment-thread_level-{level} {tone}"><i class="comment-thread__branch"></i><div class="comment-thread__meta">{render_user_info(avatar, user, timestamp)}{render_icon_button(icon, "dots", "Меню комментария", extra_class="comment-thread__menu")}</div><p class="comment-thread__text">{escape(text)}</p><footer class="comment-thread__footer">{actions}</footer></article>'''
+
+        comments_toolbar = "".join((
+            render_icon_button(icon, "settings", "Настройки"),
+            render_icon_button(icon, "rss", "RSS"),
+            render_icon_button(icon, "notifications", "Уведомления"),
+        ))
+        comments_notice = render_notice('Материал мог вызвать противоречивые чувства. Будьте критичны к любой публикуемой информации. Перед написанием комментария вспомните <a href="#">правила сообщества</a>.', extra_class="comments-page__notice")
+        comment_form = f'''<form class="comments-page__form"><strong>Ваш комментарий</strong>{render_checkbox("От имени модератора", extra_class="comments-page__checkbox")}{render_field(placeholder="＋ Нажмите ‘/’ для вызова меню", textarea=True)}{render_button("Отправить", variant="solid", button_type="submit")}</form>'''
+        content = f'''<div class="comments-article">{article_card("Самый беззащитный — уже не Сапсан. Всё оказалось куда хуже...", "LMonoceros", "+1447", "988", timestamp="13 янв 2021 в 08:51")}</div>
+<aside class="comments-banner">РЕКЛАМА · Материал партнёра</aside>
+<section class="comments-page"><header class="comments-page__header"><h2>Комментарии <b>60</b></h2><div>{comments_toolbar}</div></header>{comments_notice}<div class="comments-page__pinned"><p>⚒ Закреплённые комментарии</p>{comment(0, 'Scratch', '13 янв 2021 в 09:21', 'Мне кажется, пока им реально не снести все камеры, они ничего не сделают. Опять отмахнутся и всё.', '+30')}</div><p class="comment-tree-label">○ НЛО прилетело и опубликовало эту надпись здесь</p><button class="comment-tree-expand" type="button">⊕ Раскрыть ветку (6)</button><div class="comments-page__tree">{comment(0, 'ramilexe', '13 янв 2021 в 09:17', 'Это было круто! Читается как детектив. Неужели они не проводили никакой аудит?', '+126')}{comment(1, 'Strigov', '13 янв 2021 в 12:11', 'Если и проводили, то по бумагам на распиле, судя по всему.', '−1', 'comment-thread_muted')}{comment(0, 'LMonoceros', '14 янв 2021 в 02:06', 'Возможно, ситуация сложнее, но проверить её всё равно стоит.', '+4', 'comment-thread_highlight')}{comment(0, 'melpnz', '14 янв 2021 в 14:42', 'Главбухи, кстати, еще нормально зарабатывают.', '+2', 'comment-thread_warm')}{comment(0, 'Yacudz', '14 янв 2021 в 15:02', 'Пром. безопасность — из той же оперы...', '0', 'comment-thread_alert')}</div>{comment_form}</section>'''
+        sidebar = '''<div class="comments-sidebar"><div class="comments-sidebar__ad comments-sidebar__ad_large"><span>РЕКЛАМА</span><b>300×600</b></div><section class="comments-sidebar__reading"><h2>Читают сейчас</h2><a href="#">Осваиваем 3-рублёвые микроконтроллеры</a><a href="#">Золотая эпоха в микроэлектронике</a><a href="#">Теория игр за 15 минут</a><a href="#">Разбираем самый маленький PNG в мире</a><a href="#">Телеграм показывает удаленные сообщения</a></section><section class="comments-sidebar__stories"><h2>Истории</h2><div><span></span><span></span><span></span></div></section><div class="comments-sidebar__ad comments-sidebar__ad_small"><b>300×250</b></div></div>'''
+        examples.append(("production-comments", "Комментарии · production", page(content, sidebar_content=sidebar), 760))
+        notes = [{"type": "guidance", "text": "Figma: ArticleCard → banner → comments shell (header, informer, pinned tree, обычное дерево, форма) → похожие публикации. Sidebar: 300×600 ad → читают сейчас → stories → 300×250 ad. На мобильном сайдбар скрывается вместе с двухколоночной оболочкой."}]
+
+    elif section_id == "search":
+        search_field = render_field(value="users", field_type="search")
+        search_action = render_icon_button(icon, "search", "Искать", near_field=True)
+        search_tabs = render_tabs(("Публикации", "Хабы", "Компании", "Пользователи", "Комментарии"), "Публикации")
+        search_hint = render_notice("Нажмите на иконку поиска, чтобы увидеть результаты", extra_class="search-page__hint")
+        content = f'''<section class="search-page"><form class="search-page__form">{search_field}{search_action}</form>{search_tabs}<div class="search-page__sort">по релевантности <span>⌄</span><b>◔</b></div></section>{search_hint}'''
+        sidebar = '<div class="search-sidebar-skeleton"><i></i><small></small><small></small><small></small></div>'
+        examples.append(("production-search", "Поиск · начальное состояние", page(content, sidebar_content=sidebar), 760))
+        notes = [{"type": "guidance", "text": "Production URL: поле поиска → вкладки типа результата → сортировка → информационное состояние до запуска поиска. Список ArticleCard появляется только после получения результатов, поэтому в этом примере не имитируется."}]
+
+    elif section_id == "editor":
+        toolbar_icons = (
+            ("wysiwyg", "Форматирование"), ("markdown", "Markdown"),
+            ("image", "Изображение"), ("arrow-link-small", "Ссылка"),
+            ("sorting-down", "Список"), ("edit", "Код"), ("dots", "Ещё"),
+        )
+        toolbar = "".join(render_icon_button(icon, symbol, label) for symbol, label in toolbar_icons)
+        mode_switch = "".join((render_icon_button(icon, "markdown", "Markdown"), render_icon_button(icon, "wysiwyg", "WYSIWYG")))
+        labels = "".join(render_chip(label) for label in ("Статья", "Аудитория", "Перевод", "Сложность", "Формат"))
+        content = f'''{render_notice("У вас есть резервное сохранение «Самый беззащитный» — уже не сегодня в 14:23.", extra_class="editor-page__notice")}
+<form class="editor-page"><section class="editor-page__canvas"><div class="pattern-page__row" style="justify-content:space-between"><h1 class="tm-title tm-title_h2">Создание публикации</h1><div class="editor-page__mode">{mode_switch}</div></div>
+<div class="editor-page__labels">{labels}</div>
+<div class="editor-page__author pattern-page__row">{render_user_info(avatar, "Никита Цаплин", "Управляющий партнёр")}</div>
+<input class="editor-page__title-input" aria-label="Заголовок статьи" placeholder="Заголовок статьи"><p class="pattern-page__muted">Напишите, о чём публикация до 200 символов</p>
+<div class="editor-page__cover"><span><strong>Добавьте обложку</strong><br><small>Перенесите сюда изображение или загрузите файл</small><br>{render_button("Загрузить обложку")}</span></div>
+<div class="editor-page__workspace">＋ Нажмите «/» для вызова меню</div><div class="editor-page__toolbar">{toolbar}</div>
+<div class="pattern-page__row" style="margin-top:16px"><strong>Хабы:</strong>{render_chip("＋ Хаб")}</div><div class="pattern-page__row" style="margin-top:8px"><strong>Теги:</strong>{render_chip("＋ Тег")}</div></section>
+<section class="editor-page__footer"><div class="pattern-page__actions">{render_button("＋ Опрос")}{render_button("＋ Баннер")}{render_button("＋ Мультивиджет")}</div><div class="pattern-page__actions">{render_button("Опубликовать", variant="solid", extra_class="tm-button_color-christi")}{render_button("В черновик")}</div></section></form>'''
+        examples.append(("figma-editor", "Редактор публикации", page(content, sidebar=False), 760))
+        notes = [{"type": "guidance", "text": "Figma: полный экран редактора на 1024/768/320. На мобильном инструменты переносятся вниз, контент остаётся одноколоночным."}]
+
+    elif section_id == "overlay-flows":
+        options = ("Нарушение правил публикации", "Рекламный материал без пометки", "Нужны правки оформления", "Неподходящий хаб", "Недостоверная информация", "Слишком короткая публикация", "Дублирующий материал", "Требуется проверка модератором", "Другое")
+        choices = ''.join(render_radio(item, "reason", checked=item == "Другое", extra_class="overlay-modal__choice") for item in options)
+        dialog_footer = f'<footer class="dialog-footer">{render_button("Отправить", variant="solid")}{render_button("Отмена")}</footer>'
+        content = f'''<div class="overlay-page"><div class="overlay-page__context"></div><div class="overlay-page__shade"></div><section class="overlay-modal modal-window" role="dialog" aria-modal="true" aria-labelledby="remove-reason-title"><header class="dialog-header"><h1 class="dialog-title" id="remove-reason-title">Причина снятия публикации<br>с размещения</h1></header><div class="dialog-body"><div class="overlay-modal__choices">{choices}</div>{render_field(textarea=True, aria_label="Другая причина")}</div>{dialog_footer}</section></div>'''
+        examples.append(("figma-modal", "Модалка · причина снятия публикации", page(content, sidebar=False), 700))
+        notes = [{"type": "guidance", "text": "Figma: модалка причины снятия публикации. На desktop — окно 320 px по центру затемнённой подложки; на mobile — та же модалка шириной экрана без нижней шторки."}]
+
+    elif section_id == "settings-forms":
+        field = lambda label, value: render_field(label=label, value=value, extra_class="settings-page__label")
+        tabs = render_tabs(("Профиль", "Специализация", "Аккаунт", "Приватность", "Уведомления"), "Профиль")
+        donation_notice = render_notice("Укажите данные кошельков или подключите сервис для получения вознаграждений.", extra_class="settings-page__notice")
+        content = f'''<section class="settings-page__header"><h1 class="tm-title tm-title_h1">Настройки</h1>{tabs}</section>
+<form class="settings-page__grid"><div><section class="settings-page__group">{field('Настоящее имя', 'Вася Пупкин')}{field('Место работы', '')}{render_button('Добавить место работы')}</section><section class="settings-page__group">{field('Специализация', 'Программист всех руси')}<div class="settings-page__fields">{field('Пол', 'Мужской')}{field('Дата рождения', '19 марта')}{field('Год', '1989')}</div>{field('Местоположение', 'Россия · Московская обл. · Москва')}</section><section class="settings-page__group"><h2>Контактная информация и веб-ресурсы</h2>{field('Сайт', 'https://habr.com/ru/auth/settings/profile/')}<div class="settings-page__fields">{field('Хабр Карма', 'melpnz')}{field('Ссылка', 'https://example.com')}</div>{render_button('Добавить ссылку')}</section><section class="settings-page__group"><h2>Донаты</h2>{donation_notice}{field('Кошелёк', 'YooMoney')}<div class="settings-page__fields">{field('Сервис', 'destream')}{field('Username', 'Username-destreamdonate')}</div></section><section class="settings-page__group">{render_field(label='Расскажите о себе', textarea=True, rows=6, extra_class='settings-page__label')}{render_button('Сохранить изменения', variant='solid', size='middle', extra_class='tm-button_color-christi', button_type='submit')}</section></div><aside class="settings-page__avatar"><strong>Аватар</strong>{render_avatar(avatar, size=64)}<a href="#">⟳ Загрузить аватарку</a><small>Формат: jpg, gif, png<br>Максимальный размер файла: 1Mb.</small>{render_button('Загрузить')}</aside></form>'''
+        examples.append(("figma-settings", "Настройки профиля", page(content, sidebar=False), 760))
+        notes = [{"type": "guidance", "text": "Figma: tabs настроек → форма профиля + avatar rail. На мобильном rail становится первым блоком, поля складываются в одну колонку."}]
+
+    elif section_id == "service-error":
+        messages = {
+            "404": ("Страница устарела, была удалена или не существовала вовсе", "Обновить"),
+            "403": ("У вас недостаточно прав для просмотра этой страницы", "На главную"),
+            "500": ("Что-то пошло не так. Мы уже разбираемся", "Обновить"),
+        }
+        for code, (message, action) in messages.items():
+            illustration = f"../../../../ui/assets/illustrations/placeholders/{code}.svg"
+            content = f'''<section class="service-error"><div><img class="service-error__illustration" src="{illustration}" alt=""><h1 class="service-error__code">{code}</h1><p class="service-error__message">{message}</p><button class="btn btn_solid btn_middle" type="button">{action}</button></div></section>'''
+            examples.append((f"figma-{code}", f"Ошибка {code}", page(content, sidebar=False), 620))
+        notes = [{"type": "guidance", "text": "Figma: глобальные ошибки 401/403/404/451/500/502/503/504 и продуктовые заглушки. В витрине показаны три базовых композиционных варианта; SVG берутся из локального набора."}]
+
+    if not examples:
+        return [], [], ""
+    output = []
+    for example_id, example_title, body, height in examples:
+        directory = ROOT / "examples" / "generated" / "patterns" / section_id
+        directory.mkdir(parents=True, exist_ok=True)
+        path = directory / f"{slug(example_id, example_id)}.html"
+        path.write_text(example_document(example_title, body, page=True, section_id=section_id), encoding="utf-8")
+        output.append({"id": example_id, "title": example_title, "file": path.relative_to(ROOT).as_posix(), "covers": [section_id], "preview": {"mode": "viewport", "widths": VIEWPORTS, "height": height}})
+    return output, notes, title
+
+
 def section_examples(source_html: Path, section_id: str, output_group: str, page: bool = False) -> tuple[list[dict], list[dict], str]:
     soup = BeautifulSoup(source_html.read_text(encoding="utf-8"), "html.parser")
-    section = soup.find(id=section_id)
+    # Some component ids also exist in the inline SVG sprite (for example
+    # `calendar`). Prefer the showcase section so an icon symbol cannot be
+    # mistaken for the component example.
+    section = soup.select_one(f"section#{section_id}") or soup.find(id=section_id)
     if not section:
         return [], [{"type": "coverage-warning", "text": f"Секция #{section_id} не найдена в исходной витрине."}], ""
     notes = []
@@ -596,7 +1009,10 @@ def main() -> None:
         catalog.append(entry)
 
     for item_id, title, source_status, confidence, authority in PATTERNS:
-        examples, notes, section_summary = section_examples(page_html, item_id, "patterns", page=True) if item_id in {"shell", "feed", "directory", "entity", "admin-section", "admin-form", "admin-list"} else ([], [], "")
+        if item_id in {"shell", "feed", "directory", "entity", "admin-section", "admin-form", "admin-list"}:
+            examples, notes, section_summary = section_examples(page_html, item_id, "patterns", page=True)
+        else:
+            examples, notes, section_summary = custom_pattern_examples(item_id, title)
         doc_relative = pattern_docs.get(item_id)
         doc_path = ROOT / doc_relative if doc_relative else None
         purpose = markdown_summary(doc_path, section_summary or f"Семейство страниц Habr: {title}.") if doc_path else (section_summary or f"Семейство страниц Habr: {title}.")
@@ -613,6 +1029,33 @@ def main() -> None:
             item["sequence"] = composition["sequence"]
         item["examples"] = examples
         item["previewNotes"] = notes
+        if item_id == "shell":
+            item["previewNotes"] = [
+                {
+                    "type": "guidance",
+                    "text": "До 1023px основная область и сайдбар идут вертикально; с 1024px основная колонка занимает остаток, сайдбар фиксирован на 300px, gap — 16px. Контейнер: edge-to-edge до 767px, 768/16 на планшете и 1096/24 на desktop.",
+                },
+                {
+                    "type": "guidance",
+                    "text": "Фон страницы использует --background-gray, рабочие поверхности — --background-primary. Шапка и подвал подключаются на всех готовых страницах через общие habr-site-header и habr-site-footer из examples/site-shell.js.",
+                },
+                {"type": "guidance", "text": "production · 14/14 страниц"},
+            ]
+            item["layoutContract"] = {
+                "pageBackground": "var(--background-gray)",
+                "surfaceBackground": "var(--background-primary)",
+                "container": {
+                    "mobile": {"maxWidth": "none", "paddingInline": "0"},
+                    "tablet": {"maxWidth": "48rem", "paddingInline": "1rem"},
+                    "desktop": {"maxWidth": "68.5rem", "paddingInline": "1.5rem"},
+                },
+                "columns": {
+                    "through1023": "stacked",
+                    "from1024": "main + 1rem gap + 18.75rem sidebar",
+                    "sidebarPosition": "relative",
+                },
+                "order": ["header", "page", "main", "sidebar", "footer"],
+            }
         if examples:
             item["implementation"]["scripts"] = ["examples/site-shell.js"]
             item["shellDependencies"] = ["header", "footer"]
@@ -627,7 +1070,12 @@ def main() -> None:
                 "missingReason": "copy-safe-page-example-not-captured",
                 "fallback": "Использовать ближайший подтверждённый паттерн и явно раскрыть допущение. Не восстанавливать DOM по названию семейства.",
             }
-        item["evidence"] = [{"type": authority, "ref": doc_relative or "evidence/pattern-taxonomy.md"}] if authority != "none" else []
+        item["evidence"] = PATTERN_EVIDENCE.get(
+            item_id,
+            [{"type": authority, "ref": doc_relative or "evidence/pattern-taxonomy.md"}] if authority != "none" else [],
+        )
+        if doc_relative:
+            item["evidence"].append({"type": "pattern-spec", "ref": doc_relative})
         path = Path("machine/patterns") / f"{item_id}.json"
         write_json(ROOT / path, item)
         entry = {"id": item_id, "title": title, "kind": "pattern", "category": "page-families", "navSection": "patterns", "navSectionTitle": "Паттерны", "navGroup": "pages", "navGroupTitle": "Страницы", "file": path.as_posix(), "tags": [item_id, title.lower(), source_status, authority]}
@@ -722,7 +1170,7 @@ def main() -> None:
         "schemaVersion": 3,
         "product": {"id": "habr", "title": "Хабр", "guideVersion": "1.0", "status": "active", "productionRelease": "2.349.1", "lastVerified": "2026-09-17"},
         "readOrder": ["machine/style-profile.json для задач уровня продукта или нового экрана", "machine/dimension-tokens.json для геометрии", "machine/catalog.json", "только выбранный file из catalog", "markdown, rules, implementation и examples — только при необходимости"],
-        "files": {"catalog": "machine/catalog.json", "states": "machine/states.json", "tokens": "machine/tokens.json", "dimensionTokens": "machine/dimension-tokens.json", "dimensionExceptions": "machine/reports/dimension-exceptions.json", "styleProfile": "machine/style-profile.json", "assets": "machine/assets.json", "migrationMap": "machine/migration-map.json", "schema": "schema.json", "roadmap": "ROADMAP.md"},
+        "files": {"catalog": "machine/catalog.json", "states": "machine/states.json", "tokens": "machine/tokens.json", "dimensionTokens": "machine/dimension-tokens.json", "dimensionExceptions": "machine/reports/dimension-exceptions.json", "maturityDiagnostics": "machine/reports/maturity-diagnostics.json", "styleProfile": "machine/style-profile.json", "assets": "machine/assets.json", "migrationMap": "machine/migration-map.json", "schema": "schema.json", "roadmap": "ROADMAP.md"},
         "coverage": {"boundary": "public guest production + company admin Figma", "known": ["public shell", "content feed", "directory", "entity", "company admin"], "unknown": ["editor screen", "settings outside admin", "service/error", "authenticated production"], "onUnknown": {"action": "use-nearest-confirmed-pattern-and-disclose-assumption", "doc": "ROADMAP.md"}},
         "viewerContract": {"intrinsic": "components and foundations, stacked without viewport toolbar", "viewport": "modules and pages at 320/480/768/1024/Auto", "pageBreakpoints": [320, 768, 1024], "fluidCheckpoints": [480], "notes": "previewNotes are rendered outside iframe"},
         "provenance": {"legacyPrefix": "archive:habr/v1/", "archivePublished": False, "note": "Структура пакета мигрирована без объявления нового релиза; все доступные для использования знания находятся в habr/."},

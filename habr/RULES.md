@@ -101,7 +101,7 @@ production для admin недоступен вообще (`/auth/` уводит
 
 | ID | Observation | Evidence | Coverage | Confidence |
 |---|---|---|---|---|
-| **SF-1** | Поверхность = белый фон на сером фоне страницы (SH-3), не рамка на белом, как у Career | во всех карточках/блоках | 14/14 косвенно | HIGH |
+| **SF-1** | Композиционный блок страницы = белая плоская поверхность на сером фоне (SH-3), без внешней рамки и скругления; форму сохраняют только самостоятельные компоненты по своему контракту | во всех карточках/блоках | 14/14 косвенно | HIGH |
 | **SF-2** | `Block` — универсальная обёртка секции: header (eyebrow uppercase ИЛИ крупный) + body (9 именованных вариантов плотности) + footer | Storybook `Block`, 5 story | Storybook-only, не в 101 production-файле | MEDIUM |
 | **SF-3** | Плотность body у `Block` называется по **смыслу расположения** (`condensed`/`stucked`/`island`/`equal`), а не по размеру (Career: size-s/size-m) | `ui/components/block.css` | Storybook-only | MEDIUM |
 | **SF-4** | `.tm-block_variant-border-bottom` рисует разделитель через `inset box-shadow`, не `border` — не меняет box model | CSS | Storybook-only | HIGH (сам факт CSS однозначен) |

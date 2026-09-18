@@ -302,7 +302,7 @@ for (const path of filesBelow(join(root, 'guide/components')).filter(path => pat
     text += '\n\n## Дополнение v0.2 · состояния из Courses Figma\n\nВ viewer показаны `default`, `hover`, `focus-visible`, `disabled` и `loading` из `education-lib`, node `653:664`. Корпус — 36×36 px, иконка — SVG 24×24 с `viewBox="0 0 24 24"`; focus-контур толщиной 2 px расположен снаружи с зазором 2 px.\n';
   }
   if (portablePath.endsWith('/navigation/tab.md')) {
-    text += '\n\n## Уточнение v0.2 · FilterChip Menu / Switch\n\nИсторический id `tab` сохранён ради совместимости, но пользовательское имя компонента — `FilterChip · Menu / Switch`. Это расширенные варианты семейства FilterChip: `FilterChipMenu` получает ведущую иконку и шеврон раскрытия, `FilterChipSwitch` — компактный switch справа. В viewer показаны `default`, `hover`, `focus-visible`, `selected`, `disabled`, `loading`, а для Menu также `open` с dropdown. Источник: Courses Figma `education-lib`, node `904:1723`.\n';
+    text += '\n\n## Уточнение v0.2 · FilterChip Menu / Switch\n\nИсторический id `tab` сохранён ради совместимости, но пользовательское имя компонента — `FilterChip · Menu / Switch`. Это расширенные варианты семейства FilterChip: `FilterChipMenu` получает ведущую иконку и шеврон раскрытия, `FilterChipSwitch` — компактный switch справа. В viewer показаны `default`, `hover`, `focus-visible`, `pressed`, `disabled`, `loading`, а для Menu также `open` с dropdown. Источник: Courses Figma `education-lib`, node `904:1723`.\n';
   }
   if (portablePath.endsWith('/navigation/segmented-control.md')) {
     text += '\n\n## Уточнение v0.2 · HeroTabs\n\nПользовательское имя компонента — `HeroTabs`; исторический id `segmented-control` сохранён. Это табы для цветного hero-фона. В viewer показаны `default`, `hover`, `focus-visible`, `selected`, `disabled` и `loading` по Courses Figma `education-lib`, node `4274:1422`. Группа сегментов всегда лежит на единой подложке `rgba(0,0,0,0.12)` с радиусом 12 px и без внутренних отступов по node `4261:1716`; состояния отдельных сегментов накладываются поверх неё.\n';
@@ -709,7 +709,7 @@ const filterChipPreviewCss = `
 .crs-filter-chip{position:relative;box-sizing:border-box;display:inline-flex;width:max-content;height:36px;align-items:center;justify-content:center;gap:0;padding:8px 12px;border:1px solid #e9e9ea;border-radius:200px;background:#fff;color:#2c2e34;font:400 14px/20px Inter,sans-serif;white-space:nowrap;cursor:pointer}
 .crs-filter-chip:hover,.crs-filter-chip[data-state=hover],.crs-filter-chip[data-state=focus]{border-color:#dededf}
 .crs-filter-chip:focus-visible,.crs-filter-chip[data-state=focus]{outline:0;box-shadow:0 0 0 2px #fff,0 0 0 4px #a6a7a9}
-.crs-filter-chip[data-state=selected]{border-color:#94bdfc;background:#eff5ff;color:#346ef4}
+.crs-filter-chip[data-state=pressed]{border-color:#94bdfc;background:#eff5ff;color:#346ef4}
 .crs-filter-chip:disabled,.crs-filter-chip[data-state=disabled]{color:#909194;cursor:not-allowed}
 .crs-filter-chip[data-state=loading]{min-width:53px;color:transparent;cursor:wait}
 .crs-filter-chip--switch{gap:2px;padding-left:12px;padding-right:8px}
@@ -723,10 +723,10 @@ const filterChipPreviewCss = `
 .crs-filter-chip__switch{position:relative;width:32px;height:20px;flex:0 0 32px}
 .crs-filter-chip__switch-track{position:absolute;top:2px;left:2px;width:28px;height:16px;border-radius:100px;background:#dededf}
 .crs-filter-chip:hover .crs-filter-chip__switch-track,.crs-filter-chip[data-state=hover] .crs-filter-chip__switch-track,.crs-filter-chip[data-state=focus] .crs-filter-chip__switch-track{background:#d3d3d4}
-.crs-filter-chip[data-state=selected] .crs-filter-chip__switch-track{background:#346ef4}
+.crs-filter-chip[data-state=pressed] .crs-filter-chip__switch-track{background:#346ef4}
 .crs-filter-chip[data-state=disabled] .crs-filter-chip__switch-track{background:#e9e9ea}
 .crs-filter-chip__switch img{position:absolute;z-index:1;top:0;left:0;width:20px;height:20px}
-.crs-filter-chip[data-state=selected] .crs-filter-chip__switch img{left:12px}
+.crs-filter-chip[data-state=pressed] .crs-filter-chip__switch img{left:12px}
 .crs-filter-chip__loader{position:absolute;top:50%;left:50%;width:24px;height:24px;color:#a6a7a9;transform:translate(-50%,-50%)}
 .crs-filter-chip-open{position:relative;width:182px;padding-bottom:220px}
 .crs-filter-chip-dropdown{position:absolute;top:39px;left:0;box-sizing:border-box;width:182px;height:216px;overflow:hidden;padding:8px 16px;border:1px solid #e9e9ea;border-radius:12px;background:#fff;box-shadow:0 4px 6px -1px rgba(0,0,0,.05),0 2px 4px -2px rgba(0,0,0,.05)}
@@ -739,7 +739,7 @@ function navSpriteIcon(id, className) {
 }
 
 function filterChipMarkup(kind, state = 'default') {
-  const selected = state === 'selected';
+  const selected = state === 'pressed';
   const disabled = ['disabled', 'loading'].includes(state) ? ' disabled' : '';
   const loading = state === 'loading';
   const open = state === 'open';
@@ -754,7 +754,7 @@ function filterChipMarkup(kind, state = 'default') {
 }
 
 function filterChipFamilyMarkup() {
-  const states = [['default', 'Inactive'], ['hover', 'Hover'], ['focus', 'Focus'], ['selected', 'Selected'], ['disabled', 'Disabled'], ['loading', 'Loading']];
+  const states = [['default', 'Inactive'], ['hover', 'Hover'], ['focus', 'Focus'], ['pressed', 'Pressed'], ['disabled', 'Disabled'], ['loading', 'Loading']];
   const rows = states.map(([state, label]) => `<div class="crs-filter-chip-matrix__row"><span class="crs-filter-chip-state">${label}</span>${filterChipMarkup('menu', state)}${filterChipMarkup('switch', state)}</div>`).join('');
   return `<div class="crs-filter-chip-guide"><section class="crs-filter-chip-section"><h2 class="crs-filter-chip-title">Разновидности</h2><div class="crs-filter-chip-variants"><span class="crs-filter-chip-sample"><span class="crs-filter-chip-caption">FilterChipMenu</span>${filterChipMarkup('menu')}</span><span class="crs-filter-chip-sample"><span class="crs-filter-chip-caption">FilterChipSwitch</span>${filterChipMarkup('switch')}</span></div></section><section class="crs-filter-chip-section"><h2 class="crs-filter-chip-title">Состояния</h2><div class="crs-filter-chip-matrix"><div class="crs-filter-chip-matrix__head"><span></span><span>Menu</span><span>Switch</span></div>${rows}</div></section><section class="crs-filter-chip-section"><h2 class="crs-filter-chip-title">Open · FilterChipMenu</h2><div class="crs-filter-chip-open">${filterChipMarkup('menu', 'open')}<div class="crs-filter-chip-dropdown" role="listbox" aria-label="Фильтры"><span role="option" aria-selected="false">Дизайн</span><span role="option" aria-selected="false">Разработка</span><span role="option" aria-selected="false">Маркетинг</span><span role="option" aria-selected="false">Аналитика</span><span role="option" aria-selected="false">Менеджмент</span></div></div></section></div>`;
 }
@@ -767,21 +767,9 @@ const contextualTabsPreviewCss = `
 .crs-tabs-section{display:grid;gap:12px}
 .crs-tabs-title{margin:0;font-size:14px;line-height:20px}
 .crs-tabs-context--hero .crs-tabs-title{color:#fff}
-.crs-tabs-group{display:inline-flex;width:max-content;max-width:100%;gap:0}
-.crs-tabs-context--hero .crs-tabs-group{border-radius:12px;background:rgba(0,0,0,.12)}
-.crs-tabs-context--page .crs-tabs-group{padding:4px;border-radius:16px;background:#f1f1f1}
 .crs-tabs-states{display:flex;flex-wrap:wrap;gap:20px}
 .crs-tabs-sample{display:grid;justify-items:center;gap:6px}
 .crs-tabs-caption{font-size:11px;line-height:16px;opacity:.72}
-.crs-context-tab{position:relative;box-sizing:border-box;display:inline-flex;height:40px;align-items:center;justify-content:center;padding:8px 16px;border:0;border-radius:12px;background:transparent;color:inherit;font:400 14px/20px Inter,sans-serif;white-space:nowrap;cursor:pointer}
-.crs-context-tab:hover,.crs-context-tab[data-state=hover],.crs-context-tab[data-state=focus]{background:var(--tab-hover)}
-.crs-context-tab:focus-visible,.crs-context-tab[data-state=focus]{outline:2px solid var(--tab-focus);outline-offset:1px}
-.crs-context-tab[data-state=selected]{background:var(--tab-selected);box-shadow:var(--tab-shadow,none)}
-.crs-context-tab:disabled,.crs-context-tab[data-state=disabled]{opacity:.7;cursor:not-allowed}
-.crs-context-tab[data-state=loading]{width:56px;color:transparent;cursor:wait}
-.crs-context-tab svg{position:absolute;top:8px;left:16px;width:24px;height:24px;color:var(--tab-loader)}
-.crs-tabs-context--hero{--tab-hover:rgba(0,0,0,.12);--tab-focus:#fff;--tab-selected:#2c2e34;--tab-loader:#fff}
-.crs-tabs-context--page{--tab-hover:#e9e9ea;--tab-focus:#2c2e34;--tab-selected:#fff;--tab-loader:#a6a7a9;--tab-shadow:0 4px 3px rgba(0,0,0,.05),0 2px 2px rgba(0,0,0,.05)}
 `;
 
 function contextualTabMarkup(state = 'default') {
@@ -793,7 +781,7 @@ function contextualTabMarkup(state = 'default') {
 
 function contextualTabsMarkup(context) {
   const states = [['default', 'Inactive'], ['hover', 'Hover'], ['focus', 'Focus'], ['selected', 'Selected'], ['disabled', 'Disabled'], ['loading', 'Loading']];
-  return `<div class="crs-tabs-guide"><div class="crs-tabs-context crs-tabs-context--${context}"><section class="crs-tabs-section"><h2 class="crs-tabs-title">В группе</h2><div class="crs-tabs-group" role="tablist" aria-label="Раздел">${contextualTabMarkup('selected')}${contextualTabMarkup('default')}${contextualTabMarkup('default')}</div></section></div><div class="crs-tabs-context crs-tabs-context--${context}"><section class="crs-tabs-section"><h2 class="crs-tabs-title">Состояния</h2><div class="crs-tabs-states" role="tablist" aria-label="Состояния вкладки">${states.map(([state, label]) => `<span class="crs-tabs-sample">${contextualTabMarkup(state)}<span class="crs-tabs-caption">${label}</span></span>`).join('')}</div></section></div></div>`;
+  return `<div class="crs-tabs-guide"><div class="crs-tabs-context crs-tabs-context--${context}"><section class="crs-tabs-section"><h2 class="crs-tabs-title">В группе</h2><div class="crs-tabs-group crs-tabs-group--${context}" role="tablist" aria-label="Раздел">${contextualTabMarkup('selected')}${contextualTabMarkup('default')}${contextualTabMarkup('default')}</div></section></div><div class="crs-tabs-context crs-tabs-context--${context}"><section class="crs-tabs-section"><h2 class="crs-tabs-title">Состояния</h2><div class="crs-tabs-states" role="tablist" aria-label="Состояния вкладки">${states.map(([state, label]) => `<span class="crs-tabs-sample"><span class="crs-tabs-group crs-tabs-group--${context}">${contextualTabMarkup(state)}</span><span class="crs-tabs-caption">${label}</span></span>`).join('')}</div></section></div></div>`;
 }
 
 const figmaFieldIds = new Set(['select', 'multi-select', 'search-input', 'text-input', 'textarea']);
@@ -1002,10 +990,7 @@ const siteHeaderPreviewCss = `
 .crs-site-header__heading{margin:0;color:#fff;font:600 44px/48px Inter,sans-serif;letter-spacing:-.5px}
 .crs-site-header__seo{margin:0;color:#fff;font-size:14px;line-height:20px}
 .crs-site-header__hero-controls{display:flex;align-items:center;justify-content:center;gap:8px}
-.crs-site-header__tabs{display:inline-flex;border-radius:12px;background:rgba(0,0,0,.12)}
-.crs-site-header__tab,.crs-site-header__action{box-sizing:border-box;display:inline-flex;height:40px;align-items:center;justify-content:center;padding:8px 16px;border:0;border-radius:12px;color:#fff;font:400 14px/20px Inter,sans-serif;white-space:nowrap}
-.crs-site-header__tab[aria-selected=true],.crs-site-header__action--main{background:#2c2e34}
-.crs-site-header__action{font-weight:600}.crs-site-header__action--secondary{background:#f1f1f1;color:#2c2e34}
+.crs-site-header__action{box-sizing:border-box;display:inline-flex;height:40px;align-items:center;justify-content:center;padding:8px 16px;border:0;border-radius:12px;color:#fff;font:600 14px/20px Inter,sans-serif;white-space:nowrap}.crs-site-header__action--main{background:#2c2e34}.crs-site-header__action--secondary{background:#f1f1f1;color:#2c2e34}
 .crs-site-header__listing-form{display:flex;width:100%;max-width:1076px;align-items:stretch;gap:8px}
 .crs-site-header__fields{display:grid;height:56px;min-width:0;flex:1;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;overflow:hidden;border-radius:12px}
 .crs-site-header__field{box-sizing:border-box;display:flex;min-width:0;align-items:center;gap:4px;padding:8px 12px 8px 16px;background:#fff;color:#909194;font:400 16px/22px Inter,sans-serif;text-align:left}
@@ -1021,7 +1006,8 @@ const siteHeaderPreviewCss = `
 .crs-site-header__course-seo{position:relative;z-index:2;box-sizing:border-box;display:grid;height:142px;align-content:center;gap:8px;max-width:1076px;margin:auto;color:#fff}
 .crs-site-header__breadcrumbs,.crs-site-header__meta{display:flex;align-items:center;gap:8px;font-size:12px;line-height:16px}
 .crs-site-header__course-seo h2{margin:0;font-size:30px;line-height:34px;letter-spacing:-.5px}
-.crs-site-header__filters{box-sizing:border-box;display:flex;height:60px;align-items:center;gap:4px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;padding:12px 24px;background:#fff}
+.crs-site-header__filters{box-sizing:border-box;height:60px;background:#fff}
+.crs-site-header__filters-inner{box-sizing:border-box;display:flex;width:100%;max-width:1124px;height:60px;align-items:center;gap:4px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;margin:0 auto;padding:12px 24px}
 .crs-site-header__filter{box-sizing:border-box;display:inline-flex;height:36px;flex:0 0 auto;align-items:center;gap:2px;padding:8px 10px;border:1px solid #e9e9ea;border-radius:200px;background:#fff;color:#2c2e34;font:400 14px/20px Inter,sans-serif}
 .crs-site-header__filter svg{width:20px;height:20px}
 .crs-site-header__listing,.crs-site-header__courses,.crs-site-header__simple,.crs-site-header__hero,.crs-site-header__listing-page,.crs-site-header__course-seo,.crs-site-header__topmenu,.crs-site-header__filters{display:none}
@@ -1062,7 +1048,7 @@ function siteHeaderLinks() {
 }
 
 function siteHeaderFilters() {
-  return `<div class="crs-site-header__filters" aria-label="Фильтры"><button class="crs-site-header__filter" type="button">${siteHeaderIcon('sort')}</button><button class="crs-site-header__filter" type="button">${siteHeaderIcon('tune')}</button><button class="crs-site-header__filter" type="button">Со скидкой</button><button class="crs-site-header__filter" type="button">Направление</button><button class="crs-site-header__filter" type="button">Школа</button></div>`;
+  return `<div class="crs-site-header__filters" aria-label="Фильтры"><div class="crs-site-header__filters-inner"><button class="crs-site-header__filter" type="button">${siteHeaderIcon('sort')}</button><button class="crs-site-header__filter" type="button">${siteHeaderIcon('tune')}</button><button class="crs-site-header__filter" type="button">Со скидкой</button><button class="crs-site-header__filter" type="button">Направление</button><button class="crs-site-header__filter" type="button">Школа</button></div></div>`;
 }
 
 function siteHeaderListingForm() {
@@ -1071,7 +1057,7 @@ function siteHeaderListingForm() {
 }
 
 function siteHeaderMarkup() {
-  return `<div class="crs-header-demo"><form class="crs-header-controls" aria-label="Варианты SiteHeader"><label class="crs-header-control">Семейство<select id="site-header-family"><option value="listing">ListingHeader</option><option value="courses">CoursesHeader</option><option value="simple">SimplePageHeader</option></select></label><label class="crs-header-control">Уровень<select id="site-header-level"><option value="hero">Hero</option><option value="page">Page</option></select></label><label class="crs-header-control crs-header-control--check"><input id="site-header-sticky" type="checkbox">Sticky</label><span class="crs-header-use" id="site-header-use">Верхнеуровневая листинговая страница · без sticky</span></form><header class="crs-site-header" id="site-header-target" data-family="listing" data-level="hero" data-sticky="false"><div class="crs-site-header__blue"><div class="crs-site-header__topbar crs-site-header__listing">${siteHeaderLogoArea()}${siteHeaderLinks()}</div><div class="crs-site-header__topbar crs-site-header__simple">${siteHeaderLogoArea()}${siteHeaderLinks()}</div><div class="crs-site-header__topbar crs-site-header__courses">${siteHeaderLogoArea()}<div class="crs-site-header__course-tools"><button class="crs-site-header__catalog" type="button">${siteHeaderIcon('catalog')}<span>Каталог</span></button><div class="crs-site-header__course-search"><span>Искать на Хабр Курсах</span>${siteHeaderIcon('search')}</div></div>${siteHeaderLinks()}</div><section class="crs-site-header__hero"><div><h1 class="crs-site-header__heading">Найдите подходящий курс</h1><p class="crs-site-header__seo">Сравнивайте программы, школы и стоимость обучения</p></div><div class="crs-site-header__hero-controls"><div class="crs-site-header__tabs" role="tablist"><button class="crs-site-header__tab" type="button" role="tab" aria-selected="true">Все</button><button class="crs-site-header__tab" type="button" role="tab" aria-selected="false">Онлайн</button></div><button class="crs-site-header__action crs-site-header__action--main" type="button">Подобрать курс</button><button class="crs-site-header__action crs-site-header__action--secondary" type="button">Смотреть рейтинг</button></div>${siteHeaderListingForm()}</section><section class="crs-site-header__listing-page">${siteHeaderListingForm()}<div class="crs-site-header__listing-pill"><span><strong>Все курсы</strong><small>Каталог · направления</small></span></div></section><nav class="crs-site-header__topmenu" aria-label="Популярные разделы"><span class="crs-site-header__sale">РАСПРОДАЖА</span><span>Разместить свой курс</span><span>Программирование</span><span>Нейросети и AI</span><span>Курсы для детей</span><span>Бесплатные курсы</span></nav><section class="crs-site-header__course-seo"><div class="crs-site-header__breadcrumbs">Каталог › Программирование</div><h2>Курсы программирования</h2><div class="crs-site-header__meta">Авторы · Проверено экспертами · Обновлено сегодня</div></section></div>${siteHeaderFilters()}</header></div>`;
+  return `<div class="crs-header-demo"><form class="crs-header-controls" aria-label="Варианты SiteHeader"><label class="crs-header-control">Семейство<select id="site-header-family"><option value="listing">ListingHeader</option><option value="courses">CoursesHeader</option><option value="simple">SimplePageHeader</option></select></label><label class="crs-header-control">Уровень<select id="site-header-level"><option value="hero">Hero</option><option value="page">Page</option></select></label><label class="crs-header-control crs-header-control--check"><input id="site-header-sticky" type="checkbox">Sticky</label><span class="crs-header-use" id="site-header-use">Верхнеуровневая листинговая страница · без sticky</span></form><header class="crs-site-header" id="site-header-target" data-family="listing" data-level="hero" data-sticky="false"><div class="crs-site-header__blue"><div class="crs-site-header__topbar crs-site-header__listing">${siteHeaderLogoArea()}${siteHeaderLinks()}</div><div class="crs-site-header__topbar crs-site-header__simple">${siteHeaderLogoArea()}${siteHeaderLinks()}</div><div class="crs-site-header__topbar crs-site-header__courses">${siteHeaderLogoArea()}<div class="crs-site-header__course-tools"><button class="crs-site-header__catalog" type="button">${siteHeaderIcon('catalog')}<span>Каталог</span></button><div class="crs-site-header__course-search"><span>Искать на Хабр Курсах</span>${siteHeaderIcon('search')}</div></div>${siteHeaderLinks()}</div><section class="crs-site-header__hero"><div><h1 class="crs-site-header__heading">Найдите подходящий курс</h1><p class="crs-site-header__seo">Сравнивайте программы, школы и стоимость обучения</p></div><div class="crs-site-header__hero-controls"><div class="crs-tabs-group crs-tabs-group--hero" role="tablist"><button class="crs-context-tab" data-state="selected" type="button" role="tab" aria-selected="true">Все</button><button class="crs-context-tab" data-state="default" type="button" role="tab" aria-selected="false">Онлайн</button></div><button class="crs-site-header__action crs-site-header__action--main" type="button">Подобрать курс</button><button class="crs-site-header__action crs-site-header__action--secondary" type="button">Смотреть рейтинг</button></div>${siteHeaderListingForm()}</section><section class="crs-site-header__listing-page">${siteHeaderListingForm()}<div class="crs-site-header__listing-pill"><span><strong>Все курсы</strong><small>Каталог · направления</small></span></div></section><nav class="crs-site-header__topmenu" aria-label="Популярные разделы"><span class="crs-site-header__sale">РАСПРОДАЖА</span><span>Разместить свой курс</span><span>Программирование</span><span>Нейросети и AI</span><span>Курсы для детей</span><span>Бесплатные курсы</span></nav><section class="crs-site-header__course-seo"><div class="crs-site-header__breadcrumbs">Каталог › Программирование</div><h2>Курсы программирования</h2><div class="crs-site-header__meta">Авторы · Проверено экспертами · Обновлено сегодня</div></section></div>${siteHeaderFilters()}</header></div>`;
 }
 
 const siteHeaderPreviewScript = `
@@ -1354,16 +1340,14 @@ const schoolAvatarRadii = { 100: 24, 68: 16, 56: 12, 48: 12, 40: 12, 36: 12, 32:
 const avatarPreviewCss = `
 .crs-avatar-scale{display:flex;align-items:flex-end;flex-wrap:wrap;gap:20px;padding:4px;font-family:Inter,sans-serif}
 .crs-avatar-sample{display:grid;justify-items:center;gap:8px;color:#697386;font-size:11px;line-height:16px}
-.crs-avatar-default{display:block;width:var(--avatar-size);height:var(--avatar-size);object-fit:cover;overflow:hidden;background:#e4edf8}
-.crs-avatar-default--user{border-radius:200px}
-.crs-avatar-default--school{border-radius:var(--avatar-radius)}
+.crs-avatar-default--user{display:block;width:var(--avatar-size);height:var(--avatar-size);object-fit:cover;overflow:hidden;border-radius:200px}
 `;
 
 function avatarScaleMarkup(type) {
   const isUser = type === 'user';
   const source = isUser ? 'ui/assets/images/avatar-default-user.svg' : 'ui/assets/images/avatar-default-company.svg';
   return `<div class="crs-avatar-scale">${avatarSizes.map(size => `<span class="crs-avatar-sample">
-    <img class="crs-avatar-default crs-avatar-default--${type}" src="${source}" alt="" style="--avatar-size:${size}px;${isUser ? '' : `--avatar-radius:${schoolAvatarRadii[size]}px;`}">
+    <img class="crs-avatar-default crs-avatar-default--${type}${isUser ? '' : ' crs-entity-logo'}"${isUser ? ` style="--avatar-size:${size}px;"` : ` data-component="entity-logo" data-size="${size}"`} src="${source}" alt="">
     <span>${size}×${size}${isUser ? '' : ` · r${schoolAvatarRadii[size]}`}</span>
   </span>`).join('')}</div>`;
 }
@@ -1544,8 +1528,7 @@ html,body{background:#fff}body{padding:0!important}
       },
     ];
   }
-  if (record.id === 'site-header') return [
-    {
+  if (record.id === 'site-header') return [{
       id: 'figma-variants',
       title: 'Все варианты SiteHeader',
       file: examplePath,
@@ -1556,18 +1539,7 @@ html,body{background:#fff}body{padding:0!important}
       preview: { mode: 'viewport', widths: [320, 480, 768, 1024], height: 960 },
       authority: ['figma'],
       scope: 'design-source-only',
-    },
-    {
-      id: 'production-current',
-      title: 'Production · текущая шапка',
-      file: `examples/components/${record.id}/production.html`,
-      html: record.markup.html,
-      covers: record.states?.captured || ['default'],
-      preview: { mode: 'viewport', widths: [320, 480, 768, 1024], height: 640 },
-      authority: ['production'],
-      scope: 'public-guest',
-    },
-  ];
+    }];
   if (record.id === 'header-dropdown') return [{
     id: 'states',
     title: 'Открытие и закрытие',
@@ -1965,7 +1937,7 @@ for (const record of components) {
     ] } : {}),
     ...(hasFigmaNavigationStateReference ? { variants: [
       ...(record.id === 'tab' ? [{ id: 'kind', use: 'FilterChipMenu с icon-left + chevron; FilterChipSwitch со switch-right.' }] : [{ id: 'context', use: record.id === 'segmented-control' ? 'HeroTabs на цветном hero-фоне.' : 'PageTabs на светлом фоне страницы.' }]),
-      { id: 'state', use: `default, hover, focus-visible, selected, disabled и loading${record.id === 'tab' ? '; для Menu также open' : ''}.` },
+      { id: 'state', use: `default, hover, focus-visible, ${record.id === 'tab' ? 'pressed' : 'selected'}, disabled и loading${record.id === 'tab' ? '; для Menu также open' : ''}.` },
     ] } : {}),
     ...(hasFigmaHeaderReference ? { variants: [
       { id: 'family', use: 'ListingHeader, CoursesHeader или SimplePageHeader.' },

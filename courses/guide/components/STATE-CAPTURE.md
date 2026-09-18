@@ -13,6 +13,29 @@
 
 ---
 
+## Решения review-квиза · 18 сентября 2026
+
+Эта таблица новее исторической съёмки ниже и является текущим решением
+владельца. Старые строки `не снято` сохранены как история происхождения GAP,
+но больше не означают, что состояние отсутствует в живом гайде.
+
+| Компонент | Решение |
+|---|---|
+| `breadcrumbs` | `hover`, `focus-visible`, `current` сверены с production `/courses/dizajn/3d-modelling` |
+| `button` | `pressed` принят равным `hover` |
+| `card-grid` | `empty` принят по Figma без временной маркировки |
+| `checkbox` | `indeterminate` принят по Figma `687:1279` |
+| `faq-item` | `hover`, `focus-visible` приняты по Figma |
+| `filter-chip`, legacy `tab` | единое имя выбранного состояния — `pressed`; `selected` удалён из контракта семейства |
+| `header-dropdown` | `open` сверено с production `/courses/dizajn/3d-modelling` |
+| `icon-button` | `pressed` исключён из обязательного контракта |
+| `learning-step` | `hover`, `focus-visible`, `expanded` приняты по Figma |
+| `mobile-menu` | `closed` принят по Figma |
+| `text-input` | `readOnly`: оболочка Disabled, текст Default |
+| `tile-filter` | `hover`, `focus-visible`, `pressed`, `disabled` приняты по Figma и production |
+
+---
+
 ## 1. Как читать «снято» здесь
 
 Три исхода на пару (запись, состояние), не два — но exit criteria волны
@@ -545,6 +568,18 @@ figma-only в production, а её пары остались размечены �
 | `pagination` | `disabled` | **снято — продуктовый стиль** | `button[disabled][rel="prev"]` с `!text-ui-black-200` на первой странице, 4 из 4 |
 | `icon-button` | `disabled` | **не снято** | четыре узла, которыми пара была снята, — стрелки `Pagination`; у стрелок Swiper отключение — рантайм-класс `swiper-button-disabled`, в снятой разметке его нет. Шаг R3-02 |
 
+
+## Решения review-квиза · 18 сентября 2026
+
+- `Button` L и XL сверены на одинаковом тексте: типографика одинакова, канонические горизонтальные отступы — 16 и 24 px; `pressed` визуально равен `hover`.
+- `SiteHeader` 64 / 112 / 144 px — разные варианты, а не конфликт одной высоты.
+- `CatalogMenu` mobile: второй уровень заменяет первый, возврат — кнопкой «Назад»; источник `16051:163385`.
+- `FaqBlock` использует одну адаптивную версию; отдельная мобильная сущность не нужна.
+- После дизайнерской приёмки Figma-источник считается нормативным, но не выдаётся за production-класс.
+- `TileFilter`: `pressed` и `selected` — одно состояние; нормативное имя — `pressed`.
+- `Carousel`: общий `IconButton`, активный слайд по центру, соседние видны по краям; источник `15074:257173`.
+- `FilterModal`: рекомендации прокручиваются горизонтально. `PriceSheet`: кнопки футера повторно используют `Button`.
+- `complete` допустим только при пустых `unknowns` и `stateCoverage.uncaptured`; это контролирует `tools/sync-declared-maturity.mjs`.
 
 ## Источники
 

@@ -47,6 +47,77 @@
   .doc-page-stub--journal { height: var(--courses-size-300); }
 }
 
+/* ---------- Живой пример оболочки и сетки страницы ----------
+   Это только диагностический слой витрины: геометрию задают настоящие
+   product-классы из layout.css, а doc-* лишь делают зоны видимыми. */
+.doc-layout-demo {
+  background: var(--color-ui-white);
+  min-height: 100%;
+}
+.doc-layout-demo__bar {
+  background: var(--color-main-gradient-first);
+  color: var(--color-ui-white);
+}
+.doc-layout-demo__bar-inner {
+  align-items: center;
+  display: flex;
+  min-height: var(--courses-size-64);
+}
+.doc-layout-demo__label {
+  font-size: var(--courses-font-size-14);
+  font-weight: 600;
+  line-height: var(--courses-line-height-20-on-14);
+}
+.doc-layout-demo__main {
+  width: 100%;
+}
+.doc-layout-demo__section {
+  background: var(--color-ui-white);
+  border: var(--courses-border-width-1) solid var(--color-ui-black-100);
+  border-radius: var(--courses-radius-24);
+  min-width: 0;
+  padding: var(--courses-space-24);
+}
+.doc-layout-demo__section--primary {
+  min-height: var(--courses-size-192);
+}
+.doc-layout-demo__section--secondary {
+  min-height: var(--courses-size-96);
+}
+.doc-layout-demo__title {
+  font-size: var(--courses-font-size-24);
+  font-weight: 600;
+  line-height: var(--courses-line-height-28-on-24);
+  margin: 0 0 var(--courses-space-12);
+}
+.doc-layout-demo__meta {
+  color: var(--color-ui-black-500);
+  display: grid;
+  font-size: var(--courses-font-size-14);
+  gap: var(--courses-space-4);
+  line-height: var(--courses-line-height-20-on-14);
+}
+.doc-layout-demo__measure {
+  background: var(--color-ui-blue-50);
+  color: var(--color-ui-blue-600);
+  display: inline-flex;
+  font-size: var(--courses-font-size-12);
+  font-weight: 600;
+  line-height: var(--courses-line-height-16-on-12);
+  margin-top: var(--courses-space-16);
+  padding: var(--courses-space-6) var(--courses-space-8);
+  width: max-content;
+}
+.doc-layout-demo__footer {
+  background: var(--color-ui-white);
+  border-top: var(--courses-border-width-1) solid var(--color-ui-black-100);
+}
+.doc-layout-demo__footer-inner {
+  align-items: center;
+  display: flex;
+  min-height: var(--courses-size-96);
+}
+
 /* ---------- Рамки ширины в pages.html ----------
    Каждая рамка — iframe с настоящей шириной вьюпорта (375, 768, 1024, 1440),
    уменьшенный до общей видимой ширины. Внутри работают те же @media, что

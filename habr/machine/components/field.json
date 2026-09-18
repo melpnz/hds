@@ -57,7 +57,7 @@
     }
   ],
   "unknowns": [
-    "| Состояние | Источник | Эффект | |---|---|---| | inactive | production | рамка --icon-secondary, фон --background-primary | | focus | production | рамка --accent-primary | | disabled | production с системной нормализацией | фон --background-secondary, текст --other-disabled-elements, cursor:not-allowed; исходный Input использовал белый в обеих темах --header-text | | invalid | production с системной нормализацией | рамка --accent-danger; исходный Input использовал буквальный e47979, а Textarea является Figma-реконструкцией | | hover | Figma-only, GAP | Figma показывает отдельное hover-состояние поля; в production CSS .tm-input-text-decoratedinput :hover-селектора нет — не реализовано, не выдумано |",
+    "| Состояние | Источник | Эффект | |---|---|---| | inactive | production | рамка --icon-secondary, фон --background-primary | | focus | production | рамка --accent-primary | | disabled | production с системной нормализацией | фон --background-secondary, текст --other-disabled-elements, cursor:not-allowed; исходный Input использовал --header-text, остающийся белым в обеих темах | | invalid | production с системной нормализацией | рамка --accent-danger; исходный Input использовал буквальный e47979, а Textarea является Figma-реконструкцией | | hover | Figma-only, GAP | Figma показывает отдельное hover-состояние поля; в production CSS .tm-input-text-decoratedinput :hover-селектора нет — не реализовано, не выдумано |",
     "Подпись идёт после поля, а не до. Внутри — .tm-svg-iconwrapper и svg.tm-svg-icon: те самые классы, которые в assets/README.md числились GAP’ом «существует в CSS, но в разметке не встречается». Встречается — здесь."
   ],
   "previewNotes": [
@@ -89,12 +89,11 @@
     ],
     "properties": {
       "line-height": [
-        "2.5rem",
+        "2.5",
         "1.5"
       ],
       "background-color": [
-        "var(--background-primary)",
-        "var(--background-secondary)"
+        "var(--background-primary)"
       ],
       "border": [
         "1px solid var(--icon-secondary)"
@@ -104,21 +103,21 @@
         "var(--other-disabled-elements)"
       ],
       "border-radius": [
-        "4px"
+        "0.25rem"
       ],
       "width": [
         "100%"
       ],
       "min-height": [
-        "40px",
-        "96px"
+        "2.5rem",
+        "6rem"
       ],
       "padding": [
-        "0 14px",
-        "10px 14px"
+        "0 0.875rem",
+        "0.625rem 0.875rem"
       ],
       "font-size": [
-        ".875rem"
+        "0.875rem"
       ],
       "box-shadow": [
         "none"

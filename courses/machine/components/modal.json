@@ -5,7 +5,7 @@
   "kind": "module",
   "category": "overlays",
   "maturity": {
-    "spec": "complete",
+    "spec": "partial",
     "markup": "available"
   },
   "knowledge": {
@@ -107,7 +107,7 @@
     },
     {
       "id": "footer",
-      "use": "Optional secondary/main Button M; pinFooter добавляет разделитель."
+      "use": "Одна Button M обязательна, вторая optional; pinFooter добавляет разделитель."
     }
   ],
   "componentFamily": {
@@ -132,8 +132,8 @@
     {
       "id": "slots",
       "context": "Состав",
-      "behavior": "Изображение, иконки header, до 12 content slots и обе кнопки footer включаются независимо.",
-      "implementation": "Опциональные DOM slots; gap body 16px, внутренние отступы 24px."
+      "behavior": "Изображение, иконки header и до 12 content slots включаются независимо; в footer всегда остаётся хотя бы одна кнопка.",
+      "implementation": "Опциональные DOM slots; action controls не позволяют выключить последнюю кнопку; gap body 16px, внутренние отступы 24px."
     },
     {
       "id": "dismiss",

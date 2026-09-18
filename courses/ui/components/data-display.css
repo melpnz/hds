@@ -55,6 +55,33 @@
    ------------------------------------------------------------------------- */
 .svg-icon{fill:currentColor}
 
+/* EntityLogo: size and radius belong to the component; a page context may
+   only position it or add the documented card border. */
+.crs-entity-logo {
+  display: block;
+  flex: none;
+  width: var(--crs-entity-logo-size);
+  height: var(--crs-entity-logo-size);
+  border-radius: var(--crs-entity-logo-radius);
+  object-fit: cover;
+  overflow: hidden;
+}
+.crs-entity-logo[data-size="24"] { --crs-entity-logo-size: var(--courses-size-24); --crs-entity-logo-radius: var(--courses-radius-6); }
+.crs-entity-logo[data-size="32"] { --crs-entity-logo-size: var(--courses-size-32); --crs-entity-logo-radius: var(--courses-radius-8); }
+.crs-entity-logo[data-size="36"] { --crs-entity-logo-size: var(--courses-size-36); --crs-entity-logo-radius: var(--courses-radius-12); }
+.crs-entity-logo[data-size="40"] { --crs-entity-logo-size: var(--courses-size-40); --crs-entity-logo-radius: var(--courses-radius-12); }
+.crs-entity-logo[data-size="48"] { --crs-entity-logo-size: var(--courses-size-48); --crs-entity-logo-radius: var(--courses-radius-12); }
+.crs-entity-logo[data-size="56"] { --crs-entity-logo-size: var(--courses-size-56); --crs-entity-logo-radius: var(--courses-radius-12); }
+.crs-entity-logo[data-size="68"] { --crs-entity-logo-size: var(--courses-size-68); --crs-entity-logo-radius: var(--courses-radius-16); }
+.crs-entity-logo[data-size="100"] { --crs-entity-logo-size: var(--courses-size-100); --crs-entity-logo-radius: var(--courses-radius-24); }
+
+@media (max-width: 767px) {
+  .crs-entity-logo--school-header {
+    --crs-entity-logo-size: var(--courses-size-68);
+    --crs-entity-logo-radius: var(--courses-radius-16);
+  }
+}
+
 /* -------------------------------------------------------------------------
    Figma-only записи R2-bulk (11 сентября 2026). Решением владельца в реестр
    заведены компоненты макета, которых в продукте нет: страница профессии,
@@ -115,6 +142,16 @@
   padding: 0;
   text-align: left;
   width: 100%;
+}
+.crs-faq-item__question:hover,
+.crs-faq-item__question[data-state="hover"] {
+  color: var(--fig-color-style-font-link);
+}
+.crs-faq-item__question:focus-visible,
+.crs-faq-item__question[data-state="focus"] {
+  border-radius: var(--courses-radius-8);
+  outline: var(--courses-border-width-2) solid var(--color-ui-black-400);
+  outline-offset: var(--courses-optical-1);
 }
 .crs-faq-item__title {
   flex: 1 0 0;
@@ -208,6 +245,28 @@
   position: absolute;
   right: 0;
   top: var(--courses-size-5);
+}
+.crs-learning-step:hover,
+.crs-learning-step[data-state="hover"] {
+  border-color: var(--color-ui-black-200);
+}
+.crs-learning-step__toggle:focus-visible,
+.crs-learning-step[data-state="focus"] .crs-learning-step__toggle {
+  border-radius: var(--courses-radius-full);
+  outline: var(--courses-border-width-2) solid var(--color-ui-black-400);
+  outline-offset: var(--courses-optical-1);
+}
+.crs-learning-step[data-state="expanded"] .crs-learning-step__toggle {
+  transform: rotate(180deg);
+}
+.crs-learning-step__details {
+  display: none;
+  font-size: var(--fig-font-size-body-m);
+  line-height: var(--courses-line-height-20-on-14);
+  margin: var(--courses-space-8) 0 0;
+}
+.crs-learning-step[data-state="expanded"] .crs-learning-step__details {
+  display: block;
 }
 
 /* DemandChart — slot-modal/simple «Спрос по областям», 14469:196385,

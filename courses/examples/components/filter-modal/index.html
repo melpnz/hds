@@ -10,11 +10,11 @@
 .crs-filter-modal-stage{display:grid;min-height:620px;background:rgba(44,46,52,.12);place-items:start center;font-family:Inter,sans-serif}
 .crs-filter-modal[hidden],.crs-filter-modal-reopen[hidden]{display:none}
 .crs-filter-modal-reopen{align-self:center;padding:12px 20px;border:0;border-radius:12px;background:#2c2e34;color:#fff;font:600 16px/24px Inter,sans-serif}
-.crs-filter-modal__body{padding-top:0;padding-bottom:0}
-.crs-filter-modal__group{flex:none}
-.crs-filter-modal__recommendations{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+.crs-filter-modal__body{box-sizing:border-box;min-width:0;width:100%;padding-top:0;padding-bottom:0}
+.crs-filter-modal__group{flex:none;min-width:0;width:100%}
+.crs-filter-modal__recommendations{display:flex;max-width:100%;min-width:0;gap:8px;padding-bottom:4px;overflow-x:auto;overscroll-behavior-inline:contain;scroll-snap-type:x proximity;scrollbar-width:none}
 .crs-filter-modal__recommendations::-webkit-scrollbar{display:none}
-.crs-filter-modal__recommendation{display:grid;flex:0 0 124px;gap:8px;padding:0 0 4px;border:0;background:transparent;color:#2c2e34;font:400 12px/16px Inter,sans-serif;text-align:center}
+.crs-filter-modal__recommendation{display:grid;flex:0 0 124px;gap:8px;padding:0 0 4px;border:0;background:transparent;color:#2c2e34;font:400 12px/16px Inter,sans-serif;text-align:center;scroll-snap-align:start}
 .crs-filter-modal__recommendation-image{box-sizing:border-box;width:124px;height:124px;overflow:hidden;border:1px solid #e9e9ea;border-radius:16px;background:#fff}
 .crs-filter-modal__recommendation[aria-pressed=true]{color:#346ef4}
 .crs-filter-modal__recommendation[aria-pressed=true] .crs-filter-modal__recommendation-image{border-color:#94bdfc;background:#eff5ff}

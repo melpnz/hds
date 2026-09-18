@@ -11,22 +11,22 @@
   <script src="../../../../examples/site-shell.js" defer></script>
 </head>
 <body class="migration-example migration-example--page pattern-admin-form">
-
 <habr-site-header></habr-site-header>
-<div style="max-width:820px">
-<div style="background:var(--background-primary);padding:20px;border-radius:8px;margin-bottom:16px;font-weight:700">
+<main class="tm-page page-example"><div class="tm-page-width">
+<div>
+<div class="page-example__panel page-example__heading-panel tm-title tm-title_h2">
         Заявка на корпоративный блог
       </div>
-<div style="display:flex;gap:16px">
-<div style="flex:1;background:var(--background-primary);padding:20px;border-radius:8px">
+<div class="page-example__columns">
+<section class="page-example__primary page-example__panel">
 <h3 style="margin:0 0 16px">Реквизиты компании</h3>
 <div style="margin-bottom:16px">
 <label style="display:block;font-weight:600;font-size:.875rem;margin-bottom:8px">* Форма организации</label>
-<label style="display:flex;align-items:center;gap:8px;margin-bottom:8px;font-size:.875rem">
-<input checked="" name="org" type="radio"/> Российское юрлицо (ООО, ОАО, ЗАО и др.)
+<label class="tm-radio__option page-example__radio">
+<input checked="" class="tm-radio__input visually-hidden" name="org" type="radio"/><span class="tm-radio__indicator"></span> Российское юрлицо (ООО, ОАО, ЗАО и др.)
             </label>
-<label style="display:flex;align-items:center;gap:8px;font-size:.875rem">
-<input name="org" type="radio"/> Индивидуальный предприниматель (ИП)
+<label class="tm-radio__option page-example__radio">
+<input class="tm-radio__input visually-hidden" name="org" type="radio"/><span class="tm-radio__indicator"></span> Индивидуальный предприниматель (ИП)
             </label>
 </div>
 <div style="margin-bottom:20px">
@@ -37,18 +37,18 @@
 <button class="btn btn_transparent btn_middle" type="button">Вернуться</button>
 <button class="btn btn_solid btn_middle tm-button_color-christi" type="button">Далее</button>
 </div>
-</div>
-<div style="width:180px;flex:none;background:var(--background-primary);padding:20px;border-radius:8px">
+</section>
+<aside aria-label="Прогресс заполнения" class="page-example__aside page-example__aside_narrow page-example__panel">
 <div style="font-size:.75rem;text-transform:uppercase;color:var(--text-secondary);margin-bottom:12px">Прогресс</div>
 <div style="color:var(--accent-positive);font-size:.875rem;margin-bottom:10px">✓ Правила</div>
 <div style="color:var(--accent-positive);font-size:.875rem;margin-bottom:10px">✓ Контакты</div>
 <div style="color:var(--accent-positive);font-size:.875rem;margin-bottom:10px">✓ Тариф</div>
 <div style="color:var(--accent-positive);font-size:.875rem;margin-bottom:10px">✓ Профиль</div>
 <div style="color:var(--accent-primary);font-weight:700;font-size:.875rem">5 Реквизиты</div>
+</aside>
 </div>
 </div>
-</div>
-
+</div></main>
 <habr-site-footer></habr-site-footer>
 <script src="../../../../examples/components.js"></script>
 </body>
