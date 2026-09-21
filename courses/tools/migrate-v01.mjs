@@ -1723,7 +1723,7 @@ const spacingValues = [2, 4, 6, 8, 10, 12, 16, 20, 24, 40, 48];
 const spacingRows = spacingValues.map(value => `<div class="foundation-scale__row"><strong>${value} px</strong><div class="foundation-scale__bar" style="--value:${value}px"></div></div>`).join('');
 const radiusValues = [['none', 0], ['md', 6], ['lg', 8], ['xl', 12], ['14px', 14], ['2xl', 16], ['3xl', 24], ['full', 9999]];
 const radiusCards = radiusValues.map(([name, value]) => `<div class="foundation-card"><div class="foundation-radius" style="--radius:${value}px"></div><strong>${name}</strong><small>${value === 9999 ? '9999 px' : `${value} px`}</small></div>`).join('');
-const iconNames = ['accreditation', 'arrow-large', 'arrow-small', 'building', 'comment', 'cross-large', 'more', 'percents', 'search', 'star-empty', 'star-rounded', 'star-rounded-small', 'catalog'];
+const iconNames = ['accreditation', 'arrow-large', 'arrow-small', 'building', 'comment', 'cross-large', 'more', 'percents', 'search', 'star-empty', 'star-rounded', 'catalog'];
 const iconCards = iconNames.map(name => `<div class="foundation-card foundation-icon"><svg class="svg-icon" aria-hidden="true"><use xlink:href="../../../ui/assets/icons/sprite.svg#${name}"></use></svg><small>${name}</small></div>`).join('');
 const breakpointCards = [
   ['small-phone', '≤ 479 px', 'Самые узкие телефоны'],

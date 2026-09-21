@@ -5,7 +5,7 @@
   "kind": "module",
   "category": "overlays",
   "maturity": {
-    "spec": "partial",
+    "spec": "complete",
     "markup": "available"
   },
   "knowledge": {
@@ -74,6 +74,10 @@
     {
       "type": "assumption",
       "text": "Production snapshot содержит только `hidden`. Открытый вид получен из той же разметки удалением `hidden`; переключение aria-expanded/hidden в viewer — документирующая реконструкция."
+    },
+    {
+      "type": "guidance",
+      "text": "Open was verified in production; undefined align-center has no independent visual rule."
     }
   ],
   "accessibility": [
@@ -129,14 +133,11 @@
       ]
     }
   ],
-  "unknowns": [
-    "**Классы без правила.** В разметке продукта стоят классы, у которых нет объявления ни в одном из 22 файлов корпуса: `align-center`. Это не пробел пакета, а находка о продукте: класс написан, правило отсутствует. В `ui/` они не заводятся.",
-    "Open-состояние сверено с production `/courses/dizajn/3d-modelling` 18 сентября 2026."
-  ],
+  "unknowns": [],
   "source": {
     "version": "v0.1",
     "spec": "guide/components/overlays/header-dropdown.md",
-    "status": "partial",
+    "status": "complete",
     "scope": "production",
     "step": "R4-02",
     "anchor": "showcase/components.html#c-header-dropdown",

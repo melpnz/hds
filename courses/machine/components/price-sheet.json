@@ -5,7 +5,7 @@
   "kind": "module",
   "category": "overlays",
   "maturity": {
-    "spec": "partial",
+    "spec": "complete",
     "markup": "available"
   },
   "knowledge": {
@@ -113,6 +113,10 @@
     {
       "type": "guidance",
       "text": "Живой пример не содержит отдельного переключателя представления: режим автоматически определяется выбранной в viewer шириной 320 / 480 / 768 / 1024."
+    },
+    {
+      "type": "guidance",
+      "text": "Responsive open presentation is accepted; closed belongs to the FilterChip trigger and is not duplicated in the sheet."
     }
   ],
   "accessibility": [
@@ -141,17 +145,11 @@
       }
     }
   ],
-  "unknowns": [
-    "**Корень введён пакетом.** `crs-price-sheet` — не класс продукта. METHOD §6.5 допускает корень вида `crs-<id>` ровно для этого случая: снятой разметки, из которой можно взять настоящее имя, не существует. Префикс `crs-` нужен, чтобы имя пакета нельзя было принять за класс продукта.",
-    "**Тексты.** Тексты — дословно из узла: «Цена», «От», «До», «₽», «Сбросить», «Готово». Валюта — выбор (`select_level3` со стрелкой), здесь показан закрытым.",
-    "**Ассеты.** Стрелка валюты — символ `arrow-small` общего спрайта (глиф `icon/arrow-down` макета). Кнопки — продуктовый `Button` M: main и secondary, классы дословно из снятой разметки.",
-    "**Состояния.** Нарисована открытая шторка (`open`). Закрытая (`closed`) — чип «Цена» в ряду быстрых фильтров; отдельной вёрстки у записи для него нет. Разбор — [`components/STATE-CAPTURE.md`](../STATE-CAPTURE.md).",
-    "Не снятые состояния: closed."
-  ],
+  "unknowns": [],
   "source": {
     "version": "v0.2",
     "spec": "guide/components/overlays/price-sheet.md",
-    "status": "partial",
+    "status": "complete",
     "scope": "normative-design",
     "step": "R4-18",
     "anchor": "showcase/components.html#c-price-sheet",

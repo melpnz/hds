@@ -5,7 +5,7 @@
   "kind": "module",
   "category": "entities",
   "maturity": {
-    "spec": "partial",
+    "spec": "complete",
     "markup": "available"
   },
   "knowledge": {
@@ -68,6 +68,10 @@
     {
       "type": "guidance",
       "text": "Список редакторов и аудиторов остаётся одноколоночным до 1023 px; две колонки включаются только на desktop."
+    },
+    {
+      "type": "guidance",
+      "text": "External portraits use safe local Avatar data; copy and composition were accepted with the Authors pages."
     }
   ],
   "accessibility": [
@@ -85,14 +89,11 @@
       }
     }
   ],
-  "unknowns": [
-    "**Заглушки содержимого.** 3 ссылок на пользовательское и партнёрское содержимое (`habrastorage.org`, баннеры `assets.habr.com`) на витрине заменены локальной заглушкой `ui/assets/images/content-placeholder.svg`. Чужое содержимое в пакет не копируется; геометрия компонента от этого не меняется — размер задаёт он сам. В «Анатомии» ниже продовые пути сохранены как есть.",
-    "**Проза не проходила ревью.** Запись заведена 11 сентября 2026 при сборке страницы `/courses` (R6-01), после двух кругов ревью прозы; её разделы написаны тем же генератором и тем же способом, но независимо не проверены — отсюда `partial` при снятом `default`."
-  ],
+  "unknowns": [],
   "source": {
     "version": "v0.1",
     "spec": "guide/components/entities/authors-block.md",
-    "status": "partial",
+    "status": "complete",
     "scope": "production",
     "step": "R5-18",
     "anchor": "showcase/components.html#c-authors-block",

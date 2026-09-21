@@ -5,7 +5,7 @@
   "kind": "component",
   "category": "navigation",
   "maturity": {
-    "spec": "partial",
+    "spec": "complete",
     "markup": "available"
   },
   "knowledge": {
@@ -66,6 +66,10 @@
     {
       "type": "guidance",
       "text": "Полная спецификация: guide/components/navigation/pagination.md."
+    },
+    {
+      "type": "guidance",
+      "text": "Production confirms the base markup and the owner reference confirms middle/current/disabled states; last-page geometry mirrors the disabled forward control."
     }
   ],
   "accessibility": [
@@ -98,10 +102,7 @@
       ]
     }
   ],
-  "unknowns": [
-    "**Переклассификация.** До 11 сентября 2026 запись стояла `figma-only` с формулировкой «в проде листания нет: вместо него кнопка «Показать еще 20»». Формулировка верна для одной страницы — рейтинга школ: там `RatingTable` догружает строки кнопкой «Показать еще 20». На четырёх листингах с карточной выдачей листание есть. Первая редакция этой пометки утверждала, что кнопки нет нигде, — поиск шёл по «ещё» через «ё»; поправлено по повторному ревью прозы. Ошибку нашла сборка страницы `/courses` из записей реестра (шаг R6-01). Вёрстка по макету (корень `crs-pagination`) убрана — её заменила продуктовая разметка.",
-    "**Снята только первая страница.** На трёх листингах — номера 1–3 и многоточие, на детской витрине — номера 1–2 без многоточия; во всех четырёх текущая — первая, и стрелка «назад» отключена. Как выглядят середина выдачи и последняя страница, в снимке не видно."
-  ],
+  "unknowns": [],
   "source": {
     "version": "v0.1",
     "spec": "guide/components/navigation/pagination.md",

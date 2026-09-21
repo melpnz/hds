@@ -119,7 +119,15 @@
   width: 100%;
 }
 .crs-loader__icon {
+  animation: crs-loader-spin 800ms linear infinite;
   display: block;
   height: var(--courses-size-48);
+  transform-origin: center;
   width: var(--courses-size-48);
+}
+
+@keyframes crs-loader-spin { to { transform: rotate(360deg); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .crs-loader__icon { animation-duration: 1600ms; }
 }

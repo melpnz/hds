@@ -5,7 +5,7 @@
   "kind": "module",
   "category": "data-display",
   "maturity": {
-    "spec": "partial",
+    "spec": "complete",
     "markup": "available"
   },
   "knowledge": {
@@ -62,6 +62,10 @@
     {
       "type": "guidance",
       "text": "Макет принят владельцем как нормативный; отдельный mobile-вариант не нужен, используется одна адаптивная версия."
+    },
+    {
+      "type": "guidance",
+      "text": "FaqBlock is accepted as one adaptive component; its crs root and shortened demo copy are explicit preview boundaries."
     }
   ],
   "accessibility": [],
@@ -79,15 +83,11 @@
       ]
     }
   ],
-  "unknowns": [
-    "**Корень введён пакетом.** `crs-faq-block` — не класс продукта. METHOD §6.5 допускает корень вида `crs-<id>` ровно для этого случая: снятой разметки, из которой можно взять настоящее имя, не существует. Префикс `crs-` нужен, чтобы имя пакета нельзя было принять за класс продукта.",
-    "**Тексты.** «Часто задаваемые вопросы» и «Текст вопроса» — дословно из компонента: в библиотечном варианте вопросы — заглушки. Вопросов в макете десять, здесь три. Живые вопросы с ответом — у записи `FaqItem` на странице профессии.",
-    "**Состояния.** Требуемые состояния записи (`default`) в макете отдельными вариантами не нарисованы, а измерить их негде. Разбор — [`components/STATE-CAPTURE.md`](../STATE-CAPTURE.md)."
-  ],
+  "unknowns": [],
   "source": {
     "version": "v0.1",
     "spec": "guide/components/data-display/faq-block.md",
-    "status": "partial",
+    "status": "complete",
     "scope": "normative-design",
     "step": "R4-21",
     "anchor": "showcase/components.html#c-faq-block",

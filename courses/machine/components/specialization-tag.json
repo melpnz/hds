@@ -5,7 +5,7 @@
   "kind": "component",
   "category": "data-display",
   "maturity": {
-    "spec": "partial",
+    "spec": "complete",
     "markup": "available"
   },
   "knowledge": {
@@ -58,6 +58,10 @@
     {
       "type": "coverage-warning",
       "text": "Источник figma-only: компонент не подтверждён в продакшене."
+    },
+    {
+      "type": "guidance",
+      "text": "All three normative Figma variants are specified; missing production provenance does not make the contract incomplete."
     }
   ],
   "accessibility": [],
@@ -75,13 +79,7 @@
       ]
     }
   ],
-  "unknowns": [
-    "**Корень введён пакетом.** `crs-specialization-tag` — не класс продукта. METHOD §6.5 допускает корень вида `crs-<id>` ровно для этого случая: снятой разметки, из которой можно взять настоящее имя, не существует. Префикс `crs-` нужен, чтобы имя пакета нельзя было принять за класс продукта.",
-    "**Тексты.** Три подписи — три варианта компонента макета по свойствам «спрос / вход» × «сложно / средне / чил». Модификатор назван по второму свойству. Нейтрального варианта у записи нет: серый тег макета (`tag/text`) — продуктовый `Chip`. Обёртка ряда — оформление витрины.",
-    "**Ассеты.** Ассетов нет. Цвета — из слоя макета; у красного и жёлтого текста есть продуктовые двойники (`--color-ui-red-500`, `--color-ui-orange-500`), у подложек `red/50` и `yellow/50` — нет.",
-    "**Состояния.** Требуемые состояния записи (`default`) в макете отдельными вариантами не нарисованы, а измерить их негде. Разбор — [`components/STATE-CAPTURE.md`](../STATE-CAPTURE.md).",
-    "**Статус терминальный.** Правило манифеста: `sourceScope: figma-only` не доходит до `complete`/`partial`. Пока компонент не найден в продукте, запись остаётся `figma-only`, сколько бы вёрстки к ней ни прибавилось."
-  ],
+  "unknowns": [],
   "source": {
     "version": "v0.1",
     "spec": "guide/components/data-display/specialization-tag.md",

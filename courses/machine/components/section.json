@@ -5,7 +5,7 @@
   "kind": "module",
   "category": "layout",
   "maturity": {
-    "spec": "partial",
+    "spec": "complete",
     "markup": "available"
   },
   "knowledge": {
@@ -61,6 +61,10 @@
     {
       "type": "guidance",
       "text": "Полная спецификация: guide/components/layout/section.md."
+    },
+    {
+      "type": "guidance",
+      "text": "The embedded RatingTable uses safe local logos; tooltip runtime classes have no independent CSS rule."
     }
   ],
   "accessibility": [
@@ -95,10 +99,7 @@
       ]
     }
   ],
-  "unknowns": [
-    "**Классы без правила.** В разметке продукта стоят классы, у которых нет объявления ни в одном из 22 файлов корпуса: `v-popper--has-tooltip`. Это не пробел пакета, а находка о продукте: класс написан, правило отсутствует. В `ui/` они не заводятся.",
-    "**Заглушки содержимого.** 10 ссылок на пользовательское и партнёрское содержимое (`habrastorage.org`, баннеры `assets.habr.com`) на витрине заменены локальной заглушкой `ui/assets/images/content-placeholder.svg`. Чужое содержимое в пакет не копируется; геометрия компонента от этого не меняется — размер задаёт он сам. В «Анатомии» ниже продовые пути сохранены как есть."
-  ],
+  "unknowns": [],
   "source": {
     "version": "v0.1",
     "spec": "guide/components/layout/section.md",

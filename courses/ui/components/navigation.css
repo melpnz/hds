@@ -322,10 +322,11 @@
    промежуток до списка 24. В снятой разметке продукта оглавлений нет.
    ------------------------------------------------------------------------- */
 .crs-page-toc {
+  align-self: stretch;
   display: flex;
   flex-direction: column;
   gap: var(--fig-size-spacing-x6);
-  max-width: var(--courses-size-315);
+  min-width: 0;
   width: 100%;
 }
 .crs-page-toc__title {
@@ -340,10 +341,25 @@
   display: flex;
   flex-direction: column;
   gap: var(--fig-size-spacing-x3);
+  min-width: 0;
+  width: 100%;
 }
 .crs-page-toc__link {
   color: var(--fig-color-style-font-link);
+  display: block;
   font-size: var(--fig-font-size-body-m);
   line-height: var(--courses-line-height-20-on-14);
+  max-width: 100%;
+  overflow-wrap: anywhere;
   text-decoration: none;
+  width: 100%;
+}
+.crs-page-toc__link br { display: none; }
+.crs-page-toc__link:hover,
+.crs-page-toc__link[data-state="hover"] { text-decoration: underline; }
+.crs-page-toc__link:focus-visible,
+.crs-page-toc__link[data-state="focus"] {
+  border-radius: var(--courses-radius-4);
+  outline: var(--courses-border-width-2) solid currentColor;
+  outline-offset: var(--courses-optical-1);
 }

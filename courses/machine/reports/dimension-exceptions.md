@@ -2,7 +2,7 @@
 
 Базовая сетка: **0.25rem**; утверждённые дополнительные ступени соответствуют **1px, 2px, 6px** при root 16px. Некратные значения токенизированы без округления и остаются в отчёте для дизайнерского разбора.
 
-Всего употреблений: **126**; уникальных сочетаний причины и значения: **71**.
+Всего употреблений: **125**; уникальных сочетаний причины и значения: **70**.
 
 ## `19.26px` · composite-or-unsupported-property
 
@@ -260,7 +260,7 @@
 
 - `ui/components/collections.css:41` — `token:font-size`
 - `ui/components/collections.css:70` — `token:font-size`
-- `ui/components/data-display.css:393` — `token:font-size`
+- `ui/components/data-display.css:405` — `token:font-size`
 - `ui/components/entities.css:32` — `token:font-size`
 - `ui/components/navigation.css:271` — `token:font-size`
 - `ui/components/overlays.css:726` — `token:font-size`
@@ -411,12 +411,6 @@
 
 - `ui/components/overlays.css:809` — `token:size`
 - `ui/page-examples.css:43` — `token:size`
-
-## `315px` · tokenized-off-grid-value
-
-Всего: 1.
-
-- `ui/components/navigation.css:328` — `token:size`
 
 ## `326px` · tokenized-off-grid-value
 

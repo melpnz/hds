@@ -5,7 +5,7 @@
   "kind": "component",
   "category": "navigation",
   "maturity": {
-    "spec": "partial",
+    "spec": "complete",
     "markup": "available"
   },
   "knowledge": {
@@ -94,6 +94,10 @@
     {
       "type": "guidance",
       "text": "Пользовательское имя: HeroTabs; `segmented-control` оставлен как legacy id. Состояния взяты из Courses Figma node 4274:1422; единая подложка группы rgba(0,0,0,.12), radius 12 px — из node 4261:1716."
+    },
+    {
+      "type": "guidance",
+      "text": "Router runtime classes only expose route state; the selected visual contract is documented independently."
     }
   ],
   "accessibility": [
@@ -143,9 +147,7 @@
       }
     }
   ],
-  "unknowns": [
-    "**Классы без правила.** В разметке продукта стоят классы, у которых нет объявления ни в одном из 22 файлов корпуса: `router-link-active`, `router-link-exact-active`. Это не пробел пакета, а находка о продукте: класс написан, правило отсутствует. В `ui/` они не заводятся."
-  ],
+  "unknowns": [],
   "source": {
     "version": "v0.2",
     "spec": "guide/components/navigation/segmented-control.md",

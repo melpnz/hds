@@ -5,15 +5,15 @@
   "kind": "module",
   "category": "forms",
   "maturity": {
-    "spec": "partial",
+    "spec": "complete",
     "markup": "available"
   },
   "knowledge": {
     "authority": [
       "figma"
     ],
-    "confidence": "medium",
-    "scope": "design-source-only"
+    "confidence": "high",
+    "scope": "normative-design"
   },
   "purpose": "**В продукте этого компонента нет.** Он существует только в макете, и это не пробел съёмки, а установленный факт — разбор в `notes` записи реестра:",
   "implementation": {
@@ -24,11 +24,16 @@
     "styles": [
       "ui/courses.css"
     ],
-    "scripts": []
+    "scripts": [
+      "examples/components/feedback-form/feedback-form.js"
+    ]
   },
   "states": {
     "ui": [
-      "default"
+      "default",
+      "telegram",
+      "phone",
+      "success"
     ],
     "feature": [],
     "domain": []
@@ -60,8 +65,8 @@
       "text": "Полная спецификация: guide/components/forms/feedback-form.md."
     },
     {
-      "type": "coverage-warning",
-      "text": "Источник figma-only: компонент не подтверждён в продакшене."
+      "type": "guidance",
+      "text": "Нормативны варианты «Телеграм» и «Телефон», а также экран успешной отправки из Figma; живой пример переключает способ связи и состояние success. На mobile success-иллюстрация расширяется за внутренние падинги и обрезается внешней границей карточки."
     }
   ],
   "accessibility": [],
@@ -75,22 +80,30 @@
           "layerName": "обратная связь",
           "nodeId": "I10123:48314;13496:153645",
           "componentKey": null
+        },
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "FeedbackForm · Телефон",
+          "nodeId": "13496:166340",
+          "componentKey": null
+        },
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "FeedbackForm · Success",
+          "nodeId": "13496:166748",
+          "componentKey": null
         }
       ]
     }
   ],
-  "unknowns": [
-    "**Корень введён пакетом.** `crs-feedback-form` — не класс продукта. METHOD §6.5 допускает корень вида `crs-<id>` ровно для этого случая: снятой разметки, из которой можно взять настоящее имя, не существует. Префикс `crs-` нужен, чтобы имя пакета нельзя было принять за класс продукта.",
-    "**Тексты.** Все тексты — дословно из инстанса на детской витрине. Сегмент «Телеграм» выбран, поэтому поля — Username и Почта; что показывается при «Телефоне», в узле не нарисовано. Ссылки согласия ведут на якорь витрины — адресов документов в макете нет.",
-    "**Ассеты.** Иконки полей — экспорты макета `ui/assets/icons/contact-telegram.svg` и `contact-mail.svg`: в спрайте продукта их нет. Цвет `#A6A7A9` зашит в экспорт.",
-    "**Состояния.** Требуемые состояния записи (`default`) в макете отдельными вариантами не нарисованы, а измерить их негде. Разбор — [`components/STATE-CAPTURE.md`](../STATE-CAPTURE.md).",
-    "**Статус терминальный.** Правило манифеста: `sourceScope: figma-only` не доходит до `complete`/`partial`. Пока компонент не найден в продукте, запись остаётся `figma-only`, сколько бы вёрстки к ней ни прибавилось."
-  ],
+  "unknowns": [],
   "source": {
-    "version": "v0.1",
+    "version": "v0.2",
     "spec": "guide/components/forms/feedback-form.md",
-    "status": "figma-only",
-    "scope": "figma-only",
+    "status": "complete",
+    "scope": "normative-design",
     "step": "R4-16",
     "anchor": "showcase/components.html#c-feedback-form",
     "originalKind": "module",
@@ -109,12 +122,22 @@
   ],
   "stateCoverage": {
     "required": [
-      "default"
+      "default",
+      "telegram",
+      "phone",
+      "success"
     ],
     "captured": [
-      "default"
+      "default",
+      "telegram",
+      "phone",
+      "success"
     ],
-    "normative": [],
+    "normative": [
+      "telegram",
+      "phone",
+      "success"
+    ],
     "uncaptured": []
   },
   "provenance": null,
@@ -161,7 +184,10 @@
       }
     },
     "states": [
-      "default"
+      "default",
+      "telegram",
+      "phone",
+      "success"
     ],
     "sources": [
       "machine/dimension-tokens.json",

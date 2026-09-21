@@ -5,7 +5,7 @@
   "kind": "module",
   "category": "forms",
   "maturity": {
-    "spec": "partial",
+    "spec": "complete",
     "markup": "available"
   },
   "knowledge": {
@@ -106,6 +106,10 @@
     {
       "type": "guidance",
       "text": "SearchForm использует Select XL как единый составной контрол: между полями нет gap, видны только разделители 1 px."
+    },
+    {
+      "type": "guidance",
+      "text": "The undefined production class align-center has no captured visual rule and is intentionally not recreated."
     }
   ],
   "accessibility": [
@@ -135,9 +139,7 @@
       }
     }
   ],
-  "unknowns": [
-    "**Классы без правила.** В разметке продукта стоят классы, у которых нет объявления ни в одном из 22 файлов корпуса: `align-center`. Это не пробел пакета, а находка о продукте: класс написан, правило отсутствует. В `ui/` они не заводятся."
-  ],
+  "unknowns": [],
   "source": {
     "version": "v0.2",
     "spec": "guide/components/forms/search-form.md",

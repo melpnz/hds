@@ -23,7 +23,7 @@
 
 ## Как работает
 
-Белая плашка поверх изображения: символ `star-rounded-small` цветом `text-ui-yellow-500` перед оценкой и символ `comment` перед числом отзывов — два символа спрайта на плашку, 124 на 62 узла.
+Белая плашка поверх изображения: символ `star-rounded` размером 16×16 и цветом `text-ui-yellow-500` перед оценкой и символ `comment` перед числом отзывов. Production-алиас `star-rounded-small` в гайде нормализован до единственного символа `star-rounded`; размер задаёт SVG-контейнер.
 
 ## Управление клавиатурой
 
@@ -39,7 +39,7 @@
 так же, как на витрине (инвариант METHOD §6.1).
 
 ```html
-<div class="flex gap-1.5 rounded-3xl bg-ui-white py-1 pl-1.5 pr-2"><div class="flex items-center gap-1"><svg class="svg-icon text-ui-yellow-500" style="width:16px;height:16px;" width="16" height="16"><use xlink:href="/courses-web/images/sprites/sprite.svg?v=1.29.0#star-rounded-small"></use></svg><span class="text-micro font-semibold">4.75</span></div><div class="flex items-center gap-0.5"><svg class="svg-icon fill-ui-black-400 text-ui-black-400" style="width:16px;height:16px;" width="16" height="16"><use xlink:href="/courses-web/images/sprites/sprite.svg?v=1.29.0#comment"></use></svg><span class="text-micro">6</span></div></div>
+<div class="flex gap-1.5 rounded-3xl bg-ui-white py-1 pl-1.5 pr-2"><div class="flex items-center gap-1"><svg class="svg-icon text-ui-yellow-500" style="width:16px;height:16px;" width="16" height="16"><use xlink:href="/courses-web/images/sprites/sprite.svg?v=1.29.0#star-rounded"></use></svg><span class="text-micro font-semibold">4.75</span></div><div class="flex items-center gap-0.5"><svg class="svg-icon fill-ui-black-400 text-ui-black-400" style="width:16px;height:16px;" width="16" height="16"><use xlink:href="/courses-web/images/sprites/sprite.svg?v=1.29.0#comment"></use></svg><span class="text-micro">6</span></div></div>
 ```
 
 ## Анатомия

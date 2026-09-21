@@ -196,3 +196,21 @@
   margin: 0;
 }
 .crs-vacancy-card__salary-value--empty { color: var(--fig-color-style-font-secondary); }
+
+/* На phone карточка — единственная колонка и заполняет доступную ширину,
+   как CourseCard. На tablet/desktop возвращаются канонические размеры. */
+@media (max-width: 767px) {
+  .crs-profession-card,
+  .crs-vacancy-card,
+  .crs-promo-card,
+  .crs-review-card,
+  .crs-article-card,
+  .crs-step-card {
+    max-width: none;
+    width: 100%;
+  }
+  .crs-profession-card__cover {
+    aspect-ratio: 235 / 148;
+    height: auto;
+  }
+}

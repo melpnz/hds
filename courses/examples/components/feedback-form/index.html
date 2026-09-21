@@ -8,5 +8,42 @@
   <link rel="stylesheet" href="../../../ui/courses.css">
   <style>html,body{margin:0;background:#fff}body{box-sizing:border-box;padding:24px}</style>
 </head>
-<body data-preview-layout="viewport"><div class="example-root"><div class="crs-feedback-form"> <div class="crs-feedback-form__intro"> <p class="crs-feedback-form__title">Не нашли, что хотели?</p> <p class="crs-feedback-form__text">Укажите свои контакты — мы с вами свяжемся, ответим на все вопросы и поможем подобрать обучение, чтобы вы были уверены в своем решении.</p> </div> <div class="crs-feedback-form__form"> <div class="crs-button-group"> <button type="button" class="crs-button-group__item crs-button-group__item--selected" aria-pressed="true">Телеграм</button> <button type="button" class="crs-button-group__item" aria-pressed="false">Телефон</button> </div> <div class="crs-feedback-form__fields"> <label class="crs-feedback-form__field"><img src="../../../ui/assets/icons/contact-telegram.svg" alt=""><input class="crs-feedback-form__input" type="text" placeholder="Username" aria-label="Username в Телеграме"></label> <label class="crs-feedback-form__field"><img src="../../../ui/assets/icons/contact-mail.svg" alt=""><input class="crs-feedback-form__input" type="email" placeholder="Почта" aria-label="Почта"></label> </div> <div class="crs-feedback-form__submit"> <button type="button" class="inline-flex cursor-pointer select-none items-center justify-center rounded-xl font-semibold hover:no-underline focus:outline-none focus-visible:outline focus-visible:outline-ui-black-400 disabled:pointer-events-none w-full h-10 px-4 py-2 text-small border border-ui-black-850 bg-ui-black-850 text-ui-white hover:opacity-90 disabled:border-ui-black-150 disabled:bg-ui-black-150 disabled:text-ui-white">Отправить</button> <p class="crs-feedback-form__consent">Нажимая на кнопку, вы соглашаетесь с <a href="#c-feedback-form">Условиями использования</a> и <a href="#c-feedback-form">Политикой конфиденциальности</a></p> </div> </div> </div></div></body>
+<body data-preview-layout="viewport">
+  <div class="example-root">
+    <div class="crs-feedback-form" data-feedback-form data-state="form">
+      <div class="crs-feedback-form__intro">
+        <p class="crs-feedback-form__title">Не нашли, что хотели?</p>
+        <p class="crs-feedback-form__text">Укажите свои контакты — мы с вами свяжемся, ответим на все вопросы и поможем подобрать обучение, чтобы вы были уверены в своем решении.</p>
+      </div>
+      <form class="crs-feedback-form__form">
+        <div class="crs-button-group" aria-label="Способ связи">
+          <button type="button" class="crs-button-group__item crs-button-group__item--selected" aria-pressed="true" data-contact-method="telegram">Телеграм</button>
+          <button type="button" class="crs-button-group__item" aria-pressed="false" data-contact-method="phone">Телефон</button>
+        </div>
+        <div class="crs-feedback-form__fields">
+          <label class="crs-feedback-form__field">
+            <img src="../../../ui/assets/icons/contact-telegram.svg" alt="" data-contact-icon>
+            <input class="crs-feedback-form__input" type="text" placeholder="Username" aria-label="Username в Телеграме" data-contact-input>
+          </label>
+          <label class="crs-feedback-form__field">
+            <img src="../../../ui/assets/icons/contact-mail.svg" alt="">
+            <input class="crs-feedback-form__input" type="email" placeholder="Почта" aria-label="Почта">
+          </label>
+        </div>
+        <div class="crs-feedback-form__submit">
+          <button type="submit" class="inline-flex cursor-pointer select-none items-center justify-center rounded-xl font-semibold hover:no-underline focus:outline-none focus-visible:outline focus-visible:outline-ui-black-400 disabled:pointer-events-none w-full h-10 px-4 py-2 text-small border border-ui-black-850 bg-ui-black-850 text-ui-white hover:opacity-90 disabled:border-ui-black-150 disabled:bg-ui-black-150 disabled:text-ui-white">Отправить</button>
+          <p class="crs-feedback-form__consent">Нажимая на кнопку, вы соглашаетесь с <a href="#c-feedback-form">Условиями использования</a> и <a href="#c-feedback-form">Политикой конфиденциальности</a></p>
+        </div>
+      </form>
+      <div class="crs-feedback-form__success" role="status" aria-live="polite">
+        <div class="crs-feedback-form__success-copy">
+          <p class="crs-feedback-form__title">Спасибо,<br>что доверились нам!</p>
+          <p class="crs-feedback-form__text">Скоро с вами свяжется эксперт по рынку образования. Ожидайте звонка или сообщения в мессенджер.</p>
+        </div>
+        <img class="crs-feedback-form__success-image" src="../../../ui/assets/images/feedback-success.png" alt="Персонаж Хабра подтверждает отправку формы">
+      </div>
+    </div>
+  </div>
+  <script src="feedback-form.js"></script>
+</body>
 </html>

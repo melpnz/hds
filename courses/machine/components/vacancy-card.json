@@ -5,15 +5,15 @@
   "kind": "module",
   "category": "entities",
   "maturity": {
-    "spec": "partial",
+    "spec": "complete",
     "markup": "available"
   },
   "knowledge": {
     "authority": [
       "figma"
     ],
-    "confidence": "medium",
-    "scope": "design-source-only"
+    "confidence": "high",
+    "scope": "normative-design"
   },
   "purpose": "**В продукте этого компонента нет.** Он существует только в макете, и это не пробел съёмки, а установленный факт — разбор в `notes` записи реестра:",
   "implementation": {
@@ -60,8 +60,8 @@
       "text": "Полная спецификация: guide/components/entities/vacancy-card.md."
     },
     {
-      "type": "coverage-warning",
-      "text": "Источник figma-only: компонент не подтверждён в продакшене."
+      "type": "guidance",
+      "text": "VacancyCard принят как нормативный; на 320 и 480 карточка растягивается на всю ширину контейнера."
     }
   ],
   "accessibility": [],
@@ -79,18 +79,12 @@
       ]
     }
   ],
-  "unknowns": [
-    "**Корень введён пакетом.** `crs-vacancy-card` — не класс продукта. METHOD §6.5 допускает корень вида `crs-<id>` ровно для этого случая: снятой разметки, из которой можно взять настоящее имя, не существует. Префикс `crs-` нужен, чтобы имя пакета нельзя было принять за класс продукта.",
-    "**Тексты.** Школа «Реактив», должность «Аналитик», теги и «Зарплата не указана» — дословно из узла. Кнопка «Далее» — продуктовый `Button` M main во всю ширину.",
-    "**Ассеты.** Логотип школы — содержимое: на его месте заглушка витрины `ui/assets/images/content-placeholder.svg`. Продуктовая заглушка логотипа организации (`avatars/logo.svg` на CDN продукта) в пакет не локализована, а `ui/assets/images/logo.svg` — логотип самих Курсов, не заглушка.",
-    "**Состояния.** Требуемые состояния записи (`default`) в макете отдельными вариантами не нарисованы, а измерить их негде. Разбор — [`components/STATE-CAPTURE.md`](../STATE-CAPTURE.md).",
-    "**Статус терминальный.** Правило манифеста: `sourceScope: figma-only` не доходит до `complete`/`partial`. Пока компонент не найден в продукте, запись остаётся `figma-only`, сколько бы вёрстки к ней ни прибавилось."
-  ],
+  "unknowns": [],
   "source": {
-    "version": "v0.1",
+    "version": "v0.2",
     "spec": "guide/components/entities/vacancy-card.md",
-    "status": "figma-only",
-    "scope": "figma-only",
+    "status": "complete",
+    "scope": "normative-design",
     "step": "R5-16",
     "anchor": "showcase/components.html#c-vacancy-card",
     "originalKind": "module",
@@ -115,7 +109,9 @@
     "captured": [
       "default"
     ],
-    "normative": [],
+    "normative": [
+      "default"
+    ],
     "uncaptured": []
   },
   "provenance": null,

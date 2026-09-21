@@ -5,7 +5,7 @@
   "kind": "component",
   "category": "forms",
   "maturity": {
-    "spec": "partial",
+    "spec": "complete",
     "markup": "available"
   },
   "knowledge": {
@@ -99,6 +99,10 @@
     {
       "type": "guidance",
       "text": "В M и XL используется один текстовый стиль 16/22 regular и SVG-иконки 24×24."
+    },
+    {
+      "type": "guidance",
+      "text": "ReadOnly, disabled and other states are owner-approved; undefined align-center has no independent visual rule."
     }
   ],
   "accessibility": [
@@ -157,14 +161,11 @@
       }
     }
   ],
-  "unknowns": [
-    "**Классы без правила.** В разметке продукта стоят классы, у которых нет объявления ни в одном из 22 файлов корпуса: `align-center`. Это не пробел пакета, а находка о продукте: класс написан, правило отсутствует. В `ui/` они не заводятся.",
-    "ReadOnly использует оболочку Disabled и текст Default по решению владельца 18 сентября 2026."
-  ],
+  "unknowns": [],
   "source": {
     "version": "v0.2",
     "spec": "guide/components/forms/text-input.md",
-    "status": "partial",
+    "status": "complete",
     "scope": "production",
     "step": "R3-09",
     "anchor": "showcase/components.html#c-text-input",

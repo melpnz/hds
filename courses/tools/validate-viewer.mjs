@@ -824,7 +824,7 @@ try {
       const foundationPreview = page.locator('#preview').contentFrame();
       await foundationPreview.locator('.foundation-preview').waitFor();
       if (entry.id === 'colors' && await foundationPreview.locator('.foundation-swatch').count() !== 41) failures.push('colors: token overview is incomplete');
-      if (entry.id === 'iconography' && await foundationPreview.locator('.foundation-icon').count() !== 13) failures.push('iconography: production-confirmed sprite overview is incomplete');
+      if (entry.id === 'iconography' && await foundationPreview.locator('.foundation-icon').count() !== 12) failures.push('iconography: normalized sprite overview is incomplete');
     }
 
     if (entry.id === 'responsive-layout') {

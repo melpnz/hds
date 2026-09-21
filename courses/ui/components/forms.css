@@ -41,7 +41,10 @@
   display: grid;
   gap: var(--fig-size-spacing-x4);
   grid-template-columns: repeat(3, minmax(0, 1fr));
+  overflow: hidden;
   padding: var(--fig-size-spacing-x6);
+  position: relative;
+  width: 100%;
 }
 .crs-feedback-form__intro {
   display: flex;
@@ -108,10 +111,49 @@
   margin: 0;
 }
 .crs-feedback-form__consent a { color: var(--fig-blue-500-solid); text-decoration: none; }
+.crs-feedback-form__success {
+  display: none;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  overflow: visible;
+}
+.crs-feedback-form__success-copy {
+  display: flex;
+  flex-direction: column;
+  gap: var(--fig-size-spacing-x6);
+  position: relative;
+  z-index: 1;
+}
+.crs-feedback-form__success-image {
+  align-self: end;
+  grid-column: 2 / span 2;
+  height: auto;
+  justify-self: center;
+  margin-bottom: calc(-1 * var(--fig-size-spacing-x6));
+  margin-top: calc(-1 * var(--fig-size-spacing-x3));
+  max-width: 100%;
+  object-fit: contain;
+  object-position: center bottom;
+  width: 100%;
+}
+.crs-feedback-form[data-state="success"] > .crs-feedback-form__intro,
+.crs-feedback-form[data-state="success"] > .crs-feedback-form__form { display: none; }
+.crs-feedback-form[data-state="success"] > .crs-feedback-form__success { display: grid; }
 /* Кадр 320 той же секции макета здесь не читался; складывание в одну
    колонку — на брейкпоинте макета 744, чтобы сетка не ломалась в узкой
    коробке. Раскладка узкого кадра — шаг R4-16. */
 @media (max-width: 743px) {
   .crs-feedback-form { grid-template-columns: minmax(0, 1fr); }
   .crs-feedback-form__form { grid-column: auto; }
+  .crs-feedback-form__success {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .crs-feedback-form__success-image {
+    align-self: end;
+    grid-column: auto;
+    height: auto;
+    margin: var(--fig-size-spacing-x4) calc(-1 * var(--courses-space-48)) calc(-1 * var(--fig-size-spacing-x6));
+    max-width: calc(100% + 2 * var(--courses-space-48));
+    width: calc(100% + 2 * var(--courses-space-48));
+  }
 }

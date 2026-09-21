@@ -5,7 +5,7 @@
   "kind": "module",
   "category": "data-display",
   "maturity": {
-    "spec": "partial",
+    "spec": "complete",
     "markup": "available"
   },
   "knowledge": {
@@ -70,6 +70,10 @@
     {
       "type": "coverage-warning",
       "text": "Источник figma-only: компонент не подтверждён в продакшене."
+    },
+    {
+      "type": "guidance",
+      "text": "Collapsed, expanded, hover and focus-visible are owner-approved; Figma is normative until production release."
     }
   ],
   "accessibility": [],
@@ -87,14 +91,7 @@
       ]
     }
   ],
-  "unknowns": [
-    "**Корень введён пакетом.** `crs-learning-step` — не класс продукта. METHOD §6.5 допускает корень вида `crs-<id>` ровно для этого случая: снятой разметки, из которой можно взять настоящее имя, не существует. Префикс `crs-` нужен, чтобы имя пакета нельзя было принять за класс продукта.",
-    "**Тексты.** Номер «0», заголовок «Основы программирования», срок «1–2 месяца» и описание — дословно из узла. Нумерация с нуля — так в макете. Ширина 645 — колонка контента страницы профессии.",
-    "**Ассеты.** Шеврон — символ `arrow-small` общего спрайта: в узле он повёрнут дважды на 180°, то есть смотрит вниз — свёрнутый шаг.",
-    "**Состояния.** `collapsed`, `expanded`, `hover` и `focus-visible` показаны в живом примере; кнопка синхронизирует раскрытие с `aria-expanded`.",
-    "**Статус терминальный.** Правило манифеста: `sourceScope: figma-only` не доходит до `complete`/`partial`. Пока компонент не найден в продукте, запись остаётся `figma-only`, сколько бы вёрстки к ней ни прибавилось.",
-    "Hover, focus-visible и expanded приняты по Figma владельцем 18 сентября 2026."
-  ],
+  "unknowns": [],
   "source": {
     "version": "v0.1",
     "spec": "guide/components/data-display/learning-step.md",

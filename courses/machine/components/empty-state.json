@@ -5,15 +5,15 @@
   "kind": "module",
   "category": "feedback",
   "maturity": {
-    "spec": "partial",
+    "spec": "complete",
     "markup": "available"
   },
   "knowledge": {
     "authority": [
       "figma"
     ],
-    "confidence": "medium",
-    "scope": "design-source-only"
+    "confidence": "high",
+    "scope": "normative-design"
   },
   "purpose": "**В продукте этого компонента нет.** Он существует только в макете, и это не пробел съёмки, а установленный факт — разбор в `notes` записи реестра:",
   "implementation": {
@@ -60,8 +60,8 @@
       "text": "Полная спецификация: guide/components/feedback/empty-state.md."
     },
     {
-      "type": "coverage-warning",
-      "text": "Источник figma-only: компонент не подтверждён в продакшене."
+      "type": "guidance",
+      "text": "EmptyState принят владельцем как нормативный компонент без дополнительных вариантов."
     }
   ],
   "accessibility": [],
@@ -86,18 +86,12 @@
       ]
     }
   ],
-  "unknowns": [
-    "**Корень введён пакетом.** `crs-empty-state` — не класс продукта. METHOD §6.5 допускает корень вида `crs-<id>` ровно для этого случая: снятой разметки, из которой можно взять настоящее имя, не существует. Префикс `crs-` нужен, чтобы имя пакета нельзя было принять за класс продукта.",
-    "**Тексты.** Тексты — собственное содержимое узла макета, приведено дословно. Кнопки в макете подписаны конкретными фильтрами («Вебинар», «Санкт-Петербург»): это не пример из головы, а то, что нарисовано.",
-    "**Ассеты.** Ассетов у компонента нет — только текст и кнопки.",
-    "**Состояния.** Требуемые состояния записи (`default`) в макете отдельными вариантами не нарисованы, а измерить их негде. Разбор — [`components/STATE-CAPTURE.md`](../STATE-CAPTURE.md).",
-    "**Статус терминальный.** Правило манифеста: `sourceScope: figma-only` не доходит до `complete`/`partial`. Пока компонент не найден в продукте, запись остаётся `figma-only`, сколько бы вёрстки к ней ни прибавилось."
-  ],
+  "unknowns": [],
   "source": {
-    "version": "v0.1",
+    "version": "v0.2",
     "spec": "guide/components/feedback/empty-state.md",
-    "status": "figma-only",
-    "scope": "figma-only",
+    "status": "complete",
+    "scope": "normative-design",
     "step": "R4-14",
     "anchor": "showcase/components.html#c-empty-state",
     "originalKind": "module",
@@ -119,7 +113,9 @@
     "captured": [
       "default"
     ],
-    "normative": [],
+    "normative": [
+      "default"
+    ],
     "uncaptured": []
   },
   "provenance": null,

@@ -5,15 +5,15 @@
   "kind": "component",
   "category": "feedback",
   "maturity": {
-    "spec": "partial",
+    "spec": "complete",
     "markup": "available"
   },
   "knowledge": {
     "authority": [
       "figma"
     ],
-    "confidence": "medium",
-    "scope": "design-source-only"
+    "confidence": "high",
+    "scope": "normative-design"
   },
   "purpose": "**В продукте этого компонента нет.** Он существует только в макете, и это не пробел съёмки, а установленный факт — разбор в `notes` записи реестра:",
   "implementation": {
@@ -57,8 +57,8 @@
       "text": "Полная спецификация: guide/components/feedback/loader.md."
     },
     {
-      "type": "coverage-warning",
-      "text": "Источник figma-only: компонент не подтверждён в продакшене."
+      "type": "guidance",
+      "text": "Loader принят как нормативный непрерывно вращающийся Android-style индикатор; при reduced motion вращение сохраняется, но замедляется."
     }
   ],
   "accessibility": [],
@@ -76,18 +76,12 @@
       ]
     }
   ],
-  "unknowns": [
-    "**Корень введён пакетом.** `crs-loader` — не класс продукта. METHOD §6.5 допускает корень вида `crs-<id>` ровно для этого случая: снятой разметки, из которой можно взять настоящее имя, не существует. Префикс `crs-` нужен, чтобы имя пакета нельзя было принять за класс продукта.",
-    "**Тексты.** Текста у компонента нет. В макете блок стоит в кадре «Нулевая выдача» над пустой выдачей шириной 976 — во всю колонку контента.",
-    "**Ассеты.** Спиннер — символ `loader` общего спрайта, а не экспорт: глиф тот же, координаты экспорта ровно вдвое больше (поле 48 против 24). Вращения нет: кадр макета статичный, а связка символа `loader` с продуктовой утилитой `.animate-spin` в снятой разметке не встречается ни разу — символ не использован ни на одной из десяти страниц.",
-    "**Состояния.** Требуемые состояния записи (`default`) в макете отдельными вариантами не нарисованы, а измерить их негде. Разбор — [`components/STATE-CAPTURE.md`](../STATE-CAPTURE.md).",
-    "**Статус терминальный.** Правило манифеста: `sourceScope: figma-only` не доходит до `complete`/`partial`. Пока компонент не найден в продукте, запись остаётся `figma-only`, сколько бы вёрстки к ней ни прибавилось."
-  ],
+  "unknowns": [],
   "source": {
-    "version": "v0.1",
+    "version": "v0.2",
     "spec": "guide/components/feedback/loader.md",
-    "status": "figma-only",
-    "scope": "figma-only",
+    "status": "complete",
+    "scope": "normative-design",
     "step": "R4-15",
     "anchor": "showcase/components.html#c-loader",
     "originalKind": "component",
@@ -109,7 +103,9 @@
     "captured": [
       "default"
     ],
-    "normative": [],
+    "normative": [
+      "default"
+    ],
     "uncaptured": []
   },
   "provenance": null,

@@ -76,7 +76,7 @@ SpriteIcon — статичный `<svg class="svg-icon"><use xlink:href="…spr
 
 | Размер | Вхождений | Типичный контекст |
 |---|---|---|
-| 16×16 | 185 | счётчики в строке метаданных — `comment` (92), `star-rounded-small` (93) |
+| 16×16 | 185 | счётчики в строке метаданных — `comment` (92), `star-rounded` (93; production-алиас `star-rounded-small` нормализован) |
 | 24×24 | 169 | крупные значки — `star-rounded` (89 из 119), `arrow-small` (36), `building`, `star-empty`, `percents` (частично), `catalog`, `cross-large`, `search` |
 | 20×20 | 113 | `arrow-large` (47, дропдаун), `star-rounded` (30 из 119), `percents` (частично), `accreditation` (18) |
 | 22×22 | 20 | только `more`, кнопка «показать ещё» |
@@ -160,7 +160,7 @@ Vue-скоуп (`data-v-*`) в узлах `svg.svg-icon` не встречает
 
 | Prop | Тип | По умолчанию | Значения | Control |
 |---|---|---|---|---|
-| `icon` | `SpriteIconVariant` | — (обязателен) | `accreditation` · `accreditation-expert` · `arrow-large` · `arrow-small` · `building` · `catalog` · `comment` · `cross-large` · `cross-small` · `datepicker` · `filter` · `loader` · `more` · `menu` · `menu-close` · `percents` · `plus` · `search` · `sort` · `star-empty` · `star-rounded` · `star-rounded-small` | `select` |
+| `icon` | `SpriteIconVariant` | — (обязателен) | `accreditation` · `accreditation-expert` · `arrow-large` · `arrow-small` · `building` · `catalog` · `comment` · `cross-large` · `cross-small` · `datepicker` · `filter` · `loader` · `more` · `menu` · `menu-close` · `percents` · `plus` · `search` · `sort` · `star-empty` · `star-rounded` | `select` |
 | `size` | `number \| string` | `24` | — | `number` |
 
 22 значения `icon` — весь набор символов `sprite.svg` (подтверждено собственной

@@ -282,6 +282,7 @@
   display: flex;
   flex-direction: column;
   gap: var(--fig-size-spacing-x3);
+  max-width: none !important;
   padding: var(--fig-size-spacing-x6);
   width: 100%;
 }
@@ -296,6 +297,8 @@
   display: grid;
   gap: var(--fig-size-spacing-x2) var(--fig-size-spacing-x3);
   grid-template-columns: fit-content(100%) minmax(0, 1fr);
+  min-width: 0;
+  width: 100%;
 }
 .crs-demand-chart__label {
   color: var(--fig-color-style-font-primary);
@@ -307,12 +310,21 @@
   align-self: center;
   background: var(--fig-color-style-neutral-neutral-light);
   border-radius: var(--fig-size-radius-full);
+  min-width: 0;
+  overflow: hidden;
+  width: 100%;
 }
 .crs-demand-chart__bar {
   background: var(--fig-color-style-primary-primary-medium);
   border-radius: var(--fig-size-radius-xxs);
   height: var(--courses-size-12);
   width: calc(var(--crs-value, 1) * 100%);
+}
+
+@media (max-width: 479px) {
+  .crs-demand-chart { padding: var(--fig-size-spacing-x4); }
+  .crs-demand-chart__rows { grid-template-columns: minmax(0, 1fr); }
+  .crs-demand-chart__track { min-height: var(--courses-size-12); }
 }
 
 /* FaqBlock — «СЕО-блок / FAQ», 12195:100235 (вариант Мобилка=no,

@@ -5,7 +5,7 @@
   "kind": "component",
   "category": "forms",
   "maturity": {
-    "spec": "partial",
+    "spec": "complete",
     "markup": "available"
   },
   "knowledge": {
@@ -101,6 +101,10 @@
     {
       "type": "coverage-warning",
       "text": "Источник storybook-only: компонент не подтверждён в продакшене."
+    },
+    {
+      "type": "guidance",
+      "text": "Switch is owner-approved from Storybook and Figma; missing public production provenance is not a contract gap."
     }
   ],
   "accessibility": [
@@ -128,15 +132,11 @@
       }
     }
   ],
-  "unknowns": [
-    "**Классы без правила.** `leading-md` — объявления нет ни в 22 файлах прод-корпуса, ни в 13 файлах CSS снимка Storybook. См. раздел «Находки» витрины.",
-    "**Прод-адреса нет.** Пока компонент не найден в продукте, ни `occurrences`, ни `seenOn` у записи не заполняются: измерять нечего. Числа в реестре остаются нулями осознанно.",
-    "**Проза выведена из story и CSS Storybook.** Записи нет в разметке снятых страниц, и в переписи корпуса её нет. Правило применения, «Как работает», клавиатура, анимация и адаптив написаны 11 сентября 2026 по снятой story и CSS Storybook (`evidence/source/storybook/`); «Когда не использовать» — по тому, чем снятые страницы решают ту же задачу. Разделов «Название и текст», «Валидация», «Слоты · Props» нет: подтвердить их нечем."
-  ],
+  "unknowns": [],
   "source": {
     "version": "v0.2",
     "spec": "guide/components/forms/switch.md",
-    "status": "partial",
+    "status": "complete",
     "scope": "storybook-only",
     "step": "R3-11",
     "anchor": "showcase/components.html#c-switch",
