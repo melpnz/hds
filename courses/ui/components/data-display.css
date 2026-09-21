@@ -76,8 +76,9 @@
 .crs-entity-logo[data-size="100"] { --crs-entity-logo-size: var(--courses-size-100); --crs-entity-logo-radius: var(--courses-radius-24); }
 
 @media (max-width: 767px) {
-  .crs-entity-logo--school-header {
-    --crs-entity-logo-size: var(--courses-size-68);
+  .crs-entity-logo.crs-entity-logo--school-header {
+    /* Production exception: the school header uses an exact 70px logo on phone. */
+    --crs-entity-logo-size: var(--courses-size-70);
     --crs-entity-logo-radius: var(--courses-radius-16);
   }
 }
@@ -339,4 +340,62 @@
   display: flex;
   flex-direction: column;
   gap: var(--fig-size-spacing-x3);
+}
+
+/* ProfileHistory — production-профиль автора. Две хронологии в равных
+   колонках; на phone секции складываются без изменения строки. */
+.crs-profile-history {
+  display: grid;
+  gap: var(--courses-space-16);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+}
+.crs-profile-history__section,
+.crs-profile-history__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--courses-space-24);
+  min-width: 0;
+}
+.crs-profile-history__title {
+  color: var(--color-text-main);
+  font-size: var(--fig-font-size-display-l);
+  font-weight: var(--fig-font-weight-semibold);
+  line-height: var(--courses-line-height-28-on-24);
+  margin: 0;
+}
+.crs-profile-history__item {
+  display: flex;
+  gap: var(--courses-space-12);
+  min-width: 0;
+}
+.crs-profile-history__logo {
+  flex: 0 0 auto;
+}
+.crs-profile-history__content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--courses-space-4);
+  min-width: 0;
+}
+.crs-profile-history__name {
+  color: var(--color-text-main);
+  display: -webkit-box;
+  font-size: var(--courses-font-size-16);
+  font-weight: var(--fig-font-weight-semibold);
+  line-height: var(--courses-line-height-22-on-16);
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+.crs-profile-history__period {
+  color: var(--color-ui-black-500);
+  font-size: var(--courses-font-size-14);
+  line-height: var(--courses-line-height-20-on-14);
+}
+@media (max-width: 767px) {
+  .crs-profile-history {
+    gap: var(--courses-space-40);
+    grid-template-columns: minmax(0, 1fr);
+  }
 }

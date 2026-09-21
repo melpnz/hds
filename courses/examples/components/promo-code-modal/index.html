@@ -8,20 +8,15 @@
   <link rel="stylesheet" href="../../../ui/courses.css">
   <style>
     html,body{margin:0;background:#fff}body{box-sizing:border-box;padding:24px}
-    .example-root{display:grid;gap:12px;width:100%}.preview-controls,.device-switch,.variant-switch{display:flex;gap:8px;flex-wrap:wrap}.preview-controls{justify-content:space-between}.device-switch button,.variant-switch button{height:36px;padding:0 12px;border:1px solid #e9e9ea;border-radius:12px;background:#fff;font:600 14px/20px Inter,sans-serif}.device-switch button[aria-pressed=true],.variant-switch button[aria-pressed=true]{border-color:#94bdfc;background:#eff5ff;color:#346ef4}.crs-promo-code-modal[hidden]{display:none}
+    .example-root{display:grid;gap:12px;width:100%}.variant-switch{display:flex;gap:8px;flex-wrap:wrap}.variant-switch button{height:36px;padding:0 12px;border:1px solid #e9e9ea;border-radius:12px;background:#fff;font:600 14px/20px Inter,sans-serif}.variant-switch button[aria-pressed=true]{border-color:#94bdfc;background:#eff5ff;color:#346ef4}.crs-promo-code-modal[hidden]{display:none}
     .promo-stage{display:flex;box-sizing:border-box;min-height:560px;align-items:center;justify-content:center;padding:32px;background:rgba(0,0,0,.3)}
-    .promo-stage[data-device=tablet]{min-height:620px;padding:24px}.promo-stage[data-device=mobile]{min-height:568px;align-items:flex-end;padding:48px 0 0}
-    .promo-stage[data-device=mobile] .crs-promo-code-modal{max-width:320px;border-radius:24px 24px 0 0}
+    @media(max-width:767px){body{padding:0}.example-root,.promo-stage{min-height:100vh}.variant-switch{margin:24px 24px 0}.promo-stage{align-items:flex-end;padding:48px 0 0}.promo-stage .crs-promo-code-modal{max-width:320px;border-radius:24px 24px 0 0}}
   </style>
 </head>
 <body data-preview-layout="viewport">
   <div class="example-root">
-    <div class="preview-controls"><div class="device-switch" role="group" aria-label="Размер экрана">
-      <button type="button" data-device="desktop" aria-pressed="true">Desktop</button>
-      <button type="button" data-device="tablet" aria-pressed="false">Tablet</button>
-      <button type="button" data-device="mobile" aria-pressed="false">Mobile</button>
-    </div><div class="variant-switch" role="group" aria-label="Тип предложения"><button type="button" data-variant="code" aria-pressed="true">Промокод</button><button type="button" data-variant="action" aria-pressed="false">Акция</button></div></div>
-    <div class="promo-stage" data-device="desktop">
+    <div class="variant-switch" role="group" aria-label="Тип предложения"><button type="button" data-variant="code" aria-pressed="true">Промокод</button><button type="button" data-variant="action" aria-pressed="false">Акция</button></div>
+    <div class="promo-stage">
       <div class="crs-promo-code-modal" role="dialog" aria-label="Промокод Skillbox">
         <p class="crs-promo-code-modal__title">Skillbox</p>
         <div class="crs-promo-code-modal__body">
@@ -40,7 +35,6 @@
   </div>
   <script>
     const stage=document.querySelector('.promo-stage');
-    document.querySelectorAll('.device-switch button').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.device-switch button').forEach(item=>item.setAttribute('aria-pressed','false'));button.setAttribute('aria-pressed','true');stage.dataset.device=button.dataset.device;}));
     document.querySelectorAll('.variant-switch button').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('.variant-switch button').forEach(item=>item.setAttribute('aria-pressed','false'));button.setAttribute('aria-pressed','true');const action=button.dataset.variant==='action';stage.querySelector('[data-variant="action"]').hidden=!action;stage.querySelector('.crs-promo-code-modal:not([data-variant])').hidden=action;}));
   </script>
 </body>

@@ -1,0 +1,203 @@
+{
+  "$schema": "../../schema.json",
+  "id": "profile-history",
+  "title": "ProfileHistory",
+  "kind": "module",
+  "category": "entities",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "production"
+    ],
+    "confidence": "high",
+    "scope": "public-guest"
+  },
+  "purpose": "Двухколоночная история профиля автора: опыт работы и образование; на мобильном секции складываются вертикально.",
+  "implementation": {
+    "markup": "available-in-examples",
+    "cssRoots": [
+      "crs-profile-history"
+    ],
+    "styles": [
+      "ui/courses.css"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "default"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "default",
+      "title": "Опыт работы и образование",
+      "file": "examples/components/profile-history/index.html",
+      "covers": [
+        "default",
+        "desktop-columns",
+        "mobile-stack"
+      ],
+      "preview": {
+        "mode": "viewport",
+        "widths": [
+          320,
+          480,
+          768,
+          1024
+        ],
+        "height": 760
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Полная спецификация: guide/components/entities/profile-history.md."
+    },
+    {
+      "type": "guidance",
+      "text": "Внешние production-логотипы заменены локальным EntityLogo; геометрия и структура сохранены."
+    }
+  ],
+  "accessibility": [
+    "Использовать section с видимым заголовком; логотипы дублируют соседний текст и имеют пустой alt. Интерактивных элементов нет."
+  ],
+  "evidence": [
+    {
+      "type": "production",
+      "ref": "https://career.habr.com/courses/authors/23-stepan-voevodin",
+      "data": {
+        "verifiedAt": "2026-09-21",
+        "pages": [
+          "author"
+        ],
+        "employmentItems": 9,
+        "educationItems": 13
+      }
+    }
+  ],
+  "unknowns": [],
+  "source": {
+    "version": "v0.2",
+    "spec": "guide/components/entities/profile-history.md",
+    "status": "complete",
+    "scope": "production",
+    "step": "courses-v0.2-profile-history",
+    "anchor": "viewer/index.html#profile-history",
+    "originalKind": "module",
+    "markupNote": "Новая самостоятельная запись выделена из production-страницы автора.",
+    "markupState": "available"
+  },
+  "usage": {
+    "when": "Для двух связанных хронологий профиля: опыт работы и образование.",
+    "whenNot": [
+      "Для биографии и компетенций — Prose.",
+      "Для пар свойств школы — InfoTable."
+    ],
+    "related": [
+      "person-header",
+      "info-table"
+    ]
+  },
+  "dependencies": [
+    "entity-logo"
+  ],
+  "stateCoverage": {
+    "required": [
+      "default"
+    ],
+    "captured": [
+      "default"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "Выделено 21 сентября 2026 из публичной production-страницы автора. Состав подтверждён актуальной страницей и локальными evidence-снимками на 320/480/768/1024.",
+  "sourceConflicts": [],
+  "visual": {
+    "generatedBy": "tools/build-visual-contracts.mjs",
+    "specificity": "family-baseline",
+    "family": "entity-card-or-header",
+    "typography": {
+      "family": "Inter, sans-serif",
+      "body": {
+        "token": "--courses-font-size-16",
+        "value": "1rem"
+      },
+      "small": {
+        "token": "--courses-font-size-14",
+        "value": "0.875rem"
+      }
+    },
+    "colors": {
+      "text": {
+        "token": "--color-text-main",
+        "value": "{color.ui-black-850}"
+      },
+      "muted": {
+        "token": "--color-ui-black-500",
+        "value": "#909194"
+      },
+      "surface": {
+        "token": "--color-white-background",
+        "value": "{color.ui-white}"
+      },
+      "border": {
+        "token": "--color-ui-black-200",
+        "value": "#d3d3d4"
+      },
+      "action": {
+        "token": "--color-ui-blue-500",
+        "value": "#346ef4"
+      },
+      "focus": {
+        "token": "--color-ui-black-400",
+        "value": "#a6a7a9"
+      }
+    },
+    "states": [
+      "default"
+    ],
+    "sources": [
+      "machine/dimension-tokens.json",
+      "machine/tokens.json",
+      "ui/courses.css",
+      "examples/components/profile-history/index.html"
+    ],
+    "geometry": {
+      "radius": {
+        "token": "--courses-radius-24",
+        "value": "1.5rem"
+      },
+      "padding": {
+        "token": "--courses-space-24",
+        "value": "1.5rem"
+      },
+      "gap": {
+        "token": "--courses-space-16",
+        "value": "1rem"
+      },
+      "border": {
+        "token": "--courses-border-width-1",
+        "value": "1px"
+      }
+    },
+    "layout": {
+      "width": "container-dependent",
+      "actionWidth": "stretch-in-card-context"
+    },
+    "responsive": {
+      "columns": {
+        "desktop": "component-defined",
+        "mobile": 1
+      }
+    }
+  }
+}

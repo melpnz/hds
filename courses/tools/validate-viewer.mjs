@@ -265,11 +265,13 @@ try {
     }
 
     if (entry.id === 'modal') {
-      if (await page.locator('.preview-toolbar').isVisible()) failures.push('modal: intrinsic playground exposes viewport controls');
+      if (!(await page.locator('.preview-toolbar').isVisible())) failures.push('modal: responsive playground must expose viewport controls');
       const preview = page.locator('#preview').contentFrame();
       const modal = preview.locator('#modal-target');
       const body = preview.locator('.crs-modal__body');
       const wrap = preview.locator('#modal-wrap');
+      await page.locator('#viewport-controls [data-width="1024"]').click();
+      await page.waitForTimeout(240);
       await modal.waitFor();
       const desktop = await modal.evaluate(element => {
         const rect = element.getBoundingClientRect();
@@ -284,7 +286,9 @@ try {
       const fixedAfter = await modal.evaluate(element => ({ header: element.querySelector('.crs-modal__header').getBoundingClientRect().top, footer: element.querySelector('.crs-modal__footer').getBoundingClientRect().top, scrollTop: element.querySelector('.crs-modal__body').scrollTop }));
       if (fixedAfter.scrollTop < 100 || Math.abs(fixedBefore.header - fixedAfter.header) > .1 || Math.abs(fixedBefore.footer - fixedAfter.footer) > .1) failures.push('modal: body scrolling moves the header or footer');
 
-      await preview.locator('.crs-modal-preset[data-device="mobile"]').click();
+      if (await preview.locator('.crs-modal-preset').count()) failures.push('modal: internal device presets must be absent');
+      await page.locator('#viewport-controls [data-width="320"]').click();
+      await page.waitForTimeout(240);
       const mobile = await modal.evaluate(element => {
         const rect = element.getBoundingClientRect();
         const stage = element.closest('.crs-modal-stage').getBoundingClientRect();
@@ -315,6 +319,7 @@ try {
       await preview.locator('#modal-open').click();
       await preview.locator('#modal-stage').click({ position: { x: 8, y: 8 } });
       if (!(await wrap.isHidden())) failures.push('modal: overlay click does not close the dialog');
+      await page.locator('#viewport-controls [data-width="full"]').click();
     }
 
     if (entry.id === 'promo-code-modal') {
@@ -325,12 +330,21 @@ try {
       if (await variants.count() !== 2) failures.push('promo-code-modal: promo-code and promotion variants are not both available');
       await preview.locator('.variant-switch [data-variant="action"]').click();
       if (!(await variants.nth(1).isVisible()) || await variants.nth(0).isVisible()) failures.push('promo-code-modal: promotion variant cannot be selected');
-      for (const device of ['desktop', 'tablet', 'mobile']) {
-        await preview.locator(`.device-switch [data-device="${device}"]`).click();
-        if (await preview.locator('.promo-stage').getAttribute('data-device') !== device) failures.push(`promo-code-modal: ${device} presentation cannot be selected`);
+      if (await preview.locator('.device-switch').count()) failures.push('promo-code-modal: internal device switch must be absent');
+      for (const width of [320, 480, 768, 1024]) {
+        await page.locator(`#viewport-controls [data-width="${width}"]`).click();
+        await page.waitForTimeout(240);
+        const geometry = await preview.locator('.crs-promo-code-modal:not([hidden])').evaluate(element => ({
+          radius: getComputedStyle(element).borderRadius,
+          bottom: element.getBoundingClientRect().bottom,
+          stageBottom: element.closest('.promo-stage').getBoundingClientRect().bottom,
+        }));
+        if (width <= 480 && (geometry.radius !== '24px 24px 0px 0px' || Math.abs(geometry.bottom - geometry.stageBottom) > .1)) failures.push(`promo-code-modal: ${width}px does not use mobile presentation`);
+        if (width >= 768 && geometry.radius !== '24px') failures.push(`promo-code-modal: ${width}px does not use tablet/desktop presentation`);
       }
       const overflow = await preview.locator('html').evaluate(element => element.scrollWidth - element.clientWidth);
       if (overflow > 1) failures.push('promo-code-modal: responsive variants overflow the preview');
+      await page.locator('#viewport-controls [data-width="full"]').click();
     }
 
     if (entry.id === 'filter-modal') {
@@ -396,19 +410,27 @@ try {
       const stage = preview.locator('.sheet-stage');
       const panel = preview.locator(isSort ? '.crs-sort-sheet__panel' : '.crs-price-sheet__panel');
       await stage.waitFor();
-      for (const device of ['desktop', 'tablet', 'mobile']) {
-        await preview.locator(`.device-switch [data-device="${device}"]`).click();
-        if (await stage.getAttribute('data-device') !== device) failures.push(`${entry.id}: ${device} presentation cannot be selected`);
-      }
-      const mobile = await panel.evaluate(element => ({
-        width: element.getBoundingClientRect().width,
-        overflow: getComputedStyle(element).overflow,
-        radius: getComputedStyle(element).borderTopLeftRadius,
-      }));
-      if (Math.abs(mobile.width - 320) > .1) failures.push(`${entry.id}: mobile panel is not 320px wide`);
-      if (mobile.overflow !== 'hidden') failures.push(`${entry.id}: panel does not clip hover backgrounds inside its rounded corners`);
-
       if (isSort) {
+        if (await preview.locator('.device-switch').count()) failures.push('sort-sheet: internal device switch must be absent');
+        for (const width of [320, 480, 768, 1024]) {
+          await page.locator(`#viewport-controls [data-width="${width}"]`).click();
+          await page.waitForTimeout(240);
+          const geometry = await panel.evaluate(element => ({
+            width: element.getBoundingClientRect().width,
+            bottom: element.getBoundingClientRect().bottom,
+            stageBottom: element.closest('.sheet-stage').getBoundingClientRect().bottom,
+            radius: getComputedStyle(element).borderRadius,
+            handle: getComputedStyle(element.querySelector('.crs-sort-sheet__handle')).display,
+            overflow: getComputedStyle(element).overflow,
+          }));
+          if (width <= 480) {
+            if (width === 320 && Math.abs(geometry.width - 320) > .1) failures.push('sort-sheet: mobile panel is not 320px wide');
+            if (Math.abs(geometry.bottom - geometry.stageBottom) > .1 || geometry.radius !== '24px 24px 0px 0px' || geometry.handle === 'none') failures.push(`sort-sheet: ${width}px does not use mobile presentation`);
+          } else if (Math.abs(geometry.width - 320) > .1 || geometry.radius !== '12px' || geometry.handle !== 'none') {
+            failures.push(`sort-sheet: ${width}px does not use tablet/desktop presentation`);
+          }
+          if (geometry.overflow !== 'hidden') failures.push('sort-sheet: panel does not clip hover backgrounds inside its rounded corners');
+        }
         const options = preview.locator('.crs-sort-sheet__option');
         if (await options.count() !== 6) failures.push('sort-sheet: expected six sorting options');
         await options.nth(2).click();
@@ -416,7 +438,28 @@ try {
         await options.nth(0).hover();
         const hover = await options.nth(0).evaluate(element => getComputedStyle(element).backgroundColor);
         if (hover === 'rgba(0, 0, 0, 0)') failures.push('sort-sheet: hover state is absent');
+        await page.locator('#viewport-controls [data-width="full"]').click();
       } else {
+        if (await preview.locator('.device-switch').count()) failures.push('price-sheet: internal device switch must be absent');
+        for (const width of [320, 480, 768, 1024]) {
+          await page.locator(`#viewport-controls [data-width="${width}"]`).click();
+          await page.waitForTimeout(240);
+          const geometry = await panel.evaluate(element => ({
+            padding: getComputedStyle(element).padding,
+            title: getComputedStyle(element.querySelector('.crs-price-sheet__title')).display,
+            width: element.getBoundingClientRect().width,
+            bottom: element.getBoundingClientRect().bottom,
+            stageBottom: element.closest('.sheet-stage').getBoundingClientRect().bottom,
+            bodyBottom: document.body.getBoundingClientRect().bottom,
+          }));
+          if (width <= 480) {
+            if (geometry.padding !== '24px 24px 16px' || geometry.title === 'none') failures.push(`price-sheet: ${width}px does not use Mobile presentation`);
+            if (width === 320 && Math.abs(geometry.width - 320) > .1) failures.push('price-sheet: mobile panel is not 320px wide');
+            if (Math.abs(geometry.bottom - geometry.stageBottom) > .1 || Math.abs(geometry.stageBottom - geometry.bodyBottom) > .1) failures.push(`price-sheet: ${width}px leaves whitespace below the mobile panel`);
+          } else if (geometry.padding !== '16px' || geometry.title !== 'none') {
+            failures.push(`price-sheet: ${width}px does not use tablet/desktop presentation`);
+          }
+        }
         const inputs = preview.locator('.crs-price-sheet__input');
         await inputs.nth(0).fill('1000');
         await inputs.nth(1).fill('5000');

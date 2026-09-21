@@ -28,6 +28,9 @@
   overscroll-behavior-inline: contain;
   width: 100%;
 }
+.scrollbar-container > * {
+  flex: 0 0 auto;
+}
 
 /* -------------------------------------------------------------------------
    Breadcrumbs · production hero
@@ -68,8 +71,11 @@
   color: var(--fig-color-style-font-secondary);
   font-size: var(--fig-font-size-body-m);
   line-height: var(--courses-line-height-20-on-14);
+  max-width: 100%;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
   white-space: nowrap;
-  word-break: break-word;
 }
 .crs-breadcrumbs--hero .crs-breadcrumbs__item {
   color: var(--color-ui-white);
@@ -104,6 +110,10 @@
 }
 .crs-breadcrumbs--hero .crs-breadcrumbs__sep .svg-icon {
   color: var(--color-ui-black-200);
+}
+
+.scrollbar-button:before {
+  background: linear-gradient(90deg, transparent, var(--color-ui-white));
 }
 
 /* -------------------------------------------------------------------------

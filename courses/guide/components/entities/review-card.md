@@ -85,6 +85,8 @@ p24, шапка grid [50px 1fr 164px] (на phone [50px 1fr]) gap 12/16: ава�
 
 ## Responsive
 
+Действие «Читать полностью» имеет локальную типографику 14/20 и не наследует общий `button { font-size: 16px }`.
+
 Классы с префиксом ширины в поддереве записи: `phone:pl-0`, `phone:max-h-[326px]`, `phone:grid-cols-[50px_1fr]`, `phone:col-span-2`, `phone:flex`, `phone:items-center`, `phone:gap-2`. Условия префиксов: `phone:` — до 767 (`docs/guide/layout.md`).
 
 ## Ограничения

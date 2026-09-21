@@ -36,6 +36,38 @@
     "feature": [],
     "domain": []
   },
+  "layoutRules": [
+    {
+      "id": "course-card-columns",
+      "context": "CourseCard carousel",
+      "behavior": "Показывает 1 карточку до 767 px, 3 карточки на 768–1023 px и 4 карточки от 1024 px.",
+      "implementation": "CSS grid-auto-columns with 16px gaps; the standalone adapter keeps native horizontal scrolling."
+    },
+    {
+      "id": "wide-card-columns",
+      "context": "ArticleCard and ReviewCard carousels",
+      "behavior": "Показывает 1 карточку до 767 px, 2 карточки на 768–1023 px и 3 карточки от 1024 px.",
+      "implementation": "Variant selectors define grid-auto-columns while the cards remain canonical component instances."
+    },
+    {
+      "id": "ad-slot-geometry",
+      "context": "AdSlot carousel",
+      "behavior": "На телефоне баннер занимает ширину контейнера; на больших экранах активный баннер 568 px центрируется с видимыми соседями.",
+      "implementation": "The AdSlot track uses centered flex spacers on tablet/desktop and a 272/280 aspect ratio on phone."
+    },
+    {
+      "id": "navigation",
+      "context": "All carousel variants",
+      "behavior": "Стрелки IconButton доступны на всех контрольных ширинах; точки пагинации не используются. У конечных контентных каруселей стрелка отключается на границе.",
+      "implementation": "Shared Carousel controls move by one slide and derive disabled state from the scroll boundary; production delegates state to Swiper."
+    },
+    {
+      "id": "ad-slot-loop",
+      "context": "AdSlot carousel",
+      "behavior": "Рекламная карусель зациклена: после последнего баннера открывается первый, перед первым — последний.",
+      "implementation": "The offline preview adapter renders inert copies of the full sequence on both sides. After crossing a boundary it jumps without animation to the visually identical slide in the middle sequence, so the loop has no visible rewind."
+    }
+  ],
   "rules": [],
   "examples": [
     {

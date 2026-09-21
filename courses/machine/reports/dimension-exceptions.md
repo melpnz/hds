@@ -2,7 +2,7 @@
 
 Базовая сетка: **0.25rem**; утверждённые дополнительные ступени соответствуют **1px, 2px, 6px** при root 16px. Некратные значения токенизированы без округления и остаются в отчёте для дизайнерского разбора.
 
-Всего употреблений: **123**; уникальных сочетаний причины и значения: **71**.
+Всего употреблений: **126**; уникальных сочетаний причины и значения: **71**.
 
 ## `19.26px` · composite-or-unsupported-property
 
@@ -58,7 +58,7 @@
 Всего: 2.
 
 - `ui/components/overlays.css:578` — `grid-template-rows`
-- `ui/components/overlays.css:605` — `grid-template-rows`
+- `ui/components/overlays.css:606` — `grid-template-rows`
 
 ## `96px` · composite-or-unsupported-property
 
@@ -84,7 +84,7 @@
 
 Всего: 1.
 
-- `ui/components/overlays.css:606` — `grid-template-rows`
+- `ui/components/overlays.css:607` — `grid-template-rows`
 
 ## `232px` · composite-or-unsupported-property
 
@@ -208,7 +208,7 @@
 
 Всего: 4.
 
-- `ui/components/data-display.css:247` — `token:size`
+- `ui/components/data-display.css:248` — `token:size`
 - `ui/utilities-components.css:839` — `token:space`
 - `ui/utilities-components.css:839` — `token:space`
 - `ui/utilities-components.css:1093` — `token:space`
@@ -227,9 +227,8 @@
 
 ## `10px` · tokenized-off-grid-value
 
-Всего: 6.
+Всего: 5.
 
-- `ui/components/collections.css:62` — `token:font-size`
 - `ui/foundations.css:234` — `token:font-size`
 - `ui/utilities-components.css:84` — `token:size`
 - `ui/components/overlays.css:318` — `token:space`
@@ -257,15 +256,16 @@
 
 ## `14px` · tokenized-off-grid-value
 
-Всего: 16.
+Всего: 17.
 
-- `ui/components/collections.css:42` — `token:font-size`
-- `ui/components/collections.css:61` — `token:font-size`
-- `ui/components/collections.css:63` — `token:font-size`
-- `ui/components/navigation.css:261` — `token:font-size`
-- `ui/components/overlays.css:725` — `token:font-size`
-- `ui/components/overlays.css:820` — `token:font-size`
-- `ui/components/overlays.css:824` — `token:font-size`
+- `ui/components/collections.css:41` — `token:font-size`
+- `ui/components/collections.css:70` — `token:font-size`
+- `ui/components/data-display.css:393` — `token:font-size`
+- `ui/components/entities.css:32` — `token:font-size`
+- `ui/components/navigation.css:271` — `token:font-size`
+- `ui/components/overlays.css:726` — `token:font-size`
+- `ui/components/overlays.css:821` — `token:font-size`
+- `ui/components/overlays.css:825` — `token:font-size`
 - `ui/foundations.css:232` — `token:font-size`
 - `ui/foundations.css:274` — `token:font-size`
 - `ui/foundations.css:275` — `token:font-size`
@@ -280,7 +280,7 @@
 
 Всего: 8.
 
-- `ui/components/collections.css:41` — `token:font-size`
+- `ui/components/collections.css:40` — `token:font-size`
 - `ui/foundations.css:228` — `token:font-size`
 - `ui/tokens-figma.css:225` — `token:font-size`
 - `ui/tokens.css:175` — `token:font-size`
@@ -297,12 +297,14 @@
 
 ## `22px` · tokenized-off-grid-value
 
-Всего: 6.
+Всего: 8.
 
 - `ui/tokens-figma.css:216` — `token:line-height`
 - `ui/tokens.css:178` — `token:line-height`
-- `ui/components/data-display.css:167` — `token:size`
-- `ui/components/data-display.css:243` — `token:size`
+- `ui/components/collections.css:72` — `token:size`
+- `ui/components/collections.css:72` — `token:size`
+- `ui/components/data-display.css:168` — `token:size`
+- `ui/components/data-display.css:244` — `token:size`
 - `ui/utilities-components.css:273` — `token:size`
 - `ui/utilities-components.css:1102` — `token:space`
 
@@ -351,12 +353,13 @@
 
 Всего: 1.
 
-- `ui/components/overlays.css:577` — `token:size`
+- `ui/components/overlays.css:578` — `token:size`
 
 ## `70px` · tokenized-off-grid-value
 
-Всего: 2.
+Всего: 3.
 
+- `ui/components/data-display.css:81` — `token:size`
 - `ui/utilities-components.css:1228` — `token:size`
 - `ui/utilities-components.css:1240` — `token:size`
 
@@ -388,13 +391,13 @@
 
 Всего: 1.
 
-- `ui/components/entities.css:122` — `token:size`
+- `ui/components/entities.css:141` — `token:size`
 
 ## `235px` · tokenized-off-grid-value
 
 Всего: 1.
 
-- `ui/components/entities.css:39` — `token:size`
+- `ui/components/entities.css:58` — `token:size`
 
 ## `258px` · tokenized-off-grid-value
 
@@ -406,14 +409,14 @@
 
 Всего: 2.
 
-- `ui/components/overlays.css:808` — `token:size`
+- `ui/components/overlays.css:809` — `token:size`
 - `ui/page-examples.css:43` — `token:size`
 
 ## `315px` · tokenized-off-grid-value
 
 Всего: 1.
 
-- `ui/components/navigation.css:318` — `token:size`
+- `ui/components/navigation.css:328` — `token:size`
 
 ## `326px` · tokenized-off-grid-value
 
@@ -425,20 +428,20 @@
 
 Всего: 2.
 
-- `ui/components/collections.css:59` — `token:size`
-- `ui/components/overlays.css:808` — `token:size`
+- `ui/components/collections.css:68` — `token:size`
+- `ui/components/overlays.css:809` — `token:size`
 
 ## `342px` · tokenized-off-grid-value
 
 Всего: 1.
 
-- `ui/components/entities.css:40` — `token:size`
+- `ui/components/entities.css:59` — `token:size`
 
 ## `354px` · tokenized-off-grid-value
 
 Всего: 1.
 
-- `ui/components/entities.css:123` — `token:size`
+- `ui/components/entities.css:142` — `token:size`
 
 ## `365px` · tokenized-off-grid-value
 
@@ -450,7 +453,7 @@
 
 Всего: 1.
 
-- `ui/components/overlays.css:807` — `token:size`
+- `ui/components/overlays.css:808` — `token:size`
 
 ## `461px` · tokenized-off-grid-value
 
@@ -462,7 +465,7 @@
 
 Всего: 1.
 
-- `ui/components/overlays.css:806` — `token:size`
+- `ui/components/overlays.css:807` — `token:size`
 
 ## `529px` · tokenized-off-grid-value
 

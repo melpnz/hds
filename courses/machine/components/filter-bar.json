@@ -37,6 +37,14 @@
     "domain": []
   },
   "rules": [],
+  "layoutRules": [
+    {
+      "id": "horizontal-overflow",
+      "context": "Narrow container",
+      "behavior": "FilterChip остаются в одной строке и прокручиваются горизонтально, не расширяя страницу.",
+      "implementation": "The scroll container owns overflow-x:auto and its direct children use flex:0 0 auto."
+    }
+  ],
   "examples": [
     {
       "id": "default",

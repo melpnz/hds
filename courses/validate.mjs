@@ -85,7 +85,7 @@ for (const path of Object.values(index.files)) pathExists(path, 'index');
 
 if (ids.size !== catalog.length) errors.push('catalog: duplicate ids');
 const foundationIds = ['colors', 'typography', 'spacing-grid', 'radii-borders', 'iconography', 'responsive-layout'];
-if (catalog.length !== 87) errors.push(`catalog: expected 78 preserved items plus 6 foundations, Textarea, RadioButton and Modal, got ${catalog.length}`);
+if (catalog.length !== 88) errors.push(`catalog: expected 78 preserved items plus 6 foundations, Textarea, RadioButton, Modal and ProfileHistory, got ${catalog.length}`);
 if (JSON.stringify(catalog.filter(item => item.kind === 'foundation').map(item => item.id)) !== JSON.stringify(foundationIds)) {
   errors.push('catalog: foundation section is incomplete or out of order');
 }
@@ -174,6 +174,13 @@ for (const entry of catalog) {
         }
       }
     }
+    const pageExample = item.examples?.[0];
+    if (pageExample && existsSync(resolve(root, pageExample.file))) {
+      const html = readFileSync(resolve(root, pageExample.file), 'utf8');
+      if (/Carousel · (?:AdSlot|CourseCard|ArticleCard|ReviewCard)/.test(html)) {
+        errors.push(`${entry.id}: service Carousel label leaked into the assembled page`);
+      }
+    }
     if (entry.id === 'education-center') {
       const grid = item.layout?.courseGrid;
       if (grid?.component !== 'card-grid' || grid?.variant !== 'school-courses' || grid?.visibleCards?.tablet !== 6 || grid?.visibleCards?.phone !== 4) {
@@ -196,6 +203,25 @@ for (const entry of catalog) {
       if (!css.includes(marker)) errors.push(`card-grid: CSS is missing ${marker}`);
     }
     if (!example.includes('crs-card-grid--school-courses')) errors.push('card-grid: school-courses variant is absent from the canonical example');
+  }
+  if (entry.id === 'profile-history') {
+    const example = item.examples?.[0];
+    if (item.kind !== 'module' || item.category !== 'entities' || example?.id !== 'default') {
+      errors.push('profile-history: catalog or example contract is incomplete');
+    }
+    if (!item.dependencies?.includes('entity-logo')) errors.push('profile-history: EntityLogo dependency is absent');
+    if (example && existsSync(resolve(root, example.file))) {
+      const html = readFileSync(resolve(root, example.file), 'utf8');
+      if (!html.includes('data-component="profile-history"')) errors.push('profile-history: canonical component hook is absent');
+      if ([...html.matchAll(/class="crs-profile-history__section"/g)].length !== 2) errors.push('profile-history: expected experience and education sections');
+      if ([...html.matchAll(/class="crs-profile-history__item"/g)].length < 6) errors.push('profile-history: production-backed sample is too small');
+      if ([...html.matchAll(/data-component="entity-logo"/g)].length < 6) errors.push('profile-history: rows do not reuse EntityLogo');
+    }
+    const author = read('machine/patterns/author.json');
+    const authorHtml = readFileSync(resolve(root, author.examples[0].file), 'utf8');
+    if (!author.modules?.includes('profile-history') || !authorHtml.includes('data-component="profile-history"')) {
+      errors.push('profile-history: author page does not reuse the component');
+    }
   }
   if (entry.id === 'catalog-menu') {
     const examplePath = item.examples?.[0]?.file;
@@ -297,6 +323,22 @@ for (const entry of catalog) {
       if (html.includes('class="flex items-center justify-center overflow-hidden -mt-4 adfox-banner rounded-3xl"></div>')) errors.push('ad-slot: empty production container leaked into the live preview');
     }
   }
+  if (entry.id === 'carousel') {
+    const example = item.examples[0];
+    const html = readFileSync(resolve(root, example.file), 'utf8');
+    const css = readFileSync(resolve(root, 'ui/components/collections.css'), 'utf8');
+    if ([...html.matchAll(/data-component="carousel"/g)].length !== 4) errors.push('carousel: expected four standalone variants');
+    if ([...html.matchAll(/class="crs-carousel__title"/g)].length !== 4) errors.push('carousel: standalone variant titles are incomplete');
+    if ([...html.matchAll(/class="crs-icon-button/g)].length !== 8) errors.push('carousel: shared IconButton controls are incomplete');
+    for (const marker of [
+      'grid-auto-columns: calc((100% - var(--courses-space-32)) / 3)',
+      'grid-auto-columns: calc((100% - var(--courses-space-48)) / 4)',
+      'grid-auto-columns: calc((100% - var(--courses-space-16)) / 2)',
+      'aspect-ratio:272/280',
+      '.crs-ad-slot-demo__pagination { display: none',
+    ]) if (!css.includes(marker)) errors.push(`carousel: responsive contract is missing ${marker}`);
+    if (JSON.stringify(item.layoutRules?.map(rule => rule.id)) !== JSON.stringify(['course-card-columns', 'wide-card-columns', 'ad-slot-geometry', 'navigation', 'ad-slot-loop'])) errors.push('carousel: responsive layout rules are incomplete');
+  }
   if (entry.id === 'header-dropdown') {
     if (item.examples.length !== 1 || item.examples[0].id !== 'states') errors.push('header-dropdown: expected one interactive states example');
     for (const state of ['open', 'closed', 'hover', 'focus-visible']) {
@@ -342,7 +384,7 @@ for (const entry of catalog) {
   if (entry.id === 'modal') {
     const example = item.examples[0];
     if (item.examples.length !== 1 || example?.id !== 'playground') errors.push('modal: expected one interactive playground');
-    if (example?.preview?.mode !== 'intrinsic' || example?.presentation?.layout !== 'constrained' || example?.presentation?.width !== 720) errors.push('modal: constrained playground presentation is absent');
+    if (example?.preview?.mode !== 'viewport' || JSON.stringify(example.preview.widths) !== JSON.stringify(viewerWidths)) errors.push('modal: responsive viewport playground is absent');
     for (const state of ['default', 'open', 'closed', 'scroll', 'desktop', 'tablet', 'mobile', 'image', 'header-actions', 'pinned-header', 'pinned-footer', 'primary', 'secondary']) {
       if (!example?.covers?.includes(state)) errors.push(`modal: ${state} is absent from example coverage`);
     }
@@ -354,7 +396,7 @@ for (const entry of catalog) {
     }
     if (existsSync(resolve(root, example?.file || ''))) {
       const html = readFileSync(resolve(root, example.file), 'utf8');
-      if ([...html.matchAll(/class="crs-modal-preset"/g)].length !== 3) errors.push('modal: desktop/tablet/mobile presets are incomplete');
+      if (html.includes('class="crs-modal-preset"') || !html.includes("matchMedia('(max-width:767px)')")) errors.push('modal: presentation must follow the viewer width without internal device presets');
       if ([...html.matchAll(/data-part="/g)].length !== 8) errors.push('modal: optional-part controls are incomplete');
       if ([...html.matchAll(/class="crs-modal__slot"/g)].length !== 6) errors.push('modal: scroll demonstration needs six slots');
       for (const fragment of ['role="dialog" aria-modal="true"', 'ui/assets/images/modal/example.png', 'sprite.svg#arrow-small', 'sprite.svg#more', "event.key==='Escape'", 'modalOpen.focus()']) {
@@ -374,7 +416,8 @@ for (const entry of catalog) {
     if (existsSync(resolve(root, example?.file || ''))) {
       const html = readFileSync(resolve(root, example.file), 'utf8');
       if ([...html.matchAll(/class="crs-promo-code-modal"/g)].length !== 2) errors.push('promo-code-modal: expected promo-code and promotion content variants');
-      if ([...html.matchAll(/data-device="(?:desktop|tablet|mobile)"/g)].length < 3) errors.push('promo-code-modal: desktop/tablet/mobile controls are absent');
+      if (html.includes('device-switch') || html.includes('data-device=')) errors.push('promo-code-modal: presentation must follow the viewer width without an internal device switch');
+      if (!html.includes('@media(max-width:767px)')) errors.push('promo-code-modal: responsive viewport presentation is absent');
     }
   }
   if (entry.id === 'filter-modal') {
@@ -408,7 +451,10 @@ for (const entry of catalog) {
     for (const state of ['open', 'closed', 'desktop', 'tablet', 'mobile', ...(isSort ? ['selected'] : ['reset', 'submit'])]) {
       if (!example?.covers?.includes(state)) errors.push(`${entry.id}: ${state} is absent from example coverage`);
     }
-    if (JSON.stringify(item.layoutRules?.map(rule => rule.id)) !== JSON.stringify(['responsive-presentation', 'bottom-anchor', 'dismiss'])) errors.push(`${entry.id}: responsive behavior rules are incomplete`);
+    const expectedRules = isSort
+      ? ['responsive-presentation', 'bottom-anchor', 'dismiss']
+      : ['responsive-presentation', 'responsive-padding-and-title', 'bottom-anchor', 'dismiss'];
+    if (JSON.stringify(item.layoutRules?.map(rule => rule.id)) !== JSON.stringify(expectedRules)) errors.push(`${entry.id}: responsive behavior rules are incomplete`);
     for (const nodeId of ['9094:48333', isSort ? '9356:50311' : '9356:52508']) {
       const hasNode = item.evidence?.some(source => source.data?.nodeId === nodeId || source.data?.some?.(data => data.nodeId === nodeId));
       if (!hasNode) errors.push(`${entry.id}: Figma evidence ${nodeId} is absent`);
@@ -416,11 +462,14 @@ for (const entry of catalog) {
     if (!item.stateCoverage?.captured?.includes('closed') || item.stateCoverage?.uncaptured?.length) errors.push(`${entry.id}: open/closed flow is not captured`);
     if (existsSync(resolve(root, example?.file || ''))) {
       const html = readFileSync(resolve(root, example.file), 'utf8');
-      if ([...html.matchAll(/data-device="(?:desktop|tablet|mobile)"/g)].length < 3) errors.push(`${entry.id}: desktop/tablet/mobile controls are absent`);
       if (isSort) {
+        if (html.includes('device-switch') || html.includes('data-device=')) errors.push('sort-sheet: presentation must follow the viewer width without an internal device switch');
+        if (!html.includes('@media(max-width:767px)')) errors.push('sort-sheet: responsive viewport presentation is absent');
         if ([...html.matchAll(/role="option"/g)].length !== 6 || !html.includes("option.setAttribute('aria-selected','true')")) errors.push('sort-sheet: selectable list behavior is incomplete');
       } else {
         if (!html.includes('role="dialog"') || !html.includes("querySelectorAll('.crs-price-sheet__input')")) errors.push('price-sheet: dialog or reset behavior is incomplete');
+        if (html.includes('device-switch') || html.includes('data-device=')) errors.push('price-sheet: presentation must follow the viewer width without an internal device switch');
+        if (!html.includes('@media(max-width:767px)')) errors.push('price-sheet: responsive viewport presentation is absent');
       }
     }
   }
@@ -588,9 +637,11 @@ const generatedUiFiles = [
   'ui/assets/images/carousel/ad-promo.png', 'ui/assets/images/carousel/ad-ai.png',
   'ui/assets/images/carousel/ad-previous.png', 'ui/assets/images/carousel/ad-extra-1.png',
   'ui/assets/images/carousel/ad-extra-2.png', 'ui/assets/images/carousel/ad-extra-3.png',
+  'ui/assets/images/carousel/ad-promo-mobile.png', 'ui/assets/images/carousel/ad-previous-mobile.png',
   'ui/assets/images/experts/expert-achieve.svg', 'ui/assets/images/experts/experts.svg',
   ...['neural-ai.png', 'development.png', 'analytics.png', 'design.png', 'marketing.png', 'business.png', 'languages.png', 'soft-skills.png', 'wellness.png', 'hobby.png', 'psychology.png', 'cooking.png', 'pedagogy.png', 'software.png', 'continuing-education.png', 'profession-collections.png', 'reviews.png', 'promo.png', 'rating.png', 'child-ege.png', 'child-oge.png', 'child-exam.png', 'child-dvi.png', 'child-vpr.png', 'child-olympiad.png', 'child-school.png', 'child-home-school.png', 'child-hobby.png', 'child-languages.png', 'child-horizon.png', 'child-college.png'].map(name => `ui/assets/images/catalog/${name}`),
   'ui/assets/icons/filter-grade-min.svg', 'ui/assets/icons/filter-grade-mid.svg', 'ui/assets/icons/filter-grade-max.svg',
+  'ui/assets/icons/ad-dots.svg',
   'ui/assets/controls/check.svg', 'ui/assets/controls/dot.svg', 'ui/assets/controls/filter-chip-tooltip.svg',
   'ui/assets/controls/filter-chip-tooltip-selected.svg', 'ui/assets/controls/filter-chip-tooltip-disabled.svg',
   'ui/assets/controls/filter-chip-dot.svg'

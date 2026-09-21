@@ -72,7 +72,13 @@
       "id": "responsive-presentation",
       "context": "Быстрые фильтры",
       "behavior": "На mobile используется bottom sheet, на tablet/desktop — компактная modal/popover-панель поверх страницы.",
-      "implementation": "Один состав полей меняет позиционирование, радиус, overlay и видимость handle по data-device."
+      "implementation": "Один состав полей меняет позиционирование, радиус, overlay и видимость handle по ширине viewport: до 767 px — mobile bottom sheet, от 768 px — tablet/desktop modal-popover."
+    },
+    {
+      "id": "responsive-padding-and-title",
+      "context": "Open",
+      "behavior": "На desktop/tablet у панели отступ 16 px со всех сторон и нет заголовка «Цена». На mobile заголовок видим, отступы панели — 24 px сверху и по бокам, 16 px снизу.",
+      "implementation": "Presentation-scoped selectors change panel padding and title visibility without duplicating the fields or actions."
     },
     {
       "id": "bottom-anchor",
@@ -103,6 +109,10 @@
     {
       "type": "guidance",
       "text": "Макет принят владельцем как нормативный. Кнопки футера повторно используют общий Button M: secondary и main."
+    },
+    {
+      "type": "guidance",
+      "text": "Живой пример не содержит отдельного переключателя представления: режим автоматически определяется выбранной в viewer шириной 320 / 480 / 768 / 1024."
     }
   ],
   "accessibility": [

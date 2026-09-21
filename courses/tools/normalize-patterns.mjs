@@ -16,10 +16,10 @@ const definitions = {
 const entityLogoUsage = {
   author: { 'profile-header': 1, 'experience-education': 22 },
   authors: { 'experts-grid': 8 },
-  'courses-listing': { 'course-grid': 8, reviews: 2, 'school-rating': 5 },
-  'education-center': { 'school-header': 1, courses: 8, reviews: 2 },
-  'education-centers-listing': { 'school-grid': 8, 'popular-courses': 2 },
-  rating: { 'school-rating': 20, recommendations: 2 },
+  'courses-listing': { 'course-grid': 8, reviews: 5, 'school-rating': 5 },
+  'education-center': { 'school-header': 1, courses: 8, reviews: 5 },
+  'education-centers-listing': { 'school-grid': 8, 'popular-courses': 5 },
+  rating: { 'school-rating': 20, recommendations: 5 },
 };
 
 const sharedLayoutContract = {

@@ -28,6 +28,8 @@ Swiper: лента слайдов, сдвигаемая по `transform`; стр
 
 ## Управление клавиатурой
 
+В рекламном варианте `AdSlot` навигация зациклена в обе стороны. Контентные варианты не зациклены: на первой и последней доступной позиции соответствующая стрелка `IconButton` получает `disabled`. Один клик перемещает ленту ровно на один слайд; общий offline-controller находится в `examples/carousel.js` и используется также собранными страницами.
+
 Корень (`<div>`) в фокус не попадает. На один экземпляр по Tab проходят: 8 кнопок и 8 ссылок — у 6 из 16; 8 ссылок — у 4 из 16; 4 кнопки и 1 ссылка — у 2 из 16; у остальных 4 — другой состав. По корпусу (190 узлов): `Link` — 116, `Button` — 48, внутри `AdCard` — 20, внутри `ReviewCard` — 6.
 
 ## Анимация
@@ -108,7 +110,14 @@ Swiper: `swiper`, `swiper-horizontal`, `swiper-slide`, `swiper-wrapper`. У ос
 
 ## Responsive
 
-Классы с префиксом ширины в поддереве записи: `phone:!h-auto`, `phone:!w-full`, `phone:aspect-[272/280]`, `phone:w-full`, `phone:hidden`, `phone:!block`, `phone:pl-0`, `phone:max-h-[326px]`. Условия префиксов: `phone:` — до 767 (`docs/guide/layout.md`).
+- до 767: одна `CourseCard`, `ArticleCard` или `ReviewCard` на ширину ленты;
+- 768–1023: три `CourseCard` либо две `ArticleCard` / `ReviewCard`;
+- от 1024: четыре `CourseCard` либо три `ArticleCard` / `ReviewCard`;
+- `AdSlot` на телефоне занимает ширину контейнера и сохраняет пропорцию 272/280;
+  на планшете и десктопе активный баннер имеет ширину 568 и центрируется,
+  оставляя видимыми части соседних баннеров;
+- стрелки на базе `IconButton` доступны на всех контрольных ширинах. Точки
+  пагинации для этих вариантов не используются.
 
 ## Ограничения
 
@@ -123,7 +132,8 @@ Swiper: `swiper`, `swiper-horizontal`, `swiper-slide`, `swiper-wrapper`. У ос
 
 **Production.** courses-listing, education-center, education-centers-listing, promocodes, rating, reviews, schools-for-children — 16 вхождений.
 
-**Figma.** Узел для этой записи не сопоставлен.
+**Figma.** `02_Education-NEW`, node `15074:257173`: центрированный активный
+баннер, видимые части соседних слайдов и внешние стрелки.
 
 ---
 

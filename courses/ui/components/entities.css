@@ -18,6 +18,25 @@
    Пока пусто: компоненты верстаются на шагах R5.
    ========================================================================= */
 
+.crs-course-card { container-type: inline-size; }
+.crs-course-card__tag--wide,
+.crs-course-card__more--wide { display: none; }
+@container (min-width: 360px) {
+  .crs-course-card__tag--wide,
+  .crs-course-card__more--wide { display: flex; }
+  .crs-course-card__more--compact { display: none; }
+}
+
+.crs-entity-header__more,
+.crs-review-card__more {
+  font-size: var(--courses-font-size-14);
+  line-height: var(--courses-line-height-20-on-14);
+}
+
+@media (max-width: 1023px) {
+  .crs-authors-block__editors { grid-template-columns: minmax(0, 1fr); }
+}
+
 /* -------------------------------------------------------------------------
    ProfessionCard (R2-bulk, figma-only) — «Карточка специальности»,
    14089:190237, список профессий

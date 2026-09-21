@@ -25,7 +25,8 @@
     "experience-education"
   ],
   "modules": [
-    "person-header"
+    "person-header",
+    "profile-history"
   ],
   "components": [
     "prose",
@@ -114,10 +115,6 @@
     },
     {
       "type": "coverage-warning",
-      "text": "Карусели и рекламные слоты показаны честными заглушками: библиотека Swiper не входит в пакет."
-    },
-    {
-      "type": "coverage-warning",
       "text": "Пользовательские изображения, логотипы и обложки в preview заменены нейтральными локальными заглушками; это ограничение примера, а не правило компонента."
     }
   ],
@@ -201,7 +198,12 @@
     {
       "tag": "div",
       "heading": "Опыт работы",
-      "modules": [],
+      "modules": [
+        {
+          "id": "profile-history",
+          "count": 1
+        }
+      ],
       "components": [
         {
           "id": "entity-logo",
@@ -373,5 +375,9 @@
   "entityLogoUsage": {
     "profile-header": 1,
     "experience-education": 22
+  },
+  "profileHistoryUsage": {
+    "experience-education": 1,
+    "items": 22
   }
 }

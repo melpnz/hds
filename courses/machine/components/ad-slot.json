@@ -34,6 +34,20 @@
     "domain": []
   },
   "rules": [],
+  "layoutRules": [
+    {
+      "id": "advertising-disclosure",
+      "context": "Loaded creative",
+      "behavior": "Маркировка «РЕКЛАМА» высотой 11 px расположена с отступом 12 px сверху и слева; белый фон имеет непрозрачность 70%. Кнопка меню 22×22 расположена с отступом 12 px сверху и справа.",
+      "implementation": "Disclosure controls are separate overlay elements and are not baked into the local raster creative."
+    },
+    {
+      "id": "responsive-creative",
+      "context": "Loaded creative",
+      "behavior": "На mobile используется отдельный вертикальный креатив 272×280; на tablet/desktop — широкий креатив 568×232.",
+      "implementation": "The shared AdSlot markup uses picture/source with a 767px media boundary, so the browser selects the matching local Figma asset without JavaScript."
+    }
+  ],
   "examples": [
     {
       "id": "carousel",
@@ -83,6 +97,22 @@
           "promocodes",
           "schools-for-children"
         ]
+      }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+        "nodeId": "15074:257177",
+        "layerName": "Im · advertising disclosure"
+      }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+        "nodeId": "10951:73739",
+        "layerName": "Im · mobile advertising creative"
       }
     }
   ],
