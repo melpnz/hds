@@ -57,7 +57,8 @@ try {
   const entries = await page.evaluate(() => fetch('../machine/catalog.json').then(response => response.json()));
   const sectionTitles = await page.locator('.nav-section__title > span').allTextContents();
   if (JSON.stringify(sectionTitles) !== JSON.stringify(['Основы', 'Элементы', 'Блоки', 'Страницы'])) failures.push(`navigation: unexpected section hierarchy ${sectionTitles.join(', ')}`);
-  if (!(await page.locator('#guide-version').textContent()).includes('в разработке')) failures.push('navigation: guide development status is hidden');
+  const guideVersion = await page.locator('#guide-version').textContent();
+  if (!guideVersion.includes('1.0') || !guideVersion.includes('пригоден к использованию')) failures.push('navigation: guide v1.0 release status is hidden');
   if (entries.filter(entry => entry.kind === 'foundation').length !== 6) failures.push('navigation: expected six foundation pages');
   const fontExamples = [];
   const shellRight = await page.locator('.shell').evaluate(element => element.getBoundingClientRect().right);

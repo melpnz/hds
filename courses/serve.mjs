@@ -35,5 +35,5 @@ createServer((request, response) => {
     response.writeHead(404).end('Not found');
   }
 }).listen(port, '127.0.0.1', () => {
-  console.log(`Хабр Курсы v0.2: http://127.0.0.1:${port}/viewer/`);
+  console.log(`Хабр Курсы v1.0: http://127.0.0.1:${port}/viewer/`);
 });

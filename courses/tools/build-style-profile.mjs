@@ -12,7 +12,7 @@ export function buildStyleProfile() {
   return {
     schemaVersion: 1,
     dimensionTokens: { baseUnit: '0.25rem', referenceRootFontSize: '16px', source: 'machine/dimension-tokens.json', css: 'ui/dimension-tokens.css', exceptions: 'machine/reports/dimension-exceptions.json' },
-    product: { id: 'courses', title: 'Хабр Курсы', guideVersion: '0.2', status: 'in-development' },
+    product: { id: 'courses', title: 'Хабр Курсы', guideVersion: '1.0', status: 'active' },
     scope: { confidence: 'mixed', boundary: 'Публичная гостевая часть Курсов; шесть собранных страниц и адресные спецификации.' },
     typography: {
       families: { interface: 'Inter, sans-serif' }, weights: { regular: 400, semibold: 600 },
@@ -33,7 +33,7 @@ export function buildStyleProfile() {
       { id: 'inter-only', rule: 'Весь интерфейс и примеры используют Inter.', evidence: 'docs/guide/typography.md' }
     ],
     sources: ['machine/dimension-tokens.json', 'machine/tokens.json', 'docs/guide/typography.md', 'docs/guide/layout.md', 'machine/components/button.json'],
-    unknowns: ['Гайд в разработке; непокрытые состояния и сценарии перечислены в адресных спецификациях.']
+    unknowns: ['Пакет пригоден к использованию в пределах покрытия; непокрытые состояния и сценарии перечислены в адресных спецификациях.']
   };
 }
 

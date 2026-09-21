@@ -351,7 +351,9 @@ Promise.all([
 ]).then(([index, entries]) => {
   catalog = entries;
   document.querySelector('#product-title').textContent = index.product.title;
-  const status = index.product.status === 'in-development' ? ' · в разработке' : '';
+  const status = index.product.status === 'active'
+    ? ' · пригоден к использованию'
+    : index.product.status === 'in-development' ? ' · в разработке' : '';
   document.querySelector('#guide-version').textContent = `Guide ${index.product.guideVersion}${status}`;
   renderNavigation();
   return renderItem();
