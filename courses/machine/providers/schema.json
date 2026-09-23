@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HDS implementation provider mapping",
+  "type": "object",
+  "required": ["schemaVersion", "guide", "provider", "compatibility", "summary", "mappings"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "guide": {
+      "type": "object",
+      "required": ["id", "version"],
+      "properties": { "id": { "type": "string" }, "version": { "type": "string" } },
+      "additionalProperties": false
+    },
+    "provider": {
+      "type": "object",
+      "required": ["id", "version", "type", "manifest"],
+      "properties": {
+        "id": { "type": "string" }, "version": { "type": "string" },
+        "type": { "type": "string" }, "manifest": { "type": "string" }
+      },
+      "additionalProperties": false
+    },
+    "compatibility": { "enum": ["compatible", "incompatible", "unverified"] },
+    "summary": { "type": "object" },
+    "mappings": { "type": "array", "items": { "type": "object" } }
+  },
+  "additionalProperties": false
+}

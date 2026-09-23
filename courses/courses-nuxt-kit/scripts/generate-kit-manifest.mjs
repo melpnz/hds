@@ -1,7 +1,7 @@
 import { createHash } from 'node:crypto'
 import { readFile, readdir, writeFile } from 'node:fs/promises'
-import { dirname, relative, resolve } from 'node:path'
-import { fileURLToPath } from 'node:url'
+import { basename, dirname, relative, resolve } from 'node:path'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 
 const kitRoot = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const layerRoot = resolve(kitRoot, 'layers', 'courses')
@@ -17,6 +17,7 @@ function readOption(name) {
 
 const packageJson = JSON.parse(await readFile(resolve(kitRoot, 'package.json'), 'utf8'))
 const guideIndex = JSON.parse(await readFile(resolve(kitRoot, '..', 'machine', 'index.json'), 'utf8'))
+const { coursesRegistry } = await import(pathToFileURL(resolve(layerRoot, 'app', 'data', 'coursesRegistry.ts')).href)
 const previousManifest = JSON.parse(await readFile(manifestPath, 'utf8').catch(() => 'null'))
 const sourceCommit = process.argv.includes('--clear-source-commit')
   ? null
@@ -52,6 +53,39 @@ const files = (await listFiles(layerRoot))
 const checksums = {}
 for (const file of files) checksums[file.path] = sha256(await readFile(file.absolute))
 
+const componentDirectory = resolve(layerRoot, 'app', 'components')
+const componentFiles = (await listFiles(componentDirectory)).filter(file => file.endsWith('.vue'))
+const publicNames = new Set(coursesRegistry.map(item => item.name))
+const publicIds = new Set(coursesRegistry.map(item => item.id))
+if (publicNames.size !== coursesRegistry.length) throw new Error('Public registry contains duplicate component export names.')
+if (publicIds.size !== coursesRegistry.length) throw new Error('Public registry contains duplicate component ids.')
+for (const item of coursesRegistry) {
+  if (!componentFiles.some(file => basename(file, '.vue') === item.name)) {
+    throw new Error(`Public registry entry ${item.id} points to missing component ${item.name}.vue.`)
+  }
+}
+const publicComponents = coursesRegistry.map(item => ({
+  id: item.id,
+  exportName: item.name,
+  visibility: 'public',
+  kind: item.kind,
+  category: item.category,
+  maturity: item.status,
+  states: item.states,
+  source: `app/components/${item.name}.vue`,
+  catalogUrl: `/ui?component=${encodeURIComponent(item.id)}`,
+  previewUrl: `/ui/preview?component=${encodeURIComponent(item.id)}`
+}))
+const internalComponents = componentFiles
+  .map(file => basename(file, '.vue'))
+  .filter(name => !publicNames.has(name))
+  .sort()
+  .map(name => ({
+    exportName: name,
+    visibility: 'internal',
+    source: `app/components/${name}.vue`
+  }))
+
 const manifest = {
   schemaVersion: 1,
   provider: {
@@ -84,6 +118,10 @@ const manifest = {
   requirements: {
     dependencies: ['@nuxt/ui', '@fontsource-variable/inter'],
     devDependencies: ['@iconify-json/tabler']
+  },
+  components: {
+    public: publicComponents,
+    internal: internalComponents
   },
   integrity: {
     algorithm: 'sha256',

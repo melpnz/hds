@@ -67,7 +67,11 @@
 [`courses/courses-nuxt-kit`](courses/courses-nuxt-kit/). В продукт копируется
 только `layers/courses`; эта копия считается vendored/read-only. Собственные
 компоненты проекта создаются рядом с layer, а изменения самого кита выпускает
-его владелец из канонического репозитория.
+его владелец из канонического репозитория. Связь стабильных id гайда с текущими
+Vue exports хранится отдельно в
+[`machine/providers/courses-nuxt-kit.json`](courses/machine/providers/courses-nuxt-kit.json),
+поэтому будущую frontend-библиотеку можно подключить без переименования правил
+гайда.
 
 ## Маршруты для лендингов
 

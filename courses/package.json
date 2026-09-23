@@ -11,10 +11,12 @@
     "validate:maturity-status": "node tools/sync-declared-maturity.mjs --check",
     "validate:tokens": "node ../tools/tokenize-dimensions.mjs courses --check",
     "build:page-components": "node tools/normalize-page-components.mjs",
+    "build:provider": "node tools/generate-provider-mapping.mjs",
     "build:patterns": "npm run build:page-components && node tools/normalize-patterns.mjs",
     "build:style-profile": "node tools/build-style-profile.mjs",
     "build:visual-contracts": "node tools/build-visual-contracts.mjs",
-    "validate": "node validate.mjs && npm run validate:tokens && npm run validate:maturity-status && npm run validate:maturity",
+    "validate": "node validate.mjs && npm run validate:provider && npm run validate:tokens && npm run validate:maturity-status && npm run validate:maturity",
+    "validate:provider": "node tools/generate-provider-mapping.mjs --check",
     "validate:viewer": "node tools/validate-viewer.mjs",
     "validate:interactions": "node tools/validate-interactions.mjs",
     "serve": "node serve.mjs"

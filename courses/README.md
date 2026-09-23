@@ -14,12 +14,16 @@
 
 ## Как читать ИИ
 
-1. Открой `machine/index.json` и проверь границу покрытия.
-2. В `machine/catalog.json` найди сущность по `id`, типу, группе или `tags`.
-3. Открой только файл из поля `file` выбранной записи.
-4. Правила, implementation, examples и evidence загружай только по ссылкам.
-5. Для подробного обоснования открой `source.spec` из `guide/`.
-6. Не используй записи со scope `design-source-only` как факт о продакшене.
+1. Для Nuxt-проекта сначала найди локальный `layers/courses/courses-kit.manifest.json`.
+2. Открой `machine/index.json`, проверь границу покрытия и
+   `activeImplementationProvider`.
+3. Через `machine/providers/courses-nuxt-kit.json` найди export текущей версии;
+   не перевёрстывай существующий компонент по скриншоту.
+4. В `machine/catalog.json` найди сущность по `id`, типу, группе или `tags` и
+   открой только файл из поля `file`.
+5. Правила, implementation, examples и evidence загружай только по ссылкам.
+6. Для подробного обоснования открой `source.spec` из `guide/`.
+7. Не используй записи со scope `design-source-only` как факт о продакшене.
 
 ## Структура
 
@@ -36,6 +40,7 @@ courses/
     tokens.json                полный набор токенов v0.1
     content.json               форматы чисел и подписи действий
     migration-map.json         карта полноты перехода v0.1 → v0.2
+    providers/*.json           связь стабильных guide-id с активной реализацией
   guide/components/            подробные спецификации 76 сущностей
   guide/pages/                 подробные спецификации шести страниц
   docs/guide/                  длинные тексты о композиции и основаниях

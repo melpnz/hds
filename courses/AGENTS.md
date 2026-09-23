@@ -20,11 +20,18 @@
 
 ## Порядок чтения
 
-1. `machine/index.json` — статус, границы и доступные проверки.
-2. Для нового продукта, страницы или общего визуального языка — `machine/style-profile.json`; для одного компонента этот шаг не нужен.
-3. `machine/catalog.json` — найти нужную сущность по id, группе или tags.
-4. Только `file` выбранной записи.
-5. Затем только названные в записи `rules`, `implementation`, `examples` и
+1. В Nuxt-проекте сначала проверь локальный
+   `layers/courses/courses-kit.manifest.json`; без явной просьбы не обращайся к
+   GitHub и не проверяй обновления.
+2. `machine/index.json` — статус, границы, активный implementation provider и
+   доступные проверки.
+3. `machine/providers/courses-nuxt-kit.json` — текущий export/source/preview для
+   стабильного guide-id. Если mapping прямой, используй компонент, а не
+   перевёрстывай его по example или скриншоту.
+4. Для нового продукта, страницы или общего визуального языка — `machine/style-profile.json`; для одного компонента этот шаг не нужен.
+5. `machine/catalog.json` — найти нужную сущность по id, группе или tags.
+6. Только `file` выбранной записи.
+7. Затем только названные в записи `rules`, `implementation`, `examples` и
    evidence. Подробную прозу читать по `source.spec`.
 
 Не загружать весь каталог, все SVG или evidence без необходимости. Записи со
