@@ -1,0 +1,4 @@
+<script setup lang="ts">withDefaults(defineProps<{title?:string;description?:string;space?:'s'|'m'|'l'}>(),{space:'m'})
+</script>
+<template><section class="crs-section" :class="`crs-section--${space}`"><header v-if="title||description" class="crs-section__header"><h2 v-if="title">{{title}}</h2><p v-if="description">{{description}}</p></header><slot/></section></template>
+<style scoped>.crs-section{display:grid}.crs-section--s{gap:var(--crs-space-16)}.crs-section--m{gap:var(--crs-space-24)}.crs-section--l{gap:var(--crs-space-40)}.crs-section__header{display:grid;gap:var(--crs-space-6)}.crs-section h2{margin:0;font-size:calc(var(--crs-unit) * 28);line-height:var(--crs-leading-34)}.crs-section p{margin:0;color:var(--crs-black-500)}@media(max-width:767px){.crs-section h2{font-size:var(--crs-font-24);line-height:calc(var(--crs-unit) * 30)}}</style>

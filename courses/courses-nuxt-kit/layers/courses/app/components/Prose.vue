@@ -1,0 +1,2 @@
+<template><div class="crs-prose"><slot/></div></template>
+<style>.crs-prose{max-width:calc(var(--crs-unit) * 700);color:var(--crs-black-850);font-size:var(--crs-font-16);line-height:1.625}.crs-prose h2{margin:var(--crs-space-32) 0 var(--crs-space-16);font-size:calc(var(--crs-unit) * 28);line-height:1.2}.crs-prose h3{margin:var(--crs-space-24) 0 var(--crs-space-12);font-size:var(--crs-font-20)}.crs-prose p{margin:var(--crs-space-12) 0}.crs-prose [href]{color:var(--crs-blue-500);text-decoration:underline}.crs-prose ul{padding-left:var(--crs-space-20)}</style>

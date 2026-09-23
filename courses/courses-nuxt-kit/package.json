@@ -1,0 +1,39 @@
+{
+  "name": "courses-nuxt-kit",
+  "private": true,
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "check": "pnpm run check:encoding && pnpm run check:breakpoints && pnpm run check:composition && pnpm run check:tokens && pnpm run check:token-usage",
+    "check:encoding": "node scripts/check-encoding.mjs",
+    "check:breakpoints": "node scripts/check-breakpoints.mjs",
+    "check:composition": "node scripts/check-component-composition.mjs",
+    "check:tokens": "node scripts/check-course-tokens.mjs",
+    "check:token-usage": "node scripts/generate-course-token-usage.mjs --check",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "generate:token-usage": "node scripts/generate-course-token-usage.mjs",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare",
+    "test:e2e": "playwright test",
+    "test:visual": "playwright test tests/e2e/visual.spec.ts",
+    "test:visual:update": "playwright test tests/e2e/visual.spec.ts --update-snapshots",
+    "typecheck": "nuxt typecheck"
+  },
+  "dependencies": {
+    "@fontsource-variable/inter": "5.2.8",
+    "@nuxt/ui": "4.11.1",
+    "nuxt": "4.5.2",
+    "tailwindcss": "4.3.3",
+    "vue": "3.5.21",
+    "vue-router": "4.5.1"
+  },
+  "devDependencies": {
+    "@iconify-json/tabler": "^1.2.39",
+    "@playwright/test": "1.63.0",
+    "typescript": "5.9.2",
+    "vue-tsc": "3.0.8"
+  },
+  "packageManager": "pnpm@10.33.2"
+}

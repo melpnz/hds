@@ -1,0 +1,121 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme static {
+  --font-sans: "Inter Variable", Inter, sans-serif;
+
+  --color-blue-50: #eff5ff;
+  --color-blue-300: #94bdfc;
+  --color-blue-400: #6bacfd;
+  --color-blue-500: #346ef4;
+  --color-blue-600: #2755e9;
+
+  --color-neutral-50: #f1f1f1;
+  --color-neutral-100: #e9e9ea;
+  --color-neutral-150: #dededf;
+  --color-neutral-200: #d3d3d4;
+  --color-neutral-300: #bcbdbf;
+  --color-neutral-400: #a6a7a9;
+  --color-neutral-500: #909194;
+  --color-neutral-850: #2c2e34;
+
+  --color-success-500: #34b24f;
+  --color-danger-500: #e84444;
+  --color-orange-500: #ff7e47;
+  --color-yellow-500: #ff960c;
+}
+
+:root {
+  --courses-color-blue-50: #eff5ff;
+  --courses-color-blue-300: #94bdfc;
+  --courses-color-blue-400: #6bacfd;
+  --courses-color-blue-500: #346ef4;
+  --courses-color-blue-600: #2755e9;
+  --courses-color-black-50: #f1f1f1;
+  --courses-color-black-100: #e9e9ea;
+  --courses-color-black-150: #dededf;
+  --courses-color-black-200: #d3d3d4;
+  --courses-color-black-300: #bcbdbf;
+  --courses-color-black-400: #a6a7a9;
+  --courses-color-black-500: #909194;
+  --courses-color-black-850: #2c2e34;
+  --courses-color-white: #fff;
+  --courses-color-success: #34b24f;
+  --courses-color-danger: #e84444;
+  --courses-color-orange: #ff7e47;
+  --courses-radius-xs: 8px;
+  --courses-radius-control: 12px;
+  --courses-radius-card: 24px;
+  --courses-container: 1124px;
+  --courses-gutter: 24px;
+  --courses-focus: 2px solid var(--courses-color-black-400);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--courses-color-white);
+  color: var(--courses-color-black-850);
+  font-family: "Inter Variable", Inter, sans-serif;
+  font-synthesis: none;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--courses-color-white);
+  font-size: 16px;
+  line-height: 1.375;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: var(--courses-color-blue-300);
+  color: var(--courses-color-black-850);
+}
+
+.courses-container {
+  width: 100%;
+  max-width: var(--courses-container);
+  margin-inline: auto;
+  padding-inline: var(--courses-gutter);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (max-width: 479px) {
+  :root {
+    --courses-gutter: 24px;
+  }
+}

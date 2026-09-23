@@ -1,0 +1,4 @@
+<script setup lang="ts">withDefaults(defineProps<{title?:string;description?:string;icon?:string}>(),{title:'Ничего не найдено',description:'Попробуйте изменить параметры поиска',icon:'i-tabler-search-off'})
+</script>
+<template><div class="crs-empty"><UIcon :name="icon"/><strong>{{title}}</strong><p>{{description}}</p><slot><Button variant="secondary">Сбросить фильтры</Button></slot></div></template>
+<style scoped>.crs-empty{display:flex;flex-direction:column;align-items:center;gap:var(--crs-space-16);text-align:center}.crs-empty>svg{width:var(--crs-size-48);height:var(--crs-size-48);color:var(--crs-black-400)}.crs-empty strong{font:600 var(--crs-font-24)/var(--crs-leading-28) var(--crs-font-family)}.crs-empty p{margin:calc(var(--crs-space-8) * -1) 0 0;color:var(--crs-black-500);font:400 var(--crs-font-14)/var(--crs-leading-20) var(--crs-font-family)}</style>

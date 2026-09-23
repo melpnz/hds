@@ -1,0 +1,18 @@
+<script setup lang="ts">
+const model = defineModel<boolean>({ default: false })
+const props = withDefaults(defineProps<{ label?: string; description?: string; ariaLabel?: string; disabled?: boolean; indeterminate?: boolean; visualOnly?: boolean; state?: 'default' | 'hover' | 'focus' | 'disabled' }>(), { label: 'Пункт', visualOnly: false, state: 'default' })
+const input = ref<HTMLInputElement>()
+watchEffect(() => { if (input.value) input.value.indeterminate = Boolean(props.indeterminate) })
+</script>
+
+<template>
+  <label class="crs-check" :data-state="disabled ? 'disabled' : state">
+    <input ref="input" v-model="model" type="checkbox" :disabled="disabled" :aria-label="visualOnly ? ariaLabel || label : undefined" :aria-hidden="visualOnly || undefined" :tabindex="visualOnly ? -1 : undefined">
+    <span class="crs-check__visual"><span class="crs-check__surface" /><img v-if="!indeterminate" src="/courses/control-check.svg" alt=""></span>
+    <span v-if="!visualOnly" class="crs-check__copy"><span>{{ label }}</span><small v-if="description">{{ description }}</small></span>
+  </label>
+</template>
+
+<style scoped>
+.crs-check{position:relative;display:inline-flex;width:max-content;max-width:100%;min-height:calc(var(--crs-unit) * 26);align-items:flex-start;gap:var(--crs-space-8);color:var(--crs-black-850);font:400 var(--crs-font-16)/var(--crs-leading-22) var(--crs-font-family);cursor:pointer}.crs-check input{position:absolute;width:var(--crs-border-1);height:var(--crs-border-1);margin:calc(var(--crs-border-1) * -1);overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}.crs-check__visual{position:relative;box-sizing:border-box;width:var(--crs-size-24);height:var(--crs-size-24);flex:0 0 var(--crs-size-24)}.crs-check__surface{position:absolute;z-index:1;inset:var(--crs-space-2);width:var(--crs-size-20);height:var(--crs-size-20);border-radius:var(--crs-radius-6);background:var(--crs-black-150)}.crs-check__visual img{position:absolute;z-index:2;inset:0;display:block;width:var(--crs-size-24);height:var(--crs-size-24);opacity:0}.crs-check input:checked+.crs-check__visual .crs-check__surface,.crs-check input:indeterminate+.crs-check__visual .crs-check__surface{background:var(--crs-black-850)}.crs-check input:checked+.crs-check__visual img{opacity:1}.crs-check input:indeterminate+.crs-check__visual .crs-check__surface:after{position:absolute;top:calc(var(--crs-unit) * 9);left:var(--crs-space-4);width:var(--crs-size-12);height:var(--crs-size-2);border-radius:var(--crs-radius-2);background:var(--crs-white);content:""}.crs-check:hover .crs-check__surface,.crs-check[data-state="hover"] .crs-check__surface,.crs-check[data-state="focus"] .crs-check__surface{background:var(--crs-black-200)}.crs-check:hover input:checked+.crs-check__visual .crs-check__surface,.crs-check[data-state="hover"] input:checked+.crs-check__visual .crs-check__surface,.crs-check[data-state="focus"] input:checked+.crs-check__visual .crs-check__surface{background:var(--crs-black-850-alpha-80)}.crs-check input:focus-visible+.crs-check__visual,.crs-check[data-state="focus"] .crs-check__visual{border-radius:var(--crs-radius-8);outline:var(--crs-border-2) solid var(--crs-black-400)}.crs-check[data-state="disabled"]{color:var(--crs-black-500);cursor:not-allowed}.crs-check[data-state="disabled"] .crs-check__surface{background:var(--crs-black-100)}.crs-check[data-state="disabled"] input:checked+.crs-check__visual .crs-check__surface{background:var(--crs-black-200)}.crs-check__copy{padding-top:var(--crs-border-1)}.crs-check__copy>span,.crs-check__copy small{display:block}.crs-check__copy small{margin-top:var(--crs-space-2);color:var(--crs-black-500);font-size:var(--crs-font-12);line-height:var(--crs-leading-16)}
+</style>

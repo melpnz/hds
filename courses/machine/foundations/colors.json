@@ -25,7 +25,9 @@
     "styles": [
       "ui/courses.css"
     ],
-    "scripts": []
+    "scripts": [
+      "examples/foundations/colors/colors.js"
+    ]
   },
   "states": {
     "ui": [],
@@ -50,7 +52,12 @@
       }
     }
   ],
-  "previewNotes": [],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Аудит разделяет прямое использование основного --color-* и совпадение значения: 12 токенов без прямой ссылки вынесены в «Предположительно нигде не используются», ещё 3 встречаются только через эквивалентные --fig-* и вынесены в отдельную Figma-группу. Это основание для ручной проверки, а не для автоматического удаления."
+    }
+  ],
   "accessibility": [
     "Визуальные образцы справочные; значения и названия продублированы текстом."
   ],
@@ -75,6 +82,39 @@
       "border": "#d3d3d4",
       "success": "#34b24f",
       "danger": "#e84444"
+    },
+    "usageAudit": {
+      "scope": "Courses runtime CSS, HTML and JS; token declarations and palette showcase excluded",
+      "canonicalRuntimeCount": 24,
+      "candidateUnused": [
+        "--color-chip-press",
+        "--color-chip-inactive",
+        "--color-ui-black-transparent-300",
+        "--color-ui-yellow-400",
+        "--color-ui-red-400",
+        "--color-ui-green-50",
+        "--color-ui-green-400",
+        "--color-ui-orange-50",
+        "--color-ui-violet-50",
+        "--color-habr",
+        "--color-career",
+        "--color-qna"
+      ],
+      "figmaOnlyEquivalent": [
+        {
+          "token": "--color-ui-yellow-50",
+          "alias": "--fig-yellow-50-solid"
+        },
+        {
+          "token": "--color-ui-red-50",
+          "alias": "--fig-red-50-solid"
+        },
+        {
+          "token": "--color-ui-red-500",
+          "alias": "--fig-elements-informators-tost-fill-red"
+        }
+      ],
+      "action": "verify-before-removal"
     }
   }
 }

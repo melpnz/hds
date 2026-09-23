@@ -1,0 +1,4 @@
+<script setup lang="ts">defineProps<{number:number;title:string;school?:string;price?:string}>()
+</script>
+<template><article class="crs-numbered"><strong class="crs-numbered__number">{{number}}</strong><div><h3>{{title}}</h3><small>{{school||'Онлайн-школа'}}</small></div><strong>{{price||'от 2 900 ₽'}}</strong><UIcon name="i-tabler-chevron-right"/></article></template>
+<style scoped>.crs-numbered{display:grid;grid-template-columns:var(--crs-size-32) 1fr auto auto;align-items:center;gap:var(--crs-space-16);border-bottom:var(--crs-border-1) solid var(--crs-black-100);padding:var(--crs-space-16) 0}.crs-numbered__number{color:var(--crs-blue-500);font-size:var(--crs-font-20)}.crs-numbered h3{margin:0;font-size:var(--crs-font-16)}.crs-numbered small{color:var(--crs-black-500)}@media(max-width:479px){.crs-numbered{grid-template-columns:var(--crs-size-32) 1fr auto}.crs-numbered>strong:not(.crs-numbered__number){grid-column:2}}</style>

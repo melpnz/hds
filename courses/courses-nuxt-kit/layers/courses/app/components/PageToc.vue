@@ -1,0 +1,4 @@
+<script setup lang="ts">type Item={label:string;href:string}; defineProps<{ title?:string;items:Item[] }>()
+</script>
+<template><nav class="crs-toc" aria-label="Оглавление"><strong>{{ title||'На странице' }}</strong><Link v-for="item in items" :key="item.href" class="crs-toc__link" :href="item.href" tone="inherit">{{ item.label }}</Link></nav></template>
+<style scoped>.crs-toc{display:grid;gap:var(--crs-space-12)}.crs-toc strong{margin-bottom:var(--crs-space-12);font:600 var(--crs-font-18)/var(--crs-leading-22) var(--crs-font-family)}.crs-toc__link{color:var(--crs-blue-500);font:400 var(--crs-font-14)/var(--crs-leading-20) var(--crs-font-family)}.crs-toc__link:hover{color:var(--crs-blue-600);text-decoration:none}.crs-toc__link:focus-visible{border-radius:var(--crs-radius-6);outline:var(--crs-border-2) solid var(--crs-black-400)}</style>

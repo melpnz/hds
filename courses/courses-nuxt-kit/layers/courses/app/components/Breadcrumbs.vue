@@ -1,0 +1,4 @@
+<script setup lang="ts">type Item={label:string;href?:string}; defineProps<{ items:Item[] }>()
+</script>
+<template><nav aria-label="Хлебные крошки"><ol class="crs-breadcrumbs"><li v-for="(item,index) in items" :key="`${item.label}-${index}`"><UIcon v-if="index" name="i-tabler-chevron-right"/><Link v-if="item.href && index<items.length-1" class="crs-breadcrumbs__link" :href="item.href" tone="inherit">{{ item.label }}</Link><span v-else :aria-current="index===items.length-1?'page':undefined">{{ item.label }}</span></li></ol></nav></template>
+<style scoped>.crs-breadcrumbs{display:flex;flex-wrap:wrap;align-items:center;gap:var(--crs-space-6);margin:0;padding:0;list-style:none;color:var(--crs-black-500);font-size:var(--crs-font-12)}.crs-breadcrumbs li{display:flex;align-items:center;gap:var(--crs-space-6)}.crs-breadcrumbs__link:hover{color:var(--crs-blue-600)}</style>
