@@ -39,9 +39,20 @@ execFileSync('git', [
   '--format=zip',
   '--prefix=layers/courses/',
   `--output=${archivePath}`,
-  'HEAD',
-  layerPath
+  `HEAD:${layerPath}`
 ], { cwd: repositoryRoot, stdio: 'inherit' })
+
+const archiveEntries = execFileSync('tar', ['-tf', archivePath], {
+  cwd: repositoryRoot,
+  encoding: 'utf8'
+}).split(/\r?\n/).filter(Boolean)
+const invalidEntry = archiveEntries.find(entry => !entry.startsWith('layers/courses/'))
+const nestedRepositoryPath = archiveEntries.find(entry => entry.includes('/courses/courses-nuxt-kit/'))
+const forbiddenDirectory = archiveEntries.find(entry => /(^|\/)(node_modules|\.nuxt|\.output|dist|test-results|playwright-report)(\/|$)/.test(entry))
+if (invalidEntry || nestedRepositoryPath || forbiddenDirectory) {
+  await rm(archivePath, { force: true })
+  throw new Error(`Invalid release archive entry: ${invalidEntry ?? nestedRepositoryPath ?? forbiddenDirectory}`)
+}
 
 const archive = await readFile(archivePath)
 const checksum = createHash('sha256').update(archive).digest('hex')
