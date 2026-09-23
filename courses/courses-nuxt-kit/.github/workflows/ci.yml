@@ -40,6 +40,9 @@ jobs:
       - name: Build
         run: pnpm run build
 
+      - name: Build a clean local-layer consumer
+        run: pnpm run test:consumer
+
       - name: Run browser and visual tests
         run: pnpm run test:e2e
 

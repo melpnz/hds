@@ -84,8 +84,22 @@ the layer with a newer release.
 pnpm run check
 pnpm run typecheck
 pnpm run build
+pnpm run test:consumer
 pnpm run test:e2e
 ```
+
+## Prepare a release archive
+
+After committing a version and binding its manifest to the source revision, run:
+
+```bash
+pnpm run create:release
+```
+
+The command verifies the manifest and clean layer boundary, then creates
+`dist/courses-nuxt-kit-v<version>.zip` plus its SHA-256 file. The archive
+contains only `layers/courses`; generated application, test and dependency
+directories cannot enter it.
 
 The same commands run automatically in GitHub Actions for every push and pull request. Browser and visual regression tests run on Windows with Microsoft Edge to match the checked-in screenshots.
 

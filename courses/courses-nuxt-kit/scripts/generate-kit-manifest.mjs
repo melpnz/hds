@@ -18,7 +18,9 @@ function readOption(name) {
 const packageJson = JSON.parse(await readFile(resolve(kitRoot, 'package.json'), 'utf8'))
 const guideIndex = JSON.parse(await readFile(resolve(kitRoot, '..', 'machine', 'index.json'), 'utf8'))
 const previousManifest = JSON.parse(await readFile(manifestPath, 'utf8').catch(() => 'null'))
-const sourceCommit = readOption('--source-commit') ?? process.env.COURSES_KIT_SOURCE_COMMIT ?? previousManifest?.source?.commitSha ?? null
+const sourceCommit = process.argv.includes('--clear-source-commit')
+  ? null
+  : readOption('--source-commit') ?? process.env.COURSES_KIT_SOURCE_COMMIT ?? previousManifest?.source?.commitSha ?? null
 
 if (sourceCommit !== null && !/^[0-9a-f]{40}$/.test(sourceCommit)) {
   throw new Error('Source commit must be a full 40-character lowercase Git SHA.')

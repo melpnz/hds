@@ -24,3 +24,7 @@ the layer.
 
 See [CHANGELOG.md](./CHANGELOG.md) before deliberately replacing this directory
 with a newer release.
+
+The official release archive contains this directory at `layers/courses` and
+an adjacent SHA-256 checksum. Copy the directory as a whole; do not cherry-pick
+individual component files from different versions.
