@@ -26,7 +26,9 @@ Open [http://localhost:3000/ui](http://localhost:3000/ui). The root route redire
 
 GitHub is only the place where the source library and its catalog are stored. The library is not consumed as an npm package or as a live Git dependency.
 
-To use it in a project, download the repository and copy `layers/courses` into that project's `layers/courses` directory. From that point onward the copy belongs to the project: it builds locally, can be customized locally and has no runtime or update connection to GitHub.
+To use it in a project, download the repository and copy `layers/courses` into that project's `layers/courses` directory. The copy builds and runs locally and has no runtime, development or build-time connection to GitHub.
+
+The copied layer is vendored, read-only source. Do not edit it in a product repository. Teams may freely create their own components, wrappers and page compositions outside `layers/courses` and compose them from the kit's public API. If the public API is insufficient, request a change from the kit maintainer; accepted changes are released from the canonical repository as a new kit version. See [OWNERSHIP.md](./OWNERSHIP.md).
 
 The receiving Nuxt project must install the library's build dependencies:
 
@@ -74,6 +76,10 @@ The library source code is available under the [MIT License](./LICENSE). It may 
 Third-party dependencies keep their own terms: Tabler Icons and Nuxt UI use MIT licenses, while Inter is distributed under the SIL Open Font License 1.1. Their copyright notices and license texts are collected in [THIRD_PARTY_NOTICES.md](./THIRD_PARTY_NOTICES.md).
 
 Habr names, logos and reference brand assets belong to Habr and are included in this repository with Habr's permission. The repository's MIT license covers the library source code but does not grant a separate right to use Habr trademarks outside the library and its intended products.
+
+The MIT license describes legal permissions. The supported team workflow and
+canonical maintainer boundary are described separately in
+[OWNERSHIP.md](./OWNERSHIP.md).
 
 ## Roadmap
 
