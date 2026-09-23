@@ -11,3 +11,16 @@ the Courses Nuxt Kit maintainer. Accepted changes are made in the canonical kit
 and delivered in a new version.
 
 The layer has no runtime, development or build-time connection to GitHub.
+
+Its version is recorded in `courses-kit.manifest.json`. Only when the user asks
+to check for updates, run:
+
+```bash
+node layers/courses/scripts/check-update.mjs
+```
+
+The command reports version and integrity status. It does not download or modify
+the layer.
+
+See [CHANGELOG.md](./CHANGELOG.md) before deliberately replacing this directory
+with a newer release.

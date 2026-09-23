@@ -58,6 +58,26 @@ Components are auto-imported without the old `Courses` prefix, for example:
 <CourseCard title="Frontend-разработчик" />
 ```
 
+The copied layer contains its assets, version manifest and integrity list. It is
+self-contained and does not need the catalog application from this repository.
+Release notes travel with it in
+[`layers/courses/CHANGELOG.md`](./layers/courses/CHANGELOG.md).
+
+## Check for updates
+
+There are no automatic update checks. Only when a user explicitly requests it,
+run from the receiving project:
+
+```bash
+node layers/courses/scripts/check-update.mjs
+```
+
+The command compares the local manifest with the latest manifest on GitHub,
+reports whether a newer version exists and detects modified, missing or extra
+files inside the copied layer. It never downloads or changes files. A modified
+copy must be reviewed and moved back to application-owned code before replacing
+the layer with a newer release.
+
 ## Validation
 
 ```bash
