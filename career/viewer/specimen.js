@@ -11,10 +11,16 @@ if (!specPath || !specPath.startsWith('machine/components/')) {
       return response.json();
     })
     .then(async item => {
-      if (!item.implementation?.markup || !item.implementation.markup.includes('/')) throw new Error('Copy-safe разметка отсутствует.');
-      const response = await fetch(`../${item.implementation.markup}`);
-      if (!response.ok) throw new Error(`Markup HTTP ${response.status}`);
-      const markup = await response.text();
+      // Разметка лежит либо отдельным файлом (implementation.markup — путь),
+      // либо inline в markup.html самой спецификации.
+      const markupPath = item.implementation?.markup;
+      let markup = item.markup?.html;
+      if (markupPath?.includes('/')) {
+        const response = await fetch(`../${markupPath}`);
+        if (!response.ok) throw new Error(`Markup HTTP ${response.status}`);
+        markup = await response.text();
+      }
+      if (!markup) throw new Error('Copy-safe разметка отсутствует.');
       document.title = item.title;
       target.innerHTML = markup
         .replaceAll('../../ui/', '../ui/')

@@ -119,7 +119,7 @@ write('machine/components/button.json', {
   knowledge: { authority: ['storybook', 'production-css', 'normative'], confidence: 'high', scope: 'public-and-shared' },
   purpose: 'Основное действие Career. При href или to рендерится ссылка, иначе button.',
   anatomy: ['base-button', 'base-button__inner', 'base-button__before?', 'base-button__content', 'base-button__after?', 'base-button__loader?'],
-  implementation: { markup: buttonMarkupPath, cssRoots: sourceButton.cssRoots, styles: ['ui/tokens.css', 'ui/foundations.css', 'ui/components/buttons.css', 'ui/state-contract.css'], scripts: ['examples/button/toggle-loading.js'], component: sourceButton.code },
+  implementation: { markup: buttonMarkupPath, cssRoots: sourceButton.cssRoots, styles: ['ui/tokens.css', 'ui/dimension-tokens.css', 'ui/foundations.css', 'ui/components/buttons.css', 'ui/state-contract.css'], scripts: ['examples/button/toggle-loading.js'], component: sourceButton.code },
   variants: [
     ['main', 'основное действие'], ['main-border', 'контурное основное действие'], ['passive', 'нейтральное действие'],
     ['danger', 'опасное действие'], ['danger-border', 'контурное опасное действие'], ['success', 'успешное действие'],
