@@ -10,6 +10,7 @@ const escapeRegExp = value => value.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
 const compatibility = await readJson('machine/compatibility.json')
 const index = await readJson('machine/index.json')
 const guidePackage = await readJson(compatibility.guide.package)
+const consumerWorkflow = await readJson(index.files.consumerWorkflow)
 
 if (compatibility.schemaVersion !== 1) throw new Error('Unsupported compatibility schema version.')
 if (compatibility.guide.id !== index.product.id || compatibility.guide.version !== index.product.guideVersion) {
@@ -57,6 +58,30 @@ if (!releaseHeading.test(changelog) || !changelog.includes(`Courses guide v${com
 const expectedArchive = `courses-nuxt-kit-v${manifest.version}.zip`
 if (manifest.distribution.archiveName !== expectedArchive || manifest.distribution.releaseTag !== `courses-nuxt-kit-v${manifest.version}`) {
   throw new Error('Provider release artifact names are not derived from the manifest version.')
+}
+if (consumerWorkflow.guide.id !== compatibility.guide.id || consumerWorkflow.guide.version !== compatibility.guide.version) {
+  throw new Error('Consumer workflow describes a different guide version.')
+}
+if (consumerWorkflow.provider.id !== provider.id || consumerWorkflow.provider.version !== manifest.version) {
+  throw new Error('Consumer workflow describes a different provider version.')
+}
+if (consumerWorkflow.distribution.mode !== manifest.distribution.mode
+  || consumerWorkflow.distribution.archive !== manifest.distribution.archiveName
+  || consumerWorkflow.distribution.copiedDirectory !== manifest.distribution.copiedDirectory
+  || consumerWorkflow.distribution.checksum !== `${manifest.distribution.archiveName}.sha256`) {
+  throw new Error('Consumer workflow distribution data differs from the provider manifest.')
+}
+if (JSON.stringify(consumerWorkflow.installation.dependencies) !== JSON.stringify(manifest.requirements.dependencies)
+  || JSON.stringify(consumerWorkflow.installation.devDependencies) !== JSON.stringify(manifest.requirements.devDependencies)) {
+  throw new Error('Consumer workflow dependencies differ from the provider manifest.')
+}
+if (consumerWorkflow.ownership.copiedLayer !== 'vendored-read-only'
+  || consumerWorkflow.ownership.canonicalKitChanges !== 'maintainer-only'
+  || consumerWorkflow.usage.applicationComponentsLocation !== 'outside layers/courses'
+  || consumerWorkflow.updates.automatic !== false
+  || consumerWorkflow.updates.checkOnlyOnExplicitRequest !== true
+  || consumerWorkflow.updates.mutatesFiles !== false) {
+  throw new Error('Consumer workflow weakens the ownership or explicit-update boundary.')
 }
 
 console.log(`Verified compatibility: ${compatibility.guide.id}@${compatibility.guide.version} <-> ${provider.id}@${manifest.version}.`)

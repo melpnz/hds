@@ -26,7 +26,12 @@ Open [http://localhost:3000/ui](http://localhost:3000/ui). The root route redire
 
 GitHub is only the place where the source library and its catalog are stored. The library is not consumed as an npm package or as a live Git dependency.
 
-To use it in a project, download the repository and copy `layers/courses` into that project's `layers/courses` directory. The copy builds and runs locally and has no runtime, development or build-time connection to GitHub.
+To use it in a project, download `courses-nuxt-kit-v<version>.zip` and its
+`.sha256` file from GitHub Releases, verify the checksum, then copy the archive's
+`layers/courses` directory into the same path in the project. The copy builds
+and runs locally and has no runtime, development or build-time connection to
+GitHub. The repository checkout is the maintainer workspace, not the normal
+consumer distribution.
 
 The copied layer is vendored, read-only source. Do not edit it in a product repository. Teams may freely create their own components, wrappers and page compositions outside `layers/courses` and compose them from the kit's public API. If the public API is insufficient, request a change from the kit maintainer; accepted changes are released from the canonical repository as a new kit version. See [OWNERSHIP.md](./OWNERSHIP.md).
 

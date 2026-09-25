@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0"
+  },
+  "distribution": {
+    "mode": "copy",
+    "archive": "courses-nuxt-kit-v1.0.0.zip",
+    "checksum": "courses-nuxt-kit-v1.0.0.zip.sha256",
+    "copiedDirectory": "layers/courses",
+    "networkPolicy": "no-runtime-build-or-dev-requests"
+  },
+  "installation": {
+    "dependencies": [
+      "@nuxt/ui",
+      "@fontsource-variable/inter"
+    ],
+    "devDependencies": [
+      "@iconify-json/tabler"
+    ],
+    "nuxtConfig": {
+      "extends": [
+        "./layers/courses"
+      ],
+      "modules": [
+        "@nuxt/ui"
+      ],
+      "ui": {
+        "colorMode": false
+      }
+    }
+  },
+  "usage": {
+    "componentLookup": "machine/providers/courses-nuxt-kit.json -> selected apiFile",
+    "behaviorLookup": "machine/catalog.json -> selected record and linked rules",
+    "preferPublicComponent": true,
+    "allowApplicationComponents": true,
+    "applicationComponentsLocation": "outside layers/courses"
+  },
+  "ownership": {
+    "copiedLayer": "vendored-read-only",
+    "canonicalKitChanges": "maintainer-only",
+    "missingApi": "request-change-from-maintainer",
+    "localFork": "unsupported"
+  },
+  "updates": {
+    "automatic": false,
+    "checkOnlyOnExplicitRequest": true,
+    "command": "node layers/courses/scripts/check-update.mjs",
+    "mutatesFiles": false
+  }
+}

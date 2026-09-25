@@ -28,3 +28,7 @@ with a newer release.
 The official release archive contains this directory at `layers/courses` and
 an adjacent SHA-256 checksum. Copy the directory as a whole; do not cherry-pick
 individual component files from different versions.
+
+The canonical guide also publishes `machine/consumer-workflow.json`. It is the
+machine-readable installation and ownership contract for colleagues and AI;
+this copied README keeps the same rules available when the guide is not present.

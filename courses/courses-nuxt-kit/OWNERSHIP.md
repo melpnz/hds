@@ -22,5 +22,18 @@ A project component remains owned by that project. If it becomes reusable across
 products, it can be proposed to the kit maintainer and, if accepted, will arrive
 through a new canonical kit release.
 
+## Change request checklist
+
+A request to change the canonical kit should include:
+
+- affected public component and current kit version;
+- missing behavior, prop, slot, event or token;
+- a minimal product use case or reproduction;
+- production or Figma evidence when the request changes visual behavior;
+- expected API without edits to private markup or selectors.
+
+Until a new version is released, keep the workaround in an application-owned
+component or wrapper outside `layers/courses`.
+
 This document describes the supported team workflow. The legal permissions of
 the source remain defined by [LICENSE](./LICENSE).
