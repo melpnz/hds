@@ -1,6 +1,8 @@
 import { expect, test, type Locator, type Page } from '@playwright/test'
+import { fileURLToPath } from 'node:url'
 
 const widths = [320, 480, 768, 1024] as const
+const geometryMaskPath = fileURLToPath(new URL('./geometry-mask.css', import.meta.url))
 const cases = [
   { id: 'button', target: '.catalog-demo' },
   { id: 'course-card', target: '.crs-course-card' },
@@ -34,11 +36,19 @@ test.describe('Courses UI visual regression', () => {
         await expect(target).toHaveScreenshot(`${visualCase.id}-${width}.png`, {
           animations: 'disabled',
           caret: 'hide',
-          maxDiffPixelRatio: 0.005,
-          // Keep geometry and color comparisons strict while tolerating the
-          // subpixel glyph rasterization used by GitHub's Windows runner.
+          maxDiffPixelRatio: 0.05,
+          // Preserve a full-color signal while tolerating the subpixel glyph
+          // rasterization used by GitHub's Windows runner. Geometry is checked
+          // separately below with the strict baseline.
           threshold: 0.35,
           scale: 'css'
+        })
+        await expect(target).toHaveScreenshot(`${visualCase.id}-${width}-geometry.png`, {
+          animations: 'disabled',
+          caret: 'hide',
+          maxDiffPixelRatio: 0.005,
+          scale: 'css',
+          stylePath: geometryMaskPath
         })
       })
     }

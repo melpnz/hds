@@ -1,0 +1,16 @@
+/*
+ * Geometry baselines deliberately omit glyph pixels. Font loading, family and
+ * typography contracts are validated separately; this layer keeps layout,
+ * surfaces, borders and media strict across Windows rasterizers.
+ */
+*:not(svg):not(svg *) {
+  color: transparent !important;
+  text-shadow: none !important;
+}
+
+*::before,
+*::after,
+*::placeholder {
+  color: transparent !important;
+  text-shadow: none !important;
+}
