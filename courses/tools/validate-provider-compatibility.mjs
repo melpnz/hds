@@ -59,6 +59,15 @@ const expectedArchive = `courses-nuxt-kit-v${manifest.version}.zip`
 if (manifest.distribution.archiveName !== expectedArchive || manifest.distribution.releaseTag !== `courses-nuxt-kit-v${manifest.version}`) {
   throw new Error('Provider release artifact names are not derived from the manifest version.')
 }
+const expectedReleaseBase = `${manifest.distribution.repositoryUrl}/releases/download/${manifest.distribution.releaseTag}`
+if (consumerWorkflow.schemaVersion !== 2
+  || consumerWorkflow.distribution.releaseTag !== manifest.distribution.releaseTag
+  || consumerWorkflow.distribution.releaseUrl !== `${manifest.distribution.repositoryUrl}/releases/tag/${manifest.distribution.releaseTag}`
+  || consumerWorkflow.distribution.archiveUrl !== `${expectedReleaseBase}/${expectedArchive}`
+  || consumerWorkflow.distribution.checksumUrl !== `${expectedReleaseBase}/${expectedArchive}.sha256`
+  || consumerWorkflow.distribution.checksumAlgorithm !== 'sha256') {
+  throw new Error('Consumer workflow does not provide canonical release download and checksum URLs.')
+}
 if (consumerWorkflow.guide.id !== compatibility.guide.id || consumerWorkflow.guide.version !== compatibility.guide.version) {
   throw new Error('Consumer workflow describes a different guide version.')
 }
@@ -82,6 +91,12 @@ if (consumerWorkflow.ownership.copiedLayer !== 'vendored-read-only'
   || consumerWorkflow.updates.checkOnlyOnExplicitRequest !== true
   || consumerWorkflow.updates.mutatesFiles !== false) {
   throw new Error('Consumer workflow weakens the ownership or explicit-update boundary.')
+}
+if (!consumerWorkflow.preflight?.ifLayerIsMissing
+  || !consumerWorkflow.preflight?.ifLayerIsModifiedOrIncompatible
+  || !consumerWorkflow.preflight?.ifGitHubIsUnavailable
+  || !consumerWorkflow.installation?.steps?.length) {
+  throw new Error('Consumer workflow does not define safe automatic initial installation.')
 }
 
 console.log(`Verified compatibility: ${compatibility.guide.id}@${compatibility.guide.version} <-> ${provider.id}@${manifest.version}.`)

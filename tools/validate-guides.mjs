@@ -15,6 +15,24 @@ const entryFiles = [
   'landings/README.md', 'landings/AGENTS.md'
 ];
 
+const rootMachine = readJson('machine/index.json');
+if (rootMachine.entrypoint !== 'README.md') errors.push('machine/index.json: README.md must remain the entrypoint');
+
+const collectRoutePaths = route => [
+  route.agentContract,
+  route.humanEntry,
+  route.machineIndex,
+  route.research,
+  route.implementationProvider?.consumerWorkflow
+].filter(Boolean);
+for (const [context, routes] of Object.entries(rootMachine.routes || {})) {
+  for (const [id, route] of Object.entries(routes)) {
+    for (const path of collectRoutePaths(route)) {
+      if (!existsSync(resolve(root, path))) errors.push(`machine/index.json: ${context}/${id} points to missing ${path}`);
+    }
+  }
+}
+
 for (const file of entryFiles) {
   const absolute = resolve(root, file);
   if (!existsSync(absolute)) {
@@ -41,6 +59,35 @@ const readme = readText('README.md');
 for (const [product, version] of Object.entries(versions)) {
   if (!versioning.includes(`v${version}`)) errors.push(`VERSIONING.md: ${product} v${version} is absent`);
   if (!readme.includes(`v${version}`)) errors.push(`README.md: ${product} v${version} is absent`);
+}
+
+for (const [product, version] of Object.entries(versions)) {
+  const context = product === 'landings' ? rootMachine.routes.landing : rootMachine.routes['service-interface'];
+  if (product === 'landings') {
+    for (const [id, route] of Object.entries(context)) {
+      if (route.guideVersion !== version) errors.push(`machine/index.json: landing/${id} v${route.guideVersion} differs from ${product} v${version}`);
+    }
+  } else if (context[product]?.guideVersion !== version) {
+    errors.push(`machine/index.json: ${product} v${context[product]?.guideVersion} differs from package v${version}`);
+  }
+}
+
+const coursesIndex = readJson('courses/machine/index.json');
+const coursesWorkflow = readJson(`courses/${coursesIndex.files.consumerWorkflow}`);
+const coursesRoute = rootMachine.routes['service-interface'].courses;
+if (coursesRoute.implementationProvider?.version !== coursesIndex.activeImplementationProvider.version) {
+  errors.push('machine/index.json: Courses provider version differs from courses/machine/index.json');
+}
+if (coursesRoute.implementationProvider?.consumerWorkflow !== 'courses/machine/consumer-workflow.json') {
+  errors.push('machine/index.json: Courses consumer workflow route is not canonical');
+}
+for (const field of ['releaseUrl', 'archiveUrl', 'checksumUrl']) {
+  if (!/^https:\/\/github\.com\/melpnz\/hds\//.test(coursesWorkflow.distribution[field] || '')) {
+    errors.push(`courses/machine/consumer-workflow.json: ${field} is not a public repository URL`);
+  }
+}
+if (!coursesWorkflow.preflight?.ifLayerIsMissing || !coursesWorkflow.installation?.steps?.length) {
+  errors.push('courses/machine/consumer-workflow.json: automatic initial installation is not explicit');
 }
 
 const packageVersions = [

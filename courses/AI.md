@@ -7,13 +7,14 @@ frontend-команды.
 
 ## Если нужно собрать интерфейс
 
-1. Открой `machine/consumer-workflow.json`. Найди в проекте локальный
-   `layers/courses/courses-kit.manifest.json`.
-   Если layer отсутствует, не воспроизводи kit вручную: сообщи, что нужен
-   совместимый release-архив и его SHA-256 из GitHub Releases.
+1. Открой `machine/index.json`, затем `machine/consumer-workflow.json`. Найди в
+   проекте локальный `layers/courses/courses-kit.manifest.json`.
+   Если Nuxt layer отсутствует, скачай `archiveUrl` и `checksumUrl` из workflow,
+   проверь SHA-256 и скопируй архивный `layers/courses` в проект целиком. Если
+   GitHub недоступен, сообщи об этом и не воспроизводи kit вручную.
 2. Сверь его provider и версию с `machine/compatibility.json`. Без прямой просьбы
    пользователя не обращайся к GitHub для проверки обновлений.
-3. Открой `machine/index.json`, затем компактный provider mapping и запись
+3. Открой компактный provider mapping и запись
    нужного компонента из её `apiFile`.
 4. Используй готовый Vue-компонент из layer. Не перевёрстывай его по примеру или
    скриншоту и не меняй файлы внутри `layers/courses`.

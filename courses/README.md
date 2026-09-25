@@ -16,11 +16,13 @@
 
 Короткая точка входа без истории проекта — [`AI.md`](AI.md).
 
-1. Для Nuxt-проекта сначала найди локальный `layers/courses/courses-kit.manifest.json`.
-2. Сверь его версию с `machine/compatibility.json`. Матрица автоматически
+1. Открой `machine/index.json`, затем для Nuxt-проекта — указанный там
+   `machine/consumer-workflow.json` и локальный `layers/courses/courses-kit.manifest.json`.
+   Если layer отсутствует, workflow прямо требует скачать, проверить и
+   скопировать зафиксированный release; это не нужно заменять ручной вёрсткой.
+2. Сверь версию manifest с `machine/compatibility.json`. Матрица автоматически
    проверяется против версий обоих `package.json`, manifest и записи changelog.
-3. Открой `machine/index.json`, проверь границу покрытия и
-   `activeImplementationProvider`.
+3. В `machine/index.json` проверь границу покрытия и `activeImplementationProvider`.
 4. Через `machine/providers/courses-nuxt-kit.json` найди export текущей версии;
    не перевёрстывай существующий компонент по скриншоту.
 5. В `machine/catalog.json` найди сущность по `id`, типу, группе или `tags` и
@@ -34,8 +36,11 @@
 Канонический маршрут установки описан машинно в
 [`machine/consumer-workflow.json`](machine/consumer-workflow.json).
 
-1. Возьми из GitHub Releases архив `courses-nuxt-kit-v1.0.0.zip` и соседний
-   `.sha256`, проверь контрольную сумму и распакуй `layers/courses` целиком.
+1. Возьми по точным `archiveUrl` и `checksumUrl` из workflow архив
+   `courses-nuxt-kit-v1.0.0.zip` и соседний `.sha256`, проверь контрольную сумму
+   и распакуй `layers/courses` целиком. Для отсутствующего layer в Nuxt-проекте
+   ИИ выполняет этот шаг самостоятельно; если GitHub недоступен — сообщает об
+   этом и не имитирует компоненты кита.
 2. Положи эту папку в `layers/courses` своего Nuxt-проекта; не смешивай файлы
    разных версий и не редактируй скопированный layer.
 3. Установи `@nuxt/ui`, `@fontsource-variable/inter` и dev-зависимость

@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "repository": "https://github.com/melpnz/hds",
+  "entrypoint": "README.md",
+  "purpose": "Route an AI from an implementation request to exactly one product or landing guide without loading unrelated packages.",
+  "routingOrder": [
+    "determine whether the requested result belongs inside a service interface or is a landing page",
+    "if that context is not explicit, ask the user and wait for the answer",
+    "select one route below",
+    "read its agentContract before implementation",
+    "follow its machineIndex and load only task-relevant catalog records"
+  ],
+  "ambiguity": {
+    "question": "Это страница внутри интерфейса сервиса или страница/форма для лендинга?",
+    "doNotInferFrom": [
+      "product name alone",
+      "authentication, registration, payment or form functionality",
+      "requested output format"
+    ]
+  },
+  "routes": {
+    "service-interface": {
+      "habr": {
+        "status": "active",
+        "guideVersion": "1.0",
+        "agentContract": "habr/AGENTS.md",
+        "humanEntry": "habr/README.md",
+        "machineIndex": "habr/machine/index.json"
+      },
+      "career": {
+        "status": "active",
+        "guideVersion": "1.2",
+        "agentContract": "career/AGENTS.md",
+        "humanEntry": "career/README.md",
+        "machineIndex": "career/machine/index.json"
+      },
+      "courses": {
+        "status": "active",
+        "guideVersion": "1.0",
+        "agentContract": "courses/AGENTS.md",
+        "humanEntry": "courses/README.md",
+        "machineIndex": "courses/machine/index.json",
+        "implementationProvider": {
+          "id": "courses-nuxt-kit",
+          "version": "1.0.0",
+          "appliesTo": "Nuxt implementation tasks",
+          "consumerWorkflow": "courses/machine/consumer-workflow.json",
+          "requiredAction": "Use an existing compatible local layer or, when it is absent, download the pinned release, verify its checksum and copy layers/courses into the product project before implementing the UI."
+        }
+      },
+      "q-and-a": {
+        "status": "planned",
+        "guideVersion": null,
+        "research": "02-habr-qna.md",
+        "requiredWarning": "Готового гайда пока нет, использую исследование. Будьте внимательны: результат будет очень приблизительным, ИИ может ошибаться и додумывать детали. Его нужно сверить с продакшеном."
+      }
+    },
+    "landing": {
+      "company": {
+        "status": "in-development",
+        "guideVersion": "0.2",
+        "agentContract": "landings/AGENTS.md",
+        "humanEntry": "landings/README.md",
+        "machineIndex": "landings/machine/index.json",
+        "research": "05-company-landings.md"
+      },
+      "product": {
+        "status": "in-development",
+        "guideVersion": "0.2",
+        "agentContract": "landings/AGENTS.md",
+        "humanEntry": "landings/README.md",
+        "machineIndex": "landings/machine/index.json",
+        "research": "06-product-landings.md"
+      },
+      "brand-or-special": {
+        "status": "in-development",
+        "guideVersion": "0.2",
+        "agentContract": "landings/AGENTS.md",
+        "humanEntry": "landings/README.md",
+        "machineIndex": "landings/machine/index.json",
+        "research": "07-brand-specials.md"
+      }
+    }
+  },
+  "policies": {
+    "readScope": "Do not load every guide, catalog record, SVG or screenshot. Read one selected route and only records linked to the task.",
+    "missingCoverage": "Disclose the gap and every material assumption; do not present an invented rule as guide-backed.",
+    "unavailableRepository": "If neither GitHub content nor a local checkout is available, report that the guide cannot be read and do not claim compliance.",
+    "logos": "assets/logos/README.md"
+  }
+}

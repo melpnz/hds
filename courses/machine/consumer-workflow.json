@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "guide": {
     "id": "courses",
     "version": "1.0"
@@ -12,10 +12,32 @@
     "mode": "copy",
     "archive": "courses-nuxt-kit-v1.0.0.zip",
     "checksum": "courses-nuxt-kit-v1.0.0.zip.sha256",
+    "releaseTag": "courses-nuxt-kit-v1.0.0",
+    "releaseUrl": "https://github.com/melpnz/hds/releases/tag/courses-nuxt-kit-v1.0.0",
+    "archiveUrl": "https://github.com/melpnz/hds/releases/download/courses-nuxt-kit-v1.0.0/courses-nuxt-kit-v1.0.0.zip",
+    "checksumUrl": "https://github.com/melpnz/hds/releases/download/courses-nuxt-kit-v1.0.0/courses-nuxt-kit-v1.0.0.zip.sha256",
+    "checksumAlgorithm": "sha256",
     "copiedDirectory": "layers/courses",
     "networkPolicy": "no-runtime-build-or-dev-requests"
   },
+  "preflight": {
+    "frameworkDetection": "Inspect the target repository; apply the provider installation only to a Nuxt project.",
+    "localManifest": "layers/courses/courses-kit.manifest.json",
+    "ifCompatibleLayerExists": "Use it without a network request.",
+    "ifLayerIsMissing": "Install the pinned release automatically before implementing the Courses UI.",
+    "ifLayerIsModifiedOrIncompatible": "Do not overwrite it. Report the version or integrity conflict and request an explicit migration decision.",
+    "ifGitHubIsUnavailable": "Report that the pinned kit cannot be downloaded. Do not recreate provider components from screenshots or static examples."
+  },
   "installation": {
+    "requiredWhen": "A Courses service-interface implementation is requested in a Nuxt project and layers/courses is absent.",
+    "steps": [
+      "download archiveUrl and checksumUrl",
+      "verify the archive with checksumAlgorithm using the downloaded checksum file",
+      "extract the archive and copy its complete layers/courses directory to the target project's layers/courses",
+      "install dependencies and devDependencies",
+      "merge nuxtConfig without removing unrelated project configuration",
+      "read the copied manifest and verify it against machine/compatibility.json"
+    ],
     "dependencies": [
       "@nuxt/ui",
       "@fontsource-variable/inter"

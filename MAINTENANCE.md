@@ -12,7 +12,7 @@ Courses и Landings. Он не заменяет пакетные `AGENTS.md`: с
 | Компонент/блок | адресная Markdown/machine-спецификация и runtime CSS/JS | viewer-каталог, поиск, visual/maturity-контракты |
 | Страница | pattern/page-спецификация и standalone-пример | machine-запись, viewer-страница, браузерные проверки |
 | Ассет | исходный локальный файл и manifest/asset-index пакета | превью и проверки существования |
-| Маршрутизация | корневые `README.md`, `AGENTS.md` и пакетный `AGENTS.md` | проверка входных ссылок |
+| Маршрутизация | корневые `README.md`, `AGENTS.md`, `machine/index.json` и пакетный `AGENTS.md` | проверка входных ссылок и совпадения версий маршрутов |
 | Версия | `VERSIONING.md` и каноническое поле machine index | README, package version, CHANGELOG и тег |
 
 Если пакет генерирует machine-файл или отчёт, не исправляйте производный файл
@@ -57,7 +57,9 @@ Figma → документированное допущение. Не восст
 
 1. Выберите SemVer по [`VERSIONING.md`](VERSIONING.md); версия гайда независима от версии сервиса.
 2. Обновите каноническое поле версии в machine index пакета.
-3. Синхронизируйте пакетный `package.json`, `README.md`, `AGENTS.md`, корневые `README.md` и `VERSIONING.md`.
+3. Синхронизируйте пакетный `package.json`, `README.md`, `AGENTS.md`, корневые
+   `README.md`, `machine/index.json` и `VERSIONING.md`. Для Courses также
+   обновите provider version и release URL в `machine/consumer-workflow.json`.
 4. Перенесите `Unreleased` в датированный раздел `CHANGELOG.md`; опишите совместимость и migration notes.
 5. Для переименованных публичных путей добавьте алиас минимум на один релизный цикл.
 6. Прогоните пакетные проверки, корневую проверку маршрутов и визуальные тесты.
