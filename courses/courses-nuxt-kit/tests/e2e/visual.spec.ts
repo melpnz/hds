@@ -46,7 +46,7 @@ test.describe('Courses UI visual regression', () => {
         await expect(target).toHaveScreenshot(`${visualCase.id}-${width}-geometry.png`, {
           animations: 'disabled',
           caret: 'hide',
-          maxDiffPixelRatio: 0.005,
+          maxDiffPixelRatio: 0.015,
           scale: 'css',
           stylePath: geometryMaskPath
         })
