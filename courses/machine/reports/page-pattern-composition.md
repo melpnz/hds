@@ -2,7 +2,7 @@
 
 Отчёт генерируется `tools/normalize-patterns.mjs`. Page-pattern хранит порядок,
 роль областей и поведение страницы; конкретную реализацию компонентов берём из
-`courses-nuxt-kit@1.0.0` через provider mapping.
+`courses-nuxt-kit@1.0.1` через provider mapping.
 Статические HTML-страницы сохраняются только как evidence и GitHub fallback.
 
 Общая оболочка всех шести страниц: `SiteHeader` + `SiteFooter` активного

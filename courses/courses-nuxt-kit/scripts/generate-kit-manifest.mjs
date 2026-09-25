@@ -18,6 +18,9 @@ function readOption(name) {
 }
 
 const packageJson = JSON.parse(await readFile(resolve(kitRoot, 'package.json'), 'utf8'))
+if (!/^\d{4}-\d{2}-\d{2}$/.test(packageJson.coursesKit?.releasedAt ?? '')) {
+  throw new Error('package.json coursesKit.releasedAt must use YYYY-MM-DD.')
+}
 const guideIndex = JSON.parse(await readFile(resolve(kitRoot, '..', 'machine', 'index.json'), 'utf8'))
 const { coursesRegistry } = await import(pathToFileURL(resolve(layerRoot, 'app', 'data', 'coursesRegistry.ts')).href)
 const previousManifest = JSON.parse(await readFile(manifestPath, 'utf8').catch(() => 'null'))
@@ -246,7 +249,7 @@ const manifest = {
     status: 'active-temporary'
   },
   version: packageJson.version,
-  releasedAt: '2026-09-23',
+  releasedAt: packageJson.coursesKit.releasedAt,
   guide: {
     id: 'courses',
     compatibleVersion: guideIndex.product.guideVersion
@@ -264,9 +267,10 @@ const manifest = {
     releaseTag: `courses-nuxt-kit-v${packageJson.version}`,
     repositoryUrl: 'https://github.com/melpnz/hds',
     releasesUrl: 'https://github.com/melpnz/hds/releases',
+    currentReleaseUrl: `https://github.com/melpnz/hds/releases/tag/courses-nuxt-kit-v${packageJson.version}`,
     changelogUrl: 'https://github.com/melpnz/hds/blob/main/courses/courses-nuxt-kit/layers/courses/CHANGELOG.md',
     latestManifestUrl: 'https://raw.githubusercontent.com/melpnz/hds/main/courses/courses-nuxt-kit/layers/courses/courses-kit.manifest.json',
-    networkPolicy: 'manual-update-check-only'
+    networkPolicy: 'automatic-read-only-check-no-automatic-update'
   },
   requirements: {
     dependencies: ['@nuxt/ui', '@fontsource-variable/inter'],

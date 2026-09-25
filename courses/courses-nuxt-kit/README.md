@@ -71,18 +71,20 @@ Release notes travel with it in
 
 ## Check for updates
 
-There are no automatic update checks. Only when a user explicitly requests it,
-run from the receiving project:
+An AI agent using Courses UI runs this read-only check once at the beginning of
+its task in the receiving project:
 
 ```bash
-node layers/courses/scripts/check-update.mjs
+node layers/courses/scripts/check-update.mjs --json
 ```
 
 The command compares the local manifest with the latest manifest on GitHub,
 reports whether a newer version exists and detects modified, missing or extra
-files inside the copied layer. It never downloads or changes files. A modified
-copy must be reviewed and moved back to application-owned code before replacing
-the layer with a newer release.
+files inside the copied layer. It never downloads or changes files. The agent
+only offers an available update; replacement requires explicit user approval. A
+modified copy must be reviewed and moved back to application-owned code before
+replacing the layer with a newer release. A failed network check does not block
+using the existing local layer.
 
 ## Validation
 

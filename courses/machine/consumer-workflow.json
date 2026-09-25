@@ -6,16 +6,16 @@
   },
   "provider": {
     "id": "courses-nuxt-kit",
-    "version": "1.0.0"
+    "version": "1.0.1"
   },
   "distribution": {
     "mode": "copy",
-    "archive": "courses-nuxt-kit-v1.0.0.zip",
-    "checksum": "courses-nuxt-kit-v1.0.0.zip.sha256",
-    "releaseTag": "courses-nuxt-kit-v1.0.0",
-    "releaseUrl": "https://github.com/melpnz/hds/releases/tag/courses-nuxt-kit-v1.0.0",
-    "archiveUrl": "https://github.com/melpnz/hds/releases/download/courses-nuxt-kit-v1.0.0/courses-nuxt-kit-v1.0.0.zip",
-    "checksumUrl": "https://github.com/melpnz/hds/releases/download/courses-nuxt-kit-v1.0.0/courses-nuxt-kit-v1.0.0.zip.sha256",
+    "archive": "courses-nuxt-kit-v1.0.1.zip",
+    "checksum": "courses-nuxt-kit-v1.0.1.zip.sha256",
+    "releaseTag": "courses-nuxt-kit-v1.0.1",
+    "releaseUrl": "https://github.com/melpnz/hds/releases/tag/courses-nuxt-kit-v1.0.1",
+    "archiveUrl": "https://github.com/melpnz/hds/releases/download/courses-nuxt-kit-v1.0.1/courses-nuxt-kit-v1.0.1.zip",
+    "checksumUrl": "https://github.com/melpnz/hds/releases/download/courses-nuxt-kit-v1.0.1/courses-nuxt-kit-v1.0.1.zip.sha256",
     "checksumAlgorithm": "sha256",
     "copiedDirectory": "layers/courses",
     "networkPolicy": "no-runtime-build-or-dev-requests"
@@ -72,8 +72,13 @@
   },
   "updates": {
     "automatic": false,
-    "checkOnlyOnExplicitRequest": true,
-    "command": "node layers/courses/scripts/check-update.mjs",
-    "mutatesFiles": false
+    "automaticCheck": true,
+    "checkAtStartOfAgentTask": true,
+    "checkOnlyOnExplicitRequest": false,
+    "command": "node layers/courses/scripts/check-update.mjs --json",
+    "mutatesFiles": false,
+    "offerUpdateOnly": true,
+    "requiresExplicitApprovalToReplace": true,
+    "neverReplaceWhenIntegrityIsDirty": true
   }
 }

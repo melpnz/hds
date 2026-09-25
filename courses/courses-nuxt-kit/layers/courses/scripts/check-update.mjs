@@ -105,14 +105,20 @@ export function evaluateUpdate(localManifest, remoteManifest, integrity) {
   }
 
   const comparison = compareSemver(localManifest.version, remoteManifest.version)
+  const status = comparison < 0 ? 'update_available' : comparison > 0 ? 'local_newer' : 'up_to_date'
+  const recommendation = status === 'update_available'
+    ? (integrity.clean ? 'offer_update' : 'offer_migration_preserving_local_changes')
+    : (integrity.clean ? 'none' : 'report_local_changes')
   return {
-    status: comparison < 0 ? 'update_available' : comparison > 0 ? 'local_newer' : 'up_to_date',
+    status,
     localVersion: localManifest.version,
     latestVersion: remoteManifest.version,
     compatibleGuideVersion: remoteManifest.guide?.compatibleVersion ?? null,
-    releaseUrl: remoteManifest.distribution?.releasesUrl ?? localManifest.distribution?.releasesUrl ?? null,
+    releaseUrl: remoteManifest.distribution?.currentReleaseUrl ?? remoteManifest.distribution?.releasesUrl ?? localManifest.distribution?.releasesUrl ?? null,
     changelogUrl: remoteManifest.distribution?.changelogUrl ?? localManifest.distribution?.changelogUrl ?? null,
-    integrity
+    integrity,
+    recommendation,
+    automaticReplacementAllowed: false
   }
 }
 
@@ -135,6 +141,12 @@ function printHuman(result) {
     for (const path of result.integrity.extra) console.log(`  добавлен внутрь layer: ${path}`)
   }
   else console.log('Локальная копия не изменена.')
+  if (result.status === 'update_available' && result.integrity.clean) {
+    console.log('Предложите обновление пользователю; не заменяйте layer без явного согласия.')
+  }
+  if (result.status === 'update_available' && !result.integrity.clean) {
+    console.log('Предложите миграцию с сохранением локальных изменений; автоматическая замена запрещена.')
+  }
   if (result.status === 'update_available' && result.changelogUrl) console.log(`Что изменилось: ${result.changelogUrl}`)
   if (result.status === 'update_available' && result.releaseUrl) console.log(`Архив: ${result.releaseUrl}`)
 }

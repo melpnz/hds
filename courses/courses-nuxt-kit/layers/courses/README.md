@@ -12,15 +12,17 @@ and delivered in a new version.
 
 The layer has no runtime, development or build-time connection to GitHub.
 
-Its version is recorded in `courses-kit.manifest.json`. Only when the user asks
-to check for updates, run:
+Its version is recorded in `courses-kit.manifest.json`. An AI agent working with
+Courses UI runs the read-only check once at the beginning of its task:
 
 ```bash
-node layers/courses/scripts/check-update.mjs
+node layers/courses/scripts/check-update.mjs --json
 ```
 
 The command reports version and integrity status. It does not download or modify
-the layer.
+the layer. A newer version is only offered to the user. If local files were
+changed, removed or added, they are reported and the layer must not be replaced
+without an explicit migration decision that preserves those changes.
 
 See [CHANGELOG.md](./CHANGELOG.md) before deliberately replacing this directory
 with a newer release.

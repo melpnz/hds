@@ -88,8 +88,13 @@ if (consumerWorkflow.ownership.copiedLayer !== 'vendored-read-only'
   || consumerWorkflow.ownership.canonicalKitChanges !== 'maintainer-only'
   || consumerWorkflow.usage.applicationComponentsLocation !== 'outside layers/courses'
   || consumerWorkflow.updates.automatic !== false
-  || consumerWorkflow.updates.checkOnlyOnExplicitRequest !== true
-  || consumerWorkflow.updates.mutatesFiles !== false) {
+  || consumerWorkflow.updates.automaticCheck !== true
+  || consumerWorkflow.updates.checkAtStartOfAgentTask !== true
+  || consumerWorkflow.updates.checkOnlyOnExplicitRequest !== false
+  || consumerWorkflow.updates.mutatesFiles !== false
+  || consumerWorkflow.updates.offerUpdateOnly !== true
+  || consumerWorkflow.updates.requiresExplicitApprovalToReplace !== true
+  || consumerWorkflow.updates.neverReplaceWhenIntegrityIsDirty !== true) {
   throw new Error('Consumer workflow weakens the ownership or explicit-update boundary.')
 }
 if (!consumerWorkflow.preflight?.ifLayerIsMissing

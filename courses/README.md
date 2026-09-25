@@ -37,7 +37,7 @@
 [`machine/consumer-workflow.json`](machine/consumer-workflow.json).
 
 1. Возьми по точным `archiveUrl` и `checksumUrl` из workflow архив
-   `courses-nuxt-kit-v1.0.0.zip` и соседний `.sha256`, проверь контрольную сумму
+   `courses-nuxt-kit-v1.0.1.zip` и соседний `.sha256`, проверь контрольную сумму
    и распакуй `layers/courses` целиком. Для отсутствующего layer в Nuxt-проекте
    ИИ выполняет этот шаг самостоятельно; если GitHub недоступен — сообщает об
    этом и не имитирует компоненты кита.
@@ -45,8 +45,9 @@
    разных версий и не редактируй скопированный layer.
 3. Установи `@nuxt/ui`, `@fontsource-variable/inter` и dev-зависимость
    `@iconify-json/tabler`, затем подключи локальный layer через `extends`.
-4. Сверь `courses-kit.manifest.json` с `machine/compatibility.json`. Проверку
-   обновлений запускай только по явному запросу; она ничего не скачивает.
+4. Сверь `courses-kit.manifest.json` с `machine/compatibility.json`. Агент один
+   раз в начале задачи запускает read-only проверку обновлений; она ничего не
+   скачивает. Новая версия только предлагается, а изменённый layer не заменяется.
 5. Готовые компоненты бери через provider mapping. Собственные компоненты и
    wrappers размещай снаружи `layers/courses`; недостающий публичный API
    запрашивай у владельца kit.

@@ -44,7 +44,10 @@ assert.equal(compareSemver('1.0.0', '1.0.0-beta.1'), 1)
 
 const newer = structuredClone(localManifest)
 newer.version = '1.1.0'
-assert.equal(evaluateUpdate(localManifest, newer, integrity).status, 'update_available')
+const cleanUpdate = evaluateUpdate(localManifest, newer, integrity)
+assert.equal(cleanUpdate.status, 'update_available')
+assert.equal(cleanUpdate.recommendation, 'offer_update')
+assert.equal(cleanUpdate.automaticReplacementAllowed, false)
 assert.equal(evaluateUpdate(newer, localManifest, integrity).status, 'local_newer')
 assert.equal(evaluateUpdate(localManifest, localManifest, integrity).status, 'up_to_date')
 
@@ -63,7 +66,11 @@ try {
 
   assert.equal((await verifyIntegrity(fixtureRoot)).clean, true)
   await writeFile(resolve(fixtureRoot, 'components', 'Example.vue'), 'changed\n')
-  assert.deepEqual((await verifyIntegrity(fixtureRoot)).changed, ['components/Example.vue'])
+  const changedIntegrity = await verifyIntegrity(fixtureRoot)
+  assert.deepEqual(changedIntegrity.changed, ['components/Example.vue'])
+  const dirtyUpdate = evaluateUpdate(localManifest, newer, changedIntegrity)
+  assert.equal(dirtyUpdate.recommendation, 'offer_migration_preserving_local_changes')
+  assert.equal(dirtyUpdate.automaticReplacementAllowed, false)
   await writeFile(resolve(fixtureRoot, 'components', 'Extra.vue'), 'extra\n')
   assert.deepEqual((await verifyIntegrity(fixtureRoot)).extra, ['components/Extra.vue'])
   await rm(resolve(fixtureRoot, 'components', 'Example.vue'))
