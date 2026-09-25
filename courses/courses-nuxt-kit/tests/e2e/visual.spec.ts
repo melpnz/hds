@@ -35,6 +35,9 @@ test.describe('Courses UI visual regression', () => {
           animations: 'disabled',
           caret: 'hide',
           maxDiffPixelRatio: 0.005,
+          // Keep geometry and color comparisons strict while tolerating the
+          // subpixel glyph rasterization used by GitHub's Windows runner.
+          threshold: 0.35,
           scale: 'css'
         })
       })

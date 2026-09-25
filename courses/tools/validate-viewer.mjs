@@ -16,6 +16,10 @@ page.on('response', response => {
 async function readIntrinsicGeometry(frame) {
   const bodyLocator = frame.contentFrame().locator('body');
   await bodyLocator.locator('.example-root').waitFor();
+  await bodyLocator.evaluate(async () => {
+    await document.fonts.ready;
+    await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+  });
   return bodyLocator.evaluate(body => {
     const root = body.querySelector('.example-root');
     const child = root.firstElementChild;
