@@ -75,8 +75,13 @@ function evidenceRefExists(ref, owner) {
   if (typeof ref !== 'string' || !ref.trim()) return errors.push(`${owner}: empty evidence ref`);
   if (/^https?:\/\//.test(ref)) return;
   const clean = ref.split('#')[0];
+  const archiveBase = resolve(root, '..', 'archive');
+  // The v0.1 archive is intentionally local and excluded from Git. Validate
+  // archive references when that optional evidence bundle is present, but do
+  // not make a clean checkout depend on unpublished historical files.
+  if (clean.startsWith('archive:') && !existsSync(archiveBase)) return;
   const target = clean.startsWith('archive:')
-    ? resolve(root, '..', 'archive', clean.slice('archive:'.length))
+    ? resolve(archiveBase, clean.slice('archive:'.length))
     : clean.startsWith('local:')
       ? resolve(root, clean.slice('local:'.length))
       : resolve(root, clean);
