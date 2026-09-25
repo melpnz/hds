@@ -123,8 +123,13 @@ jobs:
       - name: Install Nuxt Kit dependencies
         working-directory: courses/courses-nuxt-kit
         run: pnpm install --frozen-lockfile
+      - name: Install pinned Chromium
+        working-directory: courses/courses-nuxt-kit
+        run: pnpm exec playwright install chromium
       - name: Compare priority components with approved screenshots
         working-directory: courses/courses-nuxt-kit
+        env:
+          PLAYWRIGHT_CHANNEL: chromium
         run: pnpm run test:visual
       - name: Upload visual diff on failure
         if: failure()

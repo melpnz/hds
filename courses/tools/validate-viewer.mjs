@@ -926,6 +926,10 @@ try {
   for (const example of fontExamples) {
       await fontPage.goto(`${baseUrl}/${example.file}`, { waitUntil: 'networkidle' });
       const audit = await fontPage.evaluate(async () => {
+        await Promise.all([
+          document.fonts.load('16px Inter', 'Courses'),
+          document.fonts.load('16px Inter', 'Курсы'),
+        ]);
         await document.fonts.ready;
         const semanticMonospace = new Set(['CODE', 'PRE', 'KBD', 'SAMP']);
         const violations = [];
@@ -937,7 +941,10 @@ try {
           const family = getComputedStyle(element).fontFamily;
           if (!family.toLowerCase().includes('inter')) violations.push(`${element.tagName.toLowerCase()}.${element.className || ''}: ${family}`);
         }
-        return { loaded: document.fonts.check('16px Inter'), violations: violations.slice(0, 5) };
+        return {
+          loaded: document.fonts.check('16px Inter', 'Courses') && document.fonts.check('16px Inter', 'Курсы'),
+          violations: violations.slice(0, 5),
+        };
       });
       if (!audit.loaded) failures.push(`${example.owner}: Inter failed to load`);
       if (audit.violations.length) failures.push(`${example.owner}: non-Inter text: ${audit.violations.join(', ')}`);

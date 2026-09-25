@@ -1,5 +1,12 @@
 import { defineConfig } from '@playwright/test'
 
+const requestedChannel = process.env.PLAYWRIGHT_CHANNEL
+const browserChannel = requestedChannel && requestedChannel !== 'chromium'
+  ? requestedChannel
+  : process.platform === 'win32' && !requestedChannel
+    ? 'msedge'
+    : undefined
+
 export default defineConfig({
   testDir: './tests/e2e',
   snapshotPathTemplate: '{testDir}/__screenshots__/{testFilePath}/{arg}{ext}',
@@ -9,7 +16,7 @@ export default defineConfig({
   use: {
     baseURL: 'http://localhost:3000',
     browserName: 'chromium',
-    ...(process.platform === 'win32' ? { channel: 'msedge' } : {}),
+    ...(browserChannel ? { channel: browserChannel } : {}),
     trace: 'retain-on-failure'
   },
   webServer: {
