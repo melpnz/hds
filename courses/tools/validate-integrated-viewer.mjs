@@ -13,7 +13,8 @@ const samples = [
   'modal'
 ]
 
-const browser = await chromium.launch({ channel: 'chrome', headless: true })
+const browserChannel = process.env.PLAYWRIGHT_CHANNEL || (process.platform === 'win32' ? 'chrome' : undefined)
+const browser = await chromium.launch({ ...(browserChannel ? { channel: browserChannel } : {}), headless: true })
 const page = await browser.newPage({ viewport: { width: 1280, height: 900 } })
 const failures = []
 const runtimeErrors = []

@@ -86,7 +86,8 @@ pnpm run check
 pnpm run typecheck
 pnpm run build
 pnpm run test:consumer
-pnpm run test:e2e
+pnpm run test:smoke
+pnpm run test:visual
 ```
 
 ## Prepare a release archive
@@ -102,7 +103,10 @@ The command verifies the manifest and clean layer boundary, then creates
 contains only `layers/courses`; generated application, test and dependency
 directories cannot enter it.
 
-The same commands run automatically in GitHub Actions for every push and pull request. Browser and visual regression tests run on Windows with Microsoft Edge to match the checked-in screenshots.
+The [Courses workflow](../../.github/workflows/courses-ci.yml) runs for every
+Courses push and pull request. Contract drift, compatibility, build and the
+offline consumer run on Linux; guide/provider render smoke uses Chromium;
+approved screenshots are compared separately on Windows with Microsoft Edge.
 
 ## License
 

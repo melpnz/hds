@@ -1,0 +1,137 @@
+name: Courses guide and Nuxt Kit
+
+on:
+  push:
+    paths:
+      - 'courses/**'
+      - '.github/workflows/courses-ci.yml'
+  pull_request:
+    paths:
+      - 'courses/**'
+      - '.github/workflows/courses-ci.yml'
+  workflow_dispatch:
+
+concurrency:
+  group: courses-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  contracts:
+    name: Contracts, build and copied consumer
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+          cache-dependency-path: courses/package-lock.json
+      - name: Install guide dependencies
+        working-directory: courses
+        run: npm ci
+      - name: Validate guide, provider mappings and compatibility
+        working-directory: courses
+        run: npm run validate
+      - name: Install Nuxt Kit dependencies
+        working-directory: courses/courses-nuxt-kit
+        run: pnpm install --frozen-lockfile
+      - name: Check component, API, token and manifest drift
+        working-directory: courses/courses-nuxt-kit
+        run: pnpm run check
+      - name: Typecheck and build Nuxt Kit
+        working-directory: courses/courses-nuxt-kit
+        run: pnpm run typecheck && pnpm run build
+      - name: Build an offline minimal consumer from the copied layer
+        working-directory: courses/courses-nuxt-kit
+        run: pnpm run test:consumer
+
+  render-smoke:
+    name: Viewer and provider render smoke
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install guide and Nuxt Kit dependencies
+        run: |
+          npm ci --prefix courses
+          pnpm --dir courses/courses-nuxt-kit install --frozen-lockfile
+      - name: Install Chromium
+        working-directory: courses/courses-nuxt-kit
+        run: pnpm exec playwright install --with-deps chromium
+      - name: Start guide and provider
+        shell: bash
+        run: |
+          npm --prefix courses run serve -- 4173 > courses-guide.log 2>&1 &
+          echo $! > courses-guide.pid
+          pnpm --dir courses/courses-nuxt-kit dev --host 127.0.0.1 --port 3000 > courses-provider.log 2>&1 &
+          echo $! > courses-provider.pid
+          for attempt in {1..90}; do
+            if curl --fail --silent http://127.0.0.1:4173/viewer/ > /dev/null && curl --fail --silent http://127.0.0.1:3000/ui > /dev/null; then
+              exit 0
+            fi
+            sleep 2
+          done
+          echo 'Courses servers did not become ready in time.'
+          exit 1
+      - name: Validate all guide previews
+        env:
+          PLAYWRIGHT_CHANNEL: chromium
+        run: npm --prefix courses run validate:viewer -- http://127.0.0.1:4173
+      - name: Validate integrated provider previews
+        env:
+          PLAYWRIGHT_CHANNEL: chromium
+        run: npm --prefix courses run validate:integrated-viewer -- http://127.0.0.1:4173
+      - name: Run Nuxt catalog smoke tests
+        working-directory: courses/courses-nuxt-kit
+        run: pnpm run test:smoke
+      - name: Upload server logs on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: courses-render-smoke-logs
+          path: |
+            courses-guide.log
+            courses-provider.log
+            courses/courses-nuxt-kit/test-results
+          if-no-files-found: ignore
+
+  visual-regression:
+    name: Priority visual regression (Edge)
+    runs-on: windows-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.33.2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Install Nuxt Kit dependencies
+        working-directory: courses/courses-nuxt-kit
+        run: pnpm install --frozen-lockfile
+      - name: Compare priority components with approved screenshots
+        working-directory: courses/courses-nuxt-kit
+        run: pnpm run test:visual
+      - name: Upload visual diff on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: courses-visual-regression
+          path: |
+            courses/courses-nuxt-kit/test-results
+            courses/courses-nuxt-kit/playwright-report
+          if-no-files-found: ignore

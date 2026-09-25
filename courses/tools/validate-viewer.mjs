@@ -1,7 +1,8 @@
 import { chromium } from 'playwright';
 
 const baseUrl = process.argv[2] || 'http://127.0.0.1:4173';
-const browser = await chromium.launch({ channel: 'chrome', headless: true });
+const browserChannel = process.env.PLAYWRIGHT_CHANNEL || (process.platform === 'win32' ? 'chrome' : undefined);
+const browser = await chromium.launch({ ...(browserChannel ? { channel: browserChannel } : {}), headless: true });
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
 const failures = [];
 const runtimeErrors = [];

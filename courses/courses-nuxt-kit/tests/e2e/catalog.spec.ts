@@ -10,8 +10,8 @@ test.describe('Courses UI catalog', () => {
     await waitForHydration(page)
 
     await expect(page).toHaveURL(/\/ui/)
-    await expect(page.getByText('Nuxt component library · 71 элементов')).toBeVisible()
-    await expect(page.locator('.catalog-list > button')).toHaveCount(71)
+    await expect(page.getByText('Nuxt component library · 72 элементов')).toBeVisible()
+    await expect(page.locator('.catalog-list > button')).toHaveCount(72)
     await expect(page.locator('.catalog-list .status--in-progress')).toHaveCount(0)
     await expect(page.locator('.source-status')).toHaveCount(0)
   })
