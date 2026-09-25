@@ -260,6 +260,8 @@ const manifest = {
   distribution: {
     mode: 'copy',
     copiedDirectory: 'layers/courses',
+    archiveName: `courses-nuxt-kit-v${packageJson.version}.zip`,
+    releaseTag: `courses-nuxt-kit-v${packageJson.version}`,
     repositoryUrl: 'https://github.com/melpnz/hds',
     releasesUrl: 'https://github.com/melpnz/hds/releases',
     changelogUrl: 'https://github.com/melpnz/hds/blob/main/courses/courses-nuxt-kit/layers/courses/CHANGELOG.md',

@@ -7,11 +7,15 @@ import { compareSemver, evaluateUpdate, readManifestSource, verifyIntegrity } fr
 
 const layerRoot = resolve('layers', 'courses')
 const localManifest = await readManifestSource(resolve(layerRoot, 'courses-kit.manifest.json'))
+const packageJson = await readManifestSource(resolve('package.json'))
 const tokenManifest = await readManifestSource(resolve(layerRoot, 'courses-kit.tokens.json'))
 const integrity = await verifyIntegrity(layerRoot)
 
 assert.equal(integrity.clean, true, JSON.stringify(integrity, null, 2))
 assert.equal(localManifest.schemaVersion, 2)
+assert.equal(localManifest.version, packageJson.version)
+assert.equal(localManifest.distribution.archiveName, `courses-nuxt-kit-v${localManifest.version}.zip`)
+assert.equal(localManifest.distribution.releaseTag, `courses-nuxt-kit-v${localManifest.version}`)
 assert.equal(localManifest.components.public.length, 72)
 assert.equal(localManifest.tokens.manifest, 'courses-kit.tokens.json')
 assert.equal(localManifest.tokens.count, tokenManifest.count)

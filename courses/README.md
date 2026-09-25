@@ -17,7 +17,8 @@
 Короткая точка входа без истории проекта — [`AI.md`](AI.md).
 
 1. Для Nuxt-проекта сначала найди локальный `layers/courses/courses-kit.manifest.json`.
-2. Сверь его версию с `machine/compatibility.json`.
+2. Сверь его версию с `machine/compatibility.json`. Матрица автоматически
+   проверяется против версий обоих `package.json`, manifest и записи changelog.
 3. Открой `machine/index.json`, проверь границу покрытия и
    `activeImplementationProvider`.
 4. Через `machine/providers/courses-nuxt-kit.json` найди export текущей версии;
