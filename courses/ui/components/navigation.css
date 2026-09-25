@@ -7,8 +7,9 @@
    внутри — по секции на компонент, в порядке появления в роадмапе.
 
    Ожидаемый состав (R3–R4):
-     Link · SegmentedControl · Tab · Pagination · Breadcrumbs
-     RubricationBar · FilterBar
+     Link · SegmentedControl · Tab · Pagination · Breadcrumbs · FilterBar.
+   .rubrication-header сохранён как page-specific root области
+   rubrication-navigation страницы /courses, а не как отдельный компонент.
 
    Значения — через var(--…) из tokens.css. Литерал допустим только там, где
    литерал стоит в самом продукте, и тогда это отмечается в спецификации
@@ -30,6 +31,17 @@
 }
 .scrollbar-container > * {
   flex: 0 0 auto;
+}
+
+.rubrication-header {
+  gap: var(--courses-space-16);
+}
+
+@media (max-width: 767px) {
+  .rubrication-header {
+    max-width: none;
+    width: calc(100% + 2 * var(--courses-space-24));
+  }
 }
 
 /* -------------------------------------------------------------------------

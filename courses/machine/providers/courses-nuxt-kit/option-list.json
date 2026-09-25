@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "option-list"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "option-list",
+    "providerComponentId": "option-list",
+    "exportName": "OptionList",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/OptionList.vue",
+    "catalogUrl": "/ui?component=option-list",
+    "previewUrl": "/ui/preview?component=option-list",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "public-api",
+          "file": "examples/components/option-list/index.html",
+          "covers": [
+            "single",
+            "multiple",
+            "action"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "embedded",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "fluid",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "inset",
+          "type": "'default' | 'none'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "items",
+          "type": "Option[]",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "modelValue",
+          "type": "OptionValue | OptionValue[] | null",
+          "required": false,
+          "source": "model"
+        },
+        {
+          "name": "selectionMode",
+          "type": "SelectionMode",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        },
+        {
+          "name": "item"
+        }
+      ],
+      "emits": [
+        {
+          "name": "action",
+          "type": "[item: Option]",
+          "source": "emit"
+        },
+        {
+          "name": "escape",
+          "type": "[]",
+          "source": "emit"
+        },
+        {
+          "name": "select",
+          "type": "[value: OptionValue, item: Option]",
+          "source": "emit"
+        },
+        {
+          "name": "update:modelValue",
+          "type": "[OptionValue | OptionValue[] | null]",
+          "source": "model"
+        }
+      ],
+      "models": [
+        {
+          "name": "modelValue",
+          "type": "OptionValue | OptionValue[] | null",
+          "required": false
+        }
+      ]
+    },
+    "states": {
+      "guide": [
+        "single",
+        "multiple",
+        "action"
+      ],
+      "provider": [
+        "single",
+        "multiple",
+        "action"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

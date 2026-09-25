@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "promo-code-modal"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "promo-code-modal",
+    "providerComponentId": "promo-code-modal",
+    "exportName": "PromoCodeModal",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/PromoCodeModal.vue",
+    "catalogUrl": "/ui?component=promo-code-modal",
+    "previewUrl": "/ui/preview?component=promo-code-modal",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "content-variants",
+          "file": "examples/components/promo-code-modal/index.html",
+          "covers": [
+            "default",
+            "open",
+            "promo-code",
+            "promotion",
+            "desktop",
+            "tablet",
+            "mobile"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "code",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "expires",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "modelValue",
+          "type": "boolean",
+          "required": false,
+          "source": "model"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [
+        {
+          "name": "trigger"
+        }
+      ],
+      "emits": [
+        {
+          "name": "update:modelValue",
+          "type": "[boolean]",
+          "source": "model"
+        }
+      ],
+      "models": [
+        {
+          "name": "modelValue",
+          "type": "boolean",
+          "required": false
+        }
+      ]
+    },
+    "states": {
+      "guide": [
+        "default",
+        "open",
+        "closed"
+      ],
+      "provider": [
+        "default",
+        "open",
+        "closed"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

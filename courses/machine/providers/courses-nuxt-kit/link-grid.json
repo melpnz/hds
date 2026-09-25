@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "link-grid"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "link-grid",
+    "providerComponentId": "link-grid",
+    "exportName": "LinkGrid",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/LinkGrid.vue",
+    "catalogUrl": "/ui?component=link-grid",
+    "previewUrl": "/ui/preview?component=link-grid",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/link-grid/index.html",
+          "covers": [
+            "default",
+            "collapsed"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "collapsed",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "items",
+          "type": "Item[]",
+          "required": true,
+          "source": "prop"
+        },
+        {
+          "name": "promo",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default",
+        "expanded",
+        "collapsed"
+      ],
+      "provider": [
+        "default",
+        "expanded",
+        "collapsed"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

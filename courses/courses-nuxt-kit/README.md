@@ -4,7 +4,7 @@ Nuxt 4 component layer based on the visual language and public component invento
 
 ## Included
 
-- 74 Vue components, including 71 public catalog entries;
+- 74 Vue components, including 72 public catalog entries;
 - actions, forms, navigation, data display, entities, feedback, collections, layout, frame modules and overlays;
 - shared Courses tokens and responsive foundations;
 - Nuxt UI behavior for modal, drawer and tooltip primitives;
@@ -58,7 +58,8 @@ Components are auto-imported without the old `Courses` prefix, for example:
 <CourseCard title="Frontend-разработчик" />
 ```
 
-The copied layer contains its assets, version manifest and integrity list. It is
+The copied layer contains its assets, version manifest, structured token manifest
+and integrity list. It is
 self-contained and does not need the catalog application from this repository.
 Release notes travel with it in
 [`layers/courses/CHANGELOG.md`](./layers/courses/CHANGELOG.md).

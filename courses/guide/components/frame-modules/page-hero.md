@@ -12,7 +12,7 @@
 
 Компонент стоит в продукте на **7 узлах**, страниц — **7 из 10**, по одному на страницу: authors, editors, education-centers-listing, promocodes, rating, reviews, schools-for-children.
 
-тот же градиент, что у RubricationBar, но как крупный блок 288–388px: H1 44/48 semibold ls −0.5 белым, max-w 652, по центру, pt 64 (phone 40, text-h1-mobile). Три состава: SegmentedControl + SearchForm (4 страницы), только SearchForm (1), лид + два CTA (2). На /courses и страницах сущностей hero отсутствует
+тот же градиент, что у RubricationBar, но как крупный блок 288–388px: H1 44/48 semibold ls −0.5 белым, max-w 652, по центру, pt 64 (phone 40, text-h1-mobile). Три состава: `ButtonGroup variant="hero"` + SearchForm (4 страницы), только SearchForm (1), лид + два CTA (2). На /courses и страницах сущностей hero отсутствует
 
 **Правило.** Используйте для первого экрана листинга и промо-раздела: заголовок раздела и главный инструмент — поиск или переключатель аудитории. В продукте 7 узлов на 7 страницах — по одному на страницу, три состава.
 
@@ -23,7 +23,7 @@
 
 ## Как работает
 
-Градиентный блок 288–388 с заголовком 44 / 48 (на `phone:` — `text-h1-mobile` 30 / 34). Внутри — `SegmentedControl`, `SearchForm` или два CTA.
+Градиентный блок 288–388 с заголовком 44 / 48 (на `phone:` — `text-h1-mobile` 30 / 34). Внутри — `ButtonGroup variant="hero"`, `SearchForm` или два CTA.
 
 ## Управление клавиатурой
 

@@ -1,0 +1,102 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "filter-modal"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "filter-modal",
+    "providerComponentId": "filter-modal",
+    "exportName": "FilterModal",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/FilterModal.vue",
+    "catalogUrl": "/ui?component=filter-modal",
+    "previewUrl": "/ui/preview?component=filter-modal",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "responsive",
+          "file": "examples/components/filter-modal/index.html",
+          "covers": [
+            "default",
+            "open",
+            "closed",
+            "body-scroll",
+            "mobile",
+            "desktop"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "modelValue",
+          "type": "boolean",
+          "required": false,
+          "source": "model"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        },
+        {
+          "name": "trigger"
+        }
+      ],
+      "emits": [
+        {
+          "name": "apply",
+          "type": "[]",
+          "source": "emit"
+        },
+        {
+          "name": "reset",
+          "type": "[]",
+          "source": "emit"
+        },
+        {
+          "name": "update:modelValue",
+          "type": "[boolean]",
+          "source": "model"
+        }
+      ],
+      "models": [
+        {
+          "name": "modelValue",
+          "type": "boolean",
+          "required": false
+        }
+      ]
+    },
+    "states": {
+      "guide": [
+        "default",
+        "open",
+        "closed"
+      ],
+      "provider": [
+        "default",
+        "open",
+        "closed"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

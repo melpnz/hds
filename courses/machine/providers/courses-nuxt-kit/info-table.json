@@ -1,0 +1,64 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "info-table"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "info-table",
+    "providerComponentId": "info-table",
+    "exportName": "InfoTable",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/InfoTable.vue",
+    "catalogUrl": "/ui?component=info-table",
+    "previewUrl": "/ui/preview?component=info-table",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/info-table/index.html",
+          "covers": [
+            "default"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "rows",
+          "type": "Row[]",
+          "required": true,
+          "source": "prop"
+        }
+      ],
+      "slots": [],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default"
+      ],
+      "provider": [
+        "default"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

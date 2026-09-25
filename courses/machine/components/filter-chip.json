@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema.json",
   "id": "filter-chip",
-  "title": "FilterChip · Basic",
+  "title": "FilterChip",
   "kind": "component",
   "category": "forms",
   "maturity": {
@@ -15,7 +15,7 @@
     "confidence": "medium",
     "scope": "public-guest"
   },
-  "purpose": "Используйте для выбора категории, которая сужает выдачу на месте: ряд из «Все» и направлений. В продукте 112 чипов в пяти рядах `FilterBar` секций «Популярные курсы»: 107 невыбранных и 5 выбранных «Все». Селектор переписи держится за `bg-ui-white` и ловит только невыбранные — отсюда 107 в счётчиках записи.",
+  "purpose": "Интерактивный фильтр: basic, menu с выпадающим OptionList и switch. Историческая запись Tab объединена с каноническим компонентом кита.",
   "implementation": {
     "markup": "available-in-examples",
     "cssRoots": [
@@ -38,7 +38,10 @@
       "default",
       "hover",
       "focus-visible",
-      "pressed"
+      "pressed",
+      "disabled",
+      "loading",
+      "open"
     ],
     "feature": [],
     "domain": []
@@ -50,7 +53,7 @@
   "examples": [
     {
       "id": "default",
-      "title": "Зафиксированный вариант",
+      "title": "FilterChip · Basic",
       "file": "examples/components/filter-chip/index.html",
       "covers": [
         "default",
@@ -64,13 +67,40 @@
       "presentation": {
         "layout": "fit-content"
       }
+    },
+    {
+      "id": "menu-switch",
+      "title": "FilterChip · Menu / Switch",
+      "file": "examples/components/filter-chip/menu-switch.html",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "loading",
+        "open",
+        "icon-left",
+        "switch-right"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "constrained",
+        "width": 720
+      },
+      "authority": [
+        "figma"
+      ],
+      "scope": "design-source-only"
     }
   ],
   "componentFamily": {
     "id": "filter-chip",
-    "name": "Filter Chip",
-    "member": "FilterChip",
-    "legacyId": null
+    "name": "FilterChip",
+    "member": "Basic / Menu / Switch",
+    "legacyId": "tab"
   },
   "previewNotes": [
     {
@@ -122,6 +152,108 @@
           "note": null
         }
       ]
+    },
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "tab",
+          "nodeId": "I15089:302657;15065:242802;4843:2736;15089:302651",
+          "componentKey": "9668fb89eb4a58bc781b568ec83d9ce0e492e70e"
+        },
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "tab",
+          "nodeId": "I15089:302657;15065:242802;4843:2736;15089:302655",
+          "componentKey": "9668fb89eb4a58bc781b568ec83d9ce0e492e70e"
+        },
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "tab categories",
+          "nodeId": "15089:303941",
+          "componentKey": "9668fb89eb4a58bc781b568ec83d9ce0e492e70e"
+        }
+      ]
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "904:1723",
+        "layerName": "FilterChip variants"
+      }
+    },
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "tab",
+          "nodeId": "I15089:302657;15065:242802;4843:2736;15089:302651",
+          "componentKey": "9668fb89eb4a58bc781b568ec83d9ce0e492e70e"
+        },
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "tab",
+          "nodeId": "I15089:302657;15065:242802;4843:2736;15089:302655",
+          "componentKey": "9668fb89eb4a58bc781b568ec83d9ce0e492e70e"
+        },
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "tab categories",
+          "nodeId": "15089:303941",
+          "componentKey": "9668fb89eb4a58bc781b568ec83d9ce0e492e70e"
+        }
+      ]
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "904:1723",
+        "layerName": "FilterChip variants"
+      }
+    },
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "tab",
+          "nodeId": "I15089:302657;15065:242802;4843:2736;15089:302651",
+          "componentKey": "9668fb89eb4a58bc781b568ec83d9ce0e492e70e"
+        },
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "tab",
+          "nodeId": "I15089:302657;15065:242802;4843:2736;15089:302655",
+          "componentKey": "9668fb89eb4a58bc781b568ec83d9ce0e492e70e"
+        },
+        {
+          "fileKey": "oNyNRRob2y0ZSgPHOdH65X",
+          "fileName": "02_Education-NEW",
+          "layerName": "tab categories",
+          "nodeId": "15089:303941",
+          "componentKey": "9668fb89eb4a58bc781b568ec83d9ce0e492e70e"
+        }
+      ]
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "904:1723",
+        "layerName": "FilterChip variants"
+      }
     }
   ],
   "unknowns": [],
@@ -139,18 +271,16 @@
   "usage": {
     "when": "Используйте для выбора категории, которая сужает выдачу на месте: ряд из «Все» и направлений. В продукте 112 чипов в пяти рядах `FilterBar` секций «Популярные курсы»: 107 невыбранных и 5 выбранных «Все». Селектор переписи держится за `bg-ui-white` и ловит только невыбранные — отсюда 107 в счётчиках записи.",
     "whenNot": [
-      "Для перехода на другой адрес — `SegmentedControl`: его сегменты — ссылки с `aria-current`.",
+      "Для перехода на другой адрес — `ButtonGroup`: его сегменты — ссылки с `aria-current`.",
       "Для статичной метки — `Chip`.",
       "Для нескольких значений одновременно — в ряду выбран всегда один."
     ],
     "related": [
-      "segmented-control",
+      "button-group",
       "chip"
     ]
   },
-  "dependencies": [
-    "sprite-icon"
-  ],
+  "dependencies": [],
   "stateCoverage": {
     "required": [
       "default",
@@ -219,13 +349,17 @@
       "default",
       "hover",
       "focus-visible",
-      "pressed"
+      "pressed",
+      "disabled",
+      "loading",
+      "open"
     ],
     "sources": [
       "machine/dimension-tokens.json",
       "machine/tokens.json",
       "ui/courses.css",
-      "examples/components/filter-chip/index.html"
+      "examples/components/filter-chip/index.html",
+      "examples/components/filter-chip/menu-switch.html"
     ],
     "geometry": {
       "sizes": {
@@ -276,5 +410,34 @@
         "value": "2.5rem"
       }
     }
-  }
+  },
+  "legacyIds": [
+    "tab"
+  ],
+  "variants": [
+    {
+      "id": "kind",
+      "use": "FilterChipMenu с icon-left + chevron; FilterChipSwitch со switch-right."
+    },
+    {
+      "id": "state",
+      "use": "default, hover, focus-visible, pressed, disabled и loading; для Menu также open."
+    },
+    {
+      "id": "kind",
+      "use": "FilterChipMenu с icon-left + chevron; FilterChipSwitch со switch-right."
+    },
+    {
+      "id": "state",
+      "use": "default, hover, focus-visible, pressed, disabled и loading; для Menu также open."
+    },
+    {
+      "id": "kind",
+      "use": "FilterChipMenu с icon-left + chevron; FilterChipSwitch со switch-right."
+    },
+    {
+      "id": "state",
+      "use": "default, hover, focus-visible, pressed, disabled и loading; для Menu также open."
+    }
+  ]
 }

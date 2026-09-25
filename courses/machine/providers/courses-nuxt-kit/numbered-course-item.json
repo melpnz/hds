@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "numbered-course-item"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "numbered-course-item",
+    "providerComponentId": "numbered-course-item",
+    "exportName": "NumberedCourseItem",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/NumberedCourseItem.vue",
+    "catalogUrl": "/ui?component=numbered-course-item",
+    "previewUrl": "/ui/preview?component=numbered-course-item",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/numbered-course-item/index.html",
+          "covers": [
+            "default"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "number",
+          "type": "number",
+          "required": true,
+          "source": "prop"
+        },
+        {
+          "name": "price",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "school",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true,
+          "source": "prop"
+        }
+      ],
+      "slots": [],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default"
+      ],
+      "provider": [
+        "default"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

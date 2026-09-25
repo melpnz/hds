@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "ad-card"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "ad-card",
+    "providerComponentId": "ad-card",
+    "exportName": "AdCard",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/AdCard.vue",
+    "catalogUrl": "/ui?component=ad-card",
+    "previewUrl": "/ui/preview?component=ad-card",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/ad-card/index.html",
+          "covers": [
+            "default",
+            "hover"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "image",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "mobileImage",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default",
+        "hover"
+      ],
+      "provider": [
+        "default",
+        "hover"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

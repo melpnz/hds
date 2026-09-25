@@ -1,0 +1,171 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "button"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "button",
+    "providerComponentId": "button",
+    "exportName": "Button",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/Button.vue",
+    "catalogUrl": "/ui?component=button",
+    "previewUrl": "/ui/preview?component=button",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "playground",
+          "file": "examples/components/button/index.html",
+          "covers": [
+            "default",
+            "hover",
+            "focus-visible",
+            "pressed",
+            "disabled",
+            "loading"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "block",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "density",
+          "type": "'default' | 'compact'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "rel",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "rotated",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "size",
+          "type": "'s' | 'm' | 'l' | 'xl'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "state",
+          "type": "'default' | 'hover' | 'focus' | 'pressed'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "target",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "type",
+          "type": "'button' | 'submit' | 'reset'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "variant",
+          "type": "'primary' | 'main' | 'secondary' | 'danger' | 'danger-outline' | 'success' | 'success-outline' | 'ghost' | 'brand'",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        },
+        {
+          "name": "leading"
+        },
+        {
+          "name": "trailing"
+        }
+      ],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "loading"
+      ],
+      "provider": [
+        "main",
+        "secondary",
+        "danger",
+        "danger-outline",
+        "success",
+        "success-outline",
+        "brand",
+        "compact",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "loading"
+      ],
+      "missingInProvider": [],
+      "providerOnly": [
+        "main",
+        "secondary",
+        "danger",
+        "danger-outline",
+        "success",
+        "success-outline",
+        "brand",
+        "compact"
+      ]
+    }
+  }
+}

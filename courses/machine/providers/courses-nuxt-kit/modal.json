@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "modal"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "modal",
+    "providerComponentId": "modal",
+    "exportName": "Modal",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/Modal.vue",
+    "catalogUrl": "/ui?component=modal",
+    "previewUrl": "/ui/preview?component=modal",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "playground",
+          "file": "examples/components/modal/index.html",
+          "covers": [
+            "default",
+            "open",
+            "closed",
+            "scroll",
+            "desktop",
+            "tablet",
+            "mobile",
+            "image",
+            "header-actions",
+            "pinned-header",
+            "pinned-footer",
+            "primary",
+            "secondary"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "image",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "imageAlt",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "modelValue",
+          "type": "boolean",
+          "required": false,
+          "source": "model"
+        },
+        {
+          "name": "scrollable",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        },
+        {
+          "name": "footer"
+        },
+        {
+          "name": "trigger"
+        }
+      ],
+      "emits": [
+        {
+          "name": "update:modelValue",
+          "type": "[boolean]",
+          "source": "model"
+        }
+      ],
+      "models": [
+        {
+          "name": "modelValue",
+          "type": "boolean",
+          "required": false
+        }
+      ]
+    },
+    "states": {
+      "guide": [
+        "default",
+        "open",
+        "closed",
+        "scroll"
+      ],
+      "provider": [
+        "default",
+        "open",
+        "closed",
+        "scroll"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

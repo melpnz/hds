@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "icon-button"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "icon-button",
+    "providerComponentId": "icon-button",
+    "exportName": "IconButton",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/IconButton.vue",
+    "catalogUrl": "/ui?component=icon-button",
+    "previewUrl": "/ui/preview?component=icon-button",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "states",
+          "file": "examples/components/icon-button/index.html",
+          "covers": [
+            "default",
+            "hover",
+            "focus-visible",
+            "disabled",
+            "loading"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "hover",
+          "type": "'background' | 'none'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "iconSize",
+          "type": "16 | 20 | 24",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": true,
+          "source": "prop"
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "rotated",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "size",
+          "type": "'s' | 'm'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "state",
+          "type": "'default' | 'hover' | 'focus'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "tone",
+          "type": "'default' | 'muted' | 'inherit'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "variant",
+          "type": "'default' | 'ghost'",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default",
+        "hover",
+        "focus-visible",
+        "disabled",
+        "loading"
+      ],
+      "provider": [
+        "default",
+        "ghost",
+        "ghost-no-background",
+        "muted",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "loading"
+      ],
+      "missingInProvider": [],
+      "providerOnly": [
+        "ghost",
+        "ghost-no-background",
+        "muted",
+        "pressed"
+      ]
+    }
+  }
+}

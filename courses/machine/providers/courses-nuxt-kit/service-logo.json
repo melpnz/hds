@@ -1,0 +1,94 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "service-logo"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "service-logo",
+    "providerComponentId": "service-logo",
+    "exportName": "ServiceLogo",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/ServiceLogo.vue",
+    "catalogUrl": "/ui?component=service-logo",
+    "previewUrl": "/ui/preview?component=service-logo",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/service-logo/index.html",
+          "covers": [
+            "default"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "label",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "service",
+          "type": "'habr' | 'qna' | 'career' | 'courses'",
+          "required": true,
+          "source": "prop"
+        },
+        {
+          "name": "size",
+          "type": "16 | 24 | 32",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "variant",
+          "type": "'icon' | 'brand'",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default"
+      ],
+      "provider": [
+        "habr",
+        "qna",
+        "career",
+        "courses",
+        "icon",
+        "brand"
+      ],
+      "missingInProvider": [],
+      "providerOnly": [
+        "habr",
+        "qna",
+        "career",
+        "courses",
+        "icon",
+        "brand"
+      ]
+    }
+  }
+}

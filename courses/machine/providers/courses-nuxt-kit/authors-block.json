@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "authors-block"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "authors-block",
+    "providerComponentId": "authors-block",
+    "exportName": "AuthorsBlock",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/AuthorsBlock.vue",
+    "catalogUrl": "/ui?component=authors-block",
+    "previewUrl": "/ui/preview?component=authors-block",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/authors-block/index.html",
+          "covers": [
+            "default"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "authors",
+          "type": "Author[]",
+          "required": true,
+          "source": "prop"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default"
+      ],
+      "provider": [
+        "default"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

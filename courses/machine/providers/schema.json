@@ -4,7 +4,7 @@
   "type": "object",
   "required": ["schemaVersion", "guide", "provider", "compatibility", "summary", "mappings"],
   "properties": {
-    "schemaVersion": { "const": 1 },
+    "schemaVersion": { "const": 2 },
     "guide": {
       "type": "object",
       "required": ["id", "version"],
@@ -13,16 +13,67 @@
     },
     "provider": {
       "type": "object",
-      "required": ["id", "version", "type", "manifest"],
+      "required": ["id", "version", "type", "manifest", "tokens"],
       "properties": {
         "id": { "type": "string" }, "version": { "type": "string" },
-        "type": { "type": "string" }, "manifest": { "type": "string" }
+        "type": { "type": "string" }, "manifest": { "type": "string" },
+        "tokens": { "type": "string" }
       },
       "additionalProperties": false
     },
     "compatibility": { "enum": ["compatible", "incompatible", "unverified"] },
     "summary": { "type": "object" },
-    "mappings": { "type": "array", "items": { "type": "object" } }
+    "mappings": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "apiFile": { "type": "string", "pattern": "^machine/providers/" },
+          "preview": {
+            "type": "object",
+            "properties": {
+              "strategy": { "enum": ["provider-primary", "hybrid"] },
+              "primary": { "const": "implementation-provider" },
+              "staticFallbacks": { "type": "array" },
+              "retainStaticFor": { "type": "array", "items": { "type": "string" } }
+            },
+            "required": ["strategy", "primary", "staticFallbacks", "retainStaticFor"],
+            "additionalProperties": false
+          }
+        }
+      }
+    }
   },
-  "additionalProperties": false
+  "additionalProperties": false,
+  "$defs": {
+    "namedType": {
+      "type": "object",
+      "required": ["name", "type"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "type": { "type": "string", "minLength": 1 },
+        "required": { "type": "boolean" },
+        "source": { "enum": ["prop", "model", "emit"] }
+      }
+    },
+    "api": {
+      "type": "object",
+      "required": ["props", "slots", "emits", "models"],
+      "properties": {
+        "props": { "type": "array", "items": { "$ref": "#/$defs/namedType" } },
+        "slots": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name"],
+            "properties": { "name": { "type": "string", "minLength": 1 } },
+            "additionalProperties": false
+          }
+        },
+        "emits": { "type": "array", "items": { "$ref": "#/$defs/namedType" } },
+        "models": { "type": "array", "items": { "$ref": "#/$defs/namedType" } }
+      },
+      "additionalProperties": false
+    }
+  }
 }

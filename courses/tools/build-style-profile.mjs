@@ -8,10 +8,12 @@ const tokenValue = (tokens, group, id) => tokens[group]?.[id]?.$value;
 
 export function buildStyleProfile() {
   const tokens = read('machine/tokens.json');
+  const semanticTokens = read('machine/semantic-tokens.json');
   const button = read('machine/components/button.json');
   return {
     schemaVersion: 1,
     dimensionTokens: { baseUnit: '0.25rem', referenceRootFontSize: '16px', source: 'machine/dimension-tokens.json', css: 'ui/dimension-tokens.css', exceptions: 'machine/reports/dimension-exceptions.json' },
+    semanticTokens: { source: 'machine/semantic-tokens.json', groups: Object.keys(semanticTokens.tokens) },
     product: { id: 'courses', title: 'Хабр Курсы', guideVersion: '1.0', status: 'active' },
     scope: { confidence: 'mixed', boundary: 'Публичная гостевая часть Курсов; шесть собранных страниц и адресные спецификации.' },
     typography: {
@@ -32,7 +34,7 @@ export function buildStyleProfile() {
       { id: 'single-content-column', rule: 'Основной контент следует контейнеру 1124px без постоянного сайдбара.', evidence: 'docs/guide/layout.md' },
       { id: 'inter-only', rule: 'Весь интерфейс и примеры используют Inter.', evidence: 'docs/guide/typography.md' }
     ],
-    sources: ['machine/dimension-tokens.json', 'machine/tokens.json', 'docs/guide/typography.md', 'docs/guide/layout.md', 'machine/components/button.json'],
+    sources: ['machine/dimension-tokens.json', 'machine/tokens.json', 'machine/semantic-tokens.json', 'docs/guide/typography.md', 'docs/guide/layout.md', 'machine/components/button.json'],
     unknowns: ['Пакет пригоден к использованию в пределах покрытия; непокрытые состояния и сценарии перечислены в адресных спецификациях.']
   };
 }
@@ -51,7 +53,7 @@ export function writeStyleProfile() {
   for (const [id, visual] of Object.entries(visuals)) {
     const target = path.join(root, 'machine/foundations', `${id}.json`);
     const item = JSON.parse(fs.readFileSync(target, 'utf8'));
-    item.visual = visual;
+    item.visual = { ...(item.visual || {}), ...visual };
     fs.writeFileSync(target, `${JSON.stringify(item, null, 2)}\n`, 'utf8');
   }
 }

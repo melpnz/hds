@@ -1,0 +1,101 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "person-header"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "person-header",
+    "providerComponentId": "person-header",
+    "exportName": "PersonHeader",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/PersonHeader.vue",
+    "catalogUrl": "/ui?component=person-header",
+    "previewUrl": "/ui/preview?component=person-header",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/person-header/index.html",
+          "covers": [
+            "default"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "avatar",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "bio",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "companyLogo",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "linkedin",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "required": true,
+          "source": "prop"
+        },
+        {
+          "name": "role",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        }
+      ],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default"
+      ],
+      "provider": [
+        "default",
+        "social-link"
+      ],
+      "missingInProvider": [],
+      "providerOnly": [
+        "social-link"
+      ]
+    }
+  }
+}

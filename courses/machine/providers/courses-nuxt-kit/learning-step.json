@@ -1,0 +1,98 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "learning-step"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "learning-step",
+    "providerComponentId": "learning-step",
+    "exportName": "LearningStep",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/LearningStep.vue",
+    "catalogUrl": "/ui?component=learning-step",
+    "previewUrl": "/ui/preview?component=learning-step",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/learning-step/index.html",
+          "covers": [
+            "default",
+            "hover",
+            "focus-visible",
+            "expanded",
+            "collapsed"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "duration",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "number",
+          "type": "number",
+          "required": true,
+          "source": "prop"
+        },
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true,
+          "source": "prop"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        }
+      ],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default",
+        "hover",
+        "focus-visible",
+        "expanded",
+        "collapsed"
+      ],
+      "provider": [
+        "default",
+        "hover",
+        "focus-visible",
+        "expanded",
+        "collapsed"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "faq-item"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "faq-item",
+    "providerComponentId": "faq-item",
+    "exportName": "FaqItem",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/FaqItem.vue",
+    "catalogUrl": "/ui?component=faq-item",
+    "previewUrl": "/ui/preview?component=faq-item",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/faq-item/index.html",
+          "covers": [
+            "default",
+            "hover",
+            "focus-visible",
+            "expanded",
+            "collapsed"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "question",
+          "type": "string",
+          "required": true,
+          "source": "prop"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        }
+      ],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default",
+        "hover",
+        "focus-visible",
+        "expanded",
+        "collapsed"
+      ],
+      "provider": [
+        "default",
+        "hover",
+        "focus-visible",
+        "expanded",
+        "collapsed"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

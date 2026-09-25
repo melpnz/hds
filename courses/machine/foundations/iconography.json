@@ -10,20 +10,21 @@
   },
   "knowledge": {
     "authority": [
+      "implementation-provider",
       "production",
       "figma"
     ],
-    "confidence": "medium",
+    "confidence": "high",
     "scope": "public-guest"
   },
-  "purpose": "Подтверждённые в снятом production-наборе монохромные символы общего SVG-спрайта.",
+  "purpose": "Courses Nuxt Kit использует UIcon из Nuxt UI и набор Tabler. Собственный SpriteIcon и отдельный SVG-спрайт больше не являются публичным API гайда.",
   "implementation": {
-    "markup": "available-in-examples",
-    "cssRoots": [
-      "svg-icon"
-    ],
+    "markup": "provider-capability",
+    "providerComponent": "UIcon",
+    "iconCollection": "Tabler",
+    "cssRoots": [],
     "styles": [
-      "ui/courses.css"
+      "courses-nuxt-kit/layers/courses/nuxt.config.ts"
     ],
     "scripts": []
   },
@@ -36,7 +37,7 @@
   "examples": [
     {
       "id": "overview",
-      "title": "Обзор",
+      "title": "UIcon · Tabler",
       "file": "examples/foundations/iconography/index.html",
       "covers": [
         "foundation"
@@ -52,23 +53,28 @@
   ],
   "previewNotes": [
     {
-      "type": "coverage-warning",
-      "text": "Показаны 13 символов, подтверждённых на десяти снятых страницах; полный Storybook-набор шире."
+      "type": "guidance",
+      "text": "Передавайте UIcon имя вида i-tabler-*. Размер и цвет задаются контекстом компонента и токенами Courses."
     }
   ],
   "accessibility": [
-    "Визуальные образцы справочные; значения и названия продублированы текстом."
+    "Декоративная иконка получает aria-hidden; самостоятельная интерактивная кнопка обязана иметь текстовое доступное имя."
   ],
   "evidence": [
     {
-      "type": "production",
-      "ref": "guide/components/data-display/sprite-icon.md"
+      "type": "implementation-provider",
+      "data": {
+        "provider": "courses-nuxt-kit",
+        "component": "UIcon",
+        "collection": "Tabler",
+        "version": "1.0.0"
+      }
     }
   ],
   "unknowns": [],
   "source": {
-    "version": "v0.2",
-    "spec": "guide/components/data-display/sprite-icon.md"
+    "version": "v1.0",
+    "spec": "docs/guide/iconography.md"
   },
   "visual": {
     "format": "SVG",

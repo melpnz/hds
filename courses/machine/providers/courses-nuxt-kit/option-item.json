@@ -1,0 +1,185 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "option-item"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "option-item",
+    "providerComponentId": "option-item",
+    "exportName": "OptionItem",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/OptionItem.vue",
+    "catalogUrl": "/ui?component=option-item",
+    "previewUrl": "/ui/preview?component=option-item",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "public-api",
+          "file": "examples/components/option-item/index.html",
+          "covers": [
+            "default",
+            "hover",
+            "focus-visible",
+            "selected",
+            "disabled"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "avatarAlt",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "avatarSrc",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "count",
+          "type": "string | number",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "descriptionBottom",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "descriptionTop",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "logoAlt",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "logoSrc",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "meta",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "selected",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "selectionMode",
+          "type": "SelectionMode",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "trailingIcon",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "trailingIconSecondary",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "value",
+          "type": "OptionValue",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        },
+        {
+          "name": "trailing"
+        }
+      ],
+      "emits": [
+        {
+          "name": "select",
+          "type": "[value: OptionValue | undefined]",
+          "source": "emit"
+        }
+      ],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default",
+        "hover",
+        "focus-visible",
+        "selected",
+        "disabled"
+      ],
+      "provider": [
+        "default",
+        "hover",
+        "focus-visible",
+        "selected",
+        "disabled"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

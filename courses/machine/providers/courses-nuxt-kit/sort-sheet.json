@@ -1,0 +1,108 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "sort-sheet"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "sort-sheet",
+    "providerComponentId": "sort-sheet",
+    "exportName": "SortSheet",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/SortSheet.vue",
+    "catalogUrl": "/ui?component=sort-sheet",
+    "previewUrl": "/ui/preview?component=sort-sheet",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "responsive-flow",
+          "file": "examples/components/sort-sheet/index.html",
+          "covers": [
+            "default",
+            "open",
+            "closed",
+            "selected",
+            "desktop",
+            "tablet",
+            "mobile"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false,
+          "source": "model"
+        },
+        {
+          "name": "options",
+          "type": "{label:string;value:string}[]",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": false,
+          "source": "model"
+        }
+      ],
+      "slots": [],
+      "emits": [
+        {
+          "name": "update:open",
+          "type": "[boolean]",
+          "source": "model"
+        },
+        {
+          "name": "update:value",
+          "type": "[string]",
+          "source": "model"
+        }
+      ],
+      "models": [
+        {
+          "name": "open",
+          "type": "boolean",
+          "required": false
+        },
+        {
+          "name": "value",
+          "type": "string",
+          "required": false
+        }
+      ]
+    },
+    "states": {
+      "guide": [
+        "default",
+        "open",
+        "closed"
+      ],
+      "provider": [
+        "default",
+        "open",
+        "closed"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

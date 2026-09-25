@@ -379,5 +379,106 @@
   "profileHistoryUsage": {
     "experience-education": 1,
     "items": 22
+  },
+  "providerComposition": {
+    "schemaVersion": 1,
+    "provider": {
+      "id": "courses-nuxt-kit",
+      "version": "1.0.0",
+      "mapping": "machine/providers/courses-nuxt-kit.json"
+    },
+    "ownership": {
+      "pagePattern": "guide",
+      "componentImplementation": "active-provider",
+      "staticExample": "evidence-and-github-fallback"
+    },
+    "shell": {
+      "header": {
+        "kind": "provider-component",
+        "id": "site-header",
+        "role": "global-header",
+        "props": {
+          "family": "simple"
+        },
+        "providerComponentId": "site-header",
+        "exportName": "SiteHeader"
+      },
+      "footer": {
+        "kind": "provider-component",
+        "id": "site-footer",
+        "role": "global-footer",
+        "providerComponentId": "site-footer",
+        "exportName": "SiteFooter"
+      }
+    },
+    "areas": [
+      {
+        "id": "profile-header",
+        "nodes": [
+          {
+            "kind": "provider-component",
+            "id": "person-header",
+            "role": "author-summary",
+            "providerComponentId": "person-header",
+            "exportName": "PersonHeader"
+          }
+        ]
+      },
+      {
+        "id": "biography",
+        "nodes": [
+          {
+            "kind": "provider-component",
+            "id": "prose",
+            "role": "biography",
+            "providerComponentId": "prose",
+            "exportName": "Prose"
+          }
+        ]
+      },
+      {
+        "id": "expertise",
+        "nodes": [
+          {
+            "kind": "provider-component",
+            "id": "prose",
+            "role": "expertise",
+            "providerComponentId": "prose",
+            "exportName": "Prose"
+          }
+        ]
+      },
+      {
+        "id": "qualifications",
+        "nodes": [
+          {
+            "kind": "provider-component",
+            "id": "prose",
+            "role": "qualifications",
+            "providerComponentId": "prose",
+            "exportName": "Prose"
+          }
+        ]
+      },
+      {
+        "id": "experience-education",
+        "nodes": [
+          {
+            "kind": "provider-component",
+            "id": "profile-history",
+            "role": "experience-and-education",
+            "providerComponentId": "profile-history",
+            "exportName": "ProfileHistory"
+          }
+        ]
+      }
+    ],
+    "directComponentIds": [
+      "site-header",
+      "site-footer",
+      "person-header",
+      "prose",
+      "profile-history"
+    ]
   }
 }

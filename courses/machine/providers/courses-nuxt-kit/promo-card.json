@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "promo-card"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "promo-card",
+    "providerComponentId": "promo-card",
+    "exportName": "PromoCard",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/PromoCard.vue",
+    "catalogUrl": "/ui?component=promo-card",
+    "previewUrl": "/ui/preview?component=promo-card",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/promo-card/index.html",
+          "covers": [
+            "default",
+            "hover"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "code",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "expires",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "logo",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "school",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true,
+          "source": "prop"
+        }
+      ],
+      "slots": [],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default",
+        "hover"
+      ],
+      "provider": [
+        "default",
+        "hover"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

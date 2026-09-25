@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "site-header"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "site-header",
+    "providerComponentId": "site-header",
+    "exportName": "SiteHeader",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/SiteHeader.vue",
+    "catalogUrl": "/ui?component=site-header",
+    "previewUrl": "/ui/preview?component=site-header",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "figma-variants",
+          "file": "examples/components/site-header/index.html",
+          "covers": [
+            "listing-hero",
+            "listing-page",
+            "listing-page-sticky",
+            "courses-hero",
+            "courses-page",
+            "courses-page-sticky",
+            "simple-page",
+            "mobile",
+            "tablet",
+            "desktop"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "family",
+          "type": "'listing' | 'courses' | 'simple'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "level",
+          "type": "'hero' | 'page'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "product",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "sticky",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [
+        {
+          "name": "mobile-navigation"
+        },
+        {
+          "name": "navigation"
+        }
+      ],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default"
+      ],
+      "provider": [
+        "listing-hero",
+        "listing-page",
+        "listing-page-sticky",
+        "courses-hero",
+        "courses-page",
+        "courses-page-sticky",
+        "simple-page"
+      ],
+      "missingInProvider": [],
+      "providerOnly": [
+        "listing-hero",
+        "listing-page",
+        "listing-page-sticky",
+        "courses-hero",
+        "courses-page",
+        "courses-page-sticky",
+        "simple-page"
+      ]
+    }
+  }
+}

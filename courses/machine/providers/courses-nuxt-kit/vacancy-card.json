@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "vacancy-card"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "vacancy-card",
+    "providerComponentId": "vacancy-card",
+    "exportName": "VacancyCard",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/VacancyCard.vue",
+    "catalogUrl": "/ui?component=vacancy-card",
+    "previewUrl": "/ui/preview?component=vacancy-card",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/vacancy-card/index.html",
+          "covers": [
+            "default"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "company",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "logo",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "salary",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "tags",
+          "type": "string[]",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true,
+          "source": "prop"
+        }
+      ],
+      "slots": [],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default"
+      ],
+      "provider": [
+        "default"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

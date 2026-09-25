@@ -1,5 +1,8 @@
 # SegmentedControl
 
+> Устаревшее имя. Используйте [`ButtonGroup`](button-group.md) с
+> `variant="hero"`.
+
 | | |
 |---|---|
 | **Категория** | Навигация (`navigation`) |

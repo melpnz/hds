@@ -6,7 +6,16 @@
   <title>Chip — Хабр Курсы</title>
   <link rel="icon" href="data:,">
   <link rel="stylesheet" href="../../../ui/courses.css">
-  <style>html,body{margin:0;background:#fff}body{box-sizing:border-box;padding:24px}.example-root{display:flow-root;width:fit-content;max-width:100%}.example-root>:first-child{margin:0!important}.example-root>:first-child{max-width:none!important}</style>
+  <style>
+    html,body{margin:0;background:#fff}body{box-sizing:border-box;padding:24px;font-family:Inter,sans-serif}
+    .guide{display:grid;width:fit-content;max-width:100%;gap:20px}.group{display:grid;gap:8px}.group h2{margin:0;font-size:14px;line-height:20px}.row{display:flex;flex-wrap:wrap;align-items:center;gap:8px}
+    .chip{display:inline-flex;align-items:center;gap:4px;border-radius:999rem;padding:4px 8px;background:#f1f1f1;color:#2c2e34;font-size:12px;line-height:16px;white-space:nowrap}
+    .chip[data-tone=surface]{background:#fff;box-shadow:0 0 0 1px #e9e9ea}.chip[data-tone=brand]{background:#346ef4;color:#fff}.chip[data-tone=green]{background:#edf9f1}.chip[data-tone=orange]{background:#ff7e47;color:#fff}.chip[data-tone=orange-soft]{background:#fff8df}.chip[data-tone=red]{background:#fff0f0}
+    .chip[data-size=xs]{min-width:16px;min-height:16px;justify-content:center;padding:0 4px;font-weight:600}.chip[data-size=s]{padding:2px 6px}.chip[data-variant=counter]{box-sizing:border-box;min-width:24px;height:24px;justify-content:center;border:1px solid #fff}
+  </style>
 </head>
-<body data-preview-layout="fit-content"><div class="example-root"><div class="flex items-center gap-0.5 rounded-full bg-ui-black-50 px-2 py-1 max-w-[calc(100%_-48px)]"><div class="max-w-full overflow-hidden text-ellipsis whitespace-nowrap">1С разработка</div></div></div></body>
+<body data-preview-layout="fit-content"><div class="example-root guide">
+  <section class="group"><h2>Базовые тона</h2><div class="row"><span class="chip">Python</span><span class="chip" data-tone="surface">18 мес</span><span class="chip" data-tone="brand">Партнёр</span><span class="chip" data-tone="green">Высокий спрос</span><span class="chip" data-tone="orange-soft">Умеренный вход</span><span class="chip" data-tone="red">Конкуренция</span></div></section>
+  <section class="group"><h2>Контекстные варианты</h2><div class="row"><span class="chip" data-tone="orange" data-size="s">−50%</span><span class="chip" data-variant="counter">+18</span><span class="chip" data-size="xs">8</span></div></section>
+</div></body>
 </html>

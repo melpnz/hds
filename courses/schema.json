@@ -1,6 +1,53 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "title": "Хабр Курсы — machine-first showcase item",
+  "$defs": {
+    "compositionNode": {
+      "oneOf": [
+        {
+          "type": "object",
+          "required": ["kind", "id", "role", "providerComponentId", "exportName"],
+          "properties": {
+            "kind": { "const": "provider-component" },
+            "id": { "type": "string" },
+            "role": { "type": "string" },
+            "providerComponentId": { "type": "string" },
+            "exportName": { "type": "string" },
+            "count": { "type": "integer", "minimum": 1 },
+            "variant": { "type": "string" },
+            "props": { "type": "object" },
+            "children": { "type": "array", "items": { "$ref": "#/$defs/compositionNode" } }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["kind", "element", "role"],
+          "properties": {
+            "kind": { "const": "native" },
+            "element": { "type": "string" },
+            "role": { "type": "string" },
+            "placement": { "type": "string" },
+            "responsive": { "type": "string" },
+            "children": { "type": "array", "items": { "$ref": "#/$defs/compositionNode" } }
+          },
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "required": ["kind", "id", "role"],
+          "properties": {
+            "kind": { "const": "external-slot" },
+            "id": { "type": "string" },
+            "role": { "type": "string" },
+            "renderedContent": { "type": "string" },
+            "emptyHeightToken": { "type": "string", "pattern": "^--courses-" }
+          },
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
   "type": "object",
   "required": ["id", "title", "kind", "category", "maturity", "knowledge", "purpose", "implementation", "states", "examples", "evidence", "unknowns"],
   "properties": {
@@ -98,6 +145,56 @@
     "family": { "type": "string" },
     "areas": { "type": ["array", "null"] },
     "modules": { "type": "array" },
-    "components": { "type": "array" }
+    "components": { "type": "array" },
+    "providerComposition": {
+      "type": "object",
+      "required": ["schemaVersion", "provider", "ownership", "shell", "areas", "directComponentIds"],
+      "properties": {
+        "schemaVersion": { "const": 1 },
+        "provider": {
+          "type": "object",
+          "required": ["id", "version", "mapping"],
+          "properties": {
+            "id": { "type": "string" },
+            "version": { "type": "string" },
+            "mapping": { "type": "string" }
+          },
+          "additionalProperties": false
+        },
+        "ownership": {
+          "type": "object",
+          "required": ["pagePattern", "componentImplementation", "staticExample"],
+          "properties": {
+            "pagePattern": { "const": "guide" },
+            "componentImplementation": { "const": "active-provider" },
+            "staticExample": { "const": "evidence-and-github-fallback" }
+          },
+          "additionalProperties": false
+        },
+        "shell": {
+          "type": "object",
+          "required": ["header", "footer"],
+          "properties": {
+            "header": { "$ref": "#/$defs/compositionNode" },
+            "footer": { "$ref": "#/$defs/compositionNode" }
+          },
+          "additionalProperties": false
+        },
+        "areas": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["id", "nodes"],
+            "properties": {
+              "id": { "type": "string" },
+              "nodes": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/compositionNode" } }
+            },
+            "additionalProperties": false
+          }
+        },
+        "directComponentIds": { "type": "array", "items": { "type": "string" }, "uniqueItems": true }
+      },
+      "additionalProperties": false
+    }
   }
 }

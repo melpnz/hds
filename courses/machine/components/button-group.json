@@ -1,7 +1,7 @@
 {
   "$schema": "../../schema.json",
   "id": "button-group",
-  "title": "PageTabs",
+  "title": "ButtonGroup",
   "kind": "component",
   "category": "navigation",
   "maturity": {
@@ -15,7 +15,7 @@
     "confidence": "medium",
     "scope": "design-source-only"
   },
-  "purpose": "PageTabs: переключение между вкладками на светлом фоне страницы, карточки или формы.",
+  "purpose": "Группа взаимоисключающих кнопок. Вариант light используется на светлой поверхности, hero — на цветной шапке; компонент поддерживает компактную и блочную раскладки.",
   "implementation": {
     "markup": "available-in-examples",
     "cssRoots": [
@@ -42,7 +42,7 @@
   "examples": [
     {
       "id": "page-tabs",
-      "title": "PageTabs · состояния",
+      "title": "ButtonGroup · light",
       "file": "examples/components/button-group/index.html",
       "covers": [
         "default",
@@ -63,12 +63,45 @@
         "figma"
       ],
       "scope": "design-source-only"
+    },
+    {
+      "id": "hero",
+      "title": "ButtonGroup · hero",
+      "file": "examples/components/button-group/hero.html",
+      "covers": [
+        "default",
+        "hover",
+        "focus-visible",
+        "selected",
+        "disabled",
+        "loading"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "constrained",
+        "width": 720
+      },
+      "authority": [
+        "production",
+        "figma"
+      ],
+      "scope": "mixed-evidence"
     }
   ],
   "variants": [
     {
-      "id": "context",
-      "use": "PageTabs на светлом фоне страницы."
+      "id": "variant",
+      "use": "light на светлой поверхности; hero на цветной шапке."
+    },
+    {
+      "id": "density",
+      "use": "default или compact."
+    },
+    {
+      "id": "layout",
+      "use": "block для заполнения контейнера; content-width для компактной группы."
     },
     {
       "id": "state",
@@ -76,10 +109,10 @@
     }
   ],
   "componentFamily": {
-    "id": "tabs",
-    "name": "Tabs",
-    "member": "PageTabs",
-    "legacyId": "button-group"
+    "id": "button-group",
+    "name": "ButtonGroup",
+    "member": "light / hero",
+    "legacyId": "segmented-control"
   },
   "previewNotes": [
     {
@@ -131,6 +164,129 @@
         "nodeId": "4813:288",
         "layerName": "button group / onpage"
       }
+    },
+    {
+      "type": "production",
+      "data": {
+        "selector": "div.bg-ui-black-transparent-120.rounded-xl.w-max",
+        "found": 4,
+        "pages": [
+          "education-centers-listing",
+          "rating",
+          "reviews",
+          "schools-for-children"
+        ]
+      }
+    },
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "layerName": "button group / onheader",
+          "nodeId": null,
+          "componentKey": "a3b5486b83ed47b1bf169023fb4cfcdf42ec847d"
+        }
+      ]
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "4274:1422",
+        "layerName": "HeroTabs states"
+      }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "4261:1716",
+        "layerName": "button group / onheader"
+      }
+    },
+    {
+      "type": "production",
+      "data": {
+        "selector": "div.bg-ui-black-transparent-120.rounded-xl.w-max",
+        "found": 4,
+        "pages": [
+          "education-centers-listing",
+          "rating",
+          "reviews",
+          "schools-for-children"
+        ]
+      }
+    },
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "layerName": "button group / onheader",
+          "nodeId": null,
+          "componentKey": "a3b5486b83ed47b1bf169023fb4cfcdf42ec847d"
+        }
+      ]
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "4274:1422",
+        "layerName": "HeroTabs states"
+      }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "4261:1716",
+        "layerName": "button group / onheader"
+      }
+    },
+    {
+      "type": "production",
+      "data": {
+        "selector": "div.bg-ui-black-transparent-120.rounded-xl.w-max",
+        "found": 4,
+        "pages": [
+          "education-centers-listing",
+          "rating",
+          "reviews",
+          "schools-for-children"
+        ]
+      }
+    },
+    {
+      "type": "figma",
+      "data": [
+        {
+          "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+          "fileName": "education-lib",
+          "layerName": "button group / onheader",
+          "nodeId": null,
+          "componentKey": "a3b5486b83ed47b1bf169023fb4cfcdf42ec847d"
+        }
+      ]
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "4274:1422",
+        "layerName": "HeroTabs states"
+      }
+    },
+    {
+      "type": "figma",
+      "data": {
+        "fileKey": "KG36iTkwvKDmrw8XQhk7d6",
+        "nodeId": "4261:1716",
+        "layerName": "button group / onheader"
+      }
     }
   ],
   "unknowns": [],
@@ -146,9 +302,15 @@
     "markupState": null
   },
   "usage": {
-    "when": "**В продукте этого компонента нет.** Он существует только в макете, и это не пробел съёмки, а установленный факт — разбор в `notes` записи реестра:",
-    "whenNot": [],
-    "related": []
+    "when": "Используйте для взаимоисключающего выбора одного значения внутри компактной группы.",
+    "whenNot": [
+      "Для независимых фильтров используйте FilterChip.",
+      "Для навигации без состояния выбора используйте Link."
+    ],
+    "related": [
+      "filter-chip",
+      "link"
+    ]
   },
   "dependencies": [],
   "stateCoverage": {
@@ -224,7 +386,8 @@
       "machine/dimension-tokens.json",
       "machine/tokens.json",
       "ui/courses.css",
-      "examples/components/button-group/index.html"
+      "examples/components/button-group/index.html",
+      "examples/components/button-group/hero.html"
     ],
     "geometry": {
       "minHeight": {
@@ -255,5 +418,8 @@
         "value": "2.5rem"
       }
     }
-  }
+  },
+  "legacyIds": [
+    "segmented-control"
+  ]
 }

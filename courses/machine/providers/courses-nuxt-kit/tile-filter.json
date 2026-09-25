@@ -1,0 +1,170 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "tile-filter"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "tile-filter",
+    "providerComponentId": "tile-filter",
+    "exportName": "TileFilter",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/TileFilter.vue",
+    "catalogUrl": "/ui?component=tile-filter",
+    "previewUrl": "/ui/preview?component=tile-filter",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/tile-filter/index.html",
+          "covers": [
+            "default",
+            "hover",
+            "focus-visible",
+            "pressed",
+            "disabled"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "behavior",
+          "type": "'toggle' | 'action'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "image",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "imageFit",
+          "type": "'contain' | 'cover'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "layout",
+          "type": "'default' | 'spacious'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "modelValue",
+          "type": "boolean",
+          "required": false,
+          "source": "model"
+        },
+        {
+          "name": "showArrow",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true,
+          "source": "prop"
+        },
+        {
+          "name": "variant",
+          "type": "'image' | 'level' | 'catalog'",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [],
+      "emits": [
+        {
+          "name": "activate",
+          "type": "[]",
+          "source": "emit"
+        },
+        {
+          "name": "update:modelValue",
+          "type": "[boolean]",
+          "source": "model"
+        }
+      ],
+      "models": [
+        {
+          "name": "modelValue",
+          "type": "boolean",
+          "required": false
+        }
+      ]
+    },
+    "states": {
+      "guide": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled"
+      ],
+      "provider": [
+        "image-contain",
+        "image-cover",
+        "level",
+        "catalog-action",
+        "catalog-link",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "selected",
+        "disabled"
+      ],
+      "missingInProvider": [],
+      "providerOnly": [
+        "image-contain",
+        "image-cover",
+        "level",
+        "catalog-action",
+        "catalog-link"
+      ]
+    }
+  }
+}

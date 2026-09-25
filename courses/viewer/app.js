@@ -12,6 +12,7 @@ const viewportMeta = document.querySelector('#viewport-meta');
 const preview = document.querySelector('#preview');
 const previewMissing = document.querySelector('#preview-missing');
 const previewCard = document.querySelector('.preview-card');
+const previewSource = document.querySelector('#preview-source');
 const previewToolbar = document.querySelector('.preview-toolbar');
 const previewStage = document.querySelector('.preview-stage');
 const previewNotes = document.querySelector('#preview-notes');
@@ -20,6 +21,11 @@ const rawJson = document.querySelector('#raw-json');
 const specSource = document.querySelector('#spec-source');
 
 let catalog = [];
+let providerMapping;
+let providerCompatibility;
+let guideAliases = {};
+let currentProviderComponent;
+let currentPreviewSource = 'guide';
 let currentItem;
 let currentExample;
 let previewResizeObservers = [];
@@ -63,7 +69,8 @@ function renderNavigation(query = '') {
     if (!section.groups.has(groupId)) section.groups.set(groupId, { title: groupTitle, entries: [] });
     section.groups.get(groupId).entries.push(entry);
   }
-  const activeId = currentItem?.id || location.hash.slice(1) || catalog[0]?.id;
+  const requestedId = location.hash.slice(1);
+  const activeId = currentItem?.id || guideAliases[requestedId]?.target || requestedId || catalog[0]?.id;
   const renderLinks = entries => entries.map(entry => `
     <a class="nav-link" href="#${escapeHtml(entry.id)}" data-item="${escapeHtml(entry.id)}">
       <span>${escapeHtml(entry.title)}</span>
@@ -249,6 +256,49 @@ function renderExamples(item) {
   selectExample(item.examples[0].id);
 }
 
+function setPreviewSource(source) {
+  currentPreviewSource = source;
+  previewSource.querySelectorAll('button').forEach(button => {
+    button.setAttribute('aria-pressed', String(button.dataset.previewSource === source));
+  });
+  if (source === 'guide' || !currentProviderComponent?.component) {
+    renderExamples(currentItem);
+    return;
+  }
+
+  disconnectPreviewObserver();
+  const provider = providerCompatibility.providers.find(item => item.id === currentProviderComponent.provider.id);
+  const providerRecord = currentProviderComponent.component;
+  currentExample = { preview: { mode: 'viewport' } };
+  exampleStack.hidden = true;
+  exampleStack.innerHTML = '';
+  exampleTabs.hidden = true;
+  previewStage.hidden = false;
+  previewCard.hidden = false;
+  previewToolbar.hidden = false;
+  viewportControls.hidden = false;
+  viewportMeta.hidden = false;
+  previewStage.classList.remove('preview-stage--intrinsic');
+  preview.hidden = false;
+  previewMissing.hidden = true;
+  preview.scrolling = 'auto';
+  preview.style.height = '800px';
+  renderViewportControls();
+  preview.src = `${provider.localCatalogBaseUrl}${providerRecord.previewUrl}`;
+  preview.title = `${currentItem.title}: реализация ${providerRecord.exportName} из UI Kit`;
+}
+
+function renderPreviewSource(providerComponent) {
+  currentProviderComponent = providerComponent;
+  currentPreviewSource = 'guide';
+  previewSource.hidden = !providerComponent?.component;
+  const providerButton = previewSource.querySelector('[data-preview-source="provider"]');
+  if (providerComponent?.provider) providerButton.textContent = `UI Kit ${providerComponent.provider.version}`;
+  previewSource.querySelectorAll('button').forEach(button => {
+    button.setAttribute('aria-pressed', String(button.dataset.previewSource === 'guide'));
+  });
+}
+
 function renderPreviewNotes(item) {
   const notes = item.previewNotes || [];
   previewNotes.hidden = notes.length === 0;
@@ -261,7 +311,29 @@ function renderPreviewNotes(item) {
       </li>`).join('')}</ul>` : '';
 }
 
-function renderGuide(item) {
+function renderGuide(item, providerComponent) {
+  const providerRecord = providerComponent?.component;
+  const providerSection = providerRecord ? `
+    <section class="spec-section provider-contract">
+      <h2>Реализация в UI kit</h2>
+      <dl>
+        <dt>Provider</dt><dd><code>${escapeHtml(providerComponent.provider.id)}@${escapeHtml(providerComponent.provider.version)}</code></dd>
+        <dt>Компонент</dt><dd><code>${escapeHtml(providerRecord.exportName)}</code></dd>
+        <dt>Исходник</dt><dd><a href="../${escapeHtml(providerRecord.source)}">${escapeHtml(providerRecord.source)}</a></dd>
+        <dt>Props</dt><dd>${pills(providerRecord.api.props.map(prop => prop.name))}</dd>
+        <dt>Slots</dt><dd>${pills(providerRecord.api.slots.map(slot => slot.name))}</dd>
+        <dt>Emits</dt><dd>${pills(providerRecord.api.emits.map(event => event.name))}</dd>
+        <dt>Models</dt><dd>${pills(providerRecord.api.models.map(model => model.name))}</dd>
+      </dl>
+      <p class="provider-contract__actions">
+        <a href="http://127.0.0.1:3000${escapeHtml(providerRecord.catalogUrl)}">Открыть компонент в локальном каталоге kit</a>
+        <span>Витрина гайда описывает поведение; рабочую Vue-разметку бери из provider.</span>
+      </p>
+    </section>` : providerMapping?.mappings.some(mapping => mapping.guideId === item.id && !mapping.providerComponentId) ? `
+    <section class="spec-section provider-contract provider-contract--missing">
+      <h2>Реализация в UI kit</h2>
+      <p>Компонент пока отсутствует в активном provider. Не выдавай HTML-пример гайда за API Courses Nuxt Kit.</p>
+    </section>` : '';
   const composition = item.kind === 'pattern' ? `
     <section class="spec-section">
       <h2>Композиция</h2>
@@ -297,6 +369,7 @@ function renderGuide(item) {
       <div><dt>Область</dt><dd>${label(item.knowledge.scope)}</dd></div>
       <div><dt>CSS roots</dt><dd>${pills(item.implementation.cssRoots)}</dd></div>
     </dl>
+    ${providerSection}
     ${composition}
     ${variants}
     ${layoutRules}
@@ -328,18 +401,28 @@ function renderGuide(item) {
 }
 
 async function renderItem() {
-  const id = location.hash.slice(1) || catalog[0].id;
+  const requestedId = location.hash.slice(1) || catalog[0].id;
+  const aliasTarget = guideAliases[requestedId]?.target;
+  const id = aliasTarget && catalog.some(candidate => candidate.id === aliasTarget) ? aliasTarget : requestedId;
   const entry = catalog.find(candidate => candidate.id === id) || catalog[0];
   currentItem = await fetch(`../${entry.file}`).then(response => response.json());
+  const mapping = providerMapping?.mappings.find(candidate => candidate.guideId === entry.id);
+  const providerComponent = mapping?.apiFile
+    ? await fetch(`../${mapping.apiFile}`).then(response => response.json())
+    : undefined;
   document.querySelectorAll('[data-item]').forEach(link => {
     if (link.dataset.item === entry.id) link.setAttribute('aria-current', 'page');
     else link.removeAttribute('aria-current');
   });
   title.textContent = currentItem.title;
   renderBadges(currentItem);
+  renderPreviewSource(providerComponent);
   renderExamples(currentItem);
+  if (new URLSearchParams(location.search).get('provider') === 'local' && providerComponent?.component) {
+    setPreviewSource('provider');
+  }
   renderPreviewNotes(currentItem);
-  renderGuide(currentItem);
+  renderGuide(currentItem, providerComponent);
   rawJson.textContent = JSON.stringify(currentItem, null, 2);
   specSource.href = `../${entry.file}`;
   specSource.textContent = entry.file;
@@ -347,9 +430,18 @@ async function renderItem() {
 
 Promise.all([
   fetch('../machine/index.json').then(response => response.json()),
-  fetch('../machine/catalog.json').then(response => response.json())
-]).then(([index, entries]) => {
+  fetch('../machine/catalog.json').then(response => response.json()),
+  fetch('../machine/providers/courses-nuxt-kit.json').then(response => response.json()),
+  fetch('../machine/compatibility.json').then(response => response.json()),
+  fetch('../machine/aliases.json').then(response => response.json())
+]).then(([index, entries, mapping, compatibility, aliases]) => {
   catalog = entries;
+  providerMapping = mapping;
+  providerCompatibility = compatibility;
+  guideAliases = aliases.aliases || {};
+  if (providerCompatibility.activeProvider !== index.activeImplementationProvider.id) {
+    throw new Error('Витрина получила несовместимый provider contract.');
+  }
   document.querySelector('#product-title').textContent = index.product.title;
   const status = index.product.status === 'active'
     ? ' · пригоден к использованию'
@@ -374,6 +466,10 @@ navigation.addEventListener('click', event => { if (event.target.closest('.nav-l
 searchInput.addEventListener('input', () => renderNavigation(searchInput.value));
 searchInput.addEventListener('keydown', event => {
   if (event.key === 'Escape' && searchInput.value) clearSearch();
+});
+previewSource.addEventListener('click', event => {
+  const button = event.target.closest('[data-preview-source]');
+  if (button) setPreviewSource(button.dataset.previewSource);
 });
 document.addEventListener('keydown', event => {
   if ((event.ctrlKey || event.metaKey) && event.key.toLocaleLowerCase() === 'k') {

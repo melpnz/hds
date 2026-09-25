@@ -1,0 +1,104 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "header-dropdown"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "header-dropdown",
+    "providerComponentId": "header-dropdown",
+    "exportName": "HeaderDropdown",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/HeaderDropdown.vue",
+    "catalogUrl": "/ui?component=header-dropdown",
+    "previewUrl": "/ui/preview?component=header-dropdown",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "states",
+          "file": "examples/components/header-dropdown/index.html",
+          "covers": [
+            "default",
+            "hover",
+            "focus-visible",
+            "open",
+            "closed"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "embedded",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "modelValue",
+          "type": "boolean",
+          "required": false,
+          "source": "model"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        }
+      ],
+      "emits": [
+        {
+          "name": "update:modelValue",
+          "type": "[boolean]",
+          "source": "model"
+        }
+      ],
+      "models": [
+        {
+          "name": "modelValue",
+          "type": "boolean",
+          "required": false
+        }
+      ]
+    },
+    "states": {
+      "guide": [
+        "default",
+        "hover",
+        "focus-visible",
+        "open",
+        "closed"
+      ],
+      "provider": [
+        "default",
+        "hover",
+        "focus-visible",
+        "open",
+        "closed"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

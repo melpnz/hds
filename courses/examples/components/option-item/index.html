@@ -1,0 +1,10 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>OptionItem — Хабр Курсы</title><link rel="stylesheet" href="../../../ui/courses.css"><style>
+body{box-sizing:border-box;margin:0;padding:24px;background:#fff;font-family:Inter,sans-serif}.demo{width:min(420px,100%);border:1px solid #e9e9ea;border-radius:12px;padding:8px 0}.item{display:flex;min-height:40px;align-items:center;gap:12px;padding:8px 24px 8px 16px;color:#2c2e34;font-size:16px;line-height:1.375}.item[data-state=hover],.item[data-state=selected]{background:#f1f1f1}.item[data-state=focus]{outline:2px solid #a6a7a9;outline-offset:-2px}.item[data-state=disabled]{color:#a6a7a9}.copy{display:grid;min-width:0;flex:1}.copy small,.meta{color:#909194;font-size:12px;line-height:1.33}.check{width:18px;height:18px;border:1px solid #909194;border-radius:4px}.selected .check{border-color:#346ef4;background:#346ef4}.selected .check:after{display:block;color:#fff;text-align:center;content:'✓'}
+</style></head><body><div class="example-root demo" role="listbox" aria-label="Варианты">
+<div class="item" role="option" aria-selected="false"><div class="copy"><span>Разработка</span><small>420 курсов</small></div><span class="meta">Популярное</span></div>
+<div class="item" data-state="hover" role="option" aria-selected="false"><span>Дизайн</span></div>
+<div class="item selected" data-state="selected" role="option" aria-selected="true"><span class="check"></span><span>Аналитика</span></div>
+<div class="item" data-state="focus" role="option" aria-selected="false">Маркетинг</div>
+<div class="item" data-state="disabled" role="option" aria-selected="false" aria-disabled="true">Менеджмент</div>
+</div></body></html>

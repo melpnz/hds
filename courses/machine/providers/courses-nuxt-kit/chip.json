@@ -1,0 +1,114 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "chip"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "chip",
+    "providerComponentId": "chip",
+    "exportName": "Chip",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/Chip.vue",
+    "catalogUrl": "/ui?component=chip",
+    "previewUrl": "/ui/preview?component=chip",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "variants",
+          "file": "examples/components/chip/index.html",
+          "covers": [
+            "default",
+            "tone",
+            "size",
+            "counter",
+            "discount",
+            "cover-meta",
+            "specialization"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "removable",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "size",
+          "type": "'xs' | 's' | 'm'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "tone",
+          "type": "'neutral' | 'surface' | 'blue' | 'brand' | 'green' | 'orange' | 'red' | 'orange-soft'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "truncate",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "variant",
+          "type": "'default' | 'counter'",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        }
+      ],
+      "emits": [
+        {
+          "name": "remove",
+          "type": "[]",
+          "source": "emit"
+        }
+      ],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default"
+      ],
+      "provider": [
+        "size-s",
+        "size-m",
+        "counter",
+        "removable",
+        "partner"
+      ],
+      "missingInProvider": [],
+      "providerOnly": [
+        "size-s",
+        "size-m",
+        "counter",
+        "removable",
+        "partner"
+      ]
+    }
+  }
+}

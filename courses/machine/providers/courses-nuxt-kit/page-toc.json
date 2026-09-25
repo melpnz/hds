@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "page-toc"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "page-toc",
+    "providerComponentId": "page-toc",
+    "exportName": "PageToc",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/PageToc.vue",
+    "catalogUrl": "/ui?component=page-toc",
+    "previewUrl": "/ui/preview?component=page-toc",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/page-toc/index.html",
+          "covers": [
+            "default",
+            "hover",
+            "focus-visible"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "items",
+          "type": "Item[]",
+          "required": true,
+          "source": "prop"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default",
+        "hover",
+        "focus-visible"
+      ],
+      "provider": [
+        "default",
+        "hover",
+        "focus-visible"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

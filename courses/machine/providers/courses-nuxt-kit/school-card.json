@@ -1,0 +1,112 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "school-card"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "school-card",
+    "providerComponentId": "school-card",
+    "exportName": "SchoolCard",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/SchoolCard.vue",
+    "catalogUrl": "/ui?component=school-card",
+    "previewUrl": "/ui/preview?component=school-card",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/school-card/index.html",
+          "covers": [
+            "default",
+            "hover",
+            "focus-visible"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "image",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "logo",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "rating",
+          "type": "number",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "reviews",
+          "type": "number",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "students",
+          "type": "number",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true,
+          "source": "prop"
+        }
+      ],
+      "slots": [],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default",
+        "hover",
+        "focus-visible"
+      ],
+      "provider": [
+        "default",
+        "hover",
+        "focus-visible"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

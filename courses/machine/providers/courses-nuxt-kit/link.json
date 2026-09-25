@@ -1,0 +1,122 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "link"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "link",
+    "providerComponentId": "link",
+    "exportName": "Link",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/Link.vue",
+    "catalogUrl": "/ui?component=link",
+    "previewUrl": "/ui/preview?component=link",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/link/index.html",
+          "covers": [
+            "default",
+            "hover",
+            "focus-visible"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "as",
+          "type": "'a' | 'button'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "decoration",
+          "type": "'hover' | 'none'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "external",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "layout",
+          "type": "'inline' | 'block' | 'flex' | 'grid'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "muted",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "rel",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "target",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "tone",
+          "type": "'brand' | 'inherit' | 'muted'",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        }
+      ],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default",
+        "hover",
+        "focus-visible"
+      ],
+      "provider": [
+        "default",
+        "hover",
+        "focus-visible"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

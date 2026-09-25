@@ -348,5 +348,90 @@
   },
   "entityLogoUsage": {
     "experts-grid": 8
+  },
+  "providerComposition": {
+    "schemaVersion": 1,
+    "provider": {
+      "id": "courses-nuxt-kit",
+      "version": "1.0.0",
+      "mapping": "machine/providers/courses-nuxt-kit.json"
+    },
+    "ownership": {
+      "pagePattern": "guide",
+      "componentImplementation": "active-provider",
+      "staticExample": "evidence-and-github-fallback"
+    },
+    "shell": {
+      "header": {
+        "kind": "provider-component",
+        "id": "site-header",
+        "role": "global-header",
+        "props": {
+          "family": "simple"
+        },
+        "providerComponentId": "site-header",
+        "exportName": "SiteHeader"
+      },
+      "footer": {
+        "kind": "provider-component",
+        "id": "site-footer",
+        "role": "global-footer",
+        "providerComponentId": "site-footer",
+        "exportName": "SiteFooter"
+      }
+    },
+    "areas": [
+      {
+        "id": "expert-process",
+        "nodes": [
+          {
+            "kind": "provider-component",
+            "id": "card-grid",
+            "role": "process-grid",
+            "children": [
+              {
+                "kind": "provider-component",
+                "id": "step-card",
+                "role": "process-step",
+                "count": 4,
+                "providerComponentId": "step-card",
+                "exportName": "StepCard"
+              }
+            ],
+            "providerComponentId": "card-grid",
+            "exportName": "CardGrid"
+          }
+        ]
+      },
+      {
+        "id": "experts-grid",
+        "nodes": [
+          {
+            "kind": "provider-component",
+            "id": "card-grid",
+            "role": "experts-grid",
+            "children": [
+              {
+                "kind": "provider-component",
+                "id": "person-card",
+                "role": "expert-card",
+                "count": 8,
+                "providerComponentId": "person-card",
+                "exportName": "PersonCard"
+              }
+            ],
+            "providerComponentId": "card-grid",
+            "exportName": "CardGrid"
+          }
+        ]
+      }
+    ],
+    "directComponentIds": [
+      "site-header",
+      "site-footer",
+      "card-grid",
+      "step-card",
+      "person-card"
+    ]
   }
 }

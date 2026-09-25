@@ -1,0 +1,140 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "checkbox"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "checkbox",
+    "providerComponentId": "checkbox",
+    "exportName": "Checkbox",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/Checkbox.vue",
+    "catalogUrl": "/ui?component=checkbox",
+    "previewUrl": "/ui/preview?component=checkbox",
+    "preview": {
+      "strategy": "hybrid",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "states",
+          "file": "examples/components/checkbox/index.html",
+          "covers": [
+            "default",
+            "hover",
+            "focus-visible",
+            "checked",
+            "indeterminate",
+            "disabled",
+            "loading",
+            "vertical-list",
+            "horizontal-list"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback",
+        "provider-state-gap"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "ariaLabel",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "indeterminate",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "modelValue",
+          "type": "boolean",
+          "required": false,
+          "source": "model"
+        },
+        {
+          "name": "state",
+          "type": "'default' | 'hover' | 'focus' | 'disabled'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "visualOnly",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [],
+      "emits": [
+        {
+          "name": "update:modelValue",
+          "type": "[boolean]",
+          "source": "model"
+        }
+      ],
+      "models": [
+        {
+          "name": "modelValue",
+          "type": "boolean",
+          "required": false
+        }
+      ]
+    },
+    "states": {
+      "guide": [
+        "default",
+        "hover",
+        "focus-visible",
+        "checked",
+        "indeterminate",
+        "disabled",
+        "loading"
+      ],
+      "provider": [
+        "default",
+        "hover",
+        "focus-visible",
+        "checked",
+        "indeterminate",
+        "disabled"
+      ],
+      "missingInProvider": [
+        "loading"
+      ],
+      "providerOnly": []
+    }
+  }
+}

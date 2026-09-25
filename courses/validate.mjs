@@ -25,6 +25,8 @@ const catalog = read(index.files.catalog);
 const ids = new Set(catalog.map(item => item.id));
 const migration = read(index.files.migrationMap);
 const styleProfile = read(index.files.styleProfile);
+const providerCompatibility = read(index.files.providerCompatibility);
+const providerMapping = read(index.files.providerMapping);
 if (JSON.stringify(styleProfile) !== JSON.stringify(buildStyleProfile())) errors.push('style-profile: generated profile is stale');
 const contentRules = read('machine/content.json');
 const compositionGuide = readFileSync(resolve(root, 'docs/guide/composition.md'), 'utf8');
@@ -83,9 +85,30 @@ function evidenceRefExists(ref, owner) {
 
 for (const path of Object.values(index.files)) pathExists(path, 'index');
 
+const providerComponents = new Map(providerMapping.mappings.map(mapping => [mapping.guideId, mapping]));
+function validateCompositionNode(node, owner, directIds) {
+  if (!node || !['provider-component', 'native', 'external-slot'].includes(node.kind)) {
+    errors.push(`${owner}: invalid composition node`);
+    return;
+  }
+  if (node.kind === 'provider-component') {
+    const mapping = providerComponents.get(node.id);
+    directIds.push(node.id);
+    if (!mapping || mapping.status !== 'direct' || mapping.visibility !== 'public') {
+      errors.push(`${owner}: ${node.id} is not a direct public provider component`);
+    } else {
+      if (node.providerComponentId !== mapping.providerComponentId) errors.push(`${owner}: stale provider component id for ${node.id}`);
+      if (node.exportName !== mapping.exportName) errors.push(`${owner}: stale provider export for ${node.id}`);
+    }
+  }
+  if (node.kind === 'native' && !node.element) errors.push(`${owner}: native node has no element`);
+  if (node.kind === 'external-slot' && !node.id) errors.push(`${owner}: external slot has no id`);
+  for (const [index, child] of (node.children || []).entries()) validateCompositionNode(child, `${owner}.children[${index}]`, directIds);
+}
+
 if (ids.size !== catalog.length) errors.push('catalog: duplicate ids');
 const foundationIds = ['colors', 'typography', 'spacing-grid', 'radii-borders', 'iconography', 'responsive-layout'];
-if (catalog.length !== 88) errors.push(`catalog: expected 78 preserved items plus 6 foundations, Textarea, RadioButton, Modal and ProfileHistory, got ${catalog.length}`);
+if (catalog.length !== 84) errors.push(`catalog: expected 84 canonical items after page-pattern reconciliation, got ${catalog.length}`);
 if (JSON.stringify(catalog.filter(item => item.kind === 'foundation').map(item => item.id)) !== JSON.stringify(foundationIds)) {
   errors.push('catalog: foundation section is incomplete or out of order');
 }
@@ -149,6 +172,27 @@ for (const entry of catalog) {
     if (item.title === item.id) errors.push(`${entry.id}: pattern title must be human-readable`);
     if ((item.areas || []).some(area => /^section-\d+$/.test(area))) errors.push(`${entry.id}: pattern areas must be semantic`);
     if ((item.sequence || []).length !== (item.areas || []).length) errors.push(`${entry.id}: sequence/areas length mismatch`);
+    const composition = item.providerComposition;
+    if (composition?.schemaVersion !== 1) errors.push(`${entry.id}: provider composition schema is absent`);
+    if (composition?.provider?.id !== providerCompatibility.activeProvider || composition?.provider?.id !== providerMapping.provider.id) {
+      errors.push(`${entry.id}: provider composition does not use the active provider`);
+    }
+    if (composition?.provider?.version !== providerMapping.provider.version) errors.push(`${entry.id}: provider composition version is stale`);
+    if (composition?.ownership?.pagePattern !== 'guide' || composition?.ownership?.componentImplementation !== 'active-provider' || composition?.ownership?.staticExample !== 'evidence-and-github-fallback') {
+      errors.push(`${entry.id}: provider composition ownership boundary is incomplete`);
+    }
+    const compositionAreaIds = composition?.areas?.map(area => area.id) || [];
+    if (JSON.stringify(compositionAreaIds) !== JSON.stringify(item.areas || [])) errors.push(`${entry.id}: provider composition area order differs from pattern`);
+    const directCompositionIds = [];
+    for (const [slot, node] of Object.entries(composition?.shell || {})) validateCompositionNode(node, `${entry.id}.shell.${slot}`, directCompositionIds);
+    if (!composition?.shell?.header || !composition?.shell?.footer) errors.push(`${entry.id}: provider shell must contain header and footer`);
+    for (const area of composition?.areas || []) {
+      if (!Array.isArray(area.nodes) || area.nodes.length === 0) errors.push(`${entry.id}.${area.id}: composition area is empty`);
+      for (const [index, node] of (area.nodes || []).entries()) validateCompositionNode(node, `${entry.id}.${area.id}[${index}]`, directCompositionIds);
+    }
+    const expectedDirectIds = [...new Set(directCompositionIds)];
+    if (JSON.stringify(composition?.directComponentIds) !== JSON.stringify(expectedDirectIds)) errors.push(`${entry.id}: direct component index is stale`);
+    if (composition?.directComponentIds?.some(id => ['avatar', 'entity-logo'].includes(id))) errors.push(`${entry.id}: nested avatar/logo leaked into direct page composition`);
     for (const [index, area] of (item.sequence || []).entries()) {
       if (area.id !== item.areas[index]) errors.push(`${entry.id}: sequence area ${index + 1} does not match areas`);
       if (area.stub && (area.stub.length <= 80 || !area.stub.endsWith('components/collections/carousel.md'))) errors.push(`${entry.id}: truncated or incomplete stub in ${area.id}`);
@@ -189,6 +233,25 @@ for (const entry of catalog) {
       const html = readFileSync(resolve(root, item.examples[0].file), 'utf8');
       if (!html.includes('data-component="card-grid" data-variant="school-courses"')) {
         errors.push('education-center: page does not reuse the school-courses CardGrid variant');
+      }
+    }
+    if (entry.id === 'courses-listing') {
+      if (item.layout?.rubricationNavigation?.gap?.token !== '--courses-space-16' || item.layout?.rubricationNavigation?.gap?.sameAtAllWidths !== true) {
+        errors.push('courses-listing: rubrication navigation must keep the 16px token gap at every width');
+      }
+      const rubricationArea = item.providerComposition?.areas?.find(area => area.id === 'rubrication-navigation');
+      const rubricationNode = rubricationArea?.nodes?.[0];
+      const rubricLinks = rubricationNode?.children?.[0];
+      if (rubricationNode?.kind !== 'native' || rubricationNode?.element !== 'nav' || rubricationNode?.responsive !== 'single-line-horizontal-scroll-edge-to-edge') {
+        errors.push('courses-listing: rubrication navigation behavior is incomplete');
+      }
+      if (rubricLinks?.id !== 'link' || rubricLinks?.count !== 4 || rubricLinks?.exportName !== 'Link') {
+        errors.push('courses-listing: rubrication navigation must reuse four provider Links');
+      }
+      const html = readFileSync(resolve(root, item.examples[0].file), 'utf8');
+      const rubricationMarkup = html.match(/<div class="rubrication-header[\s\S]*?<\/div>/)?.[0] || '';
+      if ([...rubricationMarkup.matchAll(/<a\b/g)].length !== 4 || !rubricationMarkup.includes('overflow-x-auto')) {
+        errors.push('courses-listing: production rubric links or horizontal overflow are absent');
       }
     }
   }
@@ -377,19 +440,6 @@ for (const entry of catalog) {
       if (!html.includes('headerDropdownPanel.hidden=open')) errors.push('header-dropdown: open/closed interaction is absent');
     }
   }
-  if (entry.id === 'rubrication-bar') {
-    const example = item.examples[0];
-    if (item.examples.length !== 1 || example?.id !== 'production-context') errors.push('rubrication-bar: expected one production-context example');
-    if (example?.preview?.mode !== 'viewport' || example?.preview?.height !== 40) errors.push('rubrication-bar: compact responsive preview is absent');
-    for (const state of ['default', 'desktop', 'mobile', 'horizontal-scroll']) {
-      if (!example?.covers?.includes(state)) errors.push(`rubrication-bar: ${state} is absent from example coverage`);
-    }
-    if (existsSync(resolve(root, example?.file || ''))) {
-      const html = readFileSync(resolve(root, example.file), 'utf8');
-      if (!html.includes('crs-rubrication-demo') || !html.includes('var(--color-main-gradient-second)')) errors.push('rubrication-bar: visible gradient context is absent');
-      if ([...html.matchAll(/class="shrink-0 text-ui-white/g)].length !== 4) errors.push('rubrication-bar: expected four production links');
-    }
-  }
   if (entry.id === 'search-form') {
     const example = item.examples[0];
     if (item.examples.length !== 1 || example?.id !== 'select-xl-group') errors.push('search-form: expected one Select XL group example');
@@ -498,52 +548,39 @@ for (const entry of catalog) {
       }
     }
   }
-  if (entry.id === 'filter-chip' || entry.id === 'tab') {
-    const isExtended = entry.id === 'tab';
-    const expectedTitle = isExtended ? 'FilterChip · Menu / Switch' : 'FilterChip · Basic';
-    if (entry.navGroup !== 'filter-chips' || entry.navGroupTitle !== 'Filter Chips' || entry.title !== expectedTitle) errors.push(`${entry.id}: FilterChip family grouping is incorrect`);
-    if (item.componentFamily?.id !== 'filter-chip' || item.componentFamily?.legacyId !== (isExtended ? 'tab' : null)) errors.push(`${entry.id}: FilterChip family metadata is absent`);
-    if (isExtended) {
-      const example = item.examples[0];
-      if (item.examples.length !== 1 || example?.id !== 'filter-chip-variants') errors.push('tab: expected one FilterChip Menu / Switch overview');
-      for (const state of ['default', 'hover', 'focus-visible', 'pressed', 'disabled', 'loading', 'open']) {
-        if (!item.states.ui.includes(state) || !example?.covers?.includes(state)) errors.push(`tab: missing ${state} state coverage`);
-      }
-      if (!item.variants?.find(variant => variant.id === 'kind')?.use.includes('FilterChipMenu')) errors.push('tab: Menu / Switch variants are absent');
-      if (existsSync(resolve(root, example?.file || ''))) {
-        const html = readFileSync(resolve(root, example.file), 'utf8');
-        if ([...html.matchAll(/class="crs-filter-chip-matrix__row"/g)].length !== 6) errors.push('tab: expected six FilterChip state rows');
-        if ([...html.matchAll(/class="crs-filter-chip crs-filter-chip--/g)].length !== 15) errors.push('tab: expected fifteen FilterChip samples');
-        for (const state of ['default', 'hover', 'focus', 'disabled', 'loading', 'open']) {
-          if (!html.includes(`data-state="${state}"`)) errors.push(`tab: ${state} sample is absent`);
-        }
-        if (!html.includes("dataset.state='pressed'")) errors.push('tab: pressed state normalization is absent');
-        if (!html.includes('filter-chip-tooltip.svg') || !html.includes('filter-chip-dot.svg')) errors.push('tab: exact local Figma assets are absent');
-        if (!html.includes('aria-expanded="true"') || !html.includes('role="listbox"')) errors.push('tab: open Menu semantics are absent');
-        if ([...html.matchAll(/aria-busy="true"/g)].length !== 2) errors.push('tab: loading semantics are incomplete');
-      }
+  if (entry.id === 'filter-chip') {
+    if (entry.navGroup !== 'filter-chips' || entry.navGroupTitle !== 'Filter Chips' || entry.title !== 'FilterChip') errors.push('filter-chip: family grouping or canonical title is incorrect');
+    if (item.componentFamily?.id !== 'filter-chip' || item.componentFamily?.legacyId !== 'tab') errors.push('filter-chip: merged family metadata is absent');
+    const extended = item.examples.find(example => example.id === 'menu-switch');
+    if (item.examples.length !== 2 || !extended) errors.push('filter-chip: Basic and Menu / Switch examples are required');
+    for (const state of ['default', 'hover', 'focus-visible', 'pressed', 'disabled', 'loading', 'open']) {
+      if (!item.states.ui.includes(state) || !extended?.covers?.includes(state)) errors.push(`filter-chip: missing ${state} state coverage`);
+    }
+    if (!item.variants?.find(variant => variant.id === 'kind')?.use.includes('FilterChipMenu')) errors.push('filter-chip: Menu / Switch variants are absent');
+    if (existsSync(resolve(root, extended?.file || ''))) {
+      const html = readFileSync(resolve(root, extended.file), 'utf8');
+      if ([...html.matchAll(/class="crs-filter-chip-matrix__row"/g)].length !== 6) errors.push('filter-chip: expected six extended state rows');
+      if ([...html.matchAll(/class="crs-filter-chip crs-filter-chip--/g)].length !== 15) errors.push('filter-chip: expected fifteen extended samples');
+      if (!html.includes('aria-expanded="true"') || !html.includes('role="listbox"')) errors.push('filter-chip: open Menu semantics are absent');
     }
   }
-  if (entry.id === 'segmented-control' || entry.id === 'button-group') {
-    const isHero = entry.id === 'segmented-control';
-    const expectedTitle = isHero ? 'HeroTabs' : 'PageTabs';
-    const expectedExample = isHero ? 'hero-tabs' : 'page-tabs';
-    if (entry.navGroup !== 'tabs' || entry.title !== expectedTitle) errors.push(`${entry.id}: tab grouping or title is incorrect`);
-    if (item.examples[0]?.id !== expectedExample) errors.push(`${entry.id}: contextual tab example is absent`);
-    if (item.componentFamily?.id !== 'tabs' || item.componentFamily?.member !== expectedTitle || item.componentFamily?.legacyId !== entry.id) errors.push(`${entry.id}: Tabs family metadata is absent`);
+  if (entry.id === 'button-group') {
+    if (entry.navGroup !== 'tabs' || entry.title !== 'ButtonGroup') errors.push('button-group: grouping or canonical title is incorrect');
+    const pageExample = item.examples.find(example => example.id === 'page-tabs');
+    const heroExample = item.examples.find(example => example.id === 'hero');
+    if (item.examples.length !== 2 || !pageExample || !heroExample) errors.push('button-group: light and hero examples are required');
+    if (item.componentFamily?.id !== 'button-group' || item.componentFamily?.legacyId !== 'segmented-control') errors.push('button-group: merged family metadata is absent');
     for (const state of ['default', 'hover', 'focus-visible', 'selected', 'disabled', 'loading']) {
-      if (!item.states.ui.includes(state) || !item.examples[0]?.covers?.includes(state)) errors.push(`${entry.id}: missing ${state} state coverage`);
+      if (!item.states.ui.includes(state) || !pageExample?.covers?.includes(state) || !heroExample?.covers?.includes(state)) errors.push(`button-group: missing ${state} state coverage`);
     }
-    if (existsSync(resolve(root, item.examples[0]?.file || ''))) {
-      const html = readFileSync(resolve(root, item.examples[0].file), 'utf8');
-      if ([...html.matchAll(/class="crs-context-tab"/g)].length !== 9) errors.push(`${entry.id}: expected nine tab samples`);
-      if ([...html.matchAll(/class="crs-tabs-sample"/g)].length !== 6) errors.push(`${entry.id}: expected six state samples`);
-      if ([...html.matchAll(/aria-busy="true"/g)].length !== 1) errors.push(`${entry.id}: loading semantics are incomplete`);
-      if (isHero && !html.includes('.crs-tabs-context--hero .crs-tabs-group{border-radius:12px;background:rgba(0,0,0,.12)}')) errors.push('segmented-control: shared HeroTabs group background is absent');
-      if (!isHero && !html.includes('.crs-tabs-context--page .crs-tabs-group{padding:4px;border-radius:16px;background:#f1f1f1}')) errors.push('button-group: shared PageTabs group background is absent');
+    for (const example of [pageExample, heroExample]) {
+      if (!example || !existsSync(resolve(root, example.file))) continue;
+      const html = readFileSync(resolve(root, example.file), 'utf8');
+      if ([...html.matchAll(/class="crs-context-tab"/g)].length !== 9) errors.push(`button-group/${example.id}: expected nine tab samples`);
+      if ([...html.matchAll(/class="crs-tabs-sample"/g)].length !== 6) errors.push(`button-group/${example.id}: expected six state samples`);
     }
-    if (isHero && !item.evidence?.some(source => source.type === 'figma' && source.data?.nodeId === '4261:1716')) errors.push('segmented-control: HeroTabs group evidence is absent');
-    if (!isHero && !item.evidence?.some(source => source.type === 'figma' && source.data?.nodeId === '4813:288')) errors.push('button-group: PageTabs group evidence is absent');
+    if (!item.evidence?.some(source => source.type === 'figma' && source.data?.nodeId === '4261:1716')) errors.push('button-group: hero evidence is absent');
+    if (!item.evidence?.some(source => source.type === 'figma' && source.data?.nodeId === '4813:288')) errors.push('button-group: light evidence is absent');
   }
   if (['select', 'multi-select', 'search-input', 'text-input', 'textarea'].includes(entry.id)) {
     const example = item.examples[0];

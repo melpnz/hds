@@ -1,6 +1,6 @@
 # Контракт для модели · Хабр Курсы v1.0
 
-Размеры интерфейса берутся из `machine/dimension-tokens.json`; CSS-переменные подключаются через `ui/courses.css`. Масштабируемая база — `0.25rem` при эталонном root `16px`; границы и толщина focus ring остаются в `px`, line-height использует безразмерные токены. Новые размеры не записывай литералами. Остальные значения сверяй с `machine/reports/dimension-exceptions.md` и не округляй без дизайнерского решения.
+Размеры интерфейса берутся из `machine/dimension-tokens.json`, production-палитра — из `machine/tokens.json`, а нейтральные назначения активного provider — из `machine/semantic-tokens.json`; CSS-переменные подключаются через `ui/courses.css`. Масштабируемая база — `0.25rem` при эталонном root `16px`; границы и толщина focus ring остаются в `px`, line-height использует безразмерные токены. Новые размеры не записывай литералами. Остальные значения сверяй с `machine/reports/dimension-exceptions.md` и не округляй без дизайнерского решения.
 
 Канон пакета — адресные файлы `machine/`; viewer лишь отображает их.
 
@@ -25,13 +25,19 @@
    GitHub и не проверяй обновления.
 2. `machine/index.json` — статус, границы, активный implementation provider и
    доступные проверки.
-3. `machine/providers/courses-nuxt-kit.json` — текущий export/source/preview для
-   стабильного guide-id. Если mapping прямой, используй компонент, а не
-   перевёрстывай его по example или скриншоту.
-4. Для нового продукта, страницы или общего визуального языка — `machine/style-profile.json`; для одного компонента этот шаг не нужен.
-5. `machine/catalog.json` — найти нужную сущность по id, группе или tags.
-6. Только `file` выбранной записи.
-7. Затем только названные в записи `rules`, `implementation`, `examples` и
+3. `machine/compatibility.json` — проверенная пара версии гайда и локального
+   provider. Если версия локального manifest не перечислена как совместимая,
+   не смешивай её с этим гайдом без отдельной сверки.
+4. `machine/providers/courses-nuxt-kit.json` — компактное соответствие
+   стабильного guide-id текущему export/source/preview. Для выбранного компонента
+   открой только его `apiFile`: там находится сгенерированный публичный API
+   (`props`, `slots`, `emits`, `models`). Если mapping прямой, используй компонент,
+   а не перевёрстывай его по example или скриншоту. Владение полями описано в
+   `machine/providers/README.md`.
+5. Для нового продукта, страницы или общего визуального языка — `machine/style-profile.json`; для одного компонента этот шаг не нужен.
+6. `machine/catalog.json` — найти нужную сущность по id, группе или tags.
+7. Только `file` выбранной записи.
+8. Затем только названные в записи `rules`, `implementation`, `examples` и
    evidence. Подробную прозу читать по `source.spec`.
 
 Не загружать весь каталог, все SVG или evidence без необходимости. Записи со

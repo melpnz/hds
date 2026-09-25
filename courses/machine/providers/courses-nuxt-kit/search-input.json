@@ -1,0 +1,116 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "search-input"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "search-input",
+    "providerComponentId": "search-input",
+    "exportName": "SearchInput",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/SearchInput.vue",
+    "catalogUrl": "/ui?component=search-input",
+    "previewUrl": "/ui/preview?component=search-input",
+    "preview": {
+      "strategy": "hybrid",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "field-family",
+          "file": "examples/components/search-input/index.html",
+          "covers": [
+            "default",
+            "hover",
+            "focus-visible",
+            "disabled",
+            "invalid",
+            "size-m",
+            "size-xl"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback",
+        "provider-state-gap"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "modelValue",
+          "type": "string",
+          "required": false,
+          "source": "model"
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "size",
+          "type": "'m' | 'xl'",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [],
+      "emits": [
+        {
+          "name": "update:modelValue",
+          "type": "[string]",
+          "source": "model"
+        }
+      ],
+      "models": [
+        {
+          "name": "modelValue",
+          "type": "string",
+          "required": false
+        }
+      ]
+    },
+    "states": {
+      "guide": [
+        "default",
+        "hover",
+        "focus-visible",
+        "disabled",
+        "error"
+      ],
+      "provider": [
+        "default",
+        "hover",
+        "focus-visible",
+        "disabled"
+      ],
+      "missingInProvider": [
+        "error"
+      ],
+      "providerOnly": []
+    }
+  }
+}

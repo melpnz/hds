@@ -1,0 +1,183 @@
+{
+  "$schema": "../../schema.json",
+  "id": "toast",
+  "title": "Toast",
+  "kind": "component",
+  "category": "feedback",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "implementation-provider"
+    ],
+    "confidence": "high",
+    "scope": "public-api"
+  },
+  "purpose": "Компактное уведомление о результате действия с четырьмя тонами и необязательным закрытием.",
+  "implementation": {
+    "markup": "provider-component",
+    "providerComponent": "Toast",
+    "source": "courses-nuxt-kit/layers/courses/app/components/Toast.vue",
+    "styles": [
+      "courses-nuxt-kit/layers/courses/app/components/Toast.vue"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "info",
+      "success",
+      "warning",
+      "error",
+      "closable"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "public-api",
+      "title": "Toast · публичный API",
+      "file": "examples/components/toast/index.html",
+      "covers": [
+        "info",
+        "success",
+        "warning",
+        "error",
+        "closable"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "constrained",
+        "width": 720
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Визуальный источник — публичный компонент Toast из Courses Nuxt Kit."
+    }
+  ],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "implementation-provider",
+      "data": {
+        "provider": "courses-nuxt-kit",
+        "component": "Toast",
+        "version": "1.0.0"
+      }
+    }
+  ],
+  "unknowns": [],
+  "source": {
+    "version": "v1.0",
+    "spec": "guide/components/feedback/toast.md",
+    "status": "complete",
+    "scope": "implementation-provider",
+    "step": "provider-reconciliation",
+    "anchor": null,
+    "originalKind": "component",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Компактное уведомление о результате действия с четырьмя тонами и необязательным закрытием.",
+    "whenNot": [],
+    "related": []
+  },
+  "dependencies": [],
+  "stateCoverage": {
+    "required": [
+      "info",
+      "success",
+      "warning",
+      "error",
+      "closable"
+    ],
+    "captured": [
+      "info",
+      "success",
+      "warning",
+      "error",
+      "closable"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "Добавлено из публичного API Courses Nuxt Kit 23 сентября 2026; поведение и визуал принадлежат активному implementation provider.",
+  "visual": {
+    "generatedBy": "tools/build-visual-contracts.mjs",
+    "specificity": "family-baseline",
+    "family": "feedback-indicator",
+    "typography": {
+      "family": "Inter, sans-serif",
+      "body": {
+        "token": "--courses-font-size-16",
+        "value": "1rem"
+      },
+      "small": {
+        "token": "--courses-font-size-14",
+        "value": "0.875rem"
+      }
+    },
+    "colors": {
+      "text": {
+        "token": "--color-text-main",
+        "value": "{color.ui-black-850}"
+      },
+      "muted": {
+        "token": "--color-ui-black-500",
+        "value": "#909194"
+      },
+      "surface": {
+        "token": "--color-white-background",
+        "value": "{color.ui-white}"
+      },
+      "border": {
+        "token": "--color-ui-black-200",
+        "value": "#d3d3d4"
+      },
+      "action": {
+        "token": "--color-ui-blue-500",
+        "value": "#346ef4"
+      },
+      "focus": {
+        "token": "--color-ui-black-400",
+        "value": "#a6a7a9"
+      }
+    },
+    "states": [
+      "info",
+      "success",
+      "warning",
+      "error",
+      "closable"
+    ],
+    "sources": [
+      "machine/dimension-tokens.json",
+      "machine/tokens.json",
+      "courses-nuxt-kit/layers/courses/app/components/Toast.vue",
+      "examples/components/toast/index.html"
+    ],
+    "geometry": {
+      "size": {
+        "token": "--courses-size-24",
+        "value": "1.5rem"
+      },
+      "stroke": {
+        "token": "--courses-border-width-2",
+        "value": "2px"
+      }
+    },
+    "motion": {
+      "behavior": "reduced-motion-aware"
+    }
+  }
+}

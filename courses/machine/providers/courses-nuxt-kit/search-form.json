@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "search-form"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "search-form",
+    "providerComponentId": "search-form",
+    "exportName": "SearchForm",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/SearchForm.vue",
+    "catalogUrl": "/ui?component=search-form",
+    "previewUrl": "/ui/preview?component=search-form",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "select-xl-group",
+          "file": "examples/components/search-form/index.html",
+          "covers": [
+            "default",
+            "desktop",
+            "mobile",
+            "select-xl",
+            "joined-fields",
+            "full-width-action"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "modelValue",
+          "type": "string",
+          "required": false,
+          "source": "model"
+        }
+      ],
+      "slots": [],
+      "emits": [
+        {
+          "name": "submit",
+          "type": "[query: string]",
+          "source": "emit"
+        },
+        {
+          "name": "update:modelValue",
+          "type": "[string]",
+          "source": "model"
+        }
+      ],
+      "models": [
+        {
+          "name": "modelValue",
+          "type": "string",
+          "required": false
+        }
+      ]
+    },
+    "states": {
+      "guide": [
+        "default"
+      ],
+      "provider": [
+        "default"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

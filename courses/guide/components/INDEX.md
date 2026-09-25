@@ -5,6 +5,11 @@
 `manifest.json` сохранён как подробный реестр v0.1. Форма спецификации —
 [`SPEC-TEMPLATE.md`](SPEC-TEMPLATE.md); текущие задачи — [`../../ROADMAP.md`](../../ROADMAP.md).
 
+> Ниже сохранена историческая перепись v0.1 с прежними именами. Актуальные
+> канонические имена и публичный API берите только из
+> [`machine/catalog.json`](../../machine/catalog.json),
+> [`machine/aliases.json`](../../machine/aliases.json) и активного provider mapping.
+
 Реестр перенесён в [`machine/migration-map.json`](../../machine/migration-map.json);
 исходный `.pipeline/inventory.json` сохранён в локальном архиве v0.1. Реестр
 собран на шаге R0-05 и дополнен 11 сентября 2026. Записей — 72. Написано **72** спецификаций, по одной на каждую: 39 в статусе `complete` (`SpriteIcon` — R2-01 по полному циклу, остальные —
@@ -178,7 +183,7 @@ DOM, записанное в [`selector-census.json`](selector-census.json). Р�
 | `header-catalog__icon` | 1 | 1/10 | там же |
 | `header-catalog__icon-item--hidden` | 1 | 1/10 | там же |
 | `wrapper--with-search` | 1 | 1/10 | модификатор обёртки шапки на `/courses` |
-| `rubrication-header` | 1 | 1/10 | RubricationBar, есть только на `/courses` |
+| `rubrication-header` | 1 | 1/10 | область `rubrication-navigation` страницы `/courses` |
 | `courses-filter-search-top-panel-placeholder` | 1 | 1/10 | заглушка поля поиска до гидрации |
 
 | Происхождение не установлено | Вхождений | Страниц | Где |
@@ -187,7 +192,7 @@ DOM, записанное в [`selector-census.json`](selector-census.json). Р�
 | `scrollbar-button` | 5 | 5/10 | там же |
 
 Готовый корневой класс есть, таким образом, у двух элементов реестра —
-`SpriteIcon` (`svg-icon`) и `Prose` (`style-ugc`) — и ещё у `RubricationBar`
+`SpriteIcon` (`svg-icon`) и `Prose` (`style-ugc`) — и ещё у области рубрик
 (`rubrication-header`, одно вхождение). У `SearchInput` собственное имя носит
 не сам элемент, а его заглушка до гидрации; кому принадлежит `base-modal`,
 из снятой разметки не следует — это выясняется на R3-06, R4-02 и R4-12.
@@ -260,7 +265,7 @@ DOM, записанное в [`selector-census.json`](selector-census.json). Р�
 | `data-display` | `ui/components/data-display.css` | 17 | SpriteIcon · SocialIcon · ProjectIcon · Avatar · EntityLogo · Chip · Badge · RatingBadge · MetaPill · CounterPill · Prose · InfoTable · SpecializationTag · DemandChart · FaqItem · LearningStep · FaqBlock |
 | `entities` | `ui/components/entities.css` | 14 | CourseCard · SchoolCard · PromoCard · ReviewCard · ArticleCard · PersonCard · StepCard · AdCard · NumberedCourseItem · EntityHeader · PersonHeader · ProfessionCard · VacancyCard · AuthorsBlock |
 | `forms` | `ui/components/forms.css` | 10 | FilterChip · Select · MultiSelect · SearchInput · TextInput · Checkbox · Switch · TileFilter · SearchForm · FeedbackForm |
-| `navigation` | `ui/components/navigation.css` | 9 | Link · SegmentedControl · Tab · Pagination · Breadcrumbs · RubricationBar · FilterBar · ButtonGroup · PageToc |
+| `navigation` | `ui/components/navigation.css` | 8 + область страницы | Link · SegmentedControl · Tab · Pagination · Breadcrumbs · FilterBar · ButtonGroup · PageToc; `rubrication-navigation` относится к `/courses` |
 | `collections` | `ui/components/collections.css` | 4 | AvatarStack · Carousel · LinkGrid · RatingTable |
 | `frame-modules` | `ui/components/frame-modules.css` | 3 | SiteHeader · SiteFooter · PageHero |
 | `layout` | `ui/components/layout.css` | 3 | Section · CardGrid · AdSlot |
@@ -327,7 +332,6 @@ AdSlot). Оболочка страницы — контейнер 1124 + 24 и �
 |---|---|---|---|---|---|---|
 | R4-01 | [SiteHeader](frame-modules/site-header.md) | `site-header` | модуль | `frame-modules` | прод | `header-dropdown`, `search-input`, `sprite-icon` |
 | R4-02 | [HeaderDropdown](overlays/header-dropdown.md) | `header-dropdown` | модуль | `overlays` | прод | `project-icon` |
-| R4-03 | [RubricationBar](navigation/rubrication-bar.md) | `rubrication-bar` | модуль | `navigation` | прод | `link` |
 | R4-04 | [SiteFooter](frame-modules/site-footer.md) | `site-footer` | модуль | `frame-modules` | прод | `project-icon`, `social-icon`, `link` |
 | R4-05 | [PageHero](frame-modules/page-hero.md) | `page-hero` | модуль | `frame-modules` | прод | `segmented-control`, `search-form`, `button` |
 | R4-06 | [SearchForm](forms/search-form.md) | `search-form` | модуль | `forms` | прод | `select`, `button` |

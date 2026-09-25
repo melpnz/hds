@@ -1,0 +1,142 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "course-card"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "course-card",
+    "providerComponentId": "course-card",
+    "exportName": "CourseCard",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/CourseCard.vue",
+    "catalogUrl": "/ui?component=course-card",
+    "previewUrl": "/ui/preview?component=course-card",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/course-card/index.html",
+          "covers": [
+            "default",
+            "hover",
+            "focus-visible"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "description",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "discount",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "duration",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "image",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "logo",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "originalPrice",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "price",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "rating",
+          "type": "number",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "reviews",
+          "type": "number",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "school",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "tags",
+          "type": "string[]",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "required": true,
+          "source": "prop"
+        }
+      ],
+      "slots": [],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default",
+        "hover",
+        "focus-visible"
+      ],
+      "provider": [
+        "default",
+        "hover",
+        "focus-visible"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

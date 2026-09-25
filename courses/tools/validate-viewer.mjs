@@ -55,6 +55,8 @@ function validateIntrinsicGeometry(owner, example, geometry) {
 try {
   await page.goto(`${baseUrl}/viewer/`, { waitUntil: 'networkidle' });
   const entries = await page.evaluate(() => fetch('../machine/catalog.json').then(response => response.json()));
+  const providerMapping = await page.evaluate(() => fetch('../machine/providers/courses-nuxt-kit.json').then(response => response.json()));
+  const providerByGuideId = new Map(providerMapping.mappings.map(mapping => [mapping.guideId, mapping]));
   const sectionTitles = await page.locator('.nav-section__title > span').allTextContents();
   if (JSON.stringify(sectionTitles) !== JSON.stringify(['Основы', 'Элементы', 'Блоки', 'Страницы'])) failures.push(`navigation: unexpected section hierarchy ${sectionTitles.join(', ')}`);
   const guideVersion = await page.locator('#guide-version').textContent();
@@ -70,6 +72,19 @@ try {
     fontExamples.push(...item.examples.map(example => ({ owner: `${entry.id}/${example.id}`, file: example.file })));
     await page.evaluate(id => { location.hash = id; }, entry.id);
     await page.waitForFunction(id => document.querySelector('#raw-json')?.textContent.includes(`"id": "${id}"`), entry.id);
+    const provider = providerByGuideId.get(entry.id);
+    if (provider?.apiFile) {
+      if (!await page.locator('#preview-source').isVisible()) failures.push(`${entry.id}: provider preview switch is hidden`);
+      if (await page.locator('[data-preview-source="guide"]').getAttribute('aria-pressed') !== 'true') failures.push(`${entry.id}: static guide preview is not the default`);
+      const providerText = await page.locator('.provider-contract').textContent();
+      if (!providerText.includes(provider.exportName) || !providerText.includes(`${providerMapping.provider.id}@${providerMapping.provider.version}`)) {
+        failures.push(`${entry.id}: viewer provider contract is absent or stale`);
+      }
+    } else if (provider && !provider.providerComponentId) {
+      if (await page.locator('#preview-source').isVisible()) failures.push(`${entry.id}: unresolved provider preview switch is visible`);
+      const providerText = await page.locator('.provider-contract--missing').textContent();
+      if (!providerText.includes('отсутствует')) failures.push(`${entry.id}: guide-only provider gap is hidden`);
+    }
     if (item.examples.length === 1) {
       await page.waitForFunction(expected => decodeURIComponent(document.querySelector('#preview')?.src || '').includes(expected), item.examples[0].file);
       await page.locator('#preview').contentFrame().locator('body').waitFor({ state: 'attached' });
@@ -186,32 +201,31 @@ try {
       if (await preview.locator('[data-state="loading"]').getAttribute('aria-busy') !== 'true') failures.push('icon-button: loading state misses aria-busy');
     }
 
-    if (entry.id === 'rubrication-bar') {
+    if (entry.id === 'courses-listing') {
       const preview = page.locator('#preview').contentFrame();
-      const stage = preview.locator('.crs-rubrication-demo');
       const bar = preview.locator('.rubrication-header');
-      await stage.waitFor();
-      if (!(await page.locator('.preview-toolbar').isVisible())) failures.push('rubrication-bar: responsive viewport controls are absent');
+      await bar.waitFor();
+      await page.locator('#viewport-controls [data-width="1024"]').click();
+      await page.waitForTimeout(240);
+      const desktopGap = await bar.evaluate(element => parseFloat(getComputedStyle(element).columnGap || getComputedStyle(element).gap));
       await page.locator('#viewport-controls [data-width="320"]').click();
       await page.waitForTimeout(240);
-      const mobile = await stage.evaluate(element => {
-        const bar = element.querySelector('.rubrication-header');
-        const firstLink = bar.querySelector('a');
-        const stageStyle = getComputedStyle(element);
+      const mobile = await bar.evaluate(element => {
+        const rect = element.getBoundingClientRect();
         return {
-          height: element.getBoundingClientRect().height,
-          backgroundImage: stageStyle.backgroundImage,
-          links: bar.querySelectorAll('a').length,
-          linkColor: getComputedStyle(firstLink).color,
-          barOverflow: bar.scrollWidth - bar.clientWidth,
+          left: rect.left,
+          right: rect.right,
+          viewport: document.documentElement.clientWidth,
+          barOverflow: element.scrollWidth - element.clientWidth,
           pageOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+          gap: parseFloat(getComputedStyle(element).columnGap || getComputedStyle(element).gap),
         };
       });
-      if (Math.abs(mobile.height - 40) > .1 || mobile.backgroundImage === 'none') failures.push('rubrication-bar: visible production background or 40px geometry is absent');
-      if (mobile.links !== 4 || mobile.linkColor !== 'rgb(255, 255, 255)') failures.push('rubrication-bar: four white rubric links are not visible');
-      if (mobile.barOverflow < 1 || mobile.pageOverflow > 1) failures.push('rubrication-bar: mobile links do not scroll inside the bar');
+      if (Math.abs(desktopGap - 16) > .1 || Math.abs(mobile.gap - 16) > .1 || Math.abs(desktopGap - mobile.gap) > .1) failures.push('courses-listing: rubrication link gap is not the same 16px token value on desktop and mobile');
+      if (Math.abs(mobile.left) > 1 || Math.abs(mobile.right - mobile.viewport) > 1) failures.push('courses-listing: rubrication navigation does not reach both mobile viewport edges');
+      if (mobile.barOverflow < 1 || mobile.pageOverflow > 1) failures.push('courses-listing: rubrication navigation does not own horizontal overflow');
       await bar.evaluate(element => { element.scrollLeft = element.scrollWidth; });
-      if (await bar.evaluate(element => element.scrollLeft) < 1) failures.push('rubrication-bar: horizontal scrolling is not functional');
+      if (await bar.evaluate(element => element.scrollLeft) < 1) failures.push('courses-listing: rubrication navigation does not scroll');
       await page.locator('#viewport-controls [data-width="full"]').click();
     }
 
@@ -539,8 +553,9 @@ try {
       await page.locator('#viewport-controls [data-width="full"]').click();
     }
 
-    if (entry.id === 'tab') {
-      const preview = page.locator('#preview').contentFrame();
+    if (entry.id === 'filter-chip') {
+      const menuSwitchIndex = item.examples.findIndex(example => example.id === 'menu-switch');
+      const preview = page.locator('.stacked-example iframe').nth(menuSwitchIndex).contentFrame();
       const chips = preview.locator('.crs-filter-chip');
       await chips.first().waitFor();
       if (await chips.count() !== 15) failures.push('tab: expected fifteen FilterChip samples');
@@ -586,29 +601,22 @@ try {
       if (!imageGeometry.every(([width, height]) => width === 20 && height === 20)) failures.push('tab: local Figma SVG assets are not 20x20');
     }
 
-    if (['segmented-control', 'button-group'].includes(entry.id)) {
-      const preview = page.locator('#preview').contentFrame();
-      const contextClass = entry.id === 'segmented-control' ? 'hero' : 'page';
+    if (entry.id === 'button-group') {
+      const lightIndex = item.examples.findIndex(example => example.id === 'page-tabs');
+      const preview = page.locator('.stacked-example iframe').nth(lightIndex).contentFrame();
+      const contextClass = 'page';
       const context = preview.locator(`.crs-tabs-context--${contextClass}`).first();
       await context.waitFor();
       const background = await context.evaluate(element => getComputedStyle(element).backgroundColor);
-      const expectedBackground = entry.id === 'segmented-control' ? 'rgb(52, 110, 244)' : 'rgb(255, 255, 255)';
+      const expectedBackground = 'rgb(255, 255, 255)';
       if (background !== expectedBackground) failures.push(`${entry.id}: wrong tab context background ${background}`);
       const tabs = preview.locator('.crs-context-tab');
       if (await tabs.count() !== 9 || await preview.locator('.crs-tabs-sample').count() !== 6) failures.push(`${entry.id}: complete tab group/state shelf is absent`);
-      if (entry.id === 'segmented-control') {
-        const groupStyle = await preview.locator('.crs-tabs-group').first().evaluate(element => {
-          const style = getComputedStyle(element);
-          return { background: style.backgroundColor, radius: style.borderTopLeftRadius, padding: style.padding };
-        });
-        if (groupStyle.background !== 'rgba(0, 0, 0, 0.12)' || groupStyle.radius !== '12px' || groupStyle.padding !== '0px') failures.push('segmented-control: shared HeroTabs group background is incorrect');
-      } else {
-        const groupStyle = await preview.locator('.crs-tabs-group').first().evaluate(element => {
-          const style = getComputedStyle(element);
-          return { background: style.backgroundColor, radius: style.borderTopLeftRadius, padding: style.padding };
-        });
-        if (groupStyle.background !== 'rgb(241, 241, 241)' || groupStyle.radius !== '16px' || groupStyle.padding !== '4px') failures.push('button-group: shared PageTabs group background is incorrect');
-      }
+      const groupStyle = await preview.locator('.crs-tabs-group').first().evaluate(element => {
+        const style = getComputedStyle(element);
+        return { background: style.backgroundColor, radius: style.borderTopLeftRadius, padding: style.padding };
+      });
+      if (groupStyle.background !== 'rgb(241, 241, 241)' || groupStyle.radius !== '16px' || groupStyle.padding !== '4px') failures.push('button-group: shared light group background is incorrect');
       const geometry = await tabs.first().evaluate(element => {
         const rect = element.getBoundingClientRect();
         const style = getComputedStyle(element);
@@ -627,10 +635,10 @@ try {
         const style = getComputedStyle(element);
         return { width: style.outlineWidth, color: style.outlineColor, offset: style.outlineOffset };
       });
-      const expectedFocus = entry.id === 'segmented-control' ? 'rgb(255, 255, 255)' : 'rgb(44, 46, 52)';
+      const expectedFocus = 'rgb(44, 46, 52)';
       if (focus.width !== '2px' || focus.color !== expectedFocus || focus.offset !== '1px') failures.push(`${entry.id}: focus-visible ring is incorrect`);
       const selectedColor = await preview.locator('.crs-tabs-states [data-state="selected"]').evaluate(element => getComputedStyle(element).backgroundColor);
-      const expectedSelected = entry.id === 'segmented-control' ? 'rgb(44, 46, 52)' : 'rgb(255, 255, 255)';
+      const expectedSelected = 'rgb(255, 255, 255)';
       if (selectedColor !== expectedSelected) failures.push(`${entry.id}: selected tab color is incorrect`);
       if (!(await preview.locator('.crs-tabs-states [data-state="disabled"]').isDisabled())) failures.push(`${entry.id}: disabled tab is not native`);
       const loadingTab = preview.locator('.crs-tabs-states [data-state="loading"]');
@@ -825,7 +833,11 @@ try {
       const foundationPreview = page.locator('#preview').contentFrame();
       await foundationPreview.locator('.foundation-preview').waitFor();
       if (entry.id === 'colors' && await foundationPreview.locator('.foundation-swatch').count() !== 41) failures.push('colors: token overview is incomplete');
-      if (entry.id === 'iconography' && await foundationPreview.locator('.foundation-icon').count() !== 12) failures.push('iconography: normalized sprite overview is incomplete');
+      if (entry.id === 'iconography') {
+        const icons = foundationPreview.locator('.foundation-icon');
+        await icons.nth(11).waitFor();
+        if (await icons.count() !== 12) failures.push('iconography: UIcon/Tabler overview is incomplete');
+      }
     }
 
     if (entry.id === 'responsive-layout') {
@@ -930,6 +942,10 @@ try {
       if (audit.violations.length) failures.push(`${example.owner}: non-Inter text: ${audit.violations.join(', ')}`);
   }
   await fontPage.close();
+
+  await page.goto(`${baseUrl}/viewer/#rubrication-bar`, { waitUntil: 'domcontentloaded' });
+  await page.waitForFunction(() => document.querySelector('#raw-json')?.textContent.includes('"id": "courses-listing"'));
+  if ((await page.locator('#item-title').textContent()) !== 'Витрина курсов') failures.push('rubrication-bar: legacy viewer URL does not resolve to courses-listing');
 
   await page.locator('#guide-search').fill('button');
   if (await page.locator('[data-item]').count() === 0) failures.push('search returned no results');

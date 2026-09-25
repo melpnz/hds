@@ -1,0 +1,78 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "profile-history"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "profile-history",
+    "providerComponentId": "profile-history",
+    "exportName": "ProfileHistory",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/ProfileHistory.vue",
+    "catalogUrl": "/ui?component=profile-history",
+    "previewUrl": "/ui/preview?component=profile-history",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/profile-history/index.html",
+          "covers": [
+            "default",
+            "desktop-columns",
+            "mobile-stack"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "education",
+          "type": "Item[]",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "employment",
+          "type": "Item[]",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "items",
+          "type": "Item[]",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default"
+      ],
+      "provider": [
+        "default"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

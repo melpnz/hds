@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "catalog-menu"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "catalog-menu",
+    "providerComponentId": "catalog-menu",
+    "exportName": "CatalogMenu",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/CatalogMenu.vue",
+    "catalogUrl": "/ui?component=catalog-menu",
+    "previewUrl": "/ui/preview?component=catalog-menu",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/catalog-menu/index.html",
+          "covers": [
+            "default",
+            "open",
+            "closed",
+            "adult",
+            "child",
+            "desktop-structured-second-level",
+            "tablet-structured-second-level",
+            "mobile-image-tiles"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "modelValue",
+          "type": "boolean",
+          "required": false,
+          "source": "model"
+        }
+      ],
+      "slots": [],
+      "emits": [
+        {
+          "name": "update:modelValue",
+          "type": "[boolean]",
+          "source": "model"
+        }
+      ],
+      "models": [
+        {
+          "name": "modelValue",
+          "type": "boolean",
+          "required": false
+        }
+      ]
+    },
+    "states": {
+      "guide": [
+        "default",
+        "open",
+        "closed",
+        "adult",
+        "child"
+      ],
+      "provider": [
+        "default",
+        "open",
+        "closed",
+        "adult",
+        "child"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

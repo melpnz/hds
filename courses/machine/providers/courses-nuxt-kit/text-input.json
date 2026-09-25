@@ -1,0 +1,214 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "text-input"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "text-input",
+    "providerComponentId": "text-input",
+    "exportName": "TextInput",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/TextInput.vue",
+    "catalogUrl": "/ui?component=text-input",
+    "previewUrl": "/ui/preview?component=text-input",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "field-family",
+          "file": "examples/components/text-input/index.html",
+          "covers": [
+            "default",
+            "hover",
+            "focus-visible",
+            "disabled",
+            "readOnly",
+            "invalid",
+            "size-m",
+            "size-xl"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "appearance",
+          "type": "'default' | 'bare'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "ariaLabel",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "error",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "hint",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "inputmode",
+          "type": "'none' | 'text' | 'decimal' | 'numeric' | 'tel' | 'search' | 'email' | 'url'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "leadingActionLabel",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "leadingIcon",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "modelValue",
+          "type": "string",
+          "required": false,
+          "source": "model"
+        },
+        {
+          "name": "placeholder",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "readonly",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "size",
+          "type": "'m' | 'xl'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "state",
+          "type": "'default' | 'hover' | 'focus' | 'error' | 'disabled' | 'readonly'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "trailingActionLabel",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "trailingIcon",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "type",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [
+        {
+          "name": "leading"
+        },
+        {
+          "name": "trailing"
+        }
+      ],
+      "emits": [
+        {
+          "name": "leadingAction",
+          "type": "[]",
+          "source": "emit"
+        },
+        {
+          "name": "trailingAction",
+          "type": "[]",
+          "source": "emit"
+        },
+        {
+          "name": "update:modelValue",
+          "type": "[string]",
+          "source": "model"
+        }
+      ],
+      "models": [
+        {
+          "name": "modelValue",
+          "type": "string",
+          "required": false
+        }
+      ]
+    },
+    "states": {
+      "guide": [
+        "default",
+        "hover",
+        "focus-visible",
+        "disabled",
+        "readOnly",
+        "invalid",
+        "error"
+      ],
+      "provider": [
+        "default",
+        "leading-icon",
+        "trailing-icon",
+        "both-icons",
+        "hover",
+        "focus-visible",
+        "disabled",
+        "readOnly",
+        "invalid"
+      ],
+      "missingInProvider": [],
+      "providerOnly": [
+        "leading-icon",
+        "trailing-icon",
+        "both-icons"
+      ]
+    }
+  }
+}

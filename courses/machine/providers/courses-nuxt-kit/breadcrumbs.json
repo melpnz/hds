@@ -1,0 +1,73 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "breadcrumbs"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "breadcrumbs",
+    "providerComponentId": "breadcrumbs",
+    "exportName": "Breadcrumbs",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/Breadcrumbs.vue",
+    "catalogUrl": "/ui?component=breadcrumbs",
+    "previewUrl": "/ui/preview?component=breadcrumbs",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/breadcrumbs/index.html",
+          "covers": [
+            "default",
+            "hover",
+            "focus-visible",
+            "current"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "items",
+          "type": "Item[]",
+          "required": true,
+          "source": "prop"
+        }
+      ],
+      "slots": [],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default",
+        "hover",
+        "focus-visible",
+        "current"
+      ],
+      "provider": [
+        "default",
+        "hover",
+        "focus-visible",
+        "current"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

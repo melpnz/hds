@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "carousel"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "carousel",
+    "providerComponentId": "carousel",
+    "exportName": "Carousel",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/Carousel.vue",
+    "catalogUrl": "/ui?component=carousel",
+    "previewUrl": "/ui/preview?component=carousel",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/carousel/index.html",
+          "covers": [
+            "default",
+            "current"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "variant",
+          "type": "'course-card' | 'article-card' | 'review-card' | 'ad-slot'",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        }
+      ],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default",
+        "current"
+      ],
+      "provider": [
+        "default",
+        "current"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

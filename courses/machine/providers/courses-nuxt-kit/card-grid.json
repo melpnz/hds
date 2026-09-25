@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "card-grid"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "card-grid",
+    "providerComponentId": "card-grid",
+    "exportName": "CardGrid",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/CardGrid.vue",
+    "catalogUrl": "/ui?component=card-grid",
+    "previewUrl": "/ui/preview?component=card-grid",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/card-grid/index.html",
+          "covers": [
+            "default",
+            "empty"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "columns",
+          "type": "2|3|4",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        }
+      ],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default",
+        "empty"
+      ],
+      "provider": [
+        "default",
+        "empty"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

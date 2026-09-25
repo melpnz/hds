@@ -18,6 +18,7 @@
   },
   "purpose": "Композиция страницы семейства «листинг», снятая по адресу career.habr.com/courses.",
   "areas": [
+    "rubrication-navigation",
     "advertising",
     "course-grid",
     "authors",
@@ -38,7 +39,8 @@
     "rating-table"
   ],
   "components": [
-    "entity-logo"
+    "entity-logo",
+    "link"
   ],
   "implementation": {
     "markup": "available-in-examples",
@@ -173,6 +175,18 @@
     "footer": 192
   },
   "sequence": [
+    {
+      "tag": "nav",
+      "heading": null,
+      "modules": [],
+      "components": [
+        {
+          "id": "link",
+          "count": 4
+        }
+      ],
+      "id": "rubrication-navigation"
+    },
     {
       "tag": "section",
       "heading": null,
@@ -382,6 +396,7 @@
     },
     "composition": {
       "areas": [
+        "rubrication-navigation",
         "advertising",
         "course-grid",
         "authors",
@@ -393,6 +408,7 @@
         "school-rating"
       ],
       "sequence": [
+        "rubrication-navigation",
         "advertising",
         "course-grid",
         "authors",
@@ -468,11 +484,246 @@
         "value": "3rem"
       },
       "exceptionToDefault": false
+    },
+    "rubricationNavigation": {
+      "gap": {
+        "token": "--courses-space-16",
+        "value": "1rem",
+        "sameAtAllWidths": true
+      },
+      "mobile": "edge-to-edge-horizontal-scroll"
     }
   },
   "entityLogoUsage": {
     "course-grid": 8,
     "reviews": 5,
     "school-rating": 5
+  },
+  "providerComposition": {
+    "schemaVersion": 1,
+    "provider": {
+      "id": "courses-nuxt-kit",
+      "version": "1.0.0",
+      "mapping": "machine/providers/courses-nuxt-kit.json"
+    },
+    "ownership": {
+      "pagePattern": "guide",
+      "componentImplementation": "active-provider",
+      "staticExample": "evidence-and-github-fallback"
+    },
+    "shell": {
+      "header": {
+        "kind": "provider-component",
+        "id": "site-header",
+        "role": "global-header",
+        "props": {
+          "family": "simple",
+          "sticky": true
+        },
+        "providerComponentId": "site-header",
+        "exportName": "SiteHeader"
+      },
+      "footer": {
+        "kind": "provider-component",
+        "id": "site-footer",
+        "role": "global-footer",
+        "providerComponentId": "site-footer",
+        "exportName": "SiteFooter"
+      }
+    },
+    "areas": [
+      {
+        "id": "rubrication-navigation",
+        "nodes": [
+          {
+            "kind": "native",
+            "element": "nav",
+            "role": "course-rubrics",
+            "children": [
+              {
+                "kind": "provider-component",
+                "id": "link",
+                "role": "rubric-link",
+                "count": 4,
+                "providerComponentId": "link",
+                "exportName": "Link"
+              }
+            ],
+            "responsive": "single-line-horizontal-scroll-edge-to-edge"
+          }
+        ]
+      },
+      {
+        "id": "advertising",
+        "nodes": [
+          {
+            "kind": "provider-component",
+            "id": "carousel",
+            "role": "advertising-carousel",
+            "variant": "ad-slot",
+            "children": [
+              {
+                "kind": "provider-component",
+                "id": "ad-slot",
+                "role": "advertising-slides",
+                "providerComponentId": "ad-slot",
+                "exportName": "AdSlot"
+              }
+            ],
+            "providerComponentId": "carousel",
+            "exportName": "Carousel"
+          }
+        ]
+      },
+      {
+        "id": "course-grid",
+        "nodes": [
+          {
+            "kind": "provider-component",
+            "id": "card-grid",
+            "role": "courses-grid",
+            "children": [
+              {
+                "kind": "provider-component",
+                "id": "course-card",
+                "role": "course-card",
+                "count": 8,
+                "providerComponentId": "course-card",
+                "exportName": "CourseCard"
+              }
+            ],
+            "providerComponentId": "card-grid",
+            "exportName": "CardGrid"
+          }
+        ]
+      },
+      {
+        "id": "authors",
+        "nodes": [
+          {
+            "kind": "provider-component",
+            "id": "authors-block",
+            "role": "editorial-authors",
+            "providerComponentId": "authors-block",
+            "exportName": "AuthorsBlock"
+          }
+        ]
+      },
+      {
+        "id": "separator",
+        "nodes": [
+          {
+            "kind": "native",
+            "element": "hr",
+            "role": "content-separator"
+          }
+        ]
+      },
+      {
+        "id": "reviews",
+        "nodes": [
+          {
+            "kind": "provider-component",
+            "id": "section",
+            "role": "reviews-section",
+            "children": [
+              {
+                "kind": "provider-component",
+                "id": "carousel",
+                "role": "reviews-carousel",
+                "variant": "review-card",
+                "children": [
+                  {
+                    "kind": "provider-component",
+                    "id": "review-card",
+                    "role": "review-card",
+                    "count": 5,
+                    "providerComponentId": "review-card",
+                    "exportName": "ReviewCard"
+                  }
+                ],
+                "providerComponentId": "carousel",
+                "exportName": "Carousel"
+              }
+            ],
+            "providerComponentId": "section",
+            "exportName": "Section"
+          }
+        ]
+      },
+      {
+        "id": "promocodes",
+        "nodes": [
+          {
+            "kind": "provider-component",
+            "id": "link-grid",
+            "role": "promocode-links",
+            "providerComponentId": "link-grid",
+            "exportName": "LinkGrid"
+          }
+        ]
+      },
+      {
+        "id": "popular-directions",
+        "nodes": [
+          {
+            "kind": "provider-component",
+            "id": "link-grid",
+            "role": "popular-direction-links",
+            "providerComponentId": "link-grid",
+            "exportName": "LinkGrid"
+          }
+        ]
+      },
+      {
+        "id": "top-courses",
+        "nodes": [
+          {
+            "kind": "provider-component",
+            "id": "numbered-course-item",
+            "role": "ranked-course",
+            "count": 3,
+            "providerComponentId": "numbered-course-item",
+            "exportName": "NumberedCourseItem"
+          }
+        ]
+      },
+      {
+        "id": "school-rating",
+        "nodes": [
+          {
+            "kind": "provider-component",
+            "id": "section",
+            "role": "school-rating-section",
+            "children": [
+              {
+                "kind": "provider-component",
+                "id": "rating-table",
+                "role": "school-rating",
+                "providerComponentId": "rating-table",
+                "exportName": "RatingTable"
+              }
+            ],
+            "providerComponentId": "section",
+            "exportName": "Section"
+          }
+        ]
+      }
+    ],
+    "directComponentIds": [
+      "site-header",
+      "site-footer",
+      "link",
+      "carousel",
+      "ad-slot",
+      "card-grid",
+      "course-card",
+      "authors-block",
+      "section",
+      "review-card",
+      "link-grid",
+      "numbered-course-item",
+      "rating-table"
+    ]
   }
 }

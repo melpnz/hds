@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "button-group"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "button-group",
+    "providerComponentId": "button-group",
+    "exportName": "ButtonGroup",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/ButtonGroup.vue",
+    "catalogUrl": "/ui?component=button-group",
+    "previewUrl": "/ui/preview?component=button-group",
+    "preview": {
+      "strategy": "hybrid",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "page-tabs",
+          "file": "examples/components/button-group/index.html",
+          "covers": [
+            "default",
+            "hover",
+            "focus-visible",
+            "selected",
+            "disabled",
+            "loading"
+          ]
+        },
+        {
+          "id": "hero",
+          "file": "examples/components/button-group/hero.html",
+          "covers": [
+            "default",
+            "hover",
+            "focus-visible",
+            "selected",
+            "disabled",
+            "loading"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback",
+        "provider-state-gap"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "block",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "density",
+          "type": "'default' | 'compact'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "items",
+          "type": "Item[]",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "modelValue",
+          "type": "string",
+          "required": false,
+          "source": "model"
+        },
+        {
+          "name": "tabs",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "variant",
+          "type": "'light' | 'hero'",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        }
+      ],
+      "emits": [
+        {
+          "name": "update:modelValue",
+          "type": "[string]",
+          "source": "model"
+        }
+      ],
+      "models": [
+        {
+          "name": "modelValue",
+          "type": "string",
+          "required": false
+        }
+      ]
+    },
+    "states": {
+      "guide": [
+        "default",
+        "hover",
+        "focus-visible",
+        "selected",
+        "loading",
+        "disabled"
+      ],
+      "provider": [
+        "light",
+        "hero",
+        "compact",
+        "block",
+        "hover",
+        "focus-visible",
+        "selected",
+        "disabled"
+      ],
+      "missingInProvider": [
+        "loading"
+      ],
+      "providerOnly": [
+        "light",
+        "hero",
+        "compact",
+        "block"
+      ]
+    }
+  }
+}

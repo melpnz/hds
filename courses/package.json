@@ -12,14 +12,17 @@
     "validate:tokens": "node ../tools/tokenize-dimensions.mjs courses --check",
     "build:page-components": "node tools/normalize-page-components.mjs",
     "build:provider": "node tools/generate-provider-mapping.mjs",
+    "build:provider-tokens": "node tools/generate-provider-token-mapping.mjs",
     "build:patterns": "npm run build:page-components && node tools/normalize-patterns.mjs",
     "build:style-profile": "node tools/build-style-profile.mjs",
     "build:visual-contracts": "node tools/build-visual-contracts.mjs",
     "validate": "node validate.mjs && npm run validate:provider && npm run validate:tokens && npm run validate:maturity-status && npm run validate:maturity",
-    "validate:provider": "node tools/generate-provider-mapping.mjs --check",
+    "validate:provider": "node tools/generate-provider-mapping.mjs --check && node tools/generate-provider-token-mapping.mjs --check && node tools/validate-provider-compatibility.mjs",
     "validate:viewer": "node tools/validate-viewer.mjs",
+    "validate:integrated-viewer": "node tools/validate-integrated-viewer.mjs",
     "validate:interactions": "node tools/validate-interactions.mjs",
-    "serve": "node serve.mjs"
+    "serve": "node serve.mjs",
+    "serve:integrated": "node tools/serve-integrated.mjs"
   },
   "devDependencies": {
     "playwright": "^1.63.0"

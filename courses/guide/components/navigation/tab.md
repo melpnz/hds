@@ -1,5 +1,9 @@
 # Tab
 
+> Устаревшее имя источника Figma. Используйте `FilterChip` в варианте Menu или
+> Switch; каноническая спецификация —
+> [`forms/filter-chip.md`](../forms/filter-chip.md).
+
 | | |
 |---|---|
 | **Категория** | Навигация (`navigation`) |

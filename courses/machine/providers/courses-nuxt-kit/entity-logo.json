@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "entity-logo"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "entity-logo",
+    "providerComponentId": "entity-logo",
+    "exportName": "EntityLogo",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/EntityLogo.vue",
+    "catalogUrl": "/ui?component=entity-logo",
+    "previewUrl": "/ui/preview?component=entity-logo",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "sizes",
+          "file": "examples/components/entity-logo/sizes.html",
+          "covers": [
+            "empty",
+            "size-scale"
+          ]
+        },
+        {
+          "id": "production-context",
+          "file": "examples/components/entity-logo/index.html",
+          "covers": [
+            "default",
+            "empty"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "alt",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "label",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "size",
+          "type": "24 | 32 | 36 | 40 | 48 | 56 | 68 | 100 | 's' | 'm' | 'l'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "src",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default",
+        "empty"
+      ],
+      "provider": [
+        "default",
+        "empty"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

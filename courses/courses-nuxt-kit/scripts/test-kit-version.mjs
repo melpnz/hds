@@ -7,9 +7,31 @@ import { compareSemver, evaluateUpdate, readManifestSource, verifyIntegrity } fr
 
 const layerRoot = resolve('layers', 'courses')
 const localManifest = await readManifestSource(resolve(layerRoot, 'courses-kit.manifest.json'))
+const tokenManifest = await readManifestSource(resolve(layerRoot, 'courses-kit.tokens.json'))
 const integrity = await verifyIntegrity(layerRoot)
 
 assert.equal(integrity.clean, true, JSON.stringify(integrity, null, 2))
+assert.equal(localManifest.schemaVersion, 2)
+assert.equal(localManifest.components.public.length, 72)
+assert.equal(localManifest.tokens.manifest, 'courses-kit.tokens.json')
+assert.equal(localManifest.tokens.count, tokenManifest.count)
+assert.equal(tokenManifest.namespace, '--crs-')
+assert.ok(tokenManifest.count > 100)
+assert.equal(tokenManifest.tokens['blue-500'].value, '#346ef4')
+assert.equal(tokenManifest.tokens['radius-24'].type, 'dimension')
+assert.deepEqual(tokenManifest.tokens.green.references, ['--crs-green-500'])
+assert.ok(localManifest.components.public.every(component =>
+  Array.isArray(component.api?.props)
+  && Array.isArray(component.api?.slots)
+  && Array.isArray(component.api?.emits)
+  && Array.isArray(component.api?.models)
+), 'Every public component must expose a generated API contract.')
+const buttonApi = localManifest.components.public.find(component => component.id === 'button')?.api
+assert.deepEqual(buttonApi.slots.map(slot => slot.name), ['default', 'leading', 'trailing'])
+assert.ok(buttonApi.props.some(prop => prop.name === 'variant' && prop.type.includes("'primary'")))
+const filterModalApi = localManifest.components.public.find(component => component.id === 'filter-modal')?.api
+assert.ok(filterModalApi.emits.some(event => event.name === 'update:modelValue' && event.source === 'model'))
+assert.ok(filterModalApi.emits.some(event => event.name === 'apply' && event.source === 'emit'))
 assert.equal(compareSemver('1.0.0', '1.0.0'), 0)
 assert.equal(compareSemver('1.0.1', '1.0.0'), 1)
 assert.equal(compareSemver('1.0.0', '1.1.0'), -1)

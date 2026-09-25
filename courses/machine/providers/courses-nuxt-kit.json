@@ -1,5 +1,5 @@
 {
-  "schemaVersion": 1,
+  "schemaVersion": 2,
   "guide": {
     "id": "courses",
     "version": "1.0"
@@ -8,17 +8,21 @@
     "id": "courses-nuxt-kit",
     "version": "1.0.0",
     "type": "nuxt-layer",
-    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json"
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
   },
   "compatibility": "compatible",
   "summary": {
-    "guideImplementable": 76,
-    "providerPublic": 71,
-    "providerInternal": 3,
-    "direct": 67,
-    "providerOnly": 4,
-    "guideOnly": 9,
-    "directWithMissingStates": 3
+    "guideImplementable": 72,
+    "providerPublic": 72,
+    "providerInternal": 2,
+    "direct": 72,
+    "providerOnly": 0,
+    "guideOnly": 0,
+    "directWithMissingStates": 3,
+    "providerPrimaryPreviews": 69,
+    "hybridPreviews": 3,
+    "legacyPreviewRedirects": 9
   },
   "mappings": [
     {
@@ -30,6 +34,23 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/AdCard.vue",
       "catalogUrl": "/ui?component=ad-card",
       "previewUrl": "/ui/preview?component=ad-card",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/ad-card/index.html",
+            "covers": [
+              "default",
+              "hover"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -41,7 +62,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/ad-card.json"
     },
     {
       "guideId": "ad-slot",
@@ -52,6 +74,22 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/AdSlot.vue",
       "catalogUrl": "/ui?component=ad-slot",
       "previewUrl": "/ui/preview?component=ad-slot",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "carousel",
+            "file": "examples/components/ad-slot/index.html",
+            "covers": [
+              "default"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -61,7 +99,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/ad-slot.json"
     },
     {
       "guideId": "article-card",
@@ -72,6 +111,24 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/ArticleCard.vue",
       "catalogUrl": "/ui?component=article-card",
       "previewUrl": "/ui/preview?component=article-card",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/article-card/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -85,7 +142,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/article-card.json"
     },
     {
       "guideId": "authors-block",
@@ -96,6 +154,22 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/AuthorsBlock.vue",
       "catalogUrl": "/ui?component=authors-block",
       "previewUrl": "/ui/preview?component=authors-block",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/authors-block/index.html",
+            "covers": [
+              "default"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -105,7 +179,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/authors-block.json"
     },
     {
       "guideId": "avatar",
@@ -116,6 +191,31 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/Avatar.vue",
       "catalogUrl": "/ui?component=avatar",
       "previewUrl": "/ui/preview?component=avatar",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "sizes",
+            "file": "examples/components/avatar/sizes.html",
+            "covers": [
+              "empty",
+              "size-scale"
+            ]
+          },
+          {
+            "id": "production-context",
+            "file": "examples/components/avatar/index.html",
+            "covers": [
+              "default",
+              "empty"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -127,7 +227,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/avatar.json"
     },
     {
       "guideId": "avatar-stack",
@@ -138,6 +239,22 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/AvatarStack.vue",
       "catalogUrl": "/ui?component=avatar-stack",
       "previewUrl": "/ui/preview?component=avatar-stack",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/avatar-stack/index.html",
+            "covers": [
+              "default"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -147,15 +264,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
-    },
-    {
-      "guideId": "badge",
-      "providerComponentId": null,
-      "exportName": null,
-      "status": "composite-only",
-      "target": "CourseCard",
-      "guideFile": "machine/components/badge.json"
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/avatar-stack.json"
     },
     {
       "guideId": "breadcrumbs",
@@ -166,6 +276,25 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/Breadcrumbs.vue",
       "catalogUrl": "/ui?component=breadcrumbs",
       "previewUrl": "/ui/preview?component=breadcrumbs",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/breadcrumbs/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible",
+              "current"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -181,7 +310,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/breadcrumbs.json"
     },
     {
       "guideId": "button",
@@ -192,6 +322,27 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/Button.vue",
       "catalogUrl": "/ui?component=button",
       "previewUrl": "/ui/preview?component=button",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "playground",
+            "file": "examples/components/button/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible",
+              "pressed",
+              "disabled",
+              "loading"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -227,7 +378,8 @@
           "brand",
           "compact"
         ]
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/button.json"
     },
     {
       "guideId": "button-group",
@@ -238,6 +390,40 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/ButtonGroup.vue",
       "catalogUrl": "/ui?component=button-group",
       "previewUrl": "/ui/preview?component=button-group",
+      "preview": {
+        "strategy": "hybrid",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "page-tabs",
+            "file": "examples/components/button-group/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible",
+              "selected",
+              "disabled",
+              "loading"
+            ]
+          },
+          {
+            "id": "hero",
+            "file": "examples/components/button-group/hero.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible",
+              "selected",
+              "disabled",
+              "loading"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback",
+          "provider-state-gap"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -266,7 +452,8 @@
           "compact",
           "block"
         ]
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/button-group.json"
     },
     {
       "guideId": "card-grid",
@@ -277,6 +464,23 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/CardGrid.vue",
       "catalogUrl": "/ui?component=card-grid",
       "previewUrl": "/ui/preview?component=card-grid",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/card-grid/index.html",
+            "covers": [
+              "default",
+              "empty"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -288,7 +492,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/card-grid.json"
     },
     {
       "guideId": "carousel",
@@ -299,6 +504,23 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/Carousel.vue",
       "catalogUrl": "/ui?component=carousel",
       "previewUrl": "/ui/preview?component=carousel",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/carousel/index.html",
+            "covers": [
+              "default",
+              "current"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -310,7 +532,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/carousel.json"
     },
     {
       "guideId": "catalog-menu",
@@ -321,6 +544,29 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/CatalogMenu.vue",
       "catalogUrl": "/ui?component=catalog-menu",
       "previewUrl": "/ui/preview?component=catalog-menu",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/catalog-menu/index.html",
+            "covers": [
+              "default",
+              "open",
+              "closed",
+              "adult",
+              "child",
+              "desktop-structured-second-level",
+              "tablet-structured-second-level",
+              "mobile-image-tiles"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -338,7 +584,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/catalog-menu.json"
     },
     {
       "guideId": "checkbox",
@@ -349,6 +596,31 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/Checkbox.vue",
       "catalogUrl": "/ui?component=checkbox",
       "previewUrl": "/ui/preview?component=checkbox",
+      "preview": {
+        "strategy": "hybrid",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "states",
+            "file": "examples/components/checkbox/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible",
+              "checked",
+              "indeterminate",
+              "disabled",
+              "loading",
+              "vertical-list",
+              "horizontal-list"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback",
+          "provider-state-gap"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -371,7 +643,8 @@
           "loading"
         ],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/checkbox.json"
     },
     {
       "guideId": "chip",
@@ -382,6 +655,28 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/Chip.vue",
       "catalogUrl": "/ui?component=chip",
       "previewUrl": "/ui/preview?component=chip",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "variants",
+            "file": "examples/components/chip/index.html",
+            "covers": [
+              "default",
+              "tone",
+              "size",
+              "counter",
+              "discount",
+              "cover-meta",
+              "specialization"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -401,15 +696,8 @@
           "removable",
           "partner"
         ]
-      }
-    },
-    {
-      "guideId": "counter-pill",
-      "providerComponentId": null,
-      "exportName": null,
-      "status": "alias",
-      "target": "chip",
-      "guideFile": "machine/components/counter-pill.json"
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/chip.json"
     },
     {
       "guideId": "course-card",
@@ -420,6 +708,24 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/CourseCard.vue",
       "catalogUrl": "/ui?component=course-card",
       "previewUrl": "/ui/preview?component=course-card",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/course-card/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -433,7 +739,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/course-card.json"
     },
     {
       "guideId": "demand-chart",
@@ -444,6 +751,22 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/DemandChart.vue",
       "catalogUrl": "/ui?component=demand-chart",
       "previewUrl": "/ui/preview?component=demand-chart",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/demand-chart/index.html",
+            "covers": [
+              "default"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -453,7 +776,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/demand-chart.json"
     },
     {
       "guideId": "empty-state",
@@ -464,6 +788,22 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/EmptyState.vue",
       "catalogUrl": "/ui?component=empty-state",
       "previewUrl": "/ui/preview?component=empty-state",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/empty-state/index.html",
+            "covers": [
+              "default"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -473,7 +813,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/empty-state.json"
     },
     {
       "guideId": "entity-header",
@@ -484,6 +825,22 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/EntityHeader.vue",
       "catalogUrl": "/ui?component=entity-header",
       "previewUrl": "/ui/preview?component=entity-header",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/entity-header/index.html",
+            "covers": [
+              "default"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -493,7 +850,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/entity-header.json"
     },
     {
       "guideId": "entity-logo",
@@ -504,6 +862,31 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/EntityLogo.vue",
       "catalogUrl": "/ui?component=entity-logo",
       "previewUrl": "/ui/preview?component=entity-logo",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "sizes",
+            "file": "examples/components/entity-logo/sizes.html",
+            "covers": [
+              "empty",
+              "size-scale"
+            ]
+          },
+          {
+            "id": "production-context",
+            "file": "examples/components/entity-logo/index.html",
+            "covers": [
+              "default",
+              "empty"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -515,7 +898,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/entity-logo.json"
     },
     {
       "guideId": "faq-block",
@@ -526,6 +910,22 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/FaqBlock.vue",
       "catalogUrl": "/ui?component=faq-block",
       "previewUrl": "/ui/preview?component=faq-block",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/faq-block/index.html",
+            "covers": [
+              "default"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -535,7 +935,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/faq-block.json"
     },
     {
       "guideId": "faq-item",
@@ -546,6 +947,26 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/FaqItem.vue",
       "catalogUrl": "/ui?component=faq-item",
       "previewUrl": "/ui/preview?component=faq-item",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/faq-item/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible",
+              "expanded",
+              "collapsed"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -563,7 +984,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/faq-item.json"
     },
     {
       "guideId": "feedback-form",
@@ -574,6 +996,22 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/FeedbackForm.vue",
       "catalogUrl": "/ui?component=feedback-form",
       "previewUrl": "/ui/preview?component=feedback-form",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/feedback-form/index.html",
+            "covers": [
+              "default"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -589,7 +1027,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/feedback-form.json"
     },
     {
       "guideId": "filter-bar",
@@ -600,6 +1039,22 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/FilterBar.vue",
       "catalogUrl": "/ui?component=filter-bar",
       "previewUrl": "/ui/preview?component=filter-bar",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/filter-bar/index.html",
+            "covers": [
+              "default"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -609,7 +1064,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/filter-bar.json"
     },
     {
       "guideId": "filter-chip",
@@ -620,25 +1076,63 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/FilterChip.vue",
       "catalogUrl": "/ui?component=filter-chip",
       "previewUrl": "/ui/preview?component=filter-chip",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/filter-chip/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible",
+              "pressed"
+            ]
+          },
+          {
+            "id": "menu-switch",
+            "file": "examples/components/filter-chip/menu-switch.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible",
+              "pressed",
+              "disabled",
+              "loading",
+              "open",
+              "icon-left",
+              "switch-right"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
           "hover",
           "focus-visible",
-          "pressed"
+          "pressed",
+          "disabled",
+          "loading",
+          "open"
         ],
         "provider": [
           "default",
           "hover",
           "focus-visible",
           "pressed",
-          "selected"
+          "disabled",
+          "loading",
+          "open"
         ],
         "missingInProvider": [],
-        "providerOnly": [
-          "selected"
-        ]
-      }
+        "providerOnly": []
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/filter-chip.json"
     },
     {
       "guideId": "filter-modal",
@@ -649,6 +1143,27 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/FilterModal.vue",
       "catalogUrl": "/ui?component=filter-modal",
       "previewUrl": "/ui/preview?component=filter-modal",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "responsive",
+            "file": "examples/components/filter-modal/index.html",
+            "covers": [
+              "default",
+              "open",
+              "closed",
+              "body-scroll",
+              "mobile",
+              "desktop"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -662,7 +1177,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/filter-modal.json"
     },
     {
       "guideId": "header-dropdown",
@@ -673,6 +1189,26 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/HeaderDropdown.vue",
       "catalogUrl": "/ui?component=header-dropdown",
       "previewUrl": "/ui/preview?component=header-dropdown",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "states",
+            "file": "examples/components/header-dropdown/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible",
+              "open",
+              "closed"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -690,7 +1226,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/header-dropdown.json"
     },
     {
       "guideId": "icon-button",
@@ -701,6 +1238,26 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/IconButton.vue",
       "catalogUrl": "/ui?component=icon-button",
       "previewUrl": "/ui/preview?component=icon-button",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "states",
+            "file": "examples/components/icon-button/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible",
+              "disabled",
+              "loading"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -727,7 +1284,8 @@
           "muted",
           "pressed"
         ]
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/icon-button.json"
     },
     {
       "guideId": "info-table",
@@ -738,6 +1296,22 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/InfoTable.vue",
       "catalogUrl": "/ui?component=info-table",
       "previewUrl": "/ui/preview?component=info-table",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/info-table/index.html",
+            "covers": [
+              "default"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -747,18 +1321,60 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/info-table.json"
     },
     {
-      "guideId": null,
+      "guideId": "informer",
       "providerComponentId": "informer",
       "exportName": "Informer",
-      "status": "provider-only-public",
-      "action": "add-guide-record",
+      "status": "direct",
       "visibility": "public",
       "source": "courses-nuxt-kit/layers/courses/app/components/Informer.vue",
       "catalogUrl": "/ui?component=informer",
-      "previewUrl": "/ui/preview?component=informer"
+      "previewUrl": "/ui/preview?component=informer",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "public-api",
+            "file": "examples/components/informer/index.html",
+            "covers": [
+              "info",
+              "success",
+              "warning",
+              "error",
+              "closable",
+              "with-links"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
+      "states": {
+        "guide": [
+          "info",
+          "success",
+          "warning",
+          "error",
+          "closable",
+          "with-links"
+        ],
+        "provider": [
+          "info",
+          "success",
+          "warning",
+          "error",
+          "closable",
+          "with-links"
+        ],
+        "missingInProvider": [],
+        "providerOnly": []
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/informer.json"
     },
     {
       "guideId": "learning-step",
@@ -769,6 +1385,26 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/LearningStep.vue",
       "catalogUrl": "/ui?component=learning-step",
       "previewUrl": "/ui/preview?component=learning-step",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/learning-step/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible",
+              "expanded",
+              "collapsed"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -786,7 +1422,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/learning-step.json"
     },
     {
       "guideId": "link",
@@ -797,6 +1434,24 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/Link.vue",
       "catalogUrl": "/ui?component=link",
       "previewUrl": "/ui/preview?component=link",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/link/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -810,7 +1465,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/link.json"
     },
     {
       "guideId": "link-grid",
@@ -821,6 +1477,23 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/LinkGrid.vue",
       "catalogUrl": "/ui?component=link-grid",
       "previewUrl": "/ui/preview?component=link-grid",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/link-grid/index.html",
+            "covers": [
+              "default",
+              "collapsed"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -834,7 +1507,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/link-grid.json"
     },
     {
       "guideId": "loader",
@@ -845,6 +1519,22 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/Loader.vue",
       "catalogUrl": "/ui?component=loader",
       "previewUrl": "/ui/preview?component=loader",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/loader/index.html",
+            "covers": [
+              "default"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -854,15 +1544,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
-    },
-    {
-      "guideId": "meta-pill",
-      "providerComponentId": null,
-      "exportName": null,
-      "status": "alias",
-      "target": "chip",
-      "guideFile": "machine/components/meta-pill.json"
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/loader.json"
     },
     {
       "guideId": "mobile-menu",
@@ -873,6 +1556,24 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/MobileMenu.vue",
       "catalogUrl": "/ui?component=mobile-menu",
       "previewUrl": "/ui/preview?component=mobile-menu",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/mobile-menu/index.html",
+            "covers": [
+              "default",
+              "open",
+              "closed"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -886,7 +1587,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/mobile-menu.json"
     },
     {
       "guideId": "modal",
@@ -897,6 +1599,34 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/Modal.vue",
       "catalogUrl": "/ui?component=modal",
       "previewUrl": "/ui/preview?component=modal",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "playground",
+            "file": "examples/components/modal/index.html",
+            "covers": [
+              "default",
+              "open",
+              "closed",
+              "scroll",
+              "desktop",
+              "tablet",
+              "mobile",
+              "image",
+              "header-actions",
+              "pinned-header",
+              "pinned-footer",
+              "primary",
+              "secondary"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -912,7 +1642,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/modal.json"
     },
     {
       "guideId": "multi-select",
@@ -923,6 +1654,29 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/MultiSelect.vue",
       "catalogUrl": "/ui?component=multi-select",
       "previewUrl": "/ui/preview?component=multi-select",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "field-family",
+            "file": "examples/components/multi-select/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible",
+              "disabled",
+              "invalid",
+              "open",
+              "size-m",
+              "size-xl"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -947,7 +1701,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/multi-select.json"
     },
     {
       "guideId": "numbered-course-item",
@@ -958,6 +1713,22 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/NumberedCourseItem.vue",
       "catalogUrl": "/ui?component=numbered-course-item",
       "previewUrl": "/ui/preview?component=numbered-course-item",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/numbered-course-item/index.html",
+            "covers": [
+              "default"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -967,29 +1738,100 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/numbered-course-item.json"
     },
     {
-      "guideId": null,
+      "guideId": "option-item",
       "providerComponentId": "option-item",
       "exportName": "OptionItem",
-      "status": "provider-only-public",
-      "action": "add-guide-record",
+      "status": "direct",
       "visibility": "public",
       "source": "courses-nuxt-kit/layers/courses/app/components/OptionItem.vue",
       "catalogUrl": "/ui?component=option-item",
-      "previewUrl": "/ui/preview?component=option-item"
+      "previewUrl": "/ui/preview?component=option-item",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "public-api",
+            "file": "examples/components/option-item/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible",
+              "selected",
+              "disabled"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
+      "states": {
+        "guide": [
+          "default",
+          "hover",
+          "focus-visible",
+          "selected",
+          "disabled"
+        ],
+        "provider": [
+          "default",
+          "hover",
+          "focus-visible",
+          "selected",
+          "disabled"
+        ],
+        "missingInProvider": [],
+        "providerOnly": []
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/option-item.json"
     },
     {
-      "guideId": null,
+      "guideId": "option-list",
       "providerComponentId": "option-list",
       "exportName": "OptionList",
-      "status": "provider-only-public",
-      "action": "add-guide-record",
+      "status": "direct",
       "visibility": "public",
       "source": "courses-nuxt-kit/layers/courses/app/components/OptionList.vue",
       "catalogUrl": "/ui?component=option-list",
-      "previewUrl": "/ui/preview?component=option-list"
+      "previewUrl": "/ui/preview?component=option-list",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "public-api",
+            "file": "examples/components/option-list/index.html",
+            "covers": [
+              "single",
+              "multiple",
+              "action"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
+      "states": {
+        "guide": [
+          "single",
+          "multiple",
+          "action"
+        ],
+        "provider": [
+          "single",
+          "multiple",
+          "action"
+        ],
+        "missingInProvider": [],
+        "providerOnly": []
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/option-list.json"
     },
     {
       "guideId": "page-hero",
@@ -1000,6 +1842,22 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/PageHero.vue",
       "catalogUrl": "/ui?component=page-hero",
       "previewUrl": "/ui/preview?component=page-hero",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/page-hero/index.html",
+            "covers": [
+              "default"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -1009,7 +1867,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/page-hero.json"
     },
     {
       "guideId": "page-toc",
@@ -1020,6 +1879,24 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/PageToc.vue",
       "catalogUrl": "/ui?component=page-toc",
       "previewUrl": "/ui/preview?component=page-toc",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/page-toc/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -1033,7 +1910,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/page-toc.json"
     },
     {
       "guideId": "pagination",
@@ -1044,6 +1922,26 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/Pagination.vue",
       "catalogUrl": "/ui?component=pagination",
       "previewUrl": "/ui/preview?component=pagination",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/pagination/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible",
+              "current",
+              "disabled"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -1061,7 +1959,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/pagination.json"
     },
     {
       "guideId": "person-card",
@@ -1072,6 +1971,24 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/PersonCard.vue",
       "catalogUrl": "/ui?component=person-card",
       "previewUrl": "/ui/preview?component=person-card",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/person-card/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -1085,7 +2002,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/person-card.json"
     },
     {
       "guideId": "person-header",
@@ -1096,6 +2014,22 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/PersonHeader.vue",
       "catalogUrl": "/ui?component=person-header",
       "previewUrl": "/ui/preview?component=person-header",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/person-header/index.html",
+            "covers": [
+              "default"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -1108,7 +2042,8 @@
         "providerOnly": [
           "social-link"
         ]
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/person-header.json"
     },
     {
       "guideId": "price-sheet",
@@ -1119,6 +2054,29 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/PriceSheet.vue",
       "catalogUrl": "/ui?component=price-sheet",
       "previewUrl": "/ui/preview?component=price-sheet",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "responsive-flow",
+            "file": "examples/components/price-sheet/index.html",
+            "covers": [
+              "default",
+              "open",
+              "closed",
+              "reset",
+              "submit",
+              "desktop",
+              "tablet",
+              "mobile"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -1132,7 +2090,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/price-sheet.json"
     },
     {
       "guideId": "profession-card",
@@ -1143,6 +2102,22 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/ProfessionCard.vue",
       "catalogUrl": "/ui?component=profession-card",
       "previewUrl": "/ui/preview?component=profession-card",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/profession-card/index.html",
+            "covers": [
+              "default"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -1152,7 +2127,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/profession-card.json"
     },
     {
       "guideId": "profile-history",
@@ -1163,6 +2139,24 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/ProfileHistory.vue",
       "catalogUrl": "/ui?component=profile-history",
       "previewUrl": "/ui/preview?component=profile-history",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/profile-history/index.html",
+            "covers": [
+              "default",
+              "desktop-columns",
+              "mobile-stack"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -1172,15 +2166,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
-    },
-    {
-      "guideId": "project-icon",
-      "providerComponentId": null,
-      "exportName": null,
-      "status": "missing-public-api",
-      "target": "ServiceLogo",
-      "guideFile": "machine/components/project-icon.json"
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/profile-history.json"
     },
     {
       "guideId": "promo-card",
@@ -1191,6 +2178,23 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/PromoCard.vue",
       "catalogUrl": "/ui?component=promo-card",
       "previewUrl": "/ui/preview?component=promo-card",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/promo-card/index.html",
+            "covers": [
+              "default",
+              "hover"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -1202,7 +2206,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/promo-card.json"
     },
     {
       "guideId": "promo-code-modal",
@@ -1213,6 +2218,28 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/PromoCodeModal.vue",
       "catalogUrl": "/ui?component=promo-code-modal",
       "previewUrl": "/ui/preview?component=promo-code-modal",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "content-variants",
+            "file": "examples/components/promo-code-modal/index.html",
+            "covers": [
+              "default",
+              "open",
+              "promo-code",
+              "promotion",
+              "desktop",
+              "tablet",
+              "mobile"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -1226,7 +2253,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/promo-code-modal.json"
     },
     {
       "guideId": "prose",
@@ -1237,6 +2265,22 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/Prose.vue",
       "catalogUrl": "/ui?component=prose",
       "previewUrl": "/ui/preview?component=prose",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/prose/index.html",
+            "covers": [
+              "default"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -1246,7 +2290,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/prose.json"
     },
     {
       "guideId": "radio-button",
@@ -1257,6 +2302,29 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/RadioButton.vue",
       "catalogUrl": "/ui?component=radio-button",
       "previewUrl": "/ui/preview?component=radio-button",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "states",
+            "file": "examples/components/radio-button/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible",
+              "checked",
+              "disabled",
+              "loading",
+              "vertical-list",
+              "horizontal-list"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -1276,7 +2344,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/radio-button.json"
     },
     {
       "guideId": "rating-badge",
@@ -1287,6 +2356,22 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/RatingBadge.vue",
       "catalogUrl": "/ui?component=rating-badge",
       "previewUrl": "/ui/preview?component=rating-badge",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/rating-badge/index.html",
+            "covers": [
+              "default"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -1302,7 +2387,8 @@
           "summary-m",
           "stars"
         ]
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/rating-badge.json"
     },
     {
       "guideId": "rating-table",
@@ -1313,6 +2399,24 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/RatingTable.vue",
       "catalogUrl": "/ui?component=rating-table",
       "previewUrl": "/ui/preview?component=rating-table",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/rating-table/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -1326,7 +2430,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/rating-table.json"
     },
     {
       "guideId": "review-card",
@@ -1337,6 +2442,23 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/ReviewCard.vue",
       "catalogUrl": "/ui?component=review-card",
       "previewUrl": "/ui/preview?component=review-card",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/review-card/index.html",
+            "covers": [
+              "default",
+              "hover"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -1348,15 +2470,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
-    },
-    {
-      "guideId": "rubrication-bar",
-      "providerComponentId": null,
-      "exportName": null,
-      "status": "unresolved",
-      "target": null,
-      "guideFile": "machine/components/rubrication-bar.json"
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/review-card.json"
     },
     {
       "guideId": "school-card",
@@ -1367,6 +2482,24 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/SchoolCard.vue",
       "catalogUrl": "/ui?component=school-card",
       "previewUrl": "/ui/preview?component=school-card",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/school-card/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -1380,7 +2513,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/school-card.json"
     },
     {
       "guideId": "search-form",
@@ -1391,6 +2525,27 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/SearchForm.vue",
       "catalogUrl": "/ui?component=search-form",
       "previewUrl": "/ui/preview?component=search-form",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "select-xl-group",
+            "file": "examples/components/search-form/index.html",
+            "covers": [
+              "default",
+              "desktop",
+              "mobile",
+              "select-xl",
+              "joined-fields",
+              "full-width-action"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -1400,7 +2555,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/search-form.json"
     },
     {
       "guideId": "search-input",
@@ -1411,6 +2567,29 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/SearchInput.vue",
       "catalogUrl": "/ui?component=search-input",
       "previewUrl": "/ui/preview?component=search-input",
+      "preview": {
+        "strategy": "hybrid",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "field-family",
+            "file": "examples/components/search-input/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible",
+              "disabled",
+              "invalid",
+              "size-m",
+              "size-xl"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback",
+          "provider-state-gap"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -1429,7 +2608,8 @@
           "error"
         ],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/search-input.json"
     },
     {
       "guideId": "section",
@@ -1440,6 +2620,22 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/Section.vue",
       "catalogUrl": "/ui?component=section",
       "previewUrl": "/ui/preview?component=section",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "anatomy",
+            "file": "examples/components/section/index.html",
+            "covers": [
+              "default"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -1449,15 +2645,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
-    },
-    {
-      "guideId": "segmented-control",
-      "providerComponentId": null,
-      "exportName": null,
-      "status": "alias",
-      "target": "button-group",
-      "guideFile": "machine/components/segmented-control.json"
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/section.json"
     },
     {
       "guideId": "select",
@@ -1468,6 +2657,29 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/Select.vue",
       "catalogUrl": "/ui?component=select",
       "previewUrl": "/ui/preview?component=select",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "field-family",
+            "file": "examples/components/select/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible",
+              "disabled",
+              "invalid",
+              "open",
+              "size-m",
+              "size-xl"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -1490,7 +2702,57 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/select.json"
+    },
+    {
+      "guideId": "service-logo",
+      "providerComponentId": "service-logo",
+      "exportName": "ServiceLogo",
+      "status": "direct",
+      "visibility": "public",
+      "source": "courses-nuxt-kit/layers/courses/app/components/ServiceLogo.vue",
+      "catalogUrl": "/ui?component=service-logo",
+      "previewUrl": "/ui/preview?component=service-logo",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/service-logo/index.html",
+            "covers": [
+              "default"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
+      "states": {
+        "guide": [
+          "default"
+        ],
+        "provider": [
+          "habr",
+          "qna",
+          "career",
+          "courses",
+          "icon",
+          "brand"
+        ],
+        "missingInProvider": [],
+        "providerOnly": [
+          "habr",
+          "qna",
+          "career",
+          "courses",
+          "icon",
+          "brand"
+        ]
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/service-logo.json"
     },
     {
       "guideId": "site-footer",
@@ -1501,6 +2763,22 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/SiteFooter.vue",
       "catalogUrl": "/ui?component=site-footer",
       "previewUrl": "/ui/preview?component=site-footer",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/site-footer/index.html",
+            "covers": [
+              "default"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -1510,7 +2788,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/site-footer.json"
     },
     {
       "guideId": "site-header",
@@ -1521,6 +2800,31 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/SiteHeader.vue",
       "catalogUrl": "/ui?component=site-header",
       "previewUrl": "/ui/preview?component=site-header",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "figma-variants",
+            "file": "examples/components/site-header/index.html",
+            "covers": [
+              "listing-hero",
+              "listing-page",
+              "listing-page-sticky",
+              "courses-hero",
+              "courses-page",
+              "courses-page-sticky",
+              "simple-page",
+              "mobile",
+              "tablet",
+              "desktop"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -1544,7 +2848,8 @@
           "courses-page-sticky",
           "simple-page"
         ]
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/site-header.json"
     },
     {
       "guideId": "social-icon",
@@ -1555,6 +2860,24 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/SocialIcon.vue",
       "catalogUrl": "/ui?component=social-icon",
       "previewUrl": "/ui/preview?component=social-icon",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/social-icon/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -1568,7 +2891,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/social-icon.json"
     },
     {
       "guideId": "sort-sheet",
@@ -1579,6 +2903,28 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/SortSheet.vue",
       "catalogUrl": "/ui?component=sort-sheet",
       "previewUrl": "/ui/preview?component=sort-sheet",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "responsive-flow",
+            "file": "examples/components/sort-sheet/index.html",
+            "covers": [
+              "default",
+              "open",
+              "closed",
+              "selected",
+              "desktop",
+              "tablet",
+              "mobile"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -1592,23 +2938,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
-    },
-    {
-      "guideId": "specialization-tag",
-      "providerComponentId": null,
-      "exportName": null,
-      "status": "alias",
-      "target": "chip",
-      "guideFile": "machine/components/specialization-tag.json"
-    },
-    {
-      "guideId": "sprite-icon",
-      "providerComponentId": null,
-      "exportName": null,
-      "status": "provider-capability",
-      "target": "Nuxt Icon / Tabler",
-      "guideFile": "machine/components/sprite-icon.json"
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/sort-sheet.json"
     },
     {
       "guideId": "step-card",
@@ -1619,6 +2950,22 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/StepCard.vue",
       "catalogUrl": "/ui?component=step-card",
       "previewUrl": "/ui/preview?component=step-card",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/step-card/index.html",
+            "covers": [
+              "default"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -1628,7 +2975,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/step-card.json"
     },
     {
       "guideId": "switch",
@@ -1639,6 +2987,27 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/Switch.vue",
       "catalogUrl": "/ui?component=switch",
       "previewUrl": "/ui/preview?component=switch",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "states",
+            "file": "examples/components/switch/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible",
+              "checked",
+              "disabled",
+              "loading"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -1658,15 +3027,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
-    },
-    {
-      "guideId": "tab",
-      "providerComponentId": null,
-      "exportName": null,
-      "status": "alias",
-      "target": "button-group",
-      "guideFile": "machine/components/tab.json"
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/switch.json"
     },
     {
       "guideId": "text-input",
@@ -1677,6 +3039,29 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/TextInput.vue",
       "catalogUrl": "/ui?component=text-input",
       "previewUrl": "/ui/preview?component=text-input",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "field-family",
+            "file": "examples/components/text-input/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible",
+              "disabled",
+              "readOnly",
+              "invalid",
+              "size-m",
+              "size-xl"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -1704,7 +3089,8 @@
           "trailing-icon",
           "both-icons"
         ]
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/text-input.json"
     },
     {
       "guideId": "textarea",
@@ -1715,6 +3101,26 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/Textarea.vue",
       "catalogUrl": "/ui?component=textarea",
       "previewUrl": "/ui/preview?component=textarea",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "field-family",
+            "file": "examples/components/textarea/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible",
+              "disabled",
+              "invalid"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -1736,7 +3142,8 @@
         "providerOnly": [
           "readOnly"
         ]
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/textarea.json"
     },
     {
       "guideId": "tile-filter",
@@ -1747,6 +3154,26 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/TileFilter.vue",
       "catalogUrl": "/ui?component=tile-filter",
       "previewUrl": "/ui/preview?component=tile-filter",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/tile-filter/index.html",
+            "covers": [
+              "default",
+              "hover",
+              "focus-visible",
+              "pressed",
+              "disabled"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -1773,21 +3200,59 @@
           "image-cover",
           "level",
           "catalog-action",
-          "catalog-link",
-          "selected"
+          "catalog-link"
         ]
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/tile-filter.json"
     },
     {
-      "guideId": null,
+      "guideId": "toast",
       "providerComponentId": "toast",
       "exportName": "Toast",
-      "status": "provider-only-public",
-      "action": "add-guide-record",
+      "status": "direct",
       "visibility": "public",
       "source": "courses-nuxt-kit/layers/courses/app/components/Toast.vue",
       "catalogUrl": "/ui?component=toast",
-      "previewUrl": "/ui/preview?component=toast"
+      "previewUrl": "/ui/preview?component=toast",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "public-api",
+            "file": "examples/components/toast/index.html",
+            "covers": [
+              "info",
+              "success",
+              "warning",
+              "error",
+              "closable"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
+      "states": {
+        "guide": [
+          "info",
+          "success",
+          "warning",
+          "error",
+          "closable"
+        ],
+        "provider": [
+          "info",
+          "success",
+          "warning",
+          "error",
+          "closable"
+        ],
+        "missingInProvider": [],
+        "providerOnly": []
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/toast.json"
     },
     {
       "guideId": "tooltip",
@@ -1798,6 +3263,24 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/Tooltip.vue",
       "catalogUrl": "/ui?component=tooltip",
       "previewUrl": "/ui/preview?component=tooltip",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/tooltip/index.html",
+            "covers": [
+              "default",
+              "open",
+              "closed"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default",
@@ -1811,7 +3294,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/tooltip.json"
     },
     {
       "guideId": "vacancy-card",
@@ -1822,6 +3306,22 @@
       "source": "courses-nuxt-kit/layers/courses/app/components/VacancyCard.vue",
       "catalogUrl": "/ui?component=vacancy-card",
       "previewUrl": "/ui/preview?component=vacancy-card",
+      "preview": {
+        "strategy": "provider-primary",
+        "primary": "implementation-provider",
+        "staticFallbacks": [
+          {
+            "id": "default",
+            "file": "examples/components/vacancy-card/index.html",
+            "covers": [
+              "default"
+            ]
+          }
+        ],
+        "retainStaticFor": [
+          "github-pages-fallback"
+        ]
+      },
       "states": {
         "guide": [
           "default"
@@ -1831,7 +3331,8 @@
         ],
         "missingInProvider": [],
         "providerOnly": []
-      }
+      },
+      "apiFile": "machine/providers/courses-nuxt-kit/vacancy-card.json"
     }
   ]
 }

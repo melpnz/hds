@@ -12,9 +12,9 @@
 
 Компонент стоит в продукте на **96 узлах**, страниц — **7 из 10**: courses-listing, education-center, education-centers-listing, promocodes, rating, reviews, schools-for-children.
 
-центральный элемент продукта. Снятая анатомия: обложка img 148 + затемнение rgba(0,0,0,.12) → тело -mt-20 rounded-t-3xl bg #fff p24 → RatingBadge и MetaPill абсолютом на -34px → метастрока → title line-clamp-2 → чипы text-micro → цена → Button M mt-16 → сквозная ссылка-оверлей. Ширина 260 в 4-колоночной сетке. box-shadow: none — §10.1 исследования допускает тень, в проде её нет
+центральный элемент продукта. Снятая анатомия: обложка img 148 + затемнение rgba(0,0,0,.12) → тело -mt-20 rounded-t-3xl bg #fff p24 → RatingBadge и `Chip tone="surface"` абсолютом на -34px → метастрока → title line-clamp-2 → чипы text-micro → цена → Button M mt-16 → сквозная ссылка-оверлей. Ширина 260 в 4-колоночной сетке. box-shadow: none — §10.1 исследования допускает тень, в проде её нет
 
-**Правило.** Используйте для курса в выдаче и подборках: обложка с `MetaPill` и `RatingBadge`, `Badge` скидки, название, метки `Chip`, кнопка «Далее». В продукте 96 узлов на 7 страницах — в `CardGrid` (48), `Carousel` (40) и секциях.
+**Правило.** Используйте для курса в выдаче и подборках: обложка с `Chip tone="surface"` и `RatingBadge`, скидочный `Chip tone="orange"`, название, обычные `Chip`, кнопка «Далее». В продукте 96 узлов на 7 страницах — в `CardGrid` (48), `Carousel` (40) и секциях.
 
 ## Когда не использовать
 

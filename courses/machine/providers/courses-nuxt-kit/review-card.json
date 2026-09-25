@@ -1,0 +1,97 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "review-card"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "review-card",
+    "providerComponentId": "review-card",
+    "exportName": "ReviewCard",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/ReviewCard.vue",
+    "catalogUrl": "/ui?component=review-card",
+    "previewUrl": "/ui/preview?component=review-card",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/review-card/index.html",
+          "covers": [
+            "default",
+            "hover"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "author",
+          "type": "string",
+          "required": true,
+          "source": "prop"
+        },
+        {
+          "name": "course",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "date",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "href",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "rating",
+          "type": "number",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "text",
+          "type": "string",
+          "required": true,
+          "source": "prop"
+        }
+      ],
+      "slots": [],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default",
+        "hover"
+      ],
+      "provider": [
+        "default",
+        "hover"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}

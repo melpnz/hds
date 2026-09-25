@@ -1,0 +1,28 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0"
+  },
+  "activeProvider": "courses-nuxt-kit",
+  "providers": [
+    {
+      "id": "courses-nuxt-kit",
+      "status": "active-temporary",
+      "compatibleVersions": [
+        "1.0.0"
+      ],
+      "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+      "componentMapping": "machine/providers/courses-nuxt-kit.json",
+      "tokenMapping": "machine/providers/courses-nuxt-kit.tokens.json",
+      "distribution": "copy",
+      "localCatalogBaseUrl": "http://127.0.0.1:3000",
+      "verified": true
+    }
+  ],
+  "selectionRules": {
+    "useActiveProvider": "Use the active provider when its local manifest version is listed in compatibleVersions.",
+    "unsupportedVersion": "Do not mix an unverified provider version with this guide; report the mismatch and request an explicit compatibility review.",
+    "replacement": "Add and verify a new provider alongside the active one before changing activeProvider. Keep stable guide ids unchanged."
+  }
+}

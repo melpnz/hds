@@ -344,5 +344,91 @@
   "entityLogoUsage": {
     "school-rating": 20,
     "recommendations": 5
+  },
+  "providerComposition": {
+    "schemaVersion": 1,
+    "provider": {
+      "id": "courses-nuxt-kit",
+      "version": "1.0.0",
+      "mapping": "machine/providers/courses-nuxt-kit.json"
+    },
+    "ownership": {
+      "pagePattern": "guide",
+      "componentImplementation": "active-provider",
+      "staticExample": "evidence-and-github-fallback"
+    },
+    "shell": {
+      "header": {
+        "kind": "provider-component",
+        "id": "site-header",
+        "role": "global-header",
+        "props": {
+          "family": "simple"
+        },
+        "providerComponentId": "site-header",
+        "exportName": "SiteHeader"
+      },
+      "footer": {
+        "kind": "provider-component",
+        "id": "site-footer",
+        "role": "global-footer",
+        "providerComponentId": "site-footer",
+        "exportName": "SiteFooter"
+      }
+    },
+    "areas": [
+      {
+        "id": "school-rating",
+        "nodes": [
+          {
+            "kind": "provider-component",
+            "id": "rating-table",
+            "role": "school-rating",
+            "providerComponentId": "rating-table",
+            "exportName": "RatingTable"
+          }
+        ]
+      },
+      {
+        "id": "recommendations",
+        "nodes": [
+          {
+            "kind": "provider-component",
+            "id": "section",
+            "role": "recommendations-section",
+            "children": [
+              {
+                "kind": "provider-component",
+                "id": "carousel",
+                "role": "recommended-courses-carousel",
+                "variant": "course-card",
+                "children": [
+                  {
+                    "kind": "provider-component",
+                    "id": "course-card",
+                    "role": "course-card",
+                    "count": 5,
+                    "providerComponentId": "course-card",
+                    "exportName": "CourseCard"
+                  }
+                ],
+                "providerComponentId": "carousel",
+                "exportName": "Carousel"
+              }
+            ],
+            "providerComponentId": "section",
+            "exportName": "Section"
+          }
+        ]
+      }
+    ],
+    "directComponentIds": [
+      "site-header",
+      "site-footer",
+      "rating-table",
+      "section",
+      "carousel",
+      "course-card"
+    ]
   }
 }

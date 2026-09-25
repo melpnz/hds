@@ -1,0 +1,88 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "rating-badge"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "rating-badge",
+    "providerComponentId": "rating-badge",
+    "exportName": "RatingBadge",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/RatingBadge.vue",
+    "catalogUrl": "/ui?component=rating-badge",
+    "previewUrl": "/ui/preview?component=rating-badge",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/rating-badge/index.html",
+          "covers": [
+            "default"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "reviews",
+          "type": "number",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "size",
+          "type": "'s' | 'm'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "value",
+          "type": "number",
+          "required": true,
+          "source": "prop"
+        },
+        {
+          "name": "variant",
+          "type": "'summary' | 'stars'",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [],
+      "emits": [],
+      "models": []
+    },
+    "states": {
+      "guide": [
+        "default"
+      ],
+      "provider": [
+        "summary-s",
+        "summary-m",
+        "stars"
+      ],
+      "missingInProvider": [],
+      "providerOnly": [
+        "summary-s",
+        "summary-m",
+        "stars"
+      ]
+    }
+  }
+}

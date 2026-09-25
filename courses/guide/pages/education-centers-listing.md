@@ -56,11 +56,11 @@ hero; отдельно она не разбирается (ROADMAP, R6).
    (`HeaderDropdown`), три ссылки-иконки справа. Поля поиска и кнопки
    «Каталог» здесь нет.
 2. **Hero** — `PageHero`: `h1` «Образовательные организации в России»,
-   `SegmentedControl` «Взрослым / Детям», `SearchForm` из трёх `Select`
+   `ButtonGroup variant="hero"` «Взрослым / Детям», `SearchForm` из трёх `Select`
    («Организация», «Что изучить?», «Тип») и `Button` «Найти организации».
 3. **Баннеры** — `AdSlot`: `Carousel` из 16 `AdCard`.
 4. **Выдача** — `CardGrid` из 20 `SchoolCard` (внутри — `EntityLogo`,
-   оценка, `AvatarStack` с `CounterPill`, `Button` «Подробнее», сквозная
+   оценка, `AvatarStack` с `Chip variant="counter"`, `Button` «Подробнее», сквозная
    `Link`). У школ без своей обложки вместо неё — картинка-заглушка продукта
    (`edu-stub`) на градиенте `bg-gradient-violet`, `-blue` или `-pink`,
    увеличенная `scale-125`. Под сеткой через 16 — `Pagination`. Обёртка сетки

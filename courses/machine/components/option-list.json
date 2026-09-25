@@ -1,0 +1,209 @@
+{
+  "$schema": "../../schema.json",
+  "id": "option-list",
+  "title": "OptionList",
+  "kind": "component",
+  "category": "forms",
+  "maturity": {
+    "spec": "complete",
+    "markup": "available"
+  },
+  "knowledge": {
+    "authority": [
+      "implementation-provider"
+    ],
+    "confidence": "high",
+    "scope": "public-api"
+  },
+  "purpose": "Доступный список OptionItem с одиночным, множественным или action-режимом выбора и клавиатурной навигацией.",
+  "implementation": {
+    "markup": "provider-component",
+    "providerComponent": "OptionList",
+    "source": "courses-nuxt-kit/layers/courses/app/components/OptionList.vue",
+    "styles": [
+      "courses-nuxt-kit/layers/courses/app/components/OptionList.vue"
+    ],
+    "scripts": []
+  },
+  "states": {
+    "ui": [
+      "single",
+      "multiple",
+      "action"
+    ],
+    "feature": [],
+    "domain": []
+  },
+  "rules": [],
+  "examples": [
+    {
+      "id": "public-api",
+      "title": "OptionList · публичный API",
+      "file": "examples/components/option-list/index.html",
+      "covers": [
+        "single",
+        "multiple",
+        "action"
+      ],
+      "preview": {
+        "mode": "intrinsic"
+      },
+      "presentation": {
+        "layout": "constrained",
+        "width": 720
+      }
+    }
+  ],
+  "previewNotes": [
+    {
+      "type": "guidance",
+      "text": "Визуальный источник — публичный компонент OptionList из Courses Nuxt Kit."
+    }
+  ],
+  "accessibility": [],
+  "evidence": [
+    {
+      "type": "implementation-provider",
+      "data": {
+        "provider": "courses-nuxt-kit",
+        "component": "OptionList",
+        "version": "1.0.0"
+      }
+    }
+  ],
+  "unknowns": [],
+  "source": {
+    "version": "v1.0",
+    "spec": "guide/components/forms/option-list.md",
+    "status": "complete",
+    "scope": "implementation-provider",
+    "step": "provider-reconciliation",
+    "anchor": null,
+    "originalKind": "component",
+    "markupNote": null,
+    "markupState": null
+  },
+  "usage": {
+    "when": "Доступный список OptionItem с одиночным, множественным или action-режимом выбора и клавиатурной навигацией.",
+    "whenNot": [],
+    "related": []
+  },
+  "dependencies": [],
+  "stateCoverage": {
+    "required": [
+      "single",
+      "multiple",
+      "action"
+    ],
+    "captured": [
+      "single",
+      "multiple",
+      "action"
+    ],
+    "normative": [],
+    "uncaptured": []
+  },
+  "provenance": "Добавлено из публичного API Courses Nuxt Kit 23 сентября 2026; поведение и визуал принадлежат активному implementation provider.",
+  "visual": {
+    "generatedBy": "tools/build-visual-contracts.mjs",
+    "specificity": "family-baseline",
+    "family": "form-control",
+    "typography": {
+      "family": "Inter, sans-serif",
+      "body": {
+        "token": "--courses-font-size-16",
+        "value": "1rem"
+      },
+      "small": {
+        "token": "--courses-font-size-14",
+        "value": "0.875rem"
+      }
+    },
+    "colors": {
+      "text": {
+        "token": "--color-text-main",
+        "value": "{color.ui-black-850}"
+      },
+      "muted": {
+        "token": "--color-ui-black-500",
+        "value": "#909194"
+      },
+      "surface": {
+        "token": "--color-white-background",
+        "value": "{color.ui-white}"
+      },
+      "border": {
+        "token": "--color-ui-black-200",
+        "value": "#d3d3d4"
+      },
+      "action": {
+        "token": "--color-ui-blue-500",
+        "value": "#346ef4"
+      },
+      "focus": {
+        "token": "--color-ui-black-400",
+        "value": "#a6a7a9"
+      }
+    },
+    "states": [
+      "single",
+      "multiple",
+      "action"
+    ],
+    "sources": [
+      "machine/dimension-tokens.json",
+      "machine/tokens.json",
+      "courses-nuxt-kit/layers/courses/app/components/OptionList.vue",
+      "examples/components/option-list/index.html"
+    ],
+    "geometry": {
+      "sizes": {
+        "m": {
+          "token": "--courses-size-40",
+          "value": "2.5rem"
+        },
+        "l": {
+          "token": "--courses-size-48",
+          "value": "3rem"
+        },
+        "xl": {
+          "token": "--courses-size-56",
+          "value": "3.5rem"
+        }
+      },
+      "radius": {
+        "token": "--courses-radius-12",
+        "value": "0.75rem"
+      },
+      "paddingInline": {
+        "m": {
+          "token": "--courses-space-16",
+          "value": "1rem"
+        },
+        "xl": {
+          "token": "--courses-space-24",
+          "value": "1.5rem"
+        }
+      },
+      "gap": {
+        "token": "--courses-space-8",
+        "value": "0.5rem"
+      },
+      "icon": {
+        "token": "--courses-size-24",
+        "value": "1.5rem"
+      },
+      "border": {
+        "token": "--courses-border-width-1",
+        "value": "1px"
+      }
+    },
+    "layout": {
+      "width": "context-dependent",
+      "dropdownRow": {
+        "token": "--courses-size-40",
+        "value": "2.5rem"
+      }
+    }
+  }
+}

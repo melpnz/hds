@@ -1,0 +1,152 @@
+{
+  "schemaVersion": 1,
+  "guide": {
+    "id": "courses",
+    "version": "1.0",
+    "componentId": "filter-chip"
+  },
+  "provider": {
+    "id": "courses-nuxt-kit",
+    "version": "1.0.0",
+    "type": "nuxt-layer",
+    "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
+    "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
+  },
+  "component": {
+    "guideId": "filter-chip",
+    "providerComponentId": "filter-chip",
+    "exportName": "FilterChip",
+    "status": "direct",
+    "visibility": "public",
+    "source": "courses-nuxt-kit/layers/courses/app/components/FilterChip.vue",
+    "catalogUrl": "/ui?component=filter-chip",
+    "previewUrl": "/ui/preview?component=filter-chip",
+    "preview": {
+      "strategy": "provider-primary",
+      "primary": "implementation-provider",
+      "staticFallbacks": [
+        {
+          "id": "default",
+          "file": "examples/components/filter-chip/index.html",
+          "covers": [
+            "default",
+            "hover",
+            "focus-visible",
+            "pressed"
+          ]
+        },
+        {
+          "id": "menu-switch",
+          "file": "examples/components/filter-chip/menu-switch.html",
+          "covers": [
+            "default",
+            "hover",
+            "focus-visible",
+            "pressed",
+            "disabled",
+            "loading",
+            "open",
+            "icon-left",
+            "switch-right"
+          ]
+        }
+      ],
+      "retainStaticFor": [
+        "github-pages-fallback"
+      ]
+    },
+    "api": {
+      "props": [
+        {
+          "name": "count",
+          "type": "number",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "dropdown",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "dropdownItems",
+          "type": "DropdownItem[]",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "icon",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "loading",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "modelValue",
+          "type": "boolean",
+          "required": false,
+          "source": "model"
+        },
+        {
+          "name": "state",
+          "type": "'default' | 'hover' | 'focus' | 'pressed'",
+          "required": false,
+          "source": "prop"
+        }
+      ],
+      "slots": [
+        {
+          "name": "default"
+        }
+      ],
+      "emits": [
+        {
+          "name": "update:modelValue",
+          "type": "[boolean]",
+          "source": "model"
+        }
+      ],
+      "models": [
+        {
+          "name": "modelValue",
+          "type": "boolean",
+          "required": false
+        }
+      ]
+    },
+    "states": {
+      "guide": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "loading",
+        "open"
+      ],
+      "provider": [
+        "default",
+        "hover",
+        "focus-visible",
+        "pressed",
+        "disabled",
+        "loading",
+        "open"
+      ],
+      "missingInProvider": [],
+      "providerOnly": []
+    }
+  }
+}
