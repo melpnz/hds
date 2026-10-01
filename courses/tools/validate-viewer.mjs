@@ -65,7 +65,8 @@ try {
   const sectionTitles = await page.locator('.nav-section__title > span').allTextContents();
   if (JSON.stringify(sectionTitles) !== JSON.stringify(['Основы', 'Элементы', 'Блоки', 'Страницы'])) failures.push(`navigation: unexpected section hierarchy ${sectionTitles.join(', ')}`);
   const guideVersion = await page.locator('#guide-version').textContent();
-  if (!guideVersion.includes('1.0') || !guideVersion.includes('пригоден к использованию')) failures.push('navigation: guide v1.0 release status is hidden');
+  const guideIndex = await page.evaluate(() => fetch('../machine/index.json').then(response => response.json()));
+  if (!guideVersion.includes(guideIndex.product.guideVersion) || !guideVersion.includes('пригоден к использованию')) failures.push('navigation: current guide release status is hidden');
   if (entries.filter(entry => entry.kind === 'foundation').length !== 6) failures.push('navigation: expected six foundation pages');
   const fontExamples = [];
   const shellRight = await page.locator('.shell').evaluate(element => element.getBoundingClientRect().right);
@@ -837,7 +838,14 @@ try {
     if (entry.id === 'colors' || entry.id === 'iconography') {
       const foundationPreview = page.locator('#preview').contentFrame();
       await foundationPreview.locator('.foundation-preview').waitFor();
-      if (entry.id === 'colors' && await foundationPreview.locator('.foundation-swatch').count() !== 41) failures.push('colors: token overview is incomplete');
+      if (entry.id === 'colors') {
+        const report = await page.evaluate(() => fetch('../machine/reports/provider-color-usage.json').then(response => response.json()));
+        await foundationPreview.locator('.foundation-swatch').nth(report.tokens.length - 1).waitFor();
+        const used = await foundationPreview.locator('#used-colors .foundation-swatch').count();
+        const reserved = await foundationPreview.locator('#unused-colors .foundation-swatch').count();
+        if (used !== report.summary.used || reserved !== report.summary.reserved
+          || used + reserved !== report.tokens.length) failures.push('colors: kit usage groups do not match the canonical report');
+      }
       if (entry.id === 'iconography') {
         const icons = foundationPreview.locator('.foundation-icon');
         await icons.nth(11).waitFor();
