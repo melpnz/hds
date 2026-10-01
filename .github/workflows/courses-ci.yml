@@ -10,9 +10,17 @@ on:
       - 'courses/**'
       - '.github/workflows/courses-ci.yml'
   workflow_dispatch:
+  workflow_call:
+    inputs:
+      source_ref:
+        type: string
+        default: ''
+      release_catalog:
+        type: boolean
+        default: false
 
 concurrency:
-  group: courses-ci-${{ github.ref }}
+  group: courses-ci-${{ inputs.source_ref || github.ref }}-${{ github.event_name }}
   cancel-in-progress: true
 
 permissions:
@@ -25,6 +33,9 @@ jobs:
     timeout-minutes: 25
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.source_ref || github.sha }}
+          persist-credentials: false
       - uses: pnpm/action-setup@v4
         with:
           version: 10.33.2
@@ -58,6 +69,9 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.source_ref || github.sha }}
+          persist-credentials: false
       - uses: pnpm/action-setup@v4
         with:
           version: 10.33.2
@@ -107,6 +121,7 @@ jobs:
             courses-provider.log
             courses/courses-nuxt-kit/test-results
           if-no-files-found: ignore
+          retention-days: 3
 
   visual-regression:
     name: Priority visual regression (pinned Chromium)
@@ -114,6 +129,9 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.source_ref || github.sha }}
+          persist-credentials: false
       - uses: pnpm/action-setup@v4
         with:
           version: 10.33.2
@@ -135,6 +153,14 @@ jobs:
           PLAYWRIGHT_CHANNEL: chromium
           COURSES_TEST_STATIC: '1'
         run: pnpm exec playwright test tests/e2e/roadmap-regressions.spec.ts tests/e2e/catalog.spec.ts tests/e2e/visual.spec.ts
+      - name: Save tested static catalog for draft release
+        if: inputs.release_catalog
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: courses-release-catalog-${{ github.run_id }}
+          path: courses/courses-nuxt-kit/.output/public
+          if-no-files-found: error
+          retention-days: 3
       - name: Upload visual diff on failure
         if: failure()
         uses: actions/upload-artifact@v4
@@ -144,3 +170,4 @@ jobs:
             courses/courses-nuxt-kit/test-results
             courses/courses-nuxt-kit/playwright-report
           if-no-files-found: ignore
+          retention-days: 3

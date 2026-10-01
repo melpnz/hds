@@ -1,0 +1,109 @@
+name: Courses UI Kit - prepare draft release
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Existing annotated release tag, e.g. courses-nuxt-kit-v1.2.0'
+        required: true
+        type: string
+      dry_run:
+        description: 'Run checks and packaging without creating a GitHub release'
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: courses-draft-release-${{ inputs.tag }}
+  cancel-in-progress: false
+
+jobs:
+  preflight:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      commit: ${{ steps.plan.outputs.commit }}
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+      - name: Test release safety policy
+        run: node tools/test-courses-release.mjs
+      - name: Validate tag, source revision and existing releases
+        id: plan
+        env:
+          COURSES_RELEASE_TAG: ${{ inputs.tag }}
+          COURSES_RELEASE_DRY_RUN: ${{ inputs.dry_run }}
+          GH_TOKEN: ${{ github.token }}
+        run: node tools/courses-release.mjs preflight
+
+  checks:
+    needs: preflight
+    uses: ./.github/workflows/courses-ci.yml
+    permissions:
+      contents: read
+    with:
+      source_ref: ${{ needs.preflight.outputs.commit }}
+      release_catalog: true
+
+  package:
+    needs: [preflight, checks]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: courses-release-catalog-${{ github.run_id }}
+          path: courses-static-catalog
+      - name: Package exact tested layer and static catalog
+        env:
+          COURSES_RELEASE_TAG: ${{ inputs.tag }}
+          COURSES_RELEASE_COMMIT: ${{ needs.preflight.outputs.commit }}
+        run: node tools/courses-release.mjs package
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        with:
+          name: courses-release-bundle-${{ github.run_id }}
+          path: courses-release-bundle
+          if-no-files-found: error
+          retention-days: 3
+
+  draft:
+    if: ${{ !inputs.dry_run }}
+    needs: [preflight, package]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+    steps:
+      # Execute only the trusted workflow revision, not code from a release tag.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+      - uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4
+        with:
+          name: courses-release-bundle-${{ github.run_id }}
+          path: courses-release-bundle
+      - name: Verify bundle and create draft only
+        env:
+          COURSES_RELEASE_TAG: ${{ inputs.tag }}
+          COURSES_RELEASE_COMMIT: ${{ needs.preflight.outputs.commit }}
+          GH_TOKEN: ${{ github.token }}
+        run: node tools/courses-release.mjs draft
