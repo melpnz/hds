@@ -92,7 +92,9 @@ onBeforeUnmount(stopObservingOverflow)
 .crs-modal-content .crs-modal-body-slot{padding-block:0!important}
 .crs-modal-content .crs-modal-body-slot--overflowing{padding-block:var(--crs-space-16)!important}
 @media(max-width:767px){
-  .crs-modal-content{top:auto!important;right:0!important;bottom:0!important;left:0!important;width:100vw!important;max-width:none!important;max-height:min(calc(var(--crs-unit) * 700),calc(100dvh - var(--crs-space-40)))!important;border-radius:var(--crs-radius-24) var(--crs-radius-24) 0 0!important;translate:none!important;transform:none!important}
+  .crs-modal-content{top:auto!important;right:0!important;bottom:0!important;left:0!important;width:100vw!important;max-width:none!important;max-height:min(calc(var(--crs-unit) * 700),calc(100dvh - var(--crs-space-40)))!important;border-radius:var(--crs-radius-24) var(--crs-radius-24) 0 0!important;transform:none!important}
+  /* Keep translate separate: Lightning CSS must not fold it into transform. */
+  .crs-modal-content[role]{translate:0 0!important}
   .crs-modal-content .crs-modal-handle{position:absolute;top:calc(var(--crs-space-12) * -1);left:50%;display:block;width:var(--crs-size-64);height:var(--crs-size-4);border-radius:var(--crs-radius-full);background:var(--crs-white);transform:translateX(-50%)}
 }
 </style>

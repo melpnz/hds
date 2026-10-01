@@ -630,6 +630,7 @@ test.describe('Courses UI catalog', () => {
   })
 
   test('browses Tabler Outline icons in batches and copies an icon name', async ({ page, context }) => {
+    test.skip(process.env.COURSES_TEST_STATIC === '1', 'The full catalog icon explorer uses the local server API; component icons are bundled separately.')
     await context.grantPermissions(['clipboard-read', 'clipboard-write'])
     await page.goto('/ui')
     await waitForHydration(page)
@@ -1055,9 +1056,10 @@ test.describe('Courses UI catalog', () => {
 
     await page.goto('/ui/preview?component=filter-chip')
     await waitForHydration(page)
-    await expect(page.locator('.crs-filter-chip')).toHaveCount(9)
+    await expect(page.locator('.crs-filter-chip')).toHaveCount(11)
     await expect(page.getByRole('heading', { name: 'Фильтры' })).toBeVisible()
     await expect(page.getByRole('heading', { name: 'Варианты с иконками' })).toBeVisible()
+    await expect(page.getByRole('heading', { name: 'Со свитчем' })).toBeVisible()
     const iconOnly = page.getByRole('button', { name: 'Сортировка' })
     await expect(iconOnly).toHaveCSS('padding-left', '12px')
     await expect(iconOnly).toHaveCSS('padding-right', '12px')
@@ -1083,6 +1085,19 @@ test.describe('Courses UI catalog', () => {
     await expect(dropdownItems.first()).toHaveCSS('padding', '8px 24px 8px 16px')
     await expect(dropdownItems.first()).toHaveCSS('font-size', '16px')
     await expect(dropdownItems.first()).toHaveCSS('line-height', '22px')
+    await page.keyboard.press('Escape')
+    await expect(dropdownMenu).toBeHidden()
+
+    const switchChip = page.getByRole('switch', { name: 'Акции и скидки' })
+    await expect(switchChip).toHaveAttribute('aria-checked', 'false')
+    await expect(switchChip.locator('.crs-filter-chip__switch')).toHaveCSS('width', '32px')
+    await expect(switchChip.locator('.crs-filter-chip__switch-track')).toHaveCSS('width', '28px')
+    await expect(switchChip.locator('.crs-filter-chip__switch-dot')).toHaveCSS('width', '20px')
+    await switchChip.click()
+    await expect(switchChip).toHaveAttribute('aria-checked', 'true')
+    await expect(switchChip).toHaveAttribute('data-state', 'pressed')
+    await expect(switchChip.locator('.crs-filter-chip__switch-track')).toHaveCSS('background-color', 'rgb(52, 110, 244)')
+    await expect(switchChip.locator('.crs-filter-chip__switch-dot')).toHaveCSS('left', '12px')
 
     await page.goto('/ui/preview?component=select')
     await waitForHydration(page)

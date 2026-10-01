@@ -6,7 +6,7 @@
   },
   "provider": {
     "id": "courses-nuxt-kit",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "type": "nuxt-layer",
     "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
     "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
@@ -19,9 +19,9 @@
     "direct": 72,
     "providerOnly": 0,
     "guideOnly": 0,
-    "directWithMissingStates": 3,
-    "providerPrimaryPreviews": 69,
-    "hybridPreviews": 3,
+    "directWithMissingStates": 0,
+    "providerPrimaryPreviews": 72,
+    "hybridPreviews": 0,
     "legacyPreviewRedirects": 9
   },
   "mappings": [
@@ -391,7 +391,7 @@
       "catalogUrl": "/ui?component=button-group",
       "previewUrl": "/ui/preview?component=button-group",
       "preview": {
-        "strategy": "hybrid",
+        "strategy": "provider-primary",
         "primary": "implementation-provider",
         "staticFallbacks": [
           {
@@ -420,8 +420,7 @@
           }
         ],
         "retainStaticFor": [
-          "github-pages-fallback",
-          "provider-state-gap"
+          "github-pages-fallback"
         ]
       },
       "states": {
@@ -441,11 +440,10 @@
           "hover",
           "focus-visible",
           "selected",
-          "disabled"
-        ],
-        "missingInProvider": [
+          "disabled",
           "loading"
         ],
+        "missingInProvider": [],
         "providerOnly": [
           "light",
           "hero",
@@ -597,7 +595,7 @@
       "catalogUrl": "/ui?component=checkbox",
       "previewUrl": "/ui/preview?component=checkbox",
       "preview": {
-        "strategy": "hybrid",
+        "strategy": "provider-primary",
         "primary": "implementation-provider",
         "staticFallbacks": [
           {
@@ -617,8 +615,7 @@
           }
         ],
         "retainStaticFor": [
-          "github-pages-fallback",
-          "provider-state-gap"
+          "github-pages-fallback"
         ]
       },
       "states": {
@@ -637,11 +634,10 @@
           "focus-visible",
           "checked",
           "indeterminate",
-          "disabled"
-        ],
-        "missingInProvider": [
+          "disabled",
           "loading"
         ],
+        "missingInProvider": [],
         "providerOnly": []
       },
       "apiFile": "machine/providers/courses-nuxt-kit/checkbox.json"
@@ -2568,7 +2564,7 @@
       "catalogUrl": "/ui?component=search-input",
       "previewUrl": "/ui/preview?component=search-input",
       "preview": {
-        "strategy": "hybrid",
+        "strategy": "provider-primary",
         "primary": "implementation-provider",
         "staticFallbacks": [
           {
@@ -2586,8 +2582,7 @@
           }
         ],
         "retainStaticFor": [
-          "github-pages-fallback",
-          "provider-state-gap"
+          "github-pages-fallback"
         ]
       },
       "states": {
@@ -2602,11 +2597,10 @@
           "default",
           "hover",
           "focus-visible",
-          "disabled"
-        ],
-        "missingInProvider": [
+          "disabled",
           "error"
         ],
+        "missingInProvider": [],
         "providerOnly": []
       },
       "apiFile": "machine/providers/courses-nuxt-kit/search-input.json"

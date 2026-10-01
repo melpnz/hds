@@ -8,8 +8,8 @@
 ## Итог
 
 - прямых component mappings: **72**;
-- provider-primary: **69**;
-- hybrid из-за state-gap: **3**;
+- provider-primary: **72**;
+- hybrid из-за state-gap: **0**;
 - минимальных redirects старых имён: **9**.
 
 ## Компоненты
@@ -24,11 +24,11 @@
 | `avatar-stack` | provider-primary | — | `examples/components/avatar-stack/index.html` |
 | `breadcrumbs` | provider-primary | — | `examples/components/breadcrumbs/index.html` |
 | `button` | provider-primary | — | `examples/components/button/index.html` |
-| `button-group` | hybrid | `loading` | `examples/components/button-group/index.html`<br>`examples/components/button-group/hero.html` |
+| `button-group` | provider-primary | — | `examples/components/button-group/index.html`<br>`examples/components/button-group/hero.html` |
 | `card-grid` | provider-primary | — | `examples/components/card-grid/index.html` |
 | `carousel` | provider-primary | — | `examples/components/carousel/index.html` |
 | `catalog-menu` | provider-primary | — | `examples/components/catalog-menu/index.html` |
-| `checkbox` | hybrid | `loading` | `examples/components/checkbox/index.html` |
+| `checkbox` | provider-primary | — | `examples/components/checkbox/index.html` |
 | `chip` | provider-primary | — | `examples/components/chip/index.html` |
 | `course-card` | provider-primary | — | `examples/components/course-card/index.html` |
 | `demand-chart` | provider-primary | — | `examples/components/demand-chart/index.html` |
@@ -72,7 +72,7 @@
 | `review-card` | provider-primary | — | `examples/components/review-card/index.html` |
 | `school-card` | provider-primary | — | `examples/components/school-card/index.html` |
 | `search-form` | provider-primary | — | `examples/components/search-form/index.html` |
-| `search-input` | hybrid | `error` | `examples/components/search-input/index.html` |
+| `search-input` | provider-primary | — | `examples/components/search-input/index.html` |
 | `section` | provider-primary | — | `examples/components/section/index.html` |
 | `select` | provider-primary | — | `examples/components/select/index.html` |
 | `service-logo` | provider-primary | — | `examples/components/service-logo/index.html` |

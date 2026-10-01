@@ -6,8 +6,8 @@
     "type": "nuxt-layer",
     "status": "active-temporary"
   },
-  "version": "1.0.1",
-  "releasedAt": "2026-09-25",
+  "version": "1.1.0",
+  "releasedAt": "2026-10-01",
   "guide": {
     "id": "courses",
     "compatibleVersion": "1.0"
@@ -16,16 +16,16 @@
   "source": {
     "repository": "https://github.com/melpnz/hds",
     "path": "courses/courses-nuxt-kit/layers/courses",
-    "commitSha": "0d1e530daee817490483619ba9806aca88d9b248"
+    "commitSha": null
   },
   "distribution": {
     "mode": "copy",
     "copiedDirectory": "layers/courses",
-    "archiveName": "courses-nuxt-kit-v1.0.1.zip",
-    "releaseTag": "courses-nuxt-kit-v1.0.1",
+    "archiveName": "courses-nuxt-kit-v1.1.0.zip",
+    "releaseTag": "courses-nuxt-kit-v1.1.0",
     "repositoryUrl": "https://github.com/melpnz/hds",
     "releasesUrl": "https://github.com/melpnz/hds/releases",
-    "currentReleaseUrl": "https://github.com/melpnz/hds/releases/tag/courses-nuxt-kit-v1.0.1",
+    "currentReleaseUrl": "https://github.com/melpnz/hds/releases/tag/courses-nuxt-kit-v1.1.0",
     "changelogUrl": "https://github.com/melpnz/hds/blob/main/courses/courses-nuxt-kit/layers/courses/CHANGELOG.md",
     "latestManifestUrl": "https://raw.githubusercontent.com/melpnz/hds/main/courses/courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
     "networkPolicy": "automatic-read-only-check-no-automatic-update"
@@ -1987,7 +1987,8 @@
           "focus-visible",
           "checked",
           "indeterminate",
-          "disabled"
+          "disabled",
+          "loading"
         ],
         "api": {
           "props": [
@@ -2018,6 +2019,12 @@
             {
               "name": "label",
               "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "loading",
+              "type": "boolean",
               "required": false,
               "source": "prop"
             },
@@ -2146,6 +2153,12 @@
             {
               "name": "state",
               "type": "'default' | 'hover' | 'focus' | 'pressed'",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "variant",
+              "type": "'default' | 'switch'",
               "required": false,
               "source": "prop"
             }
@@ -2630,12 +2643,19 @@
           "default",
           "hover",
           "focus-visible",
-          "disabled"
+          "disabled",
+          "error"
         ],
         "api": {
           "props": [
             {
               "name": "disabled",
+              "type": "boolean",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "error",
               "type": "boolean",
               "required": false,
               "source": "prop"
@@ -3530,7 +3550,8 @@
           "hover",
           "focus-visible",
           "selected",
-          "disabled"
+          "disabled",
+          "loading"
         ],
         "api": {
           "props": [
@@ -3555,6 +3576,12 @@
             {
               "name": "label",
               "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "loading",
+              "type": "boolean",
               "required": false,
               "source": "prop"
             },

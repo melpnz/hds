@@ -1,6 +1,8 @@
 import { defineConfig } from '@playwright/test'
 
 const requestedChannel = process.env.PLAYWRIGHT_CHANNEL
+const staticPreview = process.env.COURSES_TEST_STATIC === '1'
+const baseURL = process.env.COURSES_TEST_BASE_URL || (staticPreview ? 'http://127.0.0.1:3012' : 'http://localhost:3000')
 const browserChannel = requestedChannel && requestedChannel !== 'chromium'
   ? requestedChannel
   : process.platform === 'win32' && !requestedChannel
@@ -14,14 +16,14 @@ export default defineConfig({
   workers: 1,
   reporter: 'line',
   use: {
-    baseURL: 'http://localhost:3000',
+    baseURL,
     browserName: 'chromium',
     ...(browserChannel ? { channel: browserChannel } : {}),
     trace: 'retain-on-failure'
   },
   webServer: {
-    command: 'pnpm dev --host 127.0.0.1',
-    url: 'http://localhost:3000',
+    command: staticPreview ? 'node scripts/serve-static-preview.mjs' : 'pnpm dev --host 127.0.0.1',
+    url: baseURL,
     reuseExistingServer: true,
     env: {
       NUXT_TELEMETRY_DISABLED: '1'

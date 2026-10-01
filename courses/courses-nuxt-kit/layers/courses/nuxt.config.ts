@@ -4,6 +4,11 @@ import coursesAppConfig from './app.config'
 const { resolve } = createResolver(import.meta.url)
 
 export default defineNuxtConfig({
+  ui: { fonts: false },
+  icon: {
+    fallbackToApi: false,
+    clientBundle: { scan: true, includeCustomCollections: true, sizeLimitKb: 512 }
+  },
   css: ['@fontsource-variable/inter', resolve('./app/assets/css/courses.css')],
   components: {
     dirs: [

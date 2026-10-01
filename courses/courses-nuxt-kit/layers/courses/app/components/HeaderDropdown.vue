@@ -1,5 +1,34 @@
 <script setup lang="ts">
-const open = defineModel<boolean>({ default: true })
+const open = defineModel<boolean>({ default: false })
+const anchor = ref<HTMLElement | null>(null)
+const panelId = useId()
+function close(event?: KeyboardEvent) {
+  open.value = false
+  if (event?.key === 'Escape') anchor.value?.querySelector<HTMLButtonElement>('button')?.focus()
+}
+function onPointerDown(event: PointerEvent) {
+  if (event.target instanceof Node && !anchor.value?.contains(event.target)) close()
+}
+function onKeyDown(event: KeyboardEvent) {
+  if (event.key === 'Escape') { event.preventDefault(); close(event) }
+}
+function onPanelClick(event: MouseEvent) {
+  if (event.target instanceof Element && event.target.closest('a')) close()
+}
+function removeListeners() {
+  document.removeEventListener('pointerdown', onPointerDown)
+  document.removeEventListener('keydown', onKeyDown)
+}
+onMounted(() => {
+  watch(open, value => {
+    removeListeners()
+    if (value) {
+      document.addEventListener('pointerdown', onPointerDown)
+      document.addEventListener('keydown', onKeyDown)
+    }
+  }, { immediate: true, flush: 'sync' })
+})
+onBeforeUnmount(() => { if (import.meta.client) removeListeners() })
 withDefaults(defineProps<{ label?: string; embedded?: boolean }>(), { label: 'Все сервисы', embedded: false })
 const services = [
   { label: 'Хабр', service: 'habr' as const, href: 'https://habr.com/' },
@@ -11,10 +40,10 @@ const services = [
 
 <template>
   <div class="crs-header-dropdown" :data-embedded="embedded || undefined">
-    <div class="crs-header-dropdown__anchor">
-      <Button v-if="!embedded" class="crs-header-dropdown__trigger" variant="brand" density="compact" :rotated="open" :aria-expanded="open" aria-controls="courses-header-services" @click="open = !open"><span>{{ label }}</span><template #trailing><UIcon name="i-tabler-chevron-down" /></template></Button>
-      <IconButton v-else class="crs-header-dropdown__trigger" label="Все сервисы Хабра" icon="i-tabler-chevron-down" variant="ghost" size="s" tone="inherit" hover="none" :rotated="open" :aria-expanded="open" aria-controls="courses-header-services" @click="open = !open" />
-      <div v-if="open" id="courses-header-services" class="crs-header-dropdown__panel">
+    <div ref="anchor" class="crs-header-dropdown__anchor">
+      <Button v-if="!embedded" class="crs-header-dropdown__trigger" variant="brand" density="compact" :rotated="open" :aria-expanded="open" :aria-controls="panelId" @click="open = !open"><span>{{ label }}</span><template #trailing><UIcon name="i-tabler-chevron-down" /></template></Button>
+      <IconButton v-else class="crs-header-dropdown__trigger" label="Все сервисы Хабра" icon="i-tabler-chevron-down" variant="ghost" size="s" tone="inherit" hover="none" :rotated="open" :aria-expanded="open" :aria-controls="panelId" @click="open = !open" />
+      <div v-if="open" :id="panelId" class="crs-header-dropdown__panel" @click="onPanelClick">
         <template v-if="$slots.default"><slot /></template>
         <template v-else>
           <div class="crs-header-dropdown__title">Все сервисы Хабра</div>

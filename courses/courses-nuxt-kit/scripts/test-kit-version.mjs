@@ -43,7 +43,8 @@ assert.equal(compareSemver('1.0.0-beta.2', '1.0.0-beta.10'), -1)
 assert.equal(compareSemver('1.0.0', '1.0.0-beta.1'), 1)
 
 const newer = structuredClone(localManifest)
-newer.version = '1.1.0'
+const [major, minor] = localManifest.version.split('.').map(Number)
+newer.version = `${major}.${minor + 1}.0`
 const cleanUpdate = evaluateUpdate(localManifest, newer, integrity)
 assert.equal(cleanUpdate.status, 'update_available')
 assert.equal(cleanUpdate.recommendation, 'offer_update')

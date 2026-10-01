@@ -1,5 +1,5 @@
 <script setup lang="ts">
-type Item = { label: string; value: string; disabled?: boolean }
+type Item = { label: string; value: string; disabled?: boolean; loading?: boolean }
 const model = defineModel<string>({ default: '' })
 const props = withDefaults(defineProps<{
   items?: Item[]
@@ -8,18 +8,23 @@ const props = withDefaults(defineProps<{
   block?: boolean
   tabs?: boolean
   density?: 'default' | 'compact'
+  loading?: boolean
 }>(), { items: () => [], variant: 'light', block: true, tabs: false, density: 'default' })
 const isTabs = computed(() => props.tabs)
 </script>
 
 <template>
-  <div class="crs-button-group" :class="[`crs-button-group--${variant}`, `crs-button-group--${density}`, { 'crs-button-group--block': block }]" :role="isTabs ? 'tablist' : 'group'" :aria-label="label">
-    <button v-for="item in items" :key="item.value" class="crs-button-group__item" :class="{ selected: model === item.value }" type="button" :role="isTabs ? 'tab' : undefined" :disabled="item.disabled" :aria-selected="isTabs ? model === item.value : undefined" :aria-pressed="isTabs ? undefined : model === item.value" @click="model = item.value">{{ item.label }}</button>
+  <div class="crs-button-group" :class="[`crs-button-group--${variant}`, `crs-button-group--${density}`, { 'crs-button-group--block': block }]" :role="isTabs ? 'tablist' : 'group'" :aria-label="label" :aria-busy="loading || undefined">
+    <button v-for="item in items" :key="item.value" class="crs-button-group__item" :class="{ selected: model === item.value }" type="button" :role="isTabs ? 'tab' : undefined" :disabled="item.disabled || item.loading || loading" :aria-busy="item.loading || loading || undefined" :aria-label="item.loading || loading ? item.label : undefined" :aria-selected="isTabs ? model === item.value : undefined" :aria-pressed="isTabs ? undefined : model === item.value" @click="model = item.value"><span>{{ item.label }}</span><UIcon v-if="item.loading || loading" class="crs-button-group__loader" name="i-tabler-loader-2" aria-hidden="true" /></button>
     <slot v-if="!items.length" />
   </div>
 </template>
 
 <style scoped>
+.crs-button-group__item{position:relative}
+.crs-button-group__item[aria-busy="true"]>span{visibility:hidden}
+.crs-button-group__loader{position:absolute;top:50%;left:50%;width:var(--crs-size-24);height:var(--crs-size-24);transform:translate(-50%,-50%);animation:crs-group-spin var(--crs-duration-loader) linear infinite}
+@keyframes crs-group-spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
 .crs-button-group{box-sizing:border-box;display:flex;width:max-content;max-width:100%;min-height:var(--crs-size-48);border-radius:var(--crs-radius-16);background:var(--crs-black-50);padding:var(--crs-space-4)}
 .crs-button-group--block{width:100%}
 .crs-button-group--hero{--group-hover:var(--crs-black-transparent-120);--group-focus:var(--crs-white);--group-selected:var(--crs-black-850);min-height:0;border-radius:var(--crs-radius-12);background:var(--crs-black-transparent-120);padding:0;color:var(--crs-white)}

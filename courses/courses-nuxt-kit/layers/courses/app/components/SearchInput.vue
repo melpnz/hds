@@ -1,13 +1,13 @@
 <script setup lang="ts">
 const model = defineModel<string>({ default: '' })
-withDefaults(defineProps<{ placeholder?: string; label?: string; disabled?: boolean; size?: 'm' | 'xl' }>(), { placeholder: 'Поиск', size: 'm' })
+withDefaults(defineProps<{ placeholder?: string; label?: string; disabled?: boolean; error?: boolean; size?: 'm' | 'xl' }>(), { placeholder: 'Поиск', size: 'm' })
 </script>
 
 <template>
-  <label class="crs-search crs-control" :class="`crs-search--${size}`" :data-disabled="disabled || undefined">
+  <label class="crs-search crs-control" :class="`crs-search--${size}`" :data-disabled="disabled || undefined" :aria-invalid="error || undefined">
     <span class="crs-visually-hidden">{{ label || placeholder }}</span>
-    <input v-model="model" class="crs-search__input" :placeholder="placeholder" :disabled="disabled">
-    <IconButton v-if="model" class="crs-search__clear" label="Очистить" icon="i-tabler-x" variant="ghost" size="s" :icon-size="24" @click="model = ''" />
+    <input v-model="model" type="search" class="crs-search__input" :placeholder="placeholder" :disabled="disabled" :aria-invalid="error || undefined">
+    <IconButton v-if="model" class="crs-search__clear" label="Очистить" icon="i-tabler-x" variant="ghost" size="s" :icon-size="24" :disabled="disabled" @click="model = ''" />
   </label>
 </template>
 

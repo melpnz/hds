@@ -13,24 +13,26 @@ const props = withDefaults(defineProps<{
   count?: number
   loading?: boolean
   icon?: string
+  variant?: 'default' | 'switch'
   dropdown?: boolean
   dropdownItems?: DropdownItem[]
   state?: 'default' | 'hover' | 'focus' | 'pressed'
 }>(), {
   disabled: false,
+  variant: 'default',
   dropdown: false,
   dropdownItems: () => [],
   state: 'default'
 })
 
 function select() {
-  if (!props.dropdown) selected.value = !selected.value
+  if (!props.dropdown || props.variant === 'switch') selected.value = !selected.value
 }
 </script>
 
 <template>
   <UPopover
-    v-if="dropdown"
+    v-if="dropdown && variant !== 'switch'"
     v-model:open="selected"
     :content="{ align: 'start', sideOffset: 3 }"
     :ui="{ content: 'p-0 bg-transparent ring-0 shadow-none' }"
@@ -57,14 +59,21 @@ function select() {
     v-else
     type="button"
     class="crs-filter-chip"
+    :class="{ 'crs-filter-chip--switch': variant === 'switch' }"
     :data-state="selected ? 'pressed' : loading ? 'loading' : state"
     :disabled="disabled || loading"
-    :aria-pressed="selected"
+    :role="variant === 'switch' ? 'switch' : undefined"
+    :aria-checked="variant === 'switch' ? selected : undefined"
+    :aria-pressed="variant === 'switch' ? undefined : selected"
     :aria-busy="loading || undefined"
     @click="select"
   >
     <UIcon v-if="icon" class="crs-filter-chip__icon" :name="icon" aria-hidden="true" />
     <span v-if="$slots.default" class="crs-filter-chip__label"><slot /></span>
+    <span v-if="variant === 'switch'" class="crs-filter-chip__switch" aria-hidden="true">
+      <span class="crs-filter-chip__switch-track" />
+      <img class="crs-filter-chip__switch-dot" src="/courses/control-dot.svg" alt="">
+    </span>
     <span v-if="count !== undefined" class="crs-filter-chip__badge">{{ count }}</span>
     <UIcon v-if="loading" class="crs-filter-chip__loader" name="i-tabler-loader-2" />
   </button>
@@ -79,6 +88,16 @@ function select() {
 .crs-filter-chip:disabled{color:var(--crs-black-500);cursor:not-allowed}
 .crs-filter-chip__icon{display:block;width:var(--crs-size-24);height:var(--crs-size-24);flex:none;color:var(--crs-black-400)}
 .crs-filter-chip--dropdown{padding-right:var(--crs-space-8)}
+.crs-filter-chip--switch{gap:var(--crs-space-2);padding-right:var(--crs-space-8)}
+.crs-filter-chip--switch .crs-filter-chip__label{padding:0 var(--crs-space-2)}
+.crs-filter-chip__switch{position:relative;width:var(--crs-size-32);height:var(--crs-size-20);flex:0 0 var(--crs-size-32)}
+.crs-filter-chip__switch-track{position:absolute;top:var(--crs-space-2);left:var(--crs-space-2);width:calc(var(--crs-unit) * 28);height:var(--crs-size-16);border-radius:var(--crs-radius-full);background:var(--crs-black-150);transition:background var(--crs-duration-fast) var(--crs-ease)}
+.crs-filter-chip__switch-dot{position:absolute;z-index:1;top:0;left:0;display:block;width:var(--crs-size-20);height:var(--crs-size-20);transition:left var(--crs-duration-fast) var(--crs-ease)}
+.crs-filter-chip--switch:hover .crs-filter-chip__switch-track,.crs-filter-chip--switch[data-state="hover"] .crs-filter-chip__switch-track,.crs-filter-chip--switch[data-state="focus"] .crs-filter-chip__switch-track{background:var(--crs-black-200)}
+.crs-filter-chip--switch[data-state="pressed"] .crs-filter-chip__switch-track{background:var(--crs-blue-500)}
+.crs-filter-chip--switch[data-state="pressed"] .crs-filter-chip__switch-dot{left:var(--crs-space-12)}
+.crs-filter-chip--switch:disabled .crs-filter-chip__switch-track{background:var(--crs-black-100)}
+.crs-filter-chip--switch[data-state="loading"] .crs-filter-chip__switch{visibility:hidden}
 .crs-filter-chip__chevron{display:block;width:var(--crs-size-20);height:var(--crs-size-20);flex:none;color:currentColor;transition:transform var(--crs-duration-fast) var(--crs-ease)}
 .crs-filter-chip--dropdown[aria-expanded="true"] .crs-filter-chip__chevron{transform:rotate(180deg)}
 .crs-filter-chip[data-state="pressed"] .crs-filter-chip__icon{color:var(--crs-blue-500)}

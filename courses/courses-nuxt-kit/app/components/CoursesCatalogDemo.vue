@@ -123,6 +123,10 @@ onMounted(() => { overlayOpen.value = isInitiallyOpen(props.entry.id) })
           <FilterChip icon="i-tabler-category" :model-value="true">Выбранный пункт</FilterChip>
           <FilterChip dropdown :dropdown-items="filterChipMenuItems">Школа</FilterChip>
         </div></section>
+        <section><h2>Со свитчем</h2><div class="chip-matrix">
+          <FilterChip variant="switch">Акции и скидки</FilterChip>
+          <FilterChip variant="switch" :model-value="true">Только со скидкой</FilterChip>
+        </div></section>
       </div>
     </template>
     <template v-else-if="entry.id === 'option-list'">

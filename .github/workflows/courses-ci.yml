@@ -126,11 +126,15 @@ jobs:
       - name: Install pinned Chromium
         working-directory: courses/courses-nuxt-kit
         run: pnpm exec playwright install chromium
-      - name: Compare priority components with approved screenshots
+      - name: Generate production static preview
+        working-directory: courses/courses-nuxt-kit
+        run: pnpm run generate
+      - name: Check production mechanics, catalog and approved screenshots
         working-directory: courses/courses-nuxt-kit
         env:
           PLAYWRIGHT_CHANNEL: chromium
-        run: pnpm run test:visual
+          COURSES_TEST_STATIC: '1'
+        run: pnpm exec playwright test tests/e2e/roadmap-regressions.spec.ts tests/e2e/catalog.spec.ts tests/e2e/visual.spec.ts
       - name: Upload visual diff on failure
         if: failure()
         uses: actions/upload-artifact@v4

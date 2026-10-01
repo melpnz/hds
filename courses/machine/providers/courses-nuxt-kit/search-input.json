@@ -7,7 +7,7 @@
   },
   "provider": {
     "id": "courses-nuxt-kit",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "type": "nuxt-layer",
     "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
     "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
@@ -22,7 +22,7 @@
     "catalogUrl": "/ui?component=search-input",
     "previewUrl": "/ui/preview?component=search-input",
     "preview": {
-      "strategy": "hybrid",
+      "strategy": "provider-primary",
       "primary": "implementation-provider",
       "staticFallbacks": [
         {
@@ -40,14 +40,19 @@
         }
       ],
       "retainStaticFor": [
-        "github-pages-fallback",
-        "provider-state-gap"
+        "github-pages-fallback"
       ]
     },
     "api": {
       "props": [
         {
           "name": "disabled",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "error",
           "type": "boolean",
           "required": false,
           "source": "prop"
@@ -105,11 +110,10 @@
         "default",
         "hover",
         "focus-visible",
-        "disabled"
-      ],
-      "missingInProvider": [
+        "disabled",
         "error"
       ],
+      "missingInProvider": [],
       "providerOnly": []
     }
   }

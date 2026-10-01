@@ -37,7 +37,7 @@
 [`machine/consumer-workflow.json`](machine/consumer-workflow.json).
 
 1. Возьми по точным `archiveUrl` и `checksumUrl` из workflow архив
-   `courses-nuxt-kit-v1.0.1.zip` и соседний `.sha256`, проверь контрольную сумму
+   `courses-nuxt-kit-v1.1.0.zip` и соседний `.sha256`, проверь контрольную сумму
    и распакуй `layers/courses` целиком. Для отсутствующего layer в Nuxt-проекте
    ИИ выполняет этот шаг самостоятельно; если GitHub недоступен — сообщает об
    этом и не имитирует компоненты кита.

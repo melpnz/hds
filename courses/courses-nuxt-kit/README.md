@@ -88,6 +88,22 @@ using the existing local layer.
 
 ## Validation
 
+To exercise minified production CSS and hydration against a static build:
+
+```powershell
+pnpm run generate
+$env:COURSES_TEST_STATIC = '1'
+pnpm exec playwright test tests/e2e/roadmap-regressions.spec.ts tests/e2e/catalog.spec.ts tests/e2e/visual.spec.ts
+Remove-Item Env:COURSES_TEST_STATIC
+```
+
+The full icon explorer uses the local `/api/tabler-icons` server endpoint and
+is tested on the dev server. Component icons are bundled in the static client.
+For icon names supplied dynamically by an application, list them explicitly in
+`icon.clientBundle.icons`; external Iconify fallback is disabled by the layer.
+Application tag resets should live in a CSS layer, so component and parent class
+styles can override them regardless of stylesheet loading order.
+
 ```bash
 pnpm run check
 pnpm run typecheck
@@ -113,7 +129,7 @@ directories cannot enter it.
 The [Courses workflow](../../.github/workflows/courses-ci.yml) runs for every
 Courses push and pull request. Contract drift, compatibility, build and the
 offline consumer run on Linux; guide/provider render smoke uses Chromium;
-approved screenshots are compared separately on Windows with Microsoft Edge.
+approved screenshots are compared separately on Windows with pinned Chromium.
 
 ## License
 
@@ -129,6 +145,6 @@ canonical maintainer boundary are described separately in
 
 ## Roadmap
 
-Технический долг по композиции компонентов и семантическим токенам зафиксирован в [ROADMAP.md](./ROADMAP.md). Пункты выполняются по одному, с отдельной визуальной проверкой и коммитом.
+Активная очередь дальнейшего развития зафиксирована в [ROADMAP.md](./ROADMAP.md). Пункты выполняются по одному, с отдельной визуальной проверкой и коммитом.
 
 This repository is the source template for the Courses component library. Releases describe changes that an executor may copy into a project deliberately; existing project copies are never updated automatically.
