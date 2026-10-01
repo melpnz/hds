@@ -60,7 +60,7 @@ export const coursesRegistry: CoursesRegistryEntry[] = [
   entry('learning-step', 'LearningStep', 'data-display', 'module', 'complete', ['default', 'hover', 'focus-visible', 'expanded', 'collapsed'], { number: 1, title: 'Основы профессии', duration: '4 недели', open: true }, 'Знакомство с инструментами и первая практическая работа.'),
   entry('prose', 'Prose', 'data-display', 'component', 'complete', ['default'], {}, 'Хабр Курсы помогают сравнивать образовательные программы по понятным критериям.'),
   entry('rating-badge', 'RatingBadge', 'data-display', 'primitive', 'complete', ['summary-s', 'summary-m', 'stars'], { value: 4.9 }),
-  entry('service-logo', 'ServiceLogo', 'data-display', 'primitive', 'complete', ['habr', 'qna', 'career', 'courses', 'icon', 'brand'], { service: 'courses', size: 24, label: 'Хабр Курсы' }),
+  entry('service-logo', 'ServiceLogo', 'data-display', 'primitive', 'complete', ['habr', 'qna', 'career', 'courses', 'promo', 'business', 'payment', 'icon', 'brand'], { service: 'courses', size: 24, label: 'Хабр Курсы' }),
   entry('social-icon', 'SocialIcon', 'data-display', 'primitive', 'complete', ['default', 'hover', 'focus-visible'], { label: 'Telegram' }),
   entry('ad-card', 'AdCard', 'entities', 'module', 'complete', ['default', 'hover'], { title: 'Освойте новую профессию', description: 'Практический курс с поддержкой наставника' }),
   entry('article-card', 'ArticleCard', 'entities', 'module', 'complete', ['default', 'hover', 'focus-visible'], { title: 'Как выбрать онлайн-курс', description: 'Разбираем ключевые критерии выбора программы' }),

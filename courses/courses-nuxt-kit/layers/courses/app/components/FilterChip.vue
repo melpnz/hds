@@ -1,4 +1,6 @@
 <script setup lang="ts">
+defineOptions({ inheritAttrs: false })
+const attrs = useAttrs()
 const selected = defineModel<boolean>({ default: false })
 
 type DropdownItem = {
@@ -11,6 +13,7 @@ type DropdownItem = {
 const props = withDefaults(defineProps<{
   disabled?: boolean
   count?: number
+  countLabel?: string
   loading?: boolean
   icon?: string
   variant?: 'default' | 'switch'
@@ -19,11 +22,19 @@ const props = withDefaults(defineProps<{
   state?: 'default' | 'hover' | 'focus' | 'pressed'
 }>(), {
   disabled: false,
+  countLabel: 'выбрано',
   variant: 'default',
   dropdown: false,
   dropdownItems: () => [],
   state: 'default'
 })
+
+const hasCount = computed(() => typeof props.count === 'number' && Number.isFinite(props.count) && props.count > 0)
+const countText = computed(() => `${props.countLabel} ${props.count}`)
+function accessibleLabel() {
+  const label = attrs['aria-label'] as string | undefined
+  return label && hasCount.value ? `${label} (${countText.value})` : label
+}
 
 function select() {
   if (!props.dropdown || props.variant === 'switch') selected.value = !selected.value
@@ -38,17 +49,19 @@ function select() {
     :ui="{ content: 'p-0 bg-transparent ring-0 shadow-none' }"
   >
     <button
+      v-bind="attrs"
       type="button"
       class="crs-filter-chip crs-filter-chip--dropdown"
       :data-state="selected ? 'open' : loading ? 'loading' : state"
       :disabled="disabled || loading"
       aria-pressed="false"
       :aria-busy="loading || undefined"
+      :aria-label="accessibleLabel()"
     >
       <UIcon v-if="icon" class="crs-filter-chip__icon" :name="icon" aria-hidden="true" />
       <span v-if="$slots.default" class="crs-filter-chip__label"><slot /></span>
       <UIcon class="crs-filter-chip__chevron" name="i-tabler-chevron-down" aria-hidden="true" />
-      <span v-if="count !== undefined" class="crs-filter-chip__badge">{{ count }}</span>
+      <template v-if="hasCount"><span class="crs-filter-chip__badge" aria-hidden="true">{{ count }}</span><span class="sr-only">({{ countText }})</span></template>
       <UIcon v-if="loading" class="crs-filter-chip__loader" name="i-tabler-loader-2" />
     </button>
     <template #content>
@@ -57,6 +70,7 @@ function select() {
   </UPopover>
   <button
     v-else
+    v-bind="attrs"
     type="button"
     class="crs-filter-chip"
     :class="{ 'crs-filter-chip--switch': variant === 'switch' }"
@@ -66,6 +80,7 @@ function select() {
     :aria-checked="variant === 'switch' ? selected : undefined"
     :aria-pressed="variant === 'switch' ? undefined : selected"
     :aria-busy="loading || undefined"
+    :aria-label="accessibleLabel()"
     @click="select"
   >
     <UIcon v-if="icon" class="crs-filter-chip__icon" :name="icon" aria-hidden="true" />
@@ -74,7 +89,7 @@ function select() {
       <span class="crs-filter-chip__switch-track" />
       <img class="crs-filter-chip__switch-dot" src="/courses/control-dot.svg" alt="">
     </span>
-    <span v-if="count !== undefined" class="crs-filter-chip__badge">{{ count }}</span>
+    <template v-if="hasCount"><span class="crs-filter-chip__badge" aria-hidden="true">{{ count }}</span><span class="sr-only">({{ countText }})</span></template>
     <UIcon v-if="loading" class="crs-filter-chip__loader" name="i-tabler-loader-2" />
   </button>
 </template>
@@ -98,10 +113,10 @@ function select() {
 .crs-filter-chip--switch[data-state="pressed"] .crs-filter-chip__switch-dot{left:var(--crs-space-12)}
 .crs-filter-chip--switch:disabled .crs-filter-chip__switch-track{background:var(--crs-black-100)}
 .crs-filter-chip--switch[data-state="loading"] .crs-filter-chip__switch{visibility:hidden}
-.crs-filter-chip__chevron{display:block;width:var(--crs-size-20);height:var(--crs-size-20);flex:none;color:currentColor;transition:transform var(--crs-duration-fast) var(--crs-ease)}
+.crs-filter-chip__chevron{display:block;width:var(--crs-size-20);height:var(--crs-size-20);flex:none;color:var(--crs-black-400);transition:transform var(--crs-duration-fast) var(--crs-ease)}
 .crs-filter-chip--dropdown[aria-expanded="true"] .crs-filter-chip__chevron{transform:rotate(180deg)}
 .crs-filter-chip[data-state="pressed"] .crs-filter-chip__icon{color:var(--crs-blue-500)}
-.crs-filter-chip:disabled .crs-filter-chip__icon{color:var(--crs-black-300)}
+.crs-filter-chip:disabled .crs-filter-chip__icon,.crs-filter-chip:disabled .crs-filter-chip__chevron{color:var(--crs-black-300)}
 .crs-filter-chip__label{display:flex;height:var(--crs-size-24);align-items:center}
 .crs-filter-chip__badge{position:absolute;top:calc(var(--crs-unit) * -5);right:calc(var(--crs-unit) * -5);box-sizing:border-box;min-width:var(--crs-size-16);height:var(--crs-size-16);border-radius:var(--crs-radius-full);background:var(--crs-blue-500);padding:0 var(--crs-space-4);color:var(--crs-white);font:600 var(--crs-font-12)/var(--crs-leading-16) var(--crs-font-family);text-align:center}
 .crs-filter-chip[data-state="loading"]{min-width:calc(var(--crs-unit) * 53);color:transparent;cursor:wait}

@@ -1,6 +1,6 @@
 # Courses Nuxt Kit
 
-Nuxt 4 component layer based on the visual language and public component inventory of HDS Courses v1.0.
+Nuxt 4 component layer based on the visual language and public component inventory of HDS Courses v1.1.
 
 ## Included
 
@@ -12,6 +12,18 @@ Nuxt 4 component layer based on the visual language and public component invento
 - local Tabler Icons Outline collection under the MIT license.
 
 Completed components have no status label in the catalog. Components that are still being implemented use the `in-progress` status and display the label «В разработке».
+
+## Filter controls
+
+`FilterChip` displays its badge only for a positive finite `count`; do not append
+the number to its visible label. The badge is announced as “выбрано N” both with
+and without an explicit `aria-label`. Override the prefix with `countLabel`.
+Dropdown attributes, including `aria-label`, are forwarded to the actual button.
+
+`SiteHeader` accepts `filtersCount` and emits `open-filters` / `open-sort` from
+its filter controls. The application owns filter state and opens its own panels.
+`OptionList fit` opts into content width; `fluid` and `embedded` take precedence.
+The default width remains unchanged.
 
 ## Development
 
@@ -87,6 +99,13 @@ replacing the layer with a newer release. A failed network check does not block
 using the existing local layer.
 
 ## Validation
+
+Visual regression covers 20 surfaces/states at 320 / 480 / 768 / 1024 px:
+80 scenarios and 160 full-color/geometry baselines. Extended coverage includes
+services and price overlays, the promo modal, fields, switch chips, loading/error
+states, feedback contact/success screens, and school/review/person cards.
+Inspect new screenshots before accepting them; do not update existing baselines
+to hide failures. Both groups run in the existing Courses CI workflow.
 
 To exercise minified production CSS and hydration against a static build:
 

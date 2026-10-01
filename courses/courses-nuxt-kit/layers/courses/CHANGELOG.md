@@ -1,5 +1,31 @@
 # Courses Kit changelog
 
+## Unreleased
+
+## 1.2.0 — 2026-10-01
+
+Compatible with Courses guide v1.1.
+
+- SortSheet uses the same white external mobile handle as Modal (64 × 4).
+- FilterChip forwards attributes to its trigger, matches chevron/icon colors,
+  hides zero counts and exposes descriptive count names via countLabel.
+- OptionList supports opt-in fit width; fluid/embedded sizing takes precedence.
+- SiteHeader exposes filtersCount and open-filters/open-sort events.
+
+- Expanded visual regression to 20 surfaces/states across four widths, keeping
+  existing baselines unchanged; new cases include overlays, forms and cards.
+- Fixed hidden ButtonGroup loading icons and undersized FeedbackForm success icon.
+- The guide palette now derives from canonical kit color usage, with reserved
+  tokens and historical aliases preserved for compatibility.
+
+- HeaderDropdown includes seven services, configurable services, current-service
+  semantics and container alignment for embedded mobile headers.
+- ServiceLogo adds local Promo, Business and Payment assets without Payment UI
+  Kit imports, icon collections, CSS or runtime dependencies.
+- SiteHeader marks Courses as current and no longer clips the services panel.
+- Payment's default destination is https://payment.habr.com, confirmed by the
+  maintainer. Custom services without href remain disabled.
+
 ## 1.1.0 — 2026-10-01
 
 Compatible with Courses guide v1.0.

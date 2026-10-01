@@ -26,6 +26,7 @@ const props = withDefaults(defineProps<{
   selectionMode?: SelectionMode
   label?: string
   fluid?: boolean
+  fit?: boolean
   embedded?: boolean
   inset?: 'default' | 'none'
 }>(), {
@@ -33,6 +34,7 @@ const props = withDefaults(defineProps<{
   selectionMode: 'single',
   label: 'Варианты',
   fluid: false,
+  fit: false,
   embedded: false,
   inset: 'default'
 })
@@ -94,7 +96,7 @@ defineExpose({ focusFirst, focusLast })
   <div
     ref="root"
     class="crs-option-list"
-    :class="{ 'crs-option-list--fluid': fluid, 'crs-option-list--embedded': embedded, 'crs-option-list--inset-none': inset === 'none' }"
+    :class="{ 'crs-option-list--fit': fit, 'crs-option-list--fluid': fluid, 'crs-option-list--embedded': embedded, 'crs-option-list--inset-none': inset === 'none' }"
     :role="selectionMode === 'action' ? 'menu' : 'listbox'"
     :aria-label="label"
     :aria-multiselectable="selectionMode === 'multiple' ? true : undefined"
@@ -118,6 +120,7 @@ defineExpose({ focusFirst, focusLast })
 
 <style scoped>
 .crs-option-list{box-sizing:border-box;width:calc(var(--crs-unit) * 290);max-width:calc(100vw - var(--crs-space-16));max-height:calc(var(--crs-unit) * 216);overflow-y:auto;border:var(--crs-border-1) solid var(--crs-black-100);border-radius:var(--crs-radius-12);background:var(--crs-white);padding:var(--crs-space-8) 0;box-shadow:var(--crs-shadow-dropdown)}
+.crs-option-list--fit{width:max-content}
 .crs-option-list--fluid{width:100%;max-width:100%}
 .crs-option-list--embedded{width:100%;max-width:100%;max-height:none;border:0;border-radius:var(--crs-radius-0);box-shadow:none}
 .crs-option-list--inset-none{--crs-option-item-padding-left:0;--crs-option-item-padding-right:0}

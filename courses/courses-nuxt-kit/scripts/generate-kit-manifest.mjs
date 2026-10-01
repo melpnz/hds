@@ -246,7 +246,7 @@ const manifest = {
     id: 'courses-nuxt-kit',
     name: 'Courses Nuxt Kit',
     type: 'nuxt-layer',
-    status: 'active-temporary'
+    status: 'active'
   },
   version: packageJson.version,
   releasedAt: packageJson.coursesKit.releasedAt,

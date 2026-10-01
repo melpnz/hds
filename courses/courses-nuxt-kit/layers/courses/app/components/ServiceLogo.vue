@@ -1,6 +1,7 @@
 <script setup lang="ts">
+export type HabrService = 'habr' | 'qna' | 'career' | 'courses' | 'promo' | 'business' | 'payment'
 const props = withDefaults(defineProps<{
-  service: 'habr' | 'qna' | 'career' | 'courses'
+  service: HabrService
   size?: 16 | 24 | 32
   label?: string
   variant?: 'icon' | 'brand'

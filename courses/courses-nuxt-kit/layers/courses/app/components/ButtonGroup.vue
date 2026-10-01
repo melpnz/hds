@@ -22,7 +22,7 @@ const isTabs = computed(() => props.tabs)
 
 <style scoped>
 .crs-button-group__item{position:relative}
-.crs-button-group__item[aria-busy="true"]>span{visibility:hidden}
+.crs-button-group__item[aria-busy="true"]>span:not(.crs-button-group__loader){visibility:hidden}
 .crs-button-group__loader{position:absolute;top:50%;left:50%;width:var(--crs-size-24);height:var(--crs-size-24);transform:translate(-50%,-50%);animation:crs-group-spin var(--crs-duration-loader) linear infinite}
 @keyframes crs-group-spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
 .crs-button-group{box-sizing:border-box;display:flex;width:max-content;max-width:100%;min-height:var(--crs-size-48);border-radius:var(--crs-radius-16);background:var(--crs-black-50);padding:var(--crs-space-4)}

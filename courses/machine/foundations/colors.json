@@ -16,7 +16,7 @@
     "confidence": "high",
     "scope": "public-guest"
   },
-  "purpose": "Цветовая система Курсов: нейтральная и синяя шкалы, статусные и дополнительные оттенки, сервисные цвета и градиенты.",
+  "purpose": "Рабочая цветовая система Курсов определяется каноническим Courses UI Kit. Production/Figma-палитра сохранена как evidence и алиасы совместимости.",
   "implementation": {
     "markup": "available-in-examples",
     "cssRoots": [
@@ -55,7 +55,7 @@
   "previewNotes": [
     {
       "type": "guidance",
-      "text": "Аудит разделяет прямое использование основного --color-* и совпадение значения: 12 токенов без прямой ссылки вынесены в «Предположительно нигде не используются», ещё 3 встречаются только через эквивалентные --fig-* и вынесены в отдельную Figma-группу. Это основание для ручной проверки, а не для автоматического удаления."
+      "text": "Решение владельца 01.10.2026: брать используемые цвета из UI Kit. Автоматический отчёт machine/reports/provider-color-usage.json: runtime-потребление с транзитивными зависимостями; резервные переменные не удаляются. Старые группы Figma не блокируют использование кита."
     }
   ],
   "accessibility": [
@@ -84,37 +84,9 @@
       "danger": "#e84444"
     },
     "usageAudit": {
-      "scope": "Courses runtime CSS, HTML and JS; token declarations and palette showcase excluded",
-      "canonicalRuntimeCount": 24,
-      "candidateUnused": [
-        "--color-chip-press",
-        "--color-chip-inactive",
-        "--color-ui-black-transparent-300",
-        "--color-ui-yellow-400",
-        "--color-ui-red-400",
-        "--color-ui-green-50",
-        "--color-ui-green-400",
-        "--color-ui-orange-50",
-        "--color-ui-violet-50",
-        "--color-habr",
-        "--color-career",
-        "--color-qna"
-      ],
-      "figmaOnlyEquivalent": [
-        {
-          "token": "--color-ui-yellow-50",
-          "alias": "--fig-yellow-50-solid"
-        },
-        {
-          "token": "--color-ui-red-50",
-          "alias": "--fig-red-50-solid"
-        },
-        {
-          "token": "--color-ui-red-500",
-          "alias": "--fig-elements-informators-tost-fill-red"
-        }
-      ],
-      "action": "verify-before-removal"
+      "scope": "Canonical Courses UI Kit runtime Vue/CSS/TS; token declarations excluded, transitive references included; SVG assets are not variable consumers",
+      "report": "machine/reports/provider-color-usage.json",
+      "action": "use-canonical-kit-colors-preserve-compatibility-aliases"
     }
   }
 }

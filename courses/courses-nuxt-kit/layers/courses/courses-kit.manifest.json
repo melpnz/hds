@@ -4,28 +4,28 @@
     "id": "courses-nuxt-kit",
     "name": "Courses Nuxt Kit",
     "type": "nuxt-layer",
-    "status": "active-temporary"
+    "status": "active"
   },
-  "version": "1.1.0",
+  "version": "1.2.0",
   "releasedAt": "2026-10-01",
   "guide": {
     "id": "courses",
-    "compatibleVersion": "1.0"
+    "compatibleVersion": "1.1"
   },
   "maintainer": "@melpnz",
   "source": {
     "repository": "https://github.com/melpnz/hds",
     "path": "courses/courses-nuxt-kit/layers/courses",
-    "commitSha": "0f02fe0865edc68ba64aeb245cf11adf7466aad3"
+    "commitSha": null
   },
   "distribution": {
     "mode": "copy",
     "copiedDirectory": "layers/courses",
-    "archiveName": "courses-nuxt-kit-v1.1.0.zip",
-    "releaseTag": "courses-nuxt-kit-v1.1.0",
+    "archiveName": "courses-nuxt-kit-v1.2.0.zip",
+    "releaseTag": "courses-nuxt-kit-v1.2.0",
     "repositoryUrl": "https://github.com/melpnz/hds",
     "releasesUrl": "https://github.com/melpnz/hds/releases",
-    "currentReleaseUrl": "https://github.com/melpnz/hds/releases/tag/courses-nuxt-kit-v1.1.0",
+    "currentReleaseUrl": "https://github.com/melpnz/hds/releases/tag/courses-nuxt-kit-v1.2.0",
     "changelogUrl": "https://github.com/melpnz/hds/blob/main/courses/courses-nuxt-kit/layers/courses/CHANGELOG.md",
     "latestManifestUrl": "https://raw.githubusercontent.com/melpnz/hds/main/courses/courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
     "networkPolicy": "automatic-read-only-check-no-automatic-update"
@@ -817,6 +817,9 @@
           "qna",
           "career",
           "courses",
+          "promo",
+          "business",
+          "payment",
           "icon",
           "brand"
         ],
@@ -830,7 +833,7 @@
             },
             {
               "name": "service",
-              "type": "'habr' | 'qna' | 'career' | 'courses'",
+              "type": "HabrService",
               "required": true,
               "source": "prop"
             },
@@ -2115,6 +2118,12 @@
               "source": "prop"
             },
             {
+              "name": "countLabel",
+              "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
               "name": "disabled",
               "type": "boolean",
               "required": false,
@@ -2425,6 +2434,12 @@
           "props": [
             {
               "name": "embedded",
+              "type": "boolean",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "fit",
               "type": "boolean",
               "required": false,
               "source": "prop"
@@ -3360,6 +3375,12 @@
               "source": "prop"
             },
             {
+              "name": "filtersCount",
+              "type": "number",
+              "required": false,
+              "source": "prop"
+            },
+            {
               "name": "level",
               "type": "'hero' | 'page'",
               "required": false,
@@ -3392,7 +3413,18 @@
               "name": "navigation"
             }
           ],
-          "emits": [],
+          "emits": [
+            {
+              "name": "open-filters",
+              "type": "[]",
+              "source": "emit"
+            },
+            {
+              "name": "open-sort",
+              "type": "[]",
+              "source": "emit"
+            }
+          ],
           "models": []
         },
         "source": "app/components/SiteHeader.vue",
@@ -3941,6 +3973,18 @@
         "api": {
           "props": [
             {
+              "name": "align",
+              "type": "'trigger' | 'container'",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "current",
+              "type": "HabrService | null",
+              "required": false,
+              "source": "prop"
+            },
+            {
               "name": "embedded",
               "type": "boolean",
               "required": false,
@@ -3957,6 +4001,12 @@
               "type": "boolean",
               "required": false,
               "source": "model"
+            },
+            {
+              "name": "services",
+              "type": "HeaderService[]",
+              "required": false,
+              "source": "prop"
             }
           ],
           "slots": [
@@ -4395,7 +4445,7 @@
   "integrity": {
     "algorithm": "sha256",
     "file": "courses-kit.integrity.json",
-    "trackedFiles": 148,
+    "trackedFiles": 151,
     "excludes": [
       "courses-kit.manifest.json",
       "courses-kit.integrity.json"

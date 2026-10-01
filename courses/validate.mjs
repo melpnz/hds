@@ -273,29 +273,17 @@ for (const entry of catalog) {
     if (!example.includes('crs-card-grid--school-courses')) errors.push('card-grid: school-courses variant is absent from the canonical example');
   }
   if (entry.id === 'colors') {
-    const auditTokens = item.visual?.usageAudit?.candidateUnused || [];
-    const figmaOnly = item.visual?.usageAudit?.figmaOnlyEquivalent || [];
     const example = item.examples?.[0];
     const html = example ? readFileSync(resolve(root, example.file), 'utf8') : '';
     const script = readFileSync(resolve(root, 'examples/foundations/colors/colors.js'), 'utf8');
-    if (!html.includes('Предположительно нигде не используются') || !html.includes('id="unused-colors"')) {
-      errors.push('colors: unused-candidate block is absent from the live example');
-    }
-    for (const token of auditTokens) {
-      const id = token.replace(/^--color-/, '');
-      if (!script.includes(`['${id}',`)) errors.push(`colors: ${token} is absent from the unused-candidate block`);
-    }
-    if (!html.includes('Предположительно используются только в Figma') || !html.includes('id="figma-only-colors"')) {
-      errors.push('colors: Figma-only block is absent from the live example');
-    }
-    for (const pair of figmaOnly) {
-      const id = pair.token.replace(/^--color-/, '');
-      if (!script.includes(`['${id}',`) || !script.includes(`'${pair.alias}'`)) {
-        errors.push(`colors: ${pair.token} → ${pair.alias} is absent from the Figma-only block`);
-      }
-    }
-    if (auditTokens.length !== 12) errors.push(`colors: expected twelve unused candidates, got ${auditTokens.length}`);
-    if (figmaOnly.length !== 3) errors.push(`colors: expected three Figma-only equivalents, got ${figmaOnly.length}`);
+    const reportPath = item.visual?.usageAudit?.report;
+    if (reportPath !== 'machine/reports/provider-color-usage.json' || !script.includes('provider-color-usage.json')) errors.push('colors: canonical kit usage report is not connected');
+    if (!html.includes('Рабочая палитра UI Kit') || !html.includes('Резервные токены UI Kit')) errors.push('colors: kit palette groups are absent');
+    if (reportPath && existsSync(resolve(root, reportPath))) {
+      const report = JSON.parse(readFileSync(resolve(root, reportPath), 'utf8'));
+      if (report.provider.id !== 'courses-nuxt-kit' || report.tokens.length !== report.summary.total) errors.push('colors: invalid provider color usage report');
+      if (report.tokens.some(token => !['used', 'reserved'].includes(token.status))) errors.push('colors: unsupported token usage status');
+    } else errors.push('colors: kit usage report is absent');
   }
   if (entry.id === 'profile-history') {
     const example = item.examples?.[0];

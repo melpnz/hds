@@ -759,7 +759,7 @@ test.describe('Courses UI catalog', () => {
 
     await page.goto('/ui/preview?component=header-dropdown')
     expect((await page.locator('.crs-header-dropdown__panel').boundingBox())?.width).toBe(178)
-    await expect(page.locator('.crs-header-dropdown__link')).toHaveCount(4)
+    await expect(page.locator('.crs-header-dropdown__link')).toHaveCount(7)
   })
 
   test('keeps the revised cards, overlays and shared primitives responsive', async ({ page }) => {

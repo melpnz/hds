@@ -14,4 +14,7 @@
 строки и предоставляет методы `focusFirst` и `focusLast`. Встроенный вариант
 `embedded` убирает собственную рамку и тень.
 
+`fit` включает ширину по содержимому с ограничением по viewport. Без него
+сохраняется стандартная ширина. `fluid` и `embedded` имеют приоритет над `fit`.
+
 Визуальный источник: `courses-nuxt-kit/layers/courses/app/components/OptionList.vue`.

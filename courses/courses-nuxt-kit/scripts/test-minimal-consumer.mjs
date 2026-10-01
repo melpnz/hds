@@ -41,6 +41,7 @@ try {
     <Button>Выбрать курс</Button>
     <EntityLogo name="Школа" />
     <CourseCard title="Frontend-разработчик" />
+    <HeaderDropdown :model-value="true" current="courses" />
   </main>
 </template>
 `)
