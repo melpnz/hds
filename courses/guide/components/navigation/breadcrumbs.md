@@ -1,5 +1,9 @@
 # Breadcrumbs
 
+> Текущая реализация: [API UI Kit 1.3.1](../../../machine/providers/courses-nuxt-kit/breadcrumbs.json).
+> DOM/CSS, снимки и дроби вхождений ниже — историческое evidence, не исходники кита.
+> Для сборки страниц применяйте [принятые правила](../../../docs/guide/production-pages.md).
+
 | | |
 |---|---|
 | **Категория** | Навигация (`navigation`) |
@@ -7,7 +11,7 @@
 | **CSS** | `ui/components/navigation.css` |
 | **Живая реализация** | [`viewer/index.html#breadcrumbs`](../../../viewer/index.html#breadcrumbs) |
 | **Источник** | Figma `02_Education-NEW`, узел `9902:39188` «Хлебные крошки» |
-| **Статус** | `partial` — подтверждён production и Figma |
+| **Статус** | `complete` в machine-гайде v1.1; происхождение — production и Figma |
 
 ## Когда использовать
 
@@ -19,6 +23,8 @@
 для синего фона `SiteHeader`. Текущий пункт передаётся без ссылки и получает
 `aria-current="page"`. В inverse-варианте текст белый, а разделители используют
 нейтральный `black-200`, как на production. Длинный путь переносится и не расширяет viewport.
+Стрелка следует непосредственно за текстом крошки, включая переносы на phone,
+а не закрепляется у правого края всей строки.
 
 ## Разметка
 

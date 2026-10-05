@@ -1,5 +1,9 @@
 # Chip
 
+> Текущая реализация: [API UI Kit 1.3.1](../../../machine/providers/courses-nuxt-kit/chip.json).
+> DOM/CSS, снимки и дроби вхождений ниже — историческое evidence, не исходники кита.
+> Для сборки страниц применяйте [принятые правила](../../../docs/guide/production-pages.md).
+
 > `Badge`, `MetaPill`, `CounterPill` и `SpecializationTag` больше не являются
 > отдельными компонентами. Это контекстные варианты публичного `Chip` из
 > Courses Nuxt Kit: соответственно `tone="orange"`, `tone="surface"`,

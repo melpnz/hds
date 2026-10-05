@@ -1,5 +1,9 @@
 # OptionList
 
+> Текущая реализация: [API UI Kit 1.3.1](../../../machine/providers/courses-nuxt-kit/option-list.json).
+> DOM/CSS, снимки и дроби вхождений ниже — историческое evidence, не исходники кита.
+> Для сборки страниц применяйте [принятые правила](../../../docs/guide/production-pages.md).
+
 Публичный компонент Courses Nuxt Kit, который объединяет `OptionItem` в
 доступный список. Используется в `Select`, `MultiSelect`, `FilterChip` и
 `SortSheet`, поэтому новые выпадающие списки не нужно собирать заново.

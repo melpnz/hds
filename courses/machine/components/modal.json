@@ -130,19 +130,19 @@
       "id": "scroll-body",
       "context": "Переполнение",
       "behavior": "Header и footer остаются на месте, прокручивается только body.",
-      "implementation": "grid-template-rows:auto auto minmax(0,1fr) auto; body min-height:0; overflow-y:auto."
+      "implementation": "The canonical UModal wrapper keeps header/footer outside the scrolling body; body uses min-height:0 and overflow-y:auto. Ordinary body has zero vertical padding; overflowing body adds 16px."
     },
     {
       "id": "slots",
       "context": "Состав",
-      "behavior": "Изображение, иконки header и до 12 content slots включаются независимо; в footer всегда остаётся хотя бы одна кнопка.",
-      "implementation": "Опциональные DOM slots; action controls не позволяют выключить последнюю кнопку; gap body 16px, внутренние отступы 24px."
+      "behavior": "Текущий Modal принимает v-model, title, description, image, imageAlt и scrollable; слоты trigger, default body и необязательный footer. Приложение задаёт состав и вертикальную колонку кнопок. Минимум одна кнопка не навязывается компонентом; 12 content slots и pinHeader/pinFooter относятся к исторической Figma-матрице, не public API.",
+      "implementation": "Published UI Kit 1.3.1 canonical Modal wraps UModal; use generated provider API for props/models/slots, not Figma property names. Body gap is 16px; horizontal padding is 24px."
     },
     {
       "id": "dismiss",
       "context": "Interaction",
-      "behavior": "Overlay, Escape и подтверждение закрывают Modal с возвратом фокуса.",
-      "implementation": "role=dialog, aria-modal=true, focus return to trigger."
+      "behavior": "Overlay и Escape закрывают Modal с возвратом фокуса. Действия подтверждения и закрытия внутри footer управляются приложением через v-model; произвольная кнопка не закрывает диалог автоматически.",
+      "implementation": "UModal owns dialog semantics and dismissal; the application sets the canonical Modal model to false for its own actions."
     }
   ],
   "previewNotes": [

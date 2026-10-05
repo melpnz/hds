@@ -1,5 +1,9 @@
 # Textarea
 
+> Текущая реализация: [API UI Kit 1.3.1](../../../machine/providers/courses-nuxt-kit/textarea.json).
+> DOM/CSS, снимки и дроби вхождений ниже — историческое evidence, не исходники кита.
+> Для сборки страниц применяйте [принятые правила](../../../docs/guide/production-pages.md).
+
 ## Статус
 
 Спецификация v0.2 по Courses Figma; production-вхождения в снятом публичном корпусе не найдены.

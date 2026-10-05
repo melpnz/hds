@@ -1,5 +1,9 @@
 # AvatarStack
 
+> Текущая реализация: [API UI Kit 1.3.1](../../../machine/providers/courses-nuxt-kit/avatar-stack.json).
+> DOM/CSS, снимки и дроби вхождений ниже — историческое evidence, не исходники кита.
+> Для сборки страниц применяйте [принятые правила](../../../docs/guide/production-pages.md).
+
 ## Интеграция активного UI Kit
 
 `size` принимает `20` или `24`, default — `24`. Размер 20 px используется внутри

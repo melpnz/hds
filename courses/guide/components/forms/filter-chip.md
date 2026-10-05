@@ -1,5 +1,9 @@
 # FilterChip
 
+> Текущая реализация: [API UI Kit 1.3.1](../../../machine/providers/courses-nuxt-kit/filter-chip.json).
+> DOM/CSS, снимки и дроби вхождений ниже — историческое evidence, не исходники кита.
+> Для сборки страниц применяйте [принятые правила](../../../docs/guide/production-pages.md).
+
 > Историческая запись `Tab · Menu / Switch` объединена с `FilterChip`.
 > Канонические варианты кита — Basic, Menu и Switch.
 
