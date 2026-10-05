@@ -64,7 +64,72 @@
     "behaviorLookup": "machine/catalog.json -> selected record and linked rules",
     "preferPublicComponent": true,
     "allowApplicationComponents": true,
-    "applicationComponentsLocation": "outside layers/courses"
+    "applicationComponentsLocation": "outside layers/courses",
+    "newCompositionWorkflow": "docs/decisions/unknowns.md",
+    "reusePlanRequired": true,
+    "reusePlanChoices": [
+      "public-provider-component",
+      "application-wrapper-using-public-api",
+      "new-domain-composition-with-disclosed-assumptions",
+      "missing-api-request-to-kit-owner"
+    ],
+    "newCompositionIsProductionEvidence": false,
+    "newServiceShell": {
+      "status": "owner-decision",
+      "decidedAt": "2026-10-05",
+      "source": "docs/decisions/unknowns.md",
+      "preserveCoursesSiteHeader": true,
+      "preserveCoursesSiteFooter": true,
+      "navigationWhenUnspecified": "offer-options-and-wait-for-user-choice-before-implementation",
+      "automaticSecondNavigationRow": false,
+      "ordinaryPageHeading": "h1-on-shared-white-page-background-with-simple-site-header",
+      "hero": "situational-choice-from-task-confirmed-contract-or-user-decision",
+      "automaticTintedInnerTitlePanel": false,
+      "continuousGradientWhenHeroAdjoinsHeader": true,
+      "missingShellApi": "separate-canonical-kit-change-request-not-local-replacement"
+    },
+    "navigationAndFilters": {
+      "classifyBeforeChoosingComponent": ["section-navigation", "content-switch", "list-filter"],
+      "uncoveredCase": "explain-purpose-offer-options-and-ask-user",
+      "listFilterControl": "filter-chip",
+      "tabsForListFiltering": false,
+      "filterRuleAppliesAtAllWidths": true,
+      "editorStatusFilter": {
+        "status": "owner-decision",
+        "scope": "repititor-editor-status-filter-all-widths",
+        "preferredComposition": "filter-chip-triggered-dropdown",
+        "desktopAndBreakpoint": "same-composition-at-all-widths",
+        "universalTabsReplacement": false
+      }
+    },
+    "compositionApproval": {
+      "status": "owner-decision",
+      "decidedAt": "2026-10-05",
+      "analogPage": "reuse-existing-composition-and-contract",
+      "newScenario": "propose-blocks-order-and-desktop-mobile-layout-before-implementation",
+      "materialAlternatives": "show-with-recommendation-and-wait-for-user-choice",
+      "afterApproval": "assemble-with-public-kit-components-no-duplicates",
+      "mobileContent": "preserve-meaningful-blocks-and-actions",
+      "contentRemoval": "only-by-confirmed-address-contract-or-explicit-user-approval"
+    },
+    "stateComposition": {
+      "status": "owner-decision",
+      "decidedAt": "2026-10-05",
+      "scope": ["loading", "empty-result", "error", "success"],
+      "visuals": "reuse-public-kit-components-and-states-no-new-visual-style",
+      "confirmedCase": "use-existing-contract",
+      "uncoveredPlacementOrBehavior": "propose-and-get-user-approval-before-implementation",
+      "isNewProductionEvidence": false
+    },
+    "verification": {
+      "stateMatrixRequired": true,
+      "compareDesktopMobileContentInventory": true,
+      "visualReviewRequired": true,
+      "openOverlayAfterTransition": true,
+      "checkKeyboardAndReloadWhenApplicable": true,
+      "reportSkippedChecks": true,
+      "buildOrNoOverflowAloneIsAcceptance": false
+    }
   },
   "ownership": {
     "copiedLayer": "vendored-read-only",

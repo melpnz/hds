@@ -15,7 +15,7 @@ export function buildStyleProfile() {
     dimensionTokens: { baseUnit: '0.25rem', referenceRootFontSize: '16px', source: 'machine/dimension-tokens.json', css: 'ui/dimension-tokens.css', exceptions: 'machine/reports/dimension-exceptions.json' },
     semanticTokens: { source: 'machine/semantic-tokens.json', groups: Object.keys(semanticTokens.tokens) },
     product: { id: 'courses', title: 'Хабр Курсы', guideVersion: read('machine/index.json').product.guideVersion, status: 'active' },
-    scope: { confidence: 'mixed', boundary: 'Публичная гостевая часть Курсов; шесть provider-композиций и атлас двенадцати адаптивных production-reference страниц. Reference не подтверждает соответствие provider.' },
+    scope: { confidence: 'mixed', boundary: read('machine/index.json').coverage.boundary },
     productionPageAtlas: { file: 'machine/page-analysis/atlas.json', rules: 'docs/guide/production-pages.md', approvalList: 'docs/decisions/page-analysis-approval.md', priority: 'owner-decisions-for-new-builds-then-current-address-specific-measurements-over-historical-generalization' },
     typography: {
       families: { interface: 'Inter, sans-serif' }, weights: { regular: 400, semibold: 600 },
