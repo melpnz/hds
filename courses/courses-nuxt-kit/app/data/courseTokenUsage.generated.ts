@@ -108,8 +108,7 @@ export const unusedCourseFoundationTokens = {
     "orange",
     "yellow-400",
     "yellow",
-    "violet-50",
-    "violet-500"
+    "violet-50"
   ],
   "typography": [],
   "radii": [],

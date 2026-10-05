@@ -88,12 +88,12 @@ jobs:
       - name: Start guide and provider
         shell: bash
         run: |
-          npm --prefix courses run serve -- 4173 > courses-guide.log 2>&1 &
+          npm --prefix courses run serve -- 4181 > courses-guide.log 2>&1 &
           echo $! > courses-guide.pid
-          pnpm --dir courses/courses-nuxt-kit dev --host 127.0.0.1 --port 3000 > courses-provider.log 2>&1 &
+          pnpm --dir courses/courses-nuxt-kit dev --host 127.0.0.1 --port 3002 > courses-provider.log 2>&1 &
           echo $! > courses-provider.pid
           for attempt in {1..90}; do
-            if curl --fail --silent http://127.0.0.1:4173/viewer/ > /dev/null && curl --fail --silent http://127.0.0.1:3000/ui > /dev/null; then
+            if curl --fail --silent http://127.0.0.1:4181/viewer/ > /dev/null && curl --fail --silent http://127.0.0.1:3002/ui > /dev/null; then
               exit 0
             fi
             sleep 2
@@ -103,11 +103,13 @@ jobs:
       - name: Validate all guide previews
         env:
           PLAYWRIGHT_CHANNEL: chromium
-        run: npm --prefix courses run validate:viewer -- http://127.0.0.1:4173
+        run: npm --prefix courses run validate:viewer -- http://127.0.0.1:4181
+      - name: Validate responsive production reference atlas offline
+        run: npm --prefix courses run validate:page-atlas -- http://127.0.0.1:4181
       - name: Validate integrated provider previews
         env:
           PLAYWRIGHT_CHANNEL: chromium
-        run: npm --prefix courses run validate:integrated-viewer -- http://127.0.0.1:4173
+        run: npm --prefix courses run validate:integrated-viewer -- http://127.0.0.1:4181
       - name: Run Nuxt catalog smoke tests
         working-directory: courses/courses-nuxt-kit
         run: pnpm run test:smoke
@@ -120,6 +122,8 @@ jobs:
             courses-guide.log
             courses-provider.log
             courses/courses-nuxt-kit/test-results
+            courses/machine/reports/page-atlas-validation.json
+            .audits/courses-atlas-validation
           if-no-files-found: ignore
           retention-days: 3
 

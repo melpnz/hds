@@ -15,7 +15,7 @@
     "confidence": "medium",
     "scope": "public-guest"
   },
-  "purpose": "Используйте для сетки однотипных карточек в секции. Default показывает все карточки с gap 12; school-courses использует gap 16 и ограничивает хвост до шести карточек на планшете и четырёх на телефоне.",
+  "purpose": "Сетка однотипных карточек с фиксированным промежутком 12 px. UI Kit: columns 2/3/4 (default 4), tabletColumns 2/3 (default 2), phone 1. Для основных карточек задайте tabletColumns=3, для шагов оставьте 2. Лимиты видимых карточек задаёт страница, не компонент.",
   "implementation": {
     "markup": "available-in-examples",
     "cssRoots": [
@@ -44,8 +44,8 @@
     "school-courses": {
       "cssRoot": "crs-card-grid--school-courses",
       "gap": {
-        "token": "--courses-space-16",
-        "value": "1rem"
+        "token": "--courses-space-12",
+        "value": "0.75rem"
       },
       "columns": {
         "desktop": 4,
@@ -57,7 +57,9 @@
         "tablet": 6,
         "phone": 4
       },
-      "authority": "production"
+      "authority": "owner-decision-2026-10-01",
+      "observedProductionGap": "16px",
+      "ownership": "page-composition; not a provider variant"
     }
   },
   "rules": [
@@ -92,6 +94,10 @@
     {
       "type": "guidance",
       "text": "The Figma empty state was owner-approved as normative on 2026-09-18."
+    },
+    {
+      "type": "guidance",
+      "text": "Локальная доработка UI Kit добавляет tabletColumns=2|3 без изменения default 4/2/1. Gap всегда 12 px по решению владельца 01.10.2026, включая школу; настройки gap нет. Исторический HTML школы с gap 16 остаётся evidence до компонентной пересборки."
     }
   ],
   "accessibility": [
@@ -127,7 +133,7 @@
     "markupState": null
   },
   "usage": {
-    "when": "Используйте default, когда видны все карточки. Для списка курсов на странице школы используйте вариант school-courses: gap 16 и ограничение хвоста 6/4.",
+    "when": "Используйте CardGrid с gap 12. Для карточек tabletColumns=3, для шагов tabletColumns=2. Курсы школы используют ту же сетку; лимиты 8/6/4 реализуются на уровне страницы.",
     "whenNot": [
       "Когда карточки листают — `Carousel`."
     ],
@@ -211,8 +217,8 @@
         "value": "1.5rem"
       },
       "gridGap": {
-        "token": "--courses-space-24",
-        "value": "1.5rem"
+        "token": "--courses-space-12",
+        "value": "0.75rem"
       },
       "sectionGap": {
         "token": "--courses-space-40",

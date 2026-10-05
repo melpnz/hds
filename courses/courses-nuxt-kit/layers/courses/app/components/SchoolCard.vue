@@ -19,7 +19,7 @@ withDefaults(defineProps<{
     <div class="crs-school-card__body">
       <EntityLogo class="crs-school-card__logo" :src="logo" :label="title" size="m" />
       <RatingBadge class="crs-school-card__rating" :value="rating" :reviews="reviews" size="m" />
-      <h3><Link class="crs-school-card__title-link" :href="href" tone="inherit">{{ title }}</Link></h3>
+      <h3><Link class="crs-school-card__title-link" :href="href" tone="inherit" layout="block">{{ title }}</Link></h3>
       <div class="crs-school-card__people"><AvatarStack :items="[{ name: 'Анна' }, { name: 'Иван' }, { name: 'Мария' }]" :limit="3" /><Chip class="crs-school-card__students" variant="counter">+{{ students }}</Chip></div>
       <Button class="crs-school-card__action" block>Подробнее</Button>
     </div>
@@ -31,3 +31,11 @@ withDefaults(defineProps<{
 </style>
 <style scoped>.crs-school-card__body{min-height:calc(calc(var(--crs-unit) * 312) - var(--crs-size-112))}@media(max-width:479px){.crs-school-card{max-width:none}}</style>
 <style scoped>@media(max-width:767px){.crs-school-card{max-width:none}}</style>
+<style scoped>
+.crs-school-card{display:flex;flex-direction:column}
+.crs-school-card__cover{flex:none}
+.crs-school-card__body{flex:1}
+.crs-school-card h3{display:block;width:100%;flex:none}
+.crs-school-card__title-link{display:-webkit-box;overflow:hidden;overflow-wrap:anywhere;-webkit-box-orient:vertical;-webkit-line-clamp:3}
+.crs-school-card__people,.crs-school-card__action{flex:none}
+</style>

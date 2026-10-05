@@ -1,6 +1,6 @@
 import { chromium } from 'playwright';
 
-const base = process.argv[2] || 'http://127.0.0.1:4173';
+const base = process.argv[2] || 'http://127.0.0.1:4181';
 const browser = await chromium.launch({ channel: 'chrome', headless: true });
 const page = await browser.newPage({ viewport: { width: 1024, height: 900 } });
 const failures = [];
@@ -46,17 +46,6 @@ for (let step = 0; step < 8; step += 1) {
 }
 check(await courseCarousel.locator('.crs-carousel__control--next').isDisabled(), 'Content carousel next button is enabled at the end');
 
-await page.setViewportSize({ width: 1024, height: 900 });
-for (const [pageId, label] of [['courses-listing', 'Courses listing'], ['education-centers-listing', 'Education centers listing']]) {
-  await page.goto(`${base}/examples/pages/${pageId}/`, { waitUntil: 'networkidle' });
-  const pageAd = page.locator('.crs-carousel[data-variant="ad-slot"]').first();
-  const before = await pageAd.locator('.crs-ad-slot-demo__card[data-current="true"]:not([data-carousel-clone]) img').getAttribute('alt');
-  await pageAd.locator('.crs-carousel__control--next').click();
-  await page.waitForTimeout(500);
-  const after = await pageAd.locator('.crs-ad-slot-demo__card[data-current="true"]:not([data-carousel-clone]) img').getAttribute('alt');
-  check(before !== after, `${label} AdSlot does not switch banners`);
-}
-
 await page.setViewportSize({ width: 320, height: 700 });
 await page.goto(`${base}/examples/components/filter-bar/`, { waitUntil: 'networkidle' });
 const filterBar = page.locator('.scrollbar-container');
@@ -97,4 +86,4 @@ if (failures.length) {
   console.error(failures.map(item => `FAIL: ${item}`).join('\n'));
   process.exit(1);
 }
-console.log('OK: carousel loop/boundaries/pages, mobile alignment, FilterBar scroll and PriceSheet padding verified');
+console.log('OK: carousel loop/boundaries, mobile alignment, FilterBar scroll and PriceSheet padding verified');

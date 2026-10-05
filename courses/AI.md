@@ -1,15 +1,18 @@
 # Courses: короткий маршрут для ИИ
 
-Гайд Courses v1.0 пригоден к использованию и продолжает развиваться. Текущая
+Гайд Courses v1.1 пригоден к использованию и продолжает развиваться. Текущая
 реализация интерфейса — локально копируемый Nuxt layer `courses-nuxt-kit`; он
-считается временным implementation provider до появления официальной библиотеки
-frontend-команды.
+является действующей канонической библиотекой владельца. Замена другой
+frontend-библиотекой не планируется.
 
 ## Если нужно собрать интерфейс
 
 1. Открой `machine/index.json`, затем `machine/consumer-workflow.json`. Найди в
    проекте локальный `layers/courses/courses-kit.manifest.json`.
-   Если Nuxt layer отсутствует, скачай `archiveUrl` и `checksumUrl` из workflow,
+   Если `distribution.availability=prepared-not-published`, будущий архив
+   не скачивать: сообщить о подготовленном, но ещё не опубликованном выпуске
+   или использовать предоставленный владельцем локальный слой.
+   Для опубликованного выпуска, если Nuxt layer отсутствует, скачай `archiveUrl` и `checksumUrl` из workflow,
    проверь SHA-256 и скопируй архивный `layers/courses` в проект целиком. Если
    GitHub недоступен, сообщи об этом и не воспроизводи kit вручную.
 2. Сверь его provider и версию с `machine/compatibility.json`. Без прямой просьбы
@@ -51,6 +54,6 @@ fallback и документация поведения, а не предпоч�
   реализация внутри витрины.
 
 Guide-only компонентов сейчас нет. Исторический `RubricationBar` свёрнут в
-область `rubrication-navigation` pattern `courses-listing`: это нативный `nav`
+область `rubric-navigation` живой production-страницы `courses-listing`: это нативный `nav`
 с четырьмя `Link`, а не export Nuxt Kit. Полный контракт и границы находятся в
 `AGENTS.md`, а правила provider — в `machine/providers/README.md`.

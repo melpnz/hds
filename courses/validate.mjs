@@ -113,12 +113,12 @@ function validateCompositionNode(node, owner, directIds) {
 
 if (ids.size !== catalog.length) errors.push('catalog: duplicate ids');
 const foundationIds = ['colors', 'typography', 'spacing-grid', 'radii-borders', 'iconography', 'responsive-layout'];
-if (catalog.length !== 84) errors.push(`catalog: expected 84 canonical items after page-pattern reconciliation, got ${catalog.length}`);
+if (catalog.length !== 78) errors.push(`catalog: expected 78 canonical foundation/component/module items, got ${catalog.length}`);
 if (JSON.stringify(catalog.filter(item => item.kind === 'foundation').map(item => item.id)) !== JSON.stringify(foundationIds)) {
   errors.push('catalog: foundation section is incomplete or out of order');
 }
 const sectionOrder = [...new Set(catalog.map(item => item.navSection))];
-if (JSON.stringify(sectionOrder) !== JSON.stringify(['foundations', 'elements', 'blocks', 'patterns'])) errors.push(`catalog: invalid navigation hierarchy ${sectionOrder.join(', ')}`);
+if (JSON.stringify(sectionOrder) !== JSON.stringify(['foundations', 'elements', 'blocks'])) errors.push(`catalog: invalid navigation hierarchy ${sectionOrder.join(', ')}`);
 for (const entry of catalog) {
   const expectedSection = entry.kind === 'foundation' ? 'foundations' : entry.kind === 'component' ? 'elements' : entry.kind === 'module' ? 'blocks' : 'patterns';
   if (entry.navSection !== expectedSection) errors.push(`${entry.id}: expected ${expectedSection} navigation section`);
@@ -262,7 +262,7 @@ for (const entry of catalog) {
   }
   if (entry.id === 'card-grid') {
     const variant = item.variants?.['school-courses'];
-    if (variant?.gap?.token !== '--courses-space-16' || variant?.visibleCards?.tablet !== 6 || variant?.visibleCards?.phone !== 4) {
+    if (variant?.gap?.token !== '--courses-space-12' || variant?.observedProductionGap !== '16px' || variant?.visibleCards?.tablet !== 6 || variant?.visibleCards?.phone !== 4) {
       errors.push('card-grid: school-courses variant contract is incomplete');
     }
     const css = readFileSync(resolve(root, 'ui/components/layout.css'), 'utf8');
@@ -297,11 +297,6 @@ for (const entry of catalog) {
       if ([...html.matchAll(/class="crs-profile-history__section"/g)].length !== 2) errors.push('profile-history: expected experience and education sections');
       if ([...html.matchAll(/class="crs-profile-history__item"/g)].length < 6) errors.push('profile-history: production-backed sample is too small');
       if ([...html.matchAll(/data-component="entity-logo"/g)].length < 6) errors.push('profile-history: rows do not reuse EntityLogo');
-    }
-    const author = read('machine/patterns/author.json');
-    const authorHtml = readFileSync(resolve(root, author.examples[0].file), 'utf8');
-    if (!author.modules?.includes('profile-history') || !authorHtml.includes('data-component="profile-history"')) {
-      errors.push('profile-history: author page does not reuse the component');
     }
   }
   if (entry.id === 'catalog-menu') {
@@ -363,7 +358,7 @@ for (const entry of catalog) {
     if (JSON.stringify(item.examples.map(example => example.id)) !== JSON.stringify(['figma-variants'])) errors.push('site-header: expected one consolidated SiteHeader playground');
     if (item.variantMatrix?.combinations !== 21) errors.push('site-header: Figma variant matrix must contain 21 device combinations');
     if (JSON.stringify(Object.keys(item.variantMatrix?.families || {})) !== JSON.stringify(['listing', 'courses', 'simple'])) errors.push('site-header: header families are incomplete');
-    if (JSON.stringify(item.layoutRules?.map(rule => rule.id)) !== JSON.stringify(['breakpoints', 'sticky', 'mobile-overflow'])) errors.push('site-header: responsive layout rules are incomplete');
+    if (JSON.stringify(item.layoutRules?.map(rule => rule.id)) !== JSON.stringify(['breakpoints', 'sticky', 'mobile-overflow', 'course-category-context'])) errors.push('site-header: responsive layout rules are incomplete');
     for (const id of ['15071:230717', '15058:236426', '15065:242662', '15065:245602']) {
       if (!item.evidence?.some(source => source.type === 'figma' && source.data?.nodeId === id)) errors.push(`site-header: Figma evidence ${id} is absent`);
     }
@@ -440,7 +435,7 @@ for (const entry of catalog) {
     for (const state of ['default', 'desktop', 'mobile', 'select-xl', 'joined-fields', 'full-width-action']) {
       if (!example?.covers?.includes(state)) errors.push(`search-form: ${state} is absent from example coverage`);
     }
-    if (JSON.stringify(item.layoutRules?.map(rule => rule.id)) !== JSON.stringify(['joined-fields', 'mobile-stack'])) errors.push('search-form: joined-field layout rules are incomplete');
+    if (JSON.stringify(item.layoutRules?.map(rule => rule.id)) !== JSON.stringify(['joined-fields', 'mobile-stack', 'selected-summary'])) errors.push('search-form: joined-field and selected-summary layout rules are incomplete');
     if (!item.evidence?.some(source => source.type === 'figma' && source.data?.nodeId === '15074:233173')) errors.push('search-form: Figma XL evidence is absent');
     if (existsSync(resolve(root, example?.file || ''))) {
       const html = readFileSync(resolve(root, example.file), 'utf8');
@@ -670,10 +665,10 @@ const mappedComponents = migration.entities.components;
 const mappedPatterns = migration.entities.patterns;
 const mappedRules = migration.entities.rules;
 if (mappedComponents.length !== index.metrics.components + index.metrics.modules) errors.push('migration: not every source component/module is mapped');
-if (mappedPatterns.length !== index.metrics.patterns) errors.push('migration: not every source pattern is mapped');
+if (index.metrics.patterns !== 0) errors.push('migration: historical patterns must not return to the active catalog');
 if (mappedRules.length !== index.metrics.rules) errors.push('migration: not every source rule is mapped');
 for (const mapping of [...mappedComponents, ...mappedPatterns, ...mappedRules]) {
-  if (mapping.status !== 'migrated') errors.push(`migration: unresolved ${mapping.id}`);
+  if (!['migrated', 'replaced-by-production-page'].includes(mapping.status)) errors.push(`migration: unresolved ${mapping.id}`);
   pathExists(mapping.target, `migration/${mapping.id}`);
   if (mapping.example) pathExists(mapping.example, `migration/${mapping.id}`);
 }
@@ -738,7 +733,11 @@ if (existsSync(resolve(root, 'ui/assets/icons/sprite.svg'))) {
   if (!sprite.includes('id="arrow-down-figma"') || !sprite.includes('M6.22922 9.23657')) errors.push('icon-button: exact Figma arrow asset is absent from the sprite');
 }
 for (const layer of migration.copiedLayers.filter(layer => ['ui', 'evidence'].includes(layer.target))) {
-  const count = walkFiles(layer.target).length;
+  // Migration inventory describes the historical copied corpus, not newly captured evidence.
+  // Current atlas has a separate asset manifest and browser geometry validation.
+  const atlas = index.files.productionPageAtlas ? read(index.files.productionPageAtlas) : null;
+  const newEvidence = atlas?.evidenceRoot ? resolve(root, atlas.evidenceRoot) : null;
+  const count = walkFiles(layer.target).filter(file => !(layer.target === 'evidence' && newEvidence && file.startsWith(newEvidence + '/')) && !(layer.target === 'evidence' && newEvidence && file.startsWith(newEvidence + '\\'))).length;
   if (count !== layer.files + (layer.target === 'ui' ? generatedUiFiles.length : 0)) {
     errors.push(`migration: ${layer.target} file count differs (${count})`);
   }

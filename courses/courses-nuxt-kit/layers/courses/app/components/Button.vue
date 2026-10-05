@@ -13,12 +13,19 @@ const props = withDefaults(defineProps<{
   rel?: string
   rotated?: boolean
 }>(), { variant: 'main', size: 'm', density: 'default', state: 'default', type: 'button', rotated: false })
+const emit = defineEmits<{ click: [event: MouseEvent] }>()
 
 const tone = computed(() => props.variant === 'primary' ? 'main' : props.variant)
 const resolvedSize = computed(() => props.size === 's' ? 'm' : props.size)
 const NuxtLink = resolveComponent('NuxtLink')
 const internal = computed(() => Boolean(props.href?.startsWith('/') && !props.href.startsWith('//') && !props.target && !props.disabled && !props.loading))
-function onClick(event: MouseEvent) { if (props.href && (props.disabled || props.loading)) event.preventDefault() }
+function onClick(event: MouseEvent) {
+  if (props.disabled || props.loading) {
+    event.preventDefault()
+    return
+  }
+  emit('click', event)
+}
 </script>
 
 <template>

@@ -99,7 +99,7 @@ function moduleContract(item) {
   };
   if (item.category === 'layout') return {
     ...common('content-layout', item),
-    geometry: { container: dimension('size', 1124), pageGutter: dimension('space', 24), gridGap: dimension('space', 24), sectionGap: dimension('space', 40) },
+    geometry: { container: dimension('size', 1124), pageGutter: dimension('space', 24), gridGap: dimension('space', ['card-grid', 'carousel'].includes(item.id) ? 12 : 24), sectionGap: dimension('space', 40) },
     responsive: { columns: { desktop: [2, 3, 4], tablet: [2, 3], mobile: [1] } }
   };
   if (item.category === 'navigation') return {

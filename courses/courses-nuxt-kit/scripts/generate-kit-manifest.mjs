@@ -273,7 +273,7 @@ const manifest = {
     networkPolicy: 'automatic-read-only-check-no-automatic-update'
   },
   requirements: {
-    dependencies: ['@nuxt/ui', '@fontsource-variable/inter'],
+    dependencies: ['@nuxt/ui', '@fontsource-variable/inter', 'swiper'],
     devDependencies: ['@iconify-json/tabler']
   },
   tokens: {

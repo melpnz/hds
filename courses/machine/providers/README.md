@@ -69,15 +69,10 @@ Provider экспортирует исходные значения в `courses-
 канонический пример. Полный результат хранится в
 `machine/reports/provider-preview-audit.md`.
 
-## Page-pattern
+## Production-страницы
 
-Шесть machine-записей страниц содержат `providerComposition`: общую оболочку,
-области в порядке рендера и дерево прямых компонентов. Узел
-`provider-component` хранит стабильный guide id и сгенерированные
-`providerComponentId`/`exportName`; `native` оставляет семантический HTML на
-уровне страницы, а `external-slot` явно отделяет runtime-интеграцию от UI kit.
-
-`Avatar` и `EntityLogo` внутри карточек не перечисляются повторно как прямые
-дети страницы. Статический HTML страницы остаётся evidence и GitHub fallback,
-но не считается второй реализацией компонентов. Сводка:
-`machine/reports/page-pattern-composition.md`.
+Двенадцать адресных контрактов в `machine/page-analysis/pages/` содержат
+`sequence` и `providerComponents`. Живые композиции находятся вне layer в
+приложении `courses-nuxt-kit/app/components/production-pages/`; layer остаётся
+владельцем только публичных компонентов. Инертный production-reference — evidence,
+а не вторая реализация UI Kit.

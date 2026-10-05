@@ -1,0 +1,2608 @@
+{
+  "id": "author",
+  "title": "Профиль: Николай Ширинкин",
+  "url": "https://career.habr.com/courses/authors/11-nikolay-shirinkin",
+  "family": "person-profile",
+  "sequence": [
+    "simple-header",
+    "person-header",
+    "biography",
+    "expertise",
+    "qualifications",
+    "experience-education",
+    "footer"
+  ],
+  "providerComponents": [
+    "site-header",
+    "site-footer",
+    "person-header",
+    "prose",
+    "profile-history",
+    "entity-logo",
+    "social-icon"
+  ],
+  "approvalGaps": [],
+  "notes": [
+    "В production разделы и имя размечены div, а не h1/h2. Список headings пуст; это факт о DOM, не рекомендация нарушать семантику.",
+    "Биография во всю ширину; экспертиза, квалификации и история имеют общую левую границу и gap40 перед каждым разделом. Заголовка «Опыт и образование» нет."
+  ],
+  "ownerDecisions": [
+    {
+      "id": "person-header-phone",
+      "status": "implemented-local",
+      "rule": "PersonHeader до768: вертикальная композиция без рамки и padding, фото100, имя30/34, gap20. От768 сохраняется горизонтальная карточка с рамкой и padding24. Публичный API не меняется. Доработка пока не опубликована.",
+      "component": "PersonHeader"
+    },
+    {
+      "id": "accepted-shared-layout",
+      "status": "implemented-local",
+      "acceptedOn": "2026-10-05",
+      "rule": "RatingTable: длинный текст увеличивает высоту с сохранением padding; все колонки доступны локальным скроллом на320. После последнего NumberedCourseItem нет линии; подборка рейтинга в каталоге содержит10 школ. SchoolCard: название максимум3 строки, кнопка внизу. Carousel: карточка заполняет слайд, стрелки центрируются без учёта пагинации. Подборки используют общий LinkGrid и соответствующие разделу данные.",
+      "pages": [
+        "courses-listing",
+        "course-category",
+        "education-centers-listing",
+        "rating",
+        "education-center",
+        "reviews",
+        "review-detail",
+        "promocodes",
+        "promocode-detail",
+        "authors",
+        "editors",
+        "author"
+      ]
+    },
+    {
+      "id": "accepted-author-profile",
+      "status": "implemented-local",
+      "acceptedOn": "2026-10-05",
+      "rule": "Prose width=full. Разделы профиля по общему левому краю, gap40 перед экспертизой, квалификациями и историей; нет общего заголовка Опыт и образование. ProfileHistory: логотип48, gap12 до текста, название16/1.3 weight600 максимум2 строки, дата14/20 серая, внутренний gap4, gap24 между записями и от заголовка.",
+      "pages": [
+        "author"
+      ]
+    }
+  ],
+  "reference": "evidence/production-responsive-2026-10-01/author/index.html",
+  "measurements": [
+    {
+      "width": 1440,
+      "capturedAt": "2026-10-01T11:25:32.514Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 1574.72,
+          "width": 1440,
+          "height": 192
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "32px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div",
+        "classes": "flex flex-col gap-10 pb-10 pt-6",
+        "rect": {
+          "x": 182,
+          "y": 64,
+          "width": 1076,
+          "height": 1510.72
+        },
+        "css": {
+          "display": "flex",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "40px",
+          "columnGap": "40px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(1)",
+            "classes": "flex gap-5 rounded-3xl border border-solid border-ui-black-100 p-6 phone:flex-col phone:border-none phone:p-0",
+            "rect": {
+              "x": 182,
+              "y": 88,
+              "width": 1076,
+              "height": 150
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "24px",
+              "paddingRight": "24px",
+              "paddingBottom": "24px",
+              "paddingLeft": "24px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "20px",
+              "columnGap": "20px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Николай Ширинкин Менеджер продукта"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(2)",
+            "classes": "style-ugc",
+            "rect": {
+              "x": 182,
+              "y": 278,
+              "width": 1076,
+              "height": 83.19
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Менеджер продукта в Edtech/HR-tech. За более чем 7 лет работы создал и масштабировал цифровые продукты в Edtech (Яндекс Практикум, Сравни Об"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(3)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 182,
+              "y": 401.19,
+              "width": 1076,
+              "height": 168.78
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "В чем эксперт? Разработка и запуск продукта Продуктовая аналитика Стратегическое и операционное планирование Финансовое планирование, бюджет"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(4)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 182,
+              "y": 609.97,
+              "width": 1076,
+              "height": 85.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Регалии и квалификации Product owner Бакалавриат: Менеджмент, Управление персоналом"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(5)",
+            "classes": "grid grid-cols-2 gap-4 phone:grid-cols-1 phone:gap-10",
+            "rect": {
+              "x": 182,
+              "y": 735.56,
+              "width": 1076,
+              "height": 799.16
+            },
+            "css": {
+              "display": "grid",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "530px 530px",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Опыт работы Менеджер продукта, Хабр Февраль 2025 — По настоящее время Менеджер продукта, Сравни Октябрь 2023 — Февраль 2025 Менеджер продукт"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(5)",
+          "classes": "grid grid-cols-2 gap-4 phone:grid-cols-1 phone:gap-10",
+          "rect": {
+            "x": 182,
+            "y": 735.56,
+            "width": 1076,
+            "height": 799.16
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "530px 530px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 182,
+            "y": 1606.72,
+            "width": 1076,
+            "height": 120
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "257px 257px 257px 257px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [],
+      "carousels": [],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 867,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -867,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 1024,
+      "capturedAt": "2026-10-01T11:37:28.630Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 1592.31,
+          "width": 1024,
+          "height": 192
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "32px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div",
+        "classes": "flex flex-col gap-10 pb-10 pt-6",
+        "rect": {
+          "x": 24,
+          "y": 64,
+          "width": 976,
+          "height": 1528.31
+        },
+        "css": {
+          "display": "flex",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "40px",
+          "columnGap": "40px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(1)",
+            "classes": "flex gap-5 rounded-3xl border border-solid border-ui-black-100 p-6 phone:flex-col phone:border-none phone:p-0",
+            "rect": {
+              "x": 24,
+              "y": 88,
+              "width": 976,
+              "height": 150
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "24px",
+              "paddingRight": "24px",
+              "paddingBottom": "24px",
+              "paddingLeft": "24px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "20px",
+              "columnGap": "20px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Николай Ширинкин Менеджер продукта"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(2)",
+            "classes": "style-ugc",
+            "rect": {
+              "x": 24,
+              "y": 278,
+              "width": 976,
+              "height": 83.19
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Менеджер продукта в Edtech/HR-tech. За более чем 7 лет работы создал и масштабировал цифровые продукты в Edtech (Яндекс Практикум, Сравни Об"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(3)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 401.19,
+              "width": 976,
+              "height": 168.78
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "В чем эксперт? Разработка и запуск продукта Продуктовая аналитика Стратегическое и операционное планирование Финансовое планирование, бюджет"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(4)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 609.97,
+              "width": 976,
+              "height": 85.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Регалии и квалификации Product owner Бакалавриат: Менеджмент, Управление персоналом"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(5)",
+            "classes": "grid grid-cols-2 gap-4 phone:grid-cols-1 phone:gap-10",
+            "rect": {
+              "x": 24,
+              "y": 735.56,
+              "width": 976,
+              "height": 816.75
+            },
+            "css": {
+              "display": "grid",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "480px 480px",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Опыт работы Менеджер продукта, Хабр Февраль 2025 — По настоящее время Менеджер продукта, Сравни Октябрь 2023 — Февраль 2025 Менеджер продукт"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(5)",
+          "classes": "grid grid-cols-2 gap-4 phone:grid-cols-1 phone:gap-10",
+          "rect": {
+            "x": 24,
+            "y": 735.56,
+            "width": 976,
+            "height": 816.75
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "480px 480px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 1624.31,
+            "width": 976,
+            "height": 120
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "232px 232px 232px 232px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [],
+      "carousels": [],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 884,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -884,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 768,
+      "capturedAt": "2026-10-01T11:25:35.170Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 1630.7,
+          "width": 768,
+          "height": 256
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "32px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div",
+        "classes": "flex flex-col gap-10 pb-10 pt-6",
+        "rect": {
+          "x": 24,
+          "y": 64,
+          "width": 720,
+          "height": 1566.7
+        },
+        "css": {
+          "display": "flex",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "40px",
+          "columnGap": "40px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(1)",
+            "classes": "flex gap-5 rounded-3xl border border-solid border-ui-black-100 p-6 phone:flex-col phone:border-none phone:p-0",
+            "rect": {
+              "x": 24,
+              "y": 88,
+              "width": 720,
+              "height": 150
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "24px",
+              "paddingRight": "24px",
+              "paddingBottom": "24px",
+              "paddingLeft": "24px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "20px",
+              "columnGap": "20px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Николай Ширинкин Менеджер продукта"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(2)",
+            "classes": "style-ugc",
+            "rect": {
+              "x": 24,
+              "y": 278,
+              "width": 720,
+              "height": 103.98
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Менеджер продукта в Edtech/HR-tech. За более чем 7 лет работы создал и масштабировал цифровые продукты в Edtech (Яндекс Практикум, Сравни Об"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(3)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 421.98,
+              "width": 720,
+              "height": 168.78
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "В чем эксперт? Разработка и запуск продукта Продуктовая аналитика Стратегическое и операционное планирование Финансовое планирование, бюджет"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(4)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 630.77,
+              "width": 720,
+              "height": 85.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Регалии и квалификации Product owner Бакалавриат: Менеджмент, Управление персоналом"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(5)",
+            "classes": "grid grid-cols-2 gap-4 phone:grid-cols-1 phone:gap-10",
+            "rect": {
+              "x": 24,
+              "y": 756.36,
+              "width": 720,
+              "height": 834.34
+            },
+            "css": {
+              "display": "grid",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "352px 352px",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Опыт работы Менеджер продукта, Хабр Февраль 2025 — По настоящее время Менеджер продукта, Сравни Октябрь 2023 — Февраль 2025 Менеджер продукт"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(5)",
+          "classes": "grid grid-cols-2 gap-4 phone:grid-cols-1 phone:gap-10",
+          "rect": {
+            "x": 24,
+            "y": 756.36,
+            "width": 720,
+            "height": 834.34
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "352px 352px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 1662.7,
+            "width": 720,
+            "height": 184
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "229.328px 229.328px 229.328px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [],
+      "carousels": [],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 987,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -987,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 744,
+      "capturedAt": "2026-10-01T11:37:31.558Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 744,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 1985.95,
+          "width": 744,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div",
+        "classes": "flex flex-col gap-10 pb-10 pt-6",
+        "rect": {
+          "x": 24,
+          "y": 64,
+          "width": 696,
+          "height": 1921.95
+        },
+        "css": {
+          "display": "flex",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "40px",
+          "columnGap": "40px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(1)",
+            "classes": "flex gap-5 rounded-3xl border border-solid border-ui-black-100 p-6 phone:flex-col phone:border-none phone:p-0",
+            "rect": {
+              "x": 24,
+              "y": 88,
+              "width": 696,
+              "height": 214.8
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "20px",
+              "columnGap": "20px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Николай Ширинкин Менеджер продукта"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(2)",
+            "classes": "style-ugc",
+            "rect": {
+              "x": 24,
+              "y": 342.8,
+              "width": 696,
+              "height": 124.78
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Менеджер продукта в Edtech/HR-tech. За более чем 7 лет работы создал и масштабировал цифровые продукты в Edtech (Яндекс Практикум, Сравни Об"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(3)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 507.58,
+              "width": 696,
+              "height": 168.78
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "В чем эксперт? Разработка и запуск продукта Продуктовая аналитика Стратегическое и операционное планирование Финансовое планирование, бюджет"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(4)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 716.36,
+              "width": 696,
+              "height": 85.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Регалии и квалификации Product owner Бакалавриат: Менеджмент, Управление персоналом"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(5)",
+            "classes": "grid grid-cols-2 gap-4 phone:grid-cols-1 phone:gap-10",
+            "rect": {
+              "x": 24,
+              "y": 841.95,
+              "width": 696,
+              "height": 1104
+            },
+            "css": {
+              "display": "grid",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "40px",
+              "columnGap": "40px",
+              "gridTemplateColumns": "696px",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Опыт работы Менеджер продукта, Хабр Февраль 2025 — По настоящее время Менеджер продукта, Сравни Октябрь 2023 — Февраль 2025 Менеджер продукт"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(5)",
+          "classes": "grid grid-cols-2 gap-4 phone:grid-cols-1 phone:gap-10",
+          "rect": {
+            "x": 24,
+            "y": 841.95,
+            "width": 696,
+            "height": 1104
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "40px",
+            "columnGap": "40px",
+            "gridTemplateColumns": "696px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 2009.95,
+            "width": 696,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "696px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [],
+      "carousels": [],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 1562,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -1562,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 480,
+      "capturedAt": "2026-10-01T11:37:34.384Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 480,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 2209.89,
+          "width": 480,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div",
+        "classes": "flex flex-col gap-10 pb-10 pt-6",
+        "rect": {
+          "x": 24,
+          "y": 64,
+          "width": 432,
+          "height": 2145.89
+        },
+        "css": {
+          "display": "flex",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "40px",
+          "columnGap": "40px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(1)",
+            "classes": "flex gap-5 rounded-3xl border border-solid border-ui-black-100 p-6 phone:flex-col phone:border-none phone:p-0",
+            "rect": {
+              "x": 24,
+              "y": 88,
+              "width": 432,
+              "height": 214.8
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "20px",
+              "columnGap": "20px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Николай Ширинкин Менеджер продукта"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(2)",
+            "classes": "style-ugc",
+            "rect": {
+              "x": 24,
+              "y": 342.8,
+              "width": 432,
+              "height": 187.17
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Менеджер продукта в Edtech/HR-tech. За более чем 7 лет работы создал и масштабировал цифровые продукты в Edtech (Яндекс Практикум, Сравни Об"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(3)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 569.97,
+              "width": 432,
+              "height": 189.58
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "В чем эксперт? Разработка и запуск продукта Продуктовая аналитика Стратегическое и операционное планирование Финансовое планирование, бюджет"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(4)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 799.55,
+              "width": 432,
+              "height": 85.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Регалии и квалификации Product owner Бакалавриат: Менеджмент, Управление персоналом"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(5)",
+            "classes": "grid grid-cols-2 gap-4 phone:grid-cols-1 phone:gap-10",
+            "rect": {
+              "x": 24,
+              "y": 925.14,
+              "width": 432,
+              "height": 1244.75
+            },
+            "css": {
+              "display": "grid",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "40px",
+              "columnGap": "40px",
+              "gridTemplateColumns": "432px",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Опыт работы Менеджер продукта, Хабр Февраль 2025 — По настоящее время Менеджер продукта, Сравни Октябрь 2023 — Февраль 2025 Менеджер продукт"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(5)",
+          "classes": "grid grid-cols-2 gap-4 phone:grid-cols-1 phone:gap-10",
+          "rect": {
+            "x": 24,
+            "y": 925.14,
+            "width": 432,
+            "height": 1244.75
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "40px",
+            "columnGap": "40px",
+            "gridTemplateColumns": "432px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 2233.89,
+            "width": 432,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "432px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [],
+      "carousels": [],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 1786,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -1786,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 393,
+      "capturedAt": "2026-10-01T11:25:37.732Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 393,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 2390.66,
+          "width": 393,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div",
+        "classes": "flex flex-col gap-10 pb-10 pt-6",
+        "rect": {
+          "x": 24,
+          "y": 64,
+          "width": 345,
+          "height": 2326.66
+        },
+        "css": {
+          "display": "flex",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "40px",
+          "columnGap": "40px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(1)",
+            "classes": "flex gap-5 rounded-3xl border border-solid border-ui-black-100 p-6 phone:flex-col phone:border-none phone:p-0",
+            "rect": {
+              "x": 24,
+              "y": 88,
+              "width": 345,
+              "height": 214.8
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "20px",
+              "columnGap": "20px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Николай Ширинкин Менеджер продукта"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(2)",
+            "classes": "style-ugc",
+            "rect": {
+              "x": 24,
+              "y": 342.8,
+              "width": 345,
+              "height": 228.77
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Менеджер продукта в Edtech/HR-tech. За более чем 7 лет работы создал и масштабировал цифровые продукты в Edtech (Яндекс Практикум, Сравни Об"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(3)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 611.56,
+              "width": 345,
+              "height": 272.77
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "В чем эксперт? Разработка и запуск продукта Продуктовая аналитика Стратегическое и операционное планирование Финансовое планирование, бюджет"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(4)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 924.33,
+              "width": 345,
+              "height": 106.39
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Регалии и квалификации Product owner Бакалавриат: Менеджмент, Управление персоналом"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(5)",
+            "classes": "grid grid-cols-2 gap-4 phone:grid-cols-1 phone:gap-10",
+            "rect": {
+              "x": 24,
+              "y": 1070.72,
+              "width": 345,
+              "height": 1279.94
+            },
+            "css": {
+              "display": "grid",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "40px",
+              "columnGap": "40px",
+              "gridTemplateColumns": "345px",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Опыт работы Менеджер продукта, Хабр Февраль 2025 — По настоящее время Менеджер продукта, Сравни Октябрь 2023 — Февраль 2025 Менеджер продукт"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(5)",
+          "classes": "grid grid-cols-2 gap-4 phone:grid-cols-1 phone:gap-10",
+          "rect": {
+            "x": 24,
+            "y": 1070.72,
+            "width": 345,
+            "height": 1279.94
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "40px",
+            "columnGap": "40px",
+            "gridTemplateColumns": "345px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 2414.66,
+            "width": 345,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "345px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [],
+      "carousels": [],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 1967,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -1967,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 320,
+      "capturedAt": "2026-10-01T11:37:36.884Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 2648.63,
+          "width": 320,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div",
+        "classes": "flex flex-col gap-10 pb-10 pt-6",
+        "rect": {
+          "x": 24,
+          "y": 64,
+          "width": 272,
+          "height": 2584.63
+        },
+        "css": {
+          "display": "flex",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "40px",
+          "columnGap": "40px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(1)",
+            "classes": "flex gap-5 rounded-3xl border border-solid border-ui-black-100 p-6 phone:flex-col phone:border-none phone:p-0",
+            "rect": {
+              "x": 24,
+              "y": 88,
+              "width": 272,
+              "height": 248.8
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "20px",
+              "columnGap": "20px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Николай Ширинкин Менеджер продукта"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(2)",
+            "classes": "style-ugc",
+            "rect": {
+              "x": 24,
+              "y": 376.8,
+              "width": 272,
+              "height": 311.95
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Менеджер продукта в Edtech/HR-tech. За более чем 7 лет работы создал и масштабировал цифровые продукты в Edtech (Яндекс Практикум, Сравни Об"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(3)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 728.75,
+              "width": 272,
+              "height": 272.77
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "В чем эксперт? Разработка и запуск продукта Продуктовая аналитика Стратегическое и операционное планирование Финансовое планирование, бюджет"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(4)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 1041.52,
+              "width": 272,
+              "height": 134.39
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Регалии и квалификации Product owner Бакалавриат: Менеджмент, Управление персоналом"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(5)",
+            "classes": "grid grid-cols-2 gap-4 phone:grid-cols-1 phone:gap-10",
+            "rect": {
+              "x": 24,
+              "y": 1215.91,
+              "width": 272,
+              "height": 1392.72
+            },
+            "css": {
+              "display": "grid",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "40px",
+              "columnGap": "40px",
+              "gridTemplateColumns": "272px",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Опыт работы Менеджер продукта, Хабр Февраль 2025 — По настоящее время Менеджер продукта, Сравни Октябрь 2023 — Февраль 2025 Менеджер продукт"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(5)",
+          "classes": "grid grid-cols-2 gap-4 phone:grid-cols-1 phone:gap-10",
+          "rect": {
+            "x": 24,
+            "y": 1215.91,
+            "width": 272,
+            "height": 1392.72
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "40px",
+            "columnGap": "40px",
+            "gridTemplateColumns": "272px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 2672.63,
+            "width": 272,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "272px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [],
+      "carousels": [],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 2225,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -2225,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    }
+  ],
+  "boundaryMeasurements": [
+    {
+      "width": 767,
+      "status": 200,
+      "capturedAt": "2026-10-01T11:33:54.592Z",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 767,
+        "height": 64
+      },
+      "grids": [
+        {
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "columns": "719px",
+          "gap": "24px"
+        }
+      ],
+      "overflow": 0
+    },
+    {
+      "width": 1023,
+      "status": 200,
+      "capturedAt": "2026-10-01T11:33:57.636Z",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1023,
+        "height": 64
+      },
+      "grids": [
+        {
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "columns": "314.328px 314.328px 314.344px",
+          "gap": "16px"
+        }
+      ],
+      "overflow": 0
+    }
+  ]
+}

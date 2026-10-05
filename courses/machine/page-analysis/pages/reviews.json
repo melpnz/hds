@@ -1,0 +1,4627 @@
+{
+  "id": "reviews",
+  "title": "Отзывы об онлайн-школах",
+  "url": "https://career.habr.com/education_centers/otzyvy",
+  "family": "review-listing",
+  "sequence": [
+    "simple-header",
+    "hero",
+    "audience-toggle",
+    "search-form",
+    "latest-reviews",
+    "all-reviews-cta",
+    "popular-courses",
+    "best-schools",
+    "footer"
+  ],
+  "providerComponents": [
+    "site-header",
+    "site-footer",
+    "page-hero",
+    "button-group",
+    "search-form",
+    "review-card",
+    "button",
+    "carousel",
+    "course-card",
+    "school-card"
+  ],
+  "approvalGaps": [],
+  "notes": [
+    "Форма имеет2 поля (школа,курс), не3.",
+    "Отзывы идут вертикально в полную ширину, не четырьмя карточками в ряд."
+  ],
+  "ownerDecisions": [
+    {
+      "id": "carousel-loop",
+      "status": "implemented-local",
+      "rule": "Обычные Carousel: loop=true, шаг1, gap12; CourseCard 4/3/1, ArticleCard и ReviewCard 3/2/1. Default loop=false сохраняет конечный режим. Если все карточки помещаются, блок стрелок не рендерится. Swiper внутри кита, живые карточки из slots. Рекламная геометрия описана отдельным решением banner-carousel. Доработка пока не опубликована.",
+      "component": "Carousel"
+    },
+    {
+      "id": "wide-review",
+      "status": "implemented-local",
+      "rule": "ReviewCard variant=wide: отзыв занимает всю ширину колонки, использует avatar48, рейтинг в колонке164 справа от768 и следующей строкой до768; текст не обрезается и fade не показывается.",
+      "component": "ReviewCard"
+    },
+    {
+      "id": "hero-search-composition",
+      "status": "implemented-local",
+      "acceptedOn": "2026-10-05",
+      "rule": "PageHero и SearchForm собирают шапку через публичные slots. Единый градиент принадлежит внешней области, без повторного старта. Табам сохраняются отступы. Все dropdown получают options и выбранные значения; fixture-фильтры не являются backend.",
+      "pages": [
+        "education-centers-listing",
+        "rating",
+        "reviews",
+        "promocodes"
+      ]
+    },
+    {
+      "id": "accepted-shared-layout",
+      "status": "implemented-local",
+      "acceptedOn": "2026-10-05",
+      "rule": "RatingTable: длинный текст увеличивает высоту с сохранением padding; все колонки доступны локальным скроллом на320. После последнего NumberedCourseItem нет линии; подборка рейтинга в каталоге содержит10 школ. SchoolCard: название максимум3 строки, кнопка внизу. Carousel: карточка заполняет слайд, стрелки центрируются без учёта пагинации. Подборки используют общий LinkGrid и соответствующие разделу данные.",
+      "pages": [
+        "courses-listing",
+        "course-category",
+        "education-centers-listing",
+        "rating",
+        "education-center",
+        "reviews",
+        "review-detail",
+        "promocodes",
+        "promocode-detail",
+        "authors",
+        "editors",
+        "author"
+      ]
+    }
+  ],
+  "reference": "evidence/production-responsive-2026-10-01/reviews/index.html",
+  "measurements": [
+    {
+      "width": 1440,
+      "capturedAt": "2026-10-01T11:24:25.835Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 2987.59,
+          "width": 1440,
+          "height": 192
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "32px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "pb-10 relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pt-10",
+        "rect": {
+          "x": 182,
+          "y": 416,
+          "width": 1076,
+          "height": 2571.59
+        },
+        "css": {
+          "display": "grid",
+          "position": "relative",
+          "paddingTop": "40px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "1076px",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 182,
+              "y": 456,
+              "width": 1076,
+              "height": 1394
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Последние отзывы Елена Пральникова Пользователь Хабра 29 сентября Профессия авитолог: специалист по рекламе и продажам на Авито Достоинства:"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 182,
+              "y": 1898,
+              "width": 1076,
+              "height": 579.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Популярные курсы Все Нейросети и AI Программирование и IT Аналитика и Data Science Дизайн и контент Маркетинг и продажи Бизнес и менеджмент "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(3)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 182,
+              "y": 2525.59,
+              "width": 1076,
+              "height": 422
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Популярные онлайн-школы 4.55 1409 Яндекс Практикум +18225 Подробнее 4.84 82 Stepik +9509 Подробнее 4.28 264 Skillbox +5403 Подробнее 4.37 26"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > div:nth-of-type(2) > div:nth-of-type(1)",
+          "classes": "grid grid-cols-2 gap-[1px] phone:hidden",
+          "rect": {
+            "x": 182,
+            "y": 320,
+            "width": 906.13,
+            "height": 56
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "1px",
+            "columnGap": "1px",
+            "gridTemplateColumns": "452.562px 452.562px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 182,
+            "y": 3019.59,
+            "width": 1076,
+            "height": 120
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "257px 257px 257px 257px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 394,
+            "y": 64,
+            "width": 652,
+            "height": 160
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "64px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "44px",
+            "lineHeight": "48px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Отзывы об онлайн-школах"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 182,
+            "y": 456,
+            "width": 1076,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Последние отзывы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 182,
+            "y": 1898,
+            "width": 1076,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Популярные курсы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(3) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 182,
+            "y": 2525.59,
+            "width": 1076,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Популярные онлайн-школы"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > div:nth-of-type(2) > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 182,
+            "y": 1994,
+            "width": 1076,
+            "height": 419.59
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 4,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 183,
+                "y": 1994,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 454.5,
+                "y": 1994,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 726,
+                "y": 1994,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 997.5,
+                "y": 1994,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1269,
+                "y": 1994,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1540.5,
+                "y": 1994,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1812,
+                "y": 1994,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2083.5,
+                "y": 1994,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(3) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 182,
+            "y": 2569.59,
+            "width": 1076,
+            "height": 314
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 4,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 183,
+                "y": 2569.59,
+                "width": 259.5,
+                "height": 314
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 454.5,
+                "y": 2569.59,
+                "width": 259.5,
+                "height": 314
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 726,
+                "y": 2569.59,
+                "width": 259.5,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 997.5,
+                "y": 2569.59,
+                "width": 259.5,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1269,
+                "y": 2569.59,
+                "width": 259.5,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1540.5,
+                "y": 2569.59,
+                "width": 259.5,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1812,
+                "y": 2569.59,
+                "width": 259.5,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2083.5,
+                "y": 2569.59,
+                "width": 259.5,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 2280,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -2280,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 1024,
+      "capturedAt": "2026-10-01T11:36:00.068Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 2987.59,
+          "width": 1024,
+          "height": 192
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "32px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "pb-10 relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pt-10",
+        "rect": {
+          "x": 24,
+          "y": 416,
+          "width": 976,
+          "height": 2571.59
+        },
+        "css": {
+          "display": "grid",
+          "position": "relative",
+          "paddingTop": "40px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "976px",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 456,
+              "width": 976,
+              "height": 1394
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Последние отзывы Елена Пральникова Пользователь Хабра 29 сентября Профессия авитолог: специалист по рекламе и продажам на Авито Достоинства:"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 1898,
+              "width": 976,
+              "height": 579.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Популярные курсы Все Нейросети и AI Программирование и IT Аналитика и Data Science Дизайн и контент Маркетинг и продажи Бизнес и менеджмент "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(3)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 2525.59,
+              "width": 976,
+              "height": 422
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Популярные онлайн-школы 4.55 1409 Яндекс Практикум +18226 Подробнее 4.84 82 Stepik +9509 Подробнее 4.28 264 Skillbox +5403 Подробнее 4.37 26"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > div:nth-of-type(2) > div:nth-of-type(1)",
+          "classes": "grid grid-cols-2 gap-[1px] phone:hidden",
+          "rect": {
+            "x": 24,
+            "y": 320,
+            "width": 806.13,
+            "height": 56
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "1px",
+            "columnGap": "1px",
+            "gridTemplateColumns": "402.562px 402.562px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 3019.59,
+            "width": 976,
+            "height": 120
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "232px 232px 232px 232px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 186,
+            "y": 64,
+            "width": 652,
+            "height": 160
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "64px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "44px",
+            "lineHeight": "48px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Отзывы об онлайн-школах"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 456,
+            "width": 976,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Последние отзывы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 1898,
+            "width": 976,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Популярные курсы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(3) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2525.59,
+            "width": 976,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Популярные онлайн-школы"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > div:nth-of-type(2) > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 1994,
+            "width": 976,
+            "height": 419.59
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 4,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 1994,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 271.5,
+                "y": 1994,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 518,
+                "y": 1994,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 764.5,
+                "y": 1994,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1011,
+                "y": 1994,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1257.5,
+                "y": 1994,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1504,
+                "y": 1994,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1750.5,
+                "y": 1994,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(3) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 2569.59,
+            "width": 976,
+            "height": 314
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 4,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 2569.59,
+                "width": 234.5,
+                "height": 314
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 271.5,
+                "y": 2569.59,
+                "width": 234.5,
+                "height": 314
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 518,
+                "y": 2569.59,
+                "width": 234.5,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 764.5,
+                "y": 2569.59,
+                "width": 234.5,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1011,
+                "y": 2569.59,
+                "width": 234.5,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1257.5,
+                "y": 2569.59,
+                "width": 234.5,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1504,
+                "y": 2569.59,
+                "width": 234.5,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1750.5,
+                "y": 2569.59,
+                "width": 234.5,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 2280,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -2280,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 768,
+      "capturedAt": "2026-10-01T11:24:30.000Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 3099.59,
+          "width": 768,
+          "height": 256
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "32px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "pb-10 relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pt-10",
+        "rect": {
+          "x": 24,
+          "y": 416,
+          "width": 720,
+          "height": 2683.59
+        },
+        "css": {
+          "display": "grid",
+          "position": "relative",
+          "paddingTop": "40px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "720px",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 456,
+              "width": 720,
+              "height": 1506
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Последние отзывы Елена Пральникова Пользователь Хабра 29 сентября Профессия авитолог: специалист по рекламе и продажам на Авито Достоинства:"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 2010,
+              "width": 720,
+              "height": 579.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Популярные курсы Все Нейросети и AI Программирование и IT Аналитика и Data Science Дизайн и контент Маркетинг и продажи Бизнес и менеджмент "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(3)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 2637.59,
+              "width": 720,
+              "height": 422
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Популярные онлайн-школы 4.55 1409 Яндекс Практикум +18225 Подробнее 4.84 82 Stepik +9509 Подробнее 4.28 264 Skillbox +5403 Подробнее 4.37 26"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > div:nth-of-type(2) > div:nth-of-type(1)",
+          "classes": "grid grid-cols-2 gap-[1px] phone:hidden",
+          "rect": {
+            "x": 24,
+            "y": 320,
+            "width": 550.13,
+            "height": 56
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "1px",
+            "columnGap": "1px",
+            "gridTemplateColumns": "274.562px 274.562px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 3131.59,
+            "width": 720,
+            "height": 184
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "229.328px 229.328px 229.328px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 58,
+            "y": 64,
+            "width": 652,
+            "height": 160
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "64px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "44px",
+            "lineHeight": "48px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Отзывы об онлайн-школах"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 456,
+            "width": 720,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Последние отзывы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2010,
+            "width": 720,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Популярные курсы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(3) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2637.59,
+            "width": 720,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Популярные онлайн-школы"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > div:nth-of-type(2) > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 2106,
+            "width": 720,
+            "height": 419.59
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 3,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 2106,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 268.33,
+                "y": 2106,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 511.66,
+                "y": 2106,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 754.98,
+                "y": 2106,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 998.31,
+                "y": 2106,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1241.64,
+                "y": 2106,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1484.97,
+                "y": 2106,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1728.3,
+                "y": 2106,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(3) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 2681.59,
+            "width": 720,
+            "height": 314
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 3,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 2681.59,
+                "width": 231.33,
+                "height": 314
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 268.33,
+                "y": 2681.59,
+                "width": 231.33,
+                "height": 314
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 511.66,
+                "y": 2681.59,
+                "width": 231.33,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 754.98,
+                "y": 2681.59,
+                "width": 231.33,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 998.31,
+                "y": 2681.59,
+                "width": 231.33,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1241.64,
+                "y": 2681.59,
+                "width": 231.33,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1484.97,
+                "y": 2681.59,
+                "width": 231.33,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1728.3,
+                "y": 2681.59,
+                "width": 231.33,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 2456,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -2456,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 744,
+      "capturedAt": "2026-10-01T11:36:04.009Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 744,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 3279.8,
+          "width": 744,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "pb-10 relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pt-10",
+        "rect": {
+          "x": 24,
+          "y": 469,
+          "width": 696,
+          "height": 2810.8
+        },
+        "css": {
+          "display": "grid",
+          "position": "relative",
+          "paddingTop": "40px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "696px",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 509,
+              "width": 696,
+              "height": 1654
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Последние отзывы Елена Пральникова Пользователь Хабра 29 сентября Профессия авитолог: специалист по рекламе и продажам на Авито Достоинства:"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 2211,
+              "width": 696,
+              "height": 558.8
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Популярные курсы Все Нейросети и AI Программирование и IT Аналитика и Data Science Дизайн и контент Маркетинг и продажи Бизнес и менеджмент "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(3)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 2817.8,
+              "width": 696,
+              "height": 422
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Популярные онлайн-школы 4.55 1409 Яндекс Практикум +18226 Подробнее 4.84 82 Stepik +9509 Подробнее 4.28 264 Skillbox +5403 Подробнее 4.37 26"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 3303.8,
+            "width": 696,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "696px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 46,
+            "y": 64,
+            "width": 652,
+            "height": 108
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "40px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "30px",
+            "lineHeight": "34px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Отзывы об онлайн-школах"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 509,
+            "width": 696,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Последние отзывы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2211,
+            "width": 696,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Популярные курсы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(3) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2817.8,
+            "width": 696,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Популярные онлайн-школы"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > div:nth-of-type(2) > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 2307,
+            "width": 696,
+            "height": 398.8
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 2307,
+                "width": 694,
+                "height": 398.8
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 731,
+                "y": 2307,
+                "width": 694,
+                "height": 398.8
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 1437,
+                "y": 2307,
+                "width": 694,
+                "height": 398.8
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2143,
+                "y": 2307,
+                "width": 694,
+                "height": 398.8
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2849,
+                "y": 2307,
+                "width": 694,
+                "height": 398.8
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 3555,
+                "y": 2307,
+                "width": 694,
+                "height": 398.8
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 4261,
+                "y": 2307,
+                "width": 694,
+                "height": 398.8
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 4967,
+                "y": 2307,
+                "width": 694,
+                "height": 398.8
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(3) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 2861.8,
+            "width": 696,
+            "height": 314
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 2861.8,
+                "width": 694,
+                "height": 314
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 731,
+                "y": 2861.8,
+                "width": 694,
+                "height": 314
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 1437,
+                "y": 2861.8,
+                "width": 694,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2143,
+                "y": 2861.8,
+                "width": 694,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2849,
+                "y": 2861.8,
+                "width": 694,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 3555,
+                "y": 2861.8,
+                "width": 694,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 4261,
+                "y": 2861.8,
+                "width": 694,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 4967,
+                "y": 2861.8,
+                "width": 694,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 2856,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -2856,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 480,
+      "capturedAt": "2026-10-01T11:36:07.870Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 480,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 3560.59,
+          "width": 480,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "pb-10 relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pt-10",
+        "rect": {
+          "x": 24,
+          "y": 469,
+          "width": 432,
+          "height": 3091.59
+        },
+        "css": {
+          "display": "grid",
+          "position": "relative",
+          "paddingTop": "40px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "432px",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 509,
+              "width": 432,
+              "height": 1914
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Последние отзывы Елена Пральникова Пользователь Хабра 29 сентября Профессия авитолог: специалист по рекламе и продажам на Авито Достоинства:"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 2471,
+              "width": 432,
+              "height": 579.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Популярные курсы Все Нейросети и AI Программирование и IT Аналитика и Data Science Дизайн и контент Маркетинг и продажи Бизнес и менеджмент "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(3)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 3098.59,
+              "width": 432,
+              "height": 422
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Популярные онлайн-школы 4.55 1409 Яндекс Практикум +18226 Подробнее 4.84 82 Stepik +9509 Подробнее 4.28 264 Skillbox +5403 Подробнее 4.37 26"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 3584.59,
+            "width": 432,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "432px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 24,
+            "y": 64,
+            "width": 432,
+            "height": 108
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "40px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "30px",
+            "lineHeight": "34px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Отзывы об онлайн-школах"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 509,
+            "width": 432,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Последние отзывы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2471,
+            "width": 432,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Популярные курсы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(3) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 3098.59,
+            "width": 432,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Популярные онлайн-школы"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > div:nth-of-type(2) > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 2567,
+            "width": 432,
+            "height": 419.59
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 2567,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 467,
+                "y": 2567,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 909,
+                "y": 2567,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1351,
+                "y": 2567,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1793,
+                "y": 2567,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2235,
+                "y": 2567,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2677,
+                "y": 2567,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 3119,
+                "y": 2567,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(3) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 3142.59,
+            "width": 432,
+            "height": 314
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 3142.59,
+                "width": 430,
+                "height": 314
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 467,
+                "y": 3142.59,
+                "width": 430,
+                "height": 314
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 909,
+                "y": 3142.59,
+                "width": 430,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1351,
+                "y": 3142.59,
+                "width": 430,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1793,
+                "y": 3142.59,
+                "width": 430,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2235,
+                "y": 3142.59,
+                "width": 430,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2677,
+                "y": 3142.59,
+                "width": 430,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 3119,
+                "y": 3142.59,
+                "width": 430,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 3137,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -3137,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 393,
+      "capturedAt": "2026-10-01T11:24:33.702Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 393,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 3760.59,
+          "width": 393,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "pb-10 relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pt-10",
+        "rect": {
+          "x": 24,
+          "y": 469,
+          "width": 345,
+          "height": 3291.59
+        },
+        "css": {
+          "display": "grid",
+          "position": "relative",
+          "paddingTop": "40px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "345px",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 509,
+              "width": 345,
+              "height": 2114
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Последние отзывы Елена Пральникова Пользователь Хабра 29 сентября Профессия авитолог: специалист по рекламе и продажам на Авито Достоинства:"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 2671,
+              "width": 345,
+              "height": 579.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Популярные курсы Все Нейросети и AI Программирование и IT Аналитика и Data Science Дизайн и контент Маркетинг и продажи Бизнес и менеджмент "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(3)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 3298.59,
+              "width": 345,
+              "height": 422
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Популярные онлайн-школы 4.55 1409 Яндекс Практикум +18225 Подробнее 4.84 82 Stepik +9509 Подробнее 4.28 264 Skillbox +5403 Подробнее 4.37 26"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 3784.59,
+            "width": 345,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "345px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 24,
+            "y": 64,
+            "width": 345,
+            "height": 108
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "40px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "30px",
+            "lineHeight": "34px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Отзывы об онлайн-школах"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 509,
+            "width": 345,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Последние отзывы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2671,
+            "width": 345,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Популярные курсы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(3) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 3298.59,
+            "width": 345,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Популярные онлайн-школы"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > div:nth-of-type(2) > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 2767,
+            "width": 345,
+            "height": 419.59
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 2767,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 380,
+                "y": 2767,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 735,
+                "y": 2767,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1090,
+                "y": 2767,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1445,
+                "y": 2767,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1800,
+                "y": 2767,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2155,
+                "y": 2767,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2510,
+                "y": 2767,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(3) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 3342.59,
+            "width": 345,
+            "height": 314
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 3342.59,
+                "width": 343,
+                "height": 314
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 380,
+                "y": 3342.59,
+                "width": 343,
+                "height": 314
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 735,
+                "y": 3342.59,
+                "width": 343,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1090,
+                "y": 3342.59,
+                "width": 343,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1445,
+                "y": 3342.59,
+                "width": 343,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1800,
+                "y": 3342.59,
+                "width": 343,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2155,
+                "y": 3342.59,
+                "width": 343,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2510,
+                "y": 3342.59,
+                "width": 343,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 3337,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -3337,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 320,
+      "capturedAt": "2026-10-01T11:36:11.895Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 4088.59,
+          "width": 320,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "pb-10 relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pt-10",
+        "rect": {
+          "x": 24,
+          "y": 469,
+          "width": 272,
+          "height": 3619.59
+        },
+        "css": {
+          "display": "grid",
+          "position": "relative",
+          "paddingTop": "40px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "272px",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 509,
+              "width": 272,
+              "height": 2414
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Последние отзывы Елена Пральникова Пользователь Хабра 29 сентября Профессия авитолог: специалист по рекламе и продажам на Авито Достоинства:"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 2971,
+              "width": 272,
+              "height": 579.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Популярные курсы Все Нейросети и AI Программирование и IT Аналитика и Data Science Дизайн и контент Маркетинг и продажи Бизнес и менеджмент "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(3)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 3598.59,
+              "width": 272,
+              "height": 450
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Популярные онлайн-школы 4.55 1409 Яндекс Практикум +18226 Подробнее 4.84 82 Stepik +9509 Подробнее 4.28 264 Skillbox +5403 Подробнее 4.37 26"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 4112.59,
+            "width": 272,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "272px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 24,
+            "y": 64,
+            "width": 272,
+            "height": 108
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "40px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "30px",
+            "lineHeight": "34px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Отзывы об онлайн-школах"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 509,
+            "width": 272,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Последние отзывы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2971,
+            "width": 272,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Популярные курсы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(3) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 3598.59,
+            "width": 272,
+            "height": 56
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Популярные онлайн-школы"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > div:nth-of-type(2) > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 3067,
+            "width": 272,
+            "height": 419.59
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 3067,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 307,
+                "y": 3067,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 589,
+                "y": 3067,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 871,
+                "y": 3067,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1153,
+                "y": 3067,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1435,
+                "y": 3067,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1717,
+                "y": 3067,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1999,
+                "y": 3067,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(3) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 3670.59,
+            "width": 272,
+            "height": 314
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 3670.59,
+                "width": 270,
+                "height": 314
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 307,
+                "y": 3670.59,
+                "width": 270,
+                "height": 314
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 589,
+                "y": 3670.59,
+                "width": 270,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 871,
+                "y": 3670.59,
+                "width": 270,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1153,
+                "y": 3670.59,
+                "width": 270,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1435,
+                "y": 3670.59,
+                "width": 270,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1717,
+                "y": 3670.59,
+                "width": 270,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1999,
+                "y": 3670.59,
+                "width": 270,
+                "height": 314
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 3665,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -3665,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    }
+  ],
+  "boundaryMeasurements": []
+}

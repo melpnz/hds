@@ -23,12 +23,18 @@
   "product": {
     "id": "courses",
     "title": "Хабр Курсы",
-    "guideVersion": "1.0",
+    "guideVersion": "1.1",
     "status": "active"
   },
   "scope": {
     "confidence": "mixed",
-    "boundary": "Публичная гостевая часть Курсов; шесть собранных страниц и адресные спецификации."
+    "boundary": "Публичная гостевая часть Курсов; шесть provider-композиций и атлас двенадцати адаптивных production-reference страниц. Reference не подтверждает соответствие provider."
+  },
+  "productionPageAtlas": {
+    "file": "machine/page-analysis/atlas.json",
+    "rules": "docs/guide/production-pages.md",
+    "approvalList": "docs/decisions/page-analysis-approval.md",
+    "priority": "owner-decisions-for-new-builds-then-current-address-specific-measurements-over-historical-generalization"
   },
   "typography": {
     "families": {

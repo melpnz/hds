@@ -6,25 +6,26 @@
   },
   "provider": {
     "id": "courses-nuxt-kit",
-    "version": "1.2.0"
+    "version": "1.3.0"
   },
   "distribution": {
     "mode": "copy",
-    "archive": "courses-nuxt-kit-v1.2.0.zip",
-    "checksum": "courses-nuxt-kit-v1.2.0.zip.sha256",
-    "releaseTag": "courses-nuxt-kit-v1.2.0",
-    "releaseUrl": "https://github.com/melpnz/hds/releases/tag/courses-nuxt-kit-v1.2.0",
-    "archiveUrl": "https://github.com/melpnz/hds/releases/download/courses-nuxt-kit-v1.2.0/courses-nuxt-kit-v1.2.0.zip",
-    "checksumUrl": "https://github.com/melpnz/hds/releases/download/courses-nuxt-kit-v1.2.0/courses-nuxt-kit-v1.2.0.zip.sha256",
+    "archive": "courses-nuxt-kit-v1.3.0.zip",
+    "checksum": "courses-nuxt-kit-v1.3.0.zip.sha256",
+    "releaseTag": "courses-nuxt-kit-v1.3.0",
+    "releaseUrl": "https://github.com/melpnz/hds/releases/tag/courses-nuxt-kit-v1.3.0",
+    "archiveUrl": "https://github.com/melpnz/hds/releases/download/courses-nuxt-kit-v1.3.0/courses-nuxt-kit-v1.3.0.zip",
+    "checksumUrl": "https://github.com/melpnz/hds/releases/download/courses-nuxt-kit-v1.3.0/courses-nuxt-kit-v1.3.0.zip.sha256",
     "checksumAlgorithm": "sha256",
     "copiedDirectory": "layers/courses",
-    "networkPolicy": "no-runtime-build-or-dev-requests"
+    "networkPolicy": "no-runtime-build-or-dev-requests",
+    "availability": "prepared-not-published"
   },
   "preflight": {
     "frameworkDetection": "Inspect the target repository; apply the provider installation only to a Nuxt project.",
     "localManifest": "layers/courses/courses-kit.manifest.json",
     "ifCompatibleLayerExists": "Use it without a network request.",
-    "ifLayerIsMissing": "Install the pinned release automatically before implementing the Courses UI.",
+    "ifLayerIsMissing": "Version 1.3.0 is prepared locally and not published yet. Do not download the planned archive until its release is published; report the limitation or use the maintainer-provided local layer. After publication, download and install the pinned release before implementing Courses UI.",
     "ifLayerIsModifiedOrIncompatible": "Do not overwrite it. Report the version or integrity conflict and request an explicit migration decision.",
     "ifGitHubIsUnavailable": "Report that the pinned kit cannot be downloaded. Do not recreate provider components from screenshots or static examples."
   },
@@ -40,7 +41,8 @@
     ],
     "dependencies": [
       "@nuxt/ui",
-      "@fontsource-variable/inter"
+      "@fontsource-variable/inter",
+      "swiper"
     ],
     "devDependencies": [
       "@iconify-json/tabler"
@@ -56,6 +58,12 @@
         "colorMode": false
       }
     }
+  },
+  "localUnreleased": {
+    "additionalDependencies": {
+      "swiper": "14.3.0"
+    },
+    "reason": "Prepared local 1.3.0 uses Swiper internally. Published 1.2.0 remains unchanged and does not contain the new loop API; do not treat it as equivalent to the prepared layer. The planned 1.3.0 archive is not published yet."
   },
   "usage": {
     "componentLookup": "machine/providers/courses-nuxt-kit.json -> selected apiFile",

@@ -1,0 +1,6010 @@
+{
+  "id": "education-center",
+  "title": "Школа: Skillbox",
+  "url": "https://career.habr.com/education_centers/36-skillbox",
+  "family": "school-detail",
+  "sequence": [
+    "simple-header",
+    "entity-header",
+    "courses-filter",
+    "course-grid",
+    "all-courses-cta",
+    "ad-slot",
+    "success-stories",
+    "reviews-carousel",
+    "general-info",
+    "footer"
+  ],
+  "providerComponents": [
+    "site-header",
+    "site-footer",
+    "entity-header",
+    "filter-chip",
+    "course-card",
+    "button",
+    "article-card",
+    "review-card",
+    "info-table"
+  ],
+  "approvalGaps": [],
+  "notes": [
+    "Сетка курсов gap16; карточки сверх8/6/4 скрываются по диапазону.",
+    "SEO h1 мелкий внизу — не повод добавлять большой hero над школой."
+  ],
+  "ownerDecisions": [
+    {
+      "id": "carousel-loop",
+      "status": "implemented-local",
+      "rule": "Обычные Carousel: loop=true, шаг1, gap12; CourseCard 4/3/1, ArticleCard и ReviewCard 3/2/1. Default loop=false сохраняет конечный режим. Если все карточки помещаются, блок стрелок не рендерится. Swiper внутри кита, живые карточки из slots. Рекламная геометрия описана отдельным решением banner-carousel. Доработка пока не опубликована.",
+      "component": "Carousel"
+    },
+    {
+      "id": "grid-tablet",
+      "status": "implemented-local",
+      "rule": "CardGrid: tabletColumns=2|3, default=2; columns=2|3|4, default=4; phone=1. Gap всегда 12 px, без prop для отступа. Старые вызовы сохраняют 4/2/1. Изменение пока не опубликовано.",
+      "component": "CardGrid"
+    },
+    {
+      "id": "review-content-data",
+      "status": "implemented-local",
+      "rule": "ReviewCard принимает avatar, courseLogo, courseHref, advantages, disadvantages и comment. Compact остаётся default и сохраняет прежние text/href вызовы.",
+      "component": "ReviewCard"
+    },
+    {
+      "id": "school-course-grid",
+      "status": "approved-page-composition",
+      "rule": "Курсы школы собираются обычным CardGrid с tabletColumns=3 и gap12. Лимиты 8/6/4 задаёт страница, не компонент. Gap16 в measurements остаётся фактом о production, но новая kit-сборка использует утверждённые 12 px.",
+      "component": "CardGrid",
+      "observedProductionGap": 16,
+      "approvedGap": 12
+    },
+    {
+      "id": "accepted-shared-layout",
+      "status": "implemented-local",
+      "acceptedOn": "2026-10-05",
+      "rule": "RatingTable: длинный текст увеличивает высоту с сохранением padding; все колонки доступны локальным скроллом на320. После последнего NumberedCourseItem нет линии; подборка рейтинга в каталоге содержит10 школ. SchoolCard: название максимум3 строки, кнопка внизу. Carousel: карточка заполняет слайд, стрелки центрируются без учёта пагинации. Подборки используют общий LinkGrid и соответствующие разделу данные.",
+      "pages": [
+        "courses-listing",
+        "course-category",
+        "education-centers-listing",
+        "rating",
+        "education-center",
+        "reviews",
+        "review-detail",
+        "promocodes",
+        "promocode-detail",
+        "authors",
+        "editors",
+        "author"
+      ]
+    },
+    {
+      "id": "accepted-school-details",
+      "status": "implemented-local",
+      "acceptedOn": "2026-10-05",
+      "rule": "EntityHeader: логотип сверху без смещения при раскрытии. Desktop Подробнее в конце текста, Свернуть под ним; mobile обе ссылки под текстом. InfoTable gap16 по обеим осям и16 от заголовка.",
+      "pages": [
+        "education-center"
+      ]
+    }
+  ],
+  "reference": "evidence/production-responsive-2026-10-01/education-center/index.html",
+  "measurements": [
+    {
+      "width": 1440,
+      "capturedAt": "2026-10-01T11:24:14.436Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 2967.94,
+          "width": 1440,
+          "height": 192
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "32px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div",
+        "classes": "relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pb-28 pt-6 phone:pt-0",
+        "rect": {
+          "x": 182,
+          "y": 64,
+          "width": 1076,
+          "height": 2903.94
+        },
+        "css": {
+          "display": "grid",
+          "position": "relative",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "112px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "1076px",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+            "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+            "rect": {
+              "x": 182,
+              "y": 2887.94,
+              "width": 155.98,
+              "height": 20
+            },
+            "css": {
+              "display": "block",
+              "position": "absolute",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "14px",
+              "lineHeight": "20px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Онлайн-школа Skillbox"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(1)",
+            "classes": "grid overflow-hidden rounded-3xl border border-ui-black-100 phone:-mx-6 phone:rounded-none phone:border-none",
+            "rect": {
+              "x": 182,
+              "y": 88,
+              "width": 1076,
+              "height": 358
+            },
+            "css": {
+              "display": "grid",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "1074px",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "hidden"
+            },
+            "label": "Skillbox 4.28 264 отзыва • 5406 выпускников Skillbox — это онлайн-университет. У нас прикладные курсы и программы от главных экспертов рынка"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 182,
+              "y": 494,
+              "width": 1076,
+              "height": 1015.19
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Курсы Все HR и рекрутинг Аналитика и Data Science Бизнес и менеджмент Дизайн и контент Красота и здоровье Кулинария Маркетинг и продажи Прог"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(2)",
+            "classes": "flex items-center justify-center overflow-hidden -mt-4 rounded-3xl",
+            "rect": {
+              "x": 182,
+              "y": 1541.19,
+              "width": 1076,
+              "height": 16
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "-16px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "hidden"
+            },
+            "label": ""
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 182,
+              "y": 1605.19,
+              "width": 1076,
+              "height": 421.75
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Истории успеха Статья • 28 сентября Как стать UX/UI‑дизайнером и сколько можно зарабатывать Статья • 25 сентября Кому подходит фриланс в IT "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(3)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 182,
+              "y": 2074.94,
+              "width": 1076,
+              "height": 569
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Отзывы Тимир-Булат Хизриев Пользователь Хабра 27 сентября Финансовый аналитик Достоинства: Основы теории достаточно хорошо изложены. Но мало"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(4)",
+            "classes": "",
+            "rect": {
+              "x": 182,
+              "y": 2691.94,
+              "width": 1076,
+              "height": 164
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Общая информация Лицензия № Л035-01298-77/00179609 Телефоны 8 (800) 600-78-47 Головной офис г. Москва, вн. тер. г. Муниципальный Округ Хамов"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > div:nth-of-type(2)",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 tablet-only:grid-cols-3 phone:[&>*:nth-child(n+5)]:hidden tablet-only:[&>*:nth-child(n+7)]:hidden",
+          "rect": {
+            "x": 182,
+            "y": 590,
+            "width": 1076,
+            "height": 855.19
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "257px 257px 257px 257px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(4) > div",
+          "classes": "mt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-small phone:grid-cols-1",
+          "rect": {
+            "x": 182,
+            "y": 2735.94,
+            "width": 1076,
+            "height": 120
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "16px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "530px 530px",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 182,
+            "y": 2999.94,
+            "width": 1076,
+            "height": 120
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "257px 257px 257px 257px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+          "rect": {
+            "x": 182,
+            "y": 2887.94,
+            "width": 155.98,
+            "height": 20
+          },
+          "css": {
+            "display": "block",
+            "position": "absolute",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Онлайн-школа Skillbox"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 182,
+            "y": 494,
+            "width": 1076,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Курсы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 182,
+            "y": 1605.19,
+            "width": 1076,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Истории успеха"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(3) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 182,
+            "y": 2074.94,
+            "width": 1076,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Отзывы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(4) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 182,
+            "y": 2691.94,
+            "width": 1076,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Общая информация"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 182,
+            "y": 1649.19,
+            "width": 1076,
+            "height": 313.75
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 3,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 2
+              },
+              "1024": {
+                "slidesPerView": 3
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 183,
+                "y": 1649.19,
+                "width": 350,
+                "height": 313.75
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 545,
+                "y": 1649.19,
+                "width": 350,
+                "height": 313.75
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 907,
+                "y": 1649.19,
+                "width": 350,
+                "height": 313.75
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1269,
+                "y": 1649.19,
+                "width": 350,
+                "height": 313.75
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1631,
+                "y": 1649.19,
+                "width": 350,
+                "height": 313.75
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1993,
+                "y": 1649.19,
+                "width": 350,
+                "height": 313.75
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2355,
+                "y": 1649.19,
+                "width": 350,
+                "height": 313.75
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2717,
+                "y": 1649.19,
+                "width": 350,
+                "height": 313.75
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(3) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 182,
+            "y": 2118.94,
+            "width": 1076,
+            "height": 461
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 3,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 2
+              },
+              "1024": {
+                "slidesPerView": 3
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 183,
+                "y": 2118.94,
+                "width": 350,
+                "height": 461
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 545,
+                "y": 2118.94,
+                "width": 350,
+                "height": 461
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 907,
+                "y": 2118.94,
+                "width": 350,
+                "height": 461
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1269,
+                "y": 2118.94,
+                "width": 350,
+                "height": 461
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1631,
+                "y": 2118.94,
+                "width": 350,
+                "height": 461
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1993,
+                "y": 2118.94,
+                "width": 350,
+                "height": 461
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2355,
+                "y": 2118.94,
+                "width": 350,
+                "height": 461
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2717,
+                "y": 2118.94,
+                "width": 350,
+                "height": 461
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 2260,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -2260,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 1024,
+      "capturedAt": "2026-10-01T11:35:41.974Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 2949.17,
+          "width": 1024,
+          "height": 192
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "32px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div",
+        "classes": "relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pb-28 pt-6 phone:pt-0",
+        "rect": {
+          "x": 24,
+          "y": 64,
+          "width": 976,
+          "height": 2885.17
+        },
+        "css": {
+          "display": "grid",
+          "position": "relative",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "112px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "976px",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+            "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+            "rect": {
+              "x": 24,
+              "y": 2869.17,
+              "width": 155.98,
+              "height": 20
+            },
+            "css": {
+              "display": "block",
+              "position": "absolute",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "14px",
+              "lineHeight": "20px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Онлайн-школа Skillbox"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(1)",
+            "classes": "grid overflow-hidden rounded-3xl border border-ui-black-100 phone:-mx-6 phone:rounded-none phone:border-none",
+            "rect": {
+              "x": 24,
+              "y": 88,
+              "width": 976,
+              "height": 358
+            },
+            "css": {
+              "display": "grid",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "974px",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "hidden"
+            },
+            "label": "Skillbox 4.28 264 отзыва • 5406 выпускников Skillbox — это онлайн-университет. У нас прикладные курсы и программы от главных экспертов рынка"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 494,
+              "width": 976,
+              "height": 1015.19
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Курсы Все HR и рекрутинг Аналитика и Data Science Бизнес и менеджмент Дизайн и контент Красота и здоровье Кулинария Маркетинг и продажи Прог"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(2)",
+            "classes": "flex items-center justify-center overflow-hidden -mt-4 rounded-3xl",
+            "rect": {
+              "x": 24,
+              "y": 1541.19,
+              "width": 976,
+              "height": 16
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "-16px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "hidden"
+            },
+            "label": ""
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 1605.19,
+              "width": 976,
+              "height": 402.98
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Истории успеха Статья • 28 сентября Как стать UX/UI‑дизайнером и сколько можно зарабатывать Статья • 25 сентября Кому подходит фриланс в IT "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(3)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 2056.17,
+              "width": 976,
+              "height": 569
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Отзывы Тимир-Булат Хизриев Пользователь Хабра 27 сентября Финансовый аналитик Достоинства: Основы теории достаточно хорошо изложены. Но мало"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(4)",
+            "classes": "",
+            "rect": {
+              "x": 24,
+              "y": 2673.17,
+              "width": 976,
+              "height": 164
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Общая информация Лицензия № Л035-01298-77/00179609 Телефоны 8 (800) 600-78-47 Головной офис г. Москва, вн. тер. г. Муниципальный Округ Хамов"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > div:nth-of-type(2)",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 tablet-only:grid-cols-3 phone:[&>*:nth-child(n+5)]:hidden tablet-only:[&>*:nth-child(n+7)]:hidden",
+          "rect": {
+            "x": 24,
+            "y": 590,
+            "width": 976,
+            "height": 855.19
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "232px 232px 232px 232px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(4) > div",
+          "classes": "mt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-small phone:grid-cols-1",
+          "rect": {
+            "x": 24,
+            "y": 2717.17,
+            "width": 976,
+            "height": 120
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "16px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "480px 480px",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 2981.17,
+            "width": 976,
+            "height": 120
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "232px 232px 232px 232px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+          "rect": {
+            "x": 24,
+            "y": 2869.17,
+            "width": 155.98,
+            "height": 20
+          },
+          "css": {
+            "display": "block",
+            "position": "absolute",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Онлайн-школа Skillbox"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 494,
+            "width": 976,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Курсы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 1605.19,
+            "width": 976,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Истории успеха"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(3) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2056.17,
+            "width": 976,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Отзывы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(4) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2673.17,
+            "width": 976,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Общая информация"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 1649.19,
+            "width": 976,
+            "height": 294.98
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 3,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 2
+              },
+              "1024": {
+                "slidesPerView": 3
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 1649.19,
+                "width": 316.66,
+                "height": 294.98
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 353.66,
+                "y": 1649.19,
+                "width": 316.66,
+                "height": 294.98
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 682.31,
+                "y": 1649.19,
+                "width": 316.66,
+                "height": 294.98
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1010.97,
+                "y": 1649.19,
+                "width": 316.66,
+                "height": 294.98
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1339.63,
+                "y": 1649.19,
+                "width": 316.66,
+                "height": 294.98
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1668.28,
+                "y": 1649.19,
+                "width": 316.66,
+                "height": 294.98
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1996.94,
+                "y": 1649.19,
+                "width": 316.66,
+                "height": 294.98
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2325.59,
+                "y": 1649.19,
+                "width": 316.66,
+                "height": 294.98
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(3) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 2100.17,
+            "width": 976,
+            "height": 461
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 3,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 2
+              },
+              "1024": {
+                "slidesPerView": 3
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 2100.17,
+                "width": 316.66,
+                "height": 461
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 353.66,
+                "y": 2100.17,
+                "width": 316.66,
+                "height": 461
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 682.31,
+                "y": 2100.17,
+                "width": 316.66,
+                "height": 461
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1010.97,
+                "y": 2100.17,
+                "width": 316.66,
+                "height": 461
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1339.63,
+                "y": 2100.17,
+                "width": 316.66,
+                "height": 461
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1668.28,
+                "y": 2100.17,
+                "width": 316.66,
+                "height": 461
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1996.94,
+                "y": 2100.17,
+                "width": 316.66,
+                "height": 461
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2325.59,
+                "y": 2100.17,
+                "width": 316.66,
+                "height": 461
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 2241,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -2241,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 768,
+      "capturedAt": "2026-10-01T11:24:18.235Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 2993.63,
+          "width": 768,
+          "height": 256
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "32px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div",
+        "classes": "relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pb-28 pt-6 phone:pt-0",
+        "rect": {
+          "x": 24,
+          "y": 64,
+          "width": 720,
+          "height": 2929.63
+        },
+        "css": {
+          "display": "grid",
+          "position": "relative",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "112px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "720px",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+            "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+            "rect": {
+              "x": 24,
+              "y": 2913.63,
+              "width": 155.98,
+              "height": 20
+            },
+            "css": {
+              "display": "block",
+              "position": "absolute",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "14px",
+              "lineHeight": "20px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Онлайн-школа Skillbox"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(1)",
+            "classes": "grid overflow-hidden rounded-3xl border border-ui-black-100 phone:-mx-6 phone:rounded-none phone:border-none",
+            "rect": {
+              "x": 24,
+              "y": 88,
+              "width": 720,
+              "height": 358
+            },
+            "css": {
+              "display": "grid",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "718px",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "hidden"
+            },
+            "label": "Skillbox 4.28 264 отзыва • 5406 выпускников Skillbox — это онлайн-университет. У нас прикладные курсы и программы от главных экспертов рынка"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 494,
+              "width": 720,
+              "height": 1039.19
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Курсы Все HR и рекрутинг Аналитика и Data Science Бизнес и менеджмент Дизайн и контент Красота и здоровье Кулинария Маркетинг и продажи Прог"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(2)",
+            "classes": "flex items-center justify-center overflow-hidden -mt-4 rounded-3xl",
+            "rect": {
+              "x": 24,
+              "y": 1565.19,
+              "width": 720,
+              "height": 16
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "-16px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "hidden"
+            },
+            "label": ""
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 1629.19,
+              "width": 720,
+              "height": 423.44
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Истории успеха Статья • 28 сентября Как стать UX/UI‑дизайнером и сколько можно зарабатывать Статья • 25 сентября Кому подходит фриланс в IT "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(3)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 2100.63,
+              "width": 720,
+              "height": 569
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Отзывы Тимир-Булат Хизриев Пользователь Хабра 27 сентября Финансовый аналитик Достоинства: Основы теории достаточно хорошо изложены. Но мало"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(4)",
+            "classes": "",
+            "rect": {
+              "x": 24,
+              "y": 2717.63,
+              "width": 720,
+              "height": 164
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Общая информация Лицензия № Л035-01298-77/00179609 Телефоны 8 (800) 600-78-47 Головной офис г. Москва, вн. тер. г. Муниципальный Округ Хамов"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > div:nth-of-type(2)",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 tablet-only:grid-cols-3 phone:[&>*:nth-child(n+5)]:hidden tablet-only:[&>*:nth-child(n+7)]:hidden",
+          "rect": {
+            "x": 24,
+            "y": 590,
+            "width": 720,
+            "height": 879.19
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "229.328px 229.328px 229.328px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(4) > div",
+          "classes": "mt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-small phone:grid-cols-1",
+          "rect": {
+            "x": 24,
+            "y": 2761.63,
+            "width": 720,
+            "height": 120
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "16px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "352px 352px",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 3025.63,
+            "width": 720,
+            "height": 184
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "229.328px 229.328px 229.328px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+          "rect": {
+            "x": 24,
+            "y": 2913.63,
+            "width": 155.98,
+            "height": 20
+          },
+          "css": {
+            "display": "block",
+            "position": "absolute",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Онлайн-школа Skillbox"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 494,
+            "width": 720,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Курсы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 1629.19,
+            "width": 720,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Истории успеха"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(3) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2100.63,
+            "width": 720,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Отзывы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(4) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2717.63,
+            "width": 720,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Общая информация"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 1673.19,
+            "width": 720,
+            "height": 315.44
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 2,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 2
+              },
+              "1024": {
+                "slidesPerView": 3
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 1673.19,
+                "width": 353,
+                "height": 315.44
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 390,
+                "y": 1673.19,
+                "width": 353,
+                "height": 315.44
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 755,
+                "y": 1673.19,
+                "width": 353,
+                "height": 315.44
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1120,
+                "y": 1673.19,
+                "width": 353,
+                "height": 315.44
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1485,
+                "y": 1673.19,
+                "width": 353,
+                "height": 315.44
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1850,
+                "y": 1673.19,
+                "width": 353,
+                "height": 315.44
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2215,
+                "y": 1673.19,
+                "width": 353,
+                "height": 315.44
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2580,
+                "y": 1673.19,
+                "width": 353,
+                "height": 315.44
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(3) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 2144.63,
+            "width": 720,
+            "height": 461
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 2,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 2
+              },
+              "1024": {
+                "slidesPerView": 3
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 2144.63,
+                "width": 353,
+                "height": 461
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 390,
+                "y": 2144.63,
+                "width": 353,
+                "height": 461
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 755,
+                "y": 2144.63,
+                "width": 353,
+                "height": 461
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1120,
+                "y": 2144.63,
+                "width": 353,
+                "height": 461
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1485,
+                "y": 2144.63,
+                "width": 353,
+                "height": 461
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1850,
+                "y": 2144.63,
+                "width": 353,
+                "height": 461
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2215,
+                "y": 2144.63,
+                "width": 353,
+                "height": 461
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2580,
+                "y": 2144.63,
+                "width": 353,
+                "height": 461
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 2350,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -2350,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 744,
+      "capturedAt": "2026-10-01T11:35:45.954Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 744,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 4042.44,
+          "width": 744,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div",
+        "classes": "relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pb-28 pt-6 phone:pt-0",
+        "rect": {
+          "x": 24,
+          "y": 64,
+          "width": 696,
+          "height": 3978.44
+        },
+        "css": {
+          "display": "grid",
+          "position": "relative",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "112px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "696px",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+            "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+            "rect": {
+              "x": 24,
+              "y": 3962.44,
+              "width": 155.98,
+              "height": 20
+            },
+            "css": {
+              "display": "block",
+              "position": "absolute",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "14px",
+              "lineHeight": "20px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Онлайн-школа Skillbox"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(1)",
+            "classes": "grid overflow-hidden rounded-3xl border border-ui-black-100 phone:-mx-6 phone:rounded-none phone:border-none",
+            "rect": {
+              "x": 0,
+              "y": 64,
+              "width": 744,
+              "height": 321
+            },
+            "css": {
+              "display": "grid",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "744px",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "hidden"
+            },
+            "label": "Skillbox 4.28 264 отзыва • 5406 выпускников Skillbox — это онлайн-университет. У нас прикладные курсы и программы от главных экспертов рынка"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 433,
+              "width": 696,
+              "height": 1803.19
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Курсы Все HR и рекрутинг Аналитика и Data Science Бизнес и менеджмент Дизайн и контент Красота и здоровье Кулинария Маркетинг и продажи Прог"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(2)",
+            "classes": "flex items-center justify-center overflow-hidden -mt-4 rounded-3xl",
+            "rect": {
+              "x": 24,
+              "y": 2268.19,
+              "width": 696,
+              "height": 16
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "-16px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "hidden"
+            },
+            "label": ""
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 2332.19,
+              "width": 696,
+              "height": 615.25
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Истории успеха Статья • 28 сентября Как стать UX/UI‑дизайнером и сколько можно зарабатывать Статья • 25 сентября Кому подходит фриланс в IT "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(3)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 2995.44,
+              "width": 696,
+              "height": 631
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Отзывы Тимир-Булат Хизриев Пользователь Хабра 27 сентября Финансовый аналитик Достоинства: Основы теории достаточно хорошо изложены. Но мало"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(4)",
+            "classes": "",
+            "rect": {
+              "x": 24,
+              "y": 3674.44,
+              "width": 696,
+              "height": 256
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Общая информация Лицензия № Л035-01298-77/00179609 Телефоны 8 (800) 600-78-47 Головной офис г. Москва, вн. тер. г. Муниципальный Округ Хамов"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > div:nth-of-type(2)",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 tablet-only:grid-cols-3 phone:[&>*:nth-child(n+5)]:hidden tablet-only:[&>*:nth-child(n+7)]:hidden",
+          "rect": {
+            "x": 24,
+            "y": 529,
+            "width": 696,
+            "height": 1643.19
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "696px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(4) > div",
+          "classes": "mt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-small phone:grid-cols-1",
+          "rect": {
+            "x": 24,
+            "y": 3718.44,
+            "width": 696,
+            "height": 212
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "16px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "696px",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 4066.44,
+            "width": 696,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "696px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+          "rect": {
+            "x": 24,
+            "y": 3962.44,
+            "width": 155.98,
+            "height": 20
+          },
+          "css": {
+            "display": "block",
+            "position": "absolute",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Онлайн-школа Skillbox"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 433,
+            "width": 696,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Курсы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2332.19,
+            "width": 696,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Истории успеха"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(3) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2995.44,
+            "width": 696,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Отзывы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(4) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 3674.44,
+            "width": 696,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Общая информация"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 2376.19,
+            "width": 696,
+            "height": 507.25
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 2
+              },
+              "1024": {
+                "slidesPerView": 3
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 2376.19,
+                "width": 694,
+                "height": 507.25
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 731,
+                "y": 2376.19,
+                "width": 694,
+                "height": 507.25
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 1437,
+                "y": 2376.19,
+                "width": 694,
+                "height": 507.25
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2143,
+                "y": 2376.19,
+                "width": 694,
+                "height": 507.25
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2849,
+                "y": 2376.19,
+                "width": 694,
+                "height": 507.25
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 3555,
+                "y": 2376.19,
+                "width": 694,
+                "height": 507.25
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 4261,
+                "y": 2376.19,
+                "width": 694,
+                "height": 507.25
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 4967,
+                "y": 2376.19,
+                "width": 694,
+                "height": 507.25
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(3) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 3039.44,
+            "width": 696,
+            "height": 523
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 2
+              },
+              "1024": {
+                "slidesPerView": 3
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 3039.44,
+                "width": 694,
+                "height": 523
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 731,
+                "y": 3039.44,
+                "width": 694,
+                "height": 523
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 1437,
+                "y": 3039.44,
+                "width": 694,
+                "height": 523
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2143,
+                "y": 3039.44,
+                "width": 694,
+                "height": 523
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2849,
+                "y": 3039.44,
+                "width": 694,
+                "height": 523
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 3555,
+                "y": 3039.44,
+                "width": 694,
+                "height": 523
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 4261,
+                "y": 3039.44,
+                "width": 694,
+                "height": 523
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 4967,
+                "y": 3039.44,
+                "width": 694,
+                "height": 523
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 3618,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -3618,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 480,
+      "capturedAt": "2026-10-01T11:35:50.142Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 480,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 3960.73,
+          "width": 480,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div",
+        "classes": "relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pb-28 pt-6 phone:pt-0",
+        "rect": {
+          "x": 24,
+          "y": 64,
+          "width": 432,
+          "height": 3896.73
+        },
+        "css": {
+          "display": "grid",
+          "position": "relative",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "112px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "432px",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+            "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+            "rect": {
+              "x": 24,
+              "y": 3880.73,
+              "width": 155.98,
+              "height": 20
+            },
+            "css": {
+              "display": "block",
+              "position": "absolute",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "14px",
+              "lineHeight": "20px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Онлайн-школа Skillbox"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(1)",
+            "classes": "grid overflow-hidden rounded-3xl border border-ui-black-100 phone:-mx-6 phone:rounded-none phone:border-none",
+            "rect": {
+              "x": 0,
+              "y": 64,
+              "width": 480,
+              "height": 341
+            },
+            "css": {
+              "display": "grid",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "480px",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "hidden"
+            },
+            "label": "Skillbox 4.28 264 отзыва • 5406 выпускников Skillbox — это онлайн-университет. У нас прикладные курсы и программы от главных экспертов рынка"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 453,
+              "width": 432,
+              "height": 1823.98
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Курсы Все HR и рекрутинг Аналитика и Data Science Бизнес и менеджмент Дизайн и контент Красота и здоровье Кулинария Маркетинг и продажи Прог"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(2)",
+            "classes": "flex items-center justify-center overflow-hidden -mt-4 rounded-3xl",
+            "rect": {
+              "x": 24,
+              "y": 2308.98,
+              "width": 432,
+              "height": 16
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "-16px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "hidden"
+            },
+            "label": ""
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 2372.98,
+              "width": 432,
+              "height": 466.75
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Истории успеха Статья • 28 сентября Как стать UX/UI‑дизайнером и сколько можно зарабатывать Статья • 25 сентября Кому подходит фриланс в IT "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(3)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 2887.73,
+              "width": 432,
+              "height": 637
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Отзывы Тимир-Булат Хизриев Пользователь Хабра 27 сентября Финансовый аналитик Достоинства: Основы теории достаточно хорошо изложены. Но мало"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(4)",
+            "classes": "",
+            "rect": {
+              "x": 24,
+              "y": 3572.73,
+              "width": 432,
+              "height": 276
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Общая информация Лицензия № Л035-01298-77/00179609 Телефоны 8 (800) 600-78-47 Головной офис г. Москва, вн. тер. г. Муниципальный Округ Хамов"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > div:nth-of-type(2)",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 tablet-only:grid-cols-3 phone:[&>*:nth-child(n+5)]:hidden tablet-only:[&>*:nth-child(n+7)]:hidden",
+          "rect": {
+            "x": 24,
+            "y": 549,
+            "width": 432,
+            "height": 1663.98
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "432px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(4) > div",
+          "classes": "mt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-small phone:grid-cols-1",
+          "rect": {
+            "x": 24,
+            "y": 3616.73,
+            "width": 432,
+            "height": 232
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "16px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "432px",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 3984.73,
+            "width": 432,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "432px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+          "rect": {
+            "x": 24,
+            "y": 3880.73,
+            "width": 155.98,
+            "height": 20
+          },
+          "css": {
+            "display": "block",
+            "position": "absolute",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Онлайн-школа Skillbox"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 453,
+            "width": 432,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Курсы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2372.98,
+            "width": 432,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Истории успеха"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(3) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2887.73,
+            "width": 432,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Отзывы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(4) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 3572.73,
+            "width": 432,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Общая информация"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 2416.98,
+            "width": 432,
+            "height": 358.75
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 2
+              },
+              "1024": {
+                "slidesPerView": 3
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 2416.98,
+                "width": 430,
+                "height": 358.75
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 467,
+                "y": 2416.98,
+                "width": 430,
+                "height": 358.75
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 909,
+                "y": 2416.98,
+                "width": 430,
+                "height": 358.75
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1351,
+                "y": 2416.98,
+                "width": 430,
+                "height": 358.75
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1793,
+                "y": 2416.98,
+                "width": 430,
+                "height": 358.75
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2235,
+                "y": 2416.98,
+                "width": 430,
+                "height": 358.75
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2677,
+                "y": 2416.98,
+                "width": 430,
+                "height": 358.75
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 3119,
+                "y": 2416.98,
+                "width": 430,
+                "height": 358.75
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(3) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 2931.73,
+            "width": 432,
+            "height": 529
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 2
+              },
+              "1024": {
+                "slidesPerView": 3
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 2931.73,
+                "width": 430,
+                "height": 529
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 467,
+                "y": 2931.73,
+                "width": 430,
+                "height": 529
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 909,
+                "y": 2931.73,
+                "width": 430,
+                "height": 529
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1351,
+                "y": 2931.73,
+                "width": 430,
+                "height": 529
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1793,
+                "y": 2931.73,
+                "width": 430,
+                "height": 529
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2235,
+                "y": 2931.73,
+                "width": 430,
+                "height": 529
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2677,
+                "y": 2931.73,
+                "width": 430,
+                "height": 529
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 3119,
+                "y": 2931.73,
+                "width": 430,
+                "height": 529
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 3537,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -3537,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 393,
+      "capturedAt": "2026-10-01T11:24:22.192Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 393,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 3976.69,
+          "width": 393,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div",
+        "classes": "relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pb-28 pt-6 phone:pt-0",
+        "rect": {
+          "x": 24,
+          "y": 64,
+          "width": 345,
+          "height": 3912.69
+        },
+        "css": {
+          "display": "grid",
+          "position": "relative",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "112px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "345px",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+            "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+            "rect": {
+              "x": 24,
+              "y": 3896.69,
+              "width": 155.98,
+              "height": 20
+            },
+            "css": {
+              "display": "block",
+              "position": "absolute",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "14px",
+              "lineHeight": "20px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Онлайн-школа Skillbox"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(1)",
+            "classes": "grid overflow-hidden rounded-3xl border border-ui-black-100 phone:-mx-6 phone:rounded-none phone:border-none",
+            "rect": {
+              "x": 0,
+              "y": 64,
+              "width": 393,
+              "height": 365.09
+            },
+            "css": {
+              "display": "grid",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "393px",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "hidden"
+            },
+            "label": "Skillbox 4.28 264 отзыва • 5406 выпускников Skillbox — это онлайн-университет. У нас прикладные курсы и программы от главных экспертов рынка"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 477.09,
+              "width": 345,
+              "height": 1844.78
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Курсы Все HR и рекрутинг Аналитика и Data Science Бизнес и менеджмент Дизайн и контент Красота и здоровье Кулинария Маркетинг и продажи Прог"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(2)",
+            "classes": "flex items-center justify-center overflow-hidden -mt-4 rounded-3xl",
+            "rect": {
+              "x": 24,
+              "y": 2353.88,
+              "width": 345,
+              "height": 16
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "-16px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "hidden"
+            },
+            "label": ""
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 2417.88,
+              "width": 345,
+              "height": 417.81
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Истории успеха Статья • 28 сентября Как стать UX/UI‑дизайнером и сколько можно зарабатывать Статья • 25 сентября Кому подходит фриланс в IT "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(3)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 2883.69,
+              "width": 345,
+              "height": 637
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Отзывы Тимир-Булат Хизриев Пользователь Хабра 27 сентября Финансовый аналитик Достоинства: Основы теории достаточно хорошо изложены. Но мало"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(4)",
+            "classes": "",
+            "rect": {
+              "x": 24,
+              "y": 3568.69,
+              "width": 345,
+              "height": 296
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Общая информация Лицензия № Л035-01298-77/00179609 Телефоны 8 (800) 600-78-47 Головной офис г. Москва, вн. тер. г. Муниципальный Округ Хамов"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > div:nth-of-type(2)",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 tablet-only:grid-cols-3 phone:[&>*:nth-child(n+5)]:hidden tablet-only:[&>*:nth-child(n+7)]:hidden",
+          "rect": {
+            "x": 24,
+            "y": 573.09,
+            "width": 345,
+            "height": 1684.78
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "345px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(4) > div",
+          "classes": "mt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-small phone:grid-cols-1",
+          "rect": {
+            "x": 24,
+            "y": 3612.69,
+            "width": 345,
+            "height": 252
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "16px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "345px",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 4000.69,
+            "width": 345,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "345px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+          "rect": {
+            "x": 24,
+            "y": 3896.69,
+            "width": 155.98,
+            "height": 20
+          },
+          "css": {
+            "display": "block",
+            "position": "absolute",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Онлайн-школа Skillbox"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 477.09,
+            "width": 345,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Курсы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2417.88,
+            "width": 345,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Истории успеха"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(3) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2883.69,
+            "width": 345,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Отзывы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(4) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 3568.69,
+            "width": 345,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Общая информация"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 2461.88,
+            "width": 345,
+            "height": 309.81
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 2
+              },
+              "1024": {
+                "slidesPerView": 3
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 2461.88,
+                "width": 343,
+                "height": 309.81
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 380,
+                "y": 2461.88,
+                "width": 343,
+                "height": 309.81
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 735,
+                "y": 2461.88,
+                "width": 343,
+                "height": 309.81
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1090,
+                "y": 2461.88,
+                "width": 343,
+                "height": 309.81
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1445,
+                "y": 2461.88,
+                "width": 343,
+                "height": 309.81
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1800,
+                "y": 2461.88,
+                "width": 343,
+                "height": 309.81
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2155,
+                "y": 2461.88,
+                "width": 343,
+                "height": 309.81
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2510,
+                "y": 2461.88,
+                "width": 343,
+                "height": 309.81
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(3) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 2927.69,
+            "width": 345,
+            "height": 529
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 2
+              },
+              "1024": {
+                "slidesPerView": 3
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 2927.69,
+                "width": 343,
+                "height": 529
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 380,
+                "y": 2927.69,
+                "width": 343,
+                "height": 529
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 735,
+                "y": 2927.69,
+                "width": 343,
+                "height": 529
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1090,
+                "y": 2927.69,
+                "width": 343,
+                "height": 529
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1445,
+                "y": 2927.69,
+                "width": 343,
+                "height": 529
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1800,
+                "y": 2927.69,
+                "width": 343,
+                "height": 529
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2155,
+                "y": 2927.69,
+                "width": 343,
+                "height": 529
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2510,
+                "y": 2927.69,
+                "width": 343,
+                "height": 529
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 3553,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -3553,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 320,
+      "capturedAt": "2026-10-01T11:35:54.028Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 4019.42,
+          "width": 320,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div",
+        "classes": "relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pb-28 pt-6 phone:pt-0",
+        "rect": {
+          "x": 24,
+          "y": 64,
+          "width": 272,
+          "height": 3955.42
+        },
+        "css": {
+          "display": "grid",
+          "position": "relative",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "112px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "272px",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+            "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+            "rect": {
+              "x": 24,
+              "y": 3939.42,
+              "width": 155.98,
+              "height": 20
+            },
+            "css": {
+              "display": "block",
+              "position": "absolute",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "14px",
+              "lineHeight": "20px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Онлайн-школа Skillbox"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(1)",
+            "classes": "grid overflow-hidden rounded-3xl border border-ui-black-100 phone:-mx-6 phone:rounded-none phone:border-none",
+            "rect": {
+              "x": 0,
+              "y": 64,
+              "width": 320,
+              "height": 386.09
+            },
+            "css": {
+              "display": "grid",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "320px",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "hidden"
+            },
+            "label": "Skillbox 4.28 264 отзыва • 5406 выпускников Skillbox — это онлайн-университет. У нас прикладные курсы и программы от главных экспертов рынка"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 498.09,
+              "width": 272,
+              "height": 1865.58
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Курсы Все HR и рекрутинг Аналитика и Data Science Бизнес и менеджмент Дизайн и контент Красота и здоровье Кулинария Маркетинг и продажи Прог"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div:nth-of-type(2)",
+            "classes": "flex items-center justify-center overflow-hidden -mt-4 rounded-3xl",
+            "rect": {
+              "x": 24,
+              "y": 2395.67,
+              "width": 272,
+              "height": 16
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "-16px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "hidden"
+            },
+            "label": ""
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 2459.67,
+              "width": 272,
+              "height": 376.75
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Истории успеха Статья • 28 сентября Как стать UX/UI‑дизайнером и сколько можно зарабатывать Статья • 25 сентября Кому подходит фриланс в IT "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(3)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 2884.42,
+              "width": 272,
+              "height": 679
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Отзывы Тимир-Булат Хизриев Пользователь Хабра 27 сентября Финансовый аналитик Достоинства: Основы теории достаточно хорошо изложены. Но мало"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(4)",
+            "classes": "",
+            "rect": {
+              "x": 24,
+              "y": 3611.42,
+              "width": 272,
+              "height": 296
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Общая информация Лицензия № Л035-01298-77/00179609 Телефоны 8 (800) 600-78-47 Головной офис г. Москва, вн. тер. г. Муниципальный Округ Хамов"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > div:nth-of-type(2)",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 tablet-only:grid-cols-3 phone:[&>*:nth-child(n+5)]:hidden tablet-only:[&>*:nth-child(n+7)]:hidden",
+          "rect": {
+            "x": 24,
+            "y": 594.09,
+            "width": 272,
+            "height": 1705.58
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "272px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(4) > div",
+          "classes": "mt-4 grid grid-cols-2 gap-x-4 gap-y-3 text-small phone:grid-cols-1",
+          "rect": {
+            "x": 24,
+            "y": 3655.42,
+            "width": 272,
+            "height": 252
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "16px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "272px",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 4043.42,
+            "width": 272,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "272px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+          "rect": {
+            "x": 24,
+            "y": 3939.42,
+            "width": 155.98,
+            "height": 20
+          },
+          "css": {
+            "display": "block",
+            "position": "absolute",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Онлайн-школа Skillbox"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 498.09,
+            "width": 272,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Курсы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2459.67,
+            "width": 272,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Истории успеха"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(3) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2884.42,
+            "width": 272,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Отзывы"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(4) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 3611.42,
+            "width": 272,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Общая информация"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 2503.67,
+            "width": 272,
+            "height": 268.75
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 2
+              },
+              "1024": {
+                "slidesPerView": 3
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 2503.67,
+                "width": 270,
+                "height": 268.75
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 307,
+                "y": 2503.67,
+                "width": 270,
+                "height": 268.75
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 589,
+                "y": 2503.67,
+                "width": 270,
+                "height": 268.75
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 871,
+                "y": 2503.67,
+                "width": 270,
+                "height": 268.75
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1153,
+                "y": 2503.67,
+                "width": 270,
+                "height": 268.75
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1435,
+                "y": 2503.67,
+                "width": 270,
+                "height": 268.75
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1717,
+                "y": 2503.67,
+                "width": 270,
+                "height": 268.75
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1999,
+                "y": 2503.67,
+                "width": 270,
+                "height": 268.75
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(3) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 2928.42,
+            "width": 272,
+            "height": 571
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 2
+              },
+              "1024": {
+                "slidesPerView": 3
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 2928.42,
+                "width": 270,
+                "height": 571
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 307,
+                "y": 2928.42,
+                "width": 270,
+                "height": 571
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 589,
+                "y": 2928.42,
+                "width": 270,
+                "height": 571
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 871,
+                "y": 2928.42,
+                "width": 270,
+                "height": 571
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1153,
+                "y": 2928.42,
+                "width": 270,
+                "height": 571
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1435,
+                "y": 2928.42,
+                "width": 270,
+                "height": 571
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1717,
+                "y": 2928.42,
+                "width": 270,
+                "height": 571
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1999,
+                "y": 2928.42,
+                "width": 270,
+                "height": 571
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 3595,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -3595,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    }
+  ],
+  "boundaryMeasurements": [
+    {
+      "width": 767,
+      "status": 200,
+      "capturedAt": "2026-10-01T11:33:30.583Z",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 767,
+        "height": 64
+      },
+      "grids": [
+        {
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 tablet-only:grid-cols-3 phone:[&>*:nth-child(n+5)]:hidden tablet-only:[&>*:nth-child(n+7)]:hidden",
+          "columns": "719px",
+          "gap": "16px"
+        },
+        {
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "columns": "719px",
+          "gap": "24px"
+        }
+      ],
+      "overflow": 0
+    },
+    {
+      "width": 1023,
+      "status": 200,
+      "capturedAt": "2026-10-01T11:33:37.286Z",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1023,
+        "height": 64
+      },
+      "grids": [
+        {
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 tablet-only:grid-cols-3 phone:[&>*:nth-child(n+5)]:hidden tablet-only:[&>*:nth-child(n+7)]:hidden",
+          "columns": "314.328px 314.328px 314.344px",
+          "gap": "16px"
+        },
+        {
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "columns": "314.328px 314.328px 314.344px",
+          "gap": "16px"
+        }
+      ],
+      "overflow": 0
+    }
+  ]
+}

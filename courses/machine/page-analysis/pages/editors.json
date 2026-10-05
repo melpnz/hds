@@ -1,0 +1,2772 @@
+{
+  "id": "editors",
+  "title": "Редакция Хабра",
+  "url": "https://career.habr.com/courses/editors",
+  "family": "people-directory",
+  "sequence": [
+    "simple-header",
+    "hero",
+    "editor-process-panel",
+    "steps-grid",
+    "editors-title",
+    "person-grid",
+    "footer"
+  ],
+  "providerComponents": [
+    "site-header",
+    "site-footer",
+    "page-hero",
+    "button",
+    "step-card",
+    "person-card"
+  ],
+  "approvalGaps": [],
+  "notes": [
+    "Семейство авторов, но другая высота hero из-за одной строки h1 и другой текст панели.",
+    "Не копировать количество людей и высоту страницы из авторов."
+  ],
+  "ownerDecisions": [
+    {
+      "id": "grid-tablet",
+      "status": "implemented-local",
+      "rule": "CardGrid: tabletColumns=2|3, default=2; columns=2|3|4, default=4; phone=1. Gap всегда 12 px, без prop для отступа. Старые вызовы сохраняют 4/2/1. Изменение пока не опубликовано.",
+      "component": "CardGrid"
+    },
+    {
+      "id": "expert-panel",
+      "status": "implemented-local",
+      "acceptedOn": "2026-10-05",
+      "rule": "Белая панель без серого фона страницы; иллюстрация справа от768, mobile скрыта. У преимуществ экспертов иконки. Перед заголовком шагов40, до сетки24. PersonCard переносит имена внутри padding и принимает разные реальные логотипы и контакты.",
+      "pages": [
+        "authors",
+        "editors"
+      ]
+    },
+    {
+      "id": "accepted-shared-layout",
+      "status": "implemented-local",
+      "acceptedOn": "2026-10-05",
+      "rule": "RatingTable: длинный текст увеличивает высоту с сохранением padding; все колонки доступны локальным скроллом на320. После последнего NumberedCourseItem нет линии; подборка рейтинга в каталоге содержит10 школ. SchoolCard: название максимум3 строки, кнопка внизу. Carousel: карточка заполняет слайд, стрелки центрируются без учёта пагинации. Подборки используют общий LinkGrid и соответствующие разделу данные.",
+      "pages": [
+        "courses-listing",
+        "course-category",
+        "education-centers-listing",
+        "rating",
+        "education-center",
+        "reviews",
+        "review-detail",
+        "promocodes",
+        "promocode-detail",
+        "authors",
+        "editors",
+        "author"
+      ]
+    }
+  ],
+  "reference": "evidence/production-responsive-2026-10-01/editors/index.html",
+  "measurements": [
+    {
+      "width": 1440,
+      "capturedAt": "2026-10-01T11:25:22.327Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 1682.8,
+          "width": 1440,
+          "height": 192
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "32px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "flex flex-col gap-10 pb-10",
+        "rect": {
+          "x": 182,
+          "y": 404,
+          "width": 1076,
+          "height": 1278.8
+        },
+        "css": {
+          "display": "flex",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "40px",
+          "columnGap": "40px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1)",
+            "classes": "-mx-6 -mt-6 flex flex-col gap-10 rounded-3xl bg-ui-white px-6 pb-4 pt-6",
+            "rect": {
+              "x": 158,
+              "y": 380,
+              "width": 1124,
+              "height": 428.8
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "24px",
+              "paddingRight": "24px",
+              "paddingBottom": "16px",
+              "paddingLeft": "24px",
+              "marginTop": "-24px",
+              "marginBottom": "0px",
+              "rowGap": "40px",
+              "columnGap": "40px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Проверено теми, кто разбирается Хабр существует с 2006 года, и всё это время мы следим за тем, чтобы сообщество оставалось источником точной"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-6",
+            "rect": {
+              "x": 182,
+              "y": 848.8,
+              "width": 1076,
+              "height": 794
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "24px",
+              "columnGap": "24px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Редакторы Хабра Анна Линская Руководитель отдела маркетинга Пишет и преподает писательское мастерство в CWS, ведет подкаст про ИТ. Умеет раб"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > div",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-2",
+          "rect": {
+            "x": 182,
+            "y": 638,
+            "width": 1076,
+            "height": 154.8
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "260px 260px 260px 260px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > div",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 182,
+            "y": 900.8,
+            "width": 1076,
+            "height": 742
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "260px 260px 260px 260px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 182,
+            "y": 1714.8,
+            "width": 1076,
+            "height": 120
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "257px 257px 257px 257px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 394,
+            "y": 64,
+            "width": 652,
+            "height": 112
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "64px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "44px",
+            "lineHeight": "48px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Редакция Хабра"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 182,
+            "y": 586,
+            "width": 1076,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Как работает редакция"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 182,
+            "y": 848.8,
+            "width": 1076,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Редакторы Хабра"
+        }
+      ],
+      "carousels": [],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 975,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -975,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 1024,
+      "capturedAt": "2026-10-01T11:37:16.048Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 1702.8,
+          "width": 1024,
+          "height": 192
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "32px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "flex flex-col gap-10 pb-10",
+        "rect": {
+          "x": 24,
+          "y": 404,
+          "width": 976,
+          "height": 1298.8
+        },
+        "css": {
+          "display": "flex",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "40px",
+          "columnGap": "40px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1)",
+            "classes": "-mx-6 -mt-6 flex flex-col gap-10 rounded-3xl bg-ui-white px-6 pb-4 pt-6",
+            "rect": {
+              "x": 0,
+              "y": 380,
+              "width": 1024,
+              "height": 448.8
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "24px",
+              "paddingRight": "24px",
+              "paddingBottom": "16px",
+              "paddingLeft": "24px",
+              "marginTop": "-24px",
+              "marginBottom": "0px",
+              "rowGap": "40px",
+              "columnGap": "40px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Проверено теми, кто разбирается Хабр существует с 2006 года, и всё это время мы следим за тем, чтобы сообщество оставалось источником точной"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-6",
+            "rect": {
+              "x": 24,
+              "y": 868.8,
+              "width": 976,
+              "height": 794
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "24px",
+              "columnGap": "24px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Редакторы Хабра Анна Линская Руководитель отдела маркетинга Пишет и преподает писательское мастерство в CWS, ведет подкаст про ИТ. Умеет раб"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > div",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-2",
+          "rect": {
+            "x": 24,
+            "y": 638,
+            "width": 976,
+            "height": 174.8
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "235px 235px 235px 235px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > div",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 920.8,
+            "width": 976,
+            "height": 742
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "235px 235px 235px 235px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 1734.8,
+            "width": 976,
+            "height": 120
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "232px 232px 232px 232px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 186,
+            "y": 64,
+            "width": 652,
+            "height": 112
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "64px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "44px",
+            "lineHeight": "48px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Редакция Хабра"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 586,
+            "width": 976,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Как работает редакция"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 868.8,
+            "width": 976,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Редакторы Хабра"
+        }
+      ],
+      "carousels": [],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 995,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -995,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 768,
+      "capturedAt": "2026-10-01T11:25:25.052Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 1849.59,
+          "width": 768,
+          "height": 256
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "32px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "flex flex-col gap-10 pb-10",
+        "rect": {
+          "x": 24,
+          "y": 424,
+          "width": 720,
+          "height": 1425.59
+        },
+        "css": {
+          "display": "flex",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "40px",
+          "columnGap": "40px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1)",
+            "classes": "-mx-6 -mt-6 flex flex-col gap-10 rounded-3xl bg-ui-white px-6 pb-4 pt-6",
+            "rect": {
+              "x": 0,
+              "y": 400,
+              "width": 768,
+              "height": 575.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "24px",
+              "paddingRight": "24px",
+              "paddingBottom": "16px",
+              "paddingLeft": "24px",
+              "marginTop": "-24px",
+              "marginBottom": "0px",
+              "rowGap": "40px",
+              "columnGap": "40px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Проверено теми, кто разбирается Хабр существует с 2006 года, и всё это время мы следим за тем, чтобы сообщество оставалось источником точной"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-6",
+            "rect": {
+              "x": 24,
+              "y": 1015.59,
+              "width": 720,
+              "height": 794
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "24px",
+              "columnGap": "24px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Редакторы Хабра Анна Линская Руководитель отдела маркетинга Пишет и преподает писательское мастерство в CWS, ведет подкаст про ИТ. Умеет раб"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > div",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-2",
+          "rect": {
+            "x": 24,
+            "y": 698,
+            "width": 720,
+            "height": 261.59
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "354px 354px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > div",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 1067.59,
+            "width": 720,
+            "height": 742
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "232px 232px 232px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 1881.59,
+            "width": 720,
+            "height": 184
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "229.328px 229.328px 229.328px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 58,
+            "y": 64,
+            "width": 652,
+            "height": 112
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "64px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "44px",
+            "lineHeight": "48px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Редакция Хабра"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 646,
+            "width": 720,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Как работает редакция"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 1015.59,
+            "width": 720,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Редакторы Хабра"
+        }
+      ],
+      "carousels": [],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 1206,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -1206,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 744,
+      "capturedAt": "2026-10-01T11:37:18.709Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 744,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 3286.19,
+          "width": 744,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "flex flex-col gap-10 pb-10",
+        "rect": {
+          "x": 24,
+          "y": 434,
+          "width": 696,
+          "height": 2852.19
+        },
+        "css": {
+          "display": "flex",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "40px",
+          "columnGap": "40px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1)",
+            "classes": "-mx-6 -mt-6 flex flex-col gap-10 rounded-3xl bg-ui-white px-6 pb-4 pt-6",
+            "rect": {
+              "x": 0,
+              "y": 410,
+              "width": 744,
+              "height": 709.19
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "24px",
+              "paddingRight": "24px",
+              "paddingBottom": "16px",
+              "paddingLeft": "24px",
+              "marginTop": "-24px",
+              "marginBottom": "0px",
+              "rowGap": "40px",
+              "columnGap": "40px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Проверено теми, кто разбирается Хабр существует с 2006 года, и всё это время мы следим за тем, чтобы сообщество оставалось источником точной"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-6",
+            "rect": {
+              "x": 24,
+              "y": 1159.19,
+              "width": 696,
+              "height": 2087
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "24px",
+              "columnGap": "24px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Редакторы Хабра Анна Линская Руководитель отдела маркетинга Пишет и преподает писательское мастерство в CWS, ведет подкаст про ИТ. Умеет раб"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > div",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-2",
+          "rect": {
+            "x": 24,
+            "y": 668,
+            "width": 696,
+            "height": 435.19
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "696px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > div",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 1211.19,
+            "width": 696,
+            "height": 2035
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "696px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 3310.19,
+            "width": 696,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "696px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 46,
+            "y": 64,
+            "width": 652,
+            "height": 74
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "40px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "30px",
+            "lineHeight": "34px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Редакция Хабра"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 616,
+            "width": 696,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Как работает редакция"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 1159.19,
+            "width": 696,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Редакторы Хабра"
+        }
+      ],
+      "carousels": [],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 2862,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -2862,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 480,
+      "capturedAt": "2026-10-01T11:37:21.416Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 480,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 3523.19,
+          "width": 480,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "flex flex-col gap-10 pb-10",
+        "rect": {
+          "x": 24,
+          "y": 474,
+          "width": 432,
+          "height": 3049.19
+        },
+        "css": {
+          "display": "flex",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "40px",
+          "columnGap": "40px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1)",
+            "classes": "-mx-6 -mt-6 flex flex-col gap-10 rounded-3xl bg-ui-white px-6 pb-4 pt-6",
+            "rect": {
+              "x": 0,
+              "y": 450,
+              "width": 480,
+              "height": 829.19
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "24px",
+              "paddingRight": "24px",
+              "paddingBottom": "16px",
+              "paddingLeft": "24px",
+              "marginTop": "-24px",
+              "marginBottom": "0px",
+              "rowGap": "40px",
+              "columnGap": "40px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Проверено теми, кто разбирается Хабр существует с 2006 года, и всё это время мы следим за тем, чтобы сообщество оставалось источником точной"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-6",
+            "rect": {
+              "x": 24,
+              "y": 1319.19,
+              "width": 432,
+              "height": 2164
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "24px",
+              "columnGap": "24px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Редакторы Хабра Анна Линская Руководитель отдела маркетинга Пишет и преподает писательское мастерство в CWS, ведет подкаст про ИТ. Умеет раб"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > div",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-2",
+          "rect": {
+            "x": 24,
+            "y": 768,
+            "width": 432,
+            "height": 495.19
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "432px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > div",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 1371.19,
+            "width": 432,
+            "height": 2112
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "432px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 3547.19,
+            "width": 432,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "432px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 24,
+            "y": 64,
+            "width": 432,
+            "height": 74
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "40px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "30px",
+            "lineHeight": "34px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Редакция Хабра"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 716,
+            "width": 432,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Как работает редакция"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 1319.19,
+            "width": 432,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Редакторы Хабра"
+        }
+      ],
+      "carousels": [],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 3099,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -3099,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 393,
+      "capturedAt": "2026-10-01T11:25:28.417Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 393,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 3683.19,
+          "width": 393,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "flex flex-col gap-10 pb-10",
+        "rect": {
+          "x": 24,
+          "y": 494,
+          "width": 345,
+          "height": 3189.19
+        },
+        "css": {
+          "display": "flex",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "40px",
+          "columnGap": "40px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1)",
+            "classes": "-mx-6 -mt-6 flex flex-col gap-10 rounded-3xl bg-ui-white px-6 pb-4 pt-6",
+            "rect": {
+              "x": 0,
+              "y": 470,
+              "width": 393,
+              "height": 929.19
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "24px",
+              "paddingRight": "24px",
+              "paddingBottom": "16px",
+              "paddingLeft": "24px",
+              "marginTop": "-24px",
+              "marginBottom": "0px",
+              "rowGap": "40px",
+              "columnGap": "40px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Проверено теми, кто разбирается Хабр существует с 2006 года, и всё это время мы следим за тем, чтобы сообщество оставалось источником точной"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-6",
+            "rect": {
+              "x": 24,
+              "y": 1439.19,
+              "width": 345,
+              "height": 2204
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "24px",
+              "columnGap": "24px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Редакторы Хабра Анна Линская Руководитель отдела маркетинга Пишет и преподает писательское мастерство в CWS, ведет подкаст про ИТ. Умеет раб"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > div",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-2",
+          "rect": {
+            "x": 24,
+            "y": 848,
+            "width": 345,
+            "height": 535.19
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "345px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > div",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 1491.19,
+            "width": 345,
+            "height": 2152
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "345px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 3707.19,
+            "width": 345,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "345px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 24,
+            "y": 64,
+            "width": 345,
+            "height": 74
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "40px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "30px",
+            "lineHeight": "34px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Редакция Хабра"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 796,
+            "width": 345,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Как работает редакция"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 1439.19,
+            "width": 345,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Редакторы Хабра"
+        }
+      ],
+      "carousels": [],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 3259,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -3259,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 320,
+      "capturedAt": "2026-10-01T11:37:26.018Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 3922.19,
+          "width": 320,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "flex flex-col gap-10 pb-10",
+        "rect": {
+          "x": 24,
+          "y": 554,
+          "width": 272,
+          "height": 3368.19
+        },
+        "css": {
+          "display": "flex",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "40px",
+          "columnGap": "40px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1)",
+            "classes": "-mx-6 -mt-6 flex flex-col gap-10 rounded-3xl bg-ui-white px-6 pb-4 pt-6",
+            "rect": {
+              "x": 0,
+              "y": 530,
+              "width": 320,
+              "height": 1071.19
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "24px",
+              "paddingRight": "24px",
+              "paddingBottom": "16px",
+              "paddingLeft": "24px",
+              "marginTop": "-24px",
+              "marginBottom": "0px",
+              "rowGap": "40px",
+              "columnGap": "40px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Проверено теми, кто разбирается Хабр существует с 2006 года, и всё это время мы следим за тем, чтобы сообщество оставалось источником точной"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-6",
+            "rect": {
+              "x": 24,
+              "y": 1641.19,
+              "width": 272,
+              "height": 2241
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "24px",
+              "columnGap": "24px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Редакторы Хабра Анна Линская Руководитель отдела маркетинга Пишет и преподает писательское мастерство в CWS, ведет подкаст про ИТ. Умеет раб"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > div",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-2",
+          "rect": {
+            "x": 24,
+            "y": 970,
+            "width": 272,
+            "height": 615.19
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "272px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > div",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 1693.19,
+            "width": 272,
+            "height": 2189
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "272px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 3946.19,
+            "width": 272,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "272px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 24,
+            "y": 64,
+            "width": 272,
+            "height": 74
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "40px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "30px",
+            "lineHeight": "34px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Редакция Хабра"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 918,
+            "width": 272,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Как работает редакция"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 1641.19,
+            "width": 272,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Редакторы Хабра"
+        }
+      ],
+      "carousels": [],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 3498,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -3498,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    }
+  ],
+  "boundaryMeasurements": []
+}

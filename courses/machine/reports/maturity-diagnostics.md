@@ -2,8 +2,8 @@
 
 Режим: диагностический. Исходные статусы не изменяются, расхождения не блокируют валидацию.
 
-- записей: 84
-- computed complete: 84
+- записей: 78
+- computed complete: 78
 - computed partial: 0
 - computed missing: 0
 - расхождений declared/computed: 0

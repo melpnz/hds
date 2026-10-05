@@ -32,7 +32,8 @@
   },
   "states": {
     "ui": [
-      "default"
+      "default",
+      "selected-summary"
     ],
     "feature": [],
     "domain": []
@@ -51,7 +52,8 @@
         "mobile",
         "select-xl",
         "joined-fields",
-        "full-width-action"
+        "full-width-action",
+        "selected-summary"
       ],
       "preview": {
         "mode": "viewport",
@@ -82,6 +84,14 @@
     {
       "id": "action",
       "use": "Button XL отделена от полей на 8 px; на mobile — на 16 px и во всю ширину."
+    },
+    {
+      "id": "selected-summary",
+      "use": "При выбранной школе до 767 px заменяет поля белой интерактивной сводкой; от 768 px остаётся обычная составная форма."
+    },
+    {
+      "id": "query",
+      "use": "Совместимый режим одного SearchInput включается явно через mode=query."
     }
   ],
   "layoutRules": [
@@ -93,9 +103,15 @@
     },
     {
       "id": "mobile-stack",
-      "context": "Mobile ≤479 px",
+      "context": "Phone ≤767 px",
       "behavior": "Поля складываются вертикально без промежутков; кнопка занимает всю ширину.",
       "implementation": "Single-column grid; vertical separators become horizontal; action gap 16px."
+    },
+    {
+      "id": "selected-summary",
+      "context": "Phone ≤767 px with summary",
+      "behavior": "Форма скрывается; выбранная школа и два параметра показаны в белой сводной плашке 64.8 px. От 768 px summary скрыта.",
+      "implementation": "SearchForm owns the responsive replacement; the page owns sticky positioning and top offset."
     }
   ],
   "previewNotes": [
@@ -106,6 +122,10 @@
     {
       "type": "guidance",
       "text": "SearchForm использует Select XL как единый составной контрол: между полями нет gap, видны только разделители 1 px."
+    },
+    {
+      "type": "guidance",
+      "text": "Публичный provider поддерживает fields, v-model:values, summary, слоты fields/summary и событие open-summary; sticky остаётся композицией страницы."
     },
     {
       "type": "guidance",
@@ -166,10 +186,12 @@
   ],
   "stateCoverage": {
     "required": [
-      "default"
+      "default",
+      "selected-summary"
     ],
     "captured": [
-      "default"
+      "default",
+      "selected-summary"
     ],
     "normative": [],
     "uncaptured": []
@@ -218,7 +240,8 @@
       }
     },
     "states": [
-      "default"
+      "default",
+      "selected-summary"
     ],
     "sources": [
       "machine/dimension-tokens.json",

@@ -16,7 +16,7 @@
     "confidence": "high",
     "scope": "public-guest"
   },
-  "purpose": "**В продукте этого компонента нет.** Он существует только в макете, и это не пробел съёмки, а установленный факт — разбор в `notes` записи реестра:",
+  "purpose": "Показывает путь к текущей категории курсов; подтверждён production и поддерживает нейтральный и контрастный тон.",
   "implementation": {
     "markup": "available-in-examples",
     "cssRoots": [
@@ -34,10 +34,21 @@
       "focus-visible",
       "current"
     ],
-    "feature": [],
+    "feature": [
+      "default-tone",
+      "inverse-tone"
+    ],
     "domain": []
   },
   "rules": [],
+  "layoutRules": [
+    {
+      "id": "tone",
+      "context": "Светлый или синий фон",
+      "behavior": "default использует нейтральный текст; inverse — белый текст и белое hover-состояние, разделители остаются нейтральными black-200.",
+      "implementation": "tone='default'|'inverse'; внутри синего SiteHeader использовать inverse."
+    }
+  ],
   "examples": [
     {
       "id": "default",
@@ -113,7 +124,7 @@
     "markupState": null
   },
   "usage": {
-    "when": "**В продукте этого компонента нет.** Он существует только в макете, и это не пробел съёмки, а установленный факт — разбор в `notes` записи реестра:",
+    "when": "Внутри категории курсов для пути от общего каталога к текущему направлению; default на светлом фоне, inverse на синем.",
     "whenNot": [],
     "related": []
   },

@@ -7,7 +7,7 @@
   },
   "provider": {
     "id": "courses-nuxt-kit",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "type": "nuxt-layer",
     "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
     "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
@@ -41,9 +41,27 @@
     "api": {
       "props": [
         {
+          "name": "advantages",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
           "name": "author",
           "type": "string",
           "required": true,
+          "source": "prop"
+        },
+        {
+          "name": "avatar",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "comment",
+          "type": "string",
+          "required": false,
           "source": "prop"
         },
         {
@@ -53,7 +71,25 @@
           "source": "prop"
         },
         {
+          "name": "courseHref",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "courseLogo",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
           "name": "date",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "disadvantages",
           "type": "string",
           "required": false,
           "source": "prop"
@@ -73,7 +109,19 @@
         {
           "name": "text",
           "type": "string",
-          "required": true,
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "variant",
+          "type": "'compact' | 'wide' | 'full'",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "verified",
+          "type": "boolean",
+          "required": false,
           "source": "prop"
         }
       ],
@@ -87,11 +135,17 @@
         "hover"
       ],
       "provider": [
-        "default",
+        "compact",
+        "wide",
+        "full",
         "hover"
       ],
       "missingInProvider": [],
-      "providerOnly": []
+      "providerOnly": [
+        "compact",
+        "wide",
+        "full"
+      ]
     }
   }
 }

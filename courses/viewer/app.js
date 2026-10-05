@@ -21,6 +21,8 @@ const rawJson = document.querySelector('#raw-json');
 const specSource = document.querySelector('#spec-source');
 
 let catalog = [];
+let productionAtlas;
+let productionEntries = [];
 let providerMapping;
 let providerCompatibility;
 let guideAliases = {};
@@ -54,9 +56,10 @@ function searchableText(entry) {
 
 function renderNavigation(query = '') {
   const normalizedQuery = query.trim().toLocaleLowerCase('ru');
+  const allEntries = [...catalog, ...productionEntries];
   const matches = normalizedQuery
-    ? catalog.filter(entry => searchableText(entry).includes(normalizedQuery))
-    : catalog;
+    ? allEntries.filter(entry => searchableText(entry).includes(normalizedQuery))
+    : allEntries;
   const sections = new Map();
   for (const entry of matches) {
     const sectionId = entry.navSection || entry.kind;
@@ -93,7 +96,7 @@ function renderNavigation(query = '') {
       <span>Попробуйте название, категорию или состояние.</span>
       <button type="button" id="clear-search">Сбросить поиск</button>
     </div>`;
-  searchMeta.textContent = normalizedQuery ? `${matches.length} из ${catalog.length}` : '';
+  searchMeta.textContent = normalizedQuery ? `${matches.length} из ${allEntries.length}` : '';
   document.querySelector('#clear-search')?.addEventListener('click', clearSearch);
   navigation.querySelector(`[data-item="${CSS.escape(activeId)}"]`)?.setAttribute('aria-current', 'page');
 }
@@ -138,6 +141,10 @@ function renderViewportControls() {
 function disconnectPreviewObserver() {
   previewResizeObservers.forEach(observer => observer.disconnect());
   previewResizeObservers = [];
+}
+
+function resolvePreviewUrl(file) {
+  return /^https?:\/\//.test(file) ? file : `../${file}`;
 }
 
 function fitPreviewHeight(frame = preview) {
@@ -185,12 +192,14 @@ function selectExample(exampleId) {
   viewportControls.hidden = isIntrinsic;
   viewportMeta.hidden = isIntrinsic;
   previewStage.classList.toggle('preview-stage--intrinsic', isIntrinsic);
+  previewStage.classList.toggle('preview-stage--page', currentItem.kind === 'production-page');
+  preview.classList.toggle('preview-frame--page', currentItem.kind === 'production-page');
   preview.scrolling = isIntrinsic ? 'no' : 'auto';
   preview.style.width = '100%';
   preview.style.height = isIntrinsic ? '1px' : `${currentExample.preview.height}px`;
   if (isIntrinsic) viewportControls.innerHTML = '';
   else renderViewportControls();
-  preview.src = `../${currentExample.file}`;
+  preview.src = resolvePreviewUrl(currentExample.file);
   preview.title = `${currentItem.title}: ${currentExample.title}`;
 }
 
@@ -211,7 +220,7 @@ function renderIntrinsicExampleStack(item) {
   item.examples.forEach(example => {
     const frame = exampleStack.querySelector(`[data-stacked-example="${CSS.escape(example.id)}"] iframe`);
     frame.addEventListener('load', () => watchIntrinsicPreview(frame));
-    frame.src = `../${example.file}`;
+    frame.src = resolvePreviewUrl(example.file);
   });
 }
 
@@ -312,6 +321,23 @@ function renderPreviewNotes(item) {
 }
 
 function renderGuide(item, providerComponent) {
+  if (item.kind === 'production-page') {
+    const componentLinks = item.providerComponents.map(id => {
+      const mapping = providerMapping.mappings.find(candidate => candidate.guideId === id);
+      return mapping ? `<li><a href="#${escapeHtml(id)}">${escapeHtml(mapping.exportName)}</a> · <a href="../${escapeHtml(mapping.apiFile)}">публичный API</a></li>` : `<li>${escapeHtml(id)} — нет прямого mapping</li>`;
+    }).join('');
+    guide.innerHTML = `
+      <p class="lead">Живая адаптивная Vue/Nuxt-композиция из публичных компонентов Courses UI Kit. Локальный DOM/CSS-снимок production от ${escapeHtml(productionAtlas.capturedOn)} сохранён соседней вкладкой для сравнения.</p>
+      <p><a href="${escapeHtml(item.url)}" target="_blank" rel="noopener">Открыть страницу на production</a></p>
+      <section class="spec-section"><h2>Порядок сборки</h2>${list(item.sequence)}</section>
+      <section class="spec-section"><h2>Особенности страницы</h2>${list(item.notes)}</section>
+      <section class="spec-section"><h2>Принятые решения для компонентной сборки</h2>${list(item.ownerDecisions?.map(decision => decision.rule))}</section>
+      <section class="spec-section"><h2>Основа для сборки из UI Kit ${escapeHtml(providerMapping.provider.version)}</h2><ul>${componentLinks}</ul>
+      <p>Неподдержанные варианты требуют согласования, а не переопределения внутренних стилей компонентов.</p>${pills(item.approvalGaps)}
+      <p><a href="../docs/decisions/page-analysis-approval.md">Список расхождений с китом и вариантов, требующих согласования</a></p></section>
+      <section class="spec-section"><h2>Правила построения</h2>${list(productionAtlas.rules, rule => `<strong>${escapeHtml(rule.id)} · ${escapeHtml(rule.subject)}</strong><p>${escapeHtml(rule.rule)}</p><p>Верно: ${escapeHtml(rule.positive)}</p><p>Неверно: ${escapeHtml(rule.negative)}</p>`)}</section>`;
+    return;
+  }
   const providerRecord = providerComponent?.component;
   const providerSection = providerRecord ? `
     <section class="spec-section provider-contract">
@@ -326,7 +352,7 @@ function renderGuide(item, providerComponent) {
         <dt>Models</dt><dd>${pills(providerRecord.api.models.map(model => model.name))}</dd>
       </dl>
       <p class="provider-contract__actions">
-        <a href="http://127.0.0.1:3000${escapeHtml(providerRecord.catalogUrl)}">Открыть компонент в локальном каталоге kit</a>
+        <a href="${escapeHtml(providerCompatibility.providers.find(item => item.id === providerComponent.provider.id).localCatalogBaseUrl)}${escapeHtml(providerRecord.catalogUrl)}">Открыть компонент в локальном каталоге kit</a>
         <span>Витрина гайда описывает поведение; рабочую Vue-разметку бери из provider.</span>
       </p>
     </section>` : providerMapping?.mappings.some(mapping => mapping.guideId === item.id && !mapping.providerComponentId) ? `
@@ -403,9 +429,27 @@ function renderGuide(item, providerComponent) {
 async function renderItem() {
   const requestedId = location.hash.slice(1) || catalog[0].id;
   const aliasTarget = guideAliases[requestedId]?.target;
-  const id = aliasTarget && catalog.some(candidate => candidate.id === aliasTarget) ? aliasTarget : requestedId;
-  const entry = catalog.find(candidate => candidate.id === id) || catalog[0];
+  const allEntries = [...catalog, ...productionEntries];
+  const id = aliasTarget && allEntries.some(candidate => candidate.id === aliasTarget) ? aliasTarget : requestedId;
+  const entry = allEntries.find(candidate => candidate.id === id) || catalog[0];
   currentItem = await fetch(`../${entry.file}`).then(response => response.json());
+  if (entry.kind === 'production-page') {
+    const pageId = currentItem.id;
+    const provider = providerCompatibility.providers.find(item => item.id === providerMapping.provider.id);
+    currentItem = { ...currentItem, id: entry.id, kind: entry.kind,
+      maturity: { spec: 'complete', markup: 'available' },
+      knowledge: { confidence: 'high' },
+      examples: [
+        { id: 'ui-kit-composition', title: 'Сборка из UI Kit', file: `${provider.localCatalogBaseUrl}/ui/pages/${pageId}`, preview: { mode: 'viewport', height: 900 } },
+        { id: 'production-reference', title: 'Эталон production', file: currentItem.reference, preview: { mode: 'viewport', height: 900 } }
+      ],
+      previewNotes: [
+        { type: 'guidance', text: 'Основное превью — рабочая Vue/Nuxt-композиция вне layer, собранная через публичный API Courses UI Kit.' },
+        { type: 'coverage-warning', text: 'Вкладка production-reference остаётся инертным evidence: формы и внешние переходы отключены, карусели используют локальный адаптер.' }
+      ]
+    };
+  }
+  renderNavigation(searchInput.value);
   const mapping = providerMapping?.mappings.find(candidate => candidate.guideId === entry.id);
   const providerComponent = mapping?.apiFile
     ? await fetch(`../${mapping.apiFile}`).then(response => response.json())
@@ -433,11 +477,17 @@ Promise.all([
   fetch('../machine/catalog.json').then(response => response.json()),
   fetch('../machine/providers/courses-nuxt-kit.json').then(response => response.json()),
   fetch('../machine/compatibility.json').then(response => response.json()),
-  fetch('../machine/aliases.json').then(response => response.json())
-]).then(([index, entries, mapping, compatibility, aliases]) => {
+  fetch('../machine/aliases.json').then(response => response.json()),
+  fetch('../machine/page-analysis/atlas.json').then(response => response.json())
+]).then(([index, entries, mapping, compatibility, aliases, atlas]) => {
   catalog = entries;
+  productionAtlas = atlas;
+  productionEntries = atlas.pages.map(page => ({ ...page, id: `production-${page.id}`, kind: 'production-page',
+    navSection: 'production-pages', navSectionTitle: 'Собранные страницы',
+    navGroup: 'responsive-pages', navGroupTitle: 'Живые страницы · UI Kit', tags: [page.url, page.family] }));
   providerMapping = mapping;
   providerCompatibility = compatibility;
+  document.querySelector('#ui-kit-link').href = `${compatibility.providers.find(item => item.id === compatibility.activeProvider).localCatalogBaseUrl}/ui`;
   guideAliases = aliases.aliases || {};
   if (providerCompatibility.activeProvider !== index.activeImplementationProvider.id) {
     throw new Error('Витрина получила несовместимый provider contract.');

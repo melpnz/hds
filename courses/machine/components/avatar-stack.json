@@ -31,10 +31,20 @@
     "ui": [
       "default"
     ],
-    "feature": [],
+    "feature": [
+      "compact-20"
+    ],
     "domain": []
   },
   "rules": [],
+  "layoutRules": [
+    {
+      "id": "avatar-size",
+      "context": "Обычная стопка или капсула участников SiteHeader",
+      "behavior": "Default использует аватары 24 px с перекрытием 6 px; внутри общей капсулы SiteHeader используются 20 px с перекрытием 4 px, чтобы рамка 1 px и padding 1 px сохранили высоту 24 px.",
+      "implementation": "AvatarStack size=20|24; default 24."
+    }
+  ],
   "examples": [
     {
       "id": "default",

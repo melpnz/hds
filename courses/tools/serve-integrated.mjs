@@ -16,9 +16,9 @@ function portIsOpen(port) {
   })
 }
 
-const guide = spawn('npm run serve', { cwd: root, stdio: 'inherit', shell })
-const providerAlreadyRunning = await portIsOpen(3000)
-const provider = providerAlreadyRunning ? null : spawn('pnpm dev --port 3000', {
+const guide = spawn('npm run serve -- 4181', { cwd: root, stdio: 'inherit', shell })
+const providerAlreadyRunning = await portIsOpen(3002)
+const provider = providerAlreadyRunning ? null : spawn('pnpm dev --host 127.0.0.1 --port 3002', {
   cwd: kitRoot,
   stdio: 'inherit',
   shell
@@ -38,5 +38,5 @@ guide.on('exit', code => { if (!stopping) stop(code ?? 1) })
 provider?.on('exit', code => { if (!stopping) stop(code ?? 1) })
 
 console.log('Integrated Courses preview:')
-console.log('- guide: http://127.0.0.1:4173/viewer/?provider=local')
-console.log(`- provider catalog: http://127.0.0.1:3000/ui${providerAlreadyRunning ? ' (reusing existing server)' : ''}`)
+console.log('- guide: http://127.0.0.1:4181/viewer/?provider=local')
+console.log(`- provider catalog: http://127.0.0.1:3002/ui${providerAlreadyRunning ? ' (reusing existing server)' : ''}`)

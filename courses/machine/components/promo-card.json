@@ -35,12 +35,24 @@
     ],
     "scripts": []
   },
+  "layoutRules": [
+    {
+      "id": "promo-card-provider-variants",
+      "context": "Courses Nuxt Kit provider",
+      "behavior": "Карточка с code раскрывает код и отправляет open-code; карточка без code ведёт по href через действие «Посмотреть»; expired показывает метку «Завершено», приглушает содержимое и отключает действие.",
+      "implementation": "PromoCard exposes code, href, expired and actionLabel while preserving the existing default code variant. It is 260×268 px from 768 px and fills the available column below 768 px."
+    }
+  ],
   "states": {
     "ui": [
       "default",
       "hover"
     ],
-    "feature": [],
+    "feature": [
+      "code",
+      "link",
+      "expired"
+    ],
     "domain": []
   },
   "rules": [

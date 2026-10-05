@@ -6,8 +6,8 @@
 
 ## Итог
 
-- provider tokens: **146**;
-- mapped: **146** (105 direct, 35 explicit, 6 aliases);
+- provider tokens: **147**;
+- mapped: **147** (105 direct, 36 explicit, 6 aliases);
 - value mismatches: **0**;
 - unmapped: **0**;
 - ignored: **0**.

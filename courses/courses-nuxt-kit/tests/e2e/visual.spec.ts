@@ -32,6 +32,8 @@ const extendedCases: VisualCase[] = [
 async function settlePreview(page: Page, visualCase: VisualCase): Promise<Locator> {
   await page.goto(visualCase.path ?? `/ui/preview?component=${visualCase.component ?? visualCase.id}`)
   await page.waitForFunction(() => Boolean((document.querySelector('#__nuxt') as HTMLElement & { __vue_app__?: unknown })?.__vue_app__))
+  // Nuxt's development toolbar is not part of the component under review.
+  await page.addStyleTag({ content: '#nuxt-devtools-container, nuxt-devtools-inspect-panel { display: none !important; }' })
   await page.evaluate(async () => {
     await document.fonts.ready
     await Promise.all(Array.from(document.images, image => image.complete ? Promise.resolve() : new Promise<void>(resolve => {

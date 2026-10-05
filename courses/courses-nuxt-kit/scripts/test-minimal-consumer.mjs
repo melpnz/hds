@@ -41,6 +41,10 @@ try {
     <Button>Выбрать курс</Button>
     <EntityLogo name="Школа" />
     <CourseCard title="Frontend-разработчик" />
+    <Carousel loop>
+      <CourseCard v-for="item in 8" :key="item" :title="'Курс ' + item" />
+    </Carousel>
+    <AdSlot />
     <HeaderDropdown :model-value="true" current="courses" />
   </main>
 </template>

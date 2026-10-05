@@ -1,0 +1,2832 @@
+{
+  "id": "authors",
+  "title": "Эксперты по оценке обучения",
+  "url": "https://career.habr.com/courses/authors",
+  "family": "people-directory",
+  "sequence": [
+    "simple-header",
+    "hero",
+    "expert-process-panel",
+    "steps-grid",
+    "experts-title",
+    "experts-subtitle",
+    "person-grid",
+    "footer"
+  ],
+  "providerComponents": [
+    "site-header",
+    "site-footer",
+    "page-hero",
+    "button",
+    "step-card",
+    "person-card"
+  ],
+  "approvalGaps": [],
+  "notes": [
+    "Steps4/2/1 отличаются от PersonCard4/3/1.",
+    "Экспертный знак справа виден от768 и скрыт phone; содержание панели не переставляется."
+  ],
+  "ownerDecisions": [
+    {
+      "id": "grid-tablet",
+      "status": "implemented-local",
+      "rule": "CardGrid: tabletColumns=2|3, default=2; columns=2|3|4, default=4; phone=1. Gap всегда 12 px, без prop для отступа. Старые вызовы сохраняют 4/2/1. Изменение пока не опубликовано.",
+      "component": "CardGrid"
+    },
+    {
+      "id": "expert-panel",
+      "status": "implemented-local",
+      "acceptedOn": "2026-10-05",
+      "rule": "Белая панель без серого фона страницы; иллюстрация справа от768, mobile скрыта. У преимуществ экспертов иконки. Перед заголовком шагов40, до сетки24. PersonCard переносит имена внутри padding и принимает разные реальные логотипы и контакты.",
+      "pages": [
+        "authors",
+        "editors"
+      ]
+    },
+    {
+      "id": "accepted-shared-layout",
+      "status": "implemented-local",
+      "acceptedOn": "2026-10-05",
+      "rule": "RatingTable: длинный текст увеличивает высоту с сохранением padding; все колонки доступны локальным скроллом на320. После последнего NumberedCourseItem нет линии; подборка рейтинга в каталоге содержит10 школ. SchoolCard: название максимум3 строки, кнопка внизу. Carousel: карточка заполняет слайд, стрелки центрируются без учёта пагинации. Подборки используют общий LinkGrid и соответствующие разделу данные.",
+      "pages": [
+        "courses-listing",
+        "course-category",
+        "education-centers-listing",
+        "rating",
+        "education-center",
+        "reviews",
+        "review-detail",
+        "promocodes",
+        "promocode-detail",
+        "authors",
+        "editors",
+        "author"
+      ]
+    }
+  ],
+  "reference": "evidence/production-responsive-2026-10-01/authors/index.html",
+  "measurements": [
+    {
+      "width": 1440,
+      "capturedAt": "2026-10-01T11:25:11.387Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 4084.8,
+          "width": 1440,
+          "height": 192
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "32px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "flex flex-col gap-10 pb-10",
+        "rect": {
+          "x": 182,
+          "y": 452,
+          "width": 1076,
+          "height": 3632.8
+        },
+        "css": {
+          "display": "flex",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "40px",
+          "columnGap": "40px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1)",
+            "classes": "-mx-6 -mt-6 flex flex-col gap-10 rounded-3xl bg-ui-white px-6 pt-6",
+            "rect": {
+              "x": 158,
+              "y": 428,
+              "width": 1124,
+              "height": 468.8
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "24px",
+              "paddingRight": "24px",
+              "paddingBottom": "0px",
+              "paddingLeft": "24px",
+              "marginTop": "-24px",
+              "marginBottom": "0px",
+              "rowGap": "40px",
+              "columnGap": "40px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Как работает экспертная проверка Мы позаботились, чтобы обучение на нашей витрине оценивали одни из самых крутых ребят в своем деле. Каждый "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2)",
+            "classes": "",
+            "rect": {
+              "x": 182,
+              "y": 936.8,
+              "width": 1076,
+              "height": 3108
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Крутые ребята, которые оценивают обучение Мы внимательно проверяем квалификацию, опыт и репутацию каждого эксперта — чтобы в комиссию попада"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > div",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-2",
+          "rect": {
+            "x": 182,
+            "y": 742,
+            "width": 1076,
+            "height": 154.8
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "260px 260px 260px 260px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > div:nth-of-type(2)",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 182,
+            "y": 1040.8,
+            "width": 1076,
+            "height": 3004
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "260px 260px 260px 260px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 182,
+            "y": 4116.8,
+            "width": 1076,
+            "height": 120
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "257px 257px 257px 257px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 394,
+            "y": 64,
+            "width": 652,
+            "height": 160
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "64px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "44px",
+            "lineHeight": "48px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Эксперты по оценке обучения"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 182,
+            "y": 690,
+            "width": 1076,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Как работают эксперты"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 182,
+            "y": 936.8,
+            "width": 1076,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Крутые ребята, которые оценивают обучение"
+        }
+      ],
+      "carousels": [],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 3377,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -3377,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 1024,
+      "capturedAt": "2026-10-01T11:37:02.015Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 4104.8,
+          "width": 1024,
+          "height": 192
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "32px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "flex flex-col gap-10 pb-10",
+        "rect": {
+          "x": 24,
+          "y": 452,
+          "width": 976,
+          "height": 3652.8
+        },
+        "css": {
+          "display": "flex",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "40px",
+          "columnGap": "40px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1)",
+            "classes": "-mx-6 -mt-6 flex flex-col gap-10 rounded-3xl bg-ui-white px-6 pt-6",
+            "rect": {
+              "x": 0,
+              "y": 428,
+              "width": 1024,
+              "height": 488.8
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "24px",
+              "paddingRight": "24px",
+              "paddingBottom": "0px",
+              "paddingLeft": "24px",
+              "marginTop": "-24px",
+              "marginBottom": "0px",
+              "rowGap": "40px",
+              "columnGap": "40px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Как работает экспертная проверка Мы позаботились, чтобы обучение на нашей витрине оценивали одни из самых крутых ребят в своем деле. Каждый "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2)",
+            "classes": "",
+            "rect": {
+              "x": 24,
+              "y": 956.8,
+              "width": 976,
+              "height": 3108
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Крутые ребята, которые оценивают обучение Мы внимательно проверяем квалификацию, опыт и репутацию каждого эксперта — чтобы в комиссию попада"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > div",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-2",
+          "rect": {
+            "x": 24,
+            "y": 742,
+            "width": 976,
+            "height": 174.8
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "235px 235px 235px 235px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > div:nth-of-type(2)",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 1060.8,
+            "width": 976,
+            "height": 3004
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "235px 235px 235px 235px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 4136.8,
+            "width": 976,
+            "height": 120
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "232px 232px 232px 232px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 186,
+            "y": 64,
+            "width": 652,
+            "height": 160
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "64px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "44px",
+            "lineHeight": "48px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Эксперты по оценке обучения"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 690,
+            "width": 976,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Как работают эксперты"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 956.8,
+            "width": 976,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Крутые ребята, которые оценивают обучение"
+        }
+      ],
+      "carousels": [],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 3397,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -3397,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 768,
+      "capturedAt": "2026-10-01T11:25:15.558Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 5085.59,
+          "width": 768,
+          "height": 256
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "32px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "flex flex-col gap-10 pb-10",
+        "rect": {
+          "x": 24,
+          "y": 472,
+          "width": 720,
+          "height": 4613.59
+        },
+        "css": {
+          "display": "flex",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "40px",
+          "columnGap": "40px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1)",
+            "classes": "-mx-6 -mt-6 flex flex-col gap-10 rounded-3xl bg-ui-white px-6 pt-6",
+            "rect": {
+              "x": 0,
+              "y": 448,
+              "width": 768,
+              "height": 695.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "24px",
+              "paddingRight": "24px",
+              "paddingBottom": "0px",
+              "paddingLeft": "24px",
+              "marginTop": "-24px",
+              "marginBottom": "0px",
+              "rowGap": "40px",
+              "columnGap": "40px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Как работает экспертная проверка Мы позаботились, чтобы обучение на нашей витрине оценивали одни из самых крутых ребят в своем деле. Каждый "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2)",
+            "classes": "",
+            "rect": {
+              "x": 24,
+              "y": 1183.59,
+              "width": 720,
+              "height": 3862
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Крутые ребята, которые оценивают обучение Мы внимательно проверяем квалификацию, опыт и репутацию каждого эксперта — чтобы в комиссию попада"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > div",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-2",
+          "rect": {
+            "x": 24,
+            "y": 882,
+            "width": 720,
+            "height": 261.59
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "354px 354px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > div:nth-of-type(2)",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 1287.59,
+            "width": 720,
+            "height": 3758
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "232px 232px 232px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 5117.59,
+            "width": 720,
+            "height": 184
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "229.328px 229.328px 229.328px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 58,
+            "y": 64,
+            "width": 652,
+            "height": 160
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "64px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "44px",
+            "lineHeight": "48px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Эксперты по оценке обучения"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 830,
+            "width": 720,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Как работают эксперты"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 1183.59,
+            "width": 720,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Крутые ребята, которые оценивают обучение"
+        }
+      ],
+      "carousels": [],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 4442,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -4442,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 744,
+      "capturedAt": "2026-10-01T11:37:05.608Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 744,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 11690.19,
+          "width": 744,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "flex flex-col gap-10 pb-10",
+        "rect": {
+          "x": 24,
+          "y": 468,
+          "width": 696,
+          "height": 11222.19
+        },
+        "css": {
+          "display": "flex",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "40px",
+          "columnGap": "40px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1)",
+            "classes": "-mx-6 -mt-6 flex flex-col gap-10 rounded-3xl bg-ui-white px-6 pt-6",
+            "rect": {
+              "x": 0,
+              "y": 444,
+              "width": 744,
+              "height": 829.19
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "24px",
+              "paddingRight": "24px",
+              "paddingBottom": "0px",
+              "paddingLeft": "24px",
+              "marginTop": "-24px",
+              "marginBottom": "0px",
+              "rowGap": "40px",
+              "columnGap": "40px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Как работает экспертная проверка Мы позаботились, чтобы обучение на нашей витрине оценивали одни из самых крутых ребят в своем деле. Каждый "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2)",
+            "classes": "",
+            "rect": {
+              "x": 24,
+              "y": 1313.19,
+              "width": 696,
+              "height": 10337
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Крутые ребята, которые оценивают обучение Мы внимательно проверяем квалификацию, опыт и репутацию каждого эксперта — чтобы в комиссию попада"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > div",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-2",
+          "rect": {
+            "x": 24,
+            "y": 838,
+            "width": 696,
+            "height": 435.19
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "696px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > div:nth-of-type(2)",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 1417.19,
+            "width": 696,
+            "height": 10233
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "696px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 11714.19,
+            "width": 696,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "696px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 46,
+            "y": 64,
+            "width": 652,
+            "height": 108
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "40px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "30px",
+            "lineHeight": "34px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Эксперты по оценке обучения"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 786,
+            "width": 696,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Как работают эксперты"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 1313.19,
+            "width": 696,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Крутые ребята, которые оценивают обучение"
+        }
+      ],
+      "carousels": [],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 11266,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -11266,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 480,
+      "capturedAt": "2026-10-01T11:37:09.747Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 480,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 12338.19,
+          "width": 480,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "flex flex-col gap-10 pb-10",
+        "rect": {
+          "x": 24,
+          "y": 508,
+          "width": 432,
+          "height": 11830.19
+        },
+        "css": {
+          "display": "flex",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "40px",
+          "columnGap": "40px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1)",
+            "classes": "-mx-6 -mt-6 flex flex-col gap-10 rounded-3xl bg-ui-white px-6 pt-6",
+            "rect": {
+              "x": 0,
+              "y": 484,
+              "width": 480,
+              "height": 949.19
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "24px",
+              "paddingRight": "24px",
+              "paddingBottom": "0px",
+              "paddingLeft": "24px",
+              "marginTop": "-24px",
+              "marginBottom": "0px",
+              "rowGap": "40px",
+              "columnGap": "40px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Как работает экспертная проверка Мы позаботились, чтобы обучение на нашей витрине оценивали одни из самых крутых ребят в своем деле. Каждый "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2)",
+            "classes": "",
+            "rect": {
+              "x": 24,
+              "y": 1473.19,
+              "width": 432,
+              "height": 10825
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Крутые ребята, которые оценивают обучение Мы внимательно проверяем квалификацию, опыт и репутацию каждого эксперта — чтобы в комиссию попада"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > div",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-2",
+          "rect": {
+            "x": 24,
+            "y": 938,
+            "width": 432,
+            "height": 495.19
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "432px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > div:nth-of-type(2)",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 1625.19,
+            "width": 432,
+            "height": 10673
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "432px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 12362.19,
+            "width": 432,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "432px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 24,
+            "y": 64,
+            "width": 432,
+            "height": 108
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "40px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "30px",
+            "lineHeight": "34px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Эксперты по оценке обучения"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 886,
+            "width": 432,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Как работают эксперты"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 1473.19,
+            "width": 432,
+            "height": 56
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Крутые ребята, которые оценивают обучение"
+        }
+      ],
+      "carousels": [],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 11914,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -11914,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 393,
+      "capturedAt": "2026-10-01T11:25:19.524Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 393,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 12558.19,
+          "width": 393,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "flex flex-col gap-10 pb-10",
+        "rect": {
+          "x": 24,
+          "y": 548,
+          "width": 345,
+          "height": 12010.19
+        },
+        "css": {
+          "display": "flex",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "40px",
+          "columnGap": "40px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1)",
+            "classes": "-mx-6 -mt-6 flex flex-col gap-10 rounded-3xl bg-ui-white px-6 pt-6",
+            "rect": {
+              "x": 0,
+              "y": 524,
+              "width": 393,
+              "height": 1029.19
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "24px",
+              "paddingRight": "24px",
+              "paddingBottom": "0px",
+              "paddingLeft": "24px",
+              "marginTop": "-24px",
+              "marginBottom": "0px",
+              "rowGap": "40px",
+              "columnGap": "40px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Как работает экспертная проверка Мы позаботились, чтобы обучение на нашей витрине оценивали одни из самых крутых ребят в своем деле. Каждый "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2)",
+            "classes": "",
+            "rect": {
+              "x": 24,
+              "y": 1593.19,
+              "width": 345,
+              "height": 10925
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Крутые ребята, которые оценивают обучение Мы внимательно проверяем квалификацию, опыт и репутацию каждого эксперта — чтобы в комиссию попада"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > div",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-2",
+          "rect": {
+            "x": 24,
+            "y": 1018,
+            "width": 345,
+            "height": 535.19
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "345px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > div:nth-of-type(2)",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 1765.19,
+            "width": 345,
+            "height": 10753
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "345px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 12582.19,
+            "width": 345,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "345px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 24,
+            "y": 64,
+            "width": 345,
+            "height": 108
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "40px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "30px",
+            "lineHeight": "34px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Эксперты по оценке обучения"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 966,
+            "width": 345,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Как работают эксперты"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 1593.19,
+            "width": 345,
+            "height": 56
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Крутые ребята, которые оценивают обучение"
+        }
+      ],
+      "carousels": [],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 12134,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -12134,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 320,
+      "capturedAt": "2026-10-01T11:37:13.468Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 12936.19,
+          "width": 320,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "flex flex-col gap-10 pb-10",
+        "rect": {
+          "x": 24,
+          "y": 642,
+          "width": 272,
+          "height": 12294.19
+        },
+        "css": {
+          "display": "flex",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "40px",
+          "columnGap": "40px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1)",
+            "classes": "-mx-6 -mt-6 flex flex-col gap-10 rounded-3xl bg-ui-white px-6 pt-6",
+            "rect": {
+              "x": 0,
+              "y": 618,
+              "width": 320,
+              "height": 1191.19
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "24px",
+              "paddingRight": "24px",
+              "paddingBottom": "0px",
+              "paddingLeft": "24px",
+              "marginTop": "-24px",
+              "marginBottom": "0px",
+              "rowGap": "40px",
+              "columnGap": "40px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Как работает экспертная проверка Мы позаботились, чтобы обучение на нашей витрине оценивали одни из самых крутых ребят в своем деле. Каждый "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2)",
+            "classes": "",
+            "rect": {
+              "x": 24,
+              "y": 1849.19,
+              "width": 272,
+              "height": 11047
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Крутые ребята, которые оценивают обучение Мы внимательно проверяем квалификацию, опыт и репутацию каждого эксперта — чтобы в комиссию попада"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > div",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-2",
+          "rect": {
+            "x": 24,
+            "y": 1194,
+            "width": 272,
+            "height": 615.19
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "272px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > div:nth-of-type(2)",
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 2069.19,
+            "width": 272,
+            "height": 10827
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "272px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 12960.19,
+            "width": 272,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "272px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 24,
+            "y": 64,
+            "width": 272,
+            "height": 142
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "40px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "30px",
+            "lineHeight": "34px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Эксперты по оценке обучения"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(1) > section > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 1142,
+            "width": 272,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Как работают эксперты"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 1849.19,
+            "width": 272,
+            "height": 84
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Крутые ребята, которые оценивают обучение"
+        }
+      ],
+      "carousels": [],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 12512,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -12512,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    }
+  ],
+  "boundaryMeasurements": [
+    {
+      "width": 767,
+      "status": 200,
+      "capturedAt": "2026-10-01T11:33:49.164Z",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 767,
+        "height": 64
+      },
+      "grids": [
+        {
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-2",
+          "columns": "719px",
+          "gap": "12px"
+        },
+        {
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-3",
+          "columns": "719px",
+          "gap": "12px"
+        },
+        {
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "columns": "719px",
+          "gap": "24px"
+        }
+      ],
+      "overflow": 0
+    },
+    {
+      "width": 1023,
+      "status": 200,
+      "capturedAt": "2026-10-01T11:33:52.033Z",
+      "header": {
+        "x": 0,
+        "y": 0,
+        "width": 1023,
+        "height": 64
+      },
+      "grids": [
+        {
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-2",
+          "columns": "481.5px 481.5px",
+          "gap": "12px"
+        },
+        {
+          "classes": "grid grid-cols-4 gap-3 phone:grid-cols-1 tablet-only:grid-cols-3",
+          "columns": "317px 317px 317px",
+          "gap": "12px"
+        },
+        {
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "columns": "314.328px 314.328px 314.344px",
+          "gap": "16px"
+        }
+      ],
+      "overflow": 0
+    }
+  ]
+}

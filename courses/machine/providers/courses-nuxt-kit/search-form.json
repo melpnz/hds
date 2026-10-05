@@ -7,7 +7,7 @@
   },
   "provider": {
     "id": "courses-nuxt-kit",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "type": "nuxt-layer",
     "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
     "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
@@ -34,7 +34,8 @@
             "mobile",
             "select-xl",
             "joined-fields",
-            "full-width-action"
+            "full-width-action",
+            "selected-summary"
           ]
         }
       ],
@@ -45,22 +46,75 @@
     "api": {
       "props": [
         {
+          "name": "fields",
+          "type": "SearchField[]",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "mode",
+          "type": "'fields' | 'query'",
+          "required": false,
+          "source": "prop"
+        },
+        {
           "name": "modelValue",
           "type": "string",
           "required": false,
           "source": "model"
+        },
+        {
+          "name": "queryPlaceholder",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "submitLabel",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "summary",
+          "type": "SearchSummary",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "values",
+          "type": "Record<string, string>",
+          "required": false,
+          "source": "model"
         }
       ],
-      "slots": [],
+      "slots": [
+        {
+          "name": "fields"
+        },
+        {
+          "name": "summary"
+        }
+      ],
       "emits": [
         {
+          "name": "openSummary",
+          "type": "[]",
+          "source": "emit"
+        },
+        {
           "name": "submit",
-          "type": "[query: string]",
+          "type": "[payload: Record<string, string> | string]",
           "source": "emit"
         },
         {
           "name": "update:modelValue",
           "type": "[string]",
+          "source": "model"
+        },
+        {
+          "name": "update:values",
+          "type": "[Record<string, string>]",
           "source": "model"
         }
       ],
@@ -69,18 +123,28 @@
           "name": "modelValue",
           "type": "string",
           "required": false
+        },
+        {
+          "name": "values",
+          "type": "Record<string, string>",
+          "required": false
         }
       ]
     },
     "states": {
       "guide": [
-        "default"
+        "default",
+        "selected-summary"
       ],
       "provider": [
-        "default"
+        "default",
+        "selected-summary",
+        "query"
       ],
       "missingInProvider": [],
-      "providerOnly": []
+      "providerOnly": [
+        "query"
+      ]
     }
   }
 }

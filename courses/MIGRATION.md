@@ -7,7 +7,9 @@
 `showcase-template` и наполнен по правилам ниже.
 
 - все 72 записи разнесены по `machine/components/*.json`;
-- шесть собранных страниц стали `machine/patterns/*.json` и адресными examples;
+- шесть статических страниц сначала были перенесены в `machine/patterns`, а
+  2 октября 2026 года заменены двенадцатью адресными контрактами
+  `machine/page-analysis/pages/*.json` и живыми Vue/Nuxt-композициями UI Kit;
 - 42 правила разнесены по `machine/rules/*.json`;
 - подробные спецификации сохранены в `guide/`, концептуальные тексты — в
   `docs/guide/`, UI и evidence перенесены полностью;

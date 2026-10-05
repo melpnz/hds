@@ -40,7 +40,7 @@ const contributors = computed(() => props.authors.slice(1))
 
 <style scoped>
 .crs-authors{display:flex;flex-direction:column;gap:var(--crs-space-24);color:var(--crs-black-850);font:400 var(--crs-font-14)/var(--crs-leading-20) var(--crs-font-family)}
-.crs-authors h2{margin:0;font:600 var(--crs-font-30)/var(--crs-leading-34) var(--crs-font-family)}
+.crs-authors h2{margin:0;font:600 var(--crs-font-24)/var(--crs-leading-28) var(--crs-font-family);letter-spacing:var(--crs-letter-tight)}
 .crs-authors__lead{display:flex;gap:var(--crs-space-20)}
 .crs-authors__lead>div{display:flex;flex-direction:column;align-items:flex-start}
 .crs-authors__lead span,.crs-authors__lead p{margin:0;color:var(--crs-black-500)}

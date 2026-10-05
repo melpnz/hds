@@ -3,7 +3,7 @@ const props = withDefaults(defineProps<{
   src?: string
   alt?: string
   name?: string
-  size?: 24 | 32 | 36 | 40 | 48 | 56 | 68 | 100 | 's' | 'm' | 'person' | 'l'
+  size?: 20 | 24 | 32 | 36 | 40 | 48 | 56 | 68 | 100 | 's' | 'm' | 'person' | 'l'
 }>(), {
   alt: '',
   name: 'Пользователь',

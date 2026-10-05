@@ -1,0 +1,1323 @@
+{
+  "schemaVersion": 1,
+  "generatedBy": "tools/build-production-page-atlas.mjs",
+  "authority": "production",
+  "scope": "public-guest",
+  "evidenceRoot": "evidence/production-responsive-2026-10-01",
+  "capturedOn": "2026-10-01",
+  "providerChanges": "All 12 component pages accepted on 2026-10-05; local kit changes are not yet published. Production measurements remain unchanged.",
+  "ownerDecisions": [
+    {
+      "id": "person-header-phone",
+      "status": "implemented-local",
+      "rule": "PersonHeader до768: вертикальная композиция без рамки и padding, фото100, имя30/34, gap20. От768 сохраняется горизонтальная карточка с рамкой и padding24. Публичный API не меняется. Доработка пока не опубликована.",
+      "component": "PersonHeader"
+    },
+    {
+      "id": "banner-carousel",
+      "status": "implemented-local",
+      "rule": "Рекламный Carousel variant=ad-slot: active568×232 по центру от768, соседние scale.87 и opacity.65, spaceBetween−26; mobile во всю колонку с aspect272/280 и spaceBetween0; loop с шагом1. AdSlot собирается из Carousel и AdCard. При одном баннере стрелки и пагинация не рендерятся. Доработка пока не опубликована.",
+      "component": "Carousel"
+    },
+    {
+      "id": "carousel-loop",
+      "status": "implemented-local",
+      "rule": "Обычные Carousel: loop=true, шаг1, gap12; CourseCard 4/3/1, ArticleCard и ReviewCard 3/2/1. Default loop=false сохраняет конечный режим. Если все карточки помещаются, блок стрелок не рендерится. Swiper внутри кита, живые карточки из slots. Рекламная геометрия описана отдельным решением banner-carousel. Доработка пока не опубликована.",
+      "component": "Carousel"
+    },
+    {
+      "id": "grid-tablet",
+      "status": "implemented-local",
+      "rule": "CardGrid: tabletColumns=2|3, default=2; columns=2|3|4, default=4; phone=1. Gap всегда 12 px, без prop для отступа. Старые вызовы сохраняют 4/2/1. Изменение пока не опубликовано.",
+      "component": "CardGrid"
+    },
+    {
+      "id": "wide-review",
+      "status": "implemented-local",
+      "rule": "ReviewCard variant=wide: отзыв занимает всю ширину колонки, использует avatar48, рейтинг в колонке164 справа от768 и следующей строкой до768; текст не обрезается и fade не показывается.",
+      "component": "ReviewCard"
+    },
+    {
+      "id": "full-review",
+      "status": "implemented-local",
+      "rule": "ReviewCard variant=full показывает весь текст без overlay-ссылки. От768 дата под звёздами, оба выровнены вправо; до768 звёзды и дата в одной строке слева, дата справа. Доработка принята 05.10.2026, не опубликована.",
+      "component": "ReviewCard"
+    },
+    {
+      "id": "review-content-data",
+      "status": "implemented-local",
+      "rule": "ReviewCard принимает avatar, courseLogo, courseHref, advantages, disadvantages и comment. Compact остаётся default и сохраняет прежние text/href вызовы.",
+      "component": "ReviewCard"
+    },
+    {
+      "id": "expired-promo",
+      "status": "implemented-local",
+      "rule": "PromoCard expired=true показывает метку «Завершено», приглушает логотип и содержимое, использует нейтральную плашку и рендерит настоящее disabled-действие без href.",
+      "component": "PromoCard"
+    },
+    {
+      "id": "promo-actions",
+      "status": "implemented-local",
+      "rule": "PromoCard: активные код и предложение открывают PromoCodeModal с условиями. Код копируется в модалке; внешний сайт открывается только отдельным действием. Открытие не раскрывает код внутри карточки и не открывает сайт автоматически. expired блокирует действие; open-code сохраняется. Кодовая кнопка с хвостом и отогнутым уголком — специальный вариант PromoCard, не Button.",
+      "component": "PromoCard"
+    },
+    {
+      "id": "category-intro",
+      "status": "implemented-local",
+      "rule": "SiteHeader family=courses level=page принимает breadcrumbs и title, показывает левый h1 30/34 (phone 24/28) внутри синего фона и сохраняет production-позицию полосы фильтров на семи контрольных ширинах. Отдельный CategoryIntro не создаётся.",
+      "component": "SiteHeader"
+    },
+    {
+      "id": "contributors-strip",
+      "status": "implemented-local",
+      "rule": "SiteHeader принимает contributors{name,role,href,avatar}, verified, verifiedLabel, updatedAt и updatedDateTime. От1024 видны два участника и stack; 768–1023 — первый и stack; до768 — подпись «Авторы», stack и сокращённая мета. Отдельный ContributorsStrip не создаётся.",
+      "component": "SiteHeader"
+    },
+    {
+      "id": "school-course-grid",
+      "status": "approved-page-composition",
+      "rule": "Курсы школы собираются обычным CardGrid с tabletColumns=3 и gap12. Лимиты 8/6/4 задаёт страница, не компонент. Gap16 в measurements остаётся фактом о production, но новая kit-сборка использует утверждённые 12 px.",
+      "component": "CardGrid",
+      "observedProductionGap": 16,
+      "approvedGap": 12
+    },
+    {
+      "id": "hero-search-composition",
+      "status": "implemented-local",
+      "acceptedOn": "2026-10-05",
+      "rule": "PageHero и SearchForm собирают шапку через публичные slots. Единый градиент принадлежит внешней области, без повторного старта. Табам сохраняются отступы. Все dropdown получают options и выбранные значения; fixture-фильтры не являются backend.",
+      "pages": [
+        "education-centers-listing",
+        "rating",
+        "reviews",
+        "promocodes"
+      ]
+    },
+    {
+      "id": "selected-search-summary",
+      "status": "implemented-local",
+      "acceptedOn": "2026-10-05",
+      "rule": "Форма промокодов школы имеет заполненные options и выбранную школу; на mobile открывается из сводки, после применения закрывается. Внешняя область шапки задаёт единый градиент.",
+      "pages": [
+        "promocode-detail"
+      ]
+    },
+    {
+      "id": "expert-panel",
+      "status": "implemented-local",
+      "acceptedOn": "2026-10-05",
+      "rule": "Белая панель без серого фона страницы; иллюстрация справа от768, mobile скрыта. У преимуществ экспертов иконки. Перед заголовком шагов40, до сетки24. PersonCard переносит имена внутри padding и принимает разные реальные логотипы и контакты.",
+      "pages": [
+        "authors",
+        "editors"
+      ]
+    },
+    {
+      "id": "accepted-shared-layout",
+      "status": "implemented-local",
+      "acceptedOn": "2026-10-05",
+      "rule": "RatingTable: длинный текст увеличивает высоту с сохранением padding; все колонки доступны локальным скроллом на320. После последнего NumberedCourseItem нет линии; подборка рейтинга в каталоге содержит10 школ. SchoolCard: название максимум3 строки, кнопка внизу. Carousel: карточка заполняет слайд, стрелки центрируются без учёта пагинации. Подборки используют общий LinkGrid и соответствующие разделу данные.",
+      "pages": [
+        "courses-listing",
+        "course-category",
+        "education-centers-listing",
+        "rating",
+        "education-center",
+        "reviews",
+        "review-detail",
+        "promocodes",
+        "promocode-detail",
+        "authors",
+        "editors",
+        "author"
+      ]
+    },
+    {
+      "id": "accepted-school-details",
+      "status": "implemented-local",
+      "acceptedOn": "2026-10-05",
+      "rule": "EntityHeader: логотип сверху без смещения при раскрытии. Desktop Подробнее в конце текста, Свернуть под ним; mobile обе ссылки под текстом. InfoTable gap16 по обеим осям и16 от заголовка.",
+      "pages": [
+        "education-center"
+      ]
+    },
+    {
+      "id": "accepted-contributor-modals",
+      "status": "implemented-local",
+      "acceptedOn": "2026-10-05",
+      "rule": "Хлебные крошки переносятся со стрелкой непосредственно после текста. По клику на stack и проверено открываются модалки; кнопки вертикально: Узнать больше про экспертов, затем Закрыть. У участников аватар48, описание чёрное с отступом от заголовка, роль серая под ФИО; в модалке проверки нет лишних отступов вокруг текста.",
+      "pages": [
+        "courses-listing",
+        "course-category"
+      ]
+    },
+    {
+      "id": "accepted-author-profile",
+      "status": "implemented-local",
+      "acceptedOn": "2026-10-05",
+      "rule": "Prose width=full. Разделы профиля по общему левому краю, gap40 перед экспертизой, квалификациями и историей; нет общего заголовка Опыт и образование. ProfileHistory: логотип48, gap12 до текста, название16/1.3 weight600 максимум2 строки, дата14/20 серая, внутренний gap4, gap24 между записями и от заголовка.",
+      "pages": [
+        "author"
+      ]
+    },
+    {
+      "id": "accepted-review-detail",
+      "status": "implemented-local",
+      "acceptedOn": "2026-10-05",
+      "rule": "Обратная ссылка: серый chevron, margin24 сверху и снизу, без дополнительного padding40 и gap48 перед отзывом. Рейтинг full: desktop справа, дата под звёздами; mobile слева, дата справа от звёзд.",
+      "pages": [
+        "review-detail"
+      ]
+    }
+  ],
+  "widths": [
+    1440,
+    1024,
+    768,
+    744,
+    480,
+    393,
+    320
+  ],
+  "previewWidths": [
+    320,
+    480,
+    768,
+    1024,
+    "full"
+  ],
+  "rules": [
+    {
+      "id": "PA-01",
+      "subject": "content-frame",
+      "rule": "Wouter=min(viewport,1124); Wcontent=Wouter−48; Xcontent=(viewport−Wouter)/2+24. Поле 24 сохраняется на 320, 393, 480, 744, 768, 1024 и 1440.",
+      "tolerancePx": 1,
+      "positive": "На 1440: x=182, width=1076; на 393: x=24, width=345.",
+      "negative": "Контейнер 1200 или мобильные поля 16 без подтверждённого исключения.",
+      "exceptions": [
+        "Панель экспертов/редакции выходит в поля 24; шапка школы и таблица рейтинга до 768 идут в край viewport; стрелки выступают на половину диаметра."
+      ]
+    },
+    {
+      "id": "PA-02",
+      "subject": "breakpoints",
+      "rule": "phone: width<768; tablet: 768≤width<1024; desktop: width≥1024. 744 — мобильная композиция, 1024 — десктоп. 480 — отдельная граница некоторых оверлеев, не переключатель основной сетки.",
+      "positive": "744: один столбец карточек. 768: три. 1024: четыре.",
+      "negative": "Две колонки карточек на 744 или 768 по абстрактному правилу tablet."
+    },
+    {
+      "id": "PA-03",
+      "subject": "card-grid",
+      "rule": "Основные CourseCard/SchoolCard/PromoCard/PersonCard: 4→3→1, gap=12. Width=(Wcontent−(columns−1)×gap)/columns. Истории/статьи не приравнивать к этой сетке.",
+      "positive": "1440: 260; 1024:235; 768:232; 393:345.",
+      "negative": "Фиксированные 260 на планшете, две колонки на 768.",
+      "exceptions": [
+        "Курсы внутри школы: gap=16 и лимит видимых карточек 8/6/4.",
+        "Шаги авторов/редакции: 4→2→1 при gap=12.",
+        "LinkGrid: 3→2→1, columnGap=16, rowGap=8 или 16 по конкретной секции.",
+        "Опыт/образование автора: 2 столбца с gap=16 от 768; на телефоне 1 и вертикальный gap=40."
+      ]
+    },
+    {
+      "id": "PA-04",
+      "subject": "page-stack",
+      "rule": "Листинги, школа, рейтинг и отдельный отзыв: межмодульный gap=48. Авторы, редакция, профиль автора: gap=40. Порядок модулей задаёт sequence выбранной страницы.",
+      "positive": "gap=48 между отзывом и рекомендациями; gap=40 между biography и expertise.",
+      "negative": "Один универсальный gap=32 или перестановка модулей на мобильном.",
+      "exceptions": [
+        "Отрицательные margins уменьшают видимый зазор: баннеры главной −24; сетка организаций −8; панель авторов наезжает на hero на 24.",
+        "Пустой рекламный слот школы имеет высоту 0, но два gap=48 суммарно дают 96; не удалять его без пересчёта ритма."
+      ]
+    },
+    {
+      "id": "PA-05",
+      "subject": "page-insets",
+      "rule": "Главная/категория: pt=24,pb=24. Организации/рейтинг/отзывы/промокоды: pt=40,pb=40. Промокоды школы: pt=40,pb=112. Школа: pt=24 (phone=0),pb=112. Профиль: pt=24,pb=40. Авторы/редакция: pt=0,pb=40.",
+      "positive": "Школа на 393 начинается сразу после header; обычный листинг после hero оставляет 40.",
+      "negative": "Универсальная padding:40px для любой страницы."
+    },
+    {
+      "id": "PA-06",
+      "subject": "headers",
+      "rule": "Простая шапка:64. Главная и категория с поиском:64 от768,108 до768. Навигация главной — отдельные40. Только главная и категория sticky; остальные10 static.",
+      "positive": "На 393 главная:108+40 до контента; категория:108+собственный intro.",
+      "negative": "Липкая шапка на всех страницах или включение полосы рубрик в высоту64."
+    },
+    {
+      "id": "PA-07",
+      "subject": "hero-search",
+      "rule": "Hero листинга: h1 maxWidth652,44/48 weight600,pt64; phone30/34,pt40. Форма от768: поля высотой56 через1, соседняя CTA через8. Phone: отдельный вертикальный набор полей и CTA через16. H1 категории —30/34 (phone24/28), слева, не центральный hero44.",
+      "positive": "Рейтинг на768 сохраняет горизонтальную форму; на744 поля один под другим.",
+      "negative": "Делать категорию GPT центральным PageHero с44px или складывать старую desktop-форму flex-column."
+    },
+    {
+      "id": "PA-08",
+      "subject": "selected-promocode-search",
+      "rule": "Промокоды выбранной школы: нет большого h1-hero. От768 — предзаполненная форма. До768 — белая сводная плашка выбранной школы и тем/типов; форма открывается отдельным действием. Эта область sticky top0 независимо от статического header.",
+      "positive": "На393 показана плашка «Яндекс Практикум / Все темы · Все типы»; при scroll800 она остаётся наy0, header уходит вверх.",
+      "negative": "Пустой центральный заголовок, три постоянно видимых поля на телефоне или исчезающая при прокрутке сводная плашка."
+    },
+    {
+      "id": "PA-09",
+      "subject": "section-heading",
+      "rule": "H2=24/28 weight600. До первого видимого содержимого обычно16; AuthorsBlock главной и шаги/список экспертов —24; подзаголовок списка экспертов —12. Измерять видимый зазор, не складывать gap и padding карусели дважды.",
+      "positive": "H2 конец y=484, review-card начало500 →16.",
+      "negative": "gap16 плюс mt16 даёт32 вместо16."
+    },
+    {
+      "id": "PA-10",
+      "subject": "carousel",
+      "rule": "Реальные Swiper params хранятся у каждого замера. Course:4/3/1; Article и Review:3/2/1; gap12; loop=true, slidesPerGroup=1. Баннер:auto,centered,loop; spaceBetween=−26 от768 и0 phone. Это не обычная сетка.",
+      "positive": "Лента отзывов на768 показывает2, а сетка курсов3.",
+      "negative": "Одинаковые4/3/1 для любой ленты или конечная scroll-snap лента, названная loop.",
+      "exceptions": [
+        "Баннер: активная ширина568 от768; соседние визуально scale=.87; phone ширинаWcontent, portrait media, одна активная карточка."
+      ]
+    },
+    {
+      "id": "PA-11",
+      "subject": "rating-overflow",
+      "rule": "Таблица до768 занимает viewport без скругления. Минимальные колонки232/112/68/68 и три gap12 дают минимум516. Прокручивается только её внутренняя область; body.scrollWidth=viewport.",
+      "positive": "На393 таблица доступна горизонтальным свайпом, соседние секции остаются345.",
+      "negative": "Сжимать все четыре колонки в345 или вызывать горизонтальную прокрутку body."
+    },
+    {
+      "id": "PA-12",
+      "subject": "reviews",
+      "rule": "Широкий отзыв в листинге/detail — не компактный carousel ReviewCard. От768 avatar50 + gap12 + текст + rating164 справа; phone рейтинг/дата следующей строкой. Detail показывает достоинства, недостатки и комментарий без обрезания.",
+      "positive": "Текст detail читается целиком; на393 звёзды и дата стоят под именем.",
+      "negative": "Фиксированная карточка260×503 с fade вместо полного отзыва."
+    },
+    {
+      "id": "PA-13",
+      "subject": "people-pages",
+      "rule": "Авторы/редакция: белая панель radius24 выходит в поля24 и наезжает вверх на24. Шаги4/2/1. PersonCard4/3/1. Профиль автора phone: avatar100, вертикальная шапка без рамки; biography16/22, не мелкий14/20.",
+      "positive": "393: фото100 над именем, опыт над образованием.",
+      "negative": "Фото70 рядом с именем24 на393 или две колонки истории на телефоне."
+    },
+    {
+      "id": "PA-14",
+      "subject": "footer",
+      "rule": "Footer:4/3/1 колонок; gap16 desktop/tablet,phone24; padding32top+40bottom от768,24+24 phone; фонui-black-50. Высота зависит от содержимого и переносов ссылок, не фиксируется CSS height.",
+      "positive": "В снятом контенте1440:192;768:256;393 и320:476. Эти высоты являются замерами, не фиксированными CSS-константами.",
+      "negative": "Фиксировать height476 для любой мобильной ширины и любого содержимого."
+    },
+    {
+      "id": "PA-15",
+      "subject": "provider-boundary",
+      "rule": "UI Kit1.2.0 остаётся владельцем компонентной реализации. Reference CSS/DOM используется только как evidence. Для несовпадающего API остановить точную компонентную сборку в этой области и оформить gap; не форкать vendored layer и не выдавать reference за kit-preview.",
+      "positive": "CardGrid tablet mismatch вынесен в approval-list, UI Kit не изменён.",
+      "negative": "Переопределение .crs-grid или .crs-review-card во внешнем CSS для скрытия неподдержанного варианта."
+    }
+  ],
+  "pages": [
+    {
+      "id": "courses-listing",
+      "title": "Каталог курсов",
+      "url": "https://career.habr.com/courses",
+      "family": "course-listing",
+      "sequence": [
+        "search-header",
+        "rubric-nav",
+        "advertising",
+        "course-grid",
+        "pagination",
+        "authors-block",
+        "separator",
+        "reviews-carousel",
+        "promocodes-links",
+        "popular-directions",
+        "top-courses",
+        "school-rating",
+        "footer"
+      ],
+      "providerComponents": [
+        "site-header",
+        "site-footer",
+        "carousel",
+        "course-card",
+        "pagination",
+        "authors-block",
+        "review-card",
+        "rating-table",
+        "link-grid"
+      ],
+      "approvalGaps": [],
+      "notes": [
+        "Без h1 и центрального hero.",
+        "Верхний рекламный модуль имеет margin-bottom:-24; учитывать это при измерении зазора."
+      ],
+      "ownerDecisions": [
+        {
+          "id": "banner-carousel",
+          "status": "implemented-local",
+          "rule": "Рекламный Carousel variant=ad-slot: active568×232 по центру от768, соседние scale.87 и opacity.65, spaceBetween−26; mobile во всю колонку с aspect272/280 и spaceBetween0; loop с шагом1. AdSlot собирается из Carousel и AdCard. При одном баннере стрелки и пагинация не рендерятся. Доработка пока не опубликована.",
+          "component": "Carousel"
+        },
+        {
+          "id": "carousel-loop",
+          "status": "implemented-local",
+          "rule": "Обычные Carousel: loop=true, шаг1, gap12; CourseCard 4/3/1, ArticleCard и ReviewCard 3/2/1. Default loop=false сохраняет конечный режим. Если все карточки помещаются, блок стрелок не рендерится. Swiper внутри кита, живые карточки из slots. Рекламная геометрия описана отдельным решением banner-carousel. Доработка пока не опубликована.",
+          "component": "Carousel"
+        },
+        {
+          "id": "grid-tablet",
+          "status": "implemented-local",
+          "rule": "CardGrid: tabletColumns=2|3, default=2; columns=2|3|4, default=4; phone=1. Gap всегда 12 px, без prop для отступа. Старые вызовы сохраняют 4/2/1. Изменение пока не опубликовано.",
+          "component": "CardGrid"
+        },
+        {
+          "id": "review-content-data",
+          "status": "implemented-local",
+          "rule": "ReviewCard принимает avatar, courseLogo, courseHref, advantages, disadvantages и comment. Compact остаётся default и сохраняет прежние text/href вызовы.",
+          "component": "ReviewCard"
+        },
+        {
+          "id": "accepted-shared-layout",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "RatingTable: длинный текст увеличивает высоту с сохранением padding; все колонки доступны локальным скроллом на320. После последнего NumberedCourseItem нет линии; подборка рейтинга в каталоге содержит10 школ. SchoolCard: название максимум3 строки, кнопка внизу. Carousel: карточка заполняет слайд, стрелки центрируются без учёта пагинации. Подборки используют общий LinkGrid и соответствующие разделу данные.",
+          "pages": [
+            "courses-listing",
+            "course-category",
+            "education-centers-listing",
+            "rating",
+            "education-center",
+            "reviews",
+            "review-detail",
+            "promocodes",
+            "promocode-detail",
+            "authors",
+            "editors",
+            "author"
+          ]
+        },
+        {
+          "id": "accepted-contributor-modals",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "Хлебные крошки переносятся со стрелкой непосредственно после текста. По клику на stack и проверено открываются модалки; кнопки вертикально: Узнать больше про экспертов, затем Закрыть. У участников аватар48, описание чёрное с отступом от заголовка, роль серая под ФИО; в модалке проверки нет лишних отступов вокруг текста.",
+          "pages": [
+            "courses-listing",
+            "course-category"
+          ]
+        }
+      ],
+      "reference": "evidence/production-responsive-2026-10-01/courses-listing/index.html",
+      "file": "machine/page-analysis/pages/courses-listing.json"
+    },
+    {
+      "id": "course-category",
+      "title": "Категория: курсы по ChatGPT",
+      "url": "https://career.habr.com/courses/nejronnye-seti/gpt",
+      "family": "course-category",
+      "sequence": [
+        "search-header",
+        "breadcrumbs",
+        "category-title",
+        "contributors",
+        "filter-bar",
+        "course-grid",
+        "pagination",
+        "authors-block",
+        "separator",
+        "reviews-carousel",
+        "promocodes-links",
+        "direction-links",
+        "popular-direction-courses",
+        "free-direction-courses",
+        "employment-direction-courses",
+        "top-courses",
+        "school-rating",
+        "footer"
+      ],
+      "providerComponents": [
+        "site-header",
+        "site-footer",
+        "breadcrumbs",
+        "filter-bar",
+        "filter-chip",
+        "course-card",
+        "pagination",
+        "authors-block",
+        "prose",
+        "review-card",
+        "rating-table"
+      ],
+      "approvalGaps": [],
+      "notes": [
+        "Это категория с выдачей и поясняющим контентом, не detail одного курса.",
+        "Содержимое закреплённой полосы фильтров зависит от прокрутки; сравнивать cold и scroll-800 отдельно."
+      ],
+      "ownerDecisions": [
+        {
+          "id": "carousel-loop",
+          "status": "implemented-local",
+          "rule": "Обычные Carousel: loop=true, шаг1, gap12; CourseCard 4/3/1, ArticleCard и ReviewCard 3/2/1. Default loop=false сохраняет конечный режим. Если все карточки помещаются, блок стрелок не рендерится. Swiper внутри кита, живые карточки из slots. Рекламная геометрия описана отдельным решением banner-carousel. Доработка пока не опубликована.",
+          "component": "Carousel"
+        },
+        {
+          "id": "grid-tablet",
+          "status": "implemented-local",
+          "rule": "CardGrid: tabletColumns=2|3, default=2; columns=2|3|4, default=4; phone=1. Gap всегда 12 px, без prop для отступа. Старые вызовы сохраняют 4/2/1. Изменение пока не опубликовано.",
+          "component": "CardGrid"
+        },
+        {
+          "id": "review-content-data",
+          "status": "implemented-local",
+          "rule": "ReviewCard принимает avatar, courseLogo, courseHref, advantages, disadvantages и comment. Compact остаётся default и сохраняет прежние text/href вызовы.",
+          "component": "ReviewCard"
+        },
+        {
+          "id": "accepted-shared-layout",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "RatingTable: длинный текст увеличивает высоту с сохранением padding; все колонки доступны локальным скроллом на320. После последнего NumberedCourseItem нет линии; подборка рейтинга в каталоге содержит10 школ. SchoolCard: название максимум3 строки, кнопка внизу. Carousel: карточка заполняет слайд, стрелки центрируются без учёта пагинации. Подборки используют общий LinkGrid и соответствующие разделу данные.",
+          "pages": [
+            "courses-listing",
+            "course-category",
+            "education-centers-listing",
+            "rating",
+            "education-center",
+            "reviews",
+            "review-detail",
+            "promocodes",
+            "promocode-detail",
+            "authors",
+            "editors",
+            "author"
+          ]
+        },
+        {
+          "id": "accepted-contributor-modals",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "Хлебные крошки переносятся со стрелкой непосредственно после текста. По клику на stack и проверено открываются модалки; кнопки вертикально: Узнать больше про экспертов, затем Закрыть. У участников аватар48, описание чёрное с отступом от заголовка, роль серая под ФИО; в модалке проверки нет лишних отступов вокруг текста.",
+          "pages": [
+            "courses-listing",
+            "course-category"
+          ]
+        }
+      ],
+      "reference": "evidence/production-responsive-2026-10-01/course-category/index.html",
+      "file": "machine/page-analysis/pages/course-category.json"
+    },
+    {
+      "id": "education-centers-listing",
+      "title": "Образовательные организации",
+      "url": "https://career.habr.com/education_centers",
+      "family": "search-listing",
+      "sequence": [
+        "simple-header",
+        "hero",
+        "audience-toggle",
+        "search-form",
+        "advertising",
+        "school-grid",
+        "pagination",
+        "popular-courses",
+        "journal",
+        "city-links",
+        "more-school-links",
+        "footer"
+      ],
+      "providerComponents": [
+        "site-header",
+        "site-footer",
+        "page-hero",
+        "button-group",
+        "search-form",
+        "school-card",
+        "pagination",
+        "carousel",
+        "course-card",
+        "article-card",
+        "link-grid"
+      ],
+      "approvalGaps": [],
+      "notes": [
+        "Форма: организация / что изучить / тип; не подменять школой / курсом.",
+        "Под hero40; между advertising и выдачей48."
+      ],
+      "ownerDecisions": [
+        {
+          "id": "banner-carousel",
+          "status": "implemented-local",
+          "rule": "Рекламный Carousel variant=ad-slot: active568×232 по центру от768, соседние scale.87 и opacity.65, spaceBetween−26; mobile во всю колонку с aspect272/280 и spaceBetween0; loop с шагом1. AdSlot собирается из Carousel и AdCard. При одном баннере стрелки и пагинация не рендерятся. Доработка пока не опубликована.",
+          "component": "Carousel"
+        },
+        {
+          "id": "carousel-loop",
+          "status": "implemented-local",
+          "rule": "Обычные Carousel: loop=true, шаг1, gap12; CourseCard 4/3/1, ArticleCard и ReviewCard 3/2/1. Default loop=false сохраняет конечный режим. Если все карточки помещаются, блок стрелок не рендерится. Swiper внутри кита, живые карточки из slots. Рекламная геометрия описана отдельным решением banner-carousel. Доработка пока не опубликована.",
+          "component": "Carousel"
+        },
+        {
+          "id": "grid-tablet",
+          "status": "implemented-local",
+          "rule": "CardGrid: tabletColumns=2|3, default=2; columns=2|3|4, default=4; phone=1. Gap всегда 12 px, без prop для отступа. Старые вызовы сохраняют 4/2/1. Изменение пока не опубликовано.",
+          "component": "CardGrid"
+        },
+        {
+          "id": "hero-search-composition",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "PageHero и SearchForm собирают шапку через публичные slots. Единый градиент принадлежит внешней области, без повторного старта. Табам сохраняются отступы. Все dropdown получают options и выбранные значения; fixture-фильтры не являются backend.",
+          "pages": [
+            "education-centers-listing",
+            "rating",
+            "reviews",
+            "promocodes"
+          ]
+        },
+        {
+          "id": "accepted-shared-layout",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "RatingTable: длинный текст увеличивает высоту с сохранением padding; все колонки доступны локальным скроллом на320. После последнего NumberedCourseItem нет линии; подборка рейтинга в каталоге содержит10 школ. SchoolCard: название максимум3 строки, кнопка внизу. Carousel: карточка заполняет слайд, стрелки центрируются без учёта пагинации. Подборки используют общий LinkGrid и соответствующие разделу данные.",
+          "pages": [
+            "courses-listing",
+            "course-category",
+            "education-centers-listing",
+            "rating",
+            "education-center",
+            "reviews",
+            "review-detail",
+            "promocodes",
+            "promocode-detail",
+            "authors",
+            "editors",
+            "author"
+          ]
+        }
+      ],
+      "reference": "evidence/production-responsive-2026-10-01/education-centers-listing/index.html",
+      "file": "machine/page-analysis/pages/education-centers-listing.json"
+    },
+    {
+      "id": "rating",
+      "title": "Рейтинг онлайн-школ",
+      "url": "https://career.habr.com/education_centers/rating",
+      "family": "rating",
+      "sequence": [
+        "simple-header",
+        "hero",
+        "audience-toggle",
+        "search-form",
+        "rating-table",
+        "related-courses",
+        "footer"
+      ],
+      "providerComponents": [
+        "site-header",
+        "site-footer",
+        "page-hero",
+        "button-group",
+        "search-form",
+        "rating-table",
+        "carousel",
+        "course-card"
+      ],
+      "approvalGaps": [],
+      "notes": [
+        "В таблице20 строк в снятой выдаче; это данные, не ограничение компонента.",
+        "Phone full-bleed и локальный горизонтальный overflow — обязательные свойства таблицы."
+      ],
+      "ownerDecisions": [
+        {
+          "id": "carousel-loop",
+          "status": "implemented-local",
+          "rule": "Обычные Carousel: loop=true, шаг1, gap12; CourseCard 4/3/1, ArticleCard и ReviewCard 3/2/1. Default loop=false сохраняет конечный режим. Если все карточки помещаются, блок стрелок не рендерится. Swiper внутри кита, живые карточки из slots. Рекламная геометрия описана отдельным решением banner-carousel. Доработка пока не опубликована.",
+          "component": "Carousel"
+        },
+        {
+          "id": "hero-search-composition",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "PageHero и SearchForm собирают шапку через публичные slots. Единый градиент принадлежит внешней области, без повторного старта. Табам сохраняются отступы. Все dropdown получают options и выбранные значения; fixture-фильтры не являются backend.",
+          "pages": [
+            "education-centers-listing",
+            "rating",
+            "reviews",
+            "promocodes"
+          ]
+        },
+        {
+          "id": "accepted-shared-layout",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "RatingTable: длинный текст увеличивает высоту с сохранением padding; все колонки доступны локальным скроллом на320. После последнего NumberedCourseItem нет линии; подборка рейтинга в каталоге содержит10 школ. SchoolCard: название максимум3 строки, кнопка внизу. Carousel: карточка заполняет слайд, стрелки центрируются без учёта пагинации. Подборки используют общий LinkGrid и соответствующие разделу данные.",
+          "pages": [
+            "courses-listing",
+            "course-category",
+            "education-centers-listing",
+            "rating",
+            "education-center",
+            "reviews",
+            "review-detail",
+            "promocodes",
+            "promocode-detail",
+            "authors",
+            "editors",
+            "author"
+          ]
+        }
+      ],
+      "reference": "evidence/production-responsive-2026-10-01/rating/index.html",
+      "file": "machine/page-analysis/pages/rating.json"
+    },
+    {
+      "id": "education-center",
+      "title": "Школа: Skillbox",
+      "url": "https://career.habr.com/education_centers/36-skillbox",
+      "family": "school-detail",
+      "sequence": [
+        "simple-header",
+        "entity-header",
+        "courses-filter",
+        "course-grid",
+        "all-courses-cta",
+        "ad-slot",
+        "success-stories",
+        "reviews-carousel",
+        "general-info",
+        "footer"
+      ],
+      "providerComponents": [
+        "site-header",
+        "site-footer",
+        "entity-header",
+        "filter-chip",
+        "course-card",
+        "button",
+        "article-card",
+        "review-card",
+        "info-table"
+      ],
+      "approvalGaps": [],
+      "notes": [
+        "Сетка курсов gap16; карточки сверх8/6/4 скрываются по диапазону.",
+        "SEO h1 мелкий внизу — не повод добавлять большой hero над школой."
+      ],
+      "ownerDecisions": [
+        {
+          "id": "carousel-loop",
+          "status": "implemented-local",
+          "rule": "Обычные Carousel: loop=true, шаг1, gap12; CourseCard 4/3/1, ArticleCard и ReviewCard 3/2/1. Default loop=false сохраняет конечный режим. Если все карточки помещаются, блок стрелок не рендерится. Swiper внутри кита, живые карточки из slots. Рекламная геометрия описана отдельным решением banner-carousel. Доработка пока не опубликована.",
+          "component": "Carousel"
+        },
+        {
+          "id": "grid-tablet",
+          "status": "implemented-local",
+          "rule": "CardGrid: tabletColumns=2|3, default=2; columns=2|3|4, default=4; phone=1. Gap всегда 12 px, без prop для отступа. Старые вызовы сохраняют 4/2/1. Изменение пока не опубликовано.",
+          "component": "CardGrid"
+        },
+        {
+          "id": "review-content-data",
+          "status": "implemented-local",
+          "rule": "ReviewCard принимает avatar, courseLogo, courseHref, advantages, disadvantages и comment. Compact остаётся default и сохраняет прежние text/href вызовы.",
+          "component": "ReviewCard"
+        },
+        {
+          "id": "school-course-grid",
+          "status": "approved-page-composition",
+          "rule": "Курсы школы собираются обычным CardGrid с tabletColumns=3 и gap12. Лимиты 8/6/4 задаёт страница, не компонент. Gap16 в measurements остаётся фактом о production, но новая kit-сборка использует утверждённые 12 px.",
+          "component": "CardGrid",
+          "observedProductionGap": 16,
+          "approvedGap": 12
+        },
+        {
+          "id": "accepted-shared-layout",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "RatingTable: длинный текст увеличивает высоту с сохранением padding; все колонки доступны локальным скроллом на320. После последнего NumberedCourseItem нет линии; подборка рейтинга в каталоге содержит10 школ. SchoolCard: название максимум3 строки, кнопка внизу. Carousel: карточка заполняет слайд, стрелки центрируются без учёта пагинации. Подборки используют общий LinkGrid и соответствующие разделу данные.",
+          "pages": [
+            "courses-listing",
+            "course-category",
+            "education-centers-listing",
+            "rating",
+            "education-center",
+            "reviews",
+            "review-detail",
+            "promocodes",
+            "promocode-detail",
+            "authors",
+            "editors",
+            "author"
+          ]
+        },
+        {
+          "id": "accepted-school-details",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "EntityHeader: логотип сверху без смещения при раскрытии. Desktop Подробнее в конце текста, Свернуть под ним; mobile обе ссылки под текстом. InfoTable gap16 по обеим осям и16 от заголовка.",
+          "pages": [
+            "education-center"
+          ]
+        }
+      ],
+      "reference": "evidence/production-responsive-2026-10-01/education-center/index.html",
+      "file": "machine/page-analysis/pages/education-center.json"
+    },
+    {
+      "id": "reviews",
+      "title": "Отзывы об онлайн-школах",
+      "url": "https://career.habr.com/education_centers/otzyvy",
+      "family": "review-listing",
+      "sequence": [
+        "simple-header",
+        "hero",
+        "audience-toggle",
+        "search-form",
+        "latest-reviews",
+        "all-reviews-cta",
+        "popular-courses",
+        "best-schools",
+        "footer"
+      ],
+      "providerComponents": [
+        "site-header",
+        "site-footer",
+        "page-hero",
+        "button-group",
+        "search-form",
+        "review-card",
+        "button",
+        "carousel",
+        "course-card",
+        "school-card"
+      ],
+      "approvalGaps": [],
+      "notes": [
+        "Форма имеет2 поля (школа,курс), не3.",
+        "Отзывы идут вертикально в полную ширину, не четырьмя карточками в ряд."
+      ],
+      "ownerDecisions": [
+        {
+          "id": "carousel-loop",
+          "status": "implemented-local",
+          "rule": "Обычные Carousel: loop=true, шаг1, gap12; CourseCard 4/3/1, ArticleCard и ReviewCard 3/2/1. Default loop=false сохраняет конечный режим. Если все карточки помещаются, блок стрелок не рендерится. Swiper внутри кита, живые карточки из slots. Рекламная геометрия описана отдельным решением banner-carousel. Доработка пока не опубликована.",
+          "component": "Carousel"
+        },
+        {
+          "id": "wide-review",
+          "status": "implemented-local",
+          "rule": "ReviewCard variant=wide: отзыв занимает всю ширину колонки, использует avatar48, рейтинг в колонке164 справа от768 и следующей строкой до768; текст не обрезается и fade не показывается.",
+          "component": "ReviewCard"
+        },
+        {
+          "id": "hero-search-composition",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "PageHero и SearchForm собирают шапку через публичные slots. Единый градиент принадлежит внешней области, без повторного старта. Табам сохраняются отступы. Все dropdown получают options и выбранные значения; fixture-фильтры не являются backend.",
+          "pages": [
+            "education-centers-listing",
+            "rating",
+            "reviews",
+            "promocodes"
+          ]
+        },
+        {
+          "id": "accepted-shared-layout",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "RatingTable: длинный текст увеличивает высоту с сохранением padding; все колонки доступны локальным скроллом на320. После последнего NumberedCourseItem нет линии; подборка рейтинга в каталоге содержит10 школ. SchoolCard: название максимум3 строки, кнопка внизу. Carousel: карточка заполняет слайд, стрелки центрируются без учёта пагинации. Подборки используют общий LinkGrid и соответствующие разделу данные.",
+          "pages": [
+            "courses-listing",
+            "course-category",
+            "education-centers-listing",
+            "rating",
+            "education-center",
+            "reviews",
+            "review-detail",
+            "promocodes",
+            "promocode-detail",
+            "authors",
+            "editors",
+            "author"
+          ]
+        }
+      ],
+      "reference": "evidence/production-responsive-2026-10-01/reviews/index.html",
+      "file": "machine/page-analysis/pages/reviews.json"
+    },
+    {
+      "id": "review-detail",
+      "title": "Отдельный отзыв: SEO-специалист",
+      "url": "https://career.habr.com/education_centers/otzyvy/10-netologiya/162-seo-specialist/15229",
+      "family": "review-detail",
+      "sequence": [
+        "simple-header",
+        "back-link",
+        "full-review",
+        "related-courses",
+        "other-school-reviews",
+        "seo-title",
+        "footer"
+      ],
+      "providerComponents": [
+        "site-header",
+        "site-footer",
+        "link",
+        "review-card",
+        "carousel",
+        "course-card",
+        "prose"
+      ],
+      "approvalGaps": [],
+      "notes": [
+        "Back-link32px,mt24,mb24; первая карточка начинается наy144 при header64.",
+        "Нет hero. H1 вынесен к низу колонки в14/20, основной рассказ — полноценный отзыв."
+      ],
+      "ownerDecisions": [
+        {
+          "id": "carousel-loop",
+          "status": "implemented-local",
+          "rule": "Обычные Carousel: loop=true, шаг1, gap12; CourseCard 4/3/1, ArticleCard и ReviewCard 3/2/1. Default loop=false сохраняет конечный режим. Если все карточки помещаются, блок стрелок не рендерится. Swiper внутри кита, живые карточки из slots. Рекламная геометрия описана отдельным решением banner-carousel. Доработка пока не опубликована.",
+          "component": "Carousel"
+        },
+        {
+          "id": "wide-review",
+          "status": "implemented-local",
+          "rule": "ReviewCard variant=wide: отзыв занимает всю ширину колонки, использует avatar48, рейтинг в колонке164 справа от768 и следующей строкой до768; текст не обрезается и fade не показывается.",
+          "component": "ReviewCard"
+        },
+        {
+          "id": "full-review",
+          "status": "implemented-local",
+          "rule": "ReviewCard variant=full показывает весь текст без overlay-ссылки. От768 дата под звёздами, оба выровнены вправо; до768 звёзды и дата в одной строке слева, дата справа. Доработка принята 05.10.2026, не опубликована.",
+          "component": "ReviewCard"
+        },
+        {
+          "id": "accepted-shared-layout",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "RatingTable: длинный текст увеличивает высоту с сохранением padding; все колонки доступны локальным скроллом на320. После последнего NumberedCourseItem нет линии; подборка рейтинга в каталоге содержит10 школ. SchoolCard: название максимум3 строки, кнопка внизу. Carousel: карточка заполняет слайд, стрелки центрируются без учёта пагинации. Подборки используют общий LinkGrid и соответствующие разделу данные.",
+          "pages": [
+            "courses-listing",
+            "course-category",
+            "education-centers-listing",
+            "rating",
+            "education-center",
+            "reviews",
+            "review-detail",
+            "promocodes",
+            "promocode-detail",
+            "authors",
+            "editors",
+            "author"
+          ]
+        },
+        {
+          "id": "accepted-review-detail",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "Обратная ссылка: серый chevron, margin24 сверху и снизу, без дополнительного padding40 и gap48 перед отзывом. Рейтинг full: desktop справа, дата под звёздами; mobile слева, дата справа от звёзд.",
+          "pages": [
+            "review-detail"
+          ]
+        }
+      ],
+      "reference": "evidence/production-responsive-2026-10-01/review-detail/index.html",
+      "file": "machine/page-analysis/pages/review-detail.json"
+    },
+    {
+      "id": "promocodes",
+      "title": "Промокоды и акции",
+      "url": "https://career.habr.com/education/promocodes",
+      "family": "promo-listing",
+      "sequence": [
+        "simple-header",
+        "hero",
+        "search-form",
+        "advertising",
+        "promo-grid",
+        "pagination",
+        "popular-promo-courses",
+        "journal",
+        "promo-school-links",
+        "promo-topic-links",
+        "footer"
+      ],
+      "providerComponents": [
+        "site-header",
+        "site-footer",
+        "page-hero",
+        "search-form",
+        "promo-card",
+        "pagination",
+        "carousel",
+        "course-card",
+        "article-card",
+        "link-grid"
+      ],
+      "approvalGaps": [],
+      "notes": [
+        "Нет audience-toggle между заголовком и формой.",
+        "PromoCard с кодом и акция без кода имеют разные действия."
+      ],
+      "ownerDecisions": [
+        {
+          "id": "banner-carousel",
+          "status": "implemented-local",
+          "rule": "Рекламный Carousel variant=ad-slot: active568×232 по центру от768, соседние scale.87 и opacity.65, spaceBetween−26; mobile во всю колонку с aspect272/280 и spaceBetween0; loop с шагом1. AdSlot собирается из Carousel и AdCard. При одном баннере стрелки и пагинация не рендерятся. Доработка пока не опубликована.",
+          "component": "Carousel"
+        },
+        {
+          "id": "carousel-loop",
+          "status": "implemented-local",
+          "rule": "Обычные Carousel: loop=true, шаг1, gap12; CourseCard 4/3/1, ArticleCard и ReviewCard 3/2/1. Default loop=false сохраняет конечный режим. Если все карточки помещаются, блок стрелок не рендерится. Swiper внутри кита, живые карточки из slots. Рекламная геометрия описана отдельным решением banner-carousel. Доработка пока не опубликована.",
+          "component": "Carousel"
+        },
+        {
+          "id": "grid-tablet",
+          "status": "implemented-local",
+          "rule": "CardGrid: tabletColumns=2|3, default=2; columns=2|3|4, default=4; phone=1. Gap всегда 12 px, без prop для отступа. Старые вызовы сохраняют 4/2/1. Изменение пока не опубликовано.",
+          "component": "CardGrid"
+        },
+        {
+          "id": "promo-actions",
+          "status": "implemented-local",
+          "rule": "PromoCard: активные код и предложение открывают PromoCodeModal с условиями. Код копируется в модалке; внешний сайт открывается только отдельным действием. Открытие не раскрывает код внутри карточки и не открывает сайт автоматически. expired блокирует действие; open-code сохраняется. Кодовая кнопка с хвостом и отогнутым уголком — специальный вариант PromoCard, не Button.",
+          "component": "PromoCard"
+        },
+        {
+          "id": "hero-search-composition",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "PageHero и SearchForm собирают шапку через публичные slots. Единый градиент принадлежит внешней области, без повторного старта. Табам сохраняются отступы. Все dropdown получают options и выбранные значения; fixture-фильтры не являются backend.",
+          "pages": [
+            "education-centers-listing",
+            "rating",
+            "reviews",
+            "promocodes"
+          ]
+        },
+        {
+          "id": "accepted-shared-layout",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "RatingTable: длинный текст увеличивает высоту с сохранением padding; все колонки доступны локальным скроллом на320. После последнего NumberedCourseItem нет линии; подборка рейтинга в каталоге содержит10 школ. SchoolCard: название максимум3 строки, кнопка внизу. Carousel: карточка заполняет слайд, стрелки центрируются без учёта пагинации. Подборки используют общий LinkGrid и соответствующие разделу данные.",
+          "pages": [
+            "courses-listing",
+            "course-category",
+            "education-centers-listing",
+            "rating",
+            "education-center",
+            "reviews",
+            "review-detail",
+            "promocodes",
+            "promocode-detail",
+            "authors",
+            "editors",
+            "author"
+          ]
+        }
+      ],
+      "reference": "evidence/production-responsive-2026-10-01/promocodes/index.html",
+      "file": "machine/page-analysis/pages/promocodes.json"
+    },
+    {
+      "id": "promocode-detail",
+      "title": "Промокоды школы: Яндекс Практикум",
+      "url": "https://career.habr.com/education/promocodes/35-yandeks-praktikum",
+      "family": "selected-promo-listing",
+      "sequence": [
+        "simple-header",
+        "selected-school-search",
+        "promo-grid",
+        "popular-promo-courses",
+        "journal",
+        "promo-school-links",
+        "promo-topic-links",
+        "seo-title",
+        "footer"
+      ],
+      "providerComponents": [
+        "site-header",
+        "site-footer",
+        "search-form",
+        "promo-card",
+        "carousel",
+        "course-card",
+        "article-card",
+        "link-grid"
+      ],
+      "approvalGaps": [],
+      "notes": [
+        "Это фильтрованный список акций школы, не detail одной акции.",
+        "Нет advertising или большого hero; в выдаче есть завершённые акции, явно показанные disabled."
+      ],
+      "ownerDecisions": [
+        {
+          "id": "carousel-loop",
+          "status": "implemented-local",
+          "rule": "Обычные Carousel: loop=true, шаг1, gap12; CourseCard 4/3/1, ArticleCard и ReviewCard 3/2/1. Default loop=false сохраняет конечный режим. Если все карточки помещаются, блок стрелок не рендерится. Swiper внутри кита, живые карточки из slots. Рекламная геометрия описана отдельным решением banner-carousel. Доработка пока не опубликована.",
+          "component": "Carousel"
+        },
+        {
+          "id": "grid-tablet",
+          "status": "implemented-local",
+          "rule": "CardGrid: tabletColumns=2|3, default=2; columns=2|3|4, default=4; phone=1. Gap всегда 12 px, без prop для отступа. Старые вызовы сохраняют 4/2/1. Изменение пока не опубликовано.",
+          "component": "CardGrid"
+        },
+        {
+          "id": "expired-promo",
+          "status": "implemented-local",
+          "rule": "PromoCard expired=true показывает метку «Завершено», приглушает логотип и содержимое, использует нейтральную плашку и рендерит настоящее disabled-действие без href.",
+          "component": "PromoCard"
+        },
+        {
+          "id": "promo-actions",
+          "status": "implemented-local",
+          "rule": "PromoCard: активные код и предложение открывают PromoCodeModal с условиями. Код копируется в модалке; внешний сайт открывается только отдельным действием. Открытие не раскрывает код внутри карточки и не открывает сайт автоматически. expired блокирует действие; open-code сохраняется. Кодовая кнопка с хвостом и отогнутым уголком — специальный вариант PromoCard, не Button.",
+          "component": "PromoCard"
+        },
+        {
+          "id": "selected-search-summary",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "Форма промокодов школы имеет заполненные options и выбранную школу; на mobile открывается из сводки, после применения закрывается. Внешняя область шапки задаёт единый градиент.",
+          "pages": [
+            "promocode-detail"
+          ]
+        },
+        {
+          "id": "accepted-shared-layout",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "RatingTable: длинный текст увеличивает высоту с сохранением padding; все колонки доступны локальным скроллом на320. После последнего NumberedCourseItem нет линии; подборка рейтинга в каталоге содержит10 школ. SchoolCard: название максимум3 строки, кнопка внизу. Carousel: карточка заполняет слайд, стрелки центрируются без учёта пагинации. Подборки используют общий LinkGrid и соответствующие разделу данные.",
+          "pages": [
+            "courses-listing",
+            "course-category",
+            "education-centers-listing",
+            "rating",
+            "education-center",
+            "reviews",
+            "review-detail",
+            "promocodes",
+            "promocode-detail",
+            "authors",
+            "editors",
+            "author"
+          ]
+        }
+      ],
+      "reference": "evidence/production-responsive-2026-10-01/promocode-detail/index.html",
+      "file": "machine/page-analysis/pages/promocode-detail.json"
+    },
+    {
+      "id": "authors",
+      "title": "Эксперты по оценке обучения",
+      "url": "https://career.habr.com/courses/authors",
+      "family": "people-directory",
+      "sequence": [
+        "simple-header",
+        "hero",
+        "expert-process-panel",
+        "steps-grid",
+        "experts-title",
+        "experts-subtitle",
+        "person-grid",
+        "footer"
+      ],
+      "providerComponents": [
+        "site-header",
+        "site-footer",
+        "page-hero",
+        "button",
+        "step-card",
+        "person-card"
+      ],
+      "approvalGaps": [],
+      "notes": [
+        "Steps4/2/1 отличаются от PersonCard4/3/1.",
+        "Экспертный знак справа виден от768 и скрыт phone; содержание панели не переставляется."
+      ],
+      "ownerDecisions": [
+        {
+          "id": "grid-tablet",
+          "status": "implemented-local",
+          "rule": "CardGrid: tabletColumns=2|3, default=2; columns=2|3|4, default=4; phone=1. Gap всегда 12 px, без prop для отступа. Старые вызовы сохраняют 4/2/1. Изменение пока не опубликовано.",
+          "component": "CardGrid"
+        },
+        {
+          "id": "expert-panel",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "Белая панель без серого фона страницы; иллюстрация справа от768, mobile скрыта. У преимуществ экспертов иконки. Перед заголовком шагов40, до сетки24. PersonCard переносит имена внутри padding и принимает разные реальные логотипы и контакты.",
+          "pages": [
+            "authors",
+            "editors"
+          ]
+        },
+        {
+          "id": "accepted-shared-layout",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "RatingTable: длинный текст увеличивает высоту с сохранением padding; все колонки доступны локальным скроллом на320. После последнего NumberedCourseItem нет линии; подборка рейтинга в каталоге содержит10 школ. SchoolCard: название максимум3 строки, кнопка внизу. Carousel: карточка заполняет слайд, стрелки центрируются без учёта пагинации. Подборки используют общий LinkGrid и соответствующие разделу данные.",
+          "pages": [
+            "courses-listing",
+            "course-category",
+            "education-centers-listing",
+            "rating",
+            "education-center",
+            "reviews",
+            "review-detail",
+            "promocodes",
+            "promocode-detail",
+            "authors",
+            "editors",
+            "author"
+          ]
+        }
+      ],
+      "reference": "evidence/production-responsive-2026-10-01/authors/index.html",
+      "file": "machine/page-analysis/pages/authors.json"
+    },
+    {
+      "id": "editors",
+      "title": "Редакция Хабра",
+      "url": "https://career.habr.com/courses/editors",
+      "family": "people-directory",
+      "sequence": [
+        "simple-header",
+        "hero",
+        "editor-process-panel",
+        "steps-grid",
+        "editors-title",
+        "person-grid",
+        "footer"
+      ],
+      "providerComponents": [
+        "site-header",
+        "site-footer",
+        "page-hero",
+        "button",
+        "step-card",
+        "person-card"
+      ],
+      "approvalGaps": [],
+      "notes": [
+        "Семейство авторов, но другая высота hero из-за одной строки h1 и другой текст панели.",
+        "Не копировать количество людей и высоту страницы из авторов."
+      ],
+      "ownerDecisions": [
+        {
+          "id": "grid-tablet",
+          "status": "implemented-local",
+          "rule": "CardGrid: tabletColumns=2|3, default=2; columns=2|3|4, default=4; phone=1. Gap всегда 12 px, без prop для отступа. Старые вызовы сохраняют 4/2/1. Изменение пока не опубликовано.",
+          "component": "CardGrid"
+        },
+        {
+          "id": "expert-panel",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "Белая панель без серого фона страницы; иллюстрация справа от768, mobile скрыта. У преимуществ экспертов иконки. Перед заголовком шагов40, до сетки24. PersonCard переносит имена внутри padding и принимает разные реальные логотипы и контакты.",
+          "pages": [
+            "authors",
+            "editors"
+          ]
+        },
+        {
+          "id": "accepted-shared-layout",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "RatingTable: длинный текст увеличивает высоту с сохранением padding; все колонки доступны локальным скроллом на320. После последнего NumberedCourseItem нет линии; подборка рейтинга в каталоге содержит10 школ. SchoolCard: название максимум3 строки, кнопка внизу. Carousel: карточка заполняет слайд, стрелки центрируются без учёта пагинации. Подборки используют общий LinkGrid и соответствующие разделу данные.",
+          "pages": [
+            "courses-listing",
+            "course-category",
+            "education-centers-listing",
+            "rating",
+            "education-center",
+            "reviews",
+            "review-detail",
+            "promocodes",
+            "promocode-detail",
+            "authors",
+            "editors",
+            "author"
+          ]
+        }
+      ],
+      "reference": "evidence/production-responsive-2026-10-01/editors/index.html",
+      "file": "machine/page-analysis/pages/editors.json"
+    },
+    {
+      "id": "author",
+      "title": "Профиль: Николай Ширинкин",
+      "url": "https://career.habr.com/courses/authors/11-nikolay-shirinkin",
+      "family": "person-profile",
+      "sequence": [
+        "simple-header",
+        "person-header",
+        "biography",
+        "expertise",
+        "qualifications",
+        "experience-education",
+        "footer"
+      ],
+      "providerComponents": [
+        "site-header",
+        "site-footer",
+        "person-header",
+        "prose",
+        "profile-history",
+        "entity-logo",
+        "social-icon"
+      ],
+      "approvalGaps": [],
+      "notes": [
+        "В production разделы и имя размечены div, а не h1/h2. Список headings пуст; это факт о DOM, не рекомендация нарушать семантику.",
+        "Биография во всю ширину; экспертиза, квалификации и история имеют общую левую границу и gap40 перед каждым разделом. Заголовка «Опыт и образование» нет."
+      ],
+      "ownerDecisions": [
+        {
+          "id": "person-header-phone",
+          "status": "implemented-local",
+          "rule": "PersonHeader до768: вертикальная композиция без рамки и padding, фото100, имя30/34, gap20. От768 сохраняется горизонтальная карточка с рамкой и padding24. Публичный API не меняется. Доработка пока не опубликована.",
+          "component": "PersonHeader"
+        },
+        {
+          "id": "accepted-shared-layout",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "RatingTable: длинный текст увеличивает высоту с сохранением padding; все колонки доступны локальным скроллом на320. После последнего NumberedCourseItem нет линии; подборка рейтинга в каталоге содержит10 школ. SchoolCard: название максимум3 строки, кнопка внизу. Carousel: карточка заполняет слайд, стрелки центрируются без учёта пагинации. Подборки используют общий LinkGrid и соответствующие разделу данные.",
+          "pages": [
+            "courses-listing",
+            "course-category",
+            "education-centers-listing",
+            "rating",
+            "education-center",
+            "reviews",
+            "review-detail",
+            "promocodes",
+            "promocode-detail",
+            "authors",
+            "editors",
+            "author"
+          ]
+        },
+        {
+          "id": "accepted-author-profile",
+          "status": "implemented-local",
+          "acceptedOn": "2026-10-05",
+          "rule": "Prose width=full. Разделы профиля по общему левому краю, gap40 перед экспертизой, квалификациями и историей; нет общего заголовка Опыт и образование. ProfileHistory: логотип48, gap12 до текста, название16/1.3 weight600 максимум2 строки, дата14/20 серая, внутренний gap4, gap24 между записями и от заголовка.",
+          "pages": [
+            "author"
+          ]
+        }
+      ],
+      "reference": "evidence/production-responsive-2026-10-01/author/index.html",
+      "file": "machine/page-analysis/pages/author.json"
+    }
+  ],
+  "limits": [
+    "Гостевые заполненные страницы на 01.10.2026. Число карточек, цены, рейтинги, даты и реклама — данные, не правила геометрии.",
+    "Production-reference — локализованный инертный снимок DOM/CSS, не компонентный frontend и не доказательство соответствия UI Kit.",
+    "В reference отключены analytics, backend, отправка форм и переходы наружу; управление лентами — локальный адаптер для изучения геометрии, не production Swiper.",
+    "Открытые фильтры, авторизация, ошибки и загрузка дополнительных данных не входят в этот срез.",
+    "При расхождении со старым корпусом 08.09.2026 для этих 12 адресов приоритет имеют текущие измерения. Не распространять исключение одного семейства на все страницы.",
+    "Автоматическая сборка через provider возможна только в пределах его публичного API. Неподдержанный вариант — запрос владельцу, а не CSS-переопределение внутри layer."
+  ]
+}

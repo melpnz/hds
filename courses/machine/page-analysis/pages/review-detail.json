@@ -1,0 +1,3673 @@
+{
+  "id": "review-detail",
+  "title": "Отдельный отзыв: SEO-специалист",
+  "url": "https://career.habr.com/education_centers/otzyvy/10-netologiya/162-seo-specialist/15229",
+  "family": "review-detail",
+  "sequence": [
+    "simple-header",
+    "back-link",
+    "full-review",
+    "related-courses",
+    "other-school-reviews",
+    "seo-title",
+    "footer"
+  ],
+  "providerComponents": [
+    "site-header",
+    "site-footer",
+    "link",
+    "review-card",
+    "carousel",
+    "course-card",
+    "prose"
+  ],
+  "approvalGaps": [],
+  "notes": [
+    "Back-link32px,mt24,mb24; первая карточка начинается наy144 при header64.",
+    "Нет hero. H1 вынесен к низу колонки в14/20, основной рассказ — полноценный отзыв."
+  ],
+  "ownerDecisions": [
+    {
+      "id": "carousel-loop",
+      "status": "implemented-local",
+      "rule": "Обычные Carousel: loop=true, шаг1, gap12; CourseCard 4/3/1, ArticleCard и ReviewCard 3/2/1. Default loop=false сохраняет конечный режим. Если все карточки помещаются, блок стрелок не рендерится. Swiper внутри кита, живые карточки из slots. Рекламная геометрия описана отдельным решением banner-carousel. Доработка пока не опубликована.",
+      "component": "Carousel"
+    },
+    {
+      "id": "wide-review",
+      "status": "implemented-local",
+      "rule": "ReviewCard variant=wide: отзыв занимает всю ширину колонки, использует avatar48, рейтинг в колонке164 справа от768 и следующей строкой до768; текст не обрезается и fade не показывается.",
+      "component": "ReviewCard"
+    },
+    {
+      "id": "full-review",
+      "status": "implemented-local",
+      "rule": "ReviewCard variant=full показывает весь текст без overlay-ссылки. От768 дата под звёздами, оба выровнены вправо; до768 звёзды и дата в одной строке слева, дата справа. Доработка принята 05.10.2026, не опубликована.",
+      "component": "ReviewCard"
+    },
+    {
+      "id": "accepted-shared-layout",
+      "status": "implemented-local",
+      "acceptedOn": "2026-10-05",
+      "rule": "RatingTable: длинный текст увеличивает высоту с сохранением padding; все колонки доступны локальным скроллом на320. После последнего NumberedCourseItem нет линии; подборка рейтинга в каталоге содержит10 школ. SchoolCard: название максимум3 строки, кнопка внизу. Carousel: карточка заполняет слайд, стрелки центрируются без учёта пагинации. Подборки используют общий LinkGrid и соответствующие разделу данные.",
+      "pages": [
+        "courses-listing",
+        "course-category",
+        "education-centers-listing",
+        "rating",
+        "education-center",
+        "reviews",
+        "review-detail",
+        "promocodes",
+        "promocode-detail",
+        "authors",
+        "editors",
+        "author"
+      ]
+    },
+    {
+      "id": "accepted-review-detail",
+      "status": "implemented-local",
+      "acceptedOn": "2026-10-05",
+      "rule": "Обратная ссылка: серый chevron, margin24 сверху и снизу, без дополнительного padding40 и gap48 перед отзывом. Рейтинг full: desktop справа, дата под звёздами; mobile слева, дата справа от звёзд.",
+      "pages": [
+        "review-detail"
+      ]
+    }
+  ],
+  "reference": "evidence/production-responsive-2026-10-01/review-detail/index.html",
+  "measurements": [
+    {
+      "width": 1440,
+      "capturedAt": "2026-10-01T11:24:37.384Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 2514.59,
+          "width": 1440,
+          "height": 192
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "32px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div",
+        "classes": "relative flex flex-col gap-12 pb-28",
+        "rect": {
+          "x": 182,
+          "y": 144,
+          "width": 1076,
+          "height": 2370.59
+        },
+        "css": {
+          "display": "flex",
+          "position": "relative",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "112px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+            "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+            "rect": {
+              "x": 182,
+              "y": 2434.59,
+              "width": 331.28,
+              "height": 20
+            },
+            "css": {
+              "display": "block",
+              "position": "absolute",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "14px",
+              "lineHeight": "20px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Отзывы о курсе «SEO-специалист» в Нетология"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div",
+            "classes": "relative box-border h-full whitespace-break-spaces rounded-3xl border border-solid border-ui-black-100",
+            "rect": {
+              "x": 182,
+              "y": 144,
+              "width": 1076,
+              "height": 475
+            },
+            "css": {
+              "display": "block",
+              "position": "relative",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Андрей Куркин Пользователь Хабра июнь 2023 SEO-специалист Достоинства: Из самых главных плюсов это наверное связь с преподавателями, иногда "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 182,
+              "y": 667,
+              "width": 1076,
+              "height": 527.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Интересные курсы по направлению «Маркетинг и продажи» 5.00 1 2 мес Академия Эдюсон Менеджер контент-завода Контент менеджер +8 от 4 037 ₽/ме"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 182,
+              "y": 1242.59,
+              "width": 1076,
+              "height": 1160
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Другие отзывы о школе «Нетология» Александр Цупко Пользователь Хабра 2 сентября Python-разработчик: расширенный курс Достоинства: Подача мат"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 182,
+            "y": 2546.59,
+            "width": 1076,
+            "height": 120
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "257px 257px 257px 257px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+          "rect": {
+            "x": 182,
+            "y": 2434.59,
+            "width": 331.28,
+            "height": 20
+          },
+          "css": {
+            "display": "block",
+            "position": "absolute",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Отзывы о курсе «SEO-специалист» в Нетология"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 182,
+            "y": 667,
+            "width": 1076,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Интересные курсы по направлению «Маркетинг и продажи»"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 182,
+            "y": 1242.59,
+            "width": 1076,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Другие отзывы о школе «Нетология»"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 182,
+            "y": 711,
+            "width": 1076,
+            "height": 419.59
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 4,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 183,
+                "y": 711,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 454.5,
+                "y": 711,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 726,
+                "y": 711,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 997.5,
+                "y": 711,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1269,
+                "y": 711,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1540.5,
+                "y": 711,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1812,
+                "y": 711,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2083.5,
+                "y": 711,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 1807,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -1807,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 1024,
+      "capturedAt": "2026-10-01T11:36:16.225Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 2514.59,
+          "width": 1024,
+          "height": 192
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "32px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div",
+        "classes": "relative flex flex-col gap-12 pb-28",
+        "rect": {
+          "x": 24,
+          "y": 144,
+          "width": 976,
+          "height": 2370.59
+        },
+        "css": {
+          "display": "flex",
+          "position": "relative",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "112px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+            "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+            "rect": {
+              "x": 24,
+              "y": 2434.59,
+              "width": 331.28,
+              "height": 20
+            },
+            "css": {
+              "display": "block",
+              "position": "absolute",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "14px",
+              "lineHeight": "20px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Отзывы о курсе «SEO-специалист» в Нетология"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div",
+            "classes": "relative box-border h-full whitespace-break-spaces rounded-3xl border border-solid border-ui-black-100",
+            "rect": {
+              "x": 24,
+              "y": 144,
+              "width": 976,
+              "height": 475
+            },
+            "css": {
+              "display": "block",
+              "position": "relative",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Андрей Куркин Пользователь Хабра июнь 2023 SEO-специалист Достоинства: Из самых главных плюсов это наверное связь с преподавателями, иногда "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 667,
+              "width": 976,
+              "height": 527.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Интересные курсы по направлению «Маркетинг и продажи» 5.00 1 2 мес Академия Эдюсон Менеджер контент-завода Контент менеджер +8 от 4 037 ₽/ме"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 1242.59,
+              "width": 976,
+              "height": 1160
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Другие отзывы о школе «Нетология» Александр Цупко Пользователь Хабра 2 сентября Python-разработчик: расширенный курс Достоинства: Подача мат"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 2546.59,
+            "width": 976,
+            "height": 120
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "232px 232px 232px 232px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+          "rect": {
+            "x": 24,
+            "y": 2434.59,
+            "width": 331.28,
+            "height": 20
+          },
+          "css": {
+            "display": "block",
+            "position": "absolute",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Отзывы о курсе «SEO-специалист» в Нетология"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 667,
+            "width": 976,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Интересные курсы по направлению «Маркетинг и продажи»"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 1242.59,
+            "width": 976,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Другие отзывы о школе «Нетология»"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 711,
+            "width": 976,
+            "height": 419.59
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 4,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 711,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 271.5,
+                "y": 711,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 518,
+                "y": 711,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 764.5,
+                "y": 711,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1011,
+                "y": 711,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1257.5,
+                "y": 711,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1504,
+                "y": 711,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1750.5,
+                "y": 711,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 1807,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -1807,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 768,
+      "capturedAt": "2026-10-01T11:24:40.977Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 2554.59,
+          "width": 768,
+          "height": 256
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "32px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div",
+        "classes": "relative flex flex-col gap-12 pb-28",
+        "rect": {
+          "x": 24,
+          "y": 144,
+          "width": 720,
+          "height": 2410.59
+        },
+        "css": {
+          "display": "flex",
+          "position": "relative",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "112px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+            "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+            "rect": {
+              "x": 24,
+              "y": 2474.59,
+              "width": 331.28,
+              "height": 20
+            },
+            "css": {
+              "display": "block",
+              "position": "absolute",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "14px",
+              "lineHeight": "20px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Отзывы о курсе «SEO-специалист» в Нетология"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div",
+            "classes": "relative box-border h-full whitespace-break-spaces rounded-3xl border border-solid border-ui-black-100",
+            "rect": {
+              "x": 24,
+              "y": 144,
+              "width": 720,
+              "height": 495
+            },
+            "css": {
+              "display": "block",
+              "position": "relative",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Андрей Куркин Пользователь Хабра июнь 2023 SEO-специалист Достоинства: Из самых главных плюсов это наверное связь с преподавателями, иногда "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 687,
+              "width": 720,
+              "height": 527.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Интересные курсы по направлению «Маркетинг и продажи» 5.00 1 2 мес Академия Эдюсон Менеджер контент-завода Контент менеджер +8 от 4 037 ₽/ме"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 1262.59,
+              "width": 720,
+              "height": 1180
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Другие отзывы о школе «Нетология» Александр Цупко Пользователь Хабра 2 сентября Python-разработчик: расширенный курс Достоинства: Подача мат"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 2586.59,
+            "width": 720,
+            "height": 184
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "229.328px 229.328px 229.328px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+          "rect": {
+            "x": 24,
+            "y": 2474.59,
+            "width": 331.28,
+            "height": 20
+          },
+          "css": {
+            "display": "block",
+            "position": "absolute",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Отзывы о курсе «SEO-специалист» в Нетология"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 687,
+            "width": 720,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Интересные курсы по направлению «Маркетинг и продажи»"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 1262.59,
+            "width": 720,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Другие отзывы о школе «Нетология»"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 731,
+            "width": 720,
+            "height": 419.59
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 3,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 731,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 268.33,
+                "y": 731,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 511.66,
+                "y": 731,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 754.98,
+                "y": 731,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 998.31,
+                "y": 731,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1241.64,
+                "y": 731,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1484.97,
+                "y": 731,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1728.3,
+                "y": 731,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 1911,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -1911,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 744,
+      "capturedAt": "2026-10-01T11:36:20.041Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 744,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 2697.8,
+          "width": 744,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div",
+        "classes": "relative flex flex-col gap-12 pb-28",
+        "rect": {
+          "x": 24,
+          "y": 144,
+          "width": 696,
+          "height": 2553.8
+        },
+        "css": {
+          "display": "flex",
+          "position": "relative",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "112px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+            "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+            "rect": {
+              "x": 24,
+              "y": 2617.8,
+              "width": 331.28,
+              "height": 20
+            },
+            "css": {
+              "display": "block",
+              "position": "absolute",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "14px",
+              "lineHeight": "20px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Отзывы о курсе «SEO-специалист» в Нетология"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div",
+            "classes": "relative box-border h-full whitespace-break-spaces rounded-3xl border border-solid border-ui-black-100",
+            "rect": {
+              "x": 24,
+              "y": 144,
+              "width": 696,
+              "height": 515
+            },
+            "css": {
+              "display": "block",
+              "position": "relative",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Андрей Куркин Пользователь Хабра июнь 2023 SEO-специалист Достоинства: Из самых главных плюсов это наверное связь с преподавателями, иногда "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 707,
+              "width": 696,
+              "height": 510.8
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Интересные курсы по направлению «Маркетинг и продажи» 5.00 1 2 мес Академия Эдюсон Менеджер контент-завода Контент менеджер Контент маркетин"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 1265.8,
+              "width": 696,
+              "height": 1320
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Другие отзывы о школе «Нетология» Александр Цупко Пользователь Хабра 2 сентября Python-разработчик: расширенный курс Достоинства: Подача мат"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 2721.8,
+            "width": 696,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "696px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+          "rect": {
+            "x": 24,
+            "y": 2617.8,
+            "width": 331.28,
+            "height": 20
+          },
+          "css": {
+            "display": "block",
+            "position": "absolute",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Отзывы о курсе «SEO-специалист» в Нетология"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 707,
+            "width": 696,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Интересные курсы по направлению «Маркетинг и продажи»"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 1265.8,
+            "width": 696,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Другие отзывы о школе «Нетология»"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 751,
+            "width": 696,
+            "height": 402.8
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 751,
+                "width": 694,
+                "height": 402.8
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 731,
+                "y": 751,
+                "width": 694,
+                "height": 402.8
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 1437,
+                "y": 751,
+                "width": 694,
+                "height": 402.8
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2143,
+                "y": 751,
+                "width": 694,
+                "height": 402.8
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2849,
+                "y": 751,
+                "width": 694,
+                "height": 402.8
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 3555,
+                "y": 751,
+                "width": 694,
+                "height": 402.8
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 4261,
+                "y": 751,
+                "width": 694,
+                "height": 402.8
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 4967,
+                "y": 751,
+                "width": 694,
+                "height": 402.8
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 2274,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -2274,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 480,
+      "capturedAt": "2026-10-01T11:36:23.491Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 480,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 3202.59,
+          "width": 480,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div",
+        "classes": "relative flex flex-col gap-12 pb-28",
+        "rect": {
+          "x": 24,
+          "y": 144,
+          "width": 432,
+          "height": 3058.59
+        },
+        "css": {
+          "display": "flex",
+          "position": "relative",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "112px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+            "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+            "rect": {
+              "x": 24,
+              "y": 3122.59,
+              "width": 331.28,
+              "height": 20
+            },
+            "css": {
+              "display": "block",
+              "position": "absolute",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "14px",
+              "lineHeight": "20px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Отзывы о курсе «SEO-специалист» в Нетология"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div",
+            "classes": "relative box-border h-full whitespace-break-spaces rounded-3xl border border-solid border-ui-black-100",
+            "rect": {
+              "x": 24,
+              "y": 144,
+              "width": 432,
+              "height": 735
+            },
+            "css": {
+              "display": "block",
+              "position": "relative",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Андрей Куркин Пользователь Хабра июнь 2023 SEO-специалист Достоинства: Из самых главных плюсов это наверное связь с преподавателями, иногда "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 927,
+              "width": 432,
+              "height": 555.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Интересные курсы по направлению «Маркетинг и продажи» 5.00 1 2 мес Академия Эдюсон Менеджер контент-завода Контент менеджер Контент маркетин"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 1530.59,
+              "width": 432,
+              "height": 1560
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Другие отзывы о школе «Нетология» Александр Цупко Пользователь Хабра 2 сентября Python-разработчик: расширенный курс Достоинства: Подача мат"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 3226.59,
+            "width": 432,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "432px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+          "rect": {
+            "x": 24,
+            "y": 3122.59,
+            "width": 331.28,
+            "height": 20
+          },
+          "css": {
+            "display": "block",
+            "position": "absolute",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Отзывы о курсе «SEO-специалист» в Нетология"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 927,
+            "width": 432,
+            "height": 56
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Интересные курсы по направлению «Маркетинг и продажи»"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 1530.59,
+            "width": 432,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Другие отзывы о школе «Нетология»"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 999,
+            "width": 432,
+            "height": 419.59
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 999,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 467,
+                "y": 999,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 909,
+                "y": 999,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1351,
+                "y": 999,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1793,
+                "y": 999,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2235,
+                "y": 999,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2677,
+                "y": 999,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 3119,
+                "y": 999,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 2779,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -2779,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 393,
+      "capturedAt": "2026-10-01T11:24:44.642Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 393,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 3566.59,
+          "width": 393,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div",
+        "classes": "relative flex flex-col gap-12 pb-28",
+        "rect": {
+          "x": 24,
+          "y": 144,
+          "width": 345,
+          "height": 3422.59
+        },
+        "css": {
+          "display": "flex",
+          "position": "relative",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "112px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+            "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+            "rect": {
+              "x": 24,
+              "y": 3486.59,
+              "width": 331.28,
+              "height": 20
+            },
+            "css": {
+              "display": "block",
+              "position": "absolute",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "14px",
+              "lineHeight": "20px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Отзывы о курсе «SEO-специалист» в Нетология"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div",
+            "classes": "relative box-border h-full whitespace-break-spaces rounded-3xl border border-solid border-ui-black-100",
+            "rect": {
+              "x": 24,
+              "y": 144,
+              "width": 345,
+              "height": 915
+            },
+            "css": {
+              "display": "block",
+              "position": "relative",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Андрей Куркин Пользователь Хабра июнь 2023 SEO-специалист Достоинства: Из самых главных плюсов это наверное связь с преподавателями, иногда "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 1107,
+              "width": 345,
+              "height": 583.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Интересные курсы по направлению «Маркетинг и продажи» 5.00 1 2 мес Академия Эдюсон Менеджер контент-завода Контент менеджер +8 от 4 037 ₽/ме"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 1738.59,
+              "width": 345,
+              "height": 1716
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Другие отзывы о школе «Нетология» Александр Цупко Пользователь Хабра 2 сентября Python-разработчик: расширенный курс Достоинства: Подача мат"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 3590.59,
+            "width": 345,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "345px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+          "rect": {
+            "x": 24,
+            "y": 3486.59,
+            "width": 331.28,
+            "height": 20
+          },
+          "css": {
+            "display": "block",
+            "position": "absolute",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Отзывы о курсе «SEO-специалист» в Нетология"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 1107,
+            "width": 345,
+            "height": 84
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Интересные курсы по направлению «Маркетинг и продажи»"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 1738.59,
+            "width": 345,
+            "height": 56
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Другие отзывы о школе «Нетология»"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 1207,
+            "width": 345,
+            "height": 419.59
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 1207,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 380,
+                "y": 1207,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 735,
+                "y": 1207,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1090,
+                "y": 1207,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1445,
+                "y": 1207,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1800,
+                "y": 1207,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2155,
+                "y": 1207,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2510,
+                "y": 1207,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 3143,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -3143,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 320,
+      "capturedAt": "2026-10-01T11:36:28.547Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 4018.59,
+          "width": 320,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div",
+        "classes": "relative flex flex-col gap-12 pb-28",
+        "rect": {
+          "x": 24,
+          "y": 144,
+          "width": 272,
+          "height": 3874.59
+        },
+        "css": {
+          "display": "flex",
+          "position": "relative",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "112px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+            "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+            "rect": {
+              "x": 24,
+              "y": 3938.59,
+              "width": 272,
+              "height": 40
+            },
+            "css": {
+              "display": "block",
+              "position": "absolute",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "14px",
+              "lineHeight": "20px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Отзывы о курсе «SEO-специалист» в Нетология"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > div",
+            "classes": "relative box-border h-full whitespace-break-spaces rounded-3xl border border-solid border-ui-black-100",
+            "rect": {
+              "x": 24,
+              "y": 144,
+              "width": 272,
+              "height": 1195
+            },
+            "css": {
+              "display": "block",
+              "position": "relative",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "visible"
+            },
+            "label": "Андрей Куркин Пользователь Хабра июнь 2023 SEO-специалист Достоинства: Из самых главных плюсов это наверное связь с преподавателями, иногда "
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 1387,
+              "width": 272,
+              "height": 611.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Интересные курсы по направлению «Маркетинг и продажи» 5.00 1 2 мес Академия Эдюсон Менеджер контент-завода Контент менеджер +8 от 4 037 ₽/ме"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2)",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 2046.59,
+              "width": 272,
+              "height": 1860
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Другие отзывы о школе «Нетология» Александр Цупко Пользователь Хабра 2 сентября Python-разработчик: расширенный курс Достоинства: Подача мат"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 4042.59,
+            "width": 272,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "272px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "absolute bottom-20 left-0 m-0 translate-y-full text-small font-normal text-ui-black-500",
+          "rect": {
+            "x": 24,
+            "y": 3938.59,
+            "width": 272,
+            "height": 40
+          },
+          "css": {
+            "display": "block",
+            "position": "absolute",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Отзывы о курсе «SEO-специалист» в Нетология"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 1387,
+            "width": 272,
+            "height": 112
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Интересные курсы по направлению «Маркетинг и продажи»"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(2) > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2046.59,
+            "width": 272,
+            "height": 56
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Другие отзывы о школе «Нетология»"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div > section:nth-of-type(1) > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 1515,
+            "width": 272,
+            "height": 419.59
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 1515,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 307,
+                "y": 1515,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 589,
+                "y": 1515,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 871,
+                "y": 1515,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1153,
+                "y": 1515,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1435,
+                "y": 1515,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1717,
+                "y": 1515,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1999,
+                "y": 1515,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 3595,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -3595,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    }
+  ],
+  "boundaryMeasurements": []
+}

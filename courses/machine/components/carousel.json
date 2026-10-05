@@ -41,31 +41,31 @@
       "id": "course-card-columns",
       "context": "CourseCard carousel",
       "behavior": "Показывает 1 карточку до 767 px, 3 карточки на 768–1023 px и 4 карточки от 1024 px.",
-      "implementation": "CSS grid-auto-columns with 16px gaps; the standalone adapter keeps native horizontal scrolling."
+      "implementation": "Local provider uses Swiper slidesPerView=1/3/4 with fixed --crs-space-12 spacing; the historical standalone scroll-snap adapter is reference only."
     },
     {
       "id": "wide-card-columns",
       "context": "ArticleCard and ReviewCard carousels",
       "behavior": "Показывает 1 карточку до 767 px, 2 карточки на 768–1023 px и 3 карточки от 1024 px.",
-      "implementation": "Variant selectors define grid-auto-columns while the cards remain canonical component instances."
+      "implementation": "Local provider uses Swiper slidesPerView=1/2/3 with fixed --crs-space-12 spacing and canonical live slot components. ReviewCard fills its column width; short sets keep the same column widths, start on the left and leave unused columns empty on the right."
     },
     {
       "id": "ad-slot-geometry",
       "context": "AdSlot carousel",
       "behavior": "На телефоне баннер занимает ширину контейнера; на больших экранах активный баннер 568 px центрируется с видимыми соседями.",
-      "implementation": "The AdSlot track uses centered flex spacers on tablet/desktop and a 272/280 aspect ratio on phone."
+      "implementation": "Local provider uses Swiper slidesPerView=auto, centeredSlides, 568×232 slides and spaceBetween=-26 from 768px; phone uses a full-width 272/280 slide and spaceBetween=0. Inactive slides use scale .87 and opacity .65."
     },
     {
       "id": "navigation",
       "context": "All carousel variants",
-      "behavior": "Стрелки IconButton доступны на всех контрольных ширинах; точки пагинации не используются. У конечных контентных каруселей стрелка отключается на границе.",
-      "implementation": "Shared Carousel controls move by one slide and derive disabled state from the scroll boundary; production delegates state to Swiper."
+      "behavior": "Стрелки IconButton доступны на всех контрольных ширинах, когда лента переполняется. Обычные варианты не используют точки: loop=true зацикливает в обе стороны, шаг1, gap12; loop=false сохраняет конечную навигацию. Ad-slot зациклен и показывает точки по исходному числу предложений. Если всё содержимое помещается, блок стрелок не рендерится.",
+      "implementation": "Local provider Carousel wraps Swiper internally. Ordinary loop defaults to false; ad-slot loops when it has more than one proposal. Keyboard Left/Right work when the root is focused."
     },
     {
       "id": "ad-slot-loop",
       "context": "AdSlot carousel",
       "behavior": "Рекламная карусель зациклена: после последнего баннера открывается первый, перед первым — последний.",
-      "implementation": "The offline preview adapter renders inert copies of the full sequence on both sides. After crossing a boundary it jumps without animation to the visually identical slide in the middle sequence, so the loop has no visible rewind."
+      "implementation": "Local provider delegates loop to Swiper. Ad sets shorter than six slides are repeated inside the adapter to keep both neighbours available; pagination, real index and accessible labels remain based on the original set."
     }
   ],
   "rules": [],

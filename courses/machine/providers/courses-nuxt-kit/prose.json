@@ -7,7 +7,7 @@
   },
   "provider": {
     "id": "courses-nuxt-kit",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "type": "nuxt-layer",
     "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
     "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
@@ -38,7 +38,14 @@
       ]
     },
     "api": {
-      "props": [],
+      "props": [
+        {
+          "name": "width",
+          "type": "'readable' | 'full'",
+          "required": false,
+          "source": "prop"
+        }
+      ],
       "slots": [
         {
           "name": "default"

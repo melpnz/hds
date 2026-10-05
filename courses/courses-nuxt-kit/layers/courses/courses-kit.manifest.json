@@ -6,8 +6,8 @@
     "type": "nuxt-layer",
     "status": "active"
   },
-  "version": "1.2.0",
-  "releasedAt": "2026-10-01",
+  "version": "1.3.0",
+  "releasedAt": "2026-10-05",
   "guide": {
     "id": "courses",
     "compatibleVersion": "1.1"
@@ -16,16 +16,16 @@
   "source": {
     "repository": "https://github.com/melpnz/hds",
     "path": "courses/courses-nuxt-kit/layers/courses",
-    "commitSha": "96130c1bff4234f6b64a7475fc8f8ce1c6115a1f"
+    "commitSha": null
   },
   "distribution": {
     "mode": "copy",
     "copiedDirectory": "layers/courses",
-    "archiveName": "courses-nuxt-kit-v1.2.0.zip",
-    "releaseTag": "courses-nuxt-kit-v1.2.0",
+    "archiveName": "courses-nuxt-kit-v1.3.0.zip",
+    "releaseTag": "courses-nuxt-kit-v1.3.0",
     "repositoryUrl": "https://github.com/melpnz/hds",
     "releasesUrl": "https://github.com/melpnz/hds/releases",
-    "currentReleaseUrl": "https://github.com/melpnz/hds/releases/tag/courses-nuxt-kit-v1.2.0",
+    "currentReleaseUrl": "https://github.com/melpnz/hds/releases/tag/courses-nuxt-kit-v1.3.0",
     "changelogUrl": "https://github.com/melpnz/hds/blob/main/courses/courses-nuxt-kit/layers/courses/CHANGELOG.md",
     "latestManifestUrl": "https://raw.githubusercontent.com/melpnz/hds/main/courses/courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
     "networkPolicy": "automatic-read-only-check-no-automatic-update"
@@ -33,7 +33,8 @@
   "requirements": {
     "dependencies": [
       "@nuxt/ui",
-      "@fontsource-variable/inter"
+      "@fontsource-variable/inter",
+      "swiper"
     ],
     "devDependencies": [
       "@iconify-json/tabler"
@@ -43,7 +44,7 @@
     "manifest": "courses-kit.tokens.json",
     "source": "app/assets/css/courses.css",
     "namespace": "--crs-",
-    "count": 146
+    "count": 147
   },
   "components": {
     "public": [
@@ -155,7 +156,13 @@
               "name": "trailing"
             }
           ],
-          "emits": [],
+          "emits": [
+            {
+              "name": "click",
+              "type": "[event: MouseEvent]",
+              "source": "emit"
+            }
+          ],
           "models": []
         },
         "source": "app/components/Button.vue",
@@ -280,6 +287,12 @@
               "type": "number",
               "required": false,
               "source": "prop"
+            },
+            {
+              "name": "size",
+              "type": "20|24",
+              "required": false,
+              "source": "prop"
             }
           ],
           "slots": [],
@@ -304,17 +317,19 @@
         "api": {
           "props": [
             {
+              "name": "loop",
+              "type": "boolean",
+              "required": false,
+              "source": "prop"
+            },
+            {
               "name": "variant",
               "type": "'course-card' | 'article-card' | 'review-card' | 'ad-slot'",
               "required": false,
               "source": "prop"
             }
           ],
-          "slots": [
-            {
-              "name": "default"
-            }
-          ],
+          "slots": [],
           "emits": [],
           "models": []
         },
@@ -419,7 +434,7 @@
             },
             {
               "name": "size",
-              "type": "24 | 32 | 36 | 40 | 48 | 56 | 68 | 100 | 's' | 'm' | 'person' | 'l'",
+              "type": "20 | 24 | 32 | 36 | 40 | 48 | 56 | 68 | 100 | 's' | 'm' | 'person' | 'l'",
               "required": false,
               "source": "prop"
             },
@@ -562,8 +577,14 @@
               "source": "prop"
             },
             {
+              "name": "shape",
+              "type": "'rounded' | 'circle'",
+              "required": false,
+              "source": "prop"
+            },
+            {
               "name": "size",
-              "type": "24 | 32 | 36 | 40 | 48 | 56 | 68 | 100 | 's' | 'm' | 'l'",
+              "type": "20 | 24 | 32 | 36 | 40 | 48 | 56 | 68 | 100 | 's' | 'm' | 'l'",
               "required": false,
               "source": "prop"
             },
@@ -745,7 +766,14 @@
           "default"
         ],
         "api": {
-          "props": [],
+          "props": [
+            {
+              "name": "width",
+              "type": "'readable' | 'full'",
+              "required": false,
+              "source": "prop"
+            }
+          ],
           "slots": [
             {
               "name": "default"
@@ -1218,6 +1246,24 @@
         "api": {
           "props": [
             {
+              "name": "description",
+              "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "details",
+              "type": "Detail[]",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "href",
+              "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
               "name": "number",
               "type": "number",
               "required": true,
@@ -1267,6 +1313,18 @@
             {
               "name": "avatar",
               "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "companyLogo",
+              "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "contacts",
+              "type": "{ name:string; label:string; href:string }[]",
               "required": false,
               "source": "prop"
             },
@@ -1335,7 +1393,19 @@
               "source": "prop"
             },
             {
+              "name": "career",
+              "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
               "name": "companyLogo",
+              "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "email",
               "type": "string",
               "required": false,
               "source": "prop"
@@ -1469,13 +1539,27 @@
         "category": "entities",
         "maturity": "complete",
         "states": [
-          "default",
+          "code",
+          "link",
+          "expired",
           "hover"
         ],
         "api": {
           "props": [
             {
+              "name": "actionLabel",
+              "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
               "name": "code",
+              "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "conditions",
               "type": "string",
               "required": false,
               "source": "prop"
@@ -1487,7 +1571,19 @@
               "source": "prop"
             },
             {
+              "name": "expired",
+              "type": "boolean",
+              "required": false,
+              "source": "prop"
+            },
+            {
               "name": "expires",
+              "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "href",
               "type": "string",
               "required": false,
               "source": "prop"
@@ -1512,7 +1608,13 @@
             }
           ],
           "slots": [],
-          "emits": [],
+          "emits": [
+            {
+              "name": "open-code",
+              "type": "[code: string]",
+              "source": "emit"
+            }
+          ],
           "models": []
         },
         "source": "app/components/PromoCard.vue",
@@ -1527,15 +1629,35 @@
         "category": "entities",
         "maturity": "complete",
         "states": [
-          "default",
+          "compact",
+          "wide",
+          "full",
           "hover"
         ],
         "api": {
           "props": [
             {
+              "name": "advantages",
+              "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
               "name": "author",
               "type": "string",
               "required": true,
+              "source": "prop"
+            },
+            {
+              "name": "avatar",
+              "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "comment",
+              "type": "string",
+              "required": false,
               "source": "prop"
             },
             {
@@ -1545,7 +1667,25 @@
               "source": "prop"
             },
             {
+              "name": "courseHref",
+              "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "courseLogo",
+              "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
               "name": "date",
+              "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "disadvantages",
               "type": "string",
               "required": false,
               "source": "prop"
@@ -1565,7 +1705,19 @@
             {
               "name": "text",
               "type": "string",
-              "required": true,
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "variant",
+              "type": "'compact' | 'wide' | 'full'",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "verified",
+              "type": "boolean",
+              "required": false,
               "source": "prop"
             }
           ],
@@ -1663,18 +1815,6 @@
             {
               "name": "description",
               "type": "string",
-              "required": false,
-              "source": "prop"
-            },
-            {
-              "name": "number",
-              "type": "number",
-              "required": true,
-              "source": "prop"
-            },
-            {
-              "name": "open",
-              "type": "boolean",
               "required": false,
               "source": "prop"
             },
@@ -2611,27 +2751,82 @@
         "category": "forms",
         "maturity": "complete",
         "states": [
-          "default"
+          "default",
+          "selected-summary",
+          "query"
         ],
         "api": {
           "props": [
+            {
+              "name": "fields",
+              "type": "SearchField[]",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "mode",
+              "type": "'fields' | 'query'",
+              "required": false,
+              "source": "prop"
+            },
             {
               "name": "modelValue",
               "type": "string",
               "required": false,
               "source": "model"
+            },
+            {
+              "name": "queryPlaceholder",
+              "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "submitLabel",
+              "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "summary",
+              "type": "SearchSummary",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "values",
+              "type": "Record<string, string>",
+              "required": false,
+              "source": "model"
             }
           ],
-          "slots": [],
+          "slots": [
+            {
+              "name": "fields"
+            },
+            {
+              "name": "summary"
+            }
+          ],
           "emits": [
             {
+              "name": "openSummary",
+              "type": "[]",
+              "source": "emit"
+            },
+            {
               "name": "submit",
-              "type": "[query: string]",
+              "type": "[payload: Record<string, string> | string]",
               "source": "emit"
             },
             {
               "name": "update:modelValue",
               "type": "[string]",
+              "source": "model"
+            },
+            {
+              "name": "update:values",
+              "type": "[Record<string, string>]",
               "source": "model"
             }
           ],
@@ -2639,6 +2834,11 @@
             {
               "name": "modelValue",
               "type": "string",
+              "required": false
+            },
+            {
+              "name": "values",
+              "type": "Record<string, string>",
               "required": false
             }
           ]
@@ -3297,7 +3497,19 @@
               "name": "eyebrow"
             },
             {
+              "name": "header"
+            },
+            {
               "name": "media"
+            },
+            {
+              "name": "search"
+            },
+            {
+              "name": "switcher"
+            },
+            {
+              "name": "title"
             }
           ],
           "emits": [],
@@ -3363,6 +3575,18 @@
         "api": {
           "props": [
             {
+              "name": "breadcrumbs",
+              "type": "BreadcrumbItem[]",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "contributors",
+              "type": "Contributor[]",
+              "required": false,
+              "source": "prop"
+            },
+            {
               "name": "description",
               "type": "string",
               "required": false,
@@ -3399,7 +3623,37 @@
               "source": "prop"
             },
             {
+              "name": "surface",
+              "type": "'gradient' | 'transparent'",
+              "required": false,
+              "source": "prop"
+            },
+            {
               "name": "title",
+              "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "updatedAt",
+              "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "updatedDateTime",
+              "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "verified",
+              "type": "boolean",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "verifiedLabel",
               "type": "string",
               "required": false,
               "source": "prop"
@@ -3415,12 +3669,22 @@
           ],
           "emits": [
             {
+              "name": "open-contributors",
+              "type": "[]",
+              "source": "emit"
+            },
+            {
               "name": "open-filters",
               "type": "[]",
               "source": "emit"
             },
             {
               "name": "open-sort",
+              "type": "[]",
+              "source": "emit"
+            },
+            {
+              "name": "open-verification",
               "type": "[]",
               "source": "emit"
             }
@@ -3477,7 +3741,13 @@
           "props": [
             {
               "name": "columns",
-              "type": "2|3|4",
+              "type": "2 | 3 | 4",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "tabletColumns",
+              "type": "2 | 3",
               "required": false,
               "source": "prop"
             }
@@ -3556,6 +3826,12 @@
               "name": "items",
               "type": "Item[]",
               "required": true,
+              "source": "prop"
+            },
+            {
+              "name": "tone",
+              "type": "'default'|'inverse'",
+              "required": false,
               "source": "prop"
             }
           ],
@@ -4278,6 +4554,12 @@
               "source": "prop"
             },
             {
+              "name": "conditions",
+              "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
               "name": "description",
               "type": "string",
               "required": false,
@@ -4285,6 +4567,12 @@
             },
             {
               "name": "expires",
+              "type": "string",
+              "required": false,
+              "source": "prop"
+            },
+            {
+              "name": "href",
               "type": "string",
               "required": false,
               "source": "prop"
@@ -4445,7 +4733,7 @@
   "integrity": {
     "algorithm": "sha256",
     "file": "courses-kit.integrity.json",
-    "trackedFiles": 151,
+    "trackedFiles": 154,
     "excludes": [
       "courses-kit.manifest.json",
       "courses-kit.integrity.json"

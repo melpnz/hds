@@ -33,12 +33,24 @@
     ],
     "scripts": []
   },
+  "layoutRules": [
+    {
+      "id": "review-card-provider-variants",
+      "context": "Courses Nuxt Kit provider",
+      "behavior": "compact сохраняет карточку карусели с fade; wide занимает всю колонку и показывает текст целиком; full дополнительно убирает общую overlay-ссылку. В wide/full рейтинг занимает правую колонку 164 px от 768 px и переносится на следующую строку до 767 px.",
+      "implementation": "ReviewCard exposes variant=compact|wide|full and structured review data while retaining text as the advantages fallback."
+    }
+  ],
   "states": {
     "ui": [
       "default",
       "hover"
     ],
-    "feature": [],
+    "feature": [
+      "compact",
+      "wide",
+      "full"
+    ],
     "domain": []
   },
   "rules": [

@@ -7,7 +7,7 @@
   },
   "provider": {
     "id": "courses-nuxt-kit",
-    "version": "1.2.0",
+    "version": "1.3.0",
     "type": "nuxt-layer",
     "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
     "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
@@ -49,6 +49,18 @@
     "api": {
       "props": [
         {
+          "name": "breadcrumbs",
+          "type": "BreadcrumbItem[]",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "contributors",
+          "type": "Contributor[]",
+          "required": false,
+          "source": "prop"
+        },
+        {
           "name": "description",
           "type": "string",
           "required": false,
@@ -85,7 +97,37 @@
           "source": "prop"
         },
         {
+          "name": "surface",
+          "type": "'gradient' | 'transparent'",
+          "required": false,
+          "source": "prop"
+        },
+        {
           "name": "title",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "updatedAt",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "updatedDateTime",
+          "type": "string",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "verified",
+          "type": "boolean",
+          "required": false,
+          "source": "prop"
+        },
+        {
+          "name": "verifiedLabel",
           "type": "string",
           "required": false,
           "source": "prop"
@@ -101,12 +143,22 @@
       ],
       "emits": [
         {
+          "name": "open-contributors",
+          "type": "[]",
+          "source": "emit"
+        },
+        {
           "name": "open-filters",
           "type": "[]",
           "source": "emit"
         },
         {
           "name": "open-sort",
+          "type": "[]",
+          "source": "emit"
+        },
+        {
+          "name": "open-verification",
           "type": "[]",
           "source": "emit"
         }

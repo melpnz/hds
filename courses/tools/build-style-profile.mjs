@@ -14,8 +14,9 @@ export function buildStyleProfile() {
     schemaVersion: 1,
     dimensionTokens: { baseUnit: '0.25rem', referenceRootFontSize: '16px', source: 'machine/dimension-tokens.json', css: 'ui/dimension-tokens.css', exceptions: 'machine/reports/dimension-exceptions.json' },
     semanticTokens: { source: 'machine/semantic-tokens.json', groups: Object.keys(semanticTokens.tokens) },
-    product: { id: 'courses', title: 'Хабр Курсы', guideVersion: '1.0', status: 'active' },
-    scope: { confidence: 'mixed', boundary: 'Публичная гостевая часть Курсов; шесть собранных страниц и адресные спецификации.' },
+    product: { id: 'courses', title: 'Хабр Курсы', guideVersion: read('machine/index.json').product.guideVersion, status: 'active' },
+    scope: { confidence: 'mixed', boundary: 'Публичная гостевая часть Курсов; шесть provider-композиций и атлас двенадцати адаптивных production-reference страниц. Reference не подтверждает соответствие provider.' },
+    productionPageAtlas: { file: 'machine/page-analysis/atlas.json', rules: 'docs/guide/production-pages.md', approvalList: 'docs/decisions/page-analysis-approval.md', priority: 'owner-decisions-for-new-builds-then-current-address-specific-measurements-over-historical-generalization' },
     typography: {
       families: { interface: 'Inter, sans-serif' }, weights: { regular: 400, semibold: 600 },
       roles: { h1: '44px/48px', h2: '24px/28px', h3: '20px/24px', h4: '18px/22px', body: '16px/22px', small: '14px/20px', micro: '12px/16px', mobileH1: '30px/34px' }

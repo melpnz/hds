@@ -101,4 +101,4 @@
 | `tab` | `examples/components/tab/index.html` | `examples/components/filter-chip/menu-switch.html` |
 | `project-icon` | `examples/components/project-icon/index.html` | `examples/components/service-logo/index.html` |
 | `sprite-icon` | `examples/components/sprite-icon/index.html` | `examples/foundations/iconography/index.html` |
-| `rubrication-bar` | `examples/components/rubrication-bar/index.html` | `examples/pages/courses-listing/index.html` |
+| `rubrication-bar` | `examples/components/rubrication-bar/index.html` | `viewer/index.html` |

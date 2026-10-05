@@ -46,6 +46,12 @@
       "context": "Loaded creative",
       "behavior": "На mobile используется отдельный вертикальный креатив 272×280; на tablet/desktop — широкий креатив 568×232.",
       "implementation": "The shared AdSlot markup uses picture/source with a 767px media boundary, so the browser selects the matching local Figma asset without JavaScript."
+    },
+    {
+      "id": "banner-carousel-geometry",
+      "context": "Loaded creative carousel",
+      "behavior": "До 767 px активный баннер занимает ширину колонки и сохраняет 272/280. От 768 px активный баннер 568×232 центрирован, соседние видны по краям с scale .87 и opacity .65; spaceBetween равен −26 px. Лента зациклена с шагом1.",
+      "implementation": "Local AdSlot composes Carousel variant=ad-slot and AdCard. Short source sets are repeated only inside the Swiper adapter; pagination and accessible labels use the original item count. With one item, controls and pagination are not rendered."
     }
   ],
   "examples": [

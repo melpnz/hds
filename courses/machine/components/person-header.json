@@ -15,7 +15,7 @@
     "confidence": "high",
     "scope": "public-guest"
   },
-  "purpose": "Шапка профиля человека: аватар 100 с бейджем компании, имя, роль, соцссылки. В продукте 1 узел — на странице автора.",
+  "purpose": "Шапка профиля человека: аватар 100 с бейджем компании, имя, роль и доступные профильные ссылки. В продукте 1 узел — на странице автора.",
   "implementation": {
     "markup": "available-in-examples",
     "cssRoots": [
@@ -32,6 +32,20 @@
     ],
     "scripts": []
   },
+  "layoutRules": [
+    {
+      "id": "person-header-responsive",
+      "context": "Profile header",
+      "behavior": "До 767 px вертикальная композиция без рамки и внутренних отступов: фото 100 px, имя 30/34, gap 20 px. От 768 px горизонтальная карточка с рамкой, радиусом 24 px и padding 24 px.",
+      "implementation": "PersonHeader applies the phone layout through its canonical media query; no variant prop or application override is required."
+    },
+    {
+      "id": "person-header-profile-actions",
+      "context": "Courses Nuxt Kit provider",
+      "behavior": "LinkedIn, Хабр Карьера и email передаются независимо; пустые значения не создают ссылку. Бейдж компании резервирует 40×40 px до загрузки изображения.",
+      "implementation": "PersonHeader exposes linkedin, career and email props; EntityLogo emits intrinsic width and height attributes matching its size prop."
+    }
+  ],
   "states": {
     "ui": [
       "default"

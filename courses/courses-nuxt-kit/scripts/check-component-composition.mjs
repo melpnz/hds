@@ -7,7 +7,9 @@ const componentNames = new Set(componentFiles.map(file => file.replace(/\.vue$/,
 // These contracts express deliberate architectural decisions. Automatic checks below cover every component,
 // while this list ensures that important compositions cannot silently be replaced with local markup.
 const requiredComposition = {
+  'Carousel.vue': ['IconButton'],
   'AdCard.vue': ['IconButton'],
+  'AdSlot.vue': ['Carousel', 'AdCard'],
   'ArticleCard.vue': ['Link'],
   'AuthorsBlock.vue': ['Avatar', 'Prose', 'Button', 'Link', 'SocialIcon'],
   'CatalogMenu.vue': ['IconButton', 'SearchInput', 'ButtonGroup', 'Link', 'TileFilter'],
@@ -24,7 +26,7 @@ const requiredComposition = {
   'OptionItem.vue': ['Checkbox', 'Avatar', 'EntityLogo', 'Chip'],
   'Pagination.vue': ['IconButton', 'PaginationItem'],
   'PersonCard.vue': ['Avatar', 'SocialIcon'],
-  'PersonHeader.vue': ['Avatar', 'SocialIcon'],
+  'PersonHeader.vue': ['Avatar', 'EntityLogo', 'SocialIcon'],
   'PriceSheet.vue': ['TextInput', 'Select', 'Button'],
   'RatingTable.vue': ['EntityLogo', 'Link'],
   'ReviewCard.vue': ['Avatar', 'RatingBadge', 'Link'],
@@ -33,7 +35,6 @@ const requiredComposition = {
   'SiteFooter.vue': ['SocialIcon', 'Link', 'ServiceLogo'],
   'SiteHeader.vue': ['HeaderDropdown', 'SearchInput', 'Select', 'IconButton', 'FilterChip', 'ButtonGroup', 'Button', 'Link', 'ServiceLogo', 'Chip'],
   'SortSheet.vue': ['OptionList'],
-  'StepCard.vue': ['LearningStep'],
   'TextInput.vue': ['IconButton'],
   'FilterChip.vue': ['OptionList']
 }

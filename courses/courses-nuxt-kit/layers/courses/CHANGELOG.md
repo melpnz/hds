@@ -2,6 +2,96 @@
 
 ## Unreleased
 
+## 1.3.0 — 2026-10-05
+
+Compatible with Courses guide v1.1. Prepared locally; not published yet.
+
+- PromoCard opens PromoCodeModal for active codes and offers; conditions, copy
+  and explicit site navigation are available there. Expired actions are disabled.
+  Code buttons use a dedicated partial-code tail and folded corner.
+- SchoolCard clamps names to three lines and keeps the action at the bottom.
+  EntityHeader pins the logo to the top; mobile disclosure actions follow text.
+  InfoTable uses 16px row/column gaps and heading spacing.
+- RatingTable rows grow with long text and preserve padding; all columns remain
+  reachable by local horizontal scrolling at 320px. NumberedCourseItem omits
+  the final divider.
+- Breadcrumb arrows follow wrapped text. Contributor and verification dialogs
+  use stacked actions, 48px avatars and descriptive contributor roles.
+- Full ReviewCard aligns the rating/date to the right on desktop, with the date
+  below the stars; mobile uses a left-aligned inline rating/date row.
+- PersonCard accepts company logos and multiple contacts and wraps long names.
+  ProfileHistory uses 48px logos, production typography and 24px list spacing.
+  Prose adds opt-in full width for profile biographies.
+- Carousel controls are centered on slide content independently of pagination.
+
+- LinkGrid matches production promo entries with a separate violet discount
+  row and percentage icon. Both variants collapse to three responsive rows
+  and toggle between «Смотреть все» and «Свернуть».
+- NumberedCourseItem now renders the production SEO list: numbered title link,
+  description and a three/two/one-column grid of characteristics.
+- ReviewCard carousels fill fixed three/two/one-column layouts with a 12px
+  gap. Cards stretch to their column; short sets retain the column width
+  and leave unused columns empty on the right.
+- Carousel resolves only the currently mounted Swiper instance after loop or slot
+  reconfiguration. Keyboard navigation no longer risks targeting a stale track;
+  the remount boundary is covered by a repeated browser test.
+- PromoCard keeps its 260px production maximum but now shrinks to the available
+  CardGrid column at 768 and 1024px instead of causing page overflow.
+- PersonCard follows the same intrinsic-width rule, allowing the production
+  3-column tablet grid to use 232px columns without overlap or body overflow.
+- StepCard now matches its production contract: a static process card with a
+  title and optional description, without the LearningStep number, disclosure
+  chevron or open state. LearningStep remains the separate interactive primitive.
+- PageHero adds public `title`, `switcher` and `search` slots for production
+  listing heroes. It owns the responsive 24/32/40px composition while SearchForm
+  owns field count and stacking; existing CTA heroes remain compatible. Browser
+  coverage includes 320/480/744/768/1024 and the 767/768 layout boundary.
+- SearchForm now renders the documented compound 2–3 Select XL control with
+  joined 1px separators and responsive horizontal/vertical layouts. Public
+  fields, values model and fields slot support page-specific search forms.
+  The optional selected summary replaces fields below 768px and emits
+  `open-summary`; sticky positioning remains page-owned. Explicit query mode
+  preserves the earlier single SearchInput composition. Two-field forms now
+  also stack below 768px: their desktop count selector no longer overrides the
+  mobile one-column rule.
+- SiteHeader `family="courses" level="page"` now accepts breadcrumbs,
+  contributors, verification and update metadata as one responsive category
+  composition. Desktop, tablet and phone disclosure matches production without
+  new CategoryIntro or ContributorsStrip exports. Breadcrumbs adds
+  `tone="default|inverse"` for light and blue surfaces; its wrapping and the
+  category stack's 12/20/16 vertical rhythm now match production. Separators
+  use the production `black-200` tone instead of inheriting white. Additional
+  contributors now have the production `+` marker, hidden on phone, inside a
+  shared 24px `blue-300` capsule with 20px avatars.
+- PromoCard adds code, link and expired actions, a real disabled state and a
+  full-column mobile layout.
+- Button now emits its public `click` event for composed components.
+- ReviewCard adds compatible compact, wide and full variants. Wide/full cards
+  use the production responsive rating layout and never truncate review text;
+  full cards omit the overlay link. Structured avatar, course logo/link,
+  advantages, disadvantages and comment data are now supported. Compact remains
+  the default and keeps the existing text/href calls working. Cards now also
+  shrink below the intrinsic width of long course chips, preventing mobile grid
+  and body overflow with production titles.
+
+- PersonHeader now switches to its production phone composition below 768px:
+  vertical flow, 100px portrait, 30/34 title and no border or padding. It adds
+  optional Habr Career and email actions next to LinkedIn. EntityLogo now emits
+  intrinsic image dimensions, preventing the company badge from resizing while
+  its asset loads. The horizontal layout from 768px is unchanged.
+
+- Carousel adds opt-in loop for course/article/review cards, one-card navigation
+  and fixed 12px token spacing. Finite mode remains the default. The ad-slot
+  variant now matches the centered 568×232 production carousel, including scaled
+  neighbours, -26 spacing, mobile 272/280 geometry, pagination and continuous loop.
+  Uses swiper@14.3.0 internally (required in consumer dependencies); live Vue slot
+  cards are preserved. Controls are not rendered when every card fits. Includes
+  swipe, keyboard and responsive navigation tests.
+
+- CardGrid adds opt-in tabletColumns (2 or 3). Defaults remain 4/2/1;
+  mobile stays one column and every grid uses the fixed 12px spacing token.
+  Card count limits belong to page compositions, not the grid API.
+
 ## 1.2.0 — 2026-10-01
 
 Compatible with Courses guide v1.1.

@@ -1,18 +1,18 @@
 # RubricationBar
 
 > **Архитектурная запись закрыта 25.09.2026.** Это не самостоятельный
-> компонент, а область `rubrication-navigation` page-pattern
-> [`courses-listing`](../../pages/courses-listing.md): нативный `nav` с четырьмя
+> компонент, а область `rubric-navigation` production-страницы
+> [`courses-listing`](../../../machine/page-analysis/pages/courses-listing.json): нативный `nav` с четырьмя
 > компонентами `Link`. Документ сохранён по прежнему адресу как история
 > production-замеров; каноническая машинная запись находится в
-> [`machine/patterns/courses-listing.json`](../../../machine/patterns/courses-listing.json).
+> [`machine/page-analysis/pages/courses-listing.json`](../../../machine/page-analysis/pages/courses-listing.json).
 
 | | |
 |---|---|
 | **Категория** | Навигация (`navigation`) |
 | **Корневой класс** | `rubrication-header` |
 | **CSS** | `ui/components/navigation.css` + утилиты `ui/utilities-components.css` |
-| **Живая реализация** | [`viewer/index.html#courses-listing`](../../../viewer/index.html#courses-listing) |
+| **Живая реализация** | [`viewer/index.html#production-courses-listing`](../../../viewer/index.html#production-courses-listing) |
 | **Snapshot** | 1 из 1 состояний снято |
 
 ## Когда использовать

@@ -1,0 +1,3532 @@
+{
+  "id": "rating",
+  "title": "Рейтинг онлайн-школ",
+  "url": "https://career.habr.com/education_centers/rating",
+  "family": "rating",
+  "sequence": [
+    "simple-header",
+    "hero",
+    "audience-toggle",
+    "search-form",
+    "rating-table",
+    "related-courses",
+    "footer"
+  ],
+  "providerComponents": [
+    "site-header",
+    "site-footer",
+    "page-hero",
+    "button-group",
+    "search-form",
+    "rating-table",
+    "carousel",
+    "course-card"
+  ],
+  "approvalGaps": [],
+  "notes": [
+    "В таблице20 строк в снятой выдаче; это данные, не ограничение компонента.",
+    "Phone full-bleed и локальный горизонтальный overflow — обязательные свойства таблицы."
+  ],
+  "ownerDecisions": [
+    {
+      "id": "carousel-loop",
+      "status": "implemented-local",
+      "rule": "Обычные Carousel: loop=true, шаг1, gap12; CourseCard 4/3/1, ArticleCard и ReviewCard 3/2/1. Default loop=false сохраняет конечный режим. Если все карточки помещаются, блок стрелок не рендерится. Swiper внутри кита, живые карточки из slots. Рекламная геометрия описана отдельным решением banner-carousel. Доработка пока не опубликована.",
+      "component": "Carousel"
+    },
+    {
+      "id": "hero-search-composition",
+      "status": "implemented-local",
+      "acceptedOn": "2026-10-05",
+      "rule": "PageHero и SearchForm собирают шапку через публичные slots. Единый градиент принадлежит внешней области, без повторного старта. Табам сохраняются отступы. Все dropdown получают options и выбранные значения; fixture-фильтры не являются backend.",
+      "pages": [
+        "education-centers-listing",
+        "rating",
+        "reviews",
+        "promocodes"
+      ]
+    },
+    {
+      "id": "accepted-shared-layout",
+      "status": "implemented-local",
+      "acceptedOn": "2026-10-05",
+      "rule": "RatingTable: длинный текст увеличивает высоту с сохранением padding; все колонки доступны локальным скроллом на320. После последнего NumberedCourseItem нет линии; подборка рейтинга в каталоге содержит10 школ. SchoolCard: название максимум3 строки, кнопка внизу. Carousel: карточка заполняет слайд, стрелки центрируются без учёта пагинации. Подборки используют общий LinkGrid и соответствующие разделу данные.",
+      "pages": [
+        "courses-listing",
+        "course-category",
+        "education-centers-listing",
+        "rating",
+        "education-center",
+        "reviews",
+        "review-detail",
+        "promocodes",
+        "promocode-detail",
+        "authors",
+        "editors",
+        "author"
+      ]
+    }
+  ],
+  "reference": "evidence/production-responsive-2026-10-01/rating/index.html",
+  "measurements": [
+    {
+      "width": 1440,
+      "capturedAt": "2026-10-01T11:24:04.284Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1440,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 2489.59,
+          "width": 1440,
+          "height": 192
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "32px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "pb-10 relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pt-10",
+        "rect": {
+          "x": 182,
+          "y": 416,
+          "width": 1076,
+          "height": 2073.59
+        },
+        "css": {
+          "display": "grid",
+          "position": "relative",
+          "paddingTop": "40px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "1076px",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > div",
+            "classes": "overflow-hidden rounded-3xl border border-ui-black-100 pb-1 phone:-mx-6 phone:rounded-none",
+            "rect": {
+              "x": 182,
+              "y": 456,
+              "width": 1076,
+              "height": 1418
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "4px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "hidden"
+            },
+            "label": "Онлайн-школы Рейтинг Курсы Отзывы 1 Digital Skills Academy 5.00 25 10 2 АБИУС 5.00 243 13 3 Академия EDPRO 5.00 17 57 4 Академия Эдюсон 5.00"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 182,
+              "y": 1922,
+              "width": 1076,
+              "height": 527.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Может быть интересно 5.00 2 9 мес Академия Эдюсон Python-разработчик + ИИ Python Django +26 от 4 162 ₽/мес -60% или сразу 99 900 ₽ Далее 4.7"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > div:nth-of-type(2) > div:nth-of-type(1)",
+          "classes": "grid grid-cols-3 gap-[1px] phone:hidden",
+          "rect": {
+            "x": 182,
+            "y": 320,
+            "width": 911.69,
+            "height": 56
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "1px",
+            "columnGap": "1px",
+            "gridTemplateColumns": "303.219px 303.234px 303.219px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > div > div:nth-of-type(1) > div > div:nth-of-type(1) > div",
+          "classes": "grid grid-cols-[1fr_120px_120px_120px] gap-3 pb-4 pt-5 phone:grid-cols-[minmax(232px,1fr)_112px_68px_68px]",
+          "rect": {
+            "x": 183,
+            "y": 457,
+            "width": 1074,
+            "height": 56
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "20px",
+            "paddingRight": "0px",
+            "paddingBottom": "16px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "678px 120px 120px 120px",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > div > div:nth-of-type(1) > div > div:nth-of-type(2) > a:nth-of-type(20)",
+          "classes": "grid w-full grid-cols-[1fr_120px_120px_120px] items-center gap-3 py-4 text-small text-ui-black-850 hover:cursor-pointer hover:bg-ui-black-50 hover:no-underline phone:grid-cols-[minmax(232px,1fr)_112px_68px_68px] phone:hover:bg-none",
+          "rect": {
+            "x": 183,
+            "y": 1729,
+            "width": 1074,
+            "height": 64
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "16px",
+            "paddingRight": "0px",
+            "paddingBottom": "16px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "678px 120px 120px 120px",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 182,
+            "y": 2521.59,
+            "width": 1076,
+            "height": 120
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "257px 257px 257px 257px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 394,
+            "y": 64,
+            "width": 652,
+            "height": 160
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "64px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "44px",
+            "lineHeight": "48px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Рейтинг онлайн-школ"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 182,
+            "y": 1922,
+            "width": 1076,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Может быть интересно"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 182,
+            "y": 1966,
+            "width": 1076,
+            "height": 419.59
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 4,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 183,
+                "y": 1966,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 454.5,
+                "y": 1966,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 726,
+                "y": 1966,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 997.5,
+                "y": 1966,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1269,
+                "y": 1966,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1540.5,
+                "y": 1966,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1812,
+                "y": 1966,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2083.5,
+                "y": 1966,
+                "width": 259.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 1782,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -1782,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 1024,
+      "capturedAt": "2026-10-01T11:35:25.098Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 1024,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 2489.59,
+          "width": 1024,
+          "height": 192
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "32px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "pb-10 relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pt-10",
+        "rect": {
+          "x": 24,
+          "y": 416,
+          "width": 976,
+          "height": 2073.59
+        },
+        "css": {
+          "display": "grid",
+          "position": "relative",
+          "paddingTop": "40px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "976px",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > div",
+            "classes": "overflow-hidden rounded-3xl border border-ui-black-100 pb-1 phone:-mx-6 phone:rounded-none",
+            "rect": {
+              "x": 24,
+              "y": 456,
+              "width": 976,
+              "height": 1418
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "4px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "hidden"
+            },
+            "label": "Онлайн-школы Рейтинг Курсы Отзывы 1 Digital Skills Academy 5.00 25 10 2 АБИУС 5.00 243 13 3 Академия EDPRO 5.00 17 57 4 Академия Эдюсон 5.00"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 1922,
+              "width": 976,
+              "height": 527.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Может быть интересно 5.00 2 9 мес Академия Эдюсон Python-разработчик + ИИ Python Django +26 от 4 162 ₽/мес -60% или сразу 99 900 ₽ Далее 4.7"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > div:nth-of-type(2) > div:nth-of-type(1)",
+          "classes": "grid grid-cols-3 gap-[1px] phone:hidden",
+          "rect": {
+            "x": 24,
+            "y": 320,
+            "width": 811.69,
+            "height": 56
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "1px",
+            "columnGap": "1px",
+            "gridTemplateColumns": "269.891px 269.891px 269.906px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > div > div:nth-of-type(1) > div > div:nth-of-type(1) > div",
+          "classes": "grid grid-cols-[1fr_120px_120px_120px] gap-3 pb-4 pt-5 phone:grid-cols-[minmax(232px,1fr)_112px_68px_68px]",
+          "rect": {
+            "x": 25,
+            "y": 457,
+            "width": 974,
+            "height": 56
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "20px",
+            "paddingRight": "0px",
+            "paddingBottom": "16px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "578px 120px 120px 120px",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > div > div:nth-of-type(1) > div > div:nth-of-type(2) > a:nth-of-type(20)",
+          "classes": "grid w-full grid-cols-[1fr_120px_120px_120px] items-center gap-3 py-4 text-small text-ui-black-850 hover:cursor-pointer hover:bg-ui-black-50 hover:no-underline phone:grid-cols-[minmax(232px,1fr)_112px_68px_68px] phone:hover:bg-none",
+          "rect": {
+            "x": 25,
+            "y": 1729,
+            "width": 974,
+            "height": 64
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "16px",
+            "paddingRight": "0px",
+            "paddingBottom": "16px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "578px 120px 120px 120px",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 2521.59,
+            "width": 976,
+            "height": 120
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "232px 232px 232px 232px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 186,
+            "y": 64,
+            "width": 652,
+            "height": 160
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "64px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "44px",
+            "lineHeight": "48px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Рейтинг онлайн-школ"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 1922,
+            "width": 976,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Может быть интересно"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 1966,
+            "width": 976,
+            "height": 419.59
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 4,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 1966,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 271.5,
+                "y": 1966,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 518,
+                "y": 1966,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 764.5,
+                "y": 1966,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1011,
+                "y": 1966,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1257.5,
+                "y": 1966,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1504,
+                "y": 1966,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1750.5,
+                "y": 1966,
+                "width": 234.5,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 1782,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -1782,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 768,
+      "capturedAt": "2026-10-01T11:24:07.495Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 768,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 2513.59,
+          "width": 768,
+          "height": 256
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "32px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "pb-10 relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pt-10",
+        "rect": {
+          "x": 24,
+          "y": 416,
+          "width": 720,
+          "height": 2097.59
+        },
+        "css": {
+          "display": "grid",
+          "position": "relative",
+          "paddingTop": "40px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "720px",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > div",
+            "classes": "overflow-hidden rounded-3xl border border-ui-black-100 pb-1 phone:-mx-6 phone:rounded-none",
+            "rect": {
+              "x": 24,
+              "y": 456,
+              "width": 720,
+              "height": 1442
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "4px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "24px",
+              "overflowX": "hidden"
+            },
+            "label": "Онлайн-школы Рейтинг Курсы Отзывы 1 Digital Skills Academy 5.00 25 10 2 АБИУС 5.00 243 13 3 Академия EDPRO 5.00 17 57 4 Академия Эдюсон 5.00"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 1946,
+              "width": 720,
+              "height": 527.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Может быть интересно 5.00 2 9 мес Академия Эдюсон Python-разработчик + ИИ Python Django +26 от 4 162 ₽/мес -60% или сразу 99 900 ₽ Далее 4.7"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > div:nth-of-type(2) > div:nth-of-type(1)",
+          "classes": "grid grid-cols-3 gap-[1px] phone:hidden",
+          "rect": {
+            "x": 24,
+            "y": 320,
+            "width": 555.69,
+            "height": 56
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "1px",
+            "columnGap": "1px",
+            "gridTemplateColumns": "184.562px 184.562px 184.562px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > div > div:nth-of-type(1) > div > div:nth-of-type(1) > div",
+          "classes": "grid grid-cols-[1fr_120px_120px_120px] gap-3 pb-4 pt-5 phone:grid-cols-[minmax(232px,1fr)_112px_68px_68px]",
+          "rect": {
+            "x": 25,
+            "y": 457,
+            "width": 718,
+            "height": 56
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "20px",
+            "paddingRight": "0px",
+            "paddingBottom": "16px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "322px 120px 120px 120px",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > div > div:nth-of-type(1) > div > div:nth-of-type(2) > a:nth-of-type(20)",
+          "classes": "grid w-full grid-cols-[1fr_120px_120px_120px] items-center gap-3 py-4 text-small text-ui-black-850 hover:cursor-pointer hover:bg-ui-black-50 hover:no-underline phone:grid-cols-[minmax(232px,1fr)_112px_68px_68px] phone:hover:bg-none",
+          "rect": {
+            "x": 25,
+            "y": 1753,
+            "width": 718,
+            "height": 64
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "16px",
+            "paddingRight": "0px",
+            "paddingBottom": "16px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "322px 120px 120px 120px",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 2545.59,
+            "width": 720,
+            "height": 184
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "16px",
+            "columnGap": "16px",
+            "gridTemplateColumns": "229.328px 229.328px 229.328px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 58,
+            "y": 64,
+            "width": 652,
+            "height": 160
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "64px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "44px",
+            "lineHeight": "48px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Рейтинг онлайн-школ"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 1946,
+            "width": 720,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Может быть интересно"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 1990,
+            "width": 720,
+            "height": 419.59
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 3,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 1990,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 268.33,
+                "y": 1990,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 511.66,
+                "y": 1990,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 754.98,
+                "y": 1990,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 998.31,
+                "y": 1990,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1241.64,
+                "y": 1990,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1484.97,
+                "y": 1990,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1728.3,
+                "y": 1990,
+                "width": 231.33,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 1870,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -1870,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 744,
+      "capturedAt": "2026-10-01T11:35:28.486Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 744,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 2578.8,
+          "width": 744,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "pb-10 relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pt-10",
+        "rect": {
+          "x": 24,
+          "y": 526,
+          "width": 696,
+          "height": 2052.8
+        },
+        "css": {
+          "display": "grid",
+          "position": "relative",
+          "paddingTop": "40px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "696px",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > div",
+            "classes": "overflow-hidden rounded-3xl border border-ui-black-100 pb-1 phone:-mx-6 phone:rounded-none",
+            "rect": {
+              "x": 0,
+              "y": 566,
+              "width": 744,
+              "height": 1418
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "4px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "hidden"
+            },
+            "label": "Онлайн-школы Рейтинг Курсы Отзывы 1 Digital Skills Academy 5.00 25 10 2 АБИУС 5.00 243 13 3 Академия EDPRO 5.00 17 57 4 Академия Эдюсон 5.00"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 2032,
+              "width": 696,
+              "height": 506.8
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Может быть интересно 5.00 2 9 мес Академия Эдюсон Python-разработчик + ИИ Python Django Backend-разработка MySQL PostgreSQL Flask +22 от 4 1"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > div > div:nth-of-type(1) > div > div:nth-of-type(1) > div",
+          "classes": "grid grid-cols-[1fr_120px_120px_120px] gap-3 pb-4 pt-5 phone:grid-cols-[minmax(232px,1fr)_112px_68px_68px]",
+          "rect": {
+            "x": 1,
+            "y": 567,
+            "width": 742,
+            "height": 56
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "20px",
+            "paddingRight": "0px",
+            "paddingBottom": "16px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "458px 112px 68px 68px",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > div > div:nth-of-type(1) > div > div:nth-of-type(2) > a:nth-of-type(20)",
+          "classes": "grid w-full grid-cols-[1fr_120px_120px_120px] items-center gap-3 py-4 text-small text-ui-black-850 hover:cursor-pointer hover:bg-ui-black-50 hover:no-underline phone:grid-cols-[minmax(232px,1fr)_112px_68px_68px] phone:hover:bg-none",
+          "rect": {
+            "x": 1,
+            "y": 1839,
+            "width": 742,
+            "height": 64
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "16px",
+            "paddingRight": "0px",
+            "paddingBottom": "16px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "458px 112px 68px 68px",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 2602.8,
+            "width": 696,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "696px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 46,
+            "y": 64,
+            "width": 652,
+            "height": 108
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "40px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "30px",
+            "lineHeight": "34px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Рейтинг онлайн-школ"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2032,
+            "width": 696,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Может быть интересно"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 2076,
+            "width": 696,
+            "height": 398.8
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 2076,
+                "width": 694,
+                "height": 398.8
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 731,
+                "y": 2076,
+                "width": 694,
+                "height": 398.8
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 1437,
+                "y": 2076,
+                "width": 694,
+                "height": 398.8
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2143,
+                "y": 2076,
+                "width": 694,
+                "height": 398.8
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2849,
+                "y": 2076,
+                "width": 694,
+                "height": 398.8
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 3555,
+                "y": 2076,
+                "width": 694,
+                "height": 398.8
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 4261,
+                "y": 2076,
+                "width": 694,
+                "height": 398.8
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 4967,
+                "y": 2076,
+                "width": 694,
+                "height": 398.8
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 2155,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -2155,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 480,
+      "capturedAt": "2026-10-01T11:35:32.195Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 480,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 2599.59,
+          "width": 480,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "pb-10 relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pt-10",
+        "rect": {
+          "x": 24,
+          "y": 526,
+          "width": 432,
+          "height": 2073.59
+        },
+        "css": {
+          "display": "grid",
+          "position": "relative",
+          "paddingTop": "40px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "432px",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > div",
+            "classes": "overflow-hidden rounded-3xl border border-ui-black-100 pb-1 phone:-mx-6 phone:rounded-none",
+            "rect": {
+              "x": 0,
+              "y": 566,
+              "width": 480,
+              "height": 1418
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "4px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "hidden"
+            },
+            "label": "Онлайн-школы Рейтинг Курсы Отзывы 1 Digital Skills Academy 5.00 25 10 2 АБИУС 5.00 243 13 3 Академия EDPRO 5.00 17 57 4 Академия Эдюсон 5.00"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 2032,
+              "width": 432,
+              "height": 527.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Может быть интересно 5.00 2 9 мес Академия Эдюсон Python-разработчик + ИИ Python Django Backend-разработка MySQL +24 от 4 162 ₽/мес -60% или"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > div > div:nth-of-type(1) > div > div:nth-of-type(1) > div",
+          "classes": "grid grid-cols-[1fr_120px_120px_120px] gap-3 pb-4 pt-5 phone:grid-cols-[minmax(232px,1fr)_112px_68px_68px]",
+          "rect": {
+            "x": 1,
+            "y": 567,
+            "width": 496,
+            "height": 56
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "20px",
+            "paddingRight": "0px",
+            "paddingBottom": "16px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "232px 112px 68px 68px",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > div > div:nth-of-type(1) > div > div:nth-of-type(2) > a:nth-of-type(20)",
+          "classes": "grid w-full grid-cols-[1fr_120px_120px_120px] items-center gap-3 py-4 text-small text-ui-black-850 hover:cursor-pointer hover:bg-ui-black-50 hover:no-underline phone:grid-cols-[minmax(232px,1fr)_112px_68px_68px] phone:hover:bg-none",
+          "rect": {
+            "x": 1,
+            "y": 1839,
+            "width": 478,
+            "height": 64
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "16px",
+            "paddingRight": "0px",
+            "paddingBottom": "16px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "232px 112px 68px 68px",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 2623.59,
+            "width": 432,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "432px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 24,
+            "y": 64,
+            "width": 432,
+            "height": 108
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "40px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "30px",
+            "lineHeight": "34px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Рейтинг онлайн-школ"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2032,
+            "width": 432,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Может быть интересно"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 2076,
+            "width": 432,
+            "height": 419.59
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 2076,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 467,
+                "y": 2076,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 909,
+                "y": 2076,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1351,
+                "y": 2076,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1793,
+                "y": 2076,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2235,
+                "y": 2076,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2677,
+                "y": 2076,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 3119,
+                "y": 2076,
+                "width": 430,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 2176,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -2176,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 393,
+      "capturedAt": "2026-10-01T11:24:10.725Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 393,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 2599.59,
+          "width": 393,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "pb-10 relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pt-10",
+        "rect": {
+          "x": 24,
+          "y": 526,
+          "width": 345,
+          "height": 2073.59
+        },
+        "css": {
+          "display": "grid",
+          "position": "relative",
+          "paddingTop": "40px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "345px",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > div",
+            "classes": "overflow-hidden rounded-3xl border border-ui-black-100 pb-1 phone:-mx-6 phone:rounded-none",
+            "rect": {
+              "x": 0,
+              "y": 566,
+              "width": 393,
+              "height": 1418
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "4px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "hidden"
+            },
+            "label": "Онлайн-школы Рейтинг Курсы Отзывы 1 Digital Skills Academy 5.00 25 10 2 АБИУС 5.00 243 13 3 Академия EDPRO 5.00 17 57 4 Академия Эдюсон 5.00"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 2032,
+              "width": 345,
+              "height": 527.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Может быть интересно 5.00 2 9 мес Академия Эдюсон Python-разработчик + ИИ Python Django +26 от 4 162 ₽/мес -60% или сразу 99 900 ₽ Далее 4.7"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > div > div:nth-of-type(1) > div > div:nth-of-type(1) > div",
+          "classes": "grid grid-cols-[1fr_120px_120px_120px] gap-3 pb-4 pt-5 phone:grid-cols-[minmax(232px,1fr)_112px_68px_68px]",
+          "rect": {
+            "x": 1,
+            "y": 567,
+            "width": 496,
+            "height": 56
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "20px",
+            "paddingRight": "0px",
+            "paddingBottom": "16px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "232px 112px 68px 68px",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > div > div:nth-of-type(1) > div > div:nth-of-type(2) > a:nth-of-type(20)",
+          "classes": "grid w-full grid-cols-[1fr_120px_120px_120px] items-center gap-3 py-4 text-small text-ui-black-850 hover:cursor-pointer hover:bg-ui-black-50 hover:no-underline phone:grid-cols-[minmax(232px,1fr)_112px_68px_68px] phone:hover:bg-none",
+          "rect": {
+            "x": 1,
+            "y": 1839,
+            "width": 391,
+            "height": 64
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "16px",
+            "paddingRight": "0px",
+            "paddingBottom": "16px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "232px 112px 68px 68px",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 2623.59,
+            "width": 345,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "345px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 24,
+            "y": 64,
+            "width": 345,
+            "height": 108
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "40px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "30px",
+            "lineHeight": "34px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Рейтинг онлайн-школ"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2032,
+            "width": 345,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Может быть интересно"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 2076,
+            "width": 345,
+            "height": 419.59
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 2076,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 380,
+                "y": 2076,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 735,
+                "y": 2076,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1090,
+                "y": 2076,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1445,
+                "y": 2076,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1800,
+                "y": 2076,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2155,
+                "y": 2076,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 2510,
+                "y": 2076,
+                "width": 343,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 2176,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -2176,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    },
+    {
+      "width": 320,
+      "capturedAt": "2026-10-01T11:35:35.516Z",
+      "status": 200,
+      "overflow": 0,
+      "header": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > header",
+        "classes": "bg-main-gradient-first",
+        "rect": {
+          "x": 0,
+          "y": 0,
+          "width": 320,
+          "height": 64
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "0px",
+          "paddingRight": "0px",
+          "paddingBottom": "0px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "positionedLayers": [],
+      "footer": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer",
+        "classes": "bg-ui-black-50 pb-10 pt-8 phone:py-6",
+        "rect": {
+          "x": 0,
+          "y": 2599.59,
+          "width": 320,
+          "height": 476
+        },
+        "css": {
+          "display": "block",
+          "position": "static",
+          "paddingTop": "24px",
+          "paddingRight": "0px",
+          "paddingBottom": "24px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "normal",
+          "columnGap": "normal",
+          "gridTemplateColumns": "none",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        }
+      },
+      "stack": {
+        "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div",
+        "classes": "pb-10 relative grid grid-cols-[minmax(0,1fr)] gap-12 px-0 pt-10",
+        "rect": {
+          "x": 24,
+          "y": 526,
+          "width": 272,
+          "height": 2073.59
+        },
+        "css": {
+          "display": "grid",
+          "position": "relative",
+          "paddingTop": "40px",
+          "paddingRight": "0px",
+          "paddingBottom": "40px",
+          "paddingLeft": "0px",
+          "marginTop": "0px",
+          "marginBottom": "0px",
+          "rowGap": "48px",
+          "columnGap": "48px",
+          "gridTemplateColumns": "272px",
+          "fontSize": "16px",
+          "lineHeight": "20.8px",
+          "fontWeight": "400",
+          "borderRadius": "0px",
+          "overflowX": "visible"
+        },
+        "children": [
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > div",
+            "classes": "overflow-hidden rounded-3xl border border-ui-black-100 pb-1 phone:-mx-6 phone:rounded-none",
+            "rect": {
+              "x": 0,
+              "y": 566,
+              "width": 320,
+              "height": 1418
+            },
+            "css": {
+              "display": "block",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "4px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "normal",
+              "columnGap": "normal",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "hidden"
+            },
+            "label": "Онлайн-школы Рейтинг Курсы Отзывы 1 Digital Skills Academy 5.00 25 10 2 АБИУС 5.00 243 13 3 Академия EDPRO 5.00 17 57 4 Академия Эдюсон 5.00"
+          },
+          {
+            "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section",
+            "classes": "flex flex-col gap-4",
+            "rect": {
+              "x": 24,
+              "y": 2032,
+              "width": 272,
+              "height": 527.59
+            },
+            "css": {
+              "display": "flex",
+              "position": "static",
+              "paddingTop": "0px",
+              "paddingRight": "0px",
+              "paddingBottom": "0px",
+              "paddingLeft": "0px",
+              "marginTop": "0px",
+              "marginBottom": "0px",
+              "rowGap": "16px",
+              "columnGap": "16px",
+              "gridTemplateColumns": "none",
+              "fontSize": "16px",
+              "lineHeight": "20.8px",
+              "fontWeight": "400",
+              "borderRadius": "0px",
+              "overflowX": "visible"
+            },
+            "label": "Может быть интересно 5.00 2 9 мес Академия Эдюсон Python-разработчик + ИИ Python Django +26 от 4 162 ₽/мес -60% или сразу 99 900 ₽ Далее 4.7"
+          }
+        ]
+      },
+      "grids": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > div > div:nth-of-type(1) > div > div:nth-of-type(1) > div",
+          "classes": "grid grid-cols-[1fr_120px_120px_120px] gap-3 pb-4 pt-5 phone:grid-cols-[minmax(232px,1fr)_112px_68px_68px]",
+          "rect": {
+            "x": 1,
+            "y": 567,
+            "width": 496,
+            "height": 56
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "20px",
+            "paddingRight": "0px",
+            "paddingBottom": "16px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "232px 112px 68px 68px",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > div > div:nth-of-type(1) > div > div:nth-of-type(2) > a:nth-of-type(20)",
+          "classes": "grid w-full grid-cols-[1fr_120px_120px_120px] items-center gap-3 py-4 text-small text-ui-black-850 hover:cursor-pointer hover:bg-ui-black-50 hover:no-underline phone:grid-cols-[minmax(232px,1fr)_112px_68px_68px] phone:hover:bg-none",
+          "rect": {
+            "x": 1,
+            "y": 1839,
+            "width": 318,
+            "height": 64
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "16px",
+            "paddingRight": "0px",
+            "paddingBottom": "16px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "12px",
+            "columnGap": "12px",
+            "gridTemplateColumns": "232px 112px 68px 68px",
+            "fontSize": "14px",
+            "lineHeight": "20px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > footer > div > div",
+          "classes": "grid grid-cols-4 gap-4 phone:grid-cols-1 phone:gap-6 tablet-only:grid-cols-3",
+          "rect": {
+            "x": 24,
+            "y": 2623.59,
+            "width": 272,
+            "height": 428
+          },
+          "css": {
+            "display": "grid",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "24px",
+            "columnGap": "24px",
+            "gridTemplateColumns": "272px",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          }
+        }
+      ],
+      "headings": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(1) > div > div > div > h1",
+          "classes": "m-0 mx-auto max-w-[652px] whitespace-normal break-keep pt-[64px] text-center text-h1 font-semibold text-ui-white phone:pt-[40px] phone:text-h1-mobile",
+          "rect": {
+            "x": 24,
+            "y": 64,
+            "width": 272,
+            "height": 108
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "40px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "30px",
+            "lineHeight": "34px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Рейтинг онлайн-школ"
+        },
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section > h2",
+          "classes": "m-0 text-h2 font-semibold",
+          "rect": {
+            "x": 24,
+            "y": 2032,
+            "width": 272,
+            "height": 28
+          },
+          "css": {
+            "display": "block",
+            "position": "static",
+            "paddingTop": "0px",
+            "paddingRight": "0px",
+            "paddingBottom": "0px",
+            "paddingLeft": "0px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "24px",
+            "lineHeight": "28px",
+            "fontWeight": "600",
+            "borderRadius": "0px",
+            "overflowX": "visible"
+          },
+          "label": "Может быть интересно"
+        }
+      ],
+      "carousels": [
+        {
+          "selector": "body > div:nth-of-type(1) > div:nth-of-type(1) > div > div > div:nth-of-type(2) > div > section > div > div",
+          "classes": "swiper swiper-initialized swiper-horizontal h-full swiper-backface-hidden",
+          "rect": {
+            "x": 24,
+            "y": 2076,
+            "width": 272,
+            "height": 419.59
+          },
+          "css": {
+            "display": "block",
+            "position": "relative",
+            "paddingTop": "0px",
+            "paddingRight": "1px",
+            "paddingBottom": "0px",
+            "paddingLeft": "1px",
+            "marginTop": "0px",
+            "marginBottom": "0px",
+            "rowGap": "normal",
+            "columnGap": "normal",
+            "gridTemplateColumns": "none",
+            "fontSize": "16px",
+            "lineHeight": "20.8px",
+            "fontWeight": "400",
+            "borderRadius": "0px",
+            "overflowX": "hidden"
+          },
+          "params": {
+            "slidesPerView": 1,
+            "spaceBetween": 12,
+            "centeredSlides": false,
+            "loop": true,
+            "slidesPerGroup": 1,
+            "speed": 300,
+            "initialSlide": 0,
+            "breakpoints": {
+              "0": {
+                "slidesPerView": 1
+              },
+              "768": {
+                "slidesPerView": 3
+              },
+              "1024": {
+                "slidesPerView": 4
+              }
+            }
+          },
+          "activeIndex": 0,
+          "realIndex": 0,
+          "slides": [
+            {
+              "rect": {
+                "x": 25,
+                "y": 2076,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-active"
+            },
+            {
+              "rect": {
+                "x": 307,
+                "y": 2076,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide swiper-slide-next"
+            },
+            {
+              "rect": {
+                "x": 589,
+                "y": 2076,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 871,
+                "y": 2076,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1153,
+                "y": 2076,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1435,
+                "y": 2076,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1717,
+                "y": 2076,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            },
+            {
+              "rect": {
+                "x": 1999,
+                "y": 2076,
+                "width": 270,
+                "height": 419.59
+              },
+              "classes": "swiper-slide"
+            }
+          ]
+        }
+      ],
+      "scrollStates": [
+        {
+          "state": "cold-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "scroll-800",
+          "scrollY": 800,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -800,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "end",
+          "scrollY": 2176,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": -2176,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        },
+        {
+          "state": "returned-top",
+          "scrollY": 0,
+          "header": [
+            {
+              "classes": "bg-main-gradient-first",
+              "y": 0,
+              "height": 64,
+              "position": "static",
+              "top": "auto",
+              "display": "block"
+            }
+          ]
+        }
+      ],
+      "completeness": "complete-selected-geometry"
+    }
+  ],
+  "boundaryMeasurements": []
+}

@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { unusedCourseFoundationTokens } from '../../app/data/courseTokenUsage.generated'
 
 async function waitForHydration(page: import('@playwright/test').Page) {
   await page.waitForFunction(() => Boolean((document.querySelector('#__nuxt') as HTMLElement & { __vue_app__?: unknown })?.__vue_app__))
@@ -320,6 +321,9 @@ test.describe('Courses UI catalog', () => {
         return { textBottom: text.bottom, linkTop: link.top }
       })
       expect(descriptionGeometry.linkTop).toBeGreaterThanOrEqual(descriptionGeometry.textBottom)
+      await waitForHydration(page)
+      await description.locator('button').click()
+      await expect(description).toHaveCSS('flex-direction', 'column')
       await expect(description.locator('button')).toHaveCSS('width', `${width - 48}px`)
     }
   })
@@ -484,18 +488,23 @@ test.describe('Courses UI catalog', () => {
         const header = element.getBoundingClientRect()
         const blue = element.querySelector('.crs-site-header__blue')!.getBoundingClientRect()
         const seo = element.querySelector('.crs-site-header__course-seo')!.getBoundingClientRect()
-        const lastLine = element.querySelector('.crs-site-header__course-seo p')!.getBoundingClientRect()
+        const contributors = element.querySelector('.crs-site-header__contributors')!
+        const contentBottom = Math.max(...[...contributors.children]
+          .map(child => child.getBoundingClientRect())
+          .filter(rect => rect.width > 0 && rect.height > 0)
+          .map(rect => rect.bottom))
         return {
           headerHeight: header.height,
           seoHeight: seo.height,
-          bottomGap: blue.bottom - lastLine.bottom
+          breadcrumbsHeight: element.querySelector('.crs-breadcrumbs')!.getBoundingClientRect().height,
+          bottomGap: blue.bottom - contentBottom
         }
       })
-      expect(mobilePage).toEqual({
-        headerHeight: width === 320 ? 312 : 268,
-        seoHeight: width === 320 ? 156 : 112,
-        bottomGap: 24
-      })
+      // Breadcrumbs now wrap inline, so their height is content-driven rather
+      // than the old forced three-row geometry. Keep the surrounding rhythm.
+      expect(mobilePage.headerHeight - mobilePage.seoHeight).toBeCloseTo(168, 1)
+      expect(mobilePage.seoHeight - mobilePage.breadcrumbsHeight).toBeCloseTo(112, 1)
+      expect(mobilePage.bottomGap).toBe(16)
     }
 
     for (const width of [320, 480]) {
@@ -603,12 +612,45 @@ test.describe('Courses UI catalog', () => {
     expect(person?.height).toBe(365)
 
     await page.goto('/ui/preview?component=review-card')
-    const review = await page.locator('.crs-review-card').boundingBox()
+    const review = await page.locator('.crs-review-card--compact').boundingBox()
     expect(review?.width).toBe(260)
     expect(review?.height).toBe(503)
 
     await page.goto('/ui/preview?component=rating-table')
     await expect(page.locator('.crs-rating-table__row')).toHaveCount(10)
+  })
+
+  test('rating table grows wrapped rows and scrolls to its final columns at 320px', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 900 })
+    for (const route of ['/ui/preview?component=rating-table', '/ui/pages/courses-listing']) {
+      await page.goto(route)
+      const table = page.locator('.crs-rating-table')
+      await expect(table.locator('.crs-rating-table__row')).toHaveCount(10)
+      const geometry = await table.evaluate((element) => {
+        const scroll = element.querySelector<HTMLElement>('.crs-rating-table__scroll')!
+        const row = element.querySelector<HTMLElement>('.crs-rating-table__row:last-child')!
+        const name = row.querySelector<HTMLElement>('div > span:last-child')!
+        const rowBox = row.getBoundingClientRect()
+        const nameBox = name.getBoundingClientRect()
+        scroll.scrollLeft = scroll.scrollWidth
+        const scrollBox = scroll.getBoundingClientRect()
+        const lastColumn = row.lastElementChild!.getBoundingClientRect()
+        return {
+          rowHeight: rowBox.height,
+          top: nameBox.top - rowBox.top,
+          bottom: rowBox.bottom - nameBox.bottom,
+          scrollLeft: scroll.scrollLeft,
+          lastVisible: lastColumn.left >= scrollBox.left && lastColumn.right <= scrollBox.right + 1,
+          pageOverflow: document.documentElement.scrollWidth - innerWidth
+        }
+      })
+      expect(geometry.rowHeight).toBeGreaterThan(64)
+      expect(geometry.top).toBe(16)
+      expect(geometry.bottom).toBe(16)
+      expect(geometry.scrollLeft).toBeGreaterThan(0)
+      expect(geometry.lastVisible).toBe(true)
+      expect(geometry.pageOverflow).toBe(0)
+    }
   })
 
   test('uses Nuxt UI behavior for overlays', async ({ page }) => {
@@ -665,7 +707,7 @@ test.describe('Courses UI catalog', () => {
     await expect(page.locator('.color-card')).toHaveCount(45)
     await expect(page.locator('.foundation-sections > .unused-section')).toHaveCount(1)
     await expect(page.locator('.foundation-sections > .unused-section h2')).toHaveText('Пока не используются')
-    await expect(page.locator('.color-card[data-unused="true"]')).toHaveCount(6)
+    await expect(page.locator('.color-card[data-unused="true"]')).toHaveCount(unusedCourseFoundationTokens.colors.length)
     const blue = page.locator('.color-card').filter({ hasText: 'blue-500' })
     await expect(blue.locator('.token-editor')).toHaveValue('#346ef4')
     await blue.locator('.copy-token').click()
@@ -743,15 +785,15 @@ test.describe('Courses UI catalog', () => {
     await expect(page.locator('.crs-search svg')).toHaveCount(0)
 
     await page.goto('/ui/preview?component=promo-card')
-    expect((await page.locator('.crs-promo').boundingBox())?.height).toBe(268)
+    expect((await page.locator('.crs-promo').first().boundingBox())?.height).toBe(268)
 
     await page.goto('/ui/preview?component=vacancy-card')
     expect((await page.locator('.crs-vacancy-card .crs-logo').boundingBox())?.width).toBe(32)
 
     await page.goto('/ui/preview?component=ad-slot')
-    const ad = await page.locator('.crs-ad-card').first().boundingBox()
-    expect(ad?.width).toBe(568)
-    expect(ad?.height).toBe(232)
+    const activeAd = page.locator('.swiper-slide-active .crs-ad-card')
+    await expect.poll(async () => (await activeAd.boundingBox())?.width).toBe(568)
+    expect((await activeAd.boundingBox())?.height).toBe(232)
 
     await page.goto('/ui/preview?component=catalog-menu')
     await expect(page.locator('.crs-catalog-menu')).toHaveCSS('display', 'grid')
@@ -771,11 +813,11 @@ test.describe('Courses UI catalog', () => {
     }
 
     await page.goto('/ui/preview?component=step-card')
-    const step = page.locator('.crs-learning')
-    await expect(step.locator('.crs-learning__number')).toHaveText('1')
-    await expect(step).toHaveAttribute('open', '')
-    await step.locator('summary').click()
-    await expect(step).not.toHaveAttribute('open', '')
+    const step = page.locator('.crs-step-card')
+    await expect(step.locator('strong')).toHaveText('Подготовка страницы')
+    await expect(step.locator('p')).toContainText('Редакция Хабра отправляет материалы')
+    await expect(step.locator('summary, button, a')).toHaveCount(0)
+    await expect(step).toHaveCSS('border-radius', '24px')
 
     await page.goto('/ui/preview?component=filter-modal')
     expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(480)
@@ -845,14 +887,13 @@ test.describe('Courses UI catalog', () => {
     for (const [width, expectedVisible] of [[320, 1], [480, 1], [768, 3], [1024, 4]] as const) {
       await page.setViewportSize({ width, height: 800 })
       await page.goto('/ui/preview?component=carousel')
-      const visibleCards = await page.locator('.crs-carousel').evaluate((carousel) => {
+      await expect.poll(() => page.locator('.crs-carousel').evaluate((carousel) => {
         const track = carousel.querySelector('.crs-carousel__track')!.getBoundingClientRect()
         return [...carousel.querySelectorAll('.crs-course-card')].filter((card) => {
           const rect = card.getBoundingClientRect()
           return rect.left >= track.left - 1 && rect.right <= track.right + 1
         }).length
-      })
-      expect(visibleCards).toBe(expectedVisible)
+      })).toBe(expectedVisible)
     }
   })
 
@@ -1113,12 +1154,12 @@ test.describe('Courses UI catalog', () => {
     await expect(page.locator('.catalog-list').getByRole('button', { name: /^Tab/ })).toHaveCount(0)
 
     await page.goto('/ui/preview?component=review-card')
-    await expect(page.locator('.crs-review-card__course .crs-chip')).toHaveCount(1)
-    const fade = page.locator('.crs-review-card__text > span')
+    await expect(page.locator('.crs-review-card--compact .crs-review-card__course .crs-chip')).toHaveCount(1)
+    const fade = page.locator('.crs-review-card--compact .crs-review-card__fade')
     await expect(fade).toHaveCSS('height', '100px')
-    const reviewBottomGap = await page.locator('.crs-review-card').evaluate((card) => {
-      const button = card.querySelector('.crs-review-card__text button')!
-      return card.getBoundingClientRect().bottom - button.getBoundingClientRect().bottom
+    const reviewBottomGap = await page.locator('.crs-review-card--compact').evaluate((card) => {
+      const action = card.querySelector('.crs-review-card__more')!
+      return card.getBoundingClientRect().bottom - action.getBoundingClientRect().bottom
     })
     expect(Math.abs(reviewBottomGap - 24)).toBeLessThanOrEqual(1)
   })

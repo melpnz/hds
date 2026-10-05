@@ -12,12 +12,28 @@ const componentMap = Object.fromEntries(Object.entries(componentModules).map(([p
   path.match(/([^/]+)\.vue$/)?.[1], defineAsyncComponent(() => loader().then(module => module.default))
 ])) as Record<string, Component>
 const dynamicComponent = computed(() => componentMap[props.entry.name])
+const categoryHeaderProps = {
+  title: 'Курсы по ChatGPT',
+  breadcrumbs: [
+    { label: 'Все курсы', href: '#' },
+    { label: 'Курсы по направлению "Нейросети и AI"', href: '#' },
+    { label: 'Курсы по ChatGPT' }
+  ],
+  contributors: [
+    { name: 'Николай Ширинкин', role: 'Автор', href: '#author', avatar: '/courses/avatar-default-user.svg' },
+    { name: 'Виктория Гонгина', role: 'Редактор', href: '#editor', avatar: '/courses/avatar-default-user.svg' },
+    { name: 'Елена Лучина', role: 'Аудитор', href: '#auditor', avatar: '/courses/avatar-default-user.svg' }
+  ],
+  verified: true,
+  updatedAt: '30.09.2026',
+  updatedDateTime: '2026-09-30'
+}
 const siteHeaderVariants = {
   'listing-hero': { family: 'listing', level: 'hero', sticky: false },
   'listing-page': { family: 'listing', level: 'page', sticky: false },
   'listing-page-sticky': { family: 'listing', level: 'page', sticky: true },
   'courses-hero': { family: 'courses', level: 'hero', sticky: false },
-  'courses-page': { family: 'courses', level: 'page', sticky: false },
+  'courses-page': { family: 'courses', level: 'page', sticky: false, ...categoryHeaderProps },
   'courses-page-sticky': { family: 'courses', level: 'page', sticky: true },
   'simple-page': { family: 'simple', level: 'page', sticky: false }
 } as const
@@ -58,6 +74,16 @@ const lastOptionAction = ref('Действие ещё не выбрано')
 const optionActionItems = optionListItems.slice(0, 3).map(item => ({ ...item, onSelect: () => { lastOptionAction.value = item.label } }))
 const buttonGroupValue = ref('list')
 const textInputActionValue = ref('Текст с кнопкой')
+const carouselLoop = ref(true)
+const carouselCount = ref('8')
+const carouselVariant = ref<'course-card' | 'article-card' | 'review-card'>('course-card')
+const adSlotCount = ref('3')
+const searchValues = ref<Record<string, string>>({ organization: 'yandex' })
+const searchFields = [
+  { name: 'organization', placeholder: 'Организация', options: [{ label: 'Яндекс Практикум', value: 'yandex' }, { label: 'Нетология', value: 'netology' }] },
+  { name: 'topic', placeholder: 'Что изучить?', options: [{ label: 'Программирование', value: 'development' }, { label: 'Дизайн', value: 'design' }] },
+  { name: 'type', placeholder: 'Тип', options: [{ label: 'Курсы', value: 'courses' }, { label: 'Профессии', value: 'professions' }] }
+]
 watch(() => props.entry.id, id => { overlayOpen.value = isInitiallyOpen(id) }, { immediate: true })
 onMounted(() => { overlayOpen.value = isInitiallyOpen(props.entry.id) })
 </script>
@@ -129,6 +155,18 @@ onMounted(() => { overlayOpen.value = isInitiallyOpen(props.entry.id) })
         </div></section>
       </div>
     </template>
+    <template v-else-if="entry.id === 'search-form'">
+      <div class="search-form-guide">
+        <section>
+          <h2>Составная форма · 3 поля</h2>
+          <div class="search-form-surface"><SearchForm v-model:values="searchValues" :fields="searchFields" submit-label="Найти промокоды" /></div>
+        </section>
+        <section>
+          <h2>Выбранная школа · mobile summary</h2>
+          <div class="search-form-surface"><SearchForm v-model:values="searchValues" :fields="searchFields" submit-label="Найти промокоды" :summary="{ title: 'Яндекс Практикум', details: ['Все темы', 'Все типы'] }" /></div>
+        </section>
+      </div>
+    </template>
     <template v-else-if="entry.id === 'option-list'">
       <div class="field-guide option-list-guide">
         <section><h2>Одиночный выбор</h2><OptionList v-model="optionListSingle" :items="optionListItems" selection-mode="single" /></section>
@@ -156,6 +194,22 @@ onMounted(() => { overlayOpen.value = isInitiallyOpen(props.entry.id) })
         <figure><RatingBadge :value="4.9" :reviews="120" size="m" /><figcaption><strong>summary · M</strong><span>Без подложки и полей в SchoolCard и EntityHeader</span></figcaption></figure>
         <figure><RatingBadge :value="4.9" variant="stars" /><figcaption><strong>stars</strong><span>Набор звёзд в ReviewCard</span></figcaption></figure>
       </div></div>
+    </template>
+    <template v-else-if="entry.id === 'review-card'">
+      <div class="variant-guide review-card-guide">
+        <h2>Варианты ReviewCard</h2>
+        <section><small>compact · карусель</small><ReviewCard v-bind="entry.props" :author="String(entry.props?.author || '')" /></section>
+        <section><small>wide · список отзывов</small><ReviewCard v-bind="entry.props" :author="String(entry.props?.author || '')" variant="wide" /></section>
+        <section><small>full · страница отзыва</small><ReviewCard v-bind="entry.props" :author="String(entry.props?.author || '')" variant="full" /></section>
+      </div>
+    </template>
+    <template v-else-if="entry.id === 'promo-card'">
+      <div class="variant-guide promo-card-guide">
+        <h2>Варианты PromoCard</h2>
+        <section><small>С промокодом</small><PromoCard v-bind="entry.props" :title="String(entry.props?.title || '')" /></section>
+        <section><small>Без промокода</small><PromoCard title="Подарок к заказу" description="ИТ-колледж" code="" href="#offer" /></section>
+        <section><small>Завершённая акция</small><PromoCard title="Скидка 20%" description="Скидка на все курсы" code="" href="#expired" expired /></section>
+      </div>
     </template>
     <template v-else-if="entry.id === 'social-icon'">
       <div class="variant-guide"><h2>Социальные сети</h2><div class="demo-row"><SocialIcon name="i-tabler-brand-telegram" label="Telegram" /><SocialIcon name="i-tabler-brand-vk" label="ВКонтакте" /><SocialIcon name="i-tabler-brand-x" label="X" /><SocialIcon name="i-tabler-brand-facebook" label="Facebook" /><SocialIcon name="i-tabler-brand-instagram" label="Instagram" /></div></div>
@@ -191,16 +245,37 @@ onMounted(() => { overlayOpen.value = isInitiallyOpen(props.entry.id) })
       <div class="variant-guide"><h2>Варианты</h2><div class="tile-filter-guide"><TileFilter title="С внутренними отступами" image="/courses/catalog/development.png" /><TileFilter title="Изображение в край" image="/courses/filter-modal/recommendation-career.png" image-fit="cover" /><TileFilter title="Средний уровень" description="Хотите углубиться или прокачать навык" image="/courses/filter-grade-mid.svg" variant="level" :show-arrow="false" /><div class="tile-filter-catalog-demo"><TileFilter title="Разработка и IT" image="/courses/catalog/development.png" variant="catalog" behavior="action" /></div><div class="tile-filter-catalog-demo"><TileFilter title="Отзывы о курсах" image="/courses/catalog/reviews.png" variant="catalog" behavior="action" href="#" /></div></div></div>
     </template>
     <template v-else-if="entry.id === 'card-grid'">
-      <CardGrid><div v-for="item in 4" :key="item" class="demo-card">Карточка {{ item }}</div></CardGrid>
+      <div class="card-grid-guide">
+        <section><h2>По умолчанию и шаги — 4 / 2 / 1</h2><CardGrid data-grid="default"><div v-for="item in 4" :key="item" class="demo-card">Карточка {{ item }}</div></CardGrid></section>
+        <section><h2>Карточки — 4 / 3 / 1</h2><CardGrid :tablet-columns="3" data-grid="cards"><div v-for="item in 6" :key="item" class="demo-card">Карточка {{ item }}</div></CardGrid></section>
+        <section><h2>Три колонки — 3 / 3 / 1</h2><CardGrid :columns="3" :tablet-columns="3" data-grid="three"><div v-for="item in 3" :key="item" class="demo-card">Карточка {{ item }}</div></CardGrid></section>
+        <section><h2>Пустая сетка</h2><CardGrid :tablet-columns="3" data-grid="empty" /></section>
+      </div>
     </template>
     <template v-else-if="entry.id === 'section'">
       <Section v-bind="entry.props"><div class="demo-surface">Содержимое секции</div></Section>
     </template>
     <template v-else-if="entry.id === 'carousel'">
-      <Carousel variant="course-card"><CourseCard v-for="item in 4" :key="item" :title="`Курс ${item}`" /></Carousel>
+      <div class="carousel-demo-controls">
+        <FilterChip v-model="carouselLoop" variant="switch">Зацикливание</FilterChip>
+        <ButtonGroup v-model="carouselVariant" label="Карточки карусели" :items="[{label:'Курсы',value:'course-card'},{label:'Статьи',value:'article-card'},{label:'Отзывы',value:'review-card'}]" />
+        <ButtonGroup v-model="carouselCount" label="Количество карточек" :items="['0','1','2','4','8'].map(value=>({label:value,value}))" />
+      </div>
+      <Carousel :variant="carouselVariant" :loop="carouselLoop">
+        <template v-for="item in Number(carouselCount)" :key="item">
+          <CourseCard v-if="carouselVariant === 'course-card'" :title="`Курс ${item}`" />
+          <ArticleCard v-else-if="carouselVariant === 'article-card'" :title="`Статья ${item}`" />
+          <ReviewCard v-else :author="`Автор ${item}`" :text="`Отзыв ${item}`" />
+        </template>
+      </Carousel>
     </template>
     <template v-else-if="entry.id === 'ad-slot'">
-      <AdSlot />
+      <div class="carousel-demo-controls">
+        <ButtonGroup v-model="adSlotCount" label="Количество рекламных баннеров" :items="['1','3'].map(value=>({label:value,value}))" />
+      </div>
+      <AdSlot>
+        <AdCard v-for="item in Number(adSlotCount)" :key="item" :title="`Рекламное предложение ${item}`" :image="['/courses/carousel/ad-promo.png','/courses/carousel/ad-previous.png','/courses/carousel/ad-ai.png'][item-1]" :mobile-image="['/courses/carousel/ad-promo-mobile.png','/courses/carousel/ad-previous-mobile.png','/courses/carousel/ad-ai.png'][item-1]" />
+      </AdSlot>
     </template>
     <template v-else-if="entry.id === 'faq-block'">
       <FaqBlock title="Часто задаваемые вопросы"><FaqItem question="Как проходит обучение?" open>Онлайн-занятия, практика и поддержка наставника.</FaqItem><FaqItem question="Останутся ли материалы?">Да, доступ сохраняется после окончания.</FaqItem></FaqBlock>
@@ -239,7 +314,7 @@ onMounted(() => { overlayOpen.value = isInitiallyOpen(props.entry.id) })
       <div class="demo-wide"><SiteFooter /></div>
     </template>
     <template v-else-if="entry.id === 'page-hero'">
-      <div class="demo-wide"><PageHero title="Эксперты по оценке обучения" description="В Хабре мы серьёзно относимся к качеству контента. Курсы, которые вы видите на наших страницах, проверяют профессионалы из отрасли — они оценивают актуальность материала и честно говорят, если курс не стоит рекомендовать. Всё для того, чтобы вы получали только тот образовательный контент, которому можно доверять."><template #actions><Button>Посмотреть экспертов</Button><Button variant="secondary">Перейти к редакции</Button></template></PageHero></div>
+      <div class="demo-wide"><PageHero title="Образовательные организации в России"><template #title>Образовательные<br>организации в России</template><template #switcher><ButtonGroup model-value="adult" variant="hero" label="Аудитория" :items="[{ label: 'Взрослым', value: 'adult' }, { label: 'Детям', value: 'child' }]" /></template><template #search><SearchForm :fields="[{ name: 'organization', placeholder: 'Организация' }, { name: 'topic', placeholder: 'Что изучить?' }, { name: 'type', placeholder: 'Тип' }]" submit-label="Найти организации" /></template></PageHero></div>
     </template>
     <component :is="dynamicComponent" v-else v-bind="entry.props">{{ entry.label }}</component>
   </div>
@@ -247,15 +322,20 @@ onMounted(() => { overlayOpen.value = isInitiallyOpen(props.entry.id) })
 
 <style scoped>
 .catalog-demo { width: 100%; }
+.review-card-guide,.review-card-guide section{min-width:0;grid-template-columns:minmax(0,1fr)}.review-card-guide section{display:grid;gap:var(--crs-space-8)}
+.promo-card-guide{grid-template-columns:repeat(auto-fit,minmax(var(--crs-size-260),var(--crs-size-260)));align-items:start;gap:var(--crs-space-16)}.promo-card-guide h2{grid-column:1/-1}.promo-card-guide section{display:grid;min-width:0;gap:var(--crs-space-8)}
 .button-group-hero{display:grid;gap:var(--crs-space-12);border-radius:var(--crs-radius-16);background:var(--crs-blue-500);padding:var(--crs-space-16)}
+.carousel-demo-controls{display:grid;gap:var(--crs-space-12);margin-bottom:var(--crs-space-24)}
+.search-form-guide{display:grid;gap:var(--crs-space-24)}.search-form-guide section{display:grid;gap:var(--crs-space-12)}.search-form-guide h2{margin:0;font:600 var(--crs-font-14)/var(--crs-leading-20) var(--crs-font-family)}.search-form-surface{border-radius:var(--crs-radius-16);background:var(--crs-gradient-second);padding:var(--crs-space-16)}
 .button-guide{display:grid;gap:var(--crs-space-24)}.button-grid{display:grid;grid-template-columns:7rem repeat(6,max-content);align-items:center;gap:var(--crs-space-12);overflow-x:auto;padding-bottom:var(--crs-space-8)}.button-grid>strong{font:400 var(--crs-font-12)/var(--crs-leading-16) Inter,sans-serif;color:var(--crs-black-500)}.button-grid--variants>strong:nth-child(-n+7){font-weight:600;color:var(--crs-black-850)}
 .button-context-variant{display:flex;align-items:center;gap:var(--crs-space-12)}.button-context-variant small{color:var(--crs-black-500);font:400 var(--crs-font-12)/var(--crs-leading-16) var(--crs-font-family)}
 .demo-card,.demo-surface { border:1px solid var(--crs-black-100);border-radius:1rem;background:#fff;padding:1.5rem; }
+.card-grid-guide{display:grid;gap:var(--crs-space-24)}.card-grid-guide h2{margin:0 0 var(--crs-space-12);font:600 var(--crs-font-14)/var(--crs-leading-20) var(--crs-font-family)}
 .demo-wide{margin:-1.5rem}.demo-row{display:flex;flex-wrap:wrap;align-items:center;gap:1rem}.demo-matrix{display:grid;gap:1rem}.demo-matrix>div{display:flex;align-items:center;gap:.75rem}.demo-matrix small{width:2rem;color:var(--crs-black-500);font-size:.6875rem}.icon-button-variants{display:grid;gap:.75rem}.icon-button-variants>div{display:flex;align-items:center;gap:.75rem}.icon-button-variants small{width:4rem;color:var(--crs-black-500);font-size:.6875rem}
 .tile-filter-guide{display:flex;max-width:36rem;flex-wrap:wrap;align-items:start;gap:var(--crs-space-16)}.tile-filter-guide .crs-tile--level{flex:1 1 18rem}.tile-filter-catalog-demo{width:var(--crs-size-136)}
 .rating-badge-guide{display:grid;max-width:42rem;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--crs-space-12)}.rating-badge-guide figure{display:flex;min-width:0;align-items:center;gap:var(--crs-space-16);margin:0;border:var(--crs-border-1) solid var(--crs-black-100);border-radius:var(--crs-radius-12);padding:var(--crs-space-12)}.rating-badge-guide figcaption{display:grid;min-width:0;gap:var(--crs-space-2);font:400 var(--crs-font-12)/var(--crs-leading-16) var(--crs-font-family)}.rating-badge-guide figcaption strong{font-weight:600}.rating-badge-guide figcaption span{color:var(--crs-black-500)}
 .feedback-guide{display:grid;gap:var(--crs-space-12)}.feedback-guide h2{margin:0;font:600 var(--crs-font-14)/var(--crs-leading-20) var(--crs-font-family)}.toast-guide{display:flex;flex-wrap:wrap;align-items:flex-start;gap:var(--crs-space-12)}.informer-guide{display:grid;grid-template-columns:repeat(2,minmax(0,var(--crs-size-280)));align-items:start;gap:var(--crs-space-16)}
-.field-guide{display:grid;max-width:45rem;gap:1.5rem}.field-guide section,.variant-guide{display:grid;gap:.625rem}.field-guide h2,.variant-guide h2{margin:0;font-size:.875rem;font-weight:600}.field-sizes{display:grid;grid-template-columns:1fr 1fr;align-items:start;gap:.75rem}.field-sizes label{display:grid;gap:.375rem}.field-sizes small{color:var(--crs-black-500);font-size:.6875rem}.control-guide,.avatar-guide{display:grid;gap:.75rem}.control-guide h2,.avatar-guide h2{margin:0;font-size:.875rem;font-weight:600}.filter-chip-guide{gap:var(--crs-space-24)}.filter-chip-guide section{display:grid;gap:var(--crs-space-12)}.control-variants{display:grid;max-width:42rem;grid-template-columns:repeat(2,minmax(12rem,1fr));align-items:start;gap:1rem}.chip-matrix{display:flex;flex-wrap:wrap;align-items:center;gap:1rem}.avatar-scale{display:flex;flex-wrap:wrap;align-items:flex-end;gap:1.25rem;padding:.25rem}.avatar-scale figure{display:grid;justify-items:center;gap:.5rem;margin:0;color:#697386;font-size:.6875rem;line-height:1rem}@media(max-width:767px){.field-sizes,.control-variants,.rating-badge-guide{grid-template-columns:1fr}}
+.field-guide{display:grid;max-width:45rem;gap:1.5rem}.field-guide section,.variant-guide{display:grid;gap:.625rem}.field-guide h2,.variant-guide h2{margin:0;font-size:.875rem;font-weight:600}.field-sizes{display:grid;grid-template-columns:1fr 1fr;align-items:start;gap:.75rem}.field-sizes label{display:grid;gap:.375rem}.field-sizes small{color:var(--crs-black-500);font-size:.6875rem}.control-guide,.avatar-guide{display:grid;gap:.75rem}.control-guide h2,.avatar-guide h2{margin:0;font-size:.875rem;font-weight:600}.filter-chip-guide{gap:var(--crs-space-24)}.filter-chip-guide section{display:grid;gap:var(--crs-space-12)}.control-variants{display:grid;max-width:42rem;grid-template-columns:repeat(2,minmax(12rem,1fr));align-items:start;gap:1rem}.chip-matrix{display:flex;flex-wrap:wrap;align-items:center;gap:1rem}.avatar-scale{display:flex;flex-wrap:wrap;align-items:flex-end;gap:1.25rem;padding:.25rem}.avatar-scale figure{display:grid;justify-items:center;gap:.5rem;margin:0;color:#697386;font-size:.6875rem;line-height:1rem}@media(max-width:767px){.field-sizes,.control-variants,.rating-badge-guide,.promo-card-guide{grid-template-columns:minmax(0,1fr)}.promo-card-guide h2{grid-column:auto}}
 </style>
 <style scoped>
 @media(max-width:767px){.informer-guide{grid-template-columns:1fr}}

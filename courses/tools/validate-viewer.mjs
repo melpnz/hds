@@ -1,6 +1,6 @@
 import { chromium } from 'playwright';
 
-const baseUrl = process.argv[2] || 'http://127.0.0.1:4173';
+const baseUrl = process.argv[2] || 'http://127.0.0.1:4181';
 const browserChannel = process.env.PLAYWRIGHT_CHANNEL || (process.platform === 'win32' ? 'chrome' : undefined);
 const browser = await chromium.launch({ ...(browserChannel ? { channel: browserChannel } : {}), headless: true });
 const page = await browser.newPage({ viewport: { width: 1440, height: 900 } });
@@ -63,7 +63,7 @@ try {
   const providerMapping = await page.evaluate(() => fetch('../machine/providers/courses-nuxt-kit.json').then(response => response.json()));
   const providerByGuideId = new Map(providerMapping.mappings.map(mapping => [mapping.guideId, mapping]));
   const sectionTitles = await page.locator('.nav-section__title > span').allTextContents();
-  if (JSON.stringify(sectionTitles) !== JSON.stringify(['Основы', 'Элементы', 'Блоки', 'Страницы'])) failures.push(`navigation: unexpected section hierarchy ${sectionTitles.join(', ')}`);
+  if (JSON.stringify(sectionTitles) !== JSON.stringify(['Основы', 'Элементы', 'Блоки', 'Собранные страницы'])) failures.push(`navigation: unexpected section hierarchy ${sectionTitles.join(', ')}`);
   const guideVersion = await page.locator('#guide-version').textContent();
   const guideIndex = await page.evaluate(() => fetch('../machine/index.json').then(response => response.json()));
   if (!guideVersion.includes(guideIndex.product.guideVersion) || !guideVersion.includes('пригоден к использованию')) failures.push('navigation: current guide release status is hidden');
@@ -103,6 +103,12 @@ try {
       for (const [index, frame] of (await page.locator('.stacked-example iframe').all()).entries()) {
         await frame.waitFor({ state: 'visible' });
         await page.waitForFunction(position => document.querySelectorAll('.stacked-example iframe')[position]?.contentDocument?.body, index);
+        // Body existence alone does not mean load/font/ResizeObserver sizing has finished.
+        await readIntrinsicGeometry(frame);
+        await page.waitForFunction(position => {
+          const element = document.querySelectorAll('.stacked-example iframe')[position];
+          return element?.contentDocument?.readyState === 'complete' && Math.abs(element.clientHeight - element.contentDocument.body.scrollHeight) <= 3;
+        }, index);
         const dimensions = await frame.evaluate(element => ({ frame: element.clientHeight, body: element.contentDocument.body.scrollHeight }));
         if (Math.abs(dimensions.frame - dimensions.body) > 3) failures.push(`${entry.id}: intrinsic iframe does not fit content height`);
         validateIntrinsicGeometry(`${entry.id}/${item.examples[index].id}`, item.examples[index], await readIntrinsicGeometry(frame));
@@ -205,34 +211,6 @@ try {
       if (!focusShadow.includes('166, 167, 169')) failures.push('icon-button: focus-visible ring is absent');
       if (!(await preview.locator('[data-state="disabled"]').isDisabled())) failures.push('icon-button: disabled state is not native');
       if (await preview.locator('[data-state="loading"]').getAttribute('aria-busy') !== 'true') failures.push('icon-button: loading state misses aria-busy');
-    }
-
-    if (entry.id === 'courses-listing') {
-      const preview = page.locator('#preview').contentFrame();
-      const bar = preview.locator('.rubrication-header');
-      await bar.waitFor();
-      await page.locator('#viewport-controls [data-width="1024"]').click();
-      await page.waitForTimeout(240);
-      const desktopGap = await bar.evaluate(element => parseFloat(getComputedStyle(element).columnGap || getComputedStyle(element).gap));
-      await page.locator('#viewport-controls [data-width="320"]').click();
-      await page.waitForTimeout(240);
-      const mobile = await bar.evaluate(element => {
-        const rect = element.getBoundingClientRect();
-        return {
-          left: rect.left,
-          right: rect.right,
-          viewport: document.documentElement.clientWidth,
-          barOverflow: element.scrollWidth - element.clientWidth,
-          pageOverflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
-          gap: parseFloat(getComputedStyle(element).columnGap || getComputedStyle(element).gap),
-        };
-      });
-      if (Math.abs(desktopGap - 16) > .1 || Math.abs(mobile.gap - 16) > .1 || Math.abs(desktopGap - mobile.gap) > .1) failures.push('courses-listing: rubrication link gap is not the same 16px token value on desktop and mobile');
-      if (Math.abs(mobile.left) > 1 || Math.abs(mobile.right - mobile.viewport) > 1) failures.push('courses-listing: rubrication navigation does not reach both mobile viewport edges');
-      if (mobile.barOverflow < 1 || mobile.pageOverflow > 1) failures.push('courses-listing: rubrication navigation does not own horizontal overflow');
-      await bar.evaluate(element => { element.scrollLeft = element.scrollWidth; });
-      if (await bar.evaluate(element => element.scrollLeft) < 1) failures.push('courses-listing: rubrication navigation does not scroll');
-      await page.locator('#viewport-controls [data-width="full"]').click();
     }
 
     if (entry.id === 'search-form') {
@@ -964,8 +942,8 @@ try {
   await fontPage.close();
 
   await page.goto(`${baseUrl}/viewer/#rubrication-bar`, { waitUntil: 'domcontentloaded' });
-  await page.waitForFunction(() => document.querySelector('#raw-json')?.textContent.includes('"id": "courses-listing"'));
-  if ((await page.locator('#item-title').textContent()) !== 'Витрина курсов') failures.push('rubrication-bar: legacy viewer URL does not resolve to courses-listing');
+  await page.waitForFunction(() => document.querySelector('#raw-json')?.textContent.includes('"id": "production-courses-listing"'));
+  if ((await page.locator('#item-title').textContent()) !== 'Каталог курсов') failures.push('rubrication-bar: legacy viewer URL does not resolve to the production Courses page');
 
   await page.locator('#guide-search').fill('button');
   if (await page.locator('[data-item]').count() === 0) failures.push('search returned no results');

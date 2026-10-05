@@ -31,6 +31,12 @@ assert.ok(localManifest.components.public.every(component =>
   && Array.isArray(component.api?.models)
 ), 'Every public component must expose a generated API contract.')
 const buttonApi = localManifest.components.public.find(component => component.id === 'button')?.api
+const gridApi = localManifest.components.public.find(component => component.id === 'card-grid')?.api
+const carouselApi = localManifest.components.public.find(component => component.id === 'carousel')?.api
+assert.ok(carouselApi.props.some(prop => prop.name === 'loop' && prop.type === 'boolean'))
+assert.ok(localManifest.requirements.dependencies.includes('swiper'))
+assert.ok(gridApi.props.some(prop => prop.name === 'tabletColumns' && prop.type.includes('2') && prop.type.includes('3')))
+assert.equal(gridApi.props.some(prop => ['gap', 'visibleCards', 'limit'].includes(prop.name)), false, 'CardGrid spacing is fixed; visibility belongs to pages.')
 assert.deepEqual(buttonApi.slots.map(slot => slot.name), ['default', 'leading', 'trailing'])
 assert.ok(buttonApi.props.some(prop => prop.name === 'variant' && prop.type.includes("'primary'")))
 const filterModalApi = localManifest.components.public.find(component => component.id === 'filter-modal')?.api

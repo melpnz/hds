@@ -31,7 +31,10 @@
     "ui": [
       "default"
     ],
-    "feature": [],
+    "feature": [
+      "category-intro",
+      "contributors-strip"
+    ],
     "domain": []
   },
   "rules": [],
@@ -146,6 +149,12 @@
       "context": "Mobile",
       "behavior": "Фильтры и верхнее меню остаются однострочными и прокручиваются горизонтально.",
       "implementation": "overflow-x:auto; элементы flex:none."
+    },
+    {
+      "id": "course-category-context",
+      "context": "family=courses, level=page",
+      "behavior": "Breadcrumbs, левый h1, авторы, проверка и дата образуют контекст категории внутри синего фона. От 1024 px показываются два участника и + перед stack остальных; 768–1023 — первый и + перед stack; до 768 имена заменяются подписью «Авторы», + скрывается, а мета сокращается. + и аватары находятся в общей капсуле 24 px с обводкой blue-300; зона + имеет inset 6/4 вокруг глифа 10 px. Все аватары строки имеют размер 20 px, внутри stack они перекрываются на 4 px.",
+      "implementation": "Передать breadcrumbs, contributors{name,role,href,avatar}, verified, verifiedLabel, updatedAt и updatedDateTime в SiteHeader; отдельные CategoryIntro и ContributorsStrip не создавать. Вертикальный ритм: breadcrumbs padding-top 12, h1 padding 12/20, contributors padding-bottom 16; не заменять общим gap."
     }
   ],
   "previewNotes": [
