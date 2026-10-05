@@ -2,6 +2,19 @@
 
 ## Unreleased
 
+## 1.3.1 — 2026-10-05
+
+Compatible with Courses guide v1.1. Prepared; not published yet.
+Includes all changes from the unpublished 1.3.0 candidate below.
+
+- Guide validation accepts an absent optional, empty patterns directory in a
+  clean checkout; missing required component/foundation directories still fail.
+- CI smoke tests reuse the provider on port 3002 instead of starting a second
+  dev server against the same generated files.
+- Atlas integration checks the live UI Kit page tabs; reference geometry uses
+  the Windows environment where the measurements were captured.
+- The failed 1.3.0 candidate tag is preserved; this revision is checked separately.
+
 ## 1.3.0 — 2026-10-05
 
 Compatible with Courses guide v1.1. Prepared locally; not published yet.

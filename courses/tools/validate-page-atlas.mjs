@@ -20,6 +20,8 @@ assert.equal(atlas.ownerDecisions.find(d=>d.id==='school-course-grid')?.approved
 assert.equal(atlas.ownerDecisions.find(d=>d.id==='school-course-grid')?.observedProductionGap,16)
 assert(atlas.pages.every(p=>!p.approvalGaps.includes('grid-tablet')&&!p.approvalGaps.includes('school-course-grid')),'accepted grid decisions leave the approval queue')
 const base=process.argv.find(arg=>arg.startsWith('http')) || 'http://127.0.0.1:4181'
+const compatibility=await read('machine/compatibility.json')
+const providerBase=compatibility.providers.find(p=>p.id==='courses-nuxt-kit').localCatalogBaseUrl
 const chosen=process.argv.includes('--page')?process.argv[process.argv.indexOf('--page')+1].split(','):null
 const errors=[],results=[],viewerResults=[]
 const near=(actual,expected,label)=>{if(Math.abs(actual-expected)>1)throw new Error(`${label}: ${actual} vs ${expected}`)}
@@ -48,7 +50,7 @@ for(const asset of manifest.assets){const bytes=await readFile(resolve(root,'evi
 
 const browser=await chromium.launch({headless:true})
 const context=await browser.newContext({locale:'ru-RU',reducedMotion:'reduce'})
-await context.route('**/*',route=>new URL(route.request().url()).origin===new URL(base).origin?route.continue():route.abort())
+await context.route('**/*',route=>[new URL(base).origin,new URL(providerBase).origin].includes(new URL(route.request().url()).origin)?route.continue():route.abort())
 await mkdir(resolve(root,'../.audits/courses-atlas-validation'),{recursive:true})
 try{
  for(const summary of atlas.pages.filter(p=>!chosen || chosen.includes(p.id))){
@@ -144,24 +146,23 @@ try{
    await viewer.evaluate(id=>{location.hash='production-'+id},summary.id)
    await viewer.waitForFunction(id=>document.querySelector('#raw-json').textContent.includes('"id": "production-'+id+'"'),summary.id)
    assert.deepEqual(await viewer.locator('#viewport-controls button').allTextContents(),['320','480','768','1024','Auto'])
-   assert.equal(await viewer.locator('#preview-source').isVisible(),false,'reference is not labelled as UI Kit')
+   assert.equal((await viewer.locator('#example-tabs [data-example]').first().textContent()).trim(),'Сборка из UI Kit','live page is the primary preview')
    assert.equal(await viewer.locator('[data-item="production-'+summary.id+'"]').getAttribute('aria-current'),'page')
    for(const width of atlas.previewWidths){
      await viewer.locator('#viewport-controls [data-width="'+width+'"]').click()
      const expected=width==='full'?'100%':width+'px'
      await viewer.waitForFunction(w=>document.querySelector('#preview').style.width===w,expected)
      const frame=viewer.locator('#preview').contentFrame()
-     await frame.locator('html[data-reference-ready]').waitFor()
+     await frame.locator('[data-production-page="'+summary.id+'"]').waitFor()
      await frame.locator('html').evaluate(async()=>{await document.fonts.ready;await new Promise(r=>setTimeout(r,200))})
-     const geometry=await frame.locator('html').evaluate(el=>({width:innerWidth,overflow:el.scrollWidth-innerWidth,mode:el.dataset.referenceReady}))
+     const geometry=await frame.locator('html').evaluate(el=>({width:innerWidth,overflow:el.scrollWidth-innerWidth}))
      if(width!=='full')near(geometry.width,width,'main guide iframe width')
      else {
        const available=await viewer.locator('.preview-stage').evaluate(el=>el.clientWidth-parseFloat(getComputedStyle(el).paddingLeft)-parseFloat(getComputedStyle(el).paddingRight))
        near(geometry.width,available,'Auto follows container')
      }
      assert.equal(geometry.overflow,0,'no document overflow')
-     assert.equal(geometry.mode,geometry.width<768?'phone':geometry.width<1024?'tablet':'desktop')
-     viewerResults.push({page:summary.id,width,status:'passed',mode:geometry.mode,actualWidth:geometry.width})
+     viewerResults.push({page:summary.id,width,status:'passed',provider:'courses-nuxt-kit',actualWidth:geometry.width})
    }
  }
  await viewer.locator('#viewport-controls [data-width="full"]').click()

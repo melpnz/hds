@@ -65,7 +65,8 @@ jobs:
 
   render-smoke:
     name: Viewer and provider render smoke
-    runs-on: ubuntu-latest
+    # Production reference measurements include Windows system-font metrics.
+    runs-on: windows-latest
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
@@ -112,6 +113,9 @@ jobs:
         run: npm --prefix courses run validate:integrated-viewer -- http://127.0.0.1:4181
       - name: Run Nuxt catalog smoke tests
         working-directory: courses/courses-nuxt-kit
+        env:
+          COURSES_TEST_BASE_URL: http://127.0.0.1:3002
+          PLAYWRIGHT_CHANNEL: chromium
         run: pnpm run test:smoke
       - name: Upload server logs on failure
         if: failure()

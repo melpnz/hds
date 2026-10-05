@@ -15,6 +15,8 @@ const statusByFile = new Map();
 
 for (const directory of directories) {
   const absoluteDirectory = path.join(root, 'machine', directory);
+  // Optional groups may have no records: Git does not retain empty directories.
+  if (directory === 'patterns' && !fs.existsSync(absoluteDirectory)) continue;
   for (const name of fs.readdirSync(absoluteDirectory).filter(value => value.endsWith('.json'))) {
     const absoluteFile = path.join(absoluteDirectory, name);
     const relativeFile = path.relative(root, absoluteFile).replaceAll('\\', '/');
