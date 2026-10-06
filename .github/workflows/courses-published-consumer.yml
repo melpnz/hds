@@ -29,6 +29,8 @@ jobs:
           node-version: 24
       - name: Enable pnpm
         run: npm install --global pnpm@10.33.2
+      - name: Install ZIP-capable archive reader
+        run: sudo apt-get update && sudo apt-get install -y libarchive-tools
       - name: Verify test safety policy
         run: node tools/test-courses-published-consumer-policy.mjs
       - name: Install and build the published ZIP in a clean consumer

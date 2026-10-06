@@ -1,6 +1,10 @@
 import assert from 'node:assert/strict'
 import { createHash } from 'node:crypto'
-import { releaseTag, validateRelease, verifyChecksum, validateArchiveEntries } from './test-courses-published-consumer.mjs'
+import { archiveTool, releaseTag, validateRelease, verifyChecksum, validateArchiveEntries } from './test-courses-published-consumer.mjs'
+
+assert.equal(archiveTool('win32'), 'tar')
+assert.equal(archiveTool('linux'), 'bsdtar')
+assert.equal(archiveTool('darwin'), 'bsdtar')
 
 const tag = 'courses-nuxt-kit-v1.4.1'
 const names = [`${tag}.zip`, `${tag}.zip.sha256`]

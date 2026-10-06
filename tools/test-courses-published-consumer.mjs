@@ -12,6 +12,8 @@ const repository = 'melpnz/hds'
 const prefix = 'courses-nuxt-kit-v'
 const sha256 = bytes => createHash('sha256').update(bytes).digest('hex')
 
+export const archiveTool = (platform = process.platform) => platform === 'win32' ? 'tar' : 'bsdtar'
+
 export function releaseTag(value) {
   const version = value.startsWith(prefix) ? value.slice(prefix.length) : value
   if (!/^\d+\.\d+\.\d+$/.test(version)) throw new Error('Expected a stable version X.Y.Z or Courses release tag')
@@ -187,11 +189,12 @@ export async function main(args = process.argv.slice(2)) {
     const archive = resolve(consumer, 'release.zip')
     await writeFile(archive, zip)
     await step('safe extraction', async () => {
-      const entries = execFileSync('tar', ['-tf', archive], { encoding: 'utf8' }).trim().split(/\r?\n/)
+      const extractor = archiveTool()
+      const entries = execFileSync(extractor, ['-tf', archive], { encoding: 'utf8' }).trim().split(/\r?\n/)
       validateArchiveEntries(entries)
-      const types = execFileSync('tar', ['-tvf', archive], { encoding: 'utf8' }).trim().split(/\r?\n/)
+      const types = execFileSync(extractor, ['-tvf', archive], { encoding: 'utf8' }).trim().split(/\r?\n/)
       if (types.some(line => !/^[d-]/.test(line))) throw new Error('Archive links or special files are not allowed')
-      execFileSync('tar', ['-xf', archive, '-C', consumer])
+      execFileSync(extractor, ['-xf', archive, '-C', consumer])
     })
     const layer = resolve(consumer, 'layers/courses')
     const manifest = JSON.parse(await readFile(resolve(layer, 'courses-kit.manifest.json'), 'utf8'))
