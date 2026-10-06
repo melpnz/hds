@@ -8,7 +8,7 @@ const readText = path => readFileSync(resolve(root, path), 'utf8');
 const readJson = path => JSON.parse(readText(path));
 
 const entryFiles = [
-  'README.md', 'AGENTS.md', 'VERSIONING.md', 'MAINTENANCE.md', 'PUBLICATION.md', 'RESEARCH-MIGRATION.md', 'ROUTING-TESTS.md',
+  'README.md', 'AGENTS.md', 'DESIGN-SYSTEM-ROADMAP.md', 'VERSIONING.md', 'MAINTENANCE.md', 'PUBLICATION.md', 'RESEARCH-MIGRATION.md', 'ROUTING-TESTS.md',
   'habr/README.md', 'habr/AGENTS.md',
   'career/README.md', 'career/AGENTS.md',
   'courses/README.md', 'courses/AGENTS.md',
