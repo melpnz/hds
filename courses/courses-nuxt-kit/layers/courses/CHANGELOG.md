@@ -1,8 +1,14 @@
 # Courses Kit changelog
 
+## 1.4.3 — 2026-10-06
+
+Compatible with Courses guide v1.1. Includes the unpublished 1.4.2 candidate below.
+Footer screenshots allow one raster pixel of browser variation; geometry,
+overlap and icon size checks remain strict. Existing baselines are unchanged.
+
 ## 1.4.2 — 2026-10-06
 
-Compatible with Courses guide v1.1. Public API and visual tokens are unchanged.
+Unpublished candidate; see 1.4.3. Public API and visual tokens are unchanged.
 Migration: update the complete layer only with owner approval and use the pinned
 dependency recipe (Vue 3.5.43); do not merge files from different Kit versions.
 

@@ -27,11 +27,11 @@ The default width remains unchanged.
 
 ## Development
 
-The 1.4.2 canonical dependency recipe uses Vue 3.5.43, matching Nuxt 4.5.2's
+The 1.4.3 canonical dependency recipe uses Vue 3.5.43, matching Nuxt 4.5.2's
 runtime. Mixing the former direct Vue 3.5.21 with Nuxt's newer runtime omitted
 the initially open PriceSheet chevron during SSR. Install with the pinned lockfile;
 do not independently downgrade Vue. Published 1.4.1 still has its original recipe;
-1.4.2 includes this fix and does not automatically update installed consumer projects.
+1.4.3 includes this fix and does not automatically update installed consumer projects.
 
 ```bash
 pnpm install

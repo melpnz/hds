@@ -51,7 +51,9 @@ for (const width of [320, 479, 480, 520, 600, 631, 632, 633, 640, 767, 768, 1023
     expect(geometry.socialSizes).toEqual(Array(6).fill({ width: 24, height: 24 }))
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true)
     if ([320, 480, 600, 640, 768, 1024, 1440].includes(width)) {
-      await expect(footer).toHaveScreenshot(`site-footer-${width}.png`, { animations: 'disabled' })
+      // Edge and pinned CI Chromium differ by one raster pixel on all seven
+      // approved captures; exact geometry assertions above remain strict.
+      await expect(footer).toHaveScreenshot(`site-footer-${width}.png`, { animations: 'disabled', maxDiffPixels: 1 })
     }
   })
 }
