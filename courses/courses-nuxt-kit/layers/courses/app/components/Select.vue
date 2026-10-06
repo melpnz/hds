@@ -20,6 +20,7 @@ const props = withDefaults(defineProps<{
 const describedBy = computed(() => props.error ? errorId : props.hint ? hintId : undefined)
 const labelledBy = computed(() => props.label && !props.ariaLabel ? `${labelId} ${valueId}` : undefined)
 const open = ref(false)
+const menuAbove = ref(false)
 const root = ref<HTMLElement>()
 const trigger = ref<HTMLButtonElement>()
 const menu = ref<{ focusFirst: () => void; focusLast: () => void }>()
@@ -28,12 +29,24 @@ function close(event: PointerEvent) { if (!root.value?.contains(event.target as 
 function onTriggerKeydown(event: KeyboardEvent) { if (!['ArrowDown','ArrowUp'].includes(event.key)) return; event.preventDefault(); open.value = true; nextTick(() => event.key === 'ArrowDown' ? menu.value?.focusFirst() : menu.value?.focusLast()) }
 function finishSelection() { open.value = false; nextTick(() => trigger.value?.focus()) }
 function closeFromKeyboard() { open.value = false; nextTick(() => trigger.value?.focus()) }
-onMounted(() => document.addEventListener('pointerdown', close))
-onBeforeUnmount(() => document.removeEventListener('pointerdown', close))
+async function positionMenu() {
+  if (!open.value) { menuAbove.value = false; return }
+  await nextTick()
+  const control = root.value?.getBoundingClientRect()
+  const dropdown = root.value?.querySelector<HTMLElement>('.crs-select__menu')
+  if (!control || !dropdown) return
+  const bounds = dropdown.getBoundingClientRect()
+  const gap = Math.max(0, menuAbove.value ? control.top - bounds.bottom : bounds.top - control.bottom)
+  const height = bounds.height
+  menuAbove.value = control.bottom + gap + height > window.innerHeight && control.top >= height + gap
+}
+watch(open, positionMenu)
+onMounted(() => { document.addEventListener('pointerdown', close); window.addEventListener('resize', positionMenu) })
+onBeforeUnmount(() => { document.removeEventListener('pointerdown', close); window.removeEventListener('resize', positionMenu) })
 </script>
 
 <template>
-  <div ref="root" class="crs-field crs-select" :class="`crs-select--${appearance}`">
+  <div ref="root" class="crs-field crs-select" :class="[`crs-select--${appearance}`, { 'crs-select--menu-above': menuAbove }]">
     <span v-if="label" :id="labelId" class="crs-field__label">{{ label }}</span>
     <button :id="fieldId" ref="trigger" class="crs-select__trigger crs-control" :class="`crs-select__trigger--${size}`" type="button" :disabled="disabled" :aria-label="ariaLabel" :aria-labelledby="labelledBy" :aria-describedby="describedBy" :aria-expanded="open" :aria-invalid="Boolean(error)" @click="open = !open" @keydown="onTriggerKeydown">
       <span :id="valueId" :class="{ placeholder: !selectedLabel }">{{ selectedLabel || placeholder }}</span>
@@ -54,6 +67,7 @@ onBeforeUnmount(() => document.removeEventListener('pointerdown', close))
 .crs-select__trigger[aria-expanded="true"]{border-color:var(--crs-black-850)}
 .crs-select__trigger[aria-expanded="true"]>.crs-select__chevron{transform:rotate(180deg)}
 .crs-select__menu{position:absolute;z-index:var(--crs-z-dropdown);top:calc(100% + var(--crs-space-4));left:0}
+.crs-select--menu-above .crs-select__menu{top:auto;bottom:calc(100% + var(--crs-space-4))}
 .crs-select--bare{width:100%;min-width:0;max-width:100%;height:var(--crs-size-40);gap:0}
 .crs-select--bare .crs-select__trigger{box-sizing:border-box;width:100%;min-width:0;max-width:100%;height:var(--crs-size-40);overflow:hidden;border:0;background:transparent;padding:0}
 </style>

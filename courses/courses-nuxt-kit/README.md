@@ -27,6 +27,12 @@ The default width remains unchanged.
 
 ## Development
 
+The unreleased canonical dependency recipe uses Vue 3.5.43, matching Nuxt 4.5.2's
+runtime. Mixing the former direct Vue 3.5.21 with Nuxt's newer runtime omitted
+the initially open PriceSheet chevron during SSR. Install with the pinned lockfile;
+do not independently downgrade Vue. Published 1.4.1 still has its original recipe;
+this fix needs a new release and does not update installed consumer projects.
+
 ```bash
 pnpm install
 pnpm dev
@@ -133,6 +139,16 @@ pnpm run test:visual
 ```
 
 ## Prepare a release archive
+
+### Unreleased footer overflow fix
+
+Social icons wrap within their footer column when a single row does not fit.
+The default preview previously escaped its column at 480–631px and overlapped
+links at narrow tablet widths. Grid structure, link inventory and public API
+are unchanged. Regression coverage includes 14 widths, seven screenshot
+baselines, all configured addresses and keyboard navigation.
+This local fix is not included in the published 1.4.1 archive. Consumer layers
+must not be patched or updated automatically.
 
 ### Version 1.4.1: footer and accessibility
 

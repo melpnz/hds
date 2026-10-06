@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "source": "docs/guide/application-qa.md",
+  "defaultWidths": [320, 480, 768, 1024, 1440],
+  "statuses": ["verified", "issue-found", "not-verified-with-reason", "not-applicable-with-reason"],
+  "methods": ["browser-test", "manual-visual", "source-review"],
+  "checks": [
+    { "id": "repeat-actions", "productContractRequired": true, "allWidths": false },
+    { "id": "reload-and-return", "productContractRequired": true, "allWidths": false },
+    { "id": "write-failure", "productContractRequired": true, "allWidths": false },
+    { "id": "invalid-json", "productContractRequired": true, "allWidths": false },
+    { "id": "missing-fields", "productContractRequired": true, "allWidths": false },
+    { "id": "unsupported-version", "productContractRequired": true, "allWidths": false },
+    { "id": "no-false-success", "productContractRequired": true, "allWidths": false },
+    { "id": "guest-and-populated", "productContractRequired": false, "allWidths": true },
+    { "id": "empty-and-long-content", "productContractRequired": false, "allWidths": true },
+    { "id": "internal-overlaps", "productContractRequired": false, "allWidths": true },
+    { "id": "visual-review", "productContractRequired": false, "allWidths": true },
+    { "id": "public-api-reuse", "productContractRequired": false, "allWidths": false }
+  ],
+  "limitations": [
+    "A valid report is not proof that a test was executed or its evidence is truthful.",
+    "The route inventory must be checked against the actual application; this tool cannot discover omitted routes.",
+    "Source review and a saved screenshot alone do not count as manual visual review.",
+    "Product-specific persistence and status behavior must be agreed, not chosen by this checklist."
+  ]
+}

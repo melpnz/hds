@@ -6,7 +6,8 @@
   "type": "module",
   "scripts": {
     "build": "nuxt build",
-    "check": "pnpm run check:encoding && pnpm run check:breakpoints && pnpm run check:composition && pnpm run check:tokens && pnpm run check:token-usage && pnpm run check:kit-manifest && pnpm run test:version",
+    "check": "pnpm run check:encoding && pnpm run check:breakpoints && pnpm run check:composition && pnpm run check:tokens && pnpm run check:token-usage && pnpm run check:kit-manifest && pnpm run test:version && pnpm run test:consumer:published-policy && pnpm run check:vue-runtime",
+    "check:vue-runtime": "node scripts/check-vue-runtime.mjs",
     "check:encoding": "node scripts/check-encoding.mjs",
     "check:breakpoints": "node scripts/check-breakpoints.mjs",
     "check:composition": "node scripts/check-component-composition.mjs",
@@ -24,6 +25,8 @@
     "test:e2e": "playwright test",
     "test:smoke": "playwright test tests/e2e/catalog.spec.ts",
     "test:consumer": "node scripts/test-minimal-consumer.mjs",
+    "test:consumer:published": "node ../../tools/test-courses-published-consumer.mjs",
+    "test:consumer:published-policy": "node ../../tools/test-courses-published-consumer-policy.mjs",
     "test:version": "node scripts/test-kit-version.mjs",
     "test:visual": "playwright test tests/e2e/visual.spec.ts",
     "test:visual:update": "playwright test tests/e2e/visual.spec.ts --update-snapshots",
@@ -35,7 +38,7 @@
     "nuxt": "4.5.2",
     "swiper": "14.3.0",
     "tailwindcss": "4.3.3",
-    "vue": "3.5.21",
+    "vue": "3.5.43",
     "vue-router": "4.5.1"
   },
   "devDependencies": {

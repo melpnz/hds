@@ -1,0 +1,45 @@
+name: Courses UI Kit - published ZIP consumer
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Published stable version or Courses release tag; empty uses the guide version'
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  published-consumer:
+    if: github.event_name == 'workflow_dispatch' || startsWith(github.event.release.tag_name, 'courses-nuxt-kit-v')
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      # Test harness comes from the default branch; tested layer comes only from the release ZIP.
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          ref: ${{ github.event.repository.default_branch }}
+          persist-credentials: false
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
+        with:
+          node-version: 24
+      - name: Enable pnpm
+        run: npm install --global pnpm@10.33.2
+      - name: Verify test safety policy
+        run: node tools/test-courses-published-consumer-policy.mjs
+      - name: Install and build the published ZIP in a clean consumer
+        env:
+          COURSES_RELEASE_TAG: ${{ github.event.release.tag_name || inputs.tag }}
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node tools/test-courses-published-consumer.mjs
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: always()
+        with:
+          name: courses-published-consumer-${{ github.run_id }}
+          path: courses/courses-nuxt-kit/test-results/published-consumer/report.json
+          if-no-files-found: warn
+          retention-days: 3

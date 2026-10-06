@@ -2,13 +2,38 @@
 import { readFile, writeFile } from 'node:fs/promises'
 import { resolve, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
+import assert from 'node:assert/strict'
+
+export const acceptedDecisionStatuses = new Set(['implemented-local', 'implemented-published', 'approved-page-composition'])
+
+// Publication applies to the recorded decision, not every later local change.
+export function validateOwnerDecisionMetadata(decisions) {
+  for (const decision of decisions) {
+    if (decision.status !== 'implemented-published') {
+      assert(!decision.includedInRelease, `${decision.id}: release metadata requires implemented-published`)
+      continue
+    }
+    const release = decision.includedInRelease
+    assert(release, `${decision.id}: published decision requires release metadata`)
+    assert(/^\d+\.\d+\.\d+$/.test(release.providerVersion), `${decision.id}: invalid release version`)
+    assert.equal(release.releaseTag, `courses-nuxt-kit-v${release.providerVersion}`, `${decision.id}: release tag/version mismatch`)
+    assert(Array.isArray(release.artifacts) && release.artifacts.length > 0 &&
+      release.artifacts.every(artifact => ['layer', 'catalog'].includes(artifact)) &&
+      new Set(release.artifacts).size === release.artifacts.length, `${decision.id}: invalid release artifacts`)
+    if (decision.component) assert(release.artifacts.includes('layer'), `${decision.id}: component publication requires layer`)
+    if (decision.pages?.length) assert(release.artifacts.includes('catalog'), `${decision.id}: page publication requires catalog`)
+    assert(!/не\s*опубликован|not\s+(?:yet\s+)?published|unpublished/iu.test(decision.rule), `${decision.id}: published rule claims it is unpublished`)
+  }
+}
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 export async function syncPageAnalysisMetadata(checkOnly = false) {
   const read = async path => JSON.parse(await readFile(resolve(root, path), 'utf8'))
   const source = await read('machine/page-analysis/source.json')
+  validateOwnerDecisionMetadata(source.ownerDecisions)
+  assert(typeof source.providerChanges === 'string' && source.providerChanges.trim(), 'source.providerChanges is required')
   const atlas = await read('machine/page-analysis/atlas.json')
-  const accepted = new Set(source.ownerDecisions.filter(item => ['implemented-local', 'approved-page-composition'].includes(item.status)).map(item => item.id))
+  const accepted = new Set(source.ownerDecisions.filter(item => acceptedDecisionStatuses.has(item.status)).map(item => item.id))
   const metadata = definition => ({
     ...definition,
     approvalGaps: definition.approvalGaps.filter(id => !accepted.has(id)),
@@ -24,7 +49,7 @@ export async function syncPageAnalysisMetadata(checkOnly = false) {
   atlas.ownerDecisions = source.ownerDecisions
   atlas.rules = source.rules
   atlas.limits = source.limits
-  atlas.providerChanges = 'All 12 component pages accepted on 2026-10-05; local kit changes are not yet published. Production measurements remain unchanged.'
+  atlas.providerChanges = source.providerChanges
   for (const definition of source.pages) {
     const entry = atlas.pages.find(page => page.id === definition.id)
     if (!entry) throw new Error(`Missing atlas page ${definition.id}`)

@@ -5,12 +5,13 @@ import { readFile, writeFile, mkdir, readdir } from 'node:fs/promises'
 import { createHash } from 'node:crypto'
 import { resolve, dirname, extname } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import { syncPageAnalysisMetadata } from './sync-page-analysis-metadata.mjs'
+import { syncPageAnalysisMetadata, acceptedDecisionStatuses, validateOwnerDecisionMetadata } from './sync-page-analysis-metadata.mjs'
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 const input = resolve(root, '../.audits/courses-responsive-2026-10-01')
 const destination = resolve(root, 'evidence/production-responsive-2026-10-01')
 const source = JSON.parse(await readFile(resolve(root, 'machine/page-analysis/source.json'), 'utf8'))
+validateOwnerDecisionMetadata(source.ownerDecisions)
 const assets = new Map()
 const failures = []
 await mkdir(resolve(destination, 'assets'), { recursive: true })
@@ -159,7 +160,7 @@ try {
           grids: capture.nodes.filter(n=>n.rect.height>0 && /(?:^| )grid-cols-4(?: |$)/.test(n.classes)).map(n=>({classes:n.classes,columns:n.css.gridTemplateColumns,gap:n.css.gap})),overflow:capture.document.width-width})
       } catch (error) { if (error.code !== 'ENOENT') throw error }
     }
-    const accepted = new Set((source.ownerDecisions || []).filter(d=>['implemented-local','approved-page-composition'].includes(d.status)).map(d=>d.id))
+    const accepted = new Set((source.ownerDecisions || []).filter(d=>acceptedDecisionStatuses.has(d.status)).map(d=>d.id))
     contracts.push({ ...definition, approvalGaps:definition.approvalGaps.filter(id=>!accepted.has(id)), ownerDecisions:(source.ownerDecisions || []).filter(d=>definition.approvalGaps.includes(d.id) || d.pages?.includes(definition.id)), reference: `evidence/production-responsive-2026-10-01/${definition.id}/index.html`, measurements: samples, boundaryMeasurements:boundaries })
     console.log(`BUILT ${definition.id}: ${samples.length} measurements, 3 responsive DOM families`)
   }
@@ -169,7 +170,7 @@ for (const result of assets.values()) manifest.push(await result)
 await writeFile(resolve(destination,'assets/manifest.json'),JSON.stringify({generatedBy:'tools/build-production-page-atlas.mjs',assets:manifest},null,2)+'\n')
 await mkdir(resolve(root,'machine/page-analysis/pages'),{recursive:true})
 for(const page of contracts) await writeFile(resolve(root,`machine/page-analysis/pages/${page.id}.json`),JSON.stringify(page,null,2)+'\n')
-await writeFile(resolve(root,'machine/page-analysis/atlas.json'),JSON.stringify({ schemaVersion:1, generatedBy:'tools/build-production-page-atlas.mjs', authority:'production', scope:'public-guest', evidenceRoot:'evidence/production-responsive-2026-10-01', capturedOn:'2026-10-01', providerChanges:'local approved CardGrid, ordinary/advertising Carousel, responsive PersonHeader, ReviewCard variants, PromoCard actions/states and SiteHeader category context; three optional page compositions remain', ownerDecisions:source.ownerDecisions || [], widths:source.widths, previewWidths:source.previewWidths, rules:source.rules, pages:contracts.map(({measurements,boundaryMeasurements,...page})=>({...page,file:`machine/page-analysis/pages/${page.id}.json`})), limits:source.limits },null,2)+'\n')
+await writeFile(resolve(root,'machine/page-analysis/atlas.json'),JSON.stringify({ schemaVersion:1, generatedBy:'tools/build-production-page-atlas.mjs', authority:'production', scope:'public-guest', evidenceRoot:'evidence/production-responsive-2026-10-01', capturedOn:'2026-10-01', providerChanges:source.providerChanges, ownerDecisions:source.ownerDecisions || [], widths:source.widths, previewWidths:source.previewWidths, rules:source.rules, pages:contracts.map(({measurements,boundaryMeasurements,...page})=>({...page,file:`machine/page-analysis/pages/${page.id}.json`})), limits:source.limits },null,2)+'\n')
 const report = ['# Замеры адаптивных страниц Хабр Курсов','',
   'Срез 1 октября 2026 года. Генерируется `tools/build-production-page-atlas.mjs` из гостевых captures. Это evidence, а не API UI Kit. Геометрия в CSS px; координаты относительно верхнего края документа после возврата наверх.', '',
   'Контрольные ширины: '+source.widths.join(', ')+'. Отдельные граничные замеры: 767 и 1023 для шести представителей семейств.', '',

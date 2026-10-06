@@ -160,7 +160,7 @@ jobs:
         env:
           PLAYWRIGHT_CHANNEL: chromium
           COURSES_TEST_STATIC: '1'
-        run: pnpm exec playwright test tests/e2e/roadmap-regressions.spec.ts tests/e2e/catalog.spec.ts tests/e2e/visual.spec.ts tests/e2e/text-input-accessibility.spec.ts tests/e2e/field-descriptions-accessibility.spec.ts tests/e2e/kit-accessibility.spec.ts tests/e2e/accessibility-visual-comparison.spec.ts tests/e2e/site-footer.spec.ts
+        run: pnpm exec playwright test tests/e2e/roadmap-regressions.spec.ts tests/e2e/catalog.spec.ts tests/e2e/visual.spec.ts tests/e2e/text-input-accessibility.spec.ts tests/e2e/field-descriptions-accessibility.spec.ts tests/e2e/kit-accessibility.spec.ts tests/e2e/accessibility-visual-comparison.spec.ts tests/e2e/site-footer.spec.ts tests/e2e/price-sheet-ssr.spec.ts
       - name: Save tested static catalog for draft release
         if: inputs.release_catalog
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4

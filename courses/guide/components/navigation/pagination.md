@@ -104,3 +104,12 @@
 **Production.** [courses-listing](https://career.habr.com/courses) · [education-centers-listing](https://career.habr.com/education_centers) · [promocodes](https://career.habr.com/education/promocodes) · [schools-for-children](https://career.habr.com/education_centers/shkoly-dlya-detej) — `evidence/source/production/pages/*/dom.html`, `computed.json`.
 
 **Figma.** `education-lib`, компонент `pagination` (`componentKey` `bcc6d796…`); рабочий файл `02_Education-NEW`, узел `9909:29791`.
+
+## Публичный API текущего Kit
+
+`Pagination` получает `total` как число страниц, не число записей, и текущую
+страницу через числовой `v-model` с отсчётом от 1. Приложение само рассчитывает
+число страниц, разбивает данные и синхронизирует router query. Например, 25
+записей при выдаче по 6 дают `total = 5`. Публичного `pageSize` нет.
+Это описание существующего API Kit, не дополнительный production-замер
+и не разрешение применять пагинацию к шагам тренировки со своими статусами.

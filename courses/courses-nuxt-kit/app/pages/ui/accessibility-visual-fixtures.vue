@@ -9,7 +9,10 @@ import SortSheet from '#layers/courses/app/components/SortSheet.vue'
 import MobileMenu from '#layers/courses/app/components/MobileMenu.vue'
 const route = useRoute()
 const pairs = { Chip, MultiSelect, ButtonGroup, Tooltip, DemandChart, PriceSheet, SortSheet, MobileMenu }
-const kind = computed(() => String(route.query.kind) as keyof typeof pairs)
+const kind = computed(() => {
+  const requested = String(route.query.kind || 'Chip')
+  return Object.hasOwn(pairs, requested) ? requested as keyof typeof pairs : 'Chip'
+})
 const component = computed(() => pairs[kind.value])
 const open = ref(route.query.ssr === 'true')
 const values = ref(['js', 'vue'])

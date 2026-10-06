@@ -2,6 +2,15 @@
 
 ## Unreleased
 
+- Select opens its menu above the trigger when it would leave the viewport below
+  and fits above. This fixes inaccessible currency options in the mobile PriceSheet;
+  the default placement, public props and control appearance remain unchanged.
+- The canonical dependency recipe aligns Vue with Nuxt's 3.5.43 runtime, removing
+  the missing server-rendered PriceSheet chevron and hydration mismatch. No icon
+  markup workaround is needed. This dependency fix is not part of published 1.4.1.
+- Added initially open SSR regression fixtures and six no-JavaScript/hydration
+  checks at 320/768/1440, included in the production static CI suite.
+
 ## 1.4.1 — 2026-10-06
 
 Compatible with Courses guide v1.1. Includes the unpublished 1.4.0 candidate below.

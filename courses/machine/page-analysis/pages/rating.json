@@ -30,13 +30,27 @@
   "ownerDecisions": [
     {
       "id": "carousel-loop",
-      "status": "implemented-local",
-      "rule": "Обычные Carousel: loop=true, шаг1, gap12; CourseCard 4/3/1, ArticleCard и ReviewCard 3/2/1. Default loop=false сохраняет конечный режим. Если все карточки помещаются, блок стрелок не рендерится. Swiper внутри кита, живые карточки из slots. Рекламная геометрия описана отдельным решением banner-carousel. Доработка пока не опубликована.",
+      "status": "implemented-published",
+      "includedInRelease": {
+        "providerVersion": "1.4.1",
+        "releaseTag": "courses-nuxt-kit-v1.4.1",
+        "artifacts": [
+          "layer"
+        ]
+      },
+      "rule": "Обычные Carousel: loop=true, шаг1, gap12; CourseCard 4/3/1, ArticleCard и ReviewCard 3/2/1. Default loop=false сохраняет конечный режим. Если все карточки помещаются, блок стрелок не рендерится. Swiper внутри кита, живые карточки из slots. Рекламная геометрия описана отдельным решением banner-carousel.",
       "component": "Carousel"
     },
     {
       "id": "hero-search-composition",
-      "status": "implemented-local",
+      "status": "implemented-published",
+      "includedInRelease": {
+        "providerVersion": "1.4.1",
+        "releaseTag": "courses-nuxt-kit-v1.4.1",
+        "artifacts": [
+          "catalog"
+        ]
+      },
       "acceptedOn": "2026-10-05",
       "rule": "PageHero и SearchForm собирают шапку через публичные slots. Единый градиент принадлежит внешней области, без повторного старта. Табам сохраняются отступы. Все dropdown получают options и выбранные значения; fixture-фильтры не являются backend.",
       "pages": [
@@ -48,7 +62,15 @@
     },
     {
       "id": "accepted-shared-layout",
-      "status": "implemented-local",
+      "status": "implemented-published",
+      "includedInRelease": {
+        "providerVersion": "1.4.1",
+        "releaseTag": "courses-nuxt-kit-v1.4.1",
+        "artifacts": [
+          "layer",
+          "catalog"
+        ]
+      },
       "acceptedOn": "2026-10-05",
       "rule": "RatingTable: длинный текст увеличивает высоту с сохранением padding; все колонки доступны локальным скроллом на320. После последнего NumberedCourseItem нет линии; подборка рейтинга в каталоге содержит10 школ. SchoolCard: название максимум3 строки, кнопка внизу. Carousel: карточка заполняет слайд, стрелки центрируются без учёта пагинации. Подборки используют общий LinkGrid и соответствующие разделу данные.",
       "pages": [
