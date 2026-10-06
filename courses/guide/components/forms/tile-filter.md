@@ -1,6 +1,6 @@
 # TileFilter · BaseFilterWithImage
 
-> Текущая реализация: [API UI Kit 1.4.0](../../../machine/providers/courses-nuxt-kit/tile-filter.json).
+> Текущая реализация: [API UI Kit 1.4.1](../../../machine/providers/courses-nuxt-kit/tile-filter.json).
 > DOM/CSS, снимки и дроби вхождений ниже — историческое evidence, не исходники кита.
 > Для сборки страниц применяйте [принятые правила](../../../docs/guide/production-pages.md).
 

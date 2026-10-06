@@ -2,9 +2,18 @@
 
 ## Unreleased
 
+## 1.4.1 — 2026-10-06
+
+Compatible with Courses guide v1.1. Includes the unpublished 1.4.0 candidate below.
+
+- Footer geometry checks wait for styles and fonts before comparing variants;
+  the initial CI failure was an unstyled-page measurement, not a component change.
+- The 1.4.0 candidate tag is preserved without publishing or overwriting it.
+
 ## 1.4.0 — 2026-10-06
 
-Compatible with Courses guide v1.1. Backward-compatible public API additions.
+Compatible with Courses guide v1.1. Unpublished candidate; see 1.4.1.
+Backward-compatible public API additions.
 
 - SiteFooter supports configuring existing links without replacing the shared footer.
 - TextInput, Textarea, Select and MultiSelect expose labels and reactive error/hint

@@ -1,6 +1,6 @@
 # Modal
 
-> Текущая реализация: [API UI Kit 1.4.0](../../../machine/providers/courses-nuxt-kit/modal.json).
+> Текущая реализация: [API UI Kit 1.4.1](../../../machine/providers/courses-nuxt-kit/modal.json).
 > DOM/CSS, снимки и дроби вхождений ниже — историческое evidence, не исходники кита.
 > Для сборки страниц применяйте [принятые правила](../../../docs/guide/production-pages.md).
 
@@ -12,7 +12,7 @@
 
 Базовая модальная оболочка для содержимого, требующего отдельного контекста, подтверждения или отмены. Доменный контент передаётся через слоты; например, [PromoCodeModal](promo-code-modal.md) — частный сценарий этого компонента.
 
-## Текущий API UI Kit 1.4.0
+## Текущий API UI Kit 1.4.1
 
 Открытие управляется `v-model`; props — `title`, `description`, `image`,
 `imageAlt`, `scrollable`. Слоты: `trigger`, default body и `footer`.

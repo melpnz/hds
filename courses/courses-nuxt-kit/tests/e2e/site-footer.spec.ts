@@ -14,6 +14,9 @@ for (const width of [320, 480, 768, 1024, 1440]) {
     await page.setViewportSize({ width, height: 900 })
     await page.goto(preview)
     const footer = page.locator('footer')
+    await expect(footer.locator('a')).toHaveCount(17)
+    await page.evaluate(() => document.fonts.ready)
+    await expect.poll(() => footer.evaluate(element => getComputedStyle(element.firstElementChild!).display)).toBe('grid')
     const before = await footer.evaluate(element => ({
       text: element.textContent,
       height: element.getBoundingClientRect().height,
@@ -27,6 +30,7 @@ for (const width of [320, 480, 768, 1024, 1440]) {
     await page.goto(`${preview}&variant=configured`)
     await expect(footer.getByRole('link', { name: 'Хабр', exact: true })).toHaveAttribute('href', expectedHrefs[0])
     await page.evaluate(() => document.fonts.ready)
+    await expect.poll(() => footer.evaluate(element => getComputedStyle(element.firstElementChild!).display)).toBe('grid')
     expect(await footer.locator('a').evaluateAll(links => links.map(a => a.getAttribute('href')))).toEqual(expectedHrefs)
     const after = await footer.evaluate(element => ({
       text: element.textContent,
