@@ -1,6 +1,6 @@
 # PromoCodeModal
 
-> Текущая реализация: [API UI Kit 1.4.1](../../../machine/providers/courses-nuxt-kit/promo-code-modal.json).
+> Текущая реализация: [API UI Kit 1.4.3](../../../machine/providers/courses-nuxt-kit/promo-code-modal.json).
 > DOM/CSS, снимки и дроби вхождений ниже — историческое evidence, не исходники кита.
 > Для сборки страниц применяйте [принятые правила](../../../docs/guide/production-pages.md).
 

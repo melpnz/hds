@@ -1,6 +1,6 @@
 # Link
 
-> Текущая реализация: [API UI Kit 1.4.1](../../../machine/providers/courses-nuxt-kit/link.json).
+> Текущая реализация: [API UI Kit 1.4.3](../../../machine/providers/courses-nuxt-kit/link.json).
 > DOM/CSS, снимки и дроби вхождений ниже — историческое evidence, не исходники кита.
 > Для сборки страниц применяйте [принятые правила](../../../docs/guide/production-pages.md).
 

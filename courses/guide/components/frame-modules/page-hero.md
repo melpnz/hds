@@ -1,6 +1,6 @@
 # PageHero
 
-> Текущая реализация: [API UI Kit 1.4.1](../../../machine/providers/courses-nuxt-kit/page-hero.json).
+> Текущая реализация: [API UI Kit 1.4.3](../../../machine/providers/courses-nuxt-kit/page-hero.json).
 > DOM/CSS, снимки и дроби вхождений ниже — историческое evidence, не исходники кита.
 > Для сборки страниц применяйте [принятые правила](../../../docs/guide/production-pages.md).
 

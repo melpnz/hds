@@ -7,7 +7,7 @@
 Изменение входит в Kit 1.4.1 и не обновляет
 установленные копии. CSS компонентов не изменён.
 
-> Текущая реализация: [API UI Kit 1.4.1](../../../machine/providers/courses-nuxt-kit/tooltip.json).
+> Текущая реализация: [API UI Kit 1.4.3](../../../machine/providers/courses-nuxt-kit/tooltip.json).
 > DOM/CSS, снимки и дроби вхождений ниже — историческое evidence, не исходники кита.
 > Для сборки страниц применяйте [принятые правила](../../../docs/guide/production-pages.md).
 

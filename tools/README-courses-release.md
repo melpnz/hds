@@ -39,7 +39,9 @@ GitHub проверяет выбранную версию, собирает ар
 По умолчанию проверяется опубликованная версия из `courses/machine/consumer-workflow.json`.
 Для другой версии: `node tools/test-courses-published-consumer.mjs 1.4.1`.
 Из пакета Kit доступна команда `pnpm test:consumer:published`.
-Нужны Node 24, pnpm 10.33.2, tar и доступ к GitHub и реестру зависимостей.
+Нужны Node 24, pnpm 10.33.2 и доступ к GitHub и реестру зависимостей.
+Для ZIP используется встроенный Windows tar или bsdtar на Linux/macOS;
+в Ubuntu пакет `libarchive-tools` устанавливается самим workflow.
 
 Тест скачивает ZIP и SHA-256 именно из опубликованного стабильного релиза,
 проверяет контрольную сумму, безопасные пути и integrity слоя. Затем создаёт

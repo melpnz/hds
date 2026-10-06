@@ -19,7 +19,7 @@
     "checksumAlgorithm": "sha256",
     "copiedDirectory": "layers/courses",
     "networkPolicy": "no-runtime-build-or-dev-requests",
-    "availability": "prepared-not-published"
+    "availability": "published"
   },
   "preflight": {
     "frameworkDetection": "Inspect the target repository; apply the provider installation only to a Nuxt project.",
@@ -30,6 +30,14 @@
     "ifGitHubIsUnavailable": "Report that the pinned kit cannot be downloaded. Do not recreate provider components from screenshots or static examples."
   },
   "installation": {
+    "dependencyRecipe": {
+      "source": "manifest.source.commitSha",
+      "packageUrlTemplate": "https://raw.githubusercontent.com/melpnz/hds/{source.commitSha}/courses/courses-nuxt-kit/package.json",
+      "lockUrlTemplate": "https://raw.githubusercontent.com/melpnz/hds/{source.commitSha}/courses/courses-nuxt-kit/pnpm-lock.yaml",
+      "newProject": "Use the pinned dependency versions from the released source, not latest or main; the complete lockfile is suitable only when dependency groups match the recipe.",
+      "existingProject": "Merge required compatible dependencies without overwriting unrelated package or lock configuration; resolve conflicts explicitly before changing them.",
+      "vueRuntime": "For this release use Vue 3.5.43 with Nuxt 4.5.2; application and Nuxt must resolve the same Vue runtime version."
+    },
     "requiredWhen": "A Courses service-interface implementation is requested in a Nuxt project and layers/courses is absent.",
     "steps": [
       "download archiveUrl and checksumUrl",
