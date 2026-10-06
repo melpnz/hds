@@ -19,6 +19,9 @@ const props = withDefaults(defineProps<{
   trailingActionLabel?: string
   appearance?: 'default' | 'bare'
 }>(), { type: 'text', size: 'm', state: 'default', appearance: 'default' })
+const errorId = `${inputId}-error`
+const hintId = `${inputId}-hint`
+const describedBy = computed(() => props.error ? errorId : props.hint ? hintId : undefined)
 const emit = defineEmits<{ leadingAction: []; trailingAction: [] }>()
 </script>
 
@@ -34,11 +37,11 @@ const emit = defineEmits<{ leadingAction: []; trailingAction: [] }>()
       :data-state="state"
     >
       <span v-if="$slots.leading || leadingIcon" class="crs-input-wrap__icon"><slot name="leading"><IconButton v-if="leadingIcon && leadingActionLabel" :label="leadingActionLabel" :icon="leadingIcon" variant="ghost" size="s" :icon-size="24" tone="muted" hover="none" :disabled="disabled" @click="emit('leadingAction')" /><UIcon v-else-if="leadingIcon" class="crs-input-wrap__icon-glyph" :name="leadingIcon" aria-hidden="true" /></slot></span>
-      <input :id="inputId" v-model="model" class="crs-input" :type="type" :inputmode="inputmode" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" :aria-label="ariaLabel" :aria-invalid="Boolean(error)">
+      <input :id="inputId" v-model="model" class="crs-input" :type="type" :inputmode="inputmode" :placeholder="placeholder" :disabled="disabled" :readonly="readonly" :aria-label="ariaLabel" :aria-invalid="Boolean(error)" :aria-describedby="describedBy">
       <span v-if="$slots.trailing || trailingIcon" class="crs-input-wrap__icon"><slot name="trailing"><IconButton v-if="trailingIcon && trailingActionLabel" :label="trailingActionLabel" :icon="trailingIcon" variant="ghost" size="s" :icon-size="24" tone="muted" hover="none" :disabled="disabled" @click="emit('trailingAction')" /><UIcon v-else-if="trailingIcon" class="crs-input-wrap__icon-glyph" :name="trailingIcon" aria-hidden="true" /></slot></span>
     </span>
-    <span v-if="error" class="crs-field__error">{{ error }}</span>
-    <span v-else-if="hint" class="crs-field__hint">{{ hint }}</span>
+    <span v-if="error" :id="errorId" class="crs-field__error">{{ error }}</span>
+    <span v-else-if="hint" :id="hintId" class="crs-field__hint">{{ hint }}</span>
   </div>
 </template>
 

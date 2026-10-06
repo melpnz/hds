@@ -22,6 +22,8 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       routes: [
+        '/ui/accessibility-fixtures',
+        '/ui/accessibility-visual-fixtures',
         '/ui/pages/courses-listing',
         '/ui/pages/course-category',
         '/ui/pages/education-centers-listing',

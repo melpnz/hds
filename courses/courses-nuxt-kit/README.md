@@ -134,6 +134,41 @@ pnpm run test:visual
 
 ## Prepare a release archive
 
+### Version 1.4.0: footer and accessibility
+
+`SiteFooter` accepts `linkHrefs`, a partial map of the fixed link IDs:
+`habr`, `qna`, `career`, `courses`, `schools`, `rating`, `promocodes`,
+`agreement`, `terms`, `sitemap`, `twitter`, `facebook`, `vk`, `instagram`,
+`telegram`, `telegramBot`, `copyright`. Labels, order and layout remain unchanged.
+Omitted IDs retain the demo `#`; working services must configure all addresses.
+This addition is included in version 1.4.0, not the earlier 1.3.1 archive.
+Replacing the shared footer requires separate user confirmation even when a task
+requests it. Configuring existing addresses is not a footer replacement.
+
+In 1.4.0: `TextInput` links its input to the visible error or hint through
+`aria-describedby`, with unique IDs and reactive updates. Its public props and
+visual appearance are unchanged.
+
+In 1.4.0: `Textarea` and `Select` associate their visible hints/errors
+through unique `aria-describedby` references. Textarea has an explicit label;
+Select exposes its visible label and current value, preserving explicit
+`ariaLabel` priority. No public props or CSS were changed. Regression tests cover
+reactive descriptions, unique IDs, accessible names and Select keyboard selection.
+
+In 1.4.0: MultiSelect label/error/list associations, descriptive Chip
+removal names (`removeLabel` override), tab keyboard navigation and optional
+`items[].id`/`panelId` links, Tooltip descriptions on the actual focus target and
+Escape dismissal, textual chart values, and shared focus management for
+PriceSheet/SortSheet/MobileMenu (including nested sheets). All eight component
+style blocks are unchanged. Forty pre-change image baselines cover five widths;
+new keyboard and accessibility tests cover the interactions separately.
+
+Sheet teleport targets use Nuxt's SSR-supported `#teleports` container; see
+[Nuxt Teleport documentation](https://nuxt.com/docs/4.x/api/components/teleports).
+This does not claim to resolve the pre-existing initial-open SSR icon hydration
+warning reproduced in both the old and new PriceSheet; follow-up is in the guide roadmap.
+
+
 After committing a version and binding its manifest to the source revision, run:
 
 ```bash

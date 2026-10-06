@@ -2,9 +2,18 @@
 import type { CoursesRegistryEntry } from '#layers/courses/app/data/coursesRegistry'
 import { defineAsyncComponent, type Component } from 'vue'
 
-const props = withDefaults(defineProps<{ entry: CoursesRegistryEntry; siteHeaderVariant?: string }>(), {
+const props = withDefaults(defineProps<{ entry: CoursesRegistryEntry; siteHeaderVariant?: string; siteFooterVariant?: string; textInputVariant?: string; fieldDescriptionVariant?: string }>(), {
   siteHeaderVariant: 'listing-hero'
 })
+const descriptionDemoValue = ref('error')
+const fieldDescriptionOptions = [{ label: 'Ошибка', value: 'error' }, { label: 'Подсказка', value: 'hint' }, { label: 'Без описания', value: 'none' }]
+const footerDemoHrefs = computed(() => props.siteFooterVariant === 'configured' ? {
+  habr:'https://habr.com/',qna:'https://qna.habr.com/',career:'https://career.habr.com/',courses:'/ui',
+  schools:'/ui/pages',rating:'/ui?footer=rating',promocodes:'/ui?footer=promocodes',agreement:'/ui?footer=agreement',
+  terms:'/ui?footer=terms',sitemap:'/ui?footer=sitemap',twitter:'https://example.com/twitter',facebook:'https://example.com/facebook',
+  vk:'https://example.com/vk',instagram:'https://example.com/instagram',telegram:'https://example.com/telegram',
+  telegramBot:'https://example.com/bot',copyright:'https://company.habr.com/'
+} : props.siteFooterVariant === 'partial' ? { schools: '/ui/pages' } : undefined)
 const isInitiallyOpen = (id: string) => ['filter-modal', 'catalog-menu', 'header-dropdown', 'modal', 'price-sheet', 'promo-code-modal'].includes(id)
 const overlayOpen = ref(isInitiallyOpen(props.entry.id))
 const componentModules = import.meta.glob('../../layers/courses/app/components/*.vue') as Record<string, () => Promise<{ default: Component }>>
@@ -120,7 +129,11 @@ onMounted(() => { overlayOpen.value = isInitiallyOpen(props.entry.id) })
       </div>
     </template>
     <template v-else-if="entry.id === 'text-input'">
-      <div class="field-guide">
+      <div v-if="textInputVariant === 'descriptions'" class="field-guide">
+        <TextInput v-model="descriptionDemoValue" label="Динамическое поле" :error="descriptionDemoValue === 'error' ? 'Проверьте значение' : undefined" :hint="descriptionDemoValue !== 'none' ? 'Подсказка к полю' : undefined" />
+        <TextInput label="Второе поле" hint="Другая подсказка" />
+      </div>
+      <div v-else class="field-guide">
         <section><h2>Размеры</h2><div class="field-sizes"><label><small>M · 40 px</small><TextInput placeholder="Введите значение" aria-label="M" /></label><label><small>XL · 56 px</small><TextInput size="xl" placeholder="Введите значение" aria-label="XL" /></label></div></section>
         <section><h2>Варианты</h2><div class="field-sizes"><TextInput label="С подписью" placeholder="Введите значение" hint="Необязательное поле" /><TextInput label="Иконка слева" placeholder="Поиск" leading-icon="i-tabler-search" /><TextInput label="Иконка справа" model-value="Текст" trailing-icon="i-tabler-circle-check" /><TextInput label="Иконки с двух сторон" placeholder="Найти" leading-icon="i-tabler-search" trailing-icon="i-tabler-x" /><TextInput v-model="textInputActionValue" label="Кликабельная иконка" trailing-icon="i-tabler-x" trailing-action-label="Очистить поле" @trailing-action="textInputActionValue = ''" /><TextInput label="С ошибкой" model-value="Некорректный текст" error="Проверьте значение" /><TextInput label="Только чтение" model-value="Готовое значение" readonly /></div></section>
       </div>
@@ -183,7 +196,19 @@ onMounted(() => { overlayOpen.value = isInitiallyOpen(props.entry.id) })
       </OptionList>
     </template>
     <template v-else-if="entry.id === 'textarea'">
-      <div class="field-guide"><section><h2>Варианты</h2><div class="field-sizes"><Textarea label="Пустое" placeholder="Введите текст" hint="Подсказка" /><Textarea label="Заполненное" model-value="Текст в несколько строк" /><Textarea label="С ошибкой" error="Проверьте значение" model-value="Некорректный текст" /><Textarea label="Только чтение" readonly model-value="Готовый текст" /></div></section></div>
+      <div v-if="fieldDescriptionVariant === 'descriptions'" class="field-guide">
+        <Textarea v-model="descriptionDemoValue" label="Динамическое поле" :error="descriptionDemoValue === 'error' ? 'Проверьте значение' : undefined" :hint="descriptionDemoValue !== 'none' ? 'Подсказка к полю' : undefined" />
+        <Textarea label="Второе поле" hint="Другая подсказка" />
+      </div>
+      <div v-else class="field-guide"><section><h2>Варианты</h2><div class="field-sizes"><Textarea label="Пустое" placeholder="Введите текст" hint="Подсказка" /><Textarea label="Заполненное" model-value="Текст в несколько строк" /><Textarea label="С ошибкой" error="Проверьте значение" model-value="Некорректный текст" /><Textarea label="Только чтение" readonly model-value="Готовый текст" /></div></section></div>
+    </template>
+    <template v-else-if="entry.id === 'select' && fieldDescriptionVariant === 'descriptions'">
+      <div class="field-guide">
+        <Select v-model="descriptionDemoValue" label="Динамическое поле" :options="fieldDescriptionOptions" :error="descriptionDemoValue === 'error' ? 'Проверьте значение' : undefined" :hint="descriptionDemoValue !== 'none' ? 'Подсказка к полю' : undefined" />
+        <Select label="Второе поле" hint="Другая подсказка" :options="fieldDescriptionOptions" />
+        <Select label="Видимая подпись" aria-label="Явное имя" :options="fieldDescriptionOptions" />
+        <Select :options="fieldDescriptionOptions" placeholder="Без подписи" />
+      </div>
     </template>
     <template v-else-if="entry.id === 'chip'">
       <div class="variant-guide"><h2>Варианты Chip</h2><div class="demo-row"><Chip tone="neutral">Нейтральный</Chip><Chip tone="surface">На поверхности</Chip><Chip tone="blue">Информация</Chip><Chip tone="green">Успешно</Chip><Chip tone="orange-soft">Средний уровень</Chip><Chip tone="red">Сложный уровень</Chip><Chip tone="orange">Партнёрский</Chip><Chip tone="orange" size="s">Компактный</Chip><Chip variant="counter">+12</Chip><Chip removable>С удалением</Chip></div></div>
@@ -311,7 +336,7 @@ onMounted(() => { overlayOpen.value = isInitiallyOpen(props.entry.id) })
       <div class="demo-wide"><SiteHeader v-bind="siteHeaderProps" /></div>
     </template>
     <template v-else-if="entry.id === 'site-footer'">
-      <div class="demo-wide"><SiteFooter /></div>
+      <div class="demo-wide"><SiteFooter :link-hrefs="footerDemoHrefs" /></div>
     </template>
     <template v-else-if="entry.id === 'page-hero'">
       <div class="demo-wide"><PageHero title="Образовательные организации в России"><template #title>Образовательные<br>организации в России</template><template #switcher><ButtonGroup model-value="adult" variant="hero" label="Аудитория" :items="[{ label: 'Взрослым', value: 'adult' }, { label: 'Детям', value: 'child' }]" /></template><template #search><SearchForm :fields="[{ name: 'organization', placeholder: 'Организация' }, { name: 'topic', placeholder: 'Что изучить?' }, { name: 'type', placeholder: 'Тип' }]" submit-label="Найти организации" /></template></PageHero></div>

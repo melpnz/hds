@@ -2,9 +2,28 @@
 
 ## Unreleased
 
+## 1.4.0 — 2026-10-06
+
+Compatible with Courses guide v1.1. Backward-compatible public API additions.
+
+- SiteFooter supports configuring existing links without replacing the shared footer.
+- TextInput, Textarea, Select and MultiSelect expose labels and reactive error/hint
+  descriptions; removable chips have descriptive accessible names.
+- ButtonGroup tabs support arrow/Home/End navigation and optional panel links.
+- Tooltip describes the actual focus target and supports Escape dismissal;
+  DemandChart exposes labels and values to assistive technology.
+- PriceSheet, SortSheet and MobileMenu manage focus, nested dialogs and Escape,
+  return focus on close and use Nuxt's SSR-supported teleport container.
+- Regression coverage includes keyboard interactions, footer links, field errors
+  and 40 pre-change visual baselines across five widths. Component CSS is unchanged.
+- Guide rules cover composition approval, shared header/footer preservation,
+  state/error decisions and equally thorough prototype/service visual verification.
+- Known follow-up: initial-open PriceSheet SSR icon hydration warnings predate
+  this release; see ROADMAP. Installed product copies are not updated automatically.
+
 ## 1.3.1 — 2026-10-05
 
-Compatible with Courses guide v1.1. Prepared; not published yet.
+Compatible with Courses guide v1.1. Published on GitHub.
 Includes all changes from the unpublished 1.3.0 candidate below.
 
 - Guide validation accepts an absent optional, empty patterns directory in a

@@ -1,6 +1,11 @@
 <script setup lang="ts">
 type Option = { label: string; value: string }
 const model = defineModel<string>({ default: '' })
+const fieldId = useId()
+const labelId = `${fieldId}-label`
+const valueId = `${fieldId}-value`
+const errorId = `${fieldId}-error`
+const hintId = `${fieldId}-hint`
 const props = withDefaults(defineProps<{
   label?: string
   options?: Option[]
@@ -12,6 +17,8 @@ const props = withDefaults(defineProps<{
   size?: 'm' | 'xl'
   appearance?: 'default' | 'bare'
 }>(), { options: () => [], placeholder: 'Выберите', size: 'm', appearance: 'default' })
+const describedBy = computed(() => props.error ? errorId : props.hint ? hintId : undefined)
+const labelledBy = computed(() => props.label && !props.ariaLabel ? `${labelId} ${valueId}` : undefined)
 const open = ref(false)
 const root = ref<HTMLElement>()
 const trigger = ref<HTMLButtonElement>()
@@ -27,14 +34,14 @@ onBeforeUnmount(() => document.removeEventListener('pointerdown', close))
 
 <template>
   <div ref="root" class="crs-field crs-select" :class="`crs-select--${appearance}`">
-    <span v-if="label" class="crs-field__label">{{ label }}</span>
-    <button ref="trigger" class="crs-select__trigger crs-control" :class="`crs-select__trigger--${size}`" type="button" :disabled="disabled" :aria-label="ariaLabel" :aria-expanded="open" :aria-invalid="Boolean(error)" @click="open = !open" @keydown="onTriggerKeydown">
-      <span :class="{ placeholder: !selectedLabel }">{{ selectedLabel || placeholder }}</span>
+    <span v-if="label" :id="labelId" class="crs-field__label">{{ label }}</span>
+    <button :id="fieldId" ref="trigger" class="crs-select__trigger crs-control" :class="`crs-select__trigger--${size}`" type="button" :disabled="disabled" :aria-label="ariaLabel" :aria-labelledby="labelledBy" :aria-describedby="describedBy" :aria-expanded="open" :aria-invalid="Boolean(error)" @click="open = !open" @keydown="onTriggerKeydown">
+      <span :id="valueId" :class="{ placeholder: !selectedLabel }">{{ selectedLabel || placeholder }}</span>
       <UIcon class="crs-select__chevron" name="i-tabler-chevron-down" />
     </button>
     <OptionList v-if="open" ref="menu" v-model="model" class="crs-select__menu" :items="options" selection-mode="single" fluid :label="label || ariaLabel || 'Варианты'" @select="finishSelection" @escape="closeFromKeyboard" />
-    <span v-if="error" class="crs-field__error">{{ error }}</span>
-    <span v-else-if="hint" class="crs-field__hint">{{ hint }}</span>
+    <span v-if="error" :id="errorId" class="crs-field__error">{{ error }}</span>
+    <span v-else-if="hint" :id="hintId" class="crs-field__hint">{{ hint }}</span>
   </div>
 </template>
 

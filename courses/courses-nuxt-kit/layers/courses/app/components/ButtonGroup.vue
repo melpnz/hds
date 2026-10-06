@@ -1,8 +1,7 @@
 <script setup lang="ts">
-type Item = { label: string; value: string; disabled?: boolean; loading?: boolean }
 const model = defineModel<string>({ default: '' })
 const props = withDefaults(defineProps<{
-  items?: Item[]
+  items?: { label: string; value: string; disabled?: boolean; loading?: boolean; id?: string; panelId?: string }[]
   label?: string
   variant?: 'light' | 'hero'
   block?: boolean
@@ -11,11 +10,27 @@ const props = withDefaults(defineProps<{
   loading?: boolean
 }>(), { items: () => [], variant: 'light', block: true, tabs: false, density: 'default' })
 const isTabs = computed(() => props.tabs)
+const groupId = useId()
+const root = ref<HTMLElement>()
+const enabled = computed(() => props.items.filter(item => !item.disabled && !item.loading && !props.loading))
+const tabStop = computed(() => enabled.value.find(item => item.value === model.value)?.value ?? enabled.value[0]?.value)
+function onTabKeydown(event: KeyboardEvent) {
+  if (!props.tabs || !['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(event.key)) return
+  const buttons = [...(root.value?.querySelectorAll<HTMLButtonElement>('[role="tab"]:not(:disabled)') ?? [])]
+  const index = buttons.indexOf(event.target as HTMLButtonElement)
+  if (index < 0) return
+  event.preventDefault()
+  const rtl = getComputedStyle(root.value!).direction === 'rtl'
+  const step = (event.key === 'ArrowRight' ? 1 : -1) * (rtl ? -1 : 1)
+  const next = event.key === 'Home' ? 0 : event.key === 'End' ? buttons.length - 1 : (index + step + buttons.length) % buttons.length
+  buttons[next]?.focus()
+  buttons[next]?.click()
+}
 </script>
 
 <template>
-  <div class="crs-button-group" :class="[`crs-button-group--${variant}`, `crs-button-group--${density}`, { 'crs-button-group--block': block }]" :role="isTabs ? 'tablist' : 'group'" :aria-label="label" :aria-busy="loading || undefined">
-    <button v-for="item in items" :key="item.value" class="crs-button-group__item" :class="{ selected: model === item.value }" type="button" :role="isTabs ? 'tab' : undefined" :disabled="item.disabled || item.loading || loading" :aria-busy="item.loading || loading || undefined" :aria-label="item.loading || loading ? item.label : undefined" :aria-selected="isTabs ? model === item.value : undefined" :aria-pressed="isTabs ? undefined : model === item.value" @click="model = item.value"><span>{{ item.label }}</span><UIcon v-if="item.loading || loading" class="crs-button-group__loader" name="i-tabler-loader-2" aria-hidden="true" /></button>
+  <div ref="root" class="crs-button-group" :class="[`crs-button-group--${variant}`, `crs-button-group--${density}`, { 'crs-button-group--block': block }]" :role="isTabs ? 'tablist' : 'group'" :aria-label="label" :aria-busy="loading || undefined" @keydown="onTabKeydown">
+    <button v-for="(item, index) in items" :key="item.value" :id="isTabs ? item.id || `${groupId}-tab-${index}` : undefined" :aria-controls="isTabs ? item.panelId : undefined" :tabindex="isTabs ? (item.value === tabStop ? 0 : -1) : undefined" class="crs-button-group__item" :class="{ selected: model === item.value }" type="button" :role="isTabs ? 'tab' : undefined" :disabled="item.disabled || item.loading || loading" :aria-busy="item.loading || loading || undefined" :aria-label="item.loading || loading ? item.label : undefined" :aria-selected="isTabs ? model === item.value : undefined" :aria-pressed="isTabs ? undefined : model === item.value" @click="model = item.value"><span>{{ item.label }}</span><UIcon v-if="item.loading || loading" class="crs-button-group__loader" name="i-tabler-loader-2" aria-hidden="true" /></button>
     <slot v-if="!items.length" />
   </div>
 </template>

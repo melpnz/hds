@@ -1,7 +1,8 @@
 <script setup lang="ts">
 type Option = { label: string; value: string }
 const model = defineModel<string[]>({ default: () => [] })
-const props = withDefaults(defineProps<{ label?: string; options?: Option[]; placeholder?: string; disabled?: boolean; error?: string; size?: 'm' | 'xl' }>(), { options: () => [], placeholder: 'Выберите', size: 'm' })
+const fieldId = useId()
+const props = withDefaults(defineProps<{ label?: string; ariaLabel?: string; options?: Option[]; placeholder?: string; disabled?: boolean; error?: string; size?: 'm' | 'xl' }>(), { options: () => [], placeholder: 'Выберите', size: 'm' })
 const open = ref(false)
 const root = ref<HTMLElement>()
 const trigger = ref<HTMLElement>()
@@ -9,6 +10,7 @@ const menu = ref<{ focusFirst: () => void; focusLast: () => void }>()
 const selected = computed(() => props.options.filter(option => model.value.includes(option.value)))
 function close(event: PointerEvent) { if (!root.value?.contains(event.target as Node)) open.value = false }
 function onTriggerKeydown(event: KeyboardEvent) {
+  if (event.target !== event.currentTarget) return
   if (props.disabled) return
   if (['Enter', ' '].includes(event.key)) { event.preventDefault(); open.value = !open.value; return }
   if (!['ArrowDown', 'ArrowUp'].includes(event.key)) return
@@ -17,7 +19,7 @@ function onTriggerKeydown(event: KeyboardEvent) {
   nextTick(() => event.key === 'ArrowDown' ? menu.value?.focusFirst() : menu.value?.focusLast())
 }
 function toggle() { if (!props.disabled) open.value = !open.value }
-function removeOption(value: string) { if (!props.disabled) model.value = model.value.filter(item => item !== value) }
+function removeOption(value: string) { if (!props.disabled) { model.value = model.value.filter(item => item !== value); nextTick(() => trigger.value?.focus()) } }
 function closeFromKeyboard() { open.value=false;nextTick(()=>trigger.value?.focus()) }
 onMounted(() => document.addEventListener('pointerdown', close))
 onBeforeUnmount(() => document.removeEventListener('pointerdown', close))
@@ -25,14 +27,14 @@ onBeforeUnmount(() => document.removeEventListener('pointerdown', close))
 
 <template>
   <div ref="root" class="crs-field crs-multi">
-    <span v-if="label" class="crs-field__label">{{ label }}</span>
-    <div ref="trigger" class="crs-control crs-multi__trigger" :class="`crs-multi__trigger--${size}`" role="combobox" :tabindex="disabled ? -1 : 0" :aria-disabled="disabled || undefined" :aria-expanded="open" :aria-invalid="Boolean(error)" @click="toggle" @keydown="onTriggerKeydown">
+    <span v-if="label" :id="`${fieldId}-label`" class="crs-field__label">{{ label }}</span>
+    <div ref="trigger" class="crs-control crs-multi__trigger" :class="`crs-multi__trigger--${size}`" role="combobox" :tabindex="disabled ? -1 : 0" :aria-label="ariaLabel || (!label ? placeholder : undefined)" :aria-labelledby="label && !ariaLabel ? `${fieldId}-label` : undefined" :aria-controls="open ? `${fieldId}-menu` : undefined" :aria-describedby="error ? `${fieldId}-error` : undefined" aria-haspopup="listbox" :aria-disabled="disabled || undefined" :aria-expanded="open" :aria-invalid="Boolean(error)" @click="toggle" @keydown="onTriggerKeydown">
       <span v-if="!selected.length" class="crs-multi__placeholder">{{ placeholder }}</span>
-      <Chip v-for="option in selected" :key="option.value" class="crs-multi__chip" :removable="!disabled" @remove="removeOption(option.value)">{{ option.label }}</Chip>
+      <Chip v-for="option in selected" :key="option.value" class="crs-multi__chip" :removable="!disabled" :remove-label="`Удалить ${option.label}`" @remove="removeOption(option.value)">{{ option.label }}</Chip>
       <UIcon class="crs-multi__chevron" name="i-tabler-chevron-down" />
     </div>
-    <OptionList v-if="open" ref="menu" v-model="model" class="crs-multi__menu" :items="options" selection-mode="multiple" fluid :label="label || 'Варианты'" @escape="closeFromKeyboard" />
-    <span v-if="error" class="crs-field__error">{{ error }}</span>
+    <OptionList v-if="open" :id="`${fieldId}-menu`" ref="menu" v-model="model" class="crs-multi__menu" :items="options" selection-mode="multiple" fluid :label="label || 'Варианты'" @escape="closeFromKeyboard" />
+    <span v-if="error" :id="`${fieldId}-error`" class="crs-field__error">{{ error }}</span>
   </div>
 </template>
 

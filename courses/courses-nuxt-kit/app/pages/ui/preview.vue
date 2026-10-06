@@ -8,7 +8,7 @@ const siteHeaderVariant = computed(() => String(route.query.variant || 'listing-
 
 <template>
   <main class="isolated-preview">
-    <CoursesCatalogDemo :entry="entry" :site-header-variant="siteHeaderVariant" />
+    <CoursesCatalogDemo :entry="entry" :site-header-variant="siteHeaderVariant" :site-footer-variant="String(route.query.variant || '')" :text-input-variant="String(route.query.variant || '')" :field-description-variant="String(route.query.variant || '')" />
   </main>
 </template>
 

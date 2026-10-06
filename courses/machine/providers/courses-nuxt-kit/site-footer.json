@@ -7,7 +7,7 @@
   },
   "provider": {
     "id": "courses-nuxt-kit",
-    "version": "1.3.1",
+    "version": "1.4.0",
     "type": "nuxt-layer",
     "manifest": "courses-nuxt-kit/layers/courses/courses-kit.manifest.json",
     "tokens": "courses-nuxt-kit/layers/courses/courses-kit.tokens.json"
@@ -39,6 +39,12 @@
     },
     "api": {
       "props": [
+        {
+          "name": "linkHrefs",
+          "type": "Partial<Record<FooterLinkId,string>>",
+          "required": false,
+          "source": "prop"
+        },
         {
           "name": "product",
           "type": "string",

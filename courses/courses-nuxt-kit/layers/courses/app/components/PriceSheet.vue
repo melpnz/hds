@@ -11,18 +11,14 @@ function reset() {
   to.value = ''
 }
 
-function onKeydown(event: KeyboardEvent) {
-  if (event.key === 'Escape') open.value = false
-}
-
-onMounted(() => window.addEventListener('keydown', onKeydown))
-onBeforeUnmount(() => window.removeEventListener('keydown', onKeydown))
+const panel = ref<HTMLElement>()
+useCoursesDialogFocus(open, panel)
 </script>
 
 <template>
-  <Teleport to="body">
+  <Teleport to="#teleports">
     <div v-if="open" class="crs-price-sheet" @click.self="open = false">
-      <section class="crs-price-sheet__panel" role="dialog" aria-modal="true" :aria-label="title">
+      <section ref="panel" tabindex="-1" class="crs-price-sheet__panel" role="dialog" aria-modal="true" :aria-label="title">
         <span class="crs-price-sheet__handle" aria-hidden="true" />
         <h2>{{ title }}</h2>
         <div class="crs-price-sheet__body">

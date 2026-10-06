@@ -1,9 +1,16 @@
 <script setup lang="ts">
+import { Comment, type VNode } from 'vue'
+const slots = useSlots()
+function textContent(nodes: VNode[]): string {
+  return nodes.map(node => node.type === Comment ? '' : typeof node.children === 'string' ? node.children : Array.isArray(node.children) ? textContent(node.children as VNode[]) : '').join(' ').replace(/\s+/g, ' ').trim()
+}
+const chipText = computed(() => textContent(slots.default?.() ?? []))
 withDefaults(defineProps<{
   tone?: 'neutral' | 'surface' | 'blue' | 'brand' | 'green' | 'orange' | 'red' | 'orange-soft'
   variant?: 'default' | 'counter'
   size?: 'xs' | 's' | 'm'
   removable?: boolean
+  removeLabel?: string
   truncate?: boolean
 }>(), { tone: 'neutral', variant: 'default', size: 'm', truncate: false })
 const emit = defineEmits<{ remove: [] }>()
@@ -16,7 +23,7 @@ function remove(event: MouseEvent) {
 <template>
   <span class="crs-chip" :class="[`crs-chip--${tone}`, `crs-chip--${variant}`, `crs-chip--${size}`, { 'crs-chip--removable': removable, 'crs-chip--truncate': truncate }]">
     <slot />
-    <IconButton v-if="removable" class="crs-chip__remove" label="Удалить" icon="i-tabler-x" variant="ghost" size="s" @click="remove" />
+    <IconButton v-if="removable" class="crs-chip__remove" :label="removeLabel || `Удалить ${chipText}`.trim()" icon="i-tabler-x" variant="ghost" size="s" @click="remove" />
   </span>
 </template>
 
