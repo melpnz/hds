@@ -1,13 +1,21 @@
 # Courses Kit changelog
 
-## Unreleased
+## 1.4.2 — 2026-10-06
+
+Compatible with Courses guide v1.1. Public API and visual tokens are unchanged.
+Migration: update the complete layer only with owner approval and use the pinned
+dependency recipe (Vue 3.5.43); do not merge files from different Kit versions.
+
+- SiteFooter wraps social links at intermediate widths without changing icon sizes
+  or the default desktop/mobile composition; 14 geometry widths and seven visual
+  baselines cover the regression.
 
 - Select opens its menu above the trigger when it would leave the viewport below
   and fits above. This fixes inaccessible currency options in the mobile PriceSheet;
   the default placement, public props and control appearance remain unchanged.
 - The canonical dependency recipe aligns Vue with Nuxt's 3.5.43 runtime, removing
   the missing server-rendered PriceSheet chevron and hydration mismatch. No icon
-  markup workaround is needed. This dependency fix is not part of published 1.4.1.
+  markup workaround is needed. The original 1.4.1 remains unchanged.
 - Added initially open SSR regression fixtures and six no-JavaScript/hydration
   checks at 320/768/1440, included in the production static CI suite.
 
