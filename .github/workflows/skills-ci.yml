@@ -1,0 +1,19 @@
+name: Skills
+on:
+  push:
+    paths: ['skills/**', 'tools/*skill*.mjs', '.github/workflows/skills-ci.yml']
+  pull_request:
+    paths: ['skills/**', 'tools/*skill*.mjs', '.github/workflows/skills-ci.yml']
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node tools/check-skills.mjs
+      - run: node tools/test-skill-publication.mjs
+      - run: node skills/habr-design-review/tests/updates-test.mjs
