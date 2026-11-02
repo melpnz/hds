@@ -18,7 +18,9 @@ const [runDir, outArg] = process.argv.slice(2);
 if (!runDir) { console.error('usage: build-report.mjs <runDir> [out.html]'); process.exit(1); }
 const data = JSON.parse(fs.readFileSync(path.join(runDir, 'findings.json'), 'utf8'));
 const usageFile = path.join(runDir, 'token-usage.json');
-data.meta.tokenUsage = fs.existsSync(usageFile) ? summarizeUsage(JSON.parse(fs.readFileSync(usageFile, 'utf8'))) : data.meta.pages?.length ? null : data.meta.tokenUsage || null;
+const usageLedger=fs.existsSync(usageFile)?JSON.parse(fs.readFileSync(usageFile,'utf8')):null;
+data.meta.tokenUsage = usageLedger ? summarizeUsage(usageLedger) : data.meta.pages?.length ? null : data.meta.tokenUsage || null;
+if(!data.meta.startedAt&&usageLedger){const starts=(usageLedger.stages||[]).map(s=>s.startedAt).filter(s=>typeof s==='string'&&!Number.isNaN(Date.parse(s))).sort();if(starts.length)data.meta.startedAt=starts[0];}
 const stateFile = path.join(runDir, 'state-plan.json');
 if (fs.existsSync(stateFile)) data.meta.statePlan = JSON.parse(fs.readFileSync(stateFile, 'utf8')).states || [];
 for (const s of data.meta.statePlan || []) {
@@ -242,10 +244,10 @@ fs.writeFileSync(out, html2);
 const reviewRoot = path.resolve(out) === path.join(path.resolve(runDir), 'report.html') ? completeRevision(path.resolve(runDir)) : null;
 // «Открыть отчёт.cmd» — двойной клик: сервер отчёта + браузер, решения сохраняются в эту папку сами
 if (process.platform === 'win32') {
-  const cmd = `@echo off\r\nstart "design-review" /min node "${path.join(here, 'serve-report.mjs')}" "%~dp0." --open\r\n`;
+  const launcher=original=>`@echo off\r\nchcp 65001 >nul\r\nsetlocal\r\nset "DR_REPORT_SCRIPT=${path.join(here,'serve-report.mjs')}"\r\nset "DR_REPORT_RUN=%~dp0."\r\npowershell.exe -NoProfile -WindowStyle Hidden -Command "& node $env:DR_REPORT_SCRIPT $env:DR_REPORT_RUN${original?' --original':''} --open"\r\n`;
+  const cmd=launcher(false);
   fs.writeFileSync(path.join(path.dirname(out), 'Открыть отчёт.cmd'), cmd);
   if (reviewRoot) {
-    const launcher = original => `@echo off\r\nstart "design-review" /min node "${path.join(here, 'serve-report.mjs')}" "%~dp0."${original?' --original':''} --open\r\n`;
     fs.writeFileSync(path.join(reviewRoot, 'Открыть отчёт.cmd'), launcher(false));
     fs.writeFileSync(path.join(reviewRoot, 'Открыть исходное ревью.cmd'), launcher(true));
   }

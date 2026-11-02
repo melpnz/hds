@@ -297,27 +297,71 @@ dialog{border-radius:18px;border-color:var(--line)}
 .chip.dv-none:not([aria-pressed=true]){border-style:dashed}
 [hidden]{display:none!important}
 </style>
+<style>
+header.top .top-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:14px 24px;align-items:center;padding-top:24px;padding-bottom:10px}
+header.top .title{display:contents}
+header.top #h1{grid-column:1/-1;grid-row:1}
+header.top .actions{grid-column:1/-1;grid-row:3;justify-content:flex-start;min-width:0}
+header.top #sub{grid-column:1;grid-row:2;display:flex;flex-direction:column;gap:5px;font-family:inherit;overflow-wrap:normal}
+.header-links{display:flex;align-items:center;gap:8px;font-size:14px;line-height:20px;color:var(--muted)}
+.header-links a{font-weight:650;color:var(--ink);text-decoration:none}
+.header-links a:hover{text-decoration:underline;text-underline-offset:3px}
+.header-date{font-size:13px;line-height:18px;color:var(--muted);white-space:nowrap}
+.header-timestamps{display:flex;align-items:baseline;flex-wrap:wrap;gap:6px 9px;font-size:13px;line-height:18px;color:var(--muted)}
+.header-timestamps .autosave{font:inherit;max-width:none;line-height:inherit}
+.header-timestamps .autosave:empty{display:none}
+.header-timestamps .autosave:not(:empty)::before{content:'·';margin-right:9px;color:var(--muted)}
+.coverage-section{margin:24px 0}
+.coverage-section>h2{font-size:18px;font-weight:600;margin:0 0 14px}
+.tabs .tab{padding-inline:10px}
+#tabs{background:transparent;padding:0;border-radius:0;gap:12px;align-items:center}
+#tabs .tabs-main{display:flex;gap:4px;padding:4px;background:var(--surface);border-radius:999px;flex-shrink:0}
+#tabs .report-tab{flex-shrink:0;border:1px solid var(--line-2);background:var(--surface);padding:10px 18px;font-weight:600}
+#tabs .report-tab[aria-selected=true]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.report-empty{padding:36px 24px;text-align:center;background:var(--surface);border-radius:18px;margin-top:18px;color:var(--ink-2)}
+.report-empty h2{font-size:18px;margin:0 0 10px;color:var(--ink)}
+.report-empty p{max-width:620px;margin:0 auto 18px;line-height:1.6}
+.header-settings{grid-column:2;grid-row:2;display:flex;justify-content:flex-end;align-items:center;gap:12px}
+.width-filter{position:relative;margin-left:0;max-width:100%;font-size:13px}
+.filters-divider{width:1px;height:24px;flex:0 0 1px;align-self:center;background:var(--line-2);margin:0 6px}
+.card-sticky .card-bar{padding-top:18px}
+.meta-line{gap:0;row-gap:5px;margin-top:8px;font-size:12px;line-height:18px;color:var(--muted)}
+.meta-line>span,.meta-line>.pill{display:inline-flex;align-items:center;padding:0;border:0;border-radius:0;background:none;color:var(--muted);font-size:12px;font-weight:400;line-height:18px;letter-spacing:0;cursor:default}
+.meta-line>span+span::before{content:'·';margin:0 8px;color:var(--muted);font-weight:400}
+.meta-line>.id{font-size:11px;font-weight:500}
+.meta-line>.rc-bad{color:var(--critical);font-weight:500}
+.meta-line>.rc-ok,.meta-line>.human{color:var(--ok)}
+.width-filter summary{display:flex;align-items:center;gap:12px;list-style:none;cursor:pointer;border:1px solid var(--line-2);border-radius:999px;padding:5px 12px;min-height:32px;box-sizing:border-box;line-height:20px;background:var(--surface);color:var(--ink-2);user-select:none}
+.width-filter summary::-webkit-details-marker{display:none}
+.width-filter summary::after{content:'';width:12px;height:12px;flex:0 0 12px;align-self:center;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='m3 4.5 3 3 3-3' fill='none' stroke='%238b8b91' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+.width-filter summary:focus-visible{outline:2px solid var(--focus);outline-offset:3px}
+.width-menu{position:absolute;right:0;top:calc(100% + 8px);z-index:100;min-width:200px;padding:6px;background:var(--raised);border:1px solid var(--line-2);border-radius:14px;box-shadow:0 12px 36px #0004}
+.width-menu label{display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:8px;cursor:pointer;white-space:nowrap}
+.width-menu label:hover{background:var(--accent-soft)}
+.width-menu label:first-child{border-bottom:1px solid var(--line);border-radius:8px 8px 0 0;margin-bottom:4px}
+.width-menu input{accent-color:var(--accent);width:15px;height:15px;margin:0}
+.facet-filter{margin-left:0}
+.facet-filter .width-menu{left:0;right:auto}
+.facet-dot{width:7px;height:7px;border-radius:50%;flex:none}
+@media(max-width:900px){header.top .top-row{grid-template-columns:1fr;gap:14px}header.top #h1{grid-column:1;grid-row:1}header.top #sub{grid-column:1;grid-row:2}.header-settings{grid-column:1;grid-row:3;justify-content:flex-start;flex-wrap:wrap}header.top .actions{grid-column:1;grid-row:4;justify-content:flex-start}}
+</style>
 </head>
 <body>
 <header class="top"><div class="wrap top-row">
   <div class="title"><h1 id="h1"></h1><div class="sub" id="sub"></div></div>
-  <div class="actions">
-    <div class="progress" title="Сколько находок уже получили решение"><span id="progText"></span><span class="bar"><i id="progBar"></i></span></div>
-    <button class="btn primary" id="reportBtn" title="Задачи в том виде, как они должны выглядеть в Jira — скопировать оттуда">Отчёт</button>
+  <div hidden>
     <button class="btn" hidden id="jiraBtn" title="Подтверждённые баги в формате для Jira / YouTrack">Задачи для Jira</button>
     <button class="btn" hidden id="mdBtn" title="Весь отчёт в Markdown с картинками — для задачи в Jira, GitLab, YouTrack">Отчёт в Markdown</button>
-    <button class="btn" id="mkBtn" title="Что поправить в самом макете: проверка макета и расхождения с решением «Ошибка в макете» — со ссылками на слои">Правки в макет</button>
-    <span class="autosave" id="autoSave" role="status"></span>
-    <button class="btn" hidden id="jsonBtn" title="Файл с вашей разметкой: решения, причины, пропущенное. Принесите его Claude — он дообучит навык">Разметка для обучения</button>
-    <button class="btn" hidden id="saveBtn" title="HTML-файл с вашими решениями внутри">Сохранить с решениями</button>
+  </div>
+  <div class="header-settings">
     <div class="theme-switch" role="group" aria-label="Что показывать слева" id="sideSwitch" title="Что показывать слева"><span class="sw-k">Слева:</span><button data-side="a"></button><button data-side="b"></button></div>
     <div class="theme-switch" role="group" aria-label="Тема" id="themeSwitch"><button data-theme-v="light" title="Светлая тема" aria-label="Светлая тема">☀</button><button data-theme-v="dark" title="Тёмная тема" aria-label="Тёмная тема">☾</button></div>
   </div>
 </div></header>
 
 <main class="wrap">
-  <section class="summary" id="summary"></section>
   <nav class="tabs" role="tablist" id="tabs"></nav>
+  <section id="view-extra" class="view" hidden><section class="summary" id="summary"></section><section class="coverage-section"><h2>Что проверено</h2><div id="view-scope"></div></section></section>
   <section id="view-bugs" class="view"></section>
   <section id="view-missed" class="view" hidden></section>
   <section id="view-mockup" class="view" hidden></section>
@@ -328,8 +372,7 @@ dialog{border-radius:18px;border-color:var(--line)}
   <section id="view-match" class="view" hidden></section>
   <section id="view-full" class="view" hidden></section>
   <section id="view-report" class="view" hidden></section>
-  <section id="view-scope" class="view" hidden></section>
-  <footer class="foot">Клавиши: <span class="kbd">J</span>/<span class="kbd">K</span> — следующая/предыдущая находка, <span class="kbd">1</span>–<span class="kbd">6</span> — решение, <span class="kbd">M</span> — режим сравнения. Открыт через «Открыть отчёт.cmd» — решения сохраняются в папку отчёта сами, а после «Отчёта» рядом появляется и разметка для обучения (feedback-*.json). Открыт с диска — решения только в этом браузере.</footer>
+  <footer class="foot">Клавиши: <span class="kbd">J</span>/<span class="kbd">K</span> — следующая/предыдущая находка, <span class="kbd">1</span>–<span class="kbd">6</span> — решение, <span class="kbd">M</span> — режим сравнения.</footer>
 </main>
 
 <dialog id="dlg"><h3 id="dlgTitle" style="margin:0 0 10px"></h3><textarea id="dlgText" readonly></textarea>
@@ -366,6 +409,7 @@ const IMG={};
 for(const [k,v] of Object.entries(IMAGES)){const b=atob(v.src.split(',')[1]);const a=new Uint8Array(b.length);for(let i=0;i<b.length;i++)a[i]=b.charCodeAt(i);IMG[k]={url:URL.createObjectURL(new Blob([a],{type:'image/png'})),w:v.w,h:v.h,src:v.src}}
 // Нормализация: отчёт работает и для «макет ↔ сайт» (figma/page), и для «прод ↔ стенд» (a/b), снимки — по id (ширина + состояние).
 const L=DATA.meta.labels||{a:'Макет',b:'Сайт'};
+const HEADER_L={a:L.a,b:['Сайт','Сейчас'].includes(L.b)?'Тестовый':L.b};
 // Какая сторона слева: по умолчанию эталон (макет/прод) слева; выбор запоминается в браузере.
 let SWAP=false;try{SWAP=localStorage.getItem('dr-swap')==='1'}catch{}
 const order=(a,b)=>SWAP?[b,a]:[a,b];
@@ -388,20 +432,25 @@ if(DATA.meta.runId){try{const old=JSON.parse(localStorage.getItem('dr:'+DATA.met
 // агент отметил «не по задаче этого ревью» (outOfScope: true или строка — к чему относится) — сразу «Другой функционал»; дизайнер может вернуть «Баг»
 for(const f of DATA.findings)if(f.outOfScope&&!decisions[f.id])decisions[f.id]={v:'scope',note:typeof f.outOfScope==='string'?f.outOfScope:'',auto:true};
 const persist=()=>{remoteSave();try{localStorage.setItem(storeKey,JSON.stringify(decisions));return true}catch{return false}};
-// Автосохранение: отчёт открыт через serve-report.mjs («Открыть отчёт.cmd») — решения сами пишутся в папку прогона
-// (decisions.json, report.html, а после открытия «Отчёта» — и разметка для обучения feedback-*.json).
-// Открыт с диска — сохранить в файл нельзя: решения живут в браузере, запасные кнопки «Сохранить с решениями» и «Разметка».
-const SRV=window.DR_SERVER||null;let saveT=null,saveFail=false;
-function remoteSave(now){if(!SRV)return;clearTimeout(saveT);saveT=setTimeout(()=>doSave(false),now?0:600)}
-function savePayload(final){return JSON.stringify({decisions,final,feedback:decisions.__report?{name:feedbackName(),data:feedbackPayload()}:null})}
-async function doSave(final){
-  try{const r=await fetch('/api/save?t='+SRV.token,{method:'POST',headers:{'Content-Type':'application/json'},body:savePayload(final)});const j=await r.json();if(!j.ok)throw 0;
-    saveFail=false;autoSaveState(`Сохранено в папку отчёта · ${new Date(j.savedAt).toLocaleTimeString('ru',{hour:'2-digit',minute:'2-digit'})}${j.feedback?' · разметка для обучения обновлена':''}`)}
-  catch{saveFail=true;autoSaveState('Не сохранилось: окно «Открыть отчёт» закрыто? Запустите его снова — решения из браузера не пропадут',true);$('#saveBtn').hidden=false}
+// Локальное превью: сервер записывает решения в этот HTML, а при формировании отчёта — файл обучения рядом.
+const SRV=window.DR_SERVER||null;let saveT=null,saveFail=false,trainingReady=false,saveChain=Promise.resolve();
+
+function remoteSave(now){if(!SRV)return;clearTimeout(saveT);saveT=setTimeout(()=>doSave(true),now?0:400)}
+function savePayload(final){return JSON.stringify({decisions,final,feedback:trainingReady?{name:feedbackName(),data:feedbackPayload()}:null})}
+function doSave(final){
+  if(!SRV)return Promise.resolve(false);
+  const body=savePayload(final);
+  saveChain=saveChain.then(async()=>{
+    try{const r=await fetch('/api/save?t='+SRV.token,{method:'POST',headers:{'Content-Type':'application/json'},body});const j=await r.json();if(!r.ok||!j.ok)throw Error('save');
+      saveFail=false;autoSaveState(savedLabel(j.savedAt));return true}
+    catch{saveFail=true;autoSaveState('Не удалось сохранить. Проверьте, запущен ли локальный отчёт.',true);return false}
+  });return saveChain;
 }
 function autoSaveState(t,bad){const s=$('#autoSave');if(!s)return;s.textContent=t;s.classList.toggle('bad',!!bad)}
 if(SRV){addEventListener('pagehide',()=>{clearTimeout(saveT);navigator.sendBeacon('/api/save?t='+SRV.token,new Blob([savePayload(true)],{type:'text/plain'}))});
-  document.addEventListener('focusout',e=>{if(e.target.matches?.('textarea,input'))remoteSave(true)})}
+  document.addEventListener('focusout',e=>{if(e.target.matches?.('textarea,input'))remoteSave(true)});
+  document.addEventListener('click',e=>{if(e.target.closest('button'))remoteSave(true)});
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)navigator.sendBeacon('/api/save?t='+SRV.token,new Blob([savePayload(true)],{type:'text/plain'}))})}
 
 const state={tab:'bugs',dec:new Set(),pg:new Set(),sev:new Set(),cat:new Set(),w:new Set(),mode:{},ev:{},focus:null};
 const bugs=DATA.findings.filter(f=>f.kind==='bug'),imps=DATA.findings.filter(f=>f.kind==='improvement'),mocks=DATA.findings.filter(f=>f.kind==='mockup');
@@ -420,11 +469,23 @@ const optsOf=f=>f.kind==='bug'?BUG_V:f.kind==='mockup'?MK_V:f.kind==='qa'?QA_V:f
 // всё, что стоит поправить в макете: проверка макета (кроме «Не важно») + расхождения, где дизайнер решил «Ошибка в макете»
 const mockupFixes=()=>[...bugs.filter(f=>decisions[f.id]?.v==='mockup'),...mocks.filter(f=>decisions[f.id]?.v!=='skip')];
 
+function reviewDate(value){
+  if(!value)return 'Дата не указана';
+  const raw=String(value),hasTime=/[T ]\d{2}:\d{2}/.test(raw),date=new Date(hasTime?raw:raw.slice(0,10)+'T12:00:00Z');
+  if(Number.isNaN(date.getTime()))return raw;
+  const zone=hasTime?DATA.meta.timeZone:'UTC',opts=zone?{timeZone:zone}:{};
+  const parts=Object.fromEntries(new Intl.DateTimeFormat('ru-RU',{day:'numeric',month:'short',year:'numeric',...opts}).formatToParts(date).map(p=>[p.type,p.value]));
+  return `${parts.day} ${parts.month.replace(/\.$/,'')} ${parts.year}`+(hasTime?' в '+date.toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit',...opts}):'');
+}
+function savedLabel(value){return value?'Сохранено в '+new Date(value).toLocaleTimeString('ru-RU',{hour:'2-digit',minute:'2-digit',...(DATA.meta.timeZone?{timeZone:DATA.meta.timeZone}:{})}):'Изменения сохраняются автоматически'}
 function header(){
-  $('#h1').textContent='Дизайн-ревью · '+DATA.meta.title;
+  const title=String(DATA.meta.title||'Дизайн-ревью').replace(/^(?:(?:Дизайн-ревью|Перепроверка|Нейро-Степан)\s*[·:—-]\s*)+/i,'').replace(/\s*[—-]\s*дизайн-ревью$/i,'').replace(/\s*\(Перепроверка\)$/i,'').trim();
+  $('#h1').textContent='Нейро-Степан: '+(title||'Дизайн-ревью')+(RECHECK?' (Перепроверка)':'');
+  document.title=$('#h1').textContent;
   const link=(u,t)=>u?`<a href="${esc(u)}" target="_blank" rel="noopener">${esc(t)}</a>`:esc(t);
-  if(PAGES){$('#sub').innerHTML=`Страниц: ${PAGES.length} — ${PAGES.map(p=>`${esc(p.title)} (${p.figmaUrl?link(p.figmaUrl,L.a):''}${p.figmaUrl&&p.testUrl?' ↔ ':''}${p.testUrl?link(p.testUrl,L.b):''})`).join(' · ')} · ${esc(DATA.meta.createdAt)}`;summary();return}
-  $('#sub').innerHTML=`${link(DATA.meta.figmaUrl,DATA.meta.labels?L.a+(DATA.meta.figmaUrl?' · '+DATA.meta.figmaUrl:''):'макет в Figma')} ↔ ${link(DATA.meta.testUrl,DATA.meta.labels?L.b+(DATA.meta.testUrl?' · '+DATA.meta.testUrl:''):DATA.meta.testUrl)} · ${esc(DATA.meta.state)} · ${esc(DATA.meta.createdAt)}`;
+  const sources=PAGES?PAGES.map(p=>`<span>${esc(p.title)}: ${link(p.figmaUrl,HEADER_L.a)} ↔ ${link(p.testUrl,HEADER_L.b)}</span>`).join(' · '):`${link(DATA.meta.figmaUrl,HEADER_L.a)}<span aria-hidden="true">↔</span>${link(DATA.meta.testUrl,HEADER_L.b)}`;
+  const date=DATA.meta.startedAt||DATA.meta.createdAt;
+  $('#sub').innerHTML=`<div class="header-links">${sources}</div><div class="header-timestamps"><time class="header-date" datetime="${esc(date||'')}">${esc(reviewDate(date))}</time><span class="autosave" id="autoSave" role="status" aria-live="polite"></span></div>`;
   summary();
 }
 // Сводка: три блока построчно — находки по важности, разрешения (от большего к меньшему), качество навыка.
@@ -442,35 +503,62 @@ function summary(){
   const usage=DATA.meta.tokenUsage, token=n=>n==null?'—':Number(n).toLocaleString('ru-RU');
   const stageNames={context:'Подготовка',figma:'Макет',capture:'Съёмка',compare:'Сопоставление',curation:'Визуальная проверка',report:'Отчёт',feedback:'Разбор решений',validation:'Проверка реализации'};
   const usageRows=(usage?.stages||[]).map(s=>`<tr><td>${esc(stageNames[s.stage]||s.stage)}<small> · ${esc(s.status==='reported'?'замер':s.status==='running'?'в работе':'нет данных')}</small></td><td>${token(s.tokens?.input)}</td><td>${token(s.tokens?.output)}</td><td>${token(s.tokens?.cachedInput)}</td><td>${token(s.tokens?.total)}</td></tr>`).join('');
-  const usageOpen=$('[data-token-usage]')?.open===true;
-  const usageHTML=`<details class="sumcard" data-token-usage${usageOpen?' open':''}><summary>Токены по этапам${DATA.meta.skillRelease?` · навык ${esc(DATA.meta.skillRelease)}`:''}</summary><div class="usage-body">${usageRows?`<table><thead><tr><th>Этап</th><th>Вход</th><th>Выход</th><th>Кэш входа</th><th>Всего</th></tr></thead><tbody>${usageRows}</tbody><tfoot><tr><th>Измеренная сумма</th><td>${token(usage.totals?.input)}</td><td>${token(usage.totals?.output)}</td><td>${token(usage.totals?.cachedInput)}</td><td>${token(usage.totals?.total)}</td></tr></tfoot></table>`:'<p>Учёт токенов в этом прогоне не велся; неизвестно, не ноль.</p>'}<p class="qi">${esc(usage?.limitation||'Данные появляются из журнала этапов token-usage.json. Исторический расход без замеров не восстанавливается догадками.')}${usage&&!usage.complete?' Учёт неполный.':''}</p></div></details>`;
+  const usageOpen=$('[data-token-usage]')?.open??true;
+  const usageHTML=`<details class="sumcard" data-token-usage${usageOpen?' open':''}><summary>Расход токенов${DATA.meta.skillRelease?` · навык ${esc(DATA.meta.skillRelease)}`:''}</summary><div class="usage-body">${usageRows?`<table><thead><tr><th>Этап</th><th>Вход</th><th>Выход</th><th>Кэш входа</th><th>Всего</th></tr></thead><tbody>${usageRows}</tbody><tfoot><tr><th>Измеренная сумма</th><td>${token(usage.totals?.input)}</td><td>${token(usage.totals?.output)}</td><td>${token(usage.totals?.cachedInput)}</td><td>${token(usage.totals?.total)}</td></tr></tfoot></table>`:'<p>Учёт токенов в этом прогоне не велся; неизвестно, не ноль.</p>'}<p class="qi">${esc(usage?.limitation||'Данные появляются из журнала этапов token-usage.json. Исторический расход без замеров не восстанавливается догадками.')}${usage&&!usage.complete?' Учёт неполный.':''}</p></div></details>`;
   const pgRows=PAGES?PAGES.map(p=>{const b=bugs.filter(f=>f.page===p.id),t=b.filter(f=>['bug','ok'].includes(decisions[f.id]?.v)).length,n=b.filter(f=>decisions[f.id]?.v==='notbug').length;
     return row(`${esc(p.title)}${t+n?` <small>точность ${Math.round(t/(t+n)*100)}%</small>`:''}`,b.length,'','Находок на странице; точность — по уже решённым')}).join(''):'';
   const rcRows=RECHECK?Object.entries([...DATA.findings].reduce((o,f)=>{if(f.recheck){const l=RC_ST[f.recheck]||f.recheck;o[l]=(o[l]||0)+1}return o},{})).map(([l,n])=>row(esc(l),n)).join(''):'';
   $('#summary').innerHTML=`${RECHECK?`<div class="sumcard"><h3>Перепроверка${DATA.meta.origin?` <small>${esc(String(DATA.meta.origin).split(/[\\/]/).pop())}</small>`:''}</h3>${rcRows}</div>`:''}${PAGES?`<div class="sumcard"><h3>Страницы</h3>${pgRows}</div>`:''}<div class="sumcard"><h3>Находки</h3>${sev}</div>
     <div class="sumcard"><h3>Разрешения${states>1?` · состояний: ${states}`:''}</h3>${ws}</div>
     <div class="sumcard"><h3>Качество навыка</h3>${q}<label class="qchk"><input type="checkbox" id="reviewFull" ${m.reviewedFully?'checked':''}> Страницу просмотрел(а) целиком</label>
-      <div class="qi">Лишнее — «Не баг» и причина; пропущенное — скажите агенту, он оформит находкой с пометкой «найдено дизайнером»; ${SRV?'разметка для обучения сохраняется рядом с отчётом сама':'затем «Разметка для обучения»'}.${m.pending?` Без решения: ${m.pending}.`:''}</div></div>${usageHTML}`;
+    <div class="qi">Лишнее — «Не баг» и причина; пропущенное — скажите агенту, он оформит находкой с пометкой «найдено дизайнером». Файл для обучения сохраняется рядом с HTML при формировании отчёта.${m.pending?` Без решения: ${m.pending}.`:''}</div></div>${usageHTML}`;
   $('#reviewFull').onchange=e=>{decisions.__review={full:e.target.checked,at:new Date().toISOString()};persist();summary()};
 }
 function tabs(){
-  const t=[['bugs',RECHECK?'Не исправлено':'Расхождения',mainBugs().length],...(RECHECK?[['fixed','Исправлено',fixedL.length]]:[]),...(missedList().length?[['missed','Пропущено ИИ',missedList().length]]:[]),...(mocks.length?[['mockup','Макет',mocks.length]]:[]),...(others().length||state.tab==='other'?[['other','Другой функционал',others().length]]:[]),...(qas.length?[['qa','Механика',qas.length]]:[]),['improve','Улучшения',imps.length],['match','Совпадает',DATA.matches.length],['full','Страница целиком',''],['report','Отчёт',''],['scope','Что проверено','']];
-  $('#tabs').innerHTML=t.map(([k,l,n])=>`<button class="tab" role="tab" aria-selected="${state.tab===k}" data-tab="${k}">${l}${n!==''?`<span class="n">${n}</span>`:''}</button>`).join('');
+  const t=[['bugs',RECHECK?'Не исправлено':'Расхождения',mainBugs().length],...(RECHECK?[['fixed','Исправлено',fixedL.length]]:[]),...(missedList().length?[['missed','Пропущено ИИ',missedList().length]]:[]),...(others().length||state.tab==='other'?[['other','Другой функционал',others().length]]:[]),...(qas.length?[['qa','Механика',qas.length]]:[]),['improve','Улучшения',imps.length],...(DATA.matches.length?[['match','Совпадает',DATA.matches.length]]:[]),['full','Страница целиком',''],['report','Отчёт','']];
+  t.splice(t.findIndex(x=>x[0]==='report')+1,0,['mockup','Правки в макет',mockupFixes().length]);
+  t.push(['extra','Дополнительно','']);
+  const report=t.splice(t.findIndex(x=>x[0]==='report'),1)[0];t.unshift(report);
+  const tabHTML=([k,l,n])=>`<button class="tab${k==='report'?' report-tab':''}" role="tab" aria-selected="${state.tab===k}" data-tab="${k}">${l}${n!==''?`<span class="n">${n}</span>`:''}</button>`;
+  $('#tabs').innerHTML=tabHTML(t[0])+'<div class="tabs-main">'+t.slice(1).map(tabHTML).join('')+'</div>';
   document.querySelectorAll('.view').forEach(v=>v.hidden=v.id!=='view-'+state.tab);
 }
 $('#tabs').addEventListener('click',e=>{const b=e.target.closest('[data-tab]');if(!b)return;if(state.tab!==b.dataset.tab)state.dec.clear();state.tab=b.dataset.tab;tabs();render()});
 // после решения — обновить счётчики фильтра «Решение» (карточки не перерисовываем, чтобы не прыгала страница)
-const curList=()=>({bugs:mainBugs(),other:others(),fixed:fixedL,improve:imps,mockup:mocks,qa:qas})[state.tab];
+const curList=()=>({bugs:mainBugs(),other:others(),fixed:fixedL,improve:imps,mockup:mockupFixes(),qa:qas})[state.tab];
 function refreshDecRow(){const l=curList(),row=document.querySelector('.view:not([hidden]) .dec-filters');if(!l||!row)return;const t=document.createElement('div');t.innerHTML=filtersHTML(l);const n=t.querySelector('.dec-filters');if(n)row.replaceWith(n)}
 
+function facetDropdownHTML(group,values){
+  const labels=group==='sev'?SEV:CAT,all=group==='sev'?'Все по критичности':'Все типы';
+  const label=state[group].size?[...state[group]].map(v=>labels[v]||v).join(', '):all;
+  return `<details class="width-filter facet-filter" data-facet-menu="${group}"><summary aria-label="${all}">${esc(label)}</summary><div class="width-menu"><label><input type="checkbox" data-facet-all="${group}" ${state[group].size?'':'checked'}>${all}</label>${values.map(v=>`<label><input type="checkbox" data-facet="${group}" value="${v}" ${state[group].has(v)?'checked':''}>${group==='sev'?`<span class="facet-dot" style="background:var(--${v})"></span>`:''}${esc(labels[v]||v)}</label>`).join('')}</div></details>`;
+}
+document.addEventListener('change',e=>{const input=e.target;if(!input.matches('[data-facet],[data-facet-all]'))return;
+  const group=input.dataset.facet||input.dataset.facetAll;
+  if(input.hasAttribute('data-facet-all'))state[group].clear();else input.checked?state[group].add(input.value):state[group].delete(input.value);
+  const selector=input.hasAttribute('data-facet-all')?'[data-facet-all]':`[data-facet][value="${input.value}"]`;
+  render();const menu=document.querySelector(`.view:not([hidden]) [data-facet-menu="${group}"]`);if(menu){menu.open=true;menu.querySelector(selector)?.focus()}
+});
+function widthDropdownHTML(ws){
+  const label=state.w.size?[...state.w].sort((a,b)=>+a-+b).join(', ')+' px':'Все разрешения';
+  return `<details class="width-filter"><summary aria-label="Фильтр по разрешениям">${esc(label)}</summary><div class="width-menu"><label><input type="checkbox" data-width-all ${state.w.size?'':'checked'}>Все разрешения</label>${ws.map(w=>`<label><input type="checkbox" data-width-filter value="${w}" ${state.w.has(String(w))?'checked':''}>${w} px</label>`).join('')}</div></details>`;
+}
+document.addEventListener('change',e=>{const input=e.target;if(!input.matches('[data-width-filter],[data-width-all]'))return;
+  if(input.matches('[data-width-all]'))state.w.clear();else input.checked?state.w.add(input.value):state.w.delete(input.value);
+  const selector=input.matches('[data-width-all]')?'[data-width-all]':`[data-width-filter][value="${input.value}"]`;
+  render();const menu=document.querySelector('.view:not([hidden]) .width-filter:not(.facet-filter)');if(menu){menu.open=true;menu.querySelector(selector)?.focus()}
+});
+document.addEventListener('click',e=>{const clicked=e.composedPath().find(node=>node.matches?.('.width-filter'));document.querySelectorAll('.view:not([hidden]) .width-filter[open]').forEach(menu=>{if(!clicked||menu.dataset.facetMenu!==clicked.dataset.facetMenu)menu.open=false})});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.querySelectorAll('.width-filter[open]').forEach(menu=>{menu.open=false;menu.querySelector('summary').focus()})});
 function filtersHTML(list){
   const sevs=[...new Set(list.map(f=>f.severity))],cats=[...new Set(list.map(f=>f.category))],ws=[...new Set(list.flatMap(f=>f.widths))].sort((a,b)=>b-a);
   const chip=(g,v,l,dot)=>`<button class="chip" data-g="${g}" data-v="${v}" aria-pressed="${state[g].has(String(v))}">${dot?`<span class="dot" style="background:var(--${v})"></span>`:''}${l}</button>`;
   const pgs=PAGES?PAGES.filter(p=>list.some(f=>f.page===p.id)):[];
   // по решению дизайнера: «Неразобранные», «Баг», «Не баг»… — с числом находок; варианты — те, что есть у этого вида находок
   const opts=list.length?optsOf(list[0]):[],cnt=v=>list.filter(f=>(decisions[f.id]?.v||'none')===v).length;
-  const decRow=opts.length?`<div class="filters dec-filters"><span class="fk">Решение</span>${[['none','Неразобранные'],...opts.map(([v,l])=>[v,l])].filter(([v])=>v==='none'||cnt(v)).map(([v,l])=>`<button class="chip dchip dv-${v}" data-g="dec" data-v="${v}" aria-pressed="${state.dec.has(v)}">${l}<span class="n">${cnt(v)}</span></button>`).join('')}</div>`:'';
-  return `${decRow}<div class="filters">${pgs.length>1?pgs.map(p=>chip('pg',p.id,p.title)).join('')+'<span class="sep"></span>':''}${state.tab==='bugs'?sevs.map(s=>chip('sev',s,SEV[s],1)).join('')+'<span class="sep"></span>':''}${cats.map(c=>chip('cat',c,CAT[c]||c)).join('')}<span class="sep"></span>${ws.map(w=>chip('w',w,w+' px')).join('')}</div>`;
+  const decRow=opts.length?`<div class="filters dec-filters">${[['none','Неразобранные'],...opts.map(([v,l])=>[v,l])].filter(([v])=>v==='none'||cnt(v)).map(([v,l])=>`<button class="chip dchip dv-${v}" data-g="dec" data-v="${v}" aria-pressed="${state.dec.has(v)}">${l}<span class="n">${cnt(v)}</span></button>`).join('')}</div>`:'';
+  const dropdowns=`${pgs.length>1?pgs.map(p=>chip('pg',p.id,p.title)).join('')+'<span class="sep"></span>':''}${state.tab==='bugs'?facetDropdownHTML('sev',sevs):''}${facetDropdownHTML('cat',cats)}${widthDropdownHTML(ws)}`;
+  return decRow?decRow.replace('</div>','<span class="filters-divider" aria-hidden="true"></span>'+dropdowns+'</div>'):`<div class="filters dec-filters">${dropdowns}</div>`;
 }
 document.addEventListener('click',e=>{const c=e.target.closest('.chip[data-g]');if(!c)return;const s=state[c.dataset.g];s.has(c.dataset.v)?s.delete(c.dataset.v):s.add(c.dataset.v);render()});
 const pass=f=>(!state.dec.size||state.dec.has(decisions[f.id]?.v||'none'))&&(!state.pg.size||state.pg.has(String(f.page)))&&(!state.sev.size||state.sev.has(f.severity))&&(!state.cat.size||state.cat.has(f.category))&&(!state.w.size||f.widths.some(w=>state.w.has(String(w))));
@@ -534,8 +622,7 @@ function legendHTML(ev){
     for(const p of props){const va=(ev.aMarks||[]).find(m=>m.label.startsWith(p+' '))?.label.split(' ')[1]||'—',vb=(ev.bMarks||[]).find(m=>m.label.startsWith(p+' '))?.label.split(' ')[1]||'—';
       rows.push(`<span class="lg"><i style="background:${MK[k].fill};border-color:${MK[k].stroke}"></i><code>${esc(p)}</code> ${esc(L.a)} ${esc(va)} · ${esc(L.b)} ${esc(vb)}</span>`)}}
   if(kinds.has('shift'))rows.push(`<span class="lg"><i style="background:${MK.shift.fill};border-color:${MK.shift.stroke}"></i>начало сдвига</span>`);
-  if([...(ev.aMarks||[]),...(ev.bMarks||[])].some(m=>m.kind==='el')||!(ev.aMarks||ev.bMarks))rows.push(`<span class="lg"><i class="dash"></i>элемент</span>`);
-  return `<div class="legend">${rows.join('')}</div>`;
+  return rows.length?`<div class="legend">${rows.join('')}</div>`:'';
 }
 function viewerBar(f){
   if(!f.evidence?.length)return '<span class="pill wpill">без кадра</span>';
@@ -626,10 +713,10 @@ function cardHTML(f){
   const hasC=f.props.some(p=>p.c!=null);
   const props=f.props.length?`<table class="props"><thead><tr><th>Свойство</th>${hasC?`<th>${esc(L.c||'Было')}</th>`:''}<th>${esc(h1)}</th><th>${esc(h2)}</th><th>Δ</th></tr></thead><tbody>${f.props.map(p=>{const [v1,v2]=order(p.a,p.b);return `<tr><td>${esc(p.name)}</td>${hasC?`<td class="v">${sw(mPlain(p.c??''))}${mHTML(p.c??'')}</td>`:''}<td class="v">${sw(mPlain(v1))}${mHTML(v1)}</td><td class="v">${sw(mPlain(v2))}${mHTML(v2)}</td><td class="d">${esc(p.delta||'')}</td></tr>`}).join('')}</tbody></table>`:'';
   const rc=f.recheck?`<span class="pill rc ${['fixed','kept'].includes(f.recheck)?'rc-ok':['new','regression','not-fixed','partial'].includes(f.recheck)?'rc-bad':''}">${esc(RC_ST[f.recheck]||f.recheck)}</span>${f.origin?`<span class="pill wpill" title="Находка исходного ревью">было: ${esc(f.origin)}</span>`:''}`:'';
-  return `<article class="card${decisions[f.id]?.v==='mockup'?' is-mockup-verdict':''}${decisions[f.id]?.v==='scope'?' is-scope-verdict':''}" id="${f.id}" data-card="${f.id}"><div class="card-sticky"><div class="card-head"><div><h2 class="card-title">${esc(f.title)}</h2><div class="meta-line"><span class="id">${f.id}</span>${rc}${f.foundBy==='designer'?'<span class="pill human">найдено дизайнером</span>':''}${f.kind==='bug'?`<span class="pill sev-${f.severity}">${SEV[f.severity]}</span>`:''}${f.kind==='mockup'?'<span class="pill mk">в макете</span>':''}${PAGES&&f.page?`<span class="pill pg">${esc(pageTitle(f.page))}</span>`:''}<span class="pill cat">${esc(CAT[f.category]||f.category)}</span>${f.widths.map(w=>`<span class="pill wpill">${w}</span>`).join('')}${f.state&&f.state!=='default'?`<span class="pill wpill">${esc(f.state)}</span>`:''}${f.occurrences>1?`<span class="pill wpill">×${f.occurrences}</span>`:''}${f.auto?'<span class="pill wpill" title="Найдено автоматически — проверьте перед отправкой">авто</span>':''}</div></div></div>
+  return `<article class="card${decisions[f.id]?.v==='mockup'?' is-mockup-verdict':''}${decisions[f.id]?.v==='scope'?' is-scope-verdict':''}" id="${f.id}" data-card="${f.id}"><div class="card-sticky"><div class="card-head"><div><h2 class="card-title">${esc(f.title)}</h2><div class="meta-line"><span class="id">${f.id}</span>${rc}${f.foundBy==='designer'?'<span class="pill human">найдено дизайнером</span>':''}${f.kind==='bug'?`<span class="pill sev-${f.severity}">${SEV[f.severity]}</span>`:''}${f.kind==='mockup'?'<span class="pill mk">в макете</span>':''}${PAGES&&f.page?`<span class="pill pg">${esc(pageTitle(f.page))}</span>`:''}<span class="pill cat">${esc(CAT[f.category]||f.category)}</span>${f.widths.length?`<span class="meta-widths">${f.widths.join(' / ')} px</span>`:''}${f.state&&f.state!=='default'?`<span class="pill wpill">${esc(f.state)}</span>`:''}${f.occurrences>1?`<span class="pill wpill">×${f.occurrences}</span>`:''}${f.auto?'<span class="pill wpill" title="Найдено автоматически — проверьте перед отправкой">авто</span>':''}</div></div></div>
   <div class="card-bar">${viewerBar(f)}</div></div>
   <div class="card-shots">${viewer(f)}</div>
-  <div class="card-body"><div class="desc"><p class="why">${md(f.why)}</p>${props}${f.fix?`<div class="fix"><b>${f.kind==='bug'?'Что исправить':'Предложение'}</b>${md(f.fix)}</div>`:''}${devHTML(f)}${f.kind==='bug'?`<div class="dev-actions jira-row"><span class="dev-k">Jira</span><button class="btn mini primary" data-jira2="${f.id}" title="Первое нажатие — текст задачи (Ctrl+V в задаче), второе — картинка «${esc(L.b)} | ${esc(L.a)}» (Ctrl+V ещё раз). Jira не берёт картинки из вставленного текста, поэтому две вставки">В Jira</button><span class="saved" data-jirastate="${f.id}"></span></div>`:''}</div>${decisionHTML(f)}</div></article>`;
+  <div class="card-body"><div class="desc"><p class="why">${md(f.why)}</p>${props}${f.fix?`<div class="fix"><b>${f.kind==='bug'?'Что исправить':'Предложение'}</b>${md(f.fix)}</div>`:''}${devHTML(f)}</div>${decisionHTML(f)}</div></article>`;
 }
 function rerenderCard(id){const f=DATA.findings.find(x=>x.id===id);const el=document.querySelector(`[data-card="${id}"]`);if(f&&el){const focused=el.classList.contains('focused');el.outerHTML=cardHTML(f);if(focused)document.querySelector(`[data-card="${id}"]`).classList.add('focused')}}
 
@@ -660,7 +747,7 @@ function matchesView(){
 }
 function scopeView(){
   const ws=[...new Set(DATA.meta.widths.map(w=>w.w))];
-  $('#view-scope').innerHTML=`<table class="cov"><thead><tr><th>Область</th>${ws.map(w=>`<th>${w}</th>`).join('')}<th>Комментарий</th></tr></thead><tbody>${DATA.meta.coverage.map(c=>`<tr><td>${esc(c.area)}</td>${ws.map(w=>`<td>${c.widths.includes(w)?'<span class="yes">✓</span>':'<span class="no">—</span>'}</td>`).join('')}<td class="${c.status==='checked'?'':'no'}">${esc(c.note||(c.status==='checked'?'проверено':''))}</td></tr>`).join('')}</tbody></table><div class="method"><b>Как сравнивалось.</b> ${md(DATA.meta.method)}</div>`;
+  $('#view-scope').innerHTML=`<table class="cov"><thead><tr><th>Область</th>${ws.map(w=>`<th>${w}</th>`).join('')}<th>Комментарий</th></tr></thead><tbody>${(DATA.meta.coverage||[]).map(c=>`<tr><td>${esc(c.area)}</td>${ws.map(w=>`<td>${c.widths?.includes(w)?'<span class="yes">✓</span>':'<span class="no">—</span>'}</td>`).join('')}<td class="${c.status==='checked'?'':'no'}">${esc(c.note||(c.status==='checked'?'проверено':''))}</td></tr>`).join('')}</tbody></table>${DATA.meta.method?`<div class="method"><b>Как сравнивалось.</b> ${md(DATA.meta.method)}</div>`:''}`;
 }
 function fullView(){
   const cur=state.fullW||DATA.meta.widths[0].id,wi=shotInfo(cur),showDiff=state.fullDiff&&wi.diffImg&&IMG[wi.diffImg];
@@ -673,7 +760,7 @@ function fullView(){
   if($('#fullDiff'))$('#fullDiff').onchange=e=>{state.fullDiff=e.target.checked;fullView()};
   $('#syncScroll').onchange=e=>state.sync=e.target.checked;
 }
-function progress(){const all=DATA.findings.length,done=DATA.findings.filter(f=>decisions[f.id]?.v).length;$('#progText').textContent=`Решено ${done} из ${all}`;$('#progBar').style.width=(all?done/all*100:0)+'%';quality()}
+function progress(){quality()}
 
 // --- качество навыка: точность (лишнее) и полнота (пропущенное) по разметке дизайнера
 // Точность = (Баг + Допустимо) / всё решённое; полнота = подтверждённые находки ИИ / (они + добавленные дизайнером).
@@ -750,20 +837,24 @@ document.addEventListener('click',e=>{
   const del=e.target.closest('[data-mdel]');if(del){if(del.dataset.sure){saveMissed(missedList().filter(x=>x.id!==del.dataset.mdel));missedView()}else{del.dataset.sure='1';del.textContent='Точно удалить?'}}
 });
 
+function mockupView(){
+  const items=mockupFixes();
+  if(items.length)list('#view-mockup',items);
+  else $('#view-mockup').innerHTML='<div class="empty">Правок в макет пока нет.</div>';
+}
 function render(){
-  if(state.tab==='bugs'){list('#view-bugs',mainBugs());if(RECHECK)$('#view-bugs').insertAdjacentHTML('afterbegin','<p class="hint" style="margin-top:16px">Перепроверка исправлений: здесь то, что осталось, — не исправлено, исправлено не до конца, новые поломки и то, что надо посмотреть глазами. Кадры: было · сейчас · макет. «Баг» — уйдёт в Jira.</p>')}
+  if(state.tab==='bugs')list('#view-bugs',mainBugs());
   if(state.tab==='fixed'){list('#view-fixed',fixedL);$('#view-fixed').insertAdjacentHTML('afterbegin','<p class="hint" style="margin-top:16px">Исправлено по замеру: значение стало как в макете. Пролистайте кадры «было · сейчас · макет» — если на деле не так, «Не исправлено», и находка попадёт в Jira.</p>')}
   if(state.tab==='other'){list('#view-other',others());$('#view-other').insertAdjacentHTML('afterbegin','<p class="hint" style="margin-top:16px">Расхождения не по задаче этого ревью — элементы, которые задача не меняла (например, чипы навыков в существующей карточке). Это настоящие расхождения, но в задачи этого ревью и в качество навыка не входят; можно завести отдельно. Если всё же по задаче — «Баг», находка вернётся в «Расхождения».</p>')}
   if(state.tab==='missed')missedView();
   if(state.tab==='qa'){list('#view-qa',qas);$('#view-qa').insertAdjacentHTML('afterbegin','<p class="hint" style="margin-top:16px">Замечания по механике — что заметно «как тестировщик»: логика, сортировка, синхронизация, ошибки. Основная цель ревью — как выглядит и ведёт себя интерфейс; это побочный результат, для QA. В качество дизайн-ревью не входит.</p>')}
-  if(state.tab==='mockup'){list('#view-mockup',mocks);$('#view-mockup').insertAdjacentHTML('afterbegin','<p class="hint" style="margin-top:16px">Макет — эталон на 99 %. Здесь то, что выбивается из правил самого макета: цвет со значением токена, но без привязки; отступы не по сетке; тексты без стиля. В задачи разработчикам и в качество навыка не входит — это список для дизайнера («Правки в макет» вверху).</p>')}
+  if(state.tab==='mockup')mockupView();
   if(state.tab==='improve')list('#view-improve',imps);
   if(state.tab==='match')matchesView();
   if(state.tab==='full')fullView();
   if(state.tab==='report'){reportView();
-    // открыл «Отчёт» — значит, переносит в Jira: с этого момента разметка для обучения пишется рядом с отчётом сама
-    if(!decisions.__report){decisions.__report={at:new Date().toISOString()};persist()}else remoteSave(true)}
-  if(state.tab==='scope')scopeView();
+    trainingReady=true;decisions.__report={at:new Date().toISOString()};persist();remoteSave(true)}
+  if(state.tab==='extra')scopeView();
   progress();
 }
 
@@ -975,11 +1066,16 @@ const groupsOf=list=>{const g=new Map();for(const f of list){const k=f.area||'';
 const qaList=()=>ordered(qas.filter(f=>!['notbug'].includes(decisions[f.id]?.v)),false);
 // перепроверка: «Исправлено», которое дизайнер отметил «Не исправлено», — тоже задача
 const acceptedImprovements=()=>imps.filter(f=>decisions[f.id]?.v==='take'||f.acceptedAction&&!['skip','discuss'].includes(decisions[f.id]?.v)).map(f=>({...f,area:'Согласованные улучшения',title:f.title.replace(/^Предположение:\s*/i,'Согласовано: '),short:decisions[f.id]?.note||f.approvedInstruction||f.fix||f.short}));
-const reportList=()=>{const reopened=fixedL.filter(f=>decisions[f.id]?.v==='bug'),conf=[...bugs.filter(f=>decisions[f.id]?.v==='bug'),...reopened];return ordered([...(conf.length?conf:[...bugs.filter(f=>!['notbug','ok',...OUT_V].includes(decisions[f.id]?.v)),...reopened]),...acceptedImprovements()],false)};
+const reportList=()=>ordered([...bugs.filter(f=>decisions[f.id]?.v==='bug'),...fixedL.filter(f=>decisions[f.id]?.v==='bug'),...acceptedImprovements()],false);
 const reportHTML=(f,lvl,num)=>{let i=0;return jiraHTMLOf(f,{site:'',fig:''},lvl,num).replace(/<img src=""/g,()=>`<img data-rimgk="${f.id}:${i++===0?'site':'fig'}"`)};
 async function reportView(){
   const list=reportList(),missed=missedList(),conf=bugs.some(f=>decisions[f.id]?.v==='bug');
-  $('#view-report').innerHTML=`<div class="rbar"><div><b>${list.length+missed.length}</b> ${(n=>{const k=n%10,h=n%100,w=k===1&&h!==11?'задача':k>=2&&k<=4&&(h<12||h>14)?'задачи':'задач';return conf?(k===1&&h!==11?'подтверждённая ':'подтверждённых ')+w:w+' (решений «Баг» пока нет — все, кроме отклонённых)'})(list.length+missed.length)}${missed.length?` · из них добавлено вами: ${missed.length}`:''}</div>
+  if(!list.length&&!missed.length&&!qaList().length){
+    const pending=mainBugs().length>0,source=RECHECK?'Не исправлено':'Расхождения';
+    $('#view-report').innerHTML=`<div class="report-empty"><h2>В отчёте пока нет задач</h2>${pending?`<p>Сначала разберите находки на вкладке «${source}»: отметьте, что является багом, а что — нет. Подтверждённые баги появятся здесь.</p><button class="btn primary" data-report-start>Перейти к вкладке «${source}»</button>`:'<p>Подтверждённых багов и согласованных улучшений пока нет.</p>'}</div>`;
+    const start=$('[data-report-start]');if(start)start.onclick=()=>{state.tab='bugs';tabs();render()};return;
+  }
+  $('#view-report').innerHTML=`<div class="rbar"><div><b>${list.length+missed.length}</b> ${(n=>{const k=n%10,h=n%100,w=k===1&&h!==11?'задача':k>=2&&k<=4&&(h<12||h>14)?'задачи':'задач';return w})(list.length+missed.length)}${missed.length?` · из них добавлено вами: ${missed.length}`:''}</div>
     <div class="ract"><button class="btn primary" id="rAll">Скопировать всё</button><button class="btn" id="rZip" title="report.md и картинки — для GitLab, GitHub, YouTrack или вложений">Скачать .zip</button><label class="qchk" title="Строка «Что поменять» и блок CSS в задаче. Обычно не нужно: значения в таблице и «Где:» понятнее">
 <input type="checkbox" id="rCss" ${DEV_CSS?'checked':''}> CSS для фронтенда</label><span class="saved" id="rState"></span></div>
     <p class="hint">Выделите задачу мышью и скопируйте — или «Копировать текст». Jira не берёт картинки из вставленного текста: кликните по картинке — она скопируется, вставьте её в ячейку таблицы (Ctrl+V).</p></div>`+
@@ -1005,14 +1101,7 @@ document.addEventListener('click',async e=>{
   const t=e.target.closest('[data-rtext]');if(t){const f=reportList().find(x=>x.id===t.dataset.rtext)||DATA.findings.find(x=>x.id===t.dataset.rtext);const st=document.querySelector(`[data-rstate="${f.id}"]`);st.textContent=await copyRich(jiraHTMLOf(f),jiraTextOf(f))?'Текст скопирован → Ctrl+V в задаче; картинки — кликом по ним':'Браузер не дал доступ к буферу';return}
   const pr=e.target.closest('[data-rpair]');if(pr){const c=RIMG[pr.dataset.rpair+':pair'];const st=document.querySelector(`[data-rstate="${pr.dataset.rpair}"]`);st.textContent=c&&await copyPNG(c)?'Картинка «сайт | макет» скопирована → Ctrl+V':'Картинка ещё готовится или нет доступа к буферу'}
 });
-$('#reportBtn').onclick=()=>{state.tab='report';tabs();render();window.scrollTo({top:document.querySelector('#tabs').offsetTop-8,behavior:'smooth'})};
 // Правки в макет — для дизайнера: что поправить в самом макете, со ссылками прямо на слои
-$('#mkBtn').onclick=()=>{
-  const list=mockupFixes();
-  const t=list.map(f=>{const d=decisions[f.id]||{},links=[...new Set(f.evidence.map(e=>figUrl(e.figmaNode,metaOf(e))).filter(Boolean))].slice(0,3);
-    return `[${f.id}] ${f.kind==='bug'?`${f.title} — по решению: сайт прав, ошибка в макете`:f.title}\n${f.kind==='bug'?`${L.b}: ${f.props.map(p=>`${p.name} ${p.b}`).join(', ')} · в макете: ${f.props.map(p=>p.a).join(', ')}`:f.why}\n${f.kind==='mockup'&&f.fix?'Что сделать: '+f.fix+'\n':''}${d.note?'Комментарий: '+d.note+'\n':''}${links.map(u=>'Слой: '+u).join('\n')}`}).join('\n\n');
-  dialog(list.length?`Правки в макет: ${list.length}`:'Правок в макет нет',list.length?t:'Проверка макета ничего не нашла, и ни одно расхождение не отмечено как «Ошибка в макете».');
-};
 $('#jiraBtn').onclick=()=>{
   const conf=bugs.filter(f=>decisions[f.id]?.v==='bug'),src=reportList();
   const t=src.map(f=>jiraTextOf(f)).join('\n\n----\n\n'),mt=missedList().map(jiraTextMissed).join('\n\n----\n\n');
@@ -1032,23 +1121,9 @@ function feedbackPayload(){
     missed:missedList().map(({at,...x})=>x),
     skillNotes:Object.entries(decisions).filter(([k,d])=>!k.startsWith('__')&&d.scope==='skill'&&d.note).map(([id,d])=>({id,note:d.note}))};
 }
-$('#jsonBtn').onclick=()=>{
-  const m=metrics(),payload=feedbackPayload();
-  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(payload,null,1)],{type:'application/json'}));a.download=feedbackName();a.click();
-  const pct=x=>x==null?'—':Math.round(x*100)+'%';
-  dialog('Разметка сохранена в «Загрузки»',`Файл: ${a.download}\n\nТочность: ${pct(m.precision)} (верных ${m.tp}, лишних ${m.fp})\nПолнота: ${m.reviewedFully?pct(m.recall):'— (не отмечено, что страница просмотрена целиком)'} · пропущено ${m.missed}\nБез решения: ${m.pending}\n\nПринесите файл Claude и попросите: «дообучи навык по разметке».`)};
-$('#saveBtn').onclick=()=>{
-  // Копия документа без отрисованных карточек: при открытии всё перерисуется, решения подхватятся из #decisions.
-  const clone=document.documentElement.cloneNode(true);
-  clone.querySelectorAll('.view,#summary,#tabs').forEach(n=>n.innerHTML='');
-  clone.querySelector('#dlg')?.removeAttribute('open');
-  clone.querySelector('#decisions').textContent=JSON.stringify(decisions).replace(/</g,'\\u003c');
-  const out='<!doctype html>\n'+clone.outerHTML;
-  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([out],{type:'text/html'}));a.download='design-review-'+new Date().toISOString().slice(0,10)+'.html';a.click()};
-
 // --- тема и клавиатура
 const themeKey='dr-theme';try{const t=localStorage.getItem(themeKey);if(t)document.documentElement.dataset.theme=t}catch{}
-function syncSide(){document.querySelectorAll('[data-side]').forEach(b=>{b.textContent=b.dataset.side==='a'?L.a:L.b;b.setAttribute('aria-pressed',String((b.dataset.side==='b')===SWAP))})}
+function syncSide(){document.querySelectorAll('[data-side]').forEach(b=>{b.textContent=b.dataset.side==='a'?HEADER_L.a:HEADER_L.b;b.setAttribute('aria-pressed',String((b.dataset.side==='b')===SWAP))})}
 $('#sideSwitch').onclick=e=>{const b=e.target.closest('[data-side]');if(!b)return;SWAP=b.dataset.side==='b';try{localStorage.setItem('dr-swap',SWAP?'1':'0')}catch{};syncSide();render()};
 syncSide();
 function syncTheme(){const t=document.documentElement.dataset.theme||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.querySelectorAll('[data-theme-v]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.themeV===t)))}
@@ -1065,10 +1140,11 @@ document.addEventListener('keydown',e=>{
   if(e.key==='m'||e.key==='ь'){const cur=state.mode[id]||'side';state.mode[id]=MODES[(MODES.findIndex(m=>m[0]===cur)+1)%MODES.length][0];rerenderCard(id);document.querySelector(`[data-card="${id}"]`).classList.add('focused')}
 });
 // ссылка вида report.html#report — сразу на вкладку (например, «Отчёт» для Jira)
-{const h=location.hash.slice(1);if(['bugs','report','mockup','other','qa','fixed','improve','match','full','scope'].includes(h))state.tab=h}
+{const h=location.hash.slice(1);if(['bugs','report','mockup','other','qa','fixed','improve','match','full','scope','extra'].includes(h))state.tab=h}
+if(state.tab==='scope')state.tab='extra';
+if(state.tab==='match'&&!DATA.matches.length)state.tab='bugs';
 header();tabs();render();
-if(SRV)autoSaveState('Решения сохраняются сами — в папку отчёта');
-else{$('#saveBtn').hidden=false;$('#jsonBtn').hidden=false;autoSaveState('Открыт с диска: решения только в этом браузере. Чтобы сохранялись сами — откройте «Открыть отчёт.cmd» рядом с отчётом',true)}
+if(SRV)autoSaveState(savedLabel(SRV.savedAt));else autoSaveState('Без записи в файл');
 </script>
 </body>
 </html>

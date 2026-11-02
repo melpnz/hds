@@ -3,7 +3,7 @@
 //
 // Отдаёт файлы прогона только на 127.0.0.1. Страница присылает решения POST-запросом, сервер пишет:
 //   decisions.json  — сразу (агент читает решения отсюда);
-//   report.html     — решения встраиваются в <script id="decisions"> (с задержкой ~2 с), файл можно открыть и без сервера;
+//   report.html     — решения сразу встраиваются в <script id="decisions">; подтверждение — после записи;
 //   feedback-*.json — разметка для обучения, после того как дизайнер открыл «Отчёт» (и дальше обновляется).
 // Порт постоянный для прогона (из его пути): у отчёта тот же адрес, и решения в браузере не теряются между запусками.
 import http from 'node:http';
@@ -27,21 +27,22 @@ const savedPort = (()=>{try{return JSON.parse(fs.readFileSync(serverState,'utf8'
 const basePort = Number(opt('port')) || Number(savedPort) || 47000 + (parseInt(crypto.createHash('sha1').update(runDir.toLowerCase()).digest('hex').slice(0, 6), 16) % 1500);
 
 const readDecisions = () => { try { return JSON.parse(fs.readFileSync(decPath, 'utf8')).decisions || null; } catch { return null; } };
-const writeAtomic = (file, text) => { const tmp = file + '.tmp'; fs.writeFileSync(tmp, text); fs.renameSync(tmp, file); };
+const writeAtomic = async (file, text) => {
+  const tmp=file+'.tmp';await fs.promises.writeFile(tmp,text);
+  for(let attempt=0;;attempt++){
+    try{await fs.promises.rename(tmp,file);return}
+    catch(error){if(!['EPERM','EACCES','EBUSY'].includes(error.code)||attempt>=7)throw error;await new Promise(resolve=>setTimeout(resolve,Math.min(50*2**attempt,400)))}
+  }
+};
 const embed = (html, dec) => {
   const i = html.indexOf(TAG); if (i < 0) return html;
   const j = html.indexOf('</script>', i);
   return html.slice(0, i + TAG.length) + JSON.stringify(dec).replace(/</g, '\\u003c') + html.slice(j);
 };
-let pending = null, timer = null;
-const flushReport = () => {
-  clearTimeout(timer); timer = null; if (!pending) return;
-  try { writeAtomic(reportPath, embed(fs.readFileSync(reportPath, 'utf8'), pending)); pending = null; }
-  catch (e) { console.error('⚠ не удалось записать report.html:', e.message); }
-};
+let saveQueue=Promise.resolve();
 const MIME = { '.html': 'text/html; charset=utf-8', '.json': 'application/json; charset=utf-8', '.png': 'image/png', '.jpg': 'image/jpeg', '.svg': 'image/svg+xml', '.css': 'text/css', '.js': 'text/javascript' };
 
-const server = http.createServer((req, res) => {
+const server = http.createServer(async (req, res) => {
   const u = new URL(req.url, 'http://127.0.0.1');
   const send = (code, body, type = 'application/json; charset=utf-8') => { res.writeHead(code, { 'Content-Type': type, 'Cache-Control': 'no-store' }); res.end(body); };
   if (u.pathname === '/api/ping') return send(200, JSON.stringify({ ok: true, dir: runDir }));
@@ -50,16 +51,17 @@ const server = http.createServer((req, res) => {
     let body = ''; req.setEncoding('utf8');
     req.on('data', c => { body += c; if (body.length > 50e6) req.destroy(); });
     req.on('end', () => {
-      try {
+      saveQueue=saveQueue.then(async()=>{try {
         const p = JSON.parse(body);
-        if (!p.decisions || typeof p.decisions !== 'object') throw new Error('нет решений');
+        if (!p.decisions || typeof p.decisions !== 'object' || Array.isArray(p.decisions)) throw new Error('нет решений');
         const savedAt = new Date().toISOString();
-        writeAtomic(decPath, JSON.stringify({ savedAt, decisions: p.decisions }, null, 1));
+        await writeAtomic(decPath, JSON.stringify({ savedAt, decisions: p.decisions }, null, 1));
+        const previous=fs.readFileSync(reportPath,'utf8'),next=embed(previous,p.decisions);
+        if(next!==previous)await writeAtomic(reportPath,next);
         let feedback = null;
-        if (p.feedback?.name && /^feedback-[\w.-]+\.json$/.test(p.feedback.name)) { writeAtomic(path.join(runDir, p.feedback.name), JSON.stringify(p.feedback.data, null, 1)); feedback = p.feedback.name; }
-        pending = p.decisions; if (p.final) flushReport(); else if (!timer) timer = setTimeout(flushReport, 2000);
+        if (p.feedback?.name && /^feedback-[\w.-]+\.json$/.test(p.feedback.name)) { await writeAtomic(path.join(runDir, p.feedback.name), JSON.stringify(p.feedback.data, null, 1)); feedback = p.feedback.name; }
         send(200, JSON.stringify({ ok: true, savedAt, feedback }));
-      } catch (e) { send(400, JSON.stringify({ ok: false, error: e.message })); }
+      } catch (e) { send(500, JSON.stringify({ ok: false, error: e.message })); }}).catch(()=>{});
     });
     return;
   }
@@ -68,10 +70,12 @@ const server = http.createServer((req, res) => {
   const file = path.resolve(runDir, '.' + rel);
   if (!file.startsWith(runDir + path.sep) || !fs.existsSync(file) || !fs.statSync(file).isFile()) return send(404, 'not found', 'text/plain');
   if (file === reportPath) {
-    flushReport();
+    await saveQueue;
     let html = fs.readFileSync(file, 'utf8');
     const dec = readDecisions(); if (dec) html = embed(html, dec); // самые свежие решения — из decisions.json
-    html = html.replace('<head>', `<head><script>window.DR_SERVER=${JSON.stringify({ token })}</script>`);
+    let savedAt=fs.statSync(reportPath).mtime.toISOString();
+    try{savedAt=JSON.parse(fs.readFileSync(decPath,'utf8')).savedAt||savedAt}catch{}
+    html = html.replace('<head>', `<head><script>window.DR_SERVER=${JSON.stringify({ token,savedAt })}</script>`);
     return send(200, html, MIME['.html']);
   }
   res.writeHead(200, { 'Content-Type': MIME[path.extname(file).toLowerCase()] || 'application/octet-stream' });
@@ -92,10 +96,10 @@ for (let port = basePort; port < basePort + 20; port++) {
     continue;
   }
   const url = `http://127.0.0.1:${port}/`;
-  writeAtomic(serverState, JSON.stringify({port,pid:process.pid},null,2));
+  await writeAtomic(serverState, JSON.stringify({port,pid:process.pid},null,2));
   console.log(`Отчёт: ${url}\nРешения сохраняются сами в ${runDir} (decisions.json, report.html, feedback-*.json).\nНе закрывайте это окно, пока работаете с отчётом.`);
   if (opt('open')) openUrl(url);
-  const stop = () => { flushReport(); process.exit(0); };
+  const stop = () => { server.close();saveQueue.finally(()=>process.exit(0)); };
   process.on('SIGINT', stop); process.on('SIGTERM', stop); process.on('SIGHUP', stop);
   break;
 }

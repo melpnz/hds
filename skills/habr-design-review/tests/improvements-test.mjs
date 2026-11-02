@@ -88,14 +88,16 @@ try {
   assert.equal(payload.tokenUsage.totals.total, 60); assert.equal(payload.tokenUsage.complete, false);
   assert.equal(payload.run.skillRelease, JSON.parse(fs.readFileSync(path.join(root, 'package.json'))).version);
   assert.equal(await page.locator('[data-token-usage]').count(), 1);
-  assert.equal(await page.locator('details[data-token-usage]').evaluate(el => el.open), false);
-  assert.equal(await page.locator('[data-token-usage] table').isVisible(), false);
-  await page.click('[data-token-usage] > summary');
-  assert.equal(await page.locator('[data-token-usage] table').isVisible(), true);
-  await page.evaluate(() => summary());
   assert.equal(await page.locator('details[data-token-usage]').evaluate(el => el.open), true);
-  await page.reload(); await page.waitForTimeout(150);
+  assert.equal(await page.locator('[data-token-usage] table').isVisible(), false);
+  await page.click('[data-tab="extra"]');
+  assert.equal(await page.locator('[data-token-usage] table').isVisible(), true);
+  await page.click('[data-token-usage] > summary');
+  assert.equal(await page.locator('[data-token-usage] table').isVisible(), false);
+  await page.evaluate(() => summary());
   assert.equal(await page.locator('details[data-token-usage]').evaluate(el => el.open), false);
+  await page.reload(); await page.waitForTimeout(150);
+  assert.equal(await page.locator('details[data-token-usage]').evaluate(el => el.open), true);
   assert.equal(await page.evaluate(() => DATA.findings[0].evidence[0].aMarks.find(x => x.kind === 'padding').box[3]), 80);
   const accepted = await page.evaluate(async () => {
     const before = metrics();
