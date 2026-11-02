@@ -12,14 +12,17 @@ const cmd=(...args)=>execFileSync(process.execPath,[path.join(skill,'scripts/rec
 write(path.join(root,'findings.json'),{meta:{title:'Review',testUrl:'https://example.test',widths:[{id:'320-error',w:320,state:'error',bImg:'page/page-320-error.png'}]},findings:[{id:'H',kind:'improvement',basis:'visual-heuristic',referenceStatus:'missing',foundBy:'designer',widths:[320],state:'error',title:'Hypothesis',evidence:[{shot:'320-error',b:[0,0,200,100]}]}]});
 write(path.join(root,'decisions.json'),{decisions:{H:{v:'take',note:'Mobile below; desktop right'}}});
 fs.writeFileSync(path.join(root,'report.html'),'initial');
+write(path.join(root,'review-config.json'),{schema:'design-review-config/1',audience:'developer'});
 cmd('plan',root);
 const run=path.join(root,'rechecks/01'), plan=JSON.parse(fs.readFileSync(path.join(run,'recheck-plan.json')));
 assert.equal(plan.items[0].acceptedAction,true);assert.equal(plan.items[0].note,'Mobile below; desktop right');
+assert.equal(plan.audience,'developer');
 assert.equal(resolveReviewRun(root),root);
 write(path.join(run,'page/page-320-error.json'),{elements:[]});
 fs.writeFileSync(path.join(run,'page/page-320-error.png'),'image');
 cmd('check',run);
 let finding=JSON.parse(fs.readFileSync(path.join(run,'findings.json'))).findings[0];
+assert.equal(JSON.parse(fs.readFileSync(path.join(run,'findings.json'))).meta.audience,'developer');
 assert.equal(finding.kind,'improvement');assert.equal(finding.foundBy,'designer');assert(finding.evidence.length);
 assert.equal(finding.approvedInstruction,'Mobile below; desktop right');
 fs.writeFileSync(path.join(run,'report.html'),'latest');completeRevision(run);

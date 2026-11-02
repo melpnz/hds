@@ -17,6 +17,10 @@ import { completeRevision } from './workspace-lib.mjs';
 const [runDir, outArg] = process.argv.slice(2);
 if (!runDir) { console.error('usage: build-report.mjs <runDir> [out.html]'); process.exit(1); }
 const data = JSON.parse(fs.readFileSync(path.join(runDir, 'findings.json'), 'utf8'));
+const configFile=path.join(runDir,'review-config.json');
+const config=fs.existsSync(configFile)?JSON.parse(fs.readFileSync(configFile,'utf8')):{};
+data.meta.audience=config.audience??data.meta.audience??'designer';
+if(!['developer','designer','other'].includes(data.meta.audience))throw new Error('audience must be developer, designer or other');
 const usageFile = path.join(runDir, 'token-usage.json');
 const usageLedger=fs.existsSync(usageFile)?JSON.parse(fs.readFileSync(usageFile,'utf8')):null;
 data.meta.tokenUsage = usageLedger ? summarizeUsage(usageLedger) : data.meta.pages?.length ? null : data.meta.tokenUsage || null;

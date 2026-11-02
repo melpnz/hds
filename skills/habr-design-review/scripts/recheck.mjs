@@ -119,7 +119,9 @@ function plan() {
     return { id: p.id || '', title: p.title, testUrl: p.testUrl, figmaUrl: p.figmaUrl, origDir: dir, dir: nd, widths, scenario: scen || null,
       capture: `node "${path.join(path.dirname(fileURLToPath(import.meta.url)), 'capture.mjs')}" --url "${p.testUrl}" --out "${path.join(nd, 'page')}" --widths ${widths.join(',')}${scen ? ` --scenario "${scen}"` : ''} --measure "${mfile}"` };
   });
-  const out = { origin: origRun, workspaceRoot: allocation.root, decisionsFrom: src, createdAt: new Date().toISOString().slice(0, 10), title: O.meta.title, labels: O.meta.labels, figmaUrl: O.meta.figmaUrl, testUrl: O.meta.testUrl, pages: P, items };
+  const configFile=path.join(origRun,'review-config.json');
+  const audience=fs.existsSync(configFile)?readJson(configFile).audience:O.meta.audience;
+  const out = { origin: origRun, audience:audience||'designer', workspaceRoot: allocation.root, decisionsFrom: src, createdAt: new Date().toISOString().slice(0, 10), title: O.meta.title, labels: O.meta.labels, figmaUrl: O.meta.figmaUrl, testUrl: O.meta.testUrl, pages: P, items };
   fs.mkdirSync(newRun, { recursive: true });
   fs.writeFileSync(path.join(newRun, 'recheck-plan.json'), JSON.stringify(out, null, 1));
   const cnt = v => items.filter(i => i.verdict === v).length;
@@ -219,7 +221,7 @@ function check() {
       fix: r.status === 'fixed' || r.status === 'kept' ? undefined : it.fix, widths: it.widths || [], state: it.state, props, evidence, values: it.values });
   }
   const O = { meta: { title: `Перепроверка · ${PL.title || ''}`.trim(), mode: 'recheck', origin: PL.origin, labels: { a: (PL.labels?.a) || 'Макет', b: 'Сейчас', c: 'Было' }, figmaUrl: PL.figmaUrl, testUrl: PL.testUrl, createdAt: new Date().toISOString().slice(0, 10), state: 'default',
-    runId: path.basename(newRun), pages: PL.pages.length > 1 || PL.pages[0]?.id ? PL.pages.map(p => ({ id: p.id, title: p.title, testUrl: p.testUrl, figmaUrl: p.figmaUrl, dir: p.dir })) : undefined,
+    runId: path.basename(newRun), audience:PL.audience||'designer', pages: PL.pages.length > 1 || PL.pages[0]?.id ? PL.pages.map(p => ({ id: p.id, title: p.title, testUrl: p.testUrl, figmaUrl: p.figmaUrl, dir: p.dir })) : undefined,
     widths: [...widths.values()].filter(w => w.bImg) }, findings, matches: [] };
   // находки агента, добавленные вручную (новые поломки, ответы на «глазами») — сохраняем при пересчёте
   const prevF = path.join(newRun, 'findings.json');

@@ -321,6 +321,9 @@ header.top #sub{grid-column:1;grid-row:2;display:flex;flex-direction:column;gap:
 .report-empty{padding:36px 24px;text-align:center;background:var(--surface);border-radius:18px;margin-top:18px;color:var(--ink-2)}
 .report-empty h2{font-size:18px;margin:0 0 10px;color:var(--ink)}
 .report-empty p{max-width:620px;margin:0 auto 18px;line-height:1.6}
+.report-warning{margin:18px 0 14px;padding:16px 18px;border:1px solid var(--line-2);border-left:3px solid var(--major);border-radius:14px;background:var(--raised);color:var(--ink-2);line-height:1.5}
+.report-warning b{display:block;color:var(--ink);margin-bottom:5px}
+.report-warning p{margin:0}
 .header-settings{grid-column:2;grid-row:2;display:flex;justify-content:flex-end;align-items:center;gap:12px}
 .width-filter{position:relative;margin-left:0;max-width:100%;font-size:13px}
 .filters-divider{width:1px;height:24px;flex:0 0 1px;align-self:center;background:var(--line-2);margin:0 6px}
@@ -410,6 +413,8 @@ for(const [k,v] of Object.entries(IMAGES)){const b=atob(v.src.split(',')[1]);con
 // Нормализация: отчёт работает и для «макет ↔ сайт» (figma/page), и для «прод ↔ стенд» (a/b), снимки — по id (ширина + состояние).
 const L=DATA.meta.labels||{a:'Макет',b:'Сайт'};
 const HEADER_L={a:L.a,b:['Сайт','Сейчас'].includes(L.b)?'Тестовый':L.b};
+const DEVELOPER_REPORT=DATA.meta.audience==='developer';
+const REPORT_WARNING='ИИ мог ошибиться. Замечания показаны без предварительного отбора и не становятся автоматически подтверждёнными багами. Если есть сомнения, обратитесь к дизайнеру.';
 // Какая сторона слева: по умолчанию эталон (макет/прод) слева; выбор запоминается в браузере.
 let SWAP=false;try{SWAP=localStorage.getItem('dr-swap')==='1'}catch{}
 const order=(a,b)=>SWAP?[b,a]:[a,b];
@@ -452,7 +457,7 @@ if(SRV){addEventListener('pagehide',()=>{clearTimeout(saveT);navigator.sendBeaco
   document.addEventListener('click',e=>{if(e.target.closest('button'))remoteSave(true)});
   document.addEventListener('visibilitychange',()=>{if(document.hidden)navigator.sendBeacon('/api/save?t='+SRV.token,new Blob([savePayload(true)],{type:'text/plain'}))})}
 
-const state={tab:'bugs',dec:new Set(),pg:new Set(),sev:new Set(),cat:new Set(),w:new Set(),mode:{},ev:{},focus:null};
+const state={tab:DEVELOPER_REPORT?'report':'bugs',dec:new Set(),pg:new Set(),sev:new Set(),cat:new Set(),w:new Set(),mode:{},ev:{},focus:null};
 const bugs=DATA.findings.filter(f=>f.kind==='bug'),imps=DATA.findings.filter(f=>f.kind==='improvement'),mocks=DATA.findings.filter(f=>f.kind==='mockup');
 // Механика (kind:'qa'): то, что заметно «как тестировщик» (логика, сортировка, синхронизация) — отдельно от дизайн-ревью,
 // после него; в метрики качества дизайн-ревью не входит
@@ -919,11 +924,12 @@ const OVR={fills:'заливка',strokes:'обводка',strokeWeight:'тол�
 const compOf=f=>{const c=evOfF(f)?.figmaNode?.comp;if(!c||!c.lib||!c.url)return null;const ch=[...new Set((c.custom||[]).map(x=>OVR[x]||x))];return {name:c.name,url:c.url,changed:ch}};
 const compLine=(f,fmt)=>{const c=compOf(f);if(!c)return null;const tail=c.changed.length?` (в макете изменён: ${c.changed.join(', ')})`:'';return fmt==='wiki'?`Компонент: [${c.name}|${c.url}]${tail}`:fmt==='md'?`Компонент: [${c.name}](${c.url})${tail}`:`Компонент: <a href="${esc(c.url)}">${esc(c.name)}</a>${esc(tail)}`};
 function jiraTextOf(f,lvl='h1',num=''){
+  if(textOnlyReport(f))return `${lvl}. ${num}${mPlain(f.title)}\n${mWiki(shortOf(f))}${f.fix?'\n\n'+mWiki(f.fix):''}${decisions[f.id]?.note?'\n\n'+decisions[f.id].note:''}`;
   const ev=evOfF(f),bu=bUrl(ev),au=aUrl(ev),sel=f.selector||selOf(f),note=decisions[f.id]?.note,c=valCells(f);
   const cell=(u,t,lines)=>[u?`[${t}|${u}]`:t,...lines.map(mWiki)].join(' \\\\ ');
   const cl=compLine(f,'wiki');
   const showWhere=!(DEV_CSS&&cssOf(f));
-  if (!shotInfo(ev.shot)?.aImg) return `${lvl}. ${num}${mPlain(f.title)}\n${mWiki(shortOf(f))}\n\n${cell(bu,L.b,c.b)}\nМакета состояния нет.${f.kind==='improvement'?' Согласованное улучшение.':''}${sel?`\n\n*Где:* {{${sel}}}`:''}${note&&note!==shortOf(f)?`\n\nРешение дизайнера: ${note}`:''}`;
+  if (!shotInfo(ev.shot)?.aImg) return `${lvl}. ${num}${mPlain(f.title)}\n${mWiki(shortOf(f))}\n\n${cell(bu,L.b,c.b)}\nМакета состояния нет.${improvementStatus(f)}${sel?`\n\n*Где:* {{${sel}}}`:''}${note&&note!==shortOf(f)?`\n\nРешение дизайнера: ${note}`:''}`;
   return `${lvl}. ${num}${mPlain(f.title)}\n${mWiki(shortOf(f))}\n\n|${cell(bu,L.b,c.b)}|${cell(au,L.a,cl?[...c.a,cl]:c.a)}|${sel&&showWhere?`\n\n*Где:* {{${sel}}}`:''}${devLinesWiki(f)}${note?`\n\n${note}`:''}`;
 }
 const jiraTextMissed=it=>`h3. ${it.title}\n${it.desc||''}${it.site?`\n*${L.b}:* ${it.site}`:''}${it.figma?`\n*${L.a}:* ${it.figma}`:''}`;
@@ -968,11 +974,12 @@ ${L.a}: ${au}`}};
 // копируются отдельно: «1. Текст задачи», затем «2. Картинка» (вставляется как файл-вложение).
 // imgs: {site, fig} — dataURL картинок для первой строки таблицы (в «Отчёте»); без них строки картинок нет
 function jiraHTMLOf(f,imgs,lvl='h1',num=''){
+  if(textOnlyReport(f)){const ev=f.evidence?.[0],url=f.kind==='mockup'?(ev?aUrl(ev):null)||DATA.meta.figmaUrl:(ev?bUrl(ev):null)||DATA.meta.testUrl;return `<${lvl}>${esc(num+mPlain(f.title))}</${lvl}><p>${mHTML(shortOf(f))}</p>${f.fix?`<p>${mHTML(f.fix)}</p>`:''}${url?`<p><a href="${esc(url)}">${f.kind==='mockup'?'Открыть макет':'Открыть страницу'}</a></p>`:''}${decisions[f.id]?.note?`<p>${esc(decisions[f.id].note)}</p>`:''}`}
   const ev=evOfF(f),bu=bUrl(ev),au=aUrl(ev),sel=f.selector||selOf(f),note=decisions[f.id]?.note,c=valCells(f),cell='style="border:1px solid #ccc;padding:6px 10px;vertical-align:top"';
   const lk=(u,t)=>u?`<a href="${esc(u)}">${esc(t)}</a>`:esc(t);
   const td=(u,t,lines,extra)=>`<td ${cell}>${[lk(u,t),...lines.map(mHTML),...(extra?[extra]:[])].join('<br>')}</td>`;
   const ch=changesOf(f),css=cssOf(f);
-  if (!shotInfo(ev.shot)?.aImg) return `<${lvl}>${esc(num+mPlain(f.title))}</${lvl}><p>${mHTML(shortOf(f))}</p>${imgs?`<p><img src="${imgs.site}"${imgs.sw?` width="${imgs.sw}"`:''}></p>`:''}<p>${lk(bu,L.b)}${c.b.length?'<br>'+c.b.map(mHTML).join('<br>'):''}</p><p>Макета состояния нет.${f.kind==='improvement'?' Согласованное улучшение.':''}</p>${sel?`<p><b>Где:</b> <code>${esc(sel)}</code></p>`:''}${note&&note!==shortOf(f)?`<p><b>Решение дизайнера:</b> ${esc(note)}</p>`:''}`;
+  if (!shotInfo(ev.shot)?.aImg) return `<${lvl}>${esc(num+mPlain(f.title))}</${lvl}><p>${mHTML(shortOf(f))}</p>${imgs?`<p><img src="${imgs.site}"${imgs.sw?` width="${imgs.sw}"`:''}></p>`:''}<p>${lk(bu,L.b)}${c.b.length?'<br>'+c.b.map(mHTML).join('<br>'):''}</p><p>Макета состояния нет.${improvementStatus(f)}</p>${sel?`<p><b>Где:</b> <code>${esc(sel)}</code></p>`:''}${note&&note!==shortOf(f)?`<p><b>Решение дизайнера:</b> ${esc(note)}</p>`:''}`;
   return `<${lvl}>${esc(num+mPlain(f.title))}</${lvl}><p>${mHTML(shortOf(f))}</p><table style="border-collapse:collapse">${imgs?`<tr><td ${cell}><img src="${imgs.site}"${imgs.sw?` width="${imgs.sw}"`:''}></td><td ${cell}><img src="${imgs.fig}"${imgs.fw?` width="${imgs.fw}"`:''}></td></tr>`:''}<tr>${td(bu,L.b,c.b)}${td(au,L.a,c.a,compLine(f,'html'))}</tr></table>${sel&&!(DEV_CSS&&css)?`<p><b>Где:</b> <code>${esc(sel)}</code></p>`:''}${DEV_CSS&&ch.length?`<p><b>Что поменять:</b> ${ch.map(x=>`<code>${esc(x.prop)}</code>: ${esc(x.from)} → <b>${esc(x.to)}</b>`).join('; ')}</p>`:''}${DEV_CSS&&css?`<pre>${esc(css)}</pre>`:''}${note?`<p>${esc(note)}</p>`:''}`;
 }
 const jiraHTMLMissed=it=>`<h3>${esc(it.title)}</h3>${it.desc?`<p>${esc(it.desc)}</p>`:''}${it.site?`<p><b>${esc(L.b)}:</b> ${/^https?:/.test(it.site)?`<a href="${esc(it.site)}">${esc(it.site)}</a>`:esc(it.site)}</p>`:''}${it.figma?`<p><b>${esc(L.a)}:</b> <a href="${esc(it.figma)}">${esc(it.figma)}</a></p>`:''}`;
@@ -1009,6 +1016,7 @@ async function mdReport(){
   const P=t=>{md.push(t+'\n');html.push(`<p>${esc(t).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/`([^`]+)`/g,'<code>$1</code>')}</p>`)};
   const link=(u,t)=>u?{md:`[${t}](${u})`,html:`<a href="${esc(u)}">${esc(t)}</a>`}:{md:'',html:''};
   H(1,'Дизайн-ревью · '+DATA.meta.title);
+  if(DEVELOPER_REPORT)P(REPORT_WARNING);
   P(`**${L.b}:** ${PAGES?PAGES.map(p=>p.title+' — '+(p.testUrl||'')).join('; '):DATA.meta.testUrl||'—'}  \n**${L.a}:** ${PAGES?PAGES.map(p=>p.title+' — '+(p.figmaUrl||'')).join('; '):DATA.meta.figmaUrl||'—'}  \n**Дата:** ${DATA.meta.createdAt} · **Ширины:** ${UW.slice().sort((a,b)=>b-a).join(', ')} px`);
   const c=s=>list.filter(f=>f.severity===s).length;
   P(`**Задач:** ${list.length+missedList().length} (критичных ${c('critical')}, заметных ${c('major')}, мелочей ${c('minor')}, на обсуждение ${c('discuss')}${missedList().length?`, добавлено вручную ${missedList().length}`:''})${m.tp+m.fp?` · точность ревью ${pct(m.precision)}`:''}`);
@@ -1016,10 +1024,11 @@ async function mdReport(){
   // каждая задача — как в Jira: заголовок, одно предложение, таблица «Сайт | Макет» (картинки, ссылки, значения), «Где:», CSS
   for(const f of list){
     H(2,f.title);P(shortOf(f));
+    if(textOnlyReport(f)){if(f.fix)P(f.fix);if(decisions[f.id]?.note)P(decisions[f.id].note);html.push(jiraHTMLOf(f));k++;continue}
     const ev=evOfF(f),bu=bUrl(ev),au=aUrl(ev),base=`img/${String(f.id).replace(/[^\w-]+/g,'_')}`;let r=null;
     try{r=await evidenceShots(f,state.ev[f.id]??0);files.push({name:base+'-site.png',canvas:r.site});if(r.fig)files.push({name:base+'-mockup.png',canvas:r.fig})}catch{}
     const vc=valCells(f),cmd=compLine(f,'md'),mc=(u,t,lines,extra)=>[u?`[${t}](${u})`:t,...lines.map(x=>mdEsc(mMD(x))),...(extra?[mdEsc(extra)]:[])].join('<br>');
-    md.push(r&&!r.fig?`![](${base}-site.png)\n\n${mc(bu,L.b,vc.b)}\n\nМакета состояния нет. Согласованное улучшение.\n`:r?`| ![](${base}-site.png) | ![](${base}-mockup.png) |\n|---|---|\n| ${mc(bu,L.b,vc.b)} | ${mc(au,L.a,vc.a,cmd)} |\n`:`| ${mc(bu,L.b,vc.b)} | ${mc(au,L.a,vc.a,cmd)} |\n|---|---|\n`);
+    md.push(r&&!r.fig?`![](${base}-site.png)\n\n${mc(bu,L.b,vc.b)}\n\nМакета состояния нет.${improvementStatus(f)}\n`:r?`| ![](${base}-site.png) | ![](${base}-mockup.png) |\n|---|---|\n| ${mc(bu,L.b,vc.b)} | ${mc(au,L.a,vc.a,cmd)} |\n`:`| ${mc(bu,L.b,vc.b)} | ${mc(au,L.a,vc.a,cmd)} |\n|---|---|\n`);
     html.push(jiraHTMLOf(f));
     const css=cssOf(f),w=whereOf(f),ch=changesOf(f);if(w.sel&&!(DEV_CSS&&css))P(`**Где:** \`${w.sel}\``);if(DEV_CSS&&ch.length)P(`**Что поменять:** ${ch.map(c=>`\`${c.prop}\`: ${c.from} → **${c.to}**`).join('; ')}`);
     if(DEV_CSS&&css){md.push('```css\n'+css+'\n```\n');html.push(`<pre>${esc(css)}</pre>`)}
@@ -1031,7 +1040,7 @@ async function mdReport(){
     (it.images||[]).forEach((u,i)=>{const n=`img/${it.id}-${i+1}.${u.startsWith('data:image/jpeg')?'jpg':'png'}`;files.push({name:n,dataUrl:u});md.push(`![](${n})\n`)});
     if(it.site)P(`**${L.b}:** ${it.site}`);if(it.figma)P(`**${L.a}:** ${it.figma}`);
   }
-  const mk=mockupFixes(),sc=bugs.filter(f=>decisions[f.id]?.v==='scope');
+  const mk=DEVELOPER_REPORT?[]:mockupFixes(),sc=DEVELOPER_REPORT?[]:bugs.filter(f=>decisions[f.id]?.v==='scope');
   if(mk.length){H(2,'Для дизайнера: правки в макет');for(const f of mk){const u=figUrl(f.evidence[0]?.figmaNode,metaOf(f.evidence[0]));const l=link(u,'слой');md.push(`- [${f.id}] ${f.title}${l.md?' — '+l.md:''}\n`);html.push(`<p>[${esc(f.id)}] ${esc(f.title)}${l.html?' — '+l.html:''}</p>`)}}
   if(sc.length){H(2,'Вне этой проверки (другой функционал)');for(const f of sc){md.push(`- [${f.id}] ${f.title}${decisions[f.id]?.note?' — '+decisions[f.id].note:''}\n`);html.push(`<p>[${esc(f.id)}] ${esc(f.title)}${decisions[f.id]?.note?' — '+esc(decisions[f.id].note):''}</p>`)}}
   return {md:md.join('\n'),html:html.join('\n'),files,count:k+missedList().length};
@@ -1066,31 +1075,44 @@ const groupsOf=list=>{const g=new Map();for(const f of list){const k=f.area||'';
 const qaList=()=>ordered(qas.filter(f=>!['notbug'].includes(decisions[f.id]?.v)),false);
 // перепроверка: «Исправлено», которое дизайнер отметил «Не исправлено», — тоже задача
 const acceptedImprovements=()=>imps.filter(f=>decisions[f.id]?.v==='take'||f.acceptedAction&&!['skip','discuss'].includes(decisions[f.id]?.v)).map(f=>({...f,area:'Согласованные улучшения',title:f.title.replace(/^Предположение:\s*/i,'Согласовано: '),short:decisions[f.id]?.note||f.approvedInstruction||f.fix||f.short}));
-const reportList=()=>ordered([...bugs.filter(f=>decisions[f.id]?.v==='bug'),...fixedL.filter(f=>decisions[f.id]?.v==='bug'),...acceptedImprovements()],false);
+function textOnlyReport(f){return f.kind==='mockup'||!f.evidence?.length}
+function improvementStatus(f){if(f.kind!=='improvement')return '';return decisions[f.id]?.v==='take'||f.acceptedAction&&!['skip','discuss'].includes(decisions[f.id]?.v)?' Согласованное улучшение.':' Предположение ИИ, требует обсуждения.'}
+const reportQA=()=>DEVELOPER_REPORT?[]:qaList();
+function reportCountWord(n,fallback){if(!DEVELOPER_REPORT)return fallback;const k=n%10,h=n%100;return k===1&&h!==11?'замечание':k>=2&&k<=4&&(h<12||h>14)?'замечания':'замечаний'}
+const reportList=()=>{
+  if(!DEVELOPER_REPORT)return ordered([...bugs.filter(f=>decisions[f.id]?.v==='bug'),...fixedL.filter(f=>decisions[f.id]?.v==='bug'),...acceptedImprovements()],false);
+  const accepted=new Map(acceptedImprovements().map(f=>[f.id,f]));
+  return ordered(DATA.findings.map(f=>{
+    const base=accepted.get(f.id)||f,decision=decisions[f.id]?.v,label=decision?(optsOf(f).find(x=>x[0]===decision)?.[1]||{scope:'Другой функционал'}[decision]||decision):null;
+    const status={fixed:'Исправлено',mockup:'Правка макета',qa:'Замечание по механике'}[f.kind]||(f.foundBy==='designer'?'Найдено дизайнером':'Замечание ИИ');
+    return {...base,area:{fixed:'Исправлено',mockup:'Правки в макет',qa:'Замечания по механике'}[f.kind]||base.area,short:[status,label?'Решение: '+label:'Не подтверждено дизайнером',shortOf(base)].filter(Boolean).join(' · ')};
+  }),false);
+};
 const reportHTML=(f,lvl,num)=>{let i=0;return jiraHTMLOf(f,{site:'',fig:''},lvl,num).replace(/<img src=""/g,()=>`<img data-rimgk="${f.id}:${i++===0?'site':'fig'}"`)};
 async function reportView(){
   const list=reportList(),missed=missedList(),conf=bugs.some(f=>decisions[f.id]?.v==='bug');
-  if(!list.length&&!missed.length&&!qaList().length){
+  const warning=DEVELOPER_REPORT?`<aside class="report-warning" role="note"><b>Отчёт для разработчика</b><p>${esc(REPORT_WARNING)}</p></aside>`:'';
+  if(!list.length&&!missed.length&&!reportQA().length){
     const pending=mainBugs().length>0,source=RECHECK?'Не исправлено':'Расхождения';
-    $('#view-report').innerHTML=`<div class="report-empty"><h2>В отчёте пока нет задач</h2>${pending?`<p>Сначала разберите находки на вкладке «${source}»: отметьте, что является багом, а что — нет. Подтверждённые баги появятся здесь.</p><button class="btn primary" data-report-start>Перейти к вкладке «${source}»</button>`:'<p>Подтверждённых багов и согласованных улучшений пока нет.</p>'}</div>`;
+    $('#view-report').innerHTML=warning+`<div class="report-empty"><h2>В отчёте пока нет задач</h2>${pending?`<p>Сначала разберите находки на вкладке «${source}»: отметьте, что является багом, а что — нет. Подтверждённые баги появятся здесь.</p><button class="btn primary" data-report-start>Перейти к вкладке «${source}»</button>`:'<p>Подтверждённых багов и согласованных улучшений пока нет.</p>'}</div>`;
     const start=$('[data-report-start]');if(start)start.onclick=()=>{state.tab='bugs';tabs();render()};return;
   }
-  $('#view-report').innerHTML=`<div class="rbar"><div><b>${list.length+missed.length}</b> ${(n=>{const k=n%10,h=n%100,w=k===1&&h!==11?'задача':k>=2&&k<=4&&(h<12||h>14)?'задачи':'задач';return w})(list.length+missed.length)}${missed.length?` · из них добавлено вами: ${missed.length}`:''}</div>
+  $('#view-report').innerHTML=warning+`<div class="rbar"><div><b>${list.length+missed.length}</b> ${(n=>{const k=n%10,h=n%100,w=k===1&&h!==11?'задача':k>=2&&k<=4&&(h<12||h>14)?'задачи':'задач';return reportCountWord(n,w)})(list.length+missed.length)}${missed.length?` · из них добавлено вами: ${missed.length}`:''}</div>
     <div class="ract"><button class="btn primary" id="rAll">Скопировать всё</button><button class="btn" id="rZip" title="report.md и картинки — для GitLab, GitHub, YouTrack или вложений">Скачать .zip</button><label class="qchk" title="Строка «Что поменять» и блок CSS в задаче. Обычно не нужно: значения в таблице и «Где:» понятнее">
 <input type="checkbox" id="rCss" ${DEV_CSS?'checked':''}> CSS для фронтенда</label><span class="saved" id="rState"></span></div>
     <p class="hint">Выделите задачу мышью и скопируйте — или «Копировать текст». Jira не берёт картинки из вставленного текста: кликните по картинке — она скопируется, вставьте её в ячейку таблицы (Ctrl+V).</p></div>`+
     groupsOf(list).map(({area,items})=>(area?`<h2 class="rarea">${esc(area)}</h2>`:'')+items.map((f,i)=>`<article class="rcard" data-rcard="${f.id}">${reportHTML(f,area?'h2':'h1',area?`${i+1}. `:'')}
-      <div class="ract"><button class="btn mini" data-rtext="${f.id}">Копировать текст</button><button class="btn mini" data-rpair="${f.id}">Копировать картинку${shotInfo(evOfF(f).shot)?.aImg?' «сайт | макет»':''}</button><span class="saved" data-rstate="${f.id}"></span></div></article>`).join('')).join('')+
-    (qaList().length?`<h2 class="rarea">Замечания по механике (для тестирования)</h2>`+qaList().map((f,i)=>`<article class="rcard" data-rcard="${f.id}">${jiraHTMLOf(f,null,'h2',`${i+1}. `)}<div class="ract"><button class="btn mini" data-rtext="${f.id}">Копировать текст</button><span class="saved" data-rstate="${f.id}"></span></div></article>`).join(''):'')+
-    (others().length?`<h2 class="rarea">Вне этой проверки (другой функционал)</h2><p class="hint">Не по задаче этого ревью — в «Скопировать всё» не входят; при желании заведите отдельно (вкладка «Другой функционал»).</p><ul>`+others().map(f=>`<li>${esc(f.title)}${decisions[f.id]?.note?` — <span class="muted">${esc(decisions[f.id].note)}</span>`:''}</li>`).join('')+'</ul>':'')+
+      <div class="ract"><button class="btn mini" data-rtext="${f.id}">Копировать текст</button>${textOnlyReport(f)?'':`<button class="btn mini" data-rpair="${f.id}">Копировать картинку${shotInfo(evOfF(f).shot)?.aImg?' «сайт | макет»':''}</button>`}<span class="saved" data-rstate="${f.id}"></span></div></article>`).join('')).join('')+
+    (reportQA().length?`<h2 class="rarea">Замечания по механике (для тестирования)</h2>`+reportQA().map((f,i)=>`<article class="rcard" data-rcard="${f.id}">${jiraHTMLOf(f,null,'h2',`${i+1}. `)}<div class="ract"><button class="btn mini" data-rtext="${f.id}">Копировать текст</button><span class="saved" data-rstate="${f.id}"></span></div></article>`).join(''):'')+
+    (!DEVELOPER_REPORT&&others().length?`<h2 class="rarea">Вне этой проверки (другой функционал)</h2><p class="hint">Не по задаче этого ревью — в «Скопировать всё» не входят; при желании заведите отдельно (вкладка «Другой функционал»).</p><ul>`+others().map(f=>`<li>${esc(f.title)}${decisions[f.id]?.note?` — <span class="muted">${esc(decisions[f.id].note)}</span>`:''}</li>`).join('')+'</ul>':'')+
     missed.map(it=>`<article class="rcard">${jiraHTMLMissed(it)}${(it.images||[]).map(u=>`<p><img src="${u}" class="rimg" data-rimgurl="1"></p>`).join('')}</article>`).join('')+
     (list.length+missed.length?'':'<div class="empty">Задач нет: все находки отклонены или ещё не размечены.</div>');
-  for(const f of list){try{const r=await evidenceShots(f,state.ev[f.id]??0);RIMG[f.id+':site']=r.site;RIMG[f.id+':fig']=r.fig;RIMG[f.id+':pair']=r.both;
+  for(const f of list){if(textOnlyReport(f))continue;try{const r=await evidenceShots(f,state.ev[f.id]??0);RIMG[f.id+':site']=r.site;RIMG[f.id+':fig']=r.fig;RIMG[f.id+':pair']=r.both;
     for(const k of ['site','fig']){const im=document.querySelector(`[data-rimgk="${f.id}:${k}"]`);if(im&&RIMG[f.id+':'+k]){im.src=RIMG[f.id+':'+k].toDataURL('image/png');im.className='rimg';im.title='Клик — скопировать картинку'}}}catch{}}
   $('#rCss').onchange=e=>{DEV_CSS=e.target.checked;try{localStorage.setItem('dr-devcss',DEV_CSS?'1':'0')}catch{};reportView()};
   $('#rAll').onclick=async()=>{const G=groupsOf(list),img=f=>{const s=RIMG[f.id+':site'],g=RIMG[f.id+':fig'];return s?{site:s.toDataURL('image/png'),fig:g?.toDataURL('image/png')||null,sw:s.width,fw:g?.width}:null};
-    const Q=qaList(),html=G.map(({area,items})=>(area?`<h1>${esc(area)}</h1>`:'')+items.map((f,i)=>jiraHTMLOf(f,img(f),area?'h2':'h1',area?`${i+1}. `:'')).join('')).concat(Q.length?[`<h1>Замечания по механике (для тестирования)</h1>`+Q.map((f,i)=>jiraHTMLOf(f,null,'h2',`${i+1}. `)).join('')]:[]).concat(missed.map(jiraHTMLMissed)).join('<hr>');
-    const plain=G.map(({area,items})=>(area?`h1. ${area}\n\n`:'')+items.map((f,i)=>jiraTextOf(f,area?'h2':'h1',area?`${i+1}. `:'')).join('\n\n')).concat(Q.length?[`h1. Замечания по механике (для тестирования)\n\n`+Q.map((f,i)=>jiraTextOf(f,'h2',`${i+1}. `)).join('\n\n')]:[]).concat(missed.map(jiraTextMissed)).join('\n\n----\n\n');
+    const Q=reportQA(),html=(DEVELOPER_REPORT?'<p>'+esc(REPORT_WARNING)+'</p>':'')+G.map(({area,items})=>(area?`<h1>${esc(area)}</h1>`:'')+items.map((f,i)=>jiraHTMLOf(f,img(f),area?'h2':'h1',area?`${i+1}. `:'')).join('')).concat(Q.length?[`<h1>Замечания по механике (для тестирования)</h1>`+Q.map((f,i)=>jiraHTMLOf(f,null,'h2',`${i+1}. `)).join('')]:[]).concat(missed.map(jiraHTMLMissed)).join('<hr>');
+    const plain=(DEVELOPER_REPORT?REPORT_WARNING+'\n\n':'')+G.map(({area,items})=>(area?`h1. ${area}\n\n`:'')+items.map((f,i)=>jiraTextOf(f,area?'h2':'h1',area?`${i+1}. `:'')).join('\n\n')).concat(Q.length?[`h1. Замечания по механике (для тестирования)\n\n`+Q.map((f,i)=>jiraTextOf(f,'h2',`${i+1}. `)).join('\n\n')]:[]).concat(missed.map(jiraTextMissed)).join('\n\n----\n\n');
     $('#rState').textContent=await copyRich(html,plain)?'Скопировано. Если картинки не вставились — кликом по картинке и Ctrl+V в ячейку':'Браузер не дал доступ к буферу'};
   $('#rZip').onclick=async()=>{$('#rState').textContent='Собираю архив…';MD=await mdReport();await $('#dlgZip').onclick();$('#rState').textContent=$('#dlgState').textContent;MD=null};
 }
@@ -1104,7 +1126,7 @@ document.addEventListener('click',async e=>{
 // Правки в макет — для дизайнера: что поправить в самом макете, со ссылками прямо на слои
 $('#jiraBtn').onclick=()=>{
   const conf=bugs.filter(f=>decisions[f.id]?.v==='bug'),src=reportList();
-  const t=src.map(f=>jiraTextOf(f)).join('\n\n----\n\n'),mt=missedList().map(jiraTextMissed).join('\n\n----\n\n');
+  const t=(DEVELOPER_REPORT?REPORT_WARNING+'\n\n':'')+src.map(f=>jiraTextOf(f)).join('\n\n----\n\n'),mt=missedList().map(jiraTextMissed).join('\n\n----\n\n');
   dialog((conf.length?`Подтверждённые баги: ${conf.length}`:`Решений пока нет — все находки, кроме отклонённых: ${src.length}`)+(mt?` + добавленные вами: ${missedList().length}`:''),[t,mt].filter(Boolean).join('\n\n----\n\n'));
   JIRA_SET={list:src,missed:missedList()};$('#dlgRich').hidden=false;
 };
@@ -1113,7 +1135,7 @@ function feedbackName(){return `feedback-${String(DATA.meta.testUrl||'review').r
 function feedbackPayload(){
   const m=metrics(),R=REASONS.reduce((o,[k,l])=>(o[k]=l,o),{});
   return {schema:'design-review-feedback/1',exportedAt:new Date().toISOString(),
-    run:{pages:PAGES?PAGES.map(({id,title,testUrl,figmaUrl,dir})=>({id,title,testUrl,figmaUrl,dir})):undefined,title:DATA.meta.title,dir:DATA.meta.runDir||null,skillVersion:DATA.meta.skillVersion||null,skillRelease:DATA.meta.skillRelease||null,testUrl:DATA.meta.testUrl,figmaUrl:DATA.meta.figmaUrl,createdAt:DATA.meta.createdAt,state:DATA.meta.state,widths:UW},
+    run:{pages:PAGES?PAGES.map(({id,title,testUrl,figmaUrl,dir})=>({id,title,testUrl,figmaUrl,dir})):undefined,title:DATA.meta.title,audience:DATA.meta.audience||'designer',dir:DATA.meta.runDir||null,skillVersion:DATA.meta.skillVersion||null,skillRelease:DATA.meta.skillRelease||null,testUrl:DATA.meta.testUrl,figmaUrl:DATA.meta.figmaUrl,createdAt:DATA.meta.createdAt,state:DATA.meta.state,widths:UW},
     metrics:m, tokenUsage:DATA.meta.tokenUsage||null, statePlan:DATA.meta.statePlan||null, imageAudit:DATA.meta.imageAudit||null,
     findings:DATA.findings.map(f=>{const d=decisions[f.id]||{},ev=f.evidence||[];return {id:f.id,srcId:f.srcId,page:f.page,foundBy:f.foundBy,kind:f.kind,basis:f.basis,referenceStatus:f.referenceStatus,source:f.auto?'auto':'agent',title:f.title,category:f.category,severity:f.severity,widths:f.widths,
       props:f.props,css:f.css||undefined,verdict:d.v||null,reason:d.reason||null,reasonLabel:d.reason?R[d.reason]:undefined,note:d.note||undefined,noteScope:d.scope||undefined,
