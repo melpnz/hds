@@ -8,7 +8,7 @@
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { textEl, boxEl, effectiveTextStyle, weightOf } from './figma-lib.mjs';
+import { textEl, boxEl, effectiveTextStyle, weightOf, styledTextRuns } from './figma-lib.mjs';
 
 const argv = process.argv.slice(2);
 const opt = k => { const i = argv.indexOf('--' + k); return i >= 0 ? argv[i + 1] : undefined; };
@@ -99,11 +99,15 @@ for (const f of frames) {
     }
     const tag = el => { if (link !== n.id) el.link = link; el.frame = f.id; if (inst) el.inst = inst; return el; };
     const b = n.absoluteBoundingBox, box = { x: Math.round(b.x - fb.x), y: Math.round(b.y - fb.y), width: Math.round(b.width), height: Math.round(b.height) };
+    const rawBox = { x: b.x - fb.x, y: b.y - fb.y, width: b.width, height: b.height };
     const p = trail ? trail + ' / ' + n.name : n.name;
     if (n.type === 'TEXT') {
       const { s, styleName, weight, fills } = effectiveTextStyle(n);
       els.push(tag({ ...textEl({ id: n.id, name: n.name, path: p, box, family: s.fontFamily, style: styleName, size: s.fontSize, lh: s.lineHeightPx, ls: s.letterSpacing, color: first(fills, op), tcase: s.textCase, text: n.characters }), tokens: tokensOf(n, true) }));
       els[els.length - 1].style['font-weight'] = String(weight);
+      els[els.length - 1].rawBox = rawBox;
+      els[els.length - 1].textRuns = styledTextRuns(n, first, op);
+      for (const run of els[els.length - 1].textRuns) if (run.tokens?.color?.var) allVars.add(run.tokens.color.var);
       // стиль/переменная слоя говорят одно, а символы нарисованы другим начертанием — противоречие в макете (figma-lint)
       const baseW = Number(n.style?.fontWeight) || weightOf(n.style?.fontPostScriptName || '');
       if (baseW && Math.abs(baseW - weight) >= 100) els[els.length - 1].drawn = { styleWeight: baseW, weight, styleName: n.styles?.text && styleMap[n.styles.text] ? styleMap[n.styles.text].name : '' };
@@ -116,6 +120,13 @@ for (const f of frames) {
       // обводка по четырём сторонам: individualStrokeWeights (разная по сторонам) или strokeWeight (одинаковая)
       // — иначе выходит «рамка только сверху», хотя нарисована со всех сторон (ложная находка, sticky-button)
       const sc = first(n.strokes, op);
+      if (hasLook) {
+        const el = els[els.length - 1];
+        el.rawBox = rawBox;
+        el.layoutSizingHorizontal = n.layoutSizingHorizontal;
+        el.strokesIncludedInLayout = n.strokesIncludedInLayout === true;
+        el.strokeAlign = n.strokeAlign;
+      }
       if (hasLook && sc && /^#/.test(sc)) {
         const sw = n.individualStrokeWeights || { top: n.strokeWeight, right: n.strokeWeight, bottom: n.strokeWeight, left: n.strokeWeight };
         const st = els[els.length - 1].style;

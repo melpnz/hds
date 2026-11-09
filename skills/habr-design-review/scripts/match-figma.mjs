@@ -7,6 +7,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { lintFigma } from './figma-lint.mjs';
 import { PNG } from 'pngjs';
+import { auditDetails } from './detail-audit.mjs';
 
 // Где на снимке реально начинаются буквы текста (axis 'x' — левый край, 'y' — верхний): первый столбец/строка внутри
 // рамки текста, где цвет заметно отличается от фона рядом. Нужен для пограничных отступов (≤ 3 px), когда рамки
@@ -125,7 +126,7 @@ const shots = figFiles.map(f => ({ suffix: f.slice(6, -5), fig: path.join(figDir
 }).filter(s => s.page);
 if (!shots.length) { console.error('Нет пар figma-*.json ↔ page-*.json в', run); process.exit(1); }
 
-const findingsRaw = [], widths = [], coverage = [], matches = [], debug = {}, lintRaw = [], tokenSystems = [];
+const findingsRaw = [], widths = [], coverage = [], matches = [], debug = {}, lintRaw = [], tokenSystems = [], detailFindings = [];
 for (const shot of shots) {
   const F = JSON.parse(fs.readFileSync(shot.fig, 'utf8')), P = JSON.parse(fs.readFileSync(shot.page, 'utf8'));
   const w = F.frame?.w || P.width, state = P.state || 'default', sid = shot.suffix;
@@ -190,6 +191,8 @@ for (const shot of shots) {
     if (best) { pairs.push({ f, p: best.p, how: 'similar', s: best.s }); usedP.add(best.p); usedF.add(f); }
   }
 
+  const details = auditDetails(F, P, { sid, w, state, fragment: shot.fragment, anchors });
+  detailFindings.push(...details.findings); geometryWarnings.push(...details.warnings);
   // ---------- сравнение текстов
   const diffs = []; let equal = 0;
   const add = (pair, prop, a, b, d, sev, fEl = pair.f, pEl = pair.p, css, extra) => diffs.push({ pair, prop, a, b, d, sev, fEl, pEl, css, ...extra });
@@ -261,7 +264,8 @@ for (const shot of shots) {
     const fls = num(fs_['letter-spacing']) || 0, pls = ps['letter-spacing'] === 'normal' ? 0 : (num(ps['letter-spacing']) || 0);
     if (Math.abs(fls - pls) > 0.1) add(q, 'letter-spacing', `${fls}px`, `${pls}px`, +(pls - fls).toFixed(2), 'minor'); else equal++;
     const fc = rgb(fs_.color), pc = rgb(ps.color);
-    if (fc && pc) colorDiff(q, 'color', fc, pc, q.f, q.p);
+    const mixedColor = e => new Set((e.textRuns || []).map(r => r.style?.color)).size > 1;
+    if (fc && pc && !mixedColor(q.f) && !mixedColor(q.p)) colorDiff(q, 'color', fc, pc, q.f, q.p);
     // регистр — как видно глазами: текст, набранный заглавными, равен text-transform: uppercase (и наоборот)
     const caps = t => /[a-zа-яё]/i.test(t || '') && t === String(t).toUpperCase();
     const lows = t => /[a-zа-яё]/i.test(t || '') && t === String(t).toLowerCase();
@@ -495,6 +499,7 @@ if (tokenSystems.length) {
 }
 
 // Одинаковое расхождение на разных ширинах (тот же элемент, то же свойство и значения) — одна находка
+findings.push(...detailFindings);
 // с несколькими ширинами и свидетельством на каждой, а не по карточке на ширину.
 {
   const merged = [], byKey = new Map();

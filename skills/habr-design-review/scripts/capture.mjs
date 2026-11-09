@@ -38,6 +38,7 @@
 // Селекторы — Playwright: css, "text=…", "button:has-text('…')"; берётся первый ВИДИМЫЙ элемент.
 // Если шаг упал, состояние помечается «НЕ ДОСТИГНУТО» (stepErrors в json) — такие снимки не сравнивать.
 import { chromium } from 'playwright';
+import { captureDetails } from './capture-details.mjs';
 import fs from 'node:fs/promises';
 import { statSync, readFileSync } from 'node:fs';
 import path from 'node:path';
@@ -83,7 +84,7 @@ await fs.mkdir(outDir, { recursive: true });
 const KEEP = ['color', 'background-color', 'background-image', 'font-family', 'font-size', 'font-weight', 'line-height', 'letter-spacing',
   'border-top-width', 'border-top-color', 'border-top-style', 'border-right-width', 'border-bottom-width', 'border-left-width', 'border-radius', 'box-shadow', 'opacity',
   'padding-top', 'padding-right', 'padding-bottom', 'padding-left', 'margin-top', 'margin-right', 'margin-bottom', 'margin-left', 'gap',
-  'width', 'height', 'max-width', 'flex-direction', 'grid-template-columns', 'display', 'text-transform', 'text-overflow', '-webkit-line-clamp', 'object-fit', 'object-position'];
+  'width', 'height', 'max-width', 'box-sizing', 'transform', 'zoom', 'outline-width', 'outline-color', 'flex-direction', 'grid-template-columns', 'display', 'text-transform', 'text-decoration-line', 'text-overflow', '-webkit-line-clamp', 'object-fit', 'object-position'];
 
 // На адаптивных страницах часто есть скрытые дубли (мобильная и десктопная версии) — берём только видимый элемент.
 const vis = (page, sel) => page.locator(sel + ' >> visible=true').first();
@@ -358,7 +359,7 @@ for (const state of states) {
           const r = el.getBoundingClientRect(), cs = getComputedStyle(el);
           if (r.width < 1 && r.height < 1) return;
           const style = {}; for (const p of new Set([...KEEP, ...(m.props || [])])) style[p] = cs.getPropertyValue(p);
-          measured.push({ sel: m.sel, nth: k, of: list.length, tag: el.tagName.toLowerCase(), cls: String(el.className?.baseVal ?? el.className ?? '').slice(0, 300),
+          measured.push({ sel: m.sel, nth: k, of: list.length, tag: el.tagName.toLowerCase(), cls: String(el.className?.baseVal ?? el.className ?? '').slice(0, 300), rawBox:{x:r.x+offX,y:r.y+offY,width:r.width,height:r.height},
             text: [...el.childNodes].filter(n => n.nodeType === 3).map(n => n.textContent).join(' ').replace(/\s+/g, ' ').trim().slice(0, 200),
             fullText: (el.innerText || '').replace(/\s+/g, ' ').trim().slice(0, 300), visible: cs.display !== 'none' && cs.visibility !== 'hidden',
             box: { x: Math.round(r.x + offX), y: Math.round(r.y + offY), width: Math.round(r.width), height: Math.round(r.height) }, style });
@@ -367,6 +368,9 @@ for (const state of states) {
       return { elements: out, measured, pageHeight: document.documentElement.scrollHeight, scrollY, viewportHeight: innerHeight, finalUrl: location.href };
     }, { KEEP, fullPage, MEASURE });
 
+    const details = await page.evaluate(captureDetails, { fullPage });
+    for (const el of data.elements) Object.assign(el, details.elements[el.id] || {});
+    data.environment = details.environment;
     const base = `${prefix}-${width}${state.name === 'default' ? '' : '-' + state.name}`;
     // Токены сайта: какой CSS-переменной задан цвет/фон/рамка элемента (как в DevTools → Styles).
     // Вычисленный стиль даёт только итоговое значение, поэтому спрашиваем совпавшие правила через CDP.

@@ -472,7 +472,7 @@ const isOther=f=>decisions[f.id]?.v==='scope',mainBugs=()=>bugs.filter(f=>!isOth
 const QA_V=[['bug','Баг','1'],['notbug','Не баг','2'],['discuss','Обсудить','4']];
 const optsOf=f=>f.kind==='bug'?BUG_V:f.kind==='mockup'?MK_V:f.kind==='qa'?QA_V:f.kind==='fixed'?FIX_V:IMP_V;
 // всё, что стоит поправить в макете: проверка макета (кроме «Не важно») + расхождения, где дизайнер решил «Ошибка в макете»
-const mockupFixes=()=>[...bugs.filter(f=>decisions[f.id]?.v==='mockup'),...mocks.filter(f=>decisions[f.id]?.v!=='skip')];
+const mockupFixes=()=>[...bugs.filter(f=>decisions[f.id]?.v==='mockup'||f.alsoMockup),...mocks.filter(f=>decisions[f.id]?.v!=='skip')];
 
 function reviewDate(value){
   if(!value)return 'Дата не указана';
@@ -658,6 +658,7 @@ function viewer(f){
 }
 // Блок для разработчика: селектор, классы, CSS «как должно быть», ссылка на слой в Figma.
 function devHTML(f){
+  if(f.basis==='language-review')return `<div class="dev"><b>Где найден текст</b>${(f.languageContexts||[]).slice(0,8).map(c=>`<div class="dev-row"><span>${esc(c.source)} · ${esc(c.shot)} px</span>${c.selector?`<code>${esc(c.selector)}</code>`:DATA.meta.figmaUrl?`<a href="${esc(figUrl({id:c.id,link:c.link,frame:c.frame},DATA.meta))}" target="_blank" rel="noopener">Слой в макете</a>`:''}</div>`).join('')}</div>`;
   const ev=f.evidence?.[state.ev[f.id]??0]||{},d=ev.dev||{},sel=d.b?.sel||d.a?.sel||f.selector;
   if(!sel&&!ev.figmaNode&&!(f.css&&f.css.length))return'';
   const copyBtn=(text,label)=>`<button class="btn mini" data-copy="${esc(text)}">${label}</button>`;
@@ -756,9 +757,10 @@ function scopeView(){
 }
 function fullView(){
   const cur=state.fullW||DATA.meta.widths[0].id,wi=shotInfo(cur),showDiff=state.fullDiff&&wi.diffImg&&IMG[wi.diffImg];
+  const fullImage=(file,cap)=>IMG[file]?`<img src="${IMG[file].url}" alt="${esc(cap)}">`:`<div class="empty">${esc(cap)}: снимка нет. Состояние показано по доступному источнику.</div>`;
   const right=showDiff?{img:wi.diffImg,cap:'Разница по пикселям'+(wi.diffPct!=null?` · ${wi.diffPct}%`:'')}:{img:wi.bImg,cap:L.b};
-  $('#view-full').innerHTML=`<div class="full-ctl"><div class="seg" id="fullSeg">${DATA.meta.widths.map(s=>`<button data-fw="${s.id}" aria-pressed="${s.id===cur}">${esc(shotLabel(s))}</button>`).join('')}</div>${wi.diffImg?`<label class="saved"><input type="checkbox" id="fullDiff" ${showDiff?'checked':''}> справа — разница по пикселям</label>`:''}<label class="saved"><input type="checkbox" id="syncScroll" ${state.sync!==false?'checked':''}> синхронная прокрутка</label><span class="saved">${esc(L.a)} ${IMG[wi.aImg].h} px · ${esc(L.b)} ${IMG[wi.bImg].h} px высотой</span></div>
-  ${(()=>{const left={img:wi.aImg,cap:L.a};const [c1,c2]=showDiff?[left,right]:order(left,right);return `<div class="full"><div class="col" id="colF"><div class="cap">${esc(c1.cap)} · ${esc(shotLabel(wi))}</div><img src="${IMG[c1.img].url}" alt=""></div><div class="col" id="colP"><div class="cap">${esc(c2.cap)} · ${esc(shotLabel(wi))}</div><img src="${IMG[c2.img].url}" alt=""></div></div>`})()}`;
+  $('#view-full').innerHTML=`<div class="full-ctl"><div class="seg" id="fullSeg">${DATA.meta.widths.map(s=>`<button data-fw="${s.id}" aria-pressed="${s.id===cur}">${esc(shotLabel(s))}</button>`).join('')}</div>${wi.diffImg?`<label class="saved"><input type="checkbox" id="fullDiff" ${showDiff?'checked':''}> справа — разница по пикселям</label>`:''}<label class="saved"><input type="checkbox" id="syncScroll" ${state.sync!==false?'checked':''}> синхронная прокрутка</label><span class="saved">${esc(L.a)} ${IMG[wi.aImg]?.h??'—'} px · ${esc(L.b)} ${IMG[wi.bImg]?.h??'—'} px высотой</span></div>
+  ${(()=>{const left={img:wi.aImg,cap:L.a};const [c1,c2]=showDiff?[left,right]:order(left,right);return `<div class="full"><div class="col" id="colF"><div class="cap">${esc(c1.cap)} · ${esc(shotLabel(wi))}</div>${fullImage(c1.img,c1.cap)}</div><div class="col" id="colP"><div class="cap">${esc(c2.cap)} · ${esc(shotLabel(wi))}</div>${fullImage(c2.img,c2.cap)}</div></div>`})()}`;
   const a=$('#colF'),b=$('#colP');let lock=false;
   const link=(x,y)=>x.addEventListener('scroll',()=>{if(lock||!$('#syncScroll').checked)return;lock=true;y.scrollTop=x.scrollTop;requestAnimationFrame(()=>lock=false)});link(a,b);link(b,a);
   $('#fullSeg').onclick=e=>{const t=e.target.closest('[data-fw]');if(t){state.fullW=t.dataset.fw;fullView()}};
@@ -924,7 +926,7 @@ const OVR={fills:'заливка',strokes:'обводка',strokeWeight:'тол�
 const compOf=f=>{const c=evOfF(f)?.figmaNode?.comp;if(!c||!c.lib||!c.url)return null;const ch=[...new Set((c.custom||[]).map(x=>OVR[x]||x))];return {name:c.name,url:c.url,changed:ch}};
 const compLine=(f,fmt)=>{const c=compOf(f);if(!c)return null;const tail=c.changed.length?` (в макете изменён: ${c.changed.join(', ')})`:'';return fmt==='wiki'?`Компонент: [${c.name}|${c.url}]${tail}`:fmt==='md'?`Компонент: [${c.name}](${c.url})${tail}`:`Компонент: <a href="${esc(c.url)}">${esc(c.name)}</a>${esc(tail)}`};
 function jiraTextOf(f,lvl='h1',num=''){
-  if(textOnlyReport(f))return `${lvl}. ${num}${mPlain(f.title)}\n${mWiki(shortOf(f))}${f.fix?'\n\n'+mWiki(f.fix):''}${decisions[f.id]?.note?'\n\n'+decisions[f.id].note:''}`;
+  if(textOnlyReport(f))return `${lvl}. ${num}${mPlain(f.title)}\n${mWiki(shortOf(f))}${f.fix?'\n\n'+mWiki(f.fix):''}${f.basis==='language-review'?'\n\nГде: '+(f.languageContexts||[]).slice(0,8).map(c=>`${c.source} · ${c.shot} · ${c.selector||c.path||c.id}`).join('; '):''}${decisions[f.id]?.note?'\n\n'+decisions[f.id].note:''}`;
   const ev=evOfF(f),bu=bUrl(ev),au=aUrl(ev),sel=f.selector||selOf(f),note=decisions[f.id]?.note,c=valCells(f);
   const cell=(u,t,lines)=>[u?`[${t}|${u}]`:t,...lines.map(mWiki)].join(' \\\\ ');
   const cl=compLine(f,'wiki');
@@ -974,7 +976,7 @@ ${L.a}: ${au}`}};
 // копируются отдельно: «1. Текст задачи», затем «2. Картинка» (вставляется как файл-вложение).
 // imgs: {site, fig} — dataURL картинок для первой строки таблицы (в «Отчёте»); без них строки картинок нет
 function jiraHTMLOf(f,imgs,lvl='h1',num=''){
-  if(textOnlyReport(f)){const ev=f.evidence?.[0],url=f.kind==='mockup'?(ev?aUrl(ev):null)||DATA.meta.figmaUrl:(ev?bUrl(ev):null)||DATA.meta.testUrl;return `<${lvl}>${esc(num+mPlain(f.title))}</${lvl}><p>${mHTML(shortOf(f))}</p>${f.fix?`<p>${mHTML(f.fix)}</p>`:''}${url?`<p><a href="${esc(url)}">${f.kind==='mockup'?'Открыть макет':'Открыть страницу'}</a></p>`:''}${decisions[f.id]?.note?`<p>${esc(decisions[f.id].note)}</p>`:''}`}
+  if(textOnlyReport(f)){const ev=f.evidence?.[0],url=f.kind==='mockup'?(ev?aUrl(ev):null)||DATA.meta.figmaUrl:(ev?bUrl(ev):null)||DATA.meta.testUrl;return `<${lvl}>${esc(num+mPlain(f.title))}</${lvl}><p>${mHTML(shortOf(f))}</p>${f.fix?`<p>${mHTML(f.fix)}</p>`:''}${f.basis==='language-review'?devHTML(f):''}${url?`<p><a href="${esc(url)}">${f.kind==='mockup'?'Открыть макет':'Открыть страницу'}</a></p>`:''}${decisions[f.id]?.note?`<p>${esc(decisions[f.id].note)}</p>`:''}`}
   const ev=evOfF(f),bu=bUrl(ev),au=aUrl(ev),sel=f.selector||selOf(f),note=decisions[f.id]?.note,c=valCells(f),cell='style="border:1px solid #ccc;padding:6px 10px;vertical-align:top"';
   const lk=(u,t)=>u?`<a href="${esc(u)}">${esc(t)}</a>`:esc(t);
   const td=(u,t,lines,extra)=>`<td ${cell}>${[lk(u,t),...lines.map(mHTML),...(extra?[extra]:[])].join('<br>')}</td>`;
@@ -1136,9 +1138,9 @@ function feedbackPayload(){
   const m=metrics(),R=REASONS.reduce((o,[k,l])=>(o[k]=l,o),{});
   return {schema:'design-review-feedback/1',exportedAt:new Date().toISOString(),
     run:{pages:PAGES?PAGES.map(({id,title,testUrl,figmaUrl,dir})=>({id,title,testUrl,figmaUrl,dir})):undefined,title:DATA.meta.title,audience:DATA.meta.audience||'designer',dir:DATA.meta.runDir||null,skillVersion:DATA.meta.skillVersion||null,skillRelease:DATA.meta.skillRelease||null,testUrl:DATA.meta.testUrl,figmaUrl:DATA.meta.figmaUrl,createdAt:DATA.meta.createdAt,state:DATA.meta.state,widths:UW},
-    metrics:m, tokenUsage:DATA.meta.tokenUsage||null, statePlan:DATA.meta.statePlan||null, imageAudit:DATA.meta.imageAudit||null,
+    metrics:m, tokenUsage:DATA.meta.tokenUsage||null, statePlan:DATA.meta.statePlan||null, imageAudit:DATA.meta.imageAudit||null, languageReview:DATA.meta.languageReview||null,
     findings:DATA.findings.map(f=>{const d=decisions[f.id]||{},ev=f.evidence||[];return {id:f.id,srcId:f.srcId,page:f.page,foundBy:f.foundBy,kind:f.kind,basis:f.basis,referenceStatus:f.referenceStatus,source:f.auto?'auto':'agent',title:f.title,category:f.category,severity:f.severity,widths:f.widths,
-      props:f.props,css:f.css||undefined,verdict:d.v||null,reason:d.reason||null,reasonLabel:d.reason?R[d.reason]:undefined,note:d.note||undefined,noteScope:d.scope||undefined,
+      props:f.props,css:f.css||undefined,observation:f.observation,cause:f.cause,auditType:f.auditType,requiresVisualCheck:f.requiresVisualCheck,languageSources:f.languageSources,languageContexts:f.languageContexts,alsoMockup:f.alsoMockup,verdict:d.v||null,reason:d.reason||null,reasonLabel:d.reason?R[d.reason]:undefined,note:d.note||undefined,noteScope:d.scope||undefined,
       evidence:ev.map(e=>({shot:e.shot,a:e.a,b:e.b,figmaNode:e.figmaNode,sel:e.dev?.b?.sel||e.dev?.a?.sel}))}}),
     missed:missedList().map(({at,...x})=>x),
     skillNotes:Object.entries(decisions).filter(([k,d])=>!k.startsWith('__')&&d.scope==='skill'&&d.note).map(([id,d])=>({id,note:d.note}))};

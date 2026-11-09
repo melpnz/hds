@@ -37,6 +37,14 @@ for (const s of data.meta.statePlan || []) {
 const imageAuditFile = path.join(runDir, 'image-audit.json');
 if (fs.existsSync(imageAuditFile)) data.meta.imageAudit = JSON.parse(fs.readFileSync(imageAuditFile, 'utf8'));
 const images = {};
+const languageFile = path.join(runDir, 'language-review.json');
+if (fs.existsSync(languageFile)) {
+  const { runLanguage } = await import('./language-review.mjs');
+  const {total,pending} = runLanguage(runDir,'verify');
+  data.meta.languageReview = { total, reviewed: total-pending.length, complete: !pending.length };
+  data.meta.coverage ||= [];
+  data.meta.coverage.push({ area: 'Русский язык: источники ревью', status: pending.length?'not-checked':'checked', note: `${total-pending.length} из ${total} текстов; орфография, согласование и пунктуация проверяются агентом в контексте.` });
+}
 for (const w of data.meta.widths) {
   for (const key of ['figmaImg', 'pageImg', 'aImg', 'bImg', 'cImg', 'diffImg']) {
     if (!w[key] || images[w[key]]) continue; // cImg — «было» в перепроверке (снимок исходного ревью)

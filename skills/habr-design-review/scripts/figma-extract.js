@@ -36,6 +36,9 @@ function walk(n) {
       const lhPx = !lh ? '' : lh.unit === 'PIXELS' ? lh.value : lh.unit === 'PERCENT' && fs ? Math.round(fs * lh.value) / 100 : 'AUTO';
       const lsPx = !ls || !ls.value ? 0 : ls.unit === 'PIXELS' ? ls.value : fs ? Math.round(fs * ls.value) / 100 : 0;
       row = ['T', n.id, bb.join(','), fn ? fn.family : 'MIXED', fn ? fn.style : 'MIXED', fs, lhPx, lsPx, first(n.fills), n.textCase === figma.mixed ? '' : (n.textCase || ''), clean(n.characters)].join('\t');
+      const textRuns = n.getStyledTextSegments(['fills','fontName','fontSize','textDecoration']).map(s => ({ start:s.start,end:s.end,text:s.characters,
+        style:{ color:first(s.fills),'font-family':s.fontName.family,'font-size':s.fontSize+'px','font-style-name':s.fontName.style,'text-decoration':s.textDecoration } }));
+      row += '\t@details:' + JSON.stringify({rawBox:{x:b.x-fb.x,y:b.y-fb.y,width:b.width,height:b.height},rawText:n.characters,textRuns});
     } else if (('layoutMode' in n && n.layoutMode !== 'NONE') || first(n.fills) || ('strokes' in n && n.strokes.length) || n.type === 'INSTANCE') {
       let comp = ''; try { comp = n.type === 'INSTANCE' && n.mainComponent ? (n.mainComponent.parent?.type === 'COMPONENT_SET' ? n.mainComponent.parent.name : n.mainComponent.name) : ''; } catch {}
       const lay = 'layoutMode' in n && n.layoutMode !== 'NONE' ? n.layoutMode[0] : '-';
@@ -43,6 +46,7 @@ function walk(n) {
       const r = 'cornerRadius' in n ? (n.cornerRadius === figma.mixed ? [n.topLeftRadius, n.topRightRadius, n.bottomRightRadius, n.bottomLeftRadius].join('/') : n.cornerRadius) : '';
       const st = 'strokes' in n && n.strokes.length ? first(n.strokes) + '/' + (n.strokeWeight === figma.mixed ? 'M' : n.strokeWeight) : '';
       row = ['B', n.id, bb.join(','), clean(n.name), lay, pad, 'itemSpacing' in n ? n.itemSpacing : '', r, 'fills' in n ? first(n.fills) : '', st, clean(comp)].join('\t');
+      row += '\t@details:' + JSON.stringify({rawBox:{x:b.x-fb.x,y:b.y-fb.y,width:b.width,height:b.height},strokesIncludedInLayout:n.strokesIncludedInLayout===true,layoutSizingHorizontal:n.layoutSizingHorizontal});
     }
     if (row) { const b = bytes(row) + 2; if (size + b > LIMIT) { nextFromY = bb[1]; return; } rows.push(row); size += b; }
   }

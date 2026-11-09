@@ -55,3 +55,24 @@ export function effectiveTextStyle(n) {
   const weight = o.fontStyle ? weightOf(o.fontStyle) : (s.fontWeight || weightOf(styleName));
   return { s, styleName, weight, fills: o.fills || n.fills };
 }
+
+// UTF-16 offsets, like Figma characterStyleOverrides and DOM Range.
+export function styledTextRuns(n, colorOf, opacity = 1) {
+  const text = n.characters || '', runs = [];
+  for (let start = 0; start < text.length;) {
+    const key = n.characterStyleOverrides?.[start] || 0;
+    let end = start + 1;
+    while (end < text.length && (n.characterStyleOverrides?.[end] || 0) === key) end++;
+    const override = n.styleOverrideTable?.[key] || {}, s = { ...n.style, ...override };
+    const fills = override.fills || n.fills;
+    const el = textEl({ text: text.slice(start, end), family: s.fontFamily, style: s.fontStyle || s.fontPostScriptName,
+      size: s.fontSize, lh: s.lineHeightPx, ls: s.letterSpacing, color: colorOf(fills, opacity), tcase: s.textCase });
+    el.style['font-weight'] = String(override.fontStyle ? weightOf(override.fontStyle) : s.fontWeight || weightOf(s.fontPostScriptName));
+    el.style['text-decoration'] = s.textDecoration || 'NONE';
+    const variable = fills?.find(p => p.visible !== false)?.boundVariables?.color;
+    runs.push({ start, end, text: text.slice(start, end), style: el.style,
+      ...(variable?.id ? { tokens: { color: { var: variable.id } } } : {}) });
+    start = end;
+  }
+  return runs;
+}
